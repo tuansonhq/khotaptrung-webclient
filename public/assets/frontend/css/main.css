@@ -113,19 +113,21 @@ header .nav-bar{
     height: 120px;
     display: flex;
     justify-content: space-between;
+    transition: .2s;
 }
 .nav-bar-logo{
 
 }
 .nav-bar-brand{
     margin: 20px 0;
+    transition: 0.2s;
 }
 .nav-bar-brand img{
     height: 65px;
     margin: auto;
 }
 .nav-bar-category .nav li a{
-    transition: margin 0.2s;
+    transition:  0.2s;
     margin: 34px 15px 33px 15px;
     line-height: 120px;
     color: white;
@@ -145,7 +147,7 @@ header .nav-bar{
 }
 
 .nav-log-in a i,.nav-regist a i{
-   padding-right: 4px;
+    padding-right: 4px;
 
 }
 .nav-log-in a:hover,.nav-regist a:hover{
@@ -154,8 +156,55 @@ header .nav-bar{
 
 
 }
+.nav-bar-category-mobile-input{
+    background: darkgrey;
+    padding: 2px 8px;
+
+}
+
+.nav_mobile{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    margin-top: 0;
+    background-color: #394048;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform linear 0.3s,opacity linear 0.3s;
+}
+.nav_mobile ul{
+    list-style: none;
+    margin: 0px -15px !important;
+}
+.nav_mobile ul li{
+    padding: 10px 20px 10px 0;
+    border-bottom: 1px solid #404851;
+
+}
 
 
+.nav_mobile ul li a{
+    padding: 10px 20px 10px 0;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+    text-transform: uppercase;
+
+}
+.nav_mobile-log-in{
+    border: 1px solid #ccd1de;
+    color: #ccd1de;
+    border-radius: 100px;
+    display: block;
+    text-align: center;
+}
+.name_input:checked ~ .nav_mobile{
+    transform: translateY(0%);
+    opacity: 1;
+    margin-top: 80px;
+}
 /*content*/
 .content{
     margin-top: 140px;
@@ -386,7 +435,7 @@ header .nav-bar{
     right: -8px;
 }
 .game-list-image-in{
-   width: 100%;
+    width: 100%;
 }
 .game-list .p-5{
     padding: 5px !important;
@@ -395,7 +444,7 @@ header .nav-bar{
     margin-bottom: 15px;
 }
 .game-list-title a{
-   text-decoration: none;
+    text-decoration: none;
 }
 .game-list-title p{
     color: #f1c40f;
@@ -514,7 +563,7 @@ header .nav-bar{
     margin: auto;
 }
 .footer-service td p span{
-   color: #2ecc71;
+    color: #2ecc71;
 }
 
 .footer-service td p a{
@@ -535,7 +584,7 @@ header .nav-bar{
     margin-top: 24px;
     display: none;
 }
-.nav-bar-category-mobile a {
+.nav-bar-category-mobile span a {
     font-family: Roboto, Arial, Helvetica;
     font-size: 14px;
     display: inline-block;
