@@ -33,17 +33,9 @@
     <link rel="stylesheet" href="/assets/frontend/css/chatbox.css">
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap-popover/bootstrap-popover-x.css">
     <link rel="stylesheet" href="/assets/frontend/lib/date-picker/tui-date-picker.css">
-    <link rel="stylesheet" href="/assets/frontend/css/style-game.css">
-    <link rel="stylesheet" href="/assets/frontend/css/profile.css">
-    <link rel="stylesheet" href="/assets/frontend/css/leaderboard.css">
-    <link rel="stylesheet" href="/assets/frontenbd/css/style.css">
-    <link rel="stylesheet" href="/assets/frontend/css/idol_category.css">
-    <link rel="stylesheet" href="/assets/frontend/css/videoUser.css">
-    <link rel="stylesheet" href="/assets/frontend/css/idol_detail.css">
-    <link rel="stylesheet" href="/assets/frontend/css/idol_KOLmng.css">
-    <link rel="stylesheet" href="/assets/frontend/css/croppie.css">
-    <link rel="stylesheet" href="/assets/frontend/css/style-v1.css">
-    <link rel="stylesheet" href="/assets/frontend/css/register_idol.css">
+    <link rel="stylesheet" href="/assets/frontend/css/news.css">
+    <link rel="stylesheet" href="/assets/frontend/css/account.css">
+    <link rel="stylesheet" href="/assets/frontend/css/spin.css">
     <link rel="stylesheet" href="/assets/frontend/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/css/imgareaselect.css">
     <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
@@ -73,11 +65,13 @@
     <script src="/assets/frontend/lib/record/record.js"></script>
 </head>
 <body>
-
-@include('frontend.layouts.includes.header')
-<div class="content">
-    @yield('content')
+<div class="{{ Request::is('/')?'main-lay-out':'' }}">
+    @include('frontend.layouts.includes.header')
+    <div class="content" style="{{ Request::is('/')?'  padding-top: 140px;':' padding-top: 128px;' }}">
+        @yield('content')
+    </div>
 </div>
+
 
 
 @include('frontend.layouts.includes.footer')

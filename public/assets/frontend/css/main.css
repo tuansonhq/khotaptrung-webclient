@@ -4,19 +4,39 @@ html{
 
     line-height: 1.6rem;
     box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+    /*width: 100%;*/
+    /*height: 100%;*/
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
 
 }
+.c-theme-btn.btn{
+    color: #ffffff;
+    background: #32c5d2;
+    border-color: #32c5d2;
+}
+
+@media only screen and (max-width: 992px){
+    .table-custom-res {
+        margin: auto;
+        overflow-x: auto;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+    }
+}
+
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    /*height: auto;*/
     overflow-x: hidden;
+
+    /*background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%*/
+}
+.main-lay-out{
     background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%
 
 }
@@ -127,7 +147,7 @@ header .nav-bar{
     margin: auto;
 }
 .nav-bar-category .nav li a{
-    transition:  0.2s;
+    transition:  0.2s ease;
     margin: 34px 15px 33px 15px;
     line-height: 120px;
     color: white;
@@ -135,6 +155,12 @@ header .nav-bar{
     font-weight: 600;
     font-size: 15px;
     text-decoration: none;
+
+}
+.nav-bar-category .nav li a:hover{
+
+    color: #32c5d2;
+
 }
 .nav-log-in a,.nav-regist a{
     padding: 4px 12px;
@@ -207,7 +233,8 @@ header .nav-bar{
 }
 /*content*/
 .content{
-    margin-top: 140px;
+    padding-top: 140px;
+
 }
 /*banner*/
 .content-banner{
@@ -219,6 +246,48 @@ header .nav-bar{
 .slider{
     padding-top: 12px;
     padding-bottom: 12px;
+}
+.slider  .swiper-button-prev {
+    height: 40px;
+    width: 40px;
+    background:#545454;
+    left: 20px;
+    top: 50%;
+    border-radius: 100%;
+    z-index: 200;
+}
+
+.slider .swiper-button-next {
+    height: 40px;
+    width: 40px;
+    right: 20px;
+    background:  #545454;
+    /*url("/assets/frontend/images/next_arrow.svg") no-repeat center center*/
+    top: 50%;
+    border-radius: 100%;
+}
+
+.slider .swiper-button-next i{
+    color: #FFF;
+    top: 50%;
+    position: absolute;
+    transform: translate(50%,-50%);
+    right: 50%;
+}
+.slider .swiper-button-prev i{
+    color: #FFF;
+    top: 50%;
+    position: absolute;
+    transform: translate(50%,-50%);
+    right: 50%;
+}
+.slider .swiper-button-next:hover,
+.slider  .swiper-button-prev:hover {
+    transition: all .2s;
+    opacity: 80%;
+}
+.swiper-button-disabled{
+    pointer-events: visible !important;
 }
 .content-banner-card{
     flex-basis: 29%;
@@ -340,8 +409,8 @@ header .nav-bar{
 }
 .content-banner-card-form .form-control {
     height: 41px;
-    color: #ffffff;
-    background: #1f2228;
+    color: #ffffff !important;
+    background: #1f2228 !important;
     border: 1px solid #30343c;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -621,7 +690,7 @@ header .nav-bar{
 /*Đăng nhập*/
 .log-in-body{
     width: 400px;
-    margin: 20% auto 10%;
+    margin: 8% auto 10%;
     padding: 20px;
     color: #fff;
     border: 1px solid #cccccc;

@@ -11,7 +11,6 @@
                             </a>
                         </li>
                         <li role="presentation" class="" >
-                            {{--                    idol_detail_content_general_list_board_button_active--}}
 
                             <a  class="nav-item " data-toggle="tab" href="#napthe" role="tab"  >
                                 NẠP THẺ
@@ -162,14 +161,14 @@
                                         </div>
 
                                     </div>
-{{--                                    <div class="swiper-pagination"></div>--}}
+                                    <!--                                  <div class="swiper-pagination"></div>-->
                                 </div>
-{{--                                <div class="swiper-button-prev">--}}
-{{--                                    --}}{{--                                    <i class="fas fa-chevron-left"></i>--}}
-{{--                                </div>--}}
-{{--                                <div class="swiper-button-next">--}}
-{{--                                    --}}{{--                                    <i class="fas fa-chevron-right"></i>--}}
-{{--                                </div>--}}
+                                <div class="swiper-button-prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </div>
+                                <div class="swiper-button-next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -195,13 +194,13 @@
                         <div class="col-sm-6 col-lg-3♠ col-md-3 col-6  p-5 ppk">
                             <div class="game-list-content">
                                 <div class="game-list-image">
-                                    <a href="">
+                                    <a href="/quay-ngay">
                                         <img class="game-list-image-sticky" src="https://www.shopas.net/storage/images/pBYgoKE7bt_1621190862.png" alt="">
                                         <img class="game-list-image-in" src="https://www.shopas.net//storage/images/MyCKUlGT8Q_1642732819.gif" alt="">
                                     </a>
                                 </div>
                                 <div class="game-list-title">
-                                    <a href="">
+                                    <a href="/quay-ngay">
                                         <p><strong>VQ Linh Vật Năm Mới</strong></p>
 
                                     </a>
@@ -214,7 +213,7 @@
                                 </div>
                                 <div class="game-list-more">
                                     <div class="game-list-more-view" >
-                                        <a href="">
+                                        <a href="/quay-ngay">
                                             <img src="https://www.shopas.net//storage/images/7Zsng4N5vn_1623839229.gif" alt="">
                                         </a>
                                     </div>
@@ -224,13 +223,13 @@
                         <div class="col-sm-6 col-lg-3♠ col-md-3 col-6  p-5 ppk">
                             <div class="game-list-content">
                                 <div class="game-list-image">
-                                    <a href="">
+                                    <a href="/choi-ngay">
                                         <img class="game-list-image-sticky" src="https://www.shopas.net/storage/images/pBYgoKE7bt_1621190862.png" alt="">
                                         <img class="game-list-image-in" src="https://www.shopas.net//storage/images/MyCKUlGT8Q_1642732819.gif" alt="">
                                     </a>
                                 </div>
                                 <div class="game-list-title">
-                                    <a href="">
+                                    <a href="/choi-ngay">
                                         <p><strong>VQ Linh Vật Năm Mới</strong></p>
 
                                     </a>
@@ -242,8 +241,8 @@
                                 </div>
                                 <div class="game-list-more">
                                     <div class="game-list-more-view" >
-                                        <a href="">
-                                            <img src="https://www.shopas.net//storage/images/7Zsng4N5vn_1623839229.gif" alt="">
+                                        <a href="/choi-ngay">
+                                            <img src="https://shopas.net/storage/images/RIiJFSYra5_1624463339.gif" alt="">
                                         </a>
                                     </div>
                                 </div>
