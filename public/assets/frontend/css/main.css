@@ -37,8 +37,8 @@ body {
     /*background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%*/
 }
 .main-lay-out{
-    background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%
-
+    background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100;
+    padding-bottom: 40px;
 }
 button:focus {
     outline:0px;
@@ -594,7 +594,7 @@ header .nav-bar{
 .footer{
     background: #000 !important;
     padding: 20px 0 20px;
-    margin-top: 15px;
+    /*padding-top: 15px;*/
 }
 .footer-advertise{
     padding: 15px;
