@@ -36,12 +36,12 @@
                 <input type="checkbox" hidden class="name_input" id="nav_mobile_input" >
                 <nav class="nav_mobile">
                     <ul class="">
-                        <li><a href="https://shopas.net/">Trang chủ</a></li>
-                        <li><a href="">Tặng 100% gt thẻ nè</a></li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li><a href="/lich-su-giao-dich">Tặng 100% gt thẻ nè</a></li>
                         <li><a href="">nạp tiền</a></li>
-                        <li><a href="">tin túc</a></li>
-                        <li><a href="" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
-                        <li><a href="https://shopas.net/" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
+                        <li><a href="/tin-tuc">tin túc</a></li>
+                        <li><a href="/log-in" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
+                        <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>
                 </nav>
             </div>
