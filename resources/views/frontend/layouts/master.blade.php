@@ -82,10 +82,6 @@
             }
         </style>
         @endif
-        {{ Request::is('/')?' ':' padding-top: 128px;' }}
-        .content{
-
-        }
 
 </head>
 <body>
