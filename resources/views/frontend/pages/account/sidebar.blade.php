@@ -6,9 +6,9 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="">Thông tin tài khoản</a> </li>
-                    <li><a href="">Lịch sử giao dịch</a></li>
-                    <li><a href="">Rút vật phẩm (1)</a></li>
+                    <li><a href="/thong-tin">Thông tin tài khoản</a> </li>
+                    <li><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
+                    <li><a href="/rut-vat-pham">Rút vật phẩm (1)</a></li>
                 </ul>
             </div>
         </div>
