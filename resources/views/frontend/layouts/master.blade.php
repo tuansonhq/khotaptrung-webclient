@@ -63,11 +63,35 @@
     <script src="/assets/frontend/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/lib/record/record.js"></script>
+
+        @if(Request::is('/'))
+        <style>
+            .content{
+                padding-top: 140px;
+            }
+            @media only screen and (max-width: 1024px) {
+                .content {
+                    padding-top: 80px;
+                }
+            }
+        </style>
+    @else
+        <style>
+            .content{
+                padding-top: 100px;
+            }
+        </style>
+        @endif
+        {{ Request::is('/')?' ':' padding-top: 128px;' }}
+        .content{
+
+        }
+
 </head>
 <body>
 <div class="{{ Request::is('/')?'main-lay-out':'' }}">
     @include('frontend.layouts.includes.header')
-    <div class="content" style="{{ Request::is('/')?'  padding-top: 140px;':' padding-top: 128px;' }}">
+    <div class="content" style="">
         @yield('content')
     </div>
 </div>
