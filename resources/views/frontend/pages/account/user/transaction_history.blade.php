@@ -13,7 +13,7 @@
                     <div class="account_content_transaction_history">
                         <form action="">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4 control-label">
                                     <div class="input-group">
                                         <span >Giao dịch</span>
                                         <select name="" id="" class="form-control">
@@ -24,7 +24,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 control-label">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
                                         <span class="input-group-btn input-group-addon">
@@ -34,7 +34,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 control-label">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_end">
                                         <span class="input-group-btn input-group-addon">

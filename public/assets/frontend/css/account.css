@@ -120,10 +120,21 @@
 .account_pay_card th,.account_pay_card td{
     word-break: break-word;
 }
+.account_content_transaction_history th,.account_content_transaction_history td{
+    word-break: break-word;
+}
+.account_content_transaction_history .control-label{
+    margin-bottom: 12px;
+}
+
 @media (max-width: 540px) {
     .account_pay_card th,.account_pay_card td{
         font-size: 10px;
     }
+    .account_content_transaction_history th,.account_content_transaction_history td{
+        font-size: 10px;
+    }
+
     .account_pay_card .control-label{
         text-align: left;
     }

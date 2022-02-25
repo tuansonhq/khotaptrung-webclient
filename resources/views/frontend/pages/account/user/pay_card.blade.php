@@ -94,8 +94,7 @@
                                     </div>
                                 </div>
 
-                            </div>/ 2
-                            '
+                            </div>
                             <div class="form-group row " style="margin-top: 40px">
                                 <div class="col-md-6" style="    margin-left: 25%;">
                                     <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block loading">Nạp thẻ</button>
