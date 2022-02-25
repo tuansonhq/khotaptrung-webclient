@@ -12,7 +12,7 @@
                 Số người đang chơi: 432(10 bạn chung)
             </div>
             <div class="row">
-                <div class="col-lg-7 col-md-7">
+                <div class="col-12  col-md-7 col-lg-7">
                     <div class="item_play_spin">
                         <div class="item_play_spin_sale-off">
                             <input type="text" placeholder="Nhập mã giảm giá">
@@ -40,7 +40,7 @@
                         <a href="" class="btn btn-primary">Chơi thử</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="col-12 col-md-5 col-lg-3">
                     <div class="item_play_category">
                         <a href="" class="col-sm-12 btn btn-success">Thể lệ</a>
                     </div>

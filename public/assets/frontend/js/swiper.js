@@ -150,18 +150,11 @@ var swiper2 = new Swiper('.item_play_dif_slide_detail', {
         //
         //     },
         // },
-        // 1024: {
-        //     coverflowEffect: {
-        //         rotate: 0   ,
-        //         stretch: 180,
-        //         depth: 300,
-        //         modifier: 1, // 2,3
-        //         slideShadows : false,
-        //
-        //     },
-        // },
-        //
-        //
+        992: {
+            slidesPerView: 3,
+        },
+
+
         480: {
             slidesPerView: 2,
 

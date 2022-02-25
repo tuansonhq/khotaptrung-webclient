@@ -48,4 +48,9 @@ Route::get('/quay-ngay', function () {
 Route::get('/choi-ngay', function () {
     return view('frontend.pages.item_play');
 });
-
+Route::get('/mua-ngay', function () {
+    return view('frontend.pages.item_buy');
+});
+Route::get('/nap-the-tu-dong', function () {
+    return view('frontend.pages.account.user.pay_card');
+});

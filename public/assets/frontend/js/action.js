@@ -72,3 +72,13 @@ $('.item_play_intro_viewless').click(function(){
     $('.item_play_intro_viewless').css("display","flex");
     $(".item_play_intro_content").removeClass( "showtext");
 });
+$('.item_buy_viewmore').click(function(){
+    $('.item_buy_viewless').css("display","block");
+    $('.item_buy_viewmore').css("display","none");
+    $(".item_buy_info").css( "max-height","initial" );
+});
+$('.item_buy_viewless').click(function(){
+    $('.item_buy_viewmore').css("display","block");
+    $('.item_buy_viewless').css("display","none");
+    $(".item_buy_info").css( "max-height"," 162px" );
+});

@@ -104,3 +104,30 @@
 .account_content_transaction_history form>div{
     margin-bottom: 16px;
 }
+/*pay card*/
+.account_pay_card>p{
+    text-align: center;
+    color: black;
+}
+.account_pay_card>span p{
+    text-align: center;
+    color: red;
+}
+.account_pay_card .control-label{
+    text-align: right;
+    padding-top: 8px;
+}
+.account_pay_card th,.account_pay_card td{
+    word-break: break-word;
+}
+@media (max-width: 540px) {
+    .account_pay_card th,.account_pay_card td{
+        font-size: 10px;
+    }
+    .account_pay_card .control-label{
+        text-align: left;
+    }
+}
+.account_sidebar_menu_nav_active{
+    color: #32c5d2;
+}

@@ -6,7 +6,7 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="/thong-tin">Thông tin tài khoản</a> </li>
+                    <li><a href="/thong-tin" {{ Request::is('/thong-tin')?'account_sidebar_menu_nav_active':'' }}">Thông tin tài khoản</a> </li>
                     <li><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                     <li><a href="/rut-vat-pham">Rút vật phẩm (1)</a></li>
                 </ul>
@@ -18,7 +18,7 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="">Nạp thẻ tự động</a> </li>
+                    <li><a href="" class="{{ Request::is('/nap-the-tu-dong')?'account_sidebar_menu_nav_active':'' }}">Nạp thẻ tự động</a> </li>
                     <li><a href="">Lịch sử nạp thẻ</a></li>
                     <li><a href="">Nạp thẻ từ ATM - Ví điện tử</a></li>
                     <li><a href="">Tài khoản đã mua</a></li>
