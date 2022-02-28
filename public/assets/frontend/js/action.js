@@ -63,13 +63,13 @@ $('.go-top').click(function(){
     $('html, body').animate({scrollTop : 0},800);
 });
 $('.item_play_intro_viewmore').click(function(){
-    $('.item_play_intro_viewless').css("display","block");
-    $('.item_play_intro_viewmore').css("display","flex");
+    $('.item_play_intro_viewless').css("display","flex");
+    $('.item_play_intro_viewmore').css("display","none");
     $(".item_play_intro_content").addClass( "showtext" );
 });
 $('.item_play_intro_viewless').click(function(){
-    $('.item_play_intro_viewmore').css("display","block");
-    $('.item_play_intro_viewless').css("display","flex");
+    $('.item_play_intro_viewmore').css("display","flex");
+    $('.item_play_intro_viewless').css("display","none");
     $(".item_play_intro_content").removeClass( "showtext");
 });
 $('.item_buy_viewmore').click(function(){
@@ -81,4 +81,30 @@ $('.item_buy_viewless').click(function(){
     $('.item_buy_viewmore').css("display","block");
     $('.item_buy_viewless').css("display","none");
     $(".item_buy_info").css( "max-height"," 162px" );
+});
+Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
+    dragToClose: true,
+    animated: true,
+    closeButton: "top",
+    openSpeed: 300,
+    Image: {
+        zoom: false,
+        // zoom: 200
+    },
+
+    slideshow: true,
+    Toolbar: {
+        display: [
+            { id: "prev", position: "center" },
+            { id: "counter", position: "center" },
+            { id: "next", position: "center" },
+            "slideshow",
+            // "fullscreen",
+            // "download",
+            "thumbs",
+            "close",
+        ],
+
+    },
+
 });

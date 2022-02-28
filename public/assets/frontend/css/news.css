@@ -178,6 +178,9 @@
     .news_content_list_decription{
         display: none;
     }
+    .news_breadcrumbs_detail{
+        display: none;
+    }
 }
 .news_detail>p{
     font-size: 26px;

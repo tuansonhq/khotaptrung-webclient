@@ -163,3 +163,37 @@ var swiper2 = new Swiper('.item_play_dif_slide_detail', {
 });
 
 
+var swiper3 = new Swiper('.special_service_content_slide_detail', {
+
+    // Optional parameters
+    cssMode: true,
+    loop: false,
+    // centeredSlides: false,
+    // slidesPerView: 'auto',
+    disableOnInteraction: false,
+    freeMode: true,
+    slidesPerView: 3,
+    initialSlide: 3,
+    slideToClickedSlide: true,
+    spaceBetween: 12,
+    keyboard: {
+        enabled: true,
+    },
+    mousewheel: false,
+    // autoplay: false,
+
+    speed: 1000,
+    autoplay: false,
+    breakpoints: {
+        992: {
+            slidesPerView: 3,
+            centeredSlides: false,
+        },
+
+
+        480: {
+            slidesPerView: 2,
+            centeredSlides: false,
+        }
+    }
+});

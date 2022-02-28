@@ -18,16 +18,16 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="" class="{{ Request::is('/nap-the-tu-dong')?'account_sidebar_menu_nav_active':'' }}">Nạp thẻ tự động</a> </li>
-                    <li><a href="">Lịch sử nạp thẻ</a></li>
-                    <li><a href="">Nạp thẻ từ ATM - Ví điện tử</a></li>
-                    <li><a href="">Tài khoản đã mua</a></li>
-                    <li><a href="">Tài khoản trả góp</a></li>
-                    <li><a href="">Lịch sử quay thưởng</a></li>
+                    <li><a href="/nap-the-tu-dong" class="@if(Request::is('/nap-the-tu-dong')) account_sidebar_menu_nav_active @endif">Nạp thẻ tự động</a> </li>
+                    <li><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>
+                    <li><a href="/recharge-atm">Nạp thẻ từ ATM - Ví điện tử</a></li>
+                    <li><a href="/tai-khoan-da-mua">Tài khoản đã mua</a></li>
+                    <li><a href="/tai-khoan-tra-gop">Tài khoản trả góp</a></li>
+                    <li><a href="/lich-su-quay-thuong">Lịch sử quay thưởng</a></li>
                     <li>
                         <a  data-toggle="collapse" href="#menuchild_gieoquedaunam" role="button" aria-expanded="true" aria-controls="collapseExample">Gieo quẻ (1)</a>
                         <ul id="menuchild_gieoquedaunam" class="collapse">
-                            <li><a href="">Lịch sử gieo Nhận Lixi Đầu Xuân</a></li>
+                            <li><a href="/gieo-que">Lịch sử gieo Nhận Lixi Đầu Xuân</a></li>
                         </ul>
                     </li>
                     <li><a href="">Rung cây (0)</a></li>

@@ -43,8 +43,10 @@ body {
 button:focus {
     outline:0px;
 }
-input:focus {
-    outline:0px;
+
+.form-control:focus {
+    /*border-color: #32c5d2 !important;*/
+    box-shadow: 0 0 0 0.08rem #32c5d2 !important;
 }
 input[type="text"] {
     color: black !important;
@@ -183,8 +185,9 @@ header .nav-bar{
 
 }
 .nav-bar-category-mobile-input{
-    background: darkgrey;
+    background: ghostwhite;
     padding: 2px 8px;
+    border-radius: 4px;
 
 }
 
@@ -198,7 +201,7 @@ header .nav-bar{
     background-color: #394048;
     transform: translateY(-100%);
     opacity: 0;
-    transition: transform linear 0.3s,opacity linear 0.3s;
+    /*transition: transform linear 0.3s,opacity linear 0.3s;*/
 }
 .nav_mobile ul{
     list-style: none;
@@ -449,6 +452,9 @@ header .nav-bar{
     /*padding-bottom: 15px;*/
     border: 1px solid #3f0;
 }
+.content-advertise .container marquee{
+    margin-bottom: -8px ;
+}
 .content-advertise .container marquee p{
     color: #2ecc71;
     font-size: 14px;
@@ -540,6 +546,8 @@ header .nav-bar{
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
+    margin: 10px;
+
 }
 .game-list-description-new-price {
     border: 2px solid red;
@@ -547,11 +555,11 @@ header .nav-bar{
     color: red;
     display: inline-block;
     border-radius: 5px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     font-size: 14px;
     font-weight: bold;
-    margin-bottom: 10px
-
+    /*margin-bottom: 10px*/
+    margin: 10px 0;
 }
 
 .game-list-more{
@@ -778,6 +786,9 @@ header .nav-bar{
     .log-in-body{
         width:100%;
 
+    }
+    .footer-advertise,.footer-service,.footer-category{
+        margin: 12px;
     }
 }
 .content-video iframe{

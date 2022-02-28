@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('content')
     <div class="news">
-        <div class="news_breadcrumbs">
+        <div class="news_breadcrumbs news_breadcrumbs_detail">
             <div class="container">
                 <div class="news_breadcrumbs_title"><a href="">blog tin tức</a></div>
                 <ul class="news_breadcrumbs_theme">
