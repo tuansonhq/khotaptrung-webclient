@@ -10,15 +10,29 @@
 
             <div class="nav-bar-category">
                 <ul class="nav">
-                    <li>
+                    <li class="menu-item">
                         <a href="/">Trang chủ</a>
                     </li>
-                    <li>
+                    <li class="menu-item">
                         <a href="/tin-tuc">Tin tức</a>
+                        <ul class="sub-menu" >
+                            <li class="menu-item">
+                                <a  href="/blogs" class="\">Blogs</a>
+                            </li>
+                            <li class="menu-item">
+                                <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
+                            </li>
+                            <li class="menu-item">
+                                <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
+                    <li class="menu-item">
                         <a href="/lich-su-giao-dich">Tặng 100% giá trị thẻ nạp</a>
                     </li>
+
+                </ul>
+                <ul class="nav">
                     <li class="nav-log-in">
                         <a href="/log-in" ><i class="fas fa-user"></i> Đăng nhập </a>
                     </li>
@@ -26,6 +40,7 @@
                         <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
                 </ul>
+
             </div>
             <div class="nav-bar-category-mobile">
                     <span>
@@ -38,8 +53,26 @@
                     <ul class="">
                         <li><a href="/">Trang chủ</a></li>
                         <li><a href="/lich-su-giao-dich">Tặng 100% gt thẻ nè</a></li>
-                        <li><a href="">nạp tiền</a></li>
-                        <li><a href="/tin-tuc">tin túc</a></li>
+                        <li><a href="/tin-tuc">tin tức</a></li>
+                        <li>
+
+                            <a data-toggle="collapse" class="nav_mobile-collapse" href="#menuchild_item" role="button" aria-expanded="true" aria-controls="collapseExample">nạp tiền</a>
+                            <ul class="sub-menu collapse" id="menuchild_item">
+                                <li class="menu-item">
+                                    <a  href="/blogs" class="\">Blogs</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <ul class="">
+
                         <li><a href="/log-in" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
                         <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>

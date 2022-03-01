@@ -96,7 +96,9 @@
         @yield('content')
     </div>
 </div>
-
+<div class="go-top">
+    <i class="fas fa-arrow-alt-circle-up"></i>
+</div>
 
 
 @include('frontend.layouts.includes.footer')

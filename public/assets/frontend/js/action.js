@@ -16,8 +16,20 @@ $( document ).ready(function() {
         }
 
     });
+    $(document).on('scroll',function(){
+        if ($(this).scrollTop() > 300) {
+            $('.go-top').fadeIn();
+        } else {
+            $('.go-top').fadeOut();
+        }
+
+    });
+    $('.go-top').click(function(){
+        $('html, body').animate({scrollTop : 0},500);
+    });
 
 });
+
 $('#transaction_history_end').datetimepicker({
     format: 'DD-MM-YYYY LT',
     useCurrent: false,
@@ -108,3 +120,4 @@ Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
     },
 
 });
+

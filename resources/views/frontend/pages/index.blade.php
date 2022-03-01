@@ -183,7 +183,7 @@
                     </marquee>
                 </div>
             </div>
-            <div class="content-items">
+            <div class="content-items" id="freefire_taget">
                 <div class="container">
                     <div class="items-title">
                         <h4>Game Free Fire</h4>
@@ -392,7 +392,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-items">
+            <div class="content-items" id="lienquan_taget">
                 <div class="container">
                     <div class="items-title">
                         <h4>Khu vực tiền hoá</h4>
@@ -627,7 +627,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-video">
+            <div class="content-video" id="lockmoney_taget">
                 <div class="container">
                     <h4><strong>Giới Thiệu Về AS Mobile Và Shop Chính Thức, Độc Quyền Của AS Mobile - <a href="">shopas.net</a></strong></h4>
                     <div class="content-video-in">
@@ -640,6 +640,26 @@
 
 
 
+        </div>
+        <div class="adthisbutton">
+            <a class="freefire" style="color:#fff" href="#freefire_taget">
+                <img src="https://shopas.net/storage/images/EZ94JFicXW_1634524794.png" alt="">
+                <span>Mục Liên Quân</span>
+            </a>
+            <a class="lienquan" style="color:#fff" href="#lienquan_taget">
+                <img src="https://shopas.net/storage/images/oVE6PWWiom_1634524794.png" alt="">
+                <span>Mục Free Fire</span>
+            </a>
+
+
+            <a class="lockmoney" style="color:#fff" href="#lockmoney_taget">
+                <img src="https://shopas.net/storage/images/sa2TgJvgE9_1634524794.jpg" alt="">
+                <span>Mục Tiền Khóa</span>
+            </a>
+            <a class="hoteventmodal" style="color:#fff" href="javascript://">
+                <img src="https://shopas.net/storage/images/m8zObXwTac_1634524794.png" alt="">
+                <span>Mục Sự Kiện</span>
+            </a>
         </div>
     </div>
 @endsection
