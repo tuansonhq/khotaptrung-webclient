@@ -16,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.pages.index');
 });
-Route::get('/log-in', function () {
-    return view('frontend.pages.log_in');
-});
+
+
 Route::get('/regist', function () {
     return view('frontend.pages.regist');
 });
@@ -83,3 +82,8 @@ Route::get('/gieo-que', function () {
     return view('frontend.pages.account.user.gieoque');
 });
 
+//Route::get('/log-in', function () {
+//    return view('frontend.pages.log_in');
+//});
+Route::get('/log-in',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
+Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');

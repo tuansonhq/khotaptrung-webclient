@@ -3,13 +3,14 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng nhập hệ thống</p>
-            <form action="">
+            <form action="{{route('loginApi')}}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tài khoản">
+                    <input type="text" class="form-control" placeholder="Tài khoản" name="username">
                     <span><i class="fas fa-user"></i></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
                     <span><i class="fas fa-lock"></i></span>
                 </div>
                 <div class="row">
@@ -29,7 +30,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary btn-block btn-flat">Đăng nhập</button>
+                        <button class="btn btn-primary btn-block btn-flat" type="submit">Đăng nhập</button>
                     </div>
                 </div>
             </form>
