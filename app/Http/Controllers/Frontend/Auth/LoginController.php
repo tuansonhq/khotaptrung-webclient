@@ -42,8 +42,9 @@ class LoginController extends Controller
                     session()->put('exp_token', $result->exp_token);
                     session()->put('time_exp_token', $time_exp_token);
                     return redirect()->to('/');
-                }else{
-                    return redirect()->back()->withErrors('Đăng nhập không thành công.');
+                }
+                else{
+                    return redirect()->back()->withErrors($result->message);
                 }
             }
         }
