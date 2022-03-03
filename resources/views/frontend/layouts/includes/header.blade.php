@@ -33,9 +33,15 @@
 
                 </ul>
                 <ul class="nav">
-                    <li class="nav-log-in">
-                        <a href="/log-in" ><i class="fas fa-user"></i> Đăng nhập </a>
-                    </li>
+                    @if (App\Library\AuthCustom::check())
+                        <li class="nav-log-in">
+                            <a href="#" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->username}} </a>
+                        </li>
+                    @else
+                        <li class="nav-log-in">
+                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
+                        </li>
+                    @endif
                     <li class="nav-regist">
                         <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
@@ -44,7 +50,7 @@
             </div>
             <div class="nav-bar-category-mobile">
                     <span>
-                        <a href="/log-in">Đăng nhập</a>
+                        <a href="/login">Đăng nhập</a>
                         <a href="/regist">Đăng ký</a>
                     </span>
                 <label class="nav-bar-category-mobile-input" for="nav_mobile_input"><i class="fas fa-bars"></i></label>
@@ -73,7 +79,7 @@
                     </ul>
                     <ul class="">
 
-                        <li><a href="/log-in" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
+                        <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
                         <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>
                 </nav>

@@ -3,7 +3,7 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng nhập hệ thống</p>
-            <form action="{{route('loginApi')}}" method="POST">
+            <form action="{{route('login')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Tài khoản" name="username">

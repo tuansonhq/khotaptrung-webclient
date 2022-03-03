@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
+use App\Library\AuthCustom;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,37 +16,34 @@ use App\Library\DirectAPI;
 */
 
 
-Route::get('/test-login',function(){
-    $url = '/login';
-    $data = array();
-    $data['username'] = 'truongtest01';
-    $data['password'] = '123@@123';
-    $data['secret_key'] = 'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=';
-    $data['domain'] = 'youtube.com';
-    $method = "POST";
-    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-    dd($result_Api);
-});
-Route::get('/test-profile',function(){
-    $url = '/profile';
-    $data = array();
-    $data['token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmFja2VuZC10dC5uaWNrLnZuXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTY0NjIwNzM4NiwiZXhwIjoxNjQ2MjEwOTg2LCJuYmYiOjE2NDYyMDczODYsImp0aSI6Im1xQWxWSnNOOTA3VEpTSWkiLCJzdWIiOjQ0NzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.nb--9bFRjpXrkG-5vLZMwMF0hxYJpE_gUtj7Tf3Xsqg';
-    $data['secret_key'] = 'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=';
-    $data['domain'] = 'youtube.com';
-    $method = "GET";
-    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-    dd($result_Api);
-});
+// Route::get('/test-login',function(){
+//     $url = '/login';
+//     $data = array();
+//     $data['username'] = 'truongtest01';
+//     $data['password'] = '123@@123';
+//     $data['secret_key'] = 'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=';
+//     $data['domain'] = 'youtube.com';
+//     $method = "POST";
+//     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//     dd($result_Api);
+// });
+// Route::get('/test-profile',function(){
+//     $url = '/profile';
+//     $data = array();
+//     $data['token'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYmFja2VuZC10dC5uaWNrLnZuXC9hcGlcL3YxXC9sb2dpbiIsImlhdCI6MTY0NjIwNzM4NiwiZXhwIjoxNjQ2MjEwOTg2LCJuYmYiOjE2NDYyMDczODYsImp0aSI6Im1xQWxWSnNOOTA3VEpTSWkiLCJzdWIiOjQ0NzYsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.nb--9bFRjpXrkG-5vLZMwMF0hxYJpE_gUtj7Tf3Xsqg';
+//     $data['secret_key'] = 'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=';
+//     $data['domain'] = 'youtube.com';
+//     $method = "GET";
+//     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//     dd($result_Api);
+// });
 
 
 Route::get('/', function () {
-    if(session()->has('auth_token')){
-        return "Đăng nhập thành công";
-    }
     return view('frontend.pages.index');
 });
 Route::get('/logout', function () {
-   return "Đã đăng xuất";
+   return redirect()->to('/');
 });
 
 
@@ -117,4 +115,4 @@ Route::get('/gieo-que', function () {
 //    return view('frontend.pages.log_in');
 //});
 Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
-Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
+Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
