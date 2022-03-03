@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -34,8 +35,12 @@ class LoginController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
+                    $time = strtotime(Carbon::now());
+                    $exp_token = $result->exp_token;
+                    $time_exp_token = $time + $exp_token;
                     session()->put('auth_token', $result->token);
                     session()->put('exp_token', $result->exp_token);
+                    session()->put('time_exp_token', $time_exp_token);
                     return redirect()->to('/');
                 }else{
                     return redirect()->back()->withErrors('Đăng nhập không thành công.');
