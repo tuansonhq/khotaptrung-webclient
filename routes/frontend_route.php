@@ -39,7 +39,13 @@ Route::get('/test-profile',function(){
 
 
 Route::get('/', function () {
+    if(session()->has('auth_token')){
+        return "Đăng nhập thành công";
+    }
     return view('frontend.pages.index');
+});
+Route::get('/logout', function () {
+   return "Đã đăng xuất";
 });
 
 
@@ -110,5 +116,5 @@ Route::get('/gieo-que', function () {
 //Route::get('/log-in', function () {
 //    return view('frontend.pages.log_in');
 //});
-Route::get('/log-in',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
+Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
 Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
