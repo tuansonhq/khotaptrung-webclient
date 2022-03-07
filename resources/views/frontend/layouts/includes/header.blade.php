@@ -32,15 +32,31 @@
                     </li>
 
                 </ul>
+                @if(!session()->has('auth_token')){
                 <ul class="nav">
                     <li class="nav-log-in">
-                        <a href="/log-in" ><i class="fas fa-user"></i> Đăng nhập </a>
+                        <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
                     </li>
                     <li class="nav-regist">
                         <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
                 </ul>
-
+                @else
+                    <ul class="nav">
+                        <li class="nav-log-in">
+                            <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>
+                        </li>
+                        <li class="nav-regist">
+{{--                            <form action="{{route('logout')}}" method="Post">--}}
+{{--                             @csrf--}}
+{{--                                <button>--}}
+{{--                                    Đnăg xuất--}}
+{{--                                </button>--}}
+{{--                            </form>--}}
+                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                @endif
             </div>
             <div class="nav-bar-category-mobile">
                     <span>

@@ -39,14 +39,19 @@ Route::get('/test-profile',function(){
 
 
 Route::get('/', function () {
-    if(session()->has('auth_token')){
-        return "Đăng nhập thành công";
-    }
-    return view('frontend.pages.index');
+//    if(session()->has('auth_token')){
+//        return view('frontend.pages.index');
+//        return "Đăng nhập thành công";
+//    }else{
+        return view('frontend.pages.index');
+//    }
+
 });
-Route::get('/logout', function () {
-   return "Đã đăng xuất";
-});
+//Route::get('/logout', function () {
+//    return view('frontend.pages.index');
+////   return "Đã đăng xuất";
+//});
+
 
 
 Route::get('/regist', function () {
@@ -61,9 +66,9 @@ Route::get('/tin-tuc/chi-tiet', function () {
     return view('frontend.pages.news_detail');
 });
 
-Route::get('/thong-tin', function () {
-    return view('frontend.pages.account.user.index');
-});
+//Route::get('/thong-tin', function () {
+//    return view('frontend.pages.account.user.index');
+//});
 Route::get('/rut-vat-pham', function () {
     return view('frontend.pages.account.user.rutvatpham');
 });
@@ -118,3 +123,11 @@ Route::get('/gieo-que', function () {
 //});
 Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
 Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
+Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
+Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'registerApi'])->name('registerApi');
+Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
+
+//Route::get('/thong-tin', function () {
+//    return view('frontend.pages.account.user.index');
+//});
