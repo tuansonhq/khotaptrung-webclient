@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+
     <div class="layout-page">
         <div class="content-layout" >
             <div class="content-banner container">
