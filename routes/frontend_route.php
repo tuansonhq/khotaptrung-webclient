@@ -54,9 +54,9 @@ Route::get('/', function () {
 
 
 
-Route::get('/regist', function () {
-    return view('frontend.pages.regist');
-});
+//Route::get('/regist', function () {
+//    return view('frontend.pages.regist');
+//});
 
 Route::get('/tin-tuc', function () {
     return view('frontend.pages.news');
@@ -127,7 +127,8 @@ Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class
 Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
 Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'registerApi'])->name('registerApi');
 Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
-
+Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
+Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
