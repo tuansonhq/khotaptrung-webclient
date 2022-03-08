@@ -3,6 +3,7 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng ký thành viên</p>
+            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
             <form action="{{route('registerApi')}}" method="POST">
                 @csrf
                 <div class="form-group">

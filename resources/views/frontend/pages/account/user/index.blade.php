@@ -15,11 +15,11 @@
                     <tbody>
                     <tr>
                         <th scope="row">ID của bạn:</th>
-                        <th><span>{{$result->user->id}}</span></th>
+                        <th><span>{{$result->user->id?$result->user->id:''}}</span></th>
                     </tr>
                     <tr>
                         <th scope="row">Tên tài khoản</th>
-                        <th><span>{{$result->user->username}}</span></th>
+                        <th><span>{{$result->user->username?$result->user->username:''}}</span></th>
                     </tr>
                     <tr>
                         <th scope="row">Ngày sinh:</th>
