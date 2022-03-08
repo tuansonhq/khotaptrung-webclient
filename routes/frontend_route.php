@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 
@@ -62,19 +63,23 @@ Route::get('/', function () {
 ////   return "Đã đăng xuất";
 //});
 
+Route::get('/dich-vu', function () {
 
+    return view('frontend.pages.regist');
+});
 
 Route::get('/regist', function () {
     return view('frontend.pages.regist');
 });
 
-Route::get('/tin-tuc', function () {
-    return view('frontend.pages.news');
-});
+//Route::get('/tin-tuc', function () {
+//    return view('frontend.pages.news');
+//});
 
-Route::get('/tin-tuc/chi-tiet', function () {
-    return view('frontend.pages.news_detail');
-});
+Route::get('/tin-tuc',[ArticleController::class,"index"]);
+Route::get('/tin-tuc/data',[ArticleController::class,"getData"]);
+
+Route::get('/tin-tuc/{slug}',[ArticleController::class,"show"]);
 
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
