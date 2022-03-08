@@ -44,7 +44,7 @@ class RegisterController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
-                    dd($result);
+//                    dd($result);
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
                     $time_exp_token = $time + $exp_token;
