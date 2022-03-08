@@ -90,8 +90,8 @@ class LoginController extends Controller
                     $request->session()->forget('auth_token');
                     $request->session()->forget('exp_token');
                     $request->session()->forget('time_exp_token');
-//                    return redirect()->to('/');
-                    return view('frontend.pages.index');
+                    return redirect()->to('/');
+//                    return view('frontend.pages.index');
 
                 }
                 else{
@@ -138,12 +138,12 @@ class LoginController extends Controller
                 $result = $result_Api->data;
                 if($result->status == 1){
 //                    return 'doi mat khau thanh cong';
-                    $time = strtotime(Carbon::now());
-                    $exp_token = $result->exp_token;
-                    $time_exp_token = $time + $exp_token;
-                    session()->put('auth_token', $result->token);
-                    session()->put('exp_token', $result->exp_token);
-                    session()->put('time_exp_token', $time_exp_token);
+//                    $time = strtotime(Carbon::now());
+//                    $exp_token = $result->exp_token;
+//                    $time_exp_token = $time + $exp_token;
+//                    session()->put('auth_token', $result->token);
+//                    session()->put('exp_token', $result->exp_token);
+//                    session()->put('time_exp_token', $time_exp_token);
                     return redirect()->to('/');
                 }
                 else{
