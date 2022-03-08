@@ -34,7 +34,7 @@ class LoginController extends Controller
             $data['password'] = $request->password;
             $data['secret_key'] = config('api.secret_key');
 //            dd($data['secret_key']);
-//            $data['domain'] = 'youtube.com';
+            $data['domain'] = 'youtube.com';
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
@@ -69,6 +69,8 @@ class LoginController extends Controller
             $method = "POST";
             $data = array();
             $data['token'] = session()->get('auth_token');
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = 'youtube.com';
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -85,9 +87,10 @@ class LoginController extends Controller
 //                    return 'Đăng xuất thành công';
 //                    return redirect()->back();
 //                    return 'aaaa';
-
-                    $request->session()->flush();
-                    return redirect()->to('/');
+                    $request->session()->forget('auth_token');
+                    $request->session()->forget('exp_token');
+                    $request->session()->forget('time_exp_token');
+//                    return redirect()->to('/');
                     return view('frontend.pages.index');
 
                 }
@@ -128,12 +131,13 @@ class LoginController extends Controller
             $data['password'] = $request->password;
             $data['password_confirmation'] = $request->password_confirmation;
             $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = 'youtube.com';
 
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
-                    return 'doi mat khau thanh cong';
+//                    return 'doi mat khau thanh cong';
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
                     $time_exp_token = $time + $exp_token;
