@@ -58,6 +58,10 @@ class RegisterController extends Controller
 
                 }
             }
+            else{
+                $result = $result_Api->data;
+                return redirect()->back()->withErrors($result->message);
+            }
         }
         catch(\Exception $e){
             Log::error($e);

@@ -37,8 +37,8 @@
                     <li class="nav-log-in">
                         <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
                     </li>
-                    <li class="nav-regist">
-                        <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
+                    <li class="nav-register">
+                        <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
                 </ul>
                 @else
@@ -46,7 +46,7 @@
                         <li class="nav-log-in">
                             <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>
                         </li>
-                        <li class="nav-regist">
+                        <li class="nav-register">
 {{--                            <form action="{{route('logout')}}" method="Post">--}}
 {{--                             @csrf--}}
 {{--                                <button>--}}
@@ -61,7 +61,7 @@
             <div class="nav-bar-category-mobile">
                     <span>
                         <a href="/log-in">Đăng nhập</a>
-                        <a href="/regist">Đăng ký</a>
+                        <a href="/register">Đăng ký</a>
                     </span>
                 <label class="nav-bar-category-mobile-input" for="nav_mobile_input"><i class="fas fa-bars"></i></label>
                 <input type="checkbox" hidden class="name_input" id="nav_mobile_input" >
@@ -90,7 +90,7 @@
                     <ul class="">
 
                         <li><a href="/log-in" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
-                        <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
+                        <li><a href="/register" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>
                 </nav>
             </div>

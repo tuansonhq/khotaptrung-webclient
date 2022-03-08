@@ -52,7 +52,8 @@ class LoginController extends Controller
 
                 }
             }else{
-                return 'sai';
+                $result = $result_Api->data;
+                return redirect()->back()->withErrors($result->message);
             }
         }
         catch(\Exception $e){
@@ -98,6 +99,10 @@ class LoginController extends Controller
                     return redirect()->back()->withErrors($result->message);
 
                 }
+            }
+            else{
+                $result = $result_Api->data;
+                return redirect()->back()->withErrors($result->message);
             }
         }
         catch(\Exception $e){
@@ -152,7 +157,8 @@ class LoginController extends Controller
 
                 }
             }else{
-                return 'sai';
+                $result = $result_Api->data;
+                return redirect()->back()->withErrors($result->message);
             }
         }
         catch(\Exception $e){
