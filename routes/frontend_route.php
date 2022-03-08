@@ -43,7 +43,17 @@ Route::get('/', function () {
 //        return view('frontend.pages.index');
 //        return "Đăng nhập thành công";
 //    }else{
-        return view('frontend.pages.index');
+    $url = '/serviceson';
+    $method = "GET";
+    $val = array();
+    //$data['token'] = session()->get('auth_token');
+    $val['domain'] = "youtube.com";
+    $val['secret_key'] = config('api.secret_key');
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    $result = $result_Api->data;
+    $data = $result->data;
+
+    return view('frontend.pages.index')->with('data',$data);
 //    }
 
 });
