@@ -132,6 +132,7 @@ class LoginController extends Controller
             $data['password_confirmation'] = $request->password_confirmation;
             $data['secret_key'] = config('api.secret_key');
             $data['domain'] = 'youtube.com';
+            $data['token'] = session()->get('auth_token');
 
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
