@@ -2,6 +2,7 @@
 @section('content')
     <div class="item_buy">
         <div class="container">
+            @if(isset($data))
             <div class="row">
                 <div class="col-md-12">
                     <div class="item_buy_info">
@@ -15,7 +16,7 @@
                     </div>
                 </div>
             </div>
-
+            @endif
             <div class="item_buy_form">
                 <form class="form_category_service">
                     <div class="row">
