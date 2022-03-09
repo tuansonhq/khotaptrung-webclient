@@ -14,13 +14,13 @@
                         <a href="/">Trang chủ</a>
                     </li>
                     <li class="menu-item">
+                        <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
+                    </li>
+                    <li class="menu-item">
                         <a href="/tin-tuc">Tin tức</a>
                         <ul class="sub-menu" >
                             <li class="menu-item">
                                 <a  href="/blogs" class="\">Blogs</a>
-                            </li>
-                            <li class="menu-item">
-                                <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
                             </li>
                             <li class="menu-item">
                                 <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>

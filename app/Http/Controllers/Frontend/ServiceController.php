@@ -20,6 +20,6 @@ class ServiceController extends Controller
         $result = $result_Api->data;
         $data = $result->data;
 
-        return view('frontend.pages.index')->with('data',$data);
+        return view('frontend.pages.service.index')->with('data',$data);
     }
 }

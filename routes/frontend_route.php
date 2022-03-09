@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\ArticleController;
+use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 
@@ -68,19 +69,13 @@ Route::get('/dich-vu', function () {
     return view('frontend.pages.regist');
 });
 
-//Route::get('/regist', function () {
-//    return view('frontend.pages.regist');
-//});
-
-//Route::get('/tin-tuc', function () {
-//    return view('frontend.pages.news');
-//});
-
 Route::get('/tin-tuc',[ArticleController::class,"index"]);
 Route::get('/tin-tuc/data',[ArticleController::class,"getData"]);
 
 Route::get('/tin-tuc/{slug}',[ArticleController::class,"show"]);
 
+//dichj vụ
+Route::get('/dich-vu-game',[ServiceController::class,"index"]);
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
