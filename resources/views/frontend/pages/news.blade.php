@@ -54,6 +54,6 @@
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
     <input type="hidden" name="slug" id="slug-article" value="" />
-
+    <input type="hidden" name="append" id="append-article" value="0" />
     <script src="/assets/frontend/js/article/article.js"></script>
 @endsection

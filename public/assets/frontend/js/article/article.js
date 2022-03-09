@@ -1,6 +1,6 @@
 $(document).ready(function(){
     let page = $('#hidden_page').val();
-
+    let append = $('#append-article').val();
     let is_over = false;
     let not_loaded = true;
     loadData();
@@ -10,7 +10,8 @@ $(document).ready(function(){
             not_loaded = false;
             $('.hidden_page').val(page);
             var querry = $('.input-news').val();
-            let append = true;
+            $('#append-article').val(1);
+            append = $('#append-article').val();
             var slug = $('#slug-article').val();
             loadData(page,querry,append,slug)
         }
@@ -31,12 +32,15 @@ $(document).ready(function(){
                 $('#loading-item').removeClass('hide');
             },
             success: (data) => {
-                console.log(data.append)
+                let dataappen = parseInt(data.append);
+
+                let html = "";
+
                 if (data.is_over){
                     is_over = true;
                 } else {
-                    if (data.append == true){
-                        let html = "";
+                    if (data.append == 0){
+
                         data.data.forEach(function (data) {
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
@@ -65,42 +69,42 @@ $(document).ready(function(){
                                 html += '</div>';
                             html += '</div>';
                         });
-                        $('#article_data').append(html);
-
-                    }else {
-                        let html2 = "";
-                        data.data.forEach(function (data) {
-                            html2 += '<div class="news_content_list_item">';
-                                html2 += '<div class="news_content_list_image">';
-                                    html2 += '<a href="/tin-tuc/' + data.slug + '">';
-                                        html2 += '<img src="https://shopas.net/storage/images/L3JDAPVexq_1644229149.jpg" alt="">';
-                                    html2 += '</a>';
-                                html2 += '</div>';
-
-                                html2 += '<div class="news_content_list_info">';
-                                    html2 += '<div class="news_content_list_title">';
-                                        html2 += '<a href="/tin-tuc/' + data.slug + '">'+ data.title +'</a>';
-                                    html2 += '</div>';
-
-                                    html2 += '<div class="news_content_list_date">';
-                                        html2 += '<div>';
-                                            html2 += '<i class="fas fa-calendar-alt"></i> ' + new Date(data.created_at).toLocaleDateString() +'';
-                                        html2 += '</div>';
-                                        html2 += '<div>';
-                                            html2 += '<i class="fas fa-newspaper"></i><a href=""> ' + data.groups[0].title + ' </a>';
-                                        html2 += '</div>';
-                                    html2 += '</div>';
-
-                                html2 += '<div class="news_content_list_decription">';
-                                html2 += data.description;
-                                html2 += '</div>';
-
-                            html2 += '</div>';
-                            html2 += '</div>';
-                        });
-
                         $('#article_data').html('');
-                        $('#article_data').html(html2);
+                        $('#article_data').html(html);
+                    }
+                    else {
+                        data.data.forEach(function (data) {
+                            html += '<div class="news_content_list_item">';
+                                html += '<div class="news_content_list_image">';
+                                    html += '<a href="/tin-tuc/' + data.slug + '">';
+                                        html += '<img src="https://shopas.net/storage/images/L3JDAPVexq_1644229149.jpg" alt="">';
+                                    html += '</a>';
+                            html += '</div>';
+
+                            html += '<div class="news_content_list_info">';
+                            html += '<div class="news_content_list_title">';
+                            html += '<a href="/tin-tuc/' + data.slug + '">'+ data.title +'</a>';
+                            html += '</div>';
+
+                            html += '<div class="news_content_list_date">';
+                            html += '<div>';
+                            html += '<i class="fas fa-calendar-alt"></i> ' + new Date(data.created_at).toLocaleDateString() +'';
+                            html += '</div>';
+                            html += '<div>';
+                            html += '<i class="fas fa-newspaper"></i><a href=""> ' + data.groups[0].title + ' </a>';
+                            html += '</div>';
+                            html += '</div>';
+
+                            html += '<div class="news_content_list_decription">';
+                            html += data.description;
+                            html += '</div>';
+
+                            html += '</div>';
+                            html += '</div>';
+                        });
+                        $('#article_data').append(html);
+                        append = false;
+
                     }
 
                     not_loaded = true;
@@ -118,7 +122,9 @@ $(document).ready(function(){
 
     $('.btn-news').click(function (e) {
         var querry = $('.input-news').val();
-        let append = false;
+        $('#append-article').val(0);
+        append = $('#append-article').val();
+
         $('#hidden_page').val(1);
         page = $('#hidden_page').val();
 
@@ -132,7 +138,8 @@ $(document).ready(function(){
     })
 
     $('.btn-tatca').click(function (e) {
-        let append = false;
+        $('#append-article').val(0);
+        append = $('#append-article').val();
         $('.input-news').val('');
         $('#hidden_page').val(1);
         page = $('#hidden_page').val();
@@ -149,7 +156,8 @@ $(document).ready(function(){
         $('#slug-article').val(slug);
         $('.input-news').val('');
         var querry = $('.input-news').val();
-        let append = false;
+        $('#append-article').val(0);
+        append = $('#append-article').val();
         $('#hidden_page').val(1);
         page = $('#hidden_page').val();
         is_over = false;
