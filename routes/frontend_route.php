@@ -75,7 +75,10 @@ Route::get('/tin-tuc/data',[ArticleController::class,"getData"]);
 Route::get('/tin-tuc/{slug}',[ArticleController::class,"show"]);
 
 //dichj vụ
-Route::get('/dich-vu-game',[ServiceController::class,"index"]);
+Route::get('/dich-vu',[ServiceController::class,"getServiceCategory"]);
+Route::get('/dich-vu/data',[ServiceController::class,"getServiceCategoryData"]);
+Route::get('/dich-vu/{slug}',[ServiceController::class,"showServiceCategory"]);
+Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategoryData"]);
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});

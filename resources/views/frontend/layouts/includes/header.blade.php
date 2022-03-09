@@ -14,7 +14,7 @@
                         <a href="/">Trang chủ</a>
                     </li>
                     <li class="menu-item">
-                        <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
+                        <a  href="/dich-vu" class="\">Dịch vụ</a>
                     </li>
                     <li class="menu-item">
                         <a href="/tin-tuc">Tin tức</a>
