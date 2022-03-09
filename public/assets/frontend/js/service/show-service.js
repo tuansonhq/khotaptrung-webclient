@@ -17,11 +17,17 @@ $(document).ready(function(){
             $('#append-service').val(1);
             append = $('#append-service').val();
 
-            loadDataService(page,append)
+            var querry = $('.input-news').val();
+
+            if (querry == '' || querry == undefined || querry == null){
+                querry = $('.input-news-mobile').val();
+            }
+
+            loadDataService(page,querry,append)
         }
     });
 
-    function loadDataService(page, append = false) {
+    function loadDataService(page,querry, append = false) {
         let slug = $('#slug').val();
         console.log(slug);
         request = $.ajax({
@@ -29,61 +35,109 @@ $(document).ready(function(){
             url: '/dich-vu/'+ slug +'/data',
             data: {
                 page:page,
+                querry:querry,
                 append:append,
             },
             beforeSend: function (xhr) {
 
             },
             success: (data) => {
-                console.log(data)
-                let dataappen = parseInt(data.append);
 
                 let html = "";
 
                 if (data.is_over){
                     is_over = true;
                 } else {
-                    data.data.forEach(function (data) {
-                        html += '<div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">';
-                        html += '<div class="game-list-content">';
-                        html += '<div class="game-list-image">';
-                        html += '<a href="/dich-vu/' + data.slug + '">';
-                        html += '<img class="game-list-image-sticky" src="https://www.shopas.net/storage/images/pBYgoKE7bt_1621190862.png" alt="">';
-                        html += '<img class="game-list-image-in" src="https://nick.vn/storage/images/CbbP8yFiqg_1623227606.jpg" alt="">';
-                        html += '</a>';
-                        html += '</div>';
+                    if (data.append == 0){
+                        data.data.forEach(function (data) {
+                            html += '<div class="col-sm-6 col-lg-3">';
+                            html += '<div class="item_buy_list_in">';
+                            html += '<div class="item_buy_list_img">';
+                            html += '<a href="/dich-vu/' + data.slug + '">';
+                            html += '<img class="item_buy_list_img-main" src="\thttps://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">';
+                            html += '</a>';
+                            html += '</div>';
 
-                        html += '<div class="game-list-title">';
-                        html += '<a href="/dich-vu/' + data.slug + '">';
-                        html += '<p><strong>' + data.title + '</strong></p>';
-                        html += '</a>';
-                        html += '</div>';
+                            html += '<div class="item_buy_list_info">';
+                            html += '<div class="row">';
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
+                            html += '</div>';
 
-                        html += '<div class="game-list-description">';
-                        html += '<div class="countime"> </div>';
-                        html += '<p>Đã quay: 388</p>';
-                        html += '<span class="game-list-description-old-price">49,000đ</span>';
-                        html += '<span class="game-list-description-new-price">49,000đ</span>';
-                        html += '</div>';
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span>Hỗ trợ dịch vụ:</span> 5';
+                            html += '</div>';
 
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span>Giao dịch:</span> 19,878';
+                            html += '</div>';
 
-                        html += '<div class="game-list-more">';
-                        html += '<div class="game-list-more-view" >';
-                        html += '<a href="/dich-vu/' + data.slug + '">';
-                        html += '<img src="https://www.shopas.net//storage/images/7Zsng4N5vn_1623839229.gif" alt="">';
-                        html += '</a>';
-                        html += '</div>';
-                        html += '</div>';
-                        html += '</div>';
-                        html += '</div>';
-                    });
-                    $('#showcategoryservice_data').append(html);
+                            html += '</div>';
+                            html += '</div>';
+
+                            html += '<div class="item_buy_list_more">';
+                            html += '<div class="row">';
+
+                            html += '<a href="/dich-vu/' + data.slug + '" class="col-12">';
+                            html += '<div class="item_buy_list_view">';
+                            html += 'CHI TIẾT';
+                            html += '</div>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        });
+                        $('#showcategoryservice_data').html('');
+                        $('#showcategoryservice_data').html(html);
+                    }else {
+                        data.data.forEach(function (data) {
+                            html += '<div class="col-sm-6 col-lg-3">';
+                            html += '<div class="item_buy_list_in">';
+                            html += '<div class="item_buy_list_img">';
+                            html += '<a href="/dich-vu/' + data.slug + '">';
+                            html += '<img class="item_buy_list_img-main" src="\thttps://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">';
+                            html += '</a>';
+                            html += '</div>';
+
+                            html += '<div class="item_buy_list_info">';
+                            html += '<div class="row">';
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
+                            html += '</div>';
+
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span>Hỗ trợ dịch vụ:</span> 5';
+                            html += '</div>';
+
+                            html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<span>Giao dịch:</span> 19,878';
+                            html += '</div>';
+
+                            html += '</div>';
+                            html += '</div>';
+
+                            html += '<div class="item_buy_list_more">';
+                            html += '<div class="row">';
+
+                            html += '<a href="/dich-vu/' + data.slug + '" class="col-12">';
+                            html += '<div class="item_buy_list_view">';
+                            html += 'CHI TIẾT';
+                            html += '</div>';
+                            html += '</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        });
+                        $('#showcategoryservice_data').append(html);
+                    }
 
                     not_loaded = true;
                 }
 
                 if (data.data.length == 0){
-                    
+
                 }
 
             },
@@ -96,4 +150,59 @@ $(document).ready(function(){
         });
     }
 
+    $('.btn-category-service').click(function (e) {
+        e.preventDefault();
+        var querry = $('.input-news').val();
+        if (querry == '' || querry == undefined || querry == null){
+            return false;
+        }
+
+        $('#append-service').val(0);
+        append = $('#append-service').val();
+        is_over = false;
+        $('#hidden_page_service').val(1);
+        page = $('#hidden_page_service').val();
+
+        loadDataService(page,querry,append);
+    })
+
+    $('.btn-category-service-mobile').click(function (e) {
+        e.preventDefault();
+        var querry = $('.input-news-mobile').val();
+        if (querry == '' || querry == undefined || querry == null){
+            return false;
+        }
+
+        $('#append-service').val(0);
+        append = $('#append-service').val();
+        is_over = false;
+        $('#hidden_page_service').val(1);
+        page = $('#hidden_page_service').val();
+
+        loadDataService(page,querry,append);
+    })
+
+    $('.btn-tatca').click(function (e) {
+        e.preventDefault();
+        $('#append-service').val(0);
+        append = $('#append-service').val();
+        is_over = false;
+        $('#hidden_page_service').val(1);
+        page = $('#hidden_page_service').val();
+        $('.input-news').val('');
+        var querry = $('.input-news').val();
+        loadDataService(page,querry,append);
+    })
+
+    $('.btn-tatca-mobile').click(function (e) {
+        e.preventDefault();
+        $('#append-service').val(0);
+        append = $('#append-service').val();
+        is_over = false;
+        $('#hidden_page_service').val(1);
+        page = $('#hidden_page_service').val();
+        $('.input-news-mobile').val('');
+        var querry = $('.input-news-mobile').val();
+        loadDataService(page,querry,append);
+    })
 })

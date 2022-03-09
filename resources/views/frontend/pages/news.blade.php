@@ -13,7 +13,9 @@
         </div>
         <div class="news_content">
             <div class="container">
+                <form>
                 <div class="row">
+
                     <div class="col-md-4" style="margin-bottom: 15px">
                         <input type="text" class="form-control input-news" placeholder="Nhập từ khoá...">
                     </div>
@@ -21,7 +23,9 @@
                         <input type="submit" class="btn btn-news" value="Tìm kiếm">
                         <input type="submit" class="btn btn-tatca" value="Tất cả">
                     </div>
+
                 </div>
+                </form>
                 <div class="row">
 
                     <div class="col-md-9 col-sm-12">
@@ -52,7 +56,6 @@
         </div>
     </div>
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
-
     <input type="hidden" name="slug" id="slug-article" value="" />
     <input type="hidden" name="append" id="append-article" value="0" />
     <script src="/assets/frontend/js/article/article.js"></script>

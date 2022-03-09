@@ -32,7 +32,6 @@ $(document).ready(function(){
                 $('#loading-item').removeClass('hide');
             },
             success: (data) => {
-                let dataappen = parseInt(data.append);
 
                 let html = "";
 
@@ -121,7 +120,9 @@ $(document).ready(function(){
     }
 
     $('.btn-news').click(function (e) {
+        e.preventDefault();
         var querry = $('.input-news').val();
+
         $('#append-article').val(0);
         append = $('#append-article').val();
 
@@ -137,7 +138,9 @@ $(document).ready(function(){
         loadData(page,querry,append,slug)
     })
 
+
     $('.btn-tatca').click(function (e) {
+        e.preventDefault();
         $('#append-article').val(0);
         append = $('#append-article').val();
         $('.input-news').val('');
