@@ -22,7 +22,9 @@ class ServiceController extends Controller
             $val = array();
             $val['domain'] = "youtube.com";
             $val['page'] = $page;
-
+            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
+                $val['querry'] = $request->querry;
+            }
             $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
@@ -44,7 +46,20 @@ class ServiceController extends Controller
     }
 
     public function showServiceCategory(Request $request,$slug){
-        return view('frontend.pages.service.show_service_category')->with('slug',$slug);
+        $url = '/show-service-category';
+        $method = "GET";
+        $val = array();
+        $val['domain'] = "youtube.com";
+        $val['slug'] = $slug;
+
+        $val['secret_key'] = config('api.secret_key');
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $result = $result_Api->data;
+        $data = $result->categoryservice;
+
+        return view('frontend.pages.service.show_service_category')
+            ->with('slug',$slug)
+            ->with('data',$data);
     }
 
     public function showServiceCategoryData(Request $request,$slug){
@@ -52,16 +67,16 @@ class ServiceController extends Controller
         if ($request->ajax()){
             $page = $request->page;
             $append = $request->append;
-            //$slug = $request->get('slug');
 
-            //dd($slug);
             $url = '/show-service-category';
             $method = "GET";
             $val = array();
             $val['domain'] = "youtube.com";
             $val['page'] = $page;
             $val['slug'] = $slug;
-
+            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
+                $val['querry'] = $request->querry;
+            }
             $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
