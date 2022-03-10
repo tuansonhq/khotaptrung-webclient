@@ -36,94 +36,73 @@
                                 <div class="col-md-7">
 {{--                                    Kiểm tra máy chủ     --}}
                                 @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+                                    @php
+                                        $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+                                        $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+                                    @endphp
                                     <span class="mb-15 control-label bb">Chọn máy chủ:</span>
-                                    <div class="mb-15">
-                                        <select id="select-sever" name="server[]" class="server-filter form-control t14" style="">
-                                            <option value="0">Vũ trụ 1  </option>
-                                            <option value="1">Vũ trụ 2  </option>
-                                            <option value="2">Vũ trụ 3  </option>
-                                            <option value="3">Vũ Trụ 4  </option>
-                                            <option value="4">Vũ trụ 5  </option>
-                                            <option value="5">Vũ trụ 6  </option>
-                                            <option value="6">Vũ trụ 7  </option>
-                                            <option value="7">Vũ trụ 8  </option>
-                                            <option value="8">Vũ trụ 9  </option>
-                                            <option value="9">Vũ Trụ 10  </option>
-                                            <option value="10">  </option>
-                                        </select>
-                                    </div>
-                                    <div class="hidden">
-                                        <input type="hidden" id="minmax_0" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_1" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_2" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_3" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_4" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_5" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_6" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_7" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_8" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_9" data-value-min="2000" data-value-max="80000"  data-value-min-text="2,000" data-value-max-text="80,000"/>
-                                        <input type="hidden" id="minmax_10" data-value-min="" data-value-max=""  data-value-min-text="0" data-value-max-text="0"/>
-                                    </div>
+                                    @if(!empty($server_data))
+{{--                                        @dd($server_data)--}}
+                                        <div class="mb-15">
+                                            <select name="server[]" class="server-filter form-control t14" style="">
+                                                @for($i = 0; $i < count($server_data); $i++)
+                                                    @if((strpos($server_data[$i], '[DELETE]') === false))
+                                                        <option value="{{$server_id[$i]}}">{{$server_data[$i]}}  </option>
+                                                    @endif
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    @endif
                                 @endif
                                 {{--                                dich vu may chu khac    --}}
                                 @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
-                                    <span class="mb-15 control-label bb">Kim Cương:</span>
-                                    <div class="mb-15">
-                                        <select name="selected" class="s-filter form-control t14" style="">
-                                            <option value="0">Kim Cương × 45</option>
-                                            <option value="1">Kim Cương × 90</option>
-                                            <option value="2">Kim Cương × 230</option>
-                                            <option value="3">Kim Cương × 465</option>
-                                            <option value="4">Kim Cương × 950</option>
-                                        </select>
-                                    </div>
+                                    @php
+                                        $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                        $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                    @endphp
+                                    @if(!empty($name))
+                                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                        <div class="mb-15">
+                                            <select name="selected" class="s-filter form-control t14" style="">
+                                                @for ($i = 0; $i < count($name); $i++)
+                                                    @if($name[$i]!=null)
+                                                        <option value="{{$i}}">{{$name[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            </select>
+                                        </div>
+                                    @endif
+
                                 @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
                                     <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
                                     <div class="mb-15">
-                                        <input autofocus="" value="2000" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                                        <span style="font-size: 14px;">Số tiền thanh toán phải từ <b id="min_money" style="font-weight:bold;">2,000đ</b>  đến <b id="max_money" style="font-weight:bold;">80,000đ</b> </span>
+                                        <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                                        <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}đ</b>  đến <b style="font-weight:bold;">{{number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))}}đ</b> </span>
                                     </div>
                                     <span class="mb-15 control-label bb">Hệ số:</span>
                                     <div class="mb-15">
                                         <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
                                     </div>
                                 @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                                    <span class="mb-15 control-label bb">Mức Rank Yêu Cầu:</span>
+                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                                     <div class="simple-checkbox s-filter">
-                                        <p><input value="0" type="checkbox" id="0">
-                                            <label for="0">100 điểm / Đồng -&gt; Bạc - 30,000 VNĐ</label>
-                                        </p>
+                                        @php
+                                            $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                            $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                        @endphp
+                                        @if(!empty($name))
+                                            @for ($i = 0; $i < count($name); $i++)
+                                                @if($name[$i]!=null)
+                                                    <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
+                                                        <label for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
+                                                    </p>
+                                                @endif
 
-                                        <p><input value="1" type="checkbox" id="1">
-                                            <label for="1">100 điểm / Bạc -&gt; Vàng - 30,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="2" type="checkbox" id="2">
-                                            <label for="2">100 điểm / Vàng -&gt; Bạch Kim - 50,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="3" type="checkbox" id="3">
-                                            <label for="3">100 điểm / Bạch Kim-&gt; Kim cương - 70,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="4" type="checkbox" id="4">
-                                            <label for="4">100 điểm / Kim cương -&gt; Crown - 100,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="5" type="checkbox" id="5">
-                                            <label for="5">100 điểm / Crown -&gt; Ace - 150,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="6" type="checkbox" id="6">
-                                            <label for="6">100 điểm / Ace -&gt; Chí Tôn ( mốc 4k2- 4k5 điểm ) - 250,000 VNĐ</label>
-                                        </p>
-
-                                        <p><input value="7" type="checkbox" id="7">
-                                            <label for="7">100 điểm / Ace -&gt; Chí Tôn ( mốc 4k5- 4k9 điểm ) - 350,000 VNĐ</label>
-                                        </p>
-
+                                            @endfor
+                                        @endif
                                     </div>
+                                @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
+
                                 @endif
 
                                 </div>
@@ -157,7 +136,7 @@
                             <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
                             <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
                             <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
-                            <span class="mb-15 control-label bb">Tiền:</span>
+                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                             <div class="range_slider" style="">
                                 <div class="nstSlider" data-range_min="0" data-cur_min="0">
@@ -166,41 +145,22 @@
                                     <div class="rightGrip"></div>
                                 </div>
                             </div>
-
+                            @php
+                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                            @endphp
                             <div class="row service-choice">
                                 <div class="col-sm-6">
                                     <h5>Từ</h5>
                                     <div class="dropdown-field from-field">
                                         <select class="from-chosen" name="rank_from">
-                                            <option value="0">Vàng 4</option>
-                                            <option value="1">Vàng 3</option>
-                                            <option value="2">Vàng 2</option>
-                                            <option value="3">Vàng 1</option>
-                                            <option value="4">Bạch Kim 5</option>
-                                            <option value="5">Bạch kim 4</option>
-                                            <option value="6">Bạch kim 3</option>
-                                            <option value="7">Bạch kim 2</option>
-                                            <option value="8">Bạch kim 1</option>
-                                            <option value="9">Kim cương 5</option>
-                                            <option value="10">Kim cương 4</option>
-                                            <option value="11">Kim cương 3</option>
-                                            <option value="12">Kim cương 2</option>
-                                            <option value="13">Kim cương 1</option>
-                                            <option value="14">Tinh anh 5</option>
-                                            <option value="15">Tinh anh 4</option>
-                                            <option value="16">Tinh anh 3</option>
-                                            <option value="17">Tinh anh 2</option>
-                                            <option value="18">Tinh anh 1</option>
-                                            <option value="19">Cao thủ 1*</option>
-                                            <option value="20">Cao thủ 5*</option>
-                                            <option value="21">Cao thủ 10*</option>
-                                            <option value="22">Cao thủ 15 *</option>
-                                            <option value="23">Cao thủ 20*</option>
-                                            <option value="24">Cao thủ 25*</option>
-                                            <option value="25">Cao thủ 30*</option>
-                                            <option value="26">Cao thủ 35*</option>
-                                            <option value="27">Cao thủ 40*</option>
-                                            <option value="28">Cao thủ 45*</option>
+                                            @if(!empty($name))
+                                                @for ($i = 0; $i < count($name)-1; $i++)
+                                                    @if($name[$i]!=null)
+                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -209,36 +169,13 @@
                                     <h5>đến</h5>
                                     <div class="dropdown-field to-field">
                                         <select class="to-chosen" name="rank_to">
-                                            <option value="1">Vàng 3</option>
-                                            <option value="2">Vàng 2</option>
-                                            <option value="3">Vàng 1</option>
-                                            <option value="4">Bạch Kim 5</option>
-                                            <option value="5">Bạch kim 4</option>
-                                            <option value="6">Bạch kim 3</option>
-                                            <option value="7">Bạch kim 2</option>
-                                            <option value="8">Bạch kim 1</option>
-                                            <option value="9">Kim cương 5</option>
-                                            <option value="10">Kim cương 4</option>
-                                            <option value="11">Kim cương 3</option>
-                                            <option value="12">Kim cương 2</option>
-                                            <option value="13">Kim cương 1</option>
-                                            <option value="14">Tinh anh 5</option>
-                                            <option value="15">Tinh anh 4</option>
-                                            <option value="16">Tinh anh 3</option>
-                                            <option value="17">Tinh anh 2</option>
-                                            <option value="18">Tinh anh 1</option>
-                                            <option value="19">Cao thủ 1*</option>
-                                            <option value="20">Cao thủ 5*</option>
-                                            <option value="21">Cao thủ 10*</option>
-                                            <option value="22">Cao thủ 15 *</option>
-                                            <option value="23">Cao thủ 20*</option>
-                                            <option value="24">Cao thủ 25*</option>
-                                            <option value="25">Cao thủ 30*</option>
-                                            <option value="26">Cao thủ 35*</option>
-                                            <option value="27">Cao thủ 40*</option>
-                                            <option value="28">Cao thủ 45*</option>
-                                            <option value="29">Cao thủ 50*</option>
-
+                                            @if(!empty($name))
+                                                @for ($i = 1; $i < count($name); $i++)
+                                                    @if($name[$i]!=null)
+                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -264,301 +201,30 @@
                                     </tr>
                                     </thead>
                                     <tbody class="m-datatable__body">
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">1</td>
-                                        <td class="m-datatable__cell">Vàng 4 -> Vàng 3</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
+                                    @if(!empty($name))
+                                        @for ($i = 0; $i < count($name)-1; $i++)
+                                            @if($name[$i]!=null)
+                                                <tr class="m-datatable__row m-datatable__row--even">
+                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
+                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
+                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
+                                                    <td class="m-datatable__cell">
+                                                        @if(Auth::guard('frontend')->check())
+                                                            <span class="pay">Thanh toán</span>
+                                                        @else
+                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
+                                                        @endif
 
-                                        </td>
-                                    </tr>
+                                                    </td>
+                                                </tr>
+                                            @endif
 
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">2</td>
-                                        <td class="m-datatable__cell">Vàng 3 -> Vàng 2</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">3</td>
-                                        <td class="m-datatable__cell">Vàng 2 -> Vàng 1</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">4</td>
-                                        <td class="m-datatable__cell">Vàng 1 -> Bạch Kim 5</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">5</td>
-                                        <td class="m-datatable__cell">Bạch Kim 5 -> Bạch kim 4</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">6</td>
-                                        <td class="m-datatable__cell">Bạch kim 4 -> Bạch kim 3</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">7</td>
-                                        <td class="m-datatable__cell">Bạch kim 3 -> Bạch kim 2</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">8</td>
-                                        <td class="m-datatable__cell">Bạch kim 2 -> Bạch kim 1</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">9</td>
-                                        <td class="m-datatable__cell">Bạch kim 1 -> Kim cương 5</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">10</td>
-                                        <td class="m-datatable__cell">Kim cương 5 -> Kim cương 4</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">11</td>
-                                        <td class="m-datatable__cell">Kim cương 4 -> Kim cương 3</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">12</td>
-                                        <td class="m-datatable__cell">Kim cương 3 -> Kim cương 2</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">13</td>
-                                        <td class="m-datatable__cell">Kim cương 2 -> Kim cương 1</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">14</td>
-                                        <td class="m-datatable__cell">Kim cương 1 -> Tinh anh 5</td>
-                                        <td style="width:150px;" class="m-datatable__cell">40,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">15</td>
-                                        <td class="m-datatable__cell">Tinh anh 5 -> Tinh anh 4</td>
-                                        <td style="width:150px;" class="m-datatable__cell">50,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">16</td>
-                                        <td class="m-datatable__cell">Tinh anh 4 -> Tinh anh 3</td>
-                                        <td style="width:150px;" class="m-datatable__cell">50,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">17</td>
-                                        <td class="m-datatable__cell">Tinh anh 3 -> Tinh anh 2</td>
-                                        <td style="width:150px;" class="m-datatable__cell">50,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">18</td>
-                                        <td class="m-datatable__cell">Tinh anh 2 -> Tinh anh 1</td>
-                                        <td style="width:150px;" class="m-datatable__cell">50,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">19</td>
-                                        <td class="m-datatable__cell">Tinh anh 1 -> Cao thủ 1*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">80,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">20</td>
-                                        <td class="m-datatable__cell">Cao thủ 1* -> Cao thủ 5*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">21</td>
-                                        <td class="m-datatable__cell">Cao thủ 5* -> Cao thủ 10*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">200,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">22</td>
-                                        <td class="m-datatable__cell">Cao thủ 10* -> Cao thủ 15 *</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">23</td>
-                                        <td class="m-datatable__cell">Cao thủ 15 * -> Cao thủ 20*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">24</td>
-                                        <td class="m-datatable__cell">Cao thủ 20* -> Cao thủ 25*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">25</td>
-                                        <td class="m-datatable__cell">Cao thủ 25* -> Cao thủ 30*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">26</td>
-                                        <td class="m-datatable__cell">Cao thủ 30* -> Cao thủ 35*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">27</td>
-                                        <td class="m-datatable__cell">Cao thủ 35* -> Cao thủ 40*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">28</td>
-                                        <td class="m-datatable__cell">Cao thủ 40* -> Cao thủ 45*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr class="m-datatable__row m-datatable__row--even">
-                                        <td style="width:30px;" class="m-datatable__cell">29</td>
-                                        <td class="m-datatable__cell">Cao thủ 45* -> Cao thủ 50*</td>
-                                        <td style="width:150px;" class="m-datatable__cell">100,000 VNĐ</td>
-                                        <td class="m-datatable__cell">
-                                            <span class="pay">Thanh toán</span>
-
-                                        </td>
-                                    </tr>
-
-
+                                        @endfor
+                                    @endif
                                     </tbody>
                                 </table>
                                 <style type="text/css">
-                                    @media  only screen and (max-width: 640px) {
+                                    @media only screen and (max-width: 640px) {
                                         .float_mb {
                                             float: left;
                                         }
@@ -582,7 +248,8 @@
                                 </script>
                             </div>
                         </div>
-                        <input type="hidden" id="json_rank" name="custId" value="{&quot;id&quot;:1783,&quot;idkey&quot;:null,&quot;module&quot;:&quot;service&quot;,&quot;locale&quot;:null,&quot;title&quot;:&quot;C\u00e0y thu\u00ea Li\u00ean qu\u00e2n&quot;,&quot;acc_name&quot;:null,&quot;acc_pass&quot;:null,&quot;acc_mail&quot;:null,&quot;acc_pass_mail&quot;:null,&quot;info_plus&quot;:null,&quot;info_plus2&quot;:null,&quot;info_plus3&quot;:null,&quot;buyer&quot;:null,&quot;buy_at&quot;:null,&quot;check_pass&quot;:0,&quot;check_pass_at&quot;:null,&quot;sticky&quot;:null,&quot;description&quot;:&quot;&lt;p&gt;&lt;strong&gt;L\u01afU &amp;Yacute; : Uy t&amp;iacute;n c\u1ee7a nick c\u1ea7n c&amp;agrave;y ph\u1ea3i tr&amp;ecirc;n 85&lt;\/strong&gt;&lt;\/p&gt;\r\n\r\n&lt;p&gt;- C&amp;agrave;y thu&amp;ecirc; Li&amp;ecirc;n Qu&amp;acirc;n uy t&amp;iacute;n gi&amp;aacute; r\u1ebb&lt;\/p&gt;\r\n\r\n&lt;p&gt;- B\u1ea3o m\u1eadt 100% . Kh&amp;ocirc;ng d&amp;ugrave;ng ph\u1ea7n m\u1ec1m l\u1eadu .&lt;\/p&gt;\r\n\r\n&lt;p&gt;&lt;strong&gt;&lt;span style=\&quot;color:#c0392b\&quot;&gt;- 4 b\u1eadc rank b&amp;ecirc;n m&amp;igrave;nh m\u1ea5t kho\u1ea3ng 1 ng&amp;agrave;y h\u01a1n \u0111\u1ec3 c&amp;agrave;y . N&amp;ecirc;n t\u1eeb khi ti\u1ebfp nh\u1eadn \u0111\u01a1n c&amp;aacute;c b\u1ea1n kh&amp;ocirc;ng n&amp;ecirc;n login v&amp;agrave;o game \u0111\u1ec3 b&amp;ecirc;n m&amp;igrave;nh kh&amp;ocirc;ng g\u1eb7p tr\u1ee5c tr\u1eb7c khi c&amp;agrave;y . C\u1ea2M \u01a0N !!&lt;\/span&gt;&lt;\/strong&gt;&lt;\/p&gt;&quot;,&quot;content&quot;:&quot;&lt;p&gt;- C&amp;agrave;y thu&amp;ecirc; Li&amp;ecirc;n Qu&amp;acirc;n uy t&amp;iacute;n gi&amp;aacute; r\u1ebb - B\u1ea3o m\u1eadt 100% . Kh&amp;ocirc;ng d&amp;ugrave;ng ph\u1ea7n m\u1ec1m l\u1eadu .&lt;\/p&gt;\r\n\r\n&lt;p&gt;&lt;span style=\&quot;color:#c0392b\&quot;&gt;&lt;strong&gt;- 4 b\u1eadc rank b&amp;ecirc;n m&amp;igrave;nh m\u1ea5t kho\u1ea3ng 1 ng&amp;agrave;y h\u01a1n \u0111\u1ec3 c&amp;agrave;y . N&amp;ecirc;n t\u1eeb khi ti\u1ebfp nh\u1eadn \u0111\u01a1n c&amp;aacute;c b\u1ea1n kh&amp;ocirc;ng n&amp;ecirc;n login v&amp;agrave;o game \u0111\u1ec3 b&amp;ecirc;n m&amp;igrave;nh kh&amp;ocirc;ng g\u1eb7p tr\u1ee5c tr\u1eb7c khi c&amp;agrave;y . C\u1ea2M \u01a0N !!&lt;\/strong&gt;&lt;\/span&gt;&lt;\/p&gt;&quot;,&quot;image&quot;:&quot;\/images\/Qt5i235PIT_1624011783.jpg&quot;,&quot;image_extension&quot;:null,&quot;slug&quot;:&quot;cay-thue-lien-quan&quot;,&quot;url&quot;:null,&quot;author&quot;:null,&quot;params&quot;:&quot;{\&quot;input_auto\&quot;:\&quot;0\&quot;,\&quot;idkey\&quot;:null,\&quot;image_oldest\&quot;:\&quot;1\&quot;,\&quot;server_mode\&quot;:\&quot;0\&quot;,\&quot;server_price\&quot;:\&quot;1\&quot;,\&quot;server_id\&quot;:[\&quot;0\&quot;],\&quot;server_data\&quot;:[null],\&quot;server_data_minValue\&quot;:[null],\&quot;server_data_maxValue\&quot;:[null],\&quot;filter_name\&quot;:\&quot;Ti\u1ec1n\&quot;,\&quot;filter_type\&quot;:\&quot;6\&quot;,\&quot;input_pack_min\&quot;:null,\&quot;input_pack_max\&quot;:null,\&quot;input_pack_rate\&quot;:null,\&quot;id\&quot;:[\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,\&quot;7\&quot;,null,null,null,null,null,null,null,null,null],\&quot;name\&quot;:[\&quot;V\u00e0ng 4\&quot;,\&quot;V\u00e0ng 3\&quot;,\&quot;V\u00e0ng 2\&quot;,\&quot;V\u00e0ng 1\&quot;,\&quot;B\u1ea1ch Kim 5\&quot;,\&quot;B\u1ea1ch kim 4\&quot;,\&quot;B\u1ea1ch kim 3\&quot;,\&quot;B\u1ea1ch kim 2\&quot;,\&quot;B\u1ea1ch kim 1\&quot;,\&quot;Kim c\u01b0\u01a1ng 5\&quot;,\&quot;Kim c\u01b0\u01a1ng 4\&quot;,\&quot;Kim c\u01b0\u01a1ng 3\&quot;,\&quot;Kim c\u01b0\u01a1ng 2\&quot;,\&quot;Kim c\u01b0\u01a1ng 1\&quot;,\&quot;Tinh anh 5\&quot;,\&quot;Tinh anh 4\&quot;,\&quot;Tinh anh 3\&quot;,\&quot;Tinh anh 2\&quot;,\&quot;Tinh anh 1\&quot;,\&quot;Cao th\u1ee7 1*\&quot;,\&quot;Cao th\u1ee7 5*\&quot;,\&quot;Cao th\u1ee7 10*\&quot;,\&quot;Cao th\u1ee7 15 *\&quot;,\&quot;Cao th\u1ee7 20*\&quot;,\&quot;Cao th\u1ee7 25*\&quot;,\&quot;Cao th\u1ee7 30*\&quot;,\&quot;Cao th\u1ee7 35*\&quot;,\&quot;Cao th\u1ee7 40*\&quot;,\&quot;Cao th\u1ee7 45*\&quot;,\&quot;Cao th\u1ee7 50*\&quot;],\&quot;price\&quot;:[\&quot;0\&quot;,\&quot;40000\&quot;,\&quot;80000\&quot;,\&quot;120000\&quot;,\&quot;160000\&quot;,\&quot;200000\&quot;,\&quot;240000\&quot;,\&quot;280000\&quot;,\&quot;320000\&quot;,\&quot;360000\&quot;,\&quot;400000\&quot;,\&quot;440000\&quot;,\&quot;480000\&quot;,\&quot;520000\&quot;,\&quot;560000\&quot;,\&quot;610000\&quot;,\&quot;660000\&quot;,\&quot;710000\&quot;,\&quot;760000\&quot;,\&quot;840000\&quot;,\&quot;940000\&quot;,\&quot;1140000\&quot;,\&quot;1240000\&quot;,\&quot;1340000\&quot;,\&quot;1440000\&quot;,\&quot;1540000\&quot;,\&quot;1640000\&quot;,\&quot;1740000\&quot;,\&quot;1840000\&quot;,\&quot;1940000\&quot;],\&quot;discount\&quot;:[\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,null,null,null,null,null,null,null,null,null],\&quot;total\&quot;:[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;,\&quot;NaN\&quot;],\&quot;day\&quot;:[\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,null,null,null,null,null,null,null,null,null],\&quot;punish_price\&quot;:[\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,null,null,null,null,null,null,null,null,null],\&quot;praise_day\&quot;:[\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,null,null,null,null,null,null,null,null,null],\&quot;praise_price\&quot;:[\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,\&quot;0\&quot;,null,null,null,null,null,null,null,null,null],\&quot;send_name\&quot;:[\&quot;T\u00e0i kho\u1ea3n\&quot;,\&quot;M\u1eadt kh\u1ea9u\&quot;],\&quot;send_type\&quot;:[\&quot;1\&quot;,\&quot;5\&quot;],\&quot;send_id0\&quot;:[null],\&quot;send_data0\&quot;:[null],\&quot;send_id1\&quot;:[null],\&quot;send_data1\&quot;:[null],\&quot;input_send_desc\&quot;:\&quot;Khi mua ng\u1ecdc t\u1ea1i web c\u00e1c b\u1ea1n l\u01b0u \u00fd \u0111\u1ec3 trong nick 1 ng\u1ecdc v\u00e0 \u0111\u1ee9ng t\u1ea1i si\u00eau th\u1ecb \u0111\u1ec3 nh\u1eadn ng\u1ecdc nhanh nh\u00e9\&quot;,\&quot;captcha\&quot;:null}&quot;,&quot;price&quot;:null,&quot;price_old&quot;:null,&quot;price_base&quot;:null,&quot;totalsubitems&quot;:null,&quot;totalviews&quot;:30893,&quot;order&quot;:null,&quot;position&quot;:null,&quot;app_client&quot;:null,&quot;hide_for&quot;:&quot;null&quot;,&quot;tranid&quot;:null,&quot;status&quot;:1,&quot;lastview&quot;:null,&quot;expired_lock&quot;:null,&quot;input_auto&quot;:0,&quot;parrent_id&quot;:null,&quot;created_at&quot;:&quot;2019-06-14 18:12:55&quot;,&quot;updated_at&quot;:&quot;2022-03-09 19:42:28&quot;,&quot;ended_at&quot;:null,&quot;ratio&quot;:null,&quot;request_id&quot;:null,&quot;groups&quot;:[{&quot;id&quot;:732,&quot;idkey&quot;:null,&quot;module&quot;:&quot;service_category&quot;,&quot;locale&quot;:null,&quot;level&quot;:null,&quot;parrent_id&quot;:0,&quot;parrent_sid&quot;:null,&quot;title&quot;:&quot;Li\u00ean qu\u00e2n&quot;,&quot;description&quot;:&quot;&lt;p&gt;&lt;strong&gt;&lt;a href=\&quot;https:\/\/lienquan.garena.vn\/\&quot; target=\&quot;_blank\&quot;&gt;Game Li&amp;ecirc;n Qu&amp;acirc;n Mobile&lt;\/a&gt;&lt;\/strong&gt;&amp;nbsp;\u0111\u01b0\u1ee3c ph&amp;aacute;t h&amp;agrave;nh b\u1edfi&amp;nbsp;&amp;nbsp;&lt;strong&gt;&lt;a href=\&quot;https:\/\/www.garena.vn\/\&quot; target=\&quot;_blank\&quot;&gt;GARENA&lt;\/a&gt;&lt;\/strong&gt;&amp;nbsp;.&lt;\/p&gt;\r\n\r\n&lt;p&gt;&lt;strong&gt;&lt;a href=\&quot;https:\/\/nick.vn\/garena\/lien-quan\&quot;&gt;Web mua b&amp;aacute;n nick Li&amp;ecirc;n Qu&amp;acirc;n Mobile UY T&amp;Iacute;N - GI&amp;Aacute; R\u1eba&lt;\/a&gt;&lt;\/strong&gt;&amp;nbsp;c\u1ee7a&amp;nbsp;&lt;strong&gt;&lt;a href=\&quot;https:\/\/www.youtube.com\/channel\/UCmBNwy06bT0ypxFjYaIXlmA\&quot; target=\&quot;_blank\&quot;&gt;Quanplay&lt;\/a&gt;&lt;\/strong&gt;&amp;nbsp;Ch\u1ee7&amp;nbsp;&lt;strong&gt;Webnick.vn&lt;\/strong&gt;.&amp;nbsp;&lt;a href=\&quot;https:\/\/nick.vn\/garena\/lien-quan\&quot;&gt;&lt;strong&gt;Shop b&amp;aacute;n acc Li&amp;ecirc;n Qu&amp;acirc;n&lt;\/strong&gt;&lt;\/a&gt;&amp;nbsp;-&amp;nbsp;&lt;a href=\&quot;https:\/\/nick.vn\/garena\/lien-quan?find=&amp;amp;id=&amp;amp;price=tren-1-trieu&amp;amp;status=1&amp;amp;attribute_id_592=&amp;amp;attribute_id_593=\&quot; target=\&quot;_blank\&quot;&gt;&lt;strong&gt;T&amp;agrave;i kho\u1ea3n Li&amp;ecirc;n Qu&amp;acirc;n Vip&lt;\/strong&gt;&lt;\/a&gt;,&amp;nbsp;&lt;a href=\&quot;https:\/\/nick.vn\/garena\/lien-quan?find=&amp;amp;id=&amp;amp;price=&amp;amp;status=1&amp;amp;attribute_id_592=594&amp;amp;attribute_id_593=\&quot; target=\&quot;_blank\&quot;&gt;&lt;strong&gt;Nick Li&amp;ecirc;n qu&amp;acirc;n c&amp;oacute; \u0111&amp;aacute; qu&amp;yacute;&lt;\/strong&gt;&lt;\/a&gt;, &amp;nbsp;&lt;\/p&gt;\r\n\r\n&lt;p&gt;Ngo&amp;agrave;i&amp;nbsp;&lt;strong&gt;mua&amp;nbsp;b&amp;aacute;n nick lq&lt;\/strong&gt;&amp;nbsp;website c&amp;ograve;n&amp;nbsp;&lt;strong&gt;&lt;a href=\&quot;https:\/\/nick.vn\/mua-the\&quot; target=\&quot;_blank\&quot;&gt;b&amp;aacute;n th\u1ebb Garena&lt;\/a&gt;&lt;\/strong&gt;&amp;nbsp;,&lt;a href=\&quot;https:\/\/nick.vn\/dich-vu\/ban-quan-huy\&quot; target=\&quot;_blank\&quot;&gt;&lt;strong&gt;mua b&amp;aacute;n qu&amp;acirc;n huy gi&amp;aacute; r\u1ebb&lt;\/strong&gt;&lt;\/a&gt;,&lt;a href=\&quot;https:\/\/nick.vn\/garena\/lien-quan-random-so-cap\&quot; target=\&quot;_blank\&quot;&gt;&amp;nbsp;&lt;strong&gt;b&amp;aacute;n acc li&amp;ecirc;n qu&amp;acirc;n random&lt;\/strong&gt;&lt;\/a&gt;&amp;nbsp;ch\u1ec9 t\u1eeb 12k - 18k -60k v&amp;agrave; r\u1ea5t nhi\u1ec1u d\u1ecbch v\u1ee5 kh&amp;aacute;c v\u1ec1&amp;nbsp;&lt;strong&gt;&lt;a href=\&quot;https:\/\/www.youtube.com\/channel\/UCpnQwjzvDm1MOMtZV2zkVpA\&quot; target=\&quot;_blank\&quot;&gt;game LQM&lt;\/a&gt;&lt;\/strong&gt;&lt;\/p&gt;&quot;,&quot;content&quot;:null,&quot;content_json&quot;:null,&quot;icon&quot;:null,&quot;image&quot;:&quot;\/images\/uB4bwXdTL8_1623227488.jpg&quot;,&quot;slug&quot;:&quot;lien-quan&quot;,&quot;url&quot;:null,&quot;type_url&quot;:null,&quot;type_input&quot;:null,&quot;type_required&quot;:null,&quot;parrent_attribute_id&quot;:null,&quot;target&quot;:null,&quot;params&quot;:null,&quot;game_provider_id&quot;:null,&quot;totalitems&quot;:null,&quot;order&quot;:1,&quot;position&quot;:null,&quot;show_index&quot;:null,&quot;require_checkpass&quot;:1,&quot;status&quot;:1,&quot;created_at&quot;:&quot;2021-07-31 16:03:13&quot;,&quot;updated_at&quot;:&quot;2021-07-31 16:03:13&quot;,&quot;ended_at&quot;:null,&quot;is_random&quot;:0,&quot;is_ruby&quot;:null,&quot;price_sticky&quot;:null,&quot;price_default&quot;:&quot;0&quot;,&quot;description_default&quot;:null,&quot;image_default&quot;:null,&quot;notice_popup&quot;:null,&quot;user_wheel&quot;:null,&quot;user_wheel_order&quot;:null,&quot;description2&quot;:null,&quot;sale_icon&quot;:null,&quot;pivot&quot;:{&quot;item_id&quot;:1783,&quot;group_id&quot;:732,&quot;order&quot;:null}}]}">
+                        <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
+                    </div>
                     </div>
                     @endif
                 </div>
@@ -606,7 +273,6 @@
                                 <div class="mb-15">
                                     <input type="text" required name="customer_data0" class="form-control t14 " placeholder="Tên nhân vật" value="">
                                 </div>
-
 
                                 <div style="font-size: 12px;" class="" id="content-sever"></div>
                             </div>
@@ -791,16 +457,336 @@
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <link rel="stylesheet" href="/assets/frontend/css/service.css">
-{{--    <script src="/assets/frontend/js/service/demo/dichvu-maychu-khac.js"></script>--}}
-    <script src="/assets/frontend/js/service/show.js"></script>
-    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
-        <script src="/assets/frontend/js/service/demo/dich-vu-chon-a-b.js"></script>
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-        <script src="/assets/frontend/js/service/demo/dich-vu-chon-nhieu.js"></script>
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--////dạng nhập tiền thành toán--}}
-        <script src="/assets/frontend/js/service/demo/dichvu-maychu-khac.js"></script>
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4") {{--//dạng chọn một--}}
-        <script src="/assets/frontend/js/service/demo/dich-vu-chon-mot.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#btnPurchase').click(function () {
+
+                $('#homealert').modal('show');
+            });
+        });
+
+
+        function Confirm(index, serverid) {
+            $('[name="server"]').val(serverid);
+            $('[name="selected"]').val(index);
+            $('#btnPurchase').click();
+        }
+
+        var data = jQuery.parseJSON('{!! $data->params !!}');
+        console.log(data);
+
+
+            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+        var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
+            @else
+        var purchase_name = 'VNĐ';
+            @endif
+
+        var server = -1;
+
+        $(".server-filter").change(function (elm, select) {
+            server = parseInt($(".server-filter").val());
+            $('[name="server"]').val(server);
+            UpdatePrice();
+        });
+        server = parseInt($(".server-filter").val());
+        $('[name="server"]').val(server);
+
+    </script>
+
+    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
+    <script>
+        var itemselect = -1;
+        $(document).ready(function () {
+            $(".s-filter").change(function (elm, select) {
+                itemselect = parseInt($(".s-filter").val());
+                UpdatePrice();
+            });
+            itemselect = parseInt($(".s-filter").val());
+            UpdatePrice();
+        });
+
+        function UpdatePrice() {
+            var price = 0;
+            if (itemselect == -1) {
+                return;
+            }
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+
+                var s_price = data["price" + server];
+                price = parseInt(s_price[itemselect]);
+            }
+            else {
+                var s_price = data["price"];
+                price = parseInt(s_price[itemselect]);
+            }
+
+            $('#txtPrice').html('Tổng: ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+            $('[name="selected"]').val($(".s-filter").val());
+
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('tbody tr.selected').removeClass('selected');
+            $('tbody tr').eq(itemselect).addClass('selected');
+        }
+
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
+    <script>
+        $('.s-filter input[type="checkbox"]').change(function () {
+            UpdatePrice();
+        });
+
+        function UpdatePrice() {
+            var price = 0;
+            var itemselect = '';
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+                var s_price = data["price" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
+
+            if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
+                $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
+                    console.log($(elm).val());
+                    console.log(elm);
+                    price += parseInt(s_price[$(elm).val()]);
+                    if (itemselect != '') {
+                        itemselect += '|';
+                    }
+
+                    itemselect += $(elm).val();
+
+                    $('#txtPrice').html('Tổng: ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+                    $('[name="selected"]').val(itemselect);
+
+                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass();
+                    });
+                });
+                $('#btnPurchase').prop('disabled', false);
+            }
+            else {
+                $('#txtPrice').html('Tổng: 0 VNĐ');
+                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+                $('#btnPurchase').prop('disabled', true);
+
+            }
+
+        }
+    </script>
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
+    <script>
+        var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
+        var data = json.price;
+        $('.nstSlider').attr('data-range_max', data.length - 1);
+        $('.nstSlider').attr('data-cur_max', data.length - 1);
+        $('.nstSlider').nstSlider({
+            "crossable_handles": false,
+            "left_grip_selector": ".leftGrip",
+            "right_grip_selector": ".rightGrip",
+            "value_bar_selector": ".bar",
+            "value_changed_callback": function (cause, leftValue, rightValue) {
+                from = leftValue;
+                to = rightValue;
+                $(".from-chosen").val(from);
+                $(".to-chosen").val(to);
+                $(".to-chosen").trigger("chosen:updated");
+                $(".from-chosen").trigger("chosen:updated");
+                UpdatePrice1();
+            }
+        });
+
+        var from = 0, to = 1;
+        $(document).ready(() => {
+            $(".from-chosen").chosen({disable_search_threshold: 10});
+            $(".from-chosen").change((elm, select) => {
+                from = parseInt($(".from-chosen").val());
+                if (to <= from) {
+                    to = from + 1;
+                    $(".to-chosen").val(to);
+                    //$(".to-chosen").chosen('update');
+                    $(".to-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+
+            $(".to-chosen").chosen({disable_search_threshold: 10});
+            $(".to-chosen").change((elm, select) => {
+                to = parseInt($(".to-chosen").val());
+                if (to <= from) {
+                    from = to - 1;
+                    $(".from-chosen").val(from);
+                    $(".from-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+            UpdatePrice1();
+        });
+
+        function UpdatePrice1() {
+            var price = 0;
+            var data =json.price;
+            $('tbody tr.selected').removeClass('selected');
+            for (var i = from + 1; i <= to; i++) {
+                price += parseInt(data[i]-data[i-1]);
+                $('tbody tr').eq(i - 1).addClass('selected');
+            }
+            $('#txtPrice').html('Tổng: ' + (price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+            $('[name="selected"]').val(from + '|' + to);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('.nstSlider').nstSlider('set_position', from, to);
+            $(".from-chosen").val(from);
+            $(".to-chosen").val(to);
+            $(".to-chosen").trigger("chosen:updated");
+            $(".from-chosen").trigger("chosen:updated");
+        }
+    </script>
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
+    <script>
+        var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
+        var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
+        $('#txtPrice').html('');
+        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+
+        function UpdatePrice() {
+
+            var container = $('.m-datatable__body').html('');
+
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
+
+
+            for (var i = 0; i < data.name.length; i++) {
+
+                var price = s_price[i];
+                var discount = s_price[i];
+
+
+                if (s_price != null && s_discount != null) {
+                    var ptemp = '';
+
+                    if (data.length == 1) {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
+                    } else {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
+                    }
+                    var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
+                        '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
+                        '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
+                        '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
+                        '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
+                        '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
+
+                    $(temp).appendTo(container);
+                }
+            }
+            UpdateTotal();
+        }
+
+        function UpdateTotal() {
+            var price = parseInt($('#input_pack').val().replace(/,/g, ''));
+
+            if (typeof price != 'number' || price < min || price > max) {
+                $('button[type="submit"]').addClass('not-allow');
+
+                $('#txtPrice').html('Tiền nhập không đúng');
+                return;
+            } else {
+                $('button[type="submit"]').removeClass('not-allow');
+            }
+            var total = 0;
+            var index = 0;
+            var current = 0;
+            var discount = 0;
+
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+            }
+            else {
+                var s_price = data["price"];
+                var s_discount = data["discount"];
+            }
+            for (var i = 0; i < s_price.length; i++) {
+
+                if (price >= s_price[i] && s_price[i] != null) {
+                    current = s_price[i];
+                    index = i;
+                    discount = s_discount[i];
+                    total = price * s_discount[i];
+
+                }
+            }
+
+            total = parseInt(total / 1000 * data.input_pack_rate);
+
+            $('#txtDiscount').val(discount);
+            $('#txtPrice').html('');
+            $('#txtPrice').html('Tổng: ' + (total).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + purchase_name);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('[name="selected"]').val(price);
+            $('.m-datatable__body tbody tr.selected').removeClass('selected');
+            $('.m-datatable__body tbody tr').eq(index).addClass('selected');
+        }
+
+        $('#input_pack').bind('focus keyup', function () {
+            UpdateTotal();
+        });
+        $(document).ready(function () {
+            UpdatePrice();
+        });
+
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
     @endif
+    <script>
+        $(document).ready(function () {
+            $('.load-modal').each(function (index, elem) {
+                $(elem).unbind().click(function (e) {
+                    e.preventDefault();
+                    e.preventDefault();
+                    var curModal = $('#LoadModal');
+                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+                    curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
+                });
+            });
+        });
+    </script>
+
 @endsection
 
