@@ -2,6 +2,7 @@
 @section('content')
     <div class="account">
 
+
         <div class="account_content">
             <div class="container">
                 @include('frontend.pages.account.sidebar')
@@ -67,14 +68,35 @@
 
                             </thead>
                             <tbody>
-                            <td>03/02/2022</td>
-                            <td>03</td>
-                            <td>namdo</td>
-                            <td>sadasd</td>
-                            <td>2000000 đ</td>
-                            <td>20000 đ</td>
-                            <td>hello</td>
-                            <td>Chờ</td>
+                            @if(isset($result))
+
+                                @foreach($result->data->data as $data)
+                                    <tr>
+
+                                        <td>03/02/2022</td>
+                                        <td>{{$data->id}}</td>
+
+                                        <td>namdo</td>
+                                        <td>sadasd</td>
+                                        <td>2000000 đ</td>
+                                        <td>20000 đ</td>
+                                        <td>hello</td>
+                                        <td>Chờ</td>
+                                    </tr>
+                                <tr>
+
+                                    <td>03/02/2022</td>
+                                    <td>{{$data->id}}</td>
+                                    <td>namdo</td>
+                                    <td>sadasd</td>
+                                    <td>2000000 đ</td>
+                                    <td>20000 đ</td>
+                                    <td>hello</td>
+                                    <td>Chờ</td>
+                                </tr>
+                                @endforeach
+                            @endif
+
                             </tbody>
                         </table>
                     </div>
