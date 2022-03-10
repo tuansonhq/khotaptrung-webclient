@@ -18,4 +18,16 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+
+
+    // public function handle(Request $request, Closure $next)
+    // {
+    //     if($jwt=$request->cookie('jwt')){
+    //         $request->header()
+    //     }
+    //     return $next($request);
+    // }
+
+
+    
 }

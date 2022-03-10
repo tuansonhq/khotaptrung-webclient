@@ -3,6 +3,7 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng nhập hệ thống</p>
+            <form action="{{route('login')}}" method="POST">
             <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
 
             <form action="{{route('loginApi')}}" method="POST">

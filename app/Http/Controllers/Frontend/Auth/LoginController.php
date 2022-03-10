@@ -15,8 +15,7 @@ class LoginController extends Controller
     public function login(){
         return view('frontend.pages.log_in');
     }
-    public function loginApi(Request $request){
-
+    public function postLogin(Request $request){
         $this->validate($request,[
             'username'=>'required',
             'password'=>'required',
@@ -42,10 +41,14 @@ class LoginController extends Controller
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
                     $time_exp_token = $time + $exp_token;
-                    session()->put('auth_token', $result->token);
-                    session()->put('exp_token', $result->exp_token);
-                    session()->put('time_exp_token', $time_exp_token);
-                    return redirect()->to('/');
+                    // session()->put('auth_token', $result->token);
+                    // session()->put('exp_token', $result->exp_token);
+                    // session()->put('time_exp_token', $time_exp_token);
+                    $cookie = cookie('jwt',$result->token,60*24); //1 day
+                    $exp_token = cookie('exp_token',$result->exp_token,60*24); //1 day
+                    $exp_token = cookie('time_exp_token',$time_exp_token,60*24); //1 day
+
+                    return redirect()->to('/')->withCookie($cookie);
                 }
                 else{
                     return redirect()->back()->withErrors($result->message);
