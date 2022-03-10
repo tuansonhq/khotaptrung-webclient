@@ -54,7 +54,12 @@ class ServiceController extends Controller
 
         $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
         $result = $result_Api->data;
+        //return $result;
+        if ($result->is_router == false){
+            return view('frontend.pages.service.show6');
+        }
         $data = $result->categoryservice;
 
         return view('frontend.pages.service.show_service_category')
