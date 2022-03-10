@@ -31,6 +31,7 @@
                                         <p style="margin-top: 15px" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/ngoc-rong" style="color:#32c5d2;text-decoration: none">Ngọc rồng</a></p>
                                     </div>
                                 </div>
+
                                 <div class="col-md-7">
 
                                     <span class="mb-15 control-label bb">Chọn máy chủ:</span>
@@ -76,6 +77,7 @@
                                     </div>
 
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-5">

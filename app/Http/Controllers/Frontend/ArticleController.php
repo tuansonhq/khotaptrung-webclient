@@ -23,7 +23,7 @@ class ArticleController extends Controller
         $datacategory = $result->datacategory;
         $is_over = $result->is_over;
 
-        return view('frontend.pages.news')
+        return view('frontend.pages.article.index')
             ->with('datacategory',$datacategory)
             ->with('is_over',$is_over)
             ->with('count',$count);
@@ -81,7 +81,7 @@ class ArticleController extends Controller
         $count = $result->count;
         $datacategory = $result->datacategory;
 
-        return view('frontend.pages.news_detail')
+        return view('frontend.pages.article.show')
             ->with('data',$data)
             ->with('datacategory',$datacategory)
             ->with('count',$count);
