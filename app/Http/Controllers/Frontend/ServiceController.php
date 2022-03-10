@@ -58,7 +58,14 @@ class ServiceController extends Controller
         $result = $result_Api->data;
         //return $result;
         if ($result->is_router == false){
-            return view('frontend.pages.service.show');
+            $data = $result->data;
+            $categoryservice = $result->categoryservice;
+            $categoryservice = $categoryservice->data;
+            //return $data;
+            return view('frontend.pages.service.show')
+                ->with('categoryservice',$categoryservice)
+                ->with('data',$data)
+                ->with('slug',$slug);
         }
         $data = $result->categoryservice;
 
@@ -68,7 +75,6 @@ class ServiceController extends Controller
     }
 
     public function showServiceCategoryData(Request $request,$slug){
-        //dd($slug);
         if ($request->ajax()){
             $page = $request->page;
             $append = $request->append;

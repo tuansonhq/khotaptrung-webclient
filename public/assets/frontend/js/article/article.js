@@ -3,6 +3,7 @@ $(document).ready(function(){
     let append = $('#append-article').val();
     let is_over = false;
     let not_loaded = true;
+    const media = "https://media-tt.nick.vn";
     loadData();
     $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height() && !is_over && not_loaded) {
@@ -44,7 +45,7 @@ $(document).ready(function(){
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
                                     html += '<a href="/tin-tuc/' + data.slug + '">';
-                                        html += '<img src="https://shopas.net/storage/images/L3JDAPVexq_1644229149.jpg" alt="">';
+                                        html += '<img src="'+media+data.image+'" alt="">';
                                     html += '</a>';
                                 html += '</div>';
 
@@ -76,7 +77,7 @@ $(document).ready(function(){
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
                                     html += '<a href="/tin-tuc/' + data.slug + '">';
-                                        html += '<img src="https://shopas.net/storage/images/L3JDAPVexq_1644229149.jpg" alt="">';
+                                        html += '<img src="'+media+data.image+'" alt="">';
                                     html += '</a>';
                             html += '</div>';
 

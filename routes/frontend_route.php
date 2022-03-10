@@ -79,6 +79,7 @@ Route::get('/dich-vu',[ServiceController::class,"getServiceCategory"]);
 Route::get('/dich-vu/data',[ServiceController::class,"getServiceCategoryData"]);
 Route::get('/dich-vu/{slug}',[ServiceController::class,"showServiceCategory"]);
 Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategoryData"]);
+
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
@@ -145,6 +146,7 @@ Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginContr
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
+
 
 Route::get('/show', function () {
 

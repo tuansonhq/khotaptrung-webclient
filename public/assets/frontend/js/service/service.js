@@ -4,6 +4,8 @@ $(document).ready(function(){
     let is_over = false;
     let not_loaded = true;
 
+    const media = "https://media-tt.nick.vn";
+
     loadDataService();
 
     $(window).scroll(function () {
@@ -52,7 +54,7 @@ $(document).ready(function(){
                             html += '<div class="item_buy_list_in">';
                             html += '<div class="item_buy_list_img">';
                             html += '<a href="/dich-vu/' + data.slug + '">';
-                            html += '<img class="item_buy_list_img-main" src="\thttps://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">';
+                            html += '<img class="item_buy_list_img-main" src="'+media+data.image+'" alt="">';
                             html += '</a>';
                             html += '</div>';
 
@@ -97,7 +99,7 @@ $(document).ready(function(){
                             html += '<div class="item_buy_list_in">';
                             html += '<div class="item_buy_list_img">';
                             html += '<a href="/dich-vu/' + data.slug + '">';
-                            html += '<img class="item_buy_list_img-main" src="\thttps://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">';
+                            html += '<img class="item_buy_list_img-main" src="'+media+data.image+'" alt="">';
                             html += '</a>';
                             html += '</div>';
 
