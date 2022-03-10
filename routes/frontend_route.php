@@ -85,9 +85,6 @@ Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategory
 Route::get('/rut-vat-pham', function () {
     return view('frontend.pages.account.user.rutvatpham');
 });
-Route::get('/lich-su-giao-dich', function () {
-    return view('frontend.pages.account.user.transaction_history');
-});
 
 Route::get('/quay-ngay', function () {
     return view('frontend.pages.item_spin');
@@ -103,9 +100,7 @@ Route::get('/mua-ngay', function () {
 Route::get('/mua-ngay/chi-tiet', function () {
     return view('frontend.pages.item_buy_detail');
 });
-Route::get('/nap-the-tu-dong', function () {
-    return view('frontend.pages.account.user.pay_card');
-});
+
 Route::get('/lich-su-nap-the', function () {
     return view('frontend.pages.account.user.pay_card_history');
 });
@@ -142,6 +137,14 @@ Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterControlle
 Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
 Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
 Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
+Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
+Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
+Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
+
+
+//Route::get('/nap-the-tu-dong', function () {
+//    return view('frontend.pages.account.user.pay_card');
+//});
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
