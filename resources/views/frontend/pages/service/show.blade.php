@@ -209,7 +209,7 @@
                                                     <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
                                                     <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
                                                     <td class="m-datatable__cell">
-                                                        @if(Auth::guard('frontend')->check())
+                                                        @if(!App\Library\AuthCustom::check())
                                                             <span class="pay">Thanh toán</span>
                                                         @else
                                                             <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
@@ -267,17 +267,63 @@
                             </div>
 
                             <div class="modal-body">
+                                @php
+                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
+                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+                                @endphp
+                                @if(!empty($send_name)&& count($send_name)>0)
 
-                                <span class="mb-15 control-label bb">Tên nhân vật:</span>
+                                    @for ($i = 0; $i < count($send_name); $i++)
+                                        @if($send_name[$i]!=null)
+                                            <span class="mb-15 control-label bb">{{$send_name[$i]}}:</span>
+                                            {{--check trường của sendname--}}
+                                            @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
+                                                <div class="mb-15">
+                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                </div>
 
-                                <div class="mb-15">
-                                    <input type="text" required name="customer_data0" class="form-control t14 " placeholder="Tên nhân vật" value="">
-                                </div>
+                                            @elseif($send_type[$i]==4)
+                                                <div class="mb-15">
+                                                    <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                </div>
+                                            @elseif($send_type[$i]==5)
+                                                <div class="mb-15">
+                                                    <input type="password" required class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                </div>
+                                            @elseif($send_type[$i]==6)
+                                                @php
+                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                @endphp
+                                                <div class="mb-15">
+                                                    <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
+                                                        @if(!empty($send_data))
+                                                            @for ($sn = 0; $sn < count($send_data); $sn++)
+                                                                <option value="{{$sn}}">{{$send_data[$sn]}}</option>
+                                                            @endfor
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            @endif
 
-                                <div style="font-size: 12px;" class="" id="content-sever"></div>
+                                        @endif
+                                    @endfor
+                                @else
+                                    <p> Bạn thực sự muốn thanh toán?</p>
+                                @endif
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+                                @if(!App\Library\AuthCustom::check())
+                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>
+                                @else
+                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/nap-the-cham" id="d3">Nạp thẻ cào</a>
+                                        <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                    @else
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+
+                                    @endif
+                                @endif
+
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
                             </div>
                         </div>
