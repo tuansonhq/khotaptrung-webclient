@@ -58,7 +58,7 @@ class ServiceController extends Controller
         $result = $result_Api->data;
         //return $result;
         if ($result->is_router == false){
-            return view('frontend.pages.service.show6');
+            return view('frontend.pages.service.show');
         }
         $data = $result->categoryservice;
 

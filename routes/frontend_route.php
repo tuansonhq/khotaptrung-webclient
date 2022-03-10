@@ -145,3 +145,33 @@ Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginContr
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
+
+Route::get('/show', function () {
+
+    return view('frontend.pages.service.show');
+});
+
+Route::get('/show2', function () {
+
+    return view('frontend.pages.service.show2');
+});
+
+Route::get('/show3', function () {
+
+    return view('frontend.pages.service.show3');
+});
+
+Route::get('/show4', function () {
+
+    return view('frontend.pages.service.show4');
+});
+
+Route::get('/show5', function () {
+
+    return view('frontend.pages.service.show5');
+});
+
+Route::get('/show6', function () {
+
+    return view('frontend.pages.service.show6');
+});
