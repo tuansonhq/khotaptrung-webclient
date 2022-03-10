@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+
 <div class="account">
 
     <div class="account_content">
@@ -14,15 +15,15 @@
                     <tbody>
                     <tr>
                         <th scope="row">ID của bạn:</th>
-                        <th><span>5454</span></th>
+                        <th><span>{{$result->user->id?$result->user->id:''}}</span></th>
                     </tr>
                     <tr>
                         <th scope="row">Tên tài khoản</th>
-                        <th><span>namhai</span></th>
+                        <th><span>{{$result->user->username?$result->user->username:''}}</span></th>
                     </tr>
                     <tr>
                         <th scope="row">Ngày sinh:</th>
-                        <th><span>18/02/2000</span></th>
+                        <th><span> 18/02/2000</span></th>
                     </tr>
                     <tr>
                         <th scope="row">Giới tính:</th>

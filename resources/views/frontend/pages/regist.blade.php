@@ -3,22 +3,24 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng ký thành viên</p>
-            <form action="">
+            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
+            <form action="{{route('registerApi')}}" method="POST">
+                @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tài khoản của web">
+                    <input type="text" class="form-control" name="username" placeholder="Tài khoản của web">
                     <span><i class="fas fa-user"></i></span>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Số điện thoại">
-                    <span><i class="fas fa-user"></i></span>
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <input type="text" class="form-control" name="username" placeholder="Số điện thoại">--}}
+{{--                    <span><i class="fas fa-user"></i></span>--}}
+{{--                </div>--}}
 
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
                     <span><i class="fas fa-lock"></i></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Xác nhận mật khẩu">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
                     <span><i class="fas fa-user"></i></span>
                 </div>
 

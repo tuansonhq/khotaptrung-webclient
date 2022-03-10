@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Frontend\ArticleController;
+use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 use App\Library\AuthCustom;
@@ -40,33 +42,50 @@ use App\Library\AuthCustom;
 
 
 Route::get('/', function () {
-    return view('frontend.pages.index');
-});
-Route::get('/logout', function () {
-   return redirect()->to('/');
-});
+//    if(session()->has('auth_token')){
+//        return view('frontend.pages.index');
+//        return "Đăng nhập thành công";
+//    }else{
+    $url = '/serviceson';
+    $method = "GET";
+    $val = array();
+    //$data['token'] = session()->get('auth_token');
+    $val['domain'] = "youtube.com";
+    $val['secret_key'] = config('api.secret_key');
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    $result = $result_Api->data;
+    $data = $result->data;
 
+    return view('frontend.pages.index')->with('data',$data);
+//    }
 
-Route::get('/regist', function () {
+});
+//Route::get('/logout', function () {
+//    return view('frontend.pages.index');
+////   return "Đã đăng xuất";
+//});
+
+Route::get('/dich-vu', function () {
+
     return view('frontend.pages.regist');
 });
 
-Route::get('/tin-tuc', function () {
-    return view('frontend.pages.news');
-});
+Route::get('/tin-tuc',[ArticleController::class,"index"]);
+Route::get('/tin-tuc/data',[ArticleController::class,"getData"]);
 
-Route::get('/tin-tuc/chi-tiet', function () {
-    return view('frontend.pages.news_detail');
-});
+Route::get('/tin-tuc/{slug}',[ArticleController::class,"show"]);
 
-Route::get('/thong-tin', function () {
-    return view('frontend.pages.account.user.index');
-});
+//dichj vụ
+Route::get('/dich-vu',[ServiceController::class,"getServiceCategory"]);
+Route::get('/dich-vu/data',[ServiceController::class,"getServiceCategoryData"]);
+Route::get('/dich-vu/{slug}',[ServiceController::class,"showServiceCategory"]);
+Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategoryData"]);
+
+//Route::get('/thong-tin', function () {
+//    return view('frontend.pages.account.user.index');
+//});
 Route::get('/rut-vat-pham', function () {
     return view('frontend.pages.account.user.rutvatpham');
-});
-Route::get('/lich-su-giao-dich', function () {
-    return view('frontend.pages.account.user.transaction_history');
 });
 
 Route::get('/quay-ngay', function () {
@@ -83,9 +102,7 @@ Route::get('/mua-ngay', function () {
 Route::get('/mua-ngay/chi-tiet', function () {
     return view('frontend.pages.item_buy_detail');
 });
-Route::get('/nap-the-tu-dong', function () {
-    return view('frontend.pages.account.user.pay_card');
-});
+
 Route::get('/lich-su-nap-the', function () {
     return view('frontend.pages.account.user.pay_card_history');
 });
@@ -116,3 +133,52 @@ Route::get('/gieo-que', function () {
 //});
 Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
 Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
+Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
+Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
+Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'registerApi'])->name('registerApi');
+Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
+Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
+Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
+Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
+Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
+Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
+
+
+//Route::get('/nap-the-tu-dong', function () {
+//    return view('frontend.pages.account.user.pay_card');
+//});
+//Route::get('/thong-tin', function () {
+//    return view('frontend.pages.account.user.index');
+//});
+
+
+Route::get('/show', function () {
+
+    return view('frontend.pages.service.show');
+});
+
+Route::get('/show2', function () {
+
+    return view('frontend.pages.service.show2');
+});
+
+Route::get('/show3', function () {
+
+    return view('frontend.pages.service.show3');
+});
+
+Route::get('/show4', function () {
+
+    return view('frontend.pages.service.show4');
+});
+
+Route::get('/show5', function () {
+
+    return view('frontend.pages.service.show5');
+});
+
+Route::get('/show6', function () {
+
+    return view('frontend.pages.service.show6');
+});

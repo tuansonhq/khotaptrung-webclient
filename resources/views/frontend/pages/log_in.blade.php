@@ -4,6 +4,9 @@
         <div class="log-in-body">
             <p>Đăng nhập hệ thống</p>
             <form action="{{route('login')}}" method="POST">
+            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
+
+            <form action="{{route('loginApi')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Tài khoản" name="username">
@@ -37,9 +40,12 @@
             <div class="social-auth">
                 <p>- HOẶC -</p>
                 <a class="btn  btn-social btn-facebook btn-flat d-inline-block" href=""><i class="fab fa-facebook"></i> Login FB</a>
-                <a class="btn  btn-google btn-facebook btn-flat d-inline-block" href="/regist"><i class="fas fa-key"></i> Đăng ký tài khoản</a>
+                <a class="btn  btn-google btn-facebook btn-flat d-inline-block" href="/register"><i class="fas fa-key"></i> Đăng ký tài khoản</a>
 
             </div>
+
+
+
 
         </div>
     </div>

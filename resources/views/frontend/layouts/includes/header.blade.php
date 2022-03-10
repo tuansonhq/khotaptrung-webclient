@@ -14,13 +14,13 @@
                         <a href="/">Trang chủ</a>
                     </li>
                     <li class="menu-item">
+                        <a  href="/dich-vu" class="\">Dịch vụ</a>
+                    </li>
+                    <li class="menu-item">
                         <a href="/tin-tuc">Tin tức</a>
                         <ul class="sub-menu" >
                             <li class="menu-item">
                                 <a  href="/blogs" class="\">Blogs</a>
-                            </li>
-                            <li class="menu-item">
-                                <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
                             </li>
                             <li class="menu-item">
                                 <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>
@@ -32,6 +32,7 @@
                     </li>
 
                 </ul>
+                @if(!session()->has('auth_token')){
                 <ul class="nav">
                     @if (App\Library\AuthCustom::check())
                         <li class="nav-log-in">
@@ -46,7 +47,22 @@
                         <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
                     </li>
                 </ul>
-
+                @else
+                    <ul class="nav">
+                        <li class="nav-log-in">
+                            <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>
+                        </li>
+                        <li class="nav-register">
+{{--                            <form action="{{route('logout')}}" method="Post">--}}
+{{--                             @csrf--}}
+{{--                                <button>--}}
+{{--                                    Đnăg xuất--}}
+{{--                                </button>--}}
+{{--                            </form>--}}
+                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                @endif
             </div>
             <div class="nav-bar-category-mobile">
                     <span>
@@ -78,7 +94,6 @@
 
                     </ul>
                     <ul class="">
-
                         <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
                         <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>
