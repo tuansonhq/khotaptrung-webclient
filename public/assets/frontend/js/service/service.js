@@ -59,7 +59,10 @@ $(document).ready(function(){
                             html += '<div class="item_buy_list_info">';
                             html += '<div class="row">';
                             html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
+                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">';
+                            html += 'DANH MỤC ';
+                            html += data.title;
+                            html += '</span>';
                             html += '</div>';
 
                             html += '<div class="col-12 item_buy_list_info_in">';
@@ -101,7 +104,10 @@ $(document).ready(function(){
                             html += '<div class="item_buy_list_info">';
                             html += '<div class="row">';
                             html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
+                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">';
+                            html += 'DANH MỤC ';
+                            html += data.title;
+                            html += '</span>';
                             html += '</div>';
 
                             html += '<div class="col-12 item_buy_list_info_in">';
