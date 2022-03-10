@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\ArticleController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
@@ -40,26 +41,9 @@ use App\Library\AuthCustom;
 //     dd($result_Api);
 // });
 
+Route::get('/',[HomeController::class,"index"]);
 
-Route::get('/', function () {
-//    if(session()->has('auth_token')){
-//        return view('frontend.pages.index');
-//        return "Đăng nhập thành công";
-//    }else{
-    $url = '/serviceson';
-    $method = "GET";
-    $val = array();
-    //$data['token'] = session()->get('auth_token');
-    $val['domain'] = "youtube.com";
-    $val['secret_key'] = config('api.secret_key');
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-    $result = $result_Api->data;
-    $data = $result->data;
 
-    return view('frontend.pages.index')->with('data',$data);
-//    }
-
-});
 //Route::get('/logout', function () {
 //    return view('frontend.pages.index');
 ////   return "Đã đăng xuất";
