@@ -10,9 +10,13 @@
                             <p>NẠP THẺ</p>
                             <div class="account_sidebar_content_line"></div>
                         </div>
-                        <p>ID của bạn: <strong>1553156</strong> </p>
+
+                        <p>ID của bạn: <strong> {{App\Library\AuthCustom::user()->id}}</strong> </p>
                         <span><p>* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p></span>
-                        <form action="">
+                        <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
+                        <p style="color: red"></p>
+                        <form action="{{route('postTelecomDepositAuto')}}" method="POST">
+                            @csrf
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">
                                     Tài khoản
@@ -20,7 +24,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" placeholder="" value=" {{App\Library\AuthCustom::user()->username}}" readonly>
                                     </div>
                                 </div>
 
@@ -30,20 +34,19 @@
                                 <label class="col-md-3 control-label">
                                     Loại thẻ:
                                 </label>
-                                <div class="hide">đâsd</div>
+
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-{{--                                        @dd($bank->datay)--}}
-{{--                                        @if(isset($bank->data))--}}
-                                        <select name="telecard" id="telecard"  class="form-control">
-{{--                                            @foreach($bank->data as $items)--}}
-{{--                                            <option value="{{$items->key}}">{{$items->key}}</option>--}}
-                                            <option value="1">MOBIPHONE</option>
-                                            <option value="2">MOBIPHONE</option>
-                                            <option value="3">MOBIPHONE</option>
-{{--                                            @endforeach--}}
-                                        </select>
-{{--                                        @endif--}}
+                                        {{--                                        @dd($bank->datay)--}}
+                                        @if(isset($bank->data))
+                                            <select id="telecard" name="telecom" class="form-control">
+                                                @foreach($bank->data as $items)
+                                                    <option value="{{$items->key}}">{{$items->key}}</option>
+                                                @endforeach
+
+
+                                            </select>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -53,13 +56,19 @@
                                     Mệnh giá:
 
                                 </label>
+
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <select name="" id="" class="form-control">
+                                        <select name="amount" id="" class="form-control">
                                             <option value="">-- Chọn đúng mệnh giá, sai mất thẻ --</option>
-                                            <option value="1">10,000 VNĐ (nhận 100.0%)</option>
-                                            <option value="2">20,000 VNĐ (nhận 100.0%)</option>
-                                            <option value="">30,000 VNĐ (nhận 100.0%)</option>
+
+                                            @foreach($amount->data as $items)
+                                                <option value="{{$items->amount}}">{{$items->amount}} VNĐ (nhận {{$items->ratio_true_amount}}%)</option>
+                                            @endforeach
+
+{{--                                            <option value="1">10,000 VNĐ (nhận 100.0%)</option>--}}
+{{--                                            <option value="2">20,000 VNĐ (nhận 100.0%)</option>--}}
+{{--                                            <option value="">30,000 VNĐ (nhận 100.0%)</option>--}}
                                         </select>
                                     </div>
                                 </div>
@@ -72,7 +81,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="pin">
                                     </div>
                                 </div>
 
@@ -84,34 +93,35 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control"  name="serial">
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 control-label">
-                                    Mã bảo vệ:
+{{--                            <div class="form-group row">--}}
+{{--                                <label class="col-md-3 control-label">--}}
+{{--                                    Mã bảo vệ:--}}
 
-                                </label>
-                                <div class="col-md-6">
-                                    <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-addon"><img src="https://www.shopas.net/captcha/flat?KfHsLiD2" alt="" style="height: 100%;border: 1px solid darkgrey;"></span>
-                                    </div>
-                                </div>
+{{--                                </label>--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="input-group" style="width: 100%">--}}
+{{--                                        <input type="text" class="form-control">--}}
+{{--                                        <span class="input-group-addon"><img src="https://www.shopas.net/captcha/flat?KfHsLiD2" alt="" style="height: 100%;border: 1px solid darkgrey;"></span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                            </div>
+{{--                            </div>--}}
                             <div class="form-group row " style="margin-top: 40px">
                                 <div class="col-md-6" style="    margin-left: 25%;">
-                                    <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block loading">Nạp thẻ</button>
+                                    <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block loading" type="submit">Nạp thẻ</button>
                                 </div>
                             </div>
                         </form>
+
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>Thời gian	</th>
+{{--                                <th>Thời gian	</th>--}}
                                 <th>Nhà mạng</th>
                                 <th>Mã thẻ	</th>
                                 <th>Serial</th>
@@ -121,91 +131,105 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($bankHistory->data->data as $historyitems)
                             <tr>
-                                <th>03/07/2022</th>
-                                <th>Viettel</th>
-                                <th>0656506565665</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+{{--                                <th>03/07/2022</th>--}}
+                                    <td>{{$historyitems->telecom_key}}</td>
+                                <td>{{$historyitems->telecom_key}}</td>
+                                <td>{{$historyitems->pin}}</td>
+                                <td>{{$historyitems->serial}}</td>
+                                <td>{{$historyitems->declare_amount}}</td>
+                                <td>{{$historyitems->response_mess}}</td>
                             </tr>
                             </tbody>
+                            @endforeach
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // $(document).on('click','.hideThanhich',function (e) {
+
+        $(document).ready(function() {
+
+            // $(function () {
+            $('#telecard').change(function () {
+                // $("#telecard").on('change', function(){
+                $('.hide').show();
+                telecom = $(this).val();
+                $.ajax({
+                    type: 'GET',
+                    dataType: "json",
+                    data: {
+                        telecom: telecom,
+
+                    },
+                    url: "/telecom-deposit-auto",
+                    success: function (response) {
+                        console.log(response.data.data)
+                        $('select[name="amount"]').find('option:not(:first)').remove();
+                        for(i = 0; i < response.data.data.length; i++) {
+
+                            tele = response.data.data[i];
+                            let html = '';
+                            html +=''
+                            html += '<option value="'+ tele['amount'] +'">'+ tele['amount'] +' VNĐ (nhận ' + tele['agency_ratio_true_amount'] +'%) </option>';
+                            $('select[name="amount"]').append(html)
+
+                        };
+
+
+                    }
+
+
+                    {{--url : '/telecom-deposit-auto',--}}
+                    {{--type: 'Post',--}}
+                    {{--data: {--}}
+                    {{--    _token: "{{ csrf_token() }}",--}}
+                    {{--    // secret_key: config('api.secret_key'),--}}
+                    {{--    // domain:'youtube.com',--}}
+                    {{--    // telecom: telecom--}}
+                    {{--},--}}
+
+                    {{--// beforeSend: function (xhr) {--}}
+                    {{--//     $('.hide').hide();--}}
+                    {{--//     console.log(data)--}}
+                    {{--// },--}}
+                    {{--success: function (data) {--}}
+                    {{--    console.log(data);--}}
+                    {{--    $('.hide').hide();--}}
+                    {{--},--}}
+                    {{--error: function (data) {--}}
+                    {{--    console.log('sai')--}}
+                    {{--}--}}
+                });
+
+
+            });
+
+
+            // });
+            // $("#telecard").change(function (elm, select) {
+            //
+            //     // server = parseInt($(".server-filter").val());
+            //     // $('[name="server"]').val(server);
+            //     // if($("#minmax_"+server).length > 0)
+            //     // {
+            //     //     $('#min_money').text($("#minmax_"+server).attr("data-value-min-text").toString());
+            //     //     $('#max_money').text($("#minmax_"+server).attr("data-value-max-text").toString());
+            //     //     $('#input_pack').val($("#minmax_"+server).attr("data-value-min").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            //     server = parseInt($("#telecard").val());
+            //
+            //     $('[name="server"]').val(server);
+            //     // }
+            //     telecard();
+            // });
+
+        });
+    </script>
+
 @endsection
 
-<script>
-    // $(document).on('click','.hideThanhich',function (e) {
-    $(".hideThanhich").on('click',function (e) {
-        e.preventDefault();
-        var formSubmit = $(this).closest('form')
-        url = $(this).data('key');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-                if (data.success) {
-                    $('.content-meta-'+data.hideThanhtich).toggleClass('hidden');
-                } else {
-                    alert('{{('An thất bại.Vui lòng thử lại')}}', 'error');
-                }
-            },
-            error: function (data) {
-                alert('{{__('Aarn thất bại.Vui lòng thử lại')}}', 'error');
-            },
-            complete: function (data) {
-            }
-        });
-    })
-    // $(document).ready(function() {
-        $('.hide').hide();
-        $('#telecard').change(function(){
-            $('.hide').show();
-            alert('server');
-        });
-    // });
-    // $("#telecard").change(function (elm, select) {
-    //
-    //     // server = parseInt($(".server-filter").val());
-    //     // $('[name="server"]').val(server);
-    //     // if($("#minmax_"+server).length > 0)
-    //     // {
-    //     //     $('#min_money').text($("#minmax_"+server).attr("data-value-min-text").toString());
-    //     //     $('#max_money').text($("#minmax_"+server).attr("data-value-max-text").toString());
-    //     //     $('#input_pack').val($("#minmax_"+server).attr("data-value-min").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-    //     server = parseInt($("#telecard").val());
-    //
-    //     $('[name="server"]').val(server);
-    //     // }
-    //     telecard();
-    // });
-    function telecard()
-    {
-        $.ajax({
-            type: 'post',
-            data: {'id': id},
-            url: '/telecom-deposit-auto',
-            dataType: 'json',
-            success: function(data){
-                alert(data);
-            },
-            error: function(data){
-                $('#message').text('Error!');
-                $('.dvLoading').hide();
-            }
-        });
-    }
-</script>

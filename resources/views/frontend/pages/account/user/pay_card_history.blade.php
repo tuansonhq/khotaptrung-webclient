@@ -89,12 +89,13 @@
                                 </div>
                             </div>
                         </form>
+
                         <div class="table-responsive">
                             <table class="table table-hover table-custom-res">
                                 <thead>
                                 <tr>
-                                    <th>Thời gian</th>
-                                    <th>Kiểu nạp</th>
+{{--                                    <th>Thời gian</th>--}}
+{{--                                    <th>Kiểu nạp</th>--}}
 
                                     <th>Nhà mạng</th>
                                     <th>Mã thẻ, serial</th>
@@ -105,17 +106,21 @@
 
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Thời gian</td>
-                                    <td>Kiể      nạp</td>
 
-                                    <td>Nhà mạng</td>
-                                    <td>Mã thẻ, serial</td>
-                                    <td>Mệnh giá</td>
-                                    <td>Kết quả</td>
-                                    <td>Thực nhận</td>
-                                </tr>
+                                @foreach($result->data->data as $historyitems)
                                 <tr>
+{{--                                    <td>Thời gian</td>--}}
+{{--                                    <td>Kiể      nạp</td>--}}
+
+                                    <td>{{$historyitems->telecom_key}}</td>
+                                    <td>{{$historyitems->serial}}</td>
+                                    <td>{{$historyitems->declare_amount}}</td>
+                                    <td>{{$historyitems->response_mess}}</td>
+                                    <td>{{$historyitems->amount}}</td>
+                                </tr>
+                                @endforeach
+                                <tr>
+
                                     <th  colspan="2">Tổng cộng các trang</th>
                                     <th></th>
                                     <th>0 thẻ</th>
