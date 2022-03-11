@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Library\DirectAPI;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,5 +27,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+//        nam header
+
+//
+//        View::share('data_menu_category', $data_menu_category);
+        View::composer('*', function ($view) {
+            $url_menu_category = '/menu-category';
+            $method_menu_category  = "POST";
+            $val_menu_category  = array();
+            $val_menu_category ['domain'] = "youtube.com";
+            $val_menu_category ['secret_key'] = config('api.secret_key');
+            $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
+            $result_menu_category = $result_Api_menu_category->data;
+            $data_menu_category  = $result_menu_category->data;
+
+            $view->with('data_menu_category', $data_menu_category);
+
+        });
+//        View::share('NAME_VIEW_SHARE', 'Trương thanh hùng');
     }
 }
