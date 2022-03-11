@@ -32,20 +32,24 @@
                     </li>
 
                 </ul>
-                @if(!session()->has('auth_token')){
+                @if(!session()->has('auth_token'))
                 <ul class="nav">
                     @if (App\Library\AuthCustom::check())
                         <li class="nav-log-in">
-                            <a href="#" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->username}} </a>
+                            <a href="/thong-tin" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->username}} </a>
+                        </li>
+                        <li class="nav-regist">
+                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
                         </li>
                     @else
                         <li class="nav-log-in">
                             <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
                         </li>
+                        <li class="nav-regist">
+                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
+                        </li>
                     @endif
-                    <li class="nav-regist">
-                        <a href="/regist"><i class="fas fa-user"></i> Đăng ký</a>
-                    </li>
+
                 </ul>
                 @else
                     <ul class="nav">
