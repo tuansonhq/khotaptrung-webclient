@@ -9,30 +9,29 @@
             </div>
 
             <div class="nav-bar-category">
+{{--                navbar--}}
                 <ul class="nav">
-                    <li class="menu-item">
-                        <a href="/">Trang chủ</a>
-                    </li>
-                    <li class="menu-item">
-                        <a  href="/dich-vu" class="\">Dịch vụ</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/tin-tuc">Tin tức</a>
-                        <ul class="sub-menu" >
-                            <li class="menu-item">
-                                <a  href="/blogs" class="\">Blogs</a>
-                            </li>
-                            <li class="menu-item">
-                                <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/lich-su-giao-dich">Tặng 100% giá trị thẻ nạp</a>
-                    </li>
+{{--                    @foreach($data_menu_category as $item)--}}
+{{--                        @if ($item->parent_id == 0)--}}
+{{--                            <li class="menu-item">--}}
+{{--                                <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>--}}
+{{--                                <ul class="sub-menu" >--}}
+{{--                                    @foreach ($data_menu_category as $key_child => $child_item)--}}
+{{--                                        @if ($item->id == $child_item->parent_id)--}}
+{{--                                    <li class="menu-item">--}}
+{{--                                        <a  href="/blogs" class="\">{{$child_item->title}}</a>--}}
+{{--                                    </li>--}}
+{{--                                        @endif--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
 
                 </ul>
-                @if(!session()->has('auth_token'))
+
+
+{{--                @if(!session()->has('auth_token'))--}}
                 <ul class="nav">
                     @if (App\Library\AuthCustom::check())
                         <li class="nav-log-in">
@@ -51,55 +50,59 @@
                     @endif
 
                 </ul>
-                @else
-                    <ul class="nav">
-                        <li class="nav-log-in">
-                            <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>
-                        </li>
-                        <li class="nav-register">
-{{--                            <form action="{{route('logout')}}" method="Post">--}}
-{{--                             @csrf--}}
-{{--                                <button>--}}
-{{--                                    Đnăg xuất--}}
-{{--                                </button>--}}
-{{--                            </form>--}}
-                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
-                        </li>
-                    </ul>
-                @endif
+{{--                @else--}}
+{{--                    <ul class="nav">--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-register">--}}
+{{--                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                @endif--}}
             </div>
             <div class="nav-bar-category-mobile">
+                @if (App\Library\AuthCustom::check())
                     <span>
-                        <a href="/login">Đăng nhập</a>
-                        <a href="/regist">Đăng ký</a>
+                        <a href="/profile"> {{App\Library\AuthCustom::user()->username}}</a>
+                        <a href="/logout">Đăng xuất</a>
                     </span>
+                @else
+                    <span>
+                        <a href="/login"> Đâng nhập</a>
+                        <a href="/register">Đăng ký</a>
+                    </span>
+                @endif
                 <label class="nav-bar-category-mobile-input" for="nav_mobile_input"><i class="fas fa-bars"></i></label>
                 <input type="checkbox" hidden class="name_input" id="nav_mobile_input" >
                 <nav class="nav_mobile">
+{{--                     <ul class="">--}}
+{{--                        @foreach($data_menu_category as $item)--}}
+{{--                            @if ($item->parent_id == 0)--}}
+{{--                        <li>--}}
+{{--                            <a @if($item->url!=null) href="{{$item->url}}" @else data-toggle="collapse" class="nav_mobile-collapse" href="#menuchild_item" role="button" aria-expanded="true" aria-controls="collapseExample" @endif @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>--}}
+{{--                        </li>--}}
+{{--                         <ul class="sub-menu collapse" id="menuchild_item" >--}}
+{{--                            @foreach ($data_menu_category as $key_child => $child_item)--}}
+{{--                                @if ($item->id == $child_item->parent_id)--}}
+{{--                                    <li class="menu-item">--}}
+{{--                                        <a  href="{{$child_item->url}}" @if($item->target==1) target="_blank" @endif>{{$child_item->title}}</a>--}}
+{{--                                    </li>--}}
+{{--                                @endif--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                          @endif--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
                     <ul class="">
-                        <li><a href="/">Trang chủ</a></li>
-                        <li><a href="/lich-su-giao-dich">Tặng 100% gt thẻ nè</a></li>
-                        <li><a href="/tin-tuc">tin tức</a></li>
-                        <li>
+                        @if (App\Library\AuthCustom::check())
+                            <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   {{App\Library\AuthCustom::user()->username}}</a></li>
+                            <li><a href="/logout" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng xuất</a></li>
+                        @else
+                            <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
+                            <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
+                        @endif
 
-                            <a data-toggle="collapse" class="nav_mobile-collapse" href="#menuchild_item" role="button" aria-expanded="true" aria-controls="collapseExample">nạp tiền</a>
-                            <ul class="sub-menu collapse" id="menuchild_item">
-                                <li class="menu-item">
-                                    <a  href="/blogs" class="\">Blogs</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a  href="/dich-vu-game" class="\">Dịch vụ game</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a  href="/dieu-khoan-su-dung" class="\">Điều khoản sử dụng</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                    <ul class="">
-                        <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
-                        <li><a href="/regist" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng ký</a></li>
                     </ul>
                 </nav>
             </div>

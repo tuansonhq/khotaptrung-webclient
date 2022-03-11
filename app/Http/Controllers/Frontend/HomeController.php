@@ -33,8 +33,20 @@ class HomeController extends Controller
         $result_slider = $result_Api_slider->data;
         $data_slider = $result_slider->data;
 
+//        nam header
+        $url_menu_category = '/menu-category';
+        $method_menu_category  = "POST";
+        $val_menu_category  = array();
+        $val_menu_category ['domain'] = "youtube.com";
+        $val_menu_category ['secret_key'] = config('api.secret_key');
+        $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
+        $result_menu_category = $result_Api_menu_category->data;
+        $data_menu_category  = $result_menu_category->data;
+
+
         return view('frontend.pages.index')
             ->with('data_slider',$data_slider)
-            ->with('data',$data);
+            ->with('data',$data)
+            ->with('data_menu_category',$data_menu_category);
     }
 }
