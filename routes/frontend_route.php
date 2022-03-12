@@ -88,9 +88,7 @@ Route::get('/mua-ngay/chi-tiet', function () {
 });
 
 
-Route::get('/recharge-atm', function () {
-    return view('frontend.pages.account.user.pay_atm');
-});
+
 Route::get('/tai-khoan-da-mua', function () {
     return view('frontend.pages.account.user.account_buy');
 });
@@ -127,6 +125,7 @@ Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::
 Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
 Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
 Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
+Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
 
 //Route::get('/lich-su-nap-the', function () {
 //    return view('frontend.pages.account.user.pay_card_history');
