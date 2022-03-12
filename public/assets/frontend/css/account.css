@@ -184,3 +184,45 @@
         min-width: 0;
     }
 }
+.comfirm_tranfer_alert .recharge_atm p{
+    text-align: left ;
+    font-size: 18px;
+}
+.comfirm_tranfer_alert span{
+    color: red;
+}
+#recharge-info .recharge_atm {
+    display: none;
+}
+
+
+/*mua thẻ*/
+.news_image img{
+    width: 100%;
+}
+.emply-btns > a, .emply-btns > button {
+    float: left;
+    width: 100%;
+    background: #fb236a;
+    font-size: 13px;
+    color: #ffffff;
+    text-align: center;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    border: 2px solid #fb236a;
+    padding: 11px 0;
+    margin-top: 10px;
+}
+.emply-btns > .followus {
+    background-color: #ffffff;
+    border-color: #8b91dd;
+    color: #8b91dd;
+    font-weight: bold;
+    outline: 0 none;
+}
+.c-content-box.c-size-lg {
+    padding: 80px 0;
+}

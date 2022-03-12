@@ -29,7 +29,7 @@ class TranferController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
                     $tranferbank = $result_Api->data;
                     $tranferbankHistory = $result_ApiHistory->data;
-                    dd($tranferbank->data->where($tranferbank->title));
+//                    dd($tranferbank->data->where($tranferbank->title));
 //                    dd($tranferbank);
 //                    if ($tranferbank->status == 1) {
 
@@ -53,4 +53,86 @@ class TranferController extends Controller
 
 
     }
+    public function postDepositBank(Request $request)
+    {
+        if ($request->ajax()){
+            if($request->hasCookie('jwt')){
+                try{
+
+                    $url = '/transfer/get-bank';
+                    $method = "GET";
+                    $data = array();
+                    $data['token'] = $request->cookie('jwt');
+                    $data['secret_key'] = config('api.secret_key');
+                    $data['domain'] = 'youtube.com';
+
+                    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
+                    if (isset($result_Api) && $result_Api->httpcode == 200) {
+                        $tranferbank = $result_Api->data;
+
+                        $tranferbankApi= $tranferbank->data[$request->dataid];
+                        return response()->json([
+                            'status' => 1,
+                            'data' => [
+                                'infoTranfer'=>$tranferbankApi,
+                                'moneyBank'=>$request->money_bank
+                            ]
+                        ]);
+//                    }
+//
+//                    else {
+//                        return redirect()->back()->withErrors($tranferbank->message);
+//
+//                    }
+                    } else {
+                        return 'sai';
+                    }
+                }
+                catch(\Exception $e){
+                    Log::error($e);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+
+            }
+        }
+
+    }
+    public function postTranferBank(Request $request)
+    {
+            if($request->hasCookie('jwt')){
+                try{
+                    $url = '/transfer';
+                    $method = "POST";
+                    $data = array();
+                    $data['token'] = $request->cookie('jwt');
+                    $data['secret_key'] = config('api.secret_key');
+                    $data['domain'] = 'youtube.com';
+                    $data['bank_id'] = $request->id_bank;
+                    $data['amount'] = $request->tranfer_money;
+                    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                    if (isset($result_Api) && $result_Api->httpcode == 200) {
+                        $tranferbankPost = $result_Api->data;
+//                        return redirect()->back()->with('tranferbankPost',$tranferbankPost);
+//                        return Response()->json($tranferbankPost);
+                        $message = $tranferbankPost->message;
+//                        dd($message);
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $tranferbankPost
+                        ]);
+                    } else {
+                        return Response()->json($result_Api->data->message);
+                    }
+                }
+                catch(\Exception $e){
+                    Log::error($e);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+
+            }
+        }
+
+
 }

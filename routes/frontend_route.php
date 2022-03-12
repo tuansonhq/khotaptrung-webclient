@@ -126,6 +126,13 @@ Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeControl
 Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
 Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
 Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
+Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
+Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
+//Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
+
+
+Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
+Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
 
 //Route::get('/lich-su-nap-the', function () {
 //    return view('frontend.pages.account.user.pay_card_history');
