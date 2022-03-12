@@ -134,7 +134,7 @@
                             @foreach($bankHistory->data->data as $historyitems)
                             <tr>
 {{--                                <th>03/07/2022</th>--}}
-                                    <td>{{$historyitems->telecom_key}}</td>
+                                <td>{{$historyitems->telecom_key}}</td>
                                 <td>{{$historyitems->telecom_key}}</td>
                                 <td>{{$historyitems->pin}}</td>
                                 <td>{{$historyitems->serial}}</td>
