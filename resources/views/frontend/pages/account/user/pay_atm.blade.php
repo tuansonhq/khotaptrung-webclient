@@ -45,11 +45,16 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <select name="" id="" class="form-control">
+                                        @dd($tranferbank)
+                                        @if(isset($tranferbank->data))
+                                        <select name="bank" id="" class="form-control">
                                             <option value="">-- Vui lòng chọn ngân hàng chuyển khoản --</option>
+                                            @foreach($tranferbank->data as $items)
+                                                @dd($items)
                                             <option value="TECHCOMBANK">Ngân hàng Kỹ thương Việt Nam (TechcomBank)</option>
-                                            <option value="VIETCOMBANK">Ngân hàng Vietcombank</option>
+                                            @endforeach
                                         </select>
+                                        @endif
                                     </div>
                                 </div>
 
