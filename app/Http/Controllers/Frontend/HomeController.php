@@ -29,6 +29,7 @@ class HomeController extends Controller
         $val_slider = array();
         $val_slider['domain'] = "youtube.com";
         $val_slider['secret_key'] = config('api.secret_key');
+
         $result_Api_slider = DirectAPI::_makeRequest($url_slider,$val_slider,$method_slider);
         $result_slider = $result_Api_slider->data;
         $data_slider = $result_slider->data;
