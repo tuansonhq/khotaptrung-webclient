@@ -5,7 +5,7 @@
         <thead>
         <tr>
             <th>Nhà mạng</th>
-            <th>Mã thẻ, serial</th>
+            <th>Mã thẻ</th>
             <th>serial</th>
             <th>Mệnh giá</th>
             <th>Kết quả</th>

@@ -124,6 +124,7 @@ Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginControlle
 Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
 Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
 Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
+Route::get('/nap-the-tu-dong/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
 Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
 Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
 

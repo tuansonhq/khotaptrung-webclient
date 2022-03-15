@@ -43,8 +43,6 @@
                                                 @foreach($bank->data as $items)
                                                     <option value="{{$items->key}}">{{$items->key}}</option>
                                                 @endforeach
-
-
                                             </select>
                                         @endif
                                     </div>
@@ -122,171 +120,18 @@
                             </div>
                         </form>
 
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-{{--                                <th>Thời gian	</th>--}}
-                                <th>Nhà mạng</th>
-                                <th>Mã thẻ	</th>
-                                <th>Serial</th>
-                                <th>Kiểu nạp	</th>
-                                <th>Mệnh giá	</th>
-                                <th>Kết quả</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($bankHistory->data->data as $historyitems)
-                            <tr>
-{{--                                <th>03/07/2022</th>--}}
-                                <td>{{$historyitems->telecom_key}}</td>
-                                <td>{{$historyitems->telecom_key}}</td>
-                                <td>{{$historyitems->pin}}</td>
-                                <td>{{$historyitems->serial}}</td>
-                                <td>{{$historyitems->declare_amount}}</td>
-                                <td>{{$historyitems->response_mess}}</td>
-                            </tr>
-                            </tbody>
-                            @endforeach
-                        </table>
+                        <div id="data_pay_card_history">
+                            @include('frontend.pages.account.user.function.__pay_card')
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // $(document).on('click','.hideThanhich',function (e) {
-
-        $(document).ready(function() {
-
-            // $(function () {
-            $('#telecard').change(function () {
-                // $("#telecard").on('change', function(){
-                $('.hide').show();
-                telecom = $(this).val();
-                $.ajax({
-                    type: 'GET',
-                    dataType: "json",
-                    data: {
-                        telecom: telecom,
-
-                    },
-                    url: "/telecom-deposit-auto",
-                    success: function (response) {
-                        console.log(response.data.data)
-                        $('select[name="amount"]').find('option:not(:first)').remove();
-                        for(i = 0; i < response.data.data.length; i++) {
-
-                            tele = response.data.data[i];
-                            let html = '';
-                            html +=''
-                            html += '<option value="'+ tele['amount'] +'">'+ tele['amount'] +' VNĐ (nhận ' + tele['agency_ratio_true_amount'] +'%) </option>';
-                            $('select[name="amount"]').append(html)
-
-                        };
-
-
-                    }
-
-
-                    {{--url : '/telecom-deposit-auto',--}}
-                    {{--type: 'Post',--}}
-                    {{--data: {--}}
-                    {{--    _token: "{{ csrf_token() }}",--}}
-                    {{--    // secret_key: config('api.secret_key'),--}}
-                    {{--    // domain:'youtube.com',--}}
-                    {{--    // telecom: telecom--}}
-                    {{--},--}}
-
-                    {{--// beforeSend: function (xhr) {--}}
-                    {{--//     $('.hide').hide();--}}
-                    {{--//     console.log(data)--}}
-                    {{--// },--}}
-                    {{--success: function (data) {--}}
-                    {{--    console.log(data);--}}
-                    {{--    $('.hide').hide();--}}
-                    {{--},--}}
-                    {{--error: function (data) {--}}
-                    {{--    console.log('sai')--}}
-                    {{--}--}}
-                });
-
-
-            });
-
-
-            // });
-            // $("#telecard").change(function (elm, select) {
-            //
-            //     // server = parseInt($(".server-filter").val());
-            //     // $('[name="server"]').val(server);
-            //     // if($("#minmax_"+server).length > 0)
-            //     // {
-            //     //     $('#min_money').text($("#minmax_"+server).attr("data-value-min-text").toString());
-            //     //     $('#max_money').text($("#minmax_"+server).attr("data-value-max-text").toString());
-            //     //     $('#input_pack').val($("#minmax_"+server).attr("data-value-min").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-            //     server = parseInt($("#telecard").val());
-            //
-            //     $('[name="server"]').val(server);
-            //     // }
-            //     telecard();
-            // });
-
-        });
-    </script>
-
-    <script type="text/javascript">
-        $('#reload').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: 'reload-captcha',
-                success: function (data) {
-                    $(".captcha span").html(data.captcha);
-                }
-            });
-        });
-        $('#form-charge').submit(function (e) {
-            e.preventDefault();
-            var formSubmit = $(this);
-            var url = formSubmit.attr('action');
-            var btnSubmit = formSubmit.find(':submit');
-            btnSubmit.text('Đang xử lý...');
-            btnSubmit.prop('disabled', true);
-            $.ajax({
-                type: "POST",
-                url: url,
-                cache:false,
-                data: formSubmit.serialize(), // serializes the form's elements.
-                beforeSend: function (xhr) {
-
-                },
-                success: function (data) {
-                    console.log(data);
-                    if(data.status == 1){
-                        alert(data.message);
-
-                        formSubmit.remove();
-                    }
-                    else{
-                        alert(data);
-                        btnSubmit.text('Xác nhận');
-                        btnSubmit.prop('disabled', false);
-                    }
-                },
-                error: function (data) {
-                    // console.log(data.responseJSON.errors[1])
-                    alert('Điền đúng mã capcha');
-                    btnSubmit.text('Xác nhận');
-                    btnSubmit.prop('disabled', false);
-                },
-                complete: function (data) {
-                    $('#imgcaptcha').trigger('click');
-                    $('#form-recharge').trigger("reset");
-                }
-            });
-        });
-    </script>
-
+    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+    <script src="/assets/frontend/js/charge/charge.js"></script>
 
 @endsection
 

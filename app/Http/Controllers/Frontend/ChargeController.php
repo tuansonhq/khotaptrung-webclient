@@ -18,8 +18,6 @@ class ChargeController extends Controller
     {
         if($request->hasCookie('jwt')){
             try{
-                $urlhistory = '/deposit-auto/history';
-
 
                 $url = '/deposit-auto/get-telecom';
                 $method = "GET";
@@ -29,14 +27,18 @@ class ChargeController extends Controller
                 $data['domain'] = 'youtube.com';
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$data,$method);
 
-                    if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+                $url_history = '/deposit-auto/history';
+
+                $result_Api_history = DirectAPI::_makeRequest($url_history,$data,$method);
+
+                    if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
                         $bank = $result_Api->data;
-                        $bankHistory = $result_ApiHistory->data;
+                        $bankHistory = $result_Api_history->data;
 
                         if ($bank->status == 1) {
                             try{
+
                                 $url = '/deposit-auto/get-amount';
                                 $method = "GET";
                                 $data = array();
@@ -49,7 +51,10 @@ class ChargeController extends Controller
                                 if(isset($result_Api) && $result_Api->httpcode == 200){
                                     $amount = $result_Api->data;
                                     if($amount->status == 1){
-                                        return view('frontend.pages.account.user.pay_card', compact('bank','amount','bankHistory'));
+                                        $data = $bankHistory->data;
+
+                                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                                        return view('frontend.pages.account.user.pay_card', compact('bank','amount','data'));
 //                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
                                     }
                                     else{
@@ -83,7 +88,44 @@ class ChargeController extends Controller
 
     }
 
+    public function getDepositAutoData(Request $request)
+    {
+        if ($request->ajax()){
+            $page = $request->page;
 
+            $url = '/deposit-auto/history';
+
+            $method = "GET";
+            $val = array();
+            $val['token'] = $request->cookie('jwt');
+            $val['secret_key'] = config('api.secret_key');
+            $val['domain'] = 'youtube.com';
+            $val['page'] = $page;
+
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+
+                    $result = $result_Api->data;
+
+                    $data = $result->data;
+
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+
+                    return view('frontend.pages.account.user.function.__pay_card_history')
+                        ->with('data',$data);
+                }
+                else{
+                    return redirect()->back()->withErrors($result->message);
+                }
+            }else{
+                return 'sai';
+            }
+        }
+
+    }
 
     public function getTelecomDepositAuto(Request $request)
     {
@@ -127,6 +169,7 @@ class ChargeController extends Controller
 
 
     }
+
     public function postTelecomDepositAuto(Request $request)
     {
         $validator = $this->validate($request,[
@@ -187,67 +230,46 @@ class ChargeController extends Controller
 
     public function getChargeDepositHistory(Request $request)
     {
+        if($request->hasCookie('jwt')){
+            $url = '/deposit-auto/history';
+            $method = "GET";
+            $val = array();
+            $val['token'] = $request->cookie('jwt');
+            $val['secret_key'] = config('api.secret_key');
+            $val['domain'] = 'youtube.com';
 
-        $url = '/deposit-auto/history';
-        $method = "GET";
-        $val = array();
-        $val['token'] = $request->cookie('jwt');
-        $val['secret_key'] = config('api.secret_key');
-        $val['domain'] = 'youtube.com';
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $url_telecome = '/deposit-auto/get-telecom';
+            $val_telecome = array();
+            $val_telecome['token'] = $request->cookie('jwt');
+            $val_telecome['secret_key'] = config('api.secret_key');
+            $val_telecome['domain'] = 'youtube.com';
 
-        $url_telecome = '/deposit-auto/get-telecom';
-        $val_telecome = array();
-        $val_telecome['token'] = $request->cookie('jwt');
-        $val_telecome['secret_key'] = config('api.secret_key');
-        $val_telecome['domain'] = 'youtube.com';
+            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome,$val_telecome,$method);
 
-        if (isset($request->serial) || $request->serial != '' || $request->serial != null){
-            $val['serial'] = $request->serial;
-        }
+            if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
 
-        if (isset($request->key) || $request->key != '' || $request->key != null){
-            $val['key'] = $request->key;
-        }
+                    $data = $result->data;
+                    $data_telecome = $result_Api_telecome->data;
 
-        if (isset($request->status) || $request->status != '' || $request->status != null){
-            $val['status'] = $request->status;
-        }
+                    $data_telecome = $data_telecome->data;
 
-        if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null){
-            $val['started_at'] = $request->started_at;
-        }
+                    // Set default page
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
-        if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null){
-            $val['ended_at'] = $request->ended_at;
-        }
-
-        $result_Api_telecome = DirectAPI::_makeRequest($url_telecome,$val_telecome,$method);
-
-
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
-            if($result->status == 1){
-
-                $data = $result->data;
-                $data_telecome = $result_Api_telecome->data;
-
-                $data_telecome = $data_telecome->data;
-
-                // Set default page
-                $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
-
-                return view('frontend.pages.account.user.pay_card_history')
-                    ->with('data',$data)->with('data_telecome',$data_telecome);
+                    return view('frontend.pages.account.user.pay_card_history')
+                        ->with('data',$data)->with('data_telecome',$data_telecome);
+                }
+                else{
+                    return redirect()->back()->withErrors($result->message);
+                }
+            }else{
+                return 'sai';
             }
-            else{
-                return redirect()->back()->withErrors($result->message);
-            }
-        }else{
-            return 'sai';
         }
-
     }
 
     public function getChargeDepositHistoryData(Request $request){
@@ -264,16 +286,46 @@ class ChargeController extends Controller
             $val['domain'] = 'youtube.com';
             $val['page'] = $page;
 
+            if (isset($request->serial) || $request->serial != '' || $request->serial != null){
+                $val['serial'] = $request->serial;
+            }
+
+            if (isset($request->key) || $request->key != '' || $request->key != null){
+                $val['key'] = $request->key;
+            }
+
+            if (isset($request->status) || $request->status != '' || $request->status != null){
+                $val['status'] = $request->status;
+            }
+
+            if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null){
+                $val['started_at'] = $request->started_at;
+            }
+
+            if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null){
+                $val['ended_at'] = $request->ended_at;
+            }
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            $result = $result_Api->data;
-            $data = $result->data;
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
 
-            $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                    $result = $result_Api->data;
+                    $data = $result->data;
 
-            return view('frontend.pages.account.user.function.__pay_card_history')
-                ->with('data',$data);
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
 
+                    return view('frontend.pages.account.user.function.__pay_card_history')
+                        ->with('data',$data);
+                }
+                else{
+                    return redirect()->back()->withErrors($result->message);
+                }
+            }else{
+                return 'sai';
+            }
         }
     }
 
