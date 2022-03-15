@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Log;
+use function PHPUnit\Framework\isEmpty;
 
 class TranferController extends Controller
 {
@@ -13,33 +16,37 @@ class TranferController extends Controller
     {
         if($request->hasCookie('jwt')){
             try{
+
                 $urlhistory = '/transfer/history';
-
-
                 $url = '/transfer/get-bank';
-                $method = "GET";
-                $data = array();
-                $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
 
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$data,$method);
+                $method = "GET";
+
+                $val = array();
+
+                $val['token'] = $request->cookie('jwt');
+                $val['secret_key'] = config('api.secret_key');
+                $val['domain'] = 'youtube.com';
+
+                $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
+
 
                 if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
                     $tranferbank = $result_Api->data;
-                    $tranferbankHistory = $result_ApiHistory->data;
-//                    dd($tranferbank->data->where($tranferbank->title));
-//                    dd($tranferbank);
-//                    if ($tranferbank->status == 1) {
 
-                        return view('frontend.pages.account.user.pay_atm', compact('tranferbank','tranferbankHistory'));
-//                    }
-//
-//                    else {
-//                        return redirect()->back()->withErrors($tranferbank->message);
-//
-//                    }
+                    $data = $result_ApiHistory->data;
+                    $data = $data->data;
+//                    return $data->data;
+                    if (isEmpty($data->data)){
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                    }
+
+
+                    //return $data;
+
+                    return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
                     return 'sai';
                 }
@@ -51,8 +58,43 @@ class TranferController extends Controller
 
         }
 
-
     }
+
+    public function getBankData(Request $request)
+    {
+        if ($request->ajax() && $request->hasCookie('jwt')) {
+            try{
+                $page = $request->page;
+                $urlhistory = '/transfer/history';
+
+                $method = "GET";
+                $val = array();
+                $val['token'] = $request->cookie('jwt');
+                $val['secret_key'] = config('api.secret_key');
+                $val['domain'] = 'youtube.com';
+                $val['page'] = $page;
+
+                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
+
+                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+
+                    $data = $result_ApiHistory->data;
+
+
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+
+                    return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+    }
+
     public function postDepositBank(Request $request)
     {
         if ($request->ajax()){

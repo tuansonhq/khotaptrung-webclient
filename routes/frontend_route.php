@@ -124,14 +124,18 @@ Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginControlle
 Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
 Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
 Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
+
 Route::get('/nap-the-tu-dong/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
 Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
 Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
 
 Route::get('/lich-su-nap-the',[ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
 Route::get('/lich-su-nap-the/data',[ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
 
 Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
+Route::get('/recharge-atm/data',[\App\Http\Controllers\Frontend\TranferController::class,'getBankData'])->name('getBankData');
+
 Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
 Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
