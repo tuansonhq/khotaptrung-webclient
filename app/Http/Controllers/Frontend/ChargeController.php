@@ -10,6 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use function PHPUnit\Framework\isEmpty;
 
 class ChargeController extends Controller
 
@@ -21,16 +22,16 @@ class ChargeController extends Controller
 
                 $url = '/deposit-auto/get-telecom';
                 $method = "GET";
-                $data = array();
-                $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $item = array();
+                $item['token'] = $request->cookie('jwt');
+                $item['secret_key'] = config('api.secret_key');
+                $item['domain'] = 'youtube.com';
 
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
 
                 $url_history = '/deposit-auto/history';
 
-                $result_Api_history = DirectAPI::_makeRequest($url_history,$data,$method);
+                $result_Api_history = DirectAPI::_makeRequest($url_history,$item,$method);
 
                     if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
                         $bank = $result_Api->data;
@@ -41,12 +42,13 @@ class ChargeController extends Controller
 
                                 $url = '/deposit-auto/get-amount';
                                 $method = "GET";
-                                $data = array();
-                                $data['token'] =  $request->cookie('jwt');
-                                $data['secret_key'] = config('api.secret_key');
-                                $data['domain'] = 'youtube.com';
-                                $data['telecom'] = $bank->data[0]->key;
-                                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                                $item = array();
+                                $item['token'] =  $request->cookie('jwt');
+                                $item['secret_key'] = config('api.secret_key');
+                                $item['domain'] = 'youtube.com';
+                                $item['telecom'] = $bank->data[0]->key;
+
+                                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
 
                                 if(isset($result_Api) && $result_Api->httpcode == 200){
                                     $amount = $result_Api->data;
@@ -54,6 +56,7 @@ class ChargeController extends Controller
                                         $data = $bankHistory->data;
 
                                         $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+
                                         return view('frontend.pages.account.user.pay_card', compact('bank','amount','data'));
 //                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
                                     }
@@ -107,8 +110,6 @@ class ChargeController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
-
-                    $result = $result_Api->data;
 
                     $data = $result->data;
 
@@ -258,7 +259,10 @@ class ChargeController extends Controller
                     $data_telecome = $data_telecome->data;
 
                     // Set default page
-                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                    if (isEmpty($data->data)){
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                    }
+
 
                     return view('frontend.pages.account.user.pay_card_history')
                         ->with('data',$data)->with('data_telecome',$data_telecome);
