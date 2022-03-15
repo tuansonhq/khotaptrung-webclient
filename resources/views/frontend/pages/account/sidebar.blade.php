@@ -6,9 +6,10 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="/thong-tin" {{ Request::is('/thong-tin')?'account_sidebar_menu_nav_active':'' }}">Thông tin tài khoản</a> </li>
-                    <li><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                    <li><a href="/rut-vat-pham">Rút vật phẩm (1)</a></li>
+                    @foreach($data_menu_profile as $items)
+                        <li><a href="{{$items->slug}}">{{$items->title}}</a></li>
+                    @endforeach
+
                 </ul>
             </div>
         </div>
@@ -18,21 +19,24 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    <li><a href="/nap-the-tu-dong" class="@if(Request::is('/nap-the-tu-dong')) account_sidebar_menu_nav_active @endif">Nạp thẻ tự động</a> </li>
-                    <li><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>
-                    <li><a href="/recharge-atm">Nạp thẻ từ ATM - Ví điện tử</a></li>
-                    <li><a href="/tai-khoan-da-mua">Tài khoản đã mua</a></li>
-                    <li><a href="/tai-khoan-tra-gop">Tài khoản trả góp</a></li>
-                    <li><a href="/lich-su-quay-thuong">Lịch sử quay thưởng</a></li>
-                    <li>
+                    @foreach($data_menu_transaction as $items)
+                        <li><a href="{{$items->slug}}">{{$items->title}}</a></li>
+                    @endforeach
+{{--                    <li><a href="/nap-the-tu-dong" class="@if(Request::is('/nap-the-tu-dong')) account_sidebar_menu_nav_active @endif">Nạp thẻ tự động</a> </li>--}}
+{{--                    <li><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>--}}
+{{--                    <li><a href="/recharge-atm">Nạp thẻ từ ATM - Ví điện tử</a></li>--}}
+{{--                    <li><a href="/tai-khoan-da-mua">Tài khoản đã mua</a></li>--}}
+{{--                    <li><a href="/tai-khoan-tra-gop">Tài khoản trả góp</a></li>--}}
+{{--                    <li><a href="/lich-su-quay-thuong">Lịch sử quay thưởng</a></li>--}}
+{{--                    <li>--}}
 
-                        <a  data-toggle="collapse" href="#menuchild_gieoquedaunam" role="button" aria-expanded="true" aria-controls="collapseExample">Gieo quẻ (1)</a>
-                        <ul id="menuchild_gieoquedaunam" class="collapse">
-                            <li><a href="/gieo-que">Lịch sử gieo Nhận Lixi Đầu Xuân</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="">Rung cây (0)</a></li>
-                    <li><a href="">Đập lu (0)</a></li>
+{{--                        <a  data-toggle="collapse" href="#menuchild_gieoquedaunam" role="button" aria-expanded="true" aria-controls="collapseExample">Gieo quẻ (1)</a>--}}
+{{--                        <ul id="menuchild_gieoquedaunam" class="collapse">--}}
+{{--                            <li><a href="/gieo-que">Lịch sử gieo Nhận Lixi Đầu Xuân</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    <li><a href="">Rung cây (0)</a></li>--}}
+{{--                    <li><a href="">Đập lu (0)</a></li>--}}
                 </ul>
             </div>
         </div>

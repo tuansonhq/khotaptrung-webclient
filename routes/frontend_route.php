@@ -129,7 +129,7 @@ Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::
 Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
 Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
 Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
-Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
+Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
 //Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 
 

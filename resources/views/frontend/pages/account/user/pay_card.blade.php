@@ -15,7 +15,7 @@
                         <span><p>* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p></span>
                         <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
                         <p style="color: red"></p>
-                        <form action="{{route('postTelecomDepositAuto')}}" method="POST">
+                        <form action="{{route('postTelecomDepositAuto')}}" method="POST" id="form-charge">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">
@@ -105,7 +105,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="captcha" id="captcha">
                                         <div class="captcha">
                                             <span class="reload"  id="reload">
                                                 {!! captcha_img() !!}
@@ -245,7 +245,48 @@
                 }
             });
         });
+        $('#form-charge').submit(function (e) {
+            e.preventDefault();
+            var formSubmit = $(this);
+            var url = formSubmit.attr('action');
+            var btnSubmit = formSubmit.find(':submit');
+            btnSubmit.text('Đang xử lý...');
+            btnSubmit.prop('disabled', true);
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache:false,
+                data: formSubmit.serialize(), // serializes the form's elements.
+                beforeSend: function (xhr) {
+
+                },
+                success: function (data) {
+                    console.log(data);
+                    if(data.status == 1){
+                        alert(data.message);
+
+                        formSubmit.remove();
+                    }
+                    else{
+                        alert(data);
+                        btnSubmit.text('Xác nhận');
+                        btnSubmit.prop('disabled', false);
+                    }
+                },
+                error: function (data) {
+                    // console.log(data.responseJSON.errors[1])
+                    alert('Điền đúng mã capcha');
+                    btnSubmit.text('Xác nhận');
+                    btnSubmit.prop('disabled', false);
+                },
+                complete: function (data) {
+                    $('#imgcaptcha').trigger('click');
+                    $('#form-recharge').trigger("reset");
+                }
+            });
+        });
     </script>
+
 
 @endsection
 

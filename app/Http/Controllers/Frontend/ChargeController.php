@@ -128,7 +128,12 @@ class ChargeController extends Controller
     }
     public function postTelecomDepositAuto(Request $request)
     {
-
+        $validator = $this->validate($request,[
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => "Nhập mã capcha",
+            'captcha.captcha' =>"Sai mã capcha",
+        ]);
 
         if($request->hasCookie('jwt')){
             try{
@@ -144,23 +149,29 @@ class ChargeController extends Controller
                 $data['serial'] = $request->serial;
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
                 if(isset($result_Api) && $result_Api->httpcode == 200){
                     $result = $result_Api->data;
+                    $chargePost = $result_Api->data;
+                    $message = $chargePost->message;
 
                     if($result->status == 1){
 //                        return response()->json([
 //                            'status' => 1,
 //                            'data' => $result
 //                        ]);
-                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $chargePost
+                        ]);
+//                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
                     }
                     else{
                         return redirect()->back()->withErrors($result->message);
 
                     }
                 }else{
-                    return 'sai';
+                    return Response()->json($result_Api->data->message);
                 }
             }
             catch(\Exception $e){
@@ -238,5 +249,6 @@ class ChargeController extends Controller
         }
 
     }
+
 
 }

@@ -40,8 +40,17 @@ class AppServiceProvider extends ServiceProvider
             $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
             $result_menu_category = $result_Api_menu_category->data;
             $data_menu_category  = $result_menu_category->data;
+            $url_menu_profile = '/menu-profile';
+            $result_Api_menu_profile = DirectAPI::_makeRequest($url_menu_profile ,$val_menu_category ,$method_menu_category );
+            $result_menu_profile= $result_Api_menu_profile->data;
+            $data_menu_profile = $result_menu_profile->data;
 
-            $view->with('data_menu_category', $data_menu_category);
+            $url_menu_transaction = '/menu-transaction';
+            $result_Api_menu_transaction= DirectAPI::_makeRequest($url_menu_transaction ,$val_menu_category ,$method_menu_category );
+            $result_menu_transaction= $result_Api_menu_transaction->data;
+            $data_menu_transaction = $result_menu_transaction->data;
+
+            $view->with('data_menu_category', $data_menu_category)->with('data_menu_profile',$data_menu_profile)->with('data_menu_transaction',$data_menu_transaction);
 
         });
 //        View::share('NAME_VIEW_SHARE', 'Trương thanh hùng');

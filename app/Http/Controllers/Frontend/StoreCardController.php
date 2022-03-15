@@ -90,7 +90,7 @@ class StoreCardController extends Controller
     {
         if($request->hasCookie('jwt')){
             try{
-                $url = '/transfer';
+                $url = '/store-card';
                 $method = "POST";
                 $data = array();
                 $data['token'] = $request->cookie('jwt');

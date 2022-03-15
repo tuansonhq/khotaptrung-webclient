@@ -40,7 +40,7 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" value=" {{App\Library\AuthCustom::user()->username}}" readonly>>
+                                            <input type="text" class="form-control" value=" {{App\Library\AuthCustom::user()->username}}" readonly>
                                         </div>
                                     </div>
 
@@ -85,20 +85,22 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" placeholder="Mã bảo vệ">
-                                            <span class="input-group-addon"><img src="https://www.shopas.net/captcha/flat?KfHsLiD2" alt="" style="height: 100%;border: 1px solid darkgrey;"></span>
+                                            <input type="text"  name="captcha" class="form-control" placeholder="Mã bảo vệ">
+                                            <div class="captcha">
+                                            <span class="reload"  id="reload"  >
+                                                {!! captcha_img() !!}
+                                            </span>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="tranfer_confirm_form">
-{{--                                    <form action="">--}}
-                                        <div class="form-group row " style="margin-top: 40px">
-                                            <div class="col-md-6" style="    margin-left: 25%;">
-                                                <button class="btn c-theme-btn c-btn-square btn-confirm c-btn-uppercase c-btn-bold btn-block loading" type="submit" >Xác nhận</button>
-                                            </div>
+                                    <div class="form-group row " style="margin-top: 40px">
+                                        <div class="col-md-6" style="    margin-left: 25%;">
+                                            <button class="btn c-theme-btn c-btn-square btn-confirm c-btn-uppercase c-btn-bold btn-block loading" type="submit" >Xác nhận</button>
                                         </div>
-{{--                                    </form>--}}
+                                    </div>
                                 </div>
 
                             </div>
@@ -154,6 +156,15 @@
     </div>
 
     <script>
+        $('#reload').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'reload-captcha',
+                success: function (data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
         // $('.btn-confirm').on('click',function (e) {
         //     $('.btn-confirm').on('click', function(e) {
             $("#bank_tranfer").on('change', function(){
@@ -288,7 +299,8 @@
                     }
                 },
                 error: function (data) {
-                    alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
+                    // console.log(data.responseJSON.errors[1])
+                    alert('Điền đúng mã capcha');
                     btnSubmit.text('Xác nhận');
                     btnSubmit.prop('disabled', false);
                 },

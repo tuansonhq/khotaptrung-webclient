@@ -100,42 +100,52 @@ class TranferController extends Controller
     }
     public function postTranferBank(Request $request)
     {
-            if($request->hasCookie('jwt')){
-                try{
-                    $url = '/transfer';
-                    $method = "POST";
-                    $data = array();
-                    $data['token'] = $request->cookie('jwt');
-                    $data['secret_key'] = config('api.secret_key');
-                    $data['domain'] = 'youtube.com';
-                    $data['bank_id'] = $request->id_bank;
-                    $data['amount'] = $request->tranfer_money;
-                    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                    if (isset($result_Api) && $result_Api->httpcode == 200) {
-                        $tranferbankPost = $result_Api->data;
-//                        return redirect()->back()->with('tranferbankPost',$tranferbankPost);
-//                        return Response()->json($tranferbankPost);
-                        $message = $tranferbankPost->message;
-//                        dd($message);
-                        if ($tranferbankPost->status==0){
-                            return Response()->json($tranferbankPost->message);
-                        }else{
-                            return response()->json([
-                                'status' => 1,
-                                'message'=>$message,
-                                'data' => $tranferbankPost
-                            ]);
-                        }
-                    } else {
-                        return Response()->json($result_Api->data->message);
-                    }
-                }
-                catch(\Exception $e){
-                    Log::error($e);
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
+        $validator = $this->validate($request,[
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => "Nhập mã capcha",
+            'captcha.captcha' =>"Sai mã capcha",
+        ]);
+//
+//        if ($validator->fails()) {
+//            return Response()->json($validator->errors());
+//        }
+        if($request->hasCookie('jwt')){
+            try{
+                $url = '/transfer';
+                $method = "POST";
+                $data = array();
+                $data['token'] = $request->cookie('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $data['bank_id'] = $request->id_bank;
+                $data['amount'] = $request->tranfer_money;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $tranferbankPost = $result_Api->data;
+                    $message = $tranferbankPost->message;
+                    if ($tranferbankPost->status==0){
+                        return Response()->json($tranferbankPost->message);
+                    }else{
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $tranferbankPost
+                        ]);
+                    }
+                } else {
+                    return Response()->json($result_Api->data->message);
+                }
             }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+
+        }
+
+
         }
 
 

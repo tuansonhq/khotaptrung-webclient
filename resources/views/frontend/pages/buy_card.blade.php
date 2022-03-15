@@ -249,12 +249,12 @@
     //
     $('#form-storeCard').submit(function (e) {
         e.preventDefault();
-        var formSubmit = $(this).closest('form')
-        url = $(this).data('key');
+        // var formSubmit = $(this).closest('form')
+        // url = $(this).data('key');
         //
         $('#homealert').modal("show");
-        // var formSubmit = $(this);
-        // var url = formSubmit.attr('action');
+        var formSubmit = $(this);
+        var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
@@ -266,7 +266,6 @@
                 cache:false,
                 data: formSubmit.serialize(), // serializes the form's elements.
                 beforeSend: function (xhr) {
-                    alert('1111')
                 },
                 success: function (data) {
                     console.log(data);
