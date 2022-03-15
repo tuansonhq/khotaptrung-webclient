@@ -7,7 +7,7 @@
             <div class="account_sidebar_menu_nav">
                 <ul>
                     @foreach($data_menu_profile as $items)
-                        <li><a href="{{$items->slug}}">{{$items->title}}</a></li>
+                        <li><a href="{{$items->url ? $items->url : $items->slug}}">{{$items->title}}</a></li>
                     @endforeach
 
                 </ul>
@@ -20,7 +20,7 @@
             <div class="account_sidebar_menu_nav">
                 <ul>
                     @foreach($data_menu_transaction as $items)
-                        <li><a href="{{$items->slug}}">{{$items->title}}</a></li>
+                        <li><a href="{{$items->url ? $items->url : $items->slug}}">{{$items->title}}</a></li>
                     @endforeach
 {{--                    <li><a href="/nap-the-tu-dong" class="@if(Request::is('/nap-the-tu-dong')) account_sidebar_menu_nav_active @endif">Nạp thẻ tự động</a> </li>--}}
 {{--                    <li><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>--}}
