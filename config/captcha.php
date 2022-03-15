@@ -50,7 +50,7 @@
 //];
 return [
     'default'   => [
-        'length'    => 5,
+        'length'    => 3,
         'width'     => 120,
         'height'    => 36,
         'quality'   => 10,
