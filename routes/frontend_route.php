@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\ArticleController;
 use App\Http\Controllers\Frontend\CaptchaServiceController;
+use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -125,7 +126,10 @@ Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController
 Route::get('/nap-the-tu-dong',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
 Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
 Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
-Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
+
+Route::get('/lich-su-nap-the',[ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
+Route::get('/lich-su-nap-the/data',[ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
+
 Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
 Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
 Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');

@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+
     <div class="account">
 
         <div class="account_content">
@@ -11,54 +12,50 @@
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
-                        <form action="">
+                        <form class="form-charge">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >Thẻ cào</span>
-                                        <input type="text" class="form-control" placeholder="Mã thẻ, Serial...">
+                                        <input type="text" name="serial" class="form-control serial" placeholder="Mã thẻ, Serial...">
 
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span >Loại thẻ</span>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">--Tất cả loại thẻ--</option>
-                                            <option value="1">Garena</option>
-                                            <option value="2">Mobiphone</option>
-                                            <option value="">Chuyển tiền</option>
-                                        </select>
+                                @if(isset($data_telecome) && count($data_telecome) > 0)
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span >Loại thẻ</span>
+                                            <select name="key" class="form-control key">
+                                                <option value="">--Tất cả loại thẻ--</option>
+                                                @foreach($data_telecome as $val)
+                                                    <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <span >Kiểu nạp</span>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">Nạp tự động</option>
-                                            <option value="1">Nạp chậm</option>
-                                            <option value="2">Nạp thẻ chậm</option>
-                                            <option value="">Chuyển tiền</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                @endif
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >Trạng thái</span>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">--Tất cả--</option>
-                                            <option value="1">Thẻ đúng</option>
-                                            <option value="2">Thẻ sai</option>
-                                        </select>
+
+                                        {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}
+
+                                        {{--                                        <select name="status" id="" class="form-control status">--}}
+                                        {{--                                            <option value="">--Tất cả--</option>--}}
+                                        {{--                                            <option value="1">Thành công</option>--}}
+                                        {{--                                            <option value="3">Hủy</option>--}}
+                                        {{--                                            <option value="0">Thất bại</option>--}}
+                                        {{--                                            <option value="2">Chờ xừ lý</option>--}}
+                                        {{--                                        </select>--}}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
-                                        <span class="input-group-btn">
+                                        <span class="input-group-btn input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </span>
-                                            <input type="text" class="form-control" name="start" autocomplete="off" placeholder="Từ ngày">
+                                            <input type="text" class="form-control input-group-addon started_at" name="started_at" autocomplete="off" placeholder="Từ ngày">
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +65,7 @@
                                         <span class="input-group-btn input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                         </span>
-                                            <input type="text" class="form-control input-group-addon" name="start" autocomplete="off" placeholder="Đến ngày">
+                                            <input type="text" class="form-control input-group-addon ended_at" name="ended_at" autocomplete="off" placeholder="Đến ngày">
                                         </div>
                                     </div>
                                 </div>
@@ -76,65 +73,21 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <button class="btn c-theme-btn c-btn-square m-b-10" type="submit"><i class="fas fa-search"></i> Tìm kiếm</button>
-                                    <!--                                    <input type="submit" style="margin-right: 16px" class="" value="Tìm kiếm" >-->
-                                    <!--                                    <a href="" class="btn c-btn-square m-b-10 btn-danger">Tất cả</a>-->
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="" class="btn c-btn-square m-b-10 btn-danger"><i class="fas fa-calendar-alt"></i> Hôm nay</a>
-                                    <a href="" class="btn c-btn-square m-b-10 btn-danger"><i class="fas fa-calendar-alt"></i> Hôm qua </a>
-                                    <a href="" class="btn c-btn-square m-b-10 btn-danger"><i class="fas fa-calendar-alt"></i> Tháng này</a>
-                                    <a href="" class="btn c-btn-square m-b-10 c-theme-btn"><i class="fas fa-calendar-alt"></i> Tất cả</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay"><i class="fas fa-calendar-alt"></i> Hôm nay</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua"><i class="fas fa-calendar-alt"></i> Hôm qua </a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay"><i class="fas fa-calendar-alt"></i> Tháng này</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 c-theme-btn btn-all"><i class="fas fa-calendar-alt"></i> Tất cả</a>
                                 </div>
                             </div>
                         </form>
 
-                        <div class="table-responsive">
-                            <table class="table table-hover table-custom-res">
-                                <thead>
-                                <tr>
-{{--                                    <th>Thời gian</th>--}}
-{{--                                    <th>Kiểu nạp</th>--}}
-
-                                    <th>Nhà mạng</th>
-                                    <th>Mã thẻ, serial</th>
-                                    <th>Mệnh giá</th>
-                                    <th>Kết quả</th>
-                                    <th>Thực nhận</th>
-                                </tr>
-
-                                </thead>
-                                <tbody>
-
-                                @foreach($result->data->data as $historyitems)
-                                <tr>
-{{--                                    <td>Thời gian</td>--}}
-{{--                                    <td>Kiể      nạp</td>--}}
-
-                                    <td>{{$historyitems->telecom_key}}</td>
-                                    <td>{{$historyitems->serial}}</td>
-                                    <td>{{$historyitems->declare_amount}}</td>
-                                    <td>{{$historyitems->response_mess}}</td>
-                                    <td>{{$historyitems->amount}}</td>
-                                </tr>
-                                @endforeach
-                                <tr>
-
-                                    <th  colspan="2">Tổng cộng các trang</th>
-                                    <th></th>
-                                    <th>0 thẻ</th>
-                                    <th>0</th>
-                                    <th>0</th>
-                                    <th>0</th>
-
-                                </tr>
-
-                                </tbody>
-
-                            </table>
+                        <div id="data_pay_card_history">
+                            @include('frontend.pages.account.user.function.__pay_card_history')
                         </div>
-
                     </div>
 
 
@@ -142,4 +95,19 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" class="started_at_day" name="started_at_day" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_day" name="end_at_day" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_yes" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_yes" name="end_at_yes" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_month" name="started_at_month" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_month" name="end_at_month" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
+
+    <input type="hidden" name="serial_data" class="serial_data">
+    <input type="hidden" name="key_data" class="key_data">
+    <input type="hidden" name="status_data" class="status_data">
+    <input type="hidden" name="started_at_data" class="started_at_data">
+    <input type="hidden" name="ended_at_data" class="ended_at_data">
+    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+    <script src="/assets/frontend/js/charge/charge-history.js"></script>
 @endsection
