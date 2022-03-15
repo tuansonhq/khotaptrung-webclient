@@ -40,6 +40,7 @@ class HomeController extends Controller
             ->with('data',$data);
 //            ->with('data_menu_category',$data_menu_category);
     }
+
     public function profile(){
         //    if(session()->has('auth_token')){
         //        return view('frontend.pages.index');
