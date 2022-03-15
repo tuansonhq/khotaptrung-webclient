@@ -98,19 +98,23 @@
                                 </div>
 
                             </div>
-{{--                            <div class="form-group row">--}}
-{{--                                <label class="col-md-3 control-label">--}}
-{{--                                    Mã bảo vệ:--}}
+                            <div class="form-group row">
+                                <label class="col-md-3 control-label">
+                                    Mã bảo vệ:
 
-{{--                                </label>--}}
-{{--                                <div class="col-md-6">--}}
-{{--                                    <div class="input-group" style="width: 100%">--}}
-{{--                                        <input type="text" class="form-control">--}}
-{{--                                        <span class="input-group-addon"><img src="https://www.shopas.net/captcha/flat?KfHsLiD2" alt="" style="height: 100%;border: 1px solid darkgrey;"></span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                </label>
+                                <div class="col-md-6">
+                                    <div class="input-group" style="width: 100%">
+                                        <input type="text" class="form-control">
+                                        <div class="captcha">
+                                            <span class="reload"  id="reload">
+                                                {!! captcha_img() !!}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
 
-{{--                            </div>--}}
+                            </div>
                             <div class="form-group row " style="margin-top: 40px">
                                 <div class="col-md-6" style="    margin-left: 25%;">
                                     <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block loading" type="submit">Nạp thẻ</button>
@@ -228,6 +232,18 @@
             //     telecard();
             // });
 
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#reload').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'reload-captcha',
+                success: function (data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
         });
     </script>
 

@@ -117,11 +117,15 @@ class TranferController extends Controller
 //                        return Response()->json($tranferbankPost);
                         $message = $tranferbankPost->message;
 //                        dd($message);
-                        return response()->json([
-                            'status' => 1,
-                            'message'=>$message,
-                            'data' => $tranferbankPost
-                        ]);
+                        if ($tranferbankPost->status==0){
+                            return Response()->json($tranferbankPost->message);
+                        }else{
+                            return response()->json([
+                                'status' => 1,
+                                'message'=>$message,
+                                'data' => $tranferbankPost
+                            ]);
+                        }
                     } else {
                         return Response()->json($result_Api->data->message);
                     }

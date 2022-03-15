@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Mews\Captcha\CaptchaServiceProvider::class,
     ],
 
     /*
@@ -232,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Request' => Illuminate\Support\Facades\Request::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];

@@ -86,6 +86,44 @@ class StoreCardController extends Controller
 
     }
 
+    public function postStoreCard(Request $request)
+    {
+        if($request->hasCookie('jwt')){
+            try{
+                $url = '/transfer';
+                $method = "POST";
+                $data = array();
+                $data['token'] = $request->cookie('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $data['telecom_key'] = $request->telecom_key;
+                $data['amount'] = $request->amount;
+                $data['quantity'] = $request->quantity;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $storeCardPost = $result_Api->data;
+                    $message = $storeCardPost->message;
+                    if ($storeCardPost->status==0){
+                        return Response()->json($storeCardPost->message);
+                    }else{
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $storeCardPost
+                        ]);
+                    }
+                } else {
+                    return Response()->json($result_Api->data->message);
+                }
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+
+        }
+    }
+
 
 
 }
