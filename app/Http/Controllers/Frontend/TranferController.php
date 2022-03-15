@@ -57,6 +57,9 @@ class TranferController extends Controller
             }
 
         }
+        else{
+            return redirect('login');
+        }
 
     }
 

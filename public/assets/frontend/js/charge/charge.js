@@ -60,7 +60,7 @@ $(document).ready(function(){
                 if(data.status == 1){
                     alert(data.message);
 
-                    formSubmit.remove();
+                    // formSubmit.remove();
                 }
                 else{
                     alert(data);

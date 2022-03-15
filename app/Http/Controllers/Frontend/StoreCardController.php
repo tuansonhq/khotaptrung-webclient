@@ -39,6 +39,10 @@ class StoreCardController extends Controller
             }
 
         }
+        else{
+            return redirect('login');
+        }
+
 
     }
     public function getAmountStoreCard(Request $request)
