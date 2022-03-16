@@ -19,21 +19,16 @@ class ArticleController extends Controller
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
-            if($result->status == 1){
-                $data = $result->data;
-                $data = $data->data;
-                $count = $result->count;
-                $datacategory = $result->datacategory;
-                $is_over = $result->is_over;
+            $data = $result->data;
+            $data = $data->data;
+            $count = $result->count;
+            $datacategory = $result->datacategory;
+            $is_over = $result->is_over;
 
-                return view('frontend.pages.article.index')
-                    ->with('datacategory',$datacategory)
-                    ->with('is_over',$is_over)
-                    ->with('count',$count);
-            }
-            else{
-                return redirect()->back()->withErrors($result->message);
-            }
+            return view('frontend.pages.article.index')
+                ->with('datacategory',$datacategory)
+                ->with('is_over',$is_over)
+                ->with('count',$count);
         }else{
             return 'sai';
         }
@@ -62,24 +57,19 @@ class ArticleController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
-                if($result->status == 1){
-                    if ($result->is_over){
-                        return response()->json([
-                            'is_over'=>true
-                        ]);
-                    }
-                    $data = $result->data;
-                    $data = $data->data;
-
+                if ($result->is_over){
                     return response()->json([
-                        'data' => $data,
-                        'append' => $append,
-                        'is_over'=>false
+                        'is_over'=>true
                     ]);
                 }
-                else{
-                    return redirect()->back()->withErrors($result->message);
-                }
+                $data = $result->data;
+                $data = $data->data;
+
+                return response()->json([
+                    'data' => $data,
+                    'append' => $append,
+                    'is_over'=>false
+                ]);
             }else{
                 return 'sai';
             }
@@ -97,19 +87,14 @@ class ArticleController extends Controller
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
-            if($result->status == 1){
-                $data = $result->data;
-                $count = $result->count;
-                $datacategory = $result->datacategory;
+            $data = $result->data;
+            $count = $result->count;
+            $datacategory = $result->datacategory;
 
-                return view('frontend.pages.article.show')
-                    ->with('data',$data)
-                    ->with('datacategory',$datacategory)
-                    ->with('count',$count);
-            }
-            else{
-                return redirect()->back()->withErrors($result->message);
-            }
+            return view('frontend.pages.article.show')
+                ->with('data',$data)
+                ->with('datacategory',$datacategory)
+                ->with('count',$count);
         }else{
             return 'sai';
         }
