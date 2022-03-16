@@ -40,13 +40,6 @@
 
                                         {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}
 
-                                        {{--                                        <select name="status" id="" class="form-control status">--}}
-                                        {{--                                            <option value="">--Tất cả--</option>--}}
-                                        {{--                                            <option value="1">Thành công</option>--}}
-                                        {{--                                            <option value="3">Hủy</option>--}}
-                                        {{--                                            <option value="0">Thất bại</option>--}}
-                                        {{--                                            <option value="2">Chờ xừ lý</option>--}}
-                                        {{--                                        </select>--}}
                                     </div>
                                 </div>
                                 <div class="col-md-4">
