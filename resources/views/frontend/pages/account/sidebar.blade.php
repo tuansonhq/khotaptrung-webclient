@@ -6,9 +6,7 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    @foreach($data_menu_profile as $items)
-                        <li><a href="{{$items->url ? $items->url : $items->slug}}">{{$items->title}}</a></li>
-                    @endforeach
+                    {!! widget('frontend.widget.__menu_profile',60) !!}
 
                 </ul>
             </div>
@@ -19,9 +17,7 @@
             </div>
             <div class="account_sidebar_menu_nav">
                 <ul>
-                    @foreach($data_menu_transaction as $items)
-                        <li><a href="{{$items->url ? $items->url : $items->slug}}">{{$items->title}}</a></li>
-                    @endforeach
+                    {!! widget('frontend.widget.__menu_transaction',60) !!}
 {{--                    <li><a href="/nap-the-tu-dong" class="@if(Request::is('/nap-the-tu-dong')) account_sidebar_menu_nav_active @endif">Nạp thẻ tự động</a> </li>--}}
 {{--                    <li><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>--}}
 {{--                    <li><a href="/recharge-atm">Nạp thẻ từ ATM - Ví điện tử</a></li>--}}
