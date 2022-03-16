@@ -150,15 +150,15 @@ class LoginController extends Controller
 
                 }
                 else{
-                    redirect()->route('/');
-                    return redirect()->back()->withErrors($result->message);
+                    return redirect()->to('/');
+//                    return redirect()->back()->withErrors($result->message);
 
                 }
             }
             else{
                 $result = $result_Api->data;
-                redirect()->route('/');
-                return redirect()->back()->withErrors($result->message);
+                return redirect()->to('/');
+//                return redirect()->back()->withErrors($result->message);
             }
         }
         catch(\Exception $e){
