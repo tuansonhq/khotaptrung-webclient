@@ -16,17 +16,27 @@ class ArticleController extends Controller
         $val['domain'] = "youtube.com";
         $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        $result = $result_Api->data;
-        $data = $result->data;
-        $data = $data->data;
-        $count = $result->count;
-        $datacategory = $result->datacategory;
-        $is_over = $result->is_over;
 
-        return view('frontend.pages.article.index')
-            ->with('datacategory',$datacategory)
-            ->with('is_over',$is_over)
-            ->with('count',$count);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $result = $result_Api->data;
+            if($result->status == 1){
+                $data = $result->data;
+                $data = $data->data;
+                $count = $result->count;
+                $datacategory = $result->datacategory;
+                $is_over = $result->is_over;
+
+                return view('frontend.pages.article.index')
+                    ->with('datacategory',$datacategory)
+                    ->with('is_over',$is_over)
+                    ->with('count',$count);
+            }
+            else{
+                return redirect()->back()->withErrors($result->message);
+            }
+        }else{
+            return 'sai';
+        }
     }
 
     public function getData(Request $request){
@@ -50,21 +60,29 @@ class ArticleController extends Controller
 
             $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    if ($result->is_over){
+                        return response()->json([
+                            'is_over'=>true
+                        ]);
+                    }
+                    $data = $result->data;
+                    $data = $data->data;
 
-            $result = $result_Api->data;
-            if ($result->is_over){
-                return response()->json([
-                    'is_over'=>true
-                ]);
+                    return response()->json([
+                        'data' => $data,
+                        'append' => $append,
+                        'is_over'=>false
+                    ]);
+                }
+                else{
+                    return redirect()->back()->withErrors($result->message);
+                }
+            }else{
+                return 'sai';
             }
-            $data = $result->data;
-            $data = $data->data;
-
-            return response()->json([
-                'data' => $data,
-                'append' => $append,
-                'is_over'=>false
-            ]);
         }
     }
 
@@ -76,14 +94,24 @@ class ArticleController extends Controller
         $val['domain'] = "youtube.com";
         $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        $result = $result_Api->data;
-        $data = $result->data;
-        $count = $result->count;
-        $datacategory = $result->datacategory;
 
-        return view('frontend.pages.article.show')
-            ->with('data',$data)
-            ->with('datacategory',$datacategory)
-            ->with('count',$count);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $result = $result_Api->data;
+            if($result->status == 1){
+                $data = $result->data;
+                $count = $result->count;
+                $datacategory = $result->datacategory;
+
+                return view('frontend.pages.article.show')
+                    ->with('data',$data)
+                    ->with('datacategory',$datacategory)
+                    ->with('count',$count);
+            }
+            else{
+                return redirect()->back()->withErrors($result->message);
+            }
+        }else{
+            return 'sai';
+        }
     }
 }
