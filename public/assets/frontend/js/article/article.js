@@ -64,7 +64,11 @@ $(document).ready(function(){
                                     html += '</div>';
 
                                     html += '<div class="news_content_list_decription">';
-                                        html += data.description;
+                                        if (data.description == null){
+                                            html += '';
+                                        }else {
+                                            html += data.description;
+                                        }
                                     html += '</div>';
                                 html += '</div>';
                             html += '</div>';
@@ -74,6 +78,7 @@ $(document).ready(function(){
                     }
                     else {
                         data.data.forEach(function (data) {
+                            console.log(data.description)
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
                                     html += '<a href="/tin-tuc/' + data.slug + '">';
@@ -96,7 +101,12 @@ $(document).ready(function(){
                             html += '</div>';
 
                             html += '<div class="news_content_list_decription">';
-                            html += data.description;
+                            if (data.description === null){
+                                html += '';
+                            }else {
+                                html += data.description;
+                            }
+                            
                             html += '</div>';
 
                             html += '</div>';
