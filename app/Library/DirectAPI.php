@@ -7,6 +7,8 @@ use Carbon\Carbon;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method){
+        $data ['domain'] = "youtube.com";
+        $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
