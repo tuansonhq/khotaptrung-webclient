@@ -21,14 +21,11 @@ class ArticleController extends Controller
             $result = $result_Api->data;
             $data = $result->data;
             $data = $data->data;
-            $count = $result->count;
-            $datacategory = $result->datacategory;
+
             $is_over = $result->is_over;
 
             return view('frontend.pages.article.index')
-                ->with('datacategory',$datacategory)
-                ->with('is_over',$is_over)
-                ->with('count',$count);
+                ->with('is_over',$is_over);
         }else{
             return 'sai';
         }
@@ -88,13 +85,9 @@ class ArticleController extends Controller
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
             $data = $result->data;
-            $count = $result->count;
-            $datacategory = $result->datacategory;
 
             return view('frontend.pages.article.show')
-                ->with('data',$data)
-                ->with('datacategory',$datacategory)
-                ->with('count',$count);
+                ->with('data',$data);
         }else{
             return 'sai';
         }

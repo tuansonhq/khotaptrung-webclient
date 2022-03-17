@@ -602,6 +602,7 @@
             </div>
 
         </div>
+
         <div class="adthisbutton">
             <a class="freefire" style="color:#fff" href="#freefire_taget">
                 <img src="https://shopas.net/storage/images/EZ94JFicXW_1634524794.png" alt="">

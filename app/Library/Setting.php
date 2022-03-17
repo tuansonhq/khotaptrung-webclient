@@ -11,6 +11,7 @@ class Setting{
     public static function get($key){
         if ( isset($key) ) {
             $setting = self::getAllSettings();
+
             $setting_get_key = null;
             foreach ($setting as $item){
                 if(isset($item->name) && $item->name === $key){

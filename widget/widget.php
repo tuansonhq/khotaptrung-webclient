@@ -64,6 +64,7 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 
 });
+
 View::composer('frontend.widget.__menu_profile', function ($view) {
 
     $url_menu_profile = '/menu-profile';
@@ -91,6 +92,21 @@ View::composer('frontend.widget.__menu_transaction', function ($view) {
     $data_menu_transaction= $result_menu_transaction->data;
 
     return $view->with('data_menu_transaction', $data_menu_transaction);
+});
+
+View::composer('frontend.widget.__menu__category__article', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $val['domain'] = "youtube.com";
+    $val['secret_key'] = config('api.secret_key');
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $datacategory = $result->datacategory;
+    $count = $result->count;
+    return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
 //View::composer('frontend.widget.__charge', function ($view) {
