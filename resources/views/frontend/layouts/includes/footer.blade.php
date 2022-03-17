@@ -1,5 +1,7 @@
 {!! setting('sys_footer') !!}
 
+{{--{!! widget('frontend.widget.__footer',60) !!}--}}
+
 {{--<footer>--}}
 {{--    <div class="footer">--}}
 {{--        <div class="container">--}}

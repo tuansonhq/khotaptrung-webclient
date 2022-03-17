@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kho lưu trữ</title>
+{{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="/assets/frontend/css/main.css">
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
@@ -63,7 +63,7 @@
     <script src="/assets/frontend/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/lib/record/record.js"></script>
-
+    @yield('seo_head')
         @if(Request::is('/'))
         <style>
             .content{
@@ -101,6 +101,7 @@
 </div>
 
 
+
 @include('frontend.layouts.includes.footer')
 <script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
 
@@ -115,6 +116,7 @@
 <script src="/assets/frontend/lib/swiper/swiper.min.js"></script>
 
 <script src="/assets/frontend/js/swiper.js"></script>
+
 
 </body>
 
