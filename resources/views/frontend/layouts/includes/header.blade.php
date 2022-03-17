@@ -3,7 +3,8 @@
         <div class="nav-bar-container container">
             <div class="nav-bar-brand">
                 <a href="/">
-                    <img src="https://www.shopas.net/storage/images/6BdfImoiWl_1640248137.png" alt="">
+                    <img src="{{config('api.url_media').setting('sys_logo') }}" alt="">
+{{--                    <img src="https://www.shopas.net/storage/images/6BdfImoiWl_1640248137.png" alt="">--}}
                 </a>
 
             </div>
