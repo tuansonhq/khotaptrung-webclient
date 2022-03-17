@@ -106,7 +106,7 @@ $(document).ready(function(){
                             }else {
                                 html += data.description;
                             }
-                            
+
                             html += '</div>';
 
                             html += '</div>';
