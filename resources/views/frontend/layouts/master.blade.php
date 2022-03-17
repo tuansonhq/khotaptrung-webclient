@@ -78,7 +78,7 @@
     @else
         <style>
             .content{
-                padding-top: 140px;
+                padding-top: 120px;
             }
             @media only screen and (max-width: 1024px) {
                 .content {

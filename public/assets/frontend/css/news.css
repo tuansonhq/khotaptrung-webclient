@@ -1,9 +1,9 @@
 .news_breadcrumbs{
-    padding: 25px 0;
+    padding: 0 0;
     background: #f7fafb;
 }
 .news_breadcrumbs .container{
-    display: flex;
+    /*display: flex;*/
     justify-content: space-between;
 }
 
@@ -11,25 +11,30 @@
     /*float: left;*/
 }
 .news_breadcrumbs_title a{
-    /*color: #3f444a;*/
-    color: #000000;
+    color: #3f444a;
+    /*color: #000000;*/
     margin: 10px 0 6px 0;
     font-weight: 500;
     font-size: 18px;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+.tintuc-auto{
+    line-height: 75px;
+}
+
 .news_breadcrumbs_title a:hover{
     color: #337ab7;
     text-decoration: none;
-
 }
 .news_breadcrumbs_theme{
-    /*float: right;*/
+    float: right;
     display: inline-block;
     padding: 0;
     margin: 0;
     list-style-type: none;
+    line-height: 60px;
 }
 .news_breadcrumbs_theme li{
     display: inline-block;
@@ -80,7 +85,7 @@
     border-bottom: 1px solid #e6e6e6;
     float: left;
     width: 100%;
-    padding: 12px 10px;
+    padding: 12px 0px;
 
 }
 .news_content_list_image{
@@ -135,7 +140,7 @@
     color: #5c6873;
 }
 .news_content_category{
-    margin-top: 40px;
+    margin-top: 0;
 }
 .news_content_category_title p{
     font-size: 20px;
@@ -223,4 +228,35 @@
 .news_content_list_title a:hover{
     color: #32c5d2;
     transition: .2s;
+}
+
+.news_breadcrumbs_theme a {
+    /* color: #3f444a; */
+    color: #7f8c97;
+    font-size: 16px;
+    font-weight: 400;
+}
+.news_breadcrumbs_theme a:hover{
+    color: #32c5d2;
+}
+
+.news_breadcrumbs_theme_trangchu,
+.news_breadcrumbs_theme_tintuc,
+.news_breadcrumbs_theme_title{
+    color: #7f8c97!important;
+    font-size: 16px!important;
+    font-weight: 400!important;
+}
+
+.news_breadcrumbs_theme_trangchu_a,
+.news_breadcrumbs_theme_tintuc_a,
+.news_breadcrumbs_theme_title_a{
+    text-decoration: none!important;
+}
+.news_breadcrumbs_theme_trangchu_a:hover,
+.news_breadcrumbs_theme_tintuc_a:hover h3,
+.news_breadcrumbs_theme_tintuc_a:hover h1,
+.news_breadcrumbs_theme_title_a:hover h1{
+    text-decoration: none!important;
+    color: #32c5d2!important;
 }

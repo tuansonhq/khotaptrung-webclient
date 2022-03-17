@@ -3,54 +3,42 @@
     <div class="news">
         <div class="news_breadcrumbs">
             <div class="container">
-                <div class="news_breadcrumbs_title"><a href="">blog tin tức</a></div>
-                <ul class="news_breadcrumbs_theme">
-                    <li><a href="">Trang chủ</a></li>
-                    <li>/</li>
-                    <li><a href=""><h1>Blog tin tức</h1></a></li>
-                </ul>
+                <div class="row">
+                    <div class="col-auto tintuc-auto">
+                        <div class="news_breadcrumbs_title"><a href="/tin-tuc" >Tin tức</a></div>
+                    </div>
+                    <div class="col-md-10 ml-auto">
+                        <ul class="news_breadcrumbs_theme">
+                            <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
+                            <li>/</li>
+                            <li><a href="/tin-tuc" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Tin tức</h1></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="news_content">
             <div class="container">
-                <form>
-                    <div class="row">
-
-                        <div class="col-md-4" style="margin-bottom: 15px">
-                            <input type="text" class="form-control input-news" placeholder="Nhập từ khoá...">
-                        </div>
-                        <div class="col-md-4">
-                            <input type="submit" class="btn btn-news" value="Tìm kiếm">
-                            <input type="submit" class="btn btn-tatca btn-danger ml-2" value="Tất cả">
-                        </div>
-
-                    </div>
-                </form>
                 <div class="row">
-
                     <div class="col-md-9 col-sm-12">
+                        <form>
+                            <div class="row">
+
+                                <div class="col-md-4" style="margin-bottom: 15px">
+                                    <input type="text" class="form-control input-news" placeholder="Nhập từ khoá...">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-news" value="Tìm kiếm">
+                                    <input type="submit" class="btn btn-tatca btn-danger ml-2" value="Tất cả">
+                                </div>
+
+                            </div>
+                        </form>
                         <div class="news_content_list" id="article_data">
 
                         </div>
                     </div>
-
-                    <div class="col-md-3 col-xs-12">
-                        <div class="news_content_category">
-                            <div class="news_content_category_title">
-                                <p>Danh mục</p>
-                                <div class="news_content_category_line"></div>
-                            </div>
-                            <ul class="news_content_category_menu">
-                                <li><i class="fas fa-chevron-right"></i> <a href="javascript:void(0)" class="btn-tatca">Tất cả ({{ $count }})</a></li>
-
-                                @if(isset($datacategory) && count($datacategory) > 0)
-                                    @foreach($datacategory as $val)
-                                        <li><i class="fas fa-chevron-right"></i> <a href="javascript:void(0)" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>
-                                    @endforeach
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
+                    {!! widget('frontend.widget.__menu__category__article',60) !!}
                 </div>
             </div>
         </div>
