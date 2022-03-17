@@ -86,7 +86,9 @@
 .news_content_list_image{
     float: left;
     max-width: 222px;
+    min-width: 222px;
     max-height: 148px;
+    min-height: 148px;
     width: 40%;
     padding: 4px;
     line-height: 1.42857;
@@ -101,6 +103,7 @@
 .news_content_list_image img {
     width: 100%;
     max-height: 138px;
+    min-height: 138px;
 }
 .news_content_list_info{
     float: left;
