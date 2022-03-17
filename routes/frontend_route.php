@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 use App\Library\AuthCustom;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,10 @@ use App\Library\AuthCustom;
 //     dd($result_Api);
 // });
 
+Route::get('/test-cache',function(){
+    Cache::flush();
+    dd(111);
+});
 Route::get('/',[HomeController::class,"index"]);
 
 
