@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-4">
                             <input type="submit" class="btn btn-news" value="Tìm kiếm">
-                            <input type="submit" class="btn btn-tatca" value="Tất cả">
+                            <input type="submit" class="btn btn-tatca btn-danger ml-2" value="Tất cả">
                         </div>
 
                     </div>
