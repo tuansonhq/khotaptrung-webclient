@@ -27,7 +27,7 @@
                                 <div class="col-md-5 hidden-xs hidden-sm">
                                     <div class="row">
                                         <div class="news_image">
-                                            <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="Bán vàng">
+                                            <img src="https://media-tt.nick.vn/{{ $data->image }}" alt="Bán vàng">
                                         </div>
                                     </div>
                                     <div class="row__face">
