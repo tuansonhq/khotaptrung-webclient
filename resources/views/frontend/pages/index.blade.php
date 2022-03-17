@@ -1,4 +1,8 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+{{--@section('content')--}}
 @section('content')
 
     <div class="layout-page">
