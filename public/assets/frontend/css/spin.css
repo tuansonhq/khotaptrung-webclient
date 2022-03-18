@@ -508,9 +508,10 @@
 }
 .item_buy_info a{
     font-size: 16px;
-    color: #32c5d2;
+    color: #3f444a;
 }
 .item_buy_info a:hover{
+    color: #32c5d2;
     text-decoration: none;
 }
 

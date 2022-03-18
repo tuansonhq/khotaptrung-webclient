@@ -18,12 +18,12 @@
                                 </div>
 
                             </div>
-                            <div class="item_buy_viewmore">
-                                <span>Xem tất cả »</span>
-                            </div>
-                            <div class="item_buy_viewless">
-                                <span>« Thu gọn</span>
-                            </div>
+{{--                            <div class="item_buy_viewmore">--}}
+{{--                                <span>Xem tất cả »</span>--}}
+{{--                            </div>--}}
+{{--                            <div class="item_buy_viewless">--}}
+{{--                                <span>« Thu gọn</span>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
