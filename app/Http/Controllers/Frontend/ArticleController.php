@@ -10,11 +10,21 @@ class ArticleController extends Controller
 {
     public function index(Request $request){
 
+
+
         $url = '/article';
         $method = "GET";
         $val = array();
         $val['domain'] = "youtube.com";
         $val['secret_key'] = config('api.secret_key');
+
+        $group_category = 0;
+
+        if (isset($group_category)){
+            $group_category = $request->get('dm');
+            $val['group_category'] = $group_category;
+        }
+
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -25,13 +35,14 @@ class ArticleController extends Controller
             $is_over = $result->is_over;
 
             return view('frontend.pages.article.index')
-                ->with('is_over',$is_over);
+                ->with('is_over',$is_over)->with('group_category',$group_category);
         }else{
             return 'sai';
         }
     }
 
     public function getData(Request $request){
+
         if ($request->ajax()){
             $page = $request->page;
             $append = $request->append;
@@ -41,16 +52,18 @@ class ArticleController extends Controller
             $val = array();
             $val['domain'] = "youtube.com";
             $val['page'] = $page;
+            $val['secret_key'] = config('api.secret_key');
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
                 $val['querry'] = $request->querry;
             }
 
             if (isset($request->slug) || $request->slug != '' || $request->slug != null){
+                
                 $val['slug'] = $request->slug;
             }
 
-            $val['secret_key'] = config('api.secret_key');
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;

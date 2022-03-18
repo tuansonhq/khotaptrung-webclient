@@ -14,11 +14,24 @@ $(document).ready(function(){
             $('#append-article').val(1);
             append = $('#append-article').val();
             var slug = $('#slug-article').val();
+            var group = $('.groups').val();
+            if (group == 0){
+
+            }else {
+                slug = group;
+            }
+
             loadData(page,querry,append,slug)
         }
     })
 
     function loadData(page,querry, append = false,slug) {
+        var group = $('.groups').val();
+        if (group == 0){
+
+        }else {
+            slug = group;
+        }
 
         request = $.ajax({
             type: 'GET',
@@ -145,6 +158,12 @@ $(document).ready(function(){
         }
         is_over = false;
         var slug = $('#slug-article').val();
+        var group = $('.groups').val();
+        if (group == 0){
+
+        }else {
+            slug = group;
+        }
 
         loadData(page,querry,append,slug)
     })
@@ -161,6 +180,7 @@ $(document).ready(function(){
         is_over = false;
         $('#slug-article').val('');
         var slug = $('#slug-article').val();
+        $('.groups').val(0);
         loadData(page,querry,append,slug);
     })
 
@@ -175,6 +195,7 @@ $(document).ready(function(){
         $('#hidden_page').val(1);
         page = $('#hidden_page').val();
         is_over = false;
+        $('.groups').val(0);
         loadData(page,querry,append,slug);
 
     })

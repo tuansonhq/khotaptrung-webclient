@@ -40,6 +40,5 @@
         </div>
     </div>
 
-    <script src="/assets/frontend/js/article/article.js"></script>
 @endsection
 
