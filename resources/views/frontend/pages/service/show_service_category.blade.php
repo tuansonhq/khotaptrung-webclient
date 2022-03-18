@@ -5,14 +5,26 @@
             @if(isset($data))
             <div class="row">
                 <div class="col-md-12">
-                    <div class="item_buy_info">
-                        {!! $data->content !!}
-                    </div>
-                    <div class="item_buy_viewmore">
-                        <span>Xem tất cả »</span>
-                    </div>
-                    <div class="item_buy_viewless">
-                        <span>« Thu gọn</span>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="item_buy_info">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>{{ $data->title }}</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {!! $data->content !!}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="item_buy_viewmore">
+                                <span>Xem tất cả »</span>
+                            </div>
+                            <div class="item_buy_viewless">
+                                <span>« Thu gọn</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
