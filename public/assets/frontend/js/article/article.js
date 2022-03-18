@@ -11,31 +11,33 @@ $(document).ready(function(){
             not_loaded = false;
             $('.hidden_page').val(page);
             var querry = $('.input-news').val();
-            $('#append-article').val(1);
-            append = $('#append-article').val();
-            var slug = $('#slug-article').val();
-            var group = $('.groups').val();
-            if (group == 0){
-
-            }else {
-                slug = group;
-            }
+            $('.append-article').val(1);
+            append = $('.append-article').val();
+            var slug = $('.slug-article').val();
 
             loadData(page,querry,append,slug)
         }
     })
 
     function loadData(page,querry, append = false,slug) {
-        var group = $('.groups').val();
-        if (group == 0){
 
-        }else {
-            slug = group;
+        if (slug == null || slug == undefined || slug == ''){
+            var slug_category = $('.slug-article').val();
+
+            slug = slug_category;
         }
+
+        if (slug == undefined || slug == null || slug == ''){
+            var url = '/tin-tuc/data';
+        }else {
+            var url = '/tin-tuc/'+ slug +'/data';
+        }
+
+        console.log(url)
 
         request = $.ajax({
             type: 'GET',
-            url: '/tin-tuc/data',
+            url: url,
             data: {
                 page:page,
                 append:append,
@@ -86,12 +88,12 @@ $(document).ready(function(){
                                 html += '</div>';
                             html += '</div>';
                         });
-                        $('#article_data').html('');
-                        $('#article_data').html(html);
+                        $('.article_data').html('');
+                        $('.article_data').html(html);
                     }
                     else {
                         data.data.forEach(function (data) {
-                            console.log(data.description)
+
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
                                     html += '<a href="/tin-tuc/' + data.slug + '">';
@@ -125,7 +127,7 @@ $(document).ready(function(){
                             html += '</div>';
                             html += '</div>';
                         });
-                        $('#article_data').append(html);
+                        $('.article_data').append(html);
                         append = false;
 
                     }
@@ -147,56 +149,50 @@ $(document).ready(function(){
         e.preventDefault();
         var querry = $('.input-news').val();
 
-        $('#append-article').val(0);
-        append = $('#append-article').val();
+        $('.append-article').val(0);
+        append = $('.append-article').val();
 
-        $('#hidden_page').val(1);
-        page = $('#hidden_page').val();
+        $('.hidden_page').val(1);
+        page = $('.hidden_page').val();
 
         if (querry == '' || querry == undefined || querry == null){
             return false;
         }
         is_over = false;
-        var slug = $('#slug-article').val();
-        var group = $('.groups').val();
-        if (group == 0){
-
-        }else {
-            slug = group;
-        }
+        var slug = $('.slug-article').val();
 
         loadData(page,querry,append,slug)
     })
 
 
-    $('.btn-tatca').click(function (e) {
-        e.preventDefault();
-        $('#append-article').val(0);
-        append = $('#append-article').val();
-        $('.input-news').val('');
-        $('#hidden_page').val(1);
-        page = $('#hidden_page').val();
-        var querry = $('.input-news').val();
-        is_over = false;
-        $('#slug-article').val('');
-        var slug = $('#slug-article').val();
-        $('.groups').val(0);
-        loadData(page,querry,append,slug);
-    })
+    // $('.btn-tatca').click(function (e) {
+    //     e.preventDefault();
+    //     $('.append-article').val(0);
+    //     append = $('.append-article').val();
+    //     $('.input-news').val('');
+    //     $('.hidden_page').val(1);
+    //     page = $('.hidden_page').val();
+    //     var querry = $('.input-news').val();
+    //     is_over = false;
+    //     $('.slug-article').val('');
+    //     var slug = $('.slug-article').val();
+    //
+    //     loadData(page,querry,append,slug);
+    // })
 
-    $('body').on('click','.btn-slug',function(){
-
-        var slug = $(this).data('slug');
-        $('#slug-article').val(slug);
-        $('.input-news').val('');
-        var querry = $('.input-news').val();
-        $('#append-article').val(0);
-        append = $('#append-article').val();
-        $('#hidden_page').val(1);
-        page = $('#hidden_page').val();
-        is_over = false;
-        $('.groups').val(0);
-        loadData(page,querry,append,slug);
-
-    })
+    // $('body').on('click','.btn-slug',function(){
+    //
+    //     var slug = $(this).data('slug');
+    //     $('#slug-article').val(slug);
+    //     $('.input-news').val('');
+    //     var querry = $('.input-news').val();
+    //     $('#append-article').val(0);
+    //     append = $('#append-article').val();
+    //     $('#hidden_page').val(1);
+    //     page = $('#hidden_page').val();
+    //     is_over = false;
+    //     $('.groups').val(0);
+    //     loadData(page,querry,append,slug);
+    //
+    // })
 });
