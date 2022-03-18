@@ -65,16 +65,16 @@ $(document).ready(function(){
                             html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
                             html += '</div>';
 
-                            // html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<div class="col-12 item_buy_list_info_in">';
                             // html += '<span>Hỗ trợ dịch vụ:</span> 5';
-                            // html += '</div>';
-                            //
-                            // html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '</div>';
+
+                            html += '<div class="col-12 item_buy_list_info_in">';
                             // html += '<span>Giao dịch:</span> 19,878';
-                            // html += '</div>';
-                            //
-                            // html += '</div>';
-                            // html += '</div>';
+                            html += '</div>';
+
+                            html += '</div>';
+                            html += '</div>';
 
                             html += '<div class="item_buy_list_more">';
                             html += '<div class="row">';
@@ -107,16 +107,16 @@ $(document).ready(function(){
                             html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">' + data.title + '</span>';
                             html += '</div>';
 
-                            // html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '<div class="col-12 item_buy_list_info_in">';
                             // html += '<span>Hỗ trợ dịch vụ:</span> 5';
-                            // html += '</div>';
-                            //
-                            // html += '<div class="col-12 item_buy_list_info_in">';
+                            html += '</div>';
+
+                            html += '<div class="col-12 item_buy_list_info_in">';
                             // html += '<span>Giao dịch:</span> 19,878';
-                            // html += '</div>';
-                            //
-                            // html += '</div>';
-                            // html += '</div>';
+                            html += '</div>';
+
+                            html += '</div>';
+                            html += '</div>';
 
                             html += '<div class="item_buy_list_more">';
                             html += '<div class="row">';
