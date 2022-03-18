@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center danhmucdichvu c-content-title-1">
-                    <h3 style="font-size: 28px;color: #3f444a;font-weight: 500;">DANH MỤC DỊCH VỤ</h3>
+                    <h3 style="font-size: 30px;color: #3f444a;font-weight: 700;">DANH MỤC DỊCH VỤ</h3>
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
             </div>
