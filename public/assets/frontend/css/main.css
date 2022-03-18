@@ -955,3 +955,7 @@ header .nav-bar{
 footer{
     background: black;
 }
+
+.news_detail_content img{
+    max-width: 90%!important;
+}
