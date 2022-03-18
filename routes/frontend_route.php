@@ -51,7 +51,7 @@ Route::get('/clear-cache',function(){
         'status'=>1,
         'message'=>"Clear cache success"
     ]);
-    
+
 });
 Route::get('/',[HomeController::class,"index"]);
 
