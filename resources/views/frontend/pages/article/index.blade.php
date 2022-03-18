@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="groups" class="groups" value="{{ $group_category }}">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     <input type="hidden" name="slug" id="slug-article" value="" />
     <input type="hidden" name="append" id="append-article" value="0" />

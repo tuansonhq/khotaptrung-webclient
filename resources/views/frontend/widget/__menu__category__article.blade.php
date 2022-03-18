@@ -6,11 +6,11 @@
                 <div class="news_content_category_line"></div>
             </div>
             <ul class="news_content_category_menu">
-                <li><i class="fas fa-chevron-right"></i> <a href="javascript:void(0)" class="btn-tatca">Tất cả ({{ $count }})</a></li>
+                <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc">Tất cả ({{ $count }})</a></li>
 
                 @if(isset($datacategory) && count($datacategory) > 0)
                     @foreach($datacategory as $val)
-                        <li><i class="fas fa-chevron-right"></i> <a href="javascript:void(0)" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>
+                        <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc?dm={{ $val->slug }}" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>
                     @endforeach
                 @endif
             </ul>
