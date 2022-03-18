@@ -510,6 +510,10 @@
     font-size: 16px;
     color: #000;
 }
+.item_buy_info a:hover{
+    text-decoration: none;
+}
+
 .item_buy_viewmore{
     margin: 20px 0;
     text-align: center;
