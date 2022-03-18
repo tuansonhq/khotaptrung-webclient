@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    let page = $('#hidden_page').val();
-    let append = $('#append-article').val();
+    let page = $('.hidden_page').val();
+    let append = $('.append-article').val();
     let is_over = false;
     let not_loaded = true;
     const media = "https://media-tt.nick.vn";
