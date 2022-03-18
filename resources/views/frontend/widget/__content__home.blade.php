@@ -34,9 +34,9 @@
                                 </div>
                                 <div class="game-list-description">
                                     <div class="countime"> </div>
-                                    <p>Đã quay: 388</p>
-                                    <span class="game-list-description-old-price">{{ $item->price_old }}đ</span>
-                                    <span class="game-list-description-new-price">{{ $item->price }}đ</span>
+                                    <p>Đã quay: 9999</p>
+                                    <span class="game-list-description-old-price">8686đ</span>
+                                    <span class="game-list-description-new-price">6868đ</span>
                                 </div>
                                 <div class="game-list-more">
                                     <div class="game-list-more-view" >
