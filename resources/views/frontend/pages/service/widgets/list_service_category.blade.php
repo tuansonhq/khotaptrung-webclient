@@ -3,7 +3,7 @@
 
     <div class="game-item-view" style="margin-top: 40px">
         <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold">Dịch vụ khác</h3>
+            <h3 class="c-center c-font-uppercase c-font-bold text-center" style="font-size: 30px;font-weight: 600;color: #3f444a">Dịch vụ khác</h3>
             <div class="c-line-center c-theme-bg"></div>
         </div>
         <div class="row row-flex  item-list row-flex-safari game-list" id="data-list-service-category">
