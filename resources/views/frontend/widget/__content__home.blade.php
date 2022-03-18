@@ -14,12 +14,12 @@
                                     <a href="/{{ $item->slug }}">
                                         {{--                                                Anh khuyen mai--}}
                                         @if(isset($item->image_extension))
-                                            <img class="game-list-image-sticky" src="{{ $item->image_extension }}" alt="">
+                                            <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_extension }}" alt="">
                                         @else
                                             <img class="game-list-image-sticky" src="https://www.shopas.net/storage/images/pBYgoKE7bt_1621190862.png" alt="">
                                         @endif
                                         @if(isset($item->image))
-                                            <img class="game-list-image-in" src="{{ $item->image }}" alt="">
+                                            <img class="game-list-image-in" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
                                         @else
                                             <img class="game-list-image-in" src="https://www.shopas.net//storage/images/MyCKUlGT8Q_1642732819.gif" alt="">
                                         @endif
