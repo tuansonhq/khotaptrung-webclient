@@ -10,7 +10,7 @@
                             <div class="item_buy_info">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3>{{ $data->title }}</h3>
+                                        <h3 style="font-size: 20px">{{ $data->title }}</h3>
                                     </div>
                                     <div class="col-md-12">
                                         {!! $data->content !!}
