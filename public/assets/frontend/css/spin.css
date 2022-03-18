@@ -573,6 +573,10 @@
     padding: 1px;
 
 }
+
+.item_buy_list_in:hover {
+    box-shadow: 0 0 11px rgb(33 33 33 / 20%);
+}
 .item_buy_list>div{
     margin: 12px 0;
 }

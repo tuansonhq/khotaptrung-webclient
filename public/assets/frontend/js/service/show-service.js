@@ -137,8 +137,17 @@ $(document).ready(function(){
                     not_loaded = true;
                 }
 
-                if (data.data.length == 0){
+                if ((data.data == '' || data.data == null) && is_over == false){
 
+                    var htmld = '';
+                    htmld += '<div class="row pb-3">';
+                    htmld += '<div class="col-md-12 text-center">'
+                    htmld += '<span style="color: red;font-size: 16px;">Hiện tại chưa có dịch vụ ! Hệ thống sẽ cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !\n' +
+                        '\n</span>';
+                    htmld += '</div>';
+                    htmld += '</div>';
+                    $('#showcategoryservice_data').html('');
+                    $('#showcategoryservice_data').html(htmld);
                 }
 
             },

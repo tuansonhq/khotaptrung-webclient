@@ -141,6 +141,17 @@ $(document).ready(function(){
                     not_loaded = true;
                 }
 
+                if ((data.data == '' || data.data == null) && is_over == false){
+
+                    var htmld = '';
+                    htmld += '<div class="row pb-3">';
+                    htmld += '<div class="col-md-12 text-center">'
+                    htmld += '<span style="color: #3f444a;font-size: 16px;">Dữ liệu cần tìm không tồn tại vui lòng thử lại.</span>';
+                    htmld += '</div>';
+                    htmld += '</div>';
+                    $('#categoryservice_data').html('');
+                    $('#categoryservice_data').html(htmld);
+                }
             },
             error: function (data) {
 
