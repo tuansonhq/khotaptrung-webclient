@@ -49,6 +49,7 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
     return $view->with('data_menu_category', $data_menu_category);
 
 });
+
 View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
     $url_menu_category = '/menu-category';
