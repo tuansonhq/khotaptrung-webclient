@@ -49,6 +49,8 @@ $(document).ready(function(){
 
                 let html = "";
 
+                console.log(data)
+
                 if (data.is_over){
                     is_over = true;
                 } else {
@@ -131,6 +133,14 @@ $(document).ready(function(){
                     }
 
                     not_loaded = true;
+                }
+
+                if ((data.data == '' || data.data == null) && is_over == false){
+
+                    var htmld = '<span style="color: #3f444a;font-size: 16px">Dữ liệu cần tìm không tồn tại vui lòng thử lại</span>'
+                    $('.article_data').html('');
+                    $('.article_data').html(htmld);
+                    console.log("đúng")
                 }
 
             },
