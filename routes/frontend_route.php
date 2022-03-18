@@ -44,9 +44,14 @@ use Illuminate\Support\Facades\Cache;
 //     dd($result_Api);
 // });
 
-Route::get('/test-cache',function(){
+Route::get('/clear-cache',function(){
+
     Cache::flush();
-    dd(111);
+    return json_encode([
+        'status'=>1,
+        'message'=>"Clear cache success"
+    ]);
+    
 });
 Route::get('/',[HomeController::class,"index"]);
 
