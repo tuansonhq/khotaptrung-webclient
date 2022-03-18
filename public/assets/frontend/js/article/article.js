@@ -33,8 +33,6 @@ $(document).ready(function(){
             var url = '/tin-tuc/'+ slug +'/data';
         }
 
-        console.log(url)
-
         request = $.ajax({
             type: 'GET',
             url: url,

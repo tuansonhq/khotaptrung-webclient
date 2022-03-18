@@ -140,8 +140,11 @@ class ArticleController extends Controller
                 $data = $result->data;
                 $is_over = $result->is_over;
 
+                $title = $result->categoryarticle;
+
                 return view('frontend.pages.article.index')
                     ->with('is_over',$is_over)
+                    ->with('title',$title)
                     ->with('slug',$slug);
             }
 
