@@ -110,6 +110,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
+
 //View::composer('frontend.widget.__charge', function ($view) {
 ////    if($request->hasCookie('jwt')){
 ////    dd($request->cookie('jwt'));

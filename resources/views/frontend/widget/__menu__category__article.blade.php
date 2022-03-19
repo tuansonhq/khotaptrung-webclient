@@ -19,7 +19,7 @@
 {{--@else--}}
 {{--    --}}
 {{--@endif--}}
-<div class="col-md-3 col-xs-12">
+<div class="col-lg-3 col-md-12 col-xs-12">
     <div class="news_content_category">
         <div class="news_content_category_title">
             <p>Danh mục</p>
