@@ -52,7 +52,7 @@
 
 
             </div>
-            <div class="item_buy_filter">
+            <div class="item_buy_filter item_buy_filter__category">
                 <label for="item_buy_filter_input" class="item_buy_filter_in btn btn-success" style="cursor: pointer;">
                     <i class="fas fa-filter"></i> Tìm kiếm
                 </label>

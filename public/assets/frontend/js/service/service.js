@@ -50,7 +50,7 @@ $(document).ready(function(){
                 } else {
                     if (data.append == 0){
                         data.data.forEach(function (data) {
-                            html += '<div class="col-sm-6 col-lg-3">';
+                            html += '<div class="col-6 col-sm-6 col-lg-3">';
                             html += '<div class="item_buy_list_in">';
                             html += '<div class="item_buy_list_img">';
                             html += '<a href="/dich-vu/' + data.slug + '">';
@@ -95,7 +95,7 @@ $(document).ready(function(){
                         $('#categoryservice_data').html(html);
                     }else {
                         data.data.forEach(function (data) {
-                            html += '<div class="col-sm-6 col-lg-3">';
+                            html += '<div class="col-6 col-sm-6 col-lg-3">';
                             html += '<div class="item_buy_list_in">';
                             html += '<div class="item_buy_list_img">';
                             html += '<a href="/dich-vu/' + data.slug + '">';

@@ -7,7 +7,7 @@
             <div class="container">
 
             </div>
-            <div class="text-center" style="margin-bottom: 50px;">
+            <div class="text-center showcontent">
                 <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h2>
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
@@ -474,7 +474,7 @@
             </div>
 
 {{--            DỊCH VỤ KHÁC     --}}
-
+{{--        {!! widget('frontend.pages.service.widgets.list_service_category',60) !!}--}}
             @include('frontend.pages.service.widgets.list_service_category')
 
         </div>

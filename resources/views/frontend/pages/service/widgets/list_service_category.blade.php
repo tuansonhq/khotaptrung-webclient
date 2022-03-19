@@ -8,7 +8,7 @@
         </div>
         <div class="row row-flex  item-list row-flex-safari game-list" id="data-list-service-category">
             @foreach($categoryservice as $category)
-            <div class="col-sm-6 col-md-3">
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                 <div class="classWithPad">
                     <div class="image">
                         <a href="/dich-vu/{{ $category->slug }}">
