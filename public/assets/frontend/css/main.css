@@ -1208,6 +1208,9 @@ footer{
     .showcontent{
         margin-bottom: 24px!important;
     }
+    .news_detail_content img {
+        max-height: 360px;
+    }
 }
 
 @media only screen and (max-width: 376px) {
@@ -1291,6 +1294,9 @@ footer{
     }
     .showcontent{
         margin-bottom: 16px!important;
+    }
+    .news_detail_content img {
+        max-height: 360px;
     }
 }
 
