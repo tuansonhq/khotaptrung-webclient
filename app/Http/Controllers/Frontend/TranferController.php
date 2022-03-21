@@ -37,14 +37,12 @@ class TranferController extends Controller
                     $tranferbank = $result_Api->data;
 
                     $data = $result_ApiHistory->data;
+
                     $data = $data->data;
-//                    return $data->data;
+
                     if (isEmpty($data->data)){
                         $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
                     }
-
-
-                    //return $data;
 
                     return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
@@ -83,8 +81,9 @@ class TranferController extends Controller
 
                     $data = $result_ApiHistory->data;
 
-
-                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                    if (isEmpty($data->data)){
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                    }
 
                     return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
                 } else {
@@ -143,6 +142,7 @@ class TranferController extends Controller
         }
 
     }
+
     public function postTranferBank(Request $request)
     {
         $validator = $this->validate($request,[
