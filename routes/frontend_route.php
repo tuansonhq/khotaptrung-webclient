@@ -71,7 +71,6 @@ Route::get('/dich-vu',[ServiceController::class,"getServiceCategory"]);
 Route::get('/dich-vu/data',[ServiceController::class,"getServiceCategoryData"]);
 Route::get('/dich-vu/{slug}',[ServiceController::class,"showServiceCategory"]);
 Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategoryData"]);
-
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
@@ -122,6 +121,8 @@ Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,
 Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
 Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
 Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+Route::get('/loginfacebook',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginfacebook'])->name('loginfacebook');
+
 Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
 Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'registerApi'])->name('registerApi');
 Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
