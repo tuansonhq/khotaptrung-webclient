@@ -24,13 +24,19 @@
                     <td>{{ $item->declare_amount }}</td>
                     <td>
                         @if($item->status == 1)
-                            Thành công
+                            <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
                         @elseif($item->status == 0)
-                            Thất bại
+                            <span class="badge badge-warning">{{config('module.charge.status.0')}}</span>
                         @elseif($item->status == 3)
-                            Đã hủy
+                            <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
                         @elseif($item->status == 2)
-                            Đang chờ thanh toán
+                            <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
+                        @elseif($item->status == 999)
+                            <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
+                        @elseif($item->status == -999)
+                            <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
+                        @elseif($item->status == -1)
+                            <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
                         @endif
                     </td>
                     <td>

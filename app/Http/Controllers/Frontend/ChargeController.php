@@ -322,7 +322,9 @@ class ChargeController extends Controller
                     $result = $result_Api->data;
                     $data = $result->data;
 
-                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                    if (isEmpty($data->data)){
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                    }
 
                     return view('frontend.pages.account.user.function.__pay_card_history')
                         ->with('data',$data);

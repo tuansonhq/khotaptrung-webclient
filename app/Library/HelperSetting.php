@@ -2,6 +2,7 @@
 
 
 use App\Library\Setting;
+use App\Library\Helpers;
 
 if (! function_exists('setting')) {
 
@@ -35,5 +36,21 @@ if (! function_exists('widget')) {
                 return $aCache =  view($view_name)->render();
             });
         }
+    }
+}
+
+if (! function_exists('formatPrice')) {
+
+    function formatPrice($price)
+    {
+        return Helpers::formatPrice($price);
+    }
+}
+
+if (! function_exists('formatDateTime')) {
+
+    function formatDateTime($date)
+    {
+        return Helpers::formatDateTime($date);
     }
 }
