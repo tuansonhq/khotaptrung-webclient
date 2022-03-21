@@ -21,7 +21,7 @@
                 <ul class="nav">
                     @if (App\Library\AuthCustom::check())
                         <li class="nav-log-in">
-                            <a href="/thong-tin" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->username}} </a>
+                            <a href="/thong-tin" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->fullname ? Str::limit(App\Library\AuthCustom::user()->fullname,10) : Str::limit(App\Library\AuthCustom::user()->username,10)}}  -    $ {{App\Library\AuthCustom::user()->balance ? str_replace(',','.',number_format(Str::limit(App\Library\AuthCustom::user()->balance,10))) : 0}} </a>
                         </li>
                         <li class="nav-regist">
                             <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
@@ -50,7 +50,7 @@
             <div class="nav-bar-category-mobile">
                 @if (App\Library\AuthCustom::check())
                     <span>
-                        <a href="/profile"> {{App\Library\AuthCustom::user()->username}}</a>
+                        <a href="/profile"> {{App\Library\AuthCustom::user()->fullname ? Str::limit(App\Library\AuthCustom::user()->fullname,10) : Str::limit(App\Library\AuthCustom::user()->username,10)}}  -   $ {{App\Library\AuthCustom::user()->balance ? str_replace(',','.',number_format(Str::limit(App\Library\AuthCustom::user()->balance,10))) : 0}} </a>
                         <a href="/logout">Đăng xuất</a>
                     </span>
                 @else
@@ -67,7 +67,7 @@
                     </ul>
                     <ul class="">
                         @if (App\Library\AuthCustom::check())
-                            <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   {{App\Library\AuthCustom::user()->username}}</a></li>
+                            <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->fullname ? Str::limit(App\Library\AuthCustom::user()->fullname,10) : Str::limit(App\Library\AuthCustom::user()->username,10)}}  -   $ {{App\Library\AuthCustom::user()->balance ? str_replace(',','.',number_format(Str::limit(App\Library\AuthCustom::user()->balance,10))) : 0}} </a></li>
                             <li><a href="/logout" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng xuất</a></li>
                         @else
                             <li><a href="/login" class="nav_mobile-log-in"><i class="fas fa-user"></i>   Đăng nhập</a></li>
