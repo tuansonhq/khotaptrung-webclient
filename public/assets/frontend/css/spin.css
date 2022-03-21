@@ -701,13 +701,44 @@
 }
 @media only screen and (max-width: 992px) {
     .item_buy_form{
-        display: none;
+       display: none;
 
     }
     .item_buy_filter{
         display: block;
     }
 
+}
+
+@media only screen and (max-width: 992px) {
+    .item_play_spin_shake{
+        height: 36px;
+    }
+    .item_play_spin_shake img {
+        width: 100px;
+        height: 36px;
+    }
+    .item_play_spin_sale-off {
+        height: 26px!important;
+        left: 5px!important;
+        width: 120px !important;
+    }
+    .item_play_spin_sale-off input {
+        width: 120px!important;
+        font-size: 13px!important;
+        padding: 3px 10px!important;
+    }
+    .item_play_spin_progress {
+        height: 24px!important;
+        width: 120px!important;
+        right: 10px!important;
+    }
+    .item_play_spin_progress_percent{
+        line-height: 24px;
+    }
+    .item_play_dif_slide .swiper-button-prev,.item_play_dif_slide .swiper-button-next{
+        display: none;
+    }
 }
 
 
@@ -806,7 +837,7 @@
 }
 @media (max-width: 991px){
     .shop_product_info_mobile {
-        display: block;
+       display: block;
     }
     .shop_product_info_desktop {
         display: none;
@@ -827,7 +858,7 @@
 }
 @media (max-width: 768px){
     .shop_product_post img {
-        width: 100%;
+       width: 100%;
         max-width: 100%;
 
     }
@@ -840,6 +871,150 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+/*lật hình*/
+.item_flip_inner img{
+    width: 100%;
+    /*object-fit: cover;*/
+}
+.item_flip_inner{
+
+}
+.flipimg{
+    margin:  10px 0;
+}
+
+.flipimg:hover {
+    animation-name: spaceboots;
+    animation-duration: .8s;
+    transform-origin: 50% 50%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    cursor: pointer;
+}
+/*.item_play_try a{*/
+/*    background: #1670d0;*/
+/*    float: left;*/
+/*    width: 100%;*/
+/*    color: #ffffff;*/
+/*    text-align: center;*/
+/*    -webkit-border-radius: 8px;*/
+/*    -moz-border-radius: 8px;*/
+/*    -ms-border-radius: 8px;*/
+/*    -o-border-radius: 8px;*/
+/*    border-radius: 8px;*/
+/*    border: 2px solid #1670d0;*/
+/*    padding: 11px 0;*/
+/*    margin-top: 10px;*/
+/*    font-size: 20px;*/
+/*    font-weight: bold;*/
+/*    transition: .2s ease;*/
+/*}*/
+.item_flip_inner_image{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    top: 0;
+    left: 0;
+
+}
+.item_flip_inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+@keyframes  spaceboots {
+    0% {
+        transform: translate(2px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px) rotate(1deg);
+    }
+
+    30% {
+        transform: translateY(2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(2px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(2px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+/*slot machine*/
+.item_slot_inner img{
+    width: 118px;
+    height: 80px;
+}
+.item_slot{
+    position: relative;
+}
+.item_slot_inner{
+    position: absolute;
+    bottom: 94px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+.item_slot_inner_img{
+    padding: 0 28px;
+}
+.item_slot {
+    background-size: 720px 495px !important;
+    width: 720px;height: 495px
+
+}
+@media screen and (max-width: 580px){
+    .item_slot {
+
+        background-size: 320px 230px !important;
+        width: 320px;
+        height: 230px;
+        margin: auto;
+    }
+    .item_slot_inner {
+        bottom: 40px;
+
+    }
+    .item_slot_inner img {
+        width: 46px;
+         height: auto;
+    }
+    .item_slot_inner_img {
+        padding: 0 16px;
+    }
 }
 /*modal*/
 .rank-list{
@@ -991,9 +1166,9 @@
 
 }
 .clickgif{-webkit-animation: glowing 500ms infinite;
-     -moz-animation: glowing 500ms infinite;
-     -o-animation: glowing 500ms infinite;
-     animation: glowing 500ms infinite;cursor:pointer}
+    -moz-animation: glowing 500ms infinite;
+    -o-animation: glowing 500ms infinite;
+    animation: glowing 500ms infinite;cursor:pointer}
 
 @-webkit-keyframes glowing {
     0% { background-color: #004A7F; -webkit-box-shadow: 0 0 3px #004A7F; }
@@ -1212,4 +1387,73 @@
 
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: white;
+}
+
+.item_spin_list{
+    height: 460px;
+    overflow: hidden;
+}
+.item_spin_list_less{
+    display: none;
+    position: relative;
+    z-index: 1;
+    color: #086a2a;
+    margin: 20px auto;
+    text-align: center;
+    font-weight: 600;
+}
+.item_spin_list_more{
+    position: relative;
+    z-index: 1;
+    color: #086a2a;
+    margin: 20px auto;
+    text-align: center;
+    font-weight: 600;
+    display: block;
+}
+.item_spin_list_more:hover,.item_spin_list_less:hover{
+    text-decoration: none;
+    color: #086a2a;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 800px){
+   #luotquayModal .list-roll-inner {
+        width: 85%;
+        margin-top: 30px;
+        max-height: 400px;
+        overflow-y: scroll;
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width: 1600px){
+    #luotquayModal .list-roll-inner {
+        width: 85%;
+        margin-top: 30px;
+        max-height: 600px;
+        overflow-y: scroll;
+        margin: 0 auto;
+    }
+}
+.item_slot_inner_img{
+    display: inline-block;
+    /*margin-top: 2px;*/
+    /*margin-left: 1px;*/
+    /*margin-right: 45px;*/
+    margin: 0 36px;
+    background-size: 100px 79px;
+    width: 100px;
+    height: 79px;
+}
+@media screen and (max-width: 580px){
+    .item_slot_inner_img{
+        display: inline-block!important;
+        display: inline-block !important;
+        background-size: 50px 50px !important;
+        width: 50px !important;
+        height: 50px !important;
+        position: relative;
+        border-radius: 13px;
+        margin: 0 12px;
+    }
 }

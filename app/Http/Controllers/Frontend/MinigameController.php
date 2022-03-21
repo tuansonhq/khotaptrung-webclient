@@ -20,15 +20,14 @@ class MinigameController extends Controller
             $data['domain'] = 'youtube.com';
 
             $group_api = Cache::get('minigame_list');
-
-            if(isset($group_api) || $group_api==null){
+            if(!isset($group_api)){
                 $url = '/minigame/get-list-minigame';
                 $group_api = DirectAPI::_makeRequest($url,$data,$method);
                 if (isset($group_api) && $group_api->httpcode == 200 ) {
                     $group_api = $group_api->data->data;
                 }
                 try{
-                    Cache::put('minigame_list', $group_api, now()->addMinutes(10));
+                    Cache::put('minigame_list', $group_api, now()->addMinutes(5));
                 }catch(Exception $e){
                     logger($e);
                 }
@@ -53,6 +52,16 @@ class MinigameController extends Controller
                     $result = $result_Api->data->data;
                     switch ($data['module']) {
                         case 'rubywheel':
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                        case 'flip':
+                            return view('frontend.pages.minigame.flip', compact('result','groups_other'));
+                        case 'slotmachine':
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                        case 'slotmachine5':
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                        case 'squarewheel':
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                        case 'smashwheel':
                             return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
                         default:
                             return 'sai';
@@ -203,15 +212,15 @@ class MinigameController extends Controller
                 $data['secret_key'] = config('api.secret_key');
                 $data['domain'] = 'youtube.com';
 
-                $group_api = Cache::get('minigame_list');
-                if(isset($group_api) || $group_api==null){
+                $group_api = Cache::get('minigame_list');                
+                if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
                     if (isset($group_api) && $group_api->httpcode == 200 ) {
                         $group_api = $group_api->data->data;
                     }
                     try{
-                        Cache::put('minigame_list', $group_api, now()->addMinutes(10));
+                        Cache::put('minigame_list', $group_api, now()->addMinutes(5));
                     }catch(Exception $e){
                         logger($e);
                     }
@@ -273,14 +282,14 @@ class MinigameController extends Controller
                 $data['domain'] = 'youtube.com';
 
                 $group_api = Cache::get('minigame_list');
-                if(isset($group_api) || $group_api==null){
+                if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
                     if (isset($group_api) && $group_api->httpcode == 200 ) {
                         $group_api = $group_api->data->data;
                     }
                     try{
-                        Cache::put('minigame_list', $group_api, now()->addMinutes(10));
+                        Cache::put('minigame_list', $group_api, now()->addMinutes(5));
                     }catch(Exception $e){
                         logger($e);
                     }
