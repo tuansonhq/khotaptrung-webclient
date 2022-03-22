@@ -104,7 +104,7 @@
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng quay khác</p>
+                <p>Các vòng minigame khác</p>
                 <div class="item_play_line"></div>
 
             </div>
@@ -129,7 +129,7 @@
                                         </div>
                                         <div class="item_play_dif_slide_description">
                                             <div class="countime"> </div>
-                                            <p>Đã quay: 388</p>
+                                            <p>Đã chơi: {{$item->order_gate_count}}</p>
                                             <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                             <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                         </div>
@@ -139,7 +139,7 @@
                                                     @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
                                                     <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
                                                     @else
-                                                    Quay ngay
+                                                    Chơi ngay
                                                     @endif
                                                 </a>
                                             </div>
@@ -330,6 +330,7 @@
 @foreach(config('constants.'.'game_type') as $item => $key)
     <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
 @endforeach
+<input type="hidden" id="type_play" value="real">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script>
     function animate(options) {
@@ -359,18 +360,26 @@
         var num_roll_remain = 0;
         var angles = 0;
         var arrxgt;
-        var typeRoll = "real";
         var free_wheel = 0;
         var value_gif_bonus = '';
         var msg_random_bonus = '';
         //var arrDiscount = '';
-        //Click nút quay
+
         $('body').delegate('#start-played', 'click', function() {
+            $('#type_play').val('real');
+            play();
+        });
+
+        $('body').delegate('.num-play-try', 'click', function() {
+            $('#type_play').val('try');
+            play();
+        });
+
+        //Click nút quay
+        function play(){
             if (roll_check) {
-                fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
-                typeRoll = "real";
                 numrolllop = $("#numrolllop").val();
                 $.ajax({
                     url: '/minigame-play',
@@ -380,7 +389,7 @@
                         id: '{{$result->group->id}}',
                         numrolllop: numrolllop,
                         numrollbyorder: numrollbyorder,
-                        typeRoll: typeRoll,
+                        typeRoll: $('#type_play').val(),
                         saleoffpass: saleoffpass,
                     },
                     type: 'POST',
@@ -392,9 +401,6 @@
                             return;
                         } else if (data.status == 0) {
                             roll_check = true;
-                            $('#rotate-play').css({
-                                "transform": "rotate(0deg)"
-                            }); 
                             $('.content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
                             return;
@@ -409,31 +415,27 @@
                         } else {
                             xvalue = 0;
                         }
-
-
                         value_gif_bonus = data.value_gif_bonus;
                         msg_random_bonus = data.msg_random_bonus;
                         xvalueaDD = data.xValue;
                         free_wheel = data.free_wheel;
                         num_roll_remain = gift_detail.num_roll_remain;
-                        $('#rotate-play').css({
-                            "transform": "rotate(0deg)"
-                        });
                         angles = 0;
                         angle_gift = gift_detail.order * (360 / num_gift);
                         loop();
 
-                        userpoint = data.userpoint;
-                        if(userpoint<100){
-                            $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
-                        }else{
-                            $(".item_spin_progress_bubble").css("width", "100%");
-                            $(".item_spin_progress_bubble").addClass('clickgif');
+                        if($('#type_play').val()=='real'){
+                            userpoint = data.userpoint;
+                            if(userpoint<100){
+                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                            }else{
+                                $(".item_spin_progress_bubble").css("width", "100%");
+                                $(".item_spin_progress_bubble").addClass('clickgif');
+                            }
+                            $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                            $("#saleoffpass").val("");
+                            //saleoffmessage = data.saleMessage;
                         }
-                        $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
-                        $("#saleoffpass").val("");
-                        //saleoffmessage = data.saleMessage;
-
                     },
                     error: function() {
                         $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
@@ -441,7 +443,7 @@
                     }
                 })
             }
-        });
+        };
 
 
         function getgifbonus() {
@@ -482,90 +484,6 @@
                 }
             })
         }
-
-
-        $('body').delegate('.num-play-try', 'click', function() {
-            if (roll_check) {
-                fakeLoop();
-                roll_check = false;
-                typeRoll = "try";
-                //saleoffpass = $("#saleoffpass").val();
-                numrolllop = $("#numrolllop").val();
-                $.ajax({
-                    url: '/minigame-play',
-                    datatype: 'json',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        id: '{{$result->group->id}}',
-                        numrolllop: numrolllop,
-                        numrollbyorder: numrollbyorder,
-                        typeRoll: typeRoll,
-                        //saleoffpass: saleoffpass,
-                    },
-                    type: 'post',
-                    success: function(data) {                                             
-                        if (data.status == 4) {                            
-                            location.href='/login';
-                        } else if (data.status == 0) {
-                            roll_check = true;
-                            $('#rotate-play').css({
-                                "transform": "rotate(0deg)"
-                            });
-                            $('.content-popup').text(data.msg);
-                            $('#noticeModal').modal('show');
-                            return;
-                        }
-                        numrollbyorder = parseInt(data.numrollbyorder) + 1;
-                        gift_detail = data.gift_detail;
-                        gift_revice = data.arr_gift;
-                        //arrDiscount = data.arrDiscount;
-                        arrxgt = data.xgt;
-                        if (data.xgt > 0) {
-                            xvalue = data.xgt[data.xgt.length - 1];
-                        } else {
-                            xvalue = 0;
-                        }
-                        value_gif_bonus = data.value_gif_bonus;
-                        msg_random_bonus = data.msg_random_bonus;
-                        xvalueaDD = data.xValue;
-                        free_wheel = data.free_wheel;
-                        num_roll_remain = gift_detail.num_roll_remain;
-                        $('#rotate-play').css({
-                            "transform": "rotate(0deg)"
-                        });
-                        angles = 0;
-                        angle_gift = gift_detail.order * (360 / num_gift);
-                        loop();
-                    },
-                    error: function() {
-                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
-                        $('#noticeModal').modal('show');
-                    }
-                })
-            }
-        });
-
-        var goc = 0;
-
-        function fakeLoop(){            
-            $('#start-played img').css({
-                "transform": "rotate(" + goc + "deg)"
-            });
-
-            if ((parseInt(goc) + 10) >= (((num_loop * 360) + angle_gift))) {
-                goc = parseInt(goc) + 2;
-            } else {
-                goc = parseInt(goc) + 10;
-            }
-            if (goc <= ((num_loop * 360))) {
-                requestAnimationFrame(fakeLoop);
-            }else{
-                $('#start-played img').css({
-                    "transform": "rotate(0deg)"
-                });
-            }
-        }
-
 
         function loop() {
             $('#rotate-play').css({
@@ -619,7 +537,7 @@
                     //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                     // }
                     
-                    if(typeRoll == "real")
+                    if($('#type_play').val() == "real")
                     {
                         if(gift_revice.length == 1)
                         {
@@ -699,87 +617,12 @@
                     getgifbonus();
                 }
                 $('#noticeModal').modal('show');
-                if (free_wheel < 1) {
-                    $('.num-play-free').hide();
-                } else {
-                    $('.num-play-free').html("(Bạn còn " + free_wheel + " lượt quay miễn phí)");
-                }
-                if (num_roll_remain == 0) {
-                    $('.deposit-btn').show();
-                } else {
-                    $('.deposit-btn').hide();
-                }
             }
         }
     });
 
     $('body').delegate('.reLoad', 'click', function() {
         location.reload();
-    })
-</script>
-
-<script type="text/javascript">
-    $( document ).ready(function() {
-        $(document).on('scroll',function(){
-            if($(window).width() > 1024){
-                if ($(this).scrollTop() > 100) {
-                    $(".nav-bar-container").css("height","90px");
-                    $(".nav-bar-category .nav li a").css("line-height","90px");
-                    $("header .nav-bar").css("background-color","rgba(0,0,0,0.5)");
-                    $(".nav-bar-brand").css("margin","14px");
-
-                } else {
-                    $(".nav-bar-container").css("height","120px");
-                    $(".nav-bar-category .nav li a").css("line-height","120px");
-                    $(".nav-bar-brand").css("margin","20px 0");
-                    $("header .nav-bar").css("background-color","rgba(0,0,0,0.8)");
-                }
-            }
-
-        });
-        $('.item_play_intro_viewmore').click(function(){
-            $('.item_play_intro_viewless').css("display","flex");
-            $('.item_play_intro_viewmore').css("display","none");
-            $(".item_play_intro_content").addClass( "showtext" );
-        });
-        $('.item_play_intro_viewless').click(function(){
-            $('.item_play_intro_viewmore').css("display","flex");
-            $('.item_play_intro_viewless').css("display","none");
-            $(".item_play_intro_content").removeClass( "showtext");
-        });
-        $('.item_spin_list_more').click(function(){
-            $('.item_spin_list').css("overflow","auto");
-            $('.item_spin_list_less').css("display","block");
-            $(".item_spin_list_more").css("display","none");
-        });
-        $('.item_spin_list_less').click(function(){
-            $('.item_spin_list').css("overflow","hidden");
-            $('.item_spin_list_less').css("display","none");
-            $(".item_spin_list_more").css("display","block");
-        });
-
-
-    });
-</script>
-<script>
-    $(".nav-tabs #tap1-tab-1").on("click",function(){
-        $(".active").removeClass("active");
-        $(this).parents("li").addClass("active");
-        $(".tab-pane").hide();
-        $("#tap1-pane-1").show();
-    })
-    $(".nav-tabs #tap1-tab-2").on("click",function(){
-        $(".active").removeClass("active");
-        $(this).parents("li").addClass("active");
-        $(".tab-pane").hide();
-        $("#tap1-pane-2").show();
-    })
-    $(".nav-tabs #tap1-tab-3").on("click",function(){
-        $(".active").removeClass("active");
-        $(this).parents("li").addClass("active");
-        $(".tab-pane").hide();
-        $("#tap1-pane-3").show();
-
     })
 </script>
 @endsection
