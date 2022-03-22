@@ -12,7 +12,7 @@
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
-                        <form class="form-charge">
+                        <form class="form-charge account_content_transaction_history__v2">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
