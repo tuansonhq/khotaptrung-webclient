@@ -27,7 +27,7 @@
                         @if($item->status == 1)
                             <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
                         @elseif($item->status == 0)
-                            <span class="badge badge-warning">{{config('module.charge.status.0')}}</span>
+                            <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
                         @elseif($item->status == 3)
                             <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
                         @elseif($item->status == 2)

@@ -38,7 +38,11 @@
                 </div>
             </div>
         </div>
+
+        @include('frontend.pages.article.bai__viet__lien__quan')
+
     </div>
+
 
 @endsection
 

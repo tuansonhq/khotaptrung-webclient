@@ -131,9 +131,14 @@ class ArticleController extends Controller
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
+
             if ($result->item == 1){
                 $data = $result->data;
+                $dataitem = $result->dataitem;
+
+
                 return view('frontend.pages.article.show')
+                    ->with('dataitem',$dataitem)
                     ->with('data',$data);
             }else{
                 $result = $result_Api->data;
@@ -151,5 +156,37 @@ class ArticleController extends Controller
         }else{
             return 'sai';
         }
+    }
+
+    public function showArticleCategory(Request $request,$slug){
+        $url = '/show-service-category';
+        $method = "GET";
+        $val = array();
+        $val['domain'] = "youtube.com";
+        $val['slug'] = $slug;
+
+        $val['secret_key'] = config('api.secret_key');
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+        $result = $result_Api->data;
+
+        if ($result->is_router == false){
+            $data = $result->data;
+            $categoryservice = $result->categoryservice;
+            $categoryservice = $categoryservice->data;
+            //return $data;
+
+            return view('frontend.pages.service.show')
+                ->with('categoryservice',$categoryservice)
+                ->with('data',$data)
+                ->with('slug',$slug);
+        }
+
+
+        $data = $result->categoryservice;
+
+        return view('frontend.pages.service.show_service_category')
+            ->with('slug',$slug)
+            ->with('data',$data);
     }
 }

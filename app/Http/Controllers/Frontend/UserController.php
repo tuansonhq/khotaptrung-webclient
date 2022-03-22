@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
+
     public function index(Request $request)
     {
         if($request->hasCookie('jwt')){
@@ -52,6 +53,5 @@ class UserController extends Controller
         }
 
     }
-
 
 }

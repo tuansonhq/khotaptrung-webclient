@@ -127,6 +127,7 @@ Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,
 Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
 Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
 Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+
 Route::get('/loginfacebook',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginfacebook'])->name('loginfacebook');
 
 Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
