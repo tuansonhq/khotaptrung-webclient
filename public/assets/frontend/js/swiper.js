@@ -126,7 +126,7 @@ var swiper2 = new Swiper('.item_play_dif_slide_detail', {
     touchMove: true,
     freeModeSticky:true,
     grabCursor: true,
-    slideToClickedSlide: true,
+    // slideToClickedSlide: true,
 
     observer: true,
     observeParents: true,
@@ -174,7 +174,7 @@ var swiper3 = new Swiper('.special_service_content_slide_detail', {
     freeMode: true,
     slidesPerView: 3,
     initialSlide: 3,
-    slideToClickedSlide: true,
+    // slideToClickedSlide: true,
     spaceBetween: 12,
     keyboard: {
         enabled: true,
