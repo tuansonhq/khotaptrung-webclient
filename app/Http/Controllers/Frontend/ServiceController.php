@@ -74,6 +74,7 @@ class ServiceController extends Controller
             ->with('data',$data);
     }
 
+
     public function showServiceCategoryData(Request $request,$slug){
         if ($request->ajax()){
             $page = $request->page;

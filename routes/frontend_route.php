@@ -128,6 +128,7 @@ Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,
 Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
 Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
 Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+Route::get('/refresh',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'refreshToken'])->name('refreshToken');
 Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register'])->name('register');
 Route::post('registerApi',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'registerApi'])->name('registerApi');
 Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
