@@ -28,7 +28,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $val['domain'] = "youtube.com";
     $val['secret_key'] = config('api.secret_key');
     $val['data'] = 'category_list';
-    $val['module'] = 'acc_category';
+    $val['module'] = 'acc_provider';
 //        $data['input'] = $input;
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
     if(isset($result_Api) && $result_Api->httpcode == 200){
