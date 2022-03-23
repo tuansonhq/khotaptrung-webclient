@@ -43,7 +43,9 @@ use Illuminate\Support\Facades\Cache;
 //     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 //     dd($result_Api);
 // });
-
+Route::get('/test',function(){
+    return 111;
+});
 Route::get('/clear-cache',function(){
 
     Cache::flush();
