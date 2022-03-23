@@ -1,15 +1,13 @@
 <?php
 
 
-
 namespace App\Library;
 use Carbon\Carbon;
 
-class DirectAPI{
+class DirectAPITheme
+{
     public static function _makeRequest($url, array $data, $method){
-        $data ['domain'] = "youtube.com";
-        $data['secret_key'] = config('api.secret_key');
-//        $data ['client'] = "shopas.vn";
+        $data ['client'] = "shopas.vn";
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{

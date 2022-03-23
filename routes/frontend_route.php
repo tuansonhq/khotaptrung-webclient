@@ -44,6 +44,10 @@ use Illuminate\Support\Facades\Cache;
 //     dd($result_Api);
 // });
 
+
+Route::get('/test',function(){
+    return view(theme('theme_id').'.frontend.pages.index');
+});
 Route::get('/clear-cache',function(){
 
     Cache::flush();
@@ -151,8 +155,9 @@ Route::get('/recharge-atm/data',[\App\Http\Controllers\Frontend\TranferControlle
 Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
 Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
+Route::post('/post-deposit',[\App\Http\Controllers\Frontend\ChargeController::class,'postDeposit'])->name('postDeposit');
 //Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
-
+Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getAmountCharge'])->name('getAmountCharge');
 
 Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
 Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');

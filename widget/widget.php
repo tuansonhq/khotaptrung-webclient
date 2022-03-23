@@ -3,6 +3,7 @@
 
 use App\Library\DirectAPI;
 use Illuminate\Pagination\LengthAwarePaginator;
+use function PHPUnit\Framework\isEmpty;
 
 View::composer('frontend.widget.__slider__banner', function ($view) {
 
@@ -116,7 +117,58 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
+View::composer('frontend.widget.__top_nap_the', function ($view) {
 
+
+    try{
+
+        $url = '/top-charge';
+        $method = "GET";
+        $val = array();
+        $val['client'] = "youtube.coms";
+        $val['secret_key'] = config('api.secret_key');
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+
+
+
+        if (isset($result_Api) && $result_Api->httpcode == 200) {
+            $result = $result_Api->data;
+
+            $data = $result->data;
+            return $view->with('data', $data);
+        } else {
+            return $view->withErrors('Đang tải ... ');
+        }
+    }
+    catch(\Exception $e){
+        Log::error($e);
+        return redirect()->back()->withErrors('Đang tải ... ');
+    }
+});
+
+View::composer('frontend.widget.__nap_the', function ($view) {
+    try{
+        $url = '/deposit-auto/get-telecom';
+        $method = "GET";
+        $val = array();
+        $val['secret_key'] = config('api.secret_key');
+        $val['domain'] = 'youtube.com';
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if (isset($result_Api) && $result_Api->httpcode == 200) {
+            $result = $result_Api->data;
+            $data = $result->data;
+            return $view->with('data', $data);
+//            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
+        } else {
+            return 'sai';
+        }
+    }
+    catch(\Exception $e){
+        Log::error($e);
+        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+    }
+});
 //View::composer('frontend.widget.__charge', function ($view) {
 ////    if($request->hasCookie('jwt')){
 ////    dd($request->cookie('jwt'));

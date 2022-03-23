@@ -1543,3 +1543,11 @@
     padding: 2px;
     border-radius: 4px;
 }
+.item_play_dif_slide_more{
+    padding: 10px;
+}
+.item_play_dif_slide_detail .swiper-slide{
+    border: 1px solid #cccccc;
+    padding: 2px;
+    border-radius: 4px;
+}
