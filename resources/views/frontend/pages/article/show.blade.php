@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',$data)
+@endsection
 @section('content')
     <div class="news">
         <div class="news_breadcrumbs">

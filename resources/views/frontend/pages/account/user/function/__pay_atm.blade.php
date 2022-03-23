@@ -32,7 +32,7 @@
                         </td>
                         <td>
                             @if(isset($item->real_received_amount))
-                                {{ $item->real_received_amount }}
+                                {{ formatPrice($item->real_received_amount) }}
                             @else
                                 0
                             @endif
