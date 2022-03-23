@@ -1,8 +1,9 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',$data)
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+
     <div class="item_buy">
         <div class="container">
             @if(isset($data))
@@ -21,12 +22,6 @@
                                 </div>
 
                             </div>
-{{--                            <div class="item_buy_viewmore">--}}
-{{--                                <span>Xem tất cả »</span>--}}
-{{--                            </div>--}}
-{{--                            <div class="item_buy_viewless">--}}
-{{--                                <span>« Thu gọn</span>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </div>

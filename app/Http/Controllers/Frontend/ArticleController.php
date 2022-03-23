@@ -136,7 +136,7 @@ class ArticleController extends Controller
                 $data = $result->data;
                 $dataitem = $result->dataitem;
 
-
+//                return $data;
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('data',$data);
