@@ -1313,7 +1313,7 @@ footer{
 .showcontent{
     margin-bottom: 50px;
 }
-#loading {
+.loading {
     display: inline-block;
     width: 20px;
     height: 20px;
