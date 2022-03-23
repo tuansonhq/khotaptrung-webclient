@@ -61,14 +61,23 @@ $(document).ready(function(){
                         data.data.forEach(function (data) {
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
-                                    html += '<a href="/tin-tuc/' + data.slug + '">';
+                                    if (data.url_redirect_301 == null || data.url_redirect_301 == undefined || data.url_redirect_301 == ''){
+                                        html += '<a href="/tin-tuc/' + data.slug + '">';
+                                    }else {
+                                        html += '<a target="_blank" href="' + data.url_redirect_301 + '">';
+                                    }
                                         html += '<img src="'+media+data.image+'" alt="">';
                                     html += '</a>';
                                 html += '</div>';
 
                                 html += '<div class="news_content_list_info">';
                                     html += '<div class="news_content_list_title">';
+                                    if (data.url_redirect_301 == null || data.url_redirect_301 == undefined || data.url_redirect_301 == ''){
                                         html += '<a href="/tin-tuc/' + data.slug + '">'+ data.title +'</a>';
+                                    }else {
+                                        html += '<a target="_blank" href="' + data.url_redirect_301 + '">'+ data.title +'</a>';
+                                    }
+
                                     html += '</div>';
 
                                     html += '<div class="news_content_list_date">';
@@ -98,14 +107,22 @@ $(document).ready(function(){
 
                             html += '<div class="news_content_list_item">';
                                 html += '<div class="news_content_list_image">';
-                                    html += '<a href="/tin-tuc/' + data.slug + '">';
+                                    if (data.url_redirect_301 == null || data.url_redirect_301 == undefined || data.url_redirect_301 == ''){
+                                        html += '<a href="/tin-tuc/' + data.slug + '">';
+                                    }else {
+                                        html += '<a target="_blank" href="' + data.url_redirect_301 + '">';
+                                    }
                                         html += '<img src="'+media+data.image+'" alt="">';
                                     html += '</a>';
                             html += '</div>';
 
                             html += '<div class="news_content_list_info">';
                             html += '<div class="news_content_list_title">';
-                            html += '<a href="/tin-tuc/' + data.slug + '">'+ data.title +'</a>';
+                            if (data.url_redirect_301 == null || data.url_redirect_301 == undefined || data.url_redirect_301 == ''){
+                                html += '<a href="/tin-tuc/' + data.slug + '">'+ data.title +'</a>';
+                            }else {
+                                html += '<a target="_blank" href="' + data.url_redirect_301 + '">'+ data.title +'</a>';
+                            }
                             html += '</div>';
 
                             html += '<div class="news_content_list_date">';

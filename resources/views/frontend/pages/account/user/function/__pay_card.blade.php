@@ -21,7 +21,7 @@
                     <td>{{ $item->telecom_key }}</td>
                     <td>{{ $item->pin }}</td>
                     <td>{{ $item->serial }}</td>
-                    <td>{{ $item->declare_amount }}</td>
+                    <td>{{ formatPrice($item->declare_amount) }}</td>
                     <td>
                         @if($item->status == 1)
                             <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
@@ -41,7 +41,7 @@
                     </td>
                     <td>
                         @if(isset($item->real_received_amount))
-                            {{ $item->real_received_amount }}
+                            {{ formatPrice($item->real_received_amount) }}
                         @else
                             0
                         @endif
