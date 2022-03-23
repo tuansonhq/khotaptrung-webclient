@@ -4,7 +4,9 @@ $(document).ready(function(){
     let is_over = false;
     let not_loaded = true;
     const media = "https://media-tt.nick.vn";
+
     loadData();
+
     $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height() && !is_over && not_loaded) {
             page++;

@@ -502,6 +502,24 @@ header .nav-bar{
     text-align: center;
     border-radius: 4px;
 }
+
+.game-list-content:hover{
+    box-shadow: 0 0 11px rgb(33 33 33 / 20%);
+}
+
+.game-list-content a:hover{
+    text-decoration: none;
+
+}
+.game-list-content a p{
+    font-size: 16px;
+}
+
+.game-list-content a:hover p{
+    color: #32c5d2!important;
+}
+
+
 .game-list-image{
     position: relative;
 }
@@ -572,7 +590,7 @@ header .nav-bar{
 }
 
 .game-list-more{
-    padding: 12px 0;
+    padding: 48px 0;
 }
 .game-list-more-view {
     text-align: center;
@@ -1009,6 +1027,10 @@ footer{
     .item_buy_info{
         max-height: initial!important;
     }
+    .item_play_dif_slide_detail_in_active__size {
+        min-height: 320px!important;
+        max-height: 320px!important;
+    }
 }
 
 @media only screen and (min-width: 640px) and (max-width: 768px) {
@@ -1071,6 +1093,10 @@ footer{
     .item_buy_info{
         max-height: initial!important;
     }
+    .item_play_dif_slide_detail_in_active__size {
+        min-height: 320px!important;
+        max-height: 320px!important;
+    }
 }
 @media only screen and (min-width: 574px) and (max-width: 639px) {
     .content {
@@ -1130,6 +1156,10 @@ footer{
     }
     .item_buy_info{
         max-height: initial!important;
+    }
+    .item_play_dif_slide_detail_in_active__size {
+        min-height: 320px!important;
+        max-height: 320px!important;
     }
 }
 @media only screen and (min-width: 376px) and (max-width: 573px) {
@@ -1210,6 +1240,14 @@ footer{
     }
     .news_detail_content img {
         max-height: 360px;
+    }
+    .item_play_dif_slide_detail_in_active__size {
+        min-height: 320px!important;
+        max-height: 320px!important;
+    }
+    .item_play_dif__img img {
+        max-height: 120px;
+        min-height: 120px;
     }
 }
 

@@ -55,7 +55,6 @@ Route::get('/clear-cache',function(){
 });
 Route::get('/',[HomeController::class,"index"]);
 
-
 //Route::get('/logout', function () {
 //    return view('frontend.pages.index');
 ////   return "Đã đăng xuất";

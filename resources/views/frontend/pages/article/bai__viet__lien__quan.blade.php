@@ -4,6 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="h3" style="font-size: 24px;font-weight: 700">BÀI VIẾT LIÊN QUAN</div>
+            <div class="news_content_line"></div>
         </div>
         <div class="col-12 item_play_dif_slide pt-3 pb-5" >
             <div class="swiper-container item_play_dif_slide_detail item_news" >
@@ -13,7 +14,7 @@
                     <div class="swiper-slide swiper-slide__size" >
                         <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
                             <div class="item_play_dif_slide_img">
-                                <a href="">
+                                <a href="/tin-tuc/{{ $item->slug }}">
                                     <img src="https://media-tt.nick.vn{{ $item->image }}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                 </a>
                             </div>
