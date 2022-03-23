@@ -2,13 +2,13 @@
 
 
 use App\Library\Setting;
+use App\Library\Theme;
 use App\Library\Helpers;
 
 if (! function_exists('setting')) {
 
     function setting($key, $default = null)
     {
-
         if (is_null($key)) {
            return \App\Library\Setting::getAllSettings();
         }
@@ -17,6 +17,22 @@ if (! function_exists('setting')) {
 
         }
         $value = \App\Library\Setting::get($key);
+        return is_null($value) ? value($default) : $value;
+    }
+}
+
+if (! function_exists('theme')) {
+
+    function theme($key, $default = null)
+    {
+        if (is_null($key)) {
+            return \App\Library\Theme::getAllSettings();
+        }
+
+        if (is_array($key)) {
+
+        }
+        $value = \App\Library\Theme::get($key);
         return is_null($value) ? value($default) : $value;
     }
 }

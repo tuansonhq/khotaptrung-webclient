@@ -219,6 +219,7 @@ class ChargeController extends Controller
 
                     }
                 }else{
+                    return redirect()->back()->withErrors($result_Api->data->message);
                     return Response()->json($result_Api->data->message);
                 }
             }
@@ -228,9 +229,54 @@ class ChargeController extends Controller
             }
 
         }
+        else{
+            return view('frontend.pages.log_in');
 
+        }
 
     }
+
+    public function getAmountCharge(Request $request)
+    {
+
+        if ($request->ajax()){
+            try{
+                $url = '/deposit-auto/get-amount';
+                $method = "GET";
+                $data = array();
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $data['telecom'] = $request->telecom;
+
+
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $result = $result_Api->data;
+
+                    if($result->status == 1){
+                        return response()->json([
+                            'status' => 1,
+                            'data' => $result
+                        ]);
+                    }
+
+                    else {
+                        return redirect()->back()->withErrors($result_Api->message);
+
+                    }
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+
+    }
+
 
     public function getChargeDepositHistory(Request $request)
     {
@@ -368,6 +414,63 @@ class ChargeController extends Controller
                 Log::error($e);
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
+        }
+
+    }
+    public function postDeposit(Request $request)
+    {
+        $validator = $this->validate($request,[
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => "Nhập mã capcha",
+            'captcha.captcha' =>"Sai mã capcha",
+        ]);
+
+        if($request->hasCookie('jwt')){
+            try{
+                $url = '/deposit-auto';
+
+                $method = "POST";
+                $data = array();
+                $data['token'] =  $request->cookie('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $data['type'] = $request->tele_card;
+                $data['amount'] = $request->tele_amount;
+                $data['pin'] = $request->pin;
+                $data['serial'] = $request->serial;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if(isset($result_Api) && $result_Api->httpcode == 200){
+                    $result = $result_Api->data;
+                    $chargePost = $result_Api->data;
+                    $message = $chargePost->message;
+
+                    if ($result->status==0){
+                        return Response()->json($result->message);
+                    }else{
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $result
+                        ]);
+                    }
+                }else{
+                    return view('frontend.pages.log_in');
+                    return Response()->json($result_Api->data->message);
+                    return redirect()->back()->withErrors($result_Api->data->message);
+                    return Response()->json($result_Api->data->message);
+                }
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+
+        }
+        else{
+
+            return redirect('/login');
+
         }
 
     }

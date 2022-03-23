@@ -120,4 +120,59 @@ $(document).ready(function(){
             }
         });
     }
+
+
+    // nap the trang chủ
+
+    GetAmount();
+    $("#tele_card").on('change', function () {
+        alert(111)
+        GetAmount();
+
+    });
+
+    // $("#amount").on('change', function () {
+    //     UpdatePrice();
+    // });
+    //
+    // $("#quantity").on('change', function () {
+    //     UpdatePrice();
+    // });
+
+    // $(function () {
+    $('#tele_card').change(function () {
+        // $("#telecard").on('change', function(){
+
+    });
+    function GetAmount(){
+        $('.hide').show();
+        telecom = $("#tele_card").val();
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            data: {
+                telecom: telecom,
+
+            },
+            url: "/nap-the",
+            success: function (response) {
+
+                console.log(response.data)
+                $('select[name="tele_amount"]').find('option').remove();
+                for(i = 0; i < response.data.data.length; i++) {
+
+                    tele = response.data.data[i];
+                    let html = '';
+                    html +=''
+                    html += '<option value="'+ tele['amount'] +'" rel-ratio="'+ tele['ratio_default']+'">'+ tele['amount'] +' VNĐ - ' + tele['ratio_default'] +'% </option>';
+                    $('select[name="amount"]').append(html)
+// js
+                    UpdatePrice();
+                };
+
+
+            }
+
+        });
+    }
 })

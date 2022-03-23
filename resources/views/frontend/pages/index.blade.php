@@ -27,90 +27,13 @@
                     <div class="tab-content">
                         <div class="tab-pane  fade show active" id="top_napthe">
                             <div class="content-banner-card-box">
-                                <ul class="content-banner-card-top">
-                                    <li>
-                                        <i>1</i>
-                                        <span>Đỗ Hải Nam</span>
-                                        <label >
-                                            32323245 <sup>đ</sup>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <i>2</i>
-                                        <span>Đỗ Hải Nam</span>
-                                        <label >
-                                            32323245 <sup>đ</sup>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <i>3</i>
-                                        <span>Đỗ Hải Nam</span>
-                                        <label >
-                                            32323245 <sup>đ</sup>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <i>4</i>
-                                        <span>Đỗ Hải Nam</span>
-                                        <label >
-                                            32323245 <sup>đ</sup>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <i>5</i>
-                                        <span>Đỗ Hải Nam</span>
-                                        <label >
-                                            32323245 <sup>đ</sup>
-                                        </label>
-                                    </li>
-                                </ul>
+                                {!! widget('frontend.widget.__top_nap_the',60) !!}
+
                             </div>
                         </div>
                         <div class="tab-pane  fade show " id="napthe">
                             <div class="content-banner-card-form">
-                                <form action="">
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <select class="form-control " id="">
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <select class="form-control " id="">
-                                                <option value="VIETTEL">-- Chọn đúng mệnh giá, sai mất thẻ --</option>
-                                                <option value="VIETTEL">20,000 VNĐ (nhận 100.0%)</option>
-                                                <option value="VIETTEL">30,000 VNĐ (nhận 100.0%)</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-                                                <option value="VIETTEL">VIETTEL</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <input type="text" placeholder="Mã số thẻ" class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-12">
-                                            <input type="text" placeholder="Số serial " class="form-control" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="margin-top: 40px">
-                                        <div class="col-12">
-                                            <button class="btn btn-submit">Nạp thẻ</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                {!! widget('frontend.widget.__nap_the') !!}
                             </div>
                         </div>
                     </div>
