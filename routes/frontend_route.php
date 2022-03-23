@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\AccController;
 use App\Http\Controllers\Frontend\ArticleController;
 use App\Http\Controllers\Frontend\CaptchaServiceController;
 use App\Http\Controllers\Frontend\ChargeController;
@@ -80,6 +81,11 @@ Route::get('/dich-vu',[ServiceController::class,"getServiceCategory"]);
 Route::get('/dich-vu/data',[ServiceController::class,"getServiceCategoryData"]);
 Route::get('/dich-vu/{slug}',[ServiceController::class,"showServiceCategory"]);
 Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategoryData"]);
+
+//Danh muc game
+
+Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
+
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
@@ -179,30 +185,6 @@ Route::get('/show', function () {
     return view('frontend.pages.service.show');
 });
 
-Route::get('/show2', function () {
-
-    return view('frontend.pages.service.show2');
-});
-
-Route::get('/show3', function () {
-
-    return view('frontend.pages.service.show3');
-});
-
-Route::get('/show4', function () {
-
-    return view('frontend.pages.service.show4');
-});
-
-Route::get('/show5', function () {
-
-    return view('frontend.pages.service.show5');
-});
-
-Route::get('/show6', function () {
-
-    return view('frontend.pages.service.show6');
-});
 
 //minigame
 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class,'postRoll'])->name('postRoll');

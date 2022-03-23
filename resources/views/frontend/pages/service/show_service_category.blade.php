@@ -3,7 +3,6 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-
     <div class="item_buy">
         <div class="container">
             @if(isset($data))
