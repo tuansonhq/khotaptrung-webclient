@@ -1,5 +1,9 @@
+
+
+
 $( document ).ready(function() {
-    $('body').on('scroll',function(){
+
+    $(document).on('scroll',function(){
         if($(window).width() > 1024){
             if ($(this).scrollTop() > 100) {
                 $(".nav-bar-container").css("height","90px");
@@ -15,54 +19,70 @@ $( document ).ready(function() {
             }
         }
 
+    });
+    $('.item_play_intro_viewmore').click(function(){
+        $('.item_play_intro_viewless').css("display","flex");
+        $('.item_play_intro_viewmore').css("display","none");
+        $(".item_play_intro_content").addClass( "showtext" );
+    });
+    $('.item_play_intro_viewless').click(function(){
+        $('.item_play_intro_viewmore').css("display","flex");
+        $('.item_play_intro_viewless').css("display","none");
+        $(".item_play_intro_content").removeClass( "showtext");
+    });
+    $('.item_spin_list_more').click(function(){
+        $('.item_spin_list').css("overflow","auto");
+        $('.item_spin_list_less').css("display","block");
+        $(".item_spin_list_more").css("display","none");
+    });
+    $('.item_spin_list_less').click(function(){
+        $('.item_spin_list').css("overflow","hidden");
+        $('.item_spin_list_less').css("display","none");
+        $(".item_spin_list_more").css("display","block");
+    });
+    $(".nav-tabs #tap1-tab-1").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-1").show();
+    })
+    $(".nav-tabs #tap1-tab-2").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-2").show();
+    })
+    $(".nav-tabs #tap1-tab-3").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-3").show();
 
+    })
+    $('.item_play_intro_viewmore').click(function(){
+        $('.item_play_intro_viewless').css("display","flex");
+        $('.item_play_intro_viewmore').css("display","none");
+        $(".item_play_intro_content").addClass( "showtext" );
+    });
+    $('.item_play_intro_viewless').click(function(){
+        $('.item_play_intro_viewmore').css("display","flex");
+        $('.item_play_intro_viewless').css("display","none");
+        $(".item_play_intro_content").removeClass( "showtext");
+    });
+    $('.item_spin_list_more').click(function(){
+        $('.item_spin_list').css("overflow","auto");
+        $('.item_spin_list_less').css("display","block");
+        $(".item_spin_list_more").css("display","none");
+    });
+    $('.item_spin_list_less').click(function(){
+        $('.item_spin_list').css("overflow","hidden");
+        $('.item_spin_list_less').css("display","none");
+        $(".item_spin_list_more").css("display","block");
     });
 
-});
-$('.idol_live_end_input').prop('disabled', true);
-$('#idol_live_start').datetimepicker({
-    format: 'DD-MM-YYYY LT',
-    useCurrent: false,
-    icons:
-        { time: 'fas fa-clock',
-            date: 'fas fa-calendar',
-            up: 'fas fa-arrow-up',
-            down: 'fas fa-arrow-down',
-            previous: 'fas fa-arrow-circle-left',
-            next: 'fas fa-arrow-circle-right',
-            today: 'far fa-calendar-check-o',
-            clear: 'fas fa-trash',
-            close: 'far fa-times' },
-    minDate: moment()
+    $('.item_play_spin_shake').click(function(){
+        $("#lac_lixi").attr("src", "./assets/frontend/image/lixi.gif");
+    });
 
-});
-$('#idol_live_end').datetimepicker({
-    format: 'DD-MM-YYYY LT',
-    useCurrent: false,
-    icons:
-        { time: 'fas fa-clock',
-            date: 'fas fa-calendar',
-            up: 'fas fa-arrow-up',
-            down: 'fas fa-arrow-down',
-            previous: 'fas fa-arrow-circle-left',
-            next: 'fas fa-arrow-circle-right',
-            today: 'far fa-calendar-check-o',
-            clear: 'fas fa-trash',
-            close: 'far fa-times' },
-    minDate: moment()
 
-});
-
-$('.go-top').click(function(){
-    $('html, body').animate({scrollTop : 0},800);
-});
-$('.item_play_intro_viewmore').click(function(){
-    $('.item_play_intro_viewless').css("display","block");
-    $('.item_play_intro_viewmore').css("display","flex");
-    $(".item_play_intro_content").addClass( "showtext" );
-});
-$('.item_play_intro_viewless').click(function(){
-    $('.item_play_intro_viewmore').css("display","block");
-    $('.item_play_intro_viewless').css("display","flex");
-    $(".item_play_intro_content").removeClass( "showtext");
 });
