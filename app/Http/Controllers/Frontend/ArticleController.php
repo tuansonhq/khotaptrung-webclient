@@ -166,6 +166,7 @@ class ArticleController extends Controller
         $val['slug'] = $slug;
 
         $val['secret_key'] = config('api.secret_key');
+
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         $result = $result_Api->data;
