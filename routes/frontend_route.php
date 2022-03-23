@@ -55,7 +55,10 @@ Route::get('/clear-cache',function(){
     ]);
 
 });
-Route::get('/',[HomeController::class,"index"]);
+Route::get('/',function(){
+    return view('frontend.pages.index');
+})->middleware('cacheResponse:300');
+// Route::get('/',[HomeController::class,"index"])->middleware('cacheResponse:300');
 
 //Route::get('/logout', function () {
 //    return view('frontend.pages.index');

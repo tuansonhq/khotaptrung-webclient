@@ -8,7 +8,6 @@ if (! function_exists('setting')) {
 
     function setting($key, $default = null)
     {
-
         if (is_null($key)) {
            return \App\Library\Setting::getAllSettings();
         }
