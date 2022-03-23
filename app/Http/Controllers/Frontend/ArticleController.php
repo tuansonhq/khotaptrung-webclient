@@ -80,7 +80,6 @@ class ArticleController extends Controller
     }
 
 
-
     public function getCategoryData(Request $request,$slug){
 
         if ($request->ajax()){
