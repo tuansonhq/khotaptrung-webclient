@@ -64,7 +64,7 @@
                         <a href="#" class="col-sm-12 btn btn-success" data-toggle="modal" data-target="#theleModal">Thể lệ</a>
                     </div>
                     <div class="item_play_category">
-                        <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt gieo gần đây</a>
+                        <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
                     </div>
                     <div class="item_play_category">
                         <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử chơi</a>
