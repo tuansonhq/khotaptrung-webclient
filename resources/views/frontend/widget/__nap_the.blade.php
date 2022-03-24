@@ -44,11 +44,9 @@
     <div class="form-group" style="margin-top: 40px">
         <div class="col-12">
             @if (App\Library\AuthCustom::check())
-            <button class="btn btn-submit" type="submit">Nạp thẻ</button>
+             <button class="btn btn-submit" type="submit">Nạp thẻ</button>
             @else
-                <form action="/login">
-                    <button class="btn btn-submit" type="submit">Nạp thẻ</button>
-                </form>
+                    <a class="btn btn-submit" onclick="window.location.href='/login'">Nạp thẻ</a>
 
             @endif
         </div>

@@ -434,6 +434,12 @@ header .nav-bar{
     border-color: #32c5d2;
     width: 100%;
 }
+.content-banner-card-form .form-group a {
+    color: #ffffff;
+    background: #32c5d2;
+    border-color: #32c5d2;
+    width: 100%;
+}
 .content-banner-card-form.form-control:focus, .content-banner-card-form.form-control:active, .content-banner-card-form.form-control.active {
     border-color: #32c5d2 !important;
     background: #1f2228 !important;

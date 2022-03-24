@@ -321,7 +321,7 @@
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/nap-the-cham" id="d3">Nạp thẻ cào</a>
                                         <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                     @else
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold " id="d3" style="" >Xác nhận thanh toán</button>
 
                                     @endif
                                 @endif

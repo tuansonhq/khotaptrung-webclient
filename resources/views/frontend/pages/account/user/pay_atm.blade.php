@@ -99,7 +99,7 @@
                                 <div class="tranfer_confirm_form">
                                     <div class="form-group row " style="margin-top: 40px">
                                         <div class="col-md-6" style="    margin-left: 25%;">
-                                            <button class="btn c-theme-btn c-btn-square btn-confirm c-btn-uppercase c-btn-bold btn-block loading" type="submit" >Xác nhận</button>
+                                            <button class="btn c-theme-btn c-btn-square btn-confirm c-btn-uppercase c-btn-bold btn-block " type="submit" >Xác nhận</button>
                                         </div>
                                     </div>
                                 </div>

@@ -127,7 +127,7 @@
             </div>
             <div class="modal-footer">
 
-                <button type="button" data-dismiss="modal" id="ok" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" style="">Xác nhận thanh toán</button>
+                <button type="button" data-dismiss="modal" id="ok" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold " style="">Xác nhận thanh toán</button>
 
                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
 
