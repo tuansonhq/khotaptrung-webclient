@@ -66,6 +66,7 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
+
                 $items = $result_Api->data;
 
                 $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
