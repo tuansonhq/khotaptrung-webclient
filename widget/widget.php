@@ -22,17 +22,23 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
 
 View::composer('frontend.widget.__content__home', function ($view) {
 
-    $url = '/serviceson';
+    $url = '/acc';
     $method = "GET";
     $val = array();
-
     $val['domain'] = "youtube.com";
     $val['secret_key'] = config('api.secret_key');
+    $val['data'] = 'category_list';
+    $val['module'] = 'acc_provider';
+//        $data['input'] = $input;
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-    $result = $result_Api->data;
-    $data = $result->data;
+    if(isset($result_Api) && $result_Api->httpcode == 200){
+        $data = $result_Api->data;
 
-    return $view->with('data', $data);
+        return $view->with('data', $data);
+
+    }else{
+        return 'sai';
+    }
 });
 
 

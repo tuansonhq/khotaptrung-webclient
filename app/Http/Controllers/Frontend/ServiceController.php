@@ -22,26 +22,32 @@ class ServiceController extends Controller
             $val = array();
             $val['domain'] = "youtube.com";
             $val['page'] = $page;
+
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
                 $val['querry'] = $request->querry;
             }
+
             $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if ($result->is_over){
+                    return response()->json([
+                        'is_over'=>true
+                    ]);
+                }
+                $data = $result->data;
+                $data = $data->data;
 
-            $result = $result_Api->data;
-            if ($result->is_over){
                 return response()->json([
-                    'is_over'=>true
+                    'data' => $data,
+                    'append' => $append,
+                    'is_over'=>false
                 ]);
+            }else{
+                return 'sai';
             }
-            $data = $result->data;
-            $data = $data->data;
 
-            return response()->json([
-                'data' => $data,
-                'append' => $append,
-                'is_over'=>false
-            ]);
         }
     }
 
@@ -54,24 +60,28 @@ class ServiceController extends Controller
 
         $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $result = $result_Api->data;
+            //return $result;
+            if ($result->is_router == false){
+                $data = $result->data;
+                $categoryservice = $result->categoryservice;
+                $categoryservice = $categoryservice->data;
+                //return $data;
+                return view('frontend.pages.service.show')
+                    ->with('categoryservice',$categoryservice)
+                    ->with('data',$data)
+                    ->with('slug',$slug);
+            }
+            $data = $result->categoryservice;
 
-        $result = $result_Api->data;
-        //return $result;
-        if ($result->is_router == false){
-            $data = $result->data;
-            $categoryservice = $result->categoryservice;
-            $categoryservice = $categoryservice->data;
-            //return $data;
-            return view('frontend.pages.service.show')
-                ->with('categoryservice',$categoryservice)
-                ->with('data',$data)
-                ->with('slug',$slug);
+            return view('frontend.pages.service.show_service_category')
+                ->with('slug',$slug)
+                ->with('data',$data);
+        }else{
+            return 'sai';
         }
-        $data = $result->categoryservice;
 
-        return view('frontend.pages.service.show_service_category')
-            ->with('slug',$slug)
-            ->with('data',$data);
     }
 
 
@@ -91,22 +101,26 @@ class ServiceController extends Controller
             }
             $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if ($result->is_over){
+                    return response()->json([
+                        'is_over'=>true
+                    ]);
+                }
+                $data = $result->data;
 
-            $result = $result_Api->data;
-            if ($result->is_over){
+                $data = $data->data;
+
                 return response()->json([
-                    'is_over'=>true
+                    'data' => $data,
+                    'append' => $append,
+                    'is_over'=>false
                 ]);
+            }else{
+                return 'sai';
             }
-            $data = $result->data;
-//            dd($data);
-            $data = $data->data;
 
-            return response()->json([
-                'data' => $data,
-                'append' => $append,
-                'is_over'=>false
-            ]);
         }
     }
 }

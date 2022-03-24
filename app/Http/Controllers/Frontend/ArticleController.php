@@ -80,7 +80,6 @@ class ArticleController extends Controller
     }
 
 
-
     public function getCategoryData(Request $request,$slug){
 
         if ($request->ajax()){
@@ -136,7 +135,7 @@ class ArticleController extends Controller
                 $data = $result->data;
                 $dataitem = $result->dataitem;
 
-
+//                return $data;
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('data',$data);
@@ -166,6 +165,7 @@ class ArticleController extends Controller
         $val['slug'] = $slug;
 
         $val['secret_key'] = config('api.secret_key');
+
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         $result = $result_Api->data;

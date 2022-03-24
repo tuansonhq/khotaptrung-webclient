@@ -62,7 +62,7 @@ class MinigameController extends Controller
                         case 'squarewheel':
                             return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
                         case 'smashwheel':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         default:
                             return 'sai';
                     }
@@ -117,6 +117,7 @@ class MinigameController extends Controller
                             'value_gif_bonus' => $result->value_gif_bonus,
                             'msg_random_bonus' => $result->msg_random_bonus,
                             'userpoint' => $result->userpoint,
+                            'listgift' => $result->listgift,
                             'status' => 1,
                             'msg'=> $result->msg
                         ], 200);
@@ -177,6 +178,7 @@ class MinigameController extends Controller
                             'value_gif_bonus' => $result->value_gif_bonus,
                             'msg_random_bonus' => $result->msg_random_bonus,
                             'userpoint' => $result->userpoint,
+                            'listgift' => $result->listgift,
                             'status' => 1,
                             'msg'=> $result->msg
                         ], 200);

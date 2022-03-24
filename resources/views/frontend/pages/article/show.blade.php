@@ -1,11 +1,14 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
 @section('content')
     <div class="news">
         <div class="news_breadcrumbs">
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto pr-0">
-                        <div class="news_breadcrumbs_title"><a href="">Tin tức</a></div>
+                        <div class="news_breadcrumbs_title"><a href="/tin-tuc">Tin tức</a></div>
                     </div>
                     <div class="col-lg-10 col-md-12 ml-lg-auto">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
