@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     let page = $('#hidden_page_service').val();
 
     $(document).on('click', '.paginate__v1 .pagination a',function(event){
@@ -11,34 +12,27 @@ $(document).ready(function(){
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        loadDataAccountList(page);
     });
 
-    function loadDataChargeHistory(page, serial, key, status,started_at,ended_at) {
+    function loadDataAccountList(page) {
+        let slug_category = $('.slug_category').val();
+        let slug = $('.slug').val();
 
+        var url = '/' + slug_category + '/' + slug + '/data';
+        // alert(url)
         request = $.ajax({
             type: 'GET',
-            url: '/lich-su-nap-the/data',
+            url: url,
             data: {
                 page:page,
-                serial:serial,
-                key:key,
-                status:status,
-                started_at:started_at,
-                ended_at:ended_at,
             },
             beforeSend: function (xhr) {
 
             },
             success: (data) => {
-                $("#data_pay_card_history").empty().html('');
-                $("#data_pay_card_history").empty().html(data);
+                $("#account_data").empty().html('');
+                $("#account_data").empty().html(data);
             },
             error: function (data) {
 
@@ -175,4 +169,5 @@ $(document).ready(function(){
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
     });
+
 })

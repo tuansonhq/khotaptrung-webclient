@@ -195,65 +195,18 @@
 
                 </div>
             </div>
-            @if(empty($data->data))
-                @if(isset($items) && count($items) > 0)
-            <div class="item_buy_list row">
-                @foreach ($items as $item)
-                <div class="col-sm-6 col-lg-3">
-                    <div class="item_buy_list_in">
-                        <div class="item_buy_list_img">
-                            <a href="/acc/{{ $item->id }}">
-                                <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                <span>MS: 1338480</span>
-                            </a>
-                        </div>
-                        <div class="item_buy_list_description">
-                            bảo hành 100%,lỗi hoàn tiền
-                        </div>
-                        <div class="item_buy_list_info">
-                            <div class="row">
-                                <div class="col-6 item_buy_list_info_in">
-                                    Đăng ký : <b>Facebook</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Pet : <b>Có</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Rank : <b>Kim cương</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Ghi chú : <b>Tuyệt vời</b>
-                                </div>
 
-                            </div>
-                        </div>
-                        <div class="item_buy_list_more">
-                            <div class="row">
-                                <div class="col-12 ">
-                                    <div class="item_buy_list_price">
-                                        <span>5,757,600đ </span>
-                                        2,399,000đ
-                                    </div>
-
-                                </div>
-                                <a href="/acc/{{ $item->id }}" class="col-12">
-                                    <div class="item_buy_list_view">
-                                        Chi tiết
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @endforeach
+            <div id="account_data">
+                @include('frontend.pages.account.function.__account__data')
             </div>
-                @endif
-            @endif
 
+{{--            <div class="item_buy_list row" id="account_data">--}}
+{{--                @include('frontend.pages.account.function.__account__data')--}}
+{{--            </div>--}}
         </div>
     </div>
+
+    <input type="hidden" value="{{ $data->slug }}" name="slug" class="slug">
+    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">
 @endsection
 

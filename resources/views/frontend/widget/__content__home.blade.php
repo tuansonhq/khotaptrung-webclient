@@ -14,8 +14,8 @@
                         <div class="game-list-image">
                             <a class="account_category" href="/danh-muc/{{ $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
-                                @if(isset($item->image_extension))
-                                    <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_extension }}" alt="">
+                                @if(isset($item->image_icon))
+                                    <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_icon }}" alt="">
                                 @else
                                     <img class="game-list-image-sticky" src="/assets/frontend/images/giamgia.png" alt="">
                                 @endif
