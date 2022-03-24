@@ -15,71 +15,109 @@ use function PHPUnit\Framework\isEmpty;
 class ChargeController extends Controller
 
 {
+//    public function getDepositAuto(Request $request)
+//    {
+//        if($request->hasCookie('jwt')){
+//            try{
+//
+//                $url = '/deposit-auto/get-telecom';
+//                $method = "GET";
+//                $item = array();
+//                $item['token'] = $request->cookie('jwt');
+//                $item['secret_key'] = config('api.secret_key');
+//                $item['domain'] = 'youtube.com';
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
+//
+//                $url_history = '/deposit-auto/history';
+//
+//                $result_Api_history = DirectAPI::_makeRequest($url_history,$item,$method);
+//
+//                    if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
+//                        $bank = $result_Api->data;
+//                        $bankHistory = $result_Api_history->data;
+//
+//                        if ($bank->status == 1) {
+//                            try{
+//
+//                                $url = '/deposit-auto/get-amount';
+//                                $method = "GET";
+//                                $item = array();
+//                                $item['token'] =  $request->cookie('jwt');
+//                                $item['secret_key'] = config('api.secret_key');
+//                                $item['domain'] = 'youtube.com';
+//                                $item['telecom'] = $bank->data[0]->key;
+//
+//                                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
+//
+//                                if(isset($result_Api) && $result_Api->httpcode == 200){
+//                                    $amount = $result_Api->data;
+//                                    if($amount->status == 1){
+//                                        $data = $bankHistory->data;
+//
+//                                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+//
+//                                        return view('frontend.pages.account.user.pay_card', compact('bank','amount','data'));
+//                                    }
+//                                    else{
+//                                        return redirect()->back()->withErrors($amount->message);
+//
+//                                    }
+//                                }else{
+//                                    return 'sai';
+//                                }
+//                            }
+//                            catch(\Exception $e){
+//                                Log::error($e);
+//                                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                            }
+//
+//                        } else {
+//                            return redirect()->back()->withErrors($bank->message);
+//
+//                        }
+//                    } else {
+//                        return 'sai';
+//                    }
+//            }
+//            catch(\Exception $e){
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//
+//        }
+//        else{
+//            return redirect('login');
+//        }
+//
+//
+//    }
+
     public function getDepositAuto(Request $request)
     {
         if($request->hasCookie('jwt')){
             try{
-
                 $url = '/deposit-auto/get-telecom';
                 $method = "GET";
-                $item = array();
-                $item['token'] = $request->cookie('jwt');
-                $item['secret_key'] = config('api.secret_key');
-                $item['domain'] = 'youtube.com';
-
-                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
-
+                $val = array();
+                $val['secret_key'] = config('api.secret_key');
+                $val['domain'] =config('api.client');
+                $val['token'] = $request->cookie('jwt');
+                $result_Api = DirectAPI::_makeRequest($url,$val,$method);
                 $url_history = '/deposit-auto/history';
 
-                $result_Api_history = DirectAPI::_makeRequest($url_history,$item,$method);
-
-                    if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                        $bank = $result_Api->data;
-                        $bankHistory = $result_Api_history->data;
-
-                        if ($bank->status == 1) {
-                            try{
-
-                                $url = '/deposit-auto/get-amount';
-                                $method = "GET";
-                                $item = array();
-                                $item['token'] =  $request->cookie('jwt');
-                                $item['secret_key'] = config('api.secret_key');
-                                $item['domain'] = 'youtube.com';
-                                $item['telecom'] = $bank->data[0]->key;
-
-                                $result_Api = DirectAPI::_makeRequest($url,$item,$method);
-
-                                if(isset($result_Api) && $result_Api->httpcode == 200){
-                                    $amount = $result_Api->data;
-                                    if($amount->status == 1){
-                                        $data = $bankHistory->data;
-
-                                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
-
-                                        return view('frontend.pages.account.user.pay_card', compact('bank','amount','data'));
-//                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
-                                    }
-                                    else{
-                                        return redirect()->back()->withErrors($amount->message);
-
-                                    }
-                                }else{
-                                    return 'sai';
-                                }
-                            }
-                            catch(\Exception $e){
-                                Log::error($e);
-                                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                            }
-
-                        } else {
-                            return redirect()->back()->withErrors($bank->message);
-
-                        }
-                    } else {
-                        return 'sai';
-                    }
+                $result_Api_history = DirectAPI::_makeRequest($url_history,$val,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200  && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
+                    $bankHistory = $result_Api_history->data;
+                    $result = $result_Api->data;
+                    $bank = $result->data;
+                    $data = $bankHistory->data;
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                    return view('frontend.pages.account.user.pay_card', compact('bank','data'));
+//            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
+                } else {
+                    return 'sai';
+                }
             }
             catch(\Exception $e){
                 Log::error($e);
@@ -136,31 +174,33 @@ class ChargeController extends Controller
 
 //        \Validator::
 
-        if($request->hasCookie('jwt')){
+        if ($request->ajax()){
             try{
                 $url = '/deposit-auto/get-amount';
                 $method = "GET";
                 $data = array();
-                $data['token'] =  $request->cookie('jwt');
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = config('api.client');
                 $data['telecom'] = $request->telecom;
+
+
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
-                if(isset($result_Api) && $result_Api->httpcode == 200){
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
                     $result = $result_Api->data;
+
                     if($result->status == 1){
                         return response()->json([
                             'status' => 1,
                             'data' => $result
                         ]);
-//                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
                     }
-                    else{
-                        return redirect()->back()->withErrors($result->message);
+
+                    else {
+                        return redirect()->back()->withErrors($result_Api->message);
 
                     }
-                }else{
+                } else {
                     return 'sai';
                 }
             }
@@ -168,9 +208,7 @@ class ChargeController extends Controller
                 Log::error($e);
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
-
         }
-
 
     }
 
@@ -186,39 +224,33 @@ class ChargeController extends Controller
         if($request->hasCookie('jwt')){
             try{
                 $url = '/deposit-auto';
+
                 $method = "POST";
                 $data = array();
                 $data['token'] =  $request->cookie('jwt');
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = config('api.client');
                 $data['type'] = $request->telecom;
                 $data['amount'] = $request->amount;
                 $data['pin'] = $request->pin;
                 $data['serial'] = $request->serial;
-
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
                 if(isset($result_Api) && $result_Api->httpcode == 200){
                     $result = $result_Api->data;
                     $chargePost = $result_Api->data;
                     $message = $chargePost->message;
+                    if ($result->status==0){
 
-                    if($result->status == 1){
-//                        return response()->json([
-//                            'status' => 1,
-//                            'data' => $result
-//                        ]);
+                        return Response()->json($result->message);
+                    }else{
                         return response()->json([
                             'status' => 1,
                             'message'=>$message,
-                            'data' => $chargePost
+                            'data' => $result
                         ]);
-//                    return view('frontend.pages.account.user.transaction_history')->with('result',$result);
-                    }
-                    else{
-                        return redirect()->back()->withErrors($result->message);
-
                     }
                 }else{
+                    return Response()->json($result_Api->data->message);
                     return redirect()->back()->withErrors($result_Api->data->message);
                     return Response()->json($result_Api->data->message);
                 }
@@ -245,7 +277,7 @@ class ChargeController extends Controller
                 $method = "GET";
                 $data = array();
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = config('api.client');
                 $data['telecom'] = $request->telecom;
 
 
@@ -455,7 +487,6 @@ class ChargeController extends Controller
                         ]);
                     }
                 }else{
-                    return view('frontend.pages.log_in');
                     return Response()->json($result_Api->data->message);
                     return redirect()->back()->withErrors($result_Api->data->message);
                     return Response()->json($result_Api->data->message);

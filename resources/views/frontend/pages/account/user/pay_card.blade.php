@@ -15,7 +15,7 @@
                         <span><p>* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p></span>
                         <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
                         <p style="color: red"></p>
-                        <form action="{{route('postTelecomDepositAuto')}}" method="POST" id="form-charge">
+                        <form action="{{route('postTelecomDepositAuto')}}" method="POST" id="form-charge-input">
                             @csrf
                             <div class="form-group row">
                                 <label class="col-md-3 control-label">
@@ -37,10 +37,9 @@
 
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        {{--                                        @dd($bank->datay)--}}
-                                        @if(isset($bank->data))
-                                            <select id="telecard" name="telecom" class="form-control">
-                                                @foreach($bank->data as $items)
+                                        @if(isset($bank))
+                                            <select id="telecom" name="telecom" class="form-control">
+                                                @foreach($bank as $items)
                                                     <option value="{{$items->key}}">{{$items->key}}</option>
                                                 @endforeach
                                             </select>
@@ -57,16 +56,8 @@
 
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <select name="amount" id="" class="form-control">
+                                        <select name="amount" id="amount" class="form-control">
                                             <option value="">-- Chọn đúng mệnh giá, sai mất thẻ --</option>
-
-                                            @foreach($amount->data as $items)
-                                                <option value="{{$items->amount}}">{{$items->amount}} VNĐ (nhận {{$items->ratio_true_amount}}%)</option>
-                                            @endforeach
-
-{{--                                            <option value="1">10,000 VNĐ (nhận 100.0%)</option>--}}
-{{--                                            <option value="2">20,000 VNĐ (nhận 100.0%)</option>--}}
-{{--                                            <option value="">30,000 VNĐ (nhận 100.0%)</option>--}}
                                         </select>
                                     </div>
                                 </div>
