@@ -33,20 +33,24 @@
                         <li class="nav-regist">
                             <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
                         </li>
-{{--                            <li class="nav-log-in">--}}
-{{--                                <a href="/login" ><div class="loading"></div></a>--}}
-{{--                            </li>--}}
-{{--                            <li class="nav-regist">--}}
-{{--                                <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
-{{--                            </li>--}}
+                            <li class="nav-log-in">
+                                <a href="/login" ><div class="loading"></div></a>
+                            </li>
+                            <li class="nav-regist">
+                                <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
+                            </li>
 
                     @endif
 
-                </ul>
+{{--                </ul>--}}
 {{--                @else--}}
 {{--                    <ul class="nav">--}}
 {{--                        <li class="nav-log-in">--}}
-{{--                            <a href="/" ><i class="fas fa-user"></i> Nam Hải </a>--}}
+{{--                            <a href="/" >--}}
+{{--                                <div class="info">--}}
+{{--                                    <i class="fas fa-user"></i> Nam Hải--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
 {{--                        </li>--}}
 {{--                        <li class="nav-register">--}}
 {{--                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>--}}

@@ -175,4 +175,7 @@ $(document).ready(function(){
 
         });
     }
+
+    // nạp thẻ trang chủ
+    
 })

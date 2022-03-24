@@ -194,6 +194,9 @@ header .nav-bar{
 
 
 }
+.info{
+    display: inherit;
+}
 .nav-bar-category-mobile-input{
     background: ghostwhite;
     padding: 2px 8px;
@@ -429,6 +432,12 @@ header .nav-bar{
     border-radius: 0;
 }
 .content-banner-card-form .form-group button{
+    color: #ffffff;
+    background: #32c5d2;
+    border-color: #32c5d2;
+    width: 100%;
+}
+.content-banner-card-form .form-group a {
     color: #ffffff;
     background: #32c5d2;
     border-color: #32c5d2;
