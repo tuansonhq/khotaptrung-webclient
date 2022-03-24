@@ -14,10 +14,7 @@ class HomeController extends Controller
     }
 
     public function profile(){
-        //    if(session()->has('auth_token')){
-        //        return view('frontend.pages.index');
-        //        return "Đăng nhập thành công";
-        //    }else{
+
         $url_menu_profile = '/menu-profile';
         $method_menu_category  = "POST";
         $val_menu_profile = array();
@@ -29,8 +26,6 @@ class HomeController extends Controller
 
         return view('frontend.pages.index')
             ->with('$data_menu_profile',$data_menu_profile);
-//            ->with('data',$data);
-//            ->with('data_menu_category',$data_menu_category);
     }
 
 
