@@ -82,7 +82,7 @@ $(document).ready(function(){
                 btnSubmit.prop('disabled', false);
             },
             complete: function (data) {
-                $('#imgcaptcha').trigger('click');
+                $('#reload').trigger('click');
                 $('#form-recharge').trigger("reset");
             }
         });

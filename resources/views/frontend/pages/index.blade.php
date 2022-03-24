@@ -33,7 +33,7 @@
                         </div>
                         <div class="tab-pane  fade show " id="napthe">
                             <div class="content-banner-card-form">
-                                {!! widget('frontend.widget.__nap_the') !!}
+{{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
                             </div>
                         </div>
                     </div>
