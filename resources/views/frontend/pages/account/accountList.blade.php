@@ -3,6 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+{{--    @dd($data)--}}
     <div class="item_buy">
         <div class="container">
             <div class="row">
@@ -23,36 +24,48 @@
             </div>
 
             <div class="item_buy_form">
-                <form action="">
-                    <div class="row">
+                <form class="form-charge">
+                <div class="row">
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Tìm kiếm</span>
-                                <input type="text" class="form-control" placeholder="Tìm kiếm">
+                                <input type="text" name="title" class="form-control" placeholder="Tìm kiếm">
                             </div>
                         </div>
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Mã số</span>
-                                <input type="text" class="form-control" placeholder="Mã số">
+                                <input name="id" type="text" class="form-control" placeholder="Mã số">
                             </div>
                         </div>
+
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Giá tiền</span>
+{{--                                {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
+
                                 <select type="text" class="form-control">
-                                    <option value="">Chọn giá tiền</option>
-                                    <option value="">Dưới 500K</option>
-                                    <option value="">Từ 500k-1000k</option>
+                                    <option value="">Chọn giá tiền
+                                    <option value="0">Dưới 50K</option>
+                                    <option value="1">Từ 50K - 200K</option>
+                                    <option value="2">Từ 200K - 500K</option>
+                                    <option value="3">Từ 500K - 1 Triệu</option>
+                                    <option value="4">Trên 1 Triệu</option>
+                                    <option value="5">Trên 5 Triệu</option>
+                                    <option value="6">Trên 10 Triệu</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Trạng thái</span>
+{{--                                {{Form::select('status',array(''=>'-- Chọn giá tiền --')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}--}}
+
                                 <select type="text" class="form-control">
-                                    <option value="">Chưa bán</option>
-                                    <option value="">Tất cả</option>
+                                    <option value="0">Chưa bán</option>
+                                    <option value="1">Đã bán</option>
+                                    <option value="2">Đã đặt cọc</option>
+                                    <option value="3">Tất cả</option>
                                 </select>
                             </div>
                         </div>
