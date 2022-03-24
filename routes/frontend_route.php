@@ -86,6 +86,7 @@ Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategory
 
 Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
 
+Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});

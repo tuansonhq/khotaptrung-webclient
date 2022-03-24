@@ -28,7 +28,7 @@
             <div class="item_buy_list row">
                 @if(isset($data->childs) && count($data->childs) > 0)
                     @foreach($data->childs as $item)
-                    <div class="col-6 col-sm-6 col-lg-3">
+                        <div class="col-6 col-sm-6 col-lg-3">
                     <div class="item_buy_list_in">
                         <div class="item_buy_list_img">
                             <a href="/{{ $data->slug }}/{{ $item->slug }}">

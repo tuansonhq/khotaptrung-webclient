@@ -1374,4 +1374,11 @@ footer{
         -webkit-transform: rotate(360deg);
     }
 }
-
+.title__tklienquan{
+    text-align: center;
+    color: #3f444a;
+    font-size: 24px;
+    margin: 10px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
