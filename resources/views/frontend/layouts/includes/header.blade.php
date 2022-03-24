@@ -33,12 +33,12 @@
                         <li class="nav-regist">
                             <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
                         </li>
-                            <li class="nav-log-in">
-                                <a href="/login" ><div class="loading"></div></a>
-                            </li>
-                            <li class="nav-regist">
-                                <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
-                            </li>
+{{--                            <li class="nav-log-in">--}}
+{{--                                <a href="/login" ><div class="loading"></div></a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-regist">--}}
+{{--                                <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
+{{--                            </li>--}}
 
                     @endif
 
