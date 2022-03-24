@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\ArticleController;
 use App\Http\Controllers\Frontend\CaptchaServiceController;
 use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
@@ -45,6 +46,11 @@ use Illuminate\Support\Facades\Cache;
 //     dd($result_Api);
 // });
 
+Route::post('/user/account_info',[UserController::class,"getInfo"]);
+
+Route::group(['middleware' => ['cacheResponse:300']],function(){
+    Route::get('/',[HomeController::class,"index"]);
+});
 
 Route::get('/test',function(){
     return view(theme('theme_id').'.frontend.pages.index');
@@ -58,7 +64,6 @@ Route::get('/clear-cache',function(){
     ]);
 
 });
-Route::get('/',[HomeController::class,"index"]);
 
 //Route::get('/logout', function () {
 //    return view('frontend.pages.index');

@@ -14,6 +14,42 @@ use Illuminate\Support\Facades\Log;
 class UserController extends Controller
 {
 
+    public function getInfo(Request $request){
+        try{
+            if(!$request->hasCookie('jwt')){
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $url = '/profile';
+            $method = "GET";
+            $data = array();
+            $data['token'] = $request->cookie('jwt');
+            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => true,
+                        'info' => $result->data,
+                    ]);
+                }
+            }
+            return response()->json([
+                'status' => "LOGIN"
+            ]);
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => "ERROR"
+            ]);
+        }
+    }
+
+
+
+
     public function index(Request $request)
     {
         if($request->hasCookie('jwt')){
