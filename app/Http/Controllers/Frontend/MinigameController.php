@@ -63,14 +63,18 @@ class MinigameController extends Controller
                             return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
                         case 'smashwheel':
                             return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                        case 'rungcay':
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                        case 'gieoque':
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         default:
-                            return 'sai';
+                            return redirect()->back()->withErrors($result_out->message);
                     }
                 } else {
                     return redirect()->back()->withErrors($result_out->message);
                 }
             } else {
-                return 'sai';
+                return redirect()->back()->withErrors($result_out->message);
             }
         }
         catch(\Exception $e){
