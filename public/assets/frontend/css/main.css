@@ -194,6 +194,9 @@ header .nav-bar{
 
 
 }
+.info{
+    display: inherit;
+}
 .nav-bar-category-mobile-input{
     background: ghostwhite;
     padding: 2px 8px;
