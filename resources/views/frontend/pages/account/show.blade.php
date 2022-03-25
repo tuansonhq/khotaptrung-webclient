@@ -10,7 +10,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                     <div class="shop_product_header">
                         <p>#{{ $data->id }}</p>
-                        <span>Nick Free Fire Giá Rẻ</span>
+                        <span>{{ $data_category->title }}̉</span>
                     </div>
                 </div>
                 <div class="col-md-12 shop_product_info_mobile">
@@ -22,24 +22,9 @@
                             <i class="fas fa-circle"></i>
                         </div>
                         <div class="row">
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 shop_product_info_variant">
-                                <p>ĐĂNG KÝ: <span>Facebook</span></p>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4  shop_product_info_variant">
-                                <p>Pet: <span>Có</span></p>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 shop_product_info_variant">
-                                <p>Rank: <span>Bạc</span></p>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 shop_product_info_variant">
-                                <p>Ghi chú: <span>Có</span></p>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 shop_product_info_variant">
-                                <p>Thẻ vô cực: <span>Có</span></p>
-                            </div>
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 shop_product_info_variant">
-                                <p>Nổi bật: <span>Có</span></p>
-                            </div>
+
+                            @include('frontend.pages.account.widget.account_load_attribute')
+
                         </div>
                         <div class="shop_product_info_divider">
                             <i class="fas fa-circle"></i>
@@ -58,7 +43,7 @@
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-4">
                     <div class="shop_product_header">
-                        <button class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20">
+                        <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">
                             Mua ngay
                         </button>
                         <a href="" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">ATM - Ví điện tử</a>
@@ -103,7 +88,7 @@
                     @endforeach
                 </div>
                 <div class="pt-3">
-                    <button class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20">Mua ngay</button>
+                    <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">Mua ngay</button>
                 </div>
             </div>
 
@@ -113,10 +98,20 @@
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
 
-                @include('frontend.widget.__account__category')
+                @include('frontend.widget.__account__category',['sliders',$sliders])
 
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/frontend/js/account/buyacc.js"></script>
 @endsection
 

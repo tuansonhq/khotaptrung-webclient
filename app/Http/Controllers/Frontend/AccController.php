@@ -33,6 +33,7 @@ class AccController extends Controller
             }
         }elseif ($slug_category == 'acc'){
 
+
             $val['data'] = 'acc_detail';
             $val['id'] = $slug;
 
@@ -41,7 +42,32 @@ class AccController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
-                return view('frontend.pages.account.show')->with('data',$data);
+                $valcategory = array();
+                $valcategory['domain'] = "youtube.com";
+                $valcategory['secret_key'] = config('api.secret_key');
+                $valcategory['data'] = 'category_detail';
+                $valcategory['id'] = $data->id;
+
+                $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+                $data_category = $result_Api_category->data;
+                $dataAttribute = $data_category->childs;
+
+                $valslider = array();
+                $valslider['domain'] = "youtube.com";
+                $valslider['secret_key'] = config('api.secret_key');
+                $valslider['data'] = 'list_acc';
+                $valslider['cat_slug'] = $data_category->slug;
+//            $val['group_ids'] = $ids;
+
+                $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
+                $sliders = $result_Api_slider->data;
+                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
+
+                return view('frontend.pages.account.show')
+                    ->with('data',$data)
+                    ->with('sliders',$sliders)
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('data_category',$data_category);
 
             }else{
                 return 'sai';
@@ -71,7 +97,13 @@ class AccController extends Controller
 
                 $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
-                return view('frontend.pages.account.accountList')->with('data',$data)->with('items',$items)->with('slug_category',$slug_category);
+                $dataAttribute = $data->childs;
+
+                return view('frontend.pages.account.accountList')
+                    ->with('data',$data)
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('items',$items)
+                    ->with('slug_category',$slug_category);
 
             }else{
                 return 'sai';
@@ -110,11 +142,75 @@ class AccController extends Controller
 
                 $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
-                return view('frontend.pages.account.function.__account__data')->with('items',$items)->with('slug_category',$slug_category);
+                $dataAttribute = $data->childs;
+                return view('frontend.pages.account.function.__account__data')
+                    ->with('items',$items)
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('slug_category',$slug_category);
+            }else{
+                return 'sai';
+            }
+        }
+    }
+
+    public function getBuyAccount(Request $request,$slug){
+
+        if ($request->ajax()){
+
+            $url = '/acc';
+            $method = "GET";
+            $val = array();
+            $val['domain'] = "youtube.com";
+            $val['secret_key'] = config('api.secret_key');
+
+            $val['data'] = 'acc_detail';
+            $val['id'] = $slug;
+
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $data = $result_Api->data;
+
+                $valcategory = array();
+                $valcategory['domain'] = "youtube.com";
+                $valcategory['secret_key'] = config('api.secret_key');
+                $valcategory['data'] = 'category_detail';
+                $valcategory['id'] = $data->id;
+
+                $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+                $data_category = $result_Api_category->data;
+                $dataAttribute = $data_category->childs;
+
+                $valslider = array();
+                $valslider['domain'] = "youtube.com";
+                $valslider['secret_key'] = config('api.secret_key');
+                $valslider['data'] = 'list_acc';
+                $valslider['cat_slug'] = $data_category->slug;
+//            $val['group_ids'] = $ids;
+
+                $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
+                $sliders = $result_Api_slider->data;
+                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
+
+                $html =  view('frontend.pages.account.function.buyacc')
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('data_category',$data_category)
+                    ->with('data',$data)->render();
+
+                return response()->json([
+                    'data' => $html,
+                    'status' => 1,
+                ]);
 
             }else{
                 return 'sai';
             }
         }
     }
+
+    public function postBuyAccount(Request $request){
+        return "aaaaa";
+    }
+
+
 }

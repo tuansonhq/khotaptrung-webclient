@@ -54,10 +54,18 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 //    });
     Route::get('/',[HomeController::class,"index"]);
 
+
     Route::get('/test',function(){
         return view(theme('theme_id').'.frontend.pages.index');
     });
     Route::get('/clear-cache',function(){
+
+Route::get('/test',function(){
+    return view(theme('theme_id').'.frontend.pages.index');
+});
+Route::get('/clear-cache',function(){
+    Artisan::call('cache:clear');
+
 
         Cache::flush();
         return json_encode([
@@ -91,9 +99,12 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
 //Danh muc game
 
-    Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
 
-    Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
+Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
+Route::post('/acc/{id}', [AccController::class,"postBuyAccount"]);
+Route::get('/acc/{id}/data', [AccController::class,"getBuyAccount"]);
+Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
+
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');
 //});
