@@ -47,7 +47,6 @@ use Illuminate\Support\Facades\Cache;
 // });
 
 Route::post('/user/account_info',[UserController::class,"getInfo"]);
-
 Route::group(['middleware' => ['cacheResponse:300']],function(){
     Route::get('/',[HomeController::class,"index"]);
 });
@@ -65,10 +64,9 @@ Route::get('/clear-cache',function(){
 
 });
 
-//Route::get('/logout', function () {
-//    return view('frontend.pages.index');
-////   return "Đã đăng xuất";
-//});
+Route::get('/acb', function () {
+    dd(1111);
+});
 
 Route::get('/dich-vu', function () {
 

@@ -24,14 +24,15 @@ class UserController extends Controller
             $url = '/profile';
             $method = "GET";
             $data = array();
-            $data['token'] = $request->cookie('jwt');
+            $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
+                $request->session()->put('auth_custom', $result->user);
                 if($result->status == 1){
                     return response()->json([
                         'status' => true,
-                        'info' => $result->data,
+                        'info' => $result->user,
                     ]);
                 }
             }
