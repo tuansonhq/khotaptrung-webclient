@@ -107,8 +107,8 @@ class TranferController extends Controller
                     $method = "GET";
                     $data = array();
                     $data['token'] = $request->cookie('jwt');
-                    $data['secret_key'] = config('api.secret_key');
-                    $data['domain'] = 'youtube.com';
+//                    $data['secret_key'] = config('api.secret_key');
+//                    $data['domain'] = 'youtube.com';
 
                     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
@@ -161,8 +161,8 @@ class TranferController extends Controller
                 $method = "POST";
                 $data = array();
                 $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+//                $data['secret_key'] = config('api.secret_key');
+//                $data['domain'] = 'youtube.com';
                 $data['bank_id'] = $request->id_bank;
                 $data['amount'] = $request->tranfer_money;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);

@@ -20,7 +20,7 @@ class ServiceController extends Controller
             $url = '/get-service-category';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
+//            $val['domain'] = "youtube.com";
             $val['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
