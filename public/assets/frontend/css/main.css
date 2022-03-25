@@ -176,7 +176,7 @@ header .nav-bar{
 }
 .nav-log-in a,.nav-regist a{
     padding: 4px 12px;
-    border: 1px solid #2f353b;
+    border: 1px solid grey;
     border-radius: 16px;
     font-weight: 500 !important;
     font-size: 14px !important;
