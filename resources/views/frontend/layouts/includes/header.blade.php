@@ -29,43 +29,46 @@
                             <div class="loading"></div>
                         </a>
                     </li>
-                    {{-- @if (App\Library\AuthCustom::check())
-                        <li class="nav-log-in">
-                            <a href="#" id="info">
-                                <div class="loading"></div>
-                            </a>
-                        </li>
-                        <li class="nav-log-in">
-                            <a href="#" id="logout">
-                                <div class="loading"></div>
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-log-in">
-                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
-                        </li>
-                        <li class="nav-regist">
-                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
-                        </li>
-                    @endif --}}
+                </ul>
 
-                    {{-- <li class="nav-regist">
-                        <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
-                    </li> --}}
-                    {{-- @if (App\Library\AuthCustom::check())
-                        <li class="nav-log-in">
-                            <a href="/thong-tin" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->fullname ? Str::limit(App\Library\AuthCustom::user()->fullname,10) : Str::limit(App\Library\AuthCustom::user()->username,10)}}  -    $ {{App\Library\AuthCustom::user()->balance ? str_replace(',','.',number_format(Str::limit(App\Library\AuthCustom::user()->balance,10))) : 0}} </a>
-                        </li>
-                        <li class="nav-regist">
-                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>
-                        </li>
-                    @else
-                        <li class="nav-log-in">
-                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
-                        </li>
-                        <li class="nav-regist">
-                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
-                        </li>
+
+{{--                    --}}{{-- @if (App\Library\AuthCustom::check())--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="#" id="info">--}}
+{{--                                <div class="loading"></div>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="#" id="logout">--}}
+{{--                                <div class="loading"></div>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    @else--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-regist">--}}
+{{--                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
+{{--                        </li>--}}
+{{--                    @endif --}}
+
+{{--                    --}}{{-- <li class="nav-regist">--}}
+{{--                        <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
+{{--                    </li> --}}
+{{--                    --}}{{-- @if (App\Library\AuthCustom::check())--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="/thong-tin" ><i class="fas fa-user"></i> {{App\Library\AuthCustom::user()->fullname ? Str::limit(App\Library\AuthCustom::user()->fullname,10) : Str::limit(App\Library\AuthCustom::user()->username,10)}}  -    $ {{App\Library\AuthCustom::user()->balance ? str_replace(',','.',number_format(Str::limit(App\Library\AuthCustom::user()->balance,10))) : 0}} </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-regist">--}}
+{{--                            <a href="/logout"><i class="fas fa-user"></i> Đăng xuất</a>--}}
+{{--                        </li>--}}
+{{--                    @else--}}
+{{--                        <li class="nav-log-in">--}}
+{{--                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-regist">--}}
+{{--                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
+{{--                        </li>--}}
 {{--                            <li class="nav-log-in">--}}
 {{--                                <a href="/login" ><div class="loading"></div></a>--}}
 {{--                            </li>--}}
@@ -73,7 +76,7 @@
 {{--                                <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
 {{--                            </li>--}}
 
-                    @endif --}}
+{{--                    @endif --}}
 
 {{--                </ul>--}}
 {{--                @else--}}
