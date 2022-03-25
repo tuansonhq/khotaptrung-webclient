@@ -89,7 +89,7 @@
                     tele = response.data.data[i];
                     let html = '';
                     html +=''
-                    html += '<option value="'+ tele['amount'] +'">'+ tele['amount'] +' VNĐ (nhận ' + tele['ratio_true_amount'] +' %) </option>';
+                    html += '<option value="'+ tele['amount'] +'">'+ formatNumber(tele['amount']) +' VNĐ (nhận ' + tele['ratio_true_amount'] +' %) </option>';
                     $('select[name="tele_amount"]').append(html)
 // js
 //                     UpdatePrice();
@@ -159,5 +159,8 @@
         // });
 
     });
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
 
 </script>

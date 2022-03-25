@@ -252,7 +252,7 @@ $(document).ready(function(){
                     tele = response.data.data[i];
                     let html = '';
                     html +=''
-                    html += '<option value="'+ tele['amount'] +'" rel-ratio="'+ tele['ratio_default']+'">'+ tele['amount'] +' VNĐ - ' + tele['ratio_default'] +'% </option>';
+                    html += '<option value="'+ tele['amount'] +'" rel-ratio="'+ tele['ratio_default']+'">'+ formatNumber(tele['amount'])  +' VNĐ - ' + tele['ratio_default'] +'% </option>';
                     $('select[name="amount"]').append(html)
 // js
                     UpdatePrice();
@@ -262,6 +262,8 @@ $(document).ready(function(){
             }
 
         });
+    }function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
     // nạp thẻ trang chủ
