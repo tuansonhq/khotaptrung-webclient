@@ -55,16 +55,16 @@ class LoginController extends Controller
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
     }
-   
+
     public function logout(Request $request){
-        dd('dasdnklfasd');
+//        dd('dasdnklfasd');
         try{
             $url = '/logout';
             $method = "POST";
             $data = array();
             $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            dd($result_Api);
+//            dd($result_Api);
             if(isset($result_Api) && $result_Api->httpcode == 401){
                 Session::flush();
                 return redirect()->to('/');
