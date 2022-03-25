@@ -3,7 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-{{--    @dd($data)--}}
+
     <div class="item_buy">
         <div class="container">
             <div class="row">
@@ -32,6 +32,7 @@
                                 <input type="text" name="title" class="form-control" placeholder="Tìm kiếm">
                             </div>
                         </div>
+
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Mã số</span>
@@ -44,7 +45,7 @@
                                 <span class="input-group-addon">Giá tiền</span>
 {{--                                {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
 
-                                <select type="text" class="form-control">
+                                <select type="text" class="form-control price" name="price">
                                     <option value="">Chọn giá tiền
                                     <option value="0">Dưới 50K</option>
                                     <option value="1">Từ 50K - 200K</option>
@@ -61,7 +62,7 @@
                                 <span class="input-group-addon">Trạng thái</span>
 {{--                                {{Form::select('status',array(''=>'-- Chọn giá tiền --')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}--}}
 
-                                <select type="text" class="form-control">
+                                <select type="text" class="form-control status" name="status">
                                     <option value="0">Chưa bán</option>
                                     <option value="1">Đã bán</option>
                                     <option value="2">Đã đặt cọc</option>
@@ -69,43 +70,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-3 item_buy_form_search">
-                            <div class="input-group">
-                                <span class="input-group-addon">Đăng ký</span>
-                                <select type="text" class="form-control">
-                                    <option value="">--Không chọn--</option>
-                                    <option value="">Facebook</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3 item_buy_form_search">
-                            <div class="input-group">
-                                <span class="input-group-addon">Pet</span>
-                                <select type="text" class="form-control">
-                                    <option value="">--Không chọn--</option>
-                                    <option value="">Có</option>
-                                    <option value="">Không</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3 item_buy_form_search">
-                            <div class="input-group">
-                                <span class="input-group-addon">Thẻ vô cực</span>
-                                <select type="text" class="form-control">
-                                    <option value="">--Không chọn--</option>
-                                    <option value="">Có</option>
-                                    <option value="">Không</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-3 item_buy_form_search">
-                            <div class="input-group">
-                                <button type="submit" class="btn">Tìm kiếm</button>
-                                <a href="" class="btn btn-danger">Tất cả</a>
-                            </div>
-                        </div>
 
-
+                        @include('frontend.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
 
                     </div>
                 </form>
@@ -131,77 +97,55 @@
                     </div>
                     <hr>
                     <div class="item_buy_form-mobile_search">
-                        <form action="">
+                        <form class="form-charg-mobie">
                             <div class="row">
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <span class="input-group-addon">Tìm kiếm</span>
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm">
+                                        <input name="title-mobile" type="text" class="form-control title-mobile" placeholder="Tìm kiếm">
                                     </div>
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <span class="input-group-addon">Mã số</span>
-                                        <input type="text" class="form-control" placeholder="Mã số">
+                                        <input name="id-mobile" type="text" class="form-control id-mobile" placeholder="Mã số">
                                     </div>
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
-                                        <span class="input-group-addon">Giá tiền</span>
+                                        <span class="input-group-addon price-mobile" name="price-mobile">Giá tiền</span>
                                         <select type="text" class="form-control">
-                                            <option value="">Chọn giá tiền</option>
-                                            <option value="">Dưới 500K</option>
-                                            <option value="">Từ 500k-1000k</option>
+                                            <option value="">Chọn giá tiền
+                                            <option value="0">Dưới 50K</option>
+                                            <option value="1">Từ 50K - 200K</option>
+                                            <option value="2">Từ 200K - 500K</option>
+                                            <option value="3">Từ 500K - 1 Triệu</option>
+                                            <option value="4">Trên 1 Triệu</option>
+                                            <option value="5">Trên 5 Triệu</option>
+                                            <option value="6">Trên 10 Triệu</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
-                                        <span class="input-group-addon">Trạng thái</span>
+                                        <span class="input-group-addon status-mobile" name="status-mobile">Trạng thái</span>
                                         <select type="text" class="form-control">
-                                            <option value="">Chưa bán</option>
-                                            <option value="">Tất cả</option>
+                                            <option value="0">Chưa bán</option>
+                                            <option value="1">Đã bán</option>
+                                            <option value="2">Đã đặt cọc</option>
+                                            <option value="3">Tất cả</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 item_buy_form_search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Đăng ký</span>
-                                        <select type="text" class="form-control">
-                                            <option value="">--Không chọn--</option>
-                                            <option value="">Facebook</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 item_buy_form_search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Pet</span>
-                                        <select type="text" class="form-control">
-                                            <option value="">--Không chọn--</option>
-                                            <option value="">Có</option>
-                                            <option value="">Không</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12 item_buy_form_search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Thẻ vô cực</span>
-                                        <select type="text" class="form-control">
-                                            <option value="">--Không chọn--</option>
-                                            <option value="">Có</option>
-                                            <option value="">Không</option>
-                                        </select>
-                                    </div>
-                                </div>
+
+                                @include('frontend.pages.account.widget.account_load_attribute_to_filter_mobile',['dataAttribute'=>$dataAttribute])
+
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <button type="submit" class="btn">Tìm kiếm</button>
                                         <a href="" class="btn btn-danger">Tất cả</a>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </form>
                     </div>
@@ -210,7 +154,7 @@
             </div>
 
             <div id="account_data">
-                @include('frontend.pages.account.function.__account__data')
+                @include('frontend.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
             </div>
 
 {{--            <div class="item_buy_list row" id="account_data">--}}
