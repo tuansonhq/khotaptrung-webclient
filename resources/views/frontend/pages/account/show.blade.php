@@ -3,6 +3,28 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+    <div class="" style="margin-top: 15px">
+        @if ($message = Session::get('success'))
+            <div class="container">
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    {{$message}}
+                </div>
+            </div>
+        @endif
+        @if($messages=$errors->all())
+            <div class="container">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    {{$messages[0]}}
+                </div>
+            </div>
+
+        @endif
+
+    </div>
 
     <div class="shop_product_detail">
         <div class="container">
@@ -46,8 +68,8 @@
                         <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">
                             Mua ngay
                         </button>
-                        <a href="" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">ATM - Ví điện tử</a>
-                        <a href="" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">Nạp thẻ cào</a>
+                        <a href="/recharge" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">ATM - Ví điện tử</a>
+                        <a href="/nap-the" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">Nạp thẻ cào</a>
                     </div>
                 </div>
             </div>
@@ -56,24 +78,30 @@
                     <i class="fas fa-circle"></i>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 shop_product_info_variant">
-                        <p>ĐĂNG KÝ: <span>Facebook</span></p>
-                    </div>
-                    <div class="col-md-4 shop_product_info_variant">
-                        <p>Pet: <span>Có</span></p>
-                    </div>
-                    <div class="col-md-4 shop_product_info_variant">
-                        <p>Rank: <span>Bạc</span></p>
-                    </div>
-                    <div class="col-md-4 shop_product_info_variant">
-                        <p>Ghi chú: <span>Có</span></p>
-                    </div>
-                    <div class="col-md-4 shop_product_info_variant">
-                        <p>Thẻ vô cực: <span>Có</span></p>
-                    </div>
-                    <div class="col-md-12 shop_product_info_variant">
-                        <p>Nổi bật: <span>Có</span></p>
-                    </div>
+                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+
+                        @foreach($dataAttribute as $index=>$att)
+
+                                @if($att->position == 'select')
+                                @if(!is_null($att->childs) && count($att->childs))
+                                    @foreach($att->childs as $att_value)@foreach($data->groups as $att_data)
+
+                                            @if($att_data->id == $att_value->id)
+                                                <div class="col-md-4 shop_product_info_variant">
+                                                    <p>{{$att->title}}: <span>{{$att_data->title}}</span></p>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                @endif
+                                @elseif($att->position == 'text')
+                                    <div class="col-md-4 shop_product_info_variant">
+                                        <p>{{$att->title}}: <span>Có</span></p>
+                                    </div>
+                                @endif
+
+                        @endforeach
+                    @endif
                 </div>
                 <div class="shop_product_info_divider">
                     <i class="fas fa-circle"></i>
@@ -111,6 +139,33 @@
             </div>
         </div>
     </div>
+
+    @if ($content = Session::get('content'))
+        <div class="modal fade" id="noticeAfterModal" style="display: none;" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
+                        {!!$content!!}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#noticeAfterModal').modal('show');
+            });
+        </script>
+    @endif
 
     <script src="/assets/frontend/js/account/buyacc.js"></script>
 @endsection
