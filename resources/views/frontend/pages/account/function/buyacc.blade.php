@@ -53,33 +53,34 @@
                                 <th colspan="2">Chi tiết tài khoản #12333</th>
                             </tr>
 
-{{--                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
 
-{{--                                @foreach($dataAttribute as $index=>$att)--}}
-{{--                                    <tr>--}}
-{{--                                        --}}{{--if textbox--}}
-{{--                                        @if($att->type_input==1)--}}
-{{--                                            <td style="width: 50%">{{$att->title}}:</td>--}}
-{{--                                            <td class="text-danger" style="font-weight: 700">{{\App\Library\Helpers::DecodeJson('attribute_id_'.$att->id,$data->params)}}</td>--}}
+                                @foreach($dataAttribute as $index=>$att)
 
-{{--                                         --}}{{--if select--}}
-{{--                                        @elseif($att->type_input==4)--}}
+                                    <tr>
+                                        @if($att->position == 'text')
+                                            <td style="width: 50%">{{$att->title}}:</td>
+                                            <td class="text-danger" style="font-weight: 700">123321</td>
 
-{{--                                            @if(!is_null($att->attribute_value) && count($att->attribute_value))--}}
-{{--                                                @foreach($att->attribute_value as $att_value)--}}
-{{--                                                    @if($att_value->id==\App\Library\Helpers::DecodeJson('attribute_id_'.$att->id,$data->params))--}}
-{{--                                                        <td style="width:50%">{{$att->title}}:</td>--}}
-{{--                                                        <td class="text-danger" style="font-weight: 700">{{$att_value->title}}</td>--}}
-{{--                                                    @endif--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
-{{--                                        @endif--}}
-{{--                                    </tr>--}}
+                                        @elseif($att->position == 'select')
 
+                                            @if(!is_null($att->childs) && count($att->childs))
+                                                @foreach($att->childs as $att_value)
+{{--                                                    @dd($att)--}}
+                                                    @foreach($data->groups as $att_data)
 
+                                                        @if($att_data->id == $att_value->id)
+                                                        <td style="width:50%">{{$att->title}}:</td>
+                                                        <td class="text-danger" style="font-weight: 700">{{$att_data->title}}</td>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    </tr>
 
-{{--                                @endforeach--}}
-{{--                            @endif--}}
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </li>
