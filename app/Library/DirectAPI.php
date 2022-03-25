@@ -7,8 +7,8 @@ use Carbon\Carbon;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method){
-//        $data ['domain'] = \Request::server ("HTTP_HOST");
-        $data ['domain'] = 'youtube.com';
+        $data ['domain'] = \Request::server ("HTTP_HOST");
+//        $data ['domain'] = 'youtube.com';
         $data['secret_key'] = config('api.secret_key');
 //        $data ['client'] = "shopas.vn";
 

@@ -25,15 +25,15 @@ class VerifyShop extends Middleware
      */
 
 
-//    public function handle(Request $request, Closure $next)
-//    {
-//        $result_Api= Cache::rememberForever('verify_shop', function()  {
-//            $result_Api = true;
-//        });
-//        if(!$result_Api){
-//            return  response('Shop không có quyền truy cập',403);
-//        }
-//
-//
-//    }
+    public function handle(Request $request, Closure $next)
+    {
+        $result_Api= Cache::rememberForever('verify_shop', function()  {
+            $result_Api = true;
+        });
+        if(!$result_Api){
+            return  response('Shop không có quyền truy cập',403);
+        }
+
+
+    }
 }

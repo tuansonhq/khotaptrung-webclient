@@ -10,8 +10,8 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
     $url_slider = '/get-slider-banner';
     $method_slider = "GET";
     $val_slider = array();
-    $val_slider['domain'] = "youtube.com";
-    $val_slider['secret_key'] = config('api.secret_key');
+//    $val_slider['domain'] = "youtube.com";
+//    $val_slider['secret_key'] = config('api.secret_key');
 
     $result_Api_slider = DirectAPI::_makeRequest($url_slider,$val_slider,$method_slider);
     $result_slider = $result_Api_slider->data;
@@ -25,8 +25,8 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $url = '/acc';
     $method = "GET";
     $val = array();
-    $val['domain'] = "youtube.com";
-    $val['secret_key'] = config('api.secret_key');
+//    $val['domain'] = "youtube.com";
+//    $val['secret_key'] = config('api.secret_key');
     $val['data'] = 'category_list';
     $val['module'] = 'acc_provider';
 //        $data['input'] = $input;
@@ -47,8 +47,8 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
     $url_menu_category = '/menu-category';
     $method_menu_category  = "POST";
     $val_menu_category  = array();
-    $val_menu_category ['domain'] = "youtube.com";
-    $val_menu_category ['secret_key'] = config('api.secret_key');
+//    $val_menu_category ['domain'] = "youtube.com";
+//    $val_menu_category ['secret_key'] = config('api.secret_key');
     $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
     $result_menu_category = $result_Api_menu_category->data;
     $data_menu_category  = $result_menu_category->data;
@@ -62,8 +62,8 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
     $url_menu_category = '/menu-category';
     $method_menu_category  = "POST";
     $val_menu_category  = array();
-    $val_menu_category ['domain'] = "youtube.com";
-    $val_menu_category ['secret_key'] = config('api.secret_key');
+//    $val_menu_category ['domain'] = "youtube.com";
+//    $val_menu_category ['secret_key'] = config('api.secret_key');
     $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
     $result_menu_category = $result_Api_menu_category->data;
     $data_menu_category  = $result_menu_category->data;
@@ -78,8 +78,8 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
     $url_menu_profile = '/menu-profile';
     $method_menu_profile = "POST";
     $val_menu_profile = array();
-    $val_menu_profile ['domain'] = "youtube.com";
-    $val_menu_profile ['secret_key'] = config('api.secret_key');
+//    $val_menu_profile ['domain'] = "youtube.com";
+//    $val_menu_profile ['secret_key'] = config('api.secret_key');
     $result_Api_menu_profile = DirectAPI::_makeRequest($url_menu_profile ,$val_menu_profile ,$method_menu_profile );
     $result_menu_profile = $result_Api_menu_profile->data;
     $data_menu_profile = $result_menu_profile->data;
@@ -93,8 +93,8 @@ View::composer('frontend.widget.__menu_transaction', function ($view) {
     $url_menu_transaction = '/menu-transaction';
     $method_menu_transaction = "POST";
     $val_menu_transaction = array();
-    $val_menu_transaction ['domain'] = "youtube.com";
-    $val_menu_transaction ['secret_key'] = config('api.secret_key');
+//    $val_menu_transaction ['domain'] = "youtube.com";
+//    $val_menu_transaction ['secret_key'] = config('api.secret_key');
     $result_Api_menu_transaction = DirectAPI::_makeRequest($url_menu_transaction ,$val_menu_transaction ,$method_menu_transaction);
     $result_menu_transaction = $result_Api_menu_transaction->data;
     $data_menu_transaction= $result_menu_transaction->data;
@@ -107,8 +107,8 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     $url = '/article';
     $method = "GET";
     $val = array();
-    $val['domain'] = "youtube.com";
-    $val['secret_key'] = config('api.secret_key');
+//    $val['domain'] = "youtube.com";
+//    $val['secret_key'] = config('api.secret_key');
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
     $result = $result_Api->data;
@@ -152,8 +152,8 @@ View::composer('frontend.widget.__nap_the', function ($view) {
         $url = '/deposit-auto/get-telecom';
         $method = "GET";
         $val = array();
-        $val['secret_key'] = config('api.secret_key');
-        $val['domain'] =config('api.client');
+//        $val['secret_key'] = config('api.secret_key');
+//        $val['domain'] =config('api.client');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if (isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;
