@@ -56,6 +56,7 @@ Route::get('/test',function(){
     return view(theme('theme_id').'.frontend.pages.index');
 });
 Route::get('/clear-cache',function(){
+    Artisan::call('cache:clear');
 
     Cache::flush();
     return json_encode([
@@ -90,7 +91,8 @@ Route::get('/dich-vu/{slug}/data',[ServiceController::class,"showServiceCategory
 //Danh muc game
 
 Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
-
+Route::post('/acc/{id}', [AccController::class,"postBuyAccount"]);
+Route::get('/acc/{id}/data', [AccController::class,"getBuyAccount"]);
 Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
 //Route::get('/thong-tin', function () {
 //    return view('frontend.pages.account.user.index');

@@ -1,4 +1,5 @@
 @if(empty($data->data))
+
     @if(isset($items) && count($items) > 0)
         <div class="item_buy_list row">
             @foreach ($items as $item)
@@ -7,11 +8,6 @@
                     <div class="item_buy_list_in">
                         <div class="item_buy_list_img">
                             <a href="/acc/{{ $item->id }}">
-                                {{--                                @if(isset($item->image_icon))--}}
-                                {{--                                    <img class="item_buy_list_img-sale" src="https://media-tt.nick.vn/{{ $item->image_icon }}"  alt="{{ $item->title }}">--}}
-                                {{--                                @else--}}
-                                {{--                                    <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="{{ $item->title }}">--}}
-                                {{--                                @endif--}}
                                 @if(isset($item->image))
                                     <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
                                 @else
@@ -26,19 +22,23 @@
                         </div>
                         <div class="item_buy_list_info">
                             <div class="row">
-                                <div class="col-6 item_buy_list_info_in">
-                                    Đăng ký : <b>Facebook</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Pet : <b>Có</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Rank : <b>Kim cương</b>
-                                </div>
-                                <div class="col-6 item_buy_list_info_in">
-                                    Ghi chú : <b>Tuyệt vời</b>
-                                </div>
+                                <?php $att_values = $item->groups ?>
+                                    @dd($dataAttribute)
+                                @foreach($dataAttribute as $key => $value)
 
+                                    @if($key < 4)
+                                    <?php $all_values = $value->childs ?>
+                                        @foreach($att_values as $att_value)
+                                            @foreach($all_values as $all_value)
+                                                @if($att_value->id == $all_value -> id)
+                                                    <div class="col-6 item_buy_list_info_in">
+                                                        {{ $value->title }} : <b>{{ $all_value->title }}</b>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         <div class="item_buy_list_more">
