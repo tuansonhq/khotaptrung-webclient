@@ -8,6 +8,7 @@ use Cache;
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 use Illuminate\Http\Request;
+use function Illuminate\Events\queueable;
 
 class VerifyShop extends Middleware
 {
@@ -27,12 +28,21 @@ class VerifyShop extends Middleware
 
     public function handle(Request $request, Closure $next)
     {
-        $result_Api= Cache::rememberForever('verify_shop', function()  {
-            $result_Api = true;
+
+        $data = Cache::rememberForever('verify_shop', function()  {
+            $url = '/very-shop';
+            $method = "POST";
+            $data = DirectAPI::_makeRequest($url,[],$method);
+            return $data;
         });
-        if(!$result_Api){
-            return  response('Shop không có quyền truy cập',403);
+
+        if(isset($data) &&$data->httpcode === 200 && $data->data->status == 1){
+
+            return $next($request);
+
         }
+
+        return response('Shop không có quyền truy cập!');
 
 
     }
