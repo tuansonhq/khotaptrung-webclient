@@ -157,9 +157,6 @@
                 @include('frontend.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
             </div>
 
-{{--            <div class="item_buy_list row" id="account_data">--}}
-{{--                @include('frontend.pages.account.function.__account__data')--}}
-{{--            </div>--}}
         </div>
     </div>
 

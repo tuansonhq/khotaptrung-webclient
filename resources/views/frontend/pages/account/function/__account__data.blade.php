@@ -23,7 +23,7 @@
                         <div class="item_buy_list_info">
                             <div class="row">
                                 <?php $att_values = $item->groups ?>
-                                    @dd($dataAttribute)
+
                                 @foreach($dataAttribute as $key => $value)
 
                                     @if($key < 4)

@@ -20,15 +20,13 @@ class ServiceController extends Controller
             $url = '/get-service-category';
             $method = "GET";
             $val = array();
-//            $val['domain'] = "youtube.com";
             $val['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
                 $val['querry'] = $request->querry;
             }
-
-            $val['secret_key'] = config('api.secret_key');
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if ($result->is_over){
@@ -55,10 +53,7 @@ class ServiceController extends Controller
         $url = '/show-service-category';
         $method = "GET";
         $val = array();
-        $val['domain'] = "youtube.com";
         $val['slug'] = $slug;
-
-        $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
@@ -93,13 +88,12 @@ class ServiceController extends Controller
             $url = '/show-service-category';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
             $val['page'] = $page;
             $val['slug'] = $slug;
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
                 $val['querry'] = $request->querry;
             }
-            $val['secret_key'] = config('api.secret_key');
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;

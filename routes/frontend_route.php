@@ -46,7 +46,7 @@ use Illuminate\Support\Facades\Cache;
 //     dd($result_Api);
 // });
 //Route::group(array('middleware' => ['verify_shop'],'namespace' => 'Frontend'),function(){
-Route::group(array('middleware' => ['verify_shop']),function(){
+//Route::group(array('middleware' => ['verify_shop']),function(){
     Route::post('/user/account_info',[UserController::class,"getInfo"]);
 
 //    Route::group(['middleware' => ['cacheResponse:300']],function(){
@@ -101,7 +101,7 @@ Route::get('/clear-cache',function(){
 
 
     Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
-    Route::post('/acc/{id}', [AccController::class,"postBuyAccount"]);
+    Route::post('/acc/{id}/data', [AccController::class,"postBuyAccount"]);
     Route::get('/acc/{id}/data', [AccController::class,"getBuyAccount"]);
     Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
 
@@ -213,5 +213,5 @@ Route::get('/clear-cache',function(){
     Route::get('/minigame-withdrawitem',[\App\Http\Controllers\Frontend\MinigameController::class,'getWithdrawItem'])->name('getWithdrawItem');
     Route::get('/minigame-{slug}',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndex'])->name('getIndex');
 
-});
+//});
 

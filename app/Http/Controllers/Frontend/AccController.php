@@ -13,8 +13,6 @@ class AccController extends Controller
             $url = '/acc';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
-            $val['secret_key'] = config('api.secret_key');
 
         if ($slug_category == 'danh-muc'){
 
@@ -25,7 +23,6 @@ class AccController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
-//                $items = $data->childs;
                 return view('frontend.pages.account.getShowCategory')->with('data',$data);
 
             }else{
@@ -43,8 +40,6 @@ class AccController extends Controller
                 $data = $result_Api->data;
 
                 $valcategory = array();
-                $valcategory['domain'] = "youtube.com";
-                $valcategory['secret_key'] = config('api.secret_key');
                 $valcategory['data'] = 'category_detail';
                 $valcategory['id'] = $data->id;
 
@@ -57,7 +52,6 @@ class AccController extends Controller
                 $valslider['secret_key'] = config('api.secret_key');
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
-//            $val['group_ids'] = $ids;
 
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
@@ -77,8 +71,6 @@ class AccController extends Controller
         }else{
 
             $valcategory = array();
-            $valcategory['domain'] = "youtube.com";
-            $valcategory['secret_key'] = config('api.secret_key');
             $valcategory['data'] = 'category_detail';
             $valcategory['slug'] = $slug;
 
@@ -87,7 +79,6 @@ class AccController extends Controller
 
             $val['data'] = 'list_acc';
             $val['cat_slug'] = $slug;
-//            $val['group_ids'] = $ids;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
@@ -120,12 +111,8 @@ class AccController extends Controller
             $url = '/acc';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
-            $val['secret_key'] = config('api.secret_key');
-
             $valcategory = array();
-            $valcategory['domain'] = "youtube.com";
-            $valcategory['secret_key'] = config('api.secret_key');
+
             $valcategory['data'] = 'category_detail';
             $valcategory['slug'] = $slug;
 
@@ -172,8 +159,6 @@ class AccController extends Controller
                 $data = $result_Api->data;
 
                 $valcategory = array();
-                $valcategory['domain'] = "youtube.com";
-                $valcategory['secret_key'] = config('api.secret_key');
                 $valcategory['data'] = 'category_detail';
                 $valcategory['id'] = $data->id;
 
@@ -182,8 +167,6 @@ class AccController extends Controller
                 $dataAttribute = $data_category->childs;
 
                 $valslider = array();
-                $valslider['domain'] = "youtube.com";
-                $valslider['secret_key'] = config('api.secret_key');
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
 //            $val['group_ids'] = $ids;
@@ -208,8 +191,26 @@ class AccController extends Controller
         }
     }
 
-    public function postBuyAccount(Request $request){
-        return "aaaaa";
+    public function postBuyAccount(Request $request,$slug){
+        $slug = $request->id;
+        $url = '/acc';
+        $method = "GET";
+        $val = array();
+        $val['id'] = $slug;
+        $val['data'] = 'buy_acc';
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $data = $result_Api->data;
+
+            if ($data->success == 0){
+                return redirect()->back()->with('content', 'Account đã có sở hữu');
+            }elseif ($data->success == 1 ){
+//                return redirect()->to('/tran/acc/thanhcong')->with('content', \App\Library\Helpers::DecodeJson('buyacc_popup',$data->groups[0]->content_json))->with('success', 'Mua tài khoản thành công');
+                return redirect()->back()->with('content', 'Mua tài khoản thành công');
+            }
+
+        }
     }
 
 

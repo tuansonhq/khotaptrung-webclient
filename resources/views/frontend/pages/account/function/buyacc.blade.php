@@ -52,7 +52,6 @@
                             <tr>
                                 <th colspan="2">Chi tiết tài khoản #12333</th>
                             </tr>
-
                             @if(!is_null($dataAttribute) && count($dataAttribute)>0)
 
                                 @foreach($dataAttribute as $index=>$att)
@@ -138,11 +137,10 @@
             <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
         @else
             <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"  id="d3" style="">Xác nhận mua</button>
-
         @endif
     @else
-
-        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>
+        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"  id="d3" style="">Xác nhận mua</button>
+{{--        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>--}}
 
     @endif
 

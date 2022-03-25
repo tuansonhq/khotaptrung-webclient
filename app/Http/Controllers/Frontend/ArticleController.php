@@ -42,10 +42,7 @@ class ArticleController extends Controller
             $url = '/article';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
             $val['page'] = $page;
-
-            $val['secret_key'] = config('api.secret_key');
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
                 $val['querry'] = $request->querry;
@@ -89,8 +86,6 @@ class ArticleController extends Controller
             $url = '/article/'.$slug;
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
-            $val['secret_key'] = config('api.secret_key');
             $val['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
@@ -124,8 +119,6 @@ class ArticleController extends Controller
         $url = '/article/'.$slug;
         $method = "GET";
         $val = array();
-        $val['domain'] = "youtube.com";
-        $val['secret_key'] = config('api.secret_key');
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -161,10 +154,7 @@ class ArticleController extends Controller
         $url = '/show-service-category';
         $method = "GET";
         $val = array();
-        $val['domain'] = "youtube.com";
         $val['slug'] = $slug;
-
-        $val['secret_key'] = config('api.secret_key');
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
