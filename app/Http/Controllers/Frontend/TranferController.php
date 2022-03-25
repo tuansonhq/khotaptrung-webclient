@@ -46,7 +46,7 @@ class TranferController extends Controller
 
                     return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
-                    return 'sai';
+                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -87,7 +87,7 @@ class TranferController extends Controller
 
                     return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
                 } else {
-                    return 'sai';
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -130,7 +130,7 @@ class TranferController extends Controller
 //
 //                    }
                     } else {
-                        return 'sai';
+                         return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                     }
                 }
                 catch(\Exception $e){

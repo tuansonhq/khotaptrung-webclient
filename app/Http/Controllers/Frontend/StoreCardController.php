@@ -30,7 +30,7 @@ class StoreCardController extends Controller
 
                     }
                 } else {
-                    return 'sai';
+                   return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -77,7 +77,7 @@ class StoreCardController extends Controller
 
                     }
                     } else {
-                        return 'sai';
+                       return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                     }
                 }
                 catch(\Exception $e){
