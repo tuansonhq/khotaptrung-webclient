@@ -160,6 +160,7 @@ return [
         'route'           => true,  // Current route information
         'auth'            => true, // Display Laravel authentication status
         'gate'            => true,  // Display Laravel Gate checks
+        'cookie'          => true,  // Display cookie data
         'session'         => true,  // Display session data
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => true,  // Catch mail messages

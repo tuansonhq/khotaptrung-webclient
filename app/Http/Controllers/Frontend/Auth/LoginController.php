@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Session;
 
 class LoginController extends Controller
 {
@@ -23,17 +24,12 @@ class LoginController extends Controller
             'username.required' => __('Vui lòng nhập tài khoản'),
             'password.required' => __('Vui lòng nhập mật khẩu'),
         ]);
-
         try{
-
             $url = '/login';
             $method = "POST";
             $data = array();
             $data['username'] = $request->username;
             $data['password'] = $request->password;
-            $data['secret_key'] = config('api.secret_key');
-//            dd($data['secret_key']);
-            $data['domain'] = 'youtube.com';
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
@@ -41,18 +37,13 @@ class LoginController extends Controller
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
                     $time_exp_token = $time + $exp_token;
-                    // session()->put('auth_token', $result->token);
-                    // session()->put('exp_token', $result->exp_token);
-                    // session()->put('time_exp_token', $time_exp_token);
-                    $cookie = cookie('jwt',$result->token,60*24); //1 day
-                    $exp_token = cookie('exp_token',$result->exp_token,60*24); //1 day
-                    $exp_token = cookie('time_exp_token',$time_exp_token,60*24); //1 day
-
-                    return redirect()->to('/')->withCookie($cookie);
+                    Session::put('jwt',$result->token);
+                    Session::put('exp_token',$result->exp_token);
+                    Session::put('time_exp_token',$time_exp_token);
+                    return redirect()->to('/');
                 }
                 else{
                     return redirect()->back()->withErrors($result->message);
-
                 }
             }else{
                 $result = $result_Api->data;
@@ -64,109 +55,33 @@ class LoginController extends Controller
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
     }
-    public function refreshToken(Request $request){
-
-        try{
-
-            $url = '/logout';
-            $method = "POST";
-            $data = array();
-            $data['token'] = $request->cookie('jwt');
-            $data['secret_key'] = config('api.secret_key');
-            $data['domain'] = 'youtube.com';
-
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-//                    Clear
-//                    $time = strtotime(Carbon::now());
-//                    $exp_token = $result->exp_token;
-//                    $time_exp_token = $time + $exp_token;
-//                    session()->put('auth_token', $result->token);
-//                    session()->put('exp_token', $result->exp_token);
-//                    session()->put('time_exp_token', $time_exp_token);
-//                    sessionStorage.clear();
-//                    return 'Đăng xuất thành công';
-//                    return redirect()->back();
-//                    return 'aaaa';
-                    $request->session()->forget('auth_token');
-                    $request->session()->forget('exp_token');
-                    $request->session()->forget('time_exp_token');
-                    return redirect()->to('/');
-//                    return view('frontend.pages.index');
-
-                }
-                else{
-                    return redirect()->back()->withErrors($result->message);
-
-                }
-            }
-            else{
-                $result = $result_Api->data;
-                return redirect()->back()->withErrors($result->message);
-            }
-        }
-        catch(\Exception $e){
-            Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
-
-
-    }
+   
     public function logout(Request $request){
-
+        dd('dasdnklfasd');
         try{
-
             $url = '/logout';
             $method = "POST";
             $data = array();
-            $data['token'] = $request->cookie('jwt');
-            $data['secret_key'] = config('api.secret_key');
-            $data['domain'] = 'youtube.com';
-
+            $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
+            dd($result_Api);
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                Session::flush();
+                return redirect()->to('/');
+            }
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
-//                    Clear
-//                    $time = strtotime(Carbon::now());
-//                    $exp_token = $result->exp_token;
-//                    $time_exp_token = $time + $exp_token;
-//                    session()->put('auth_token', $result->token);
-//                    session()->put('exp_token', $result->exp_token);
-//                    session()->put('time_exp_token', $time_exp_token);
-//                    sessionStorage.clear();
-//                    return 'Đăng xuất thành công';
-//                    return redirect()->back();
-//                    return 'aaaa';
-                    $request->session()->forget('auth_token');
-                    $request->session()->forget('exp_token');
-                    $request->session()->forget('time_exp_token');
+                    Session::flush();
                     return redirect()->to('/');
-//                    return view('frontend.pages.index');
-
-                }
-                else{
-                    return redirect()->to('/');
-//                    return redirect()->back()->withErrors($result->message);
-
                 }
             }
-            else{
-                $result = $result_Api->data;
-                return redirect()->to('/');
-//                return redirect()->back()->withErrors($result->message);
-            }
+            return redirect()->to('/');
         }
         catch(\Exception $e){
             Log::error($e);
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
-
-
     }
     public function loginfacebook(Request $request)
     {
