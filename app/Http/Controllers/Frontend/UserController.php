@@ -60,8 +60,8 @@ class UserController extends Controller
                 $method = "GET";
                 $data = array();
                 $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+//                $data['secret_key'] = config('api.secret_key');
+//                $data['domain'] = 'youtube.com';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
                 if(isset($result_Api) && $result_Api->httpcode == 200){

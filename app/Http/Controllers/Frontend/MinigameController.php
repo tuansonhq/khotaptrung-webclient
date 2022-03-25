@@ -16,8 +16,8 @@ class MinigameController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $request->cookie('jwt');
-            $data['secret_key'] = config('api.secret_key');
-            $data['domain'] = 'youtube.com';
+//            $data['secret_key'] = config('api.secret_key');
+//            $data['domain'] = 'youtube.com';
 
             $group_api = Cache::get('minigame_list');
             if(!isset($group_api)){
@@ -63,14 +63,18 @@ class MinigameController extends Controller
                             return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
                         case 'smashwheel':
                             return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                        case 'rungcay':
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                        case 'gieoque':
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         default:
-                            return 'sai';
+                            return redirect()->back()->withErrors($result_out->message);
                     }
                 } else {
                     return redirect()->back()->withErrors($result_out->message);
                 }
             } else {
-                return 'sai';
+                return redirect()->back()->withErrors($result_out->message);
             }
         }
         catch(\Exception $e){
@@ -127,7 +131,7 @@ class MinigameController extends Controller
                             'msg'=> $result->msg
                         ], 200);
                     }
-                } else {                    
+                } else {
                     return response()->json([
                         'status' => 0,
                         'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
@@ -188,7 +192,7 @@ class MinigameController extends Controller
                             'msg'=> $result->msg
                         ], 200);
                     }
-                } else {                    
+                } else {
                     return response()->json([
                         'status' => 0,
                         'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
@@ -214,7 +218,7 @@ class MinigameController extends Controller
                 $data['secret_key'] = config('api.secret_key');
                 $data['domain'] = 'youtube.com';
 
-                $group_api = Cache::get('minigame_list');                
+                $group_api = Cache::get('minigame_list');
                 if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
@@ -253,7 +257,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                     $result = $result_Api->data;
                     if (isset($result->status) && $result->status == 0) {
-                        return redirect()->back()->withErrors($result_out->message);                    
+                        return redirect()->back()->withErrors($result_out->message);
                     } else {
                         $perPage = $result->per_page??0;
                         $total = $result->total??0;
@@ -321,7 +325,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                     $result = $result_Api->data;
                     if (isset($result->status) && $result->status == 0) {
-                        return redirect()->back()->withErrors($result_out->message);                    
+                        return redirect()->back()->withErrors($result_out->message);
                     } else {
                         $perPage = $result->per_page??0;
                         $total = $result->total??0;

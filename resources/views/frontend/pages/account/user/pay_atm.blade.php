@@ -106,13 +106,13 @@
 
                             </div>
 
-                            <div class="account_pay_card comfirm_tranfer_alert"  id="recharge-info">
-                                <div class="recharge_atm alert alert-info">
 
-                                </div>
-                            </div>
                         </form>
+                        <div class="account_pay_card comfirm_tranfer_alert"  id="recharge-info">
+                            <div class="recharge_atm alert alert-info">
 
+                            </div>
+                        </div>
                         <div id="data_pay_card_history">
                             @include('frontend.pages.account.user.function.__pay_atm')
                         </div>

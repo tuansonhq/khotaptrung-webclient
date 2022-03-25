@@ -27,13 +27,13 @@
                     <div class="tab-content">
                         <div class="tab-pane  fade show active" id="top_napthe">
                             <div class="content-banner-card-box">
-                                {!! widget('frontend.widget.__top_nap_the',60) !!}
+{{--                                {!! widget('frontend.widget.__top_nap_the',60) !!}--}}
 
                             </div>
                         </div>
                         <div class="tab-pane  fade show " id="napthe">
                             <div class="content-banner-card-form">
-{{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
+                                {!! widget('frontend.widget.__nap_the') !!}
                             </div>
                         </div>
                     </div>

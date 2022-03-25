@@ -53,19 +53,17 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(data);
                 if(data.status == 1){
-                    alert(data.message);
                     let html = '';
                     html +='<p>Khởi tạo đơn hàng thành công</p>';
                     html +='<p>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo nội dung sau:</p>';
-                    html += '<p><b>'+data.title+' <i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.title+'" aria-hidden="true"></i> </b></p>' ;
-                    html += '<p><b>Số tài khoản: </b> <b style="color:red">'+data.number_account+' </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.number_account+'" aria-hidden="true"></i></b></p>';
-                    html += '<p><b>Chủ tài khoản: </b> <b style="color:red">'+data.account_name+' </b>  <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.account_name+'" aria-hidden="true"></i></b></p>';
-                    html += '<p><b>Số tiền: </b> <b style="color:red">'+formatNumber(data.price)+' VNĐ </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.price+'" aria-hidden="true"></i></b></p>';
-                    html += '<p><b>Nội dung chuyển khoản: </b> <b style="color:red">'+data.code+' </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.code+'" aria-hidden="true"></i></b></p>';
-                    html += '<button type="button" class="btn c-theme-btn c-btn-square m-b-10" style="margin-left: 0px;margin-top: 10px" id="reload">Hoàn thành</button>';
-                    $('#recharge-info .recharge_atm ').html(html);
+                    html += '<p><b>'+data.data.title+' <i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.title+'" aria-hidden="true"></i> </b></p>' ;
+                    html += '<p><b>Số tài khoản: </b> <b style="color:red">'+data.data.number_account+' </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.number_account+'" aria-hidden="true"></i></b></p>';
+                    html += '<p><b>Chủ tài khoản: </b> <b style="color:red">'+data.data.account_name+' </b>  <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.account_name+'" aria-hidden="true"></i></b></p>';
+                    html += '<p><b>Số tiền: </b> <b style="color:red">'+ formatNumber(data.data.price)+' VNĐ </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b></p>';
+                    html += '<p><b>Nội dung chuyển khoản: </b> <b style="color:red">'+data.data.code+' </b> <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.code+'" aria-hidden="true"></i></b></p>';
+                    html += '<button type="button" class="btn c-theme-btn c-btn-square m-b-10" style="margin-left: 0px;margin-top: 10px" id="reload_complete">Hoàn thành</button>';
+                    $('#recharge-info .recharge_atm').html(html);
                     $('#recharge-info .recharge_atm ').css('display','block');
                     formSubmit.remove();
                 }
@@ -120,8 +118,8 @@ $(document).ready(function(){
         $temp.remove();
         toastr.success('Đã sao chép: '+ data);
     })
-    $('body').on('click','button#reload',function(){
-        location.reload();
+    $('body').on('click','#reload_complete',function(){
+        window.location.reload()
     })
 
     let page = $('#hidden_page_service').val();

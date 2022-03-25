@@ -64,7 +64,7 @@ class ChargeController extends Controller
 //
 //                                    }
 //                                }else{
-//                                    return 'sai';
+//                                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
 //                                }
 //                            }
 //                            catch(\Exception $e){
@@ -77,7 +77,7 @@ class ChargeController extends Controller
 //
 //                        }
 //                    } else {
-//                        return 'sai';
+//                         return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
 //                    }
 //            }
 //            catch(\Exception $e){
@@ -116,7 +116,7 @@ class ChargeController extends Controller
                     return view('frontend.pages.account.user.pay_card', compact('bank','data'));
 //            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
-                    return 'sai';
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -163,7 +163,7 @@ class ChargeController extends Controller
                     return redirect()->back()->withErrors($result->message);
                 }
             }else{
-                return 'sai';
+                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
 
@@ -201,7 +201,7 @@ class ChargeController extends Controller
 
                     }
                 } else {
-                    return 'sai';
+                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -298,7 +298,7 @@ class ChargeController extends Controller
 
                     }
                 } else {
-                    return 'sai';
+                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -352,7 +352,7 @@ class ChargeController extends Controller
                     return redirect()->back()->withErrors($result->message);
                 }
             }else{
-                return 'sai';
+                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
     }
@@ -411,7 +411,7 @@ class ChargeController extends Controller
                     return redirect()->back()->withErrors($result->message);
                 }
             }else{
-                return 'sai';
+                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
     }
@@ -439,7 +439,7 @@ class ChargeController extends Controller
 
                     }
                 }else{
-                    return 'sai';
+                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){

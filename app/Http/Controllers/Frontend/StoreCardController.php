@@ -15,8 +15,8 @@ class StoreCardController extends Controller
                 $method = "GET";
                 $data = array();
                 $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+//                $data['secret_key'] = config('api.secret_key');
+//                $data['domain'] = 'youtube.com';
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
@@ -30,7 +30,7 @@ class StoreCardController extends Controller
 
                     }
                 } else {
-                    return 'sai';
+                   return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -77,7 +77,7 @@ class StoreCardController extends Controller
 
                     }
                     } else {
-                        return 'sai';
+                       return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                     }
                 }
                 catch(\Exception $e){

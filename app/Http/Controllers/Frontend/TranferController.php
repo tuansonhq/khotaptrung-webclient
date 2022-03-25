@@ -46,7 +46,7 @@ class TranferController extends Controller
 
                     return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
-                    return 'sai';
+                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -87,7 +87,7 @@ class TranferController extends Controller
 
                     return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
                 } else {
-                    return 'sai';
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -107,8 +107,8 @@ class TranferController extends Controller
                     $method = "GET";
                     $data = array();
                     $data['token'] = $request->cookie('jwt');
-                    $data['secret_key'] = config('api.secret_key');
-                    $data['domain'] = 'youtube.com';
+//                    $data['secret_key'] = config('api.secret_key');
+//                    $data['domain'] = 'youtube.com';
 
                     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
@@ -130,7 +130,7 @@ class TranferController extends Controller
 //
 //                    }
                     } else {
-                        return 'sai';
+                         return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                     }
                 }
                 catch(\Exception $e){
@@ -161,8 +161,8 @@ class TranferController extends Controller
                 $method = "POST";
                 $data = array();
                 $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+//                $data['secret_key'] = config('api.secret_key');
+//                $data['domain'] = 'youtube.com';
                 $data['bank_id'] = $request->id_bank;
                 $data['amount'] = $request->tranfer_money;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
