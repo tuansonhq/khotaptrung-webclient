@@ -46,7 +46,7 @@
     font-size: 16px;
     font-weight: 400;
 }
-.news_breadcrumbs_theme li a h1 {
+.news_breadcrumbs_theme li a p {
     color: #3f444a;
     font-size: 22px;
     margin: 10px 0;
