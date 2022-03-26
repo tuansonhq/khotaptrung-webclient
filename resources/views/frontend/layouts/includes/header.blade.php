@@ -77,7 +77,7 @@
                     </span>
                 @else
                     <span>
-                        <a href="/login"> Đâng nhập</a>
+                        <a href="/login"> Đăng nhập</a>
                         <a href="/register">Đăng ký</a>
                     </span>
                 @endif
