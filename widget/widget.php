@@ -95,6 +95,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     $url = '/article';
     $method = "GET";
     $val = array();
+
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
     $result = $result_Api->data;
