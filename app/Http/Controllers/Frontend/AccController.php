@@ -38,13 +38,20 @@ class AccController extends Controller
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
-
+                $slug_cate = '';
+                foreach ($data->groups as $da){
+                    if ($da->module == 'acc_category'){
+                        $slug_cate = $da->id;
+                    }
+                }
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
-                $valcategory['id'] = $data->id;
+                $valcategory['id'] = $slug_cate;
 
                 $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
                 $data_category = $result_Api_category->data;
+
+//                return $data_category;
                 $dataAttribute = $data_category->childs;
 
                 $valslider = array();
@@ -192,7 +199,7 @@ class AccController extends Controller
         $val['data'] = 'buy_acc';
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
+        return $result_Api;
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
 

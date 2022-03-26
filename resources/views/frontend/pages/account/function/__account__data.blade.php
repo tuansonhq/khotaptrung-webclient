@@ -26,37 +26,13 @@
                             <div class="item_buy_list_info">
                                 <div class="row">
                                     <?php $att_values = $item->groups ?>
-
-                                    @foreach($dataAttribute as $key => $value)
-
-                                        @if($key < 4)
-                                            @if($value->position == 'select')
-                                            <?php $all_values = $value->childs;  ?>
-                                                @foreach($att_values as $att_value)
-                                                    @foreach($all_values as $all_value)
-                                                        @if($att_value->id == $all_value -> id)
-                                                            <div class="col-6 item_buy_list_info_in">
-                                                                {{ $value->title }} : <b>{{ $all_value->title }}</b>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach
-                                            @elseif($value->position == 'text')
-                                                @php
-                                                    $ext_infos = json_decode(json_encode($item->params->ext_info), true);
-                                                @endphp
-                                                @foreach($ext_infos as $k => $ext_info)
-                                                    @foreach($value->childs as $value_child)
-                                                        @if($value_child->id == $k)
-                                                            <div class="col-6 item_buy_list_info_in">
-                                                                {{ $value_child->title }} : <b>{{ $ext_info }}</b>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                @endforeach
-                                            @endif
+                                    @foreach($att_values as $att_value)
+                                        {{--                                            @dd($att_value)--}}
+                                        @if($att_value->module == 'acc_label')
+                                            <div class="col-6 item_buy_list_info_in">
+                                                {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
+                                            </div>
                                         @endif
-
                                     @endforeach
                                 </div>
                             </div>
@@ -101,20 +77,11 @@
                             <div class="item_buy_list_info">
                                 <div class="row">
                                     <?php $att_values = $item->groups ?>
-
-                                    @foreach($dataAttribute as $key => $value)
-
-                                        @if($key < 4)
-                                            <?php $all_values = $value->childs ?>
-                                            @foreach($att_values as $att_value)
-                                                @foreach($all_values as $all_value)
-                                                    @if($att_value->id == $all_value -> id)
-                                                        <div class="col-6 item_buy_list_info_in">
-                                                            {{ $value->title }} : <b>{{ $all_value->title }}</b>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            @endforeach
+                                    @foreach($att_values as $att_value)
+                                        @if($att_value->module == 'acc_label')
+                                            <div class="col-6 item_buy_list_info_in">
+                                                {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
+                                            </div>
                                         @endif
                                     @endforeach
                                 </div>
