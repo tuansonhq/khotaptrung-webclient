@@ -31,6 +31,7 @@ class Authenticate extends Middleware
 //             $request->header()
 //         }
 
+
          if(!session('auth_custom')){
              if($request->ajax()){
                  return response()->json([
