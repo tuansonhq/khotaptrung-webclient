@@ -24,7 +24,7 @@ $(document).ready(function(){
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
-                    // window.location.href = '/logout';
+                    window.location.href = '/logout';
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
