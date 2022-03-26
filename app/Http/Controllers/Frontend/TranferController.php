@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Log;
+use Session;
 use function PHPUnit\Framework\isEmpty;
 
 class TranferController extends Controller
@@ -14,25 +16,21 @@ class TranferController extends Controller
     //
     public function getBank(Request $request)
     {
-        if($request->hasCookie('jwt')){
+        if(AuthCustom::check()){
             try{
-
                 $urlhistory = '/transfer/history';
                 $url = '/transfer/get-bank';
-
                 $method = "GET";
-
                 $val = array();
-
-                $val['token'] = $request->cookie('jwt');
-                $val['secret_key'] = config('api.secret_key');
-                $val['domain'] = 'youtube.com';
-
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] =$jwt;
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
                 $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
-
-
                 if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
                     $tranferbank = $result_Api->data;
 
@@ -63,16 +61,20 @@ class TranferController extends Controller
 
     public function getBankData(Request $request)
     {
-        if ($request->ajax() && $request->hasCookie('jwt')) {
+        if ($request->ajax() && AuthCustom::check()) {
             try{
                 $page = $request->page;
                 $urlhistory = '/transfer/history';
 
                 $method = "GET";
                 $val = array();
-                $val['token'] = $request->cookie('jwt');
-                $val['secret_key'] = config('api.secret_key');
-                $val['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] =$jwt;
                 $val['page'] = $page;
 
                 $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
@@ -100,13 +102,19 @@ class TranferController extends Controller
     public function postDepositBank(Request $request)
     {
         if ($request->ajax()){
-            if($request->hasCookie('jwt')){
+            if(AuthCustom::check()){
                 try{
 
                     $url = '/transfer/get-bank';
                     $method = "GET";
                     $data = array();
-                    $data['token'] = $request->cookie('jwt');
+                    $jwt = Session::get('jwt');
+                    if(empty($jwt)){
+                        return response()->json([
+                            'status' => "LOGIN"
+                        ]);
+                    }
+                    $data['token'] =$jwt;
 //                    $data['secret_key'] = config('api.secret_key');
 //                    $data['domain'] = 'youtube.com';
 
@@ -155,14 +163,18 @@ class TranferController extends Controller
 //        if ($validator->fails()) {
 //            return Response()->json($validator->errors());
 //        }
-        if($request->hasCookie('jwt')){
+        if(AuthCustom::check()){
             try{
                 $url = '/transfer';
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
-//                $data['secret_key'] = config('api.secret_key');
-//                $data['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
                 $data['bank_id'] = $request->id_bank;
                 $data['amount'] = $request->tranfer_money;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);

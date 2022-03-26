@@ -3,20 +3,28 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
+use Session;
 
 class StoreCardController extends Controller
 {
     public function getTelecomStoreCard(Request $request){
-        if($request->hasCookie('jwt')){
+
+        if(AuthCustom::check()){
+
             try{
                 $url = '/store-card/get-telecom';
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
-//                $data['secret_key'] = config('api.secret_key');
-//                $data['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
@@ -40,6 +48,7 @@ class StoreCardController extends Controller
 
         }
         else{
+
             return redirect('login');
         }
 
@@ -55,9 +64,13 @@ class StoreCardController extends Controller
                     $url = '/store-card/get-amount';
                     $method = "GET";
                     $data = array();
-                    $data['token'] = $request->cookie('jwt');
-                    $data['secret_key'] = config('api.secret_key');
-                    $data['domain'] = 'youtube.com';
+                    $jwt = Session::get('jwt');
+                    if(empty($jwt)){
+                        return response()->json([
+                            'status' => "LOGIN"
+                        ]);
+                    }
+                    $data['token'] =$jwt;
                     $data['telecom'] = $request->telecom;
 
 
@@ -92,14 +105,18 @@ class StoreCardController extends Controller
 
     public function postStoreCard(Request $request)
     {
-        if($request->hasCookie('jwt')){
+        if(AuthCustom::check()){
             try{
                 $url = '/store-card';
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
                 $data['telecom_key'] = $request->telecom_key;
                 $data['amount'] = $request->amount;
                 $data['quantity'] = $request->quantity;

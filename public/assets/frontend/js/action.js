@@ -14,7 +14,7 @@ $( document ).ready(function() {
             } else {
                 $(".nav-bar-container").css("height","120px");
                 $(".nav-bar-category .nav li a").css("line-height","120px");
-                $(".nav-bar-brand").css("margin","20px 0");
+                $(".nav-bar-brand").css("margin","30px 0");
                 $("header .nav-bar").css("background-color","rgba(0,0,0,0.8)");
             }
         }
