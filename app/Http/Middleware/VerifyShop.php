@@ -33,6 +33,7 @@ class VerifyShop extends Middleware
             $url = '/very-shop';
             $method = "POST";
             $data = DirectAPI::_makeRequest($url,[],$method);
+
             return $data;
         });
 

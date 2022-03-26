@@ -85,7 +85,11 @@ $(document).ready(function(){
                                             html += '<i class="fas fa-calendar-alt"></i> ' + new Date(data.created_at).toLocaleDateString() +'';
                                         html += '</div>';
                                         html += '<div>';
+                                        if (data.groups[0] == null || data.groups[0] == '' || data.groups[0] == undefined){
+                                            html += '<i class="fas fa-newspaper"></i><a href=""> ' + '' + ' </a>';
+                                        }else {
                                             html += '<i class="fas fa-newspaper"></i><a href=""> ' + data.groups[0].title + ' </a>';
+                                        }
                                         html += '</div>';
                                     html += '</div>';
 
@@ -130,7 +134,12 @@ $(document).ready(function(){
                             html += '<i class="fas fa-calendar-alt"></i> ' + new Date(data.created_at).toLocaleDateString() +'';
                             html += '</div>';
                             html += '<div>';
-                            html += '<i class="fas fa-newspaper"></i><a href=""> ' + data.groups[0].title + ' </a>';
+                            if (data.groups[0] == null || data.groups[0] == '' || data.groups[0] == undefined){
+                                html += '<i class="fas fa-newspaper"></i><a href=""> ' + '' + ' </a>';
+                            }else {
+                                html += '<i class="fas fa-newspaper"></i><a href=""> ' + data.groups[0].title + ' </a>';
+                            }
+
                             html += '</div>';
                             html += '</div>';
 

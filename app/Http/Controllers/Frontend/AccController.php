@@ -77,6 +77,7 @@ class AccController extends Controller
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
             $data = $result_Api_category->data;
 
+            return $result_Api_category;
             $val['data'] = 'list_acc';
             $val['cat_slug'] = $slug;
 
