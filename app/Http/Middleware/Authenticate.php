@@ -34,17 +34,16 @@ class Authenticate extends Middleware
 //             $request->header()
 //         }
 
-//         dd('hê');
+
          if(!session('auth_custom')){
              if($request->ajax()){
-
                  return response()->json([
                      'status' => 401,
                      'message'=>"unauthencation"
                  ]);
              }
              else{
-                 return route('login');
+                 return redirect('login');
              }
 
 
