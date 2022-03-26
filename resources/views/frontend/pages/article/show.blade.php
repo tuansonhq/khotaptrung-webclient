@@ -14,9 +14,9 @@
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
-                            <li><a href="/tin-tuc" class="news_breadcrumbs_theme_tintuc_a"><h3 class="news_breadcrumbs_theme_tintuc">Tin tức</h3></a></li>
+                            <li><a href="/tin-tuc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Tin tức</p></a></li>
                             <li>/</li>
-                            <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">{{ $data->title }}</h1></a></li>
+                            <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ $data->title }}</p></a></li>
                         </ul>
                     </div>
                 </div>
