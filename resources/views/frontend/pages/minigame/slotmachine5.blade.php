@@ -546,8 +546,7 @@
                             $('#noticeModal').modal('show');
                             return;
                         }
-                        $('#noticeModal .content-popup').append("<div style='color:blue'>" + data.msg + " - " + data.arr_gift[0].title + "</div>");
-                        //$("#noticeModalNoHu #btnWithdraw").hide();
+                        $('#noticeModal .content-popup').append('<div style=\'color:blue\'>' + data.msg + ' - ' + data.arr_gift[0].title + '</div>');
                         $('#noticeModal').modal('show');
                         var userpoint = data.userpoint;
                         if(userpoint<100){
