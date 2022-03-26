@@ -17,7 +17,8 @@ $(document).ready(function(){
             url: url,
             cache:false,
             data: {
-                _token:csrf_token
+                _token:csrf_token,
+                jwt:token
             },
             beforeSend: function (xhr) {
                 
@@ -25,6 +26,7 @@ $(document).ready(function(){
             success: function (data) {
                 if(data.status === "LOGIN"){
                     window.location.href = '/logout';
+                    return;
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
@@ -40,6 +42,7 @@ $(document).ready(function(){
             },
             error: function (data) {
                 alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                return;
             },
             complete: function (data) {
               

@@ -57,14 +57,12 @@ class LoginController extends Controller
     }
 
     public function logout(Request $request){
-//        dd('dasdnklfasd');
         try{
             $url = '/logout';
             $method = "POST";
             $data = array();
             $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-//            dd($result_Api);
             if(isset($result_Api) && $result_Api->httpcode == 401){
                 Session::flush();
                 return redirect()->to('/');
@@ -88,11 +86,7 @@ class LoginController extends Controller
         $url = '/loginfacebook';
         $method = "POST";
         $data = array();
-
-        $data['secret_key'] = config('api.secret_key');
-        $data['domain'] = 'youtube.com';
         $data['accessToken'] = $request->accessToken;
-
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;

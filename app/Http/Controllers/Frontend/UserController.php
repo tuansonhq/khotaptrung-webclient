@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Session;
 
 
 class UserController extends Controller
@@ -16,7 +17,8 @@ class UserController extends Controller
 
     public function getInfo(Request $request){
         try{
-            if(!$request->hasCookie('jwt')){
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
@@ -24,7 +26,7 @@ class UserController extends Controller
             $url = '/profile';
             $method = "GET";
             $data = array();
-            $data['token'] = $request->session()->get('jwt');
+            $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;

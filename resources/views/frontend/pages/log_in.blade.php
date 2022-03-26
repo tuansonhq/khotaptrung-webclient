@@ -5,8 +5,6 @@
             <p>Đăng nhập hệ thống</p>
             <form action="{{route('login')}}" method="POST">
             <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
-
-            <form action="{{route('loginApi')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Tài khoản" name="username">
