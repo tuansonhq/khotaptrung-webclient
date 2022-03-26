@@ -81,8 +81,8 @@ Route::get('/acb', function () {
 
 
     Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
-    Route::post('/acc/{id}/data', [AccController::class,"postBuyAccount"]);
-    Route::get('/acc/{id}/data', [AccController::class,"getBuyAccount"]);
+    Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
+    Route::get('/buy-acc/{id}/databuy', [AccController::class,"getBuyAccount"]);
     Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
 
 //Route::get('/thong-tin', function () {

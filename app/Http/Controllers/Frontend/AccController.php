@@ -90,10 +90,12 @@ class AccController extends Controller
 
                 $dataAttribute = $data->childs;
 
+//                return $dataAttribute;
                 return view('frontend.pages.account.accountList')
                     ->with('data',$data)
                     ->with('dataAttribute',$dataAttribute)
                     ->with('items',$items)
+                    ->with('slug',$slug)
                     ->with('slug_category',$slug_category);
 
             }else{
@@ -131,6 +133,7 @@ class AccController extends Controller
 
                 $dataAttribute = $data->childs;
                 return view('frontend.pages.account.function.__account__data')
+                    ->with('data',$data)
                     ->with('items',$items)
                     ->with('dataAttribute',$dataAttribute)
                     ->with('slug_category',$slug_category);
@@ -144,14 +147,14 @@ class AccController extends Controller
 
         if ($request->ajax()){
 
+            $id = $slug;
+
             $url = '/acc';
             $method = "GET";
             $val = array();
-            $val['domain'] = "youtube.com";
-            $val['secret_key'] = config('api.secret_key');
 
             $val['data'] = 'acc_detail';
-            $val['id'] = $slug;
+            $val['id'] = $id;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
@@ -160,20 +163,12 @@ class AccController extends Controller
 
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
-                $valcategory['id'] = $data->id;
+                $valcategory['id'] = $data->parent_id;
 
                 $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+
                 $data_category = $result_Api_category->data;
                 $dataAttribute = $data_category->childs;
-
-                $valslider = array();
-                $valslider['data'] = 'list_acc';
-                $valslider['cat_slug'] = $data_category->slug;
-//            $val['group_ids'] = $ids;
-
-                $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
-                $sliders = $result_Api_slider->data;
-                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
                 $html =  view('frontend.pages.account.function.buyacc')
                     ->with('dataAttribute',$dataAttribute)
@@ -192,7 +187,7 @@ class AccController extends Controller
     }
 
     public function postBuyAccount(Request $request,$slug){
-        $slug = $request->id;
+
         $url = '/acc';
         $method = "GET";
         $val = array();
@@ -200,6 +195,7 @@ class AccController extends Controller
         $val['data'] = 'buy_acc';
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
 
