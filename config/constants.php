@@ -23,5 +23,10 @@ return [
         '8' => 'pubgm',
         '9' => 'aumobile'
     ],
-
+    'withdraw_status' => [
+        '0'=>'Chờ xử lý',
+        '1'=>'Hoàn thành',
+        '2'=>'Thanh toán lỗi',
+        '3'=>'Giao dịch lỗi (xem tiến độ)'
+    ],
 ];

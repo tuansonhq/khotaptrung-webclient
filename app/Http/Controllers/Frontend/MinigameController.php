@@ -16,8 +16,8 @@ class MinigameController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $request->cookie('jwt');
-//            $data['secret_key'] = config('api.secret_key');
-//            $data['domain'] = 'youtube.com';
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = 'youtube.com';
 
             $group_api = Cache::get('minigame_list');
             if(!isset($group_api)){
@@ -332,6 +332,90 @@ class MinigameController extends Controller
                         $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                         $paginatedItems->setPath($request->url());
                         return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
+                    }
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }else{
+            return redirect('login');
+        }
+    }
+
+    public function getWithdrawItem(Request $request){
+        if($request->hasCookie('jwt')){
+            try{
+                $game_type = $request->game_type;
+                $method = "GET";
+                $data = array();
+                $data['token'] = $request->cookie('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $url = '/minigame/get-withdraw-item';
+                $data['page'] = $request->page;
+                $data['game_type'] = $game_type;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $result = $result_Api->data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return redirect('login');              
+                    } else {
+                        $paginatedItems = null;
+                        if($result->withdraw_history->total>0){
+                            $perPage = $result->withdraw_history->per_page??0;
+                            $total = $result->withdraw_history->total??0;
+                            $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
+                            $paginatedItems->setPath($request->url());
+                        }
+                        return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
+                    }
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }else{
+            return redirect('login');
+        }
+    }
+
+    public function postWithdrawItem(Request $request){
+        if($request->hasCookie('jwt')){
+            $this->validate($request, [
+                'idgame' => 'required'
+
+            ], [
+                'idgame.required' => "Vui lòng nhập ID trong game để rút tiền"
+
+            ]);
+            try{
+                $game_type = $request->game_type;
+                $method = "POST";
+                $data = array();
+                $data['token'] = $request->cookie('jwt');
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = 'youtube.com';
+                $url = '/minigame/post-withdraw-item';
+                $data['type'] = $game_type;
+                $data['package'] = $request->package;
+                $data['idgame'] = $request->idgame;
+                $data['phone'] = $request->phone;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $result = $result_Api->data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return redirect('login');              
+                    }else if(isset($result->status) && $result->status == 0){
+                        return redirect()->back()->withErrors($result->msg);
+                    }else {
+                        return redirect()->back()->with('success',__($result->msg));
                     }
                 } else {
                     return 'sai';
