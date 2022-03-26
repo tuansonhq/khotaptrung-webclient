@@ -4,7 +4,7 @@
     <title id="metatitle">{{setting('sys_title')}}</title>
 @endif
 @if (isset($data->description))
-    <meta name="description" content="{{ $data->description }}">
+    <meta name="description" content="{!! $data->description !!}">
 @else
     <meta name="description" content="{{setting('sys_description')}}">
 @endif
