@@ -9,12 +9,12 @@
 
 <div class="modal-body">
     <div class="c-content-tab-4 c-opt-3" role="tabpanel">
-        <ul class="nav nav-justified" role="tablist">
-            <li role="presentation" class="active">
+        <ul class="nav nav-justified nav-justified__ul" role="tablist">
+            <li role="presentation" class="active justified__ul_li">
                 <a href="#payment" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
             </li>
-            <li role="presentation">
-                <a href="#info" role="tab" data-toggle="tab" class="c-font-16">Tài khoản</a>
+            <li role="presentation" class="justified__ul_li">
+                <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Tài khoản</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -43,7 +43,7 @@
                     </li>
                 </ul>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="info">
+            <div role="tabpanel" class="tab-pane fade" id="info2">
                 <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                     <li class="c-font-dark">
                         <table class="table table-striped">
@@ -88,10 +88,12 @@
     </div>
 
     <div class="form-group {{ $errors->has('coupon')? 'has-danger':'' }}">
-        <label class="col-md-3 form-control-label">Mã giảm giá:</label>
-        <div class="col-md-7">
-            <input type="text" class="form-control c-square c-theme " name="coupon" placeholder="Mã giảm giá" value="{{old('coupon')}}">
-            <span class="help-block">Nhập mã giảm giá nếu có để nhận ưu đãi</span>
+        <div class="row pl-0 pr-0">
+            <label class="col-md-3 form-control-label">Mã giảm giá:</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control c-square c-theme mb-2" name="coupon" placeholder="Mã giảm giá" value="{{old('coupon')}}">
+                <span class="help-block">Nhập mã giảm giá nếu có để nhận ưu đãi</span>
+            </div>
         </div>
         @if($errors->has('coupon'))
             <div class="form-control-feedback">{{ $errors->first('coupon') }}</div>
@@ -160,3 +162,33 @@
         });
     });
 </script>
+<style>
+    .c-content-tab-4 ul{
+        padding-left: 0!important;
+    }
+    .c-content-tab-4 ul li{
+        list-style: none!important;
+    }
+    .justified__ul_li{
+        width: 50% !important;
+        text-align: center!important;
+
+    }
+
+    .justified__ul_li a{
+        display: flex!important;
+        justify-content: center;
+        padding: 20px;
+    }
+    .justified__ul_li a:hover{
+        text-decoration: none!important;
+    }
+    .c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li:active > a {
+        color: #ffffff;
+        background-color: #5bc2ce;
+    }
+    .c-content-tab-4.c-opt-3 > .nav > li > a {
+        color: #ffffff;
+        background-color: #d5e0ea;
+    }
+</style>
