@@ -21,7 +21,7 @@ $(document).ready(function(){
                 jwt:token
             },
             beforeSend: function (xhr) {
-                
+
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
@@ -36,6 +36,7 @@ $(document).ready(function(){
                     $('#logout .loading').remove();
                     $('#info').attr('href','/thong-tin')
                     $('#logout').attr('href','/logout')
+                    $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
                     $('#info').html('<i class="fas fa-user"></i> '+data.info.username)
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
                 }
@@ -45,7 +46,7 @@ $(document).ready(function(){
                 return;
             },
             complete: function (data) {
-              
+
             }
         });
     }

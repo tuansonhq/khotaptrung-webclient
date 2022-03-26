@@ -15,29 +15,7 @@
                 </ul>
                 <ul class="nav">
 
-                     {{-- @if (\Session::has('jwt'))
-                        <li class="nav-log-in">
-                            <a href="#" id="info">
-                                <div class="loading"></div>
-                            </a>
-                        </li>
-                        <li class="nav-log-in">
-                            <a href="#" id="logout">
-                                <div class="loading"></div>
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-log-in">
-                            <a href="/login" id="info">
-                                <i class="fas fa-user"></i> Đăng nhập 
-                            </a>
-                        </li>
-                        <li class="nav-regist">
-                            <a href="/register" id="logout">
-                                <i class="fas fa-user"></i> Đăng ký
-                            </a>
-                        </li>
-                    @endif --}}
+
                     <li class="nav-log-in">
                         <a href="#" id="info">
                             <div class="loading"></div>
@@ -121,6 +99,9 @@
                     </ul>
                 </nav>
             </div>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
 
         </div>
     </div>
