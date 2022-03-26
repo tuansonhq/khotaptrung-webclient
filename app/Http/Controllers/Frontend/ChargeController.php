@@ -97,7 +97,6 @@ class ChargeController extends Controller
 
     public function getDepositAuto(Request $request)
     {
-        return 11111;
 
         try {
 
