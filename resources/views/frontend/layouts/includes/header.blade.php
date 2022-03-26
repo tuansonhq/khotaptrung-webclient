@@ -10,29 +10,12 @@
             </div>
 
             <div class="nav-bar-category">
-{{--                navbar--}}
                 <ul class="nav">
                     {!! widget('frontend.widget.__menu_category_desktop',60) !!}
-
                 </ul>
-
-
-{{--                @if(!session()->has('auth_token'))--}}
                 <ul class="nav">
-{{--                    <li class="nav-log-in">--}}
-{{--                        <a href="#" id="info">--}}
-{{--                            <div class="loading"></div>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-log-in">--}}
-{{--                        <a href="#" id="logout">--}}
-{{--                            <div class="loading"></div>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
 
-
-                     @if (App\Library\AuthCustom::check())
+                     {{-- @if (\Session::has('jwt'))
                         <li class="nav-log-in">
                             <a href="#" id="info">
                                 <div class="loading"></div>
@@ -45,12 +28,26 @@
                         </li>
                     @else
                         <li class="nav-log-in">
-                            <a href="/login" ><i class="fas fa-user"></i> Đăng nhập </a>
+                            <a href="/login" id="info">
+                                <i class="fas fa-user"></i> Đăng nhập 
+                            </a>
                         </li>
                         <li class="nav-regist">
-                            <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>
+                            <a href="/register" id="logout">
+                                <i class="fas fa-user"></i> Đăng ký
+                            </a>
                         </li>
-                    @endif
+                    @endif --}}
+                    <li class="nav-log-in">
+                        <a href="#" id="info">
+                            <div class="loading"></div>
+                        </a>
+                    </li>
+                    <li class="nav-log-in">
+                        <a href="#" id="logout">
+                            <div class="loading"></div>
+                        </a>
+                    </li>
 
 {{--                     <li class="nav-regist">--}}
 {{--                        <a href="/register"><i class="fas fa-user"></i> Đăng ký</a>--}}
