@@ -47,13 +47,13 @@ Route::get('/session',function(){
 });
 //Route::group(array('middleware' => ['verify_shop'],'namespace' => 'Frontend'),function(){
 Route::group(array('middleware' => ['verify_shop']),function(){
-   Route::post('/user/account_info',[UserController::class,"getInfo"]);
-   Route::group(['middleware' => ['cacheResponse:300']],function(){
-      Route::get('/',[HomeController::class,"index"]);
-   });
-   Route::post('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
-    Route::get('/test',function(){
-        return view(theme('theme_id').'.frontend.pages.index');
+    Route::post('/user/account_info', [UserController::class, "getInfo"]);
+    Route::group(['middleware' => ['cacheResponse:300']], function () {
+        Route::get('/', [HomeController::class, "index"]);
+    });
+    Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('/test', function () {
+        return view(theme('theme_id') . '.frontend.pages.index');
     });
 
 
@@ -151,10 +151,9 @@ Route::get('/acb', function () {
     Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
     Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
     Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
-    Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
 
-    Route::get('/nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
-    Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
+
 
     Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
 
@@ -190,6 +189,16 @@ Route::get('/acb', function () {
 
         return view('frontend.pages.service.show');
     });
+
+
+
+    Route::group(array('middleware' => ['auth']),function(){
+        Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
+        Route::get('/nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
+        Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+    });
+
+
 
 
 //minigame

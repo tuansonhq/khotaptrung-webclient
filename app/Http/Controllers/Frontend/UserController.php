@@ -40,14 +40,13 @@ class UserController extends Controller
                 }
             }
             if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
                 return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"
                 ]);
             }
-            return response()->json([
-                'status' => "LOGIN"
-            ]);
+
         }
         catch(\Exception $e){
             Log::error($e);
