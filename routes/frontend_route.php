@@ -24,6 +24,22 @@ use \Illuminate\Support\Facades\Session;
 |
 */
 
+Route::get('/clear-cache',function(){
+
+    \Artisan::call('cache:clear');
+   \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+
+
+    Cache::flush();
+    return json_encode([
+        'status'=>1,
+        'message'=>"Clear cache success"
+    ]);
+
+});
+
 
 Route::get('/session',function(){
     Session::flush();
@@ -39,22 +55,12 @@ Route::group(array('middleware' => ['verify_shop']),function(){
     Route::get('/test',function(){
         return view(theme('theme_id').'.frontend.pages.index');
     });
-    Route::get('/clear-cache',function(){});
+
 
 Route::get('/test',function(){
     return view(theme('theme_id').'.frontend.pages.index');
 });
-Route::get('/clear-cache',function(){
-    Artisan::call('cache:clear');
 
-
-        Cache::flush();
-        return json_encode([
-            'status'=>1,
-            'message'=>"Clear cache success"
-        ]);
-
-    });
 
 Route::get('/acb', function () {
     dd(1111);
@@ -130,6 +136,8 @@ Route::get('/acb', function () {
 //Route::get('/log-in', function () {
 //    return view('frontend.pages.log_in');
 //});
+
+
     Route::get('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'login'])->name('login');
     Route::post('/login',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'postLogin']);
     Route::post('loginApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'loginApi'])->name('loginApi');
