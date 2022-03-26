@@ -148,12 +148,15 @@ header .nav-bar{
 
 }
 .nav-bar-brand{
-    margin: 30px 0;
+    width: 234px;
+    margin: 20px 0px;
     transition: 0.2s;
 }
 .nav-bar-brand img{
-    width: 234px;
+    width: 100%;
     margin: auto;
+    height: 100%;
+    object-fit: contain;
 }
 .nav-bar-category{
     display: inherit;
