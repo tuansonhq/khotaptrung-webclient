@@ -68,7 +68,6 @@ Route::get('/acb', function () {
     Route::get('/tin-tuc',[ArticleController::class,"index"]);
     Route::get('/tin-tuc/data',[ArticleController::class,"getData"]);
     Route::get('/tin-tuc/{slug}/data',[ArticleController::class,"getCategoryData"]);
-
     Route::get('/tin-tuc/{slug}',[ArticleController::class,"show"]);
 
 //dichj vụ

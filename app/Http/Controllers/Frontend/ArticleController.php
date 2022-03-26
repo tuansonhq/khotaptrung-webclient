@@ -13,8 +13,6 @@ class ArticleController extends Controller
         $url = '/article';
         $method = "GET";
         $val = array();
-        $val['domain'] = "youtube.com";
-        $val['secret_key'] = config('api.secret_key');
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
