@@ -70,7 +70,7 @@
                         <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
                            Top lật thưởng
                         </a>
-                        <a href="{{route('getWithdrawItem').'?game_type='.$result->group->params->game_type}}" class="btn btn-success">
+                        <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
                             Rút Vip
                         </a>
                         <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
