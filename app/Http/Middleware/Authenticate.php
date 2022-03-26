@@ -14,20 +14,30 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+
+        if(!session('auth_custom')){
             return route('login');
         }
+//
+//        if (! $request->expectsJson()) {
+//            return route('login');
+//        }
     }
 
 
-    // public function handle(Request $request, Closure $next)
-    // {
-    //     if($jwt=$request->cookie('jwt')){
-    //         $request->header()
-    //     }
-    //     return $next($request);
-    // }
+     public function handle(Request $request, Closure $next)
+     {
+//         if($jwt=$request->cookie('jwt')){
+//             $request->header()
+//         }
+
+         if(!session('auth_custom')){
+             return route('login');
+         }
+
+         return $next($request);
+     }
 
 
-    
+
 }
