@@ -1,6 +1,5 @@
 {{Form::open(array('method'=>'POST' ,'class'=>'form-horizontal','enctype'=>"multipart/form-data"))}}
 
-
 <div class="modal-header">
     <h4 class="modal-title">Xác nhận mua tài khoản</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -96,7 +95,6 @@
         </div>
         @if($errors->has('coupon'))
             <div class="form-control-feedback">{{ $errors->first('coupon') }}</div>
-
         @endif
     </div>
 
