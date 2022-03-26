@@ -512,7 +512,7 @@
                         $('#noticeModal').modal('show');
                         return;
                     }
-                    $('#noticeModal .content-popup').append('<div style=\'color:blue\'>' + data.msg + ' - ' + data.arr_gift[0].title + '</div>');
+                    $('#noticeModal .content-popup').append(data.msg + ' - ' + data.arr_gift[0].title);
                     $('#noticeModal').modal('show');
                     var userpoint = data.userpoint;
                     if(userpoint<100){
