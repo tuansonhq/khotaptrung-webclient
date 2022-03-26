@@ -100,18 +100,12 @@ class LoginController extends Controller
                 $time = strtotime(Carbon::now());
                 $exp_token = $result->exp_token;
                 $time_exp_token = $time + $exp_token;
-                // session()->put('auth_token', $result->token);
-                // session()->put('exp_token', $result->exp_token);
-                // session()->put('time_exp_token', $time_exp_token);
-                $cookie = cookie('jwt',$result->token,60*24); //1 day
-                $exp_token = cookie('exp_token',$result->exp_token,60*24); //1 day
-                $exp_token = cookie('time_exp_token',$time_exp_token,60*24); //1 day
-
-                return redirect()->to('/')->withCookie($cookie);
-//                return redirect()->to('/');
+                Session::put('jwt',$result->token);
+                Session::put('exp_token',$result->exp_token);
+                Session::put('time_exp_token',$time_exp_token);
+                return redirect()->to('/');
             } else {
                 return redirect()->back()->withErrors($result->message);
-
             }
         }
     }
