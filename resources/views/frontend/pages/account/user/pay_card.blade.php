@@ -11,7 +11,7 @@
                             <div class="account_sidebar_content_line"></div>
                         </div>
 
-                        <p>ID của bạn: <strong> {{App\Library\AuthCustom::user()->id}}</strong> </p>
+                        <p>ID của bạn: <strong>@if(isset(App\Library\AuthCustom::user()->id)) {{App\Library\AuthCustom::user()->id}} @endif</strong> </p>
                         <span><p>* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p></span>
                         <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
                         <p style="color: red"></p>
@@ -24,7 +24,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control" placeholder="" value=" {{App\Library\AuthCustom::user()->username}}" readonly>
+                                        <input type="text" class="form-control" placeholder="" value=" @if(isset(App\Library\AuthCustom::user()->username)) {{App\Library\AuthCustom::user()->username}} @endif" readonly>
                                     </div>
                                 </div>
 
@@ -104,11 +104,20 @@
                                 </div>
 
                             </div>
-                            <div class="form-group row " style="margin-top: 40px">
-                                <div class="col-md-6" style="    margin-left: 25%;">
-                                    <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block " type="submit">Nạp thẻ</button>
+                            @if(App\Library\AuthCustom::check())
+                                <div class="form-group row " style="margin-top: 40px">
+                                    <div class="col-md-6" style="    margin-left: 25%;">
+                                        <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block " type="submit">Nạp thẻ</button>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="form-group row " style="margin-top: 40px">
+                                    <div class="col-md-6" style="    margin-left: 25%;">
+                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block " href="/login">Nạp thẻ</a>
+                                    </div>
+                                </div>
+                            @endif
+
                         </form>
 
                         <div id="data_pay_card_history">

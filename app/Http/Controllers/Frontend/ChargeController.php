@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Library\AuthCustom;
 use Illuminate\Http\Request;
 use App\Library\DirectAPI;
 use Carbon\Carbon;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use function PHPUnit\Framework\isEmpty;
+use Session;
 
 class ChargeController extends Controller
 
@@ -95,25 +97,31 @@ class ChargeController extends Controller
 
     public function getDepositAuto(Request $request)
     {
-        if($request->hasCookie('jwt')){
+
             try{
+
                 $url = '/deposit-auto/get-telecom';
                 $method = "GET";
                 $val = array();
-                $val['secret_key'] = config('api.secret_key');
-                $val['domain'] =config('api.client');
-                $val['token'] = $request->cookie('jwt');
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-                $url_history = '/deposit-auto/history';
 
-                $result_Api_history = DirectAPI::_makeRequest($url_history,$val,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200  && isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                    $bankHistory = $result_Api_history->data;
-                    $result = $result_Api->data;
-                    $bank = $result->data;
-                    $data = $bankHistory->data;
-                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
-                    return view('frontend.pages.account.user.pay_card', compact('bank','data'));
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $url_history = '/deposit-auto/history';
+                    $jwt = Session::get('jwt');
+                    $val['token'] =$jwt;
+                    $result_Api_history = DirectAPI::_makeRequest($url_history,$val,$method);
+                    if ( isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200){
+                        $bankHistory = $result_Api_history->data;
+                        $result = $result_Api->data;
+                        $bank = $result->data;
+                        $data = $bankHistory->data;
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+                        return view('frontend.pages.account.user.pay_card', compact('bank','data'));
+                    }else{
+                        $result = $result_Api->data;
+                        $bank = $result->data;
+                        return view('frontend.pages.account.user.pay_card', compact('bank'));
+                    }
 //            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
                 } else {
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
@@ -124,10 +132,6 @@ class ChargeController extends Controller
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
 
-        }
-        else{
-            return redirect('login');
-        }
 
 
     }
@@ -141,9 +145,13 @@ class ChargeController extends Controller
 
             $method = "GET";
             $val = array();
-            $val['token'] = $request->cookie('jwt');
-            $val['secret_key'] = config('api.secret_key');
-            $val['domain'] = 'youtube.com';
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] =$jwt;
             $val['page'] = $page;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -179,8 +187,6 @@ class ChargeController extends Controller
                 $url = '/deposit-auto/get-amount';
                 $method = "GET";
                 $data = array();
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = config('api.client');
                 $data['telecom'] = $request->telecom;
 
 
@@ -221,15 +227,19 @@ class ChargeController extends Controller
             'captcha.captcha' =>"Sai mã capcha",
         ]);
 
-        if($request->hasCookie('jwt')){
+        if(AuthCustom::check()){
             try{
                 $url = '/deposit-auto';
 
                 $method = "POST";
                 $data = array();
-                $data['token'] =  $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = config('api.client');
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
                 $data['type'] = $request->telecom;
                 $data['amount'] = $request->amount;
                 $data['pin'] = $request->pin;
@@ -276,8 +286,6 @@ class ChargeController extends Controller
                 $url = '/deposit-auto/get-amount';
                 $method = "GET";
                 $data = array();
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = config('api.client');
                 $data['telecom'] = $request->telecom;
 
 
@@ -316,9 +324,13 @@ class ChargeController extends Controller
             $url = '/deposit-auto/history';
             $method = "GET";
             $val = array();
-            $val['token'] = $request->cookie('jwt');
-            $val['secret_key'] = config('api.secret_key');
-            $val['domain'] = 'youtube.com';
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] =$jwt;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
@@ -366,9 +378,13 @@ class ChargeController extends Controller
 
             $method = "GET";
             $val = array();
-            $val['token'] = $request->cookie('jwt');
-            $val['secret_key'] = config('api.secret_key');
-            $val['domain'] = 'youtube.com';
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] =$jwt;
             $val['page'] = $page;
 
             if (isset($request->serial) || $request->serial != '' || $request->serial != null){
@@ -423,9 +439,13 @@ class ChargeController extends Controller
                 $url = '/deposit-auto/history';
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
                 if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -464,9 +484,14 @@ class ChargeController extends Controller
 
                 $method = "POST";
                 $data = array();
-                $data['token'] =  $request->cookie('jwt');
-                $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
+
                 $data['type'] = $request->tele_card;
                 $data['amount'] = $request->tele_amount;
                 $data['pin'] = $request->pin;
