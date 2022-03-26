@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-9 col-sm-12">
                         <div class="col-md-12 pl-0 pr-0">
-                            <p class="news_content_p">{{ $data->title }}</p>
+                            <h1 class="news_content_p">{{ $data->title }}</h1>
                             <div class="news_content_line"></div>
                         </div>
                         <div class="news_detail">
