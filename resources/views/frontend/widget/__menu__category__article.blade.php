@@ -27,7 +27,7 @@
         </div>
         <ul class="news_content_category_menu">
             <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc" class="btn-tatca">Tất cả ({{ $count }})</a></li>
-
+        
             @if(isset($datacategory) && count($datacategory) > 0)
                 @foreach($datacategory as $val)
                     <li><i class="fas fa-chevron-right"></i> <a href="/tin-tuc/{{ $val->slug }}" class="btn-slug" data-slug="{{ $val->slug }}">{{ $val->title }} ({{ $val->count_item }})</a> </li>

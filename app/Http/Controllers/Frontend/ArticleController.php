@@ -13,7 +13,6 @@ class ArticleController extends Controller
         $url = '/article';
         $method = "GET";
         $val = array();
-
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
