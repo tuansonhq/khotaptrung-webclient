@@ -25,7 +25,8 @@ $(document).ready(function(){
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
-                    window.location.href = '/logout';
+                    window.location.href = '/login';
+                    // method = method || 'post';
                     return;
                 }
                 if(data.status === "ERROR"){
@@ -36,6 +37,8 @@ $(document).ready(function(){
                     $('#logout .loading').remove();
                     $('#info').attr('href','/thong-tin')
                     $('#logout').attr('href','/logout')
+                    $('#logout-form').attr('href','/logout')
+
                     $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
                     $('#info').html('<i class="fas fa-user"></i> '+data.info.username)
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
