@@ -35,7 +35,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
    Route::group(['middleware' => ['cacheResponse:300']],function(){
       Route::get('/',[HomeController::class,"index"]);
    });
-   Route::get('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
+   Route::post('/logout',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'logout'])->name('logout');
     Route::get('/test',function(){
         return view(theme('theme_id').'.frontend.pages.index');
     });
