@@ -178,6 +178,9 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
             Route::get('/lich-su-nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
 
+            Route::get('/lich-su-mua-account',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistory'])->name('getBuyAccountHistory');
+            Route::get('/lich-su-mua-account/data',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistoryData'])->name('getBuyAccountHistoryData');
+
             Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
             Route::get('/nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
             Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
