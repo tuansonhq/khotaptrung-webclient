@@ -27,7 +27,7 @@
                     <div class="tab-content">
                         <div class="tab-pane  fade show active" id="top_napthe">
                             <div class="content-banner-card-box">
-{{--                                {!! widget('frontend.widget.__top_nap_the',60) !!}--}}
+                                {!! widget('frontend.widget.__top_nap_the',60) !!}
 
                             </div>
                         </div>
