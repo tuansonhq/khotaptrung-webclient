@@ -226,16 +226,24 @@ class AccController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
+//        return $result_Api;
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
 
-            if ($data->success == 0){
-                return redirect()->back()->with('content', 'Account đã có sở hữu');
-            }elseif ($data->success == 1 ){
+            if (isset($data->success)){
+                if ($data->success == 0){
+                    return redirect()->back()->with('content', $data->message );
+                }elseif ($data->success == 1 ){
 //                return redirect()->to('/tran/acc/thanhcong')->with('content', \App\Library\Helpers::DecodeJson('buyacc_popup',$data->groups[0]->content_json))->with('success', 'Mua tài khoản thành công');
-                return redirect()->back()->with('content', 'Mua tài khoản thành công');
+                    return redirect()->back()->with('content', 'Mua tài khoản thành công');
+                }
+            }else{
+                return redirect('/');
             }
 
+
+        }else{
+            return redirect('/');
         }
     }
 
