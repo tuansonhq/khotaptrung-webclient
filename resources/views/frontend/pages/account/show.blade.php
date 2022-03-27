@@ -27,13 +27,10 @@
 
     </div>
 
-
-
-
     <div class="shop_product_detailS">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row container__show">
+                <div class="col-lg-6 col-md-12 shop_product_detailS__col">
                     <div class="gallery" style="overflow: hidden">
                         <div class="swiper gallery-slider">
                             <div class="swiper-wrapper">
@@ -67,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 gallery__right">
+                <div class="col-lg-6 col-md-12 gallery__right">
                     <div class="row gallery__row">
                         <div class="col-md-12">
                             <div class="row gallery__01">
@@ -76,7 +73,7 @@
                                         <div class="col-auto">
                                             <span class="gallery__01__span">Mã số:</span>
                                         </div>
-                                        <div class="col-md-8 pl-0">
+                                        <div class="col-md-8 col-8 pl-0">
                                             <span class="gallery__01__span">#{{ $data->id }}</span>
                                         </div>
                                     </div>
@@ -86,7 +83,7 @@
                                         <div class="col-auto">
                                             <span class="gallery__02__span">Danh mục:</span>
                                         </div>
-                                        <div class="col-md-8  pl-0">
+                                        <div class="col-md-8 col-8  pl-0">
                                             <span class="gallery__02__span">{{ $data_category->title }}</span>
                                         </div>
                                     </div>
@@ -97,7 +94,7 @@
                             <div class="row gallery__02">
                                 <div class="col-md-12 gallery__01__row">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 col-sm-5 col-5">
                                             <div class="row text-left">
                                                 <div class="col-md-12">
                                                     <span class="gallery__02__span__02">THẺ CÀO</span>
@@ -107,14 +104,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-2 gallery__01__span__02md">
+                                        <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
                                             <div class="row text-center">
                                                 <div class="col-md-12">
                                                     <span class="hoac">Hoặc</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 col-sm-5 col-5">
                                             <div class="row text-right">
                                                 <div class="col-md-12">
                                                     <span class="gallery__02__span__02">ATM chỉ cần</span>
@@ -140,10 +137,10 @@
                                                     <div class="col-auto span__dangky__auto">
                                                         <i class="fas fa-angle-right"></i>
                                                     </div>
-                                                    <div class="col-md-4 pl-0">
+                                                    <div class="col-md-4 col-4 pl-0">
                                                         <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>
                                                     </div>
-                                                    <div class="col-md-6 pl-0">
+                                                    <div class="col-md-6 col-6 pl-0">
                                                         <span class="span__dangky">{{ $att_value->title }}</span>
                                                     </div>
                                                 </div>
@@ -169,10 +166,10 @@
                                                                     <div class="col-auto span__dangky__auto">
                                                                         <i class="fas fa-angle-right"></i>
                                                                     </div>
-                                                                    <div class="col-md-4 pl-0">
+                                                                    <div class="col-md-4 col-4 pl-0">
                                                                         <span class="span__dangky">{{ $child->title }}</span>
                                                                     </div>
-                                                                    <div class="col-md-6 pl-0">
+                                                                    <div class="col-md-6 col-6 pl-0">
                                                                         <span class="span__dangky">{{ $param }}</span>
                                                                     </div>
                                                                 </div>
@@ -196,19 +193,19 @@
                                             <button class="btn btn-danger gallery__bottom__span buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 gallery__bottom">
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                            <div class="row atmvdtntc">
+                                                <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                                     @if(App\Library\AuthCustom::check())
-                                                    <a href="/recharge" class="btn btn-success gallery__bottom__span"><i class="fab fa-cc-visa"></i>&ensp;ATM - VÍ ĐIỆN TỬ</a>
+                                                    <a href="/recharge" class="btn btn-success gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @else
-                                                    <a href="/login" class="btn btn-success gallery__bottom__span"><i class="fab fa-cc-visa"></i>&ensp;ATM - VÍ ĐIỆN TỬ</a>
+                                                    <a href="/login" class="btn btn-success gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @endif
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 col-sm-6 col-6 ntc">
                                                     @if(App\Library\AuthCustom::check())
-                                                        <a href="/nap-the-tu-dong" class="btn btn-success gallery__bottom__span"><i class="fas fa-barcode-alt"></i>&ensp;NẠP THẺ CÀO</a>
+                                                        <a href="/nap-the-tu-dong" class="btn btn-success gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @else
-                                                        <a href="/login" class="btn btn-success gallery__bottom__span"><i class="fas fa-barcode-alt"></i>&ensp;NẠP THẺ CÀO</a>
+                                                        <a href="/login" class="btn btn-success gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @endif
 
                                                 </div>
@@ -234,7 +231,7 @@
                     <div class="item_buy_list row">
                         @foreach($sliders as $datav2)
                             @if($datav2->id != $data->id)
-                            <div class="col-sm-6 col-lg-3">
+                            <div class="col-6 col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $datav2->id }}">
