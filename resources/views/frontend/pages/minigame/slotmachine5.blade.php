@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                        <a href="/slotmachine/logacc/{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -176,7 +176,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="middle nohuthang" style="text-align: center;padding: 15px 0;"></div>
+                <div class="middle nohuthang" style="text-align: center;padding: 15px 0;color: blue"></div>
                 <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
 
                 </div>
@@ -546,7 +546,7 @@
                             $('#noticeModal').modal('show');
                             return;
                         }
-                        $('#noticeModal .content-popup').append(data.msg + ' - ' + data.arr_gift[0].title);
+                        $('#noticeModal .nohuthang').html(data.msg + " - " + data.arr_gift[0].title);
                         $('#noticeModal').modal('show');
                         var userpoint = data.userpoint;
                         if(userpoint<100){
