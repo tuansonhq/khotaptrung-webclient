@@ -273,31 +273,32 @@
                                                 @endif
                                             @endforeach
                                         @endif
-                                        <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
-                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                            @foreach($dataAttribute as $index=>$att)
-                                                @if($att->position == 'text')
-                                                    @if(isset($att->childs))
-                                                        @foreach($att->childs as $child)
-                                                            @foreach($paramsv2 as $key => $paramv2)
-                                                                @if($key == $child->id)
-                                                                        <?php
-                                                                        $index++;
-                                                                        ?>
-                                                                    @if($index < 5)
-                                                                    <div class="col-6 item_buy_list_info_in">
-                                                                        {{ $child->title }} : <b>{{ $paramv2 }}</b>
-                                                                    </div>
+                                        @if(isset($data->params))
+                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($paramsv2 as $key => $paramv2)
+                                                                    @if($key == $child->id)
+                                                                            <?php
+                                                                            $index++;
+                                                                            ?>
+                                                                        @if($index < 5)
+                                                                        <div class="col-6 item_buy_list_info_in">
+                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>
+                                                                        </div>
+                                                                        @endif
                                                                     @endif
-                                                                @endif
+                                                                @endforeach
                                                             @endforeach
-                                                        @endforeach
+                                                        @endif
+
                                                     @endif
-
-                                                @endif
-                                            @endforeach
+                                                @endforeach
+                                            @endif
                                         @endif
-
                                     </div>
                                 </div>
                                 <div class="item_buy_list_more">
