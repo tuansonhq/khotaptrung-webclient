@@ -84,5 +84,25 @@ $( document ).ready(function() {
         $("#lac_lixi").attr("src", "./assets/frontend/image/lixi.gif");
     });
 
+    $('body').delegate('.viewmore','click',function(){
 
+        $(this).addClass('viewless').removeClass('viewmore');
+        $(this).text('« Thu gọn');
+        $('.hidetext').addClass('showtext').removeClass('hidetext');
+    })
+    $('body').delegate('.viewless','click',function(){
+        $(this).addClass('viewmore').removeClass('viewless');
+        $(this).text('Xem tất cả »');
+        $('.showtext').addClass('hidetext').removeClass('showtext');
+    })
+
+    $('body').delegate('.btn-viewmore','click',function(){
+        var ele=$(this).closest('.panel-body').find(".special-text").toggleClass('-expanded');
+        if ($(ele).hasClass('-expanded')) {
+            $(this).html('« Thu gọn');
+        } else {
+            $(this).html('Xem tất cả »');
+
+        }
+    })
 });
