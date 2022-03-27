@@ -153,41 +153,41 @@
                                 @endif
                             @endforeach
                         @endif
-                        @if(isset($data->params))
-                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                            @foreach($dataAttribute as $index=>$att)
-                                @if($att->position == 'text')
-                                    @if(isset($att->childs))
-                                        @foreach($att->childs as $child)
-                                            @foreach($params as $key => $param)
-                                                @if($key == $child->id)
-                                                    <div class="col-md-12">
-                                                        <div class="row gallery__03">
-                                                            <div class="col-md-12 gallery__01__row">
-                                                                <div class="row">
-                                                                    <div class="col-auto span__dangky__auto">
-                                                                        <i class="fas fa-angle-right"></i>
-                                                                    </div>
-                                                                    <div class="col-md-4 pl-0">
-                                                                        <span class="span__dangky">{{ $child->title }}</span>
-                                                                    </div>
-                                                                    <div class="col-md-6 pl-0">
-                                                                        <span class="span__dangky">{{ $param }}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-                                        @endforeach
-                                    @endif
+{{--                        @if(isset($data->params))--}}
+{{--                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>--}}
+{{--                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                            @foreach($dataAttribute as $index=>$att)--}}
+{{--                                @if($att->position == 'text')--}}
+{{--                                    @if(isset($att->childs))--}}
+{{--                                        @foreach($att->childs as $child)--}}
+{{--                                            @foreach($params as $key => $param)--}}
+{{--                                                @if($key == $child->id)--}}
+{{--                                                    <div class="col-md-12">--}}
+{{--                                                        <div class="row gallery__03">--}}
+{{--                                                            <div class="col-md-12 gallery__01__row">--}}
+{{--                                                                <div class="row">--}}
+{{--                                                                    <div class="col-auto span__dangky__auto">--}}
+{{--                                                                        <i class="fas fa-angle-right"></i>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="col-md-4 pl-0">--}}
+{{--                                                                        <span class="span__dangky">{{ $child->title }}</span>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="col-md-6 pl-0">--}}
+{{--                                                                        <span class="span__dangky">{{ $param }}</span>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                @endif--}}
+{{--                                            @endforeach--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
 
-                                @endif
-                            @endforeach
-                        @endif
-                        @endif
+{{--                                @endif--}}
+{{--                            @endforeach--}}
+{{--                        @endif--}}
+{{--                        @endif--}}
                         <div class="col-md-12 gallery__bottom">
                             <div class="row text-center">
                                 <div class="col-md-12 gallery__01__row">
@@ -273,32 +273,32 @@
                                                 @endif
                                             @endforeach
                                         @endif
-                                        @if(isset($data->params))
-                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
-                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                @foreach($dataAttribute as $index=>$att)
-                                                    @if($att->position == 'text')
-                                                        @if(isset($att->childs))
-                                                            @foreach($att->childs as $child)
-                                                                @foreach($paramsv2 as $key => $paramv2)
-                                                                    @if($key == $child->id)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                        @if($index < 5)
-                                                                        <div class="col-6 item_buy_list_info_in">
-                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>
-                                                                        </div>
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                            @endforeach
-                                                        @endif
+{{--                                        @if(isset($data->params))--}}
+{{--                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>--}}
+{{--                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                    @if($att->position == 'text')--}}
+{{--                                                        @if(isset($att->childs))--}}
+{{--                                                            @foreach($att->childs as $child)--}}
+{{--                                                                @foreach($paramsv2 as $key => $paramv2)--}}
+{{--                                                                    @if($key == $child->id)--}}
+{{--                                                                            <?php--}}
+{{--                                                                            $index++;--}}
+{{--                                                                            ?>--}}
+{{--                                                                        @if($index < 5)--}}
+{{--                                                                        <div class="col-6 item_buy_list_info_in">--}}
+{{--                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endif--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endforeach--}}
+{{--                                                        @endif--}}
 
-                                                    @endif
-                                                @endforeach
-                                            @endif
-                                        @endif
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
                                     </div>
                                 </div>
                                 <div class="item_buy_list_more">
