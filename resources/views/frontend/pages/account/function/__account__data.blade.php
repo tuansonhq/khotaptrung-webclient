@@ -7,7 +7,7 @@
 {{--                Nick random--}}
                 @if($data->display_type == 2)
 
-                    <div class="col-sm-6 col-lg-3">
+                    <div class="col-6 col-sm-6 col-lg-3">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
                                 <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->id }}">
@@ -58,7 +58,7 @@
 
                 @else
                     {{--                    Nick thường--}}
-                    <div class="col-sm-6 col-lg-3">
+                    <div class="col-6 col-sm-6 col-lg-3">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
                                 <a href="/acc/{{ $item->id }}">

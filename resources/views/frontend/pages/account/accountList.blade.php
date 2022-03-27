@@ -19,7 +19,6 @@
                     <div style="text-align: center;margin: 15px 0">
                         <span class="viewmore">Xem tất cả »</span>
                     </div>
-
                 </div>
             </div>
 
@@ -102,7 +101,7 @@
                     </div>
                     <hr>
                     <div class="item_buy_form-mobile_search">
-                        <form class="form-charg-mobie">
+                        <form class="form-charge-mobile">
                             <div class="row">
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
@@ -149,7 +148,7 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <button type="submit" class="btn">Tìm kiếm</button>
-                                        <a href="" class="btn btn-danger">Tất cả</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-all-mobile">Tất cả</a>
                                     </div>
                                 </div>
                             </div>
