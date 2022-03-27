@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="/slotmachine/logacc/{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
