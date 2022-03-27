@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="" class="col-sm-12 btn btn-success">Lịch sử gieo trúng vật phẩm</a>
+                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử gieo trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -251,7 +251,7 @@
             <div class="modal-content">
                 <div class="modal-header">
 
-                    <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto;padding-left: 60px">Lượt chơi đây</h4>
+                    <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto;padding-left: 60px">Lượt chơi gần đây</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -269,13 +269,19 @@
                             </tr>
                             </tbody>
                             <tbody>
-                            @foreach($result->log as $item)
+                            @if(isset($result->log) && count($result->log) > 0)
+                                @foreach($result->log as $item)
+                                    <tr>
+                                        <td>{{substr($item->author->username, 0, 3)}}***</td>
+                                        <th>{{$item->item_ref->title}}</th>
+                                        <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
+                                    </tr>
+                                @endforeach
+                            @else
                                 <tr>
-                                    <th>{{$item->author->username}}</th>
-                                    <th>{{$item->item_ref->title}}</th>
-                                    <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
+                                    <th colspan="3">Dữ liệu đang được cập nhật...</th>
                                 </tr>
-                            @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -392,6 +398,21 @@
                 $('.gift'+({{$index}}+1)+' img').attr('src','{{config('api.url_media').$item->image}}');
             @endforeach
         @endif
+            $(".thele").on("click", function(){
+                $("#theleModal").modal('show');
+            })
+            $(".tylevongquay").on("click", function(){
+                $("#tylevongquayModal").modal('show');
+            })
+            $(".uytin").on("click", function(){
+                $("#uytinModal").modal('show');
+            })
+            $(".luotquay").on("click", function(){
+                $("#luotquayModal").modal('show');
+            })
+            $(".topquaythuong").on("click", function(){
+                $("#topquaythuongModal").modal('show');
+            })
 
         var num_loop = 3;
         var num = 0;
