@@ -153,9 +153,9 @@
                                 @endif
                             @endforeach
                         @endif
-                        @if(isset($data->params))
+                        @if(isset($data->params) && isset($data->params->ext_info))
                             <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                             @foreach($dataAttribute as $index=>$att)
                                 @if($att->position == 'text')
                                     @if(isset($att->childs))
@@ -273,32 +273,32 @@
                                                 @endif
                                             @endforeach
                                         @endif
-{{--                                        @if(isset($data->params))--}}
-{{--                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>--}}
-{{--                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
-{{--                                                @foreach($dataAttribute as $index=>$att)--}}
-{{--                                                    @if($att->position == 'text')--}}
-{{--                                                        @if(isset($att->childs))--}}
-{{--                                                            @foreach($att->childs as $child)--}}
-{{--                                                                @foreach($paramsv2 as $key => $paramv2)--}}
-{{--                                                                    @if($key == $child->id)--}}
-{{--                                                                            <?php--}}
-{{--                                                                            $index++;--}}
-{{--                                                                            ?>--}}
-{{--                                                                        @if($index < 5)--}}
-{{--                                                                        <div class="col-6 item_buy_list_info_in">--}}
-{{--                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        @endif--}}
-{{--                                                                    @endif--}}
-{{--                                                                @endforeach--}}
-{{--                                                            @endforeach--}}
-{{--                                                        @endif--}}
+                                        @if(isset($datav2->params) && isset($datav2->params->ext_info))
+                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($paramsv2 as $key => $paramv2)
+                                                                    @if($key == $child->id)
+                                                                            <?php
+                                                                            $index++;
+                                                                            ?>
+                                                                        @if($index < 5)
+                                                                        <div class="col-6 item_buy_list_info_in">
+                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>
+                                                                        </div>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
 
-{{--                                                    @endif--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
-{{--                                        @endif--}}
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="item_buy_list_more">
@@ -331,7 +331,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal fade modal__buyacount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
             <div class="modal-content">

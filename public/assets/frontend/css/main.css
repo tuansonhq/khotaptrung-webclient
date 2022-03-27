@@ -1549,3 +1549,10 @@ footer{
     color: #3f444a;
     padding: 8px 0;
 }
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 722px!important;
+    }
+}
+
+

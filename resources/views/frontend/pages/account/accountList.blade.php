@@ -172,7 +172,7 @@
     <input type="hidden" name="price_data" class="price_data" value="">
     <input type="hidden" name="select_data" class="select_data" value="">
     <input type="hidden" name="status_data" class="status_data" cvalue="">
-    <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal fade modal__buyacount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
             <div class="modal-content">

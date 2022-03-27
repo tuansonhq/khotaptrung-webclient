@@ -49,35 +49,40 @@
                         <table class="table table-striped">
                             <tbody>
                             <tr>
-                                <th colspan="2">Chi tiết tài khoản #12333</th>
+                                <th colspan="2">Chi tiết tài khoản #{{ $data->id }}</th>
                             </tr>
-                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-
-                                @foreach($dataAttribute as $index=>$att)
-
-                                    <tr>
+                            @if(isset($data->groups))
+                                <?php $att_values = $data->groups ?>
+                                @foreach($att_values as $att_value)
+                                    @if($att_value->module == 'acc_label')
+                                        <tr>
+                                            <td style="width:50%">{{ $att_value->parent[0]->title }}:</td>
+                                            <td class="text-danger" style="font-weight: 700">{{ $att_value->title }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+                            @if(isset($data->params) && isset($data->params->ext_info))
+                                <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                    @foreach($dataAttribute as $index=>$att)
                                         @if($att->position == 'text')
-                                            <td style="width: 50%">{{$att->title}}:</td>
-                                            <td class="text-danger" style="font-weight: 700">123321</td>
-
-                                        @elseif($att->position == 'select')
-
-                                            @if(!is_null($att->childs) && count($att->childs))
-                                                @foreach($att->childs as $att_value)
-{{--                                                    @dd($att)--}}
-                                                    @foreach($data->groups as $att_data)
-
-                                                        @if($att_data->id == $att_value->id)
-                                                        <td style="width:50%">{{$att->title}}:</td>
-                                                        <td class="text-danger" style="font-weight: 700">{{$att_data->title}}</td>
+                                            @if(isset($att->childs))
+                                                @foreach($att->childs as $child)
+                                                    @foreach($params as $key => $param)
+                                                        @if($key == $child->id)
+                                                            <tr>
+                                                                <td style="width:50%">{{ $child->title }}:</td>
+                                                                <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
+                                                            </tr>
                                                         @endif
                                                     @endforeach
                                                 @endforeach
                                             @endif
-                                        @endif
-                                    </tr>
 
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
                             </tbody>
                         </table>
@@ -149,26 +154,22 @@
 </div>
 {{ Form::close() }}
 
-<script>
-    $(document).ready(function () {
-        $('.load-modal').each(function (index, elem) {
-            $(elem).unbind().click(function (e) {
-                e.preventDefault();
-                e.preventDefault();
-                var curModal= $('#LoadModal');
-                curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
-                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
-            });
-        });
-    });
-</script>
 <style>
+    .c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li:active > a {
+        color: #ffffff;
+        background-color: #5bc2ce!important;
+    }
+    .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even).active > a, .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even):active > a {
+        color: #ffffff;
+        background-color: #5bc2ce!important;
+    }
     .c-content-tab-4 ul{
         padding-left: 0!important;
     }
     .c-content-tab-4 ul li{
         list-style: none!important;
     }
+
     .justified__ul_li{
         width: 50% !important;
         text-align: center!important;
@@ -183,12 +184,23 @@
     .justified__ul_li a:hover{
         text-decoration: none!important;
     }
-    .c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li:active > a {
-        color: #ffffff;
-        background-color: #5bc2ce;
-    }
     .c-content-tab-4.c-opt-3 > .nav > li > a {
         color: #ffffff;
         background-color: #d5e0ea;
     }
 </style>
+
+<script>
+    $(document).ready(function () {
+        $('.load-modal').each(function (index, elem) {
+            $(elem).unbind().click(function (e) {
+                e.preventDefault();
+                e.preventDefault();
+                var curModal= $('#LoadModal');
+                curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
+            });
+        });
+    });
+</script>
+
