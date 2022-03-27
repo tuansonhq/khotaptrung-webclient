@@ -29,7 +29,7 @@
             @include('frontend.pages.account.sidebar')
             <div class="account_sidebar_content">
                 <div class="account_sidebar_content_title">
-                    <p>RÚT {{config('constants.game_type.'.$game_type)}}</p>
+                    <p>RÚT VẬT PHẨM GAME {{config('constants.game_type.'.$game_type)}}</p>
                     <div class="account_sidebar_content_line"></div>
                 </div>
                 <div class="form-group row">
