@@ -5,7 +5,7 @@
             <div class="col-3 item_buy_form_search">
                 <div class="input-group">
                     <span class="input-group-addon">{{ $val->title }}</span>
-                    <select type="text" class="form-control" name="attribute_id_{{ $val->id }}">
+                    <select type="text" class="form-control select" name="attribute_id_{{ $val->id }}">
                         <option value="">--Không chọn--</option>
                         @foreach($val->childs as $child)
                         <option value="{{ $child->id }}">{{ $child->title }}</option>

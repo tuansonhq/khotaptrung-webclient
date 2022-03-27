@@ -1449,8 +1449,7 @@ footer{
     font-size: 16px!important;
     line-height: 30px!important;
 }
-.frontend__panigate .pagination > li.active > span, .pagination > li.active > a, .pagination>.active>span{
-
+.page-item.disabled .page-link{
+    line-height: 28px!important;
 }
-
 /*end paginations_custom*/
