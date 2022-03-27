@@ -61,7 +61,7 @@ class MinigameController extends Controller
                         case 'slotmachine5':
                             return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other'));
                         case 'squarewheel':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other'));
                         case 'smashwheel':
                             return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         case 'rungcay':
