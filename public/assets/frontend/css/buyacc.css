@@ -1,6 +1,6 @@
 .gallery {
     width: 100%;
-    max-width: 500px;
+    /*max-width: 500px;*/
     margin-left: auto;
     margin-right: auto;
 }
@@ -22,10 +22,11 @@
     height: 100%;
     margin: 0 auto;
     object-fit: cover;
+    background-size: cover;
 }
 
 .gallery-thumbs {
-    margin-top: 32px;
+    margin-top: 16px;
     width: 100%;
     padding: 0;
     overflow: hidden;
@@ -33,10 +34,15 @@
 
 .gallery-thumbs .swiper-slide {
     width: 50px;
-    height: 54px;
+    /*height: 58px;*/
+    height: auto;
     text-align: center;
     overflow: hidden;
     opacity: 1;
+    background-size: cover;
+}
+.gallery-thumbs .swiper-slide img{
+
 }
 
 .gallery-thumbs .swiper-slide-active {
@@ -44,9 +50,10 @@
 }
 
 .gallery-thumbs .swiper-slide img {
-    width: auto;
-    height: 100%;
+    width: 100px;
+    height: auto;
     object-fit: cover;
+    background-size: cover;
 }
 
 /*.gallery .swiper-button-next {*/
@@ -61,16 +68,19 @@
     height: 40px;
     width: 40px;
     background:#545454;
-    left: 20px;
+    left: 15px;
     top: 40%;
     border-radius: 100%;
     z-index: 200;
+}
+.gallery__row{
+    margin: 0 auto;
 }
 
 .gallery .swiper-button-next {
     height: 40px;
     width: 40px;
-    right: 20px;
+    right: 15px;
     background:  #545454;
     /*url("/assets/frontend/images/next_arrow.svg") no-repeat center center*/
     top: 40%;
