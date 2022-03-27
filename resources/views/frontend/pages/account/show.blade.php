@@ -47,12 +47,10 @@
                             </div>
 
                             <div class="swiper-button-prev">
-{{--                                <div class="arrow-left"></div>--}}
                                 <i class="fas fa-chevron-left"></i>
                             </div>
                             <div class="swiper-button-next">
                                 <i class="fas fa-chevron-right"></i>
-{{--                                <div class="arrow-right"></div>--}}
                             </div>
                         </div>
 
@@ -155,6 +153,7 @@
                                 @endif
                             @endforeach
                         @endif
+                        @if(isset($data->params))
                             <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
                         @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                             @foreach($dataAttribute as $index=>$att)
@@ -188,7 +187,7 @@
                                 @endif
                             @endforeach
                         @endif
-
+                        @endif
                         <div class="col-md-12 gallery__bottom">
                             <div class="row text-center">
                                 <div class="col-md-12 gallery__01__row">
