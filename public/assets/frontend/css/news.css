@@ -260,11 +260,13 @@
     color: #32c5d2!important;
 }
 .gallery__01{
-    background-color: rgba(185,28,28,80);
+    /*background-color: rgba(185,28,28,80);*/
+    background-color: #32c5d2;
     border-radius: 4px;
 }
 .gallery__02{
-    background-color: rgba(254,226,226,90);
+    /*background-color: rgba(254,226,226,90);*/
+    background-color: #e0ebf9;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     /*border-radius: 4px;*/
@@ -274,24 +276,28 @@
 }
 .gallery__01__span{
     font-size: 20px;
+    /*color: #3f444a;*/
     color: #ffffff;
     text-transform: uppercase;
     font-weight: bold;
 }
 .gallery__01__span__02{
     font-size: 20px;
-    color: red;
+    /*color: red;*/
+    color: #3f444a;
     text-transform: uppercase;
     font-weight: bold;
 }
 .gallery__02__span{
     font-size: 16px;
     color: #ffffff;
+    /*color: #3f444a;*/
     text-transform: uppercase;
 }
 .gallery__02__span__02{
     font-size: 16px;
-    color: red;
+    /*color: red;*/
+    color: #3f444a;
     text-transform: uppercase;
 }
 .gallery__01__row{
@@ -309,7 +315,8 @@
 }
 .hoac{
     font-size: 14px;
-    color: red;
+    /*color: red;*/
+    color: #3f444a;
 }
 .gallery__01__span__02md{
     line-height: 40px;
@@ -322,7 +329,7 @@
 }
 .span__dangky{
     font-size: 18px;
-    color: #0c0c0c;
+    color: #3f444a;
 }
 .span__dangky__auto{
     line-height: 28px;
@@ -337,6 +344,22 @@
     text-transform: uppercase;
     color: #ffffff;
     width: 100%;
+}
+.gallery__bottom__span_bg{
+    background-color: #32c5d2!important;
+    border-color: #32c5d2!important;
+}
+.gallery__bottom__span_bg:hover{
+    opacity: 0.7;
+    color: #3f444a;
+}
+.gallery__bottom__span_bg__2{
+    background-color: #3cb878!important;
+    border-color: #3cb878!important;
+}
+.gallery__bottom__span_bg__2:hover{
+    opacity: 0.7;
+    color: #3f444a;
 }
 .gallery__01__row2{
     padding: 4px 0;

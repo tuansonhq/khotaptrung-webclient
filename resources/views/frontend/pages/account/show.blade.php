@@ -190,22 +190,22 @@
                                 <div class="col-md-12 gallery__01__row">
                                     <div class="row gallery__01__row2">
                                         <div class="col-md-12 pl-0 pr-0">
-                                            <button class="btn btn-danger gallery__bottom__span buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
+                                            <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 gallery__bottom">
                                             <div class="row atmvdtntc">
                                                 <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                                     @if(App\Library\AuthCustom::check())
-                                                    <a href="/recharge" class="btn btn-success gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                    <a href="/recharge" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @else
-                                                    <a href="/login" class="btn btn-success gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                    <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @endif
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-6 ntc">
                                                     @if(App\Library\AuthCustom::check())
-                                                        <a href="/nap-the-tu-dong" class="btn btn-success gallery__bottom__span">NẠP THẺ CÀO</a>
+                                                        <a href="/nap-the-tu-dong" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @else
-                                                        <a href="/login" class="btn btn-success gallery__bottom__span">NẠP THẺ CÀO</a>
+                                                        <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @endif
 
                                                 </div>
