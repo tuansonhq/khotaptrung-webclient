@@ -32,7 +32,11 @@
                     <div class="item_buy_list_in">
                         <div class="item_buy_list_img">
                             <a href="/{{ $data->slug }}/{{ $item->slug }}">
-                                <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
+                                @if(isset($item->image))
+                                <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
+                                @else
+                                    <img class="item_buy_list_img-main" src="/assets/frontend/images/ff.jpg" alt="png-image">
+                                @endif
                              </a>
                         </div>
 
@@ -66,6 +70,12 @@
                     </div>
                 </div>
                     @endforeach
+                @else
+                    <div class="row pb-3 pt-3">
+                        <div class="col-md-12 text-center">
+                            <span style="color: red;font-size: 16px;">Hiện tại chưa có dịch vụ ! Hệ thống sẽ cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</span>
+                        </div>
+                    </div>
                 @endif
             </div>
 
