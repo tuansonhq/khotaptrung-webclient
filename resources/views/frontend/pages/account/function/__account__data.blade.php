@@ -25,15 +25,38 @@
                             </div>
                             <div class="item_buy_list_info">
                                 <div class="row">
-                                    <?php $att_values = $item->groups ?>
-                                    @foreach($att_values as $att_value)
-                                        {{--                                            @dd($att_value)--}}
-                                        @if($att_value->module == 'acc_label')
-                                            <div class="col-6 item_buy_list_info_in">
-                                                {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
-                                            </div>
+                                    @if(isset($item->groups))
+                                        <?php $att_values = $item->groups ?>
+                                        @foreach($att_values as $att_value)
+                                            {{--                                            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label')
+                                                <div class="col-6 item_buy_list_info_in">
+                                                    {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                            @foreach($dataAttribute as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id)
+                                                                    <div class="col-6 item_buy_list_info_in">
+                                                                        {{ $child->title }} : <b>{{ $param }}</b>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="item_buy_list_more">
@@ -76,14 +99,37 @@
                             </div>
                             <div class="item_buy_list_info">
                                 <div class="row">
-                                    <?php $att_values = $item->groups ?>
-                                    @foreach($att_values as $att_value)
-                                        @if($att_value->module == 'acc_label')
-                                            <div class="col-6 item_buy_list_info_in">
-                                                {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
-                                            </div>
+                                    @if(isset($item->groups))
+                                        <?php $att_values = $item->groups ?>
+                                        @foreach($att_values as $att_value)
+                                            @if($att_value->module == 'acc_label')
+                                                <div class="col-6 item_buy_list_info_in">
+                                                    {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                            @foreach($dataAttribute as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($params as $key => $param)
+                                                                @if($key == $child->id)
+                                                                    <div class="col-6 item_buy_list_info_in">
+                                                                        {{ $child->title }} : <b>{{ $param }}</b>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
                                         @endif
-                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="item_buy_list_more">
@@ -100,7 +146,6 @@
                                             Chi tiết
                                         </div>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
