@@ -192,15 +192,15 @@
                                 <div class="col-md-12 gallery__01__row">
                                     <div class="row gallery__01__row2">
                                         <div class="col-md-12 pl-0 pr-0">
-                                            <button class="btn btn-danger gallery__bottom__span"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
+                                            <button class="btn btn-danger gallery__bottom__span buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 gallery__bottom">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <button class="btn btn-success gallery__bottom__span"><i class="fab fa-cc-visa"></i>&ensp;ATM - VÍ ĐIỆN TỬ</button>
+                                                    <a href="/recharge" class="btn btn-success gallery__bottom__span"><i class="fab fa-cc-visa"></i>&ensp;ATM - VÍ ĐIỆN TỬ</a>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button class="btn btn-success gallery__bottom__span"><i class="fas fa-barcode-alt"></i>&ensp;NẠP THẺ CÀO</button>
+                                                    <a href="/nap-the" class="btn btn-success gallery__bottom__span"><i class="fas fa-barcode-alt"></i>&ensp;NẠP THẺ CÀO</a>
                                                 </div>
                                             </div>
                                         </div>
