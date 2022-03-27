@@ -29,7 +29,7 @@
                 @include('frontend.pages.account.sidebar')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
-                        <p>THẺ CÀO ĐÃ NẠP</p>
+                        <p>TÀI KHOẢN ĐÃ MUA</p>
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
