@@ -3,23 +3,23 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-{{--    @dd($data)--}}
+
     <div class="item_buy">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="item_buy_info">
-                        <h3>{{ $data->title }}</h3>
-                        <div>
+                <div class="col-sm-12">
+                    <div class="alert alert-info box-text hidetext" role="alert">
+                        <h1 class="alert-heading h1_category" style="color:#000">{{ $data->title }}</h1>
+                        @if(isset($data->description))
+                        {!! $data->description !!}
+                        @else
                             {!! $data->seo_description !!}
-                        </div>
+                        @endif
                     </div>
-                    <div class="item_buy_viewmore">
-                        <span>Xem tất cả »</span>
+                    <div style="text-align: center;margin: 15px 0">
+                        <span class="viewmore">Xem tất cả »</span>
                     </div>
-                    <div class="item_buy_viewless">
-                        <span>« Thu gọn</span>
-                    </div>
+
                 </div>
             </div>
 
@@ -210,5 +210,6 @@
     @endif
 
     <script src="/assets/frontend/js/account/buyacc.js"></script>
+
 @endsection
 
