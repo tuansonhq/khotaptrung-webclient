@@ -11,14 +11,14 @@
     <div class="c-content-tab-4 c-opt-3" role="tabpanel">
         <ul class="nav nav-justified nav-justified__ul" role="tablist">
             <li role="presentation" class="active justified__ul_li">
-                <a href="#payment" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
+                <a href="#paymentv2" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
             </li>
             <li role="presentation" class="justified__ul_li">
                 <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Tài khoản</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active show" id="payment">
+            <div role="tabpanel" class="tab-pane fade in active show" id="paymentv2">
                 <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                     <li class="c-font-dark">
                         <table class="table table-striped">
