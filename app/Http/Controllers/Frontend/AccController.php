@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Session;
+use function PHPUnit\Framework\isEmpty;
 
 class AccController extends Controller
 {
@@ -217,33 +220,142 @@ class AccController extends Controller
     }
 
     public function postBuyAccount(Request $request,$slug){
+        if (AuthCustom::check()) {
+            $url = '/acc';
+            $method = "GET";
+            $val = array();
+            $val['id'] = $slug;
+            $val['data'] = 'buy_acc';
 
-        $url = '/acc';
-        $method = "GET";
-        $val = array();
-        $val['id'] = $slug;
-        $val['data'] = 'buy_acc';
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $data = $result_Api->data;
 
-//        return $result_Api;
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $data = $result_Api->data;
-
-            if (isset($data->success)){
-                if ($data->success == 0){
-                    return redirect()->back()->with('content', $data->message );
-                }elseif ($data->success == 1 ){
-//                return redirect()->to('/tran/acc/thanhcong')->with('content', \App\Library\Helpers::DecodeJson('buyacc_popup',$data->groups[0]->content_json))->with('success', 'Mua tài khoản thành công');
-                    return redirect()->back()->with('content', 'Mua tài khoản thành công');
+                if (isset($data->success)){
+                    if ($data->success == 0){
+                        return redirect()->route('/lich-su-mua-account')->with('content', $data->message );
+                    }elseif ($data->success == 1 ){
+                        return redirect()->route('/lich-su-mua-account')->with('content', 'Mua tài khoản thành công');
+                    }
+                }else{
+                    return redirect('/');
                 }
+
             }else{
                 return redirect('/');
             }
+        }
+
+    }
+
+    public function getChargeDepositHistory(Request $request)
+    {
+        $url = '/deposit-auto/history';
+        $method = "GET";
+        $val = array();
+        $jwt = Session::get('jwt');
+        if (empty($jwt)) {
+            return response()->json([
+                'status' => "LOGIN"
+            ]);
+        }
+        $val['token'] = $jwt;
+        $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+        $url_telecome = '/deposit-auto/get-telecom';
+        $val_telecome = array();
+        $val_telecome['token'] = $request->cookie('jwt');
+        $val_telecome['secret_key'] = config('api.secret_key');
+        $val_telecome['domain'] = 'youtube.com';
+
+        $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
+
+        if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
+            $result = $result_Api->data;
+            if ($result->status == 1) {
+
+                $data = $result->data;
+                $data_telecome = $result_Api_telecome->data;
+
+                $data_telecome = $data_telecome->data;
+
+                // Set default page
+                if (isEmpty($data->data)) {
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                }
 
 
-        }else{
-            return redirect('/');
+                return view('frontend.pages.account.user.pay_card_history')
+                    ->with('data', $data)->with('data_telecome', $data_telecome);
+            } else {
+                return redirect()->back()->withErrors($result->message);
+            }
+        } else {
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+        }
+    }
+
+    public function getChargeDepositHistoryData(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $page = $request->page;
+
+            $url = '/deposit-auto/history';
+
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+            $val['page'] = $page;
+
+            if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                $val['serial'] = $request->serial;
+            }
+
+            if (isset($request->key) || $request->key != '' || $request->key != null) {
+                $val['key'] = $request->key;
+            }
+
+            if (isset($request->status) || $request->status != '' || $request->status != null) {
+                $val['status'] = $request->status;
+            }
+
+            if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                $val['started_at'] = $request->started_at;
+            }
+
+            if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                $val['ended_at'] = $request->ended_at;
+            }
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+                if ($result->status == 1) {
+
+                    $result = $result_Api->data;
+                    $data = $result->data;
+
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    }
+
+                    return view('frontend.pages.account.user.function.__pay_card_history')
+                        ->with('data', $data);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
         }
     }
 
