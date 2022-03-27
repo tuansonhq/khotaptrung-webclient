@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Cache;
+use Session;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -15,9 +16,9 @@ class MinigameController extends Controller
         try{
             $method = "GET";
             $data = array();
-            $data['token'] = $request->cookie('jwt');
+            $data['token'] = Session::get('jwt');
             $data['secret_key'] = config('api.secret_key');
-            $data['domain'] = 'youtube.com';
+            $data['domain'] = \Request::server("HTTP_HOST");
 
             $group_api = Cache::get('minigame_list');
             if(!isset($group_api)){
@@ -85,7 +86,7 @@ class MinigameController extends Controller
 
     public function postRoll(Request $request){
         if ($request->ajax()){
-            if(!$request->hasCookie('jwt')){
+            if(empty(Session::get('jwt'))){
                 return response()->json([
                     'status' => 4,
                     'msg'=> 'Vui lòng đăng nhập !'
@@ -97,9 +98,9 @@ class MinigameController extends Controller
 
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $data['id'] = $request->id;
                 $data['numrollbyorder'] = $request->numrollbyorder;
                 $data['typeRoll'] = $request->typeRoll;
@@ -134,7 +135,7 @@ class MinigameController extends Controller
                 } else {
                     return response()->json([
                         'status' => 0,
-                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 1!'
                     ], 200);
                 }
             }
@@ -142,7 +143,7 @@ class MinigameController extends Controller
                 logger($e);
                 return response()->json([
                     'status' => 0,
-                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 2!'
                 ], 200);
             }
         }
@@ -150,7 +151,7 @@ class MinigameController extends Controller
 
     public function postBonus(Request $request){
         if ($request->ajax()){
-            if(!$request->hasCookie('jwt')){
+            if(empty(Session::get('jwt'))){
                 return response()->json([
                     'status' => 4,
                     'msg'=> 'Vui lòng đăng nhập !'
@@ -162,9 +163,9 @@ class MinigameController extends Controller
 
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $data['id'] = $request->id;
                 $data['numrollbyorder'] = $request->numrollbyorder;
 
@@ -210,13 +211,13 @@ class MinigameController extends Controller
     }
 
     public function getLog(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             try{
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
 
                 $group_api = Cache::get('minigame_list');
                 if(!isset($group_api)){
@@ -279,13 +280,13 @@ class MinigameController extends Controller
     }
 
     public function getLogAcc(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             try{
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
 
                 $group_api = Cache::get('minigame_list');
                 if(!isset($group_api)){
@@ -347,14 +348,14 @@ class MinigameController extends Controller
     }
 
     public function getWithdrawItem(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             try{
                 $game_type = $request->game_type;
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $url = '/minigame/get-withdraw-item';
                 $data['page'] = $request->page;
                 $data['game_type'] = $game_type;
@@ -387,7 +388,7 @@ class MinigameController extends Controller
     }
 
     public function postWithdrawItem(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             $this->validate($request, [
                 'idgame' => 'required'
 
@@ -399,9 +400,9 @@ class MinigameController extends Controller
                 $game_type = $request->game_type;
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $url = '/minigame/post-withdraw-item';
                 $data['type'] = $game_type;
                 $data['package'] = $request->package;
