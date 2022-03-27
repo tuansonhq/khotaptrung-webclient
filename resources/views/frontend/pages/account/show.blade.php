@@ -37,24 +37,13 @@
                     <div class="gallery" style="overflow: hidden">
                         <div class="swiper gallery-slider">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1019/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1026/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1021/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1022/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1025/500/300" alt="">
-                                </div>
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
+                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
 
                             <div class="swiper-button-prev">
@@ -67,24 +56,13 @@
 
                         <div class="swiper gallery-thumbs">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1019/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1026/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1021/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1022/500/300" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="https://picsum.photos/id/1025/500/300" alt="">
-                                </div>
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
+                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -99,7 +77,7 @@
                                             <span class="gallery__01__span">Mã số:</span>
                                         </div>
                                         <div class="col-md-8 pl-0">
-                                            <span class="gallery__01__span">#9999</span>
+                                            <span class="gallery__01__span">#{{ $data->id }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +87,7 @@
                                             <span class="gallery__02__span">Danh mục:</span>
                                         </div>
                                         <div class="col-md-8  pl-0">
-                                            <span class="gallery__02__span">ACC FREE FIRE VIP - TỰ CHỌN</span>
+                                            <span class="gallery__02__span">{{ $data_category->title }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -150,74 +128,64 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 pl-0">
-                                            <span class="span__dangky">Đăng ký</span>
-                                        </div>
-                                        <div class="col-md-6 pl-0">
-                                            <span class="span__dangky">Facebook</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 pl-0">
-                                            <span class="span__dangky">Pet</span>
-                                        </div>
-                                        <div class="col-md-6 pl-0">
-                                            <span class="span__dangky">Có</span>
+{{--                        @dd($data)--}}
+                        @if(isset($data->groups))
+                            <?php $att_values = $data->groups ?>
+                            @foreach($att_values as $att_value)
+                                @if($att_value->module == 'acc_label')
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>
+                                                    </div>
+                                                    <div class="col-md-6 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->title }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 pl-0">
-                                            <span class="span__dangky">Rank</span>
-                                        </div>
-                                        <div class="col-md-6 pl-0">
-                                            <span class="span__dangky">Đồng</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 pl-0">
-                                            <span class="span__dangky"> Ghi chú</span>
-                                        </div>
-                                        <div class="col-md-6 pl-0">
-                                            <span class="span__dangky">M4a1 Siêu Công Nghệ,Ak47 Giáng Sinh,An94 - Ong Sát Thủ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                @endif
+                            @endforeach
+                        @endif
+                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                            @foreach($dataAttribute as $index=>$att)
+                                @if($att->position == 'text')
+                                    @if(isset($att->childs))
+                                        @foreach($att->childs as $child)
+                                            @foreach($params as $key => $param)
+                                                @if($key == $child->id)
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 pl-0">
+                                                                        <span class="span__dangky">{{ $child->title }}</span>
+                                                                    </div>
+                                                                    <div class="col-md-6 pl-0">
+                                                                        <span class="span__dangky">{{ $param }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+
+                                @endif
+                            @endforeach
+                        @endif
 
                         <div class="col-md-12 gallery__bottom">
                             <div class="row text-center">
@@ -467,6 +435,7 @@
 {{--                    <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">Mua ngay</button>--}}
 {{--                </div>--}}
 {{--            </div>--}}
+            @if(isset($sliders) && count($sliders))
 
             <div class="shop_product_another pt-3">
                 <div class="c-content-title-1">
@@ -476,13 +445,24 @@
 
                 <div class="shop_product_another_content">
                     <div class="item_buy_list row">
-                        <div class="col-sm-6 col-lg-3">
+                        @foreach($sliders as $datav2)
+                            @if($datav2->id != $data->id)
+                            <div class="col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
+                                    <a href="/acc/{{ $datav2->id }}">
+                                        @if(isset($datav2->image))
+                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
+                                        @else
+                                            <img src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
+                                        @endif
+
+                                        @if(isset($datav2->image_icon))
+                                        <img class="item_buy_list_img-sale" src="https://media-tt.nick.vn/{{ $datav2->image_icon }}"  alt="{{ $datav2->title }}">
+                                        @else
                                         <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
+                                        @endif
+                                        <span>MS: {{ $datav2->id }}</span>
                                     </a>
                                 </div>
                                 <div class="item_buy_list_description">
@@ -490,18 +470,46 @@
                                 </div>
                                 <div class="item_buy_list_info">
                                     <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
+                                        @if(isset($datav2->groups))
+                                            <?php
+                                            $att_valuesv2 = $datav2->groups;
+                                            $index = 0;
+                                            ?>
+                                            @foreach($att_valuesv2 as $att_valuev2)
+                                                @if($att_valuev2->module == 'acc_label')
+                                                        <?php
+                                                        $index++;
+                                                        ?>
+                                                    <div class="col-6 item_buy_list_info_in">
+                                                        {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
+                                        @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                            @foreach($dataAttribute as $index=>$att)
+                                                @if($att->position == 'text')
+                                                    @if(isset($att->childs))
+                                                        @foreach($att->childs as $child)
+                                                            @foreach($paramsv2 as $key => $paramv2)
+                                                                @if($key == $child->id)
+                                                                        <?php
+                                                                        $index++;
+                                                                        ?>
+                                                                    @if($index < 5)
+                                                                    <div class="col-6 item_buy_list_info_in">
+                                                                        {{ $child->title }} : <b>{{ $paramv2 }}</b>
+                                                                    </div>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    @endif
+
+                                                @endif
+                                            @endforeach
+                                        @endif
 
                                     </div>
                                 </div>
@@ -509,12 +517,12 @@
                                     <div class="row">
                                         <div class="col-12 ">
                                             <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
+                                                <span>{{ formatPrice($datav2->price_old) }}đ </span>
+                                                {{ formatPrice($datav2->price) }}đ
                                             </div>
 
                                         </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
+                                        <a href="/acc/{{ $datav2->id }}" class="col-12">
                                             <div class="item_buy_list_view">
                                                 Chi tiết
                                             </div>
@@ -524,252 +532,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
-                                    </a>
-                                </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="item_buy_list_more">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
-                                            </div>
-
-                                        </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
-                                            <div class="item_buy_list_view">
-                                                Chi tiết
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
-                                    </a>
-                                </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="item_buy_list_more">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
-                                            </div>
-
-                                        </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
-                                            <div class="item_buy_list_view">
-                                                Chi tiết
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
-                                    </a>
-                                </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="item_buy_list_more">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
-                                            </div>
-
-                                        </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
-                                            <div class="item_buy_list_view">
-                                                Chi tiết
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
-                                    </a>
-                                </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="item_buy_list_more">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
-                                            </div>
-
-                                        </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
-                                            <div class="item_buy_list_view">
-                                                Chi tiết
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
-                                    <a href="/mua-ngay/chi-tiet">
-                                        <img class="item_buy_list_img-main" src="	https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="">
-                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
-                                        <span>MS: 1338480</span>
-                                    </a>
-                                </div>
-                                <div class="item_buy_list_description">
-                                    bảo hành 100%,lỗi hoàn tiền
-                                </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row">
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Đăng ký : <b>Facebook</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Pet : <b>Có</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Rank : <b>Kim cương</b>
-                                        </div>
-                                        <div class="col-6 item_buy_list_info_in">
-                                            Ghi chú : <b>Tuyệt vời</b>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="item_buy_list_more">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="item_buy_list_price">
-                                                <span>5,757,600đ </span>
-                                                2,399,000đ
-                                            </div>
-
-                                        </div>
-                                        <a href="/mua-ngay/chi-tiet" class="col-12">
-                                            <div class="item_buy_list_view">
-                                                Chi tiết
-                                            </div>
-                                        </a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
-
-{{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}
-
             </div>
+            @endif
+            {{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}
+
         </div>
     </div>
 
