@@ -97,40 +97,41 @@ class ChargeController extends Controller
 
     public function getDepositAuto(Request $request)
     {
-        if (AuthCustom::check()) {
-            try {
 
-                $url = '/deposit-auto/get-telecom';
-                $method = "GET";
-                $val = array();
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+        try {
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $url_history = '/deposit-auto/history';
-                    $jwt = Session::get('jwt');
-                    $val['token'] = $jwt;
-                    $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
-                    if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                        $bankHistory = $result_Api_history->data;
-                        $result = $result_Api->data;
-                        $bank = $result->data;
-                        $data = $bankHistory->data;
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                        return view('frontend.pages.account.user.pay_card', compact('bank', 'data'));
-                    } else {
-                        $result = $result_Api->data;
-                        $bank = $result->data;
-                        return view('frontend.pages.account.user.pay_card', compact('bank'));
-                    }
-//            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
+            $url = '/deposit-auto/get-telecom';
+            $method = "GET";
+            $val = array();
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $url_history = '/deposit-auto/history';
+                $jwt = Session::get('jwt');
+                $val['token'] = $jwt;
+                $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
+                if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
+                    $bankHistory = $result_Api_history->data;
+                    $result = $result_Api->data;
+                    $bank = $result->data;
+                    $data = $bankHistory->data;
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                    return view('frontend.pages.account.user.pay_card', compact('bank', 'data'));
                 } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    $result = $result_Api->data;
+                    $bank = $result->data;
+                    return view('frontend.pages.account.user.pay_card', compact('bank'));
                 }
-            } catch (\Exception $e) {
-                Log::error($e);
+//            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
+            } else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
+        } catch (\Exception $e) {
+            Log::error($e);
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
+
+
     }
 
     public function getDepositAutoData(Request $request)
@@ -319,6 +320,7 @@ class ChargeController extends Controller
                 ]);
             }
             $val['token'] = $jwt;
+
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
             $url_telecome = '/deposit-auto/get-telecom';
@@ -353,13 +355,12 @@ class ChargeController extends Controller
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
-
     }
 
     public function getChargeDepositHistoryData(Request $request)
     {
 
-        if ($request->ajax()) {
+        if ($request->ajax() && AuthCustom::check()) {
             $page = $request->page;
 
             $url = '/deposit-auto/history';
