@@ -390,10 +390,12 @@ class MinigameController extends Controller
     public function postWithdrawItem(Request $request){
         if(!empty(Session::get('jwt'))){
             $this->validate($request, [
-                'idgame' => 'required'
+                'idgame' => 'required',
+                'package' => 'required'
 
             ], [
-                'idgame.required' => "Vui lòng nhập ID trong game để rút tiền"
+                'idgame.required' => "Vui lòng nhập ID trong game để rút tiền",
+                'package.required' => "Vui lòng chọn gói muốn rút"
 
             ]);
             try{
