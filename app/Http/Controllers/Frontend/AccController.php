@@ -128,6 +128,32 @@ class AccController extends Controller
             $val['data'] = 'list_acc';
             $val['cat_slug'] = $slug;
             $val['page'] = $page;
+
+            if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
+                $val['id'] = $request->id_data;
+            }
+
+            if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
+                $val['title'] = $request->title_data;
+            }
+
+            if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
+                $val['price'] = $request->price_data;
+            }
+
+            if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
+                $val['status'] = $request->status_data;
+            }
+
+            if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
+                $select_data = $request->select_data;
+                $group_ids = array();
+                foreach(explode('|',$select_data) as $val){
+                    array_push($group_ids,$val);
+                }
+                $val['group_ids'] = $group_ids;
+            }
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -199,7 +225,7 @@ class AccController extends Controller
         $val['data'] = 'buy_acc';
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        return $result_Api;
+
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
 
@@ -212,6 +238,5 @@ class AccController extends Controller
 
         }
     }
-
 
 }

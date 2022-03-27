@@ -3,7 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-
+{{--    @dd($data)--}}
     <div class="item_buy">
         <div class="container">
             <div class="row">
@@ -25,18 +25,18 @@
 
             <div class="item_buy_form">
                 <form class="form-charge">
-                <div class="row">
+                    <div class="row">
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Tìm kiếm</span>
-                                <input type="text" name="title" class="form-control" placeholder="Tìm kiếm">
+                                <input type="text" name="title" class="form-control title" placeholder="Tìm kiếm">
                             </div>
                         </div>
 
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Mã số</span>
-                                <input name="id" type="text" class="form-control" placeholder="Mã số">
+                                <input name="id" type="text" class="form-control id" placeholder="Mã số">
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@
 {{--                                {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
 
                                 <select type="text" class="form-control price" name="price">
-                                    <option value="">Chọn giá tiền
+                                    <option value="">Chọn giá tiền</option>
                                     <option value="0">Dưới 50K</option>
                                     <option value="1">Từ 50K - 200K</option>
                                     <option value="2">Từ 200K - 500K</option>
@@ -63,6 +63,7 @@
 {{--                                {{Form::select('status',array(''=>'-- Chọn giá tiền --')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}--}}
 
                                 <select type="text" class="form-control status" name="status">
+                                    <option value="">Chọn trạng thái</option>
                                     <option value="0">Chưa bán</option>
                                     <option value="1">Đã bán</option>
                                     <option value="2">Đã đặt cọc</option>
@@ -73,10 +74,14 @@
 
                         @include('frontend.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
 
+                        <div class="col-12 item_buy_form_search">
+                            <div class="input-group">
+                                <button type="submit" class="btn">Tìm kiếm</button>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
+                            </div>
+                        </div>
                     </div>
                 </form>
-
-
             </div>
 
             <div class="item_buy_filter">
@@ -115,7 +120,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon price-mobile" name="price-mobile">Giá tiền</span>
                                         <select type="text" class="form-control">
-                                            <option value="">Chọn giá tiền
+                                            <option value="">Chọn giá tiền</option>
                                             <option value="0">Dưới 50K</option>
                                             <option value="1">Từ 50K - 200K</option>
                                             <option value="2">Từ 200K - 500K</option>
@@ -130,6 +135,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon status-mobile" name="status-mobile">Trạng thái</span>
                                         <select type="text" class="form-control">
+                                            <option value="">Chọn trạng thái</option>
                                             <option value="0">Chưa bán</option>
                                             <option value="1">Đã bán</option>
                                             <option value="2">Đã đặt cọc</option>
@@ -162,7 +168,11 @@
 
     <input type="hidden" value="{{ $data->slug }}" name="slug" class="slug">
     <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">
-
+    <input type="hidden" name="id_data" class="id_data" value="">
+    <input type="hidden" name="title_data" class="title_data" value="">
+    <input type="hidden" name="price_data" class="price_data" value="">
+    <input type="hidden" name="select_data" class="select_data" value="">
+    <input type="hidden" name="status_data" class="status_data" cvalue="">
     <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>

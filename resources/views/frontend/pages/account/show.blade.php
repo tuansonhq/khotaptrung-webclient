@@ -368,7 +368,7 @@
 
     <link rel="stylesheet" href="/assets/frontend/css/buyacc.css">
     <script src="/assets/frontend/js/account/buyacc.js"></script>
-
+    <script src="/assets/frontend/js/account/buyaccslider.js"></script>
 
 @endsection
 
