@@ -249,54 +249,57 @@ class AccController extends Controller
 
     }
 
-    public function getChargeDepositHistory(Request $request)
+    public function getBuyAccountHistory(Request $request)
     {
-        $url = '/deposit-auto/history';
-        $method = "GET";
-        $val = array();
-        $jwt = Session::get('jwt');
-        if (empty($jwt)) {
-            return response()->json([
-                'status' => "LOGIN"
-            ]);
-        }
-        $val['token'] = $jwt;
-        $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-        $url_telecome = '/deposit-auto/get-telecom';
-        $val_telecome = array();
-        $val_telecome['token'] = $request->cookie('jwt');
-        $val_telecome['secret_key'] = config('api.secret_key');
-        $val_telecome['domain'] = 'youtube.com';
-
-        $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
-
-        if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
-            $result = $result_Api->data;
-            if ($result->status == 1) {
-
-                $data = $result->data;
-                $data_telecome = $result_Api_telecome->data;
-
-                $data_telecome = $data_telecome->data;
-
-                // Set default page
-                if (isEmpty($data->data)) {
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                }
-
-
-                return view('frontend.pages.account.user.pay_card_history')
-                    ->with('data', $data)->with('data_telecome', $data_telecome);
-            } else {
-                return redirect()->back()->withErrors($result->message);
+        if (AuthCustom::check()) {
+            $url = '/deposit-auto/history';
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
             }
-        } else {
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            $val['token'] = $jwt;
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            $url_telecome = '/deposit-auto/get-telecom';
+            $val_telecome = array();
+            $val_telecome['token'] = $request->cookie('jwt');
+            $val_telecome['secret_key'] = config('api.secret_key');
+            $val_telecome['domain'] = 'youtube.com';
+
+            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
+                $result = $result_Api->data;
+                if ($result->status == 1) {
+
+                    $data = $result->data;
+                    $data_telecome = $result_Api_telecome->data;
+
+                    $data_telecome = $data_telecome->data;
+
+                    // Set default page
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                    }
+
+
+                    return view('frontend.pages.account.getBuyAccountHistory')
+                        ->with('data', $data)->with('data_telecome', $data_telecome);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
         }
+
     }
 
-    public function getChargeDepositHistoryData(Request $request)
+    public function getBuyAccountHistoryData(Request $request)
     {
 
         if ($request->ajax()) {
@@ -348,7 +351,7 @@ class AccController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     }
 
-                    return view('frontend.pages.account.user.function.__pay_card_history')
+                    return view('frontend.pages.account.function.__get__buy__account__history')
                         ->with('data', $data);
                 } else {
                     return redirect()->back()->withErrors($result->message);
