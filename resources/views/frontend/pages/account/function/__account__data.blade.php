@@ -111,11 +111,11 @@
         </div>
     @endif
 
-    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
 
         @if(isset($items))
             @if($items->total()>1)
-                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
                     <div class="col-auto paginate__category__col">
                         <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
                             {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
