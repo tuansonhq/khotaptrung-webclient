@@ -4,13 +4,29 @@
 @endsection
 @section('content')
     <div class="item_buy">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center danhmucdichvu c-content-title-1">
-                    <h3 style="font-size: 30px;color: #3f444a;font-weight: 700;">DANH MỤC DỊCH VỤ</h3>
-                    <div class="c-line-center c-theme-bg"></div>
+        <div class="news_breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto tintuc-auto">
+                        <div class="news_breadcrumbs_title"><a href="/dich-vụ" >Dịch vụ</a></div>
+                    </div>
+                    <div class="col-md-10 col-8 ml-auto">
+                        <ul class="news_breadcrumbs_theme">
+                            <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
+                            <li>/</li>
+                            <li><a href="/dich-vụ" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Dịch vụ</h1></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
+{{--            <div class="row">--}}
+{{--                <div class="col-md-12 text-center danhmucdichvu c-content-title-1">--}}
+{{--                    <h3 style="font-size: 30px;color: #3f444a;font-weight: 700;">DANH MỤC DỊCH VỤ</h3>--}}
+{{--                    <div class="c-line-center c-theme-bg"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="item_buy_form">
                 <form class="form_category_service">
                     <div class="row">

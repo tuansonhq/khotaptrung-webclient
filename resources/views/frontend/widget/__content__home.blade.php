@@ -3,7 +3,7 @@
 <div class="content-items" id="freefire_taget">
     <div class="container">
         <div class="items-title">
-            <h4>Danh mục game</h4>
+            <h2>Danh mục game</h2>
             <div class="items-title-lines"></div>
         </div>
         <div class="game-list row">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="game-list-title">
                             <a class="account_category" href="/danh-muc/{{ $item->slug }}">
-                                <p><strong>{{ $item->title }}</strong></p>
+                                <h3><strong>{{ $item->title }}</strong></h3>
                             </a>
                         </div>
                         <div class="game-list-description">
@@ -60,7 +60,7 @@
 <div class="content-items" id="freefire_taget">
     <div class="container">
         <div class="items-title">
-            <h4>Danh mục minigame</h4>
+            <h2>Danh mục minigame</h2>
             <div class="items-title-lines"></div>
         </div>
         <div class="game-list row">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="game-list-title">
                             <a class="account_category" href="/minigame-{{ $item->slug }}">
-                                <p><strong>{{ $item->title }}</strong></p>
+                                <h3><strong>{{ $item->title }}</strong></h3>
                             </a>
                         </div>
                         <div class="game-list-description">
