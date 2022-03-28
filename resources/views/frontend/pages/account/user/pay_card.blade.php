@@ -11,7 +11,7 @@
                             <div class="account_sidebar_content_line"></div>
                         </div>
 
-                        <p>ID của bạn: <strong>@if(isset(App\Library\AuthCustom::user()->id)) {{App\Library\AuthCustom::user()->id}} @endif</strong> </p>
+                        <p id="tele_user_id">ID của bạn: <strong></strong> </p>
                         <span><p>* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p></span>
                         <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
                         <p style="color: red"></p>
@@ -23,8 +23,8 @@
 
                                 </label>
                                 <div class="col-md-6">
-                                    <div class="input-group" style="width: 100%">
-                                        <input type="text" class="form-control" placeholder="" value=" @if(isset(App\Library\AuthCustom::user()->username)) {{App\Library\AuthCustom::user()->username}} @endif" readonly>
+                                    <div class="input-group" style="width: 100%" id="tele_user_name">
+                                        <input type="text" class="form-control" name="user_name" placeholder="" value=" " readonly>
                                     </div>
                                 </div>
 
@@ -37,13 +37,13 @@
 
                                 <div class="col-md-6">
                                     <div class="input-group" style="width: 100%">
-                                        @if(isset($bank))
+{{--                                        @if(isset($bank))--}}
                                             <select id="telecom" name="telecom" class="form-control">
-                                                @foreach($bank as $items)
-                                                    <option value="{{$items->key}}">{{$items->key}}</option>
-                                                @endforeach
+{{--                                                @foreach($bank as $items)--}}
+{{--                                                    <option value="{{$items->key}}">{{$items->key}}</option>--}}
+{{--                                                @endforeach--}}
                                             </select>
-                                        @endif
+{{--                                        @endif--}}
                                     </div>
                                 </div>
 
@@ -121,6 +121,7 @@
                         </form>
 
                         <div id="data_pay_card_history">
+
                             @include('frontend.pages.account.user.function.__pay_card')
                         </div>
 

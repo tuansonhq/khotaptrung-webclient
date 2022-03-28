@@ -53,15 +53,15 @@
             const token =  $('meta[name="jwt"]').attr('content');
             function getInfo(){
                 const url = '/profile';
-                if(token == 'undefined' || token == null || token =='' || token == undefined){
-                    $('#info .loading').remove();
-                    $('#logout .loading').remove();
-                    $('#info').attr('href','/login')
-                    $('#logout').attr('href','/register')
-                    $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
-                    $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
-                    return;
-                }
+                // if(token == 'undefined' || token == null || token =='' || token == undefined){
+                //     $('#info .loading').remove();
+                //     $('#logout .loading').remove();
+                //     $('#info').attr('href','/login')
+                //     $('#logout').attr('href','/register')
+                //     $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
+                //     $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
+                //     return;
+                // }
                 $.ajax({
                     type: "GET",
                     url: url,

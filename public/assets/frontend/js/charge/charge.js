@@ -81,10 +81,105 @@ $(document).ready(function(){
     //     });
     // });
 
+    // get profile
+    $(document).ready(function(){
+        const csrf_token = $('meta[name="csrf-token"]').attr('content');
+        const token =  $('meta[name="jwt"]').attr('content');
+        function getInfo(){
+            const url = '/profile';
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache:false,
+                data: {
+                    _token:csrf_token,
+                    jwt:token
+                },
+                beforeSend: function (xhr) {
 
-    GetAmountTele();
+                },
+                success: function (data) {
+
+                    if(data.status === "LOGIN"){
+                        window.location.href = '/logout';
+                        // method = method || 'post';
+                        return;
+                    }
+                    if(data.status === "ERROR"){
+                        alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                    }
+                    if(data.status == true){
+                        $('#tele_user_id strong').html(data.info.id)
+                        $('#tele_user_name').html('<input type="text" class="form-control" name="user_name" placeholder="" value="'+data.info.username+ '" readonly>')
+                    }
+                },
+                error: function (data) {
+                    alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                    return;
+                },
+                complete: function (data) {
+
+                }
+            });
+        }
+        getInfo();
+    });
+    // get tele
+    const csrf_token = $('meta[name="csrf-token"]').attr('content');
+    const token =  $('meta[name="jwt"]').attr('content');
+    function getTele (){
+        const url = '/get-tele-card';
+        $.ajax({
+            type: "GET",
+            url: url,
+            cache:false,
+            data: {
+                _token:csrf_token,
+                jwt:token
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: function (data) {
+                console.log(111)
+                console.log(data.tele)
+                if(data.status === "LOGIN"){
+                    window.location.href = '/logout';
+                    // method = method || 'post';
+                    return;
+                }
+                if(data.status === "ERROR"){
+                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                }
+                if(data.status == true){
+                    $('select[name="telecom"]').find('option').remove();
+                    for(i = 0; i < data.tele.length; i++) {
+                        console.log(data.tele[0])
+                        tele = data.tele[i];
+                        let html = '';
+                        html +=''
+                        html += '<option value="'+ tele['key'] +'">'+ tele['title'] +'</option>';
+                        $('select[name="telecom"]').append(html);
+                        GetAmountTele();
+                    };
+
+                }
+            },
+            error: function (data) {
+                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                return;
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+    getTele();
+
+    // get amount
+
     $("#telecom").on('change', function () {
-        GetAmount();
+        GetAmountTele();
 
     });
 
@@ -113,7 +208,7 @@ $(document).ready(function(){
                     tele = response.data.data[i];
                     let html = '';
                     html +=''
-                    html += '<option value="'+ tele['amount'] +'">'+ tele['amount'] +' VNĐ (nhận ' + tele['ratio_true_amount'] +' %) </option>';
+                    html += '<option value="'+ tele['amount'] +'">'+ formatNumber(tele['amount']) +' VNĐ (nhận ' + tele['ratio_true_amount'] +' %) </option>';
                     $('select[name="amount"]').append(html)
                 };
 
@@ -214,7 +309,6 @@ $(document).ready(function(){
 
     GetAmount();
     $("#tele_card").on('change', function () {
-        alert(111)
         GetAmount();
 
     });
