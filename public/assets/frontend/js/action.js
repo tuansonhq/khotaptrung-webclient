@@ -80,6 +80,17 @@ $( document ).ready(function() {
         $(".item_spin_list_more").css("display","block");
     });
 
+    $('.view-more').click(function(){
+        $('.view-less').css("display","flex");
+        $('.view-more').css("display","none");
+        $(".intro_text .content-video-in").addClass( "showtext" );
+    });
+    $('.view-less').click(function(){
+        $('.view-more').css("display","flex");
+        $('.view-less').css("display","none");
+        $(".intro_text .content-video-in").removeClass( "showtext");
+    });
+
     $('.item_play_spin_shake').click(function(){
         $("#lac_lixi").attr("src", "./assets/frontend/image/lixi.gif");
     });

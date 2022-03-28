@@ -479,6 +479,7 @@ header .nav-bar{
 .content-advertise .container marquee p{
     color: #2ecc71;
     font-size: 14px;
+    padding-bottom: 8px;
     font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Condensed', sans-serif;
 }
@@ -1393,4 +1394,29 @@ footer{
     margin: 10px 0;
     text-transform: uppercase;
     font-weight: 600;
+}
+.showtext{
+    max-height: initial !important;
+}
+.intro_text .content-video-in{
+    max-height: 220px;
+    overflow: hidden;
+}
+.view-more,.view-less{
+    display: flex;
+    cursor: pointer;
+    color: #f1c40f;
+    padding-top: 10px;
+    justify-content: flex-end;
+    font-size: 18px;
+}
+
+.view-less{
+    display: none;
+}
+.content-video-in p,.content-video-in h2{
+    color: white;
+}
+.content-video-in a{
+    color: #32c5d2;
 }
