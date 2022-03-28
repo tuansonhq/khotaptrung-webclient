@@ -1,73 +1,68 @@
 @if(empty($data->data))
-    @if(isset($data) && count($data) > 0)
-
         <div class="table-responsive">
             <table class="table table-hover table-custom-res">
                 <thead>
                 <tr>
-                    <th>Nhà mạng</th>
-                    <th>Mã thẻ</th>
-                    <th>serial</th>
-                    <th>Mệnh giá</th>
-                    <th>Kết quả</th>
-                    <th>Thực nhận</th>
+                    <th>Thời gian</th>
+                    <th>ID</th>
+                    <th>Game</th>
+                    <th>Tài khoản</th>
+                    <th>Trị giá</th>
+                    <th>Thao tác</th>
                 </tr>
-
                 </thead>
                 <tbody>
 
-                @foreach ($data as $item)
+                @if(isset($data) && count($data) > 0)
+                    @foreach ($data as $item)
+                        <tr>
+                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>
+                                @if(isset($item->groups))
+                                    @foreach($item->groups as $val)
+                                        @if($val->module == 'acc_category')
+                                            {{ $val->title }}
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{ $item->title }}</td>
+                            <td>{{ formatPrice($item->price) }}</td>
+                            <td>
+                                Thao tác
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
+                    <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                @endif
 
-                    <tr>
-                        <td>{{ $item->telecom_key }}</td>
-                        <td>{{ $item->pin }}</td>
-                        <td>{{ $item->serial }}</td>
-                        <td>{{ formatPrice($item->declare_amount) }}</td>
-                        <td>
-                            @if($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
-                            @elseif($item->status == 0)
-                                <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
-                            @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
-                            @elseif($item->status == 2)
-                                <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
-                            @elseif($item->status == 999)
-                                <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
-                            @elseif($item->status == -999)
-                                <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
-                            @elseif($item->status == -1)
-                                <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
-                            @endif
-                        </td>
-                        <td>
-                            @if(isset($item->real_received_amount))
-                                {{ formatPrice($item->real_received_amount) }}
-                            @else
-                                0
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
                 </tbody>
-
             </table>
         </div>
-    @endif
-    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">
 
-        @if(isset($data))
-            @if($data->total()>1)
-                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
-                    <div class="col-auto paginate__category__col">
-                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+        <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+
+            @if(isset($data))
+                @if($data->total()>1)
+                    <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                        <div class="col-auto paginate__category__col">
+                            <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endif
-        @endif
-    </div>
-@else
+        </div>
+
+        {{--    <input type="hidden" name="serial_data" class="serial_data">--}}
+        {{--    <input type="hidden" name="key_data" class="key_data">--}}
+        {{--    <input type="hidden" name="status_data" class="status_data">--}}
+        {{--    <input type="hidden" name="started_at_data" class="started_at_data">--}}
+        {{--    <input type="hidden" name="ended_at_data" class="ended_at_data">--}}
+        <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
+        <script src="/assets/frontend/js/account/acc-history.js"></script>
 @endif
 

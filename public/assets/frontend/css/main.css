@@ -1990,3 +1990,10 @@ footer{
     min-height: 320px;
 }
 
+.btn-all:hover{
+    opacity: 0.7;
+}
+.btn:hover{
+    opacity: 0.7;
+    color: #FFFFFF;
+}
