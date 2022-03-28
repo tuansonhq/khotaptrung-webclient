@@ -53,15 +53,42 @@ $(document).ready(function(){
         e.preventDefault();
 
         var serial_data = $('.serial').val();
-        $('.serial_data').val(serial_data);
+
+        if (serial_data == null || serial_data == undefined || serial_data == ''){
+            $('.serial_data').val('');
+        }else {
+            $('.serial_data').val(serial_data);
+        }
+
         var key_data = $('.key').val();
-        $('.key_data').val(key_data);
+
+        if (key_data == null || key_data == undefined || key_data == ''){
+            $('.key_data').val('');
+        }else {
+            $('.key_data').val(key_data);
+        }
+
         var status_data =  $('.status').val();
-        $('.status_data').val(status_data);
+
+        if (status_data == null || status_data == undefined || status_data == ''){
+            $('.status_data').val('');
+        }else {
+            $('.status_data').val(status_data);
+        }
+
         var started_at_data = $('.started_at').val();
-        $('.started_at_data').val(started_at_data);
+        if (started_at_data == null || started_at_data == undefined || started_at_data == ''){
+            $('.started_at_data').val('');
+        }else {
+            $('.started_at_data').val(started_at_data);
+        }
+
         var ended_at_data =  $('.ended_at').val();
-        $('.ended_at_data').val(ended_at_data);
+        if (ended_at_data == null || ended_at_data == undefined || ended_at_data == ''){
+            $('.ended_at_data').val('');
+        }else {
+            $('.ended_at_data').val(ended_at_data);
+        }
 
         var serial = $('.serial_data').val();
         var key =  $('.key_data').val();

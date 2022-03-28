@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Cache;
+use Session;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -15,9 +16,9 @@ class MinigameController extends Controller
         try{
             $method = "GET";
             $data = array();
-            $data['token'] = $request->cookie('jwt');
-//            $data['secret_key'] = config('api.secret_key');
-//            $data['domain'] = 'youtube.com';
+            $data['token'] = Session::get('jwt');
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = \Request::server("HTTP_HOST");
 
             $group_api = Cache::get('minigame_list');
             if(!isset($group_api)){
@@ -56,11 +57,11 @@ class MinigameController extends Controller
                         case 'flip':
                             return view('frontend.pages.minigame.flip', compact('result','groups_other'));
                         case 'slotmachine':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine', compact('result','groups_other'));
                         case 'slotmachine5':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other'));
                         case 'squarewheel':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other'));
                         case 'smashwheel':
                             return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         case 'rungcay':
@@ -85,7 +86,7 @@ class MinigameController extends Controller
 
     public function postRoll(Request $request){
         if ($request->ajax()){
-            if(!$request->hasCookie('jwt')){
+            if(empty(Session::get('jwt'))){
                 return response()->json([
                     'status' => 4,
                     'msg'=> 'Vui lòng đăng nhập !'
@@ -97,9 +98,9 @@ class MinigameController extends Controller
 
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $data['id'] = $request->id;
                 $data['numrollbyorder'] = $request->numrollbyorder;
                 $data['typeRoll'] = $request->typeRoll;
@@ -134,7 +135,7 @@ class MinigameController extends Controller
                 } else {
                     return response()->json([
                         'status' => 0,
-                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 1!'
                     ], 200);
                 }
             }
@@ -142,7 +143,7 @@ class MinigameController extends Controller
                 logger($e);
                 return response()->json([
                     'status' => 0,
-                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 2!'
                 ], 200);
             }
         }
@@ -150,7 +151,7 @@ class MinigameController extends Controller
 
     public function postBonus(Request $request){
         if ($request->ajax()){
-            if(!$request->hasCookie('jwt')){
+            if(empty(Session::get('jwt'))){
                 return response()->json([
                     'status' => 4,
                     'msg'=> 'Vui lòng đăng nhập !'
@@ -162,9 +163,9 @@ class MinigameController extends Controller
 
                 $method = "POST";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
                 $data['id'] = $request->id;
                 $data['numrollbyorder'] = $request->numrollbyorder;
 
@@ -210,13 +211,13 @@ class MinigameController extends Controller
     }
 
     public function getLog(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             try{
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
 
                 $group_api = Cache::get('minigame_list');
                 if(!isset($group_api)){
@@ -279,13 +280,13 @@ class MinigameController extends Controller
     }
 
     public function getLogAcc(Request $request){
-        if($request->hasCookie('jwt')){
+        if(!empty(Session::get('jwt'))){
             try{
                 $method = "GET";
                 $data = array();
-                $data['token'] = $request->cookie('jwt');
+                $data['token'] = Session::get('jwt');;
                 $data['secret_key'] = config('api.secret_key');
-                $data['domain'] = 'youtube.com';
+                $data['domain'] = \Request::server("HTTP_HOST");
 
                 $group_api = Cache::get('minigame_list');
                 if(!isset($group_api)){
@@ -332,6 +333,92 @@ class MinigameController extends Controller
                         $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                         $paginatedItems->setPath($request->url());
                         return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
+                    }
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }else{
+            return redirect('login');
+        }
+    }
+
+    public function getWithdrawItem(Request $request){
+        if(!empty(Session::get('jwt'))){
+            try{
+                $game_type = $request->game_type;
+                $method = "GET";
+                $data = array();
+                $data['token'] = Session::get('jwt');;
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = \Request::server("HTTP_HOST");
+                $url = '/minigame/get-withdraw-item';
+                $data['page'] = $request->page;
+                $data['game_type'] = $game_type;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $result = $result_Api->data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return redirect('login');              
+                    } else {
+                        $paginatedItems = null;
+                        if($result->withdraw_history->total>0){
+                            $perPage = $result->withdraw_history->per_page??0;
+                            $total = $result->withdraw_history->total??0;
+                            $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
+                            $paginatedItems->setPath($request->url());
+                        }
+                        return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
+                    }
+                } else {
+                    return 'sai';
+                }
+            }
+            catch(\Exception $e){
+                logger($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }else{
+            return redirect('login');
+        }
+    }
+
+    public function postWithdrawItem(Request $request){
+        if(!empty(Session::get('jwt'))){
+            $this->validate($request, [
+                'idgame' => 'required',
+                'package' => 'required'
+
+            ], [
+                'idgame.required' => "Vui lòng nhập ID trong game để rút tiền",
+                'package.required' => "Vui lòng chọn gói muốn rút"
+
+            ]);
+            try{
+                $game_type = $request->game_type;
+                $method = "POST";
+                $data = array();
+                $data['token'] = Session::get('jwt');;
+                $data['secret_key'] = config('api.secret_key');
+                $data['domain'] = \Request::server("HTTP_HOST");
+                $url = '/minigame/post-withdraw-item';
+                $data['type'] = $game_type;
+                $data['package'] = $request->package;
+                $data['idgame'] = $request->idgame;
+                $data['phone'] = $request->phone;
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $result = $result_Api->data;
+                    if (isset($result->status) && $result->status == 4) {
+                        return redirect('login');              
+                    }else if(isset($result->status) && $result->status == 0){
+                        return redirect()->back()->withErrors($result->msg);
+                    }else {
+                        return redirect()->back()->with('success',__($result->msg));
                     }
                 } else {
                     return 'sai';

@@ -309,7 +309,7 @@ class ChargeController extends Controller
 
     public function getChargeDepositHistory(Request $request)
     {
-        if ($request->hasCookie('jwt')) {
+        if (AuthCustom::check()) {
             $url = '/deposit-auto/history';
             $method = "GET";
             $val = array();
@@ -360,7 +360,7 @@ class ChargeController extends Controller
     public function getChargeDepositHistoryData(Request $request)
     {
 
-        if ($request->ajax()) {
+        if ($request->ajax() && AuthCustom::check()) {
             $page = $request->page;
 
             $url = '/deposit-auto/history';
@@ -422,7 +422,7 @@ class ChargeController extends Controller
 
     public function getDepositHistory(Request $request)
     {
-        if ($request->hasCookie('jwt')) {
+        if (AuthCustom::check()) {
             try {
                 $url = '/deposit-auto/history';
                 $method = "GET";
@@ -465,7 +465,7 @@ class ChargeController extends Controller
             'captcha.captcha' => "Sai mã capcha",
         ]);
 
-        if ($request->hasCookie('jwt')) {
+        if (AuthCustom::check()) {
             try {
                 $url = '/deposit-auto';
 

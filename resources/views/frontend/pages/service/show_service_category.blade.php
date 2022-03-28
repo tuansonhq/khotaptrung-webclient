@@ -10,16 +10,16 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="item_buy_info">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 style="font-size: 20px">{{ $data->title }}</h3>
-                                    </div>
-                                    <div class="col-md-12">
-                                        {!! $data->content !!}
-                                    </div>
-                                </div>
-
+                            <div class="alert alert-info box-text hidetext" role="alert">
+                                <h1 class="alert-heading h1_category" style="color:#000">{{ $data->title }}</h1>
+                                @if(isset($data->description))
+                                    {!! $data->description !!}
+                                @else
+                                    {!! $data->seo_description !!}
+                                @endif
+                            </div>
+                            <div style="text-align: center;margin: 15px 0">
+                                <span class="viewmore">Xem tất cả »</span>
                             </div>
                         </div>
                     </div>
@@ -41,9 +41,6 @@
                                 <a href="" class="btn btn-danger btn-tatca">Tất cả</a>
                             </div>
                         </div>
-
-
-
                     </div>
                 </form>
 

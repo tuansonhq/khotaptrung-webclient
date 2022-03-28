@@ -29,12 +29,20 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
     if(isset($result_Api) && $result_Api->httpcode == 200){
         $data = $result_Api->data;
-
-        return $view->with('data', $data);
-
     }else{
         return 'sai';
     }
+
+    $param['secret_key'] = config('api.secret_key');
+    $param['domain'] = \Request::server("HTTP_HOST");
+    $url = '/minigame/get-list-minigame';
+    $group_api = DirectAPI::_makeRequest($url,$param,$method);
+    if(isset($group_api) && $group_api->httpcode == 200){
+        $dataGame = $group_api->data;
+    }else{
+        
+    }
+    return $view->with('data', $data)->with('dataGame', $dataGame);
 });
 
 
@@ -95,6 +103,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     $url = '/article';
     $method = "GET";
     $val = array();
+
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
     $result = $result_Api->data;

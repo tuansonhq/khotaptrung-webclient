@@ -85,7 +85,6 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
 
         Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
-        Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
         Route::get('/buy-acc/{id}/databuy', [AccController::class,"getBuyAccount"]);
         Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
 
@@ -157,9 +156,9 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
         Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
 
-//Route::get('/lich-su-nap-the', function () {
-//    return view('frontend.pages.account.user.pay_card_history');
-//});
+//        Route::get('/lich-su-nap-the', function () {
+//            return view('frontend.pages.account.user.pay_card_history');
+//        });
 //Route::get('/nap-the-tu-dong', function () {
 //    return view('frontend.pages.account.user.pay_card');
 //});
@@ -176,13 +175,19 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
 
         Route::group(array('middleware' => ['auth']),function(){
+            Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
+            Route::get('/lich-su-nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
+
+            Route::get('/lich-su-mua-account',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistory'])->name('getBuyAccountHistory');
+            Route::get('/lich-su-mua-account/data',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistoryData'])->name('getBuyAccountHistoryData');
+
+            Route::get('/dich-vu-da-mua',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistory'])->name('getBuyServiceHistory');
+            Route::get('/dich-vu-da-mua/data',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistoryData'])->name('getBuyServiceHistoryData');
+
             Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
             Route::get('/nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
             Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
             Route::get('/telecom-deposit-auto',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecomDepositAuto'])->name('getTelecomDepositAuto');
-
-            Route::get('/lich-su-nap-the',[ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
-            Route::get('/lich-su-nap-the/data',[ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
 
             Route::get('/recharge-atm',[\App\Http\Controllers\Frontend\TranferController::class,'getBank'])->name('getBank');
             Route::get('/recharge-atm/data',[\App\Http\Controllers\Frontend\TranferController::class,'getBankData'])->name('getBankData');
@@ -196,18 +201,20 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
             Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
             Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
+
+            Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
         });
 
-
-
-
-//minigame
-        Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class,'postRoll'])->name('postRoll');
-        Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class,'postBonus'])->name('postBonus');
-        Route::get('/minigame-log-{id}',[\App\Http\Controllers\Frontend\MinigameController::class,'getLog'])->name('getLog');
-        Route::get('/minigame-logacc-{id}',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogAcc'])->name('getLogAcc');
-        Route::get('/minigame-withdrawitem',[\App\Http\Controllers\Frontend\MinigameController::class,'getWithdrawItem'])->name('getWithdrawItem');
-        Route::get('/minigame-{slug}',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndex'])->name('getIndex');
+        Route::group(['middleware' => ['doNotCacheResponse']], function () {
+            //minigame
+            Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class,'postRoll'])->name('postRoll');
+            Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class,'postBonus'])->name('postBonus');
+            Route::get('/minigame-log-{id}',[\App\Http\Controllers\Frontend\MinigameController::class,'getLog'])->name('getLog');
+            Route::get('/minigame-logacc-{id}',[\App\Http\Controllers\Frontend\MinigameController::class,'getLogAcc'])->name('getLogAcc');
+            Route::get('/minigame-{slug}',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndex'])->name('getIndex');
+            Route::get('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'getWithdrawItem'])->name('getWithdrawItem');
+            Route::post('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'postWithdrawItem'])->name('postWithdrawItem');
+        });
 
     });
 

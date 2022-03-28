@@ -13,14 +13,50 @@
                     echo "Số người đang chơi: ".number_format(rand(100,1000))." (".rand(3,10)." bạn chung)";
                 @endphp
             </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="item_spin">
-                        <a class="ani-zoom" id="start-played">
-                            <img src="{{config('api.url_media').$result->group->image_icon}}" alt="{{$result->group->title}}">
-                        </a>
-                        <img src="{{config('api.url_media').$result->group->params->image_static}}" alt="{{$result->group->title}}" id="rotate-play">
+            <div class="row d-flex justify-content-between">
+                <div class="col-lg-9 col-md-8">
+                    <div class="item_square" style="display: flex; flex-wrap: wrap;" >
+                        <table id="squaredesktop" class="square">
+                            <tr>
+                                <td></td>
+                                <td><div  data-num="1" class="gift1 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="2" class="gift2 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="3" class="gift3 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><div  data-num="12" class="gift12 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td colspan="3"></td>
+                                <td><div  data-num="4" class="gift4 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                            </tr>
+                            <tr>
+                                <td><div data-num="11" class="gift11 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td colspan="3">
+                                    <div class="outer-btn">
+                                        <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="">
+                                            <img src="{{config('api.url_media').$result->group->image_icon}}" alt="" style="">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><div  data-num="5" class="gift5 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                            </tr>
+                            <tr>
+                                <td><div  data-num="10" class="gift10 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td colspan="3"></td>
+                                <td><div  data-num="6" class="gift6 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><div  data-num="9" class="gift9 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="8" class="gift8 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="7" class="gift7 box"><img src='{{config('api.url_media').$result->group->params ->image_static}}'/></div></td>
+                                <td></td>
+                            </tr>
+                        </table>
+
+
                     </div>
+
                     <div class="item_spin_sale-off">
                         <input type="text" readonly="" placeholder="Nhập mã giảm giá">
                     </div>
@@ -31,18 +67,18 @@
                     <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
                     <div class="item_spin_dropdown">
                         <select name="" id="numrolllop">
-                                <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
+                            <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
                             @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                            <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
                             @endif
                             @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                            <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
                             @endif
                             @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                            <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
                             @endif
                             @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                            <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
                             @endif
                         </select>
                     </div>
@@ -52,61 +88,36 @@
 
                     <div class="item_play_try">
                         @if($result->group->params->is_try == 1)
-                        <a class="btn btn-primary num-play-try">Chơi thử</a>
+                            <a class="btn btn-primary num-play-try">Chơi thử</a>
                         @endif
                         <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="item_spin_category">
+
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="item_play_category">
                         <a href="#" class="btn btn-success thele" data-toggle="modal" data-target="#theleModal">
                             Thể lệ
                         </a>
-                        <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
-                           Top quay thưởng
-                        </a>
-                        <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
-                            Rút Vip
-                        </a>
-                        <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
-                            Lịch sử quay
-                        </a>
+                    </div>
+                    <div class="item_play_category">
+                        <a class="btn btn-success col-sm-12" data-toggle="modal" data-target="#luotquayModal">Lượt chơi gần đây</a>
+                    </div>
 
+                    <div class="item_play_category">
+                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử gieo trúng vật phẩm</a>
                     </div>
-                    <div class="item_spin_title">
-                        <p>Lượt quay gần đây</p>
+                    <div class="item_play_category">
+                        <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
                     </div>
-                    <div class="item_spin_list">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Tài khoản</th>
-                                    <th>Giải thưởng</th>
-                                    <th>Thời gian</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                @foreach($result->log as $item)
-                                    <tr>
-                                        <th>{{$item->author->username}}</th>
-                                        <th>{{$item->item_ref->title}}</th>
-                                        <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <a class="item_spin_list_more"><i class="fas fa-arrow-down"></i> Xem thêm</a>
-                    <a  class="item_spin_list_less"><i class="fas fa-arrow-down"></i> Ẩn bớt</a>
                 </div>
+
+
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng minigame khác</p>
+                <p>Các vòng quay khác</p>
                 <div class="item_play_line"></div>
-
             </div>
             <div class="item_play_dif">
                 <div class="row" style="position: relative">
@@ -129,7 +140,7 @@
                                         </div>
                                         <div class="item_play_dif_slide_description">
                                             <div class="countime"> </div>
-                                            <p>Đã chơi: {{$item->order_gate_count}}</p>
+                                            <p>Đã quay: 388</p>
                                             <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                             <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                         </div>
@@ -139,7 +150,7 @@
                                                     @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
                                                     <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
                                                     @else
-                                                    Chơi ngay
+                                                    Quay ngay
                                                     @endif
                                                 </a>
                                             </div>
@@ -201,7 +212,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="middle nohuthang" style="text-align: center;padding: 15px 0;"></div>
+            <div class="middle nohuthang" style="text-align: center;padding: 15px 0;color: blue"></div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
 
             </div>
@@ -224,7 +235,7 @@
                 </button>
             </div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!               
+                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
             </div>
             <div class="modal-footer">
                 <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
@@ -234,6 +245,54 @@
     </div>
 </div>
 
+
+    <div class="modal fade" id="luotquayModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto;padding-left: 60px">Lượt chơi gần đây</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
+                    <div class="c-content-title-1" style="margin: 0 auto">
+                    </div>
+                    <div class="list-roll-inner">
+                        <table cellpadding="10" class="table table-striped">
+                            <tbody>
+                            <tr>
+                                <th>Tài khoản</th>
+                                <th>Giải thưởng</th>
+                                <th>Thời gian</th>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                            @if(isset($result->log) && count($result->log) > 0)
+                                @foreach($result->log as $item)
+                                    <tr>
+                                        <td>{{substr($item->author->username, 0, 3)}}***</td>
+                                        <th>{{$item->item_ref->title}}</th>
+                                        <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <th colspan="3">Dữ liệu đang được cập nhật...</th>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!--    popup-->
 <div class="modal fade bd-example-modal-lg" id="topquaythuongModal" role="dialog" aria-hidden="true">
@@ -256,7 +315,7 @@
                     <div class="tab-content">
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
-                                
+
                                 @if(count($result->top_current_day)>0)
                                 <div class="top-info-section">
                                     <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
@@ -330,56 +389,62 @@
 @foreach(config('constants.'.'game_type') as $item => $key)
     <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
 @endforeach
-<input type="hidden" id="type_play" value="real">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script>
-    function animate(options) {
-        var start = performance.now();
-        requestAnimationFrame(function animate(time) {
-            var timeFraction = (time - start) / options.duration;
-            if (timeFraction > 1) timeFraction = 1;
-            var progress = options.timing(timeFraction)
-            options.draw(progress);
-            if (timeFraction < 1) {
-                requestAnimationFrame(animate);
-            }
-        });
-    }
-
     $(document).ready(function(e) {
+        @if(isset($result->group->items) && count($result->group->items)>0)
+            @foreach($result->group->items as $index=>$item)
+                $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{config('api.url_media').$item->image}}');
+            @endforeach
+        @endif
+            $(".thele").on("click", function(){
+                $("#theleModal").modal('show');
+            })
+            $(".tylevongquay").on("click", function(){
+                $("#tylevongquayModal").modal('show');
+            })
+            $(".uytin").on("click", function(){
+                $("#uytinModal").modal('show');
+            })
+            $(".luotquay").on("click", function(){
+                $("#luotquayModal").modal('show');
+            })
+            $(".topquaythuong").on("click", function(){
+                $("#topquaythuongModal").modal('show');
+            })
 
+        var num_loop = 3;
+        var num = 0;
+        var num_current = 0;
+        var target = 0;
+        var time = 400
+        var runtime ='';
+        var runrealtime ='';
+
+        var gift_revice = "";
         var saleoffpass = "";
-        //var saleoffmessage = "";
         var userpoint = 0;
         var numrollbyorder = 0;
         var roll_check = true;
-        var num_loop = 4;
         var angle_gift = '';
         var num_gift = '{{count($result->group->items)}}';
         var gift_detail = '';
         var num_roll_remain = 0;
         var angles = 0;
         var arrxgt;
+        var typeRoll = "real";
         var free_wheel = 0;
         var value_gif_bonus = '';
         var msg_random_bonus = '';
-        //var arrDiscount = '';
-
-        $('body').delegate('#start-played', 'click', function() {
-            $('#type_play').val('real');
-            play();
-        });
-
-        $('body').delegate('.num-play-try', 'click', function() {
-            $('#type_play').val('try');
-            play();
-        });
 
         //Click nút quay
-        function play(){
+        $('body').delegate('#start-played', 'click', function() {
             if (roll_check) {
+                fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
+                typeRoll = "real";
                 numrolllop = $("#numrolllop").val();
                 $.ajax({
                     url: '/minigame-play',
@@ -389,17 +454,21 @@
                         id: '{{$result->group->id}}',
                         numrolllop: numrolllop,
                         numrollbyorder: numrollbyorder,
-                        typeRoll: $('#type_play').val(),
+                        typeRoll: typeRoll,
                         saleoffpass: saleoffpass,
                     },
                     type: 'POST',
-                    success: function(data) {                        
-                        if (data.status == 4) {                            
+                    success: function(data) {
+
+                        if (data.status == 4) {
                             location.href='/login';
+                            return;
                         } else if (data.status == 3) {
+                            clearTimeout(runtime);
                             $('#naptheModal').modal('show')
                             return;
                         } else if (data.status == 0) {
+                            clearTimeout(runtime);
                             roll_check = true;
                             $('.content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
@@ -408,34 +477,31 @@
                         numrollbyorder = parseInt(data.numrollbyorder) + 1;
                         gift_detail = data.gift_detail;
                         gift_revice = data.arr_gift;
-                        //arrDiscount = data.arrDiscount;
                         arrxgt = data.xgt;
                         if (data.xgt > 0) {
                             xvalue = data.xgt[data.xgt.length - 1];
                         } else {
                             xvalue = 0;
                         }
+
                         value_gif_bonus = data.value_gif_bonus;
                         msg_random_bonus = data.msg_random_bonus;
                         xvalueaDD = data.xValue;
                         free_wheel = data.free_wheel;
                         num_roll_remain = gift_detail.num_roll_remain;
-                        angles = 0;
-                        angle_gift = gift_detail.order * (360 / num_gift);
+                        var targetId = gift_detail.id;
+                        target = parseInt($('#id'+targetId).attr('data-num'));
                         loop();
 
-                        if($('#type_play').val()=='real'){
-                            userpoint = data.userpoint;
-                            if(userpoint<100){
-                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
-                            }else{
-                                $(".item_spin_progress_bubble").css("width", "100%");
-                                $(".item_spin_progress_bubble").addClass('clickgif');
-                            }
-                            $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
-                            $("#saleoffpass").val("");
-                            //saleoffmessage = data.saleMessage;
+                        userpoint = data.userpoint;
+                        if(userpoint<100){
+                            $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                        }else{
+                            $(".item_spin_progress_bubble").css("width", "100%");
+                            $(".item_spin_progress_bubble").addClass('clickgif');
                         }
+                        $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                        $("#saleoffpass").val("");
                     },
                     error: function() {
                         $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
@@ -443,7 +509,7 @@
                     }
                 })
             }
-        };
+        });
 
 
         function getgifbonus() {
@@ -461,8 +527,7 @@
                         $('#noticeModal').modal('show');
                         return;
                     }
-                    $('#noticeModal .content-popup').append(data.msg + " - " + data.arr_gift[0].title);
-                    //$("#noticeModalNoHu #btnWithdraw").hide();
+                    $('#noticeModal .nohuthang').html(data.msg + " - " + data.arr_gift[0].title);
                     $('#noticeModal').modal('show');
                     var userpoint = data.userpoint;
                     if(userpoint<100){
@@ -485,19 +550,132 @@
             })
         }
 
-        function loop() {
-            $('#rotate-play').css({
-                "transform": "rotate(" + angles + "deg)"
-            });
 
-            if ((parseInt(angles) - 10) <= -(((num_loop * 360) + angle_gift))) {
-                angles = parseInt(angles) - 2;
-            } else {
-                angles = parseInt(angles) - 10;
+        $('body').delegate('.num-play-try', 'click', function() {
+            if (roll_check) {
+                fakeLoop();
+                roll_check = false;
+                saleoffpass = $("#saleoffpass").val();
+                typeRoll = "try";
+                numrolllop = $("#numrolllop").val();
+                $.ajax({
+                    url: '/minigame-play',
+                    datatype: 'json',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        id: '{{$result->group->id}}',
+                        numrolllop: numrolllop,
+                        numrollbyorder: numrollbyorder,
+                        typeRoll: typeRoll,
+                        saleoffpass: saleoffpass,
+                    },
+                    type: 'POST',
+                    success: function(data) {
+
+                        if (data.status == 4) {
+                            location.href='/login';
+                            return;
+                        } else if (data.status == 3) {
+                            clearTimeout(runtime);
+                            $('#naptheModal').modal('show')
+                            return;
+                        } else if (data.status == 0) {
+                            clearTimeout(runtime);
+                            roll_check = true;
+                            $('.content-popup').text(data.msg);
+                            $('#noticeModal').modal('show');
+                            return;
+                        }
+                        numrollbyorder = parseInt(data.numrollbyorder) + 1;
+                        gift_detail = data.gift_detail;
+                        gift_revice = data.arr_gift;
+                        arrxgt = data.xgt;
+                        if (data.xgt > 0) {
+                            xvalue = data.xgt[data.xgt.length - 1];
+                        } else {
+                            xvalue = 0;
+                        }
+
+                        value_gif_bonus = data.value_gif_bonus;
+                        msg_random_bonus = data.msg_random_bonus;
+                        xvalueaDD = data.xValue;
+                        free_wheel = data.free_wheel;
+                        num_roll_remain = gift_detail.num_roll_remain;
+                        var targetId = gift_detail.id;
+                        target = parseInt($('#id'+targetId).attr('data-num'));
+                        loop();
+
+                        userpoint = data.userpoint;
+                        if(userpoint<100){
+                            $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                        }else{
+                            $(".item_spin_progress_bubble").css("width", "100%");
+                            $(".item_spin_progress_bubble").addClass('clickgif');
+                        }
+                        $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                        $("#saleoffpass").val("");
+                    },
+                    error: function() {
+                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                        $('#noticeModal').modal('show');
+                    }
+                })
             }
+        });
 
-            if (angles >= -((num_loop * 360) + angle_gift)) {
-                requestAnimationFrame(loop);
+
+        function fakeLoop(){
+            num++;
+            num_current++;
+            if(num_current>11){
+                num_current = 0;
+            }
+            $('.box img').removeClass('active');
+            $('.gift'+(num_current)+' img').addClass('active');
+
+            if(num<4){
+                time = 400
+            }else if(num<8){
+                time = 200
+            }else if(num>7){
+                time = 60
+            }
+            runtime = setTimeout(function(){
+                fakeLoop();
+            },time);
+        }
+
+
+        function loop() {
+            clearTimeout(runtime);
+            if(num<(parseInt(num_loop*12)+target)){
+                num++;
+                num_current++;
+                $('.box img').removeClass('active');
+                $('.gift'+(num_current)+' img').addClass('active');
+                var time = 400
+                if(num<4){
+                    time = 400
+                }else if(num<8){
+                    time = 200
+                }else if(num>7){
+                    time = 60
+                }
+
+                if(num>((num_loop*12)+target-7) && num<((num_loop*12)+target-3)){
+                    time = 200;
+                }
+
+                if(num>((num_loop*12)+target-4)){
+                    time = 400
+                }
+                runrealtime = setTimeout(function(){
+                    loop();
+                },time);
+
+                if(num_current==12){
+                    num_current=0;
+                }
             } else {
                 roll_check = true;
 
@@ -536,8 +714,8 @@
                     // {
                     //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                     // }
-                    
-                    if($('#type_play').val() == "real")
+
+                    if(typeRoll == "real")
                     {
                         if(gift_revice.length == 1)
                         {
@@ -573,7 +751,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }
@@ -605,7 +783,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }
@@ -617,12 +795,89 @@
                     getgifbonus();
                 }
                 $('#noticeModal').modal('show');
+                if (free_wheel < 1) {
+                    $('.num-play-free').hide();
+                } else {
+                    $('.num-play-free').html("(Bạn còn " + free_wheel + " lượt quay miễn phí)");
+                }
+                if (num_roll_remain == 0) {
+                    $('.deposit-btn').show();
+                } else {
+                    $('.deposit-btn').hide();
+                }
             }
         }
     });
 
     $('body').delegate('.reLoad', 'click', function() {
         location.reload();
+    })
+</script>
+<style>
+    .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
+</style>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $(document).on('scroll',function(){
+            if($(window).width() > 1024){
+                if ($(this).scrollTop() > 100) {
+                    $(".nav-bar-container").css("height","90px");
+                    $(".nav-bar-category .nav li a").css("line-height","90px");
+                    $("header .nav-bar").css("background-color","rgba(0,0,0,0.5)");
+                    $(".nav-bar-brand").css("margin","14px");
+
+                } else {
+                    $(".nav-bar-container").css("height","120px");
+                    $(".nav-bar-category .nav li a").css("line-height","120px");
+                    $(".nav-bar-brand").css("margin","20px 0");
+                    $("header .nav-bar").css("background-color","rgba(0,0,0,0.8)");
+                }
+            }
+
+        });
+        $('.item_play_intro_viewmore').click(function(){
+            $('.item_play_intro_viewless').css("display","flex");
+            $('.item_play_intro_viewmore').css("display","none");
+            $(".item_play_intro_content").addClass( "showtext" );
+        });
+        $('.item_play_intro_viewless').click(function(){
+            $('.item_play_intro_viewmore').css("display","flex");
+            $('.item_play_intro_viewless').css("display","none");
+            $(".item_play_intro_content").removeClass( "showtext");
+        });
+        $('.item_spin_list_more').click(function(){
+            $('.item_spin_list').css("overflow","auto");
+            $('.item_spin_list_less').css("display","block");
+            $(".item_spin_list_more").css("display","none");
+        });
+        $('.item_spin_list_less').click(function(){
+            $('.item_spin_list').css("overflow","hidden");
+            $('.item_spin_list_less').css("display","none");
+            $(".item_spin_list_more").css("display","block");
+        });
+
+
+    });
+</script>
+<script>
+    $(".nav-tabs #tap1-tab-1").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-1").show();
+    })
+    $(".nav-tabs #tap1-tab-2").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-2").show();
+    })
+    $(".nav-tabs #tap1-tab-3").on("click",function(){
+        $(".active").removeClass("active");
+        $(this).parents("li").addClass("active");
+        $(".tab-pane").hide();
+        $("#tap1-pane-3").show();
+
     })
 </script>
 @endsection

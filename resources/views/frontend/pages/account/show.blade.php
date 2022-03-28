@@ -3,6 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+
     <div class="" style="margin-top: 15px">
         @if ($message = Session::get('success'))
             <div class="container">
@@ -26,99 +27,199 @@
 
     </div>
 
-    <div class="shop_product_detail">
+    <div class="shop_product_detailS">
         <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="shop_product_header">
-                        <p>#{{ $data->id }}</p>
-                        <span>{{ $data_category->title }}̉</span>
+            <div class="row container__show">
+                <div class="col-lg-6 col-md-12 shop_product_detailS__col">
+                    <div class="gallery" style="overflow: hidden">
+                        <div class="swiper gallery-slider">
+                            <div class="swiper-wrapper">
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
+                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div class="swiper-button-prev">
+                                <i class="fas fa-chevron-left"></i>
+                            </div>
+                            <div class="swiper-button-next">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="swiper gallery-thumbs">
+                            <div class="swiper-wrapper">
+                                @foreach(explode('|',$data->image_extension) as $val)
+                                    <div class="swiper-slide">
+                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
+                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-12 shop_product_info_mobile">
-                    <a  data-fancybox="gallerycoverDetail" href="https://shopas.net/storage/images/hyi1T9DGM1_1645949761.jpg">
-                        <img src="https://shopas.net/storage/images/hyi1T9DGM1_1645949761.jpg" alt="">
-                    </a>
-                    <div class="shop_product_info">
-                        <div class="shop_product_info_divider">
-                            <i class="fas fa-circle"></i>
+                <div class="col-lg-6 col-md-12 gallery__right">
+                    <div class="row gallery__row">
+                        <div class="col-md-12">
+                            <div class="row gallery__01">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="gallery__01__span">Mã số:</span>
+                                        </div>
+                                        <div class="col-md-8 col-8 pl-0">
+                                            <span class="gallery__01__span">#{{ $data->id }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 gallery__01__row2">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="gallery__02__span">Danh mục:</span>
+                                        </div>
+                                        <div class="col-md-8 col-8  pl-0">
+                                            <span class="gallery__02__span">{{ $data_category->title }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="row">
-
-                            @include('frontend.pages.account.widget.account_load_attribute')
-
-                        </div>
-                        <div class="shop_product_info_divider">
-                            <i class="fas fa-circle"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="shop_product_price">
-                        <div>
-                            {{ formatPrice($data->price_old) }} CARD
-                        </div>
-                        <div>
-                            {{ formatPrice($data->price) }} ATM
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-4">
-                    <div class="shop_product_header">
-                        <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">
-                            Mua ngay
-                        </button>
-                        <a href="/recharge" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">ATM - Ví điện tử</a>
-                        <a href="/nap-the" class="btn c-btn btn-lg c-bg-green-4 c-font-white c-font-uppercase c-font-bold c-btn-square m-t-20">Nạp thẻ cào</a>
-                    </div>
-                </div>
-            </div>
-            <div class="shop_product_info shop_product_info_desktop">
-                <div class="shop_product_info_divider">
-                    <i class="fas fa-circle"></i>
-                </div>
-                <div class="row">
-                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-
-                        @foreach($dataAttribute as $index=>$att)
-
-                                @if($att->position == 'select')
-                                @if(!is_null($att->childs) && count($att->childs))
-                                    @foreach($att->childs as $att_value)@foreach($data->groups as $att_data)
-
-                                            @if($att_data->id == $att_value->id)
-                                                <div class="col-md-4 shop_product_info_variant">
-                                                    <p>{{$att->title}}: <span>{{$att_data->title}}</span></p>
+                        <div class="col-md-12 gallery__pt">
+                            <div class="row gallery__02">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-left">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">THẺ CÀO</span>
                                                 </div>
-                                            @endif
-                                        @endforeach
-                                    @endforeach
-                                @endif
-                                @elseif($att->position == 'text')
-                                    <div class="col-md-4 shop_product_info_variant">
-                                        <p>{{$att->title}}: <span>Có</span></p>
+                                                <div class="col-md-12">
+                                                    <span class="gallery__01__span__02">350.000đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
+                                            <div class="row text-center">
+                                                <div class="col-md-12">
+                                                    <span class="hoac">Hoặc</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-right">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">ATM chỉ cần</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <span class="gallery__01__span__02">280.000đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{{--                        @dd($data)--}}
+                        @if(isset($data->groups))
+                            <?php $att_values = $data->groups ?>
+                            @foreach($att_values as $att_value)
+                                @if($att_value->module == 'acc_label')
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->title }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
+                            @endforeach
+                        @endif
+                        @if(isset($data->params) && isset($data->params->ext_info))
+                            <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                            @foreach($dataAttribute as $index=>$att)
+                                @if($att->position == 'text')
+                                    @if(isset($att->childs))
+                                        @foreach($att->childs as $child)
+                                            @foreach($params as $key => $param)
+                                                @if($key == $child->id)
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $child->title }}</span>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-6 pl-0">
+                                                                        <span class="span__dangky">{{ $param }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
 
-                        @endforeach
-                    @endif
-                </div>
-                <div class="shop_product_info_divider">
-                    <i class="fas fa-circle"></i>
+                                @endif
+                            @endforeach
+                        @endif
+                        @endif
+                        <div class="col-md-12 gallery__bottom">
+                            <div class="row text-center">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row gallery__01__row2">
+                                        <div class="col-md-12 pl-0 pr-0">
+                                            <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
+                                        </div>
+                                        <div class="col-md-12 pl-0 pr-0 gallery__bottom">
+                                            <div class="row atmvdtntc">
+                                                <div class="col-md-6 col-sm-6 col-6 atmvdt">
+                                                    @if(App\Library\AuthCustom::check())
+                                                    <a href="/recharge" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                    @else
+                                                    <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-6 ntc">
+                                                    @if(App\Library\AuthCustom::check())
+                                                        <a href="/nap-the-tu-dong" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
+                                                    @else
+                                                        <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
+                                                    @endif
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="shop_product_post">
-                <div class="div">
-                    @foreach(explode('|',$data->image_extension) as $val)
-                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
-                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
-                        </a>
-                    @endforeach
-                </div>
-                <div class="pt-3">
-                    <button type="button" class="mustcard btn c-btn btn-lg c-theme-btn c-font-uppercase c-font-bold c-btn-square m-t-20 buyacc" data-id="{{ $data->id }}">Mua ngay</button>
-                </div>
-            </div>
+
+            @if(isset($sliders) && count($sliders))
 
             <div class="shop_product_another pt-3">
                 <div class="c-content-title-1">
@@ -126,13 +227,108 @@
                     <div class="c-line-center c-theme-bg"></div>
                 </div>
 
-                @include('frontend.widget.__account__category',['sliders',$sliders])
+                <div class="shop_product_another_content">
+                    <div class="item_buy_list row">
+                        @foreach($sliders as $datav2)
+                            @if($datav2->id != $data->id)
+                            <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="item_buy_list_in">
+                                <div class="item_buy_list_img">
+                                    <a href="/acc/{{ $datav2->id }}">
+                                        @if(isset($datav2->image))
+                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
+                                        @else
+                                            <img src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
+                                        @endif
 
+                                        @if(isset($datav2->image_icon))
+                                        <img class="item_buy_list_img-sale" src="https://media-tt.nick.vn/{{ $datav2->image_icon }}"  alt="{{ $datav2->title }}">
+                                        @else
+                                        <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
+                                        @endif
+                                        <span>MS: {{ $datav2->id }}</span>
+                                    </a>
+                                </div>
+                                <div class="item_buy_list_description">
+                                    bảo hành 100%,lỗi hoàn tiền
+                                </div>
+                                <div class="item_buy_list_info">
+                                    <div class="row">
+                                        @if(isset($datav2->groups))
+                                            <?php
+                                            $att_valuesv2 = $datav2->groups;
+                                            $index = 0;
+                                            ?>
+                                            @foreach($att_valuesv2 as $att_valuev2)
+                                                @if($att_valuev2->module == 'acc_label')
+                                                        <?php
+                                                        $index++;
+                                                        ?>
+                                                    <div class="col-6 item_buy_list_info_in">
+                                                        {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                        @if(isset($datav2->params) && isset($datav2->params->ext_info))
+                                            <?php $paramsv2 = json_decode(json_encode($datav2->params->ext_info),true) ?>
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($paramsv2 as $key => $paramv2)
+                                                                    @if($key == $child->id)
+                                                                            <?php
+                                                                            $index++;
+                                                                            ?>
+                                                                        @if($index < 5)
+                                                                        <div class="col-6 item_buy_list_info_in">
+                                                                            {{ $child->title }} : <b>{{ $paramv2 }}</b>
+                                                                        </div>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="item_buy_list_more">
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="item_buy_list_price">
+                                                <span>{{ formatPrice($datav2->price_old) }}đ </span>
+                                                {{ formatPrice($datav2->price) }}đ
+                                            </div>
+
+                                        </div>
+                                        <a href="/acc/{{ $datav2->id }}" class="col-12">
+                                            <div class="item_buy_list_view">
+                                                Chi tiết
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
             </div>
+            @endif
+            {{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}
+
         </div>
     </div>
 
-    <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal fade modal__buyacount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
             <div class="modal-content">
@@ -167,6 +363,9 @@
         </script>
     @endif
 
+    <link rel="stylesheet" href="/assets/frontend/css/buyacc.css">
     <script src="/assets/frontend/js/account/buyacc.js"></script>
+    <script src="/assets/frontend/js/account/buyaccslider.js"></script>
+
 @endsection
 

@@ -12,10 +12,17 @@ $(document).ready(function(){
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        loadDataAccountList(page);
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+        // loadDataAccountList(page);
     });
 
-    function loadDataAccountList(page) {
+    function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data) {
         let slug_category = $('.slug_category').val();
         let slug = $('.slug').val();
 
@@ -26,6 +33,11 @@ $(document).ready(function(){
             url: url,
             data: {
                 page:page,
+                id_data:id_data,
+                title_data:title_data,
+                price_data:price_data,
+                status_data:status_data,
+                select_data:select_data
             },
             beforeSend: function (xhr) {
 
@@ -46,128 +58,156 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge', function(e){
         e.preventDefault();
 
-        var serial_data = $('.serial').val();
-        $('.serial_data').val(serial_data);
-        var key_data = $('.key').val();
-        $('.key_data').val(key_data);
-        var status_data =  $('.status').val();
-        $('.status_data').val(status_data);
-        var started_at_data = $('.started_at').val();
-        $('.started_at_data').val(started_at_data);
-        var ended_at_data =  $('.ended_at').val();
-        $('.ended_at_data').val(ended_at_data);
+        var id = $('.id').val();
+        var title = $('.title').val();
+        var price = $('.price').val();
+        var status = $('.status').val();
+        var itemselect = '';
+        $('.select').each(function (idx, elm) {
+            if (itemselect != '') {
+                itemselect += '|';
+            }
 
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
-        var page = $('#hidden_page').val();
+            itemselect += $(elm).val();
+        })
+        if (id == null || id == undefined || id == ''){
+            $('.id_data').val('');
+        }else {
+            $('.id_data').val(id);
+        }
 
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
-    });
+        if (title == null || title == undefined || title == ''){
+            $('.title_data').val('');
+        }else {
+            $('.title_data').val(title);
+        }
 
-    $('body').on('click','.btn-hom-nay',function(e){
+        if (price == null || price == undefined || price == ''){
+            $('.price_data').val('');
+        }else {
+            $('.price_data').val(price);
+        }
 
-        var datestartTime = $('.started_at_day').val();
+        if (status == null || status == undefined || status == ''){
+            $('.status_data').val('');
+        }else {
+            $('.status_data').val(status);
+        }
 
-        var dateEndTime = $('.end_at_day').val();
+        if (itemselect == null || itemselect == undefined || itemselect == ''){
+            $('.select_data').val('');
+        }else {
+            $('.select_data').val(itemselect);
+        }
 
-        //alert(dateEndTime + datestartTime)
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data').val('');
-        $('.key_data').val('');
-        $('.status_data').val('');
-        $('.started_at_data').val(datestartTime);
-        $('.ended_at_data').val(dateEndTime);
 
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
 
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        var page = $('#hidden_page_service').val();
 
-    });
-
-    $('body').on('click','.btn-hom-qua',function(e){
-
-        var datestartTime = $('.started_at_yes').val();
-        var dateEndTime = $('.end_at_yes').val();
-
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data').val('');
-        $('.key_data').val('');
-        $('.status_data').val('');
-        $('.started_at_data').val(datestartTime);
-        $('.ended_at_data').val(dateEndTime);
-
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
-
-    });
-
-    $('body').on('click','.btn-thang-nay',function(e){
-
-        var datestartTime = $('.started_at_month').val();
-        var dateEndTime = $('.end_at_month').val();
-
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data').val('');
-        $('.key_data').val('');
-        $('.status_data').val('');
-        $('.started_at_data').val(datestartTime);
-        $('.ended_at_data').val(dateEndTime);
-
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
 
     });
 
     $('body').on('click','.btn-all',function(e){
 
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data').val('');
-        $('.key_data').val('');
+        $('.id_data').val('');
+        $('.title_data').val('');
+        $('.price_data').val('');
         $('.status_data').val('');
-        $('.started_at_data').val('');
-        $('.ended_at_data').val('');
+        $('.select_data').val('');
 
-        var serial = $('.serial_data').val();
-        var key =  $('.key_data').val();
-        var status =  $('.status_data').val();
-        var started_at = $('.started_at_data').val();
-        var ended_at =  $('.ended_at_data').val();
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
 
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
 
     });
 
+    $(document).on('submit', '.form-charge-mobile', function(e){
+        e.preventDefault();
+
+        var id = $('.id-mobile').val();
+        var title = $('.title-mobile').val();
+        var price = $('.price-mobile').val();
+        var status = $('.status-mobile').val();
+        var itemselect = '';
+        $('.select-mobile').each(function (idx, elm) {
+            if (itemselect != '') {
+                itemselect += '|';
+            }
+
+            itemselect += $(elm).val();
+        })
+        if (id == null || id == undefined || id == ''){
+            $('.id_data').val('');
+        }else {
+            $('.id_data').val(id);
+        }
+
+        if (title == null || title == undefined || title == ''){
+            $('.title_data').val('');
+        }else {
+            $('.title_data').val(title);
+        }
+
+        if (price == null || price == undefined || price == ''){
+            $('.price_data').val('');
+        }else {
+            $('.price_data').val(price);
+        }
+
+        if (status == null || status == undefined || status == ''){
+            $('.status_data').val('');
+        }else {
+            $('.status_data').val(status);
+        }
+
+        if (itemselect == null || itemselect == undefined || itemselect == ''){
+            $('.select_data').val('');
+        }else {
+            $('.select_data').val(itemselect);
+        }
+
+
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
+
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+
+    });
+
+    $('body').on('click','.btn-all-mobile',function(e){
+
+        $('.id_data').val('');
+        $('.title_data').val('');
+        $('.price_data').val('');
+        $('.status_data').val('');
+        $('.select_data').val('');
+
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
+
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+
+    });
 })

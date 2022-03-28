@@ -9,16 +9,16 @@
 
 <div class="modal-body">
     <div class="c-content-tab-4 c-opt-3" role="tabpanel">
-        <ul class="nav nav-justified" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#payment" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
+        <ul class="nav nav-justified nav-justified__ul" role="tablist">
+            <li role="presentation" class="active justified__ul_li">
+                <a href="#paymentv2" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
             </li>
-            <li role="presentation">
-                <a href="#info" role="tab" data-toggle="tab" class="c-font-16">Tài khoản</a>
+            <li role="presentation" class="justified__ul_li">
+                <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Tài khoản</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active show" id="payment">
+            <div role="tabpanel" class="tab-pane fade in active show" id="paymentv2">
                 <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                     <li class="c-font-dark">
                         <table class="table table-striped">
@@ -43,41 +43,46 @@
                     </li>
                 </ul>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="info">
+            <div role="tabpanel" class="tab-pane fade" id="info2">
                 <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                     <li class="c-font-dark">
                         <table class="table table-striped">
                             <tbody>
                             <tr>
-                                <th colspan="2">Chi tiết tài khoản #12333</th>
+                                <th colspan="2">Chi tiết tài khoản #{{ $data->id }}</th>
                             </tr>
-                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-
-                                @foreach($dataAttribute as $index=>$att)
-
-                                    <tr>
+                            @if(isset($data->groups))
+                                <?php $att_values = $data->groups ?>
+                                @foreach($att_values as $att_value)
+                                    @if($att_value->module == 'acc_label')
+                                        <tr>
+                                            <td style="width:50%">{{ $att_value->parent[0]->title }}:</td>
+                                            <td class="text-danger" style="font-weight: 700">{{ $att_value->title }}</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            @endif
+                            @if(isset($data->params) && isset($data->params->ext_info))
+                                <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                    @foreach($dataAttribute as $index=>$att)
                                         @if($att->position == 'text')
-                                            <td style="width: 50%">{{$att->title}}:</td>
-                                            <td class="text-danger" style="font-weight: 700">123321</td>
-
-                                        @elseif($att->position == 'select')
-
-                                            @if(!is_null($att->childs) && count($att->childs))
-                                                @foreach($att->childs as $att_value)
-{{--                                                    @dd($att)--}}
-                                                    @foreach($data->groups as $att_data)
-
-                                                        @if($att_data->id == $att_value->id)
-                                                        <td style="width:50%">{{$att->title}}:</td>
-                                                        <td class="text-danger" style="font-weight: 700">{{$att_data->title}}</td>
+                                            @if(isset($att->childs))
+                                                @foreach($att->childs as $child)
+                                                    @foreach($params as $key => $param)
+                                                        @if($key == $child->id)
+                                                            <tr>
+                                                                <td style="width:50%">{{ $child->title }}:</td>
+                                                                <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
+                                                            </tr>
                                                         @endif
                                                     @endforeach
                                                 @endforeach
                                             @endif
-                                        @endif
-                                    </tr>
 
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
                             </tbody>
                         </table>
@@ -88,10 +93,12 @@
     </div>
 
     <div class="form-group {{ $errors->has('coupon')? 'has-danger':'' }}">
-        <label class="col-md-3 form-control-label">Mã giảm giá:</label>
-        <div class="col-md-7">
-            <input type="text" class="form-control c-square c-theme " name="coupon" placeholder="Mã giảm giá" value="{{old('coupon')}}">
-            <span class="help-block">Nhập mã giảm giá nếu có để nhận ưu đãi</span>
+        <div class="row pl-0 pr-0">
+            <label class="col-md-3 form-control-label">Mã giảm giá:</label>
+            <div class="col-md-7">
+                <input type="text" class="form-control c-square c-theme mb-2" name="coupon" placeholder="Mã giảm giá" value="{{old('coupon')}}">
+                <span class="help-block">Nhập mã giảm giá nếu có để nhận ưu đãi</span>
+            </div>
         </div>
         @if($errors->has('coupon'))
             <div class="form-control-feedback">{{ $errors->first('coupon') }}</div>
@@ -137,15 +144,49 @@
             <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"  id="d3" style="">Xác nhận mua</button>
         @endif
     @else
-        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"  id="d3" style="">Xác nhận mua</button>
-{{--        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>--}}
-
+        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>
     @endif
 
     <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
 
 </div>
 {{ Form::close() }}
+
+<style>
+    .c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li:active > a {
+        color: #ffffff;
+        background-color: #5bc2ce!important;
+    }
+    .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even).active > a, .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even):active > a {
+        color: #ffffff;
+        background-color: #5bc2ce!important;
+    }
+    .c-content-tab-4 ul{
+        padding-left: 0!important;
+    }
+    .c-content-tab-4 ul li{
+        list-style: none!important;
+    }
+
+    .justified__ul_li{
+        width: 50% !important;
+        text-align: center!important;
+
+    }
+
+    .justified__ul_li a{
+        display: flex!important;
+        justify-content: center;
+        padding: 20px;
+    }
+    .justified__ul_li a:hover{
+        text-decoration: none!important;
+    }
+    .c-content-tab-4.c-opt-3 > .nav > li > a {
+        color: #ffffff;
+        background-color: #d5e0ea;
+    }
+</style>
 
 <script>
     $(document).ready(function () {
@@ -160,3 +201,4 @@
         });
     });
 </script>
+
