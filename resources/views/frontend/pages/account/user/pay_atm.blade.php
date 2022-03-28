@@ -40,8 +40,8 @@
 
                                     </label>
                                     <div class="col-md-6">
-                                        <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" value=" {{App\Library\AuthCustom::user()->username}}" readonly>
+                                        <div class="input-group" style="width: 100%" id="transfer_user_name">
+                                            <input type="text" class="form-control" value=""  readonly>
                                         </div>
                                     </div>
 
@@ -53,14 +53,14 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            @if(isset($tranferbank->data))
-                                                <select name="bank" id="bank_tranfer" class="form-control" data-id="">
+{{--                                            @if(isset($tranferbank->data))--}}
+                                                <select name="id_bank" id="bank_tranfer" class="form-control" data-id="">
                                                     <option value="">-- Vui lòng chọn ngân hàng chuyển khoản --</option>
-                                                    @foreach($tranferbank->data as $key=>$items)
-                                                        <option value="{{$items->title}}"  data-id="{{$key}}">{{$items->title}}</option>
-                                                    @endforeach
+{{--                                                    @foreach($tranferbank->data as $key=>$items)--}}
+{{--                                                        <option value="{{$items->title}}"  data-id="{{$key}}">{{$items->title}}</option>--}}
+{{--                                                    @endforeach--}}
                                                 </select>
-                                            @endif
+{{--                                            @endif--}}
                                         </div>
                                     </div>
 

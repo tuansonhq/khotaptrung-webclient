@@ -1,5 +1,97 @@
 $(document).ready(function(){
 
+    // get profile
+    $(document).ready(function(){
+        const csrf_token = $('meta[name="csrf-token"]').attr('content');
+        const token =  $('meta[name="jwt"]').attr('content');
+        function getInfo(){
+            const url = '/profile';
+            $.ajax({
+                type: "GET",
+                url: url,
+                cache:false,
+                data: {
+                    _token:csrf_token,
+                    jwt:token
+                },
+                beforeSend: function (xhr) {
+
+                },
+                success: function (data) {
+
+                    if(data.status === "LOGIN"){
+                        window.location.href = '/logout';
+                        // method = method || 'post';
+                        return;
+                    }
+                    if(data.status === "ERROR"){
+                        alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                    }
+                    if(data.status == true){
+                        $('#transfer_user_name').html('<input type="text" class="form-control" name="user_name" placeholder="" value="'+data.info.username+ '" readonly>')
+                    }
+                },
+                error: function (data) {
+                    alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                    return;
+                },
+                complete: function (data) {
+
+                }
+            });
+        }
+        getInfo();
+    });
+    // get tele
+    const csrf_token = $('meta[name="csrf-token"]').attr('content');
+    const token =  $('meta[name="jwt"]').attr('content');
+    function getBank (){
+        const url = '/get-bank';
+        $.ajax({
+            type: "GET",
+            url: url,
+            cache:false,
+            data: {
+                _token:csrf_token,
+                jwt:token
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: function (data) {
+                console.log(111)
+                console.log(data)
+                if(data.status === "LOGIN"){
+                    window.location.href = '/logout';
+                    // method = method || 'post';
+                    return;
+                }
+                if(data.status === "ERROR"){
+                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
+                }
+                if(data.status == true){
+                    $('select[name="id_bank"]').find('option:not(:first)').remove();
+                    for(i = 0; i < data.bank.length; i++) {
+                        console.log(data.bank[0])
+                        bank = data.bank[i];
+                        let html = '';
+                        html +=''
+                        html += '<option value="'+ bank['id'] +'" data-id = "'+bank['id']+'">'+ bank['title'] +'</option>';
+                        $('select[name="id_bank"]').append(html);
+                    };
+
+                }
+            },
+            error: function (data) {
+                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                return;
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+    getBank();
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',
