@@ -35,7 +35,11 @@
                         </tr>
                     @endforeach
                 @else
-                    <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                    <tr>
+                        <td>
+                            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                        </td>
+                    </tr>
                 @endif
 
                 </tbody>
