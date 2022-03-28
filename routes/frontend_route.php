@@ -145,7 +145,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
         Route::get('/register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'showFormRegister'])->name('register');
         Route::post('register',[\App\Http\Controllers\Frontend\Auth\RegisterController::class,'register']);
-        Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
+
         Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
         Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
         Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
@@ -203,6 +203,11 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
 
             Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
+//            Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
+//            Route::get('/hehe',[\App\Http\Controllers\Frontend\UserController::class,'index_out'])->name('index');
+
+            Route::get('/profile',[\App\Http\Controllers\Frontend\UserController::class,'profile'])->name('index');
+            Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'info'])->name('index');
         });
 
         Route::group(['middleware' => ['doNotCacheResponse']], function () {
