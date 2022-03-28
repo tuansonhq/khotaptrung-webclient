@@ -265,55 +265,21 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             $valcategory['data'] = 'category_list';
-            $valcategory['module'] = 'acc_provider';
+            $valcategory['module'] = 'acc_category';
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-//Lấy danh sách danh mục dịch vụ.
 
+            if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_category) && $result_Api_category->httpcode == 200){
+                $data = $result_Api->data;
+                $datacategory = $result_Api_category->data;
 
-//            return $result_Api_category;
-            $url = '/deposit-auto/history';
-            $method = "GET";
-            $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-
-            $val['token'] = $jwt;
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-            $url_telecome = '/deposit-auto/get-telecom';
-            $val_telecome = array();
-            $val_telecome['token'] = $request->cookie('jwt');
-            $val_telecome['secret_key'] = config('api.secret_key');
-            $val_telecome['domain'] = 'youtube.com';
-
-            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
-
-            if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
-
-                    $data = $result->data;
-                    $data_telecome = $result_Api_telecome->data;
-
-                    $data_telecome = $data_telecome->data;
-
-                    // Set default page
-                    if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    }
-
-
-                    return view('frontend.pages.account.getBuyAccountHistory')
-                        ->with('data', $data)->with('data_telecome', $data_telecome);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
+                if (isEmpty($data->data)) {
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                 }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+
+                return view('frontend.pages.account.getBuyAccountHistory')
+                    ->with('data', $data)->with('datacategory', $datacategory);
+            }else{
+                return "sai";
             }
         }
 
@@ -325,18 +291,12 @@ class AccController extends Controller
         if ($request->ajax()) {
             $page = $request->page;
 
-            $url = '/deposit-auto/history';
-
+            $url = '/acc';
             $method = "GET";
             $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-            $val['token'] = $jwt;
             $val['page'] = $page;
+            $val['data'] = 'list_acc';
+            $val['user_id'] = AuthCustom::user()->id;
 
             if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
                 $val['serial'] = $request->serial;
@@ -350,6 +310,10 @@ class AccController extends Controller
                 $val['status'] = $request->status;
             }
 
+            if (isset($request->price) || $request->price != '' || $request->price != null) {
+                $val['price'] = $request->price;
+            }
+
             if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
                 $val['started_at'] = $request->started_at;
             }
@@ -361,21 +325,14 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
+                $data = $result_Api->data;
 
-                    $result = $result_Api->data;
-                    $data = $result->data;
-
-                    if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                    }
-
-                    return view('frontend.pages.account.function.__get__buy__account__history')
-                        ->with('data', $data);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
+                if (isEmpty($data->data)) {
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                 }
+
+                return view('frontend.pages.account.function.__get__buy__account__history')
+                    ->with('data', $data);
             } else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
