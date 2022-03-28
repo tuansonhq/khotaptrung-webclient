@@ -130,6 +130,7 @@ $( document ).ready(function() {
                 today: 'far fa-calendar-check-o',
                 clear: 'fas fa-trash',
                 close: 'far fa-times' },
+        maxDate: moment()
     });
     $('.ended_at').datetimepicker({
         format: 'DD-MM-YYYY LT',
@@ -144,6 +145,7 @@ $( document ).ready(function() {
                 today: 'far fa-calendar-check-o',
                 clear: 'fas fa-trash',
                 close: 'far fa-times' },
+        maxDate: moment()
     });
     $('#datetimepicker2').datetimepicker({
         format: 'DD-MM-YYYY'
