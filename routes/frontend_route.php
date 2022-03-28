@@ -83,7 +83,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
 //Danh muc game
 
-
+        Route::get('/danh-muc',[AccController::class,"getShowDanhmucCategory"]);
         Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
         Route::get('/buy-acc/{id}/databuy', [AccController::class,"getBuyAccount"]);
         Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);

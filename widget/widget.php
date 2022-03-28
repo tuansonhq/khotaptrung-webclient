@@ -24,7 +24,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $method = "GET";
     $val = array();
     $val['data'] = 'category_list';
-    $val['module'] = 'acc_provider';
+    $val['module'] = 'acc_category';
 
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
     if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -40,7 +40,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     if(isset($group_api) && $group_api->httpcode == 200){
         $dataGame = $group_api->data;
     }else{
-        
+
     }
     return $view->with('data', $data)->with('dataGame', $dataGame);
 });

@@ -5,10 +5,29 @@
 @section('content')
 
     <div class="item_buy">
-        <div class="container">
+        <div class="news_breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto tintuc-auto pr-0">
+                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>
+                    </div>
+                    <div class="col-lg-10 col-md-12 ml-lg-auto">
+                        <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
+                            <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
+                            <li>/</li>
+                            <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
+                            <li>/</li>
+                            <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ $data->title }}</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pt-3">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="alert alert-info box-text hidetext" role="alert">
+
                         <h1 class="alert-heading h1_category" style="color:#000">{{ $data->title }}</h1>
                         @if(isset($data->description))
                         {!! $data->description !!}
