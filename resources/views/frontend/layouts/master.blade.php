@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="jwt" content="" />
 {{--    <title>Kho lưu trữ</title>--}}
-    <link rel="stylesheet" href="/assets/frontend/css/main.css">
+
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <!--    swiper-->
@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="/assets/frontend/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/css/imgareaselect.css">
     <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
+    <link rel="stylesheet" href="/assets/frontend/css/main.css">
 
     <script src="/assets/frontend/lib/jquery.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
