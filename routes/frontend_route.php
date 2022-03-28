@@ -194,6 +194,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/recharge-atm/data',[\App\Http\Controllers\Frontend\TranferController::class,'getBankData'])->name('getBankData');
 
             Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
+            Route::get('/get-bank',[\App\Http\Controllers\Frontend\TranferController::class,'getBankTranfer']);
             Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
             Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
             Route::post('/post-deposit',[\App\Http\Controllers\Frontend\ChargeController::class,'postDeposit'])->name('postDeposit');
