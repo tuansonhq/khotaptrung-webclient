@@ -497,6 +497,12 @@ header .nav-bar{
 .content-items .items-title{
     text-align: center;
 }
+.content-items .items-title h2{
+    text-transform: uppercase;
+    font-weight: 600 !important;
+    color: #fff;
+}
+
 .content-items .items-title h4{
     text-transform: uppercase;
     font-weight: 600 !important;
@@ -524,6 +530,7 @@ header .nav-bar{
     text-decoration: none;
 
 }
+
 .game-list-content a p{
     font-size: 16px;
 }
@@ -532,6 +539,13 @@ header .nav-bar{
     color: #32c5d2!important;
 }
 
+.game-list-content a h3{
+    font-size: 16px;
+}
+
+.game-list-content a:hover h3{
+    color: #32c5d2!important;
+}
 
 .game-list-image{
     position: relative;
@@ -571,6 +585,15 @@ header .nav-bar{
     padding-top: 9px;
     text-transform: uppercase;
 }
+
+.game-list-title h3{
+    color: #f1c40f;
+    font-size: 14px;
+    text-align: center;
+    padding-top: 9px;
+    text-transform: uppercase;
+}
+
 .game-list-description{
     text-align: center;
 }
