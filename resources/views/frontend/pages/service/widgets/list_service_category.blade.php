@@ -22,7 +22,11 @@
                                     <span>{{ $item->title }}</span>
                                 </div>
                                 <div class="item_play_dif_slide_description__size">
-                                    {!! $item->description !!}
+                                    @if(strlen($item->description) < 180)
+                                        {!! substr($item->description, 0, 180); !!}
+                                    @else
+                                        {!! substr($item->description, 0, 180); !!}...
+                                    @endif
                                 </div>
                             </div>
 
