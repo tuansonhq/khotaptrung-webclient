@@ -63,7 +63,8 @@
                 <div class="container">
 
                     <marquee width="100%" behavior="scroll" >
-                        <p style=""><strong>Cực Sốc Siêu Khuyến Mại Tặng 100% Giá Trị Thẻ Nạp Áp Dụng Mọi Mệnh Giá Nhanh Tay Truy Cập Nào</strong>  </p>
+
+                        <p style=""><strong>{!! setting('sys_marquee') !!}</strong>  </p>
 
                     </marquee>
                 </div>
@@ -71,12 +72,16 @@
 
             {!! widget('frontend.widget.__content__home',60) !!}
 
-            <div class="content-video" id="lockmoney_taget">
+            <div class="content-video intro_text" id="lockmoney_taget">
                 <div class="container">
-                    <h4><strong>Giới Thiệu Về AS Mobile Và Shop Chính Thức, Độc Quyền Của AS Mobile - <a href="">shopas.net</a></strong></h4>
                     <div class="content-video-in">
-                        <iframe src="https://www.youtube.com/embed/D80QnP0iRBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+                        {!! setting('sys_intro_text') !!}
+                    </div>
+                    <div class="view-more">
+                        Xem tất cả »
+                    </div>
+                    <div class="view-less">
+                        « Thu gọn
                     </div>
                 </div>
             </div>

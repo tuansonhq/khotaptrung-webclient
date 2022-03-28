@@ -79,7 +79,7 @@
                 telecom: telecom,
 
             },
-            url: "/nap-the",
+            url: "/get-amount-card",
             success: function (response) {
 
                 console.log(response.data)

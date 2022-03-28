@@ -11,7 +11,8 @@
             <span>{{$item->fullname ? $item->fullname : $item->username}}</span>
             <label >
                 @if(isset($item->amount))
-                    {{ $item->amount }}
+                    {{str_replace(',','.',number_format($item->amount))}}
+
                 @else
                     0
                 @endif
