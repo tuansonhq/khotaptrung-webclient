@@ -12,45 +12,62 @@ use function PHPUnit\Framework\isEmpty;
 
 class AccController extends Controller
 {
+    public function getShowDanhmucCategory(Request $request){
+        $url = '/acc';
+        $method = "GET";
+        $val = array();
+        $val['data'] = 'category_list';
+        $val['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $data = $result_Api->data;
+        }else{
+            return 'sai';
+        }
+//        return $data;
+        return view('frontend.pages.account.getShowCategory')
+            ->with('data',$data);
+    }
     public function getShowCategory(Request $request,$slug_category,$slug){
             $url = '/acc';
             $method = "GET";
             $val = array();
 
         if ($slug_category == 'danh-muc'){
+            if (isset($slug)){
+                $valcategory = array();
+                $valcategory['data'] = 'category_detail';
+                $valcategory['slug'] = $slug;
 
-            $valcategory = array();
-            $valcategory['data'] = 'category_detail';
-            $valcategory['slug'] = $slug;
+                $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+                $data = $result_Api_category->data;
 
-            $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-            $data = $result_Api_category->data;
+                $val['data'] = 'list_acc';
+                $val['cat_slug'] = $slug;
 
-            $val['data'] = 'list_acc';
-            $val['cat_slug'] = $slug;
+                $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+                if(isset($result_Api) && $result_Api->httpcode == 200){
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
+                    $items = $result_Api->data;
 
-                $items = $result_Api->data;
+                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
-                $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+                    $dataAttribute = $data->childs;
 
-                $dataAttribute = $data->childs;
+                    return view('frontend.pages.account.accountList')
+                        ->with('data',$data)
+                        ->with('dataAttribute',$dataAttribute)
+                        ->with('items',$items)
+                        ->with('slug',$slug)
+                        ->with('slug_category',$slug_category);
 
-                return view('frontend.pages.account.accountList')
-                    ->with('data',$data)
-                    ->with('dataAttribute',$dataAttribute)
-                    ->with('items',$items)
-                    ->with('slug',$slug)
-                    ->with('slug_category',$slug_category);
-
-            }else{
-                return 'sai';
+                }else{
+                    return 'sai';
+                }
             }
         }elseif ($slug_category == 'acc'){
-
 
             $val['data'] = 'acc_detail';
             $val['id'] = $slug;

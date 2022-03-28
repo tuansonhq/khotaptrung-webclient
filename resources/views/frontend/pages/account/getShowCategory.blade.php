@@ -6,69 +6,65 @@
 
     <div class="item_buy">
         <div class="container">
-            @if(isset($data))
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="item_buy_info">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h3 style="font-size: 20px">{{ $data->title }}</h3>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
+            <div class="news_breadcrumbs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-auto tintuc-auto pr-0">
+                            <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>
+                        </div>
+                        <div class="col-lg-10 col-md-12 ml-lg-auto">
+                            <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
+                                <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
+                                <li>/</li>
+                                <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            @endif
+            </div>
 
-            <div class="item_buy_list row">
-                @if(isset($data->childs) && count($data->childs) > 0)
-                    @foreach($data->childs as $item)
-                        <div class="col-6 col-sm-6 col-lg-3">
-                    <div class="item_buy_list_in">
-                        <div class="item_buy_list_img">
-                            <a href="/{{ $data->slug }}/{{ $item->slug }}">
-                                @if(isset($item->image))
-                                <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
-                                @else
-                                    <img class="item_buy_list_img-main" src="/assets/frontend/images/ff.jpg" alt="png-image">
-                                @endif
-                             </a>
-                        </div>
+            <div class="item_buy_list row pt-5">
+                @if(isset($data) && count($data))
+                    @foreach($data as $item)
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 ppk">
+                            <div class="game-list-content">
+                                <div class="game-list-image">
+                                    <a class="account_category" href="/danh-muc/{{ $item->slug }}">
+                                        {{--                                                Anh khuyen mai--}}
+                                        @if(isset($item->image_icon))
+                                            <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_icon }}" alt="">
+                                        @else
+                                            <img class="game-list-image-sticky" src="/assets/frontend/images/giamgia.png" alt="">
+                                        @endif
+                                        @if(isset($item->image))
+                                            <img class="game-list-image-in" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
+                                        @else
+                                            <img class="game-list-image-in" src="/assets/frontend/images/ff.jpg" alt="">
+                                        @endif
+                                        {{--                                                Anh chinh --}}
 
-                        <div class="item_buy_list_info">
-                            <div class="row">
-                                <div class="col-12 item_buy_list_info_in">
-                                    <span style="font-weight: bold;color: #f7b03c;font-size: 16px;">  {{ $item->title }} </span>
+                                    </a>
                                 </div>
-
-                                <div class="col-12 item_buy_list_info_in">
-                                    <span>Số tài khoản: 9999</span>
+                                <div class="game-list-title">
+                                    <a class="account_category" href="/danh-muc/{{ $item->slug }}">
+                                        <h3><strong>{{ $item->title }}</strong></h3>
+                                    </a>
                                 </div>
-
-                                <div class="col-12 item_buy_list_info_in">
-{{--                                   <span>Giao dịch:</span>--}}
+                                <div class="game-list-description">
+                                    <div class="countime"></div>
+                                    <p>Số tài khoản: 9999 </p>
+                                    {{--                            <span class="game-list-description-old-price"></span>--}}
+                                    {{--                            <span class="game-list-description-new-price"></span>--}}
                                 </div>
-
-                            </div>
-                        </div>
-
-                        <div class="item_buy_list_more">
-                            <div class="row">
-
-                                <a href="/{{ $data->slug }}/{{ $item->slug }}" class="col-12">
-                                    <div class="item_buy_list_view">
-                                        CHI TIẾT
+                                <div class="game-list-more">
+                                    <div class="game-list-more-view" >
+                                        <a class="account_category" href="/danh-muc/{{ $item->slug }}">
+                                            <img src="/assets/frontend/images/muangay.jpg" alt="">
+                                        </a>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                     @endforeach
                 @else
                     <div class="row pb-3 pt-3">
@@ -78,7 +74,6 @@
                     </div>
                 @endif
             </div>
-
         </div>
     </div>
 

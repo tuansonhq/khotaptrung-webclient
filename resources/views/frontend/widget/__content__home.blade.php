@@ -8,7 +8,6 @@
         </div>
         <div class="game-list row">
             @foreach($data as $item)
-
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                     <div class="game-list-content">
                         <div class="game-list-image">
