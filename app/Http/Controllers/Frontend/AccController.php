@@ -226,7 +226,7 @@ class AccController extends Controller
             $val = array();
             $val['id'] = $slug;
             $val['data'] = 'buy_acc';
-
+            $val['user_id'] = AuthCustom::user()->id;
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -246,12 +246,23 @@ class AccController extends Controller
                 return redirect('/');
             }
         }
-
     }
 
     public function getBuyAccountHistory(Request $request)
     {
         if (AuthCustom::check()) {
+
+            $url = '/acc';
+            $method = "GET";
+            $val = array();
+
+            $val['data'] = 'list_acc';
+
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+            return $result_Api;
+
+
             $url = '/deposit-auto/history';
             $method = "GET";
             $val = array();
@@ -261,6 +272,7 @@ class AccController extends Controller
                     'status' => "LOGIN"
                 ]);
             }
+
             $val['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
