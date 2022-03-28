@@ -234,9 +234,9 @@ class AccController extends Controller
 
                 if (isset($data->success)){
                     if ($data->success == 0){
-                        return redirect()->route('/lich-su-mua-account')->with('content', $data->message );
+                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
                     }elseif ($data->success == 1 ){
-                        return redirect()->route('/lich-su-mua-account')->with('content', 'Mua tài khoản thành công');
+                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
                     }
                 }else{
                     return redirect('/');
@@ -252,16 +252,13 @@ class AccController extends Controller
     {
         if (AuthCustom::check()) {
 
-            $url = '/acc';
-            $method = "GET";
-            $val = array();
-
-            $val['data'] = 'list_acc';
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            return $result_Api;
-
+//            $url = '/acc';
+//            $method = "GET";
+//            $val = array();
+//
+//            $val['data'] = 'list_acc';
+//
+//            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             $url = '/deposit-auto/history';
             $method = "GET";
