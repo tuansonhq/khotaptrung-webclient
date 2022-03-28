@@ -183,7 +183,8 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
             Route::get('/dich-vu-da-mua',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistory'])->name('getBuyServiceHistory');
             Route::get('/dich-vu-da-mua/data',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistoryData'])->name('getBuyServiceHistoryData');
-
+//            nạp thẻ
+            Route::get('/get-tele-card',[\App\Http\Controllers\Frontend\ChargeController::class,'getTelecom']);
             Route::get('/nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAuto'])->name('getDepositAuto');
             Route::get('/nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositAutoData'])->name('getDepositAutoData');
             Route::post('/nap-the-tu-dong-api',[\App\Http\Controllers\Frontend\ChargeController::class,'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
@@ -197,6 +198,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
             Route::post('/post-deposit',[\App\Http\Controllers\Frontend\ChargeController::class,'postDeposit'])->name('postDeposit');
 //Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
+
             Route::get('/get-amount-card',[\App\Http\Controllers\Frontend\ChargeController::class,'getAmountCharge'])->name('getAmountCharge');
 
             Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
