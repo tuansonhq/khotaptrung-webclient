@@ -196,14 +196,14 @@
                                             <div class="row atmvdtntc">
                                                 <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                                     @if(App\Library\AuthCustom::check())
-                                                    <a href="/recharge" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                        <a href="/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @else
-                                                    <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
+                                                        <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">ATM - VÍ ĐIỆN TỬ</a>
                                                     @endif
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-6 ntc">
                                                     @if(App\Library\AuthCustom::check())
-                                                        <a href="/nap-the-tu-dong" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
+                                                        <a href="/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @else
                                                         <a href="/login" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span">NẠP THẺ CÀO</a>
                                                     @endif
