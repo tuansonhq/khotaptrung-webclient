@@ -70,12 +70,12 @@
                             <a class="account_category" href="/minigame-{{ $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->params->image_percent_sale))
-                                    <img class="game-list-image-sticky" src="{{config('url_medial').$item->params->image_percent_sale}}" alt="">
+                                    <img class="game-list-image-sticky" src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="">
                                 @else
                                     <img class="game-list-image-sticky" src="/assets/frontend/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in" src="{{config('url_medial').$item->image }}" alt="">
+                                    <img class="game-list-image-in" src="{{config('api.url_media').$item->image }}" alt="">
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/images/ff.jpg" alt="">
                                 @endif
@@ -96,7 +96,7 @@
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/minigame-{{ $item->slug }}">
                                     @if(isset($item->params->image_view_all))
-                                        <img src="{{config('url_medial').$item->params->image_view_all }}" alt="">
+                                        <img src="{{config('api.url_media').$item->params->image_view_all }}" alt="">
                                     @else
                                         <img src="/assets/frontend/images/muangay.jpg" alt="">
                                     @endif

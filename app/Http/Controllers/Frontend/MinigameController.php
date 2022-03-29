@@ -20,19 +20,19 @@ class MinigameController extends Controller
             $data['secret_key'] = config('api.secret_key');
             $data['domain'] = \Request::server("HTTP_HOST");
 
-            $group_api = Cache::get('minigame_list');
-            if(!isset($group_api)){
+            // $group_api = Cache::get('minigame_list');
+            // if(!isset($group_api)){
                 $url = '/minigame/get-list-minigame';
                 $group_api = DirectAPI::_makeRequest($url,$data,$method);
                 if (isset($group_api) && $group_api->httpcode == 200 ) {
                     $group_api = $group_api->data->data;
                 }
-                try{
-                    Cache::put('minigame_list', $group_api, now()->addMinutes(5));
-                }catch(Exception $e){
-                    logger($e);
-                }
-            }
+            //     try{
+            //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
+            //     }catch(Exception $e){
+            //         logger($e);
+            //     }
+            // }
             $groups = array_filter($group_api, function ($value) use ($request){
                 return $value->slug== $request->slug;
             });
@@ -219,19 +219,19 @@ class MinigameController extends Controller
                 $data['secret_key'] = config('api.secret_key');
                 $data['domain'] = \Request::server("HTTP_HOST");
 
-                $group_api = Cache::get('minigame_list');
-                if(!isset($group_api)){
+                // $group_api = Cache::get('minigame_list');
+                // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
                     if (isset($group_api) && $group_api->httpcode == 200 ) {
                         $group_api = $group_api->data->data;
                     }
-                    try{
-                        Cache::put('minigame_list', $group_api, now()->addMinutes(5));
-                    }catch(Exception $e){
-                        logger($e);
-                    }
-                }
+                //     try{
+                //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
+                //     }catch(Exception $e){
+                //         logger($e);
+                //     }
+                // }
                 $groups = array_filter($group_api, function ($value) use ($request){
                     return $value->id== $request->id;
                 });
@@ -288,19 +288,19 @@ class MinigameController extends Controller
                 $data['secret_key'] = config('api.secret_key');
                 $data['domain'] = \Request::server("HTTP_HOST");
 
-                $group_api = Cache::get('minigame_list');
-                if(!isset($group_api)){
+                // $group_api = Cache::get('minigame_list');
+                // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
                     if (isset($group_api) && $group_api->httpcode == 200 ) {
                         $group_api = $group_api->data->data;
                     }
-                    try{
-                        Cache::put('minigame_list', $group_api, now()->addMinutes(5));
-                    }catch(Exception $e){
-                        logger($e);
-                    }
-                }
+                //     try{
+                //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
+                //     }catch(Exception $e){
+                //         logger($e);
+                //     }
+                // }
                 $groups = array_filter($group_api, function ($value) use ($request){
                     return $value->id== $request->id;
                 });

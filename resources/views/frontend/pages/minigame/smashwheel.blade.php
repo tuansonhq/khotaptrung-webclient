@@ -16,16 +16,22 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7 col-sm-12">
                     <div class="item_play_spin">
+                        @if($result->checkVoucher==1)
                         <div class="item_play_spin_sale-off">
                             <input type="text" placeholder="Nhập mã giảm giá">
                         </div>
+                        @endif
+
                         <div id="start-played" class="item_play_spin_shake">
                             <img src="{{config('api.url_media').$result->group->image_icon}}">
                         </div>
+                        @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
                             <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                             <div class="item_play_spin_progress_percent">{{$result->pointuser}}/100 point</div>
                         </div>
+                        @endif
+
                         <img src="{{config('api.url_media').$result->group->params->image_static}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{config('api.url_media').$result->group->params->image_background}}) no-repeat center center;background-size: contain;" alt="">
                         <input type="hidden" value="{{config('api.url_media').$result->group->params->image_static}}" id="hdImageLD">
                         <input type="hidden" value="{{config('api.url_media').$result->group->params->image_animation}}" id="hdImageDapLu">
@@ -108,7 +114,7 @@
                                         <div class="item_play_dif_slide_more">
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
-                                                    @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
+                                                    @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                     <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
                                                     @else
                                                     Chơi ngay
@@ -216,7 +222,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="middle nohuthang" style="text-align: center;padding: 15px 0;"></div>
+            <div class="middle nohuthang" style="text-align: center;padding: 15px 0;color: blue"></div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
 
             </div>
@@ -346,6 +352,7 @@
     <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
 @endforeach
 <input type="hidden" id="type_play" value="real">
+<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script>
     $(document).ready(function(e) {
@@ -457,7 +464,10 @@
         };
 
 
-        function getgifbonus() {
+        function getgifbonus() {            
+            if($('#checkPoint').val() != "1"){
+                return;
+            }
             $.ajax({
                 url: '/minigame-bonus',
                 datatype: 'json',
@@ -510,10 +520,10 @@
             } else {
                 if (gift_detail.gift_type == 0) {
                     $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
-                    $("#btnWithdraw").attr('href', '/withdrawitem?game_type=' + gift_detail.game_type);
+                    $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                 } else if (gift_detail.gift_type == 1) {
                     $("#btnWithdraw").html("Kiểm tra nick trúng");
-                    $("#btnWithdraw").attr('href', '/logaccgame?id=' + '{{$result->group->id}}');
+                    $("#btnWithdraw").attr('href', '/minigame-logacc-' + '{{$result->group->id}}');
                 // } else if (gift_detail.gift_type == 'nrocoin') {
                 //     $("#btnWithdraw").html("Rút vàng");
                 //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROCOIN").val());

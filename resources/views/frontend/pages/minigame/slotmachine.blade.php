@@ -22,41 +22,46 @@
                             <div id="slot3" class="item_slot_inner_img a1" style=""></div>
                         </div>
                     </div>
-                                        <div class="item_spin_sale-off">
-                                            <input type="text" readonly="" placeholder="Nhập mã giảm giá">
-                                        </div>
-                                        <div class="item_spin_progress">
-                                            <div class="item_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                                            <div class="item_spin_progress_percent">{{$result->pointuser}}/100 point</div>
-                                        </div>
-                                        <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
-                                        <div class="item_spin_dropdown">
-                                            <select name="" id="numrolllop">
-                                                    <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
-                                                @if($result->group->params->price_sticky_3 > 0))
-                                                    <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
-                                                @endif
-                                                @if($result->group->params->price_sticky_5 > 0))
-                                                    <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
-                                                @endif
-                                                @if($result->group->params->price_sticky_7 > 0))
-                                                    <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
-                                                @endif
-                                                @if($result->group->params->price_sticky_10 > 0))
-                                                    <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
-                                                @endif
-                                            </select>
-                                        </div>
-                                        <div class="item_spin_num_play">
-                                            Giá {{number_format($result->group->price)}}/lượt chơi
-                                        </div>
+                    @if($result->checkVoucher==1)
+                    <div class="item_spin_sale-off">
+                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+                    </div>
+                    @endif
 
-                                        <div class="item_play_try">
-                                            @if($result->group->params->is_try == 1)
-                                            <a class="btn btn-primary num-play-try">Chơi thử</a>
-                                            @endif
-                                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
-                                        </div>
+                    @if($result->checkPoint==1)
+                    <div class="item_spin_progress">
+                        <div class="item_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
+                        <div class="item_spin_progress_percent">{{$result->pointuser}}/100 point</div>
+                    </div>
+                    <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
+                    @endif
+                    <div class="item_spin_dropdown">
+                        <select name="" id="numrolllop">
+                                <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
+                            @if($result->group->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                            @endif
+                            @if($result->group->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                            @endif
+                            @if($result->group->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                            @endif
+                            @if($result->group->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                            @endif
+                        </select>
+                    </div>
+                    <div class="item_spin_num_play">
+                        Giá {{number_format($result->group->price)}}/lượt chơi
+                    </div>
+
+                    <div class="item_play_try">
+                        @if($result->group->params->is_try == 1)
+                        <a class="btn btn-primary num-play-try">Chơi thử</a>
+                        @endif
+                        <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                    </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="item_play_category thele">
@@ -67,7 +72,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                        <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -76,7 +81,7 @@
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng quay khác</p>
+                <p>Các minigame khác</p>
                 <div class="item_play_line"></div>
 
             </div>
@@ -91,8 +96,8 @@
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
                                                 <img src="{{config('api.url_media').$item->image}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                                @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                <img src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
+                                                <img src="{{config('api.url_media').$item->params->image_view_all}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -351,6 +356,7 @@
     <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
 @endforeach
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 
 <script>
     function animate(options) {
@@ -497,7 +503,10 @@
         });
 
 
-        function getgifbonus() {
+        function getgifbonus() {            
+            if($('#checkPoint').val() != "1"){
+                return;
+            }
             $.ajax({
                 url: '/minigame-bonus',
                 datatype: 'json',
@@ -737,10 +746,10 @@
             } else {
                 if (gift_detail.gift_type == 0) {
                     $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
-                    $("#btnWithdraw").attr('href', '/withdrawitem?game_type=' + gift_detail.game_type);
+                    $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                 } else if (gift_detail.gift_type == 1) {
                     $("#btnWithdraw").html("Kiểm tra nick trúng");
-                    $("#btnWithdraw").attr('href', '/logaccgame?id=' + '{{$result->group->id}}');
+                    $("#btnWithdraw").attr('href', '/minigame-logacc-' + '{{$result->group->id}}');
                     // } else if (gift_detail.gift_type == 'nrocoin') {
                     //     $("#btnWithdraw").html("Rút vàng");
                     //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROCOIN").val());

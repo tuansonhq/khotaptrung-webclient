@@ -19,37 +19,37 @@
                         <table id="squaredesktop" class="square">
                             <tr>
                                 <td></td>
-                                <td><div  data-num="1" class="gift1 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
-                                <td><div  data-num="2" class="gift2 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
-                                <td><div  data-num="3" class="gift3 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="1" class="gift1 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
+                                <td><div  data-num="2" class="gift2 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
+                                <td><div  data-num="3" class="gift3 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><div  data-num="12" class="gift12 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="12" class="gift12 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                                 <td colspan="3"></td>
-                                <td><div  data-num="4" class="gift4 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="4" class="gift4 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                             </tr>
                             <tr>
-                                <td><div data-num="11" class="gift11 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div data-num="11" class="gift11 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                                 <td colspan="3">
                                     <div class="outer-btn">
-                                        <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="">
+                                        <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="" id="start-played">
                                             <img src="{{config('api.url_media').$result->group->image_icon}}" alt="" style="">
                                         </div>
                                     </div>
                                 </td>
-                                <td><div  data-num="5" class="gift5 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="5" class="gift5 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                             </tr>
                             <tr>
-                                <td><div  data-num="10" class="gift10 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="10" class="gift10 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                                 <td colspan="3"></td>
-                                <td><div  data-num="6" class="gift6 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
+                                <td><div  data-num="6" class="gift6 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><div  data-num="9" class="gift9 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
-                                <td><div  data-num="8" class="gift8 box"><img src='{{config('api.url_media').$result->group->params->image_static}}'/></div></td>
-                                <td><div  data-num="7" class="gift7 box"><img src='{{config('api.url_media').$result->group->params ->image_static}}'/></div></td>
+                                <td><div  data-num="9" class="gift9 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
+                                <td><div  data-num="8" class="gift8 box"><img src="{{config('api.url_media').$result->group->params->image_static}}"/></div></td>
+                                <td><div  data-num="7" class="gift7 box"><img src="{{config('api.url_media').$result->group->params ->image_static}}"/></div></td>
                                 <td></td>
                             </tr>
                         </table>
@@ -57,14 +57,19 @@
 
                     </div>
 
+                    @if($result->checkVoucher==1)
                     <div class="item_spin_sale-off">
                         <input type="text" readonly="" placeholder="Nhập mã giảm giá">
                     </div>
+                    @endif
+
+                    @if($result->checkPoint==1)
                     <div class="item_spin_progress">
                         <div class="item_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                         <div class="item_spin_progress_percent">{{$result->pointuser}}/100 point</div>
                     </div>
                     <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
+                    @endif
                     <div class="item_spin_dropdown">
                         <select name="" id="numrolllop">
                             <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
@@ -105,7 +110,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử gieo trúng vật phẩm</a>
+                        <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử chơi trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -116,7 +121,7 @@
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng quay khác</p>
+                <p>Các minigame khác</p>
                 <div class="item_play_line"></div>
             </div>
             <div class="item_play_dif">
@@ -147,7 +152,7 @@
                                         <div class="item_play_dif_slide_more">
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
-                                                    @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
+                                                    @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                     <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
                                                     @else
                                                     Quay ngay

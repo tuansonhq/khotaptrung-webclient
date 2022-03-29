@@ -23,15 +23,20 @@
                             <div id="slot4" class="item_five_record_inner_img a1" style=""></div>
                             <div id="slot5" class="item_five_record_inner_img a1" style=""></div>
                         </div>
-                        <div class="item_play_spin_sale-off">
-                            <input type="text" readonly="" placeholder="Nhập mã giảm giá">
-                        </div>
-                        <div class="item_play_spin_progress">
-                            <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                            <div class="item_play_spin_progress_percent">{{$result->pointuser}}/100 point</div>
-                            <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
-                        </div>
-                    </div>
+                        @if($result->checkVoucher==1)
+	                    <div class="item_play_spin_sale-off">
+	                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+	                    </div>
+	                @endif
+
+	                @if($result->checkPoint==1)
+	                    <div class="item_play_spin_progress">
+	                        <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
+	                        <div class="item_play_spin_progress_percent">{{$result->pointuser}}/100 point</div>
+	                    	<div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
+	                    </div>
+			@endif
+		    </div>
 
                     <div class="item_play_dropdown">
                         <select name="" id="numrolllop">
@@ -70,7 +75,7 @@
                     </div>
 
                     <div class="item_play_category">
-                        <a href="/minigame-log-{{$result->group->id}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
+                        <a href="{{route('getLog',[$result->group->id])}}" class="col-sm-12 btn btn-success">Lịch sử trúng vật phẩm</a>
                     </div>
                     <div class="item_play_category">
                         <a  class="col-sm-12 btn btn-success"  data-toggle="modal" data-target="#topquaythuongModal">Top quay thưởng</a>
@@ -79,7 +84,7 @@
             </div>
             @if($groups_other!=null)
                 <div class="item_play_title">
-                    <p>Các vòng quay khác</p>
+                    <p>Các minigame khác</p>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -111,7 +116,7 @@
                                                 <div class="item_play_dif_slide_more">
                                                     <div class="item_play_dif_slide_more_view" >
                                                         <a href="{{route('getIndex',[$item->slug])}}">
-                                                            @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
+                                                            @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
                                                                 <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
                                                             @else
                                                                 Quay ngay
@@ -354,6 +359,7 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
+<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 
     <script>
         function animate(options) {
@@ -531,7 +537,10 @@
             });
 
 
-            function getgifbonus() {
+            function getgifbonus() {                
+                if($('#checkPoint').val() != "1"){
+                    return;
+                }
                 $.ajax({
                     url: '/minigame-bonus',
                     datatype: 'json',
@@ -915,10 +924,10 @@
                 } else {
                     if (gift_detail.gift_type == 0) {
                         $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
-                        $("#btnWithdraw").attr('href', '/withdrawitem?game_type=' + gift_detail.game_type);
+                        $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                     } else if (gift_detail.gift_type == 1) {
                         $("#btnWithdraw").html("Kiểm tra nick trúng");
-                        $("#btnWithdraw").attr('href', '/logaccgame?id=' + '{{$result->group->id}}');
+                        $("#btnWithdraw").attr('href', '/minigame-logacc-' + '{{$result->group->id}}');
                         // } else if (gift_detail.gift_type == 'nrocoin') {
                         //     $("#btnWithdraw").html("Rút vàng");
                         //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROCOIN").val());
