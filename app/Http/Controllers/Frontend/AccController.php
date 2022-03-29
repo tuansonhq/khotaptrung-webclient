@@ -268,6 +268,56 @@ class AccController extends Controller
             $valcategory['module'] = 'acc_category';
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
 
+            if ($request->ajax()) {
+                $page = $request->page;
+
+                $url = '/acc';
+                $method = "GET";
+                $val = array();
+                $val['page'] = $page;
+                $val['data'] = 'list_acc';
+                $val['user_id'] = AuthCustom::user()->id;
+
+                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                    $val['serial'] = $request->serial;
+                }
+
+                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                    $val['key'] = $request->key;
+                }
+
+                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                    $val['status'] = $request->status;
+                }
+
+                if (isset($request->price) || $request->price != '' || $request->price != null) {
+                    $val['price'] = $request->price;
+                }
+
+                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                    $val['started_at'] = $request->started_at;
+                }
+
+                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                    $val['ended_at'] = $request->ended_at;
+                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $data = $result_Api->data;
+
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    }
+
+                    return view('frontend.pages.account.function.__get__buy__account__history')
+                        ->with('data', $data);
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+            }
+
             if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_category) && $result_Api_category->httpcode == 200){
                 $data = $result_Api->data;
                 $datacategory = $result_Api_category->data;
@@ -288,55 +338,7 @@ class AccController extends Controller
     public function getBuyAccountHistoryData(Request $request)
     {
 
-        if ($request->ajax()) {
-            $page = $request->page;
 
-            $url = '/acc';
-            $method = "GET";
-            $val = array();
-            $val['page'] = $page;
-            $val['data'] = 'list_acc';
-            $val['user_id'] = AuthCustom::user()->id;
-
-            if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                $val['serial'] = $request->serial;
-            }
-
-            if (isset($request->key) || $request->key != '' || $request->key != null) {
-                $val['key'] = $request->key;
-            }
-
-            if (isset($request->status) || $request->status != '' || $request->status != null) {
-                $val['status'] = $request->status;
-            }
-
-            if (isset($request->price) || $request->price != '' || $request->price != null) {
-                $val['price'] = $request->price;
-            }
-
-            if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                $val['started_at'] = $request->started_at;
-            }
-
-            if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                $val['ended_at'] = $request->ended_at;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $data = $result_Api->data;
-
-                if (isEmpty($data->data)) {
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                }
-
-                return view('frontend.pages.account.function.__get__buy__account__history')
-                    ->with('data', $data);
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-        }
     }
 
 }
