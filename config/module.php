@@ -14,6 +14,7 @@ return [
             '-999' => 'Lỗi nạp thẻ',
             '-1' => 'Phát sinh lỗi nạp thẻ',
         ],
+        'key_encrypt' => env('ENCRYPT_CHARGING'),
     ],
     'tranfer' => [
         'key'=>"charge",

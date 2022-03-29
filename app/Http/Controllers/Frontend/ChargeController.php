@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
 use App\Library\DirectAPI;
 use Carbon\Carbon;
@@ -392,6 +393,7 @@ class ChargeController extends Controller
                     'status' => "LOGIN"
                 ]);
             }
+
             $val['token'] = $jwt;
 
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
@@ -441,10 +443,27 @@ class ChargeController extends Controller
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
                     $result = $result_Api->data;
+
+
                     if ($result->status == 1) {
 
                         $result = $result_Api->data;
                         $data = $result->data;
+
+                        $arrpin = array();
+                        $arrserial = array();
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $serial = $data->data[$i]->serial;
+                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                            array_push($arrserial,$serial);
+                        }
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $pin = $data->data[$i]->pin;
+                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                            array_push($arrpin,$pin);
+                        }
 
                         if (isEmpty($data->data)) {
                             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
@@ -452,7 +471,7 @@ class ChargeController extends Controller
                         }
 
                         return view('frontend.pages.account.user.function.__pay_card_history')
-                            ->with('data', $data);
+                            ->with('data', $data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                     } else {
                         return redirect()->back()->withErrors($result->message);
                     }
@@ -466,6 +485,22 @@ class ChargeController extends Controller
                 if ($result->status == 1) {
 
                     $data = $result->data;
+
+                    $arrpin = array();
+                    $arrserial = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $serial = $data->data[$i]->serial;
+                        $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                        array_push($arrserial,$serial);
+                    }
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
+
                     $data_telecome = $result_Api_telecome->data;
 
                     $data_telecome = $data_telecome->data;
@@ -478,7 +513,7 @@ class ChargeController extends Controller
 
 
                     return view('frontend.pages.account.user.pay_card_history')
-                        ->with('data', $data)->with('data_telecome', $data_telecome);
+                        ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }

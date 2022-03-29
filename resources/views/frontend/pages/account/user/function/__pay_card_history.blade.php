@@ -16,12 +16,12 @@
             <tbody>
             @if(empty($data->data))
                 @if(isset($data) && count($data) > 0)
-                    @foreach ($data as $item)
+                    @foreach ($data as $key => $item)
 
                     <tr>
                         <td>{{ $item->telecom_key }}</td>
-                        <td>{{ $item->pin }}</td>
-                        <td>{{ $item->serial }}</td>
+                        <td>{{ $arrpin[$key] }}</td>
+                        <td>{{ $arrserial[$key] }}</td>
                         <td>{{ formatPrice($item->declare_amount) }}</td>
                         <td>
                             @if($item->status == 1)
@@ -61,21 +61,6 @@
 
         </table>
     </div>
-
-{{--    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">--}}
-
-{{--        @if(isset($data))--}}
-{{--            @if($data->total()>1)--}}
-{{--                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">--}}
-{{--                    <div class="col-auto paginate__category__col">--}}
-{{--                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">--}}
-{{--                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-{{--        @endif--}}
-{{--    </div>--}}
 
     <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
         @if(isset($data))

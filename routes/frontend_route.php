@@ -149,6 +149,8 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
         Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
 
+
+
 //        Route::get('/lich-su-nap-the', function () {
 //            return view('frontend.pages.account.user.pay_card_history');
 //        });
@@ -203,6 +205,8 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
             Route::get('/profile',[\App\Http\Controllers\Frontend\UserController::class,'profile'])->name('index');
             Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'info'])->name('index');
+
+            Route::post('/check-login', [AccController::class,"getCheckLogin"]);
         });
 
         Route::group(['middleware' => ['doNotCacheResponse']], function () {
