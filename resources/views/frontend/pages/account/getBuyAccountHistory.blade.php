@@ -148,6 +148,7 @@
     <input type="hidden" name="status_data" class="status_data" value="">
     <input type="hidden" name="started_at_data" class="started_at_data" value="">
     <input type="hidden" name="ended_at_data" class="ended_at_data" value="">
-
+    <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
+    <script src="/assets/frontend/js/account/acc-history.js"></script>
 
 @endsection
