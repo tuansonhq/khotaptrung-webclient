@@ -152,6 +152,7 @@ header .nav-bar{
     margin: 20px 0px;
     transition: 0.2s;
 }
+
 .nav-bar-brand img{
     width: 100%;
     margin: auto;
@@ -1931,9 +1932,9 @@ footer{
     padding: 8px 0;
 }
 @media (min-width: 576px){
-    .modal-dialog {
-        max-width: 722px!important;
-    }
+    /*.modal-dialog {*/
+    /*    max-width: 722px!important;*/
+    /*}*/
 }
 
 /*.item_play_dif_slide_img{*/
@@ -1999,4 +2000,23 @@ footer{
 }
 .gallery-thumbsmaxheadth{
     max-height: 46px;
+}
+@media (max-width: 768px) {
+    .nav-bar-brand{
+        width: 80px;
+
+    }
+    .loading {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin: 0 14px -4px;
+        /*margin: 0;*/
+        border: 2px solid rgb(26 108 97 / 56%);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+        -webkit-animation: spin 1s ease-in-out infinite;
+    }
+
 }
