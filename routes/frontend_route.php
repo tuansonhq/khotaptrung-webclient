@@ -192,14 +192,17 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/recharge-atm-bank',[\App\Http\Controllers\Frontend\TranferController::class,'postDepositBank'])->name('postDepositBank');
             Route::get('/get-bank',[\App\Http\Controllers\Frontend\TranferController::class,'getBankTranfer']);
             Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
-            Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
+
             Route::post('/post-deposit',[\App\Http\Controllers\Frontend\ChargeController::class,'postDeposit'])->name('postDeposit');
 //Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 
             Route::get('/get-amount-card',[\App\Http\Controllers\Frontend\ChargeController::class,'getAmountCharge'])->name('getAmountCharge');
 
-            Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
+//            mua thẻ
+            Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
+            Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getStoreCard'])->name('getStoreCard');
             Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
+            Route::get('/get-tele-card-store',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
 
             Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
 //            Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
