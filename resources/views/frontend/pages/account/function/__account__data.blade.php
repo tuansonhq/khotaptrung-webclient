@@ -56,7 +56,7 @@
                                                                     <?php
                                                                         $index++;
                                                                     ?>
-                                                                    @if($index < 5)
+                                                                    @if($index < 4)
                                                                     <div class="col-6 item_buy_list_info_in">
                                                                         {{ $child->title }} : <b>{{ $param }}</b>
                                                                     </div>
@@ -140,7 +140,7 @@
                                                                     <?php
                                                                         $index++;
                                                                     ?>
-                                                                    @if($index < 5)
+                                                                    @if($index < 4)
                                                                         <div class="col-6 item_buy_list_info_in">
                                                                             {{ $child->title }} : <b>{{ $param }}</b>
                                                                         </div>
