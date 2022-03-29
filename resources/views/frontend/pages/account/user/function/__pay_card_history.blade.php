@@ -62,18 +62,29 @@
         </table>
     </div>
 
-    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">
+{{--    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">--}}
 
-        @if(isset($data))
-            @if($data->total()>1)
-                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
-                    <div class="col-auto paginate__category__col">
-                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
-                        </div>
+{{--        @if(isset($data))--}}
+{{--            @if($data->total()>1)--}}
+{{--                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">--}}
+{{--                    <div class="col-auto paginate__category__col">--}}
+{{--                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">--}}
+{{--                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--        @endif--}}
+{{--    </div>--}}
+
+    @if(isset($data))
+        @if($data->total()>1)
+            <div class="row marinautooo paginate__history paginate__history__fix paginate__v1 justify-content-center">
+                <div class="col-auto paginate__category__col">
+                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                        {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
-            @endif
+            </div>
         @endif
-    </div>
-
+    @endif
