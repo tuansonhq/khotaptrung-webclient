@@ -74,15 +74,14 @@
                             </div>
                             <div class="item_buy_list_more">
                                 <div class="row">
-                                    <div class="col-5 ">
-                                        <div class="item_buy_list_price">
+                                    <div class="col-6 ">
+                                        <div class="item_buy_list_price p7">
 {{--                                            <span>{{ formatPrice($item->price_old) }}đ </span>--}}
                                             {{ formatPrice($item->price) }}đ
                                         </div>
 
                                     </div>
-                                    <div class="col-2"></div>
-                                    <a href="javascript:void(0)" class="col-5 buyacc" data-id="{{ $item->id }}">
+                                    <a href="javascript:void(0)" class="col-6 buyacc" data-id="{{ $item->id }}">
                                         <div class="item_buy_list_view">
                                             Chi tiết
                                         </div>
