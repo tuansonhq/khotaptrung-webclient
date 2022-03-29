@@ -85,12 +85,8 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
         Route::get('/danh-muc',[AccController::class,"getShowDanhmucCategory"]);
         Route::get('/{slug_category}/{slug}',[AccController::class,"getShowCategory"]);
-        Route::get('/buy-acc/{id}/databuy', [AccController::class,"getBuyAccount"]);
-        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
+        Route::get('/{slug_category}/{id}/databuy', [AccController::class,"getShowCategoryData"]);
 
-//Route::get('/thong-tin', function () {
-//    return view('frontend.pages.account.user.index');
-//});
         Route::get('/rut-vat-pham', function () {
             return view('frontend.pages.account.user.rutvatpham');
         });
@@ -194,16 +190,13 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
             Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
             Route::post('/post-deposit',[\App\Http\Controllers\Frontend\ChargeController::class,'postDeposit'])->name('postDeposit');
-//Route::get('/mua-the',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 
             Route::get('/get-amount-card',[\App\Http\Controllers\Frontend\ChargeController::class,'getAmountCharge'])->name('getAmountCharge');
 
             Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
             Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
 
-            Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
-//            Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'index'])->name('index');
-//            Route::get('/hehe',[\App\Http\Controllers\Frontend\UserController::class,'index_out'])->name('index');
+            Route::post('{slug_category}/{id}/databuy', [AccController::class,"postBuyAccount"]);
 
             Route::get('/profile',[\App\Http\Controllers\Frontend\UserController::class,'profile'])->name('index');
             Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'info'])->name('index');
