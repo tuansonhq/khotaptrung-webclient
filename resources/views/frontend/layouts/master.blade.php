@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="/assets/frontend/images/icon_logo.png">
     <link rel="stylesheet" href="/assets/frontend/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/assets/frontend/lib/animate/animate.min.css">
-
+    <link rel="stylesheet" href="/assets/frontend/css/buyacc.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="/assets/frontend/lib/OwlCarousel2/owl.carousel.min.css">
     <!--    bootstrap-->
@@ -66,6 +66,8 @@
     <script src="/assets/frontend/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/lib/record/record.js"></script>
+
+
     @yield('seo_head')
         @if(Request::is('/'))
         <style>
@@ -120,7 +122,8 @@
 <script src="/assets/frontend/js/swiper.js"></script>
 <script src="/assets/frontend/js/jquery.cookie.min.js"></script>
 <script src="/assets/frontend/js/account_info.js"></script>
-
+<script src="/assets/frontend/js/account/account-list.js"></script>
+<script src="/assets/frontend/js/account/buyacc.js"></script>
 
 </body>
 

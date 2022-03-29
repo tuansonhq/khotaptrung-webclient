@@ -3,7 +3,6 @@ $(document).ready(function () {
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var id = $(this).data("id");
-        // console.log(slug + slug_category);
         getBuyAcc(id)
     });
 
@@ -20,10 +19,9 @@ $(document).ready(function () {
 
             },
             success: (data) => {
-                console.log(data)
 
                 $('#LoadModal').modal('toggle');
-                $('.modal-content').html(data.data);
+                $('.modal-content_accountlist').html(data.data);
             },
             error: function (data) {
 

@@ -203,7 +203,7 @@
 
     <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
     <input type="hidden" name="service" id="append-service" value="0" />
-    <script src="/assets/frontend/js/account/account-list.js"></script>
+
 @endif
 
 

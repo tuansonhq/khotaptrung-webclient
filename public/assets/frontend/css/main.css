@@ -1932,9 +1932,9 @@ footer{
     padding: 8px 0;
 }
 @media (min-width: 576px){
-    /*.modal-dialog {*/
-    /*    max-width: 722px!important;*/
-    /*}*/
+    .modal-dialog__account {
+        max-width: 722px!important;
+    }
 }
 
 /*.item_play_dif_slide_img{*/
