@@ -151,9 +151,6 @@ Route::group(array('middleware' => ['verify_shop']),function(){
         Route::get('/lich-su-giao-dich',[\App\Http\Controllers\Frontend\ChargeController::class,'getDepositHistory'])->name('getDepositHistory');
 
 
-
-
-
         Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
 
 //        Route::get('/lich-su-nap-the', function () {
@@ -175,8 +172,10 @@ Route::group(array('middleware' => ['verify_shop']),function(){
 
 
         Route::group(array('middleware' => ['auth']),function(){
-            Route::get('/lich-su-nap-the',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
-            Route::get('/lich-su-nap-the/data',[\App\Http\Controllers\Frontend\ChargeController::class,'getChargeDepositHistoryData'])->name('getChargeDepositHistoryData');
+
+            Route::get('/lich-su-mua-account',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistory'])->name('getBuyAccountHistory');
+
+            Route::get('/lich-su-nap-the',[ChargeController::class,'getChargeDepositHistory'])->name('getChargeDepositHistory');
 
             Route::get('/dich-vu-da-mua',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistory'])->name('getBuyServiceHistory');
             Route::get('/dich-vu-da-mua/data',[\App\Http\Controllers\Frontend\ServiceController::class,'getBuyServiceHistoryData'])->name('getBuyServiceHistoryData');
@@ -220,8 +219,6 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'getWithdrawItem'])->name('getWithdrawItem');
             Route::post('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'postWithdrawItem'])->name('postWithdrawItem');
 
-            Route::get('/lich-su-mua-account',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistory'])->name('getBuyAccountHistory');
-            Route::get('/lich-su-mua-account/data',[\App\Http\Controllers\Frontend\AccController::class,'getBuyAccountHistoryData'])->name('getBuyAccountHistoryData');
         });
 
     });

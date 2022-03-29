@@ -1,5 +1,7 @@
 $(document).ready(function(){
     let page = $('#hidden_page_service').val();
+    const csrf_token = $('meta[name="csrf-token"]').attr('content');
+    const token =  $('meta[name="jwt"]').attr('content');
 
     $(document).on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
@@ -24,7 +26,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/lich-su-nap-the/data',
+            url: '/lich-su-nap-the',
             data: {
                 page:page,
                 serial:serial,
