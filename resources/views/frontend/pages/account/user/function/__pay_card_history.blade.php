@@ -1,5 +1,4 @@
-@if(empty($data->data))
-    @if(isset($data) && count($data) > 0)
+
 
     <div class="table-responsive">
         <table class="table table-hover table-custom-res">
@@ -15,45 +14,54 @@
 
             </thead>
             <tbody>
+            @if(empty($data->data))
+                @if(isset($data) && count($data) > 0)
+                    @foreach ($data as $item)
 
-            @foreach ($data as $item)
-
-                <tr>
-                    <td>{{ $item->telecom_key }}</td>
-                    <td>{{ $item->pin }}</td>
-                    <td>{{ $item->serial }}</td>
-                    <td>{{ formatPrice($item->declare_amount) }}</td>
-                    <td>
-                        @if($item->status == 1)
-                            <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
-                        @elseif($item->status == 0)
-                            <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
-                        @elseif($item->status == 3)
-                            <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
-                        @elseif($item->status == 2)
-                            <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
-                        @elseif($item->status == 999)
-                            <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
-                        @elseif($item->status == -999)
-                            <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
-                        @elseif($item->status == -1)
-                            <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
-                        @endif
-                    </td>
-                    <td>
-                        @if(isset($item->real_received_amount))
-                        {{ formatPrice($item->real_received_amount) }}
-                        @else
-                        0
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+                    <tr>
+                        <td>{{ $item->telecom_key }}</td>
+                        <td>{{ $item->pin }}</td>
+                        <td>{{ $item->serial }}</td>
+                        <td>{{ formatPrice($item->declare_amount) }}</td>
+                        <td>
+                            @if($item->status == 1)
+                                <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
+                            @elseif($item->status == 0)
+                                <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
+                            @elseif($item->status == 3)
+                                <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
+                            @elseif($item->status == 2)
+                                <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
+                            @elseif($item->status == 999)
+                                <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
+                            @elseif($item->status == -999)
+                                <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
+                            @elseif($item->status == -1)
+                                <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if(isset($item->real_received_amount))
+                            {{ formatPrice($item->real_received_amount) }}
+                            @else
+                            0
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+                @else
+                    <tr>
+                        <td width="100%" style="width: 20%">
+                            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                        </td>
+                    </tr>
+                @endif
+            @endif
             </tbody>
 
         </table>
     </div>
-    @endif
+
     <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie">
 
         @if(isset($data))
@@ -68,5 +76,4 @@
             @endif
         @endif
     </div>
-@else
-@endif
+
