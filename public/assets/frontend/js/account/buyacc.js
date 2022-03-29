@@ -2,13 +2,14 @@ $(document).ready(function () {
 
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
+
         var id = $(this).data("id");
         getBuyAcc(id)
     });
 
     function getBuyAcc(id) {
 
-        var url = '/buy-acc/'+ id+ '/databuy';
+        var url = '/acc/'+ id+ '/databuy';
         request = $.ajax({
             type: 'GET',
             url: url,
@@ -20,7 +21,7 @@ $(document).ready(function () {
             },
             success: (data) => {
 
-                $('#LoadModal').modal('toggle');
+                $('.loadModal__acount').modal('toggle');
                 $('.modal-content_accountlist').html(data.data);
             },
             error: function (data) {
