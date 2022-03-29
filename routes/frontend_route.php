@@ -155,6 +155,8 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             //profile
             Route::get('/profile',[\App\Http\Controllers\Frontend\UserController::class,'profile'])->name('index');
             Route::get('/thong-tin',[\App\Http\Controllers\Frontend\UserController::class,'info'])->name('index');
+
+            Route::post('/check-login', [AccController::class,"getCheckLogin"]);
         });
 
         Route::group(['middleware' => ['doNotCacheResponse']], function () {

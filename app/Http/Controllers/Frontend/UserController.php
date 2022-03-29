@@ -17,6 +17,7 @@ class UserController extends Controller
 {
 
     public function getInfo(Request $request){
+
         try{
             $jwt = Session::get('jwt');
             if(empty($jwt)){
@@ -28,7 +29,9 @@ class UserController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $jwt;
+
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 $request->session()->put('auth_custom', $result->user);

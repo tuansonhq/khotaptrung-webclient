@@ -232,7 +232,6 @@ class AccController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            return $result_Api;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
