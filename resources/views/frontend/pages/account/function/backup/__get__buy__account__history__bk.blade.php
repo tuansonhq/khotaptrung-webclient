@@ -29,20 +29,8 @@
                             </td>
                             <td>{{ $item->title }}</td>
                             <td>{{ formatPrice($item->price) }}</td>
-                            <td style="width: 20%">
-                                @if($item->status == 1 || $item->status == 5 || $item->status == 4)
-{{--                                    Chưa bán--}}
-                                    <button type="button" class="btn btn-danger c-btn-square btn-xs load-modal" rel="/tran/acc/check-login?id={{$item->id}}" >Check thông tin</button
-                                @elseif($item->status == 2)
-                                    <button type="button" class="btn btn-danger c-btn-square btn-xs load-modal" rel="/tran/acc/check-login?id={{$item->id}}" >Check thông tin</button>
-                                @elseif($item->status == 6)
-                                    Check lỗi
-                                @elseif($item->status == 0)
-                                    <button type="button" class="btn c-bg-dark c-font-white c-btn-square btn-xs  load-modal" style="margin-bottom: 5px" rel="/tran/acc/check-login?id={{$item->id}}">Mật khẩu</button>
-                                    <br />
-                                    <a href="/inbox/{{$item->id}}/send"  class="btn c-theme-btn c-font-white c-btn-square btn-xs">Chat</a>
-                                    Đã bán
-                                @endif
+                            <td>
+                                Thao tác
                             </td>
                         </tr>
                     @endforeach

@@ -104,7 +104,6 @@
 </div>
 
 
-
 @include('frontend.layouts.includes.footer')
 <script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
 

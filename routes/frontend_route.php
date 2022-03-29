@@ -112,6 +112,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
         Route::get('/changepassword',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePassword'])->name('changePassword');
         Route::post('/changePasswordApi',[\App\Http\Controllers\Frontend\Auth\LoginController::class,'changePasswordApi'])->name('changePasswordApi');
         //capcha
+
         Route::get('/reload-captcha', [CaptchaServiceController::class, 'reloadCaptcha']);
 
         Route::get('/show', function () {
@@ -143,13 +144,13 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/get-bank',[\App\Http\Controllers\Frontend\TranferController::class,'getBankTranfer']);
             Route::post('/recharge-atm-api',[\App\Http\Controllers\Frontend\TranferController::class,'postTranferBank'])->name('postTranferBank');
 
-            //Mua thẻ
+//            mua thẻ
+
             Route::post('/post-Store-Card',[\App\Http\Controllers\Frontend\StoreCardController::class,'postStoreCard'])->name('postStoreCard');
             Route::get('/mua-the',[\App\Http\Controllers\Frontend\StoreCardController::class,'getStoreCard'])->name('getStoreCard');
             Route::get('/mua-the-api',[\App\Http\Controllers\Frontend\StoreCardController::class,'getAmountStoreCard'])->name('getAmountStoreCard');
             Route::get('/get-tele-card-store',[\App\Http\Controllers\Frontend\StoreCardController::class,'getTelecomStoreCard'])->name('getTelecomStoreCard');
-
-            Route::post('/buy-acc/{id}/databuy', [AccController::class,"postBuyAccount"]);
+            Route::post('{slug_category}/{id}/databuy', [AccController::class,"postBuyAccount"]);
 
             //profile
             Route::get('/profile',[\App\Http\Controllers\Frontend\UserController::class,'profile'])->name('index');
@@ -165,6 +166,7 @@ Route::group(array('middleware' => ['verify_shop']),function(){
             Route::get('/minigame-{slug}',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndex'])->name('getIndex');
             Route::get('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'getWithdrawItem'])->name('getWithdrawItem');
             Route::post('/withdrawitem-{game_type}',[\App\Http\Controllers\Frontend\MinigameController::class,'postWithdrawItem'])->name('postWithdrawItem');
+
         });
 
     });

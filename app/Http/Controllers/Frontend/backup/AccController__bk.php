@@ -29,7 +29,6 @@ class AccController extends Controller
         return view('frontend.pages.account.getShowCategory')
             ->with('data',$data);
     }
-
     public function getShowCategory(Request $request,$slug_category,$slug){
             $url = '/acc';
             $method = "GET";
@@ -48,67 +47,6 @@ class AccController extends Controller
                 $val['cat_slug'] = $slug;
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-                if ($request->ajax()){
-                    $page = $request->page;
-
-                    $url = '/acc';
-                    $method = "GET";
-                    $val = array();
-                    $valcategory = array();
-
-                    $valcategory['data'] = 'category_detail';
-                    $valcategory['slug'] = $slug;
-
-                    $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-                    $data = $result_Api_category->data;
-
-                    $val['data'] = 'list_acc';
-                    $val['cat_slug'] = $slug;
-                    $val['page'] = $page;
-
-                    if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
-                        $val['id'] = $request->id_data;
-                    }
-
-                    if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
-                        $val['title'] = $request->title_data;
-                    }
-
-                    if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
-                        $val['price'] = $request->price_data;
-                    }
-
-                    if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
-                        $val['status'] = $request->status_data;
-                    }
-
-                    if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
-                        $select_data = $request->select_data;
-                        $group_ids = array();
-                        foreach(explode('|',$select_data) as $val){
-                            array_push($group_ids,$val);
-                        }
-                        $val['group_ids'] = $group_ids;
-                    }
-
-                    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-                    if(isset($result_Api) && $result_Api->httpcode == 200){
-                        $items = $result_Api->data;
-
-                        $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-
-                        $dataAttribute = $data->childs;
-                        return view('frontend.pages.account.function.__account__data')
-                            ->with('data',$data)
-                            ->with('items',$items)
-                            ->with('dataAttribute',$dataAttribute)
-                            ->with('slug_category',$slug_category);
-                    }else{
-                        return 'sai';
-                    }
-                }
 
                 if(isset($result_Api) && $result_Api->httpcode == 200){
 
@@ -179,6 +117,70 @@ class AccController extends Controller
 
     public function getShowCategoryData(Request $request,$slug_category,$slug){
         if ($request->ajax()){
+            $page = $request->page;
+
+            $url = '/acc';
+            $method = "GET";
+            $val = array();
+            $valcategory = array();
+
+            $valcategory['data'] = 'category_detail';
+            $valcategory['slug'] = $slug;
+
+            $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+            $data = $result_Api_category->data;
+
+            $val['data'] = 'list_acc';
+            $val['cat_slug'] = $slug;
+            $val['page'] = $page;
+
+            if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
+                $val['id'] = $request->id_data;
+            }
+
+            if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
+                $val['title'] = $request->title_data;
+            }
+
+            if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
+                $val['price'] = $request->price_data;
+            }
+
+            if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
+                $val['status'] = $request->status_data;
+            }
+
+            if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
+                $select_data = $request->select_data;
+                $group_ids = array();
+                foreach(explode('|',$select_data) as $val){
+                    array_push($group_ids,$val);
+                }
+                $val['group_ids'] = $group_ids;
+            }
+
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $items = $result_Api->data;
+
+                $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+
+                $dataAttribute = $data->childs;
+                return view('frontend.pages.account.function.__account__data')
+                    ->with('data',$data)
+                    ->with('items',$items)
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('slug_category',$slug_category);
+            }else{
+                return 'sai';
+            }
+        }
+    }
+
+    public function getBuyAccount(Request $request,$slug){
+
+        if ($request->ajax()){
 
             $id = $slug;
 
@@ -190,7 +192,6 @@ class AccController extends Controller
             $val['id'] = $id;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
@@ -205,9 +206,9 @@ class AccController extends Controller
                 $dataAttribute = $data_category->childs;
 
                 $html =  view('frontend.pages.account.function.buyacc')
-                        ->with('dataAttribute',$dataAttribute)
-                        ->with('data_category',$data_category)
-                        ->with('data',$data)->render();
+                    ->with('dataAttribute',$dataAttribute)
+                    ->with('data_category',$data_category)
+                    ->with('data',$data)->render();
 
                 return response()->json([
                     'data' => $html,
@@ -220,8 +221,7 @@ class AccController extends Controller
         }
     }
 
-    public function postBuyAccount(Request $request,$slug_category,$slug){
-
+    public function postBuyAccount(Request $request,$slug){
         if (AuthCustom::check()) {
             $url = '/acc';
             $method = "GET";
@@ -229,13 +229,10 @@ class AccController extends Controller
             $val['id'] = $slug;
             $val['data'] = 'buy_acc';
             $val['user_id'] = AuthCustom::user()->id;
-
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            return $result_Api;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
-
 
                 if (isset($data->success)){
                     if ($data->success == 0){
@@ -271,56 +268,6 @@ class AccController extends Controller
             $valcategory['module'] = 'acc_category';
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
 
-            if ($request->ajax()) {
-                $page = $request->page;
-
-                $url = '/acc';
-                $method = "GET";
-                $val = array();
-                $val['page'] = $page;
-                $val['data'] = 'list_acc';
-                $val['user_id'] = AuthCustom::user()->id;
-
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $val['serial'] = $request->serial;
-                }
-
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $val['key'] = $request->key;
-                }
-
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $val['status'] = $request->status;
-                }
-
-                if (isset($request->price) || $request->price != '' || $request->price != null) {
-                    $val['price'] = $request->price;
-                }
-
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                    $val['started_at'] = $request->started_at;
-                }
-
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                    $val['ended_at'] = $request->ended_at;
-                }
-
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $data = $result_Api->data;
-
-                    if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                    }
-
-                    return view('frontend.pages.account.function.__get__buy__account__history')
-                        ->with('data', $data);
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            }
-
             if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_category) && $result_Api_category->httpcode == 200){
                 $data = $result_Api->data;
                 $datacategory = $result_Api_category->data;
@@ -337,4 +284,59 @@ class AccController extends Controller
         }
 
     }
+
+    public function getBuyAccountHistoryData(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $page = $request->page;
+
+            $url = '/acc';
+            $method = "GET";
+            $val = array();
+            $val['page'] = $page;
+            $val['data'] = 'list_acc';
+            $val['user_id'] = AuthCustom::user()->id;
+
+            if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                $val['serial'] = $request->serial;
+            }
+
+            if (isset($request->key) || $request->key != '' || $request->key != null) {
+                $val['key'] = $request->key;
+            }
+
+            if (isset($request->status) || $request->status != '' || $request->status != null) {
+                $val['status'] = $request->status;
+            }
+
+            if (isset($request->price) || $request->price != '' || $request->price != null) {
+                $val['price'] = $request->price;
+            }
+
+            if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                $val['started_at'] = $request->started_at;
+            }
+
+            if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                $val['ended_at'] = $request->ended_at;
+            }
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $data = $result_Api->data;
+
+                if (isEmpty($data->data)) {
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                }
+
+                return view('frontend.pages.account.function.__get__buy__account__history')
+                    ->with('data', $data);
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+    }
+
 }

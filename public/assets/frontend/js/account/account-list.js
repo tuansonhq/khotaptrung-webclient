@@ -26,7 +26,7 @@ $(document).ready(function(){
         let slug_category = $('.slug_category').val();
         let slug = $('.slug').val();
 
-        var url = '/' + slug_category + '/' + slug + '/data';
+        var url = '/' + slug_category + '/' + slug;
         // alert(url)
         request = $.ajax({
             type: 'GET',

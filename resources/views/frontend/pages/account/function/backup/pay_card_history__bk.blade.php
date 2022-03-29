@@ -101,6 +101,6 @@
     <input type="hidden" name="status_data" class="status_data">
     <input type="hidden" name="started_at_data" class="started_at_data">
     <input type="hidden" name="ended_at_data" class="ended_at_data">
-    <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
+    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
     <script src="/assets/frontend/js/charge/charge-history.js"></script>
 @endsection

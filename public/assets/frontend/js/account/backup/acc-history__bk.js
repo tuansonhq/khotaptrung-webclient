@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    let page = $('#hidden_page_service').val();
-
     $(document).on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
 
@@ -22,10 +20,39 @@ $(document).ready(function(){
         loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
     });
 
+    function loadDataAccountList(page,serial,key,price,status,started_at,ended_at) {
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-account/data',
+            data: {
+                page:page,
+                serial:serial,
+                key:key,
+                price:price,
+                status:status,
+                started_at:started_at,
+                ended_at:ended_at,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+                $("#data_pay_account_history").empty().html('');
+                $("#data_pay_account_history").empty().html(data);
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 
     $(document).on('submit', '.form-charge', function(e){
         e.preventDefault();
-        alert("aaaaaa")
+
         var serial = $('.serial').val();
         var key = $('.key').val();
         var price = $('.price').val();
@@ -69,6 +96,12 @@ $(document).ready(function(){
             $('.status_data').val(status);
         }
 
+        if (itemselect == null || itemselect == undefined || itemselect == ''){
+            $('.select_data').val('');
+        }else {
+            $('.select_data').val(itemselect);
+        }
+
 
         var serial_data = $('.serial_data').val();
         var key_data = $('.key_data').val();
@@ -104,34 +137,4 @@ $(document).ready(function(){
         loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
 
     });
-
-    function loadDataAccountList(page,serial,key,price,status,started_at,ended_at) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: '/lich-su-mua-account',
-            data: {
-                page:page,
-                serial:serial,
-                key:key,
-                price:price,
-                status:status,
-                started_at:started_at,
-                ended_at:ended_at,
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-                $("#data_pay_account_history").empty().html('');
-                $("#data_pay_account_history").empty().html(data);
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
 })

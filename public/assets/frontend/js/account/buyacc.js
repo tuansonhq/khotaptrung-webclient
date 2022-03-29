@@ -8,9 +8,11 @@ $(document).ready(function () {
     });
 
     function getBuyAcc(id) {
+
+        var url = '/buy-acc/'+ id+ '/databuy';
         request = $.ajax({
             type: 'GET',
-            url: '/buy-acc/' + id + '/databuy',
+            url: url,
             data: {
                 // id:id
             },
@@ -18,7 +20,7 @@ $(document).ready(function () {
 
             },
             success: (data) => {
-                console.log("Thành công")
+                console.log(data)
 
                 $('#LoadModal').modal('toggle');
                 $('.modal-content').html(data.data);
