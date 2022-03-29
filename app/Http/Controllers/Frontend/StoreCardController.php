@@ -10,6 +10,64 @@ use Session;
 
 class StoreCardController extends Controller
 {
+//    public function getTelecomStoreCard(Request $request){
+//
+//        if(AuthCustom::check()){
+//
+//            try{
+//                $url = '/store-card/get-telecom';
+//                $method = "GET";
+//                $data = array();
+//                $jwt = Session::get('jwt');
+//                if(empty($jwt)){
+//                    return response()->json([
+//                        'status' => "LOGIN"
+//                    ]);
+//                }
+//                $data['token'] =$jwt;
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+//                    $result = $result_Api->data;
+//
+//                    if ($result->status == 1) {
+//                        return view('frontend.pages.buy_card', compact('result'));
+//                    }
+//                    else {
+//                        return redirect()->back()->withErrors($result->message);
+//
+//                    }
+//                } else {
+//                   return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            }
+//            catch(\Exception $e){
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//
+//        }
+//        else{
+//
+//            return redirect('login');
+//        }
+//
+//
+//    }
+
+    public function getStoreCard(Request $request){
+
+        if(AuthCustom::check()){
+            return view('frontend.pages.buy_card');
+
+        }
+        else{
+
+            return redirect('login');
+        }
+
+
+    }
     public function getTelecomStoreCard(Request $request){
 
         if(AuthCustom::check()){
@@ -29,16 +87,19 @@ class StoreCardController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                     $result = $result_Api->data;
-
-                    if ($result->status == 1) {
-                        return view('frontend.pages.buy_card', compact('result'));
-                    }
-                    else {
-                        return redirect()->back()->withErrors($result->message);
-
+                    $message = $result->message;
+                    if ($result->status==0){
+                        return Response()->json($result->message);
+                    }else{
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $result
+                        ]);
                     }
                 } else {
-                   return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    return Response()->json($result_Api->data->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -58,7 +119,7 @@ class StoreCardController extends Controller
     {
 
         if ($request->ajax()){
-            if($request->hasCookie('jwt')){
+//            if($request->hasCookie('jwt')){
                 try{
 
                     $url = '/store-card/get-amount';
@@ -98,7 +159,7 @@ class StoreCardController extends Controller
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
 
-            }
+//            }
         }
 
     }
