@@ -1,22 +1,22 @@
 $(document).ready(function(){
 
-    let page = $('#hidden_page_service__account').val();
+    let page = $('#hidden_page_service').val();
 
-    $(document).on('click', '.paginate__v1__account .pagination a',function(event){
+    $(document).on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
 
-        $('#hidden_page_service__account').val(page);
+        $('#hidden_page_service').val(page);
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        var id_data = $('.id_data__account').val();
-        var title_data = $('.title_data__account').val();
-        var price_data = $('.price_data__account').val();
-        var status_data = $('.status_data__account').val();
-        var select_data = $('.select_data__account').val();
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
 
         loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
         // loadDataAccountList(page);
