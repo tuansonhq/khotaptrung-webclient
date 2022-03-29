@@ -40,14 +40,19 @@ class LoginController extends Controller
                     Session::put('jwt',$result->token);
                     Session::put('exp_token',$result->exp_token);
                     Session::put('time_exp_token',$time_exp_token);
+                    return Response()->json($result_Api->data);
                     return redirect()->to('/');
                 }
                 else{
-                    return redirect()->back()->withErrors($result->message);
+                    return Response()->json($result_Api->data);
+//                    dd(111);
+//                    return redirect()->back()->withErrors($result->message);
                 }
             }else{
-                $result = $result_Api->data;
-                return redirect()->back()->withErrors($result->message);
+                return Response()->json($result_Api->data);
+                //                dd(122222);
+//                $result = $result_Api->data;
+//                return redirect()->back()->withErrors($result->message);
             }
         }
         catch(\Exception $e){

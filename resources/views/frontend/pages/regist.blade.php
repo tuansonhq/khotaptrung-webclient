@@ -3,8 +3,9 @@
     <div class="log-in container" >
         <div class="log-in-body">
             <p>Đăng ký thành viên</p>
-            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
-            <form action="{{route('register')}}" method="POST">
+{{--            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>--}}
+            <form action="{{route('register')}}" method="POST" id="form-regist">
+                <div class="regist_error"></div>
                 @csrf
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" placeholder="Tài khoản của web">
@@ -31,4 +32,53 @@
 
         </div>
     </div>
+
+    <script>
+
+        $('#form-regist').submit(function (e) {
+            e.preventDefault();
+            var formSubmit = $(this);
+            var url = formSubmit.attr('action');
+            var btnSubmit = formSubmit.find(':submit');
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache:false,
+                data: formSubmit.serialize(), // serializes the form's elements.
+                beforeSend: function (xhr) {
+                },
+                success: function (data) {
+                    console.log(data)
+                    // alert(data)
+                    if(data.status == 1){
+                        window.location.href = '/';
+
+                    }else{
+                        let html = '';
+                        html +='';
+                        html += '<p style="color: red;text-align: center;font-size: 14px">'+ data.message +'</p>';
+                        $('.regist_error').html(html)
+                    }
+
+                    // if(data.status == 1){
+                    //     alert(da);
+                    // }
+                    // else{
+                    //     alert(data);
+                    //     btnSubmit.text('Thanh toán');
+                    //     btnSubmit.prop('disabled', false);
+                    // }
+                },
+                error: function (data) {
+                    alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
+                    btnSubmit.text('Đăng nhập');
+                },
+                complete: function (data) {
+                    $('#reload').trigger('click');
+                    $('#form-charge-input').trigger("reset");
+                }
+            });
+        });
+    </script>
+
 @endsection

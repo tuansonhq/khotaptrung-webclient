@@ -10,6 +10,24 @@ $(document).ready(function(){
             $('#logout').attr('href','/register')
             $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
+
+
+            $('#info_mobile .loading').remove();
+            $('#logout_mobile .loading').remove();
+            $('#info_mobile').attr('href','/login')
+            $('#logout_mobile').attr('href','/register')
+            $('#info_mobile').html('Đăng nhập')
+            $('#logout_mobile').html('Đăng kí')
+
+            $('#info_tab_mobile .loading').remove();
+            $('#logout_tab_mobile .loading').remove();
+            $('#info_tab_mobile').attr('href','/login')
+            $('#logout_tab_mobile').attr('href','/register')
+            $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
+            $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+
+
+
             return;
         }
         $.ajax({
@@ -37,11 +55,37 @@ $(document).ready(function(){
                     $('#logout .loading').remove();
                     $('#info').attr('href','/thong-tin')
                     $('#logout').attr('href','/logout')
+
+                    // mobile tab
+                    $('#info_tab_mobile .loading').remove();
+                    $('#logout_tab_mobile .loading').remove();
+                    $('#info_tab_mobile').attr('href','/thong-tin')
+                    $('#logout_tab_mobile').attr('href','/logout')
+
                     $('#logout-form').attr('href','/logout')
 
+
+
                     $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-                    $('#info').html('<i class="fas fa-user"></i> '+data.info.username)
+                    $('#info').html('<i class="fas fa-user"></i> '+ fn(data.info.username, 6)  +' - $' +formatNumber(data.info.balance))
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
+
+                    // mobile
+                    $('#info_mobile .loading').remove();
+                    $('#logout_mobile .loading').remove();
+                    $('#info_mobile').attr('href','/thong-tin')
+                    // $('#logout_mobile').attr('href','/logout')
+
+                    $('#logout_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
+                    $('#info_mobile').html(fn(data.info.username, 8) +' - $' +formatNumber(data.info.balance))
+                    $('#logout_mobile').css('display','none')
+
+
+                    $('#logout_tab_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
+                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
+                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất')
+
+
                 }
             },
             error: function (data) {
@@ -54,6 +98,14 @@ $(document).ready(function(){
         });
     }
     getInfo();
+
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+    function fn(text, count){
+        return text.slice(0, count) + (text.length > count ? "..." : "");
+    }
+
 });
 //
 // // new
