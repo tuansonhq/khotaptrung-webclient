@@ -436,7 +436,7 @@ class ChargeController extends Controller
     public function getChargeDepositHistoryData(Request $request)
     {
 
-        if ($request->ajax()) {
+        if ($request->ajax() && AuthCustom::check()) {
             $page = $request->page;
 
             $url = '/deposit-auto/history';
