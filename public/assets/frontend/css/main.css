@@ -1997,3 +1997,6 @@ footer{
     opacity: 0.7;
     color: #FFFFFF;
 }
+.gallery-thumbsmaxheadth{
+    max-height: 70px;
+}

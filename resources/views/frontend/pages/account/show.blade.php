@@ -47,7 +47,7 @@
                             </div>
                         </div>
 
-                        <div class="swiper gallery-thumbs">
+                        <div class="swiper gallery-thumbs gallery-thumbsmaxheadth">
                             <div class="swiper-wrapper">
                                 @foreach(explode('|',$data->image_extension) as $val)
                                     <div class="swiper-slide">
