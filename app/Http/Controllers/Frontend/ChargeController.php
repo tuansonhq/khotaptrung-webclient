@@ -250,8 +250,6 @@ class ChargeController extends Controller
     public function getTelecomDepositAuto(Request $request)
     {
 
-//        \Validator::
-
         if ($request->ajax()) {
             try {
                 $url = '/deposit-auto/get-amount';
@@ -381,7 +379,6 @@ class ChargeController extends Controller
         }
 
     }
-
 
     public function getChargeDepositHistory(Request $request)
     {
