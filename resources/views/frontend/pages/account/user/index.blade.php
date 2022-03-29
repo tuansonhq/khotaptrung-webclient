@@ -87,6 +87,7 @@
                         if(data.status == true){
                             $('#info_id').html('<span>'+data.info.id+'</span>')
                             $('#info_name').html('<span>'+data.info.username+'</span>')
+                            $('#info_balance').html('<span>'+data.info.balance+'</span>')
                             $('#info_balance').html('<span><i class="text-danger">'+data.info.balance+'</i></span>')
                         }
                     },
