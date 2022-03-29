@@ -75,7 +75,7 @@
                             <div class="item_buy_list_more">
                                 <div class="row">
                                     <div class="col-6 ">
-                                        <div class="item_buy_list_price p7">
+                                        <div class="item_buy_list_price2 p7">
 {{--                                            <span>{{ formatPrice($item->price_old) }}đ </span>--}}
                                             {{ formatPrice($item->price) }}đ
                                         </div>
