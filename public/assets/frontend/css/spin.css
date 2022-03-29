@@ -627,6 +627,21 @@
     font-weight: 600;
     font-size: 14px;
 }
+
+.item_buy_list_price2 {
+    text-align: center;
+    border: 1px solid red;
+    padding: 7px;
+    color: red;
+    margin-bottom: 12px;
+}
+.item_buy_list_price2 span{
+    text-decoration: line-through;
+    color: #666;
+    padding-right: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
 .item_buy_list_view{
     text-align: center;
     color: #ffffff;
