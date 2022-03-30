@@ -29,9 +29,13 @@ return [
     'acc' => [
         'key'=>"charge",
         'status' => [
-            '1' => 'Mua thành công',
-            '2' => 'Chờ kiểm tra tài khoản',
-        ],
+            1 => 'Chưa bán',
+            0 => 'Đã bán',
+            2 => 'Chờ xử lý',
+            3 => 'Đang check thông tin',
+            4 => 'Sai thông tin',
+            5 => 'Đã xoá',
+            6 => 'Check lỗi'],
         'price' => [
             'Dưới 50K' => 'Dưới 50K',
             'Từ 50K - 200K' => 'Từ 50K - 200K',

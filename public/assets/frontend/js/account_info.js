@@ -51,7 +51,6 @@ $(document).ready(function(){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
-                    $('#username').val(data.info.username);
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
                     $('#info').attr('href','/thong-tin')

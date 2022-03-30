@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
 use App\Library\DirectAPI;
 use Carbon\Carbon;
@@ -137,20 +138,20 @@ class ChargeController extends Controller
     {
 
         try {
-               $method = "GET";
-                $url_history = '/deposit-auto/history';
-                $jwt = Session::get('jwt');
-                $val['token'] = $jwt;
+            $method = "GET";
+            $url_history = '/deposit-auto/history';
+            $jwt = Session::get('jwt');
+            $val['token'] = $jwt;
 
-                $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
+            $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
 
-                if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                    $bankHistory = $result_Api_history->data;
-                    $data = $bankHistory->data;
+            if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
+                $bankHistory = $result_Api_history->data;
+                $data = $bankHistory->data;
 
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    return view('frontend.pages.account.user.pay_card', compact( 'data'));
-                }
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                return view('frontend.pages.account.user.pay_card', compact( 'data'));
+            }
 //            return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
 
         } catch (\Exception $e) {
@@ -249,8 +250,6 @@ class ChargeController extends Controller
 
     public function getTelecomDepositAuto(Request $request)
     {
-
-//        \Validator::
 
         if ($request->ajax()) {
             try {
@@ -382,9 +381,9 @@ class ChargeController extends Controller
 
     }
 
-
     public function getChargeDepositHistory(Request $request)
     {
+
         if (AuthCustom::check()) {
             $url = '/deposit-auto/history';
             $method = "GET";
@@ -395,23 +394,114 @@ class ChargeController extends Controller
                     'status' => "LOGIN"
                 ]);
             }
+
             $val['token'] = $jwt;
 
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
             $url_telecome = '/deposit-auto/get-telecom';
             $val_telecome = array();
-            $val_telecome['token'] = $request->cookie('jwt');
-            $val_telecome['secret_key'] = config('api.secret_key');
-            $val_telecome['domain'] = 'youtube.com';
 
             $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
+
+            if ($request->ajax()) {
+                $page = $request->page;
+
+                $url = '/deposit-auto/history';
+
+                $method = "GET";
+                $val = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] = $jwt;
+                $val['page'] = $page;
+
+                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                    $val['serial'] = $request->serial;
+                }
+
+                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                    $val['key'] = $request->key;
+                }
+
+                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                    $val['status'] = $request->status;
+                }
+
+                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                    $val['started_at'] = $request->started_at;
+                }
+
+                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                    $val['ended_at'] = $request->ended_at;
+                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $result = $result_Api->data;
+
+
+                    if ($result->status == 1) {
+
+                        $result = $result_Api->data;
+                        $data = $result->data;
+
+                        $arrpin = array();
+                        $arrserial = array();
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $serial = $data->data[$i]->serial;
+                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                            array_push($arrserial,$serial);
+                        }
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $pin = $data->data[$i]->pin;
+                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                            array_push($arrpin,$pin);
+                        }
+
+                        if (isEmpty($data->data)) {
+                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                            $data->setPath($request->url());
+                        }
+
+                        return view('frontend.pages.account.user.function.__pay_card_history')
+                            ->with('data', $data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
+                    } else {
+                        return redirect()->back()->withErrors($result->message);
+                    }
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+            }
 
             if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
                 $result = $result_Api->data;
                 if ($result->status == 1) {
 
                     $data = $result->data;
+
+                    $arrpin = array();
+                    $arrserial = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $serial = $data->data[$i]->serial;
+                        $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                        array_push($arrserial,$serial);
+                    }
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
+
                     $data_telecome = $result_Api_telecome->data;
 
                     $data_telecome = $data_telecome->data;
@@ -419,74 +509,12 @@ class ChargeController extends Controller
                     // Set default page
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                        $data->setPath($request->url());
                     }
 
 
                     return view('frontend.pages.account.user.pay_card_history')
-                        ->with('data', $data)->with('data_telecome', $data_telecome);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
-                }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-        }
-    }
-
-    public function getChargeDepositHistoryData(Request $request)
-    {
-
-        if ($request->ajax() && AuthCustom::check()) {
-            $page = $request->page;
-
-            $url = '/deposit-auto/history';
-
-            $method = "GET";
-            $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-            $val['token'] = $jwt;
-            $val['page'] = $page;
-
-            if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                $val['serial'] = $request->serial;
-            }
-
-            if (isset($request->key) || $request->key != '' || $request->key != null) {
-                $val['key'] = $request->key;
-            }
-
-            if (isset($request->status) || $request->status != '' || $request->status != null) {
-                $val['status'] = $request->status;
-            }
-
-            if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                $val['started_at'] = $request->started_at;
-            }
-
-            if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                $val['ended_at'] = $request->ended_at;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
-
-                    $result = $result_Api->data;
-                    $data = $result->data;
-
-                    if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                    }
-
-                    return view('frontend.pages.account.user.function.__pay_card_history')
-                        ->with('data', $data);
+                        ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }

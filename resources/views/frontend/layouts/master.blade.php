@@ -25,27 +25,33 @@
     <!--    gallery-->
     <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/lib/select-nice/select-nice.css">
+    {{--    <link rel="preconnect" href="https://fonts.googleapis.com">--}}
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/frontend/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/lib/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/assets/frontend/lib/fancybox/fancybox.css">
     <link rel="stylesheet" href="/assets/frontend/lib/fixed-sticky/fixedsticky.css">
+    <link rel="stylesheet" href="/assets/frontend/css/chatbox.css">
+
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap-popover/bootstrap-popover-x.css">
     <link rel="stylesheet" href="/assets/frontend/lib/date-picker/tui-date-picker.css">
     <link rel="stylesheet" href="/assets/frontend/css/news.css">
     <link rel="stylesheet" href="/assets/frontend/css/account.css">
     <link rel="stylesheet" href="/assets/frontend/css/spin.css">
     <link rel="stylesheet" href="/assets/frontend/lib/toastr/toastr.css">
+    <link rel="stylesheet" href="/assets/frontend/css/imgareaselect.css">
     <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/css/main.css">
-    @stack('style')
 
 
     <script src="/assets/frontend/lib/jquery.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/lib/moment/moment.min.js"></script>
 
+    <script src="/assets/frontend/js/socket.io.min.js"></script>
+    <script src="/assets/frontend/js/chat/axios.min.js"></script>
+    <script src="/assets/frontend/js/croppie.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap-popover/bootstrap-popover.js"></script>
 
     <script src="/assets/frontend/js/bootstrap-datetimepicker.min.js"></script>
@@ -54,6 +60,7 @@
 
     <script src="/assets/frontend/lib/rateit/jquery.barrating.min.js"></script>
     <script src="/assets/frontend/lib/rateit/examples.js"></script>
+    <script src="/assets/frontend/js/hederbooking.js"></script>
 
     <script src="/assets/frontend/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/lib/lazyload/lazyloadGen.js"></script>
@@ -61,9 +68,6 @@
     <script src="/assets/frontend/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/lib/record/record.js"></script>
-    <script src="/assets/frontend/js/sweetalert.min.js"></script>
-    <script src="/assets/frontend/js/account_info.js"></script>
-    @stack('js')
 
 
     @yield('seo_head')
@@ -106,6 +110,9 @@
 
 @include('frontend.layouts.includes.footer')
 <script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
+
+<script src="/assets/frontend/js/jquery.nice-select.min.js"></script>
+
 <script src="/assets/frontend/lib/fancybox/jquery.fancybox.min.js"></script>
 
 <script src="/assets/frontend/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
@@ -116,6 +123,7 @@
 
 <script src="/assets/frontend/js/swiper.js"></script>
 <script src="/assets/frontend/js/jquery.cookie.min.js"></script>
+<script src="/assets/frontend/js/account_info.js"></script>
 <script src="/assets/frontend/js/account/account-list.js"></script>
 <script src="/assets/frontend/js/account/buyacc.js"></script>
 

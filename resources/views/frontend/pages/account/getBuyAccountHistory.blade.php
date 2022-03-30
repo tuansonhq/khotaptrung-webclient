@@ -64,7 +64,7 @@
 
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <span >Trạng thái</span>
+                                        <span >Giá tiền</span>
 
                                         {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}
 

@@ -7,25 +7,110 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Session;
-use Illuminate\Support\Facades\Log;
 
 class StoreCardController extends Controller
 {
-    public function getStoreCard(){
-        return view('frontend.pages.buy_card');
+//    public function getTelecomStoreCard(Request $request){
+//
+//        if(AuthCustom::check()){
+//
+//            try{
+//                $url = '/store-card/get-telecom';
+//                $method = "GET";
+//                $data = array();
+//                $jwt = Session::get('jwt');
+//                if(empty($jwt)){
+//                    return response()->json([
+//                        'status' => "LOGIN"
+//                    ]);
+//                }
+//                $data['token'] =$jwt;
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+//                    $result = $result_Api->data;
+//
+//                    if ($result->status == 1) {
+//                        return view('frontend.pages.buy_card', compact('result'));
+//                    }
+//                    else {
+//                        return redirect()->back()->withErrors($result->message);
+//
+//                    }
+//                } else {
+//                   return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            }
+//            catch(\Exception $e){
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//
+//        }
+//        else{
+//
+//            return redirect('login');
+//        }
+//
+//
+//    }
+
+    public function getStoreCard(Request $request){
+
+        if(AuthCustom::check()){
+            return view('frontend.pages.buy_card');
+
+        }
+        else{
+
+            return redirect('login');
+        }
+
+
     }
     public function getTelecomStoreCard(Request $request){
 
-        try{
-            $url = '/store-card/get-telecom';
-            $method = "GET";
-            $data = array();
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            dd($result_Api);
+        if(AuthCustom::check()){
+
+            try{
+                $url = '/store-card/get-telecom';
+                $method = "GET";
+                $data = array();
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $data['token'] =$jwt;
+
+                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
+                    $result = $result_Api->data;
+                    $message = $result->message;
+                    if ($result->status==0){
+                        return Response()->json($result->message);
+                    }else{
+                        return response()->json([
+                            'status' => 1,
+                            'message'=>$message,
+                            'data' => $result
+                        ]);
+                    }
+                } else {
+                    return Response()->json($result_Api->data->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+            }
+            catch(\Exception $e){
+                Log::error($e);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+
         }
-        catch(\Exception $e){
-            Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+        else{
+
+            return redirect('login');
         }
 
 
