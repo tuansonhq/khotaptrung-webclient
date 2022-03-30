@@ -250,19 +250,23 @@
                                 </div>
                                 <div class="item_buy_list_info">
                                     <div class="row">
+                                        <?php
+                                            $index = 0;
+                                        ?>
                                         @if(isset($datav2->groups))
                                             <?php
                                             $att_valuesv2 = $datav2->groups;
-                                            $index = 0;
                                             ?>
                                             @foreach($att_valuesv2 as $att_valuev2)
                                                 @if($att_valuev2->module == 'acc_label')
-                                                        <?php
-                                                        $index++;
-                                                        ?>
+                                                    <?php
+                                                    $index++;
+                                                    ?>
+                                                    @if($index < 5)
                                                     <div class="col-6 item_buy_list_info_in">
                                                         {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>
                                                     </div>
+                                                    @endif
                                                 @endif
                                             @endforeach
                                         @endif
@@ -275,9 +279,9 @@
                                                             @foreach($att->childs as $child)
                                                                 @foreach($paramsv2 as $key => $paramv2)
                                                                     @if($key == $child->id)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
+                                                                        <?php
+                                                                        $index++;
+                                                                        ?>
                                                                         @if($index < 5)
                                                                         <div class="col-6 item_buy_list_info_in">
                                                                             {{ $child->title }} : <b>{{ $paramv2 }}</b>
