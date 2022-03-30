@@ -184,53 +184,149 @@ class ChargeController extends Controller
                 'status' => 0
             ]);
         }
-        try {
-            $url = '/deposit-auto';
-            $method = "POST";
-            $data = array();
-            $data['token'] = session()->get('jwt');
-            $data['type'] = $request->type;
-            $data['amount'] = $request->amount;
-            $data['pin'] = $request->pin;
-            $data['serial'] = $request->serial;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+    }
+
+    public function getChargeDepositHistory(Request $request)
+    {
+        if (AuthCustom::check()) {
+            $url = '/deposit-auto/history';
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => "LOGIN"
                 ]);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
+
+            $val['token'] = $jwt;
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            $url_telecome = '/deposit-auto/get-telecom';
+            $val_telecome = array();
+
+            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
+
+            if ($request->ajax()) {
+                $page = $request->page;
+
+                $url = '/deposit-auto/history';
+
+                $method = "GET";
+                $val = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
                     return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
+                        'status' => "LOGIN"
                     ]);
                 }
-                if($result->status == 0){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                    ]);
+                $val['token'] = $jwt;
+                $val['page'] = $page;
+
+                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                    $val['serial'] = $request->serial;
                 }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
-                    ]);
+
+                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                    $val['key'] = $request->key;
+                }
+
+                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                    $val['status'] = $request->status;
+                }
+
+                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                    $val['started_at'] = $request->started_at;
+                }
+
+                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                    $val['ended_at'] = $request->ended_at;
+                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $result = $result_Api->data;
+
+
+                    if ($result->status == 1) {
+
+                        $result = $result_Api->data;
+                        $data = $result->data;
+
+                        $arrpin = array();
+                        $arrserial = array();
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $serial = $data->data[$i]->serial;
+                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                            array_push($arrserial,$serial);
+                        }
+
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $pin = $data->data[$i]->pin;
+                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                            array_push($arrpin,$pin);
+                        }
+
+                        if (isEmpty($data->data)) {
+                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                            $data->setPath($request->url());
+                        }
+
+                        return view('frontend.pages.account.user.function.__pay_card_history')
+                            ->with('data', $data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
+                    } else {
+                        return redirect()->back()->withErrors($result->message);
+                    }
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
 
-        } 
-        catch (\Exception $e) {
-            Log::error($e);
-            return response()->json([
-                'status' => 0,
-                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
-            ]);
+            if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
+                $result = $result_Api->data;
+                if ($result->status == 1) {
+
+                    $data = $result->data;
+
+                    $arrpin = array();
+                    $arrserial = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $serial = $data->data[$i]->serial;
+                        $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+                        array_push($arrserial,$serial);
+                    }
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
+
+                    $data_telecome = $result_Api_telecome->data;
+
+                    $data_telecome = $data_telecome->data;
+
+                    // Set default page
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                        $data->setPath($request->url());
+                    }
+
+
+                    return view('frontend.pages.account.user.pay_card_history')
+                        ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
         }
+    
     }
 
 

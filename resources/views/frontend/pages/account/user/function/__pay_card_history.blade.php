@@ -70,7 +70,7 @@
         </table>
     </div>
 
-    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__ls paginate__v1_mobie frontend__panigate">
         @if(isset($data))
             @if($data->total()>1)
                 <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
