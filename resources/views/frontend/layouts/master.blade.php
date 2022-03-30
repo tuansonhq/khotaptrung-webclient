@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="/assets/frontend/css/main.css">
     @stack('style')
 
+
     <script src="/assets/frontend/lib/jquery.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/lib/moment/moment.min.js"></script>
@@ -118,6 +119,8 @@
 <script src="/assets/frontend/js/account/account-list.js"></script>
 <script src="/assets/frontend/js/account/buyacc.js"></script>
 
+<script src="/assets/frontend/js/account/acc-history.js"></script>
+@yield('scripts')
 </body>
 
 

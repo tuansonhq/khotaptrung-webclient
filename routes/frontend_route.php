@@ -175,16 +175,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
                 ->name('postDeposit');
-            //account
-            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
-                ->name('getBuyAccountHistory');
-            Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
-                ->name('getBuyAccountHistoryData');
-            //dịch vụ
-            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
-                ->name('getBuyServiceHistory');
-            Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
-                ->name('getBuyServiceHistoryData');
+            Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
+                ->name('getAmountCharge');
             //Nạp thẻ Atm
             Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
                 ->name('getBank');
@@ -227,6 +219,23 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
         });
 
+    });
+    Route::group(['middleware' => ['auth_custom']], function (){
+        Route::group(['middleware' => ['cacheResponse:300']], function (){
+            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
+            ->name('getDepositAuto');
+
+            //account
+            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
+                ->name('getBuyAccountHistory');
+            Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
+                ->name('getBuyAccountHistoryData');
+            //dịch vụ
+            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
+                ->name('getBuyServiceHistory');
+            Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
+                ->name('getBuyServiceHistoryData');
+        });
     });
 });
 

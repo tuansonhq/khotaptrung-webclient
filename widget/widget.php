@@ -42,6 +42,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     }else{
 
     }
+
     return $view->with('data', $data)->with('dataGame', $dataGame);
 });
 
@@ -160,6 +161,7 @@ View::composer('frontend.widget.__nap_the', function ($view) {
         return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
     }
 });
+
 //View::composer('frontend.widget.__charge', function ($view) {
 ////    if($request->hasCookie('jwt')){
 ////    dd($request->cookie('jwt'));
