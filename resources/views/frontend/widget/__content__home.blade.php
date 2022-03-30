@@ -34,7 +34,11 @@
                         </div>
                         <div class="game-list-description">
                             <div class="countime"></div>
+                            @if(isset($item->items_count))
+                            <p>Số tài khoản: {{ $item->items_count + 60 }} </p>
+                            @else
                             <p>Số tài khoản: 9999 </p>
+                            @endif
 {{--                            <span class="game-list-description-old-price"></span>--}}
 {{--                            <span class="game-list-description-new-price"></span>--}}
                         </div>
