@@ -314,11 +314,11 @@ class AccController extends Controller
                 $val['user_id'] = AuthCustom::user()->id;
 
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $val['serial'] = $request->serial;
+                    $val['id'] = $request->serial;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $val['key'] = $request->key;
+                    $val['cat_slug'] = $request->key;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
