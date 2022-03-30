@@ -11,7 +11,9 @@ class Helpers
             return '';
         }
 
-        return number_format($price);
+
+
+        return str_replace(',','.',number_format($price));
     }
 
     public static function formatDateTime($date){
