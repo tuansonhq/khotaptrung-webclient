@@ -62,7 +62,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon">Giá tiền</span>
 
-                                <select type="text" class="form-control">
+                                <select type="text" name="price" class="form-control price">
                                     <option value="">Chọn giá tiền</option>
                                     <option value="0-50000">Dưới 50K</option>
                                     <option value="50000-200000">Từ 50K - 200K</option>
@@ -79,7 +79,7 @@
                                 <span class="input-group-addon">Trạng thái</span>
 {{--                                {{Form::select('status',array(''=>'-- Chọn giá tiền --')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}--}}
 
-                                <select type="text" class="form-control">
+                                <select type="text" name="status" class="form-control status">
                                     <option value="">Chọn trạng thái</option>
                                     <option value="1">Chưa bán</option>
                                     <option value="0">Đã bán</option>
@@ -135,11 +135,11 @@
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
-                                        <span class="input-group-addon price-mobile" name="price-mobile">Giá tiền</span>
+                                        <span class="input-group-addon" >Giá tiền</span>
 
 {{--                                        {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
 
-                                        <select type="text" class="form-control">
+                                        <select type="text" name="price-mobile price-mobile" class="form-control">
                                             <option value="">Chọn giá tiền</option>
                                             <option value="0-50000">Dưới 50K</option>
                                             <option value="50000-200000">Từ 50K - 200K</option>
@@ -154,8 +154,8 @@
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
-                                        <span class="input-group-addon status-mobile" name="status-mobile">Trạng thái</span>
-                                        <select type="text" class="form-control">
+                                        <span class="input-group-addon">Trạng thái</span>
+                                        <select name="status" type="text" name="status-mobile" class="form-control status-mobile">
                                             <option value="">Chọn trạng thái</option>
                                             <option value="1">Chưa bán</option>
                                             <option value="0">Đã bán</option>
