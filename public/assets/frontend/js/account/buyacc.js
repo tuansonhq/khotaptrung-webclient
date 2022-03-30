@@ -23,6 +23,7 @@ $(document).ready(function () {
 
                 $('.loadModal__acount').modal('toggle');
                 $('.modal-content_accountlist').html(data.data);
+
             },
             error: function (data) {
 

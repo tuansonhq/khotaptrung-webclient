@@ -204,13 +204,41 @@ class AccController extends Controller
                 $data_category = $result_Api_category->data;
                 $dataAttribute = $data_category->childs;
 
+                $balance = 0;
+
+                if (AuthCustom::check()){
+                    $jwt = Session::get('jwt');
+                    if(empty($jwt)){
+                        return response()->json([
+                            'status' => "LOGIN"
+                        ]);
+                    }
+                    $urlbalance = '/profile';
+                    $methodbalance = "GET";
+                    $databalance = array();
+                    $databalance['token'] = $jwt;
+
+                    $result_Apibalance = DirectAPI::_makeRequest($urlbalance,$databalance,$methodbalance);
+
+                    if(isset($result_Apibalance) && $result_Apibalance->httpcode == 200) {
+                        $resultbalance = $result_Apibalance->data;
+                        $balance = $resultbalance->user->balance;
+                    }
+                }
+
+                $price = $data->price;
+
                 $html =  view('frontend.pages.account.function.buyacc')
                         ->with('dataAttribute',$dataAttribute)
                         ->with('data_category',$data_category)
+                        ->with('price',$price)
+                        ->with('balance',$balance)
                         ->with('data',$data)->render();
 
                 return response()->json([
                     'data' => $html,
+                    'price' => $price,
+                    'balance' => $balance,
                     'status' => 1,
                 ]);
 
@@ -234,7 +262,6 @@ class AccController extends Controller
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
-
 
                 if (isset($data->success)){
                     if ($data->success == 0){
