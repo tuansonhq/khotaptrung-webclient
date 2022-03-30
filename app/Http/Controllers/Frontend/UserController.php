@@ -29,9 +29,7 @@ class UserController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $jwt;
-
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 $request->session()->put('auth_custom', $result->user);
