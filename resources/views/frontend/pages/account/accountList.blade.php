@@ -62,15 +62,15 @@
                             <div class="input-group">
                                 <span class="input-group-addon">Giá tiền</span>
 
-                                <select type="text" class="form-control price" name="price">
+                                <select type="text" class="form-control">
                                     <option value="">Chọn giá tiền</option>
-                                    <option value="Dưới 50K">Dưới 50K</option>
-                                    <option value="Từ 50K - 200K">Từ 50K - 200K</option>
-                                    <option value="Từ 200K - 500K">Từ 200K - 500K</option>
-                                    <option value="Từ 500K - 1 Triệu">Từ 500K - 1 Triệu</option>
-                                    <option value="Trên 1 Triệu">Trên 1 Triệu</option>
-                                    <option value="Trên 5 Triệu">Trên 5 Triệu</option>
-                                    <option value="Trên 10 Triệu">Trên 10 Triệu</option>
+                                    <option value="0-50000">Dưới 50K</option>
+                                    <option value="50000-200000">Từ 50K - 200K</option>
+                                    <option value="200000-500000">Từ 200K - 500K</option>
+                                    <option value="500000-1000000">Từ 500K - 1 Triệu</option>
+                                    <option value="1000000-5000000">Trên 1 Triệu</option>
+                                    <option value="5000000-10000000">Trên 5 Triệu</option>
+                                    <option value="10000000">Trên 10 Triệu</option>
                                 </select>
                             </div>
                         </div>
@@ -79,12 +79,12 @@
                                 <span class="input-group-addon">Trạng thái</span>
 {{--                                {{Form::select('status',array(''=>'-- Chọn giá tiền --')+config('module.acc.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}--}}
 
-                                <select type="text" class="form-control status" name="status">
+                                <select type="text" class="form-control">
                                     <option value="">Chọn trạng thái</option>
-                                    <option value="0">Chưa bán</option>
-                                    <option value="1">Đã bán</option>
-                                    <option value="2">Đã đặt cọc</option>
-                                    <option value="3">Tất cả</option>
+                                    <option value="1">Chưa bán</option>
+                                    <option value="0">Đã bán</option>
+                                    {{--                                            <option value="2">Đã đặt cọc</option>--}}
+                                    <option value="">Tất cả</option>
                                 </select>
                             </div>
                         </div>
@@ -136,16 +136,20 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <span class="input-group-addon price-mobile" name="price-mobile">Giá tiền</span>
+
+{{--                                        {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}--}}
+
                                         <select type="text" class="form-control">
                                             <option value="">Chọn giá tiền</option>
-                                            <option value="0">Dưới 50K</option>
-                                            <option value="1">Từ 50K - 200K</option>
-                                            <option value="2">Từ 200K - 500K</option>
-                                            <option value="3">Từ 500K - 1 Triệu</option>
-                                            <option value="4">Trên 1 Triệu</option>
-                                            <option value="5">Trên 5 Triệu</option>
-                                            <option value="6">Trên 10 Triệu</option>
+                                            <option value="0-50000">Dưới 50K</option>
+                                            <option value="50000-200000">Từ 50K - 200K</option>
+                                            <option value="200000-500000">Từ 200K - 500K</option>
+                                            <option value="500000-1000000">Từ 500K - 1 Triệu</option>
+                                            <option value="1000000-5000000">Trên 1 Triệu</option>
+                                            <option value="5000000-10000000">Trên 5 Triệu</option>
+                                            <option value="10000000">Trên 10 Triệu</option>
                                         </select>
+
                                     </div>
                                 </div>
                                 <div class="col-12 item_buy_form_search">
@@ -153,10 +157,10 @@
                                         <span class="input-group-addon status-mobile" name="status-mobile">Trạng thái</span>
                                         <select type="text" class="form-control">
                                             <option value="">Chọn trạng thái</option>
-                                            <option value="0">Chưa bán</option>
-                                            <option value="1">Đã bán</option>
-                                            <option value="2">Đã đặt cọc</option>
-                                            <option value="3">Tất cả</option>
+                                            <option value="1">Chưa bán</option>
+                                            <option value="0">Đã bán</option>
+{{--                                            <option value="2">Đã đặt cọc</option>--}}
+                                            <option value="">Tất cả</option>
                                         </select>
                                     </div>
                                 </div>
