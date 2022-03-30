@@ -21,60 +21,67 @@ class StoreCardController extends Controller
             $method = "GET";
             $data = array();
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            dd($result_Api);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công',
+                        'data' => $result->data,
+                    ],200);
+                }
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return response()->json([
+                'status' => 0,
+                'message'=>"Có lỗi phát sinh khi lấy nhà mạng mua thẻ, vui lòng thông báo QTV để kịp thời xử lý."
+            ]);
         }
 
 
     }
     public function getAmountStoreCard(Request $request)
     {
-
-        if ($request->ajax()){
-//            if($request->hasCookie('jwt')){
-                try{
-
-                    $url = '/store-card/get-amount';
-                    $method = "GET";
-                    $data = array();
-                    $jwt = Session::get('jwt');
-                    if(empty($jwt)){
-                        return response()->json([
-                            'status' => "LOGIN"
-                        ]);
-                    }
-                    $data['token'] =$jwt;
-                    $data['telecom'] = $request->telecom;
-
-
-                    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
-                    if (isset($result_Api) && $result_Api->httpcode == 200) {
-                        $result = $result_Api->data;
-                        if($result->status == 1){
-                            return response()->json([
-                                'status' => 1,
-                                'data' => $result
-                            ]);
-                    }
-
-                    else {
-                        return redirect()->back()->withErrors($result_Api->message);
-
-                    }
-                    } else {
-                       return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                    }
+        try{
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $data = array();
+            $data['telecom'] = $request->telecom;
+            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công',
+                        'data' => $result->data,
+                    ],200);
                 }
-                catch(\Exception $e){
-                    Log::error($e);
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
 
-//            }
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message'=>"Có lỗi phát sinh khi lấy nhà mạng mua thẻ, vui lòng thông báo QTV để kịp thời xử lý."
+            ]);
         }
 
     }

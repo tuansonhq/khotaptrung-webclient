@@ -62,7 +62,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::group(['middleware' => ['doNotCacheResponse']], function (){
             Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
             // lấy nhà mạng mua thẻ
-            Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+            Route::get('/mua-the/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
             // lấy mệnh giá trong mua thẻ
             Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                 ->name('getAmountStoreCard');

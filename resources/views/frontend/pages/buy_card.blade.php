@@ -68,15 +68,15 @@
                             <div class="justify-content-center" id="loading-data-total">
                                 <div class="loading"></div>
                             </div>
-                           <span class="hide" id="StoreCardTotal"> Tổng: 0 VNĐ</span>
+                           <span class="hide" id="StoreCardTotal"> Tổng: <b id="total-amount">0</b> VNĐ</span>
                         </a>
                         <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus">
                             <div class="justify-content-center" id="loading-data-pay">
                                 <div class="loading"></div>
                             </div>
-                            <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
-
-
+                            <div class="btn-confirm">
+                               <span class="hide" id="StoreCardPay"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
+                            </div>
                         </button>
                      </div>
                   </div>
