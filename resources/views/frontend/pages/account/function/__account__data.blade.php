@@ -24,11 +24,13 @@
                                 bảo hành 100%,lỗi hoàn tiền
                             </div>
                             <div class="item_buy_list_info">
-                                <div class="row">
+                                <div class="row item_buy_list_info__row">
+                                    <?php
+                                        $index = 0;
+                                    ?>
                                     @if(isset($item->groups))
                                         <?php
                                             $att_values = $item->groups;
-                                            $index = 0;
                                         ?>
                                         @foreach($att_values as $att_value)
                                             {{--                                            @dd($att_value)--}}
@@ -36,9 +38,11 @@
                                                 <?php
                                                     $index++;
                                                 ?>
+                                                @if($index < 5)
                                                 <div class="col-6 item_buy_list_info_in">
                                                     {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
                                                 </div>
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif
@@ -46,6 +50,7 @@
                                         <?php
                                             $params = json_decode(json_encode($item->params->ext_info),true);
                                         ?>
+                                        @if($index < 5)
                                         @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                                             @foreach($dataAttribute as $index=>$att)
                                                 @if($att->position == 'text')
@@ -68,6 +73,7 @@
 
                                                 @endif
                                             @endforeach
+                                        @endif
                                         @endif
                                     @endif
                                 </div>
@@ -111,23 +117,29 @@
                                 bảo hành 100%,lỗi hoàn tiền
                             </div>
                             <div class="item_buy_list_info">
-                                <div class="row">
+                                <div class="row item_buy_list_info__row">
+                                    <?php
+                                    $index = 0;
+                                    ?>
                                     @if(isset($item->groups))
                                         <?php
                                             $att_values = $item->groups;
-                                            $index = 0;
                                         ?>
                                         @foreach($att_values as $att_value)
                                             @if($att_value->module == 'acc_label')
                                                 <?php
                                                     $index++;
                                                 ?>
+                                                @if($index < 5)
                                                 <div class="col-6 item_buy_list_info_in">
                                                     {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
                                                 </div>
+                                                @endif
                                             @endif
                                         @endforeach
                                     @endif
+{{--                                    @dd($index)--}}
+
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                         <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
                                         @if(!is_null($dataAttribute) && count($dataAttribute)>0)

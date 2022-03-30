@@ -589,7 +589,8 @@
 }
 .item_buy_list_info {
     margin-top: 10px;
-    min-height: 93px;
+    min-height: 120px;
+    max-height: 120px;
 }
 .item_buy_list_info .row{
     margin: 0;
