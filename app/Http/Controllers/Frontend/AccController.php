@@ -305,7 +305,7 @@ class AccController extends Controller
 
             if ($request->ajax()) {
                 $page = $request->page;
-
+                return $request->all();
                 $url = '/acc';
                 $method = "GET";
                 $val = array();

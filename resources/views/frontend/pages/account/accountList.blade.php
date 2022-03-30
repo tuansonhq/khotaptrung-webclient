@@ -228,6 +228,6 @@
             });
         </script>
     @endif
-
+    <script src="/assets/frontend/js/account/account-list.js"></script>
 @endsection
 
