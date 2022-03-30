@@ -330,11 +330,13 @@ class AccController extends Controller
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                    $val['started_at'] = $request->started_at;
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $val['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                    $val['ended_at'] = $request->ended_at;
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $val['ended_at'] = $ended_at;
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
