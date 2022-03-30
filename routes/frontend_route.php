@@ -45,10 +45,39 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
     Route::post('/user/account_info', [UserController::class , "getInfo"]);
     Route::group(['middleware' => ['cacheResponse:300']], function (){
         Route::get('/', [HomeController::class , "index"]);
-        Route::get('/test', function ()
-        {
-            return view(theme('theme_id') . '.frontend.pages.index');
+        Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
+
+        // ROUTE cần auth load dữ liệu không cache
+        Route::group(['middleware' => ['auth_custom']], function (){
+            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+            Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+                Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
+                Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+                // route post mua thẻ
+                Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+            });
         });
+        // Route không cần Auth load dữ liệu không cache
+        Route::group(['middleware' => ['doNotCacheResponse']], function (){
+            Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+            // lấy nhà mạng mua thẻ
+            Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+            // lấy mệnh giá trong mua thẻ
+            Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+                ->name('getAmountStoreCard');
+          
+        });
+
+
+
+
+
+
+
+
+
+
         Route::get('/dich-vu', function ()
         {
             return view('frontend.pages.regist');
@@ -108,8 +137,6 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             return view('frontend.pages.account.user.gieoque');
         });
         //đăng nhập, đăng xuất, đăng ký
-        Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])
-            ->name('logout');
         Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
             ->name('login');
         Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
@@ -147,18 +174,13 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //nạp thẻ
-            Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+            
             Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
                 ->name('getDepositAutoData');
-            Route::post('/nap-the-tu-dong-api', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])
-                ->name('postTelecomDepositAuto');
-            Route::get('/telecom-deposit-auto', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto'])
-                ->name('getTelecomDepositAuto');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
                 ->name('postDeposit');
             Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
                 ->name('getAmountCharge');
-
             //Nạp thẻ Atm
             Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
                 ->name('getBank');
@@ -169,6 +191,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
             Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
                 ->name('postTranferBank');
+
 
             //            mua thẻ
             Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
