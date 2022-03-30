@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/lib/fancybox/fancybox.css">
     <link rel="stylesheet" href="/assets/frontend/lib/fixed-sticky/fixedsticky.css">
     <link rel="stylesheet" href="/assets/frontend/css/chatbox.css">
+
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap-popover/bootstrap-popover-x.css">
     <link rel="stylesheet" href="/assets/frontend/lib/date-picker/tui-date-picker.css">
     <link rel="stylesheet" href="/assets/frontend/css/news.css">
@@ -42,6 +43,7 @@
     <link rel="stylesheet" href="/assets/frontend/css/imgareaselect.css">
     <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/css/main.css">
+
 
     <script src="/assets/frontend/lib/jquery.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
@@ -125,6 +127,8 @@
 <script src="/assets/frontend/js/account/account-list.js"></script>
 <script src="/assets/frontend/js/account/buyacc.js"></script>
 
+<script src="/assets/frontend/js/account/acc-history.js"></script>
+@yield('scripts')
 </body>
 
 
