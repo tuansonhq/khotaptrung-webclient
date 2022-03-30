@@ -12,7 +12,7 @@
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
-                        <form class="form-charge account_content_transaction_history__v2">
+                        <form class="form-charge_ls account_content_transaction_history__v2">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
@@ -78,7 +78,7 @@
                             </div>
                         </form>
 
-                        <div id="data_pay_card_history">
+                        <div id="data_pay_card_history_ls">
                             @include('frontend.pages.account.user.function.__pay_card_history')
                         </div>
                     </div>
@@ -89,18 +89,18 @@
         </div>
     </div>
 
-    <input type="hidden" class="started_at_day" name="started_at_day" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_day" name="end_at_day" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_yes" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_yes" name="end_at_yes" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_month" name="started_at_month" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_month" name="end_at_month" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="started_at_day_ls" name="started_at_day_ls" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_day_ls" name="end_at_day_ls" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_yes_ls" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_yes_ls" name="end_at_yes_ls" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_month_ls" name="started_at_month_ls" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_month_ls" name="end_at_month_ls" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
 
-    <input type="hidden" name="serial_data" class="serial_data">
-    <input type="hidden" name="key_data" class="key_data">
-    <input type="hidden" name="status_data" class="status_data">
-    <input type="hidden" name="started_at_data" class="started_at_data">
-    <input type="hidden" name="ended_at_data" class="ended_at_data">
-    <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
-    <script src="/assets/frontend/js/charge/charge-history.js"></script>
+    <input type="hidden" name="serial_data_ls" class="serial_data_ls">
+    <input type="hidden" name="key_data_ls" class="key_data_ls">
+    <input type="hidden" name="status_data_ls" class="status_data_ls">
+    <input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
+    <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
+    <input type="hidden" name="hidden_page_ls" id="hidden_page_service_ls" class="hidden_page_service" value="1" />
+
 @endsection

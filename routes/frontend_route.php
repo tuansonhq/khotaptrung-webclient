@@ -131,6 +131,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         {
             return view('frontend.pages.service.show');
         });
+
         Route::group(array(
             'middleware' => ['auth']
         ) , function ()
@@ -138,10 +139,13 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             //lịch sử nạp thẻ
             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositHistory'])
                 ->name('getDepositHistory');
+
             Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
                 ->name('getChargeDepositHistory');
             Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
                 ->name('getChargeDepositHistoryData');
+
+
             //nạp thẻ
             Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
             Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
@@ -175,6 +179,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 ->name('getAmountStoreCard');
             Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
                 ->name('getTelecomStoreCard');
+
             Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
             //profile
@@ -182,6 +187,17 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 ->name('index');
             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
                 ->name('index');
+
+//account
+            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
+                ->name('getBuyAccountHistory');
+            Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
+                ->name('getBuyAccountHistoryData');
+            //dịch vụ
+            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
+                ->name('getBuyServiceHistory');
+            Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
+                ->name('getBuyServiceHistoryData');
 
         });
 
@@ -210,17 +226,6 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::group(['middleware' => ['cacheResponse:300']], function (){
             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
             ->name('getDepositAuto');
-
-            //account
-            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
-                ->name('getBuyAccountHistory');
-            Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
-                ->name('getBuyAccountHistoryData');
-            //dịch vụ
-            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
-                ->name('getBuyServiceHistory');
-            Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
-                ->name('getBuyServiceHistoryData');
         });
     });
 });

@@ -2,28 +2,6 @@
 @section('content')
 
     <div class="account">
-{{--        <div class="" style="margin-top: 15px">--}}
-{{--            @if ($message = Session::get('success'))--}}
-{{--                <div class="container">--}}
-{{--                    <div class="alert alert-success alert-dismissible" role="alert">--}}
-{{--                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span--}}
-{{--                                aria-hidden="true">×</span></button>--}}
-{{--                        {{$message}}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-{{--            @if($messages=$errors->all())--}}
-{{--                <div class="container">--}}
-{{--                    <div class="alert alert-danger alert-dismissible" role="alert">--}}
-{{--                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span--}}
-{{--                                aria-hidden="true">×</span></button>--}}
-{{--                        {{$messages[0]}}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--            @endif--}}
-
-{{--        </div>--}}
         <div class="account_content">
             <div class="container">
                 @include('frontend.pages.account.sidebar')
@@ -114,33 +92,6 @@
             </div>
         </div>
     </div>
-
-{{--    @if ($content = Session::get('content'))--}}
-{{--        <div class="modal fade" id="noticeAfterModal" style="display: none;" role="dialog" aria-hidden="true">--}}
-{{--            <div class="modal-dialog" role="document">--}}
-{{--                <div class="modal-content">--}}
-{{--                    <div class="modal-header">--}}
-{{--                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>--}}
-{{--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                            <span aria-hidden="true">×</span>--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">--}}
-{{--                        {!!$content!!}--}}
-{{--                    </div>--}}
-{{--                    <div class="modal-footer">--}}
-{{--                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <script type="text/javascript">--}}
-{{--            $(document).ready(function () {--}}
-{{--                $('#noticeAfterModal').modal('show');--}}
-{{--            });--}}
-{{--        </script>--}}
-{{--    @endif--}}
 
     <input type="hidden" name="serial_data" class="serial_data" value="">
     <input type="hidden" name="key_data" class="key_data" value="">
