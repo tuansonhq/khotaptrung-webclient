@@ -169,6 +169,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
+                $('span#reload').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
