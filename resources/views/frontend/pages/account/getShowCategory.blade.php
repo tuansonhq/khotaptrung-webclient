@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="game-list-description">
                                     <div class="countime"></div>
-                                    <p>Số tài khoản: 9999 </p>
+                                    <p>Số tài khoản:  </p>
                                     {{--                            <span class="game-list-description-old-price"></span>--}}
                                     {{--                            <span class="game-list-description-new-price"></span>--}}
                                 </div>
