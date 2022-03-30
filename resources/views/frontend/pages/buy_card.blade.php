@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @push('js')
-    <script src="/assets/frontend/js/charge/charge.js"></script>
+    <script src="/assets/frontend/js/storeCard/store_card.js"></script>
 @endpush
 @section('content')
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
@@ -9,7 +9,10 @@
    <div class="text-center" style="margin-bottom: 50px;">
       <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ MUA THẺ </h2>
    </div>
-   <form method="POST" action="{{route('postStoreCard')}}" id="formStoreCard">
+    <div class="row justify-content-center" id="loading-data">
+        <div class="loading"></div>
+    </div>
+   <form method="POST" action="{{route('postStoreCard')}}" class="hide"  id="formStoreCard">
       @csrf
       <div class="container detail-service">
          <div class="row">
