@@ -269,6 +269,8 @@ class AccController extends Controller
                     }elseif ($data->success == 1 ){
                         return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
                     }
+                }elseif (isset($data->error)){
+                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
                 }else{
                     return redirect('/');
                 }
