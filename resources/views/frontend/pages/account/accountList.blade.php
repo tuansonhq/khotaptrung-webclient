@@ -42,7 +42,7 @@
             </div>
 
             <div class="item_buy_form">
-                <form class="form-charge">
+                <form class="form-charge form-charge__accountlist">
                     <div class="row">
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
@@ -119,7 +119,7 @@
                     </div>
                     <hr>
                     <div class="item_buy_form-mobile_search">
-                        <form class="form-charge-mobile">
+                        <form class="form-charge form-charge__accountlist-mobile">
                             <div class="row">
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
