@@ -23,7 +23,7 @@ $(document).ready(function(){
         loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
     });
 
-    $(document).on('submit', '.form-charge', function(e){
+    $(document).on('submit', '.form-charge__accountls', function(e){
         e.preventDefault();
 
         var serial = $('.serial').val();
@@ -135,34 +135,34 @@ $(document).ready(function(){
         });
     }
 
-    $(document).on('click', '.check-login',function(e){
-        e.preventDefault();
-
-        var id = $(this).data("login");
-
-        getCheckLogin(id)
-    });
-
-    function getCheckLogin(id) {
-        request = $.ajax({
-            type: 'POST',
-            url: '/check-login',
-            data: {
-                _token:csrf_token,
-                id:id
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-                console.log(data)
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
+    // $(document).on('click', '.check-login',function(e){
+    //     e.preventDefault();
+    //
+    //     var id = $(this).data("login");
+    //
+    //     getCheckLogin(id)
+    // });
+    //
+    // function getCheckLogin(id) {
+    //     request = $.ajax({
+    //         type: 'POST',
+    //         url: '/check-login',
+    //         data: {
+    //             _token:csrf_token,
+    //             id:id
+    //         },
+    //         beforeSend: function (xhr) {
+    //
+    //         },
+    //         success: (data) => {
+    //
+    //         },
+    //         error: function (data) {
+    //
+    //         },
+    //         complete: function (data) {
+    //
+    //         }
+    //     });
+    // }
 })
