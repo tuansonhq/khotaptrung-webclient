@@ -66,7 +66,7 @@ class ServiceController extends Controller
                 $data = $result->data;
                 $categoryservice = $result->categoryservice;
                 $categoryservice = $categoryservice->data;
-                //return $data;
+
                 return view('frontend.pages.service.show')
                     ->with('categoryservice',$categoryservice)
                     ->with('data',$data)
@@ -139,9 +139,7 @@ class ServiceController extends Controller
 
             $url_telecome = '/deposit-auto/get-telecom';
             $val_telecome = array();
-            $val_telecome['token'] = $request->cookie('jwt');
-            $val_telecome['secret_key'] = config('api.secret_key');
-            $val_telecome['domain'] = 'youtube.com';
+            $val_telecome['token'] = $jwt;
 
             $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
 
