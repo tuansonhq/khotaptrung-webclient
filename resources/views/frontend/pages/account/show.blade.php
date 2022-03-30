@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data_category]))
 @endsection
 @section('content')
 
@@ -123,11 +123,11 @@
                             </div>
                         </div>
                         @else
-                        <div class="col-md-12 gallery__pt">
-                            <div class="row gallery__02" style="max-height: 60px;min-height: 60px">
+                            <div class="col-md-12 gallery__pt">
+                                <div class="row gallery__02" style="max-height: 60px;min-height: 60px">
 
+                                </div>
                             </div>
-                        </div>
                         @endif
 {{--                        @dd($data)--}}
                         @if(isset($data->groups))

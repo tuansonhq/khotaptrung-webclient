@@ -155,8 +155,6 @@ class AccController extends Controller
                 $dataAttribute = $data_category->childs;
 
                 $valslider = array();
-                $valslider['domain'] = "youtube.com";
-                $valslider['secret_key'] = config('api.secret_key');
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
 
@@ -170,7 +168,7 @@ class AccController extends Controller
                 return view('frontend.pages.account.show')
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)
-                    ->with('data',$data)
+                    ->with('sliders',$sliders)
                     ->with('atm_percent',$atm_percent)
                     ->with('dataAttribute',$dataAttribute)
                     ->with('data_category',$data_category);
