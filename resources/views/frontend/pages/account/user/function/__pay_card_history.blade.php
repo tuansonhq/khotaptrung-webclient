@@ -26,9 +26,12 @@
                             @endif
                         </td>
                         <td>
-                            @if(isset($arrserial) && count($arrserial))
-                            {{ $arrserial[$key] }}
+                            @if(isset($item->serial))
+                            {{ $item->serial }}
                             @endif
+{{--                            @if(isset($arrserial) && count($arrserial))--}}
+{{--                            {{ $arrserial[$key] }}--}}
+{{--                            @endif--}}
                         </td>
                         <td>{{ formatPrice($item->declare_amount) }}</td>
                         <td>
