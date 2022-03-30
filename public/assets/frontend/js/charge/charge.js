@@ -4,6 +4,16 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+
+    });
     function getTelecom(){
         var url = '/get-tele-card';
         $.ajax({
