@@ -263,7 +263,6 @@ class AccController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
-                return $data;
                 if (isset($data->success)){
                     if ($data->success == 0){
                         return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
