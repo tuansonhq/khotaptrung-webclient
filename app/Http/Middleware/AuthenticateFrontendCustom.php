@@ -19,27 +19,17 @@ class AuthenticateFrontendCustom
      */
     public function handle(Request $request, Closure $next)
     {
-
-
-//        if($request->hasCookie('jwt')){
-//            $data = array();
-//            $data['token'] = $request->cookie('jwt');
-//            $data['secret_key'] = config('api.secret_key');
-//            $data['domain'] = config('api.client');
-//            $result_Api = DirectAPI::_makeRequest('/token',$data,'POST');
-//            if(isset($result_Api) && $result_Api->httpcode === 401){
-//                session()->forget('auth_custom');
-//                return redirect()->to('/logout')->withCookie(Cookie::forget('jwt'))->withCookie(Cookie::forget('exp_token'));
-//            }
-//            // if($result->status != 1){
-//            //     session()->forget('auth_custom');
-//            //     return redirect()->to('/logout')->withCookie(Cookie::forget('jwt'))->withCookie(Cookie::forget('exp_token'));
-//            // }
-//            if(isset($result_Api) && $result_Api->httpcode === 200){
-//                $result = $result_Api->data;
-//                $request->session()->put('auth_custom', $result->data);
-//            }
-//        }
-//        return $next($request);
+        if(!session()->has('auth_custom')){
+            if($request->ajax()){
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
+            else{
+                return redirect('login');
+            }
+        }
+        return $next($request);
     }
 }
