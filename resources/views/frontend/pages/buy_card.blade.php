@@ -9,14 +9,13 @@
    <div class="text-center" style="margin-bottom: 50px;">
       <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ MUA THẺ </h2>
    </div>
-    <div class="row justify-content-center" id="loading-data">
-        <div class="loading"></div>
-    </div>
-   <form method="POST" action="{{route('postStoreCard')}}" class="hide"  id="formStoreCard">
+
+   <form method="POST" action="{{route('postStoreCard')}}"  >
       @csrf
       <div class="container detail-service">
          <div class="row">
-            <div class="col-md-8" style="margin-bottom:20px;">
+
+            <div class="col-md-8 "   style="margin-bottom:20px;">
                <div class="service-info">
                   <div class="row">
                      <div class="col-md-5 d-none d-md-block d-lg-block">
@@ -26,7 +25,10 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-7">
+                      <div class="col-md-7 row justify-content-center" id="loading-data">
+                          <div class="loading"></div>
+                      </div>
+                     <div class="col-md-7 hide" id="formStoreCard">
                         <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
                         <div class="mb-3">
                            <select name="telecom_key" id="telecom_key" class="server-filter form-control t14" style="">
@@ -62,8 +64,20 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class=" emply-btns text-center">
-                        <a id="txtPrice" style="font-size: 20px;font-weight: bold" class="">Tổng: 0 VNĐ</a>
-                        <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
+                        <a id="txtPrice" style="font-size: 20px;font-weight: bold" class="" aria-invalid="">
+                            <div class="justify-content-center" id="loading-data-total">
+                                <div class="loading"></div>
+                            </div>
+                           <span class="hide" id="StoreCardTotal"> Tổng: 0 VNĐ</span>
+                        </a>
+                        <button id="btnPurchase" type="submit" style="font-size: 20px;" class="followus">
+                            <div class="justify-content-center" id="loading-data-pay">
+                                <div class="loading"></div>
+                            </div>
+                            <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
+
+
+                        </button>
                      </div>
                   </div>
                </div>

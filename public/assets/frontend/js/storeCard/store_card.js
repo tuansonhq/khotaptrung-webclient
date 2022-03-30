@@ -2,5 +2,9 @@ $(document).ready(function(){
     alert(111);
     console.log(1111)
     $('#loading-data').remove();
+    $('#loading-data-total').remove();
+    $('#loading-data-pay').remove();
     $('#formStoreCard').removeClass('hide');
+    $('#StoreCardTotal').removeClass('hide');
+    $('#StoreCardPay').removeClass('hide');
 });
