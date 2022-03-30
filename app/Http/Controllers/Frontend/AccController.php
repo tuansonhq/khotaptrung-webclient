@@ -305,7 +305,7 @@ class AccController extends Controller
 
             if ($request->ajax()) {
                 $page = $request->page;
-                return $request->all();
+
                 $url = '/acc';
                 $method = "GET";
                 $val = array();
@@ -338,7 +338,7 @@ class AccController extends Controller
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
                     $val['ended_at'] = $ended_at;
                 }
-
+              
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
