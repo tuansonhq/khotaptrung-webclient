@@ -20,8 +20,16 @@
 
                     <tr>
                         <td>{{ $item->telecom_key }}</td>
-                        <td>{{ $arrpin[$key] }}</td>
-                        <td>{{ $arrserial[$key] }}</td>
+                        <td>
+                            @if(isset($arrpin) && count($arrpin))
+                            {{ $arrpin[$key] }}
+                            @endif
+                        </td>
+                        <td>
+                            @if(isset($arrserial) && count($arrserial))
+                            {{ $arrserial[$key] }}
+                            @endif
+                        </td>
                         <td>{{ formatPrice($item->declare_amount) }}</td>
                         <td>
                             @if($item->status == 1)
