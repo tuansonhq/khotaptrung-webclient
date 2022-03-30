@@ -164,9 +164,14 @@ class AccController extends Controller
                 $sliders = $result_Api_slider->data;
                 $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
+                $card_percent = setting('sys_card_percent');
+                $atm_percent = setting('sys_atm_percent');
+
                 return view('frontend.pages.account.show')
                     ->with('data',$data)
-                    ->with('sliders',$sliders)
+                    ->with('card_percent',$card_percent)
+                    ->with('data',$data)
+                    ->with('atm_percent',$atm_percent)
                     ->with('dataAttribute',$dataAttribute)
                     ->with('data_category',$data_category);
 

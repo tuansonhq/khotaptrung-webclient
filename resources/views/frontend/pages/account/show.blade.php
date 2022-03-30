@@ -86,6 +86,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if(isset($card_percent) && isset($atm_percent))
                         <div class="col-md-12 gallery__pt">
                             <div class="row gallery__02">
                                 <div class="col-md-12 gallery__01__row">
@@ -96,7 +97,7 @@
                                                     <span class="gallery__02__span__02">THẺ CÀO</span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <span class="gallery__01__span__02">350.000đ</span>
+                                                    <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }}đ</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +114,7 @@
                                                     <span class="gallery__02__span__02">ATM chỉ cần</span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <span class="gallery__01__span__02">280.000đ</span>
+                                                    <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }}đ</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,6 +122,13 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                        <div class="col-md-12 gallery__pt">
+                            <div class="row gallery__02" style="max-height: 60px;min-height: 60px">
+
+                            </div>
+                        </div>
+                        @endif
 {{--                        @dd($data)--}}
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
