@@ -239,7 +239,7 @@
     padding: 80px 0;
 }
 .captcha{
-    border: 2px solid gray;
+    border: 1px solid #ced4da;
 }
 .captcha img{
     width: 100%;
