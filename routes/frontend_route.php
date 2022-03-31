@@ -96,20 +96,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
 
             Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
-
-            Route::get('/{slug}', [ServiceController::class , "getShowService"]);
-            Route::get('/{slug}/data', [ServiceController::class , "getShowServiceData"]);
-
+            Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+            Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
+            Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
 
 
             Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
             Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
-
         });
-
-
-
-
 
         //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
         Route::get('/rut-vat-pham', function ()
@@ -242,6 +236,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 ->name('getWithdrawItem');
             Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
                 ->name('postWithdrawItem');
+
 
         });
 
