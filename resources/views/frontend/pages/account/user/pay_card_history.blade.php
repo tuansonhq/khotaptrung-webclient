@@ -102,5 +102,5 @@
     <input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
     <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
     <input type="hidden" name="hidden_page_ls" id="hidden_page_service_ls" class="hidden_page_service" value="1" />
-
+    <script src="/assets/frontend/js/charge/charge-history.js"></script>
 @endsection

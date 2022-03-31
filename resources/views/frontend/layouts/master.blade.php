@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="jwt" content="" />
 {{--    <title>Kho lưu trữ</title>--}}
-
+    <link rel="stylesheet" href="/assets/frontend/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <!--    swiper-->
@@ -41,7 +41,6 @@
     <link rel="stylesheet" href="/assets/frontend/css/main.css">
     @stack('style')
 
-
     <script src="/assets/frontend/lib/jquery.min.js"></script>
     <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/lib/moment/moment.min.js"></script>
@@ -63,6 +62,9 @@
     <script src="/assets/frontend/lib/record/record.js"></script>
     <script src="/assets/frontend/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/js/account_info.js"></script>
+
+    <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
+
     @stack('js')
 
 
@@ -119,7 +121,6 @@
 
 <script src="/assets/frontend/js/account/buyacc.js"></script>
 
-<script src="/assets/frontend/js/charge/charge-history.js"></script>
 
 {{--@yield('scripts')--}}
 </body>
