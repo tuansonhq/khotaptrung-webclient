@@ -87,8 +87,13 @@ class AccController extends Controller
                     if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
                         $select_data = $request->select_data;
                         $group_ids = array();
-                        foreach(explode('|',$select_data) as $val){
-                            array_push($group_ids,$val);
+                        foreach(explode('|',$select_data) as $v){
+                            if ($v == "" || $v == null){
+
+                            }else{
+                                array_push($group_ids,$v);
+                            }
+
                         }
                         $val['group_ids'] = $group_ids;
                     }
@@ -97,7 +102,7 @@ class AccController extends Controller
 
                     if(isset($result_Api) && $result_Api->httpcode == 200){
                         $items = $result_Api->data;
-
+//                        return $items;
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
                         $dataAttribute = $data->childs;
@@ -114,8 +119,10 @@ class AccController extends Controller
                 if(isset($result_Api) && $result_Api->httpcode == 200){
 
                     $items = $result_Api->data;
-
-                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+//                    return $items;
+//                    if (isEmpty($data->data)){
+                        $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+//                    }
 
                     $dataAttribute = $data->childs;
 
@@ -264,6 +271,7 @@ class AccController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
+            return $val;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
