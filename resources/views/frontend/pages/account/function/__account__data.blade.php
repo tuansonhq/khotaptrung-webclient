@@ -10,14 +10,14 @@
                     <div class="col-6 col-sm-6 col-lg-3">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
-                                <a href="javascript:void(0)" class="buyacc" data-id="{{ $data->randId }}">
+                                <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                     @if(isset($item->image))
                                         <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
                                     @endif
 
-                                    <span>MS: {{ $data->randId }}</span>
+                                    <span>MS: {{ $item->randId }}</span>
                                 </a>
                             </div>
                             <div class="item_buy_list_description">
@@ -87,7 +87,7 @@
                                         </div>
 
                                     </div>
-                                    <a href="javascript:void(0)" class="col-6 buyacc" data-id="{{ $data->randId }}">
+                                    <a href="javascript:void(0)" class="col-6 buyacc" data-id="{{ $item->randId }}">
                                         <div class="item_buy_list_view">
                                             Chi tiết
                                         </div>
@@ -103,14 +103,14 @@
                     <div class="col-6 col-sm-6 col-lg-3">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
-                                <a href="/acc/{{ $data->randId }}">
+                                <a href="/acc/{{ $item->randId }}">
                                     @if(isset($item->image))
                                         <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
                                     @endif
 
-                                    <span>MS: {{ $data->randId }}</span>
+                                    <span>MS: {{ $item->randId }}</span>
                                 </a>
                             </div>
                             <div class="item_buy_list_description">
@@ -177,7 +177,7 @@
                                         </div>
 
                                     </div>
-                                    <a href="/acc/{{ $data->randId }}" class="col-12">
+                                    <a href="/acc/{{ $item->randId }}" class="col-12">
                                         <div class="item_buy_list_view">
                                             Chi tiết
                                         </div>
