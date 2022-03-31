@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+    <input type="hidden" name="hidden_page_atm" id="hidden_page_atm" value="1" />
 
     <script src="/assets/frontend/js/transfer/transfer.js"></script>
 @endsection
