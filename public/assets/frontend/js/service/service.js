@@ -23,7 +23,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu',
+            url: '/dich-vu/data',
             data: {
                 page:page,
                 title:title,

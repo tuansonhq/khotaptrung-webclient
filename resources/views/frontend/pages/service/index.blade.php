@@ -8,13 +8,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto">
-                        <div class="news_breadcrumbs_title"><a href="/dich-vụ" >Dịch vụ</a></div>
+                        <div class="news_breadcrumbs_title"><a href="/dich-vu" >Dịch vụ</a></div>
                     </div>
                     <div class="col-md-10 col-8 ml-auto">
                         <ul class="news_breadcrumbs_theme">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
-                            <li><a href="/dich-vụ" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Dịch vụ</h1></a></li>
+                            <li><a href="/dich-vu" class="news_breadcrumbs_theme_title_a"><h1 class="news_breadcrumbs_theme_title">Dịch vụ</h1></a></li>
                         </ul>
                     </div>
                 </div>
