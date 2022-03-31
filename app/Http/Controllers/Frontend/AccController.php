@@ -49,7 +49,6 @@ class AccController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-//                return $result_Api_category;
                 if ($request->ajax()){
                     $page = $request->page;
 

@@ -175,9 +175,9 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //nạp thẻ
-
-            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
-                ->name('getDepositAutoData');
+//
+//            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
+//                ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
                 ->name('postDeposit');
             Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
@@ -246,11 +246,12 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         });
 
     });
-    Route::group(['middleware' => ['auth_custom']], function (){
-        Route::group(['middleware' => ['cacheResponse:300']], function (){
-            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
-            ->name('getDepositAuto');
-        });
-    });
+
+//    Route::group(['middleware' => ['auth_custom']], function (){
+//        Route::group(['middleware' => ['cacheResponse:300']], function (){
+//            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
+//            ->name('getDepositAuto');
+//        });
+//    });
 });
 

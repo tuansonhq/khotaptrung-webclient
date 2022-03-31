@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                        <div class="input-group" style="width: 100%">
                           <select name="amount" id="amount" class="form-control">
-                           
+
                           </select>
                        </div>
                     </div>
@@ -103,8 +103,13 @@
                </form>
             </div>
             </div>
+
+             <div class="paycartdata">
+                 @include('frontend.pages.account.user.function.__pay_card')
+             </div>
          </div>
       </div>
    </div>
 </div>
+<input type="hidden" name="hidden_page_ls" id="hidden_page_service_nt" class="hidden_page_service_nt" value="1" />
 @endsection

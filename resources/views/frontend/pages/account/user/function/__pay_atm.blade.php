@@ -33,7 +33,7 @@
             </tr>
         @endforeach
     @else
-        <tr>
+        <tr class="account_content_transaction_history">
             <td width="100%" style="width: 20%">
                 <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
             </td>

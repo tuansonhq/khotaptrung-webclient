@@ -4,6 +4,7 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
+
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',
@@ -14,6 +15,7 @@ $(document).ready(function(){
         });
 
     });
+
     function getTelecom(){
         var url = '/get-tele-card';
         $.ajax({
@@ -59,10 +61,11 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                
+
             }
         });
     }
+
     function getAmount(telecom){
         if(telecom == null){
             html = '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
@@ -116,11 +119,14 @@ $(document).ready(function(){
             }
         });
     }
+
     $('body').on('change','#telecom',function(){
         var telecom = $(this).val();
         getAmount(telecom)
     });
+
     getTelecom();
+
     $('#form-charge').submit(function (e) {
         e.preventDefault();
         var formSubmit = $(this);
@@ -134,7 +140,7 @@ $(document).ready(function(){
             cache:false,
             data: formSubmit.serialize(), // serializes the form's elements.
             beforeSend: function (xhr) {
-             
+
             },
             success: function (data) {
                 if(data.status == 1){
@@ -186,4 +192,43 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
+        event.preventDefault();
+
+        var page = $(this).attr('href').split('page=')[1];
+
+        $('#hidden_page_service_nt').val(page);
+
+        $('li').removeClass('active');
+        $(this).parent().addClass('active');
+
+
+        paycartDataChargeHistory(page);
+    });
+
+    function paycartDataChargeHistory(page) {
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/nap-the',
+            data: {
+                page:page,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                $(".paycartdata").empty().html('');
+                $(".paycartdata").empty().html(data);
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 });
