@@ -79,7 +79,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         //dichj vụ
 
         Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
-
+        Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
         //Danh muc game
         Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
         Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
