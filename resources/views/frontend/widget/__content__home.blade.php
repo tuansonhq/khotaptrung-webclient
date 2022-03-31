@@ -60,7 +60,7 @@
 
 
 @if(isset($dataGame->data) && count($dataGame->data) > 0)
-<div class="content-items" id="freefire_taget">
+<div class="content-items content-items-spin" id="freefire_taget">
     <div class="container">
         <div class="items-title">
             <h2>Danh mục minigame</h2>

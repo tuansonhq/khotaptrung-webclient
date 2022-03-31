@@ -2023,3 +2023,15 @@ footer{
 .hide{
     display: none;
 }
+.content-items-spin .game-list-image{
+    height: 150px;
+}
+.content-items-spin .game-list-image a{
+    height: 150px;
+}
+
+.content-items-spin .game-list-image .game-list-image-in{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
