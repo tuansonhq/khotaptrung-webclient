@@ -214,6 +214,8 @@ $(document).ready(function(){
         window.location.reload()
     })
 
+
+
     let page = $('#hidden_page_atm').val();
 
     $(document).on('click', '.paginate__v1 .pagination a',function(event){
@@ -227,10 +229,10 @@ $(document).ready(function(){
         $(this).parent().addClass('active');
 
 
-        loadDataTransferHistory(page);
+        loadDataTransferHistoryATM(page);
     });
 
-    function loadDataTransferHistory(page) {
+    function loadDataTransferHistoryATM(page) {
 
         request = $.ajax({
             type: 'GET',

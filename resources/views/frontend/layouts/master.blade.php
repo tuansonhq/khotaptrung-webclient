@@ -120,7 +120,7 @@
 <script src="/assets/frontend/js/jquery.cookie.min.js"></script>
 
 <script src="/assets/frontend/js/account/buyacc.js"></script>
-
+<script src="/assets/frontend/js/transfer/transfer.js"></script>
 
 {{--@yield('scripts')--}}
 </body>
