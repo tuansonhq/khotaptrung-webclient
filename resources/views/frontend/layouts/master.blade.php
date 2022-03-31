@@ -8,8 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="jwt" content="" />
 {{--    <title>Kho lưu trữ</title>--}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
-
+    <link rel="stylesheet" href="/assets/frontend/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <!--    swiper-->
@@ -64,7 +63,7 @@
     <script src="/assets/frontend/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/js/account_info.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
 
     @stack('js')
 

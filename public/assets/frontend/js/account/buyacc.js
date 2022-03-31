@@ -72,16 +72,18 @@ $(document).ready(function () {
                     $('.loadModal__acount').modal('hide');
 
                     swal(
+                        'Thông báo!',
+                        response.message,
+                        'warning'
+                    )
+                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                }else {
+                    $('.loadModal__acount').modal('hide');
+                    swal(
                         'Lỗi!',
                         'Vui lòng kiểm tra lại tài khoản hoặc liên hệ với chăm sóc khách hàng!',
                         'error'
                     )
-
-                    // swal(
-                    //     'Thông báo!',
-                    //     response.message,
-                    //     'warning'
-                    // )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
             },
