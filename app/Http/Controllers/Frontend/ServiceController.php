@@ -16,50 +16,26 @@ use function PHPUnit\Framework\isEmpty;
 class ServiceController extends Controller
 {
 
-    public function getShowService(Request $request,$slug){
+    public function getShowService(Request $request){
 
-        if ($slug == 'dich-vu'){
-            $url = '/get-show-service';
-            $method = "GET";
-            $val = array();
+        $url = '/get-show-service';
+        $method = "GET";
+        $val = array();
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
+        if (isset($result_Api) && $result_Api->httpcode == 200) {
 
-                $data = $result_Api->data;
-                $data = $data->data;
+            $data = $result_Api->data;
+            $data = $data->data;
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
-                return view('frontend.pages.service.index')
-                    ->with('data', $data);
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-        }else{
-
-            $url = '/get-show-service';
-            $method = "GET";
-            $val = array();
-            $val['slug'] = $slug;
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                $data = $result->data;
-                $categoryservice = $result->categoryservice;
-                $categoryservice = $categoryservice->data;
-
-                return view('frontend.pages.service.show')
-                    ->with('categoryservice',$categoryservice)
-                    ->with('data',$data)
-                    ->with('slug',$slug);
-            }else{
-                return 'sai';
-            }
+            return view('frontend.pages.service.index')
+                ->with('data', $data);
+        } else {
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
-
 
     }
 
@@ -95,6 +71,30 @@ class ServiceController extends Controller
             }
         }
     }
+
+    public function getShow(Request $request,$slug){
+
+        $url = '/get-show-service';
+        $method = "GET";
+        $val = array();
+        $val['slug'] = $slug;
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200) {
+            $result = $result_Api->data;
+            $data = $result->data;
+            $categoryservice = $result->categoryservice;
+            $categoryservice = $categoryservice->data;
+
+            return view('frontend.pages.service.show')
+                ->with('categoryservice', $categoryservice)
+                ->with('data', $data)
+                ->with('slug', $slug);
+        }
+
+    }
+
+
 
     public function getBuyServiceHistory(Request $request)
     {

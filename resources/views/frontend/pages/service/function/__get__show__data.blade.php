@@ -4,7 +4,7 @@
             <div class="col-6 col-sm-6 col-lg-3">
                 <div class="item_buy_list_in">
                     <div class="item_buy_list_img">
-                        <a href="/{{ $item->slug }}">
+                        <a href="/dich-vu/{{ $item->slug }}">
                             <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
                         </a>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="item_buy_list_more">
                         <div class="row">
 
-                            <a href="/{{ $item->slug }}" class="col-12">
+                            <a href="/dich-vu/{{ $item->slug }}" class="col-12">
                                 <div class="item_buy_list_view">
                                     CHI TIẾT
                                 </div>

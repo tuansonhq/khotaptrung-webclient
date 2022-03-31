@@ -14,7 +14,7 @@
                             <div class="swiper-slide swiper-slide__size" >
                                 <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
                                     <div class="item_play_dif_slide_img">
-                                        <a href="{{ $item->slug }}">
+                                        <a href="/dich-vu{{ $item->slug }}">
                                             @if(isset($item->image))
                                                 <img src="https://media-tt.nick.vn{{ $item->image }}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                             @else
