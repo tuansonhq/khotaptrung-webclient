@@ -23,22 +23,27 @@ class ServiceController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if ($request->ajax()){
+
             $page = $request->page;
-            $url = '/get-show-service';
-            $method = "GET";
-            $val = array();
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $valajax = array();
+            $valajax['page'] = $page;
+            if (isset($request->title) || $request->title != '' || $request->title != null) {
 
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $valajax['title'] = $request->title;
+            }
 
-                $data = $result_Api->data;
-                $data = $data->data;
+            $result_Apiajax = DirectAPI::_makeRequest($url,$valajax,$method);
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+            if (isset($result_Apiajax) && $result_Apiajax->httpcode == 200) {
+
+                $dataajax = $result_Apiajax->data;
+                $dataajax = $dataajax->data;
+
+                $dataajax = new LengthAwarePaginator($dataajax->data, $dataajax->total, $dataajax->per_page, $dataajax->current_page, $dataajax->data);
 
                 return view('frontend.pages.service.function.__get__show__data')
-                    ->with('data', $data);
+                    ->with('data', $dataajax);
             } else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
