@@ -113,7 +113,7 @@
 
                             </div>
                         </div>
-                        <div id="data_pay_card_history">
+                        <div id="data_pay_card_history__atm">
                             @include('frontend.pages.account.user.function.__pay_atm')
                         </div>
                     </div>
