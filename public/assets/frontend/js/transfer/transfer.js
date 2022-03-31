@@ -234,7 +234,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/recharge-atm/data',
+            url: '/recharge-atm',
             data: {
                 page:page,
             },
@@ -242,8 +242,8 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                $("#data_pay_card_history").empty().html('');
-                $("#data_pay_card_history").empty().html(data);
+                $("#data_pay_card_history__atm").empty().html('');
+                $("#data_pay_card_history__atm").empty().html(data);
             },
             error: function (data) {
 
