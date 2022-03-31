@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

@@ -202,32 +202,6 @@
         </div>
     </div>
 
-    @if ($content = Session::get('content'))
-        <div class="modal fade" id="noticeAfterModal" style="display: none;" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
-                        {!!$content!!}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#noticeAfterModal').modal('show');
-            });
-        </script>
-    @endif
     <script src="/assets/frontend/js/account/account-list.js"></script>
 
 
