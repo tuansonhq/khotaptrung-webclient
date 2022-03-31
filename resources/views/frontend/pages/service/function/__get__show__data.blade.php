@@ -42,8 +42,8 @@
             </div>
         @endforeach
     @else
-        <div class="col-md-12 text-center">
-            <span style="color: #3f444a;font-size: 16px;">Dữ liệu cần tìm không tồn tại vui lòng thử lại.</span>
+        <div class="col-md-12 text-left">
+            <span style="font-size: 16px;color: red">Dữ liệu cần tìm không tồn tại vui lòng thử lại.</span>
         </div>
     @endif
     <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__get__service paginate__v1_mobie frontend__panigate">

@@ -20,10 +20,10 @@ $(document).ready(function(){
     });
 
     function loadDataService(page,title) {
-
+        var slug = 'dich-vu';
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu/data',
+            url: '/' + slug + '/data',
             data: {
                 page:page,
                 title:title,
