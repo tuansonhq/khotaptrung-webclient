@@ -185,8 +185,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             //Nạp thẻ Atm
             Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
                 ->name('getBank');
-            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
-                ->name('getBankData');
+//            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
+//                ->name('getBankData');
             Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
                 ->name('postDepositBank');
             Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);

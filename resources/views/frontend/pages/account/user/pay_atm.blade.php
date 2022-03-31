@@ -113,8 +113,42 @@
 
                             </div>
                         </div>
-                        <div id="data_pay_card_history__atm">
-                            @include('frontend.pages.account.user.function.__pay_atm')
+                        <div>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom-res">
+                                    <thead>
+                                    <tr>
+                                        <th>Thời gian</th>
+                                        <th>Mã yêu cầu</th>
+                                        <th>Ngân hàng</th>
+                                        <th>Chủ tài khoản</th>
+                                        <th>Số tài khoản</th>
+                                        <th>Số tiền</th>
+                                        <th>Thực nhận</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+
+                                    </thead>
+                                    <tbody class="data_pay_card_history__atm">
+                                        @include('frontend.pages.account.user.function.__pay_atm')
+                                    </tbody>
+
+                                </table>
+                            </div>
+{{--                            <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__ls paginate__v1_mobie frontend__panigate">--}}
+{{--                                @if(isset($data))--}}
+{{--                                    @if($data->total()>1)--}}
+{{--                                        <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">--}}
+{{--                                            <div class="col-auto paginate__category__col">--}}
+{{--                                                <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">--}}
+{{--                                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+
                         </div>
                     </div>
 
@@ -123,7 +157,7 @@
         </div>
     </div>
 
-    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+    <input type="hidden" name="hidden_page_atm" id="hidden_page_atm" value="1" />
 
-    <script src="/assets/frontend/js/transfer/transfer.js"></script>
+
 @endsection
