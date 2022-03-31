@@ -47,6 +47,7 @@ class ServiceController extends Controller
 
             $valajax = array();
             $valajax['page'] = $page;
+
             if (isset($request->title) || $request->title != '' || $request->title != null) {
 
                 $valajax['title'] = $request->title;
@@ -59,7 +60,7 @@ class ServiceController extends Controller
                 $dataajax = $result_Apiajax->data;
                 $dataajax = $dataajax->data;
 
-                $dataajax = new LengthAwarePaginator($dataajax->data, $dataajax->total, $dataajax->per_page, $dataajax->current_page, $dataajax->data);
+                $dataajax = new LengthAwarePaginator($dataajax->data, $dataajax->total, $dataajax->per_page, $page, $dataajax->data);
 
                 return view('frontend.pages.service.function.__get__show__data')
                     ->with('data', $dataajax);
