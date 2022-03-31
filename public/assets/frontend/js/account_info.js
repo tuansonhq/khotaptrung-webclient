@@ -43,7 +43,7 @@ $(document).ready(function(){
             },
             success: function (data) {
                 if(data.status === "LOGIN"){
-                    window.location.href = '/logout';
+                    window.location.href = '/login';
                     // method = method || 'post';
                     return;
                 }

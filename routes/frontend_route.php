@@ -45,6 +45,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
     Route::post('/user/account_info', [UserController::class , "getInfo"]);
     Route::group(['middleware' => ['cacheResponse:300']], function (){
         Route::get('/', [HomeController::class , "index"]);
+        Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
 
         // ROUTE cần auth load dữ liệu không cache
@@ -66,7 +67,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             // lấy mệnh giá trong mua thẻ
             Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                 ->name('getAmountStoreCard');
-          
+
         });
 
 
@@ -174,7 +175,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //nạp thẻ
-            
+
             Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
                 ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])

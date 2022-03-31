@@ -366,13 +366,13 @@ header .nav-bar{
     overflow: auto;
     border-bottom: 1px dotted #4e4e4e;
 }
-.content-banner-card-top li:first-child i {
+.content-banner-card-top li:first-child p:first-child {
     width: 31px;
     height: 31px;
     line-height: 31px;
     background: url(https://www.shopas.net/assets/frontend/icon.png) no-repeat -90px -36px;
 }
-.content-banner-card-top li i {
+.content-banner-card-top li p:first-child {
     float: left;
     font-size: 14px;
     font-style: normal;
