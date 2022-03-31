@@ -371,6 +371,7 @@
             <div class="container">
                 <div class="job-wide-devider">
 {{--                    Bot   --}}
+                    @if(isset($bot))
                     <div class="row">
                         <div class="col-lg-12 column">
                             <div class="job-details">
@@ -490,7 +491,7 @@
                             </div>
                         </div>
                     </div>
-
+                    @endif
 {{--MO tả --}}
                     <div class="row">
                         <div class="col-lg-12 column">
@@ -556,7 +557,6 @@
         }
 
         var data = jQuery.parseJSON('{!! $data->params !!}');
-        console.log(data);
 
 
             @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
@@ -576,7 +576,7 @@
         $('[name="server"]').val(server);
 
     </script>
-
+{{--        @dd($data)--}}
     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
 
     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
@@ -642,8 +642,7 @@
 
             if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
                 $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
-                    console.log($(elm).val());
-                    console.log(elm);
+
                     price += parseInt(s_price[$(elm).val()]);
                     if (itemselect != '') {
                         itemselect += '|';

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 
+use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Log;
 
+use Session;
 use function PHPUnit\Framework\isEmpty;
 
 class ServiceController extends Controller
@@ -36,6 +38,7 @@ class ServiceController extends Controller
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }else{
+
             $url = '/get-show-service';
             $method = "GET";
             $val = array();
