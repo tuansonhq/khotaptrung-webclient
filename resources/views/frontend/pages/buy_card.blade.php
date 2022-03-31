@@ -10,7 +10,7 @@
       <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ MUA THẺ </h2>
    </div>
 
-   <form method="POST" action="{{route('postStoreCard')}}"  >
+   <form method="POST" action="{{route('postStoreCard')}}" id="form-storeCard" >
       @csrf
       <div class="container detail-service">
          <div class="row">
@@ -31,13 +31,13 @@
                      <div class="col-md-7 hide" id="formStoreCard">
                         <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
                         <div class="mb-3">
-                           <select name="telecom_key" id="telecom_key" class="server-filter form-control t14" style="">
+                           <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">
 
                            </select>
                         </div>
                         <div class="mb-2 control-label bb"><strong>Mệnh giá:</strong> </div>
                         <div class="mb-3">
-                           <select name="amount" id="amount" class="server-filter form-control t14" style="">
+                           <select name="amount" id="amount_storecard" class="server-filter form-control t14" style="">
 
                            </select>
                         </div>
@@ -79,9 +79,6 @@
 
 
                         </button>
-                         <a id="btnbeforePurchase" style="font-size: 20px;" class="followus">
-                             <span class="" >  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
-                         </a>
                      </div>
                   </div>
                </div>
@@ -118,8 +115,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto">Chi tiết giao dịch</h4>
-
-
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
