@@ -114,7 +114,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
 });
 
 View::composer('frontend.widget.__top_nap_the', function ($view) {
-
+    return $view;
 
     try{
 
@@ -125,8 +125,7 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
 
-
-
+        dd(1111);
         if (isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;
 
