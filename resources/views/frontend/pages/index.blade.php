@@ -4,7 +4,7 @@
 @endsection
 {{--@section('content')--}}
 @section('content')
-
+    <button id="link">Redirect to Utopian</button>
     <div class="layout-page">
         <div class="content-layout" >
             <div class="content-banner container">
