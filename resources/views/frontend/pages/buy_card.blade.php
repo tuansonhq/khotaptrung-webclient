@@ -77,7 +77,11 @@
                             <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
 
 
+
                         </button>
+                         <a id="btnbeforePurchase" style="font-size: 20px;" class="followus">
+                             <span class="" >  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
+                         </a>
                      </div>
                   </div>
                </div>
@@ -107,5 +111,152 @@
          </div>
       </div>
    </div>
+</div>
+<div class="modal fade" id="success_storecard" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
+        <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto">Chi tiết giao dịch</h4>
+
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 16px;font-weight: 600"> Thẻ đã mua</p>
+                <div class="success_storecard row">
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 p-2">
+                        <div class="alert alert-info">
+                            <p>Mã thẻ 1 </p>
+                            <p>Loại thẻ : <span>Viettel</span> </p>
+                            <div class="success_storecard_pin">
+                                <p>Mã thẻ <br>
+                                    <span>5465465464654</span>
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                            <div class="success_storecard_serial">
+                                <p>Serial  <br>
+                                    <span>5465465464654</span>
+
+                                </p>
+                                <b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+data.data.price+'" aria-hidden="true"></i></b>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
