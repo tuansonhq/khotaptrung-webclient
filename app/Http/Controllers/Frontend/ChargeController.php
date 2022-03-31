@@ -184,6 +184,53 @@ class ChargeController extends Controller
                 'status' => 0
             ]);
         }
+        try {
+            $url = '/deposit-auto';
+            $method = "POST";
+            $data = array();
+            $data['token'] = session()->get('jwt');
+            $data['type'] = $request->type;
+            $data['amount'] = $request->amount;
+            $data['pin'] = $request->pin;
+            $data['serial'] = $request->serial;
+            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => $result->message,
+                    ]);
+                }
+                if($result->status == 0){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => $result->message,
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
+                    ]);
+                }
+            }
+        }
+        catch (\Exception $e) {
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
+            ]);
+        }
     }
 
     public function getChargeDepositHistory(Request $request)
