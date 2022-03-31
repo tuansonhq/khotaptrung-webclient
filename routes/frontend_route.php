@@ -47,7 +47,11 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/', [HomeController::class , "index"]);
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
-
+        // lấy nhà mạng mua thẻ
+        Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+        // lấy mệnh giá trong mua thẻ
+        Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+            ->name('getAmountStoreCard');
         // ROUTE cần auth load dữ liệu không cache
         Route::group(['middleware' => ['auth_custom']], function (){
             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
@@ -62,11 +66,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         // Route không cần Auth load dữ liệu không cache
         Route::group(['middleware' => ['doNotCacheResponse']], function (){
             Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-            // lấy nhà mạng mua thẻ
-            Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
-            // lấy mệnh giá trong mua thẻ
-            Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
-                ->name('getAmountStoreCard');
+
 
         });
 
@@ -195,14 +195,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //            mua thẻ
-            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
-                ->name('postStoreCard');
-            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
-                ->name('getStoreCard');
-            Route::get('/mua-the-api', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
-                ->name('getAmountStoreCard');
-            Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
-                ->name('getTelecomStoreCard');
+//            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
+//                ->name('postStoreCard');
+//            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
+//                ->name('getStoreCard');
+//            Route::get('/mua-the-api', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+//                ->name('getAmountStoreCard');
+//            Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
+//                ->name('getTelecomStoreCard');
 
             Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 

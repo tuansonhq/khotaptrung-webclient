@@ -15,17 +15,36 @@ class StoreCardController extends Controller
         return view('frontend.pages.buy_card');
     }
     public function getTelecomStoreCard(Request $request){
-
         try{
             $url = '/store-card/get-telecom';
             $method = "GET";
             $data = array();
+
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            dd($result_Api);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công',
+                        'data' => $result->data,
+                    ],200);
+                }
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
         }
 
 
@@ -33,91 +52,85 @@ class StoreCardController extends Controller
     public function getAmountStoreCard(Request $request)
     {
 
-        if ($request->ajax()){
-//            if($request->hasCookie('jwt')){
-                try{
-
-                    $url = '/store-card/get-amount';
-                    $method = "GET";
-                    $data = array();
-                    $jwt = Session::get('jwt');
-                    if(empty($jwt)){
-                        return response()->json([
-                            'status' => "LOGIN"
-                        ]);
-                    }
-                    $data['token'] =$jwt;
-                    $data['telecom'] = $request->telecom;
-
-
-                    $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
-                    if (isset($result_Api) && $result_Api->httpcode == 200) {
-                        $result = $result_Api->data;
-                        if($result->status == 1){
-                            return response()->json([
-                                'status' => 1,
-                                'data' => $result
-                            ]);
-                    }
-
-                    else {
-                        return redirect()->back()->withErrors($result_Api->message);
-
-                    }
-                    } else {
-                       return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                    }
+        try {
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $data = array();
+            $data['telecom'] = $request->telecom;
+            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công',
+                        'data' => $result->data,
+                    ]);
                 }
-                catch(\Exception $e){
-                    Log::error($e);
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-
-//            }
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
+        } catch (\Exception $e) {
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mệnh giá nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
         }
 
     }
 
     public function postStoreCard(Request $request)
     {
-        if(AuthCustom::check()){
-            try{
-                $url = '/store-card';
-                $method = "POST";
-                $data = array();
-                $jwt = Session::get('jwt');
-                if(empty($jwt)){
+        try {
+            $url = '/deposit-auto';
+            $method = "POST";
+            $data = array();
+            $data['token'] = session()->get('jwt');
+            $data['telecom_key'] = $request->telecom;
+            $data['amount'] = $request->amount;
+            $data['quantity'] = $request->quantity;
+            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+            if(isset($result_Api) && $result_Api->httpcode == 401){
+                session()->flush();
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $result = $result_Api->data;
+                if($result->status == 1){
                     return response()->json([
-                        'status' => "LOGIN"
+                        'status' => 1,
+                        'message' => $result->message,
                     ]);
                 }
-                $data['token'] =$jwt;
-                $data['telecom_key'] = $request->telecom_key;
-                $data['amount'] = $request->amount;
-                $data['quantity'] = $request->quantity;
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $storeCardPost = $result_Api->data;
-                    $message = $storeCardPost->message;
-                    if ($storeCardPost->status==0){
-                        return Response()->json($storeCardPost->message);
-                    }else{
-                        return response()->json([
-                            'status' => 1,
-                            'message'=>$message,
-                            'data' => $storeCardPost
-                        ]);
-                    }
-                } else {
-                    return Response()->json($result_Api->data->message);
+                if($result->status == 0){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => $result->message,
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
+                    ]);
                 }
             }
-            catch(\Exception $e){
-                Log::error($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-
+        }
+        catch (\Exception $e) {
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
+            ]);
         }
     }
 
