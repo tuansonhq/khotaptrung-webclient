@@ -159,11 +159,20 @@
 {{--{{ Form::close() }}--}}
 
 <style>
-    .c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li:active > a {
+    /*.c-content-tab-4.c-opt-3 > .nav > li.active > a, .c-content-tab-4.c-opt-3 > .nav > li > a:active {*/
+    /*    color: #ffffff;*/
+    /*    background-color: #5bc2ce!important;*/
+    /*}*/
+    /*.c-content-tab-4.c-opt-3 > .nav > li:nth-child(even).active > a, .c-content-tab-4.c-opt-3 > .nav > li > a:active {*/
+    /*    color: #ffffff;*/
+    /*    background-color: #5bc2ce!important;*/
+    /*}*/
+
+    .c-content-tab-4.c-opt-3 > .nav > li > a {
         color: #ffffff;
-        background-color: #5bc2ce!important;
+        background-color: #d5e0ea;
     }
-    .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even).active > a, .c-content-tab-4.c-opt-3 > .nav > li:nth-child(even):active > a {
+     .c-content-tab-4.c-opt-3 > .nav > li > a.active {
         color: #ffffff;
         background-color: #5bc2ce!important;
     }
