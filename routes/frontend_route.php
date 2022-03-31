@@ -57,6 +57,28 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                 // route post mua thẻ
                 Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+
+                //lịch sử nạp thẻ
+                Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositHistory'])
+                    ->name('getDepositHistory');
+
+                Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
+                    ->name('getChargeDepositHistory');
+                Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
+                    ->name('getChargeDepositHistoryData');
+
+                Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
+
+                Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
+                    ->name('getBuyAccountHistory');
+                Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
+                    ->name('getBuyAccountHistoryData');
+                //dịch vụ
+                Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
+                    ->name('getBuyServiceHistory');
+                Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
+                    ->name('getBuyServiceHistoryData');
+
             });
         });
         // Route không cần Auth load dữ liệu không cache
@@ -68,22 +90,26 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                 ->name('getAmountStoreCard');
 
+            Route::get('/tin-tuc', [ArticleController::class , "index"]);
+            Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
+            Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
+            Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+
+            //dichj vụ
+
+            Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+            Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
+            //Danh muc game
+            Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
+            Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
+            Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
+
         });
 
 
 
-        Route::get('/tin-tuc', [ArticleController::class , "index"]);
-        Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
-        Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
-        Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
-        //dichj vụ
 
-        Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
-        Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
-        //Danh muc game
-        Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
-        Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-        Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
+
         //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
         Route::get('/rut-vat-pham', function ()
         {
@@ -152,14 +178,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             'middleware' => ['auth']
         ) , function ()
         {
-            //lịch sử nạp thẻ
-            Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositHistory'])
-                ->name('getDepositHistory');
 
-            Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
-                ->name('getChargeDepositHistory');
-            Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
-                ->name('getChargeDepositHistoryData');
 
 
             //nạp thẻ
@@ -192,7 +211,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
                 ->name('getTelecomStoreCard');
 
-            Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
+
 
             //profile
             Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
@@ -201,15 +220,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 ->name('index');
 
 //account
-            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
-                ->name('getBuyAccountHistory');
-            Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
-                ->name('getBuyAccountHistoryData');
-            //dịch vụ
-            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
-                ->name('getBuyServiceHistory');
-            Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
-                ->name('getBuyServiceHistoryData');
+
 
         });
 
