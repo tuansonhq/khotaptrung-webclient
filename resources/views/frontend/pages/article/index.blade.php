@@ -44,8 +44,8 @@
 
                                 </div>
                             </form>
-                            <div class="news_content_list article_data">
-
+                            <div class="article_data">
+                                @include('frontend.pages.article.function.__new__data')
                             </div>
                         </div>
                         {!! widget('frontend.widget.__menu__category__article',60) !!}
@@ -55,7 +55,7 @@
         </div>
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="" />
-        <input type="hidden" name="append" class="append-article" value="0" />
+
         <script src="/assets/frontend/js/article/article.js"></script>
     @else
         <div class="news">
@@ -94,8 +94,8 @@
 
                                 </div>
                             </form>
-                            <div class="news_content_list article_data">
-
+                            <div class="article_data">
+                                @include('frontend.pages.article.function.__new__data')
                             </div>
                         </div>
                         {!! widget('frontend.widget.__menu__category__article',60) !!}
@@ -105,7 +105,7 @@
         </div>
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="{{ $slug }}" />
-        <input type="hidden" name="append" class="append-article" value="0" />
+
         <script src="/assets/frontend/js/article/article.js"></script>
     @endif
 

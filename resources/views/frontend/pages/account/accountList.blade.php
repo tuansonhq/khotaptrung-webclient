@@ -184,6 +184,9 @@
                 @include('frontend.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
             </div>
 
+
+            <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
+
         </div>
     </div>
 

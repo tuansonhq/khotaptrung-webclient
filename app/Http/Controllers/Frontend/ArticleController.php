@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleController extends Controller
 {
@@ -18,12 +19,12 @@ class ArticleController extends Controller
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
             $data = $result->data;
-            $data = $data->data;
+//            $data = $data->data;
 
-            $is_over = $result->is_over;
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $category = true;
             return view('frontend.pages.article.index')
-                ->with('is_over',$is_over)
+                ->with('data',$data)
                 ->with('category',$category);
         }else{
             return 'sai';
@@ -34,7 +35,6 @@ class ArticleController extends Controller
 
         if ($request->ajax()){
             $page = $request->page;
-            $append = $request->append;
 
             $url = '/article';
             $method = "GET";
@@ -50,35 +50,27 @@ class ArticleController extends Controller
                 $val['slug'] = $request->slug;
             }
 
-
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
-                if ($result->is_over){
-                    return response()->json([
-                        'is_over'=>true
-                    ]);
-                }
                 $data = $result->data;
-                $data = $data->data;
 
-                return response()->json([
-                    'data' => $data,
-                    'append' => $append,
-                    'is_over'=>false
-                ]);
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                $category = true;
+                return view('frontend.pages.article.function.__new__data')
+                    ->with('data',$data)
+                    ->with('category',$category);
             }else{
                 return 'sai';
             }
         }
     }
 
-
     public function getCategoryData(Request $request,$slug){
 
         if ($request->ajax()){
             $page = $request->page;
-            $append = $request->append;
 
             $url = '/article/'.$slug;
             $method = "GET";
@@ -98,13 +90,15 @@ class ArticleController extends Controller
                     ]);
                 }
                 $data = $result->data;
-                $data = $data->data;
+//                $data = $data->data;
+                $title = $result->categoryarticle;
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
-                return response()->json([
-                    'data' => $data,
-                    'append' => $append,
-                    'is_over'=>false
-                ]);
+                return view('frontend.pages.article.function.__new__data')
+                    ->with('title',$title)
+                    ->with('data',$data)
+                    ->with('slug',$slug);
+
             }else{
                 return 'sai';
             }
@@ -125,20 +119,19 @@ class ArticleController extends Controller
                 $data = $result->data;
                 $dataitem = $result->dataitem;
 
-//                return $data;
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('data',$data);
             }else{
                 $result = $result_Api->data;
                 $data = $result->data;
-                $is_over = $result->is_over;
 
                 $title = $result->categoryarticle;
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
                 return view('frontend.pages.article.index')
-                    ->with('is_over',$is_over)
                     ->with('title',$title)
+                    ->with('data',$data)
                     ->with('slug',$slug);
             }
 

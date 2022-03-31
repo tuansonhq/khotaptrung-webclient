@@ -212,10 +212,6 @@
             @endif
         @endif
     </div>
-
-    <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
-    <input type="hidden" name="service" id="append-service" value="0" />
-
 @endif
 
 
