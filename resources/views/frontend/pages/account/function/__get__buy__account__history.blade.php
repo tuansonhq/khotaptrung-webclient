@@ -17,7 +17,7 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ $item->id }}</td>
+                            <td>{{ encodeItemID($item->id) }}</td>
                             <td>
                                 @if(isset($item->groups))
                                     @foreach($item->groups as $val)

@@ -69,7 +69,8 @@ class AccController extends Controller
                     $val['page'] = $page;
 
                     if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
-                        $val['id'] = $request->id_data;
+                        $checkid = decodeItemID($request->id_data);
+                        $val['id'] = $checkid;
                     }
 
                     if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
@@ -342,7 +343,8 @@ class AccController extends Controller
                 $val['user_id'] = AuthCustom::user()->id;
 
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $val['id'] = $request->serial;
+                    $checkid = decodeItemID($request->serial);
+                    $val['id'] = $checkid;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {
