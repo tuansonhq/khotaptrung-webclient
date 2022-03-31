@@ -70,7 +70,7 @@
                                             <span class="gallery__01__span">Mã số:</span>
                                         </div>
                                         <div class="col-md-8 col-8 pl-0">
-                                            <span class="gallery__01__span">#{{ $data->id }}</span>
+                                            <span class="gallery__01__span">#{{ encodeItemID($data->id) }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                                 <div class="col-md-12 gallery__01__row">
                                     <div class="row gallery__01__row2">
                                         <div class="col-md-12 pl-0 pr-0">
-                                            <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" data-id="{{ $data->id }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
+                                            <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" data-id="{{ encodeItemID($data->id) }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay</button>
                                         </div>
                                         <div class="col-md-12 pl-0 pr-0 gallery__bottom">
                                             <div class="row atmvdtntc">
@@ -238,11 +238,11 @@
                             <div class="col-6 col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
-                                    <a href="/acc/{{ $datav2->id }}">
+                                    <a href="/acc/{{ encodeItemID($datav2->id) }}">
                                         @if(isset($datav2->image))
                                             <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
                                         @else
-                                            <img src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
+                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
                                         @endif
 
                                         @if(isset($datav2->image_icon))
@@ -250,7 +250,7 @@
                                         @else
                                         <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
                                         @endif
-                                        <span>MS: {{ $datav2->id }}</span>
+                                        <span>MS: {{ encodeItemID($datav2->id) }} </span>
                                     </a>
                                 </div>
                                 <div class="item_buy_list_description">
@@ -315,7 +315,7 @@
                                             </div>
 
                                         </div>
-                                        <a href="/acc/{{ $datav2->id }}" class="col-12">
+                                        <a href="/acc/{{ encodeItemID($datav2->id) }}" class="col-12">
                                             <div class="item_buy_list_view">
                                                 Chi tiết
                                             </div>
@@ -344,32 +344,6 @@
         </div>
     </div>
 
-    @if ($content = Session::get('content'))
-        <div class="modal fade" id="noticeAfterModal" style="display: none;" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
-                        {!!$content!!}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#noticeAfterModal').modal('show');
-            });
-        </script>
-    @endif
 {{--    <script src="/assets/frontend/js/account/buyacc.js"></script>--}}
     <script src="/assets/frontend/js/account/buyaccslider.js"></script>
 

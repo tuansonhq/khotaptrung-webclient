@@ -1,5 +1,5 @@
 {{--{{Form::open(array('method'=>'POST' ,'class'=>'form-horizontal','enctype'=>"multipart/form-data"))}}--}}
-<form class="formDonhangAccount" action="/acc/{{ $data->id }}/databuy" method="POST">
+<form class="formDonhangAccount" action="/acc/{{ encodeItemID($data->id) }}/databuy" method="POST">
     {{ csrf_field() }}
     <div class="modal-header">
         <h4 class="modal-title">Xác nhận mua tài khoản</h4>
@@ -24,7 +24,7 @@
                         <li class="c-font-dark">
                             <table class="table table-striped">
                                 <tbody><tr>
-                                    <th colspan="2">Thông tin tài khoản #{{ $data->id }}</th>
+                                    <th colspan="2">Thông tin tài khoản #{{ encodeItemID($data->id) }}</th>
                                 </tr>
                                 </tbody><tbody>
                                 <tr>

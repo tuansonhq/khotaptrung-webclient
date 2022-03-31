@@ -70,3 +70,19 @@ if (! function_exists('formatDateTime')) {
         return Helpers::formatDateTime($date);
     }
 }
+
+if (! function_exists('encodeItemID')) {
+
+    function encodeItemID($id)
+    {
+        return Helpers::encodeItemID($id);
+    }
+}
+
+if (! function_exists('decodeItemID')) {
+
+    function decodeItemID($str)
+    {
+        return Helpers::decodeItemID($str);
+    }
+}
