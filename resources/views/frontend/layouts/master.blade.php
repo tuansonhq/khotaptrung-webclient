@@ -116,11 +116,12 @@
 
 <script src="/assets/frontend/js/swiper.js"></script>
 <script src="/assets/frontend/js/jquery.cookie.min.js"></script>
-<script src="/assets/frontend/js/account/account-list.js"></script>
+
 <script src="/assets/frontend/js/account/buyacc.js"></script>
 
-<script src="/assets/frontend/js/account/acc-history.js"></script>
-@yield('scripts')
+<script src="/assets/frontend/js/charge/charge-history.js"></script>
+
+{{--@yield('scripts')--}}
 </body>
 
 

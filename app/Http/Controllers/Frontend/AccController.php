@@ -314,11 +314,11 @@ class AccController extends Controller
                 $val['user_id'] = AuthCustom::user()->id;
 
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $val['serial'] = $request->serial;
+                    $val['id'] = $request->serial;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $val['key'] = $request->key;
+                    $val['cat_slug'] = $request->key;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
@@ -330,13 +330,15 @@ class AccController extends Controller
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                    $val['started_at'] = $request->started_at;
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $val['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                    $val['ended_at'] = $request->ended_at;
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $val['ended_at'] = $ended_at;
                 }
-
+              
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {

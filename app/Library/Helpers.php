@@ -11,7 +11,9 @@ class Helpers
             return '';
         }
 
-        return number_format($price);
+
+
+        return str_replace(',','.',number_format($price));
     }
 
     public static function formatDateTime($date){
@@ -38,6 +40,32 @@ class Helpers
             return "";
         }
         return $output;
+    }
+
+
+    static function encodeItemID($id){
+        $num_str = ['q','s','e','r','t','y','u','i','o','p'];
+        $shop_id = session('shop_id')??0;
+        $alpha_id = '';
+        foreach (str_split($shop_id) as $i) {
+            $alpha_id .= self::encoder_num_str()[intval($i)];
+        }
+        return strtoupper($alpha_id).($id+$shop_id*2);
+    }
+
+    static function decodeItemID($str){
+        $shop_id = '';
+        $alpha = '';
+        foreach (str_split($str) as $char) {
+            if (!is_numeric($char)) {
+                $alpha .= strtolower($char);
+                $shop_id .= array_search($char, self::encoder_num_str());
+            }else{
+                break;
+            }
+        }
+        $id = str_replace($alpha, '', $str) - ($shop_id*2);
+        return $id;
     }
 
 }

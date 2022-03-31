@@ -82,7 +82,7 @@
                                         <th>Thời gian</th>
                                         <th>ID</th>
                                         <th>Phần thưởng </th>
-                                        <th>Id phần thưởng  </th>
+                                        <th>Số vật phẩm </th>
                                         <th>Danh mục</th>
                                     </tr>
                                 </thead>
@@ -92,7 +92,7 @@
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->item_ref->title}}</td>
-                                        <td>{{$item->item_ref->id}}</td>
+                                        <td>{{$item->item_ref->params->value}}</td>
                                         <td>{{$item->group->title}}</td>
                                     </tr>
                                     @endforeach

@@ -39,9 +39,11 @@
                     <div class="col-md-6">
                         <div class="input-group" style="width: 100%">
                             <select name="game_type" id="game_type" class="form-control">
-                                @foreach(config('constants.game_type') as $item => $key)
-                                <option value="{{route('getWithdrawItem',[$item])}}" {{$item==$game_type?'selected':''}}>{{$key}}</option>
+                                @if(count($result->listgametype)>0)
+                                @foreach($result->listgametype as $item)
+                                <option value="{{route('getWithdrawItem',[$item->parent_id])}}" {{$item->parent_id==$game_type?'selected':''}}>{{$item->title}}</option>
                                 @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>                        
@@ -51,7 +53,7 @@
                         });
                     </script>
                 </div>
-                <div class="text-center" style="color: #eb5d68;font-size: 22px">Số kim cương hiện có: {{number_format($result->number_item)}}</div>
+                <div class="text-center" style="color: #eb5d68;font-size: 22px">Số {{isset($result->gametype->image)?$result->gametype->image:'vật phẩm'}} hiện có: {{number_format($result->number_item)}}</div>
                 <form class="form-horizontal" method="POST">
                     {{csrf_field()}}
                     <div class="form-group row">

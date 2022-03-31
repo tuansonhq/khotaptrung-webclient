@@ -55,7 +55,7 @@ $(document).ready(function(){
         });
     }
 
-    $(document).on('submit', '.form-charge', function(e){
+    $(document).on('submit', '.form-charge__accountlist', function(e){
         e.preventDefault();
 
         var id = $('.id').val();
@@ -133,7 +133,7 @@ $(document).ready(function(){
 
     });
 
-    $(document).on('submit', '.form-charge-mobile', function(e){
+    $(document).on('submit', '.form-charge__accountlist-mobile', function(e){
         e.preventDefault();
 
         var id = $('.id-mobile').val();

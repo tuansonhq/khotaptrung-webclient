@@ -33,7 +33,6 @@
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
                         <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">Ngọc rồng</a></p>
-
                     </div>
                 </div>
             </div>
@@ -151,6 +150,7 @@
                         </div>
                     </div>
                     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
+
                     <div class="row">
                         <div class="col-md-12 float_mb">
                             <script src="/assets/frontend/rank/js/rslider.js"></script>
@@ -204,75 +204,87 @@
                                 </div>
                             </div>
 
-                            <h2>Bảng giá</h2>
-                            <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
-                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                    <thead class="m-datatable__head">
-                                    <tr class="m-datatable__row">
-                                        <th style="width:30px;" class="m-datatable__cell">
-                                            #
-                                        </th>
-                                        <th class="m-datatable__cell">
-                                            Tên
-                                        </th>
-                                        <th style="width:150px;" class="m-datatable__cell">
-                                            Tiền công
-                                        </th>
-                                        <th style="width:150px;" class="m-datatable__cell">
-                                            Thanh toán
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="m-datatable__body">
-                                    @if(!empty($name))
-                                        @for ($i = 0; $i < count($name)-1; $i++)
-                                            @if($name[$i]!=null)
-                                                <tr class="m-datatable__row m-datatable__row--even">
-                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
-                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
-                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
-                                                    <td class="m-datatable__cell">
-                                                        @if(!App\Library\AuthCustom::check())
-                                                            <span class="pay">Thanh toán</span>
-                                                        @else
-                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
-                                                        @endif
+                            <div class="container">
+                                <div class="job-wide-devider">
+                                    {{--postion-bot--}}
 
-                                                    </td>
-                                                </tr>
-                                            @endif
+                                    @if(isset($bot))
+                                        <div class="row">
+                                            <div class="col-lg-12 column">
+                                                <div class="job-details">
+                                                    @if($data->id==ID_NROCOIN)
+                                                        <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(Mặc định vách núi kakalot khu 51 và 52)</span></h2>
+                                                    @elseif($data->id==ID_LANGLACOIN)
+                                                        <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(Mặc định làng lá khu 4 gần Trưởng Làng)</span></h2>
+                                                    @elseif($data->id==ID_NINJAXU)
+                                                        <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(Mặc định tone 17)</span></h2>
+                                                    @else
 
-                                        @endfor
+                                                        <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí</h2>
+                                                    @endif
+                                                    <div class="table-bot m_datatable m-datatable m-datatable--default m-datatable--loaded">
+                                                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                                            <thead class="m-datatable__head">
+                                                            <tr class="m-datatable__row">
+                                                                <th style="" class="m-datatable__cell">
+                                                                    Server
+                                                                </th>
+                                                                <th class="m-datatable__cell">
+                                                                    Nhân vật
+                                                                </th>
+                                                                <th style="" class="m-datatable__cell">
+                                                                    Khu vực
+                                                                </th>
+                                                                <th style="" class="m-datatable__cell">
+                                                                    Trạng thái
+                                                                </th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody class="m-datatable__body-bot">
+                                                            @forelse($bot as $abot)
+                                                                <tr>
+                                                                    <td>{{$abot->server}}</td>
+                                                                    <td>{{$abot->uname}}</td>
+                                                                    <td>{{$abot->zone}}</td>
+                                                                    <td>
+                                                                        @if(time()-strtotime($abot->updated_at) > 30 )
+                                                                            <span style="color:red;font-weight: bold">[OFFLINE]</span>
+                                                                        @else
+                                                                            <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+
+                                                            @empty
+                                                            @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endif
-                                    </tbody>
-                                </table>
-                                <style type="text/css">
-                                    @media only screen and (max-width: 640px) {
-                                        .float_mb {
-                                            float: left;
-                                        }
-                                    }
-                                    .pay{
-                                        display: block;
-                                        background: #fb236a;
-                                        border-radius: 17px;
-                                        text-align: center;
-                                        max-width: 118px;
-                                        height: 30px;
-                                        line-height: 30px;
-                                        color: #fff;
-                                        cursor: pointer;
-                                    }
-                                </style>
-                                <script type="text/javascript">
-                                    $(".pay").click(function(){
-                                        $("#btnPurchase").click();
-                                    })
-                                </script>
+
+                                    {{--end postion-bot--}}
+
+                                    {{--mô tả--}}
+                                    @if($data->content!="")
+                                        <div class="row">
+                                            <div class="col-lg-12 column">
+                                                <div class="job-details">
+                                                    <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
+                                                    <div class="article-content">
+                                                        {!! $data->content  !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    {{-- END mô tả--}}
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
-                    </div>
                     </div>
                     @endif
                 </div>
