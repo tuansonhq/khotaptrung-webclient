@@ -23,11 +23,48 @@ class ChargeController extends Controller
     {
 
         try {
-               $method = "GET";
+                $method = "GET";
                 $url_history = '/deposit-auto/history';
                 $jwt = Session::get('jwt');
                 $val['token'] = $jwt;
                 $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
+
+                if ($request->ajax()) {
+                    $page = $request->page;
+
+                    $url = '/deposit-auto/history';
+
+                    $method = "GET";
+                    $val = array();
+                    $jwt = Session::get('jwt');
+                    if (empty($jwt)) {
+                        return response()->json([
+                            'status' => "LOGIN"
+                        ]);
+                    }
+                    $val['token'] = $jwt;
+                    $val['page'] = $page;
+
+                    $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+                    if (isset($result_Api) && $result_Api->httpcode == 200) {
+                        $result = $result_Api->data;
+                        if ($result->status == 1) {
+
+                            $data = $result->data;
+
+                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                            return view('frontend.pages.account.user.function.__pay_card')
+                                ->with('data', $data);
+                        } else {
+                            return redirect()->back()->withErrors($result->message);
+                        }
+                    } else {
+                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    }
+                }
+
                 if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
                     $bankHistory = $result_Api_history->data;
                     $data = $bankHistory->data;
@@ -78,7 +115,6 @@ class ChargeController extends Controller
 
 
     }
-
 
     public function getDepositAutoData(Request $request)
     {

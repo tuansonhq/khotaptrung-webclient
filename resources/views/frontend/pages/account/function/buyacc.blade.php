@@ -1,5 +1,5 @@
 {{--{{Form::open(array('method'=>'POST' ,'class'=>'form-horizontal','enctype'=>"multipart/form-data"))}}--}}
-<form class="formDonhangAccount" action="/acc/{{ encodeItemID($data->id) }}/databuy" method="POST">
+<form class="formDonhangAccount" action="/acc/{{ $data->randId }}/databuy" method="POST">
     {{ csrf_field() }}
     <div class="modal-header">
         <h4 class="modal-title">Xác nhận mua tài khoản</h4>
@@ -50,7 +50,7 @@
                             <table class="table table-striped">
                                 <tbody>
                                 <tr>
-                                    <th colspan="2">Chi tiết tài khoản #{{ $data->id }}</th>
+                                    <th colspan="2">Chi tiết tài khoản #{{ $data->randId }}</th>
                                 </tr>
                                 @if(isset($data->groups))
                                     <?php $att_values = $data->groups ?>

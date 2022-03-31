@@ -17,7 +17,11 @@
                     @foreach ($data as $item)
                         <tr>
                             <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ encodeItemID($item->id) }}</td>
+                            <td>
+                                @if(isset($item->randId))
+                                    #{{ $item->randId }}
+                                @endif
+                            </td>
                             <td>
                                 @if(isset($item->groups))
                                     @foreach($item->groups as $val)

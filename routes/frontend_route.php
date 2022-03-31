@@ -72,26 +72,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
 
-
-
-
-
-
-
-
-        Route::get('/dich-vu', function ()
-        {
-            return view('frontend.pages.regist');
-        });
         Route::get('/tin-tuc', [ArticleController::class , "index"]);
         Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
         Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
         Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
         //dichj vụ
-        Route::get('/dich-vu', [ServiceController::class , "getServiceCategory"]);
-        Route::get('/dich-vu/data', [ServiceController::class , "getServiceCategoryData"]);
-        Route::get('/dich-vu/{slug}', [ServiceController::class , "showServiceCategory"]);
-        Route::get('/dich-vu/{slug}/data', [ServiceController::class , "showServiceCategoryData"]);
+
+        Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+
         //Danh muc game
         Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
         Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
@@ -175,9 +163,9 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //nạp thẻ
-
-            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
-                ->name('getDepositAutoData');
+//
+//            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
+//                ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
                 ->name('postDeposit');
             Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
@@ -246,11 +234,12 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         });
 
     });
-    Route::group(['middleware' => ['auth_custom']], function (){
-        Route::group(['middleware' => ['cacheResponse:300']], function (){
-            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
-            ->name('getDepositAuto');
-        });
-    });
+
+//    Route::group(['middleware' => ['auth_custom']], function (){
+//        Route::group(['middleware' => ['cacheResponse:300']], function (){
+//            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
+//            ->name('getDepositAuto');
+//        });
+//    });
 });
 

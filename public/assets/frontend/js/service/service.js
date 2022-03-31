@@ -1,157 +1,39 @@
 $(document).ready(function(){
-    let page = $('#hidden_page_service').val();
-    let append = $('#append-service').val();
-    let is_over = false;
-    let not_loaded = true;
-
-    const media = "https://media-tt.nick.vn";
+    let page = $('#hidden_page_service__show').val();
 
     loadDataService();
 
-    $(window).scroll(function () {
+    $(document).on('click', '.paginate__v1__get__service .pagination a',function(event){
+        event.preventDefault();
 
-        if ($(window).scrollTop() == $(document).height() - $(window).height() && !is_over && not_loaded) {
+        var page = $(this).attr('href').split('page=')[1];
 
-            page++;
-            not_loaded = false;
-            $('#hidden_page_service').val(page);
-            $('#append-service').val(1);
-            append = $('#append-service').val();
+        $('#hidden_page_service__show').val(page);
 
-            var querry = $('.input-news').val();
+        $('li').removeClass('active');
+        $(this).parent().addClass('active');
 
-            if (querry == '' || querry == undefined || querry == null){
-                querry = $('.input-news-mobile').val();
-            }
+        var title_data = $('.title_data').val();
 
-            loadDataService(page,querry,append)
-        }
+        loadDataService(page,title_data)
+
     });
 
-    function loadDataService(page,querry, append = false) {
+    function loadDataService(page,title) {
 
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu/data',
+            url: '/dich-vu',
             data: {
                 page:page,
-                querry:querry,
-                append:append,
+                title:title,
             },
             beforeSend: function (xhr) {
 
             },
             success: (data) => {
-
-                let html = "";
-
-                if (data.is_over){
-                    is_over = true;
-                } else {
-                    if (data.append == 0){
-                        data.data.forEach(function (data) {
-                            html += '<div class="col-6 col-sm-6 col-lg-3">';
-                            html += '<div class="item_buy_list_in">';
-                            html += '<div class="item_buy_list_img">';
-                            html += '<a href="/dich-vu/' + data.slug + '">';
-                            html += '<img class="item_buy_list_img-main" src="'+media+data.image+'" alt="">';
-                            html += '</a>';
-                            html += '</div>';
-
-                            html += '<div class="item_buy_list_info">';
-                            html += '<div class="row">';
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">';
-                            // html += 'DANH MỤC ';
-                            html += data.title;
-                            html += '</span>';
-                            html += '</div>';
-
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span>Hỗ trợ dịch vụ:</span> 5';
-                            html += '</div>';
-
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span>Giao dịch:</span> 19,878';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '</div>';
-
-                            html += '<div class="item_buy_list_more">';
-                            html += '<div class="row">';
-
-                            html += '<a href="/dich-vu/' + data.slug + '" class="col-12">';
-                            html += '<div class="item_buy_list_view">';
-                            html += 'XEM TẤT CẢ';
-                            html += '</div>';
-                            html += '</a>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                        });
-                        $('#categoryservice_data').html('');
-                        $('#categoryservice_data').html(html);
-                    }else {
-                        data.data.forEach(function (data) {
-                            html += '<div class="col-6 col-sm-6 col-lg-3">';
-                            html += '<div class="item_buy_list_in">';
-                            html += '<div class="item_buy_list_img">';
-                            html += '<a href="/dich-vu/' + data.slug + '">';
-                            html += '<img class="item_buy_list_img-main" src="'+media+data.image+'" alt="">';
-                            html += '</a>';
-                            html += '</div>';
-
-                            html += '<div class="item_buy_list_info">';
-                            html += '<div class="row">';
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span style="font-weight: bold;color: #f7b03c;font-size: 16px;">';
-                            // html += 'DANH MỤC ';
-                            html += data.title;
-                            html += '</span>';
-                            html += '</div>';
-
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span>Hỗ trợ dịch vụ:</span> 5';
-                            html += '</div>';
-
-                            html += '<div class="col-12 item_buy_list_info_in">';
-                            html += '<span>Giao dịch:</span> 19,878';
-                            html += '</div>';
-
-                            html += '</div>';
-                            html += '</div>';
-
-                            html += '<div class="item_buy_list_more">';
-                            html += '<div class="row">';
-
-                            html += '<a href="/dich-vu/' + data.slug + '" class="col-12">';
-                            html += '<div class="item_buy_list_view">';
-                            html += 'XEM TẤT CẢ';
-                            html += '</div>';
-                            html += '</a>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                            html += '</div>';
-                        });
-                        $('#categoryservice_data').append(html);
-                    }
-                    not_loaded = true;
-                }
-
-                if ((data.data == '' || data.data == null) && is_over == false){
-
-                    var htmld = '';
-                    htmld += '<div class="row pb-3">';
-                    htmld += '<div class="col-md-12 text-center">'
-                    htmld += '<span style="color: #3f444a;font-size: 16px;">Dữ liệu cần tìm không tồn tại vui lòng thử lại.</span>';
-                    htmld += '</div>';
-                    htmld += '</div>';
-                    $('#categoryservice_data').html('');
-                    $('#categoryservice_data').html(htmld);
-                }
+                $("#getshowservice_data").empty().html('');
+                $("#getshowservice_data").empty().html(data);
             },
             error: function (data) {
 
@@ -162,59 +44,34 @@ $(document).ready(function(){
         });
     }
 
-    $('.btn-category-service').click(function (e) {
+    $(document).on('submit', '.form_get_show_service', function(e){
         e.preventDefault();
-        var querry = $('.input-news').val();
-        if (querry == '' || querry == undefined || querry == null){
-            return false;
+
+        var title = $('.title').val();
+
+        if (title == null || title == undefined || title == ''){
+            $('.title_data').val('');
+        }else {
+            $('.title_data').val(title);
         }
 
-        $('#append-service').val(0);
-        append = $('#append-service').val();
-        is_over = false;
-        $('#hidden_page_service').val(1);
-        page = $('#hidden_page_service').val();
+        var title_data = $('.title_data').val();
 
-        loadDataService(page,querry,append);
-    })
+        var page = $('#hidden_page_service__show').val();
 
-    $('.btn-category-service-mobile').click(function (e) {
-        e.preventDefault();
-        var querry = $('.input-news-mobile').val();
-        if (querry == '' || querry == undefined || querry == null){
-            return false;
-        }
+        loadDataService(page,title_data)
 
-        $('#append-service').val(0);
-        append = $('#append-service').val();
-        is_over = false;
-        $('#hidden_page_service').val(1);
-        page = $('#hidden_page_service').val();
+    });
 
-        loadDataService(page,querry,append);
-    })
+    $('body').on('click','.btn-all',function(e){
 
-    $('.btn-tatca').click(function (e) {
-        e.preventDefault();
-        $('#append-service').val(0);
-        append = $('#append-service').val();
-        is_over = false;
-        $('#hidden_page_service').val(1);
-        page = $('#hidden_page_service').val();
-        $('.input-news').val('');
-        var querry = $('.input-news').val();
-        loadDataService(page,querry,append);
-    })
+        $('.title_data').val('');
 
-    $('.btn-tatca-mobile').click(function (e) {
-        e.preventDefault();
-        $('#append-service').val(0);
-        append = $('#append-service').val();
-        is_over = false;
-        $('#hidden_page_service').val(1);
-        page = $('#hidden_page_service').val();
-        $('.input-news-mobile').val('');
-        var querry = $('.input-news-mobile').val();
-        loadDataService(page,querry,append);
-    })
+        var title_data = $('.title_data').val();
+
+        var page = $('#hidden_page_service__show').val();
+
+        loadDataService(page,title_data)
+
+    });
 })
