@@ -24,7 +24,7 @@
                         <li class="c-font-dark">
                             <table class="table table-striped">
                                 <tbody><tr>
-                                    <th colspan="2">Thông tin tài khoản #{{ encodeItemID($data->id) }}</th>
+                                    <th colspan="2">Thông tin tài khoản #{{ $data->randId }}</th>
                                 </tr>
                                 </tbody><tbody>
                                 <tr>
