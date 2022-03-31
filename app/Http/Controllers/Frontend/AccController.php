@@ -68,8 +68,8 @@ class AccController extends Controller
                     $val['page'] = $page;
 
                     if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
-                        $checkid = decodeItemID($request->id_data);
-                        $val['id'] = $checkid;
+//                        $checkid = decodeItemID($request->id_data);
+                        $val['id'] = $request->id_data;
                     }
 
                     if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
@@ -138,7 +138,7 @@ class AccController extends Controller
                 }
             }
         }elseif ($slug_category == 'acc'){
-            $slug = decodeItemID($slug);
+//            $slug = decodeItemID($slug);
 
             $val['data'] = 'acc_detail';
             $val['id'] = $slug;
@@ -191,7 +191,7 @@ class AccController extends Controller
 
     public function getShowCategoryData(Request $request,$slug_category,$slug){
         if ($request->ajax()){
-            $slug = decodeItemID($slug);
+//            $slug = decodeItemID($slug);
             $id = $slug;
 
             $url = '/acc';
@@ -263,7 +263,7 @@ class AccController extends Controller
     public function postBuyAccount(Request $request,$slug_category,$slug){
 
         if (AuthCustom::check()) {
-            $slug = decodeItemID($slug);
+//            $slug = decodeItemID($slug);
             $url = '/acc';
             $method = "GET";
             $val = array();
@@ -342,8 +342,8 @@ class AccController extends Controller
                 $val['user_id'] = AuthCustom::user()->id;
 
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $checkid = decodeItemID($request->serial);
-                    $val['id'] = $checkid;
+//                    $checkid = decodeItemID($request->serial);
+                    $val['id'] = $request->serial;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {

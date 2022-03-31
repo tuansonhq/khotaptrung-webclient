@@ -28,12 +28,12 @@
 {{--                </div>--}}
 {{--            </div>--}}
             <div class="item_buy_form">
-                <form class="form_category_service">
+                <form class="form_get_show_service">
                     <div class="row">
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <span class="input-group-addon">Tìm kiếm</span>
-                                <input type="text" class="form-control input-news" placeholder="Tìm kiếm">
+                                <input type="text" name="title" class="form-control title" placeholder="Tìm kiếm">
                             </div>
                         </div>
                         <div class="col-3 item_buy_form_search">
@@ -83,14 +83,15 @@
                 </div>
             </div>
 
-            <div class="item_buy_list row" id="categoryservice_data">
-
+            <div class="item_buy_list row" id="getshowservice_data">
+                @include('frontend.pages.service.function.__get__show__data')
             </div>
 
         </div>
     </div>
-    <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
-    <input type="hidden" name="service" id="append-service" value="0" />
+    <input type="hidden" name="hidden_page" id="hidden_page_service__show" value="1" />
+    <input type="hidden" name="title_data" class="title_data" value="" />
+
     <script src="/assets/frontend/js/service/service.js"></script>
 
 @endsection

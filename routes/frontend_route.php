@@ -72,26 +72,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
 
-
-
-
-
-
-
-
-        Route::get('/dich-vu', function ()
-        {
-            return view('frontend.pages.regist');
-        });
         Route::get('/tin-tuc', [ArticleController::class , "index"]);
         Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
         Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
         Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
         //dichj vụ
-        Route::get('/dich-vu', [ServiceController::class , "getServiceCategory"]);
-        Route::get('/dich-vu/data', [ServiceController::class , "getServiceCategoryData"]);
-        Route::get('/dich-vu/{slug}', [ServiceController::class , "showServiceCategory"]);
-        Route::get('/dich-vu/{slug}/data', [ServiceController::class , "showServiceCategoryData"]);
+
+        Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+
         //Danh muc game
         Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
         Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);

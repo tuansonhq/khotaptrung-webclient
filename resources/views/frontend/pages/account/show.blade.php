@@ -70,7 +70,7 @@
                                             <span class="gallery__01__span">Mã số:</span>
                                         </div>
                                         <div class="col-md-8 col-8 pl-0">
-                                            <span class="gallery__01__span">#{{ encodeItemID($data->id) }}</span>
+                                            <span class="gallery__01__span">#{{ $data->randId }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                             <div class="col-6 col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
-                                    <a href="/acc/{{ encodeItemID($datav2->id) }}">
+                                    <a href="/acc/{{ $data->randId }}">
                                         @if(isset($datav2->image))
                                             <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
                                         @else
@@ -250,7 +250,7 @@
                                         @else
                                         <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
                                         @endif
-                                        <span>MS: {{ encodeItemID($datav2->id) }} </span>
+                                        <span>MS: {{ $datav2->randId }} </span>
                                     </a>
                                 </div>
                                 <div class="item_buy_list_description">
@@ -263,7 +263,7 @@
                                         ?>
                                         @if(isset($datav2->groups))
                                             <?php
-                                            $att_valuesv2 = $datav2->groups;
+                                                $att_valuesv2 = $datav2->groups;
                                             ?>
                                             @foreach($att_valuesv2 as $att_valuev2)
                                                 @if($att_valuev2->module == 'acc_label')
@@ -315,7 +315,7 @@
                                             </div>
 
                                         </div>
-                                        <a href="/acc/{{ encodeItemID($datav2->id) }}" class="col-12">
+                                        <a href="/acc/{{ $datav2->randId }}" class="col-12">
                                             <div class="item_buy_list_view">
                                                 Chi tiết
                                             </div>
