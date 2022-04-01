@@ -91,7 +91,7 @@
 
                         @include('frontend.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
 
-                        <div class="col-12 item_buy_form_search">
+                        <div class="col-12 item_buy_form_search pt-3">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-group">
@@ -112,7 +112,7 @@
 {{--                                                    <option value="published_at">Ngày Mua</option>--}}
                                                     <option value="created_at_start">Mới nhất</option>
                                                     <option value="created_at_end">Cũ nhất</option>
-                                                    <option value="">Tất cả</option>
+{{--                                                    <option value="">Tất cả</option>--}}
                                                 </select>
                                             </div>
                                         </div>
@@ -214,7 +214,7 @@
                                                             <option value="price_end">Giá tiền từ cao đến thấp</option>
                                                             <option value="created_at_start">Mới nhất</option>
                                                             <option value="created_at_end">Cũ nhất</option>
-                                                            <option value="">Tất cả</option>
+{{--                                                            <option value="">Tất cả</option>--}}
                                                         </select>
                                                     </div>
                                                 </div>

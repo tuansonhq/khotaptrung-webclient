@@ -19,8 +19,8 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
-
-        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
+        var sort_by_data = $('.sort_by_data').val();
+        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data,sort_by_data)
     });
 
     $(document).on('submit', '.form-charge__accountls', function(e){
@@ -76,10 +76,10 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
-
+        var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
+        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
 
@@ -98,14 +98,30 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
 
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data)
+        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
 
-    function loadDataAccountList(page,serial,key,price,status,started_at,ended_at) {
+    $('body').on('change','.sort_by',function(e){
+
+        var serial_data = $('.serial_data').val();
+        var key_data = $('.key_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data,sort_by_data)
+
+    });
+
+    function loadDataAccountList(page,serial,key,price,status,started_at,ended_at,sort_by_data) {
 
         request = $.ajax({
             type: 'GET',
@@ -118,6 +134,7 @@ $(document).ready(function(){
                 status:status,
                 started_at:started_at,
                 ended_at:ended_at,
+                sort_by_data:sort_by_data,
             },
             beforeSend: function (xhr) {
 
