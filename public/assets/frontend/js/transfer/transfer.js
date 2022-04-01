@@ -1,47 +1,7 @@
 $(document).ready(function(){
 
     // get profile
-    $(document).ready(function(){
-        const csrf_token = $('meta[name="csrf-token"]').attr('content');
-        const token =  $('meta[name="jwt"]').attr('content');
-        function getInfo(){
-            const url = '/profile';
-            $.ajax({
-                type: "GET",
-                url: url,
-                cache:false,
-                data: {
-                    _token:csrf_token,
-                    jwt:token
-                },
-                beforeSend: function (xhr) {
 
-                },
-                success: function (data) {
-
-                    if(data.status === "LOGIN"){
-                        window.location.href = '/logout';
-                        // method = method || 'post';
-                        return;
-                    }
-                    if(data.status === "ERROR"){
-                        alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
-                    }
-                    if(data.status == true){
-                        $('#transfer_user_name').html('<input type="text" class="form-control" name="user_name" placeholder="" value="'+data.info.username+ '" readonly>')
-                    }
-                },
-                error: function (data) {
-                    alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-                    return;
-                },
-                complete: function (data) {
-
-                }
-            });
-        }
-        getInfo();
-    });
     // get tele
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
@@ -160,14 +120,25 @@ $(document).ready(function(){
                     formSubmit.remove();
                 }
                 else{
-                    alert(data);
-                    btnSubmit.text('Xác nhận');
-                    btnSubmit.prop('disabled', false);
+                    swal({
+                        title: "Có lỗi xảy ra !",
+                        text: data.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
                 }
             },
             error: function (data) {
-                // console.log(data.responseJSON.errors[1])
-                alert('Điền đúng mã capcha');
+                swal({
+                    title: "Có lỗi xảy ra !",
+                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                    icon: "error",
+                    buttons: {
+                        cancel: "Đóng",
+                    },
+                })
                 btnSubmit.text('Xác nhận');
                 btnSubmit.prop('disabled', false);
             },
