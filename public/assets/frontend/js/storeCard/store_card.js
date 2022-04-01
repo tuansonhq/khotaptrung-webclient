@@ -209,6 +209,30 @@ $(document).ready(function(){
                             icon: "success",
                         })
                         $('#success_storecard').modal("show");
+                        let html = '';
+                        if(data.data.length > 0){
+                            $.each(data.data,function(key,value){
+                                html+='<div class="col-md-4 p-2">'
+                                html+='<div class="alert alert-info">'
+                                html+='<p>Mã thẻ'+key+' </p>'
+                                html+='<div class="success_storecard_pin">'
+                                html+='<p>Mã thẻ <br>'
+                                html+='<span>'+value.pin+'</span>'
+                                html+='</p>'
+                                html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
+                                html+='</div>'
+                                html+='<div class="success_storecard_serial">'
+                                html+='<p>Serial  <br>'
+                                html+='<span>'+value.serial+'</span>'
+                                html+='</p>'
+                                html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
+                                html+='</div>'
+                                html+='</div>'
+                                html+='</div>'
+
+                            });
+                        }
+                        $('.success_storecard').html(html);
                     }
                     else if(data.status == 401){
                         window.location.href = '/login';
