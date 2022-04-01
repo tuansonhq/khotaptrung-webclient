@@ -159,8 +159,7 @@
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
-                                @dd($att_value)
-                                @if(isset($att_value->module) &&$att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
                                             <div class="col-md-12 gallery__01__row">
