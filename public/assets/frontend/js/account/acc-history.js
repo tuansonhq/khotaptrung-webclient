@@ -114,7 +114,11 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
+        
+        var sort_by = $('.sort_by').val();
+        $('.sort_by_data').val(sort_by);
         var sort_by_data = $('.sort_by_data').val();
+
         var page = $('#hidden_page_service').val();
 
         loadDataAccountList(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data,sort_by_data)
