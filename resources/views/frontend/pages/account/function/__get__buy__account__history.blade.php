@@ -39,7 +39,7 @@
                                 @elseif($item->status == 2)
                                     <span class="badge badge-warning">Chờ xử lý</span>
                                 @elseif($item->status == 3)
-                                    <span class="badge badge-secondary">Đang check thông tin</span>
+                                    <span class="badge badge-warning">Đang check thông tin</span>
                                 @elseif($item->status == 4)
                                     <span class="badge badge-danger">Sai thông tin</span>
                                 @elseif($item->status == 5)
