@@ -39,7 +39,8 @@
 
 {{--            Tính toán  --}}
 
-            <form method="POST" action="https://nick.vn/dich-vu/1801/purchase" accept-charset="UTF-8" class="" enctype="multipart/form-data"><input name="_token" type="hidden" value="X8YsQD4YEObNmCLktdimefYpYlAMxkxgV2KwMkYY">
+            <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="container detail-service">
                     <div class="row">
                         <div class="col-md-7" style="margin-bottom:20px;">
@@ -518,24 +519,6 @@
         <!-- END: PAGE CONTENT -->
     </div>
 
-    <div class="modal fade" id="noticeModal" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif"
-                                                                style="width: 50px;height: 50px;display: none"></div>
-            <div class="modal-content">
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif"
-                                                                style="width: 50px;height: 50px;display: none"></div>
-            <div class="modal-content">
-            </div>
-        </div>
-    </div>
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <link rel="stylesheet" href="/assets/frontend/css/service.css">
@@ -753,7 +736,6 @@
 
             var container = $('.m-datatable__body').html('');
 
-
             if (data.server_mode == 1 && data.server_price == 1) {
 
                 var s_price = data["price" + server];
@@ -762,7 +744,6 @@
             else {
                 var s_price = data["price"];
             }
-
 
             for (var i = 0; i < data.name.length; i++) {
 
@@ -788,6 +769,7 @@
                     $(temp).appendTo(container);
                 }
             }
+
             UpdateTotal();
         }
 

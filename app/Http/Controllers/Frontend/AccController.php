@@ -265,11 +265,12 @@ class AccController extends Controller
         if (AuthCustom::check()) {
 //            $slug = decodeItemID($slug);
             $url = '/acc';
-            $method = "GET";
+            $method = "POST";
             $val = array();
             $val['id'] = $slug;
             $val['data'] = 'buy_acc';
             $val['user_id'] = AuthCustom::user()->id;
+
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
