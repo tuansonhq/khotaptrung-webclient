@@ -142,6 +142,7 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
 });
 
 View::composer('frontend.widget.__nap_the', function ($view) {
+    return $view;
     try{
         $url = '/deposit-auto/get-telecom';
         $method = "GET";

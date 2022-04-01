@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="item_play_dif_slide_description">
                                             <div class="countime"> </div>
-                                            <p>Đã chơi: {{$item->order_gate_count}}</p>
+                                            <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
                                             <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                             <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                         </div>

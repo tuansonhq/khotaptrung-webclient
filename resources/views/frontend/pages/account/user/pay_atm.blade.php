@@ -1,5 +1,11 @@
 @extends('frontend.layouts.master')
+@push('style')
+@endpush
+@push('js')
+    <script src="/assets/frontend/js/transfer/transfer.js"></script>
+@endpush
 @section('content')
+
 
     <div class="account">
 
@@ -40,7 +46,7 @@
 
                                     </label>
                                     <div class="col-md-6">
-                                        <div class="input-group" style="width: 100%" id="transfer_user_name">
+                                        <div class="input-group" style="width: 100%" id="username">
                                             <input type="text" class="form-control" value=""  readonly>
                                         </div>
                                     </div>
@@ -125,7 +131,8 @@
                                         <th>Số tài khoản</th>
                                         <th>Số tiền</th>
                                         <th>Thực nhận</th>
-                                        <th>Trạng thái</th>
+                                        <th>Tr
+                                        </th>
                                     </tr>
 
                                     </thead>

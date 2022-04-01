@@ -193,7 +193,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                     ->name('postTranferBank');
 
 
-                //            mua thẻ
+
 //            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
 //                ->name('postStoreCard');
 //            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
