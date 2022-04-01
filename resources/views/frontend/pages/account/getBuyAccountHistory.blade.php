@@ -89,8 +89,8 @@
                                                         <select type="text" name="sort_by" class="form-control sort_by">
                                                             <option value="">Chọn cách sắp xếp</option>
                                                             <option value="random">Ngẫu nhiên</option>
-                                                            <option value="price_start">Giá tiền từ thấp đến cao</option>
-                                                            <option value="price_end">Giá tiền từ cao đến thấp</option>
+                                                            <option value="price_start">Giá tiền từ cao đến thấp</option>
+                                                            <option value="price_end">Giá tiền từ thấp đến cao</option>
                                                             <option value="published_at">Ngày Mua</option>
                                                             <option value="created_at_start">Mới nhất</option>
                                                             <option value="created_at_end">Cũ nhất</option>
