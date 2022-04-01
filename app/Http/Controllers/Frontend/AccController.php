@@ -187,7 +187,8 @@ class AccController extends Controller
                 $valslider = array();
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
-
+                $valslider['limit'] = 12;
+                
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
                 $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
