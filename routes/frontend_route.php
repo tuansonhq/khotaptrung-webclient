@@ -79,14 +79,12 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
                     ->name('getBuyServiceHistoryData');
 
-                Route::post('/dich-vu/{id}/purchase', [\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase'])
-                    ->name('getBuyServiceHistoryData');
-
             });
         });
         // Route không cần Auth load dữ liệu không cache
         Route::group(['middleware' => ['doNotCacheResponse']], function (){
             Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+
 
             Route::get('/tin-tuc', [ArticleController::class , "index"]);
             Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
@@ -101,99 +99,100 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
             Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
             Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
+        });
 
-            //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
-            Route::get('/rut-vat-pham', function ()
-            {
-                return view('frontend.pages.account.user.rutvatpham');
-            });
+        //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
+        Route::get('/rut-vat-pham', function ()
+        {
+            return view('frontend.pages.account.user.rutvatpham');
+        });
 
-            Route::get('/quay-ngay', function ()
-            {
-                return view('frontend.pages.item_spin');
-            });
+        Route::get('/quay-ngay', function ()
+        {
+            return view('frontend.pages.item_spin');
+        });
 
-            Route::get('/choi-ngay', function ()
-            {
-                return view('frontend.pages.item_play');
-            });
+        Route::get('/choi-ngay', function ()
+        {
+            return view('frontend.pages.item_play');
+        });
 
-            Route::get('/mua-ngay', function ()
-            {
-                return view('frontend.pages.item_buy');
-            });
-            Route::get('/mua-ngay/chi-tiet', function ()
-            {
-                return view('frontend.pages.item_buy_detail');
-            });
-            Route::get('/tai-khoan-da-mua', function ()
-            {
-                return view('frontend.pages.account.user.account_buy');
-            });
-            Route::get('/tai-khoan-tra-gop', function ()
-            {
-                return view('frontend.pages.account.user.account_installment');
-            });
-            Route::get('/lich-su-quay-thuong', function ()
-            {
-                return view('frontend.pages.account.user.spin_history');
-            });
+        Route::get('/mua-ngay', function ()
+        {
+            return view('frontend.pages.item_buy');
+        });
+        Route::get('/mua-ngay/chi-tiet', function ()
+        {
+            return view('frontend.pages.item_buy_detail');
+        });
+        Route::get('/tai-khoan-da-mua', function ()
+        {
+            return view('frontend.pages.account.user.account_buy');
+        });
+        Route::get('/tai-khoan-tra-gop', function ()
+        {
+            return view('frontend.pages.account.user.account_installment');
+        });
+        Route::get('/lich-su-quay-thuong', function ()
+        {
+            return view('frontend.pages.account.user.spin_history');
+        });
 
-            Route::get('/gieo-que', function ()
-            {
-                return view('frontend.pages.account.user.gieoque');
-            });
-            //đăng nhập, đăng xuất, đăng ký
-            Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
-                ->name('login');
-            Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-            Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
-                ->name('loginApi');
-            Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                ->name('loginfacebook');
-            Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
-                ->name('register');
-            Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-            Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-                ->name('changePassword');
-            Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-                ->name('changePasswordApi');
-            //capcha
-            Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
+        Route::get('/gieo-que', function ()
+        {
+            return view('frontend.pages.account.user.gieoque');
+        });
+        //đăng nhập, đăng xuất, đăng ký
+        Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
+            ->name('login');
+        Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+        Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+            ->name('loginApi');
+        Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+            ->name('loginfacebook');
+        Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
+            ->name('register');
+        Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
+        Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+            ->name('changePassword');
+        Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+            ->name('changePasswordApi');
+        //capcha
+        Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
 
-            Route::get('/show', function ()
-            {
-                return view('frontend.pages.service.show');
-            });
+        Route::get('/show', function ()
+        {
+            return view('frontend.pages.service.show');
+        });
 
-            Route::group(array(
-                'middleware' => ['auth']
-            ) , function ()
-            {
+        Route::group(array(
+            'middleware' => ['auth']
+        ) , function ()
+        {
 
 
 
-                //nạp thẻ
+            //nạp thẻ
 //
 //            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
 //                ->name('getDepositAutoData');
-                Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
-                    ->name('postDeposit');
-                Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
-                    ->name('getAmountCharge');
-                //Nạp thẻ Atm
-                Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
-                    ->name('getBank');
+            Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
+                ->name('postDeposit');
+            Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
+                ->name('getAmountCharge');
+            //Nạp thẻ Atm
+            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
+                ->name('getBank');
 //            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
 //                ->name('getBankData');
-                Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
-                    ->name('postDepositBank');
-                Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-                Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
-                    ->name('postTranferBank');
+            Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
+                ->name('postDepositBank');
+            Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
+            Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
+                ->name('postTranferBank');
 
 
-
+            //            mua thẻ
 //            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
 //                ->name('postStoreCard');
 //            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
@@ -205,44 +204,45 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
 
-                //profile
-                Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                    ->name('index');
-                Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                    ->name('index');
+            //profile
+            Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                ->name('index');
+            Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
+                ->name('index');
 
 //account
 
 
-            });
+        });
 
-            Route::group(['middleware' => ['doNotCacheResponse']], function ()
-            {
-                //minigame
-                Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
-                    ->name('postRoll');
-                Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
-                    ->name('postBonus');
-                Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
-                    ->name('getLog');
-                Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
-                    ->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                    ->name('getIndex');
-                Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
-                    ->name('getWithdrawItem');
-                Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
-                    ->name('postWithdrawItem');
+        Route::group(['middleware' => ['doNotCacheResponse']], function ()
+        {
+            //minigame
+            Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
+                ->name('postRoll');
+            Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
+                ->name('postBonus');
+            Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
+                ->name('getLog');
+            Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
+                ->name('getLogAcc');
+            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                ->name('getIndex');
+            Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
+                ->name('getWithdrawItem');
+            Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
+                ->name('postWithdrawItem');
 
-
-            });
 
         });
+
+    });
 
 //    Route::group(['middleware' => ['auth_custom']], function (){
 //        Route::group(['middleware' => ['cacheResponse:300']], function (){
 //            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
 //            ->name('getDepositAuto');
 //        });
-    });
+//    });
 });
+
