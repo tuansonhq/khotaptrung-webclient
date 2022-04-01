@@ -37,9 +37,10 @@ Route::get('/session', function ()
 });
 Route::group(array('middleware' => ['verify_shop']) , function (){
     Route::post('/user/account_info', [UserController::class , "getInfo"]);
+    Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
     Route::group(['middleware' => ['cacheResponse:300']], function (){
         Route::get('/', [HomeController::class , "index"]);
-        Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
+
         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
         // lấy nhà mạng mua thẻ
         Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
@@ -51,9 +52,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
         Route::group(['middleware' => ['auth_custom']], function (){
+
             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-
+                //profile
+                Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                    ->name('index');
+                Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
+                    ->name('index');
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                 // route post mua thẻ
                 Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
@@ -204,11 +210,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
 
-            //profile
-            Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                ->name('index');
-            Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                ->name('index');
+
 
 //account
 
