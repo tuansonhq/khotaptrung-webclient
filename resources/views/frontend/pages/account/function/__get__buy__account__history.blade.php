@@ -8,6 +8,7 @@
                     <th>Game</th>
                     <th>Tài khoản</th>
                     <th>Trị giá</th>
+                    <th>Trạng thái</th>
                     <th>Thao tác</th>
                 </tr>
                 </thead>
@@ -15,6 +16,7 @@
 
                 @if(isset($data) && count($data) > 0)
                     @foreach ($data as $item)
+{{--                        @dd($item)--}}
                         <tr>
                             <td>{{ formatDateTime($item->created_at) }}</td>
                             <td>
@@ -33,7 +35,7 @@
                             </td>
                             <td>{{ $item->title }}</td>
                             <td>{{ formatPrice($item->price) }}</td>
-                            <td style="width: 20%">
+                            <td style="width: 20%;">
                                 @if($item->status == 1)
                                     <span class="badge badge-primary">Sẵn có</span>
                                 @elseif($item->status == 2)
@@ -45,9 +47,10 @@
                                 @elseif($item->status == 5)
                                     <span class="badge badge-danger">Đã xoá</span>
                                 @elseif($item->status == 0)
-                                    <span class="badge badge-success">thành công</span>
+                                    <span class="badge badge-success">Thành công</span>
                                 @endif
                             </td>
+                            <td><a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a></td>
                         </tr>
                     @endforeach
                 @else

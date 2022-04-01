@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
@@ -365,6 +366,15 @@ class AccController extends Controller
                 $val['limit'] = 12;
                 $val['user_id'] = AuthCustom::user()->id;
 
+                $chitiet_data = 0;
+                $id_data = null;
+                if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
+                    if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
+                        $chitiet_data = $request->chitiet_data;
+                        $id_data = $request->id_data;
+                    }
+
+                }
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
 //                    $checkid = decodeItemID($request->serial);
                     $val['id'] = $request->serial;
@@ -419,13 +429,35 @@ class AccController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
 
                     $data = $result_Api->data;
+                    $key = null;
+                    if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
+                        if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
+                            foreach ($data->data as $value){
+                                if ($value->id == $id_data){
+                                    $slug = $value->slug;
+                                    $key = Helpers::Decrypt($slug,config('module.acc.encrypt_key'));
+                                }
+                            }
+                        }
+                    }
 
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     }
 
-                    return view('frontend.pages.account.function.__get__buy__account__history')
-                        ->with('data', $data);
+                    $html = view('frontend.pages.account.function.__get__buy__account__history')
+                        ->with('data', $data)->render();
+
+                    return response()->json([
+                        "success"=> true,
+                        "html" => $html,
+                        "status" => 1,
+                        "data" => $data,
+                        "chitiet_data" => $chitiet_data,
+                        "id_data" => $id_data,
+                        "key" => $key
+                    ], 200);
+
                 } else {
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
@@ -433,6 +465,8 @@ class AccController extends Controller
 
             if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_category) && $result_Api_category->httpcode == 200){
                 $data = $result_Api->data;
+
+//                return $data;
                 $datacategory = $result_Api_category->data;
 
                 if (isEmpty($data->data)) {
