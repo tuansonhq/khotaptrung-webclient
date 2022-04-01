@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                         @endif
-{{--                        @dd($data)--}}
+                        @dd($data)
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
