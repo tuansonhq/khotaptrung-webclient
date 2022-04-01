@@ -66,6 +66,7 @@ class AccController extends Controller
                     $val['data'] = 'list_acc';
                     $val['cat_slug'] = $slug;
                     $val['page'] = $page;
+                    $val['limit'] = 12;
 
                     if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
 //                        $checkid = decodeItemID($request->id_data);
@@ -359,6 +360,7 @@ class AccController extends Controller
                 $val = array();
                 $val['page'] = $page;
                 $val['data'] = 'list_acc';
+                $val['limit'] = 12;
                 $val['user_id'] = AuthCustom::user()->id;
 
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {

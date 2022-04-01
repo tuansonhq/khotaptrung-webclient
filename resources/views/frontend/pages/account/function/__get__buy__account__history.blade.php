@@ -35,7 +35,7 @@
                             <td>{{ formatPrice($item->price) }}</td>
                             <td style="width: 20%">
                                 @if($item->status == 1)
-                                    Chưa bán
+                                    Sẵn có
                                 @elseif($item->status == 2)
                                     Chờ xử lý
                                 @elseif($item->status == 3)
@@ -45,7 +45,7 @@
                                 @elseif($item->status == 5)
                                     Đã xoá
                                 @elseif($item->status == 0)
-                                    Đã bán
+                                    thành công
                                 @endif
                             </td>
                         </tr>
