@@ -133,7 +133,26 @@
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
-                                @if($att_value->module == 'acc_label')
+                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+                                                        <span class="span__dangky">{{ $att_value->title }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
                                             <div class="col-md-12 gallery__01__row">
@@ -162,7 +181,7 @@
                                     @if(isset($att->childs))
                                         @foreach($att->childs as $child)
                                             @foreach($params as $key => $param)
-                                                @if($key == $child->id)
+                                                @if($key == $child->id && $child->is_slug_override == null)
                                                     <div class="col-md-12">
                                                         <div class="row gallery__03">
                                                             <div class="col-md-12 gallery__01__row">
@@ -180,6 +199,25 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                @endif
+                                                @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)
+                                                        <div class="col-md-12">
+                                                            <div class="row gallery__03">
+                                                                <div class="col-md-12 gallery__01__row">
+                                                                    <div class="row">
+                                                                        <div class="col-auto span__dangky__auto">
+                                                                            <i class="fas fa-angle-right"></i>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-4 pl-0">
+                                                                            <span class="span__dangky">{{ $child->title }}</span>
+                                                                        </div>
+                                                                        <div class="col-md-6 col-6 pl-0">
+                                                                            <span class="span__dangky">{{ $param }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 @endif
                                             @endforeach
                                         @endforeach
@@ -266,7 +304,7 @@
                                                 $att_valuesv2 = $datav2->groups;
                                             ?>
                                             @foreach($att_valuesv2 as $att_valuev2)
-                                                @if($att_valuev2->module == 'acc_label')
+                                                @if($att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
                                                     <?php
                                                     $index++;
                                                     ?>
@@ -274,6 +312,16 @@
                                                     <div class="col-6 item_buy_list_info_in">
                                                         {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>
                                                     </div>
+                                                    @endif
+                                                @endif
+                                                @if(\App\Library\AuthCustom::check() && $att_valuesv2->module == 'acc_label' && $att_valuesv2->is_slug_override != null)
+                                                    <?php
+                                                    $index++;
+                                                    ?>
+                                                    @if($index < 5)
+                                                        <div class="col-6 item_buy_list_info_in">
+                                                            {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>
+                                                        </div>
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -286,7 +334,7 @@
                                                         @if(isset($att->childs))
                                                             @foreach($att->childs as $child)
                                                                 @foreach($paramsv2 as $key => $paramv2)
-                                                                    @if($key == $child->id)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
                                                                         <?php
                                                                         $index++;
                                                                         ?>
@@ -294,6 +342,16 @@
                                                                         <div class="col-6 item_buy_list_info_in">
                                                                             {{ $child->title }} : <b>{{ $paramv2 }}</b>
                                                                         </div>
+                                                                        @endif
+                                                                    @endif
+                                                                    @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)
+                                                                        <?php
+                                                                        $index++;
+                                                                        ?>
+                                                                        @if($index < 5)
+                                                                            <div class="col-6 item_buy_list_info_in">
+                                                                                {{ $child->title }} : <b>{{ $paramv2 }}</b>
+                                                                            </div>
                                                                         @endif
                                                                     @endif
                                                                 @endforeach
