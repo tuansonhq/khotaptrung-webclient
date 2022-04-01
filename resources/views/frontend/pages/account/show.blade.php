@@ -97,7 +97,12 @@
                                                     <span class="gallery__02__span__02">THẺ CÀO</span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }}đ</span>
+                                                    {{--                                                    @dd(formatPrice($card_percent*$data->price/100))--}}
+                                                    @if(formatPrice($card_percent*$data->price/100) == '')
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($card_percent*$data->price/100))) }}đ</span>
+                                                    @else
+                                                        <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }}đ</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -114,7 +119,11 @@
                                                     <span class="gallery__02__span__02">ATM chỉ cần</span>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }}đ</span>
+                                                    @if(formatPrice($atm_percent*$data->price/100) == '')
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($atm_percent*$data->price/100))) }}đ</span>
+                                                    @else
+                                                        <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }}đ</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -124,8 +133,25 @@
                         </div>
                         @else
                             <div class="col-md-12 gallery__pt">
-                                <div class="row gallery__02" style="max-height: 60px;min-height: 60px">
-
+                                <div class="row gallery__02">
+                                    <div class="col-md-12 gallery__01__row">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-5 col-5">
+                                                <div class="row text-left">
+                                                    <div class="col-md-12">
+                                                        <span class="gallery__02__span__02">ATM</span>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        @if(formatPrice($data->price) == '')
+                                                            <span class="gallery__01__span__02">{{ round($data->price) }}đ</span>
+                                                        @else
+                                                            <span class="gallery__01__span__02">{{ formatPrice($data->price) }}đ</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endif

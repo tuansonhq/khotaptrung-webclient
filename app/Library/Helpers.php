@@ -11,8 +11,6 @@ class Helpers
             return '';
         }
 
-
-
         return str_replace(',','.',number_format($price));
     }
 
