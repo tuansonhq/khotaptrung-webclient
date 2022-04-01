@@ -46,6 +46,7 @@ class AccController extends Controller
 
                 $val['data'] = 'list_acc';
                 $val['cat_slug'] = $slug;
+                $val['limit'] = 12;
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
@@ -345,7 +346,7 @@ class AccController extends Controller
 
             $val['data'] = 'list_acc';
             $val['user_id'] = AuthCustom::user()->id;
-
+            $val['limit'] = 12;
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             $valcategory['data'] = 'category_list';
