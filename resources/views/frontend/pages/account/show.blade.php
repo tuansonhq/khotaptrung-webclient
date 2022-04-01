@@ -330,7 +330,7 @@
                                             <?php
                                                 $att_valuesv2 = $datav2->groups;
                                             ?>
-                                                @dd($att_valuesv2)
+{{--                                                @dd($att_valuesv2)--}}
                                             @foreach($att_valuesv2 as $att_valuev2)
 
                                                 @if(isset($att_valuev2->module) && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
@@ -343,7 +343,7 @@
                                                     </div>
                                                     @endif
                                                 @endif
-                                                @if(isset($att_valuev2->module) && \App\Library\AuthCustom::check() && $att_valuesv2->module == 'acc_label' && $att_valuesv2->is_slug_override != null)
+                                                @if(isset($att_valuev2->module) && \App\Library\AuthCustom::check() && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override != null)
                                                     <?php
                                                     $index++;
                                                     ?>
