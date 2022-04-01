@@ -94,8 +94,6 @@ class ServiceController extends Controller
 
     }
 
-
-
     public function getBuyServiceHistory(Request $request)
     {
         if (AuthCustom::check()) {
@@ -205,5 +203,16 @@ class ServiceController extends Controller
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
+    }
+
+    public function postPurchase(Request $request,$id){
+        $url = '/service/purchase';
+        $method = "POST";
+        $val = array();
+        $val['id'] = $id;
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+        return $result_Api;
     }
 }

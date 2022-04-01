@@ -79,6 +79,9 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
                 Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
                     ->name('getBuyServiceHistoryData');
 
+                Route::post('/dich-vu/{id}/purchase', [\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase'])
+                    ->name('getBuyServiceHistoryData');
+
             });
         });
         // Route không cần Auth load dữ liệu không cache
@@ -89,21 +92,21 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             // lấy mệnh giá trong mua thẻ
             Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                 ->name('getAmountStoreCard');
-
-            Route::get('/tin-tuc', [ArticleController::class , "index"]);
-            Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
-            Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
-            Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
-
-            Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
-            Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
-            Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
-            Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
-
-
-            Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-            Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
         });
+
+        Route::get('/tin-tuc', [ArticleController::class , "index"]);
+        Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
+        Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
+        Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+
+        Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
+        Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+        Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
+        Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
+
+
+        Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
+        Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
 
         //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
         Route::get('/rut-vat-pham', function ()
