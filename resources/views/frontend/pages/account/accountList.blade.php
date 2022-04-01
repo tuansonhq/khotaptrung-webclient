@@ -92,10 +92,37 @@
                         @include('frontend.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
 
                         <div class="col-12 item_buy_form_search">
-                            <div class="input-group">
-                                <button type="submit" class="btn">Tìm kiếm</button>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <button type="submit" class="btn">Tìm kiếm</button>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row justify-content-end">
+                                        <div class="col-auto">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Sắp xếp theo</span>
+                                                <select type="text" name="sort_by" class="form-control sort_by">
+                                                    <option value="">Chọn cách sắp xếp</option>
+                                                    <option value="random">Ngẫu nhiên</option>
+                                                    <option value="price_start">Giá tiền từ thấp đến cao</option>
+                                                    <option value="price_end">Giá tiền từ cao đến thấp</option>
+{{--                                                    <option value="published_at">Ngày Mua</option>--}}
+                                                    <option value="created_at_start">Mới nhất</option>
+                                                    <option value="created_at_end">Cũ nhất</option>
+                                                    <option value="">Tất cả</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+{{--                            <div class="input-group">--}}
+{{--                                <button type="submit" class="btn">Tìm kiếm</button>--}}
+{{--                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </form>
@@ -155,7 +182,7 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <span class="input-group-addon">Trạng thái</span>
-                                        <select name="status" type="text" name="status-mobile" class="form-control status-mobile">
+                                        <select type="text" name="status-mobile" class="form-control status-mobile">
                                             <option value="">Chọn trạng thái</option>
                                             <option value="1">Chưa bán</option>
                                             <option value="0">Đã bán</option>
@@ -168,10 +195,33 @@
                                 @include('frontend.pages.account.widget.account_load_attribute_to_filter_mobile',['dataAttribute'=>$dataAttribute])
 
                                 <div class="col-12 item_buy_form_search">
-                                    <div class="input-group">
-                                        <button type="submit" class="btn">Tìm kiếm</button>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-all-mobile">Tất cả</a>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <button type="submit" class="btn">Tìm kiếm</button>
+                                                <a href="javascript:void(0)" class="btn btn-danger btn-all-mobile">Tất cả</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Sắp xếp theo</span>
+                                                        <select type="text" name="sort_by_mobile" class="form-control sort_by_mobile">
+                                                            <option value="">Chọn cách sắp xếp</option>
+                                                            <option value="random">Ngẫu nhiên</option>
+                                                            <option value="price_start">Giá tiền từ thấp đến cao</option>
+                                                            <option value="price_end">Giá tiền từ cao đến thấp</option>
+                                                            <option value="created_at_start">Mới nhất</option>
+                                                            <option value="created_at_end">Cũ nhất</option>
+                                                            <option value="">Tất cả</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
@@ -197,6 +247,8 @@
     <input type="hidden" name="price_data" class="price_data" value="">
     <input type="hidden" name="select_data" class="select_data" value="">
     <input type="hidden" name="status_data" class="status_data" value="">
+    <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
+
     <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-dialog__account" role="document">
             <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>

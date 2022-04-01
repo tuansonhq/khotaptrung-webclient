@@ -17,12 +17,14 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
+        var sort_by_data = $('.sort_by_data').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
         // loadDataAccountList(page);
     });
 
-    function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data) {
+    function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
         let slug_category = $('.slug_category').val();
         let slug = $('.slug').val();
 
@@ -37,7 +39,8 @@ $(document).ready(function(){
                 title_data:title_data,
                 price_data:price_data,
                 status_data:status_data,
-                select_data:select_data
+                select_data:select_data,
+                sort_by_data:sort_by_data
             },
             beforeSend: function (xhr) {
 
@@ -106,10 +109,12 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+
 
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
 
     });
 
@@ -126,10 +131,10 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
-
+        var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
 
     });
 
@@ -184,10 +189,10 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
-
+        var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
 
     });
 
@@ -204,10 +209,46 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
-
+        var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+
+    });
+
+    $('body').on('click','.sort_by',function(e){
+
+
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
+
+        var sort_by = $('.sort_by').val();
+        $('.sort_by_data').val(sort_by);
+        var sort_by_data = $('.sort_by_data').val();
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+
+    });
+
+    $('body').on('click','.sort_by_mobile',function(e){
+
+
+        var id_data = $('.id_data').val();
+        var title_data = $('.title_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var select_data = $('.select_data').val();
+
+        var sort_by = $('.sort_by_mobile').val();
+        $('.sort_by_data').val(sort_by);
+        var sort_by_data = $('.sort_by_data').val();
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
 
     });
 })

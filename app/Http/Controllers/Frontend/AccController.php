@@ -98,6 +98,25 @@ class AccController extends Controller
                         $val['group_ids'] = $group_ids;
                     }
 
+                    if (isset($request->sort_by_data) || $request->sort_by_data != '' || $request->sort_by_data != null){
+                        $sort_by = $request->sort_by_data;
+                        if ($sort_by == "random"){
+                            $val['sort'] = 'random';
+                        }elseif ($sort_by == "price_start"){
+                            $val['sort_by'] = 'price';
+                            $val['sort'] = 'desc';
+                        }elseif ($sort_by == "price_end"){
+                            $val['sort_by'] = 'price';
+                            $val['sort'] = 'asc';
+                        }elseif ($sort_by == "created_at_start"){
+                            $val['sort_by'] = 'created_at';
+                            $val['sort'] = 'desc';
+                        }elseif ($sort_by == "created_at_end"){
+                            $val['sort_by'] = 'created_at';
+                            $val['sort'] = 'asc';
+                        }
+                    }
+
                     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
                     if(isset($result_Api) && $result_Api->httpcode == 200){
@@ -402,4 +421,5 @@ class AccController extends Controller
         }
 
     }
+
 }
