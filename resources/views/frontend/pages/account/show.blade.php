@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                         @endif
-                        @dd($data)
+
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
@@ -325,10 +325,12 @@
                                         <?php
                                             $index = 0;
                                         ?>
+
                                         @if(isset($datav2->groups))
                                             <?php
                                                 $att_valuesv2 = $datav2->groups;
                                             ?>
+                                                @dd($att_valuesv2)
                                             @foreach($att_valuesv2 as $att_valuev2)
 
                                                 @if(isset($att_valuev2->module) && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
