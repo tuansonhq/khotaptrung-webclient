@@ -159,7 +159,7 @@
                         @if(isset($data->groups))
                             <?php $att_values = $data->groups ?>
                             @foreach($att_values as $att_value)
-                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                @if(isset($att_value->module) &&$att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
                                             <div class="col-md-12 gallery__01__row">
@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                 @endif
-                                @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)
+                                @if(isset($att_value->module) && \App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
                                             <div class="col-md-12 gallery__01__row">
@@ -330,7 +330,7 @@
                                                 $att_valuesv2 = $datav2->groups;
                                             ?>
                                             @foreach($att_valuesv2 as $att_valuev2)
-                                                @if($att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
+                                                @if(isset($att_valuev2->module) && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
                                                     <?php
                                                     $index++;
                                                     ?>
@@ -340,7 +340,7 @@
                                                     </div>
                                                     @endif
                                                 @endif
-                                                @if(\App\Library\AuthCustom::check() && $att_valuesv2->module == 'acc_label' && $att_valuesv2->is_slug_override != null)
+                                                @if(isset($att_valuev2->module) && \App\Library\AuthCustom::check() && $att_valuesv2->module == 'acc_label' && $att_valuesv2->is_slug_override != null)
                                                     <?php
                                                     $index++;
                                                     ?>
