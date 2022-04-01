@@ -52,14 +52,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
         Route::group(['middleware' => ['auth_custom']], function (){
-
+            Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                ->name('index');
+            Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
+                ->name('index');
             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 //profile
-                Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                    ->name('index');
-                Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                    ->name('index');
+
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                 // route post mua thẻ
                 Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
