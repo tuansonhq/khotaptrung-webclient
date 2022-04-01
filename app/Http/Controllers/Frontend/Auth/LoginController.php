@@ -14,7 +14,13 @@ use Session;
 class LoginController extends Controller
 {
     public function login(){
-        return view('frontend.pages.log_in');
+        $jwt = Session::get('jwt');
+        if(empty($jwt)){
+            return view('frontend.pages.log_in');
+        }else{
+            return redirect('/');
+        }
+
     }
     public function postLogin(Request $request){
         $this->validate($request,[

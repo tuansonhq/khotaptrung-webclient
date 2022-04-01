@@ -1,6 +1,4 @@
-@push('js')
-    <script src="/assets/frontend/js/charge/charge.js"></script>
-@endpush
+
 <div class="row justify-content-center" id="loading-data">
     <div class="loading"></div>
 </div>

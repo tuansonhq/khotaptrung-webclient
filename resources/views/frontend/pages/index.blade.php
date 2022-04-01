@@ -2,6 +2,12 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@push('style')
+@endpush
+@push('js')
+    <script src="/assets/frontend/js/top_charge/top_charge.js"></script>
+    <script src="/assets/frontend/js/charge/charge.js"></script>
+@endpush
 {{--@section('content')--}}
 @section('content')
     <div class="layout-page">

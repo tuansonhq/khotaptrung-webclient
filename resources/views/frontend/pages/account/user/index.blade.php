@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@push('js')
+    <script src="/assets/frontend/js/profile.js"></script>
+@endpush
 @section('content')
 
 <div class="account">
@@ -48,58 +51,5 @@
         </div>
     </div>
     <script>
-        $(document).ready(function(){
-            const csrf_token = $('meta[name="csrf-token"]').attr('content');
-            const token =  $('meta[name="jwt"]').attr('content');
-            function getInfo(){
-                const url = '/profile';
-                // if(token == 'undefined' || token == null || token =='' || token == undefined){
-                //     $('#info .loading').remove();
-                //     $('#logout .loading').remove();
-                //     $('#info').attr('href','/login')
-                //     $('#logout').attr('href','/register')
-                //     $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
-                //     $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
-                //     return;
-                // }
-                $.ajax({
-                    type: "GET",
-                    url: url,
-                    cache:false,
-                    data: {
-                        _token:csrf_token,
-                        jwt:token
-                    },
-                    beforeSend: function (xhr) {
 
-                    },
-                    success: function (data) {
-                        console.log(111)
-                        console.log(data)
-                        if(data.status === "LOGIN"){
-                            window.location.href = '/logout';
-                            // method = method || 'post';
-                            return;
-                        }
-                        if(data.status === "ERROR"){
-                            alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
-                        }
-                        if(data.status == true){
-                            $('#info_id').html('<span>'+data.info.id+'</span>')
-                            $('#info_name').html('<span>'+data.info.username+'</span>')
-                            $('#info_balance').html('<span>'+data.info.balance+'</span>')
-                            $('#info_balance').html('<span><i class="text-danger">'+data.info.balance+'</i></span>')
-                        }
-                    },
-                    error: function (data) {
-                        alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-                        return;
-                    },
-                    complete: function (data) {
-
-                    }
-                });
-            }
-            getInfo();
-        });
 @endsection
