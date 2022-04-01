@@ -9,7 +9,7 @@ class JwtTokenReplacer implements Replacer
 {
     protected string $replacementString = '/<meta name="description" content="(.*)">/';
 
-    
+
     public function prepareResponseToCache(Response $response): void
     {
         if (! $response->getContent()) {
@@ -20,6 +20,15 @@ class JwtTokenReplacer implements Replacer
         //     $this->replacementString,
         //     $response->getContent()
         // ));
+
+        $content = str_replace(
+            '<meta name="jwt" content="jwt" />',
+            '<meta name="jwt" content="'.session()->get('jwt').'" />',
+            $response->getContent()
+        );
+
+
+        $response->setContent($content);
     }
 
     public function replaceInCachedResponse(Response $response): void
@@ -36,6 +45,6 @@ class JwtTokenReplacer implements Replacer
         }
         $view = $dom->saveHTML();
         $response->setContent($view);
-        
+
     }
 }
