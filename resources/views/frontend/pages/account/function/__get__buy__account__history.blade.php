@@ -34,7 +34,9 @@
                             <td>{{ $item->title }}</td>
                             <td>{{ formatPrice($item->price) }}</td>
                             <td style="width: 20%">
-                                @if($item->status == 2)
+                                @if($item->status == 1)
+                                    Sẵn có
+                                @elseif($item->status == 2)
                                     Chờ xử lý
                                 @elseif($item->status == 3)
                                     Đang check thông tin
