@@ -26,13 +26,7 @@ use \Illuminate\Support\Facades\Session;
 Route::get('/clear-cache', function ()
 {
 
-    \Artisan::call('cache:clear');
-    \Artisan::call('config:cache');
-    \Artisan::call('view:clear');
-    \Artisan::call('route:clear');
 
-    Cache::flush();
-    return json_encode(['status' => 1, 'message' => "Clear cache success"]);
 
 });
 
@@ -47,13 +41,19 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/', [HomeController::class , "index"]);
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
-
+        // lấy nhà mạng mua thẻ
+        Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+        // lấy mệnh giá trong mua thẻ
+        Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+            ->name('getAmountStoreCard');
         // ROUTE cần auth load dữ liệu không cache
+
+        Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+        Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
         Route::group(['middleware' => ['auth_custom']], function (){
             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
-                Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
+
                 Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                 // route post mua thẻ
                 Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
@@ -87,12 +87,6 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         // Route không cần Auth load dữ liệu không cache
         Route::group(['middleware' => ['doNotCacheResponse']], function (){
             Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-            // lấy nhà mạng mua thẻ
-            Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
-            // lấy mệnh giá trong mua thẻ
-            Route::get('/mua-the/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
-                ->name('getAmountStoreCard');
-        });
 
         Route::get('/tin-tuc', [ArticleController::class , "index"]);
         Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
@@ -200,14 +194,14 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
             //            mua thẻ
-            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
-                ->name('postStoreCard');
-            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
-                ->name('getStoreCard');
-            Route::get('/mua-the-api', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
-                ->name('getAmountStoreCard');
-            Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
-                ->name('getTelecomStoreCard');
+//            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
+//                ->name('postStoreCard');
+//            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
+//                ->name('getStoreCard');
+//            Route::get('/mua-the-api', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+//                ->name('getAmountStoreCard');
+//            Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
+//                ->name('getTelecomStoreCard');
 
 
 

@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    const csrf_token = $('meta[name="csrf-token"]').attr('content');
-    const token =  $('meta[name="jwt"]').attr('content');
+
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
