@@ -26,13 +26,7 @@ use \Illuminate\Support\Facades\Session;
 Route::get('/clear-cache', function ()
 {
 
-    \Artisan::call('cache:clear');
-    \Artisan::call('config:cache');
-    \Artisan::call('view:clear');
-    \Artisan::call('route:clear');
 
-    Cache::flush();
-    return json_encode(['status' => 1, 'message' => "Clear cache success"]);
 
 });
 
