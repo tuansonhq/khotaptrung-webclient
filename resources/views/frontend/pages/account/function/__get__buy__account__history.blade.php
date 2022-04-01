@@ -35,17 +35,17 @@
                             <td>{{ formatPrice($item->price) }}</td>
                             <td style="width: 20%">
                                 @if($item->status == 1)
-                                    Sẵn có
+                                    <span class="badge badge-primary">Sẵn có</span>
                                 @elseif($item->status == 2)
-                                    Chờ xử lý
+                                    <span class="badge badge-warning">Chờ xử lý</span>
                                 @elseif($item->status == 3)
-                                    Đang check thông tin
+                                    <span class="badge badge-secondary">Đang check thông tin</span>
                                 @elseif($item->status == 4)
-                                    Sai thông tin
+                                    <span class="badge badge-danger">Sai thông tin</span>
                                 @elseif($item->status == 5)
-                                    Đã xoá
+                                    <span class="badge badge-danger">Đã xoá</span>
                                 @elseif($item->status == 0)
-                                    thành công
+                                    <span class="badge badge-success">thành công</span>
                                 @endif
                             </td>
                         </tr>
