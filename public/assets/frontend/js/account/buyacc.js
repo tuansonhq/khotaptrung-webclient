@@ -54,8 +54,8 @@ $(document).ready(function () {
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     swal({
-                        title: "Thanh toán thành công?",
-                        text: "Đợi chút để QTV xác nhận nhé.",
+                        title: "Mua tài khoản thành công?",
+                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
                         type: "success",
                         confirmButtonText: "Về lịch sử đơn hàng!",
                         showCancelButton: true

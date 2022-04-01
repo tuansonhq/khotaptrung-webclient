@@ -28,6 +28,7 @@ return [
     ],
     'acc' => [
         'key'=>"charge",
+        'encrypt_key' => '2314ku',
         'status' => [
             1 => 'Chưa bán',
             0 => 'Đã bán',

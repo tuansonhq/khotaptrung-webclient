@@ -115,6 +115,93 @@
         </div>
     </div>
 
+    <div class="modal fade" id="taikhoandamua_password" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-dialog__account" role="document">
+            <div class="modal-content">
+{{--                <form method="POST" action="https://shopas.net/tran/acc/check-login" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data"><input name="_token" type="hidden" value="TkYiSW8lPp6mOiMTVAL5A0locI6Mt9FIUy574w57">--}}
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-weight: 600">Xác nhận mua tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal form__show__chitiet">
+{{--                        <div class="form-group m-t-10 row">--}}
+{{--                            <label class="col-md-3 control-label"><b>Tài khoản:</b></label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <input class="form-control c-square c-theme" type="text" placeholder="Tài khoản" readonly="" value="longtest">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        --}}
+{{--                        <div class="form-group m-t-10 row">--}}
+{{--                            <label class="col-md-3 control-label"><b>Mật khẩu:</b></label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="input-group c-square">--}}
+{{--                                    <input type="text" style="color: transparent" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="longtest" >--}}
+{{--                                    <span class="input-group-btn">--}}
+{{--                                        <button class="btn btn-default c-font-dark copy_acc" type="button" id="getpass">Copy</button>--}}
+{{--                                    </span>--}}
+{{--                                </div>--}}
+{{--                                <span class="help-block">Click vào nút copy để sao chép mật khẩu hoặc nhấp đúp vào ô mật khẩu để thấy mật khẩu.</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        --}}
+{{--                        <div class="form-group m-t-10 row">--}}
+{{--                            <label class="col-md-3 control-label"><b>Thông tin bổ sung:</b></label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <input class="form-control c-square c-theme" type="text" placeholder="Email tài khoản" readonly="" value="long@gmail.com">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        --}}
+{{--                        <div class="form-group m-t-10 row">--}}
+{{--                            <label class="col-md-3 control-label"><b>Mật khẩu email:</b></label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="input-group c-square">--}}
+{{--                                    <input type="text" class="form-control c-square c-theme show_password" id="passemail" placeholder="Mật khẩu email" readonly="" value="longtest" >--}}
+{{--                                    <span class="input-group-btn">--}}
+{{--                                        <button class="btn btn-default c-font-dark copy_acc" type="button" id="getpassemail">Copy</button>--}}
+{{--                                    </span>--}}
+{{--                                </div>--}}
+{{--                                <span class="help-block">Click vào nút copy để sao chép mật khẩu hoặc nhấp đúp vào ô mật khẩu để thấy mật khẩu.</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        --}}
+{{--                        <div class="form-group m-t-10 row">--}}
+{{--                            <label class="col-md-3 control-label"><b>T.tin bổ sung:</b></label>--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <textarea rows="4" class="form-control c-square c-theme" type="text" placeholder="Thông tin bổ sung" readonly="" >#090909#0909090#09090909#0909090#090909#41414141</textarea>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        --}}
+{{--                        <p class="c-font-bold c-font-blue" style="font-size: 16px;font-weight: bold;color: blue">--}}
+{{--                            Đã lấy mật khẩu lần đầu tiên lúc: 01/04/2022 17:53:30--}}
+{{--                        </p>--}}
+{{--                        <div class="alert alert-info c-font-dark">--}}
+{{--                            Sau khi nhận tài khoản mật khẩu bạn hãy thực hiện đổi mật khẩu để bảo mật.<br>--}}
+{{--                            Bạn hãy click truy cập đường dẫn sau để chuyển qua trang đổi mật khẩu.<br>--}}
+{{--                            <a class="c-font-bold c-font-red" target="_blank" href="#" style="color: red;font-weight: bold">Đăng nhập và Đổi mật khẩu game Nick Free Fire Giá Rẻ</a>--}}
+{{--                        </div>--}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+                </div>
+{{--                </form>--}}
+            </div>
+        </div>
+    </div>
+    <style>
+        #taikhoandamua_password .modal-dialog {
+            max-width: 600px;
+        }
+
+        #taikhoandamua_password .copy_acc {
+            border: 1px solid #d0d7de;
+        }
+
+    </style>
     <input type="hidden" name="serial_data" class="serial_data" value="">
     <input type="hidden" name="key_data" class="key_data" value="">
     <input type="hidden" name="price_data" class="price_data" value="">
@@ -122,8 +209,10 @@
     <input type="hidden" name="started_at_data" class="started_at_data" value="">
     <input type="hidden" name="ended_at_data" class="ended_at_data" value="">
     <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
-    <input type="hidden" name="append" class="append-article" value="0" />
+    <input type="hidden" name="chitiet_data" class="chitiet_data" value="0" />
     <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
+    <input type="hidden" name="id_data" class="id_data" value="">
+
     <script src="/assets/frontend/js/account/acc-history.js"></script>
 
 @endsection
