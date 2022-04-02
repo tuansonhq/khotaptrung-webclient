@@ -7,6 +7,7 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
@@ -57,58 +58,15 @@ class UserController extends Controller
         }
     }
 
-
-
-
-//    public function index(Request $request)
-//    {
-//        if (AuthCustom::check()) {
-//            try {
-//
-//                $jwt = Session::get('jwt');
-//                if(empty($jwt)){
-//                    return response()->json([
-//                        'status' => "LOGIN"
-//                    ]);
-//                }
-//                $url = '/profile';
-//                $method = "GET";
-//                $data = array();
-//                $data['token'] = $jwt;
-////                $data['secret_key'] = config('api.secret_key');
-////                $data['domain'] = 'youtube.com';
-//                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-//                if (isset($result_Api) && $result_Api->httpcode == 200) {
-//                    $result = $result_Api->data;
-//                    if ($result->status == 1) {
-////                    $time = strtotime(Carbon::now());
-////                    $exp_token = $result->exp_token;
-////                    $time_exp_token = $time + $exp_token;
-////                    session()->put('auth_token', $result->token);
-////                    session()->put('exp_token', $result->exp_token);
-////                    session()->put('time_exp_token', $time_exp_token);
-//                        return view('frontend.pages.account.user.index')->with('result', $result);
-//                    } else {
-//                        return redirect()->back()->withErrors($result->message);
-//
-//                    }
-//                }else{
-//                    dd(111);
-//                }
-//
-//
-//            } catch (\Exception $e) {
-//                Log::error($e);
-//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//            }
-//        } else {
-//            return redirect('login');
-//        }
-//    }
-
     public function info(Request $request)
     {
         return view('frontend.pages.account.user.index');
+
+    }
+
+    public function profile(Request $request)
+    {
+//        return view('frontend.pages.account.user.index');
         try{
             $jwt = Session::get('jwt');
             if(empty($jwt)){
@@ -150,33 +108,39 @@ class UserController extends Controller
             ]);
         }
     }
-    public function profile(Request $request)
-    {
-//        return view('frontend.pages.account.user.index');
+
+
+    public function getTran(Request $request){
         try{
+
             $jwt = Session::get('jwt');
             if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $url = '/profile';
+
+            $id_user = AuthCustom::user()->id;
+
+            $url = '/get-txns';
             $method = "GET";
             $data = array();
             $data['token'] = $jwt;
+            $data['user_id'] = $id_user;
 
-//            dd(111);
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
 
-//                dd($result);
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => true,
-                        'info' => $result->user,
-                    ],200);
-                }
+                $config = $result->config;
+                $status = $result->status;
+                $data = $result->data;
+
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
+                return view('frontend.pages.account.user.lich-su-giao-dich')
+                    ->with('data', $data)->with('status', $status)->with('config',$config);
             }
             if(isset($result_Api) && $result_Api->httpcode == 401){
                 session()->flush();
@@ -194,8 +158,5 @@ class UserController extends Controller
             ]);
         }
     }
-
-
-
 
 }

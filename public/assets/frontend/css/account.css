@@ -101,6 +101,18 @@
     /*border-radius: 4px;*/
 }
 
+.account_content_transaction_historyv2 span{
+    /*padding: 6px 12px;*/
+    font-size: 14px;
+    font-weight: 400;
+    /*line-height: 1;*/
+    color: #ffffff;
+    text-align: center;
+    /*background-color: #eee;*/
+    border: 1px solid;
+    /*border-radius: 4px;*/
+}
+
 .account_content_transaction_history__v2 span{
     padding: 6px 12px;
     font-size: 14px;
@@ -114,6 +126,10 @@
 }
 
 .account_content_transaction_history form>div{
+    margin-bottom: 16px;
+}
+
+.account_content_transaction_historyv2 form>div{
     margin-bottom: 16px;
 }
 /*pay card*/
@@ -138,6 +154,13 @@
 .account_content_transaction_history .control-label{
     margin-bottom: 12px;
 }
+
+.account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{
+    word-break: break-word;
+}
+.account_content_transaction_historyv2 .control-label{
+    margin-bottom: 12px;
+}
 .account_sidebar_content .input-group{
     margin-bottom: 8px;
 }
@@ -148,6 +171,11 @@
     .account_content_transaction_history th,.account_content_transaction_history td{
         font-size: 10px;
     }
+
+    .account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{
+        font-size: 10px;
+    }
+
 
     .account_pay_card .control-label{
         text-align: left;
