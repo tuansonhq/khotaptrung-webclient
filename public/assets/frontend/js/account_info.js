@@ -93,6 +93,8 @@ $(document).ready(function(){
                     $('#info').html('<i class="fas fa-user"></i> '+ fn(data.info.username, 6)  +' - $' +formatNumber(data.info.balance))
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
 
+
+
                     // mobile
                     $('#info_mobile .loading').remove();
                     $('#logout_mobile .loading').remove();
@@ -108,6 +110,18 @@ $(document).ready(function(){
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất')
 
+
+                    $(document).on('scroll',function(){
+                        if($(window).width() > 1024){
+                            if ($(this).scrollTop() > 100) {
+                                $("#logout").css("display","none");
+
+                            } else {
+                                $("#logout").css("display","inline");
+                            }
+                        }
+
+                    });
 
                 }
             },
