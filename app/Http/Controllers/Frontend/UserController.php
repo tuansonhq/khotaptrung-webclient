@@ -132,6 +132,7 @@ class UserController extends Controller
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
+
                 $config = $result->config;
                 $status = $result->status;
                 $data = $result->data;

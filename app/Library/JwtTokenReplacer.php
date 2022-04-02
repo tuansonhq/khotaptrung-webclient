@@ -28,6 +28,7 @@ class JwtTokenReplacer implements Replacer
         );
 
 
+
         $response->setContent($content);
     }
 
@@ -44,6 +45,7 @@ class JwtTokenReplacer implements Replacer
             }
         }
         $view = $dom->saveHTML();
+
         $response->setContent($view);
 
     }

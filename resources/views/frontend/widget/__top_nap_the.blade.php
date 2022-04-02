@@ -1,8 +1,4 @@
-@push('style')
-@endpush
-@push('js')
-    <script src="/assets/frontend/js/top_charge/top_charge.js"></script>
-@endpush
+
 <ul class="content-banner-card-top">
 {{--    @foreach($data as $items => $item)--}}
 {{--        <li>--}}
