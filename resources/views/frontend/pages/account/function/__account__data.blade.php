@@ -44,23 +44,15 @@
                                                 </div>
                                                 @endif
                                             @endif
-                                            @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)
-                                                    <?php
-                                                    $index++;
-                                                    ?>
-                                                    @if($index < 5)
-                                                        <div class="col-6 item_buy_list_info_in">
-                                                            {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
-                                                        </div>
-                                                    @endif
-                                            @endif
                                         @endforeach
                                     @endif
+
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                         <?php
                                             $params = json_decode(json_encode($item->params->ext_info),true);
                                         ?>
                                         @if($index < 5)
+
                                         @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                                             @foreach($dataAttribute as $index=>$att)
                                                 @if($att->position == 'text')
@@ -77,16 +69,6 @@
                                                                     </div>
                                                                     @endif
                                                                 @endif
-{{--                                                                @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
-{{--                                                                    <?php--}}
-{{--                                                                    $index++;--}}
-{{--                                                                    ?>--}}
-{{--                                                                    @if($index < 5)--}}
-{{--                                                                        <div class="col-6 item_buy_list_info_in">--}}
-{{--                                                                            {{ $child->title }} : <b>{{ $param }}</b>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    @endif--}}
-{{--                                                                @endif--}}
                                                             @endforeach
                                                         @endforeach
                                                     @endif
@@ -102,7 +84,6 @@
                                 <div class="row">
                                     <div class="col-6 ">
                                         <div class="item_buy_list_price2 p7">
-{{--                                            <span>{{ formatPrice($item->price_old) }}đ </span>--}}
                                             {{ formatPrice($item->price) }}đ
                                         </div>
 
@@ -157,18 +138,9 @@
                                                     </div>
                                                 @endif
                                             @endif
-{{--                                            @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)--}}
-{{--                                                <?php--}}
-{{--                                                $index++;--}}
-{{--                                                ?>--}}
-{{--                                                @if($index < 5)--}}
-{{--                                                    <div class="col-6 item_buy_list_info_in">--}}
-{{--                                                        {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>--}}
-{{--                                                    </div>--}}
-{{--                                                @endif--}}
-{{--                                            @endif--}}
                                         @endforeach
                                     @endif
+{{--                                        @dd($item)--}}
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                         <?php
                                         $params = json_decode(json_encode($item->params->ext_info),true);
