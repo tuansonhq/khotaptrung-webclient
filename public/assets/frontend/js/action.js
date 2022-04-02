@@ -10,7 +10,6 @@ $( document ).ready(function() {
                 $(".nav-bar-category .nav li a").css("line-height","90px");
                 $("header .nav-bar").css("background-color","rgba(0,0,0,0.5)");
                 $(".nav-bar-brand").css("margin","14px");
-                $("#logout").css("display","none");
 
 
             } else {
@@ -18,7 +17,6 @@ $( document ).ready(function() {
                 $(".nav-bar-category .nav li a").css("line-height","120px");
                 $(".nav-bar-brand").css("margin","20px 0");
                 $("header .nav-bar").css("background-color","rgba(0,0,0,0.8)");
-                $("#logout").css("display","inline");
             }
         }
 

@@ -107,6 +107,23 @@
 
 
 @include('frontend.layouts.includes.footer')
+<script>
+    @if(\App\Library\AuthCustom::check())
+    $( document ).ready(function() {
+    $(document).on('scroll',function(){
+        if($(window).width() > 1024){
+            if ($(this).scrollTop() > 100) {
+                $("#logout").css("display","none");
+
+            } else {
+                $("#logout").css("display","inline");
+            }
+        }
+
+    });
+    });
+    @endif
+</script>
 <script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/lib/fancybox/jquery.fancybox.min.js"></script>
 
