@@ -55,7 +55,7 @@
                                 @if(isset($data->groups))
                                     <?php $att_values = $data->groups ?>
                                     @foreach($att_values as $att_value)
-                                        @if($att_value->module == 'acc_label')
+                                        @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                             <tr>
                                                 <td style="width:50%">{{ $att_value->parent[0]->title }}:</td>
                                                 <td class="text-danger" style="font-weight: 700">{{ $att_value->title }}</td>
