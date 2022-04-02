@@ -357,7 +357,9 @@ class AccController extends Controller
 
             if ($request->ajax()) {
                 $page = $request->page;
-
+                $dataAttribute = null;
+                $datashow = null;
+                $count = 0;
                 $url = '/acc';
                 $method = "GET";
                 $val = array();
@@ -454,7 +456,7 @@ class AccController extends Controller
                             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
                             $data_category = $result_Api_category->data;
                             $dataAttribute = $data_category->childs;
-                            $count = 0;
+
                             if (isset($dataAttribute)){
                                 $count = count($dataAttribute);
 
