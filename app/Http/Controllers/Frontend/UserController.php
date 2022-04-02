@@ -133,6 +133,7 @@ class UserController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
             if ($request->ajax()) {
+
                 $page = $request->page;
                 $jwt = Session::get('jwt');
                 if(empty($jwt)){

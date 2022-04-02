@@ -180,7 +180,9 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
 //            Route::get('/lich-su-giao-dich/data', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
             //nạp thẻ
-//
+//Nạp thẻ Atm
+            Route::get('/get-bank/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
+                ->name('getBankData');
 //            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
 //                ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
@@ -190,9 +192,7 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             //Nạp thẻ Atm
             Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
                 ->name('getBank');
-            //Nạp thẻ Atm
-            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
-                ->name('getBankData');
+
 
             Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
                 ->name('postDepositBank');

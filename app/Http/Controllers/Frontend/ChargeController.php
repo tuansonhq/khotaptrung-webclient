@@ -362,7 +362,7 @@ class ChargeController extends Controller
                         }
 
                         return view('frontend.pages.account.user.function.__pay_card_history')
-                            ->with('data', $data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
+                            ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                     } else {
                         return redirect()->back()->withErrors($result->message);
                     }
@@ -415,7 +415,6 @@ class ChargeController extends Controller
 
     }
 
-
     public function getDepositHistory(Request $request)
     {
         if (AuthCustom::check()) {
@@ -451,6 +450,5 @@ class ChargeController extends Controller
         }
 
     }
-
 
 }

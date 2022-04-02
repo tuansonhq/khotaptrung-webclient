@@ -51,7 +51,7 @@ $(document).ready(function(){
             }
         });
     }
-    getBank();
+    // getBank();
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',
@@ -61,6 +61,7 @@ $(document).ready(function(){
             }
         });
     });
+
     $("#bank_tranfer").on('change', function(){
         // var dataid = $("#bank_tranfer option:selected").attr('data-id');
         // id = $(this).data("id");
@@ -185,11 +186,9 @@ $(document).ready(function(){
         window.location.reload()
     })
 
-
-
     let page = $('#hidden_page_atm').val();
 
-    $(document).on('click', '.paginate__v1 .pagination a',function(event){
+    $(document).on('click', '.paginate__v1__vl .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
@@ -207,7 +206,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/recharge-atm',
+            url: '/get-bank',
             data: {
                 page:page,
             },
@@ -215,8 +214,9 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+
                 $('.data_pay_card_history__atm').empty().html('');
-                $('.data_pay_card_history__atm').empty().html(data);
+                $('.data_pay_card_history__atm').empty().html(data.html);
             },
             error: function (data) {
 
