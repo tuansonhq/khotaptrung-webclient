@@ -11,7 +11,7 @@
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_historyv2">
-                        <form class="form-charge form-charge__accountls account_content_transaction_history__v2">
+                        <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2">
                             <div class="row">
                                 @if(isset($config))
                                     <div class="col-md-4">

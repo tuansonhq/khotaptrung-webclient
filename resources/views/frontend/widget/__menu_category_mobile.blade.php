@@ -1,3 +1,4 @@
+@if(isset($data_menu_category) && count($data_menu_category) > 0)
 @foreach($data_menu_category as $item)
     @if ($item->parent_id == 0)
         <li>
@@ -14,3 +15,4 @@
         </ul>
     @endif
 @endforeach
+@endif
