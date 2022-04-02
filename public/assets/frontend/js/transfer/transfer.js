@@ -51,7 +51,7 @@ $(document).ready(function(){
             }
         });
     }
-    // getBank();
+    getBank();
     $('#reload').click(function () {
         $.ajax({
             type: 'GET',

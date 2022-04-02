@@ -131,5 +131,5 @@
 
     <input type="hidden" name="hidden_page_atm" id="hidden_page_atm" value="1" />
 
-    <script src="/assets/frontend/js/transfer/transfer-history.js"></script>
+
 @endsection
