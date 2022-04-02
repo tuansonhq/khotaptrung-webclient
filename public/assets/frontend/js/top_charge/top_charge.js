@@ -1,21 +1,26 @@
 $(document).ready(function(){
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+    }
     function getTopCharge(){
         var url = '/top-charge';
         $.ajax({
             type: "GET",
             url: url,
             success: function (data) {
-                console.log(data.data)
                 if(data.status == 1){
                     let html = '';
-                    if(data.data.length > 0){
+                    if(data.data.length > 0 ){
                         $.each(data.data,function(key,value){
-                            html += '<li>';
-                            html += '<p>'+key+'</p>';
-                            html += '<span>'+value.username+'</span>';
-                            // html += '<label>'+value.username+'<sup>đ</sup></label>';
-                            html += '<label>'+value.amount+'<sup>đ</sup></label>';
-                            html +='</li>';
+                            if (key <5){
+                                html += '<li>';
+                                html += '<p>'+key+'</p>';
+                                html += '<span>'+value.username+'</span>';
+                                // html += '<label>'+value.username+'<sup>đ</sup></label>';
+                                html += '<label>'+ formatNumber(value.amount) +'<sup>đ</sup></label>';
+                                html +='</li>';
+                            }
+
                         });
                     }
                     else{
