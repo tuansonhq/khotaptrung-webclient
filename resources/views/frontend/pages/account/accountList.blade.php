@@ -117,10 +117,6 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="input-group">--}}
-{{--                                <button type="submit" class="btn">Tìm kiếm</button>--}}
-{{--                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                 </form>

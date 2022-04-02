@@ -34,8 +34,14 @@
                         </div>
                         <div class="game-list-description">
                             <div class="countime"></div>
+
                             @if(isset($item->items_count))
-                            <p>Số tài khoản: {{ $item->items_count + 60 }} </p>
+                                @if(setting('sys_face_bannick') && setting('sys_face_bannick') > 0)
+                                    <p>Số tài khoản: {{ str_replace(',','.',number_format(round($item->items_count*setting('sys_face_bannick')))) }} </p>
+                                @else
+                                    <p>Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
                             @else
                             <p>Số tài khoản: 9999 </p>
                             @endif
