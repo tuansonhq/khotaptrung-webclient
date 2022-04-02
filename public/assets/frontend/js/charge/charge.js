@@ -210,7 +210,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/nap-the',
+            url: '/get-tele-card/data',
             data: {
                 page:page,
             },

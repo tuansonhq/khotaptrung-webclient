@@ -50,6 +50,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         // ROUTE cần auth load dữ liệu không cache
 
         Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+        Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
+
         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
         Route::group(['middleware' => ['auth_custom']], function (){
             Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
