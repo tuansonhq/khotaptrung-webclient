@@ -80,5 +80,13 @@
             @endif
         </div>
 
+    <script>
+        function myFunction() {
+            var copyText = document.getElementById("password");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            navigator.clipboard.writeText(copyText.value);
+        }
+    </script>
 @endif
 

@@ -432,11 +432,32 @@ class AccController extends Controller
                     $key = null;
                     if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
                         if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
-                            foreach ($data->data as $value){
-                                if ($value->id == $id_data){
-                                    $slug = $value->slug;
-                                    $key = Helpers::Decrypt($slug,config('module.acc.encrypt_key'));
+                            $valshow =array();
+                            $valshow['data'] = 'acc_detail';
+                            $valshow['id'] = $id_data;
+
+                            $result_Api_show = DirectAPI::_makeRequest($url,$valshow,$method);
+
+                            $datashow = $result_Api_show->data;
+                            $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
+
+                            $slug_cate = '';
+                            foreach ($datashow->groups as $da){
+                                if ($da->module == 'acc_category'){
+                                    $slug_cate = $da->id;
                                 }
+                            }
+                            $valcategory = array();
+                            $valcategory['data'] = 'category_detail';
+                            $valcategory['id'] = $slug_cate;
+
+                            $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+                            $data_category = $result_Api_category->data;
+                            $dataAttribute = $data_category->childs;
+                            $count = 0;
+                            if (isset($dataAttribute)){
+                                $count = count($dataAttribute);
+
                             }
                         }
                     }
@@ -453,9 +474,12 @@ class AccController extends Controller
                         "html" => $html,
                         "status" => 1,
                         "data" => $data,
+                        "dataAttribute" => $dataAttribute,
                         "chitiet_data" => $chitiet_data,
                         "id_data" => $id_data,
-                        "key" => $key
+                        "datashow" => $datashow,
+                        "key" => $key,
+                        "count" => $count
                     ], 200);
 
                 } else {

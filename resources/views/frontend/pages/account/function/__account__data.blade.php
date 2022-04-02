@@ -77,16 +77,16 @@
                                                                     </div>
                                                                     @endif
                                                                 @endif
-                                                                @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)
-                                                                    <?php
-                                                                    $index++;
-                                                                    ?>
-                                                                    @if($index < 5)
-                                                                        <div class="col-6 item_buy_list_info_in">
-                                                                            {{ $child->title }} : <b>{{ $param }}</b>
-                                                                        </div>
-                                                                    @endif
-                                                                @endif
+{{--                                                                @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
+{{--                                                                    <?php--}}
+{{--                                                                    $index++;--}}
+{{--                                                                    ?>--}}
+{{--                                                                    @if($index < 5)--}}
+{{--                                                                        <div class="col-6 item_buy_list_info_in">--}}
+{{--                                                                            {{ $child->title }} : <b>{{ $param }}</b>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @endif--}}
+{{--                                                                @endif--}}
                                                             @endforeach
                                                         @endforeach
                                                     @endif
@@ -157,16 +157,16 @@
                                                     </div>
                                                 @endif
                                             @endif
-                                            @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)
-                                                <?php
-                                                $index++;
-                                                ?>
-                                                @if($index < 5)
-                                                    <div class="col-6 item_buy_list_info_in">
-                                                        {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
-                                                    </div>
-                                                @endif
-                                            @endif
+{{--                                            @if(\App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)--}}
+{{--                                                <?php--}}
+{{--                                                $index++;--}}
+{{--                                                ?>--}}
+{{--                                                @if($index < 5)--}}
+{{--                                                    <div class="col-6 item_buy_list_info_in">--}}
+{{--                                                        {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>--}}
+{{--                                                    </div>--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
                                         @endforeach
                                     @endif
                                     @if(isset($item->params) && isset($item->params->ext_info))
@@ -190,16 +190,16 @@
                                                                             </div>
                                                                         @endif
                                                                     @endif
-                                                                    @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)
-                                                                        <?php
-                                                                        $index++;
-                                                                        ?>
-                                                                        @if($index < 5)
-                                                                            <div class="col-6 item_buy_list_info_in">
-                                                                                {{ $child->title }} : <b>{{ $param }}</b>
-                                                                            </div>
-                                                                        @endif
-                                                                    @endif
+{{--                                                                    @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
+{{--                                                                        <?php--}}
+{{--                                                                        $index++;--}}
+{{--                                                                        ?>--}}
+{{--                                                                        @if($index < 5)--}}
+{{--                                                                            <div class="col-6 item_buy_list_info_in">--}}
+{{--                                                                                {{ $child->title }} : <b>{{ $param }}</b>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endif--}}
                                                                 @endforeach
                                                             @endforeach
                                                         @endif
