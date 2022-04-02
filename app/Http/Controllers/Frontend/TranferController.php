@@ -61,70 +61,33 @@ class TranferController extends Controller
 
     public function getBank(Request $request)
     {
+
         if(AuthCustom::check()){
             try{
-                if ($request->ajax()) {
-                    try{
-                        $page = $request->page;
-                        $urlhistory = '/transfer/history';
+                $urlhistory = '/transfer/history';
+                $method = "GET";
+                $val = array();
+                $jwt = Session::get('jwt');
+                if(empty($jwt)){
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] =$jwt;
 
-                        $method = "GET";
-                        $val = array();
-                        $jwt = Session::get('jwt');
-                        if(empty($jwt)){
-                            return response()->json([
-                                'status' => "LOGIN"
-                            ]);
-                        }
-                        $val['token'] =$jwt;
-                        $val['page'] = $page;
+                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
 
-                        $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
+                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+                    $data = $result_ApiHistory->data;
+                    $data = $data->data;
 
-                        if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
-
-                            $data = $result_ApiHistory->data;
-
-                            if (isEmpty($data->data)){
-                                $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
-                            }
-
-                            return view('frontend.pages.account.user.function.__pay_atm')->with('data', $data);
-                        } else {
-                            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                        }
+                    if (isEmpty($data->data)){
+                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
                     }
-                    catch(\Exception $e){
-                        Log::error($e);
-                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                    }
-                }else{
-                    $urlhistory = '/transfer/history';
-                    $method = "GET";
-                    $val = array();
-                    $jwt = Session::get('jwt');
-                    if(empty($jwt)){
-                        return response()->json([
-                            'status' => "LOGIN"
-                        ]);
-                    }
-                    $val['token'] =$jwt;
-                    $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
 
-
-
-                    if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
-                        $data = $result_ApiHistory->data;
-                        $data = $data->data;
-
-                        if (isEmpty($data->data)){
-                            $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
-                        }
-
-                        return view('frontend.pages.account.user.pay_atm', compact('data'));
-                    } else {
-                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                    }
+                    return view('frontend.pages.account.user.pay_atm')->with('data',$data);
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -139,10 +102,54 @@ class TranferController extends Controller
 
     }
 
+    public function getBankData(Request $request)
+    {
+
+        try{
+            $page = $request->page;
+            $urlhistory = '/transfer/history';
+
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] =$jwt;
+            $val['page'] = $page;
+
+            $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
+
+            if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+
+                $data = $result_ApiHistory->data;
+
+                if (isEmpty($data->data)){
+                    $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
+                }
+                return response()->json([
+                    'status' => true,
+                    'data' => $data,
+                ]);
+//                    return view('frontend.pages.account.user.function.__pay_atm')->with('data', $data);
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+        }
+
+    }
+
     public function getBankTranfer(Request $request)
     {
 
         try{
+
             $jwt = Session::get('jwt');
             if(empty($jwt)){
                 return response()->json([
@@ -154,16 +161,42 @@ class TranferController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            
+//            Lịch sử ATM
+
+            $page = $request->page;
+            $urlhistory = '/transfer/history';
+            $valhistory = array();
+            $valhistory['token'] =$jwt;
+            $valhistory['page'] = $page;
+
+            $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$valhistory,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
 
                 if($result->status == 0){
+//                    Lịch sử ATM
+                    if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
 
-                    return response()->json([
-                        'status' => true,
-                        'bank' => $result->data,
-                    ]);
+                        $dataatm = $result_ApiHistory->data;
+                        $dataatm = $dataatm->data;
+
+                        if (isEmpty($dataatm->data)){
+                            $dataatm = new LengthAwarePaginator($dataatm->data,$dataatm->total,$dataatm->per_page,$page,$dataatm->data);
+                        }
+
+                        $html = view('frontend.pages.account.user.function.__pay_atm')
+                            ->with('data', $dataatm)->render();
+
+                        return response()->json([
+                            'status' => true,
+                            'html' => $html,
+                            'bank' => $result->data,
+                        ]);
+                    } else {
+                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    }
                 }
             }
             if(isset($result_Api) && $result_Api->httpcode == 401){
