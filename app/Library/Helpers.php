@@ -19,6 +19,10 @@ class Helpers
         return \Carbon\Carbon::parse($date)->format('d/m/Y H:s');
     }
 
+    public static function formatDate($date){
+        return \Carbon\Carbon::parse($date)->format('d/m/Y');
+    }
+
     public static function Decrypt($string,$secret_key="") {
         $output = "";
 
