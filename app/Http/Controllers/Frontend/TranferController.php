@@ -161,7 +161,7 @@ class TranferController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            
+
 //            Lịch sử ATM
 
             $page = $request->page;

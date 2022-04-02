@@ -181,8 +181,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 //            Route::get('/lich-su-giao-dich/data', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
             //nạp thẻ
 //Nạp thẻ Atm
-            Route::get('/get-bank/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
-                ->name('getBankData');
+//            Route::get('/get-bank/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
+//                ->name('getBankData');
 //            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
 //                ->name('getDepositAutoData');
             Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
