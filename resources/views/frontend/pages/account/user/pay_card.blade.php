@@ -26,16 +26,16 @@
             <div class="col-auto pl-0 pr-0 hide" id="form-content">
                <form action="{{route('postTelecomDepositAuto')}}" method="POST" id="form-charge">
                   @csrf
-                   <div class="form-group row">
-                    <label class="col-md-3 control-label">
-                    Tài khoản
-                    </label>
-                    <div class="col-md-6">
-                       <div class="input-group" style="width: 100%">
-                          <input class="form-control" id="username" value="" readonly>
-                       </div>
-                    </div>
-                 </div>
+{{--                   <div class="form-group row">--}}
+{{--                    <label class="col-md-3 control-label">--}}
+{{--                    Tài khoản--}}
+{{--                    </label>--}}
+{{--                    <div class="col-md-6">--}}
+{{--                       <div class="input-group" style="width: 100%">--}}
+{{--                          <input class="form-control" id="username" value="" readonly>--}}
+{{--                       </div>--}}
+{{--                    </div>--}}
+{{--                 </div>--}}
                  <div class="form-group row ">
                     <label class="col-md-3 control-label">
                      Loại thẻ:

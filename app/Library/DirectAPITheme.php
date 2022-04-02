@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class DirectAPITheme
 {
     public static function _makeRequest($url, array $data, $method){
-        $data ['client'] = "shopas.vn";
+        $data['domain'] = config('api.client');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{

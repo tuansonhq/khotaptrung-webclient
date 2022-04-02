@@ -12,19 +12,20 @@ class Theme
 {
     public static function get($key){
         if ( isset($key) ) {
-            $setting = self::getAllSettings();
-
+            $setting = self::getAllTheme();
             $setting_get_key = null;
 
-                    $setting_get_key = $setting;
+            $setting_get_key = $setting;
+            $setting_get_key_2 = $setting;
             if(empty($setting_get_key)){
                 return null;
             }
-            return self::castValue($setting_get_key->theme_key, $setting_get_key->theme_id);
+
+            return self::getAllTheme();
         }
-        return self::getAllSettings();
+        return self::getAllTheme();
     }
-    public static function getAllSettings(){
+    public static function getAllTheme(){
 //        dd(111);
         if (Cache::has('settings.all')) {
             return Cache::get('settings.all');
@@ -55,13 +56,16 @@ class Theme
         $data = array();
 
         $result = DirectAPITheme::_makeRequest($url ,$data ,$method);
+
         if(isset($result) && $result->httpcode == 200){
 
             $seo = $result->data->data;
+
             return Cache::rememberForever('settings.all', function() use ($seo) {
                 return $seo;
             });
         }
+
         return Cache::get('settings.all');
     }
 

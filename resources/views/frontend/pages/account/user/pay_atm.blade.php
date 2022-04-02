@@ -40,18 +40,18 @@
                         <form action="{{route('postTranferBank')}}" method="POST" id="form-recharge" class="comfirm_tranfer_alert_out">
                             @csrf
                             <div class="form_tranfer">
-                                <div class="form-group row">
-                                    <label class="col-md-3 control-label">
-                                        Tài khoản
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-md-3 control-label">--}}
+{{--                                        Tài khoản--}}
 
-                                    </label>
-                                    <div class="col-md-6">
-                                        <div class="input-group" style="width: 100%" id="username">
-                                            <input type="text" class="form-control" value=""  readonly>
-                                        </div>
-                                    </div>
+{{--                                    </label>--}}
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <div class="input-group" style="width: 100%" id="username">--}}
+{{--                                            <input type="text" class="form-control" value=""  readonly>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                </div>
+{{--                                </div>--}}
                                 <div class="form-group row ">
 
                                     <label class="col-md-3 control-label">
