@@ -172,13 +172,13 @@ class UserController extends Controller
                 if (isset($request->sort_by) || $request->sort_by != '' || $request->sort_by != null){
                     $sort_by = $request->sort_by;
                     if ($sort_by == "random"){
-                        $val['sort'] = 'random';
+                        $data['sort'] = 'random';
                     }elseif ($sort_by == "created_at_start"){
-                        $val['sort_by'] = 'created_at';
-                        $val['sort'] = 'desc';
+                        $data['sort_by'] = 'created_at';
+                        $data['sort'] = 'desc';
                     }elseif ($sort_by == "created_at_end"){
-                        $val['sort_by'] = 'created_at';
-                        $val['sort'] = 'asc';
+                        $data['sort_by'] = 'created_at';
+                        $data['sort'] = 'asc';
                     }
                 }
 
