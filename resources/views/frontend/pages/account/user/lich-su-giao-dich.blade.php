@@ -62,12 +62,38 @@
                             </div>
 
                             <div class="row">
+{{--                                <div class="col-12 item_buy_form_search">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <div class="input-group">--}}
+{{--                                                <button type="submit" class="btn">Tìm kiếm</button>--}}
+{{--                                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
                                 <div class="col-12 item_buy_form_search">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <button type="submit" class="btn">Tìm kiếm</button>
                                                 <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">Sắp xếp theo</span>
+                                                        <select type="text" name="sort_by" class="form-control sort_by">
+                                                            <option value="">Chọn cách sắp xếp</option>
+                                                            <option value="random">Ngẫu nhiên</option>
+                                                            <option value="created_at_start">Mới nhất</option>
+                                                            <option value="created_at_end">Cũ nhất</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -169,6 +169,19 @@ class UserController extends Controller
                     $data['ended_at'] = $ended_at;
                 }
 
+                if (isset($request->sort_by) || $request->sort_by != '' || $request->sort_by != null){
+                    $sort_by = $request->sort_by;
+                    if ($sort_by == "random"){
+                        $val['sort'] = 'random';
+                    }elseif ($sort_by == "created_at_start"){
+                        $val['sort_by'] = 'created_at';
+                        $val['sort'] = 'desc';
+                    }elseif ($sort_by == "created_at_end"){
+                        $val['sort_by'] = 'created_at';
+                        $val['sort'] = 'asc';
+                    }
+                }
+
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
 
