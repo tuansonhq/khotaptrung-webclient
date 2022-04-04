@@ -64,7 +64,45 @@
     <script src="/assets/frontend/js/account_info.js"></script>
 
     <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
+    <script>
+        $(document).ready(function () {
+            @if(Request::is('thong-tin'))
 
+            $('.account_thong-tin').addClass('active')
+            @elseif(Request::is('lich-su-giao-dich'))
+
+            $('.account_lich-su-giao-dich').addClass('active')
+
+            @elseif(Request::is('minigame-log-726'))
+
+            $('.account_minigame-log-726').addClass('active')
+
+            @elseif(Request::is('dich-vu-da-mua'))
+
+            $('.account_dich-vu-da-mua').addClass('active')
+
+            @elseif(Request::is('nap-the'))
+
+            $('.account_nap-the').addClass('active')
+
+            @elseif(Request::is('lich-su-nap-the'))
+
+            $('.account_lich-su-nap-the').addClass('active')
+
+            @elseif(Request::is('recharge-atm'))
+
+            $('.account_recharge-atm').addClass('active')
+
+            @elseif(Request::is('lich-su-mua-account'))
+
+            $('.account_lich-su-mua-account').addClass('active')
+
+            @elseif(Request::is('withdrawitem-1'))
+            $('.account_withdrawitem-1').addClass('active')
+
+            @endif
+        })
+    </script>
     @stack('js')
 
 
@@ -123,6 +161,8 @@
     });
     });
     @endif
+
+
 </script>
 <script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/lib/fancybox/jquery.fancybox.min.js"></script>

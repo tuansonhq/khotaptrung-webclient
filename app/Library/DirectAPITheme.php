@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class DirectAPITheme
 {
     public static function _makeRequest($url, array $data, $method){
-        $data['domain'] = config('api.client');
+        $data['client'] = config('api.client');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{

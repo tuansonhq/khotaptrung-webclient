@@ -10,8 +10,11 @@
                     @foreach ($data_menu_profile as $key_child => $child_item)
                         @if ($item->id == $child_item->parent_id)
                             <li>
-                                <a  href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="\">{{$child_item->title}}</a>
+                                <a  href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="account_{{substr($child_item->url, 1)}}">{{$child_item->title}}</a>
                             </li>
+                            <script>
+
+                            </script>
                         @endif
                     @endforeach
 
@@ -22,4 +25,5 @@
 
     @endif
 @endforeach
+
 

@@ -5,12 +5,34 @@ use App\Library\Setting;
 use App\Library\Theme;
 use App\Library\Helpers;
 
+
+if (! function_exists('theme')) {
+
+    function theme($key, $default = null)
+    {
+
+
+        if (is_null($key)) {
+
+            return \App\Library\Theme::getAllTheme();
+        }
+
+        if (is_array($key)) {
+
+        }
+        $value = \App\Library\Theme::getTheme($key);
+        return is_null($value) ? value($default) : $value;
+    }
+}
+
 if (! function_exists('setting')) {
 
     function setting($key, $default = null)
     {
+
         if (is_null($key)) {
-           return \App\Library\Setting::getAllSettings();
+
+            return \App\Library\Setting::getAllSettings();
         }
 
         if (is_array($key)) {
@@ -20,23 +42,6 @@ if (! function_exists('setting')) {
         return is_null($value) ? value($default) : $value;
     }
 }
-
-if (! function_exists('theme')) {
-
-    function theme($key, $default = null)
-    {
-        if (is_null($key)) {
-            return \App\Library\Theme::getAllSettings();
-        }
-
-        if (is_array($key)) {
-
-        }
-        $value = \App\Library\Theme::get($key);
-        return is_null($value) ? value($default) : $value;
-    }
-}
-
 
 if (! function_exists('widget')) {
 

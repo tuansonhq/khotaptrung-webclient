@@ -1,31 +1,107 @@
+
 @extends('frontend.layouts.master')
+@push('style')
+@endpush
+@push('js')
+
+@endpush
 @section('content')
-    <div class="log-in container" >
-        <div class="log-in-body">
-            <p>Đổi mật khẩu</p>
-            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>
-            <form action="{{route('changePasswordApi')}}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Mật khẩu cũ " name="old_password">
-                    <span><i class="fas fa-user"></i></span>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Mật khẩu hiện tại" name="password">
-                    <span><i class="fas fa-lock"></i></span>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Xác nhận mật khẩu" name="password_confirmation">
-                    <span><i class="fas fa-lock"></i></span>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <button class="btn btn-primary btn-block btn-flat" type="submit">Xác nhận</button>
+    <div class="account">
+        <div class="account_content">
+            <div class="container">
+                @include('frontend.pages.account.sidebar')
+                <div class="account_sidebar_content">
+                    <div class="account_pay_card">
+                        <div class="account_sidebar_content_title">
+                            <p>Đổi mật khẩu</p>
+                            <div class="account_sidebar_content_line"></div>
+                        </div>
+
+                        <div class="changepassword_error"></div>
+                        <div class="col-auto pl-0 pr-0" id="form-content">
+                            <form action="{{route('changePasswordApi')}}" method="POST" id="form-changePassword">
+                                @csrf
+
+                                <div class="form-group row ">
+                                    <label class="col-md-3 control-label">
+                                        Mật khẩu cũ:
+                                    </label>
+                                    <div class="col-md-6">
+                                        <div class="input-group" style="width: 100%">
+                                            <input type="password" class="form-control" name="old_password" placeholder="Mật khẩu cũ" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label class="col-md-3 control-label">
+                                        Mật khẩu hiện tại:
+                                    </label>
+                                    <div class="col-md-6">
+                                        <div class="input-group" style="width: 100%">
+                                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu cũ" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label class="col-md-3 control-label">
+                                        Xác nhận mật khẩu:
+                                    </label>
+                                    <div class="col-md-6">
+                                        <div class="input-group" style="width: 100%">
+                                            <input type="password" class="form-control" name="password_confirmation" placeholder="Mật khẩu cũ" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row " style="margin-top: 40px">
+                                    <div class="col-md-6" style="    margin-left: 25%;">
+                                        <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block " type="submit">Đổi mật khẩu</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </form>
-
-
+            </div>
         </div>
     </div>
+    <script>
+
+        $('#form-changePassword').submit(function (e) {
+            e.preventDefault();
+            var formSubmit = $(this);
+            var url = formSubmit.attr('action');
+            var btnSubmit = formSubmit.find(':submit');
+            $.ajax({
+                type: "POST",
+                url: url,
+                cache:false,
+                data: formSubmit.serialize(), // serializes the form's elements.
+                beforeSend: function (xhr) {
+                },
+                success: function (data) {
+                    console.log(data)
+                    // alert(data)
+                    if(data.status == 1){
+                        window.location.href = '/';
+
+                    }else{
+                        let html = '';
+                        html +='';
+                        html += '<p style="color: red;text-align: center;font-size: 14px;font-weight: 600">'+ data.message +'</p>';
+                        $('.changepassword_error').html(html)
+                    }
+
+                },
+                error: function (data) {
+                    alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
+                    btnSubmit.text('Đăng nhập');
+                },
+                complete: function (data) {
+                    $('#reload').trigger('click');
+                    $('#form-charge-input').trigger("reset");
+                }
+            });
+        });
+    </script>
 @endsection
