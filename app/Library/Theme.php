@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Theme
 {
-    public static function get($key){
+    public static function getTheme($key){
         if ( isset($key) ) {
             $setting = self::getAllTheme();
             $setting_get_key = null;
@@ -27,46 +27,34 @@ class Theme
     }
     public static function getAllTheme(){
 //        dd(111);
-        if (Cache::has('settings.all')) {
-            return Cache::get('settings.all');
-        }
-        return self::api();
-    }
-    private static function castValue($val, $castTo)
-    {
-        switch ($castTo) {
-            case 'int':
-            case 'integer':
-                return intval($val);
-                break;
 
-            case 'bool':
-            case 'boolean':
-                return boolval($val);
-                break;
+//        if (Cache::has('themes.all')) {
+//            dd(Cache::get('themes.all'));
+//            return Cache::getTheme('themes.all');
+//        }
 
-            default:
-                return $val;
-        }
+        return self::apiTheme();
     }
 
-    public static function api(){
+
+    public static function apiTheme(){
+
         $url = '/theme/get-theme-config';
         $method = "GET";
         $data = array();
-
         $result = DirectAPITheme::_makeRequest($url ,$data ,$method);
 
         if(isset($result) && $result->httpcode == 200){
 
-            $seo = $result->data->data;
+            $seo222 = $result->data->data;
 
-            return Cache::rememberForever('settings.all', function() use ($seo) {
-                return $seo;
+            return Cache::rememberForever('settings.all', function() use ($seo222) {
+                return $seo222;
+
             });
         }
 
-        return Cache::get('settings.all');
+        return Cache::get('themes.all');
     }
 
 }

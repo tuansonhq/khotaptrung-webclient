@@ -1,6 +1,11 @@
 @extends('frontend.layouts.master')
 @push('js')
     <script src="/assets/frontend/js/profile.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.account_thong-tin').addClass('active')
+        })
+    </script>
 @endpush
 @section('content')
 
@@ -42,7 +47,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Mật khẩu</th>
-                        <td>*** <a href="">Đổi mật khẩu</a></td>
+                        <td>*** <a href="/changepassword" style="color: red;text-decoration: none;font-weight: 600;font-style: italic">Đổi mật khẩu</a></td>
                     </tr>
                     <tr></tr>
                     </tbody>
@@ -51,5 +56,6 @@
         </div>
     </div>
     <script>
+
 
 @endsection

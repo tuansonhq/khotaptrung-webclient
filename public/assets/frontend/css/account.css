@@ -292,3 +292,6 @@
     display: flex;
     justify-content: space-between;
 }
+.active{
+    color: #32c5d2 !important;
+}

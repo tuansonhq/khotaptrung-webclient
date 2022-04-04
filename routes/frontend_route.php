@@ -35,6 +35,11 @@ Route::get('/session', function ()
     Session::flush();
     return redirect()->to('/');
 });
+Route::get('/test', function ()
+{
+    dd(theme('')->theme_key);
+});
+
 Route::group(array('middleware' => ['verify_shop']) , function (){
     Route::post('/user/account_info', [UserController::class , "getInfo"]);
     Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
