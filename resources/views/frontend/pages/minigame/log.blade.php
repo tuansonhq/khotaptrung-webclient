@@ -98,8 +98,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                {{ $paginatedItems->links() }}
+                            <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+                                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                                    <div class="col-auto paginate__category__col">
+                                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                                            {{ $paginatedItems->links() }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

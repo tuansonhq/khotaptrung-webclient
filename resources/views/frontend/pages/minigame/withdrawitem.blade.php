@@ -63,9 +63,11 @@
                         <div class="col-md-6">
                             <div class="input-group" style="width: 100%">
                                 <select name="package" id="package" class="form-control">
+                                    @if($result->package)
                                     @foreach($result->package as $item)
                                     <option value="{{$item->id}}">{{$item->title}}</option>
                                     @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

@@ -242,7 +242,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-log';
                 $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
-                $data['page'] = $request->page;
+                $data['page'] = $request->page==""?"1":$request->page;
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');
@@ -311,7 +311,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-logacc';
                 $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
-                $data['page'] = $request->page;
+                $data['page'] = $request->page==""?"1":$request->page;
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');
