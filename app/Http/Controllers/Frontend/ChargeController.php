@@ -22,7 +22,7 @@ class ChargeController extends Controller
     public function getDepositAuto(Request $request)
     {
 //        return 111111;
-        try {
+//        try {
                 $method = "GET";
                 $url_history = '/deposit-auto/history';
                 $jwt = Session::get('jwt');
@@ -38,10 +38,10 @@ class ChargeController extends Controller
                     return view('frontend.pages.account.user.pay_card', compact( 'data'));
                 }
 
-        } catch (\Exception $e) {
-            Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+//        } catch (\Exception $e) {
+//            Log::error($e);
+//            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//        }
 
     }
 

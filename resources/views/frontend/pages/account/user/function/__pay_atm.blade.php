@@ -9,8 +9,7 @@
             <th>Số tài khoản</th>
             <th>Số tiền</th>
             <th>Thực nhận</th>
-            <th>Tr
-            </th>
+            <th>Trạng thái</th>
         </tr>
 
         </thead>
@@ -51,7 +50,7 @@
                 @endforeach
             @else
                 <tr class="account_content_transaction_history">
-                    <td width="100%" style="width: 20%">
+                    <td style="width: 18%">
                         <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
                     </td>
                 </tr>
