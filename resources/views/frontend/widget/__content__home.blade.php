@@ -6,8 +6,10 @@
             <h2>Danh mục game</h2>
             <div class="items-title-lines"></div>
         </div>
+  
         <div class="game-list row">
             @foreach($data as $item)
+
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                     <div class="game-list-content">
                         <div class="game-list-image">
@@ -36,8 +38,8 @@
                             <div class="countime"></div>
 
                             @if(isset($item->items_count))
-                                @if(setting('sys_face_bannick') && setting('sys_face_bannick') > 0)
-                                    <p>Số tài khoản: {{ str_replace(',','.',number_format(round($item->items_count*setting('sys_face_bannick')))) }} </p>
+                                @if(isset($item->account_fake) && $item->account_fake > 0)
+                                    <p>Số tài khoản: {{ str_replace(',','.',number_format(round($item->items_count*$item->account_fake))) }} </p>
                                 @else
                                     <p>Số tài khoản: {{ $item->items_count }} </p>
                                 @endif
