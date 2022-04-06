@@ -99,9 +99,9 @@
                                                 <div class="col-md-12">
                                                     {{--                                                    @dd(formatPrice($card_percent*$data->price/100))--}}
                                                     @if(formatPrice($card_percent*$data->price/100) == '')
-                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($card_percent*$data->price/100))) }}đ</span>
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($card_percent*$data->price/100))) }}CARD</span>
                                                     @else
-                                                        <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }}đ</span>
+                                                        <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }}CARD</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -120,9 +120,9 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     @if(formatPrice($atm_percent*$data->price/100) == '')
-                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($atm_percent*$data->price/100))) }}đ</span>
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($atm_percent*$data->price/100))) }}ATM</span>
                                                     @else
-                                                        <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }}đ</span>
+                                                        <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }}ATM</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -143,9 +143,9 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         @if(formatPrice($data->price) == '')
-                                                            <span class="gallery__01__span__02">{{ round($data->price) }}đ</span>
+                                                            <span class="gallery__01__span__02">{{ round($data->price) }}ATM</span>
                                                         @else
-                                                            <span class="gallery__01__span__02">{{ formatPrice($data->price) }}đ</span>
+                                                            <span class="gallery__01__span__02">{{ formatPrice($data->price) }}ATM</span>
                                                         @endif
                                                     </div>
                                                 </div>
