@@ -87,6 +87,71 @@
             copyText.setSelectionRange(0, 99999); /* For mobile devices */
             navigator.clipboard.writeText(copyText.value);
         }
+        function myFunctiontk() {
+            var copyText = document.getElementById("taikhoan");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+            navigator.clipboard.writeText(copyText.value);
+        }
+
+        $(document).ready(function(){
+
+            // Click event of the showPassword button
+            $('.show-btn-password').on('click', function(){
+
+                // Get the password field
+                var passwordField = $('#password');
+
+                // Get the current type of the password field will be password or text
+                var passwordFieldType = passwordField.attr('type');
+
+                // Check to see if the type is a password field
+                if(passwordFieldType == 'password')
+                {
+                    // Change the password field to text
+                    passwordField.attr('type', 'text');
+
+                    var htmlpass = '';
+                    htmlpass += '<i class="fas fa-eye-slash fa-eye-slash-password"></i>';
+                    $('.show-btn-password').html('');
+                    $('.show-btn-password').html(htmlpass);
+
+                    // Change the Text on the show password button to Hide
+                    $(this).val('Hide');
+                } else {
+                    var htmlpass = '';
+                    htmlpass += '<i class="fas fa-eye fa-eye-password"></i>';
+                    $('.show-btn-password').html('');
+                    $('.show-btn-password').html(htmlpass);
+
+                    // If the password field type is not a password field then set it to password
+                    passwordField.attr('type', 'password');
+
+                    // Change the value of the show password button to Show
+                    $(this).val('Show');
+                }
+            });
+        });
+
+
     </script>
+
+    <style>
+        span i.hide-btn::before{
+            content: "\f070";
+        }
+        .show-btn-password{
+            cursor: pointer;
+            right: 20%;
+            position: absolute;
+            top: 20%;
+        }
+        .show-btn-password i{
+            color: #32c5d2;
+        }
+        #password{
+            position: relative;
+        }
+    </style>
 @endif
 

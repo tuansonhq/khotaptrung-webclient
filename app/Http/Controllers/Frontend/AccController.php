@@ -305,7 +305,7 @@ class AccController extends Controller
                     if ($data->success == 0){
                         return response()->json([
                             'status' => 2,
-                            'message' => $data->message,
+                            'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
                         ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
                     }elseif ($data->success == 1 ){
