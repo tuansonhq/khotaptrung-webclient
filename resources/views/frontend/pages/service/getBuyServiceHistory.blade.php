@@ -37,8 +37,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <span >Thẻ cào</span>
-                                        <input type="text" name="serial" class="form-control serial" placeholder="Mã thẻ, Serial...">
+                                        <span >Mã ID</span>
+                                        <input type="text" name="serial" class="form-control serial" placeholder="Mã ID">
 
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         <div class="input-group">
                                             <span >Loại thẻ</span>
                                             <select name="key" class="form-control key">
-                                                <option value="">--Tất cả loại thẻ--</option>
+                                                <option value="">-- Tất cả các dịch vụ --</option>
                                                 @foreach($data_telecome as $val)
                                                     <option value="{{ $val->key }}">{{ $val->title }}</option>
                                                 @endforeach
@@ -57,9 +57,16 @@
                                 @endif
                                 <div class="col-md-4">
                                     <div class="input-group">
-                                        <span >Trạng thái</span>
-
-                                        {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}
+                                        <span >-- Trạng thái --</span>
+                                        <select type="text" name="price" class="form-control price">
+                                            <option value="">Chọn giá tiền</option>
+                                            <option value="0">Đã hủy</option>
+                                            <option value="1">Đang chờ xử lý</option>
+                                            <option value="2">Đang thực hiện</option>
+                                            <option value="3">Từ chối</option>
+                                            <option value="4">Hoàn tất</option>
+                                            <option value="5">Thất bại</option>
+                                        </select>
 
                                     </div>
                                 </div>
@@ -100,10 +107,9 @@
                         </form>
 
                         <div id="data_pay_card_history">
-                            @include('frontend.pages.account.user.function.__pay_card_history')
+                            @include('frontend.pages.service.function.__get__buy__service__history')
                         </div>
                     </div>
-
 
                 </div>
             </div>
