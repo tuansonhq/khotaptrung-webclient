@@ -130,49 +130,6 @@ class ServiceController extends Controller
 
     }
 
-//    public function getBuyServiceHistoryData(Request $request)
-//    {
-//
-//        if ($request->ajax()) {
-//            $page = $request->page;
-//
-//            $url = '/service-history';
-//
-//            $method = "GET";
-//            $val = array();
-//            $jwt = Session::get('jwt');
-//            if (empty($jwt)) {
-//                return response()->json([
-//                    'status' => "LOGIN"
-//                ]);
-//            }
-//
-//            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-//
-//            return $result_Api
-//
-//            if (isset($result_Api) && $result_Api->httpcode == 200) {
-//                $result = $result_Api->data;
-//                if ($result->status == 1) {
-//
-//                    $result = $result_Api->data;
-//                    $data = $result->data;
-//
-//                    if (isEmpty($data->data)) {
-//                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-//                    }
-//
-//                    return view('frontend.pages.service.function.__get__buy__service__history')
-//                        ->with('data', $data);
-//                } else {
-//                    return redirect()->back()->withErrors($result->message);
-//                }
-//            } else {
-//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//            }
-//        }
-//    }
-
     public function postPurchase(Request $request,$id){
         $url = '/service/purchase';
         $method = "POST";
@@ -183,4 +140,5 @@ class ServiceController extends Controller
 
         return $result_Api;
     }
+
 }
