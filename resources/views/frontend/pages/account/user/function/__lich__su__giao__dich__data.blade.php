@@ -22,7 +22,6 @@
                 @foreach ($data as $item)
                     @php
                         $curr = \App\Library\Helpers::formatDate($item->created_at);
-
                     @endphp
                     @if($curr != $prev)
                             <tr>
