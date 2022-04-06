@@ -44,12 +44,12 @@
             <div class="item_buy_form">
                 <form class="form-charge form-charge__accountlist">
                     <div class="row">
-                        <div class="col-3 item_buy_form_search">
-                            <div class="input-group">
-                                <span class="input-group-addon">Tìm kiếm</span>
-                                <input type="text" name="title" class="form-control title" placeholder="Tìm kiếm">
-                            </div>
-                        </div>
+{{--                        <div class="col-3 item_buy_form_search">--}}
+{{--                            <div class="input-group">--}}
+{{--                                <span class="input-group-addon">Tìm kiếm</span>--}}
+{{--                                <input type="text" name="title" class="form-control title" placeholder="Tìm kiếm">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
