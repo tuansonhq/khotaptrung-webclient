@@ -18,20 +18,12 @@
                             <p>NẠP VÍ / ATM</p>
                             <div class="account_sidebar_content_line"></div>
                         </div>
-                        <div class="recharge_atm alert alert-info">
-                            <p>
-                                <strong>*Chú ý: Chuyển khoản nạp tiền theo hướng dẫn</strong>
-                            </p>
-                            <p>
-                                <strong>Click Xem Hướng Dẫn:</strong>
-                            </p>
-                            <p>
-                                <a href="">Link Hướng Dẫn Nạp Tiền ATM / Ví Tự Động</a>
-                            </p>
-                            <p>
-                                <a href="">Link Video Hướng Dẫn Nạp Tiền ATM/ Ví Tự Động</a>
-                            </p>
-                        </div>
+                        @if (setting('sys_tranfer_content') != "")
+                            <div class="recharge_atm alert alert-info" role="alert">
+                                {!! setting('sys_tranfer_content') !!}
+
+                            </div>
+                        @endif
                         @if(isset($tranferbankPost->message))
                             <p  style="color: red;font-size: 14px">{{$tranferbankPost->message}}</p>
                         @endif

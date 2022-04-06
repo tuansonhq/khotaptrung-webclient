@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     function getInfo(){
         const url = '/profile';
         // if(token == 'undefined' || token == null || token =='' || token == undefined){
@@ -17,8 +20,6 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(111)
-                console.log(data)
                 if(data.status === "LOGIN"){
                     window.location.href = '/logout';
                     // method = method || 'post';
@@ -31,7 +32,7 @@ $(document).ready(function(){
                     $('#info_id').html('<span>'+data.info.id+'</span>')
                     $('#info_name').html('<span>'+data.info.username+'</span>')
                     $('#info_balance').html('<span>'+data.info.balance+'</span>')
-                    $('#info_balance').html('<span><i class="text-danger">'+data.info.balance+'</i></span>')
+                    $('#info_balance').html('<span><i class="text-danger">'+formatNumber(data.info.balance)+'</i></span>')
                 }
             },
             error: function (data) {

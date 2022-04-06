@@ -18,6 +18,7 @@
                @if (setting('sys_charge_content') != "")
                <div class="alert alert-primary" role="alert">
                   {!! setting('sys_charge_content') !!}
+
                </div>
                @endif
                <div class="row justify-content-center" id="loading-data">
