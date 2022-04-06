@@ -34,11 +34,11 @@
                                 </div>
                                 <div class="form-group row ">
                                     <label class="col-md-3 control-label">
-                                        Mật khẩu hiện tại:
+                                        Mật khẩu mới:
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu cũ" required>
+                                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu mới" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="password" class="form-control" name="password_confirmation" placeholder="Mật khẩu cũ" required>
+                                            <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,15 @@
                     console.log(data)
                     // alert(data)
                     if(data.status == 1){
-                        window.location.href = '/';
+                        swal({
+                            title: "Thành công !",
+                            text: data.message,
+                            icon: "success",
+                        })
+                        let html = '';
+                        html +='';
+                        $('.changepassword_error').html(html)
+                        // window.location.href = '/';
 
                     }else{
                         let html = '';
@@ -98,8 +106,8 @@
                     btnSubmit.text('Đăng nhập');
                 },
                 complete: function (data) {
-                    $('#reload').trigger('click');
-                    $('#form-charge-input').trigger("reset");
+                    $('.changepassword_error').html()
+                    formSubmit.trigger("reset");
                 }
             });
         });
