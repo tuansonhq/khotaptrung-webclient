@@ -59,7 +59,7 @@
                                     <div class="input-group">
                                         <span >-- Trạng thái --</span>
                                         <select type="text" name="status" class="form-control status">
-                                            <option value="">Chọn giá tiền</option>
+                                            <option value="">Chọn trạng thái</option>
                                             <option value="0">Đã hủy</option>
                                             <option value="1">Đang chờ xử lý</option>
                                             <option value="2">Đang thực hiện</option>

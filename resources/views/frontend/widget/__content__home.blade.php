@@ -6,7 +6,7 @@
             <h2>Danh mục game</h2>
             <div class="items-title-lines"></div>
         </div>
-  
+
         <div class="game-list row">
             @foreach($data as $item)
 
