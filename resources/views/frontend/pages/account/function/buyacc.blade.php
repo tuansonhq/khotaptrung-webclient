@@ -93,19 +93,6 @@
             </div>
         </div>
 
-{{--        <div class="form-group {{ $errors->has('coupon')? 'has-danger':'' }}">--}}
-{{--            <div class="row pl-0 pr-0">--}}
-{{--                <label class="col-md-3 form-control-label">Mã giảm giá:</label>--}}
-{{--                <div class="col-md-7">--}}
-{{--                    <input type="text" class="form-control c-square c-theme mb-2" name="coupon" placeholder="Mã giảm giá" value="{{old('coupon')}}">--}}
-{{--                    <span class="help-block">Nhập mã giảm giá nếu có để nhận ưu đãi</span>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            @if($errors->has('coupon'))--}}
-{{--                <div class="form-control-feedback">{{ $errors->first('coupon') }}</div>--}}
-{{--            @endif--}}
-{{--        </div>--}}
-
         <div class="form-group form-group_buyacc">
             @if(App\Library\AuthCustom::check())
 

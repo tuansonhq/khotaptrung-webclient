@@ -80,7 +80,7 @@
                                             <span class="gallery__02__span">Danh mục:</span>
                                         </div>
                                         <div class="col-md-8 col-8  pl-0">
-                                            <span class="gallery__02__span">{{ $data_category->title }}</span>
+                                            <a href="/danh-muc/{{ $data_category->slug }}"><span class="gallery__02__span">{{ $data_category->title }}</span></a>
                                         </div>
                                     </div>
                                 </div>
