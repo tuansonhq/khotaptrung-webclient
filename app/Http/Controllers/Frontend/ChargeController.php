@@ -33,9 +33,17 @@ class ChargeController extends Controller
                     $bankHistory = $result_Api_history->data;
                     $data = $bankHistory->data;
 
+                    $arrpin = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
 
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    return view('frontend.pages.account.user.pay_card', compact( 'data'));
+
+                    return view('frontend.pages.account.user.pay_card')->with('data', $data)->with('arrpin',$arrpin);
                 }
 
 //        } catch (\Exception $e) {
@@ -70,10 +78,18 @@ class ChargeController extends Controller
 
                     $data = $result->data;
 
+                    $arrpin = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
+
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
                     return view('frontend.pages.account.user.function.__pay_card')
-                        ->with('data', $data);
+                        ->with('data', $data)->with('arrpin',$arrpin);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }
