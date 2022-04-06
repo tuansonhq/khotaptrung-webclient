@@ -38,7 +38,7 @@
                             <div class="countime"></div>
 
                             @if(isset($item->items_count))
-                                @if(isset($item->account_fake) && $item->account_fake > 0)
+                                @if(isset($item->account_fake) && $item->account_fake > 1)
                                     <p>Số tài khoản: {{ str_replace(',','.',number_format(round($item->items_count*$item->account_fake))) }} </p>
                                 @else
                                     <p>Số tài khoản: {{ $item->items_count }} </p>
