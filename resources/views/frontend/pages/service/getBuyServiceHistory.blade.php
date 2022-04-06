@@ -42,14 +42,14 @@
 
                                     </div>
                                 </div>
-                                @if(isset($data_telecome) && count($data_telecome) > 0)
+                                @if(isset($categoryservice) && count($categoryservice) > 0)
                                     <div class="col-md-4">
                                         <div class="input-group">
                                             <span >Loại thẻ</span>
                                             <select name="key" class="form-control key">
                                                 <option value="">-- Tất cả các dịch vụ --</option>
-                                                @foreach($data_telecome as $val)
-                                                    <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                                @foreach($categoryservice as $val)
+                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -58,7 +58,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >-- Trạng thái --</span>
-                                        <select type="text" name="price" class="form-control price">
+                                        <select type="text" name="status" class="form-control status">
                                             <option value="">Chọn giá tiền</option>
                                             <option value="0">Đã hủy</option>
                                             <option value="1">Đang chờ xử lý</option>
