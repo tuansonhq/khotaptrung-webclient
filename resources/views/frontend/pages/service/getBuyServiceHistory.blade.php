@@ -42,19 +42,7 @@
 
                                     </div>
                                 </div>
-                                @if(isset($categoryservice) && count($categoryservice) > 0)
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span >Loại thẻ</span>
-                                            <select name="key" class="form-control key">
-                                                <option value="">-- Tất cả các dịch vụ --</option>
-                                                @foreach($categoryservice as $val)
-                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                @endif
+
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >-- Trạng thái --</span>
@@ -70,7 +58,22 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-4"></div>
+                                @if(isset($categoryservice) && count($categoryservice) > 0)
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span >Loại thẻ</span>
+                                            <select name="key" class="form-control key">
+                                                <option value="">-- Tất cả các dịch vụ --</option>
+                                                @foreach($categoryservice as $val)
+                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="col-md-4"></div>
+                                @endif
+
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
