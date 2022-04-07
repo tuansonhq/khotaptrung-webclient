@@ -30,8 +30,8 @@ return [
         'key'=>"charge",
         'encrypt_key' => '2314ku',
         'status' => [
-            1 => 'Chưa bán',
-            0 => 'Đã bán',
+//            1 => 'Chưa bán',
+            0 => 'Thành công',
             2 => 'Chờ xử lý',
             3 => 'Đang check thông tin',
             4 => 'Sai thông tin',

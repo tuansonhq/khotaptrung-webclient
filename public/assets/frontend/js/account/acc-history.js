@@ -29,6 +29,12 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accountls', function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__timkiem').html('');
+        $('.loading-data__timkiem').html(htmlloading);
+
         var serial = $('.serial').val();
         var key = $('.key').val();
         var price = $('.price').val();
@@ -89,6 +95,12 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
+        e.preventDefault();
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__all').html('');
+        $('.loading-data__all').html(htmlloading);
 
         $('.serial_data').val('');
         $('.key_data').val('');
@@ -113,7 +125,7 @@ $(document).ready(function(){
     });
 
     $('body').on('change','.sort_by',function(e){
-
+        e.preventDefault();
         var serial_data = $('.serial_data').val();
         var key_data = $('.key_data').val();
         var price_data = $('.price_data').val();
@@ -272,6 +284,9 @@ $(document).ready(function(){
 
                 $("#data_pay_account_history").empty().html('');
                 $("#data_pay_account_history").empty().html(data.html);
+
+                $('.loading-data__timkiem').html('');
+                $('.loading-data__all').html('');
             },
             error: function (data) {
 
@@ -281,5 +296,12 @@ $(document).ready(function(){
             }
         });
     }
+
+    $('body').on('click','.btn_timkiem',function(e){
+        // e.preventDefault();
+
+
+
+    });
 
 })

@@ -48,6 +48,9 @@ $(document).ready(function(){
             success: (data) => {
                 $("#account_data").empty().html('');
                 $("#account_data").empty().html(data);
+
+                $('.loading-data__timkiem').html('');
+                $('.loading-data__all').html('');
             },
             error: function (data) {
 
@@ -60,7 +63,11 @@ $(document).ready(function(){
 
     $(document).on('submit', '.form-charge__accountlist', function(e){
         e.preventDefault();
+        var htmlloading = '';
 
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__timkiem').html('');
+        $('.loading-data__timkiem').html(htmlloading);
         var id = $('.id').val();
         var title = $('.title').val();
         var price = $('.price').val();
@@ -119,7 +126,11 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
-
+        e.preventDefault();
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__all').html('');
+        $('.loading-data__all').html(htmlloading);
         $('.id_data').val('');
         $('.title_data').val('');
         $('.price_data').val('');

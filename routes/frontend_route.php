@@ -58,6 +58,21 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
 
         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
+
+        Route::get('/tin-tuc', [ArticleController::class , "index"]);
+        Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
+        Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
+        Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+
+        Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
+        Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
+        Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
+        Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
+
+
+        Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
+        Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
+
         Route::group(['middleware' => ['auth_custom']], function (){
             Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
                 ->name('index');
@@ -100,19 +115,6 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
 
 
-            Route::get('/tin-tuc', [ArticleController::class , "index"]);
-            Route::get('/tin-tuc/data', [ArticleController::class , "getData"]);
-            Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
-            Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
-
-            Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
-            Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
-            Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
-            Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
-
-
-            Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-            Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
         });
 
         //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);

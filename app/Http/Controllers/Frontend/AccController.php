@@ -19,7 +19,8 @@ class AccController extends Controller
         $val = array();
         $val['data'] = 'category_list';
         $val['module'] = 'acc_category';
-
+        $val['sort_by'] = 'published_at';
+        $val['sort'] = 'desc';
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
@@ -48,6 +49,7 @@ class AccController extends Controller
 
                 $val['data'] = 'list_acc';
                 $val['cat_slug'] = $slug;
+                $val['status'] = 1;
                 $val['limit'] = 12;
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -69,6 +71,7 @@ class AccController extends Controller
                     $val['data'] = 'list_acc';
                     $val['cat_slug'] = $slug;
                     $val['page'] = $page;
+                    $val['status'] = 1;
                     $val['limit'] = 12;
 
                     if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
@@ -125,7 +128,9 @@ class AccController extends Controller
 
                     if(isset($result_Api) && $result_Api->httpcode == 200){
                         $items = $result_Api->data;
+
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+
                         $dataAttribute = $data->childs;
                         return view('frontend.pages.account.function.__account__data')
                             ->with('data',$data)
@@ -140,6 +145,7 @@ class AccController extends Controller
                 if(isset($result_Api) && $result_Api->httpcode == 200){
 
                     $items = $result_Api->data;
+
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $dataAttribute = $data->childs;
 
@@ -188,6 +194,7 @@ class AccController extends Controller
 
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
+
                 $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
                 $card_percent = setting('sys_card_percent');
@@ -344,6 +351,10 @@ class AccController extends Controller
             $val['data'] = 'list_acc';
             $val['user_id'] = AuthCustom::user()->id;
             $val['limit'] = 12;
+            $val['sort'] = 'desc';
+            $val['sort_by'] = 'published_at';
+
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             $valcategory['data'] = 'category_list';
@@ -360,7 +371,11 @@ class AccController extends Controller
                 $val = array();
                 $val['page'] = $page;
                 $val['data'] = 'list_acc';
+                $val['sort'] = 'desc';
+                $val['sort_by'] = 'published_at';
                 $val['limit'] = 12;
+
+
                 $val['user_id'] = AuthCustom::user()->id;
 
                 $chitiet_data = 0;
