@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="row justify-content-end">
-                                                <div class="col-auto">
+                                                <div class="col-12 col-md-auto">
                                                     <div class="input-group">
                                                         <span class="input-group-addon">Sắp xếp theo</span>
                                                         <select type="text" name="sort_by" class="form-control sort_by">
