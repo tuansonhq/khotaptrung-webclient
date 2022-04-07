@@ -8,6 +8,7 @@ use Cache;
 use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 use Illuminate\Http\Request;
+use Session;
 use function Illuminate\Events\queueable;
 
 class VerifyShop extends Middleware

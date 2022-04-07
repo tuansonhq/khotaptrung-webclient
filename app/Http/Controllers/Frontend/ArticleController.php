@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Session;
 
 class ArticleController extends Controller
 {
@@ -23,6 +24,7 @@ class ArticleController extends Controller
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $category = true;
+            Session::put('path', $_SERVER['REQUEST_URI']);
             return view('frontend.pages.article.index')
                 ->with('data',$data)
                 ->with('category',$category);
@@ -94,6 +96,7 @@ class ArticleController extends Controller
                 $title = $result->categoryarticle;
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
+                Session::put('path', $_SERVER['REQUEST_URI']);
                 return view('frontend.pages.article.function.__new__data')
                     ->with('title',$title)
                     ->with('data',$data)
@@ -118,7 +121,7 @@ class ArticleController extends Controller
             if ($result->item == 1){
                 $data = $result->data;
                 $dataitem = $result->dataitem;
-
+                Session::put('path', $_SERVER['REQUEST_URI']);
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('data',$data);
@@ -128,6 +131,8 @@ class ArticleController extends Controller
 
                 $title = $result->categoryarticle;
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                
+                Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.article.index')
                     ->with('title',$title)
