@@ -130,8 +130,9 @@ class ArticleController extends Controller
                 $data = $result->data;
 
                 $title = $result->categoryarticle;
+
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                
+
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.article.index')
