@@ -37,6 +37,7 @@ class LoginController extends Controller
             $data['username'] = $request->username;
             $data['password'] = $request->password;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
@@ -50,11 +51,13 @@ class LoginController extends Controller
                     return redirect()->to('/');
                 }
                 else{
+
                     return Response()->json($result_Api->data);
 //                    dd(111);
 //                    return redirect()->back()->withErrors($result->message);
                 }
             }else{
+
                 return Response()->json($result_Api->data);
                 //                dd(122222);
 //                $result = $result_Api->data;
@@ -62,6 +65,7 @@ class LoginController extends Controller
             }
         }
         catch(\Exception $e){
+
             Log::error($e);
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }

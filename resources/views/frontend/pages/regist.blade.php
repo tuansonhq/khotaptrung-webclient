@@ -8,15 +8,15 @@
                 <div class="regist_error"></div>
                 @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Tài khoản của web">
+                    <input type="text" class="form-control" name="username" placeholder="Tài khoản của web" required>
                     <span><i class="fas fa-user"></i></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+                    <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
                     <span><i class="fas fa-lock"></i></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
                     <span><i class="fas fa-user"></i></span>
                 </div>
                 <div class="row">
