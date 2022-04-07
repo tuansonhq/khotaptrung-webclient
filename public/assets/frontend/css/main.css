@@ -837,7 +837,7 @@ header .nav-bar{
 }
 .btn-social {
     position: relative;
-    padding-left: 44px;
+    /*padding-left: 44px;*/
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
