@@ -37,7 +37,7 @@ Route::get('/session', function ()
 });
 Route::get('/test', function ()
 {
-    dd(theme('')->theme_key);
+    dd(theme(''));
 });
 
 Route::group(array('middleware' => ['verify_shop']) , function (){

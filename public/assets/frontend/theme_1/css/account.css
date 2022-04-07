@@ -90,26 +90,26 @@
 }
 /*lịch sử giao dịch*/
 .account_content_transaction_history span{
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 400;
+    padding: 6px 4px;
+    /*font-size: 14px;*/
+    font-weight: 600;
     /*line-height: 1;*/
     color: #ffffff;
     text-align: center;
     /*background-color: #eee;*/
-    border: 1px solid;
+    /*border: 1px solid;*/
     /*border-radius: 4px;*/
 }
 
 .account_content_transaction_historyv2 span{
     /*padding: 6px 12px;*/
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
     /*line-height: 1;*/
     color: #ffffff;
     text-align: center;
     /*background-color: #eee;*/
-    border: 1px solid;
+    /*border: 1px solid;*/
     /*border-radius: 4px;*/
 }
 
@@ -145,40 +145,53 @@
     text-align: right;
     padding-top: 8px;
 }
-.account_pay_card th,.account_pay_card td{
-    word-break: break-word;
-}
-.account_content_transaction_history th,.account_content_transaction_history td{
-    word-break: break-word;
-}
+/*.account_pay_card th,.account_pay_card td{*/
+/*    word-break: break-word;*/
+/*}*/
+/*.account_content_transaction_history th,.account_content_transaction_history td{*/
+/*    word-break: break-word;*/
+/*}*/
 .account_content_transaction_history .control-label{
     margin-bottom: 12px;
 }
 
-.account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{
-    word-break: break-word;
-}
+/*.account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{*/
+/*    word-break: break-word;*/
+/*}*/
 .account_content_transaction_historyv2 .control-label{
     margin-bottom: 12px;
 }
 .account_sidebar_content .input-group{
     margin-bottom: 8px;
 }
+
 @media (max-width: 540px) {
+    .item_buy_form_search>div{
+        flex-direction: column-reverse;
+    }
     .account_pay_card th,.account_pay_card td{
-        font-size: 10px;
+        font-size: 14px;
     }
     .account_content_transaction_history th,.account_content_transaction_history td{
-        font-size: 10px;
+        font-size: 14px;
+    }
+    .account_content_transaction_historyv2 form>div {
+        margin-bottom: 8px;
     }
 
     .account_content_transaction_historyv2 th,.account_content_transaction_historyv2 td{
-        font-size: 10px;
+        font-size: 14px;
     }
 
 
     .account_pay_card .control-label{
         text-align: left;
+    }
+    .form-charge .form-group, #form-recharge .form-group{
+        margin-bottom: 0!important;
+    }
+    .data_pay_card_history__atm,.paycartdata{
+        margin-top: 20px;
     }
 }
 .account_sidebar_menu_nav_active{
@@ -291,4 +304,10 @@
 .success_storecard_pin ,.success_storecard_serial{
     display: flex;
     justify-content: space-between;
+}
+.menu_active{
+    color: #32c5d2 !important;
+}
+.copy_acc:hover{
+    color: #32c5d2 !important;
 }

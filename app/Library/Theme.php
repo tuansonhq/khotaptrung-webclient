@@ -48,7 +48,7 @@ class Theme
 
             $seo222 = $result->data->data;
 
-            return Cache::rememberForever('settings.all', function() use ($seo222) {
+            return Cache::rememberForever('themes.all', function() use ($seo222) {
                 return $seo222;
 
             });
