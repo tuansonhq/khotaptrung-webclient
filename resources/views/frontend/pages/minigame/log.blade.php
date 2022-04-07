@@ -19,7 +19,7 @@
                                         <option value="1">Log trúng acc</option>
                                     </select>
                                 </div>
-                            </div>         
+                            </div>
                             <div class="col-md-4">
                                 <div class="input-group">
                                     <select name="id" id="id" class="form-control">
@@ -29,9 +29,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <input type="hidden" id="group_id" value="{{$group->id}}">                            
+                            <input type="hidden" id="group_id" value="{{$group->id}}">
                             <script type="text/javascript">
-                                $("#id").change(function(){                                        
+                                $("#id").change(function(){
                                     window.location.href = $( "select#id" ).val();
                                 });
                                 $("#type").change(function(){
@@ -40,20 +40,16 @@
                                 });
                             </script>
                         </div>
-                        <form action="{{route('getLog',[$group->id])}}" method="get">
+                        <form action="{{route('getLog',[$group->id])}}" method="get" class=" account_content_transaction_history__v2">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-group-addon" name="gift_name" autocomplete="off" placeholder="Tên quà" value="{{request('gift_name')}}">
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
-                                        <span class="input-group-btn">
+                                        <span class="input-group-btn input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </span>
-                                            <input type="text" class="form-control input-group-addon" name="started_at" autocomplete="off" placeholder="Từ ngày" value="{{request('started_at')}}">
+                                            <input type="text" class="form-control input-group-addon started_at" name="started_at" autocomplete="off" placeholder="Từ ngày" value="{{request('started_at')}}">
                                         </div>
                                     </div>
                                 </div>
@@ -63,8 +59,13 @@
                                         <span class="input-group-btn input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                         </span>
-                                            <input type="text" class="form-control input-group-addon" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="{{request('ended_at')}}">
+                                            <input type="text" class="form-control input-group-addon ended_at" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="{{request('ended_at')}}">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-group-addon" name="gift_name" autocomplete="off" placeholder="Tên quà" value="{{request('gift_name')}}">
                                     </div>
                                 </div>
                             </div>
@@ -116,39 +117,9 @@
             </div>
         </div>
     </div>
-    
+
 <script>
     // $(function () {
-    $('#transaction_history_end').datetimepicker({
-        format: 'DD/MM/YYYY HH:mm',
-        useCurrent: false,
-        icons:
-            { time: 'fas fa-clock',
-                date: 'fas fa-calendar',
-                up: 'fas fa-arrow-up',
-                down: 'fas fa-arrow-down',
-                previous: 'fas fa-arrow-circle-left',
-                next: 'fas fa-arrow-circle-right',
-                today: 'far fa-calendar-check-o',
-                clear: 'fas fa-trash',
-                close: 'far fa-times' },
-        // minDate: moment()
-    });
-    $('#transaction_history_start').datetimepicker({
-        format: 'DD/MM/YYYY HH:mm',
-        useCurrent: false,
-        icons:
-            { time: 'fas fa-clock',
-                date: 'fas fa-calendar',
-                up: 'fas fa-arrow-up',
-                down: 'fas fa-arrow-down',
-                previous: 'fas fa-arrow-circle-left',
-                next: 'fas fa-arrow-circle-right',
-                today: 'far fa-calendar-check-o',
-                clear: 'fas fa-trash',
-                close: 'far fa-times' },
-        // minDate: moment()
 
-    });
 </script>
 @endsection

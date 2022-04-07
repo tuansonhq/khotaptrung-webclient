@@ -137,7 +137,7 @@ $(document).ready(function(){
     getInfo();
 
     function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
     function fn(text, count){
         return text.slice(0, count) + (text.length > count ? "..." : "");

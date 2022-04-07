@@ -26,6 +26,20 @@
                                         </div>
                                     </div>
                                 @endif
+                                    @if(isset($status))
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span >Trạng thái</span>
+                                                <select name="status" class="form-control status">
+                                                    <option value="">--Tất cả --</option>
+                                                    @foreach($status as $ist => $valst)
+                                                        <option value="{{ $ist }}">{{ $valst }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    @endif
+                               <div class="col-md-4"></div>
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
@@ -46,19 +60,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                    @if(isset($status))
-                                        <div class="col-md-4">
-                                            <div class="input-group">
-                                                <span >Trạng thái</span>
-                                                <select name="status" class="form-control status">
-                                                    <option value="">--Tất cả --</option>
-                                                    @foreach($status as $ist => $valst)
-                                                        <option value="{{ $ist }}">{{ $valst }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    @endif
+
                             </div>
 
                             <div class="row">

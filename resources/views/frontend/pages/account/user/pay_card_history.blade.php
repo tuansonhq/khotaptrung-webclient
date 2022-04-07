@@ -70,10 +70,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay"><i class="fas fa-calendar-alt"></i> Hôm nay</a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua"><i class="fas fa-calendar-alt"></i> Hôm qua </a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay"><i class="fas fa-calendar-alt"></i> Tháng này</a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 c-theme-btn btn-all"><i class="fas fa-calendar-alt"></i> Tất cả</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm nay</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm qua </a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tháng này</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 c-theme-btn btn-all mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tất cả</a>
                                 </div>
                             </div>
                         </form>
