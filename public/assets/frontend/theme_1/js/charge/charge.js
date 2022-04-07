@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
     $('#reload').click(function () {
@@ -35,6 +35,7 @@ $(document).ready(function(){
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
                     getAmount(telecom);
+                    paycartDataChargeHistory();
                     $('#loading-data').remove();
                     $('#form-content').removeClass('hide');
                 }
