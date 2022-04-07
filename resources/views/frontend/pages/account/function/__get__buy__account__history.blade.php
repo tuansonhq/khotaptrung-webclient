@@ -16,9 +16,8 @@
 
                 @if(isset($data) && count($data) > 0)
                     @foreach ($data as $item)
-{{--                        @dd($item)--}}
                         <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>{{ formatDateTime($item->published_at) }}</td>
                             <td>
                                 @if(isset($item->randId))
                                     #{{ $item->randId }}
@@ -34,10 +33,9 @@
                                 @endif
                             </td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ formatPrice($item->price) }}</td>
+                            <td>{{ formatPrice($item->price) }} đ</td>
                             <td>
                                 @if($item->status == 1)
-                                    <span class="badge badge-primary">Sẵn có</span>
                                 @elseif($item->status == 2)
                                     <span class="badge badge-warning">Chờ xử lý</span>
                                 @elseif($item->status == 3)
