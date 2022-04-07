@@ -64,6 +64,8 @@
     <script src="/assets/frontend/js/account_info.js"></script>
 
     <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
+    <script src="/assets/frontend/lib/popper/popper.min.js"></script>
+    <script src="/assets/frontend/lib/popper/tippy-bundle.umd.js"></script>
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))

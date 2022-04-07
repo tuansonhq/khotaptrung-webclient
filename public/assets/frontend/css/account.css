@@ -91,7 +91,7 @@
 /*lịch sử giao dịch*/
 .account_content_transaction_history span{
     padding: 6px 4px;
-    font-size: 14px;
+    /*font-size: 14px;*/
     font-weight: 400;
     /*line-height: 1;*/
     color: #ffffff;
@@ -293,5 +293,8 @@
     justify-content: space-between;
 }
 .active{
+    color: #32c5d2 !important;
+}
+.copy_acc:hover{
     color: #32c5d2 !important;
 }
