@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto">
-                        <div class="news_breadcrumbs_title"><a href="/dich-vu" >Dịch vụ</a></div>
+{{--                        <div class="news_breadcrumbs_title"><a href="/dich-vu" >Dịch vụ</a></div>--}}
                     </div>
                     <div class="col-md-10 col-8 ml-auto">
                         <ul class="news_breadcrumbs_theme">

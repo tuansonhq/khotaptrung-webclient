@@ -9,11 +9,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto pr-0">
-                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>
+{{--                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>--}}
                     </div>
                     <div class="col-lg-10 col-md-12 ml-lg-auto">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
+                            <li>/</li>
+                            <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
                             <li>/</li>
                             <li><a href="/danh-muc/{{ $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ $data_category->title }}</p></a></li>
                             {{--<li>/</li>--}}
