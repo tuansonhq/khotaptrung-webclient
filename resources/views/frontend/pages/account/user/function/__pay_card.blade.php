@@ -1,3 +1,4 @@
+@if(empty($data->data))
 <div class="table-responsive">
     <table class="table table-hover table-custom-res">
         <thead>
@@ -13,8 +14,6 @@
 
         </thead>
         <tbody>
-
-            @if(empty($data->data))
             @if(isset($data) && count($data) > 0)
                 @php
                     $prev = null;
@@ -113,13 +112,8 @@
 
                 @endforeach
             @else
-                <tr class="account_content_transaction_history">
-                    <td colspan="8">
-                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                    </td>
-                </tr>
+
             @endif
-        @endif
 
         </tbody>
 
@@ -140,7 +134,12 @@
         @endif
     @endif
 </div>
+@endif
 
-
+{{--<tr class="account_content_transaction_history">--}}
+{{--    <td colspan="8">--}}
+{{--        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
+{{--    </td>--}}
+{{--</tr>--}}
 
 

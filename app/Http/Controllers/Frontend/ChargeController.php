@@ -21,35 +21,8 @@ class ChargeController extends Controller
 {
     public function getDepositAuto(Request $request)
     {
-//        return 111111;
-//        try {
-                $method = "GET";
-                $url_history = '/deposit-auto/history';
-                $jwt = Session::get('jwt');
-                $val['token'] = $jwt;
-                $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
 
-                if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                    $bankHistory = $result_Api_history->data;
-                    $data = $bankHistory->data;
-
-                    $arrpin = array();
-
-                    for ($i = 0; $i < count($data->data); $i++){
-                        $pin = $data->data[$i]->pin;
-                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                        array_push($arrpin,$pin);
-                    }
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
-                    return view('frontend.pages.account.user.pay_card')->with('data', $data)->with('arrpin',$arrpin);
-                }
-
-//        } catch (\Exception $e) {
-//            Log::error($e);
-//            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//        }
+        return view('frontend.pages.account.user.pay_card');
 
     }
 
