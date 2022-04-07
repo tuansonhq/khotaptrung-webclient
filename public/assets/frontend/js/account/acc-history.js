@@ -268,39 +268,6 @@ $(document).ready(function(){
                     html += '</div>';
                     $('.form__show__chitiet').html(html);
 
-
-                    // document.querySelector('#getpass').addEventListener('click', function (event) {
-                    //     var copyTextarea = document.querySelector('#pass');
-                    //     copyTextarea.select();
-                    //
-                    //     try {
-                    //         document.execCommand('copy');
-                    //     } catch (err) {
-                    //         alert('Trình duyệt của bạn không thể thực hiện thao tác copy nhanh');
-                    //     }
-                    //     if (document.selection) {
-                    //         document.selection.empty();
-                    //     } else if (window.getSelection) {
-                    //         window.getSelection().removeAllRanges();
-                    //     }
-                    // });
-                    //
-                    // document.querySelector('#getpassemail').addEventListener('click', function (event) {
-                    //     var copyTextarea = document.querySelector('#passemail');
-                    //     copyTextarea.select();
-                    //
-                    //     try {
-                    //         document.execCommand('copy');
-                    //     } catch (err) {
-                    //         alert('Trình duyệt của bạn không thể thực hiện thao tác copy nhanh');
-                    //     }
-                    //     if (document.selection) {
-                    //         document.selection.empty();
-                    //     } else if (window.getSelection) {
-                    //         window.getSelection().removeAllRanges();
-                    //     }
-                    // });
-
                 }
 
                 $("#data_pay_account_history").empty().html('');
@@ -314,4 +281,5 @@ $(document).ready(function(){
             }
         });
     }
+
 })

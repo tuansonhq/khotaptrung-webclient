@@ -35,7 +35,7 @@
                             </td>
                             <td>{{ $item->title }}</td>
                             <td>{{ formatPrice($item->price) }}</td>
-                            <td style="width: 20%;">
+                            <td>
                                 @if($item->status == 1)
                                     <span class="badge badge-primary">Sẵn có</span>
                                 @elseif($item->status == 2)
@@ -79,13 +79,16 @@
                 @endif
             @endif
         </div>
-
+{{--    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>--}}
+{{--    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>--}}
     <script>
+
         function myFunction() {
             var copyText = document.getElementById("password");
             copyText.select();
             copyText.setSelectionRange(0, 99999); /* For mobile devices */
             navigator.clipboard.writeText(copyText.value);
+
         }
         function myFunctiontk() {
             var copyText = document.getElementById("taikhoan");
@@ -94,7 +97,23 @@
             navigator.clipboard.writeText(copyText.value);
         }
 
+
+
         $(document).ready(function(){
+
+            tippy('#getpass', {
+                // default
+                trigger: 'click',
+                content: "Đã copy!",
+                placement: 'right',
+            });
+
+            tippy('#getpasstk', {
+                // default
+                trigger: 'click',
+                content: "Đã copy!",
+                placement: 'right',
+            });
 
             // Click event of the showPassword button
             $('.show-btn-password').on('click', function(){
