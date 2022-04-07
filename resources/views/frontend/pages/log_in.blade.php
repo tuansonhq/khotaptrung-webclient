@@ -8,11 +8,11 @@
 {{--            <p style="color: red;font-size: 14px">    {{ $errors->first() }}</p>--}}
                 @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Tài khoản" name="username">
+                    <input type="text" class="form-control" placeholder="Tài khoản" name="username" required>
                     <span><i class="fas fa-user"></i></span>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" name="password" required>
                     <span><i class="fas fa-lock"></i></span>
                 </div>
                 <div class="row">
@@ -64,7 +64,6 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (data) {
-                    console.log(data)
                     // alert(data)
                     if(data.status == 1){
                         window.location.href = '/';

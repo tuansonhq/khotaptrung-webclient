@@ -70,37 +70,37 @@
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
 
-            $('.account_thong-tin').addClass('active')
+            $('.account_thong-tin').addClass('menu_active')
             @elseif(Request::is('lich-su-giao-dich'))
 
-            $('.account_lich-su-giao-dich').addClass('active')
+            $('.account_lich-su-giao-dich').addClass('menu_active')
 
             @elseif(Request::is('minigame-log-726'))
 
-            $('.account_minigame-log-726').addClass('active')
+            $('.account_minigame-log-726').addClass('menu_active')
 
             @elseif(Request::is('dich-vu-da-mua'))
 
-            $('.account_dich-vu-da-mua').addClass('active')
+            $('.account_dich-vu-da-mua').addClass('menu_active')
 
             @elseif(Request::is('nap-the'))
 
-            $('.account_nap-the').addClass('active')
+            $('.account_nap-the').addClass('menu_active')
 
             @elseif(Request::is('lich-su-nap-the'))
 
-            $('.account_lich-su-nap-the').addClass('active')
+            $('.account_lich-su-nap-the').addClass('menu_active')
 
             @elseif(Request::is('recharge-atm'))
 
-            $('.account_recharge-atm').addClass('active')
+            $('.account_recharge-atm').addClass('menu_active')
 
             @elseif(Request::is('lich-su-mua-account'))
 
-            $('.account_lich-su-mua-account').addClass('active')
+            $('.account_lich-su-mua-account').addClass('menu_active')
 
             @elseif(Request::is('withdrawitem-1'))
-            $('.account_withdrawitem-1').addClass('active')
+            $('.account_withdrawitem-1').addClass('menu_active')
 
             @endif
         })

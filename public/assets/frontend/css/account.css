@@ -305,9 +305,9 @@
     display: flex;
     justify-content: space-between;
 }
-/*.active{*/
-/*    color: #32c5d2 !important;*/
-/*}*/
+.menu_active{
+    color: #32c5d2 !important;
+}
 .copy_acc:hover{
     color: #32c5d2 !important;
 }
