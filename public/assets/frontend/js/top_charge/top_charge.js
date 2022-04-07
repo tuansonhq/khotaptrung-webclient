@@ -2,6 +2,9 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
+    function fn(text, count){
+        return text.slice(0, count) + (text.length > count ? "..." : "");
+    }
     function getTopCharge(){
         var url = '/top-charge';
         $.ajax({
@@ -15,7 +18,7 @@ $(document).ready(function(){
                             if (key <5){
                                 html += '<li>';
                                 html += '<p>'+key+'</p>';
-                                html += '<span>'+value.username+'</span>';
+                                html += '<span>'+fn(value.username, 12) +'</span>';
                                 // html += '<label>'+value.username+'<sup>đ</sup></label>';
                                 html += '<label>'+ formatNumber(value.amount) +'<sup>đ</sup></label>';
                                 html +='</li>';
