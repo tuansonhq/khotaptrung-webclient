@@ -35,6 +35,7 @@ $(document).ready(function(){
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
                     getAmount(telecom);
+                    paycartDataChargeHistory();
                     $('#loading-data').remove();
                     $('#form-content').removeClass('hide');
                 }
