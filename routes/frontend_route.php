@@ -113,6 +113,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
             Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
             Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
+
+
         });
 
         //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
