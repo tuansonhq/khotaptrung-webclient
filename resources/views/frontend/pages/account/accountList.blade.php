@@ -84,7 +84,7 @@
                                     <option value="1">Chưa bán</option>
                                     <option value="0">Đã bán</option>
                                     {{--                                            <option value="2">Đã đặt cọc</option>--}}
-                                    <option value="">Tất cả</option>
+{{--                                    <option value="">Tất cả</option>--}}
                                 </select>
                             </div>
                         </div>
