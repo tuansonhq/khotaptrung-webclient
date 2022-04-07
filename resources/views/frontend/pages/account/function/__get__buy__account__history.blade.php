@@ -55,7 +55,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td width="100%" style="width: 20%">
+                        <td colspan="8">
                             <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
                         </td>
                     </tr>
