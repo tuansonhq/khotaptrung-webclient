@@ -37,6 +37,7 @@ class AccController extends Controller
             $val = array();
 
         if ($slug_category == 'danh-muc'){
+
             if (isset($slug)){
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
@@ -124,9 +125,7 @@ class AccController extends Controller
 
                     if(isset($result_Api) && $result_Api->httpcode == 200){
                         $items = $result_Api->data;
-//                        return $items;
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-
                         $dataAttribute = $data->childs;
                         return view('frontend.pages.account.function.__account__data')
                             ->with('data',$data)
@@ -141,13 +140,10 @@ class AccController extends Controller
                 if(isset($result_Api) && $result_Api->httpcode == 200){
 
                     $items = $result_Api->data;
-//                    return $items;
-//                    if (isEmpty($data->data)){
-                        $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-//                    }
-
+                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $dataAttribute = $data->childs;
 
+                    Session::put('path', $_SERVER['REQUEST_URI']);
                     return view('frontend.pages.account.accountList')
                         ->with('data',$data)
                         ->with('dataAttribute',$dataAttribute)
@@ -197,6 +193,7 @@ class AccController extends Controller
                 $card_percent = setting('sys_card_percent');
                 $atm_percent = setting('sys_atm_percent');
 
+                Session::put('path', $_SERVER['REQUEST_URI']);
                 return view('frontend.pages.account.show')
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)
@@ -294,10 +291,8 @@ class AccController extends Controller
             $val['data'] = 'buy_acc';
             $val['user_id'] = AuthCustom::user()->id;
 
-
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-//            return $val;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 

@@ -51,7 +51,17 @@
                     console.log(data)
                     // alert(data)
                     if(data.status == 1){
-                        window.location.href = '/';
+                        var metapath = $('meta[name="path"]').attr('content');
+
+                        if (metapath == null || metapath == '' || metapath == undefined){
+
+                            window.location.href = '/';
+
+                        }else {
+
+                            window.location.href = metapath;
+
+                        }
 
                     }else{
                         let html = '';

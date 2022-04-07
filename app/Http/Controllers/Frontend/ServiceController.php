@@ -30,7 +30,7 @@ class ServiceController extends Controller
             $data = $data->data;
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
+            Session::put('path', $_SERVER['REQUEST_URI']);
             return view('frontend.pages.service.index')
                 ->with('data', $data);
         } else {
@@ -85,6 +85,8 @@ class ServiceController extends Controller
             $data = $result->data;
             $categoryservice = $result->categoryservice;
             $categoryservice = $categoryservice->data;
+
+            Session::put('path', $_SERVER['REQUEST_URI']);
 
             return view('frontend.pages.service.show')
                 ->with('categoryservice', $categoryservice)

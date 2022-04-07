@@ -302,7 +302,7 @@
                             <div class="col-6 col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
-                                    <a href="/acc/{{ $data->randId }}">
+                                    <a href="/acc/{{ $datav2->randId }}">
                                         @if(isset($datav2->image))
                                             <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
                                         @else
@@ -430,6 +430,7 @@
             </div>
         </div>
     </div>
+
 
 {{--    <script src="/assets/frontend/js/account/buyacc.js"></script>--}}
     <script src="/assets/frontend/js/account/buyaccslider.js"></script>

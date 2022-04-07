@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="path" content="{{ Session::get('path')??'' }}" />
     <meta name="jwt" content="jwt" />
 {{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="/assets/frontend/lib/sweetalert2/sw2.css">
@@ -105,8 +106,8 @@
             @endif
         })
     </script>
-    @stack('js')
 
+    @stack('js')
 
     @yield('seo_head')
         @if(Request::is('/'))
@@ -135,6 +136,7 @@
 
 </head>
 <body>
+
 <div class="{{ Request::is('/')?'main-lay-out':'' }}">
     @include('frontend.layouts.includes.header')
     <div class="content" style="">

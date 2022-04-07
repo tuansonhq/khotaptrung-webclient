@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
 
+        \Session::forget('path');
         return view('frontend.pages.index');
     }
 
@@ -25,6 +26,7 @@ class HomeController extends Controller
         $result_Api_menu_profile = DirectAPI::_makeRequest($url_menu_profile ,$method_menu_category ,$val_menu_profile );
         $result_menu_profile= $result_Api_menu_profile->data;
         $data_menu_profile = $result_menu_profile->data;
+
 
         return view('frontend.pages.index')
             ->with('$data_menu_profile',$data_menu_profile);
