@@ -112,7 +112,7 @@
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
     <input type="hidden" name="service" id="append-service" value="0" />
-    <script src="/assets/frontend/js/service/show-service.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/show-service.js"></script>
 @endsection
 
 

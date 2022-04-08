@@ -56,7 +56,7 @@
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="" />
 
-        <script src="/assets/frontend/js/article/article.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     @else
         <div class="news">
             <div class="news_breadcrumbs">
@@ -106,7 +106,7 @@
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="{{ $slug }}" />
 
-        <script src="/assets/frontend/js/article/article.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     @endif
 
 @endsection

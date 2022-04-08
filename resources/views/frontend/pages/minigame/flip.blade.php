@@ -233,7 +233,7 @@
                 </button>
             </div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!               
+                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
             </div>
             <div class="modal-footer">
                 <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
@@ -265,10 +265,10 @@
                     <div class="tab-content">
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
-                                
+
                                 @if(count($result->top_current_day)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
                        {{$result->top_current_day[0]->author->username}}</a></span></p>
                                     <p style="font-weight: bold;font-size:15px">{{$result->top_current_day[0]->numwheel}} lượt lật</p>
@@ -297,7 +297,7 @@
                             <div>
                                 @if(count($result->top_30_day)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
                        {{$result->top_30_day[0]->author->username}}</a></span></p>
                                     <p style="font-weight: bold;font-size:15px">{{$result->top_30_day[0]->numwheel}} lượt lật</p>
@@ -310,7 +310,7 @@
                                     <li>
                                         <div class="pull-left">
                                             <p class="pull-left" style="width: 25px;">#2</p>
-                                            <div class="avt avt-xs"><img src="/assets/frontend/image/icon-user.png" class="avt-img" alt="player duo"></div>
+                                            <div class="avt avt-xs"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
                                         </div>
                                         <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>
@@ -348,10 +348,10 @@
 
 <style type="text/css">
     .boxflip .active {
-      animation: rotation 100ms infinite linear; 
+      animation: rotation 100ms infinite linear;
     }
     .boxflip .tran {
-        opacity: 0!important; 
+        opacity: 0!important;
     }
 
     @keyframes rotation {
@@ -362,7 +362,7 @@
     var numrollbyorder = 0;
     document.addEventListener('touchmove', function (event) {
       if (event.scale !== 1) { event.preventDefault(); }
-    }, false);    
+    }, false);
     var lastTouchEnd = 0;
     document.addEventListener('touchend', function (event) {
       var now = (new Date()).getTime();
@@ -412,8 +412,8 @@ $(document).ready(function(e){
         })
     }
     var saleoffpass = "";
-    var saleoffmessage = ""; 
-    var gift_revice=""; 
+    var saleoffmessage = "";
+    var gift_revice="";
     var userpoint = 0;
     var roll_check = true;
     var num_loop = 4;
@@ -430,7 +430,7 @@ $(document).ready(function(e){
         $('.boxflip .flip-box-front').removeClass('img_remove');
         $('.boxflip .flip-box-front').removeClass('active');
         $('.boxflip .flip-box-front').addClass('noactive');
-        saleoffpass = $("#saleoffpass").val(); 
+        saleoffpass = $("#saleoffpass").val();
         $(this).removeClass('noactive');
         $(this).addClass('active');
         if(roll_check){
@@ -467,7 +467,7 @@ $(document).ready(function(e){
                     } else if (data.status == 0) {
                         roll_check = true;
                         $('.content-popup').text(data.msg);
-                        $('#noticeModal').modal('show');   
+                        $('#noticeModal').modal('show');
                         $('.continue').show();
                         return;
                     }
@@ -549,7 +549,7 @@ $(document).ready(function(e){
                         // {
                         //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                         // }
-                        
+
                         if($('#type_play').val() == "real")
                         {
                             if(gift_revice.length == 1)
@@ -586,7 +586,7 @@ $(document).ready(function(e){
                                     }
                                     $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                 }
-                                
+
                                 $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                             }
                         }
@@ -618,7 +618,7 @@ $(document).ready(function(e){
                                     }
                                     $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                                 }
-                                
+
                                 $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                             }
                         }
@@ -638,7 +638,7 @@ $(document).ready(function(e){
                         else
                         {
                             $('.continue').html("Chơi thử tiếp");
-                        }                       
+                        }
                     },2500);
                 },
                 error: function(){

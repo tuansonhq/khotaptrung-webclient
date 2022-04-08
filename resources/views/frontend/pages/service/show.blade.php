@@ -154,12 +154,12 @@
 
                     <div class="row">
                         <div class="col-md-12 float_mb">
-                            <script src="/assets/frontend/rank/js/rslider.js"></script>
-                            <script src="/assets/frontend/rank/js/select-chosen.js" type="text/javascript"></script>
-                            <link href="/assets/frontend/rank/css/style.css" rel="stylesheet" type="text/css"/>
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+                            <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                             <div class="range_slider" style="">
@@ -292,7 +292,7 @@
 
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+                        <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                         <div class="modal-content">
 
                             <div class="modal-header">
@@ -521,7 +521,7 @@
 
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
-    <link rel="stylesheet" href="/assets/frontend/css/service.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
 
     <script>
 
@@ -843,7 +843,7 @@
                     e.preventDefault();
                     e.preventDefault();
                     var curModal = $('#LoadModal');
-                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/{{theme('')->theme_key}}/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
                     curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
                 });
             });
