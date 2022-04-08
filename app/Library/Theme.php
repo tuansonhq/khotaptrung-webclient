@@ -38,8 +38,8 @@ class Theme
 
 
     public static function apiTheme(){
-        if (Cache::get('themes.all')){
-            Cache::get('themes.all');
+        if (Cache::get('themes_nick.vn')){
+            Cache::get('themes_nick.vn');
         }
         $url = '/theme/get-theme-config';
         $method = "GET";
@@ -50,13 +50,13 @@ class Theme
 
             $seo222 = $result->data->data;
 
-            return Cache::rememberForever('themes.all', function() use ($seo222) {
+            return Cache::rememberForever('themes_nick.vn', function() use ($seo222) {
                 return $seo222;
 
             });
         }
 
-        return Cache::get('themes.all');
+        return Cache::get('themes_nick.vn');
     }
 
 }
