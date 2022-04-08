@@ -27,17 +27,13 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="alert alert-info box-text hidetext" role="alert">
-
                         <h1 class="alert-heading h1_category" style="color:#000">{{ $data->title }}</h1>
                         @if(isset($data->description))
                         {!! $data->description !!}
-                        @else
-                            {!! $data->seo_description !!}
                         @endif
+                        <br>
                         @if(isset($data->content))
                             {!! $data->content !!}
-                        @else
-                            {!! $data->seo_content !!}
                         @endif
                     </div>
                     <div style="text-align: center;margin: 15px 0">
