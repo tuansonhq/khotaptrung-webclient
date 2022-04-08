@@ -34,6 +34,11 @@
                         @else
                             {!! $data->seo_description !!}
                         @endif
+                        @if(isset($data->content))
+                            {!! $data->content !!}
+                        @else
+                            {!! $data->seo_content !!}
+                        @endif
                     </div>
                     <div style="text-align: center;margin: 15px 0">
                         <span class="viewmore">Xem tất cả »</span>
