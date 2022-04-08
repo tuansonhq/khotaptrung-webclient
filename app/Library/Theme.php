@@ -38,7 +38,9 @@ class Theme
 
 
     public static function apiTheme(){
-
+        if (Cache::get('themes.all')){
+            Cache::get('themes.all');
+        }
         $url = '/theme/get-theme-config';
         $method = "GET";
         $data = array();
