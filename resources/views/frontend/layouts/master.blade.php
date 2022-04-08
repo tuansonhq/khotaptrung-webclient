@@ -41,9 +41,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}/theme.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}/theme.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">
     @stack('style')
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
@@ -180,7 +180,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/{{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}/theme.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 
