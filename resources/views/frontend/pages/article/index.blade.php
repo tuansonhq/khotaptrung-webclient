@@ -23,7 +23,7 @@
             </div>
             <div class="news_content">
                 <div class="container">
-                    <div class="row">
+                    <div class="row news_content_in">
                         <div class="col-lg-9 col-md-12 col-sm-12">
                             <form>
                                 <div class="row">
@@ -79,7 +79,7 @@
             </div>
             <div class="news_content">
                 <div class="container">
-                    <div class="row">
+                    <div class="row news_content_in">
                         <div class="col-md-9 col-sm-12">
                             <form>
                                 <div class="row">

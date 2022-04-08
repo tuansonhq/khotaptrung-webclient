@@ -43,6 +43,7 @@
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}/theme.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}/theme.css">
     @stack('style')
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
