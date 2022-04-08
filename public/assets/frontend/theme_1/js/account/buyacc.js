@@ -2,6 +2,11 @@ $(document).ready(function () {
 
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__buyacc').html('');
+        $('.loading-data__buyacc').html(htmlloading);
 
         var id = $(this).data("id");
         getBuyAcc(id)
@@ -23,7 +28,7 @@ $(document).ready(function () {
 
                 $('.loadModal__acount').modal('toggle');
                 $('.modal-content_accountlist').html(data.data);
-
+                $('.loading-data__buyacc').html('');
             },
             error: function (data) {
 
@@ -36,6 +41,12 @@ $(document).ready(function () {
 
     $(document).on('submit', '.formDonhangAccount', function(e){
         e.preventDefault();
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__muangay').html('');
+        $('.loading-data__muangay').html(htmlloading);
+
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
@@ -50,7 +61,7 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                console.log(response)
+                // console.log(response)
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     swal({
@@ -86,6 +97,7 @@ $(document).ready(function () {
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
+                $('.loading-data__muangay').html('');
             },
             error: function (response) {
                 if(response.status === 422 || response.status === 429) {

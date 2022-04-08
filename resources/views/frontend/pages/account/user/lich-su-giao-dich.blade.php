@@ -121,7 +121,7 @@
     <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
     <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
-    <script src="/assets/frontend/js/account/txns-history.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/txns-history.js"></script>
 
 @endsection
 

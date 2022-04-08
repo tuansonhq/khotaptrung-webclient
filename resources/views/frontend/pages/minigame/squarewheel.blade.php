@@ -323,7 +323,7 @@
 
                                 @if(count($result->top_current_day)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
                        {{$result->top_current_day[0]->author->username}}</a></span></p>
                                     <p style="font-weight: bold;font-size:15px">{{$result->top_current_day[0]->numwheel}} lượt quay</p>
@@ -352,7 +352,7 @@
                             <div>
                                 @if(count($result->top_30_day)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
                        {{$result->top_30_day[0]->author->username}}</a></span></p>
                                     <p style="font-weight: bold;font-size:15px">{{$result->top_30_day[0]->numwheel}} lượt quay</p>
@@ -365,7 +365,7 @@
                                     <li>
                                         <div class="pull-left">
                                             <p class="pull-left" style="width: 25px;">#2</p>
-                                            <div class="avt avt-xs"><img src="/assets/frontend/image/icon-user.png" class="avt-img" alt="player duo"></div>
+                                            <div class="avt avt-xs"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
                                         </div>
                                         <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>

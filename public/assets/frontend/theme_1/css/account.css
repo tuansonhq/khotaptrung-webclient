@@ -311,3 +311,10 @@
 .copy_acc:hover{
     color: #32c5d2 !important;
 }
+
+.theashow:hover{
+    text-decoration: none;
+}
+.theashow:hover span{
+    text-decoration: none;
+}

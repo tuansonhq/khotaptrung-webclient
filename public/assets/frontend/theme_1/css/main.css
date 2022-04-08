@@ -2036,3 +2036,26 @@ footer{
     width: 100%;
     object-fit: cover;
 }
+
+.loading-data__timkiem{
+    position: absolute;
+    left: 35%;
+    top: -10%;
+}
+
+
+.loading-data__all{
+    position: absolute;
+    top: -10%;
+    left: 30%;
+}
+.loading-data__buyacc{
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+.loading-data__muangay{
+    position: absolute;
+    top: 0;
+    left: 50%;
+}

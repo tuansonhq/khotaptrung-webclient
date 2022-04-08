@@ -92,7 +92,7 @@
     <input type="hidden" name="hidden_page" id="hidden_page_service__show" value="1" />
     <input type="hidden" name="title_data" class="title_data" value="" />
 
-    <script src="/assets/frontend/js/service/service.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service.js"></script>
 
 @endsection
 

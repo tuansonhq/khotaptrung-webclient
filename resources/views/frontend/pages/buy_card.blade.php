@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @push('js')
-    <script src="/assets/frontend/js/storeCard/store_card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
 @endpush
 @section('content')
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
@@ -21,7 +21,7 @@
                      <div class="col-md-5 d-none d-md-block d-lg-block">
                         <div class="">
                            <div class="news_image">
-                              <img src="https://nick.vn/assets/frontend/images/store-card.jpg" alt="">
+                              <img src="https://nick.vn/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
                            </div>
                         </div>
                      </div>
@@ -91,7 +91,7 @@
 </div>
 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+      <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
       <div class="modal-content">
          <div class="modal-header">
             <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto">Xác nhận thông tin thanh toán</h4>
@@ -111,7 +111,7 @@
 </div>
 <div class="modal fade" id="success_storecard" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog  modal-lg modal-dialog-centered" role="document">
-        <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+        <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center;margin: auto">Chi tiết giao dịch</h4>
