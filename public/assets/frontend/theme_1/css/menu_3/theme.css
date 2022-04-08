@@ -1,0 +1,23 @@
+header .nav-bar .nav-bar-container>.nav-bar-brand{
+    display: none;
+}
+
+header .nav-bar .nav-bar-category{
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+    transition: .2s ease;
+}
+header .nav-bar .nav-bar-container{
+    display: block;
+}
+header .nav-bar .nav-bar-category>.nav-bar-brand{
+    display: block;
+}
+@media (max-width: 992px) {
+    header .nav-bar .nav-bar-category{
+        display: none;
+        justify-content: space-between;
+
+    }
+}

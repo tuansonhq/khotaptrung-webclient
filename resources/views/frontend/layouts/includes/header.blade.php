@@ -13,6 +13,13 @@
                 <ul class="nav">
                     {!! widget('frontend.widget.__menu_category_desktop',60) !!}
                 </ul>
+                <div class="nav-bar-brand">
+                    <a href="/">
+                        <img src="{{config('api.url_media').setting('sys_logo') }}" alt="">
+                        {{--                    <img src="https://www.shopas.net/storage/images/6BdfImoiWl_1640248137.png" alt="">--}}
+                    </a>
+
+                </div>
                 <ul class="nav">
 
 

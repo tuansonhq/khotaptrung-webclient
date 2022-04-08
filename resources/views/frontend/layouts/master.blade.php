@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
+
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}/theme.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/{{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}/theme.css">
     @stack('style')
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
@@ -67,6 +70,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
+
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
@@ -175,6 +179,8 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/{{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}/theme.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js"></script>
