@@ -114,7 +114,7 @@ var swiper2 = new Swiper('.item_play_dif_slide_detail', {
     lazy: {
         loadPrevNext: true,
     },
-    loop: true,
+    loop: false,
     centeredSlides: false,
     slidesPerView: 4,
     speed: 800,
