@@ -10,7 +10,6 @@
             <div class="swiper-container item_play_dif_slide_detail item_news" >
                 <div class="swiper-wrapper">
                     @foreach($dataitem->data as $item)
-
                     <div class="swiper-slide swiper-slide__size" >
                         <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
                             <div class="item_play_dif_slide_img">

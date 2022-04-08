@@ -9,8 +9,8 @@
             <div class="col-12 item_play_dif_slide pt-3 pb-5" >
                 <div class="swiper-container item_play_dif_slide_detail item_news" >
                     <div class="swiper-wrapper">
-                        @foreach($categoryservice as $item)
 
+                        @foreach($categoryservice as $item)
                             <div class="swiper-slide swiper-slide__size" >
                                 <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
                                     <div class="item_play_dif_slide_img">
