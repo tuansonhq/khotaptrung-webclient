@@ -3,7 +3,35 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-
+    <script src="/assets/frontend/rank/js/rslider.js"></script>
+    <script src="/assets/frontend/rank/js/select-chosen.js" type="text/javascript"></script>
+    <link href="/assets/frontend/rank/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
+    <style type="text/css">
+        @media only screen and (max-width: 640px) {
+            .float_mb {
+                float: left;
+            }
+        }
+        .pay{
+            display: block;
+            background: #fb236a;
+            border-radius: 17px;
+            text-align: center;
+            max-width: 118px;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(".pay").click(function(){
+            $("#btnPurchase").click();
+        })
+    </script>
     <div class="c-layout-page">
         <div class="news_breadcrumbs">
             <div class="container">
@@ -39,7 +67,7 @@
 
 {{--            Tính toán  --}}
 
-            <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="" enctype="multipart/form-data">
+            <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="container detail-service">
                     <div class="row">
@@ -154,12 +182,12 @@
 
                     <div class="row">
                         <div class="col-md-12 float_mb">
-                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
-                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
-                            <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
+                            <script src="/assets/frontend/rank/js/rslider.js"></script>
+                            <script src="/assets/frontend/rank/js/select-chosen.js" type="text/javascript"></script>
+                            <link href="/assets/frontend/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                             <div class="range_slider" style="">
@@ -292,7 +320,7 @@
 
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+                        <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
                         <div class="modal-content">
 
                             <div class="modal-header">
@@ -521,334 +549,7 @@
 
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
-
-    <script>
-
-        $(document).ready(function () {
-            $('#btnPurchase').click(function () {
-
-                $('#homealert').modal('show');
-            });
-        });
-
-
-        function Confirm(index, serverid) {
-            $('[name="server"]').val(serverid);
-            $('[name="selected"]').val(index);
-            $('#btnPurchase').click();
-        }
-
-        var data = jQuery.parseJSON('{!! $data->params !!}');
-
-
-            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
-        var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
-            @else
-        var purchase_name = 'VNĐ';
-            @endif
-
-        var server = -1;
-
-        $(".server-filter").change(function (elm, select) {
-            server = parseInt($(".server-filter").val());
-            $('[name="server"]').val(server);
-            UpdatePrice();
-        });
-        server = parseInt($(".server-filter").val());
-        $('[name="server"]').val(server);
-
-    </script>
-{{--        @dd($data)--}}
-    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
-
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
-    <script>
-        var itemselect = -1;
-        $(document).ready(function () {
-            $(".s-filter").change(function (elm, select) {
-                itemselect = parseInt($(".s-filter").val());
-                UpdatePrice();
-            });
-            itemselect = parseInt($(".s-filter").val());
-            UpdatePrice();
-        });
-
-        function UpdatePrice() {
-            var price = 0;
-            if (itemselect == -1) {
-                return;
-            }
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-
-                var s_price = data["price" + server];
-                price = parseInt(s_price[itemselect]);
-            }
-            else {
-                var s_price = data["price"];
-                price = parseInt(s_price[itemselect]);
-            }
-
-            $('#txtPrice').html('Tổng: ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
-            $('[name="selected"]').val($(".s-filter").val());
-
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('tbody tr.selected').removeClass('selected');
-            $('tbody tr').eq(itemselect).addClass('selected');
-        }
-
-        function ConfirmBuy(value) {
-            var index = $('.server-filter').val();
-            Confirm(value, index);
-        }
-    </script>
-
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
-    <script>
-        $('.s-filter input[type="checkbox"]').change(function () {
-            UpdatePrice();
-        });
-
-        function UpdatePrice() {
-            var price = 0;
-            var itemselect = '';
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-                var s_price = data["price" + server];
-            }
-            else {
-                var s_price = data["price"];
-            }
-
-            if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
-                $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
-
-                    price += parseInt(s_price[$(elm).val()]);
-                    if (itemselect != '') {
-                        itemselect += '|';
-                    }
-
-                    itemselect += $(elm).val();
-
-                    $('#txtPrice').html('Tổng: ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
-                    $('[name="selected"]').val(itemselect);
-
-                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $(this).removeClass();
-                    });
-                });
-                $('#btnPurchase').prop('disabled', false);
-            }
-            else {
-                $('#txtPrice').html('Tổng: 0 VNĐ');
-                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    $(this).removeClass();
-                });
-                $('#btnPurchase').prop('disabled', true);
-
-            }
-
-        }
-    </script>
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
-    <script>
-        var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
-        var data = json.price;
-        $('.nstSlider').attr('data-range_max', data.length - 1);
-        $('.nstSlider').attr('data-cur_max', data.length - 1);
-        $('.nstSlider').nstSlider({
-            "crossable_handles": false,
-            "left_grip_selector": ".leftGrip",
-            "right_grip_selector": ".rightGrip",
-            "value_bar_selector": ".bar",
-            "value_changed_callback": function (cause, leftValue, rightValue) {
-                from = leftValue;
-                to = rightValue;
-                $(".from-chosen").val(from);
-                $(".to-chosen").val(to);
-                $(".to-chosen").trigger("chosen:updated");
-                $(".from-chosen").trigger("chosen:updated");
-                UpdatePrice1();
-            }
-        });
-
-        var from = 0, to = 1;
-        $(document).ready(() => {
-            $(".from-chosen").chosen({disable_search_threshold: 10});
-            $(".from-chosen").change((elm, select) => {
-                from = parseInt($(".from-chosen").val());
-                if (to <= from) {
-                    to = from + 1;
-                    $(".to-chosen").val(to);
-                    //$(".to-chosen").chosen('update');
-                    $(".to-chosen").trigger("chosen:updated");
-                }
-                $('.nstSlider').nstSlider('set_position', from, to);
-                UpdatePrice1();
-            });
-
-            $(".to-chosen").chosen({disable_search_threshold: 10});
-            $(".to-chosen").change((elm, select) => {
-                to = parseInt($(".to-chosen").val());
-                if (to <= from) {
-                    from = to - 1;
-                    $(".from-chosen").val(from);
-                    $(".from-chosen").trigger("chosen:updated");
-                }
-                $('.nstSlider').nstSlider('set_position', from, to);
-                UpdatePrice1();
-            });
-            UpdatePrice1();
-        });
-
-        function UpdatePrice1() {
-            var price = 0;
-            var data =json.price;
-            $('tbody tr.selected').removeClass('selected');
-            for (var i = from + 1; i <= to; i++) {
-                price += parseInt(data[i]-data[i-1]);
-                $('tbody tr').eq(i - 1).addClass('selected');
-            }
-            $('#txtPrice').html('Tổng: ' + (price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
-            $('[name="selected"]').val(from + '|' + to);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('.nstSlider').nstSlider('set_position', from, to);
-            $(".from-chosen").val(from);
-            $(".to-chosen").val(to);
-            $(".to-chosen").trigger("chosen:updated");
-            $(".from-chosen").trigger("chosen:updated");
-        }
-    </script>
-
-    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
-    <script>
-        var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
-        var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
-        $('#txtPrice').html('');
-        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
-
-        function UpdatePrice() {
-
-            var container = $('.m-datatable__body').html('');
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-
-                var s_price = data["price" + server];
-                var s_discount = data["discount" + server];
-            }
-            else {
-                var s_price = data["price"];
-            }
-
-            for (var i = 0; i < data.name.length; i++) {
-
-                var price = s_price[i];
-                var discount = s_price[i];
-
-
-                if (s_price != null && s_discount != null) {
-                    var ptemp = '';
-
-                    if (data.length == 1) {
-                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
-                    } else {
-                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
-                    }
-                    var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
-                        '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
-                        '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
-                        '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
-                        '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
-                        '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
-
-                    $(temp).appendTo(container);
-                }
-            }
-
-            UpdateTotal();
-        }
-
-        function UpdateTotal() {
-            var price = parseInt($('#input_pack').val().replace(/,/g, ''));
-
-            if (typeof price != 'number' || price < min || price > max) {
-                $('button[type="submit"]').addClass('not-allow');
-
-                $('#txtPrice').html('Tiền nhập không đúng');
-                return;
-            } else {
-                $('button[type="submit"]').removeClass('not-allow');
-            }
-            var total = 0;
-            var index = 0;
-            var current = 0;
-            var discount = 0;
-
-
-            if (data.server_mode == 1 && data.server_price == 1) {
-
-                var s_price = data["price" + server];
-                var s_discount = data["discount" + server];
-            }
-            else {
-                var s_price = data["price"];
-                var s_discount = data["discount"];
-            }
-            for (var i = 0; i < s_price.length; i++) {
-
-                if (price >= s_price[i] && s_price[i] != null) {
-                    current = s_price[i];
-                    index = i;
-                    discount = s_discount[i];
-                    total = price * s_discount[i];
-
-                }
-            }
-
-            total = parseInt(total / 1000 * data.input_pack_rate);
-
-            $('#txtDiscount').val(discount);
-            $('#txtPrice').html('');
-            $('#txtPrice').html('Tổng: ' + (total).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " " + purchase_name);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-            $('[name="selected"]').val(price);
-            $('.m-datatable__body tbody tr.selected').removeClass('selected');
-            $('.m-datatable__body tbody tr').eq(index).addClass('selected');
-        }
-
-        $('#input_pack').bind('focus keyup', function () {
-            UpdateTotal();
-        });
-        $(document).ready(function () {
-            UpdatePrice();
-        });
-
-        function ConfirmBuy(value) {
-            var index = $('.server-filter').val();
-            Confirm(value, index);
-        }
-    </script>
-    @endif
-    <script>
-        $(document).ready(function () {
-            $('.load-modal').each(function (index, elem) {
-                $(elem).unbind().click(function (e) {
-                    e.preventDefault();
-                    e.preventDefault();
-                    var curModal = $('#LoadModal');
-                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/{{theme('')->theme_key}}/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
-                    curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
-                });
-            });
-        });
-    </script>
-
+    <link rel="stylesheet" href="/assets/frontend/css/service.css">
+    <script src="/assets/frontend/js/service/showdetailservice.js"></script>
 @endsection
 
