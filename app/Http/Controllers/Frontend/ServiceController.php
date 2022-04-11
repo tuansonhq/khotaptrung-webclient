@@ -393,10 +393,46 @@ class ServiceController extends Controller
                 }
 
                 $val['token'] = $jwt;
-                dd($val);
+
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-                return $result_Api;
+                if(isset($result_Api) && $result_Api->httpcode == 200){
+                    $data = $result_Api->data;
+
+                    if (isset($data->success)){
+                        if ($data->success == 0){
+                            return response()->json([
+                                'status' => 2,
+                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                            ]);
+//                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
+                        }elseif ($data->success == 1 ){
+                            return response()->json([
+                                'status' => 1,
+                                'message' => "Mua tài khoản thành công",
+                            ]);
+//                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
+                        }
+                    }elseif (isset($data->error)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
+//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
+                    }
+
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                    ]);
+                }
+
             }
         }
     }
