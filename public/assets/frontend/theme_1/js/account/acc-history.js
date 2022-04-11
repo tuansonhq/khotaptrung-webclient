@@ -29,6 +29,12 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accountls', function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__timkiem').html('');
+        $('.loading-data__timkiem').html(htmlloading);
+
         var serial = $('.serial').val();
         var key = $('.key').val();
         var price = $('.price').val();
@@ -89,6 +95,12 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
+        e.preventDefault();
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__all').html('');
+        $('.loading-data__all').html(htmlloading);
 
         $('.serial_data').val('');
         $('.key_data').val('');
@@ -113,7 +125,7 @@ $(document).ready(function(){
     });
 
     $('body').on('change','.sort_by',function(e){
-
+        e.preventDefault();
         var serial_data = $('.serial_data').val();
         var key_data = $('.key_data').val();
         var price_data = $('.price_data').val();
@@ -183,7 +195,12 @@ $(document).ready(function(){
                     html += '<div class="form-group m-t-10 row">';
                     html += '<label class="col-md-3 control-label"><b>Tài khoản:</b></label>';
                     html += '<div class="col-md-6">';
-                    html += '<input class="form-control c-square c-theme" type="text" placeholder="Tài khoản" readonly value="' + data.datashow.title + '">';
+                    html += '<div class="input-group c-square">';
+                    html += '<input class="form-control c-square c-theme" type="text" placeholder="Tài khoản taikhoan" id="taikhoan" readonly value="' + data.datashow.title + '">';
+                    html += '<span class="input-group-btn">';
+                    html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctiontk()" id="getpasstk">Copy</button>';
+                    html += '</span>';
+                    html += '</div>';
                     html += '</div>';
                     html += '</div>';
 
@@ -191,7 +208,8 @@ $(document).ready(function(){
                     html += '<label class="col-md-3 control-label"><b>Mật khẩu:</b></label>';
                     html += '<div class="col-md-6">';
                     html += '<div class="input-group c-square">';
-                    html += '<input type="text" style="color: transparent" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+                    html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+                    html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
                     html += '<span class="input-group-btn">';
                     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
                     html += '</span>';
@@ -262,43 +280,13 @@ $(document).ready(function(){
                     html += '</div>';
                     $('.form__show__chitiet').html(html);
 
-
-                    // document.querySelector('#getpass').addEventListener('click', function (event) {
-                    //     var copyTextarea = document.querySelector('#pass');
-                    //     copyTextarea.select();
-                    //
-                    //     try {
-                    //         document.execCommand('copy');
-                    //     } catch (err) {
-                    //         alert('Trình duyệt của bạn không thể thực hiện thao tác copy nhanh');
-                    //     }
-                    //     if (document.selection) {
-                    //         document.selection.empty();
-                    //     } else if (window.getSelection) {
-                    //         window.getSelection().removeAllRanges();
-                    //     }
-                    // });
-                    //
-                    // document.querySelector('#getpassemail').addEventListener('click', function (event) {
-                    //     var copyTextarea = document.querySelector('#passemail');
-                    //     copyTextarea.select();
-                    //
-                    //     try {
-                    //         document.execCommand('copy');
-                    //     } catch (err) {
-                    //         alert('Trình duyệt của bạn không thể thực hiện thao tác copy nhanh');
-                    //     }
-                    //     if (document.selection) {
-                    //         document.selection.empty();
-                    //     } else if (window.getSelection) {
-                    //         window.getSelection().removeAllRanges();
-                    //     }
-                    // });
-
                 }
 
                 $("#data_pay_account_history").empty().html('');
                 $("#data_pay_account_history").empty().html(data.html);
+
+                $('.loading-data__timkiem').html('');
+                $('.loading-data__all').html('');
             },
             error: function (data) {
 
@@ -308,4 +296,12 @@ $(document).ready(function(){
             }
         });
     }
+
+    $('body').on('click','.btn_timkiem',function(e){
+        // e.preventDefault();
+
+
+
+    });
+
 })

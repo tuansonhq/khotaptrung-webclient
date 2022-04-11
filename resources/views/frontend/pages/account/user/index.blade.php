@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @push('js')
-    <script src="/assets/frontend/js/profile.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js"></script>
     <script>
         $(document).ready(function () {
             $('.account_thong-tin').addClass('active')

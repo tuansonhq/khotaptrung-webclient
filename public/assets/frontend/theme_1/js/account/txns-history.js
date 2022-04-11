@@ -12,13 +12,13 @@ $(document).ready(function(){
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
-
+        var sort_by_data = $('.sort_by_data').val();
         var config_data = $('.config_data').val();
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
 
-        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data)
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
     });
 
     $(document).on('submit', '.form-charge__accounttxns', function(e){
@@ -53,17 +53,16 @@ $(document).ready(function(){
             $('.status_data').val(status);
         }
 
-
         var config_data = $('.config_data').val();
 
         var status_data = $('.status_data').val();
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
-
+        var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
 
-        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data)
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
 
@@ -79,12 +78,31 @@ $(document).ready(function(){
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
         var page = $('#hidden_page_service').val();
+        var sort_by_data = $('.sort_by_data').val();
 
-        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data)
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
 
-    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data) {
+    $('body').on('change','.sort_by',function(e){
+
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+
+        var sort_by = $('.sort_by').val();
+        $('.sort_by_data').val(sort_by);
+        var sort_by_data = $('.sort_by_data').val();
+
+        var page = $('#hidden_page_service').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
+
+    });
+
+    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
 
         request = $.ajax({
             type: 'GET',
@@ -95,6 +113,7 @@ $(document).ready(function(){
                 status:status_data,
                 started_at:started_at_data,
                 ended_at:ended_at_data,
+                sort_by:sort_by_data,
             },
             beforeSend: function (xhr) {
 

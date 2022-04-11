@@ -17,7 +17,7 @@
                                     @if(isset($item->image))
                                     <img src="https://media-tt.nick.vn{{ $item->image }}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                     @else
-                                    <img src="/assets/frontend/images/fff.jpg" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/images/fff.jpg" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                     @endif
                                 </a>
                             </div>
@@ -49,6 +49,6 @@
     </div>
 </div>
 
-<link rel="stylesheet" href="/assets/frontend/css/main.css">
+<link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
 
 @endif

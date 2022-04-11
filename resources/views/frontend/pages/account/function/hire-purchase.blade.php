@@ -206,7 +206,7 @@
             e.preventDefault();
             var curModal= $('#LoadModal');
 
-            curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+            curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/{{theme('')->theme_key}}/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
             curModal.modal('show').find('.modal-content').load($(this).attr('rel'));
         });
 

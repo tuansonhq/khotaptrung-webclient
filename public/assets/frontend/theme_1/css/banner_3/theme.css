@@ -1,0 +1,8 @@
+.content-banner .content-banner-card{
+    display: none;
+}
+
+.content-banner-slide{
+   flex-basis: 100%;
+
+}

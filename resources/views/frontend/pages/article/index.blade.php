@@ -23,7 +23,7 @@
             </div>
             <div class="news_content">
                 <div class="container">
-                    <div class="row">
+                    <div class="row news_content_in">
                         <div class="col-lg-9 col-md-12 col-sm-12">
                             <form>
                                 <div class="row">
@@ -56,7 +56,7 @@
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="" />
 
-        <script src="/assets/frontend/js/article/article.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     @else
         <div class="news">
             <div class="news_breadcrumbs">
@@ -79,7 +79,7 @@
             </div>
             <div class="news_content">
                 <div class="container">
-                    <div class="row">
+                    <div class="row news_content_in">
                         <div class="col-md-9 col-sm-12">
                             <form>
                                 <div class="row">
@@ -106,7 +106,7 @@
         <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
         <input type="hidden" name="slug" class="slug-article" value="{{ $slug }}" />
 
-        <script src="/assets/frontend/js/article/article.js"></script>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     @endif
 
 @endsection
