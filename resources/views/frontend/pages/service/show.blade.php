@@ -3,12 +3,12 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
-    <script src="/assets/frontend/rank/js/rslider.js"></script>
-    <script src="/assets/frontend/rank/js/select-chosen.js" type="text/javascript"></script>
-    <link href="/assets/frontend/rank/css/style.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
-    <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+    <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
     <style type="text/css">
         @media only screen and (max-width: 640px) {
             .float_mb {
@@ -236,7 +236,7 @@
 
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
-    <link rel="stylesheet" href="/assets/frontend/css/service.css">
-    <script src="/assets/frontend/js/service/showdetailservice.js"></script>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js"></script>
 @endsection
 
