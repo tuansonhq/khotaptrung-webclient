@@ -180,25 +180,6 @@
                                         </div>
                                     </div>
                                 @endif
-{{--                                @if(isset($att_value->module) && \App\Library\AuthCustom::check() && $att_value->module == 'acc_label' && $att_value->is_slug_override != null)--}}
-{{--                                    <div class="col-md-12">--}}
-{{--                                        <div class="row gallery__03">--}}
-{{--                                            <div class="col-md-12 gallery__01__row">--}}
-{{--                                                <div class="row">--}}
-{{--                                                    <div class="col-auto span__dangky__auto">--}}
-{{--                                                        <i class="fas fa-angle-right"></i>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="col-md-4 col-4 pl-0">--}}
-{{--                                                        <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="col-md-6 col-6 pl-0">--}}
-{{--                                                        <span class="span__dangky">{{ $att_value->title }}</span>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                @endif--}}
                             @endforeach
                         @endif
                         @if(isset($data->params) && isset($data->params->ext_info))
@@ -228,25 +209,6 @@
                                                         </div>
                                                     </div>
                                                 @endif
-{{--                                                @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
-{{--                                                        <div class="col-md-12">--}}
-{{--                                                            <div class="row gallery__03">--}}
-{{--                                                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                                                    <div class="row">--}}
-{{--                                                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                                                            <span class="span__dangky">{{ $child->title }}</span>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="col-md-6 col-6 pl-0">--}}
-{{--                                                                            <span class="span__dangky">{{ $param }}</span>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    </div>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                @endif--}}
                                             @endforeach
                                         @endforeach
                                     @endif
@@ -348,16 +310,6 @@
                                                     </div>
                                                     @endif
                                                 @endif
-{{--                                                @if(isset($att_valuev2->module) && \App\Library\AuthCustom::check() && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override != null)--}}
-{{--                                                    <?php--}}
-{{--                                                    $index++;--}}
-{{--                                                    ?>--}}
-{{--                                                    @if($index < 5)--}}
-{{--                                                        <div class="col-6 item_buy_list_info_in">--}}
-{{--                                                            {{ $att_valuev2->parent[0]->title }} : <b>{{ $att_valuev2->title }}</b>--}}
-{{--                                                        </div>--}}
-{{--                                                    @endif--}}
-{{--                                                @endif--}}
                                             @endforeach
                                         @endif
                                         @if(isset($datav2->params) && isset($datav2->params->ext_info))
@@ -378,16 +330,6 @@
                                                                         </div>
                                                                         @endif
                                                                     @endif
-{{--                                                                    @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
-{{--                                                                        <?php--}}
-{{--                                                                        $index++;--}}
-{{--                                                                        ?>--}}
-{{--                                                                        @if($index < 5)--}}
-{{--                                                                            <div class="col-6 item_buy_list_info_in">--}}
-{{--                                                                                {{ $child->title }} : <b>{{ $paramv2 }}</b>--}}
-{{--                                                                            </div>--}}
-{{--                                                                        @endif--}}
-{{--                                                                    @endif--}}
                                                                 @endforeach
                                                             @endforeach
                                                         @endif

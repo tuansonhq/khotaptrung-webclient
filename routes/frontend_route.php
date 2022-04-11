@@ -68,7 +68,8 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
         Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
         Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
         Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
-
+        Route::get('/dich-vu/{slug}/data', [ServiceController::class , "getShowData"]);
+        Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
 
         Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
         Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
