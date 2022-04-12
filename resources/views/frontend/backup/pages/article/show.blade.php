@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.theme_1.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
     <div class="news">
@@ -37,13 +37,13 @@
                         </div>
                     </div>
 
-                    @include('frontend.widget.__menu__category__article',with(['slug'=>$data->slug]))
+                    @include('frontend.theme_1.widget.__menu__category__article',with(['slug'=>$data->slug]))
 
                 </div>
             </div>
         </div>
 
-        @include('frontend.pages.article.bai__viet__lien__quan')
+        @include('frontend.theme_1.pages.article.bai__viet__lien__quan')
 
     </div>
 

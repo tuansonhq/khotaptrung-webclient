@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @push('js')
     <script src="/assets/frontend/js/profile.js"></script>
     <script>
@@ -13,7 +13,7 @@
 
     <div class="account_content">
         <div class="container">
-          @include('frontend.pages.account.sidebar')
+          @include('frontend.theme_1.pages.account.sidebar')
             <div class="account_sidebar_content">
                 <div class="account_sidebar_content_title">
                     <p>Thông tin tài khoản</p>

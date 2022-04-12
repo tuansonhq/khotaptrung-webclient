@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.theme_1.widget.__seo_head')
 @endsection
 @section('content')
     <div class="item_buy">
@@ -84,7 +84,7 @@
             </div>
 
             <div class="item_buy_list row" id="getshowservice_data">
-                @include('frontend.pages.service.function.__get__show__data')
+                @include('frontend.theme_1.pages.service.function.__get__show__data')
             </div>
 
         </div>

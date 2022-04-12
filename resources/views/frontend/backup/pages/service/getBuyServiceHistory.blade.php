@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('content')
 
     <div class="account">
@@ -26,7 +26,7 @@
         </div>
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.theme_1.pages.account.sidebar')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>DỊCH VỤ ĐÃ MUA</p>
@@ -111,7 +111,7 @@
                         </form>
 
                         <div id="data_pay_card_history">
-                            @include('frontend.pages.service.function.__get__buy__service__history')
+                            @include('frontend.theme_1.pages.service.function.__get__buy__service__history')
                         </div>
                     </div>
 

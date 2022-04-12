@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
@@ -62,13 +62,13 @@ class UserController extends Controller
 
     public function info(Request $request)
     {
-        return view('frontend.'.theme('')->theme_key.'.pages.account.user.index');
+        return view('frontend.pages.account.user.index');
 
     }
 
     public function profile(Request $request)
     {
-//        return view('frontend.'.theme('')->theme_key.'.pages.account.user.index');
+//        return view('frontend.pages.account.user.index');
         try{
             $jwt = Session::get('jwt');
             if(empty($jwt)){
@@ -169,6 +169,19 @@ class UserController extends Controller
                     $data['ended_at'] = $ended_at;
                 }
 
+                if (isset($request->sort_by) || $request->sort_by != '' || $request->sort_by != null){
+                    $sort_by = $request->sort_by;
+                    if ($sort_by == "random"){
+                        $data['sort'] = 'random';
+                    }elseif ($sort_by == "created_at_start"){
+                        $data['sort_by'] = 'created_at';
+                        $data['sort'] = 'desc';
+                    }elseif ($sort_by == "created_at_end"){
+                        $data['sort_by'] = 'created_at';
+                        $data['sort'] = 'asc';
+                    }
+                }
+
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
 
@@ -180,7 +193,7 @@ class UserController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__lich__su__giao__dich__data')
+                return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
                     ->with('data', $data)->with('status', $status)->with('config',$config);
             }
 
@@ -193,7 +206,7 @@ class UserController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
-                return view('frontend.'.theme('')->theme_key.'.pages.account.user.lich-su-giao-dich')
+                return view('frontend.pages.account.user.lich-su-giao-dich')
                     ->with('data', $data)->with('status', $status)->with('config',$config);
             }
             if(isset($result_Api) && $result_Api->httpcode == 401){

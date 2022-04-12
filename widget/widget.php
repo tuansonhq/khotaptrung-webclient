@@ -5,8 +5,8 @@ use App\Library\DirectAPI;
 use Illuminate\Pagination\LengthAwarePaginator;
 use function PHPUnit\Framework\isEmpty;
 
-View::composer('frontend.widget.__slider__banner', function ($view) {
-
+//theme1
+View::composer('frontend.theme_1.widget.__slider__banner', function ($view) {
     $url_slider = '/get-slider-banner';
     $method_slider = "GET";
     $val_slider = array();
@@ -14,11 +14,10 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
     $result_Api_slider = DirectAPI::_makeRequest($url_slider,$val_slider,$method_slider);
     $result_slider = $result_Api_slider->data;
     $data_slider = $result_slider->data;
-
     return $view->with('data_slider', $data_slider);
 });
 
-View::composer('frontend.widget.__content__home', function ($view) {
+View::composer('frontend.theme_1.widget.__content__home', function ($view) {
 
     $url = '/acc';
     $method = "GET";
@@ -47,7 +46,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
 });
 
 
-View::composer('frontend.widget.__menu_category_desktop', function ($view) {
+View::composer('frontend.theme_1.widget.__menu_category_desktop', function ($view) {
 
     $url_menu_category = '/menu-category';
     $method_menu_category  = "POST";
@@ -60,7 +59,7 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 });
 
-View::composer('frontend.widget.__menu_category_mobile', function ($view) {
+View::composer('frontend.theme_1.widget.__menu_category_mobile', function ($view) {
 
     $url_menu_category = '/menu-category';
     $method_menu_category  = "POST";
@@ -74,7 +73,7 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 });
 
-View::composer('frontend.widget.__menu_profile', function ($view) {
+View::composer('frontend.theme_1.widget.__menu_profile', function ($view) {
 
     $url_menu_profile = '/menu-profile';
     $method_menu_profile = "POST";
@@ -87,7 +86,7 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
 
 });
 
-View::composer('frontend.widget.__menu_transaction', function ($view) {
+View::composer('frontend.theme_1.widget.__menu_transaction', function ($view) {
 
     $url_menu_transaction = '/menu-transaction';
     $method_menu_transaction = "POST";
@@ -99,7 +98,7 @@ View::composer('frontend.widget.__menu_transaction', function ($view) {
     return $view->with('data_menu_transaction', $data_menu_transaction);
 });
 
-View::composer('frontend.widget.__menu__category__article', function ($view) {
+View::composer('frontend.theme_1.widget.__menu__category__article', function ($view) {
 
     $url = '/article';
     $method = "GET";
@@ -113,53 +112,14 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
-View::composer('frontend.widget.__top_nap_the', function ($view) {
+View::composer('frontend.theme_1.widget.__top_nap_the', function ($view) {
     return $view;
 
-    try{
-
-        $url = '/top-charge';
-        $method = "GET";
-        $val = array();
-
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-
-        dd(1111);
-        if (isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
-
-            $data = $result->data;
-            return $view->with('data', $data);
-        } else {
-            return $view->withErrors('Đang tải ... ');
-        }
-    }
-    catch(\Exception $e){
-        Log::error($e);
-        return redirect()->back()->withErrors('Đang tải ... ');
-    }
 });
 
-View::composer('frontend.widget.__nap_the', function ($view) {
+View::composer('frontend.theme_1.widget.__nap_the', function ($view) {
     return $view;
-    try{
-        $url = '/deposit-auto/get-telecom';
-        $method = "GET";
-        $val = array();
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        if (isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
-            $data = $result->data;
-            return $view->with('data', $data);
-        } else {
-            return 'sai';
-        }
-    }
-    catch(\Exception $e){
-        Log::error($e);
-        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-    }
+
 });
 
 //View::composer('frontend.widget.__charge', function ($view) {

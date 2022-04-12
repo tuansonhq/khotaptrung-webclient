@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('content')
     <div class="item_play">
         <div class="container">
@@ -230,7 +230,7 @@
                 </button>
             </div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!               
+                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
             </div>
             <div class="modal-footer">
                 <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
@@ -262,7 +262,7 @@
                     <div class="tab-content">
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
-                                
+
                                 @if(count($result->top_current_day)>0)
                                 <div class="top-info-section">
                                     <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
@@ -400,8 +400,8 @@
                         saleoffpass: saleoffpass,
                     },
                     type: 'POST',
-                    success: function(data) {                        
-                        if (data.status == 4) {                            
+                    success: function(data) {
+                        if (data.status == 4) {
                             location.href='/login';
                         } else if (data.status == 3) {
                             $('#naptheModal').modal('show')
@@ -546,7 +546,7 @@
                     // {
                     //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                     // }
-                    
+
                     if($('#type_play').val() == "real")
                     {
                         if(gift_revice.length == 1)
@@ -583,7 +583,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }
@@ -615,7 +615,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]["params"]["value"])*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }

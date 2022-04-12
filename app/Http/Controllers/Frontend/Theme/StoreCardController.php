@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
-        return view('frontend.'.theme('')->theme_key.'.pages.buy_card');
+        return view('frontend.pages.buy_card');
     }
     public function getTelecomStoreCard(Request $request){
         try{

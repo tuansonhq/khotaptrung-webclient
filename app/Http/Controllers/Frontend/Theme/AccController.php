@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
@@ -19,7 +19,8 @@ class AccController extends Controller
         $val = array();
         $val['data'] = 'category_list';
         $val['module'] = 'acc_category';
-
+        $val['sort_by'] = 'published_at';
+        $val['sort'] = 'desc';
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
@@ -27,7 +28,7 @@ class AccController extends Controller
             return 'sai';
         }
 //        return $data;
-        return view('frontend.'.theme('')->theme_key.'.pages.account.getShowCategory')
+        return view('frontend.pages.account.getShowCategory')
             ->with('data',$data);
     }
 
@@ -37,6 +38,7 @@ class AccController extends Controller
             $val = array();
 
         if ($slug_category == 'danh-muc'){
+
             if (isset($slug)){
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
@@ -47,6 +49,7 @@ class AccController extends Controller
 
                 $val['data'] = 'list_acc';
                 $val['cat_slug'] = $slug;
+                $val['status'] = 1;
                 $val['limit'] = 12;
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -68,6 +71,7 @@ class AccController extends Controller
                     $val['data'] = 'list_acc';
                     $val['cat_slug'] = $slug;
                     $val['page'] = $page;
+                    $val['status'] = 1;
                     $val['limit'] = 12;
 
                     if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
@@ -124,11 +128,11 @@ class AccController extends Controller
 
                     if(isset($result_Api) && $result_Api->httpcode == 200){
                         $items = $result_Api->data;
-//                        return $items;
+
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
                         $dataAttribute = $data->childs;
-                        return view('frontend.'.theme('')->theme_key.'.pages.account.function.__account__data')
+                        return view('frontend.pages.account.function.__account__data')
                             ->with('data',$data)
                             ->with('items',$items)
                             ->with('dataAttribute',$dataAttribute)
@@ -141,14 +145,12 @@ class AccController extends Controller
                 if(isset($result_Api) && $result_Api->httpcode == 200){
 
                     $items = $result_Api->data;
-//                    return $items;
-//                    if (isEmpty($data->data)){
-                        $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-//                    }
 
+                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $dataAttribute = $data->childs;
 
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.accountList')
+                    Session::put('path', $_SERVER['REQUEST_URI']);
+                    return view('frontend.pages.account.accountList')
                         ->with('data',$data)
                         ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)
@@ -192,12 +194,14 @@ class AccController extends Controller
 
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
+
                 $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
                 $card_percent = setting('sys_card_percent');
                 $atm_percent = setting('sys_atm_percent');
 
-                return view('frontend.'.theme('')->theme_key.'.pages.account.show')
+                Session::put('path', $_SERVER['REQUEST_URI']);
+                return view('frontend.pages.account.show')
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)
                     ->with('sliders',$sliders)
@@ -263,7 +267,7 @@ class AccController extends Controller
 
                 $price = $data->price;
 
-                $html =  view('frontend.'.theme('')->theme_key.'.pages.account.function.buyacc')
+                $html =  view('frontend.pages.account.function.buyacc')
                         ->with('dataAttribute',$dataAttribute)
                         ->with('data_category',$data_category)
                         ->with('price',$price)
@@ -294,10 +298,8 @@ class AccController extends Controller
             $val['data'] = 'buy_acc';
             $val['user_id'] = AuthCustom::user()->id;
 
-
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-//            return $val;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
@@ -305,7 +307,7 @@ class AccController extends Controller
                     if ($data->success == 0){
                         return response()->json([
                             'status' => 2,
-                            'message' => $data->message,
+                            'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
                         ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
                     }elseif ($data->success == 1 ){
@@ -349,6 +351,10 @@ class AccController extends Controller
             $val['data'] = 'list_acc';
             $val['user_id'] = AuthCustom::user()->id;
             $val['limit'] = 12;
+            $val['sort'] = 'desc';
+            $val['sort_by'] = 'published_at';
+
+
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             $valcategory['data'] = 'category_list';
@@ -365,7 +371,11 @@ class AccController extends Controller
                 $val = array();
                 $val['page'] = $page;
                 $val['data'] = 'list_acc';
+                $val['sort'] = 'desc';
+                $val['sort_by'] = 'published_at';
                 $val['limit'] = 12;
+
+
                 $val['user_id'] = AuthCustom::user()->id;
 
                 $chitiet_data = 0;
@@ -468,7 +478,7 @@ class AccController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     }
 
-                    $html = view('frontend.'.theme('')->theme_key.'.pages.account.function.__get__buy__account__history')
+                    $html = view('frontend.pages.account.function.__get__buy__account__history')
                         ->with('data', $data)->render();
 
                     return response()->json([
@@ -499,7 +509,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                 }
 
-                return view('frontend.'.theme('')->theme_key.'.pages.account.getBuyAccountHistory')
+                return view('frontend.pages.account.getBuyAccountHistory')
                     ->with('data', $data)->with('datacategory', $datacategory);
             }else{
                 return "sai";

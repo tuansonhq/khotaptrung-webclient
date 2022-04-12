@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
@@ -12,6 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
 
+        \Session::forget('path');
         return view('frontend.'.theme('')->theme_key.'.pages.index');
     }
 
@@ -26,13 +27,13 @@ class HomeController extends Controller
         $result_menu_profile= $result_Api_menu_profile->data;
         $data_menu_profile = $result_menu_profile->data;
 
+
         return view('frontend.'.theme('')->theme_key.'.pages.index')
             ->with('$data_menu_profile',$data_menu_profile);
     }
 
     public function getTopCharge(Request $request)
     {
-
             try{
 
                 $url = '/top-charge';

@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.theme_1.widget.__seo_head')
 @endsection
 @section('content')
     @if(isset($category))
@@ -45,7 +45,7 @@
                                 </div>
                             </form>
                             <div class="article_data">
-                                @include('frontend.pages.article.function.__new__data')
+                                @include('frontend.theme_1.pages.article.function.__new__data')
                             </div>
                         </div>
                         {!! widget('frontend.widget.__menu__category__article',60) !!}
@@ -95,7 +95,7 @@
                                 </div>
                             </form>
                             <div class="article_data">
-                                @include('frontend.pages.article.function.__new__data')
+                                @include('frontend.theme_1.pages.article.function.__new__data')
                             </div>
                         </div>
                         {!! widget('frontend.widget.__menu__category__article',60) !!}

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @push('js')
     <script src="/assets/frontend/js/storeCard/store_card.js"></script>
 @endpush

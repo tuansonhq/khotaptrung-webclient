@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.theme_1.widget.__seo_head')
 @endsection
 @push('style')
 @endpush

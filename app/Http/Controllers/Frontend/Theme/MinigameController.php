@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
@@ -242,7 +242,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-log';
                 $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
-                $data['page'] = $request->page;
+                $data['page'] = $request->page==""?"1":$request->page;
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');
@@ -311,7 +311,7 @@ class MinigameController extends Controller
                 $url = '/minigame/get-logacc';
                 $data['id'] = $group->id;
                 $data['module'] = explode('-', $group->module)[0];
-                $data['page'] = $request->page;
+                $data['page'] = $request->page==""?"1":$request->page;
 
                 if ($request->filled('gift_name')) {
                     $data['gift_name'] = $request->get('gift_name');
@@ -363,7 +363,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                     $result = $result_Api->data;
                     if (isset($result->status) && $result->status == 4) {
-                        return redirect('login');
+                        return redirect('login');              
                     } else {
                         $paginatedItems = null;
                         if($result->withdraw_history->total>0){
@@ -414,7 +414,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                     $result = $result_Api->data;
                     if (isset($result->status) && $result->status == 4) {
-                        return redirect('login');
+                        return redirect('login');              
                     }else if(isset($result->status) && $result->status == 0){
                         return redirect()->back()->withErrors($result->msg);
                     }else {
