@@ -185,13 +185,26 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+
                 $('.chitiet_data').val(0);
                 $('.id_data').val('');
                 if (data.chitiet_data == 1){
                     $('#taikhoandamua_password').modal('show');
 
                     var html = '';
-
+                    if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
+                        html += '<div class="form-group m-t-10 row">';
+                        html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
+                        html += '<div class="col-md-6">';
+                        html += '<div class="input-group c-square">';
+                        html += '<input class="form-control c-square c-theme" type="text" placeholder="Idkey" id="idkey" readonly value="' + data.datashow.idkey + '">';
+                        html += '<span class="input-group-btn">';
+                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
+                        html += '</span>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
                     html += '<div class="form-group m-t-10 row">';
                     html += '<label class="col-md-3 control-label"><b>Tài khoản:</b></label>';
                     html += '<div class="col-md-6">';
@@ -214,9 +227,25 @@ $(document).ready(function(){
                     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
                     html += '</span>';
                     html += '</div>';
-                    html += '<span class="help-block">Click vào nút copy để sao chép mật khẩu hoặc nhấp đúp vào ô mật khẩu để thấy mật khẩu.</span>';
+                    html += '<span class="help-block">Click vào nút copy để sao chép mật khẩu.</span>';
                     html += '</div>';
                     html += '</div>';
+
+                    // if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
+                    //     html += '<div class="form-group m-t-10 row">';
+                    //     html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
+                    //     html += '<div class="col-md-6">';
+                    //     html += '<div class="input-group c-square">';
+                    //     html += '<input type="password" class="form-control c-square c-theme show_password" name="idkey" id="idkey" placeholder="Id key" readonly value="' + data.datashow.idkey + '" >';
+                    //     html += '<span class="show-btn show-btn-idkey hide-btn"><i class="fas fa-eye fa-eye-idkey"></i></span>';
+                    //     html += '<span class="input-group-btn">';
+                    //     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
+                    //     html += '</span>';
+                    //     html += '</div>';
+                    //     html += '<span class="help-block">Click vào nút copy để sao chép idkey.</span>';
+                    //     html += '</div>';
+                    //     html += '</div>';
+                    // }
 
                     if (data.count > 0){
                         $.each(data.dataAttribute,function(key,value){
