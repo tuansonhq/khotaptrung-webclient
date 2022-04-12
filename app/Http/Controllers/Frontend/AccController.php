@@ -451,6 +451,7 @@ class AccController extends Controller
                             $result_Api_show = DirectAPI::_makeRequest($url,$valshow,$method);
 
                             $datashow = $result_Api_show->data;
+
                             $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
 
                             $slug_cate = '';
@@ -469,7 +470,6 @@ class AccController extends Controller
 
                             if (isset($dataAttribute)){
                                 $count = count($dataAttribute);
-
                             }
                         }
                     }
