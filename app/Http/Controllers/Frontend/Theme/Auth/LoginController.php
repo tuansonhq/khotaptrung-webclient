@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Frontend\Theme\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -37,6 +37,7 @@ class LoginController extends Controller
             $data['username'] = $request->username;
             $data['password'] = $request->password;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
@@ -50,11 +51,13 @@ class LoginController extends Controller
                     return redirect()->to('/');
                 }
                 else{
+
                     return Response()->json($result_Api->data);
 //                    dd(111);
 //                    return redirect()->back()->withErrors($result->message);
                 }
             }else{
+
                 return Response()->json($result_Api->data);
                 //                dd(122222);
 //                $result = $result_Api->data;
@@ -62,6 +65,7 @@ class LoginController extends Controller
             }
         }
         catch(\Exception $e){
+
             Log::error($e);
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
@@ -116,7 +120,7 @@ class LoginController extends Controller
     }
 
     public function changePassword(){
-        return view('frontend.'.theme('')->theme_key.'.pages.account.changePassword');
+        return view('frontend.pages.account.changePassword');
     }
     public function changePasswordApi(Request $request){
         $this->validate($request,[
@@ -134,16 +138,26 @@ class LoginController extends Controller
             $url = '/current-password';
             $method = "POST";
             $data = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+
+            $data['token'] = $jwt;
             $data['old_password'] = $request->old_password;
             $data['password'] = $request->password;
             $data['password_confirmation'] = $request->password_confirmation;
-            $data['secret_key'] = config('api.secret_key');
-            $data['domain'] = 'youtube.com';
-            $data['token'] = session()->get('auth_token');
+//            $data['secret_key'] = config('api.secret_key');
+//            $data['domain'] = 'youtube.com';
+//            $data['token'] = session()->get('auth_token');
 
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
+
                 if($result->status == 1){
 //                    return 'doi mat khau thanh cong';
 //                    $time = strtotime(Carbon::now());
@@ -152,15 +166,25 @@ class LoginController extends Controller
 //                    session()->put('auth_token', $result->token);
 //                    session()->put('exp_token', $result->exp_token);
 //                    session()->put('time_exp_token', $time_exp_token);
-                    return redirect()->to('/');
+//                    return redirect()->to('/');
+                    return response()->json([
+                        'status' => 1,
+                        'message' => $result->message,
+                    ]);
                 }
                 else{
-                    return redirect()->back()->withErrors($result->message);
+                    return response()->json([
+                        'status' => 0,
+                        'message' => $result->message,
+                    ]);
 
                 }
             }else{
                 $result = $result_Api->data;
-                return redirect()->back()->withErrors($result->message);
+                return response()->json([
+                    'status' => 0,
+                    'message' => $result->message,
+                ]);
             }
         }
         catch(\Exception $e){
@@ -187,6 +211,6 @@ class LoginController extends Controller
 
     //     $result = json_decode((string)$response->getBody(),true);
     //     return dd($result);
-    //     return view('frontend.'.theme('')->theme_key.'.pages.log_in');
+    //     return view('frontend.pages.log_in');
     // }
 }

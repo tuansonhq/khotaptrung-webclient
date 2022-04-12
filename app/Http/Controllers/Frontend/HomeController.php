@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function index(){
 
         \Session::forget('path');
-        return view('frontend.pages.index');
+        return view('frontend.'.theme('')->theme_key.'.pages.index');
     }
 
     public function profile(){
@@ -28,13 +28,12 @@ class HomeController extends Controller
         $data_menu_profile = $result_menu_profile->data;
 
 
-        return view('frontend.pages.index')
+        return view('frontend.'.theme('')->theme_key.'.pages.index')
             ->with('$data_menu_profile',$data_menu_profile);
     }
 
     public function getTopCharge(Request $request)
     {
-
             try{
 
                 $url = '/top-charge';

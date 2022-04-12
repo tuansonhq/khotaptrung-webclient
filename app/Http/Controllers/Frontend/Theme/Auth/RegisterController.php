@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme\Auth;
+namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ use Session;
 class RegisterController extends Controller
 {
     public function showFormRegister(){
-        return view('frontend.'.theme('')->theme_key.'.pages.regist');
+        return view('frontend.pages.regist');
     }
     public function register(Request $request){
         $this->validate($request,[

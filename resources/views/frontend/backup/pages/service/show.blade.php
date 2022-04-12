@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.theme_1.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
 
@@ -510,7 +510,7 @@
 
 {{--            DỊCH VỤ KHÁC     --}}
 {{--        {!! widget('frontend.pages.service.widgets.list_service_category',60) !!}--}}
-            @include('frontend.pages.service.widgets.list_service_category')
+            @include('frontend.theme_1.pages.service.widgets.list_service_category')
 
         </div>
 

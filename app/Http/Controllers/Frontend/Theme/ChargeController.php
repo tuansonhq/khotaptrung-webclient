@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Theme;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
@@ -21,32 +21,14 @@ class ChargeController extends Controller
 {
     public function getDepositAuto(Request $request)
     {
-//        return 111111;
-        try {
-                $method = "GET";
-                $url_history = '/deposit-auto/history';
-                $jwt = Session::get('jwt');
-                $val['token'] = $jwt;
-                $result_Api_history = DirectAPI::_makeRequest($url_history, $val, $method);
 
-                if (isset($result_Api_history) == 200 && $result_Api_history->httpcode == 200) {
-                    $bankHistory = $result_Api_history->data;
-                    $data = $bankHistory->data;
-
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_card', compact( 'data'));
-                }
-
-        } catch (\Exception $e) {
-            Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+        return view('frontend.pages.account.user.pay_card');
 
     }
 
     public function getDepositAutoData(Request $request){
         if ($request->ajax()) {
+
             $page = $request->page;
 
             $url = '/deposit-auto/history';
@@ -70,10 +52,18 @@ class ChargeController extends Controller
 
                     $data = $result->data;
 
+                    $arrpin = array();
+
+                    for ($i = 0; $i < count($data->data); $i++){
+                        $pin = $data->data[$i]->pin;
+                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                        array_push($arrpin,$pin);
+                    }
+
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_card')
-                        ->with('data', $data);
+                    return view('frontend.pages.account.user.function.__pay_card')
+                        ->with('data', $data)->with('arrpin',$arrpin);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }
@@ -324,7 +314,7 @@ class ChargeController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_card_history')
+                        return view('frontend.pages.account.user.function.__pay_card_history')
                             ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                     } else {
                         return redirect()->back()->withErrors($result->message);
@@ -366,7 +356,7 @@ class ChargeController extends Controller
                     }
 
 
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_card_history')
+                    return view('frontend.pages.account.user.pay_card_history')
                         ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                 } else {
                     return redirect()->back()->withErrors($result->message);
@@ -398,7 +388,7 @@ class ChargeController extends Controller
                     $result = $result_Api->data;
                     if ($result->status == 1) {
 
-                        return view('frontend.'.theme('')->theme_key.'.pages.account.user.transaction_history')->with('result', $result);
+                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
                     } else {
                         return redirect()->back()->withErrors($result->message);
 

@@ -1,6 +1,6 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.theme_1.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
 
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        @include('frontend.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
+                        @include('frontend.theme_1.pages.account.widget.account_load_attribute_to_filter',['dataAttribute'=>$dataAttribute])
 
                         <div class="col-12 item_buy_form_search pt-3">
                             <div class="row">
@@ -196,7 +196,7 @@
                                     </div>
                                 </div>
 
-                                @include('frontend.pages.account.widget.account_load_attribute_to_filter_mobile',['dataAttribute'=>$dataAttribute])
+                                @include('frontend.theme_1.pages.account.widget.account_load_attribute_to_filter_mobile',['dataAttribute'=>$dataAttribute])
 
                                 <div class="col-12 item_buy_form_search">
                                     <div class="row">
@@ -235,7 +235,7 @@
             </div>
 
             <div id="account_data">
-                @include('frontend.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
+                @include('frontend.theme_1.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
             </div>
 
 

@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function login(){
         $jwt = Session::get('jwt');
         if(empty($jwt)){
-            return view('frontend.pages.log_in');
+            return view('frontend.'.theme('')->theme_key.'.pages.log_in');
         }else{
             return redirect('/');
         }

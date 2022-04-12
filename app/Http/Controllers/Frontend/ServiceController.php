@@ -32,7 +32,7 @@ class ServiceController extends Controller
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             Session::put('path', $_SERVER['REQUEST_URI']);
-            return view('frontend.pages.service.index')
+            return view('frontend.'.theme('')->theme_key.'.pages.service.index')
                 ->with('data', $data);
         } else {
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
@@ -65,7 +65,7 @@ class ServiceController extends Controller
 
                 $dataajax = new LengthAwarePaginator($dataajax->data, $dataajax->total, $dataajax->per_page, $page, $dataajax->data);
 
-                return view('frontend.pages.service.function.__get__show__data')
+                return view('frontend.'.theme('')->theme_key.'.pages.service.function.__get__show__data')
                     ->with('data', $dataajax);
             } else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
@@ -91,7 +91,7 @@ class ServiceController extends Controller
             Session::put('path', $_SERVER['REQUEST_URI']);
 
 
-            return view('frontend.pages.service.show')
+            return view('frontend.'.theme('')->theme_key.'.pages.service.show')
                 ->with('categoryservice', $categoryservice)
                 ->with('data', $data)
                 ->with('slug', $slug);
@@ -328,7 +328,7 @@ class ServiceController extends Controller
                     $categoryservice = $result->categoryservice;
 //                    return  $categoryservice;
 
-                    return view('frontend.pages.service.getBuyServiceHistory')->with('categoryservice', $categoryservice);
+                    return view('frontend.'.theme('')->theme_key.'.pages.service.getBuyServiceHistory')->with('categoryservice', $categoryservice);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }
