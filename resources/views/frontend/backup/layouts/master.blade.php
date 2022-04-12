@@ -138,7 +138,7 @@
 <body>
 
 <div class="{{ Request::is('/')?'main-lay-out':'' }}">
-    @include('frontend.layouts.includes.header')
+    @include('frontend.theme_1.layouts.includes.header')
     <div class="content" style="">
         @yield('content')
     </div>
@@ -148,7 +148,7 @@
 </div>
 
 
-@include('frontend.layouts.includes.footer')
+@include('frontend.theme_1.layouts.includes.footer')
 <script>
     @if(\App\Library\AuthCustom::check())
     $( document ).ready(function() {

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('content')
     <div class="item_play">
         <div class="container">
@@ -503,7 +503,7 @@
         });
 
 
-        function getgifbonus() {            
+        function getgifbonus() {
             if($('#checkPoint').val() != "1"){
                 return;
             }

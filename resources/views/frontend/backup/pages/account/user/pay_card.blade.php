@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @push('style')
 @endpush
 @push('js')
@@ -8,7 +8,7 @@
 <div class="account">
    <div class="account_content">
       <div class="container">
-         @include('frontend.pages.account.sidebar')
+         @include('frontend.theme_1.pages.account.sidebar')
          <div class="account_sidebar_content">
             <div class="account_pay_card">
                <div class="account_sidebar_content_title">
@@ -106,7 +106,7 @@
             </div>
 
              <div class="paycartdata">
-                 @include('frontend.pages.account.user.function.__pay_card')
+                 @include('frontend.theme_1.pages.account.user.function.__pay_card')
              </div>
          </div>
       </div>

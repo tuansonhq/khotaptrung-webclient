@@ -22,7 +22,7 @@ class ChargeController extends Controller
     public function getDepositAuto(Request $request)
     {
 
-        return view('frontend.pages.account.user.pay_card');
+        return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_card');
 
     }
 
@@ -62,7 +62,7 @@ class ChargeController extends Controller
 
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                    return view('frontend.pages.account.user.function.__pay_card')
+                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_card')
                         ->with('data', $data)->with('arrpin',$arrpin);
                 } else {
                     return redirect()->back()->withErrors($result->message);
@@ -314,7 +314,7 @@ class ChargeController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.pages.account.user.function.__pay_card_history')
+                        return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_card_history')
                             ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                     } else {
                         return redirect()->back()->withErrors($result->message);
@@ -356,7 +356,7 @@ class ChargeController extends Controller
                     }
 
 
-                    return view('frontend.pages.account.user.pay_card_history')
+                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_card_history')
                         ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
                 } else {
                     return redirect()->back()->withErrors($result->message);
@@ -388,7 +388,7 @@ class ChargeController extends Controller
                     $result = $result_Api->data;
                     if ($result->status == 1) {
 
-                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
+                        return view('frontend.'.theme('')->theme_key.'.pages.account.user.transaction_history')->with('result', $result);
                     } else {
                         return redirect()->back()->withErrors($result->message);
 

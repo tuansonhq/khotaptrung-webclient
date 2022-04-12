@@ -1,10 +1,10 @@
-@extends('frontend.layouts.master')
+@extends('frontend.theme_1.layouts.master')
 @section('content')
 
     <div class="account">
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.theme_1.pages.account.sidebar')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>TÀI KHOẢN ĐÃ MUA</p>
@@ -116,7 +116,7 @@
                         </form>
 
                         <div id="data_pay_account_history">
-                            @include('frontend.pages.account.function.__get__buy__account__history')
+                            @include('frontend.theme_1.pages.account.function.__get__buy__account__history')
                         </div>
                     </div>
 
