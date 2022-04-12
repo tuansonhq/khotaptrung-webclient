@@ -364,15 +364,15 @@ class ServiceController extends Controller
                 $url = '/service/purchase';
                 $method = "POST";
                 $val = array();
-                $val['id'] = $id;
-
-                if ($filter_type == 6){
-                    $rank_from = $request->get('rank_from');
-                    $rank_to = $request->get('rank_to');
-                    $val['rank_from'] = $rank_from;
-                    $val['rank_to'] = $rank_to;
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
                 }
 
+                $val['token'] = $jwt;
+                $val['id'] = $id;
                 $val['selected'] = $selected;
 
                 if (!isset($server) || $server == null || $server == '' || $server == 'NaN'){}else{
@@ -385,14 +385,14 @@ class ServiceController extends Controller
                     }
                 }
 
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
+                if ($filter_type == 6){
+                    $rank_from = $request->get('rank_from');
+                    $rank_to = $request->get('rank_to');
+                    $val['rank_from'] = $rank_from;
+                    $val['rank_to'] = $rank_to;
                 }
 
-                $val['token'] = $jwt;
+
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
