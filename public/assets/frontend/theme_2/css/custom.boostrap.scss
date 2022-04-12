@@ -1,0 +1,49 @@
+/* -------------------
+OVERWRITE BOOSTRAP
+ --------------------*/
+$body-bg: #1E376D !default;
+$body-color: #000 !default;
+
+$blue:    #1E376D !default;
+$indigo:  #5115B1 !default;
+$purple:  #9B51E0 !default;
+$pink:    #E77494 !default;
+$red:     #EB5757 !default;
+$orange:  #D47927 !default;
+$yellow:  #F2994A !default;
+$green:   #219653 !default;
+$teal:    #4EC5A1 !default;
+$cyan:    #00B4D8 !default;
+$light:   #F0F3F8 !default;
+$primary: #1E376D !default;
+
+$secondary:     #666 !default;
+$table-hover-bg: #FAFBFE !default;
+
+//Radius
+$border-radius:               .125rem !default;
+$border-radius-lg:            0.5rem !default;
+$border-radius-sm:            .1875rem !default;
+
+$font-size-base:              0.875rem !default;
+
+//Heading
+
+$h1-font-size:                3.5rem !default;
+$h2-font-size:                 3rem !default;
+$h3-font-size:                 2rem !default;
+$h4-font-size:                 1.5rem !default;
+$h5-font-size:                 1.25rem !default;
+$h6-font-size:                1.125rem !default;
+$lead-font-size:              1.125rem !default;
+
+$display1-size:               3.25rem !default;
+$display2-size:               2.75rem !default;
+$display3-size:               2.5rem !default;
+$display4-size:               2.25rem !default;
+
+
+//Type
+$line-height-base:            1.5 !default;
+$headings-line-height:        1.2 !default; 
+@import "../node_modules/bootstrap/scss/bootstrap";

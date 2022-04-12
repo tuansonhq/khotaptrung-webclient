@@ -1,0 +1,14 @@
+document.write( '<div class=\"overlay\"></div>\n' );
+document.write( '    <div class=\"offcanvas-nav\">\n' );
+document.write( '        <button type=\"button\" class=\"btn btn-close\"><i class=\"las la-times\"></i></button>\n' );
+document.write( '        <div class=\"offcanvas-nav-inner h-100 p-3\">\n' );
+document.write( '            <ul class=\"nav flex-column\">\n' );
+document.write( '                <li class=\"nav-item item-home active\"><a href=\"#\" class=\"nav-link\"><i class=\"las la-home icon\"></i> Trang chủ</a></li>\n' );
+document.write( '                <li class=\"nav-item item-buy-card\"><a href=\"#\" class=\"nav-link\"><i class=\"las la-credit-card icon\"></i> Mua thẻ game điện thoại</a></li>\n' );
+document.write( '                <li class=\"nav-item item-history\"><a href=\"#\" class=\"nav-link\"><i class=\"las la-clock icon\"></i> Lịch sử giao dịch</a></li>\n' );
+document.write( '                <li class=\"nav-item item-profile\"><a href=\"profile.html\" class=\"nav-link\"><i class=\"las la-user icon\"></i> Thông tin cá nhân</a></li>\n' );
+document.write( '                <li class=\"nav-item item-news\"><a href=\"#\" class=\"nav-link\"><i class=\"las la-newspaper icon\"></i> Tin tức</a></li>\n' );
+document.write( '                <li class=\"nav-item item-support\"><a href=\"#\" class=\"nav-link\"><i class=\"las la-life-ring icon\"></i> Hỗ trợ</a></li>\n' );
+document.write( '            </ul>\n' );
+document.write( '        </div>\n' );
+document.write( '    </div>' );
