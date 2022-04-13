@@ -25,10 +25,6 @@ class Theme
         return self::api();
     }
     public static function api(){
-
-        if (Cache::get('_theme')){
-            Cache::get('_theme');
-        }
         $url = '/theme/get-theme-config';
         $method = "GET";
         $data = array();
