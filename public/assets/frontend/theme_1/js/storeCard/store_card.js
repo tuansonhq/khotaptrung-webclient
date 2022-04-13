@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
     function getTelecom (){
         const url = '/store-card/get-telecom';
@@ -75,14 +75,15 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(data);
+
                 if(data.status == 1){
+
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            console.log(value.amount)
+                            console.log(100-value.ratio_default)
                             // html+= '<p>'+value.amount +'</p>'
-                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + value.ratio_default +'% </option>';
+                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + (100-value.ratio_default) +'% </option>';
                         });
                     }
                     $('#amount_storecard').html(html);
@@ -152,16 +153,17 @@ $(document).ready(function(){
             ratio=100;
         }
         var sale=amount-(amount*ratio/100);
-        var total=sale*quantity;
+        var total=(amount-sale) *quantity;
+        // var total=sale*quantity;
         var totalnotsale = amount*quantity
         console.log(sale)
         if(sale != 0){
-            $('#txtPrice').html('Tổng: ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+            $('#txtPrice').html('Tổng: ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
         }else {
-            $('#txtPrice').html('Tổng: ' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+            $('#txtPrice').html('Tổng: ' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
