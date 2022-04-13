@@ -192,19 +192,19 @@ $(document).ready(function(){
                     $('#taikhoandamua_password').modal('show');
 
                     var html = '';
-                    if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
-                        html += '<div class="form-group m-t-10 row">';
-                        html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
-                        html += '<div class="col-md-6">';
-                        html += '<div class="input-group c-square">';
-                        html += '<input class="form-control c-square c-theme" type="text" placeholder="Idkey" id="idkey" readonly value="' + data.datashow.idkey + '">';
-                        html += '<span class="input-group-btn">';
-                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
-                        html += '</span>';
-                        html += '</div>';
-                        html += '</div>';
-                        html += '</div>';
-                    }
+                    // if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
+                    //     html += '<div class="form-group m-t-10 row">';
+                    //     html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
+                    //     html += '<div class="col-md-6">';
+                    //     html += '<div class="input-group c-square">';
+                    //     html += '<input class="form-control c-square c-theme" type="text" placeholder="Idkey" id="idkey" readonly value="' + data.datashow.idkey + '">';
+                    //     html += '<span class="input-group-btn">';
+                    //     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
+                    //     html += '</span>';
+                    //     html += '</div>';
+                    //     html += '</div>';
+                    //     html += '</div>';
+                    // }
                     html += '<div class="form-group m-t-10 row">';
                     html += '<label class="col-md-3 control-label"><b>Tài khoản:</b></label>';
                     html += '<div class="col-md-6">';
@@ -287,12 +287,15 @@ $(document).ready(function(){
                     // html += '</div>';
                     // html += '</div>';
                     //
-                    // html += '<div class="form-group m-t-10 row">';
-                    // html += '<label class="col-md-3 control-label"><b>T.tin bổ sung:</b></label>';
-                    // html += '<div class="col-md-6">';
-                    // html += '<textarea rows="4" class="form-control c-square c-theme" type="text" placeholder="Thông tin bổ sung" readonly="" >#090909#0909090#09090909#0909090#090909#41414141</textarea>';
-                    // html += '</div>';
-                    // html += '</div>';
+                    if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
+                        html += '<div class="form-group m-t-10 row">';
+                        html += '<label class="col-md-3 control-label"><b>T.tin bổ sung:</b></label>';
+                        html += '<div class="col-md-6">';
+                        html += '<textarea rows="4" class="form-control c-square c-theme" type="text" placeholder="Thông tin bổ sung" readonly="" >' + data.datashow.idkey + '</textarea>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
+
 
                     // html += '<p class="c-font-bold c-font-blue" style="font-size: 16px;font-weight: bold;color: blue">';
                     // html += 'Đã lấy mật khẩu lần đầu tiên lúc: 01/04/2022 17:53:30';
