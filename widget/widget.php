@@ -112,6 +112,106 @@ View::composer('frontend.theme_1.widget.__menu__category__article', function ($v
     return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
+View::composer('frontend.theme_2.widget.__menu__category__article__index', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $datacategory = $result->datacategory;
+
+    $urlshow = '/article';
+    $methodshow = "GET";
+    $valshow = array();
+    $valshow['slug'] = 'tin-moi';
+
+    if (isset($datacategory[1]->slug)){
+        $valshow['slug'] = $datacategory[1]->slug;
+    }
+
+    $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
+    $resultshow = $result_Apishow->data;
+    $data = $resultshow->data;
+    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+    return $view->with('data', $data);
+
+});
+
+View::composer('frontend.theme_2.widget.__huongdan__trangchu', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $datacategory = $result->datacategory;
+
+    $urlshow = '/article';
+    $methodshow = "GET";
+    $valshow = array();
+    $valshow['slug'] = 'huong-dan';
+
+    if (isset($datacategory[0]->slug)){
+        $valshow['slug'] = $datacategory[0]->slug;
+    }
+
+    $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
+    $resultshow = $result_Apishow->data;
+    $data = $resultshow->data;
+    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+    return $view->with('data', $data);
+
+});
+
+View::composer('frontend.theme_2.widget.__baiviet__lienquan', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $data = $result->data;
+
+    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
+    return $view->with('data', $data);
+
+});
+
+View::composer('frontend.theme_2.widget.__baiviet__trangchu', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $data = $result->data;
+
+    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
+    return $view->with('data', $data);
+
+});
+
+View::composer('frontend.theme_2.widget.__menu__article', function ($view) {
+
+    $url = '/article';
+    $method = "GET";
+    $val = array();
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+    $result = $result_Api->data;
+    $datacategory = $result->datacategory;
+
+    return $view->with('datacategory', $datacategory);
+
+});
+
 View::composer('frontend.theme_1.widget.__top_nap_the', function ($view) {
     return $view;
 
