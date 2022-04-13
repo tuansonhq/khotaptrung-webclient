@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method){
-        $data ['domain'] = \Request::server("HTTP_HOST");
+        $data ['domain'] = config('api.client');
         $data['secret_key'] = config('api.secret_key');
 
 
