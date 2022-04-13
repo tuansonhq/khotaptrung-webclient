@@ -58,11 +58,13 @@
             </div>
             <div class="text-center showcontent">
                 <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h2>
+                @if(isset($data->groups[0]->slug))
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
                         <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">Ngọc rồng</a></p>
                     </div>
                 </div>
+                @endif
             </div>
 
             {{--            Tính toán  --}}
