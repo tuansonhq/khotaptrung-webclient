@@ -58,6 +58,7 @@ class Helpers
         }
         return strtoupper($alpha_id).($id+$shop_id*2);
     }
+
     public static function decodeItemID($str){
         $str = strtolower($str);
         $shop_id = '';
@@ -78,6 +79,56 @@ class Helpers
         }
         $id = str_replace($alpha, '', $str) - ($shop_id*2);
         return intval($id);
+    }
+
+    public static function dateTimeBlog($tru){
+
+        $day = floor($tru / 86400);
+        $hours = floor(($tru -($day*86400)) / 3600);
+        $minutes = floor(($tru / 60) % 60);
+        $seconds = $tru % 60;
+
+        $day_fm = $day;
+        $hour_fm = $hours;
+        $minute_fm = $minutes;
+        $second_fm = $seconds;
+
+        $time = null;
+        if ($day < 10){
+            $day_fm = "0".$day;
+        }
+
+        if ($hours < 10){
+            $hour_fm = "0".$hours;
+        }
+
+        if ($minutes < 10){
+            $minute_fm = "0".$minutes;
+        }
+
+        if ($seconds < 10){
+            $second_fm = "0".$seconds;
+        }
+
+        if ($day == 0){
+            if ($hours == 0){
+                if ($minutes == 0){
+                    if ($seconds == 0){
+                        $time = "now";
+                    }else{
+                        $time = $second_fm;
+                    }
+                }else{
+                    $time = $minute_fm." phút";
+                }
+            }else{
+                $time = $hour_fm." giờ";
+            }
+        }else{
+            $time = $day_fm." ngày";
+        }
+
+        return $time;
     }
 
 }
