@@ -9,7 +9,6 @@ class DirectAPI{
     public static function _makeRequest($url, array $data, $method){
         $data ['domain'] = \Request::server("HTTP_HOST");
         $data['secret_key'] = config('api.secret_key');
-        dd(111);
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
