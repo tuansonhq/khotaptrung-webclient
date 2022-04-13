@@ -7,7 +7,9 @@ use Carbon\Carbon;
 class DirectAPITheme
 {
     public static function _makeRequest($url, array $data, $method){
+
         $data ['client'] = \Request::server ("HTTP_HOST");
+
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
