@@ -267,6 +267,12 @@ if (isset(theme('')->theme_key)){
     elseif (theme('')->theme_key == 'theme_2'){
         Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::group(['middleware' => ['cacheResponse:300']], function (){
+
+                Route::get('/blog', [ArticleController::class , "index"]);
+                Route::get('/blog/data', [ArticleController::class , "getData"]);
+                Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
+                Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+
                 Route::get('/', function ()
                 {
                     return view('frontend.theme_2.pages.index');
@@ -279,10 +285,10 @@ if (isset(theme('')->theme_key)){
                 {
                     return view('frontend.theme_2.pages.user.profile');
                 });
-                Route::get('/blog', function ()
-                {
-                    return view('frontend.theme_2.pages.blog');
-                });
+//                Route::get('/blog', function ()
+//                {
+//                    return view('frontend.theme_2.pages.blog');
+//                });
                 Route::get('/blog/single', function ()
                 {
                     return view('frontend.theme_2.pages.blog_single');

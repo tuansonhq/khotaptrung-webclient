@@ -1,4 +1,3 @@
-
 @if(isset($data) && count($data) > 0)
     @foreach($data as $item)
         <div class="news_content_list">
@@ -58,8 +57,6 @@
         @endif
     </div>
 </div>
-
-
 
 
 

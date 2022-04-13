@@ -91,3 +91,11 @@ if (! function_exists('decodeItemID')) {
         return Helpers::decodeItemID($str);
     }
 }
+
+if (! function_exists('dateTimeBlog')) {
+
+    function dateTimeBlog($str)
+    {
+        return Helpers::dateTimeBlog($str);
+    }
+}

@@ -20,14 +20,33 @@ class ArticleController extends Controller
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $result = $result_Api->data;
             $data = $result->data;
-//            $data = $data->data;
+            $datacategory = $result->datacategory;
+            $per_page = 0;
+            $total = 0;
+            if (isset($data->total)){
+                $total = $data->total;
+            }
+
+            if (isset($data->to)){
+                $per_page = $data->to;
+            }
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $category = true;
             Session::put('path', $_SERVER['REQUEST_URI']);
-            return view('frontend.'.theme('')->theme_key.'.pages.article.index')
-                ->with('data',$data)
-                ->with('category',$category);
+
+            if (theme('')->theme_key == 'theme_1'){
+                return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                    ->with('data',$data)
+                    ->with('category',$category);
+            }elseif (theme('')->theme_key == 'theme_2'){
+                return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                    ->with('data',$data)
+                    ->with('category',$category)
+                    ->with('total',$total)
+                    ->with('per_page',$per_page)
+                    ->with('datacategory',$datacategory);
+            }
         }else{
             return 'sai';
         }
@@ -57,11 +76,24 @@ class ArticleController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 $data = $result->data;
+                $per_page = 0;
+                $total = 0;
+
+                if (isset($data->total)){
+                    $total = $data->total;
+                }
+
+                if (isset($data->to)){
+                    $per_page = $data->to;
+                }
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                 $category = true;
+
                 return view('frontend.'.theme('')->theme_key.'.pages.article.function.__new__data')
                     ->with('data',$data)
+                    ->with('total',$total)
+                    ->with('per_page',$per_page)
                     ->with('category',$category);
             }else{
                 return 'sai';
