@@ -14,14 +14,15 @@
             </tr>
             </thead>
             <tbody>
-{{--            @dd($config)--}}
+
             @php
                 $prev = null;
             @endphp
             @if(isset($data) && count($data) > 0)
                 @foreach ($data as $item)
+
                     @php
-                        $curr = \App\Library\Helpers::formatDate($item->published_at);
+                        $curr = \App\Library\Helpers::formatDate($item->created_at);
                     @endphp
                     @if($curr != $prev)
                             <tr>
