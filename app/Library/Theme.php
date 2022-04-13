@@ -25,11 +25,14 @@ class Theme
         return self::api();
     }
     public static function api(){
+
+        if (Cache::get('_theme')){
+            Cache::get('_theme');
+        }
         $url = '/theme/get-theme-config';
         $method = "GET";
         $data = array();
         $result = DirectAPITheme::_makeRequest($url ,$data ,$method);
-        dd($result);
         if(isset($result) && $result->httpcode == 200){
             $seo = $result->data->data;
             return Cache::rememberForever('_theme', function() use ($seo) {
