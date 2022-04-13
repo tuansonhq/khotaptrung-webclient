@@ -82,19 +82,29 @@ class ServiceController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
+
         if(isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;
             $data = $result->data;
-            $categoryservice = $result->categoryservice;
-            $categoryservice = $categoryservice->data;
+            if (isset($result->categoryservice)){
+                $categoryservice = $result->categoryservice;
+                $categoryservice = $categoryservice->data;
 
-            Session::put('path', $_SERVER['REQUEST_URI']);
+                Session::put('path', $_SERVER['REQUEST_URI']);
 
+                return view('frontend.'.theme('')->theme_key.'.pages.service.show')
+                    ->with('categoryservice', $categoryservice)
+                    ->with('data', $data)
+                    ->with('slug', $slug);
+            }else{
 
-            return view('frontend.'.theme('')->theme_key.'.pages.service.show')
-                ->with('categoryservice', $categoryservice)
-                ->with('data', $data)
-                ->with('slug', $slug);
+                Session::put('path', $_SERVER['REQUEST_URI']);
+
+                return view('frontend.'.theme('')->theme_key.'.pages.service.show')
+                    ->with('data', $data)
+                    ->with('slug', $slug);
+            }
+
         }
 
     }
@@ -112,13 +122,19 @@ class ServiceController extends Controller
                 $result = $result_Api->data;
                 $data = $result->data;
 
-                $sluggroup = $data->groups[0]->slug;
-                $titlegroup = $data->groups[0]->title;
+                $sluggroup = '';
+                if (isset($data->groups[0]->slug)){
+                    $sluggroup = $data->groups[0]->slug;
+                }
+                $titlegroup = '';
+                if (isset($data->groups[0]->title)){
+                    $titlegroup = $data->groups[0]->title;
+                }
+
                 $descriptiondetail = $data->description;
                 $imagedetail = $data->image;
                 $titledetail = $data->title;
 //Kiem tra may chu.
-
 
                 $server_mode = null;
                 $server_data = null;
