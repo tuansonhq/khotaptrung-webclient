@@ -14,7 +14,7 @@ use Session;
 class LoginController extends Controller
 {
     public function login(){
-
+ 
         $jwt = Session::get('jwt');
         if(empty($jwt)){
             return view('frontend.'.theme('')->theme_key.'.pages.log_in');
@@ -71,28 +71,7 @@ class LoginController extends Controller
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
     }
-    public function loginfacebook(Request $request)
-    {
-        $url = '/loginfacebook';
-        $method = "POST";
-        $data = array();
-        $data['accessToken'] = $request->accessToken;
-        $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-        if(isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
-            if ($result->status == 1) {
-                $time = strtotime(Carbon::now());
-                $exp_token = $result->exp_token;
-                $time_exp_token = $time + $exp_token;
-                Session::put('jwt',$result->token);
-                Session::put('exp_token',$result->exp_token);
-                Session::put('time_exp_token',$time_exp_token);
-                return redirect()->to('/');
-            } else {
-                return redirect()->back()->withErrors($result->message);
-            }
-        }
-    }
+
     public function logout(Request $request){
         try{
             $url = '/logout';
@@ -118,7 +97,28 @@ class LoginController extends Controller
             return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
         }
     }
-
+    public function loginfacebook(Request $request)
+    {
+        $url = '/loginfacebook';
+        $method = "POST";
+        $data = array();
+        $data['accessToken'] = $request->accessToken;
+        $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200) {
+            $result = $result_Api->data;
+            if ($result->status == 1) {
+                $time = strtotime(Carbon::now());
+                $exp_token = $result->exp_token;
+                $time_exp_token = $time + $exp_token;
+                Session::put('jwt',$result->token);
+                Session::put('exp_token',$result->exp_token);
+                Session::put('time_exp_token',$time_exp_token);
+                return redirect()->to('/');
+            } else {
+                return redirect()->back()->withErrors($result->message);
+            }
+        }
+    }
 
     public function changePassword(){
         return view('frontend.'.theme('')->theme_key.'.pages.account.changePassword');
