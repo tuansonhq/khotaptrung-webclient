@@ -116,6 +116,7 @@ class ArticleController extends Controller
             }
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if ($result->is_over){
@@ -124,14 +125,29 @@ class ArticleController extends Controller
                     ]);
                 }
                 $data = $result->data;
+                $datacategory = $result->datacategory;
 //                $data = $data->data;
                 $title = $result->categoryarticle;
+
+                $per_page = 0;
+                $total = 0;
+                if (isset($data->total)){
+                    $total = $data->total;
+                }
+
+                if (isset($data->to)){
+                    $per_page = $data->to;
+                }
+
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 return view('frontend.'.theme('')->theme_key.'.pages.article.function.__new__data')
                     ->with('title',$title)
                     ->with('data',$data)
+                    ->with('per_page',$per_page)
+                    ->with('total',$total)
+                    ->with('datacategory',$datacategory)
                     ->with('slug',$slug);
 
             }else{
@@ -152,25 +168,48 @@ class ArticleController extends Controller
 
             if ($result->item == 1){
                 $data = $result->data;
+
                 $dataitem = $result->dataitem;
                 Session::put('path', $_SERVER['REQUEST_URI']);
+                $slug = $data->slug;
                 return view('frontend.'.theme('')->theme_key.'.pages.article.show')
                     ->with('dataitem',$dataitem)
+                    ->with('slug',$slug)
                     ->with('data',$data);
             }else{
                 $result = $result_Api->data;
                 $data = $result->data;
-
+                $datacategory = $result->datacategory;
                 $title = $result->categoryarticle;
+
+                $per_page = 0;
+                $total = 0;
+                if (isset($data->total)){
+                    $total = $data->total;
+                }
+
+                if (isset($data->to)){
+                    $per_page = $data->to;
+                }
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
+                if (theme('')->theme_key == 'theme_1'){
+                    return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                        ->with('title',$title)
+                        ->with('data',$data)
+                        ->with('slug',$slug);
+                }elseif (theme('')->theme_key == 'theme_2'){
+                    return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                        ->with('title',$title)
+                        ->with('data',$data)
+                        ->with('per_page',$per_page)
+                        ->with('total',$total)
+                        ->with('datacategory',$datacategory)
+                        ->with('slug',$slug);
+                }
 
-                return view('frontend.'.theme('')->theme_key.'.pages.article.index')
-                    ->with('title',$title)
-                    ->with('data',$data)
-                    ->with('slug',$slug);
             }
 
         }else{
