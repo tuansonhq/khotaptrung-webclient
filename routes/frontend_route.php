@@ -40,7 +40,7 @@ Route::get('/test', function ()
     dd(theme(''));
 });
 
-if (isset(theme('')->theme_key)){
+//if (isset(theme('')->theme_key)){
     if (theme('')->theme_key == 'theme_1'){
         Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
@@ -302,7 +302,7 @@ if (isset(theme('')->theme_key)){
             });
         });
     }
-}
+//}
 
 
 
