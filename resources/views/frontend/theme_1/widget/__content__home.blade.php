@@ -1,6 +1,6 @@
 @if(isset($data) && count($data) > 0)
 {{--    @dd($data)--}}
-<div class="content-items" id="freefire_taget">
+<div class="content-items">
     <div class="container">
         <div class="items-title">
             <h2>Danh mục game</h2>
@@ -66,9 +66,8 @@
 
 @endif
 
-
 @if(isset($dataGame->data) && count($dataGame->data) > 0)
-<div class="content-items content-items-spin" id="freefire_taget">
+<div class="content-items content-items-spin">
     <div class="container">
         <div class="items-title">
             <h2>Danh mục minigame</h2>
@@ -123,3 +122,16 @@
 </div>
 
 @endif
+
+<script>
+    $(document).ready(function(){
+        var key = 1;
+
+        $(function() {
+            $('.content-items').each(function(key,value){
+
+                $(this).attr('id', 'menunhanh_'+key);
+            });
+        });
+    })
+</script>
