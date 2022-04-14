@@ -42,7 +42,14 @@ Route::get('/test', function ()
 
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
+Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['verify_shop']) , function (){
+            Route::get('/theme', function ()
+            {
+                return view('frontend.index');
+            });
+
+
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse:300']], function (){
@@ -263,6 +270,7 @@ Route::get('/test', function ()
 //        });
 //    });
         });
+});
 //    }
 //    elseif (theme('')->theme_key == 'theme_2'){
 //        Route::group(array('middleware' => ['verify_shop']) , function (){
