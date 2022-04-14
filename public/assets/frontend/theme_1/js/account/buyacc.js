@@ -74,7 +74,7 @@ $(document).ready(function () {
                         .then((result) => {
                             if (result.value) {
                                 window.location = '/lich-su-mua-account';
-                            } else if (result.dismiss === 'cancel') {
+                            } else if (result.dismiss === 'đóng') {
 
                             }
                         })

@@ -39,7 +39,10 @@
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <button type="submit" class="btn btn-category-service">Tìm kiếm</button>
-                                <a href="" class="btn btn-danger btn-tatca">Tất cả</a>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-tatca" style="position: relative">Tất cả</a>
+                                <div class="row justify-content-center loading-data__all">
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +76,7 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <button type="submit" class="btn btn-category-service-mobile">Tìm kiếm</button>
-                                        <a href="" class="btn btn-danger btn-tatca-mobile">Tất cả</a>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-tatca-mobile">Tất cả</a>
                                     </div>
                                 </div>
                             </div>

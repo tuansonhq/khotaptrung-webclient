@@ -168,7 +168,13 @@ $(document).ready(function(){
                                         html += '<input type="hidden" name="value" value="">';
                                         html += '<input type="hidden" name="server">';
                                         html += '<a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none" class="">Tổng: 0 Xu</a>';
-                                        html += '<button id="btnPurchase" data-value="" type="button" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>';
+                                        html += '<button id="btnPurchase" data-value="" type="button" style="font-size: 20px;position: relative" class="followus">';
+                                        html += '<i class="fa fa-credit-card" aria-hidden="true"></i>';
+                                        html += 'Thanh toán';
+                                        html += '<div class="row justify-content-center loading-data__thanhtoan">';
+                                        // html += '';
+                                        html += '</div>';
+                                        html += '</button>';
                                     html += '</div>';
                                 html += '</div>';
                             html += '</div>';
@@ -623,6 +629,10 @@ $(document).ready(function(){
         e.preventDefault();
 
         var price = $('[name="value"]').val();
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__thanhtoan').html('');
+        $('.loading-data__thanhtoan').html(htmlloading);
 
         getModalService(price)
     })
@@ -708,7 +718,12 @@ $(document).ready(function(){
                                 htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the-cham" id="d3">Nạp thẻ cào</a>';
                                 htmlmodal += '<a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>';
                             }else {
-                                htmlmodal += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold " id="d3" style="" >Xác nhận thanh toán</button>';
+                                htmlmodal += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold " id="d3" style="position: relative" >';
+                                htmlmodal += 'Xác nhận thanh toán';
+                                htmlmodal += '<div class="row justify-content-center loading-data__buydichvu">';
+                                // html += '';
+                                htmlmodal += '</div>';
+                                htmlmodal += '</button>';
                             }
                         }
                         htmlmodal += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
@@ -719,6 +734,8 @@ $(document).ready(function(){
 
                     $('#homealert').modal('show');
                 }
+
+                $('.loading-data__thanhtoan').html('');
 
 
             },
@@ -733,9 +750,12 @@ $(document).ready(function(){
 
     $(document).on('submit', '.purchaseForm', function(e){
         e.preventDefault();
-        // var htmlloading = '';
+        var htmlloading = '';
 
-        // htmlloading += '<div class="loading"></div>';
+        htmlloading += '<div class="loading"></div>';
+
+        $('.loading-data__buydichvu').html('');
+        $('.loading-data__buydichvu').html(htmlloading);
         // $('.loading-data__muangay').html('');
         // $('.loading-data__muangay').html(htmlloading);
 
@@ -766,7 +786,7 @@ $(document).ready(function(){
                         .then((result) => {
                             if (result.value) {
                                 window.location = '/lich-su-dich-vu';
-                            } else if (result.dismiss === 'đóng') {
+                            } else if (result.dismiss === 'Đóng') {
 
                             }
                         })
@@ -790,7 +810,7 @@ $(document).ready(function(){
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
-                $('.loading-data__muangay').html('');
+                $('.loading-data__buydichvu').html('');
             },
             error: function (response) {
                 if(response.status === 422 || response.status === 429) {

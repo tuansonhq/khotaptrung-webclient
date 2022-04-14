@@ -64,6 +64,11 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
+        e.preventDefault();
+        // var htmlloading = '';
+        // htmlloading += '<div class="loading"></div>';
+        // $('.loading-data__all').html('');
+        // $('.loading-data__all').html(htmlloading);
 
         $('.title_data').val('');
 

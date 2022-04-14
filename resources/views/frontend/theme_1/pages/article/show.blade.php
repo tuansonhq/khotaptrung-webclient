@@ -10,7 +10,7 @@
                     <div class="col-auto tintuc-auto pr-0">
 {{--                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/tin-tuc">Tin tức</a></div>--}}
                     </div>
-                    <div class="col-lg-10 col-md-12 ml-lg-auto">
+                    <div class="col-lg-10 trangchu-auto col-md-12 ml-lg-auto">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
