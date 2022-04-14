@@ -12,15 +12,28 @@ $(document).ready(function(){
         $(this).parent().addClass('active');
 
         var querry = $('.btn_new').val();
+        var slug = $('.slug-article').val();
 
-        loadData(page,querry)
+        loadData(page,querry,slug)
     });
 
-    function loadData(page,querry) {
+    function loadData(page,querry,slug) {
+
+        if (slug == null || slug == undefined || slug == ''){
+            var slug_category = $('.slug-article').val();
+
+            slug = slug_category;
+        }
+
+        if (slug == undefined || slug == null || slug == ''){
+            var url = '/blog/data';
+        }else {
+            var url = '/blog/'+ slug +'/data';
+        }
 
         request = $.ajax({
             type: 'GET',
-            url: '/blog/data',
+            url: url,
             data: {
                 page:page,
                 querry:querry,
@@ -45,7 +58,12 @@ $(document).ready(function(){
         e.preventDefault();
         var querry = $('.btn_new').val();
 
+        var querry = $('.btn_new').val();
+        var slug = $('.slug-article').val();
+        $('.hidden_page').val(1);
+        page = $('.hidden_page').val();
 
+        loadData(page,querry)
     })
 
 });

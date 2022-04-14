@@ -34,7 +34,12 @@
                         @endif
                     </h6>
                     <div class="item-meta small">
-                        <div class="time text-secondary"><i class="las la-clock"></i> {{ formatDateTime($item->created_at) }} </div>
+
+                        <div class="time text-secondary"><i class="las la-clock"></i>
+
+                            {{ formatDateTime($item->created_at) }} | Danh mục : {{ $item->groups[0]->title }}
+
+                        </div>
                     </div>
                     <div class="item-summary">
                         {!! $item->description !!}

@@ -292,8 +292,8 @@ if (isset(theme('')->theme_key)){
 
                 Route::get('/blog', [ArticleController::class , "index"]);
                 Route::get('/blog/data', [ArticleController::class , "getData"]);
-                Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+                Route::get('/blog/{slug}/data', [ArticleController::class , "getCategoryData"]);
+                Route::get('/blog/{slug}', [ArticleController::class , "show"]);
 
                 Route::get('/', function ()
                 {
@@ -307,10 +307,10 @@ if (isset(theme('')->theme_key)){
 //                {
 //                    return view('frontend.theme_2.pages.blog');
 //                });
-                Route::get('/blog/single', function ()
-                {
-                    return view('frontend.theme_2.pages.blog_single');
-                });
+//                Route::get('/blog/single', function ()
+//                {
+//                    return view('frontend.theme_2.pages.blog_single');
+//                });
                 Route::get('/nap-the', function ()
                 {
                     return view('frontend.theme_2.pages.deposit');

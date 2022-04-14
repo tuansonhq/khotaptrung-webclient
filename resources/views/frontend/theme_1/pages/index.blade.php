@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            {!! widget('frontend.theme_1.widget.__content__home',60) !!}
+            @include('frontend.theme_1.widget.__content__home')
 
             <div class="content-video intro_text" id="lockmoney_taget">
                 <div class="container">
@@ -96,26 +96,18 @@
 
         </div>
 
+
         <div class="adthisbutton">
-            <a class="freefire" style="color:#fff" href="#freefire_taget">
-                <img src="https://shopas.net/storage/images/EZ94JFicXW_1634524794.png" alt="">
-                <span>Mục Liên Quân</span>
-            </a>
-            <a class="lienquan" style="color:#fff" href="#lienquan_taget">
-                <img src="https://shopas.net/storage/images/oVE6PWWiom_1634524794.png" alt="">
-                <span>Mục Free Fire</span>
-            </a>
-
-
-            <a class="lockmoney" style="color:#fff" href="#lockmoney_taget">
-                <img src="https://shopas.net/storage/images/sa2TgJvgE9_1634524794.jpg" alt="">
-                <span>Mục Tiền Khóa</span>
-            </a>
-            <a class="hoteventmodal" style="color:#fff" href="javascript://">
-                <img src="https://shopas.net/storage/images/m8zObXwTac_1634524794.png" alt="">
-                <span>Mục Sự Kiện</span>
-            </a>
+            @if(isset($data_menu_transaction))
+                @foreach($data_menu_transaction as $key => $val)
+                    <a class="freefire" style="color:#fff" href="#menunhanh_{{ $key }}">
+                        <img src="https://media-tt.nick.vn/{{ $val->image }}" alt="">
+                        <span>{{ $val->title }}</span>
+                    </a>
+                @endforeach
+            @endif
         </div>
+
     </div>
 
 @endsection

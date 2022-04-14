@@ -2178,6 +2178,7 @@ ol.w {
     background: rgba(255, 255, 255, 0.2);
 }
 
+
 /* -------------------
   RESPONDSIVE
  --------------------*/
@@ -2446,4 +2447,15 @@ input[type="number"] {
 }
 .site-header-nav ul.nav li.nav-item a.nav-link{
     padding: 10px 15px 20px 15px !important;
+=======
+/* ------------------- RESPONDSIVE --------------------*/
+
+.news_detail_content{
+    width: 80%;
+}
+.news_detail_content li{
+    list-style: none;
+}
+.news_detail_content img{
+    max-width: 90%;
 }

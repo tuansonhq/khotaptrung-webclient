@@ -6,47 +6,53 @@
                 <div class="h3" style="font-size: 24px;font-weight: 700">DỊCH VỤ KHÁC</div>
                 <div class="news_content_line"></div>
             </div>
-            <div class="col-12 item_play_dif_slide pt-3 pb-5" >
-                <div class="swiper-container item_play_dif_slide_detail item_news" >
-                    <div class="swiper-wrapper">
-
-                        @foreach($categoryservice as $item)
-                            <div class="swiper-slide swiper-slide__size" >
-                                <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
-                                    <div class="item_play_dif_slide_img">
-                                        <a href="/dich-vu/{{ $item->slug }}">
-                                            @if(isset($item->image))
-                                                <img src="https://media-tt.nick.vn{{ $item->image }}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                            @else
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/images/fff.jpg" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                            @endif
-                                        </a>
-                                    </div>
-                                    <div class="item_play_dif_slide_title">
-                                        <span>{{ $item->title }}</span>
-                                    </div>
-                                    <div class="item_play_dif_slide_description__size">
-                                        {{--                                {!! substr($item->description, 0, 150); !!}--}}
-                                        @if(strlen($item->description) < 120)
-                                            {!! substr($item->description, 0, 120); !!}
-                                        @else
-                                            {!! substr($item->description, 0, 120); !!}...
-                                        @endif
-                                    </div>
-                                </div>
-
+            @if(isset($categoryservice) && count($categoryservice) > 0)
+                @foreach ($categoryservice as $item)
+                    <div class="col-6 col-sm-6 col-lg-3" style="padding-top: 24px">
+                        <div class="item_buy_list_in">
+                            <div class="item_buy_list_img">
+                                <a href="/dich-vu/{{ $item->slug }}">
+                                    <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
+                                </a>
                             </div>
-                        @endforeach
+
+                            <div class="item_buy_list_info">
+                                <div class="row">
+                                    <div class="col-12 item_buy_list_info_in">
+                                <span style="font-weight: bold;color: #f7b03c;font-size: 16px;">
+                                    {{ $item->title }}
+                                </span>
+                                    </div>
+
+                                    <div class="col-12 item_buy_list_info_in">
+                                        <span>Hỗ trợ dịch vụ:</span> 5
+                                    </div>
+
+                                    <div class="col-12 item_buy_list_info_in">
+                                        <span>Giao dịch:</span> 19,878
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="item_buy_list_more">
+                                <div class="row">
+
+                                    <a href="/dich-vu/{{ $item->slug }}" class="col-12">
+                                        <div class="item_buy_list_view">
+                                            CHI TIẾT
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="swiper-pagination"></div>
+                @endforeach
+            @else
+                <div class="col-md-12 text-left">
+                    <span style="font-size: 16px;color: red">Dữ liệu cần tìm không tồn tại vui lòng thử lại.</span>
                 </div>
-                <div class="swiper-button-prev">
-                    <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="swiper-button-next">
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 

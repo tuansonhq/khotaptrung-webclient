@@ -19,7 +19,7 @@ $(document).ready(function(){
             success: (response) => {
                 if (response.status == 1){
                     //Data show detail
-
+                    console.log(response)
                     var html = '';
 
                     html += '<div class="row">';
