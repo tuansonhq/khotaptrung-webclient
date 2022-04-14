@@ -277,7 +277,7 @@
     outline: 0 none;
 }
 .c-content-box.c-size-lg {
-    padding: 80px 0;
+    padding: 40px 0;
 }
 .captcha{
     border: 1px solid #ced4da;
@@ -317,4 +317,8 @@
 }
 .theashow:hover span{
     text-decoration: none;
+}
+
+.item_buy_list_in:hover{
+    box-shadow: #0c0c0c!important;
 }
