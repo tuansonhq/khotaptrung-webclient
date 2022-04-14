@@ -418,15 +418,16 @@ class ServiceController extends Controller
 
                     if (isset($data->status)){
                         if ($data->status == 0){
+
                             return response()->json([
                                 'status' => 2,
-                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                                'message' => $data->message,
                             ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
                         }elseif ($data->status == 1 ){
                             return response()->json([
                                 'status' => 1,
-                                'message' => "Mua tài khoản thành công",
+                                'message' => $data->message,
                             ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
                         }
