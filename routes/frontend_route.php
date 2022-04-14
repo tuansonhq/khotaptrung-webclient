@@ -40,8 +40,8 @@ Route::get('/test', function ()
     dd(theme(''));
 });
 
-if (isset(theme('')->theme_key)){
-    if (theme('')->theme_key == 'theme_1'){
+//if (isset(theme('')->theme_key)){
+//    if (theme('')->theme_key == 'theme_1'){
         Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
@@ -263,70 +263,70 @@ if (isset(theme('')->theme_key)){
 //        });
 //    });
         });
-    }
-    elseif (theme('')->theme_key == 'theme_2'){
-        Route::group(array('middleware' => ['verify_shop']) , function (){
-            Route::group(['middleware' => ['cacheResponse:300']], function (){
-                Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                    Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-
-
-                });
-                //đăng nhập, đăng xuất, đăng ký
-                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
-                    ->name('login');
-                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
-                    ->name('loginApi');
-                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                    ->name('loginfacebook');
-                Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
-                    ->name('register');
-                Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-                Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-                    ->name('changePassword');
-                Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-                    ->name('changePasswordApi');
-
-
-
-                Route::get('/blog', [ArticleController::class , "index"]);
-                Route::get('/blog/data', [ArticleController::class , "getData"]);
-                Route::get('/blog/{slug}/data', [ArticleController::class , "getCategoryData"]);
-                Route::get('/blog/{slug}', [ArticleController::class , "show"]);
-
-                Route::get('/', function ()
-                {
-                    return view('frontend.theme_2.pages.index');
-                });
-                Route::get('/user/profile', function ()
-                {
-                    return view('frontend.theme_2.pages.user.profile');
-                });
-//                Route::get('/blog', function ()
-//                {
-//                    return view('frontend.theme_2.pages.blog');
+//    }
+//    elseif (theme('')->theme_key == 'theme_2'){
+//        Route::group(array('middleware' => ['verify_shop']) , function (){
+//            Route::group(['middleware' => ['cacheResponse:300']], function (){
+//                Route::group(['middleware' => ['doNotCacheResponse']], function (){
+//                    Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+//
+//
 //                });
-//                Route::get('/blog/single', function ()
+//                //đăng nhập, đăng xuất, đăng ký
+//                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
+//                    ->name('login');
+//                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+//                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+//                    ->name('loginApi');
+//                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+//                    ->name('loginfacebook');
+//                Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
+//                    ->name('register');
+//                Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
+//                Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+//                    ->name('changePassword');
+//                Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+//                    ->name('changePasswordApi');
+//
+//
+//
+//                Route::get('/blog', [ArticleController::class , "index"]);
+//                Route::get('/blog/data', [ArticleController::class , "getData"]);
+//                Route::get('/blog/{slug}/data', [ArticleController::class , "getCategoryData"]);
+//                Route::get('/blog/{slug}', [ArticleController::class , "show"]);
+//
+//                Route::get('/', function ()
 //                {
-//                    return view('frontend.theme_2.pages.blog_single');
+//                    return view('frontend.theme_2.pages.index');
 //                });
-                Route::get('/nap-the', function ()
-                {
-                    return view('frontend.theme_2.pages.deposit');
-                });
-                Route::get('/mua-the', function ()
-                {
-                    return view('frontend.theme_2.pages.buy');
-                });
-                Route::get('/ho-tro', function ()
-                {
-                    return view('frontend.theme_2.pages.support');
-                });
-            });
-        });
-    }
-}
+//                Route::get('/user/profile', function ()
+//                {
+//                    return view('frontend.theme_2.pages.user.profile');
+//                });
+////                Route::get('/blog', function ()
+////                {
+////                    return view('frontend.theme_2.pages.blog');
+////                });
+////                Route::get('/blog/single', function ()
+////                {
+////                    return view('frontend.theme_2.pages.blog_single');
+////                });
+//                Route::get('/nap-the', function ()
+//                {
+//                    return view('frontend.theme_2.pages.deposit');
+//                });
+//                Route::get('/mua-the', function ()
+//                {
+//                    return view('frontend.theme_2.pages.buy');
+//                });
+//                Route::get('/ho-tro', function ()
+//                {
+//                    return view('frontend.theme_2.pages.support');
+//                });
+//            });
+//        });
+//    }
+//}
 
 
 
