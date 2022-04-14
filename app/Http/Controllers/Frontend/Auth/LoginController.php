@@ -17,7 +17,7 @@ class LoginController extends Controller
 
         $jwt = Session::get('jwt');
         if(empty($jwt)){
-            return view('frontend.'.theme('')->theme_key.'.pages.log_in');
+            return view('frontend.pages.log_in');
         }else{
             return redirect('/');
         }
@@ -121,7 +121,7 @@ class LoginController extends Controller
 
 
     public function changePassword(){
-        return view('frontend.'.theme('')->theme_key.'.pages.account.changePassword');
+        return view('frontend.pages.account.changePassword');
     }
     public function changePasswordApi(Request $request){
         $this->validate($request,[

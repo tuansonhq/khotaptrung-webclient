@@ -36,11 +36,11 @@ class ArticleController extends Controller
             Session::put('path', $_SERVER['REQUEST_URI']);
 
             if (theme('')->theme_key == 'theme_1'){
-                return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                return view('frontend.pages.article.index')
                     ->with('data',$data)
                     ->with('category',$category);
             }elseif (theme('')->theme_key == 'theme_2'){
-                return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                return view('frontend.pages.article.index')
                     ->with('data',$data)
                     ->with('category',$category)
                     ->with('total',$total)
@@ -90,7 +90,7 @@ class ArticleController extends Controller
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                 $category = true;
 
-                return view('frontend.'.theme('')->theme_key.'.pages.article.function.__new__data')
+                return view('frontend.pages.article.function.__new__data')
                     ->with('data',$data)
                     ->with('total',$total)
                     ->with('per_page',$per_page)
@@ -142,7 +142,7 @@ class ArticleController extends Controller
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
-                return view('frontend.'.theme('')->theme_key.'.pages.article.function.__new__data')
+                return view('frontend.pages.article.function.__new__data')
                     ->with('title',$title)
                     ->with('data',$data)
                     ->with('per_page',$per_page)
@@ -172,7 +172,7 @@ class ArticleController extends Controller
                 $dataitem = $result->dataitem;
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 $slug = $data->slug;
-                return view('frontend.'.theme('')->theme_key.'.pages.article.show')
+                return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('slug',$slug)
                     ->with('data',$data);
@@ -196,12 +196,12 @@ class ArticleController extends Controller
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 if (theme('')->theme_key == 'theme_1'){
-                    return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                    return view('frontend.pages.article.index')
                         ->with('title',$title)
                         ->with('data',$data)
                         ->with('slug',$slug);
                 }elseif (theme('')->theme_key == 'theme_2'){
-                    return view('frontend.'.theme('')->theme_key.'.pages.article.index')
+                    return view('frontend.pages.article.index')
                         ->with('title',$title)
                         ->with('data',$data)
                         ->with('per_page',$per_page)
@@ -233,7 +233,7 @@ class ArticleController extends Controller
             $categoryservice = $categoryservice->data;
             //return $data;
 
-            return view('frontend.'.theme('')->theme_key.'.pages.service.show')
+            return view('frontend.pages.service.show')
                 ->with('categoryservice',$categoryservice)
                 ->with('data',$data)
                 ->with('slug',$slug);
@@ -242,7 +242,7 @@ class ArticleController extends Controller
 
         $data = $result->categoryservice;
 
-        return view('frontend.'.theme('')->theme_key.'.pages.service.show_service_category')
+        return view('frontend.pages.service.show_service_category')
             ->with('slug',$slug)
             ->with('data',$data);
     }

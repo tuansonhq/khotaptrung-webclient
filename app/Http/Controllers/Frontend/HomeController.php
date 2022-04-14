@@ -20,7 +20,7 @@ class HomeController extends Controller
         $data_menu_transaction = $result_menu_transaction->data;
 
         \Session::forget('path');
-        return view('frontend.'.theme('')->theme_key.'.pages.index')->with('data_menu_transaction',$data_menu_transaction);
+        return view('frontend.pages.index')->with('data_menu_transaction',$data_menu_transaction);
     }
 
     public function profile(){
@@ -35,7 +35,7 @@ class HomeController extends Controller
         $data_menu_profile = $result_menu_profile->data;
 
 
-        return view('frontend.'.theme('')->theme_key.'.pages.index')
+        return view('frontend.pages.index')
             ->with('$data_menu_profile',$data_menu_profile);
     }
 

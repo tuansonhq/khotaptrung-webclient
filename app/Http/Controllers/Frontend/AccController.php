@@ -28,7 +28,7 @@ class AccController extends Controller
             return 'sai';
         }
 //        return $data;
-        return view('frontend.'.theme('')->theme_key.'.pages.account.getShowCategory')
+        return view('frontend.pages.account.getShowCategory')
             ->with('data',$data);
     }
 
@@ -132,7 +132,7 @@ class AccController extends Controller
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
                         $dataAttribute = $data->childs;
-                        return view('frontend.'.theme('')->theme_key.'.pages.account.function.__account__data')
+                        return view('frontend.pages.account.function.__account__data')
                             ->with('data',$data)
                             ->with('items',$items)
                             ->with('dataAttribute',$dataAttribute)
@@ -150,7 +150,7 @@ class AccController extends Controller
                     $dataAttribute = $data->childs;
 
                     Session::put('path', $_SERVER['REQUEST_URI']);
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.accountList')
+                    return view('frontend.pages.account.accountList')
                         ->with('data',$data)
                         ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)
@@ -201,7 +201,7 @@ class AccController extends Controller
                 $atm_percent = setting('sys_atm_percent');
 
                 Session::put('path', $_SERVER['REQUEST_URI']);
-                return view('frontend.'.theme('')->theme_key.'.pages.account.show')
+                return view('frontend.pages.account.show')
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)
                     ->with('sliders',$sliders)
@@ -267,7 +267,7 @@ class AccController extends Controller
 
                 $price = $data->price;
 
-                $html =  view('frontend.'.theme('')->theme_key.'.pages.account.function.buyacc')
+                $html =  view('frontend.pages.account.function.buyacc')
                         ->with('dataAttribute',$dataAttribute)
                         ->with('data_category',$data_category)
                         ->with('price',$price)
@@ -478,7 +478,7 @@ class AccController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     }
 
-                    $html = view('frontend.'.theme('')->theme_key.'.pages.account.function.__get__buy__account__history')
+                    $html = view('frontend.pages.account.function.__get__buy__account__history')
                         ->with('data', $data)->render();
 
                     return response()->json([
@@ -509,7 +509,7 @@ class AccController extends Controller
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                 }
 
-                return view('frontend.'.theme('')->theme_key.'.pages.account.getBuyAccountHistory')
+                return view('frontend.pages.account.getBuyAccountHistory')
                     ->with('data', $data)->with('datacategory', $datacategory);
             }else{
                 return "sai";

@@ -26,9 +26,9 @@ $(document).ready(function(){
         }
 
         if (slug == undefined || slug == null || slug == ''){
-            var url = '/blog/data';
+            var url = '/tin-tuc/data';
         }else {
-            var url = '/blog/'+ slug +'/data';
+            var url = '/tin-tuc/'+ slug +'/data';
         }
 
         request = $.ajax({
