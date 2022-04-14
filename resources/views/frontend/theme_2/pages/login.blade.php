@@ -9,19 +9,19 @@
                 <div class="p-4 h-100">
                     <div class="row justify-content-center align-items-center h-100">
                         <div class="col-lg-6">
-                            <form action="#" method="post">
+                            <form action="{{route('login')}}" method="post">
                                 <h5 class="title-style-left mb-3"><strong>Đăng nhập</strong></h5>
                                 <div class="mb-3">
                                     <label class="label mb-1">Tên tài khoản</label>
                                     <div class="input-group">
-                                        <input type="text" id="login_username" name="login_username" class="form-control border-end-0" placeholder="+84" value="">
+                                        <input type="text" id="login_username" name="username" class="form-control border-end-0" placeholder="+84" value="">
                                         <span class="input-group-text bg-transparent border-first-0"><i class="las la-user"></i></span>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="label mb-1">Mật khẩu</label>
                                     <div class="input-group">
-                                        <input type="password" id="login_password" name="login_password" class="form-control border-end-0" placeholder="" value="">
+                                        <input type="password" id="login_password" name="password" class="form-control border-end-0" placeholder="" value="">
                                         <span class="input-group-text bg-transparent border-first-0"><i class="las la-lock"></i></span>
                                     </div>
                                 </div>

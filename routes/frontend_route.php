@@ -267,6 +267,28 @@ if (isset(theme('')->theme_key)){
     elseif (theme('')->theme_key == 'theme_2'){
         Route::group(array('middleware' => ['verify_shop']) , function (){
             Route::group(['middleware' => ['cacheResponse:300']], function (){
+                Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                    Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+
+
+                });
+                //đăng nhập, đăng xuất, đăng ký
+                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
+                    ->name('login');
+                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+                    ->name('loginApi');
+                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                    ->name('loginfacebook');
+                Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
+                    ->name('register');
+                Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
+                Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+                    ->name('changePassword');
+                Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+                    ->name('changePasswordApi');
+
+
 
                 Route::get('/blog', [ArticleController::class , "index"]);
                 Route::get('/blog/data', [ArticleController::class , "getData"]);
@@ -276,10 +298,6 @@ if (isset(theme('')->theme_key)){
                 Route::get('/', function ()
                 {
                     return view('frontend.theme_2.pages.index');
-                });
-                Route::get('/login', function ()
-                {
-                    return view('frontend.theme_2.pages.login');
                 });
                 Route::get('/user/profile', function ()
                 {

@@ -51,6 +51,8 @@
                                 <div class="swiper-container mySwiper slider_detail">
                                     <div class="swiper-wrapper">
                                         {!! widget('frontend.theme_1.widget.__slider__banner',60) !!}
+
+                                        @include('frontend.theme_1.widget.__slider__banner',['config'=>'1'])
                                     </div>
                                     <!--                                  <div class="swiper-pagination"></div>-->
                                 </div>
