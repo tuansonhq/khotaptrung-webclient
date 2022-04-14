@@ -1,0 +1,13 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  create-deployment-artifacts:
+    name: Create deployment artifacts
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
