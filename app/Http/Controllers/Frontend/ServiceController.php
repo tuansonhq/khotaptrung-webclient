@@ -90,6 +90,8 @@ class ServiceController extends Controller
                 $categoryservice = $result->categoryservice;
                 $categoryservice = $categoryservice->data;
 
+
+
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.'.theme('')->theme_key.'.pages.service.show')
@@ -408,21 +410,20 @@ class ServiceController extends Controller
                     $val['rank_to'] = $rank_to;
                 }
 
-
-
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
 
                 if(isset($result_Api) && $result_Api->httpcode == 200){
                     $data = $result_Api->data;
 
-                    if (isset($data->success)){
-                        if ($data->success == 0){
+                    if (isset($data->status)){
+                        if ($data->status == 0){
                             return response()->json([
                                 'status' => 2,
                                 'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
                             ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                        }elseif ($data->success == 1 ){
+                        }elseif ($data->status == 1 ){
                             return response()->json([
                                 'status' => 1,
                                 'message' => "Mua tài khoản thành công",

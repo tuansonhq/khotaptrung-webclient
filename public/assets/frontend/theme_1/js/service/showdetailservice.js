@@ -755,6 +755,7 @@ $(document).ready(function(){
                 // console.log(response)
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
+                    $('#homealert').modal('hide');
                     swal({
                         title: "Mua dịch vụ thành công?",
                         text: "Thông tin chi tiết tài khoản vui lòng về lịch sử dịch vụ.",
@@ -765,13 +766,14 @@ $(document).ready(function(){
                         .then((result) => {
                             if (result.value) {
                                 window.location = '/lich-su-dich-vu';
-                            } else if (result.dismiss === 'cancel') {
+                            } else if (result.dismiss === 'đóng') {
 
                             }
                         })
                 }
                 else if (response.status == 2){
                     $('.loadModal__acount').modal('hide');
+                    $('#homealert').modal('hide');
 
                     swal(
                         'Thông báo!',
