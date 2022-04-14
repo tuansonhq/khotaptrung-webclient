@@ -42,7 +42,7 @@ class TranferController extends Controller
 //                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 //                    }
 //
-//                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_atm', compact('tranferbank','data'));
+//                    return view('frontend.pages.account.user.pay_atm', compact('tranferbank','data'));
 //                } else {
 //                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
 //                }
@@ -85,7 +85,7 @@ class TranferController extends Controller
                         $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
                     }
 
-                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.pay_atm')->with('data',$data);
+                    return view('frontend.pages.account.user.pay_atm')->with('data',$data);
                 } else {
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
@@ -133,7 +133,7 @@ class TranferController extends Controller
                     'status' => true,
                     'data' => $data,
                 ]);
-//                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_atm')->with('data', $data);
+//                    return view('frontend.pages.account.user.function.__pay_atm')->with('data', $data);
             } else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
@@ -186,7 +186,7 @@ class TranferController extends Controller
                             $dataatm = new LengthAwarePaginator($dataatm->data,$dataatm->total,$dataatm->per_page,$page,$dataatm->data);
                         }
 
-                        $html = view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_atm')
+                        $html = view('frontend.pages.account.user.function.__pay_atm')
                             ->with('data', $dataatm)->render();
 
                         return response()->json([
@@ -246,7 +246,7 @@ class TranferController extends Controller
 //                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
 //                    }
 //
-//                    return view('frontend.'.theme('')->theme_key.'.pages.account.user.function.__pay_atm', compact('data'));
+//                    return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
 //                } else {
 //                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
 //                }

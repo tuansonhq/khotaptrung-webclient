@@ -53,21 +53,21 @@ class MinigameController extends Controller
                     $result = $result_Api->data->data;
                     switch ($data['module']) {
                         case 'rubywheel':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
                         case 'flip':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.flip', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.flip', compact('result','groups_other'));
                         case 'slotmachine':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.slotmachine', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine', compact('result','groups_other'));
                         case 'slotmachine5':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.slotmachine5', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other'));
                         case 'squarewheel':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.squarewheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other'));
                         case 'smashwheel':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         case 'rungcay':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         case 'gieoque':
-                            return view('frontend.'.theme('')->theme_key.'.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
                         default:
                             return redirect()->back()->withErrors($result_out->message);
                     }
@@ -264,7 +264,7 @@ class MinigameController extends Controller
                         $total = $result->total??0;
                         $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                         $paginatedItems->setPath($request->url());
-                        return view('frontend.'.theme('')->theme_key.'.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
+                        return view('frontend.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
                     return 'sai';
@@ -332,7 +332,7 @@ class MinigameController extends Controller
                         $total = $result->total??0;
                         $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                         $paginatedItems->setPath($request->url());
-                        return view('frontend.'.theme('')->theme_key.'.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
+                        return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
                     return 'sai';
@@ -372,7 +372,7 @@ class MinigameController extends Controller
                             $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                             $paginatedItems->setPath($request->url());
                         }
-                        return view('frontend.'.theme('')->theme_key.'.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
+                        return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
                     }
                 } else {
                     return 'sai';
