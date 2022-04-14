@@ -69,7 +69,8 @@ $(document).ready(function () {
                         text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
                         type: "success",
                         confirmButtonText: "Về lịch sử đơn hàng!",
-                        showCancelButton: true
+                        showCancelButton: true,
+                        cancelButtonText: "Đóng",
                     })
                         .then((result) => {
                             if (result.value) {

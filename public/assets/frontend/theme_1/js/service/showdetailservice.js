@@ -777,11 +777,12 @@ $(document).ready(function(){
                     $('.loadModal__acount').modal('hide');
                     $('#homealert').modal('hide');
                     swal({
-                        title: "Mua dịch vụ thành công?",
+                        title: "Mua dịch vụ thành công!",
                         text: "Thông tin chi tiết tài khoản vui lòng về lịch sử dịch vụ.",
                         type: "success",
                         confirmButtonText: "Về lịch sử dịch vụ!",
-                        showCancelButton: true
+                        showCancelButton: true,
+                        cancelButtonText: "Đóng",
                     })
                         .then((result) => {
                             if (result.value) {

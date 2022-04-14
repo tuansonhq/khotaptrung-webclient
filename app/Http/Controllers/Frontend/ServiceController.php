@@ -412,7 +412,6 @@ class ServiceController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-
                 if(isset($result_Api) && $result_Api->httpcode == 200){
                     $data = $result_Api->data;
 
