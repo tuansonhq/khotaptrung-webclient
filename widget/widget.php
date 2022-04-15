@@ -47,19 +47,19 @@ View::composer('frontend.widget.__content__home', function ($view) {
 
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
-    $url = '/acc';
+    $url = '/get-show-service';
     $method = "GET";
     $val = array();
-    $val['data'] = 'category_list';
-    $val['module'] = 'acc_category';
 
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-    if(isset($result_Api) && $result_Api->httpcode == 200){
-        $data = $result_Api->data;
-    }else{
-        return 'sai';
-    }
 
+    if (isset($result_Api) && $result_Api->httpcode == 200) {
+
+        $data = $result_Api->data;
+        $data = $data->data;
+
+        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+    }
     return $view->with('data', $data);
 });
 
