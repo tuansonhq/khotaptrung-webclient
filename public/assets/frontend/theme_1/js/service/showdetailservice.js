@@ -270,9 +270,14 @@ $(document).ready(function(){
                                                                 html += '</td>';
                                                                 html += '<td class="m-datatable__cell">';//L4
                                                                     if (response.aucheck == 0){
-                                                                        html += '<a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>';
+                                                                        html += '<a style="font-size: 20px;" class="followus" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>';
                                                                     }else if (response.aucheck == 1){
-                                                                        html += '<span class="pay">Thanh toán</span>';
+                                                                        html += '<span class="pay" style="position: relative">';
+                                                                        html += 'Thanh toán';
+                                                                        html += '<div class="row justify-content-center loading-data__pay">';
+                                                                        // html += '';
+                                                                        html += '</div>';
+                                                                        html += '</span>';
                                                                     }
 
                                                                 html += '</td>';
@@ -637,6 +642,18 @@ $(document).ready(function(){
         getModalService(price)
     })
 
+    $('body').on('click','.pay',function(e){
+        e.preventDefault();
+
+        var price = $('[name="value"]').val();
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__pay').html('');
+        $('.loading-data__pay').html(htmlloading);
+
+        getModalService(price)
+    })
+
     function getModalService(price) {
         let slug = $('#slug').val();
 
@@ -734,7 +751,7 @@ $(document).ready(function(){
 
                     $('#homealert').modal('show');
                 }
-
+                $('.loading-data__pay').html('');
                 $('.loading-data__thanhtoan').html('');
 
 

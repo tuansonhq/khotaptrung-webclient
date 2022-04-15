@@ -2069,6 +2069,11 @@ footer{
     left: 50%;
     top: 10%;
 }
+.loading-data__pay{
+    position: absolute;
+    left: 40%;
+    top: -25%;
+}
 .loading-data__buydichvu{
     position: absolute;
     top: -5%;
