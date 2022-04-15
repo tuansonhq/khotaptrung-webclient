@@ -5,7 +5,7 @@
     <ul class="list-unstyled list-with-icon">
         @foreach($data as $key => $item)
             @if($key < 3)
-            <li><a href="/blog/{{ $item->slug }}"><i class="las la-angle-right icon"></i> {{ $item->title }}</a></li>
+            <li><a href="/tin-tuc/{{ $item->slug }}"><i class="las la-angle-right icon"></i> {{ $item->title }}</a></li>
             @endif
         @endforeach
     </ul>
@@ -20,7 +20,7 @@
                     <div class="p-3 text-white">
                         <p class="lead mb-0">{{ $item->title }}</p>
 {{--                        <h5 class="mb-0">Ăn ngay khuyến mãi</h5>--}}
-                        <a href="/blog/{{ $item->slug }}" class="btn btn-sm rounded-x bg-warning-gradient text-white mt-2 ps-3 pe-3">Xem chi tiết <i class="las la-angle-right"></i></a>
+                        <a href="/tin-tuc/{{ $item->slug }}" class="btn btn-sm rounded-x bg-warning-gradient text-white mt-2 ps-3 pe-3">Xem chi tiết <i class="las la-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="item-content">
             <div class="op-7 text-end">Hotline</div>
-            <a href="tel:+84792000792" class="d-block main-text text-end text-danger"><strong>0792.000.792</strong></a>
+            <a href="tel:+84792000792" class="d-block main-text text-end text-danger"><strong>{{setting('sys_phone')}}</strong></a>
         </div>
     </div><!-- END Support Item -->
     <!-- BEGIN Support Item -->
@@ -49,7 +49,7 @@
         </div>
         <div class="item-content">
             <div class="op-7 text-end">Facebook</div>
-            <a href="https://facebook.com/muathegarena" class="d-block main-text text-end"><strong>muathegarena</strong></a>
+            <a href="https://facebook.com/muathegarena" class="d-block main-text text-end"><strong>{{setting('sys_fanpage')}}</strong></a>
         </div>
     </div><!-- END Support Item -->
 </div><!-- BEGIN Support Block -->

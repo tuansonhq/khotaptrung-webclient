@@ -27,17 +27,17 @@
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <button class="btn bg-warning-gradient text-white d-block pt-2 pb-2 text-uppercase rounded" type="submit"><strong>Đăng nhập <i class="las la-angle-double-right"></i></strong></button>
+                                    <button class="btn bg-warning-gradient text-white d-block pt-2 pb-2 text-uppercase rounded col-12" type="submit"><strong>Đăng nhập <i class="las la-angle-double-right"></i></strong></button>
                                 </div>
-                                <p>Không nhớ mất khẩu? <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotModal">Lấy lại mật khẩu</a></p>
+{{--                                <p>Không nhớ mất khẩu? <a href="#" class="forgot-link" data-bs-toggle="modal" data-bs-target="#forgotModal">Lấy lại mật khẩu</a></p>--}}
                                 <div class="mb-3 is-devider"><span>Hoặc đăng nhập với</span></div>
                                 <div class="row g-2">
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-outline-primary text-primary d-block"><i class="lab la-facebook"></i> Facebook</a>
+                                    <div class="col-12">
+                                        <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="btn btn-outline-primary text-primary d-block btn-login"><i class="lab la-facebook"></i> Facebook</a>
                                     </div>
-                                    <div class="col-6">
-                                        <a href="#" class="btn btn-outline-danger text-danger d-block"><i class="lab la-google"></i> Google</a>
-                                    </div>
+{{--                                    <div class="col-6">--}}
+{{--                                        <a href="#" class="btn btn-outline-danger text-danger d-block btn-login"><i class="lab la-google"></i> Google</a>--}}
+{{--                                    </div>--}}
                                 </div>
                             </form>
                         </div>
@@ -149,7 +149,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button class="btn bg-primary-gradient text-white d-block pt-2 pb-2 text-uppercase rounded" type="submit"><strong>Đăng ký ngay <i class="las la-angle-double-right"></i></strong></button>
+                            <button class="btn bg-primary-gradient text-white d-block pt-2 pb-2 text-uppercase rounded col-12" type="submit"><strong>Đăng ký ngay <i class="las la-angle-double-right"></i></strong></button>
                         </div>
                     </form>
                 </div>

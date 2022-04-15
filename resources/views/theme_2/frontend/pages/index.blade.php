@@ -1,7 +1,14 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-{{--    @include('frontend.widget.__seo_head')--}}
+    @include('frontend.widget.__seo_head')
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('.item-home').addClass('active')
+        });
+    </script>
+@endpush
 @section('content')
 <div class="site-content-body first">
     <div class="row">

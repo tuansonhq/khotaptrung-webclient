@@ -5,16 +5,19 @@
             <div class="mb-4 item-f-article">
                 <div class="media-placeholder item-thumb ratio-2-1 rounded">
                     <div class="bg rounded" style="background-image: url(https://media-tt.nick.vn/{{ $item->image }});"></div>
-                    <div class="media-inner d-flex aling-items-end">
-                        <div class="d-flex align-items-end h-100 p-lg-4 p-3 text-white">
-                            <h3 class="item-title">
-                                @if(isset($item->url_redirect_301))
-                                    <a target="_blank" href="{{ $item->url_redirect_301 }}" class="text-white">{{ $item->title }}</a>
-                                @else
-                                    <a href="/tin-tuc/{{ $item->slug }}" class="text-white">{{ $item->title }}</a>
-                                @endif
-                            </h3>
+                    <div class="media-inner aling-items-end">
+                        <div class="align-items-bottom">
+{{--                            <div class="align-items-end h-100 text-white">--}}
+                                <h3 class="item-title">
+                                    @if(isset($item->url_redirect_301))
+                                        <a target="_blank" href="{{ $item->url_redirect_301 }}" class="text-white">{{ $item->title }}</a>
+                                    @else
+                                        <a href="/tin-tuc/{{ $item->slug }}" class="text-white">{{ $item->title }}</a>
+                                    @endif
+                                </h3>
+{{--                            </div>--}}
                         </div>
+
                     </div>
                 </div>
             </div><!-- END Item -->

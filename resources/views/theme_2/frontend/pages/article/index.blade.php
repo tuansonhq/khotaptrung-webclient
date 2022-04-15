@@ -1,19 +1,26 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    {{--    @include('frontend.widget.__seo_head')--}}
+        @include('frontend.widget.__seo_head')
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('.item-news').addClass('active')
+        });
+    </script>
+@endpush
 @section('content')
     @if(isset($category))
         <div class="site-content-body alt first pt-0 pb-0 d-flex justify-content-between align-items-center">
             <ul class="nav nav-line">
                 <li class="nav-item active">
-                    <a href="/blog" class="nav-link">Tin tức chung</a>
+                    <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
                 </li>
                 @include('frontend.widget.__menu__article')
             </ul>
             <div>
                 <div class="input-group input-group-search">
-                    <form class="form_new">
+                    <form class="form_new  input-group input-group-search">
                         <input type="text" value="" placeholder="Từ khóa" class="form-control btn_new">
                         <button class="btn bg-transparent text-secondary" type="submit"><i class="las la-search"></i></button>
                     </form>
@@ -43,13 +50,13 @@
         <div class="site-content-body alt first pt-0 pb-0 d-flex justify-content-between align-items-center">
             <ul class="nav nav-line">
                 <li class="nav-item">
-                    <a href="/blog" class="nav-link">Tin tức chung</a>
+                    <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
                 </li>
                 @include('frontend.widget.__menu__article')
             </ul>
             <div>
                 <div class="input-group input-group-search">
-                    <form class="form_new">
+                    <form class="form_new input-group input-group-search">
                         <input type="text" value="" placeholder="Từ khóa" class="form-control btn_new">
                         <button class="btn bg-transparent text-secondary" type="submit"><i class="las la-search"></i></button>
                     </form>

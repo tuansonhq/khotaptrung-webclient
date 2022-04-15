@@ -2201,9 +2201,9 @@ ol.w {
 .text-rounded.custom-text h3{
     font-size: 16px !important;
 }
-.store-loading{
-    display: none;
-}
+/*.store-loading{*/
+/*    display: none;*/
+/*}*/
 .item-summary-description{
     position: relative;
     overflow: hidden;
@@ -2445,9 +2445,9 @@ input[type="number"] {
 .site-header-nav ul.nav li.nav-item{
     margin-top: 20px;
 }
-.site-header-nav ul.nav li.nav-item a.nav-link{
+.site-header-nav ul.nav li.nav-item a.nav-link {
     padding: 10px 15px 20px 15px !important;
-=======
+}
 /* ------------------- RESPONDSIVE --------------------*/
 
 .news_detail_content{
