@@ -803,7 +803,7 @@ $(document).ready(function(){
                     })
                         .then((result) => {
                             if (result.value) {
-                                window.location = '/lich-su-dich-vu';
+                                window.location = '/dich-vu-da-mua';
                             } else if (result.dismiss === 'Đóng') {
 
                             }
