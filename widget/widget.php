@@ -45,6 +45,23 @@ View::composer('frontend.widget.__content__home', function ($view) {
     return $view->with('data', $data)->with('dataGame', $dataGame);
 });
 
+View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
+
+    $url = '/acc';
+    $method = "GET";
+    $val = array();
+    $val['data'] = 'category_list';
+    $val['module'] = 'acc_category';
+
+    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    if(isset($result_Api) && $result_Api->httpcode == 200){
+        $data = $result_Api->data;
+    }else{
+        return 'sai';
+    }
+
+    return $view->with('data', $data);
+});
 
 View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
