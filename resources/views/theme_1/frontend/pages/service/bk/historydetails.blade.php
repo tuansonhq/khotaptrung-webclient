@@ -16,7 +16,6 @@
                         @php
                             $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
                         @endphp
-
                         <div class="account_content_transaction_history">
                             <div class="row">
                                     <div class="col-md-12">
@@ -62,8 +61,8 @@
 
                         <div class="padding-left" style="font-family: Roboto, sans-serif;">
                             <div class="cand-details" id="about" style="float: left;width: 100%">
-                                <h2>Tên dịch vụ</h2>
-                                <p><a class="thea_dichvu" href="/dich-vu/{{(isset($data->item_ref->slug)?$data->item_ref->slug:"Lỗi")}}">{{$data->title}}</a></p>
+                                <span>Tên dịch vụ</span>
+                                <p><a href="/dich-vu/{{(isset($data->item_ref->slug)?$data->item_ref->slug:"Lỗi")}}">{{$data->title}}</a></p>
 
                                 <h2>Công việc</h2>
                                 <div class="edu-history-sec" id="education">
@@ -232,22 +231,22 @@
                                                 <i></i>
                                                 <div class="edu-hisinfo">
                                                     <h3>
-                                                        @if($aWorkFlow->status==0)
-                                                            {{config('module.service.purchase_status.0')}}
-                                                        @elseif($aWorkFlow->status==1)
-                                                            {{config('module.service.purchase_status.1')}}
-                                                        @elseif($aWorkFlow->status==2)
-                                                            {{config('module.service.purchase_status.2')}}
-                                                        @elseif($aWorkFlow->status==3)
-                                                            {{config('module.service.purchase_status.3')}}
-                                                        @elseif($aWorkFlow->status==4)
-                                                            {{config('module.service.purchase_status.4')}}
-                                                        @elseif($aWorkFlow->status==5)
-                                                            {{config('module.service.purchase_status.5')}}
-                                                        @endif
-                                                        @if($aWorkFlow->content!="")
-                                                            -:- {{$aWorkFlow->content}}
-                                                        @endif
+{{--                                                        @if($aWorkFlow->status==0)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.0')}}--}}
+{{--                                                        @elseif($aWorkFlow->status==1)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.1')}}--}}
+{{--                                                        @elseif($aWorkFlow->status==2)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.2')}}--}}
+{{--                                                        @elseif($aWorkFlow->status==3)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.3')}}--}}
+{{--                                                        @elseif($aWorkFlow->status==4)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.4')}}--}}
+{{--                                                        @elseif($aWorkFlow->status==5)--}}
+{{--                                                            {{config('constants.module.service.purchase_status.5')}}--}}
+{{--                                                        @endif--}}
+{{--                                                        @if($aWorkFlow->content!="")--}}
+{{--                                                            -:- {{$aWorkFlow->content}}--}}
+{{--                                                        @endif--}}
                                                     </h3>
                                                     <i>{{ formatDateTime($aWorkFlow->created_at) }}</i>
                                                 </div>
@@ -270,151 +269,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .cand-details {
-            margin-bottom: 15px;
-        }
-        .cand-details h2 {
-            float: left;
-            width: 100%;
-            font-size: 24px;
-            font-weight: 600;
-            color: #505050;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .thea_dichvu{
-            color: #8b91dd;
-            font-size: 16px;
-        }
-        .thea_dichvu:hover{
-            text-decoration: none;
-            opacity: 0.7;
-        }
-        .edu-history-sec {
-            float: left;
-            width: 100%;
-            padding-left: 30px;
-        }
-        .edu-history {
-            float: left;
-            width: 100%;
-            display: table;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .edu-history > i {
-            display: table-cell;
-            vertical-align: top;
-            width: 70px;
-            font-size: 50px;
-            color: #fb236a;
-            line-height: 60px;
-        }
-        .edu-hisinfo {
-            display: table-cell;
-            vertical-align: top;
-        }
-        .edu-hisinfo > h3 {
-            font-size: 20px;
-            color: #8b91dd;
-            margin: 4px 0;
-        }
-        .edu-hisinfo > i {
-            font-size: 18px;
-            color: #888888;
-        }
-        .m-table.m-table--head-bg-brand thead th {
-            background: #716aca;
-            color: #ffffff;
-            border-bottom: 0;
-            border-top: 0;
-        }
-        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-            padding: 8px;
-            line-height: 1.42857;
-            vertical-align: top;
-            border-top: 1px solid #e7ecf1;
-        }
-        .edu-history.style2 {
-            margin: 0;
-            padding-bottom: 20px;
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 24px;
-        }
-        .edu-history {
-            float: left;
-            width: 100%;
-            display: table;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .edu-history.style2::before {
-            position: absolute;
-            left: 7px;
-            top: 20px;
-            width: 2px;
-            height: 100%;
-            content: "";
-            background: #e8ecec;
-        }
-        .edu-history.style2 > i {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #8b91dd;
-            content: "";
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            border-radius: 50%;
-        }
-        .edu-history > i {
-            display: table-cell;
-            vertical-align: top;
-            width: 70px;
-            font-size: 50px;
-            color: #fb236a;
-            line-height: 60px;
-        }
-        .edu-hisinfo > h3 {
-            color: #8b91dd;
-            margin: 4px 0;
-        }
-        .edu-hisinfo > i {
-            font-size: 18px;
-            color: #888888;
-        }
-        .btn-edit {
-            float: right;
-            background: #32c5d2;
-            border: 2px solid #32c5d2;
-            color: #ffffff;
-            font-family: Roboto, sans-serif;
-            font-size: 14px;
-            padding: 11px 17px;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            -ms-border-radius: 8px;
-            -o-border-radius: 8px;
-            border-radius: 8px;
-            -webkit-transition: all 0.2s ease 0s;
-            -moz-transition: all 0.2s ease 0s;
-            -ms-transition: all 0.2s ease 0s;
-            -o-transition: all 0.2s ease 0s;
-            transition: all 0.2s ease 0s;
-            outline: 0 none;
-        }
-        .btn-edit:hover {
-            background-color: #ffffff;
-            color: #32c5d2;
-        }
-    </style>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
 @endsection
