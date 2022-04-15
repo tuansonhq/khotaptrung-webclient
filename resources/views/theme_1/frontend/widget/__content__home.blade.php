@@ -53,8 +53,13 @@
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/danh-muc/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}">
-                                    @if(isset($item->image_icon) || isset($item->custom->image_icon))
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
+
+                                    @if(isset($item->custom) && isset($item->custom->meta))
+                                        @foreach($item->custom->meta as $key =>$val)
+                                            @if($key == "image_btn")
+                                                <img src="https://media-tt.nick.vn/{{ $val }}" alt="" >
+                                            @endif
+                                        @endforeach
                                     @else
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
                                     @endif
