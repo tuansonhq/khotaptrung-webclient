@@ -161,7 +161,7 @@ var swiper2 = new Swiper('.item_play_dif_slide_detail', {
         }
     }
 });
-var swiper2 = new Swiper('.buy_card_device', {
+var swiper4 = new Swiper('.buy_card_device', {
 
 
     navigation: {
@@ -176,11 +176,11 @@ var swiper2 = new Swiper('.buy_card_device', {
     // },
     autoplay: true,
     // preloadImages: false,
-    updateOnImagesReady: true,
+    // updateOnImagesReady: true,
     // lazyLoading: false,
-    watchSlidesVisibility: false,
-    lazyLoadingInPrevNext: false,
-    lazyLoadingOnTransitionStart: false,
+    // watchSlidesVisibility: false,
+    // lazyLoadingInPrevNext: false,
+    // lazyLoadingOnTransitionStart: false,
 
     // watchSlidesProgress: true,
     //
@@ -201,9 +201,9 @@ var swiper2 = new Swiper('.buy_card_device', {
     freeModeSticky:true,
     grabCursor: true,
     // slideToClickedSlide: true,
-
-    observer: true,
-    observeParents: true,
+    //
+    // observer: true,
+    // observeParents: true,
     breakpoints: {
         // 1460: {
         //     coverflowEffect: {
@@ -267,6 +267,81 @@ var swiper3 = new Swiper('.special_service_content_slide_detail', {
         480: {
             slidesPerView: 2,
             centeredSlides: false,
+        }
+    }
+});
+
+var swiper5= new Swiper('.item_play_dif_slide_detailv222', {
+
+
+    navigation: {
+        nextEl: '.item_play_dif_slide .swiper-button-next',
+        prevEl: '.item_play_dif_slide .swiper-button-prev',
+    },
+    // autoplay: {
+    //     delay: 5000,
+    //     disableOnInteraction: false,
+    //     autoplaySpeed: 5000,
+    //
+    // },
+    autoplay: true,
+    // preloadImages: false,
+    updateOnImagesReady: true,
+    // lazyLoading: false,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+
+    // watchSlidesProgress: true,
+    //
+    lazy: true,
+    lazy: {
+        loadPrevNext: true,
+    },
+    loop: false,
+    centeredSlides: false,
+    slidesPerView: 4,
+    speed: 800,
+    spaceBetween: 12,
+
+
+    // autoplay: false,
+    // parallax: true,
+    touchMove: true,
+    freeModeSticky:true,
+    grabCursor: true,
+    // slideToClickedSlide: true,
+
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        // 1460: {
+        //     coverflowEffect: {
+        //         rotate: 0   ,
+        //         stretch: 476,
+        //         depth: 300,
+        //         modifier: 1, // 2,3
+        //         slideShadows : false,
+        //     },
+        // },
+        // 1220: {
+        //     coverflowEffect: {
+        //         rotate: 0   ,
+        //         stretch: 180,
+        //         depth: 300,
+        //         modifier: 1, // 2,3
+        //         slideShadows : false,
+        //
+        //     },
+        // },
+        992: {
+            slidesPerView: 3,
+        },
+
+
+        480: {
+            slidesPerView: 2,
+
         }
     }
 });
