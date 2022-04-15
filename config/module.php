@@ -90,4 +90,38 @@ return [
             '2' => 'Chờ xử lý',
         ],
     ],
+    'service' => [
+        'title' => 'Dịch vụ',
+        'key_app' => 'service',
+        'key_cat' => 'service_category',
+        'key_group' => 'service_group',
+        'key_purchase' => 'service_purchase',
+        'key_workflow' => 'service_workflow',
+        'key_workname' => 'service_workname',
+        'key_provider' => 'service_provider',
+        'key_attribute' => 'service_attribute',
+        'key_attribute_value' => 'service_attribute_value',
+        'key_single' => 'service_single',
+
+        'status' => [
+            '1' => 'Hoạt động',
+            '0' => 'Ngừng hoạt động'
+        ],
+        'purchase_status' => [
+            '0' => 'Đã hủy',
+            '1' => 'Đang chờ',
+            '2' => 'Đang thực hiện',
+            '3' => 'Từ chối',
+            '4' => 'Hoàn tất',
+            '5' => 'Thất bại'
+
+        ],
+        'mistake_by' => [
+            '1' => 'Khách',
+            '0' => 'QTV',
+            '2' => 'Game',
+        ],
+
+
+    ],
 ];

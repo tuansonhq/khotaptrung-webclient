@@ -33,12 +33,12 @@
                         <div class="account_sidebar_content_line"></div>
                     </div>
                     <div class="account_content_transaction_history">
-                        <form class="form-charge account_content_transaction_history__v2">
+                        <form class="form-charge account_content_transaction_history__v2 account_service_history__v2">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >Mã ID</span>
-                                        <input type="text" name="serial" class="form-control serial" placeholder="Mã ID">
+                                        <input type="text" name="id" class="form-control id" placeholder="Mã ID">
 
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                 @if(isset($categoryservice) && count($categoryservice) > 0)
                                     <div class="col-md-4">
                                         <div class="input-group">
-                                            <span >Loại thẻ</span>
+                                            <span >Loại dịch vụ</span>
                                             <select name="key" class="form-control key">
                                                 <option value="">-- Tất cả các dịch vụ --</option>
                                                 @foreach($categoryservice as $val)
@@ -97,7 +97,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit"><i class="fas fa-search"></i> Tìm kiếm</button>
+                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit" style="position: relative"><i class="fas fa-search"></i>
+                                        Tìm kiếm
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">
@@ -110,7 +112,7 @@
                             </div>
                         </form>
 
-                        <div id="data_pay_card_history">
+                        <div id="data_service_history">
                             @include('frontend.pages.service.function.__get__buy__service__history')
                         </div>
                     </div>
@@ -147,19 +149,19 @@
         </script>
     @endif
 
-    <input type="hidden" class="started_at_day" name="started_at_day" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_day" name="end_at_day" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_yes" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_yes" name="end_at_yes" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_month" name="started_at_month" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_month" name="end_at_month" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="started_at_day_dv" name="started_at_day_dv" value="{{ \Carbon\Carbon::now()->startOfDay() }}">
+    <input type="hidden" class="end_at_day_dv" name="end_at_day_dv" value="{{ \Carbon\Carbon::now()->endOfDay() }}">
+    <input type="hidden" class="started_at_yes_dv" name="started_at_yes_dv" value="{{ \Carbon\Carbon::yesterday()->startOfDay() }}">
+    <input type="hidden" class="end_at_yes_dv" name="end_at_yes_dv" value="{{ \Carbon\Carbon::yesterday()->endOfDay()}}">
+    <input type="hidden" class="started_at_month_dv" name="started_at_month_dv" value="{{ \Carbon\Carbon::now()->startOfMonth() }}">
+    <input type="hidden" class="end_at_month_dv" name="end_at_month_dv" value="{{ \Carbon\Carbon::now()->endOfMonth() }}">
 
-    <input type="hidden" name="serial_data" class="serial_data">
+    <input type="hidden" name="id_data" class="id_data">
     <input type="hidden" name="key_data" class="key_data">
     <input type="hidden" name="status_data" class="status_data">
     <input type="hidden" name="started_at_data" class="started_at_data">
     <input type="hidden" name="ended_at_data" class="ended_at_data">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge-history.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
 @endsection
 
