@@ -21,7 +21,7 @@
                      <div class="col-md-5 d-none d-md-block d-lg-block">
                         <div class="">
                            <div class="news_image">
-                              <img src="https://nick.vn/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
+                              <img src="/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
                            </div>
                         </div>
                      </div>
@@ -88,7 +88,12 @@
          </div>
       </div>
    </form>
+    <div class="container">
+        {!! setting('sys_store_card_content') !!}
+    </div>
 </div>
+
+
 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
