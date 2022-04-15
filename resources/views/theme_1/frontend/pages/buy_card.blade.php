@@ -1,8 +1,21 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @php
+        $muathe = array();
+        if (!setting('sys_store_card_title') || !setting('sys_store_card_seo') || setting('sys_store_card_seo') == '' || setting('sys_store_card_seo') == null || setting('sys_store_card_title') == '' || setting('sys_store_card_title') == null){
+            $muathe = ['title' => setting('sys_title'), 'description' => setting('sys_description')];
+        }else{
+            $muathe = ['title' => setting('sys_store_card_title'), 'description' => setting('sys_store_card_seo')];
+        }
+    @endphp
+    @include('frontend.widget.__seo_head',with(['muathe'=>$muathe]))
+@endsection
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
 @endpush
 @section('content')
+
+
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
    <div class="container">
    </div>
