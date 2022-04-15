@@ -17,7 +17,7 @@
                             <li>/</li>
                             <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
                             <li>/</li>
-                            <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ $data->title }}</p></a></li>
+                            <li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</p></a></li>
                         </ul>
                     </div>
                 </div>
@@ -27,13 +27,13 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="alert alert-info box-text hidetext" role="alert">
-                        <h1 class="alert-heading h1_category" style="color:#000">{{ $data->title }}</h1>
+                        <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
                         @if(isset($data->description))
-                        {!! $data->description !!}
+                        {!! isset($data->custom->description) ? $data->custom->description :  $data->description !!}
                         @endif
                         <br>
                         @if(isset($data->content))
-                            {!! $data->content !!}
+                            {!! isset($data->custom->content) ? $data->custom->content :  $data->content !!}
                         @endif
                     </div>
                     <div style="text-align: center;margin: 15px 0">
@@ -245,7 +245,7 @@
         </div>
     </div>
 
-    <input type="hidden" value="{{ $data->slug }}" name="slug" class="slug">
+    <input type="hidden" value="{{ isset($data->custom->slug) ? $data->custom->slug :  $data->slug }}" name="slug" class="slug">
     <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">
     <input type="hidden" name="id_data" class="id_data" value="">
     <input type="hidden" name="title_data" class="title_data" value="">

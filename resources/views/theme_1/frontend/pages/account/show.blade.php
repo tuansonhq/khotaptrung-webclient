@@ -17,7 +17,7 @@
                             <li>/</li>
                             <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
                             <li>/</li>
-                            <li><a href="/danh-muc/{{ $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ $data_category->title }}</p></a></li>
+                            <li><a href="/danh-muc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</p></a></li>
                             {{--<li>/</li>--}}
                             {{--<li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ $data->title }}</p></a></li>--}}
                         </ul>
@@ -82,7 +82,7 @@
                                             <span class="gallery__02__span">Danh mục:</span>
                                         </div>
                                         <div class="col-md-8 col-8  pl-0">
-                                            <a class="theashow"  href="/danh-muc/{{ $data_category->slug }}"><span class="gallery__02__span">{{ $data_category->title }}</span></a>
+                                            <a class="theashow"  href="/danh-muc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}"><span class="gallery__02__span">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</span></a>
                                         </div>
                                     </div>
                                 </div>

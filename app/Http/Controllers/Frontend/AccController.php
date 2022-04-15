@@ -132,6 +132,7 @@ class AccController extends Controller
                         $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
 
                         $dataAttribute = $data->childs;
+
                         return view('frontend.pages.account.function.__account__data')
                             ->with('data',$data)
                             ->with('items',$items)
