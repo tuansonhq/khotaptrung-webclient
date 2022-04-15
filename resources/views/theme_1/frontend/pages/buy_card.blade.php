@@ -7,7 +7,7 @@
    <div class="container">
    </div>
    <div class="text-center" style="margin-bottom: 50px;">
-      <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ MUA THẺ </h2>
+      <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {!! setting('sys_store_card_title') !!} </h2>
    </div>
 
    <form method="POST" action="{{route('postStoreCard')}}" id="form-storeCard" >
@@ -91,6 +91,8 @@
     <div class="container">
         {!! setting('sys_store_card_content') !!}
     </div>
+
+    @include('frontend.widget.__dichvu__lienquan')
 </div>
 
 
