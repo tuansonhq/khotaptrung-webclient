@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Helpers;
 use App\Library\HelpersDecode;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -334,19 +335,89 @@ class ServiceController extends Controller
                 ]);
             }
             $val['token'] = $jwt;
+            $val['author_id'] = AuthCustom::user()->id;
+
             $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
+            if ($request->ajax()) {
+                $page = $request->page;
+                $url = '/service-history';
+                $method = "GET";
+                $val = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] = $jwt;
+                $val['author_id'] = AuthCustom::user()->id;
+                $val['page'] = $page;
 
+                if (isset($request->id) || $request->id != '' || $request->id != null) {
+//                    $checkid = decodeItemID($request->serial);
+                    $val['id'] = $request->id;
+                }
+
+                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                    $val['slug_category'] = $request->key;
+                }
+
+                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                    $val['status'] = $request->status;
+                }
+
+                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $val['started_at'] = $started_at;
+                }
+
+                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $val['ended_at'] = $ended_at;
+                }
+
+
+
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+
+                    $result = $result_Api->data;
+                    $data = $result->datatable;
+
+                    $categoryservice = $result->categoryservice;
+
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                    }
+
+                    $html = view('frontend.pages.service.function.__get__buy__service__history')
+                        ->with('data', $data)->render();
+
+                    return response()->json([
+                        "success"=> true,
+                        "data" => $html,
+                        "status" => 1,
+                    ], 200);
+
+                } else {
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }
+            }
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
                 $result = $result_Api->data;
+                $data = $result->datatable;
 
                 if ($result->status == 1) {
 
                     $categoryservice = $result->categoryservice;
-//                    return  $categoryservice;
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                    }
 
-                    return view('frontend.pages.service.getBuyServiceHistory')->with('categoryservice', $categoryservice);
+                    return view('frontend.pages.service.getBuyServiceHistory')->with('categoryservice', $categoryservice)->with('data', $data);
                 } else {
                     return redirect()->back()->withErrors($result->message);
                 }
@@ -355,6 +426,44 @@ class ServiceController extends Controller
             }
         }
 
+    }
+
+    public function getShowBuyServiceHistory(Request $request,$id){
+        if (AuthCustom::check()) {
+            $url = '/service-history';
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+            $val['author_id'] = AuthCustom::user()->id;
+            $val['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+                $data = $result->datatable;
+
+                if ($result->status == 1) {
+                    $data = $data->data;
+                    $data = $data[0];
+                    $categoryservice = $result->categoryservice;
+
+
+                    return view('frontend.pages.service.historydetails')->with('categoryservice', $categoryservice)->with('data', $data);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
     }
 
     public function postPurchase(Request $request,$id){
