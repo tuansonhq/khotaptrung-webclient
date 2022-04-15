@@ -1,8 +1,13 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
 @endpush
 @section('content')
+
+
 <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
    <div class="container">
    </div>
