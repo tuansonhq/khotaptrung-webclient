@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="item-content">
-                        <a href="/blog/{{ $item->slug }}" class="post-link">{{ $item->title }}</a>
+                        <a href="/tin-tuc/{{ $item->slug }}" class="post-link">{{ $item->title }}</a>
                     </div>
                 </li>
             @endif
@@ -37,7 +37,7 @@
                     <div class="p-3 text-white">
 {{--                        <p class="lead mb-0">{{  $item->title }}</p>--}}
                         <h5 class="mb-0">{{  $item->title }}</h5>
-                        <a href="/blog/{{ $item->slug }}" class="btn btn-sm rounded-x bg-warning-gradient text-white mt-2 ps-3 pe-3">Xem chi tiết <i class="las la-angle-right"></i></a>
+                        <a href="/tin-tuc/{{ $item->slug }}" class="btn btn-sm rounded-x bg-warning-gradient text-white mt-2 ps-3 pe-3">Xem chi tiết <i class="las la-angle-right"></i></a>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="path" content="{{ Session::get('path')??'' }}" />
+    <meta name="jwt" content="jwt" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/custom.boostrap.css">
 
@@ -15,12 +17,15 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/node_modules/flickity/dist/flickity.min.css">
     <!--    <link rel="stylesheet" href="css/main.css">-->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css">
-
-    <title>MuaTheGarena</title>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+    @stack('js')
+
+
+    @yield('seo_head')
 </head>
 
 <body>

@@ -2,11 +2,18 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('.item-news').addClass('active')
+        });
+    </script>
+@endpush
 @section('content')
     <div class="site-content-body alt first pt-0 pb-0 d-flex justify-content-between align-items-center">
         <ul class="nav nav-line">
             <li class="nav-item">
-                <a href="/blog" class="nav-link">Tin tức chung</a>
+                <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
             </li>
             @include('frontend.widget.__menu__article')
         </ul>
@@ -21,8 +28,8 @@
     <div class="site-content-body bg-white last">
         <nav class="site-breadcrumb mb-3">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/blog">Tin tức</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="/blog/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a></li>
+                <li class="breadcrumb-item"><a href="/tin-tuc">Tin tức</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/tin-tuc/{{ $data->groups[0]->slug }}">{{ $data->groups[0]->title }}</a></li>
             </ol>
         </nav>
         <div class="row">
@@ -31,9 +38,12 @@
                     <div class="article-thumb mb-4">
                         <div class="media-placeholder ratio-2-1 rounded">
                             <div class="bg rounded" style="background-image: url(https://media-tt.nick.vn/{{ $data->image }});"></div>
-                            <div class="media-inner d-flex aling-items-end">
-                                <div class="d-flex align-items-end h-100 p-lg-4 p-3 text-white">
-                                    <h3 class="item-title"><a href="single.html" class="text-white">{{ $data->title }}</a></h3>
+                            <div class="media-inner aling-items-end">
+                                <div class="align-items-end h-100 text-white">
+                                    <div class="align-items-bottom">
+                                        <h1 class="item-title text-white" style="font-size: 2rem;">{{ $data->title }}</h1>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
