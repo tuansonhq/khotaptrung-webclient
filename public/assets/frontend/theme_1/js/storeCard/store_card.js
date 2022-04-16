@@ -193,7 +193,7 @@ $(document).ready(function(){
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         // btnSubmit.text('Đang xử lý...');
-        btnSubmit.prop('disabled', true);
+
         $('#ok').off().on('click', function (m) {
             $.ajax({
                 type: "POST",
@@ -205,6 +205,7 @@ $(document).ready(function(){
                 },
                 success: function (data) {
                     if(data.status == 1){
+                        btnSubmit.prop('disabled', true);
                         swal({
                             title: "Thành công !",
                             text: data.message,

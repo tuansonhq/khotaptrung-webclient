@@ -322,3 +322,57 @@
 .item_buy_list_in:hover{
     box-shadow: #0c0c0c!important;
 }
+.intro_store_card{
+    max-height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+.intro_store_card{
+    max-height: 120px;
+    overflow: hidden;
+    position: relative;
+}
+.intro_store_card.-expanded {
+    max-height: unset !important;
+}
+.intro_store_card:not(.-expanded)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) );
+}
+
+.store_card-expand-button {
+    cursor: pointer;
+    display: block;
+    width: 20%;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgb(238, 70, 35) ;
+    border-radius: 3px;
+    background-color: #fff;
+    color: rgb(238, 70, 35) !important;
+    font-size: 13px;
+    padding: 0.5rem;
+}
+.store_card-collapse-button{
+    display: none;
+    cursor: pointer;
+    width: 20%;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgb(238, 70, 35) ;
+    border-radius: 3px;
+    background-color: #fff;
+    color: rgb(238, 70, 35) !important;
+    font-size: 13px;
+    padding: 0.5rem;
+}
+
