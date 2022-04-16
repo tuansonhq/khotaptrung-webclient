@@ -344,7 +344,20 @@
     right: 0;
     background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) );
 }
+@media (max-width: 480px) {
+    .intro_store_card img{
+        width: 80%;
+        margin: auto;
+    }
+}
 
+.intro_store_card table{
+    margin: auto;
+    overflow-x: auto;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+}
 .store_card-expand-button {
     cursor: pointer;
     display: block;
@@ -376,3 +389,12 @@
     padding: 0.5rem;
 }
 
+@media (max-width: 992px) {
+    .store_card-collapse-button, .store_card-expand-button{
+        width: auto;
+    }
+    .item_play_dif_slide_description__size{
+        margin-top: 30px;
+    }
+
+}

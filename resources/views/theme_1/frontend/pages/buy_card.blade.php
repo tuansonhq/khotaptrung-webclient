@@ -12,7 +12,7 @@
    <div class="container">
    </div>
    <div class="text-center" style="margin-bottom: 50px;">
-      <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {!! setting('sys_store_card_title') !!} </h2>
+      <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">MUA THẺ GAME GIÁ RẺ </h2>
    </div>
 
    <form method="POST" action="{{route('postStoreCard')}}" id="form-storeCard" >
@@ -25,7 +25,7 @@
                   <div class="row">
                      <div class="col-md-5 d-none d-md-block d-lg-block">
                         <div class="">
-                           <div class="news_image">
+                           <div class="news_image" style="margin-top: 8px;">
                               <img src="/assets/frontend/{{theme('')->theme_key}}/images/store-card.jpg" alt="">
                            </div>
                         </div>

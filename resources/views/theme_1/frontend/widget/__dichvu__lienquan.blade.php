@@ -11,7 +11,7 @@
                     <div class="swiper-wrapper">
                         @foreach($data as $item)
                             <div class="swiper-slide swiper-slide__size" >
-                                <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size">
+                                <div class="item_play_dif_slide_detail_in_active item_play_dif_slide_detail_in_active__size store_card_slide">
                                     <div class="item_play_dif_slide_img">
                                         <a href="/dich-vu/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}">
                                             @if(isset($item->image) || isset($item->custom->image))
@@ -24,14 +24,13 @@
                                     <div class="item_play_dif_slide_title">
                                         <span>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</span>
                                     </div>
-                                    <div class="item_play_dif_slide_description__size" style="color: white;
-                                        display: -webkit-box;
-                                        -webkit-line-clamp: 3;
-                                        -webkit-box-orient: vertical;
-                                        height: 70px;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;">
-                                        {!! isset($item->custom->description) ? $item->custom->description :  $item->description !!}
+                                    <div class="item_play_dif_slide_description__size">
+                                        <div class="game-list-more-view">
+                                            <a href="" class="account_category">
+                                                <img src="http://127.0.0.1:8000/assets/frontend/theme_1/images/muangay.jpg" alt="">
+                                            </a>
+                                        </div>
+{{--                                        {!! isset($item->custom->description) ? $item->custom->description :  $item->description !!}--}}
                                     </div>
                                 </div>
 
