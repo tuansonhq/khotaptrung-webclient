@@ -64,7 +64,7 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class=" emply-btns text-center">
-                        <a id="txtPrice" style="font-size: 20px;font-weight: bold" class="" aria-invalid="">
+                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;color: white" class="" aria-invalid="">
                             <div class="justify-content-center" id="loading-data-total">
                                 <div class="loading"></div>
                             </div>

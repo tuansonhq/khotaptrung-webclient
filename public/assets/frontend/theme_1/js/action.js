@@ -92,6 +92,18 @@ $( document ).ready(function() {
         $(".intro_text .content-video-in").removeClass( "showtext");
     });
 
+    $('.store_card-expand-button').click(function(){
+        $('.store_card-collapse-button').css("display","block");
+        $('.store_card-expand-button').css("display","none");
+        $(".intro_store_card").addClass( "-expanded" );
+    });
+    $('.store_card-collapse-button').click(function(){
+        $('.store_card-expand-button').css("display","block");
+        $('.store_card-collapse-button').css("display","none");
+        $(".intro_store_card").removeClass( "-expanded");
+    });
+
+
     $('.item_play_spin_shake').click(function(){
         $("#lac_lixi").attr("src", "./assets/frontend/image/lixi.gif");
     });
