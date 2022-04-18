@@ -53,13 +53,13 @@
                                 @elseif($item->status == 2)
                                     <span class="badge badge-warning">Đang thực hiện</span>
                                 @elseif($item->status == 3)
-                                    <span class="badge badge-warning">Từ chối</span>
+                                    <span class="badge badge-danger">Từ chối</span>
                                 @elseif($item->status == 4)
-                                    <span class="badge badge-danger">Hoàn tất</span>
+                                    <span class="badge badge-success">Hoàn tất</span>
                                 @elseif($item->status == 5)
-                                    <span class="badge badge-danger">Thất bại</span>
+                                    <span class="badge badge-dark">Thất bại</span>
                                 @elseif($item->status == 0)
-                                    <span class="badge badge-success">Đã hủy</span>
+                                    <span class="badge badge-danger">Đã hủy</span>
                                 @endif
                             </td>
                             <td>
@@ -93,13 +93,13 @@
                                 @elseif($item->status == 2)
                                     <span class="badge badge-warning">Đang thực hiện</span>
                                 @elseif($item->status == 3)
-                                    <span class="badge badge-warning">Từ chối</span>
+                                    <span class="badge badge-danger">Từ chối</span>
                                 @elseif($item->status == 4)
-                                    <span class="badge badge-danger">Hoàn tất</span>
+                                    <span class="badge badge-success">Hoàn tất</span>
                                 @elseif($item->status == 5)
-                                    <span class="badge badge-danger">Thất bại</span>
+                                    <span class="badge badge-dark">Thất bại</span>
                                 @elseif($item->status == 0)
-                                    <span class="badge badge-success">Đã hủy</span>
+                                    <span class="badge badge-danger">Đã hủy</span>
                                 @endif
                             </td>
                             <td>

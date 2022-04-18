@@ -116,8 +116,18 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory'])
                             ->name('getShowBuyServiceHistory');
-//                        Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData'])
-//                            ->name('getBuyServiceHistoryData');
+
+                        Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
+                            ->name('getDeleteServiceData');
+
+                        Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEditServiceData'])
+                            ->name('getEditServiceData');
+
+                        Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])
+                            ->name('postDestroy');
+
+                        Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'editDestroy'])
+                            ->name('editDestroy');
 
                         Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase'])
                             ->name('getBuyServiceHistoryData');

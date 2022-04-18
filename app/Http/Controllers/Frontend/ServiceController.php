@@ -91,8 +91,6 @@ class ServiceController extends Controller
                 $categoryservice = $result->categoryservice;
                 $categoryservice = $categoryservice->data;
 
-
-
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.service.show')
@@ -325,7 +323,7 @@ class ServiceController extends Controller
     public function getBuyServiceHistory(Request $request)
     {
         if (AuthCustom::check()) {
-            $url = '/service-history';
+            $url = '/service/log';
             $method = "GET";
             $val = array();
             $jwt = Session::get('jwt');
@@ -341,7 +339,7 @@ class ServiceController extends Controller
 
             if ($request->ajax()) {
                 $page = $request->page;
-                $url = '/service-history';
+                $url = '/service/log';
                 $method = "GET";
                 $val = array();
                 $jwt = Session::get('jwt');
@@ -430,7 +428,7 @@ class ServiceController extends Controller
 
     public function getShowBuyServiceHistory(Request $request,$id){
         if (AuthCustom::check()) {
-            $url = '/service-history';
+            $url = '/service/log';
             $method = "GET";
             $val = array();
             $jwt = Session::get('jwt');
@@ -455,7 +453,6 @@ class ServiceController extends Controller
                     $data = $data[0];
                     $categoryservice = $result->categoryservice;
 
-
                     return view('frontend.pages.service.historydetails')->with('categoryservice', $categoryservice)->with('data', $data);
                 } else {
                     return redirect()->back()->withErrors($result->message);
@@ -464,6 +461,143 @@ class ServiceController extends Controller
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
+    }
+
+    public function getDeleteServiceData(Request $request){
+
+        if (AuthCustom::check()) {
+            $id = $request->get('id');
+            $url = '/service/log';
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+            $val['author_id'] = AuthCustom::user()->id;
+            $val['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+                $data = $result->datatable;
+
+                if ($result->status == 1) {
+                    $data = $data->data;
+                    $data = $data[0];
+                    $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
+
+                    if (isset($data) && $data->status == 1){
+                        if ($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null )){}else{
+                            return response()->json([
+                                'status' => 1,
+                            ]);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
+                    }
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+    }
+
+    public function getEditServiceData(Request $request){
+        if (AuthCustom::check()) {
+
+            $id = $request->get('id');
+            $url = '/service/log';
+            $method = "GET";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+            $val['author_id'] = AuthCustom::user()->id;
+            $val['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+                $data = $result->datatable;
+
+                if ($result->status == 1) {
+                    $data = $data->data;
+                    $data = $data[0];
+                    $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
+
+                    if (isset($data) && $data->status == 1){
+                        if ($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null )){}else{
+                            return response()->json([
+                                'status' => 1,
+                            ]);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
+                    }
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+    }
+
+    public function postDestroy(Request $request,$id){
+
+        if (AuthCustom::check()) {
+            $url = '/service/log/detail/destroy/'.$id;
+            $method = "POST";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+            $val['mistake_by'] = $request->mistake_by;
+            $val['note'] = $request->note;
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+
+                if ($result->status == 1) {
+
+                    return response()->json([
+                        'status' => 1,
+                        'message' => $result->message,
+                    ]);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+
     }
 
     public function postPurchase(Request $request,$id){
@@ -563,4 +697,45 @@ class ServiceController extends Controller
         }
     }
 
+    public function editDestroy(Request $request,$id){
+
+        if (AuthCustom::check()) {
+            $index = $request->index;
+            $url = '/service/log/detail/edit-info/'.$id;
+            $method = "POST";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $val['token'] = $jwt;
+
+            if ((int)$index > 0){
+                for ($i = 0; $i < $index; $i++){
+                    $val['customer_data'.$i] = $request->get('customer_data'.$i);
+                }
+            }
+
+            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+            if (isset($result_Api) && $result_Api->httpcode == 200) {
+                $result = $result_Api->data;
+
+                if ($result->status == 1) {
+
+                    return response()->json([
+                        'status' => 1,
+                        'message' => $result->message,
+                    ]);
+                } else {
+                    return redirect()->back()->withErrors($result->message);
+                }
+            } else {
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            }
+        }
+
+    }
 }

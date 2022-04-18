@@ -23,19 +23,21 @@
                                         @if($data->status==1)
                                             @if($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null ))
                                             @else
-                                                <button class="btn btn-danger" type="button" id="btnDestroy" title="">Hủy bỏ yêu cầu</button>
+                                                <div class="btnDestroy__data">
+                                                    <button class="btn btn-danger" type="button" id="btnDestroy" data-id="{{ $data->id }}" title="">Hủy bỏ yêu cầu</button>
+                                                </div>
+
                                             @endif
 
                                             <div class="modal fade" id="destroyModal" role="dialog" style="display: none;" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
-                                                        {{Form::open(array('url'=>'/dich-vu/log/detail/destroy/'.$data->id,'class'=>'m-form','method'=>'post'))}}
+                                                        {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/destroy/','class'=>'m-form destroyForm','method'=>'post'))}}
                                                         <div class="modal-header">
+                                                            <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center">Chỉnh sửa thông tin</h4>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
-                                                            <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center">Chỉnh sửa thông tin</h4>
-
                                                         </div>
                                                         <div class="modal-body">
                                                             <span class="mb-15 control-label bb">Lỗi thuộc về:</span>
@@ -153,49 +155,54 @@
 
                                         @if($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null ))
                                         @else
-                                            <button class="btn btn-brand btn-edit" id="btn-edit">Chỉnh sửa thông tin</button>
+                                            <button class="btn btn-brand btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
+
                                         @endif
 
                                         <div class="modal fade" id="edit_info" role="dialog" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    {{Form::open(array('url'=>'/dich-vu/log/detail/edit-info/'.$data->id,'class'=>'m-form','method'=>'post'))}}
+                                                    {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/edit/','class'=>'m-form','method editForm'=>'post'))}}
                                                     <div class="modal-header">
+                                                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center">Chỉnh sửa thông tin</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">×</span>
                                                         </button>
-                                                        <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center">Chỉnh sửa thông tin</h4>
-
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body text-left">
 
                                                         @php
                                                             $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->item_ref->params);
                                                             $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->item_ref->params);
+                                                            $index = 0;
                                                         @endphp
                                                         @if(!empty($send_name)&& count($send_name)>0)
                                                             @for ($i = 0; $i < count($send_name); $i++)
                                                                 @if($send_name[$i]!=null)
+                                                                    @php
+                                                                        $index = $index + 1;
+                                                                    @endphp
                                                                     <span class="mb-15 control-label bb">{{$send_name[$i]}}:</span>
-                                                                    check trường của sendname
+
+{{--                                                                    check trường của sendname--}}
                                                                     @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
-                                                                        <div class="mb-15">
+                                                                        <div class="mb-15 pt-3 pb-2">
                                                                             <input type="text" required name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
                                                                         </div>
 
                                                                     @elseif($send_type[$i]==4)
-                                                                        <div class="mb-15">
+                                                                        <div class="mb-15 pt-3 pb-2">
                                                                             <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
                                                                         </div>
                                                                     @elseif($send_type[$i]==5)
-                                                                        <div class="mb-15">
+                                                                        <div class="mb-15 pt-3 pb-2">
                                                                             <input type="password" required class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
                                                                         </div>
                                                                     @elseif($send_type[$i]==6)
                                                                         @php
                                                                             $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                                         @endphp
-                                                                        <div class="mb-15">
+                                                                        <div class="mb-15 pt-3 pb-2">
                                                                             <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
                                                                                 @if(!empty($send_data))
                                                                                     @for ($sn = 0; $sn < count($send_data); $sn++)
@@ -209,7 +216,7 @@
                                                                 @endif
                                                             @endfor
                                                         @endif
-
+                                                        <input type="hidden" name="index" class="index" value="{{ $index }}">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="">Cập nhật</button>
@@ -228,6 +235,7 @@
 
                                     @if(!empty($data->workflow) && count($data->workflow)>0)
                                         @foreach( $data->workflow as $index=> $aWorkFlow)
+
                                             <div class="edu-history style2">
                                                 <i></i>
                                                 <div class="edu-hisinfo">
@@ -272,150 +280,9 @@
     </div>
 
     <style>
-        .cand-details {
-            margin-bottom: 15px;
-        }
-        .cand-details h2 {
-            float: left;
-            width: 100%;
-            font-size: 24px;
-            font-weight: 600;
-            color: #505050;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .thea_dichvu{
-            color: #8b91dd;
-            font-size: 16px;
-        }
-        .thea_dichvu:hover{
-            text-decoration: none;
-            opacity: 0.7;
-        }
-        .edu-history-sec {
-            float: left;
-            width: 100%;
-            padding-left: 30px;
-        }
-        .edu-history {
-            float: left;
-            width: 100%;
-            display: table;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .edu-history > i {
-            display: table-cell;
-            vertical-align: top;
-            width: 70px;
-            font-size: 50px;
-            color: #fb236a;
-            line-height: 60px;
-        }
-        .edu-hisinfo {
-            display: table-cell;
-            vertical-align: top;
-        }
-        .edu-hisinfo > h3 {
-            font-size: 20px;
-            color: #8b91dd;
-            margin: 4px 0;
-        }
-        .edu-hisinfo > i {
-            font-size: 18px;
-            color: #888888;
-        }
-        .m-table.m-table--head-bg-brand thead th {
-            background: #716aca;
-            color: #ffffff;
-            border-bottom: 0;
-            border-top: 0;
-        }
-        .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-            padding: 8px;
-            line-height: 1.42857;
-            vertical-align: top;
-            border-top: 1px solid #e7ecf1;
-        }
-        .edu-history.style2 {
-            margin: 0;
-            padding-bottom: 20px;
-            position: relative;
-            padding-left: 40px;
-            margin-bottom: 24px;
-        }
-        .edu-history {
-            float: left;
-            width: 100%;
-            display: table;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .edu-history.style2::before {
-            position: absolute;
-            left: 7px;
-            top: 20px;
-            width: 2px;
-            height: 100%;
-            content: "";
-            background: #e8ecec;
-        }
-        .edu-history.style2 > i {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            border: 2px solid #8b91dd;
-            content: "";
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            border-radius: 50%;
-        }
-        .edu-history > i {
-            display: table-cell;
-            vertical-align: top;
-            width: 70px;
-            font-size: 50px;
-            color: #fb236a;
-            line-height: 60px;
-        }
-        .edu-hisinfo > h3 {
-            color: #8b91dd;
-            margin: 4px 0;
-        }
-        .edu-hisinfo > i {
-            font-size: 18px;
-            color: #888888;
-        }
-        .btn-edit {
-            float: right;
-            background: #32c5d2;
-            border: 2px solid #32c5d2;
-            color: #ffffff;
-            font-family: Roboto, sans-serif;
-            font-size: 14px;
-            padding: 11px 17px;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            -ms-border-radius: 8px;
-            -o-border-radius: 8px;
-            border-radius: 8px;
-            -webkit-transition: all 0.2s ease 0s;
-            -moz-transition: all 0.2s ease 0s;
-            -ms-transition: all 0.2s ease 0s;
-            -o-transition: all 0.2s ease 0s;
-            transition: all 0.2s ease 0s;
-            outline: 0 none;
-        }
-        .btn-edit:hover {
-            background-color: #ffffff;
-            color: #32c5d2;
-        }
-    </style>
 
+    </style>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/historydetail.css">
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
 @endsection
 
