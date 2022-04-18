@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto pr-0">
-{{--                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>--}}
+                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>
                     </div>
                     <div class="col-lg-10 col-md-12 ml-lg-auto">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
@@ -23,6 +23,7 @@
                 </div>
             </div>
         </div>
+
         <div class="container pt-3">
             <div class="row">
                 <div class="col-sm-12">

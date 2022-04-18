@@ -18,8 +18,6 @@
                             <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
                             <li>/</li>
                             <li><a href="/danh-muc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</p></a></li>
-                            {{--<li>/</li>--}}
-                            {{--<li class="news_breadcrumbs_theme__li"><a href="javascript:void(0)" class="news_breadcrumbs_theme_title_a"><p class="news_breadcrumbs_theme_title">{{ $data->title }}</p></a></li>--}}
                         </ul>
                     </div>
                 </div>
@@ -364,6 +362,7 @@
                     </div>
                 </div>
             </div>
+
             @endif
             {{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}
 

@@ -148,7 +148,12 @@ class AccController extends Controller
                     $items = $result_Api->data;
 
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-                    $dataAttribute = $data->childs;
+
+                    $dataAttribute = null;
+                    if (isset($data->childs)){
+                        $dataAttribute = $data->childs;
+                    }
+
 
                     Session::put('path', $_SERVER['REQUEST_URI']);
                     return view('frontend.pages.account.accountList')
