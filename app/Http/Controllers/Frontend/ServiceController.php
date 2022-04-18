@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Log;
 
+use Redirect;
 use Session;
 use function PHPUnit\Framework\isEmpty;
 
@@ -700,7 +701,9 @@ class ServiceController extends Controller
     public function editDestroy(Request $request,$id){
 
         if (AuthCustom::check()) {
-            $index = $request->index;
+//
+            $index = $request->get('index');
+
             $url = '/service/log/detail/edit-info/'.$id;
             $method = "POST";
             $val = array();
@@ -725,14 +728,14 @@ class ServiceController extends Controller
 
                 if ($result->status == 1) {
 
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                    ]);
-                } else {
+                    return Redirect::back()->with('message', $result->message);
+
+                }
+                else {
                     return redirect()->back()->withErrors($result->message);
                 }
-            } else {
+            }
+            else {
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
