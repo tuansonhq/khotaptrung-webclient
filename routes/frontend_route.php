@@ -49,7 +49,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.index');
             });
 
-
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse:300']], function (){
@@ -139,6 +138,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
 
                         Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuNapThe']);
+
+                        Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuMuaThe']);
+
+                        Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                     });
                 });
                 // Route không cần Auth load dữ liệu không cache
@@ -217,7 +220,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 ) , function ()
                 {
 
-                Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
+
 //            Route::get('/lich-su-giao-dich/data', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                     //nạp thẻ
 //Nạp thẻ Atm

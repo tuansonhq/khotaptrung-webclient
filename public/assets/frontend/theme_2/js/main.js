@@ -1,8 +1,38 @@
 jQuery(document).ready(function($) {
-
+    // $(function () {
+    $('.started_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+        maxDate: moment()
+    });
+    $('.ended_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+        maxDate: moment()
+    });
 	function layout(){
-		
-		
+
+
 	}
 
 	layout();
@@ -61,31 +91,31 @@ jQuery(document).ready(function($) {
 
     /* Active Tab via url hash */
     var hash = location.hash.replace(/^#/, '');  // ^ means starting, meaning only match the first hash
-     
+
     if (hash) {
         $('.nav-qp-tabs a[data-bs-target="#' + hash + '"]').tab('show');
-    } 
+    }
 
 
 
 	/* Back to top */
-	var position = $(window).scrollTop(); 
+	var position = $(window).scrollTop();
 
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
         if((scroll > position) && (scroll > 320)) {
             if($(window).width() < 768){
                 $('.scroll-top').css('bottom','3rem');
-                
+
             }else{
                 $('.scroll-top').css('bottom','2rem');
             }
-           
+
         } else if((scroll < position) && (scroll < 320)) {
            $('.scroll-top').css('bottom','');
         }
 
-        
+
         position = scroll;
     });
 
@@ -93,7 +123,7 @@ jQuery(document).ready(function($) {
     OFFCANVAS NAV
     --------------------*/
 
-    // Open Offcanvas Nav 
+    // Open Offcanvas Nav
     $('.site-header-right .item-menu .nav-link').click(function(e) {
     	e.preventDefault();
         open_offcanvas_nav();
