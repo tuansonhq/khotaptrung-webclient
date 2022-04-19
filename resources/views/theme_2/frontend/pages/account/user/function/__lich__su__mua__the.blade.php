@@ -40,6 +40,10 @@
             </div>
         <!-- END List Items -->
         @endforeach
+    @else
+        <div class="col-md-12">
+            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+        </div>
     @endif
 @endif
 <div class="row">
@@ -52,7 +56,7 @@
             </div>
 
 
-            <nav class="page-pagination mb-2 paginate__v1_index paginate__v1_mobie frontend__panigate">
+            <nav class="page-pagination mb-2 paginate__v1_index__lsmt paginate__v1_mobie frontend__panigate">
                 @if(isset($data))
                     @if($data->total()>1)
                         <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">

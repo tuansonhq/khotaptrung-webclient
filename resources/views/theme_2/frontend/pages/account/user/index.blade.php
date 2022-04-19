@@ -29,7 +29,7 @@
                         <a class="nav-link data__napthe" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="true"><span><i class="las la-clock"></i> Lịch sử nạp thẻ</span></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="#" id="item-tab" data-bs-toggle="tab" data-bs-target="#item" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Thẻ cào đã mua</span></a>
+                        <a class="nav-link data__muathe" href="#" id="item-tab" data-bs-toggle="tab" data-bs-target="#item" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Thẻ cào đã mua</span></a>
                     </li>
                 </ul>
             </div>
@@ -172,7 +172,7 @@
                     <div class="tab-pane fade data__giaodich" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
                         <form class="form-charge form__lsnt">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
-                            <h4 class="title-style-left mb-3">Lịch sử nạp thẻ abccccccccccccc</h4>
+                            <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="input-group date-ranger-picker ms-3">
                                     <input type="text" name="started_at_lsnt" class="form-control border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="">
@@ -190,7 +190,8 @@
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Item -->
                     <div class="tab-pane fade data__muathe" id="item" role="tabpanel" aria-labelledby="item-tab">
-                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
+                        <form class="form-charge form__lsmt">
+                            <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Thẻ cào đã mua</h4>
                             <div class="d-flex align-items-center mb-3">
                                 <select class="form-select" style="max-width: 160px">
@@ -204,7 +205,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        </form>
                         @include('.theme_2.frontend.pages.account.user.function.__lich__su__mua__the')
                     </div><!-- BEGIN Tab Content Item -->
                 </div>
@@ -222,9 +223,16 @@
     <input type="hidden" name="ended_at_lsnt_data" class="ended_at_lsnt_data" value="">
     <input type="hidden" name="hidden_page_service_lsnt" id="hidden_page_service_lsnt" class="hidden_page_service_lsnt" value="1" />
 
+    <input type="hidden" name="id_lsmt_data" class="id_lsmt_data" value="">
+    <input type="hidden" name="started_at_lsmt_data" class="started_at_lsmt_data" value="">
+    <input type="hidden" name="ended_at_lsmt_data" class="ended_at_lsmt_data" value="">
+    <input type="hidden" name="hidden_page_service_lsmt" id="hidden_page_service_lsmt" class="hidden_page_service_lsmt" value="1" />
+
     <script src="/assets/frontend/theme_2/js/profile.js"></script>
     <script src="/assets/frontend/theme_2/js/account/txns-history.js"></script>
     <script src="/assets/frontend/theme_2/js/account/charge-history.js"></script>
+    <script src="/assets/frontend/theme_2/js/account/storcard-history.js"></script>
+
 
     <script>
 
