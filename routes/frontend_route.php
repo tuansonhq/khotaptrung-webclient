@@ -86,6 +86,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::group(['middleware' => ['auth_custom']], function (){
                     Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
                         ->name('index');
+
+                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                        ->name('getThongTin');
+
                     Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
                         ->name('index');
                     Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
@@ -131,6 +135,10 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase'])
                             ->name('getBuyServiceHistoryData');
+
+                        Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
+
+                        Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuNapThe']);
                     });
                 });
                 // Route không cần Auth load dữ liệu không cache
@@ -209,7 +217,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 ) , function ()
                 {
 
-                    Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
+                Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
 //            Route::get('/lich-su-giao-dich/data', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                     //nạp thẻ
 //Nạp thẻ Atm

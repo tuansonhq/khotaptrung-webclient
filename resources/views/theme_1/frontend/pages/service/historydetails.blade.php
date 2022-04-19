@@ -75,7 +75,7 @@
                                                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                                                 <div class="edu-hisinfo">
                                                     <h3>{{$aWorkName->title}}</h3>
-                                                    <i>{{number_format($aWorkName->unit_price)}} VNĐ</i>
+                                                    <i>{{ formatPrice($aWorkName->unit_price) }} VNĐ</i>
                                                 </div>
                                             </div>
                                         @endforeach
