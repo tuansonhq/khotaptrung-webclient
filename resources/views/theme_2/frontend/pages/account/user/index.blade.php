@@ -172,7 +172,7 @@
                     <div class="tab-pane fade data__giaodich" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
                         <form class="form-charge form__lsnt">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
-                            <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
+                            <h4 class="title-style-left mb-3">Lịch sử nạp thẻ abccccccccccccc</h4>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="input-group date-ranger-picker ms-3">
                                     <input type="text" name="started_at_lsnt" class="form-control border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="">
