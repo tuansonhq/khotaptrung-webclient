@@ -73,7 +73,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
 
-                Route::get('/danh-muc', [AccController::class , "getShowDanhmucCategory"]);
+                Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
                 Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
                 Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
