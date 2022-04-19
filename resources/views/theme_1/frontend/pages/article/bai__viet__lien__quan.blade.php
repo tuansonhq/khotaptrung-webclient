@@ -26,11 +26,12 @@
                             </div>
                             <div class="item_play_dif_slide_description__size">
 {{--                                {!! substr($item->description, 0, 150); !!}--}}
-                                @if(strlen($item->description) < 120)
-                                    {!! substr($item->description, 0, 120); !!}
-                                @else
-                                    {!! substr($item->description, 0, 120); !!}...
-                                @endif
+                                {!! substr($item->description, 0, 120); !!}
+{{--                                @if(strlen($item->description) < 120)--}}
+{{--                                    {!! substr($item->description, 0, 120); !!}--}}
+{{--                                @else--}}
+{{--                                    {!! substr($item->description, 0, 120); !!}...--}}
+{{--                                @endif--}}
                             </div>
                         </div>
 
