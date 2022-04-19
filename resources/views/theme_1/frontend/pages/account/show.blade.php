@@ -9,15 +9,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto tintuc-auto pr-0">
-{{--                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/danh-muc">Danh mục</a></div>--}}
+
                     </div>
                     <div class="col-lg-10 col-md-12 ml-lg-auto">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
-                            <li><a href="/danh-muc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Danh mục</p></a></li>
+                            <li><a href="/mua-acc" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">Mua Acc</p></a></li>
                             <li>/</li>
-                            <li><a href="/danh-muc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</p></a></li>
+                            <li><a href="/mua-acc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</p></a></li>
                         </ul>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                                             <span class="gallery__02__span">Danh mục:</span>
                                         </div>
                                         <div class="col-md-8 col-8  pl-0">
-                                            <a class="theashow"  href="/danh-muc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}"><span class="gallery__02__span">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</span></a>
+                                            <a class="theashow"  href="/mua-acc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}"><span class="gallery__02__span">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</span></a>
                                         </div>
                                     </div>
                                 </div>

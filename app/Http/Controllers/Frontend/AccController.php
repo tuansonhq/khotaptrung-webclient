@@ -37,7 +37,7 @@ class AccController extends Controller
             $method = "GET";
             $val = array();
 
-        if ($slug_category == 'danh-muc'){
+        if ($slug_category == 'mua-acc'){
 
             if (isset($slug)){
                 $valcategory = array();
