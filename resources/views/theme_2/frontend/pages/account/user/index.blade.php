@@ -14,7 +14,7 @@
                         <p class="mb-0 text-secondary small" id="info_create"></p>
                     </div>
                     <div class="ms-auto">
-                        <a href="buy.html" class="btn btn-outline-primary rounded-x ps-4 pe-4">Mua thẻ / data <i class="las la-angle-right"></i></a>
+                        <a href="/" class="btn btn-outline-primary rounded-x ps-4 pe-4">Mua thẻ / data <i class="las la-angle-right"></i></a>
                     </div>
                 </div>
                 <!-- BEGIN Tabs -->
@@ -28,6 +28,10 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" href="#" id="item-tab" data-bs-toggle="tab" data-bs-target="#item" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Thẻ cào đã mua</span></a>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Lịch sử nạp thẻ</span></a>
+                    </li>
+
                 </ul>
             </div>
             <div class="block-content p-3">
@@ -41,46 +45,46 @@
                                     <div class="mb-4">
                                         <h6 class="title-style-collapse mb-3"><a href="#" class="d-block">Thông tin tài khoản</a></h6>
 
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="mb-1">Số điện thoại</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control border-end-0" name="phone" placeholder=""  id="info_phone" value="" aria-label="" readonly>
-                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-mobile"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="mb-1">Kết nối với Facebook</label>
-                                                    <div class="input-group">
-                                                        <span class="input-group-text bg-transparent text-secondary pe-0">fb.com/</span>
-                                                        <input type="text" class="form-control border-start-0 ps-0" name="facebook" placeholder="" value="" aria-label="" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="mb-1">Địa chỉ Email</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="email" class="form-control border-end-0" placeholder="" value="" aria-label="" readonly>
-                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-envelope"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-lg-6">--}}
+{{--                                                <div class="mb-3">--}}
+{{--                                                    <label class="mb-1">Số điện thoại</label>--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        <input type="text" class="form-control border-end-0" name="phone" placeholder=""  id="info_phone" value="" aria-label="" readonly>--}}
+{{--                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-mobile"></i></span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-lg-6">--}}
+{{--                                                <div class="mb-3">--}}
+{{--                                                    <label class="mb-1">Kết nối với Facebook</label>--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        <span class="input-group-text bg-transparent text-secondary pe-0">fb.com/</span>--}}
+{{--                                                        <input type="text" class="form-control border-start-0 ps-0" name="facebook" placeholder="" value="" aria-label="" readonly>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="row">--}}
+{{--                                            <div class="col-lg-6">--}}
+{{--                                                <div class="mb-3">--}}
+{{--                                                    <label class="mb-1">Địa chỉ Email</label>--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        <input type="text" name="email" class="form-control border-end-0" placeholder="" value="" aria-label="" readonly>--}}
+{{--                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-envelope"></i></span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-lg-6">--}}
 
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
                                                     <label class="mb-1">Mật khẩu cũ</label>
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control border-end-0"  name="old_password" placeholder="Mật khẩu cũ" value="" aria-label="">
+                                                        <input type="password" class="form-control border-end-0"  name="old_password" placeholder="Mật khẩu cũ" value="" aria-label="" required>
                                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-lock"></i></span>
                                                     </div>
                                                 </div>
@@ -89,7 +93,7 @@
                                                 <div class="mb-3">
                                                     <label class="mb-1">Mật khẩu mới</label>
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control border-end-0"  name="password" placeholder="Mật khẩu mới" value="" aria-label="">
+                                                        <input type="password" class="form-control border-end-0"  name="password" placeholder="Mật khẩu mới" value="" aria-label="" required>
                                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-lock"></i></span>
                                                     </div>
                                                 </div>
@@ -98,7 +102,7 @@
                                                 <div class="mb-3">
                                                     <label class="mb-1">Nhập lại mật khẩu </label>
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control border-end-0" name="password_confirmation" placeholder="Xác nhận mật khẩu" value="" aria-label="">
+                                                        <input type="password" class="form-control border-end-0" name="password_confirmation" placeholder="Xác nhận mật khẩu" value="" aria-label="" required>
                                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-lock"></i></span>
                                                     </div>
                                                 </div>
@@ -107,38 +111,38 @@
                                     </div>
                                     <div class="mb-2">
                                         <h6 class="title-style-collapse mb-3"><a href="#" class="d-block">Thông tin cá nhân</a></h6>
-                                        <div class="mb-3">
-                                            <div class="form-check d-inline-block me-3">
-                                                <input checked class="form-check-input" type="radio" name="gender" id="gender">
-                                                <label class="form-check-label" style="padding: 4px">
-                                                    Nam
-                                                </label>
-                                            </div>
-                                            <div class="form-check d-inline-block">
-                                                <input  class="form-check-input" type="radio" name="gender" id="gender">
-                                                <label class="form-check-label" style="padding: 4px">
-                                                    Nữ
-                                                </label>
-                                            </div>
-                                        </div>
+{{--                                        <div class="mb-3">--}}
+{{--                                            <div class="form-check d-inline-block me-3">--}}
+{{--                                                <input checked class="form-check-input" type="radio" name="gender" id="gender">--}}
+{{--                                                <label class="form-check-label" style="padding: 4px">--}}
+{{--                                                    Nam--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="form-check d-inline-block">--}}
+{{--                                                <input  class="form-check-input" type="radio" name="gender" id="gender">--}}
+{{--                                                <label class="form-check-label" style="padding: 4px">--}}
+{{--                                                    Nữ--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3">
-                                                    <label class="mb-1">Họ và tên</label>
+                                                    <label class="mb-1">Tên tài khoản</label>
                                                     <div class="input-group">
                                                     <input type="text" value="Đỗ Hải Nam" name="fullname" id="info_fullname" class="form-control" placeholder="" aria-label="" readonly>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="mb-1">Ngày sinh</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control border-end-0" name="birtday" value="" placeholder="DD/MM/YYYY" aria-label="">
-                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-calendar"></i></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                            <div class="col-lg-6">--}}
+{{--                                                <div class="mb-3">--}}
+{{--                                                    <label class="mb-1">Ngày sinh</label>--}}
+{{--                                                    <div class="input-group">--}}
+{{--                                                        <input type="text" class="form-control border-end-0" name="birtday" value="" placeholder="DD/MM/YYYY" aria-label="">--}}
+{{--                                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-calendar"></i></span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                     <div class="mb-2">
@@ -148,6 +152,99 @@
                             </div>
                         </div>                                        </div><!-- END Tab Content Profile -->
                     <!-- BEGIN Tab Content History -->
+                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
+                            <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
+                            <div class="d-flex align-items-center mb-3">
+                                <select class="form-select" style="max-width: 160px">
+                                    <option value="0">Loại giao dịch</option>
+                                </select>
+                                <div class="input-group date-ranger-picker ms-3">
+                                    <input type="text" class="form-control border-end-0" placeholder="DD/MM/YYYY" value="">
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
+                                    <input type="text" class="form-control border-start-0" placeholder="DD/MM/YYYY" value="">
+                                    <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table cellspacing="0" cellpadding="0" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="text-secondary">#</th>
+                                    <th class="text-secondary">Tài khoản</th>
+                                    <th class="text-secondary">Giao dịch</th>
+                                    <th class="text-secondary">Biến động</th>
+                                    <th class="text-secondary">Số dư hiện tại</th>
+                                    <th class="text-secondary">Trạng thái</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="#">000234</a></td>
+                                    <td>Techcombank</td>
+                                    <td>Nạp tiền tài khoản</td>
+                                    <td class="text-end"><span class="text-success">+ 1.200.000</span></td>
+                                    <td class="text-end">1.200.000</td>
+                                    <td class="text-end">Đang xử lý</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">000233</a></td>
+                                    <td>Ví điện tử</td>
+                                    <td>Mua thẻ Garena</td>
+                                    <td class="text-end"><span class="text-danger">- 200.000</span></td>
+                                    <td class="text-end">0.00</td>
+                                    <td class="text-end">Đã hoàn thành</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">000232</a></td>
+                                    <td>Techcombank</td>
+                                    <td>Mua thẻ điện thoại</td>
+                                    <td class="text-end"><span class="text-danger">- 200.000</span></td>
+                                    <td class="text-end">0.00</td>
+                                    <td class="text-end">Đã hoàn thành</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">000231</a></td>
+                                    <td>Ví điện tử</td>
+                                    <td>Mua thẻ điện thoại</td>
+                                    <td class="text-end"><span class="text-danger">- 200.000</span></td>
+                                    <td class="text-end">0.00</td>
+                                    <td class="text-end">Đã hoàn thành</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="#">000230</a></td>
+                                    <td>Techcombank</td>
+                                    <td>Nạp tiền tài khoản</td>
+                                    <td class="text-end"><span class="text-success">+ 1.200.000</span></td>
+                                    <td class="text-end">0.00</td>
+                                    <td class="text-end">Đã hủy</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2">
+                            <div class="text-secondary mb-2">
+                                Hiển thị 5 / 10 kết quả
+                            </div>
+                            <nav class="page-pagination mb-2">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="las la-angle-left"></i></a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#"><i class="las la-angle-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div><!-- END Tab Content History -->
+                    <!-- BEGIN Tab Content History Deposit -->
                     <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
