@@ -3,10 +3,12 @@
     @include('frontend.widget.__seo_head')
 @endsection
 @push('js')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
     <script>
         $(document).ready(function(){
-            $('.item-home').addClass('active')
+            $('.item-').addClass('active')
         });
+
     </script>
 @endpush
 @section('content')

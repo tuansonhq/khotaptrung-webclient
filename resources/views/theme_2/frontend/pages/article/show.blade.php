@@ -5,7 +5,7 @@
 @push('js')
     <script>
         $(document).ready(function(){
-            $('.item-news').addClass('active')
+            $('.item-tin-tuc').addClass('active')
         });
     </script>
 @endpush

@@ -10,15 +10,7 @@
             <!-- BEGIN Site Header Nav -->
             <div class="site-header-nav">
                 <ul class="nav header-main-nav d-none d-lg-flex">
-                    <li class="nav-item item-home ">
-                        <a href="/" class="nav-link">Trang chủ</a>
-                    </li>
-                    <li class="nav-item item-support">
-                        <a href="/ho-tro" class="nav-link">Hỗ trợ</a>
-                    </li>
-                    <li class="nav-item item-news">
-                        <a href="/tin-tuc" class="nav-link">Tin tức</a>
-                    </li>
+                    {!! widget('frontend.widget.__menu_category') !!}
                 </ul>
             </div><!-- END Site Header Nav -->
             <div class="site-header-right d-flex ms-auto">
@@ -46,7 +38,9 @@
                         <div class="dropdown-menu dropdown-menu-end w-100 shadow">
                             <a class="dropdown-item" href="/thong-tin"><i class="las la-user icon"></i>Hồ sơ cá nhân</a>
                             <a class="dropdown-item" href="/thong-tin#history"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
+                            <a class="dropdown-item" href="/thong-tin#deposit"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
                             <a class="dropdown-item" href="/thong-tin#item"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
+
                             <a class="dropdown-item" href="/login" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="las la-sign-out-alt icon"></i>Đăng xuất</a>
                         </div>
                     </li>
