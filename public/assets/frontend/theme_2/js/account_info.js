@@ -7,6 +7,8 @@ $(document).ready(function(){
             $('#info .store-loading').remove();
             $('#info').attr('href','/login')
             $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
+            $('#auth').html('<input type="text" class="auth" value="none">')
+            $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
 
             return;
         }
@@ -26,6 +28,8 @@ $(document).ready(function(){
                     $('#info .store-loading').remove();
                     $('#info').attr('href','/login')
                     $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
+                    $('#auth').html('<input type="text" class="auth" value="none">')
+                    $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
 
                 }
                 if(data.status === "ERROR"){
@@ -37,6 +41,8 @@ $(document).ready(function(){
                     $('#info').attr('aria-haspopup','true')
                     $('#info').attr('aria-expanded','false')
                     $('#info').attr('href','#')
+                    $('#auth').html('<input type="text" class="auth" value="'+formatNumber(data.info.balance)+'">')
+                    $('#store_pay').html(' <a href="#" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded button-action-steps" data-id="2" ><strong>Thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
 
                     // $('#username').val(data.info.username);
                     // $('#info .loading').remove();

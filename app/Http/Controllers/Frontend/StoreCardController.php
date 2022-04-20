@@ -87,8 +87,10 @@ class StoreCardController extends Controller
 
     public function postStoreCard(Request $request)
     {
+
         try {
-            $url = '/deposit-auto';
+
+            $url = '/store-card';
             $method = "POST";
             $data = array();
             $data['token'] = session()->get('jwt');
@@ -101,6 +103,12 @@ class StoreCardController extends Controller
                 return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"
+                ]);
+            }
+            if(isset($result_Api) && $result_Api->httpcode == 422){
+                return response()->json([
+                    'status' => 0,
+                    'message' => $result_Api->message,
                 ]);
             }
             if(isset($result_Api) && $result_Api->httpcode == 200){

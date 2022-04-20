@@ -81,7 +81,6 @@ $(document).ready(function(){
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            console.log(100-value.ratio_default)
                             // html+= '<p>'+value.amount +'</p>'
                             html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + (100-value.ratio_default) +'% </option>';
                         });

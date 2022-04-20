@@ -22,6 +22,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
     @stack('js')
 
 
