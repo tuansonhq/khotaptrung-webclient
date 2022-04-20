@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="item-content">
-                    <h6 class="item-title"><a href="/blog/{{ $item->slug }}">{{ $item->title }}</a></h6>
+                    <h6 class="item-title"><a href="/tin-tuc/{{ $item->slug }}">{{ $item->title }}</a></h6>
                 </div>
             </div><!-- BEGIN Item Article -->
         </div>

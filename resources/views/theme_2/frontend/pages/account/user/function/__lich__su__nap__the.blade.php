@@ -18,6 +18,7 @@
                 @php
                     $prev = null;
                 @endphp
+
                 @foreach ($data as $key => $item)
                     @php
                         $curr = \App\Library\Helpers::formatDate($item->created_at);
@@ -42,29 +43,31 @@
                                 {{--                            {{ $arrserial[$key] }}--}}
                                 {{--                            @endif--}}
                             </td>
-                            <td>{{ formatPrice($item->declare_amount) }}</td>
+                            <td>{{ formatPrice((int)$item->declare_amount) }} đ</td>
                             <td>
                                 @if($item->status == 1)
-                                    <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
+                                    <b class=" text-primary">{{config('module.charge.status.1')}}</b>
                                 @elseif($item->status == 0)
-                                    <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.0')}}</b>
                                 @elseif($item->status == 3)
-                                    <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.3')}}</b>
                                 @elseif($item->status == 2)
-                                    <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
+                                    <b class="text-warning">{{config('module.charge.status.2')}}</b>
                                 @elseif($item->status == 999)
-                                    <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.999')}}</b>
                                 @elseif($item->status == -999)
-                                    <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.-999')}}</b>
                                 @elseif($item->status == -1)
-                                    <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.-1')}}</b>
                                 @endif
                             </td>
                             <td>
                                 @if(isset($item->real_received_amount))
-                                    {{ formatPrice($item->real_received_amount) }}
+                                    <span class="c-font-bold text-info"> {{ formatPrice($item->real_received_amount) }}</span>
+
                                 @else
-                                    0
+                                    <span class="c-font-bold text-info"> 0</span>
+
                                 @endif
                             </td>
                         </tr>
@@ -91,26 +94,26 @@
                             <td>{{ formatPrice($item->declare_amount) }}</td>
                             <td>
                                 @if($item->status == 1)
-                                    <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
+                                    <b class="text-primary">{{config('module.charge.status.1')}}</b>
                                 @elseif($item->status == 0)
-                                    <span class="badge badge-danger">{{config('module.charge.status.0')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.0')}}</b>
                                 @elseif($item->status == 3)
-                                    <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.3')}}</b>
                                 @elseif($item->status == 2)
-                                    <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
+                                    <b class="text-warning">{{config('module.charge.status.2')}}</b>
                                 @elseif($item->status == 999)
-                                    <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.999')}}</b>
                                 @elseif($item->status == -999)
-                                    <span class="badge badge-danger">{{config('module.charge.status.-999')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.-999')}}</b>
                                 @elseif($item->status == -1)
-                                    <span class="badge badge-danger">{{config('module.charge.status.-1')}}</span>
+                                    <b class="text-danger">{{config('module.charge.status.-1')}}</b>
                                 @endif
                             </td>
                             <td>
                                 @if(isset($item->real_received_amount))
-                                    {{ formatPrice($item->real_received_amount) }}
+                                    <span class="c-font-bold text-info"> {{ formatPrice($item->real_received_amount) }}</span>
                                 @else
-                                    0
+                                    <span class="c-font-bold text-info"> 0</span>
                                 @endif
                             </td>
                         </tr>
@@ -132,7 +135,7 @@
 @endif
 <div class="row">
     <div class="col-md-12 left-right justify-content-end">
-        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2 border-top pt-3">
+        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2  pt-3">
             <div class="text-secondary mb-2">
                 @if(isset($total) && isset($per_page))
                     Hiển thị {{ $per_page }} / {{ $total }} kết quả

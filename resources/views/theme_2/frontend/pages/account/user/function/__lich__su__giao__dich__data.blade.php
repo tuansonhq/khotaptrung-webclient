@@ -52,11 +52,11 @@
                                 @foreach($status as $istls => $valstls)
                                     @if($istls == $item->status)
                                         @if($item->status == 1)
-                                            <span class="badge badge-success">{{ $valstls }}</span>
+                                            <b class="text-success">{{ $valstls }}</b>
                                         @elseif($item->status == 0)
-                                            <span class="badge badge-danger">{{ $valstls }}</span>
+                                            <b class="text-danger">{{ $valstls }}</b>
                                         @elseif($item->status == 2)
-                                            <span class="badge badge-warning">{{ $valstls }}</span>
+                                            <b class="text-warning">{{ $valstls }}</b>
                                         @endif
                                     @endif
                                 @endforeach
@@ -90,11 +90,11 @@
                                 @foreach($status as $istls => $valstls)
                                     @if($istls == $item->status)
                                         @if($item->status == 1)
-                                            <span class="badge badge-success">{{ $valstls }}</span>
+                                            <b class="text-success">{{ $valstls }}</b>
                                         @elseif($item->status == 0)
-                                            <span class="badge badge-danger">{{ $valstls }}</span>
+                                            <b class="text-danger">{{ $valstls }}</b>
                                         @elseif($item->status == 2)
-                                            <span class="badge badge-warning">{{ $valstls }}</span>
+                                            <b class="text-warning">{{ $valstls }}</b>
                                         @endif
                                     @endif
                                 @endforeach
@@ -118,7 +118,7 @@
 @endif
 <div class="row">
     <div class="col-md-12 left-right justify-content-end">
-        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2 border-top pt-3">
+        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2 pt-3">
             <div class="text-secondary mb-2">
                 @if(isset($total) && isset($per_page))
                     Hiển thị {{ $per_page }} / {{ $total }} kết quả

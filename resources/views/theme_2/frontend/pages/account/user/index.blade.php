@@ -31,9 +31,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link data__muathe" href="#" id="item-tab" data-bs-toggle="tab" data-bs-target="#item" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Thẻ cào đã mua</span></a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Lịch sử nạp thẻ</span></a>
-                    </li>
+{{--                    <li class="nav-item" role="presentation">--}}
+{{--                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="item" aria-selected="true"><span><i class="las la-credit-card"></i> Lịch sử nạp thẻ</span></a>--}}
+{{--                    </li>--}}
 
                 </ul>
             </div>
@@ -179,9 +179,9 @@
                             <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
                             <div class="d-flex align-items-center mb-3">
                                 <div class="input-group date-ranger-picker ms-3">
-                                    <input type="text" name="started_at_lsnt" class="form-control border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="">
+                                    <input type="text" name="started_at_lsnt" class="form-control input-group-addon border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                    <input type="text" name="ended_at_lsnt" class="form-control border-start-0 ended_at_lsnt" placeholder="DD/MM/YYYY" value="">
+                                    <input type="text" name="ended_at_lsnt" class="form-control input-group-addon           border-start-0 ended_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                     <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
                                 </div>
                             </div>
@@ -295,9 +295,10 @@
                                     <option value="0">Loại thẻ cào</option>
                                 </select>
                                 <div class="input-group date-ranger-picker ms-3">
-                                    <input type="text" class="form-control border-end-0" placeholder="DD/MM/YYYY" value="">
+
+                                    <input type="text" class="form-control border-end-0 started_at_tcdm" placeholder="DD/MM/YYYY" value="">
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                    <input type="text" class="form-control border-start-0" placeholder="DD/MM/YYYY" value="">
+                                    <input type="text" class="form-control border-start-0 ended_at_tcdm" placeholder="DD/MM/YYYY" value="">
                                     <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
                                 </div>
                             </div>

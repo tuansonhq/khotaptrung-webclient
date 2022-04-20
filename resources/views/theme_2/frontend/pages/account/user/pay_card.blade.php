@@ -15,9 +15,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" href="#" id="deposit-via-card-tab" data-bs-toggle="tab" data-bs-target="#deposit-via-card" type="button" role="tab" aria-controls="deposit via card" aria-selected="true"><span><i class="las la-receipt"></i> Nạp bằng thẻ</span></a>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="true"><span><i class="las la-money-check-alt"></i> <span>Nạp ATM - Ví</span></a>
-                    </li>
+{{--                    <li class="nav-item" role="presentation">--}}
+{{--                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="true"><span><i class="las la-money-check-alt"></i> <span>Nạp ATM - Ví</span></a>--}}
+{{--                    </li>--}}
                 </ul>
                 <div class="tab-content mb-4">
                     <!-- BEGIN Tab Content Deposit -->

@@ -139,7 +139,6 @@
                         telecom:key,
                     },
                     success: function (data) {
-                        console.log(data)
                         render += '<div class="pb-5 block-number gateway-telecom">';
                         render += '<div class="icon">2</div>';
                         render += '<h6 class="title-small text-uppercase mb-3">Lựa chọn mệnh giá</h6>';
@@ -157,7 +156,6 @@
                         check_value = $('.price_telecom_'+telecom).html(render);
 
                         if(check_value){
-                            console.log(data)
                             $.each(data.data, function (key, value) {
 
                                 html += '<div class="col-md-3 col-6">';
