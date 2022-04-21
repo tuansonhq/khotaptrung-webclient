@@ -20,7 +20,7 @@
                 <ul class="nav nav-qp-tabs mb-4" role="tablist">
                     <li class="nav-item nav-item-telecom" role="presentation">
 {{--                        <a class="nav-link active" href="#" id="game-tab" data-bs-toggle="tab" data-bs-target="#game" type="button" role="tab" aria-controls="game" aria-selected="true"><span><i class="las la-gamepad"></i> <span><span class="d-none d-md-inline">Mua thẻ</span> Game</span></span></a>--}}
-                        <a class="nav-link nav-link-telecom active" href="#" id="thedienthoai-tab" data-bs-toggle="tab" data-content="thedienthoai" data-bs-target="#thedienthoai" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ</span> Điện thoại</span></a>
+                        <a class="nav-link nav-link-telecom active" href="#" id="thedienthoai-tab" data-bs-toggle="tab" data-content="thedienthoai" data-bs-target="#thedienthoai" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ Điện thoại</span> </span></a>
                     </li>
 {{--                    <li class="nav-item" role="presentation">--}}
 {{--                        <a class="nav-link" href="#" id="mobile-tab" data-bs-toggle="tab" data-bs-target="#mobile" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ</span> Điện thoại</span></a>--}}
@@ -221,7 +221,7 @@
 <div class="site-content-body alt last">
     <h3 class="text-primary mb-3">Tin tức cập nhật <i class="las la-angle-right"></i></h3>
     @include('frontend.widget.__baiviet__trangchu')
-    <p class="mb-0 text-center"><a href="/blog" class="btn bg-secondary text-white rounded-x ps-4 pe-4">Tất cả tin tức <i class="las la-angle-right"></i></a></p>
+    <p class="mb-0 text-center"><a href="/tin-tuc" class="btn bg-secondary text-white rounded-x ps-4 pe-4">Tất cả tin tức <i class="las la-angle-right"></i></a></p>
 </div>
 <div class="after"></div>
 
