@@ -12,7 +12,7 @@
                     <div class="item-thumb me-3">
                         <div class="media-placeholder rounded blog-relative">
                             <div class="bg rounded">
-                                <a href="">
+                                <a href="/tin-tuc/{{ $item->slug }}">
                                     <img src="https://media-tt.nick.vn/{{ $item->image }}" class="img-fluid" alt="">
                                 </a>
                             </div>

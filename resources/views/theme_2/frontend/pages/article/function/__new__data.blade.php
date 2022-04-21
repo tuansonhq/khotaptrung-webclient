@@ -25,7 +25,11 @@
             <div class="mb-4 item-c-article">
                 <div class="item-thumb">
                     <div class="media-placeholder ratio-5-3 rounded">
-                        <div class="bg rounded" style="background-image: url(https://media-tt.nick.vn/{{ $item->image }});"></div>
+                        <div class="bg rounded item-imager-blog" >
+                            <a href="/tin-tuc/{{ $item->slug }}">
+                                <img src="https://media-tt.nick.vn/{{ $item->image }}" class="img-fluid" title="{{ $item->title }}">
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="item-content">

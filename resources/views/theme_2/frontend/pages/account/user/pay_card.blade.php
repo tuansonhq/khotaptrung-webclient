@@ -188,7 +188,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Hotline</div>
-                            <a href="tel:+84792000792" class="d-block main-text text-end text-danger"><strong>{{number_format(setting('sys_phone'))}}</strong></a>
+                            <a href="tel:{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong>{{number_format(setting('sys_phone') , 0, ',', '.')}}</strong></a>
                         </div>
                     </div><!-- END Support Item -->
                     <!-- BEGIN Support Item -->
@@ -198,7 +198,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Facebook</div>
-                            <a href="https://facebook.com/muathegarena" class="d-block main-text text-end"><strong>{{setting('sys_fanpage')}}</strong></a>
+                            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong>{{Str::limit(setting('sys_fanpage'),30)}}</strong></a>
                         </div>
                     </div><!-- END Support Item -->
                 </div><!-- BEGIN Support Block -->

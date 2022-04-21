@@ -142,12 +142,12 @@
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
-                        <div class="mb-3 d-flex justify-content-between align-items-center">
-                            <div><img src="img/temp/capcha.png" alt=""></div>
-                            <div>
-                                <input type="text" id="capcha" name="capcha" class="form-control text-end" placeholder="Security Code" value="">
-                            </div>
-                        </div>
+{{--                        <div class="mb-3 d-flex justify-content-between align-items-center">--}}
+{{--                            <div><img src="img/temp/capcha.png" alt=""></div>--}}
+{{--                            <div>--}}
+{{--                                <input type="text" id="capcha" name="capcha" class="form-control text-end" placeholder="Security Code" value="">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <button class="btn bg-primary-gradient text-white d-block pt-2 pb-2 text-uppercase rounded col-12" type="submit"><strong>Đăng ký ngay <i class="las la-angle-double-right"></i></strong></button>
                         </div>

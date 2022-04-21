@@ -1,5 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@push('js')
 
+@endpush
 
 @section('content')
     <div class="site-content-body bg-white first last p-0">

@@ -98,16 +98,16 @@ jQuery(document).ready(function($) {
 
 	layout();
 
-	$row_gateway = $('.row-gateway');
-
-    if ($row_gateway) {
-        $row_gateway.flickity({
-            cellAlign: 'left',
-            contain: true,
-            prevNextButtons: false,
-            pageDots: true
-        });
-    }
+	// $row_gateway = $('.row-gateway');
+    //
+    // if ($row_gateway) {
+    //     $row_gateway.flickity({
+    //         cellAlign: 'left',
+    //         contain: true,
+    //         prevNextButtons: false,
+    //         pageDots: true
+    //     });
+    // }
 
 	/* Select Gateway */
 	$('.row-gateway .item-gateway').click(function(e){
@@ -118,16 +118,16 @@ jQuery(document).ready(function($) {
         $(this).removeClass('out');
 	});
 
-	$row_price = $('.row-price');
-
-    if ($row_price) {
-        $row_price.flickity({
-            cellAlign: 'left',
-            contain: true,
-            prevNextButtons: false,
-            pageDots: true
-        });
-    }
+	// $row_price = $('.row-price');
+    //
+    // if ($row_price) {
+    //     $row_price.flickity({
+    //         cellAlign: 'left',
+    //         contain: true,
+    //         prevNextButtons: false,
+    //         pageDots: true
+    //     });
+    // }
 
 	/* Select Price */
 	$('.row-price .item-price').click(function(e){
@@ -148,7 +148,7 @@ jQuery(document).ready(function($) {
 
     /* Init Number Input */
 
-    $("input[type='number']").inputSpinner();
+    // $("input[type='number']").inputSpinner();
 
     /* Active Tab via url hash */
     var hash = location.hash.replace(/^#/, '');  // ^ means starting, meaning only match the first hash

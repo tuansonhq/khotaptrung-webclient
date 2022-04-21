@@ -101,6 +101,18 @@ View::composer('frontend.widget.__menu_category', function ($view) {
     return $view->with('data_menu_category', $data_menu_category);
 
 });
+View::composer('frontend.widget.__menu_category_theme2', function ($view) {
+
+    $url_menu_category = '/menu-category';
+    $method_menu_category  = "POST";
+    $val_menu_category  = array();
+    $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
+    $result_menu_category = $result_Api_menu_category->data;
+    $data_menu_category  = $result_menu_category->data;
+
+    return $view->with('data_menu_category', $data_menu_category);
+
+});
 
 View::composer('frontend.widget.__menu_profile', function ($view) {
 

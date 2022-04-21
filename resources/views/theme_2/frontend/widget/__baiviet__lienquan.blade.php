@@ -13,7 +13,11 @@
             <div class="item-article mb-4">
                 <div class="item-thumb mb-2">
                     <div class="media-placeholder ratio-2-1">
-                        <div class="bg" style="background-image: url(https://media-tt.nick.vn/{{ $item->image }});"></div>
+                        <div class="bg item-image " >
+                            <a href="/tin-tuc/{{ $item->slug }}">
+                                <img class="img-fluid" src="https://media-tt.nick.vn/{{ $item->image }}" title="{{ $item->title }}">
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="item-content">
