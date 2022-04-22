@@ -1,6 +1,5 @@
 <div class="site-footer text-white">
     <div class="site-footer-content">
-        <p>sdsd</p>
         {!! setting('sys_footer') !!}
 {{--        <div class="container">--}}
 {{--            <div class="row">--}}
