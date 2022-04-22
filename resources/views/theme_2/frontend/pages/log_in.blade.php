@@ -83,14 +83,6 @@
                                 })
                             }
 
-                            // if(data.status == 1){
-                            //     alert(da);
-                            // }
-                            // else{
-                            //     alert(data);
-                            //     btnSubmit.text('Thanh toán');
-                            //     btnSubmit.prop('disabled', false);
-                            // }
                         },
                         error: function (data) {
                             alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');

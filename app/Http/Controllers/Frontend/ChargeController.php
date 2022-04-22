@@ -126,6 +126,11 @@ class ChargeController extends Controller
                         'data' => $result->data,
                     ]);
                 }
+            }else{
+                return response()->json([
+                    'status' => 1,
+                    'data' => $result_Api->data->message,
+                ]);
             }
             if(isset($result_Api) && $result_Api->httpcode == 401){
                 session()->flush();
