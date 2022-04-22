@@ -75,15 +75,16 @@
                                 prevNextButtons: false,
                                 pageDots: true
                             });
-                        }else {
-                            swal({
-                                title: "Có lỗi xảy ra !",
-                                text: data.message,
-                                icon: "error",
-                                buttons: {
-                                    cancel: "Đóng",
-                                },
-                            })
+                        }
+                        else {
+                            // swal({
+                            //     title: "Có lỗi xảy ra !",
+                            //     text: data.message,
+                            //     icon: "error",
+                            //     buttons: {
+                            //         cancel: "Đóng",
+                            //     },
+                            // })
                         }
 
 

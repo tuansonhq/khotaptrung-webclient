@@ -93,16 +93,16 @@ $(document).ready(function(){
                     }
                     $('select#amount').html(html);
                 }
-                else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
-                }
+                // else{
+                //     swal({
+                //         title: "Có lỗi xảy ra !",
+                //         text: data.message,
+                //         icon: "error",
+                //         buttons: {
+                //             cancel: "Đóng",
+                //         },
+                //     })
+                // }
             },
             error: function (data) {
                 swal({
