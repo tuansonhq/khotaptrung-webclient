@@ -1,6 +1,5 @@
 <div class="site-footer text-white">
     <div class="site-footer-content">
-        <p>sdsd</p>
         {!! setting('sys_footer') !!}
 {{--        <div class="container">--}}
 {{--            <div class="row">--}}
@@ -49,9 +48,9 @@
 {{--            {!! setting('sys_footer') !!}--}}
 {{--        </div>--}}
     </div>
-    <div class="site-footer-bar">
-        <div class="container">
-            <div class="site-copyright op-5">Copyright © MuatheGarena.com</div>
-        </div>
-    </div>
+{{--    <div class="site-footer-bar">--}}
+{{--        <div class="container">--}}
+{{--            <div class="site-copyright op-5">Copyright © MuatheGarena.com</div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div><!-- END Site Footer -->
