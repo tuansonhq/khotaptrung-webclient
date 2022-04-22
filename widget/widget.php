@@ -19,6 +19,7 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
 
 View::composer('frontend.widget.__content__home', function ($view) {
 
+//    Acc
     $url = '/acc';
     $method = "GET";
     $val = array();
@@ -31,7 +32,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     }else{
         return 'sai';
     }
-
+// Minigame.
     $param['secret_key'] = config('api.secret_key');
     $param['domain'] = \Request::server("HTTP_HOST");
     $url = '/minigame/get-list-minigame';
@@ -41,8 +42,23 @@ View::composer('frontend.widget.__content__home', function ($view) {
     }else{
 
     }
+//    Dich vụ
 
-    return $view->with('data', $data)->with('dataGame', $dataGame);
+    $urldichvu = '/get-show-service';
+    $methoddichvu = "GET";
+    $valdichvu = array();
+
+    $result_Apidichvu = DirectAPI::_makeRequest($urldichvu,$valdichvu,$methoddichvu);
+
+    $datadichvu = $result_Apidichvu->data;
+
+
+    $datadichvu = $datadichvu->data;
+    if (isset($datadichvu->data)){
+        $datadichvu = new LengthAwarePaginator($datadichvu->data, $datadichvu->total, $datadichvu->per_page, $datadichvu->current_page, $datadichvu->data);
+    }
+
+    return $view->with('data', $data)->with('dataGame', $dataGame)->with('datadichvu', $datadichvu);
 });
 
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
