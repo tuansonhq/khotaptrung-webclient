@@ -74,7 +74,7 @@
                                 contain: true,
                                 prevNextButtons: true,
                                 pageDots: true,
-                                autoPlay: 10000,
+                                autoPlay: 9000,
                                 wrapAround: true,
 
 
@@ -177,7 +177,7 @@
                                 contain: true,
                                 prevNextButtons: true,
                                 pageDots: true,
-                                autoPlay: 10000,
+                                autoPlay: 8000,
                                 wrapAround: true,
                             });
                         }
