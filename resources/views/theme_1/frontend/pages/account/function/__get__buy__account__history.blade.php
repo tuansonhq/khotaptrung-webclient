@@ -88,6 +88,7 @@
             navigator.clipboard.writeText(copyText.value);
 
         }
+
         function myFunctionId() {
             var copyText = document.getElementById("idkey");
             copyText.select();
@@ -110,21 +111,21 @@
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'right',
+                placement: 'left',
             });
 
             tippy('#getpasstk', {
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'right',
+                placement: 'left',
             });
 
             tippy('#getIdkey', {
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'right',
+                placement: 'left',
             });
 
             // Click event of the showPassword button

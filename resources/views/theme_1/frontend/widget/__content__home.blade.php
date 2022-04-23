@@ -77,7 +77,8 @@
 
 @endif
 
-@if(isset($datadichvu->data))
+
+@if(isset($datadichvu))
 
     <div class="content-items">
         <div class="container">
@@ -87,8 +88,7 @@
             </div>
 
             <div class="game-list row">
-                @if(isset($datadichvu))
-                    @foreach($datadichvu as $item)
+                @foreach($datadichvu as $item)
 
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                         <div class="game-list-content">
@@ -140,7 +140,6 @@
                         </div>
                     </div>
                 @endforeach
-                @endif
             </div>
         </div>
     </div>
