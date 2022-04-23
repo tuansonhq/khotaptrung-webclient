@@ -236,7 +236,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Facebook</div>
-                            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong>{{\Request::server("HTTP_HOST")}}</strong></a>
+                            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong></strong></a>
                         </div>
                     </div><!-- END Support Item -->
                 </div><!-- BEGIN Support Block -->
