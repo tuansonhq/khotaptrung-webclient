@@ -48,13 +48,13 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $methoddichvu = "GET";
     $valdichvu = array();
     $valdichvu['limit'] = 8;
-    
+
     $result_Apidichvu = DirectAPI::_makeRequest($urldichvu,$valdichvu,$methoddichvu);
 
     $datadichvu = $result_Apidichvu->data;
 
-
     $datadichvu = $datadichvu->data;
+
     if (isset($datadichvu->data)){
         $datadichvu = new LengthAwarePaginator($datadichvu->data, $datadichvu->total, $datadichvu->per_page, $datadichvu->current_page, $datadichvu->data);
     }
