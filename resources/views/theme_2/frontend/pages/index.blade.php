@@ -208,7 +208,7 @@
             <!-- BEGIN -->
             <div class="p-3 bg-light rounded mb-4">
                 <div class="text-rounded custom-text">
-                    {!! setting('sys_store_card_content') !!}
+                    {!! setting('sys_intro_text') !!}
                 </div>
                 <div class="text-center text-more"><a href="#" class="more-link">Xem thêm <i class="las la-angle-down"></i></a></div>
             </div>
