@@ -175,8 +175,10 @@
                             $(".row-price").html(html).flickity({
                                 cellAlign: 'left',
                                 contain: true,
-                                prevNextButtons: false,
-                                pageDots: true
+                                prevNextButtons: true,
+                                pageDots: true,
+                                autoPlay: 10000,
+                                wrapAround: true,
                             });
                         }
                         input_telecom += '<input style="display:none;" class="input_telecom" type="text" value="'+key+'" name="telecom">';
