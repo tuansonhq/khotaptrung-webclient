@@ -188,7 +188,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Hotline</div>
-                            <a href="tel:{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong>{{number_format(setting('sys_phone') , 0, ',', '.')}}</strong></a>
+                            <a href="tel:{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong>{{setting('sys_phone')}}</strong></a>
                         </div>
                     </div><!-- END Support Item -->
                     <!-- BEGIN Support Item -->

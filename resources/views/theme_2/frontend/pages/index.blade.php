@@ -226,7 +226,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Hotline</div>
-                            <a href="tel:+{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong> {{number_format(setting('sys_phone') , 0, ',', '.')}}</strong></a>
+                            <a href="tel:+{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong> {{setting('sys_phone')}}</strong></a>
                         </div>
                     </div><!-- END Support Item -->
                     <!-- BEGIN Support Item -->
@@ -236,7 +236,7 @@
                         </div>
                         <div class="item-content">
                             <div class="op-7 text-end">Facebook</div>
-                            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong></strong></a>
+                            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong>{{\Request::server("HTTP_HOST")}}</strong></a>
                         </div>
                     </div><!-- END Support Item -->
                 </div><!-- BEGIN Support Block -->
