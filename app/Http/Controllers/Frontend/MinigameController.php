@@ -50,24 +50,113 @@ class MinigameController extends Controller
             if (isset($result_Api) && $result_Api->httpcode == 200 ) {
                 $result_out = $result_Api->data;
                 if ($result_out->status == 1) {
-                    $result = $result_Api->data->data;
-                    switch ($data['module']) {
+                    $result = $result_out->data;
+
+                    //tạo dữ liệu seeding
+                    //Tạo random đang chơi:
+                    if($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to){
+                        $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
+                    }else{
+                        $numPlay = rand(1,1000);
+                    }
+
+                    //top quay thuong
+                    $firstname = ['James','Robert','John','Michael','William','David','Richard','Joseph','Thomas','Charles','Christopher','Daniel','Matthew','Anthony','Mark','Donald','Steven','Paul','Andrew','Joshua','Kenneth','Kevin','Brian','George','Edward','Ronald','Timothy','Jason','Jeffrey','Ryan','Jacob','Gary','Nicholas','Eric','Jonathan','Stephen','Larry','Justin','Scott','Brandon','Benjamin','Samuel','Gregory','Frank','Alexander','Raymond','Patrick','Jack','Dennis','Jerry','Tyler','Aaron','Jose','Adam','Henry','Nathan','Douglas','Zachary','Peter','Kyle','Walter','Ethan','Jeremy','Harold','Keith','Christian','Roger','Noah','Gerald','Carl','Terry','Sean','Austin','Arthur','Lawrence','Jesse','Dylan','Bryan','Joe','Jordan','Billy','Bruce','Albert','Willie','Gabriel','Logan','Alan','Juan','Wayne','Roy','Ralph','Randy','Eugene','Vincent','Russell','Elijah','Louis','Bobby','Philip','Johnny','Mary','Patricia','Jennifer','Linda','Elizabeth','Barbara','Susan','Jessica','Sarah','Karen','Nancy','Lisa','Betty','Margaret','Sandra','Ashley','Kimberly','Emily','Donna','Michelle','Dorothy','Carol','Amanda','Melissa','Deborah','Stephanie','Rebecca','Sharon','Laura','Cynthia'];
+                    $lastname = ['Johnathon','Anthony','Erasmo','Raleigh','Nancie','Tama','Camellia','Augustine','Christeen','Luz','Diego','Lyndia','Thomas','Georgianna','Leigha','Alejandro','Marquis','Joan','Stephania','Elroy','Zonia','Buffy','Sharie','Blythe','Gaylene','Elida','Randy','Margarete','Margarett','Dion','Tomi','Arden','Clora','Laine','Becki','Margherita','Bong','Jeanice','Qiana','Lawanda','Rebecka','Maribel','Tami','Yuri','Michele','Rubi','Larisa','Lloyd','Tyisha','Samatha','Mischke','Serna','Pingree','Mcnaught','Pepper','Schildgen','Mongold','Wrona','Geddes','Lanz','Fetzer','Schroeder','Block','Mayoral','Fleishman','Roberie','Latson','Lupo','Motsinger','Drews','Coby','Redner','Culton','Howe','Stoval','Michaud','Mote','Menjivar','Wiers','Paris','Grisby','Noren','Damron','Kazmierczak','Haslett','Guillemette','Buresh','Center','Kucera','Catt','Badon','Grumbles','Antes','Byron','Volkman','Klemp','Pekar','Pecora','Schewe','Ramage'];
+                    $numTop = 30;
+                    if($group->params->acc_show_num > 0){
+                        $numTop = $group->params->acc_show_num;
+                    }
+
+                    $topDayList = Cache::get('topDayList'.$group->id);
+                    if($topDayList==null){
+                        $topDayList = array();
+                        for($i=0;$i<=$numTop;$i++){
+                            $fname = $firstname[rand(0,count($firstname)-1)];
+                            $lname = $lastname[rand(0 ,count($lastname)-1)];
+                            $name = substr($fname, 0,rand(2,3));
+                            $name .= '*****';
+                            $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
+                            if($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to){
+                                $num = rand($group->params->user_num_from, $group->params->play_num_to);
+                            }else{
+                                $num = rand(1,1000);
+                            }
+                            $topDay = [
+                                'name' => $name,
+                                'numwheel' => $num
+                            ];
+                            array_push($topDayList, $topDay);
+                        }
+                        array_multisort(array_column($topDayList, 'numwheel'), SORT_DESC, SORT_NATURAL|SORT_FLAG_CASE, $topDayList);
+                        $expiresAt = Carbon::now()->addHours(24);
+                        Cache::put('topDayList'.$group->id, $topDayList, $expiresAt);
+                    }
+
+                    $top7DayList = Cache::get('top7DayList'.$group->id);
+                    if($top7DayList==null){
+                        $top7DayList = array();
+                        for($i=1;$i<$numTop;$i++){
+                            $fname = $firstname[rand(0,count($firstname)-1)];
+                            $lname = $lastname[rand(0 ,count($lastname)-1)];
+                            $name = substr($fname, 0,rand(2,3));
+                            $name .= '*****';
+                            $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
+                            if($group->params->play_num_from > 0 && $group->params->play_num_to > 0 && $group->params->play_num_from < $group->params->play_num_to){
+                                $num = rand($group->params->user_num_from*7, $group->params->play_num_to*7);
+                            }else{
+                                $num = rand(1,7000);
+                            }
+                            $topDay = [
+                                'name' => $name,
+                                'numwheel' => $num
+                            ];
+                            array_push($top7DayList, $topDay);
+                        }
+                        array_multisort(array_column($top7DayList, 'numwheel'), SORT_DESC, SORT_NATURAL|SORT_FLAG_CASE, $top7DayList);
+                        $expiresAt = Carbon::now()->addHours(24*7);
+                        Cache::put('top7DayList'.$group->id, $top7DayList, $expiresAt);
+                    }
+
+                    $numNear = 10;
+                    if($group->params->play_num_near > 0){
+                        $numNear = $group->params->play_num_near;
+                    }
+                    if(count($result->group->items)>0){
+                        $currentPlayList = Cache::get('currentPlayList'.$group->id);
+                        if($currentPlayList==null){
+                            $currentPlayList = "Danh sách trúng thưởng: ";
+                            for($i=0;$i<=$numNear;$i++){
+                                $fname = $firstname[rand(0,count($firstname)-1)];
+                                $lname = $lastname[rand(0 ,count($lastname)-1)];
+                                $name = substr($fname, 0,rand(2,3));
+                                $name .= '*****';
+                                $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
+                                $gift = $result->group->items[rand(0,count($result->group->items)-1)]->title;
+                                $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
+                            }
+                            $expiresAt = Carbon::now()->addMinutes(5);
+                            Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
+                        }
+                    }
+
+                    switch ($result->group->position) {
                         case 'rubywheel':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'flip':
-                            return view('frontend.pages.minigame.flip', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.flip', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'slotmachine':
-                            return view('frontend.pages.minigame.slotmachine', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'slotmachine5':
-                            return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'squarewheel':
-                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'smashwheel':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'rungcay':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'gieoque':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other'));
+                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         default:
                             return redirect()->back()->withErrors($result_out->message);
                     }
@@ -75,7 +164,7 @@ class MinigameController extends Controller
                     return redirect()->back()->withErrors($result_out->message);
                 }
             } else {
-                return redirect()->back()->withErrors($result_out->message);
+                return redirect()->back()->withErrors($result_Api->message);
             }
         }
         catch(\Exception $e){
@@ -133,17 +222,24 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    return response()->json([
-                        'status' => 0,
-                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 1!'
-                    ], 200);
+                    if($result_Api->httpcode==401){
+                        return response()->json([
+                            'status' => 4,
+                            'msg'=> 'Vui lòng đăng nhập lại.'
+                        ], 200);
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại!'
+                        ], 200);
+                    }
                 }
             }
             catch(\Exception $e){
                 logger($e);
                 return response()->json([
                     'status' => 0,
-                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại 2!'
+                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại!.'
                 ], 200);
             }
         }
@@ -194,10 +290,17 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    return response()->json([
-                        'status' => 0,
-                        'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
-                    ], 200);
+                    if($result_Api->httpcode==401){
+                        return response()->json([
+                            'status' => 4,
+                            'msg'=> 'Vui lòng đăng nhập lại.'
+                        ], 200);
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                        ], 200);
+                    }
                 }
             }
             catch(\Exception $e){

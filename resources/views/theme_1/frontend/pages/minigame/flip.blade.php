@@ -10,11 +10,12 @@
             <div class="item_play_online_out">
                 <div class="item_play_online"></div>
                 @php
-                    echo "Số người đang chơi: ".number_format(rand(100,1000))." (".rand(3,10)." bạn chung)";
+                    echo "Số người đang chơi: ".number_format($numPlay)." (".rand(3,10)." bạn chung)";
                 @endphp
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12">
+                    <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                     <div class="row boxflip">
                         @for ($i = 0; $i < count($result->group->items); $i++)
                             <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
@@ -265,26 +266,26 @@
                     <div class="tab-content">
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
-
-                                @if(count($result->top_current_day)>0)
+                                
+                                @if(count($topDayList)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
-                       {{$result->top_current_day[0]->author->username}}</a></span></p>
-                                    <p style="font-weight: bold;font-size:15px">{{$result->top_current_day[0]->numwheel}} lượt lật</p>
+                                    {{$topDayList[0]['name']}}</a></span></p>
+                                    <p style="font-weight: bold;font-size:15px">{{$topDayList[0]['numwheel']}} lượt quay</p>
                                 </div>
                                 @endif
-                                @if(count($result->top_current_day)>1)
+                                @if(count($topDayList)>1)
                                 <ul class="rank-list">
-                                    @foreach($result->top_current_day as $item)
+                                    @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#2</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
-                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
+                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
-                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>
+                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item['numwheel']}} lượt</p>
                                         <div class="clearfix"> </div>
                                     </li>
                                     @endif
@@ -295,25 +296,25 @@
                         </div>
                         <div id="tap1-pane-2" aria-labelledby="tap1-tab-2" role="tabpanel" aria-hidden="true" class="tab-pane">
                             <div>
-                                @if(count($result->top_30_day)>0)
+                                @if(count($top7DayList)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
-                       {{$result->top_30_day[0]->author->username}}</a></span></p>
-                                    <p style="font-weight: bold;font-size:15px">{{$result->top_30_day[0]->numwheel}} lượt lật</p>
+                                    {{$top7DayList[0]['name']}}</a></span></p>
+                                    <p style="font-weight: bold;font-size:15px">{{$top7DayList[0]['numwheel']}} lượt quay</p>
                                 </div>
                                 @endif
-                                @if(count($result->top_30_day)>1)
+                                @if(count($top7DayList)>1)
                                 <ul class="rank-list">
-                                    @foreach($result->top_30_day as $item)
+                                    @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#2</p>
-                                            <div class="avt avt-xs"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="avt-img" alt="player duo"></div>
-                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
+                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
-                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>
+                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item['numwheel']}} lượt</p>
                                         <div class="clearfix"> </div>
                                     </li>
                                     @endif
@@ -399,12 +400,9 @@ $(document).ready(function(e){
     function initial(){
         gift_list = [];
         $('.image_gift').each(function(){
-            console.log($(this).val())
             gift_list.push({'image':$(this).val()})
         })
-            console.log(gift_list)
         gift_list = shuffle(gift_list);
-            console.log(gift_list)
         var i=0;
         $('.boxflip img.flip-box-front').each(function(){
             $(this).attr('src',gift_list[i].image);
@@ -452,10 +450,12 @@ $(document).ready(function(e){
                     console.log(data);
                     gift_detail = data.gift_detail;
                     setTimeout(function(){
-                        $('.boxflip .active').attr('src','{{config('api.url_media')}}'+gift_detail.image);
-                        $('.boxflip .active').css({'transform': 'rotateY(180deg)'});
-                        $('.boxflip .active').prev().addClass('transparent');
-                        $('.boxflip .active').parent().css({'transform': 'rotateY(180deg)'});
+                        if(gift_detail != undefined){
+                            $('.boxflip .active').attr('src','{{config('api.url_media')}}'+gift_detail.image);
+                            $('.boxflip .active').css({'transform': 'rotateY(180deg)'});
+                            $('.boxflip .active').prev().addClass('transparent');
+                            $('.boxflip .active').parent().css({'transform': 'rotateY(180deg)'});
+                        }
                         $('.boxflip .flip-box-front').prev().removeClass('transparent');
                         $('.boxflip .flip-box-front').removeClass('active');
                     },1000);
@@ -466,9 +466,18 @@ $(document).ready(function(e){
                         return;
                     } else if (data.status == 0) {
                         roll_check = true;
+                        $("#btnWithdraw").hide();
                         $('.content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
                         $('.continue').show();
+                        if($('#type_play').val() == "real")
+                        {
+                            $('.continue').html("Chơi tiếp");
+                        }
+                        else
+                        {
+                            $('.continue').html("Chơi thử tiếp");
+                        }  
                         return;
                     }
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;

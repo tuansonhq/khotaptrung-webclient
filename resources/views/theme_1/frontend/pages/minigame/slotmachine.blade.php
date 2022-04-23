@@ -10,11 +10,12 @@
             <div class="item_play_online_out">
                 <div class="item_play_online"></div>
                 @php
-                    echo "Số người đang chơi: ".number_format(rand(100,1000))." (".rand(3,10)." bạn chung)";
+                    echo "Số người đang chơi: ".number_format($numPlay)." (".rand(3,10)." bạn chung)";
                 @endphp
             </div>
             <div class="row d-flex justify-content-between">
                 <div class="col-lg-9 col-md-12">
+                    <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                     <div class="item_slot" style="background: url({{config('api.url_media').$result->group->params->image_background}})" >
                         <div class="item_slot_inner">
                             <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
@@ -282,25 +283,25 @@
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
 
-                                @if(count($result->top_current_day)>0)
+                                @if(count($topDayList)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
-                       {{$result->top_current_day[0]->author->username}}</a></span></p>
-                                    <p style="font-weight: bold;font-size:15px">{{$result->top_current_day[0]->numwheel}} lượt quay</p>
+                                    {{$topDayList[0]['name']}}</a></span></p>
+                                    <p style="font-weight: bold;font-size:15px">{{$topDayList[0]['numwheel']}} lượt quay</p>
                                 </div>
                                 @endif
-                                @if(count($result->top_current_day)>1)
+                                @if(count($topDayList)>1)
                                 <ul class="rank-list">
-                                    @foreach($result->top_current_day as $item)
+                                    @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#2</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
-                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
+                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
-                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>
+                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item['numwheel']}} lượt</p>
                                         <div class="clearfix"> </div>
                                     </li>
                                     @endif
@@ -311,25 +312,25 @@
                         </div>
                         <div id="tap1-pane-2" aria-labelledby="tap1-tab-2" role="tabpanel" aria-hidden="true" class="tab-pane">
                             <div>
-                                @if(count($result->top_30_day)>0)
+                                @if(count($top7DayList)>0)
                                 <div class="top-info-section">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
+                                    <img src="/assets/frontend/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/image/no1_top_list.png" class="background-top1" alt="s">
                                     <p style="margin-top: 25px;"><span><a href="#" target="_blank" style="font-weight: bold;" rel="noopener noreferrer">
-                       {{$result->top_30_day[0]->author->username}}</a></span></p>
-                                    <p style="font-weight: bold;font-size:15px">{{$result->top_30_day[0]->numwheel}} lượt quay</p>
+                                    {{$top7DayList[0]['name']}}</a></span></p>
+                                    <p style="font-weight: bold;font-size:15px">{{$top7DayList[0]['numwheel']}} lượt quay</p>
                                 </div>
                                 @endif
-                                @if(count($result->top_30_day)>1)
+                                @if(count($top7DayList)>1)
                                 <ul class="rank-list">
-                                    @foreach($result->top_30_day as $item)
+                                    @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#2</p>
-                                            <div class="avt avt-xs"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="avt-img" alt="player duo"></div>
-                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item->author->username}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
+                                            <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
-                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item->numwheel}} lượt</p>
+                                        <p class="pull-right" style="margin-right: 0px;float: right">{{$item['numwheel']}} lượt</p>
                                         <div class="clearfix"> </div>
                                     </li>
                                     @endif
@@ -503,7 +504,7 @@
         });
 
 
-        function getgifbonus() {
+        function getgifbonus() {            
             if($('#checkPoint').val() != "1"){
                 return;
             }
