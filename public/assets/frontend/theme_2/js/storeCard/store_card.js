@@ -72,8 +72,13 @@
                             $(".supplier_"+telecom).html(html).flickity({
                                 cellAlign: 'left',
                                 contain: true,
-                                prevNextButtons: false,
-                                pageDots: true
+                                prevNextButtons: true,
+                                pageDots: true,
+                                autoPlay: 10000,
+                                wrapAround: true,
+
+
+
                             });
                         }
                         else {
