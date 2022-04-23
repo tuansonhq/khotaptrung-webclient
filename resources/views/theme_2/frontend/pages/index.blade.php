@@ -214,7 +214,7 @@
             </div>
         </div>
         <div class="col-lg-3">
-{{--            @include('frontend.widget.__huongdan__trangchu')--}}
+            @include('frontend.widget.__huongdan__trangchu')
         </div>
     </div>
 </div>
