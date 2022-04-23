@@ -3,9 +3,9 @@
         <div class="site-header-inner d-flex align-items-end">
             <!-- BEGIn Site Brand -->
             <div class="site-brand me-3">
-                <h1 class="site-title mb-0">
+                <div class="site-title mb-0">
                     <a href="/" class="site-link"><img src="{{config('api.url_media').setting('sys_logo') }}" alt="Logo" class="site-logo"></a>
-                </h1>
+                </div>
             </div><!-- END Site Brand -->
             <!-- BEGIN Site Header Nav -->
             <div class="site-header-nav">
