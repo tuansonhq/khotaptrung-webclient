@@ -1,4 +1,4 @@
-@if(isset($data) && count($data) > 0)
+{{--@if(isset($data) && count($data) > 0)--}}
 {{--<!-- BEGIN Guide Block -->--}}
 {{--<div class="mb-4">--}}
 {{--    <h6 class="title-style-tab"><span><i class="las la-question-circle icon"></i> Hướng dẫn</span></h6>--}}
@@ -28,7 +28,7 @@
 {{--    @endif--}}
 {{--@endforeach--}}
 
-@endif
+{{--@endif--}}
 <!-- BEGIN Support Block -->
 <div class="mb-4">
     <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>
