@@ -30,28 +30,28 @@
 
 {{--@endif--}}
 <!-- BEGIN Support Block -->
-<div class="mb-4">
-    <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>
-    <!-- BEGIN Support Item -->
-    <div class="item-block-support hotline d-flex p-2 justify-content-between align-items-center mb-2">
-        <div class="item-icon">
-            <i class="las la-phone-volume"></i>
-        </div>
-        <div class="item-content">
-            <div class="op-7 text-end">Hotline</div>
-            <a href="tel:+{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong> {{number_format(setting('sys_phone') , 0, ',', '.')}}</strong></a>
-        </div>
-    </div><!-- END Support Item -->
-    <!-- BEGIN Support Item -->
-    <div class="item-block-support facebook d-flex p-2 justify-content-between align-items-center mb-2">
-        <div class="item-icon">
-            <i class="lab la-facebook-f"></i>
-        </div>
-        <div class="item-content">
-            <div class="op-7 text-end">Facebook</div>
-            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong>{{\Request::server("HTTP_HOST")}}</strong></a>
-        </div>
-    </div><!-- END Support Item -->
-</div><!-- BEGIN Support Block -->
+{{--<div class="mb-4">--}}
+{{--    <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>--}}
+{{--    <!-- BEGIN Support Item -->--}}
+{{--    <div class="item-block-support hotline d-flex p-2 justify-content-between align-items-center mb-2">--}}
+{{--        <div class="item-icon">--}}
+{{--            <i class="las la-phone-volume"></i>--}}
+{{--        </div>--}}
+{{--        <div class="item-content">--}}
+{{--            <div class="op-7 text-end">Hotline</div>--}}
+{{--            <a href="tel:+{{setting('sys_phone')}}" class="d-block main-text text-end text-danger"><strong> {{number_format(setting('sys_phone') , 0, ',', '.')}}</strong></a>--}}
+{{--        </div>--}}
+{{--    </div><!-- END Support Item -->--}}
+{{--    <!-- BEGIN Support Item -->--}}
+{{--    <div class="item-block-support facebook d-flex p-2 justify-content-between align-items-center mb-2">--}}
+{{--        <div class="item-icon">--}}
+{{--            <i class="lab la-facebook-f"></i>--}}
+{{--        </div>--}}
+{{--        <div class="item-content">--}}
+{{--            <div class="op-7 text-end">Facebook</div>--}}
+{{--            <a href="{{setting('sys_fanpage')}}" class="d-block main-text text-end" target="_blank"><strong>{{\Request::server("HTTP_HOST")}}</strong></a>--}}
+{{--        </div>--}}
+{{--    </div><!-- END Support Item -->--}}
+{{--</div><!-- BEGIN Support Block -->--}}
 
 
