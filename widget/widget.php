@@ -47,7 +47,8 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $urldichvu = '/get-show-service';
     $methoddichvu = "GET";
     $valdichvu = array();
-
+    $valdichvu['limit'] = 8;
+    
     $result_Apidichvu = DirectAPI::_makeRequest($urldichvu,$valdichvu,$methoddichvu);
 
     $datadichvu = $result_Apidichvu->data;
