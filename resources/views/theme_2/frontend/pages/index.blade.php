@@ -20,7 +20,7 @@
                 <ul class="nav nav-qp-tabs mb-4" role="tablist">
                     <li class="nav-item nav-item-telecom" role="presentation">
 {{--                        <a class="nav-link active" href="#" id="game-tab" data-bs-toggle="tab" data-bs-target="#game" type="button" role="tab" aria-controls="game" aria-selected="true"><span><i class="las la-gamepad"></i> <span><span class="d-none d-md-inline">Mua thẻ</span> Game</span></span></a>--}}
-                        <a class="nav-link nav-link-telecom active" href="#" id="thedienthoai-tab" data-bs-toggle="tab" data-content="thedienthoai" data-bs-target="#thedienthoai" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ Điện thoại</span> </span></a>
+                        <a class="nav-link nav-link-telecom active" href="#" id="thedienthoai-tab" data-bs-toggle="tab" data-content="thedienthoai" data-bs-target="#thedienthoai" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ</span> </span></a>
                     </li>
 {{--                    <li class="nav-item" role="presentation">--}}
 {{--                        <a class="nav-link" href="#" id="mobile-tab" data-bs-toggle="tab" data-bs-target="#mobile" type="button" role="tab" aria-controls="mobile" aria-selected="true"><span><i class="las la-mobile"></i> <span class="d-none d-md-inline">Mua thẻ</span> Điện thoại</span></a>--}}
