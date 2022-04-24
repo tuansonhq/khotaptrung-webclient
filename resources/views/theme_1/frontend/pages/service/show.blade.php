@@ -188,12 +188,12 @@
                     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
                     <div class="row">
                         <div class="col-md-12 float_mb">
-                            <script src="/assets/frontend/rank/js/rslider.js"></script>
-                            <script src="/assets/frontend/rank/js/select-chosen.js" type="text/javascript"></script>
-                            <link href="/assets/frontend/rank/css/style.css" rel="stylesheet" type="text/css"/>
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/style.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/responsive.css">
-                            <link rel="stylesheet" type="text/css" href="/assets/frontend/rank/css/chosen.css">
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+                            <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
                             <div class="range_slider" style="">
@@ -239,8 +239,71 @@
                                 </div>
                             </div>
 
-                            <div class="row emply-btns box-body" style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">
-                                {!! $data->description !!}
+                            <h2>Bảng giá</h2>
+                            <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
+                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                    <thead class="m-datatable__head">
+                                    <tr class="m-datatable__row">
+                                        <th style="width:30px;" class="m-datatable__cell">
+                                            #
+                                        </th>
+                                        <th class="m-datatable__cell">
+                                            Tên
+                                        </th>
+                                        <th style="width:150px;" class="m-datatable__cell">
+                                            Tiền công
+                                        </th>
+                                        <th style="width:150px;" class="m-datatable__cell">
+                                            Thanh toán
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="m-datatable__body">
+                                    @if(!empty($name))
+                                        @for ($i = 0; $i < count($name)-1; $i++)
+                                            @if($name[$i]!=null)
+                                                <tr class="m-datatable__row m-datatable__row--even">
+                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
+                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
+                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
+                                                    <td class="m-datatable__cell">
+                                                        @if(\App\Library\AuthCustom::check())
+                                                            <span class="pay">Thanh toán</span>
+                                                        @else
+                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
+                                                        @endif
+
+                                                    </td>
+                                                </tr>
+                                            @endif
+
+                                        @endfor
+                                    @endif
+                                    </tbody>
+                                </table>
+                                <style type="text/css">
+                                    @media only screen and (max-width: 640px) {
+                                        .float_mb {
+                                            float: left;
+                                        }
+                                    }
+                                    .pay{
+                                        display: block;
+                                        background: #fb236a;
+                                        border-radius: 17px;
+                                        text-align: center;
+                                        max-width: 118px;
+                                        height: 30px;
+                                        line-height: 30px;
+                                        color: #fff;
+                                        cursor: pointer;
+                                    }
+                                </style>
+                                <script type="text/javascript">
+                                    $(".pay").click(function(){
+                                        $("#btnPurchase").click();
+                                    })
+                                </script>
                             </div>
                         </div>
                         <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
@@ -431,8 +494,6 @@
         }
 
         var data = jQuery.parseJSON('{!! $data->params !!}');
-        console.log(data);
-
 
             @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
         var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
@@ -520,8 +581,6 @@
 
             if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
                 $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
-                    console.log($(elm).val());
-                    console.log(elm);
                     price += parseInt(s_price[$(elm).val()]);
                     if (itemselect != '') {
                         itemselect += '|';
@@ -744,18 +803,5 @@
         }
     </script>
     @endif
-    <script>
-        $(document).ready(function () {
-            $('.load-modal').each(function (index, elem) {
-                $(elem).unbind().click(function (e) {
-                    e.preventDefault();
-                    e.preventDefault();
-                    var curModal = $('#LoadModal');
-                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
-                    curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
-                });
-            });
-        });
-    </script>
 @endsection
 
