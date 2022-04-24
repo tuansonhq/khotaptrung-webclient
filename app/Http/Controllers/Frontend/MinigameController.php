@@ -119,22 +119,52 @@ class MinigameController extends Controller
                     }
 
                     $numNear = 10;
+                    $numNearSpecial = 10;
                     if($group->params->play_num_near > 0){
                         $numNear = $group->params->play_num_near;
                     }
+                    if($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to){
+                        $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
+                    }
                     if(count($result->group->items)>0){
+                        $currentPlayList = "";
                         $currentPlayList = Cache::get('currentPlayList'.$group->id);
-                        if($currentPlayList==null){
-                            $currentPlayList = "Danh sách trúng thưởng: ";
-                            for($i=0;$i<=$numNear;$i++){
-                                $fname = $firstname[rand(0,count($firstname)-1)];
-                                $lname = $lastname[rand(0 ,count($lastname)-1)];
-                                $name = substr($fname, 0,rand(2,3));
-                                $name .= '*****';
-                                $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
-                                $gift = $result->group->items[rand(0,count($result->group->items)-1)]->title;
-                                $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
+                        if($currentPlayList==null){                            
+                            $arrayGift = [];                       
+                            $arrayGiftSpecial = [];
+                            foreach ($result->group->items as $key) {
+                                if(isset($key->params->special) && $key->params->special == 1){
+                                    array_push($arrayGiftSpecial, $key->title);
+                                }else{
+                                    array_push($arrayGift, $key->title);
+                                }
                             }
+
+                            if(count($arrayGiftSpecial) > 0){
+                                for($i=0;$i<=$numNearSpecial;$i++){
+                                    $fname = $firstname[rand(0,count($firstname)-1)];
+                                    $lname = $lastname[rand(0 ,count($lastname)-1)];
+                                    $name = substr($fname, 0,rand(2,3));
+                                    $name .= '*****';
+                                    $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
+                                    $gift = $arrayGiftSpecial[rand(0,count($arrayGiftSpecial)-1)];
+                                    $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
+                                }
+                            }
+                            
+                            if(count($arrayGift) > 0){
+                                for($i=0;$i<=$numNear;$i++){
+                                    $fname = $firstname[rand(0,count($firstname)-1)];
+                                    $lname = $lastname[rand(0 ,count($lastname)-1)];
+                                    $name = substr($fname, 0,rand(2,3));
+                                    $name .= '*****';
+                                    $name .= substr($lname,(strlen($lname)-rand(2,3)),strlen($lname));
+                                    $gift = $arrayGift[rand(0,count($arrayGift)-1)];
+                                    $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
+                                }
+                            }              
+                            $currentPlayList = $currentPlayList!=""?("Danh sách trúng thưởng: ".$currentPlayList):"";
+                            
                             $expiresAt = Carbon::now()->addMinutes(5);
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }
