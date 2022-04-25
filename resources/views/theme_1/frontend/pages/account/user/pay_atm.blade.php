@@ -2,7 +2,7 @@
 @push('style')
 @endpush
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 @endpush
 @section('content')
 

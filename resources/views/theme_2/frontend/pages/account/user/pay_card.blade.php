@@ -206,5 +206,5 @@
         </div>
     </div>
     <div class="after"></div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
 @endsection
