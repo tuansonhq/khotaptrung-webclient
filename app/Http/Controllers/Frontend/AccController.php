@@ -19,15 +19,15 @@ class AccController extends Controller
         $val = array();
         $val['data'] = 'category_list';
         $val['module'] = 'acc_category';
-        $val['sort_by'] = 'published_at';
-        $val['sort'] = 'desc';
+//        $val['sort_by'] = 'published_at';
+//        $val['sort'] = 'desc';
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
         }else{
             return 'sai';
         }
-//        return $data;
+
         return view('frontend.pages.account.getShowCategory')
             ->with('data',$data);
     }
