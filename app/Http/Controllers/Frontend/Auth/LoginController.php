@@ -97,7 +97,8 @@ class LoginController extends Controller
                 Session::put('exp_token',$result->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
                 $path = Session::get('path');
-                return redirect()->to('/'.$path);
+                $url =\Request::server ("HTTP_HOST");
+                return redirect()->to($url.'/'.$path);
             } else {
                 return redirect()->back()->withErrors($result->message);
             }
