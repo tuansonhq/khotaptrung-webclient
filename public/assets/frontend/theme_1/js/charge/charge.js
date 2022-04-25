@@ -88,7 +88,7 @@ $(document).ready(function(){
                     html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - ' + value.ratio_true_amount +'% </option>';
+                            html += '<option value="'+ value.amount +'" rel-ratio="'+ value.ratio_default+'">'+ formatNumber(value.amount)  +' VNĐ - Nhận ' + value.ratio_true_amount +'% </option>';
                         });
                     }
                     $('select#amount').html(html);
