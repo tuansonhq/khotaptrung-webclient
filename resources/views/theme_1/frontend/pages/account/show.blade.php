@@ -251,6 +251,23 @@
                     </div>
                 </div>
             </div>
+{{--            @dd($data)--}}
+            @if(isset($data->description))
+                <div class="shop_product_another pt-3">
+                    <div class="c-content-title-1">
+                        <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Nổi bật</h3>
+                        <div class="c-line-center c-theme-bg"></div>
+                    </div>
+
+                    <div class="shop_product_another_content">
+                        <div class="item_buy_list row">
+                            <div class="col-md-12">
+                                <span style="text-transform: uppercase">NGỘ KHÔNG NHÓC TÌ BÁ ĐẠO IV, RYOMA SAMURAI, ZEPHYS HẮC VÔ THƯỜNG, BBOY CÔNG NGHỆ, ZUKA DIỆT NGUYỆT NGUYÊN SOÁI, NGỘ KHÔNG TỀ THIÊN MA HẦU, RAZ SAITAMA VÀ DÀN SKIN ĐẸP. CÁC BẢNG NGỌC SIÊU CHUẨN ĐẸP.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
             @if(isset($sliders) && count($sliders))
 
