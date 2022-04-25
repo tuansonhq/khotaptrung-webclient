@@ -111,21 +111,21 @@
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'left',
+                placement: 'right',
             });
 
             tippy('#getpasstk', {
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'left',
+                placement: 'right',
             });
 
             tippy('#getIdkey', {
                 // default
                 trigger: 'click',
                 content: "Đã copy!",
-                placement: 'left',
+                placement: 'right',
             });
 
             // Click event of the showPassword button
