@@ -1,4 +1,4 @@
-{{--@dd($datadichvu)--}}
+
 
 @if(isset($data) && count($data) > 0)
 
@@ -15,7 +15,7 @@
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                     <div class="game-list-content">
                         <div class="game-list-image">
-                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}">
+                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
                                     <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ isset($item->custom->image_icon) ? $item->custom->image_icon : $item->image_icon }}" alt="">
@@ -32,7 +32,7 @@
                             </a>
                         </div>
                         <div class="game-list-title">
-                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}">
+                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                 <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
                             </a>
                         </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
-                                <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) ? $item->custom->slug :  $item->slug }}">
+                                <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
 
                                     @if(isset($item->custom) && isset($item->custom->meta))
                                         @foreach($item->custom->meta as $key =>$val)
@@ -93,7 +93,7 @@
                     <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                         <div class="game-list-content">
                             <div class="game-list-image">
-                                <a class="account_category" href="/dich-vu/{{ $item->slug   }}">
+                                <a class="account_category" href="/dich-vu/{{ $item->slug}}">
                                     {{--                                                Anh khuyen mai--}}
                                     @if(isset($item->image_icon))
                                         <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_icon  }}" alt="">

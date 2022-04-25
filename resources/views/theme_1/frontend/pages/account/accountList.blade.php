@@ -246,7 +246,7 @@
         </div>
     </div>
 
-    <input type="hidden" value="{{ isset($data->custom->slug) ? $data->custom->slug :  $data->slug }}" name="slug" class="slug">
+    <input type="hidden" value="{{ isset($data->custom->slug) && $data->custom->slug != '' ? $data->custom->slug :  $data->slug }}" name="slug" class="slug">
     <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">
     <input type="hidden" name="id_data" class="id_data" value="">
     <input type="hidden" name="title_data" class="title_data" value="">
