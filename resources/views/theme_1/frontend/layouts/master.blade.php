@@ -34,12 +34,12 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fixed-sticky/fixedsticky.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover-x.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/tui-date-picker.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/news.css?v={{time()}}">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css?v={{time()}}">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">
@@ -66,7 +66,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/record/record.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>

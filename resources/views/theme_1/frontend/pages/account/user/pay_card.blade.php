@@ -2,7 +2,7 @@
 @push('style')
 @endpush
 @push('js')
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
 @endpush
 @section('content')
 <div class="account">
