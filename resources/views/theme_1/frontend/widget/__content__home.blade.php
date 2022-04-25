@@ -117,8 +117,8 @@
                             <div class="game-list-description">
                                 <div class="countime"></div>
 
-                                <p>Hỗ trợ dịch vụ: 5 </p>
-                                <p>Giao dịch: 19.878 </p>
+                                <p></p>
+                                <p></p>
 
                             </div>
                             <div class="game-list-more">
