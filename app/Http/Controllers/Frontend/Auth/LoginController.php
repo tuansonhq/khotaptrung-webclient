@@ -87,6 +87,7 @@ class LoginController extends Controller
         $data = array();
         $data['accessToken'] = $request->accessToken;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
         if(isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;
             if ($result->status == 1) {
@@ -96,9 +97,7 @@ class LoginController extends Controller
                 Session::put('jwt',$result->token);
                 Session::put('exp_token',$result->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
-                $path = Session::get('path');
-                $url =\Request::server ("HTTP_HOST");
-                return redirect()->to($url.'/'.$path);
+                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('path').'');
             } else {
                 return redirect()->back()->withErrors($result->message);
             }
