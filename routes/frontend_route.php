@@ -98,7 +98,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
-                        Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
 
                         //lịch sử nạp thẻ
 
@@ -199,8 +198,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
                 Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
                     ->name('loginApi');
-                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                    ->name('loginfacebook');
+
                 Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                     ->name('register');
                 Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
@@ -221,14 +219,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 ) , function ()
                 {
 
-
-//            Route::get('/lich-su-giao-dich/data', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
-                    //nạp thẻ
-//Nạp thẻ Atm
-//            Route::get('/get-bank/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankData'])
-//                ->name('getBankData');
-//            Route::get('/nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData'])
-//                ->name('getDepositAutoData');
                     Route::post('/post-deposit', [\App\Http\Controllers\Frontend\ChargeController::class , 'postDeposit'])
                         ->name('postDeposit');
                     Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
@@ -243,24 +233,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
                     Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
                         ->name('postTranferBank');
-
-
-
-                    //            mua thẻ
-//            Route::post('/post-Store-Card', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])
-//                ->name('postStoreCard');
-//            Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])
-//                ->name('getStoreCard');
-//            Route::get('/mua-the-api', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
-//                ->name('getAmountStoreCard');
-//            Route::get('/get-tele-card-store', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])
-//                ->name('getTelecomStoreCard');
-
-
-
-
-
-//account
 
 
                 });
@@ -287,6 +259,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
             });
+            Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
+            Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                ->name('loginfacebook');
 
 //    Route::group(['middleware' => ['auth_custom']], function (){
 //        Route::group(['middleware' => ['cacheResponse:300']], function (){
