@@ -117,12 +117,14 @@ class StoreCardController extends Controller
                     return response()->json([
                         'status' => 1,
                         'message' => $result->message,
+                        'data' => $result
                     ]);
                 }
                 if($result->status == 0){
                     return response()->json([
                         'status' => 0,
                         'message' => $result->message,
+                        'data' => $result
                     ]);
                 }
                 else{
