@@ -1557,9 +1557,17 @@ footer{
     .item_play_dif_slide_description__size{
         padding-top: 0!important;
     }
+
+    .game-list-title h3 {
+        font-size: 14px!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .game-list-title h3 {
+        font-size: 14px!important;
+    }
+
     .content {
         padding-top: 80px!important;
     }
@@ -2098,3 +2106,4 @@ footer{
 .store_card_slide{
     min-height: 280px;
 }
+

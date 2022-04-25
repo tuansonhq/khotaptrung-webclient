@@ -18,11 +18,11 @@
                             </div>
 
                             <div class="col-12 item_buy_list_info_in">
-                                <span>Hỗ trợ dịch vụ:</span> 5
+                                <span></span>
                             </div>
 
                             <div class="col-12 item_buy_list_info_in">
-                                <span>Giao dịch:</span> 19,878
+                                <span></span>
                             </div>
 
                         </div>
