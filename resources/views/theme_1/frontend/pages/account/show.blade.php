@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </div>
-{{--            @dd($data)--}}
+
             @if(isset($data->description))
                 <div class="shop_product_another pt-3">
                     <div class="c-content-title-1">
@@ -262,7 +262,7 @@
                     <div class="shop_product_another_content">
                         <div class="item_buy_list row">
                             <div class="col-md-12">
-                                <span style="text-transform: uppercase">NGỘ KHÔNG NHÓC TÌ BÁ ĐẠO IV, RYOMA SAMURAI, ZEPHYS HẮC VÔ THƯỜNG, BBOY CÔNG NGHỆ, ZUKA DIỆT NGUYỆT NGUYÊN SOÁI, NGỘ KHÔNG TỀ THIÊN MA HẦU, RAZ SAITAMA VÀ DÀN SKIN ĐẸP. CÁC BẢNG NGỌC SIÊU CHUẨN ĐẸP.</span>
+                                <span style="text-transform: uppercase">{!! $data->description !!}</span>
                             </div>
                         </div>
                     </div>
