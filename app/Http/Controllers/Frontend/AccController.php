@@ -297,50 +297,69 @@ class AccController extends Controller
 
         if (AuthCustom::check()) {
 //            $slug = decodeItemID($slug);
-            $url = '/acc';
-            $method = "POST";
-            $val = array();
-            $val['id'] = $slug;
-            $val['data'] = 'buy_acc';
-            $val['user_id'] = AuthCustom::user()->id;
+            $urlshow = '/acc';
+            $methodshow = "GET";
+            $valshow = array();
+            $valshow['data'] = 'acc_detail';
+            $valshow['id'] = $slug;
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $data = $result_Api->data;
+            if(isset($result_Apishow) && $result_Apishow->httpcode == 200){
+                $datashow = $result_Apishow->data;
 
-                if (isset($data->success)){
-                    if ($data->success == 0){
-                        return response()->json([
-                            'status' => 2,
-                            'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
-                        ]);
+                $amount = (int)$datashow->price;
+
+                $atm_percent = setting('sys_atm_percent');
+                if (isset($atm_percent)){
+                    $amount = (int)($amount*$atm_percent)/100;
+                }
+
+                $url = '/acc';
+                $method = "POST";
+                $val = array();
+                $val['id'] = $slug;
+                $val['data'] = 'buy_acc';
+                $val['user_id'] = AuthCustom::user()->id;
+                $val['amount'] = $amount;
+                $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+                if(isset($result_Api) && $result_Api->httpcode == 200){
+                    $data = $result_Api->data;
+
+                    if (isset($data->success)){
+                        if ($data->success == 0){
+                            return response()->json([
+                                'status' => 2,
+                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                            ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                    }elseif ($data->success == 1 ){
-                        return response()->json([
-                            'status' => 1,
-                            'message' => "Mua tài khoản thành công",
-                        ]);
+                        }elseif ($data->success == 1 ){
+                            return response()->json([
+                                'status' => 1,
+                                'message' => "Mua tài khoản thành công",
+                            ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                    }
-                }elseif (isset($data->error)){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                    ]);
+                        }
+                    }elseif (isset($data->error)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
 //                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        ]);
+                    }
+
                 }else{
                     return response()->json([
                         'status' => 0,
                         'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
                     ]);
                 }
-
-            }else{
-                return response()->json([
-                    'status' => 0,
-                    'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                ]);
             }
         }
     }
