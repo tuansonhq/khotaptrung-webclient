@@ -310,10 +310,12 @@ class AccController extends Controller
 
                 $amount = (int)$datashow->price;
 
-                $atm_percent = setting('sys_atm_percent');
-                if (isset($atm_percent)){
-                    $amount = (int)($amount*$atm_percent)/100;
-                }
+//                $atm_percent = setting('sys_atm_percent');
+//                if (isset($atm_percent)){
+//                    $amount = (int)($amount*$atm_percent)/100;
+//                }
+
+//                return $amount;
 
                 $url = '/acc';
                 $method = "POST";
