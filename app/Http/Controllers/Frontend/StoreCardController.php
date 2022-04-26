@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
+
+        Session::put('path', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.buy_card');
     }
     public function getTelecomStoreCard(Request $request){
+
         try{
             $url = '/store-card/get-telecom';
             $method = "GET";

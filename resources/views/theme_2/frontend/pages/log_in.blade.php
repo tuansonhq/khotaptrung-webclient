@@ -214,7 +214,7 @@
                 },
                 complete: function (data) {
                     $('#reload').trigger('click');
-                    $('#form-charge-input').trigger("reset");
+                    $('#form-regist').trigger("reset");
                 }
             });
         });

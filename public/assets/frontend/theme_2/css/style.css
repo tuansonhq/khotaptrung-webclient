@@ -2462,15 +2462,13 @@ input[type="number"] {
 .border-top {
     /* border-top: 1px solid #dee2e6 !important; */
 }
-.supplier_thedienthoai .flickity-button{
-    display: none;
+.site-header .site-header-inner .site-header-nav .header-main-nav .nav-item .nav-link:hover{
+    transition: .2s ease;
 }
-.supplier_thedienthoai:hover .flickity-button{
-    display: block;
+.site-header .site-header-inner .site-header-nav .header-main-nav .nav-item .nav-link:hover{
+    color: white;
+    transition: .2s ease;
 }
-.row-price .flickity-button{
-    display: none;
-}
-.row-price:hover .flickity-button{
-    display: block;
+.site-header-nav .nav-item:hover a{
+
 }
