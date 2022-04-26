@@ -160,7 +160,7 @@
                             </div>
                         </div>                                        </div><!-- END Tab Content Profile -->
                     <!-- BEGIN Tab Content History -->
-                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                    <div class="tab-pane fade data__giaodich" id="history" role="tabpanel" aria-labelledby="history-tab">
                         <form class="form-charge form__txns">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
@@ -178,7 +178,7 @@
                         @include('theme_2.frontend.pages.account.user.function.__lich__su__giao__dich__data')
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Deposit -->
-                    <div class="tab-pane fade data__giaodich" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+                    <div class="tab-pane fade data__napthe" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
                         <form class="form-charge form__lsnt">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
@@ -305,11 +305,15 @@
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
                                     <input type="text" class="form-control border-start-0 ended_at_tcdm" placeholder="DD/MM/YYYY" value="">
                                     <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
+                                    <input type="hidden" name="log" value="store-card">
                                 </div>
                             </div>
                         </div>
                         </form>
-                        @include('.theme_2.frontend.pages.account.user.function.__lich__su__mua__the')
+                        <div id="data_muathe_history">
+                            @include('frontend.pages.account.user.function.__lich__su__mua__the')
+                        </div>
+
                     </div><!-- BEGIN Tab Content Item -->
                 </div>
             </div>
@@ -338,6 +342,31 @@
 
 
     <script>
+
+        var loc = window.location.search;
+        if (loc.replace('?log=','') == 'store-card'){
+            $('.nav-link').removeClass('active');
+            $('.tab-pane').removeClass('active');
+            $('.tab-pane').removeClass('show');
+            $('.data__muathe').addClass('active');
+            $('.data__muathe').addClass('show');
+
+        }else if(loc.replace('?log=','') == 'deposit-history'){
+            $('.nav-link').removeClass('active');
+            $('.tab-pane').removeClass('active');
+            $('.tab-pane').removeClass('show');
+            $('.data__napthe').addClass('active');
+            $('.data__napthe').addClass('show');
+        }else if(loc.replace('?log=','') == 'transaction-history'){
+            $('.nav-link').removeClass('active');
+            $('.tab-pane').removeClass('active');
+            $('.tab-pane').removeClass('show');
+            $('.data__giaodich').addClass('active');
+            $('.data__giaodich').addClass('show');
+        }
+
+        console.log(loc.replace('?log=',''))
+
 
         $('#form-changePassword').submit(function (e) {
             e.preventDefault();
