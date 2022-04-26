@@ -154,7 +154,7 @@ class AccController extends Controller
                         $dataAttribute = $data->childs;
                     }
 
-
+                    Session::forget('path');
                     Session::put('path', $_SERVER['REQUEST_URI']);
                     return view('frontend.pages.account.accountList')
                         ->with('data',$data)
