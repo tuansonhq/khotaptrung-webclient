@@ -3,7 +3,7 @@
     @include('frontend.widget.__seo_head')
 @endsection
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js?v={{time()}}"></script>
     <script>
         $(document).ready(function(){
             $('.item-').addClass('active')
