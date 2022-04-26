@@ -37,9 +37,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end w-100 shadow">
                             <a class="dropdown-item" href="/thong-tin"><i class="las la-user icon"></i>Hồ sơ cá nhân</a>
-                            <a class="dropdown-item" href="/thong-tin#history"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
-                            <a class="dropdown-item" href="/thong-tin#deposit"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
-                            <a class="dropdown-item" href="/thong-tin#item"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
+                            <a class="dropdown-item" href="/thong-tin?log=transaction-history"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
+                            <a class="dropdown-item" href="/thong-tin?log=deposit-history"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
+                            <a class="dropdown-item" href="/thong-tin?log=store-card"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
 
                             <a class="dropdown-item" href="/login" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="las la-sign-out-alt icon"></i>Đăng xuất</a>
                         </div>
