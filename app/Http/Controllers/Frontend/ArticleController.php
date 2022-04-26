@@ -48,7 +48,7 @@ class ArticleController extends Controller
                     ->with('datacategory',$datacategory);
             }
         }else{
-            return 'sai';
+            return redirect('/');
         }
     }
 
@@ -96,7 +96,7 @@ class ArticleController extends Controller
                     ->with('per_page',$per_page)
                     ->with('category',$category);
             }else{
-                return 'sai';
+                return redirect('/');
             }
         }
     }
@@ -151,7 +151,7 @@ class ArticleController extends Controller
                     ->with('slug',$slug);
 
             }else{
-                return 'sai';
+                return redirect('/');
             }
         }
     }
@@ -213,7 +213,7 @@ class ArticleController extends Controller
             }
 
         }else{
-            return 'sai';
+            return redirect('/');
         }
     }
 
