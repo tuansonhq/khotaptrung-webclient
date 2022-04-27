@@ -1,9 +1,12 @@
-
 @if(isset($data) && count($data) > 0)
     @foreach($data as$key => $item)
+
         @php
            $index = 6;
             if ($slug == $item->slug){
+                $index = 7;
+            }
+            if ($id != $item->id ){
                 $index = 7;
             }
         @endphp
