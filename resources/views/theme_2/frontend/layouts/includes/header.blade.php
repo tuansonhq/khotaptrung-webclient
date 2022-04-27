@@ -36,6 +36,20 @@
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end w-100 shadow">
+                            <a href="#" class="dropdown-item d-none d-md-block d-lg-none" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="text text-black" id="info_mobile">
+                                    <div class="text-center store-loading">
+                                        <span class="pulser"></span>
+                                    </div>
+
+
+                                </div>
+                            </a>
+                            <style>
+                                @media  screen and (max-width: 576px) {
+                                    .d-md-block{display:block!important}
+                                }
+                            </style>
                             <a class="dropdown-item" href="/thong-tin"><i class="las la-user icon"></i>Hồ sơ cá nhân</a>
                             <a class="dropdown-item" href="/thong-tin?log=transaction-history"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
                             <a class="dropdown-item" href="/thong-tin?log=deposit-history"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
