@@ -19,6 +19,7 @@ $(document).ready(function(){
         loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt);
     });
 
+
     function loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt) {
 
         request = $.ajax({
@@ -86,12 +87,14 @@ $(document).ready(function(){
 
     });
     var loc = window.location.search;
-    if(loc.replace('?log=','') == 'transaction-history'){
+
+    if(loc.replace('?log=','') == 'deposit-history'){
         $('.nav-link').removeClass('active');
         $('.tab-pane').removeClass('active');
         $('.tab-pane').removeClass('show');
-        $('.data__giaodich').addClass('active');
-        $('.data__giaodich').addClass('show');
+        $('.data__napthe').addClass('active');
+        $('.data__napthe').addClass('show');
+
         $('.started_at_txns_data').val('');
         $('.ended_at_txns_data').val('');
 
@@ -100,5 +103,7 @@ $(document).ready(function(){
         let page = $('#hidden_page_service_lsnt').val();
 
         loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
+
+
     }
 })

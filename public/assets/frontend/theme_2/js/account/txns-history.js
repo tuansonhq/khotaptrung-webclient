@@ -70,13 +70,12 @@ $(document).ready(function(){
 
     });
     var loc = window.location.search;
-    if(loc.replace('?log=','') == 'deposit-history'){
+    if(loc.replace('?log=','') == 'transaction-history'){
         $('.nav-link').removeClass('active');
         $('.tab-pane').removeClass('active');
         $('.tab-pane').removeClass('show');
-        $('.data__napthe').addClass('active');
-        $('.data__napthe').addClass('show');
-
+        $('.data__giaodich').addClass('active');
+        $('.data__giaodich').addClass('show');
         $('.id_txns_data').val('');
         $('.started_at_txns_data').val('');
         $('.ended_at_txns_data').val('');
@@ -84,10 +83,9 @@ $(document).ready(function(){
         var id_txns_data = $('.id_txns_data').val();
         var started_at_txns_data = $('.started_at_txns_data').val();
         var ended_at_txns_data = $('.ended_at_txns_data').val();
-        let page = $('#hidden_page_service_txns').val();
+        var page = $('#hidden_page_service_txns').val();
 
         loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data)
-
     }
 
 
