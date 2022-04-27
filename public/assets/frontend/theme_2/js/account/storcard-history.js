@@ -29,41 +29,41 @@ $(document).ready(function(){
         loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
     });
 
-    $(document).on('submit', '.form__lsmt', function(e){
-        e.preventDefault();
-
-        var id_lsmt = $('.id_txns').val();
-        var started_at_lsmt = $('.started_at_lsmt').val();
-        var ended_at_lsmt = $('.ended_at_lsmt').val();
-
-        if (started_at_lsmt == null || started_at_lsmt == undefined || started_at_lsmt == ''){
-            $('.started_at_lsmt_data').val('');
-        }else {
-            $('.started_at_lsmt_data').val(started_at_lsmt);
-        }
-
-        if (ended_at_lsmt == null || ended_at_lsmt == undefined || ended_at_lsmt == ''){
-            $('.ended_at_txns_data').val('');
-        }else {
-            $('.ended_at_txns_data').val(ended_at_txns);
-        }
-
-        if (id_lsmt == null || id_lsmt == undefined || id_lsmt == ''){
-            $('.id_lsmt_data').val('');
-        }else {
-            $('.id_lsmt_data').val(id_lsmt);
-        }
-
-        var id_lsmt_data = $('.id_lsmt_data').val();
-
-        var started_at_lsmt_data = $('.started_at_lsmt_data').val();
-        var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
-        var page = $('#hidden_page_service_lsmt').val();
-
-
-        loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
-
-    });
+    // $(document).on('submit', '.form__lsmt', function(e){
+    //     e.preventDefault();
+    //
+    //     var id_lsmt = $('.id_txns').val();
+    //     var started_at_lsmt = $('.started_at_lsmt').val();
+    //     var ended_at_lsmt = $('.ended_at_lsmt').val();
+    //
+    //     if (started_at_lsmt == null || started_at_lsmt == undefined || started_at_lsmt == ''){
+    //         $('.started_at_lsmt_data').val('');
+    //     }else {
+    //         $('.started_at_lsmt_data').val(started_at_lsmt);
+    //     }
+    //
+    //     if (ended_at_lsmt == null || ended_at_lsmt == undefined || ended_at_lsmt == ''){
+    //         $('.ended_at_txns_data').val('');
+    //     }else {
+    //         $('.ended_at_txns_data').val(ended_at_txns);
+    //     }
+    //
+    //     if (id_lsmt == null || id_lsmt == undefined || id_lsmt == ''){
+    //         $('.id_lsmt_data').val('');
+    //     }else {
+    //         $('.id_lsmt_data').val(id_lsmt);
+    //     }
+    //
+    //     var id_lsmt_data = $('.id_lsmt_data').val();
+    //
+    //     var started_at_lsmt_data = $('.started_at_lsmt_data').val();
+    //     var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
+    //     var page = $('#hidden_page_service_lsmt').val();
+    //
+    //
+    //     loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
+    //
+    // });
 
     $('body').on('click','.data__muathe',function(e){
         e.preventDefault();
@@ -88,6 +88,8 @@ $(document).ready(function(){
         $('.tab-pane').removeClass('show');
         $('.data__muathe').addClass('active');
         $('.data__muathe').addClass('show');
+        $('.data__muathe_tab').addClass('active');
+        $('.data__muathe_tab').addClass('show');
         $('.id_lsmt_data').val('');
         $('.started_at_lsmt_data').val('');
         $('.ended_at_lsmt_data').val('');
@@ -117,7 +119,6 @@ $(document).ready(function(){
     });
 
     function loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data) {
-        console.log(page)
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-mua-the-tich-hop',
@@ -128,18 +129,19 @@ $(document).ready(function(){
                 ended_at:ended_at_lsmt_data,
             },
             beforeSend: function (xhr) {
-
+                $("#overlay").fadeIn(300);
             },
             success: (data) => {
                 $("#data_muathe_history").empty().html('');
                 $("#data_muathe_history").empty().html(data);
+                $("#overlay").fadeOut(300);
             },
             error: function (data) {
 
             },
             complete: function (data) {
 
-            }
+z``            }
         });
     }
 

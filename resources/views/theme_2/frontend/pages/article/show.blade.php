@@ -71,7 +71,8 @@
                 <div class="mb-4 border-top pt-3">
                     <h4 class="title-style-left mb-3">Tin tức liên quan</h4>
                     <div class="row">
-                        @include('frontend.widget.__baiviet__lienquan',with(['slug'=>$slug]))
+
+                        @include('frontend.widget.__baiviet__lienquan',with(['slug'=>$slug,'id'=>$id]))
                     </div>
                 </div>
             </div>

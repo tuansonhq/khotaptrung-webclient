@@ -31,10 +31,9 @@ $(document).ready(function(){
                 ended_at:ended_at_lsnt,
             },
             beforeSend: function (xhr) {
-
+                $("#overlay").fadeIn(300);
             },
             success: (data) => {
-                console.log(data)
                 $("#data_napthe_history").empty().html('');
                 $("#data_napthe_history").empty().html(data);
             },
@@ -42,7 +41,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-
+                    $("#overlay").fadeOut(300);
             }
         });
     }
@@ -94,6 +93,8 @@ $(document).ready(function(){
         $('.tab-pane').removeClass('show');
         $('.data__napthe').addClass('active');
         $('.data__napthe').addClass('show');
+        $('.data__napthe_tab').addClass('active');
+        $('.data__napthe_tab').addClass('show');
 
         $('.started_at_txns_data').val('');
         $('.ended_at_txns_data').val('');
