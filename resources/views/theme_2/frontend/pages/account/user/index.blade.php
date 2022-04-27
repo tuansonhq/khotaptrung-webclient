@@ -160,7 +160,7 @@
                             </div>
                         </div>                                        </div><!-- END Tab Content Profile -->
                     <!-- BEGIN Tab Content History -->
-                    <div class="tab-pane fade data__giaodich" id="history" role="tabpanel" aria-labelledby="history-tab">
+                    <div class="tab-pane fade data__giaodich_tab" id="history" role="tabpanel" aria-labelledby="history-tab">
                         <form class="form-charge form__txns">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
@@ -178,7 +178,7 @@
                         @include('theme_2.frontend.pages.account.user.function.__lich__su__giao__dich__data')
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Deposit -->
-                    <div class="tab-pane fade data__napthe" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+                    <div class="tab-pane fade data__napthe_tab" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
                         <form class="form-charge form__lsnt">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
@@ -291,7 +291,7 @@
                         </div>
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Item -->
-                    <div class="tab-pane fade data__muathe" id="item" role="tabpanel" aria-labelledby="item-tab">
+                    <div class="tab-pane fade data__muathe_tab" id="item" role="tabpanel" aria-labelledby="item-tab">
                         <form class="form-charge form__lsmt">
                             <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Thẻ cào đã mua</h4>
@@ -343,29 +343,6 @@
 
     <script>
 
-        var loc = window.location.search;
-        if (loc.replace('?log=','') == 'store-card'){
-            $('.nav-link').removeClass('active');
-            $('.tab-pane').removeClass('active');
-            $('.tab-pane').removeClass('show');
-            $('.data__muathe').addClass('active');
-            $('.data__muathe').addClass('show');
-
-        }else if(loc.replace('?log=','') == 'deposit-history'){
-            $('.nav-link').removeClass('active');
-            $('.tab-pane').removeClass('active');
-            $('.tab-pane').removeClass('show');
-            $('.data__napthe').addClass('active');
-            $('.data__napthe').addClass('show');
-        }else if(loc.replace('?log=','') == 'transaction-history'){
-            $('.nav-link').removeClass('active');
-            $('.tab-pane').removeClass('active');
-            $('.tab-pane').removeClass('show');
-            $('.data__giaodich').addClass('active');
-            $('.data__giaodich').addClass('show');
-        }
-
-        console.log(loc.replace('?log=',''))
 
 
         $('#form-changePassword').submit(function (e) {
