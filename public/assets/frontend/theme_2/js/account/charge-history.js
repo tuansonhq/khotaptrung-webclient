@@ -85,4 +85,20 @@ $(document).ready(function(){
         loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
 
     });
+    var loc = window.location.search;
+    if(loc.replace('?log=','') == 'transaction-history'){
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('active');
+        $('.tab-pane').removeClass('show');
+        $('.data__giaodich').addClass('active');
+        $('.data__giaodich').addClass('show');
+        $('.started_at_txns_data').val('');
+        $('.ended_at_txns_data').val('');
+
+        var started_at_lsnt_data = $('.started_at_lsnt_data').val();
+        var ended_at_lsnt_data = $('.ended_at_lsnt_data').val();
+        let page = $('#hidden_page_service_lsnt').val();
+
+        loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
+    }
 })

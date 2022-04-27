@@ -2,7 +2,6 @@ $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
     let page = $('#hidden_page_service_txns').val();
-
     $(document).on('click', '.paginate__v1_index_txns .pagination a',function(event){
         event.preventDefault();
 
@@ -70,6 +69,27 @@ $(document).ready(function(){
         loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data)
 
     });
+    var loc = window.location.search;
+    if(loc.replace('?log=','') == 'deposit-history'){
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('active');
+        $('.tab-pane').removeClass('show');
+        $('.data__napthe').addClass('active');
+        $('.data__napthe').addClass('show');
+
+        $('.id_txns_data').val('');
+        $('.started_at_txns_data').val('');
+        $('.ended_at_txns_data').val('');
+
+        var id_txns_data = $('.id_txns_data').val();
+        var started_at_txns_data = $('.started_at_txns_data').val();
+        var ended_at_txns_data = $('.ended_at_txns_data').val();
+        let page = $('#hidden_page_service_txns').val();
+
+        loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data)
+
+    }
+
 
     $('body').on('click','.button__txns',function(e){
         e.preventDefault();
