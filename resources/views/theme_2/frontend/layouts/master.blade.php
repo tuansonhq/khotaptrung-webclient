@@ -76,6 +76,13 @@
 <div class="scroll-top">
     <a href="#" class="scroll-top-link"><i class="las la-angle-double-up"></i></a>
 </div>
+<div class="text-center ajax-loading-store">
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+</div>
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/jquery/dist/jquery.min.js"></script>

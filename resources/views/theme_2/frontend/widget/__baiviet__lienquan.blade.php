@@ -8,6 +8,7 @@
             }
         @endphp
         @if($key < $index)
+            @if($item->id != $id)
         <div class="col-lg-4">
             <!-- BEGIN Item Article -->
             <div class="item-article mb-4">
@@ -25,6 +26,7 @@
                 </div>
             </div><!-- BEGIN Item Article -->
         </div>
+        @endif
         @endif
     @endforeach
 @endif
