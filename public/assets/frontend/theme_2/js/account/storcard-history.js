@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('body').on('click','i.la-copy',function(e){
         data = $(this).data('id');
         var $temp = $("<input>");
@@ -80,6 +81,26 @@ $(document).ready(function(){
 
     });
 
+    var loc = window.location.search;
+    if (loc.replace('?log=','') == 'store-card'){
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('active');
+        $('.tab-pane').removeClass('show');
+        $('.data__muathe').addClass('active');
+        $('.data__muathe').addClass('show');
+        $('.id_lsmt_data').val('');
+        $('.started_at_lsmt_data').val('');
+        $('.ended_at_lsmt_data').val('');
+
+        var id_lsmt_data = $('.id_lsmt_data').val();
+        var started_at_lsmt_data = $('.started_at_lsmt_data').val();
+        var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
+        let page = $('#hidden_page_service_lsmt').val();
+
+        loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
+    }
+
+
     $('body').on('click','.button__lsmt',function(e){
         e.preventDefault();
         $('.id_lsmt_data').val('');
@@ -96,7 +117,7 @@ $(document).ready(function(){
     });
 
     function loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data) {
-
+        console.log(page)
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-mua-the-tich-hop',
@@ -110,7 +131,6 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data)
                 $("#data_muathe_history").empty().html('');
                 $("#data_muathe_history").empty().html(data);
             },
