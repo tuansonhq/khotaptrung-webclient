@@ -175,7 +175,10 @@
                             </div>
                         </div>
                         </form>
-                        @include('theme_2.frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                        <div id="data_lich__su_history">
+                            @include('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                        </div>
+
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Deposit -->
                     <div class="tab-pane fade data__napthe_tab" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
@@ -187,7 +190,7 @@
                                     <input type="text" name="started_at_lsnt" class="form-control input-group-addon border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
                                     <input type="text" name="ended_at_lsnt" class="form-control input-group-addon           border-start-0 ended_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
-                                    <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
+                                    <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -301,10 +304,10 @@
                                 </select>
                                 <div class="input-group date-ranger-picker ms-3">
 
-                                    <input type="text" class="form-control border-end-0 started_at_tcdm" placeholder="DD/MM/YYYY" value="">
+                                    <input type="text" class="form-control border-end-0 started_at_lsmt" placeholder="DD/MM/YYYY" value="">
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                    <input type="text" class="form-control border-start-0 ended_at_tcdm" placeholder="DD/MM/YYYY" value="">
-                                    <button class="btn bg-primary text-white" type="button"><i class="las la-angle-right"></i></button>
+                                    <input type="text" class="form-control border-start-0 ended_at_lsmt" placeholder="DD/MM/YYYY" value="">
+                                    <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>
                                     <input type="hidden" name="log" value="store-card">
                                 </div>
                             </div>
@@ -326,8 +329,8 @@
     <input type="hidden" name="ended_at_txns_data" class="ended_at_txns_data" value="">
     <input type="hidden" name="hidden_page_service_txns" id="hidden_page_service_txns" class="hidden_page_service_txns" value="1" />
 
-    <input type="hidden" name="started_at_lsnt_data" class="started_at_lsnt_data" value="">
-    <input type="hidden" name="ended_at_lsnt_data" class="ended_at_lsnt_data" value="">
+    <input type="hidden" name="started_at_lsnt_data" class="started_at_data_lsnt" value="">
+    <input type="hidden" name="ended_at_lsnt_data" class="ended_at_data_lsnt" value="">
     <input type="hidden" name="hidden_page_service_lsnt" id="hidden_page_service_lsnt" class="hidden_page_service_lsnt" value="1" />
 
     <input type="hidden" name="id_lsmt_data" class="id_lsmt_data" value="">

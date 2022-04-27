@@ -29,41 +29,41 @@ $(document).ready(function(){
         loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
     });
 
-    // $(document).on('submit', '.form__lsmt', function(e){
-    //     e.preventDefault();
-    //
-    //     var id_lsmt = $('.id_txns').val();
-    //     var started_at_lsmt = $('.started_at_lsmt').val();
-    //     var ended_at_lsmt = $('.ended_at_lsmt').val();
-    //
-    //     if (started_at_lsmt == null || started_at_lsmt == undefined || started_at_lsmt == ''){
-    //         $('.started_at_lsmt_data').val('');
-    //     }else {
-    //         $('.started_at_lsmt_data').val(started_at_lsmt);
-    //     }
-    //
-    //     if (ended_at_lsmt == null || ended_at_lsmt == undefined || ended_at_lsmt == ''){
-    //         $('.ended_at_txns_data').val('');
-    //     }else {
-    //         $('.ended_at_txns_data').val(ended_at_txns);
-    //     }
-    //
-    //     if (id_lsmt == null || id_lsmt == undefined || id_lsmt == ''){
-    //         $('.id_lsmt_data').val('');
-    //     }else {
-    //         $('.id_lsmt_data').val(id_lsmt);
-    //     }
-    //
-    //     var id_lsmt_data = $('.id_lsmt_data').val();
-    //
-    //     var started_at_lsmt_data = $('.started_at_lsmt_data').val();
-    //     var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
-    //     var page = $('#hidden_page_service_lsmt').val();
-    //
-    //
-    //     loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
-    //
-    // });
+    $(document).on('submit', '.form__lsmt', function(e){
+        e.preventDefault();
+
+        var id_lsmt = $('.id_txns').val();
+        var started_at_lsmt = $('.started_at_lsmt').val();
+        var ended_at_lsmt = $('.ended_at_lsmt').val();
+
+        if (started_at_lsmt == null || started_at_lsmt == undefined || started_at_lsmt == ''){
+            $('.started_at_lsmt_data').val('');
+        }else {
+            $('.started_at_lsmt_data').val(started_at_lsmt);
+        }
+
+        if (ended_at_lsmt == null || ended_at_lsmt == undefined || ended_at_lsmt == ''){
+            $('.ended_at_lsmt_data').val('');
+        }else {
+            $('.ended_at_lsmt_data').val(ended_at_txns);
+        }
+
+        if (id_lsmt == null || id_lsmt == undefined || id_lsmt == ''){
+            $('.id_lsmt_data').val('');
+        }else {
+            $('.id_lsmt_data').val(id_lsmt);
+        }
+
+        var id_lsmt_data = $('.id_lsmt_data').val();
+
+        var started_at_lsmt_data = $('.started_at_lsmt_data').val();
+        var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
+        var page = $('#hidden_page_service_lsmt').val();
+        console.log(ended_at_lsmt_data)
+
+        loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
+
+    });
 
     $('body').on('click','.data__muathe',function(e){
         e.preventDefault();
@@ -141,7 +141,7 @@ $(document).ready(function(){
             },
             complete: function (data) {
 
-z``            }
+            }
         });
     }
 
