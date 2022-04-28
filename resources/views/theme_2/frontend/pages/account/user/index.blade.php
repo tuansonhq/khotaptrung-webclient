@@ -356,10 +356,10 @@
     <input type="hidden" name="ended_at_lsmt_data" class="ended_at_lsmt_data" value="">
     <input type="hidden" name="hidden_page_service_lsmt" id="hidden_page_service_lsmt" class="hidden_page_service_lsmt" value="1" />
 
-    <script src="/assets/frontend/theme_2/js/profile.js"></script>
-    <script src="/assets/frontend/theme_2/js/account/txns-history.js"></script>
-    <script src="/assets/frontend/theme_2/js/account/charge-history.js"></script>
-    <script src="/assets/frontend/theme_2/js/account/storcard-history.js"></script>
+    <script src="/assets/frontend/theme_2/js/profile.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_2/js/account/txns-history.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_2/js/account/charge-history.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_2/js/account/storcard-history.js?v={{time()}}"></script>
 
 
     <script>
