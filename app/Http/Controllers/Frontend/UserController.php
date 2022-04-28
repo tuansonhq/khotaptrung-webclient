@@ -431,7 +431,7 @@ class UserController extends Controller
                 $val['page'] = $page;
 
                 if (isset($request->id) || $request->id != '' || $request->id != null) {
-                    $data['key'] = $request->id;
+                    $data['id'] = $request->id;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {

@@ -357,6 +357,7 @@
             $temp.val($.trim(data)).select();
             document.execCommand("copy");
             $temp.remove();
+            toastr.success('Sao chép thành công!');
         });
 
 

@@ -32,7 +32,7 @@ $(document).ready(function(){
     $(document).on('submit', '.form__lsmt', function(e){
         e.preventDefault();
 
-        var id_lsmt = $('.id_txns').val();
+        var id_lsmt = $('.id_lsmt').val();
         var started_at_lsmt = $('.started_at_lsmt').val();
         var ended_at_lsmt = $('.ended_at_lsmt').val();
 
@@ -129,17 +129,22 @@ $(document).ready(function(){
                 ended_at:ended_at_lsmt_data,
             },
             beforeSend: function (xhr) {
-                $("#overlay").fadeIn(300);
+                $("#data_muathe_history").hide();
+                $(".load_spinner").show();
+
             },
             success: (data) => {
+
                 $("#data_muathe_history").empty().html('');
                 $("#data_muathe_history").empty().html(data);
-                $("#overlay").fadeOut(300);
+
             },
             error: function (data) {
 
             },
             complete: function (data) {
+                $("#data_muathe_history").show();
+                $(".load_spinner").hide();
 
             }
         });

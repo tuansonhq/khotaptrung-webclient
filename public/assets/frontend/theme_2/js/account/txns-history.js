@@ -118,10 +118,12 @@ $(document).ready(function(){
                 ended_at:ended_at_txns_data,
             },
             beforeSend: function (xhr) {
-                $("#overlay").fadeIn(100);
+                $(".load_spinner").show();
+                $("#data_lich__su_history").hide(300);
             },
             success: (data) => {
-
+                $(".load_spinner").hide();
+                $("#data_lich__su_history").show();
                 $("#data_lich__su_history").empty().html('');
                 $("#data_lich__su_history").empty().html(data);
             },
