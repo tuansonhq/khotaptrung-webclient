@@ -81,18 +81,18 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
 
                 Route::group(['middleware' => ['auth_custom']], function (){
-                    Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                        ->name('index');
 
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-                        ->name('getThongTin');
-
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                        ->name('index');
                     Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
                         //profile
+                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                            ->name('index');
 
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                            ->name('getThongTin');
+
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
+                            ->name('index');
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
 
@@ -256,13 +256,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
                         ->name('postWithdrawItem');
 
+                    Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                        ->name('loginfacebook');
 
                 });
 
             });
             Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
-            Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                ->name('loginfacebook');
 
 //    Route::group(['middleware' => ['auth_custom']], function (){
 //        Route::group(['middleware' => ['cacheResponse:300']], function (){
@@ -272,6 +272,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //    });
         });
 });
+
 //    }
 //    elseif (theme('')->theme_key == 'theme_2'){
 //        Route::group(array('middleware' => ['verify_shop']) , function (){
