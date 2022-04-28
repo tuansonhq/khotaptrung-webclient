@@ -5,7 +5,7 @@
 
 
 @if(empty($data->data))
-    <div class="row">
+    <div class="row" >
     @if(isset($data) && count($data) > 0)
 
         @foreach ($data as $key => $item)
@@ -35,7 +35,7 @@
 {{--                                    @endif--}}
 
                                     <input type="text" class="form-control border-end-0" placeholder="" value="{{  App\Library\Helpers::Decrypt($itemCard->pin,config('module.charge.key_encrypt')) }}" aria-label="">
-                                    <span class="input-group-text bg-transparent text-secondary"><a href="#"><i class="las la-copy" data-id="{{  App\Library\Helpers::Decrypt($itemCard->pin,config('module.charge.key_encrypt')) }}"></i></a></span>
+                                    <span class="input-group-text bg-transparent text-secondary"><i class="las la-copy" style="cursor: pointer" data-id="{{  App\Library\Helpers::Decrypt($itemCard->pin,config('module.charge.key_encrypt')) }}"></i></span>
                                 </div>
                             </div>
                             <div class="mb-2 d-flex justify-content-between">

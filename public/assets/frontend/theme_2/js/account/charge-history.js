@@ -31,9 +31,12 @@ $(document).ready(function(){
                 ended_at:ended_at_lsnt,
             },
             beforeSend: function (xhr) {
-                $("#overlay").fadeIn(300);
+                $(".load_spinner").show();
+                $("#data_napthe_history").hide();
             },
             success: (data) => {
+                $(".load_spinner").hide();
+                $("#data_napthe_history").show();
                 $("#data_napthe_history").empty().html('');
                 $("#data_napthe_history").empty().html(data);
             },
@@ -41,7 +44,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-                    $("#overlay").fadeOut(300);
+
             }
         });
     }
