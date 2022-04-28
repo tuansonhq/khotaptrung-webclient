@@ -3,7 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data_category]))
 @endsection
 @section('content')
-@dd($sliders)
+
     <div class="shop_product_detailS">
         <div class="news_breadcrumbs">
             <div class="container">
