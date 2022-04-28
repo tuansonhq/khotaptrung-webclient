@@ -3,9 +3,11 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+
     @if(isset($data->params) && isset($data->params->article_type))
         {!! $data->params->article_type !!}
     @endif
+
     <div class="news">
         <div class="news_breadcrumbs">
             <div class="container">
