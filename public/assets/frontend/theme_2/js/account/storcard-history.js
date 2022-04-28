@@ -45,7 +45,7 @@ $(document).ready(function(){
         if (ended_at_lsmt == null || ended_at_lsmt == undefined || ended_at_lsmt == ''){
             $('.ended_at_lsmt_data').val('');
         }else {
-            $('.ended_at_lsmt_data').val(ended_at_txns);
+            $('.ended_at_lsmt_data').val(ended_at_lsmt);
         }
 
         if (id_lsmt == null || id_lsmt == undefined || id_lsmt == ''){
@@ -59,7 +59,7 @@ $(document).ready(function(){
         var started_at_lsmt_data = $('.started_at_lsmt_data').val();
         var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
         var page = $('#hidden_page_service_lsmt').val();
-        console.log(ended_at_lsmt_data)
+
 
         loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)
 
