@@ -72,16 +72,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}/data', [ArticleController::class , "getCategoryData"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
 
-                Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
+
 
                 Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
                 Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
                 Route::get('/dich-vu/{slug}/data', [ServiceController::class , "getShowData"]);
                 Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
-
-                Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-                Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
 
                 Route::group(['middleware' => ['auth_custom']], function (){
                     Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
@@ -147,6 +144,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+
+                    Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
+                    Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
+                    Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
 
 
                 });
