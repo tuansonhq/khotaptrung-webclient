@@ -197,6 +197,7 @@ class AccController extends Controller
                 $valslider['data'] = 'list_acc';
                 $valslider['cat_slug'] = $data_category->slug;
                 $valslider['limit'] = 12;
+                $valslider['status'] = 1;
 
                 $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
                 $sliders = $result_Api_slider->data;
