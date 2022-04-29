@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="site-content-body bg-white first last p-0">
-        <div class="block-profile" style="min-height: 820px;">
+        <div class="block-profile" >
             <div class="block-header">
                 <div class="p-3 d-flex align-items-center">
                     <div class="me-3">
@@ -160,7 +160,7 @@
                             </div>
                         </div>                                        </div><!-- END Tab Content Profile -->
                     <!-- BEGIN Tab Content History -->
-                    <div class="tab-pane fade data__giaodich_tab" id="history" role="tabpanel" aria-labelledby="history-tab">
+                    <div class="tab-pane fade data__giaodich_tab" id="history" role="tabpanel" aria-labelledby="history-tab" style="min-height: 628px;">
                         <form class="form-charge form__txns">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
@@ -190,7 +190,7 @@
 
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Deposit -->
-                    <div class="tab-pane fade data__napthe_tab" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+                    <div class="tab-pane fade data__napthe_tab" id="deposit" role="tabpanel" aria-labelledby="deposit-tab"  style="min-height: 700px;">
                         <form class="form-charge form__lsnt">
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
@@ -215,7 +215,7 @@
 
                     </div><!-- END Tab Content History -->
                     <!-- BEGIN Tab Content Item -->
-                    <div class="tab-pane fade data__muathe_tab" id="item" role="tabpanel" aria-labelledby="item-tab">
+                    <div class="tab-pane fade data__muathe_tab" id="item" role="tabpanel" aria-labelledby="item-tab"  style="min-height: 700px;">
                         <form class="form-charge form__lsmt">
                             <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                                 <h4 class="title-style-left mb-3">Thẻ cào đã mua</h4>
