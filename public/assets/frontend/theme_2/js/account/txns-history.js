@@ -119,7 +119,7 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
                 $(".load_spinner").show();
-                $("#data_lich__su_history").hide(300);
+                $("#data_lich__su_history").hide();
             },
             success: (data) => {
                 $(".load_spinner").hide();

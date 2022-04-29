@@ -110,7 +110,7 @@
                         <div class="mb-3">
                             <label class="label mb-1">Tên tài khoản</label>
                             <div class="input-group">
-                                <input type="text" id="username" name="username" class="form-control border-end-0" placeholder="" value="">
+                                <input type="text" id="username" name="username" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-user"></i></span>
                             </div>
                         </div>
@@ -131,14 +131,14 @@
                         <div class="mb-3">
                             <label class="label mb-1">Mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" id="password" name="password" class="form-control border-end-0" placeholder="" value="">
+                                <input type="password" id="password" name="password" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="label mb-1">Nhập lại mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" id="password_repeat" name="password_confirmation" class="form-control border-end-0" placeholder="" value="">
+                                <input type="password" id="password_repeat" name="password_confirmation" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
