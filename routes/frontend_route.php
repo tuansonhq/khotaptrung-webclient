@@ -148,7 +148,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
                     Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
                     Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
-
+                    Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index'])->name('index');
 
                 });
 
@@ -258,6 +258,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
                         ->name('loginfacebook');
+
 
                 });
 

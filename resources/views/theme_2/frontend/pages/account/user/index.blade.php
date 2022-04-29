@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="site-content-body bg-white first last p-0">
-        <div class="block-profile">
+        <div class="block-profile" style="min-height: 820px;">
             <div class="block-header">
                 <div class="p-3 d-flex align-items-center">
                     <div class="me-3">
@@ -165,7 +165,11 @@
                         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                             <h4 class="title-style-left mb-3">Danh sách giao dịch</h4>
                             <div class="d-flex align-items-center mb-3">
-                                <input type="text" placeholder="ID" name="id_txns" class="id_txns">
+                                <div>
+                                    <input type="text" placeholder="ID" name="id_txns" class="id_txns">
+                                </div>
+
+
                                 <div class="input-group date-ranger-picker ms-3">
                                     <input type="text" class="form-control border-end-0 started_at_txns" name="started_at_txns" placeholder="DD/MM/YYYY" value="">
                                     <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
