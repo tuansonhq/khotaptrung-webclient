@@ -83,7 +83,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::group(['middleware' => ['auth_custom']], function (){
 
                     Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+
+                });
+
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                        Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
                         Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
                             ->name('index');
@@ -140,7 +144,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                     });
-                });
+                    });
+
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
