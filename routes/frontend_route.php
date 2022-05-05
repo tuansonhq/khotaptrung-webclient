@@ -92,11 +92,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
                             ->name('index');
 
-//                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-//                            ->name('getThongTin');
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                            ->name('getThongTin');
 
-                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                            ->name('index');
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
 
@@ -153,7 +152,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
                     Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
                     Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
-                    Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index'])->name('index');
+                    Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
 
                 });
 

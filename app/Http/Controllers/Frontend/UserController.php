@@ -68,7 +68,6 @@ class UserController extends Controller
 
     public function profile(Request $request)
     {
-//        return view('frontend.pages.account.user.index');
         try{
             $jwt = Session::get('jwt');
             if(empty($jwt)){
@@ -114,7 +113,6 @@ class UserController extends Controller
 
     public function getThongTin(Request $request)
     {
-//        return view('frontend.pages.account.user.index');
         try{
 
             return view('theme_2.frontend.pages.account.user.index');
