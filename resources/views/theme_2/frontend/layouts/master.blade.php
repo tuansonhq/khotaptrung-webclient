@@ -58,6 +58,15 @@
     </div><!-- END Site Main -->
     <!-- BEGIN Site Footer -->
     @include('frontend.layouts.includes.footer')
+
+
+<!-- Messenger Plugin chat Code -->
+    <div id="fb-root" style="    z-index: 666;"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
 </div><!-- END SIte -->
 <div class="overlay"></div>
 <div class="offcanvas-nav">
@@ -84,12 +93,6 @@
             <span class="spinner"></span>
         </div>
     </div>
-</div>
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root" style="    z-index: 666;"></div>
-
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
 </div>
 
 <script>
