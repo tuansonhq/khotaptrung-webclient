@@ -103,13 +103,13 @@
                     @if($val->target == 2)
 
                         <a class="freefire freefire{{ $key }}" style="color:#fff" href="javascript:void(0)">
-                            <img src="https://media-tt.nick.vn/{{ $val->image }}" alt="">
+                            <img src="{{  config('api.url_media').$val->image }}" alt="">
                             <span>{{ $val->title }}</span>
                         </a>
 
                     @else
                     <a class="freefire" style="color:#fff" href="#target_{{ $key }}">
-                        <img src="https://media-tt.nick.vn/{{ $val->image }}" alt="">
+                        <img src="{{  config('api.url_media').$val->image }}" alt="">
                         <span>{{ $val->title }}</span>
                     </a>
                     @endif

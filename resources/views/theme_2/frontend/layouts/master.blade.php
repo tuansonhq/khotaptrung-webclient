@@ -33,9 +33,94 @@
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
     @stack('js')
 
-    <script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "shop the game",
+  "url": "https://shopthegame.net/",
+  "logo": "https://cdn.upanh.info//storage/upload/images/Logo%20shop/LOGO-SHOPTHEGAME-NET.png",
+ "address":{
+                    "@type":"PostalAddress",
+                    "streetAddress":"47 Xuân Đỉnh",
+                    "addressLocality":"Q. Bắc Từ Liêm",
+                    "addressRegion":"Hà Nội",
+                    "postalCode":"100000",
+                    "addressCountry":"VN"
+                 },
+              "priceRange": "VND",
+              "geo":{
+                "@type":"GeoCoordinates",
+                "latitude":21.07035,
+                "longitude":105.80143
+              },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "0792.000.792",
+    "contactType": "sales",
+    "contactOption": ["TollFree","HearingImpairedSupported"],
+    "areaServed": "VN",
+    "availableLanguage": "Vietnamese"
+  },
+  "sameAs": [
+    "https://www.facebook.com/shopthegame.net/",
+    "https://www.youtube.com/channel/UC2gZs23GU9WEA6DlgdztqoQ",
+    "https://twitter.com/shop_thegame",
+    "https://www.instagram.com/shopthegamenet/",
+    "https://www.linkedin.com/in/shopthegame-net/",
+    "https://www.pinterest.com/shopthegamegiare/_saved/",
+    "https://shopthegame.tumblr.com/"
+  ]
+}
+</script>
 
-    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Thẻ Garena",
+  "image": "https://cdn.upanh.info//storage/upload/images/9SjVHe7ZbK_1605841255.png",
+  "description": "Thẻ Game Garena online với đầy đủ các mệnh giá từ 20k ( 20.000 ), 50k ( 50.000), 100k ( 100.000), 200 ( 200.000 ), 500k ( 500.000 ) giá rẻ, chiết khẩu cao, uy tín, tự động 100%",
+  "brand": {
+    "@type": "Brand",
+    "name": "Garena"
+  },
+  "sku": "thegarena",
+  "gtin8": "thegarena",
+  "mpn": "thegarena",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://shopthegame.net/",
+    "priceCurrency": "VND",
+    "price": "20000",
+    "priceValidUntil": "2022-05-05",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "4",
+    "ratingCount": "1968",
+    "reviewCount": "1968"
+  },
+  "review": {
+    "@type": "Review",
+    "name": "mua thẻ garena online",
+    "reviewBody": "mua thẻ garena online giá rẻ từ việc đổi thẻ cào điện thoại sang thẻ garena",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "4"
+    },
+    "datePublished": "2022-05-05",
+    "author": {"@type": "Person", "name": "mua the garena"},
+    "publisher": {"@type": "Organization", "name": "doi the garena"}
+  }
+}
+</script>
     @yield('seo_head')
 </head>
 

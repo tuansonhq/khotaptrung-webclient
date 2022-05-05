@@ -62,7 +62,7 @@
                                 html+=' <div class="col-md-3 col-6 item-telecom">'
                                 html+=' <div class="item-gateway me-2" data-key="'+value.key+'">'
                                 html+=' <div class="text-center">'
-                                html+='  <img src="'+ 'https://media-tt.nick.vn/'+value.image +'" class="mw-100 img" alt="">'
+                                html+='  <img src="'+ 'http://cdn.upanh.info/'+value.image +'" class="mw-100 img" alt="">'
                                 html+=' </div>'
                                 html+=' </div>'
                                 html+=' </div>'

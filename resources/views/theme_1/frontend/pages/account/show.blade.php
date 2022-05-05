@@ -32,8 +32,8 @@
                             <div class="swiper-wrapper">
                                 @foreach(explode('|',$data->image_extension) as $val)
                                     <div class="swiper-slide">
-                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
-                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        <a data-fancybox="gallerycoverDetail" href="{{  config('api.url_media').$val }}">
+                                            <img src="{{  config('api.url_media').$val }}" alt="">
                                         </a>
                                     </div>
                                 @endforeach
@@ -51,8 +51,8 @@
                             <div class="swiper-wrapper">
                                 @foreach(explode('|',$data->image_extension) as $val)
                                     <div class="swiper-slide">
-                                        <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
-                                            <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                                        <a data-fancybox="gallerycoverDetail" href="{{  config('api.url_media').$val }}">
+                                            <img src="{{  config('api.url_media').$val }}" alt="">
                                         </a>
                                     </div>
                                 @endforeach
@@ -286,13 +286,13 @@
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $datav2->randId }}">
                                         @if(isset($datav2->image))
-                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
+                                            <img class="item_buy_list_img-main" src="{{ config('api.url_media').$datav2->image }}" alt="{{ $datav2->title }}">
                                         @else
                                             <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
                                         @endif
 
                                         @if(isset($datav2->image_icon))
-                                        <img class="item_buy_list_img-sale" src="https://media-tt.nick.vn/{{ $datav2->image_icon }}"  alt="{{ $datav2->title }}">
+                                        <img class="item_buy_list_img-sale" src="{{  config('api.url_media').$datav2->image_icon }}"  alt="{{ $datav2->title }}">
                                         @else
                                         <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
                                         @endif

@@ -21,6 +21,7 @@ class AuthenticateFrontendCustom
     {
         if(!session()->has('auth_custom')){
             if($request->ajax()){
+                return redirect('/');
                 return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"

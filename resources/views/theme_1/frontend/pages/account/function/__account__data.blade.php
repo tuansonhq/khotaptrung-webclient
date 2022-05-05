@@ -13,7 +13,7 @@
                                 <div class="item_buy_list_img">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                         @if(isset($item->image))
-                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
+                                            <img class="item_buy_list_img-main" src="{{ config('api.url_media').$item->image }}" alt="{{ $item->title }}">
                                         @else
                                             <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
                                         @endif
@@ -107,7 +107,7 @@
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $item->randId }}">
                                         @if(isset($item->image))
-                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $item->image }}" alt="{{ $item->title }}">
+                                            <img class="item_buy_list_img-main" src="{{  config('api.url_media').$item->image }}" alt="{{ $item->title }}">
                                         @else
                                             <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
                                         @endif
