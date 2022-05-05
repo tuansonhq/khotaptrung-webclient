@@ -13,7 +13,7 @@
                         <div class="media-placeholder rounded blog-relative">
                             <div class="bg rounded">
                                 <a href="/tin-tuc/{{ $item->slug }}">
-                                    <img src="https://media-tt.nick.vn/{{ $item->image }}" class="img-fluid" alt="">
+                                    <img src="{{  config('api.url_media').$item->image }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                         </div>

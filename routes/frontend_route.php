@@ -92,8 +92,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
                             ->name('index');
 
-                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-                            ->name('getThongTin');
+//                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+//                            ->name('getThongTin');
 
                         Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
                             ->name('index');

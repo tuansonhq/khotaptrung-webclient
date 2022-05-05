@@ -16,12 +16,12 @@
                             <a class="account_category" href="/danh-muc/{{ $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
-                                    <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_icon }}" alt="">
+                                    <img class="game-list-image-sticky" src="{{  config('api.url_media').$item->image_icon }}" alt="">
                                 @else
                                     <img class="game-list-image-sticky" src="/assets/frontend/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in" src="https://media-tt.nick.vn/{{ $item->image }}" alt="">
+                                    <img class="game-list-image-in" src="{{  config('api.url_media').$item->image }}" alt="">
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/images/ff.jpg" alt="">
                                 @endif
