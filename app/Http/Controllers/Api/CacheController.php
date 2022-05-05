@@ -24,7 +24,7 @@ class CacheController extends Controller
         \Artisan::call('view:clear');
         \Artisan::call('route:clear');
         Cache::flush();
-        exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+//        exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
         return response()->json([
             'status' => 1,
             'message' => 'Thành công!'
