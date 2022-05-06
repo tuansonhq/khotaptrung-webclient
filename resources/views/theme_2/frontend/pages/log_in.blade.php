@@ -173,8 +173,6 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (data) {
-                    console.log(message)
-                    // alert(data)
                     if(data.status == 1){
                         var metapath = $('meta[name="path"]').attr('content');
 
