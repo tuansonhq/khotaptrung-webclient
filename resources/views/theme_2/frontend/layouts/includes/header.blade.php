@@ -4,7 +4,8 @@
             <!-- BEGIn Site Brand -->
             <div class="site-brand me-3">
                 <div class="site-title mb-0">
-                    <a href="/" class="site-link"><img src="{{config('api.url_media').setting('sys_logo') }}" alt="Logo" class="site-logo"></a>
+{{--                    {{config('api.url_media').setting('sys_logo') }}--}}
+                    <a href="/" class="site-link"><img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="Logo" class="site-logo"></a>
                 </div>
             </div><!-- END Site Brand -->
             <!-- BEGIN Site Header Nav -->
