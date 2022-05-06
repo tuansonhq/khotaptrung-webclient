@@ -59,6 +59,7 @@
                         beforeSend: function (xhr) {
                         },
                         success: function (data) {
+                            console.log(data)
                             // alert(data)
                             if(data.data.status == 1){
                                 var metapath = $('meta[name="path"]').attr('content');
@@ -208,7 +209,7 @@
                 },
                 error: function (data) {
                     alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
-                    btnSubmit.text('Đăng nhập');
+                    btnSubmit.text('Đăng ký');
                 },
                 complete: function (data) {
                     $('#reload').trigger('click');
