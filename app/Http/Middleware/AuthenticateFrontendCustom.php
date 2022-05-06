@@ -27,7 +27,6 @@ class AuthenticateFrontendCustom
                 ]);
             }
             else{
-                return redirect('/');
                 return redirect('login');
             }
         }
