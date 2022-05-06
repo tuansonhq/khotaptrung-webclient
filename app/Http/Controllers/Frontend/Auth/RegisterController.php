@@ -10,7 +10,7 @@ use App\Library\DirectAPI;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Session;
-
+use Validator;
 
 class RegisterController extends Controller
 {
@@ -18,15 +18,22 @@ class RegisterController extends Controller
         return view('frontend.pages.regist');
     }
     public function register(Request $request){
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'username'=>'required',
             'password'=>'required',
             'password_confirmation'=>'required',
         ],[
-            'username.required' => __('Vui lòng nhập tài khoản'),
-            'password.required' => __('Vui lòng nhập mật khẩu'),
-            'password_confirmation.required' => __('Vui lòng nhập mật khẩu'),
+            'username.required' => 'Vui lòng nhập tài khoản',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password_confirmation.required' =>'Vui lòng nhập mật khẩu',
         ]);
+
+        if($validator->fails()){
+            return response()->json([
+                'message' => $validator->errors()->first(),
+                'status' => 0
+            ]);
+        }
 
         try{
             $url = '/register';
@@ -36,6 +43,7 @@ class RegisterController extends Controller
             $data['password'] = $request->password;
             $data['password_confirmation'] = $request->password_confirmation;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
                 if($result->status == 1){
@@ -45,6 +53,7 @@ class RegisterController extends Controller
                     Session::put('jwt',$result->token);
                     Session::put('exp_token',$result->exp_token);
                     Session::put('time_exp_token',$time_exp_token);
+
                     return Response()->json($result_Api->data);
 //                    return redirect()->to('/');
                 }
