@@ -56,9 +56,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
+                Route::post('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
                 // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
+                Route::post('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
                     ->name('getAmountStoreCard');
                 // ROUTE cần auth load dữ liệu không cache
 
@@ -82,7 +82,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::group(['middleware' => ['auth_custom']], function (){
 
-                    Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
 
                 });
 
@@ -96,6 +95,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                             ->name('getThongTin');
 
                         Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
+
+                            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
 
@@ -153,6 +154,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
                     Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
                     Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                    Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
+                        ->name('login');
+                    Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+                    Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+                        ->name('loginApi');
+                    Route::get('/404', function ()
+                    {
+                        return view('frontend.pages.404');
+                    });
 
                 });
 
@@ -198,11 +208,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return view('frontend.pages.account.user.gieoque');
                 });
                 //đăng nhập, đăng xuất, đăng ký
-                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
-                    ->name('login');
-                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
-                    ->name('loginApi');
 
                 Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                     ->name('register');

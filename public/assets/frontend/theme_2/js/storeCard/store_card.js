@@ -46,8 +46,12 @@
                 }
             });
             const url = '/store-card/get-telecom';
+
             $.ajax({
-                type: "GET",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
                 url: url,
                 data:{
                     key:telecom,
@@ -140,9 +144,12 @@
 
                 $.ajax({
                     url: url,
-                    type: "GET",
+                    type: "POST",
                     data:{
                         telecom:key,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function (data) {
                         render += '<div class="pb-5 block-number gateway-telecom">';
