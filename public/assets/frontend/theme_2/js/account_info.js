@@ -6,7 +6,7 @@ $(document).ready(function(){
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('#info .store-loading').remove();
             $('#info_mobile .store-loading').remove();
-            $('#info').attr('href','/login')
+            $('#info').attr('href','/login?return_url='+window.location.href)
             $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
             $('#auth').html('<input type="text" class="auth" value="none">')
             $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
@@ -28,7 +28,7 @@ $(document).ready(function(){
                 if(data.status === "LOGIN"){
                     $('#info .store-loading').remove();
                     $('#info_mobile .store-loading').remove();
-                    $('#info').attr('href','/login')
+                    $('#info').attr('href','/login?return_url='+window.location.href)
                     $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
                     $('#auth').html('<input type="text" class="auth" value="none">')
                     $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
