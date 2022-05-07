@@ -107,14 +107,14 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 });
 View::composer('frontend.widget.__menu_category', function ($view) {
-
+    $data_menu_category = null;
     $url_menu_category = '/menu-category';
     $method_menu_category  = "POST";
     $val_menu_category  = array();
     $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
-    $result_menu_category = $result_Api_menu_category->data;
-    $data_menu_category  = $result_menu_category->data;
-
+    if(isset($result_Api_menu_category) && $result_Api_menu_category->httpcode == 200){
+        $data_menu_category  = $result_Api_menu_category->data->data;
+    }
     return $view->with('data_menu_category', $data_menu_category);
 
 });
@@ -163,7 +163,6 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     $val = array();
 
     $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
     $result = $result_Api->data;
     $datacategory = $result->datacategory;
     $count = $result->count;
