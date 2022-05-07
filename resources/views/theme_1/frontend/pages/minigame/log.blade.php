@@ -93,7 +93,7 @@
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->item_ref->title}}</td>
-                                        <td>{{$item->item_ref->params->value}}</td>
+                                        <td>{{$item->item_ref->parrent->params->value}}</td>
                                         <td>{{$item->group->title}}</td>
                                     </tr>
                                     @endforeach
