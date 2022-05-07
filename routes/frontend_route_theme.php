@@ -228,27 +228,23 @@ Route::group(array('middleware' => ['verify_shop']) , function (){
 
 
         });
+        
+        //minigame
+        Route::post('/minigame-play', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postRoll'])
+            ->name('postRoll');
+        Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postBonus'])
+            ->name('postBonus');
+        Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getLog'])
+            ->name('getLog');
+        Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getLogAcc'])
+            ->name('getLogAcc');
+        Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getIndex'])
+            ->name('getIndex');
+        Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getWithdrawItem'])
+            ->name('getWithdrawItem');
+        Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postWithdrawItem'])
+            ->name('postWithdrawItem');
 
-        Route::group(['middleware' => ['doNotCacheResponse']], function ()
-        {
-            //minigame
-            Route::post('/minigame-play', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postRoll'])
-                ->name('postRoll');
-            Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postBonus'])
-                ->name('postBonus');
-            Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getLog'])
-                ->name('getLog');
-            Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getLogAcc'])
-                ->name('getLogAcc');
-            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getIndex'])
-                ->name('getIndex');
-            Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'getWithdrawItem'])
-                ->name('getWithdrawItem');
-            Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\Theme\MinigameController::class , 'postWithdrawItem'])
-                ->name('postWithdrawItem');
-
-
-        });
 
     });
 

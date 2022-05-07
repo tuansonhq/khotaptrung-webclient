@@ -247,29 +247,24 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 });
 
-                Route::group(['middleware' => ['doNotCacheResponse']], function ()
-                {
-                    //minigame
-                    Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
-                        ->name('postRoll');
-                    Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
-                        ->name('postBonus');
-                    Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
-                        ->name('getLog');
-                    Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
-                        ->name('getLogAcc');
-                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                        ->name('getIndex');
-                    Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
-                        ->name('getWithdrawItem');
-                    Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
-                        ->name('postWithdrawItem');
+                //minigame
+                Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
+                    ->name('postRoll');
+                Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
+                    ->name('postBonus');
+                Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
+                    ->name('getLog');
+                Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
+                    ->name('getLogAcc');
+                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                    ->name('getIndex');
+                Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
+                    ->name('getWithdrawItem');
+                Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
+                    ->name('postWithdrawItem');
+                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                ->name('loginfacebook');
 
-                    Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                        ->name('loginfacebook');
-
-
-                });
 
             });
             Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
