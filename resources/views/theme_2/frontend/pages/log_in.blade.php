@@ -3,6 +3,7 @@
     {{--    @include('frontend.widget.__seo_head')--}}
 @endsection
 @section('content')
+
     <div class="site-content-body first last bg-white p-0">
         <div class="row align-items-stretch">
             <div class="col-lg-8">
@@ -51,6 +52,9 @@
                     var formSubmit = $(this);
                     var url = formSubmit.attr('action');
                     var btnSubmit = formSubmit.find(':submit');
+                    let url2 = new URL(window.location.href);
+
+                    var return_url = url2.searchParams.get('return_url');
                     $.ajax({
                         type: "POST",
                         url: url,
@@ -59,30 +63,26 @@
                         beforeSend: function (xhr) {
                         },
                         success: function (data) {
-                            console.log(data)
-                            // alert(data)
                             if(data.data.status == 1){
-                                var metapath = $('meta[name="path"]').attr('content');
+                                if (return_url == null || return_url == '' || return_url == undefined){
 
-                                if (metapath == null || metapath == '' || metapath == undefined){
-                                    $('meta[name="path"]').attr('content',data.path);
+                                    if (return_url == null || return_url == '' || metapath == undefined){
+                                        // if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                                            window.location.href = '/';
+                                        // }else{
+                                        //     window.location.href = `/nap-the`;
+                                        // }
 
-                                    var metapath = $('meta[name="path"]').attr('content');
-
-                                    if (metapath == null || metapath == '' || metapath == undefined){
-                                        window.location.href = '/';
 
                                     }else {
-                                        window.location.href = metapath;
+                                        window.location.href = return_url;
 
                                     }
 
                                 }else {
-                                    window.location.href = metapath;
+                                    window.location.href = return_url;
 
                                 }
-
-
                             }else{
                                 swal({
                                     title: "Có lỗi xảy ra !",
@@ -166,6 +166,9 @@
             var formSubmit = $(this);
             var url = formSubmit.attr('action');
             var btnSubmit = formSubmit.find(':submit');
+            let url2 = new URL(window.location.href);
+
+            var return_url = url2.searchParams.get('return_url');
             $.ajax({
                 type: "POST",
                 url: url,
@@ -175,15 +178,17 @@
                 },
                 success: function (data) {
                     if(data.status == 1){
-                        var metapath = $('meta[name="path"]').attr('content');
+                        if (return_url == null || return_url == '' || return_url == undefined){
 
-                        if (metapath == null || metapath == '' || metapath == undefined){
+                            if (return_url == null || return_url == '' || metapath == undefined){
+                                window.location.href = '/';
+                            }else {
+                                window.location.href = return_url;
 
-                            window.location.href = '/';
+                            }
 
                         }else {
-
-                            window.location.href = metapath;
+                            window.location.href = return_url;
 
                         }
 
