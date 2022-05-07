@@ -9,6 +9,12 @@
     <meta name="path" content="" />
     <meta name="robots" content="index,follow" />
     <meta name="jwt" content="jwt" />
+    @if(setting('sys_google_search_console') != '')
+        <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
+    @endif
+    @if(setting('sys_schema') != '')
+        {!! setting('sys_schema') !!}
+    @endif
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/custom.boostrap.css">
 
@@ -32,103 +38,30 @@
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
     @stack('js')
-    @if(Request::is('/'))
-        <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "shop the game",
-  "url": "https://shopthegame.net/",
-  "logo": "https://cdn.upanh.info//storage/upload/images/Logo%20shop/LOGO-SHOPTHEGAME-NET.png",
- "address":{
-                    "@type":"PostalAddress",
-                    "streetAddress":"47 Xuân Đỉnh",
-                    "addressLocality":"Q. Bắc Từ Liêm",
-                    "addressRegion":"Hà Nội",
-                    "postalCode":"100000",
-                    "addressCountry":"VN"
-                 },
-              "priceRange": "VND",
-              "geo":{
-                "@type":"GeoCoordinates",
-                "latitude":21.07035,
-                "longitude":105.80143
-              },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "0792.000.792",
-    "contactType": "sales",
-    "contactOption": ["TollFree","HearingImpairedSupported"],
-    "areaServed": "VN",
-    "availableLanguage": "Vietnamese"
-  },
-  "sameAs": [
-    "https://www.facebook.com/shopthegame.net/",
-    "https://www.youtube.com/channel/UC2gZs23GU9WEA6DlgdztqoQ",
-    "https://twitter.com/shop_thegame",
-    "https://www.instagram.com/shopthegamenet/",
-    "https://www.linkedin.com/in/shopthegame-net/",
-    "https://www.pinterest.com/shopthegamegiare/_saved/",
-    "https://shopthegame.tumblr.com/"
-  ]
-}
-</script>
-
-        <script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "Product",
-  "name": "Thẻ Garena",
-  "image": "https://cdn.upanh.info//storage/upload/images/9SjVHe7ZbK_1605841255.png",
-  "description": "Thẻ Game Garena online với đầy đủ các mệnh giá từ 20k ( 20.000 ), 50k ( 50.000), 100k ( 100.000), 200 ( 200.000 ), 500k ( 500.000 ) giá rẻ, chiết khẩu cao, uy tín, tự động 100%",
-  "brand": {
-    "@type": "Brand",
-    "name": "Garena"
-  },
-  "sku": "thegarena",
-  "gtin8": "thegarena",
-  "mpn": "thegarena",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://shopthegame.net/",
-    "priceCurrency": "VND",
-    "price": "20000",
-    "priceValidUntil": "2022-05-05",
-    "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "4",
-    "ratingCount": "1968",
-    "reviewCount": "1968"
-  },
-  "review": {
-    "@type": "Review",
-    "name": "mua thẻ garena online",
-    "reviewBody": "mua thẻ garena online giá rẻ từ việc đổi thẻ cào điện thoại sang thẻ garena",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "5",
-      "bestRating": "5",
-      "worstRating": "4"
-    },
-    "datePublished": "2022-05-05",
-    "author": {"@type": "Person", "name": "mua the garena"},
-    "publisher": {"@type": "Organization", "name": "doi the garena"}
-  }
-}
-</script>
-    @else
-        @endif
 
     @yield('seo_head')
+
+        @if(setting('sys_google_tag_manager_head') != '')
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
+        <!-- End Google Tag Manager -->
+    @endif
+
+
 </head>
 
 <body>
 <!-- BEGIN Site -->
+@if(setting('sys_google_tag_manager_body') != '')
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+@endif
 <div class="site">
     <!-- BEGIN Header -->
     @include('frontend.layouts.includes.header')
