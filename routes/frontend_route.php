@@ -56,9 +56,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:60,1')->name('getTelecomStoreCard');
+                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
                 // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:60,1')
+                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
                     ->name('getAmountStoreCard');
                 // ROUTE cần auth load dữ liệu không cache
 
