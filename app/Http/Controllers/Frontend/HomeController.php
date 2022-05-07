@@ -13,16 +13,17 @@ class HomeController extends Controller
 {
     public function index(){
 
-        $url_menu_transaction = '/menu-transaction';
-        $method_menu_transaction = "POST";
-        $val_menu_transaction = array();
-        $result_Api_menu_transaction = DirectAPI::_makeRequest($url_menu_transaction ,$val_menu_transaction ,$method_menu_transaction);
-        $result_menu_transaction = $result_Api_menu_transaction->data;
-        $data_menu_transaction = $result_menu_transaction->data;
-        Session::forget('path');
-        Session::put('path', $_SERVER['REQUEST_URI']);
+//        $url_menu_transaction = '/menu-transaction';
+//        $method_menu_transaction = "POST";
 //
-        return view('frontend.pages.index')->with('data_menu_transaction',$data_menu_transaction);
+//        $val_menu_transaction = array();
+//        $result_Api_menu_transaction = DirectAPI::_makeRequest($url_menu_transaction ,$val_menu_transaction ,$method_menu_transaction);
+//        $result_menu_transaction = $result_Api_menu_transaction->data;
+//        $data_menu_transaction = $result_menu_transaction->data;
+//        Session::forget('path');
+//        Session::put('path', $_SERVER['REQUEST_URI']);
+//
+        return view('frontend.pages.index');
     }
 
     public function profile(){
