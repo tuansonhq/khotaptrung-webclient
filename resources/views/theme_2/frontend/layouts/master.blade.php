@@ -32,8 +32,8 @@
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
     @stack('js')
-
-    <script type="application/ld+json">
+    @if(Request::is('/'))
+        <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -74,7 +74,7 @@
 }
 </script>
 
-    <script type="application/ld+json">
+        <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
   "@type": "Product",
@@ -121,6 +121,9 @@
   }
 }
 </script>
+    @else
+        @endif
+
     @yield('seo_head')
 </head>
 
