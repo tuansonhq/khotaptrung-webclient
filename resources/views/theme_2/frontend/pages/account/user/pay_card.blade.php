@@ -3,7 +3,11 @@
     {{--    @include('frontend.widget.__seo_head')--}}
 @endsection
 @push('js')
-
+    <script>
+        $(document).ready(function(){
+            $('.item-nap-the').addClass('active')
+        });
+    </script>
 @endpush
 @section('content')
     <div class="site-content-body bg-white first last">

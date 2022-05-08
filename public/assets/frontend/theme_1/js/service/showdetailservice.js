@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    const media = "https://media-tt.nick.vn/";
+    const media = "http://cdn.upanh.info/";
 
 
     $('body').on('click','#btnPurchase',function(e){

@@ -5,7 +5,8 @@ $(document).ready(function(){
         const url = '/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('#info .store-loading').remove();
-            $('#info').attr('href','/login')
+            $('#info_mobile .store-loading').remove();
+            $('#info').attr('href','/login?return_url='+window.location.href)
             $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
             $('#auth').html('<input type="text" class="auth" value="none">')
             $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
@@ -26,7 +27,8 @@ $(document).ready(function(){
             success: function (data) {
                 if(data.status === "LOGIN"){
                     $('#info .store-loading').remove();
-                    $('#info').attr('href','/login')
+                    $('#info_mobile .store-loading').remove();
+                    $('#info').attr('href','/login?return_url='+window.location.href)
                     $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
                     $('#auth').html('<input type="text" class="auth" value="none">')
                     $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
@@ -37,6 +39,7 @@ $(document).ready(function(){
                 }
                 if(data.status == true){
                     $('#info>div:first-child').html(' <div class="small op-5 text-end"> Chào '+ fn(data.info.username, 6)  +'</div> <div class="text-end">Số dư: '+formatNumber(data.info.balance)+' đ</div>')
+                    $('#info_mobile').html('<div class="medium op-5 text-start"><b>'+ fn(data.info.username, 6)  +'</b></div>  <div class="text-start">Số dư:  '+formatNumber(data.info.balance)+' đ</div>')
                     $('#info').attr('data-bs-toggle','dropdown')
                     $('#info').attr('aria-haspopup','true')
                     $('#info').attr('aria-expanded','false')

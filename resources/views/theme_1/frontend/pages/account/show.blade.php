@@ -26,6 +26,7 @@
 
         <div class="container pt-3">
             <div class="row container__show">
+
                 <div class="col-md-12 left-right" id="showdetailacc">
                     <div class="body-box-loadding result-amount-loadding">
                         <div class="d-flex justify-content-center" style="padding-top: 112px;">
@@ -43,7 +44,9 @@
                             <span class="pulser"></span>
                         </div>
                     </div>
+
                     @include('frontend.pages.account.function.__show__slider__acc')
+
                 </div>
             </div>
             {{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}

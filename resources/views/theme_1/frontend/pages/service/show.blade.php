@@ -80,7 +80,7 @@
                                     <div class="row">
                                         <div class="news_image">
                                             @if(isset($data->image))
-                                                <img src="https://media-tt.nick.vn/{{ $data->image }}" alt="Bán vàng">
+                                                <img src="{{  config('api.url_media').$data->image }}" alt="Bán vàng">
                                             @else
                                             <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="Bán vàng">
                                             @endif

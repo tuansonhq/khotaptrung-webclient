@@ -18,12 +18,12 @@
                             <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
-                                    <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ isset($item->custom->image_icon) ? $item->custom->image_icon : $item->image_icon }}" alt="">
+                                    <img class="game-list-image-sticky" src="{{ isset($item->custom->image_icon) ?  config('api.url_media').$item->custom->image_icon :  config('api.url_media').$item->image_icon }}" alt="">
                                 @else
                                     <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in" src="https://media-tt.nick.vn/{{ isset($item->custom->image) ? $item->custom->image : $item->image }}" alt="">
+                                    <img class="game-list-image-in" src="{{ isset($item->custom->image) ?  config('api.url_media').$item->custom->image :  config('api.url_media').$item->image }}" alt="">
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
@@ -59,7 +59,7 @@
                                     @if(isset($item->custom) && isset($item->custom->meta))
                                         @foreach($item->custom->meta as $key =>$val)
                                             @if($key == "image_btn")
-                                                <img src="https://media-tt.nick.vn/{{ $val }}" alt="" >
+                                                <img src="{{  config('api.url_media').$val }}" alt="" >
                                             @endif
                                         @endforeach
                                     @else
@@ -96,12 +96,12 @@
                                 <a class="account_category" href="/dich-vu/{{ $item->slug}}">
                                     {{--                                                Anh khuyen mai--}}
                                     @if(isset($item->image_icon))
-                                        <img class="game-list-image-sticky" src="https://media-tt.nick.vn/{{ $item->image_icon  }}" alt="">
+                                        <img class="game-list-image-sticky" src="{{  config('api.url_media').$item->image_icon  }}" alt="">
                                     @else
                                         <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
                                     @endif
                                     @if(isset($item->image))
-                                        <img class="game-list-image-in" src="https://media-tt.nick.vn/{{ $item->image  }}" alt="">
+                                        <img class="game-list-image-in" src="{{  config('api.url_media').$item->image  }}" alt="">
                                     @else
                                         <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                     @endif
@@ -128,7 +128,7 @@
                                         @if(isset($item->custom) && isset($item->custom->meta))
                                             @foreach($item->custom->meta as $key =>$val)
                                                 @if($key == "image_btn")
-                                                    <img src="https://media-tt.nick.vn/{{ $val }}" alt="" >
+                                                    <img src="{{  config('api.url_media').$val }}" alt="" >
                                                 @endif
                                             @endforeach
                                         @else

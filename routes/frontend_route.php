@@ -56,14 +56,14 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-            Route::group(['middleware' => ['cacheResponse: 86400']], function (){
+            Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
 
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
                 // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
+                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
                     ->name('getAmountStoreCard');
                 // ROUTE cần auth load dữ liệu không cache
 
@@ -94,19 +94,24 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/acc/{id}/databuy', [AccController::class , "getShowCategoryBuyAccData"]);
 
+
                 Route::group(['middleware' => ['auth_custom']], function (){
-                    Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                        ->name('index');
 
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-                        ->name('getThongTin');
 
-                    Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info'])
-                        ->name('index');
-                    Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+                });
+
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                        Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
+                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                            ->name('index');
 
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                            ->name('getThongTin');
+
+                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
+
+                            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         // route post mua thẻ
 
@@ -154,11 +159,12 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                     });
-                });
+                    });
+
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-                    
+
                 });
 
                 //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
@@ -203,11 +209,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return view('frontend.pages.account.user.gieoque');
                 });
                 //đăng nhập, đăng xuất, đăng ký
-                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
-                    ->name('login');
-                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
-                    ->name('loginApi');
 
                 Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                     ->name('register');
@@ -247,31 +248,27 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 });
 
-                Route::group(['middleware' => ['doNotCacheResponse']], function ()
-                {
-                    //minigame
-                    Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
-                        ->name('postRoll');
-                    Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
-                        ->name('postBonus');
-                    Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
-                        ->name('getLog');
-                    Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
-                        ->name('getLogAcc');
-                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                        ->name('getIndex');
-                    Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
-                        ->name('getWithdrawItem');
-                    Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
-                        ->name('postWithdrawItem');
+                //minigame
+                Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
+                    ->name('postRoll');
+                Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
+                    ->name('postBonus');
+                Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
+                    ->name('getLog');
+                Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
+                    ->name('getLogAcc');
+                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                    ->name('getIndex');
+                Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
+                    ->name('getWithdrawItem');
+                Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
+                    ->name('postWithdrawItem');
+                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                ->name('loginfacebook');
 
-
-                });
 
             });
             Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
-            Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                ->name('loginfacebook');
 
 //    Route::group(['middleware' => ['auth_custom']], function (){
 //        Route::group(['middleware' => ['cacheResponse:300']], function (){
@@ -281,6 +278,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //    });
         });
 });
+
 //    }
 //    elseif (theme('')->theme_key == 'theme_2'){
 //        Route::group(array('middleware' => ['verify_shop']) , function (){

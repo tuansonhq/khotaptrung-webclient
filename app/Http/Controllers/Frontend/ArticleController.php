@@ -48,8 +48,6 @@ class ArticleController extends Controller
                     ->with('per_page',$per_page)
                     ->with('datacategory',$datacategory);
             }
-        }else{
-            return redirect('/');
         }
     }
 
@@ -97,7 +95,7 @@ class ArticleController extends Controller
                     ->with('per_page',$per_page)
                     ->with('category',$category);
             }else{
-                return redirect('/');
+                return redirect('/404');
             }
         }
     }
@@ -152,7 +150,7 @@ class ArticleController extends Controller
                     ->with('slug',$slug);
 
             }else{
-                return redirect('/');
+                return redirect('/404');
             }
         }
     }
@@ -173,9 +171,11 @@ class ArticleController extends Controller
                 $dataitem = $result->dataitem;
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 $slug = $data->slug;
+                $id = $data->id;
                 return view('frontend.pages.article.show')
                     ->with('dataitem',$dataitem)
                     ->with('slug',$slug)
+                    ->with('id',$id)
                     ->with('data',$data);
             }else{
                 $result = $result_Api->data;
@@ -214,7 +214,7 @@ class ArticleController extends Controller
             }
 
         }else{
-            return redirect('/');
+            return redirect('/404');
         }
     }
 
