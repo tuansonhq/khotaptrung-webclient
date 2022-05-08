@@ -12,8 +12,13 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
     $val_slider = array();
 
     $result_Api_slider = DirectAPI::_makeRequest($url_slider,$val_slider,$method_slider);
-    $result_slider = $result_Api_slider->data;
-    $data_slider = $result_slider->data;
+    if(isset($result_Api_slider) && $result_Api_slider->httpcode == 200){
+        $result_slider = $result_Api_slider->data;
+        $data_slider = $result_slider->data;
+    }else{
+        return 'sai';
+    }
+
     return $view->with('data_slider', $data_slider);
 });
 

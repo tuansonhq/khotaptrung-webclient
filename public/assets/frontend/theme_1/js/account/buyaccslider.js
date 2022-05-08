@@ -31,7 +31,10 @@ $(document).ready(function () {
         thumbs.controller.control = slider;
     });
 
-    getShowAccDetail(slug)
+    setTimeout(function(){
+        getShowAccDetail(slug)
+    }, 3000);
+
 
     function getShowAccDetail(slug) {
 
