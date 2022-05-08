@@ -398,3 +398,30 @@
     }
 
 }
+
+.body-box-loadding{
+    text-align: center;
+    position: relative;
+    min-height: 450px;
+}
+.result-amount-loadding{
+    min-height: 245px !important;
+}
+.pulser {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    border-radius: 100px;
+    margin-top: 8px;
+    width: 30px;
+    height: 30px;
+    border: 10px solid #7D7D7D;
+    animation-name: pulse, fadeout;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+@keyframes pulse {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); -webkit-filter: blur(5px); }
+}
