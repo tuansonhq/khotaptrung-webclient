@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    var slug = $('.slug').val();
+
     $(function(){
         var slider = new Swiper ('.gallery-slider', {
             autoplay: {
@@ -27,4 +30,37 @@ $(document).ready(function () {
         slider.controller.control = thumbs;
         thumbs.controller.control = slider;
     });
+
+    getShowAccDetail(slug)
+
+    function getShowAccDetail(slug) {
+
+        var url = '/acc/'+ slug + '/showacc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                // id:id
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+                if (data.status == 1){
+                    $('#showdetailacc').html('');
+                    $('#showdetailacc').html(data.data);
+
+                    $('#showslideracc').html('');
+                    $('#showslideracc').html(data.dataslider);
+                }
+                console.log(data)
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 })

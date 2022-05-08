@@ -2107,3 +2107,45 @@ footer{
     min-height: 280px;
 }
 
+.loginBox__layma__button404:hover {
+    text-decoration: none;
+}
+.loginBox__layma__button {
+    width: 100%;
+    background: #212529;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    /* margin: 4px 0px; */
+    height: 48px;
+    box-sizing: border-box;
+    flex: none;
+    flex-grow: 0;
+    border: none;
+}
+.loginBox__layma__button span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 8px;
+}
+.loginBox__layma__button404 {
+    padding: 8px 16px;
+    margin-left: 56px;
+}
+.marginauto {
+    width: 100%;
+    margin: 0 auto;
+}
+.left-right {
+    padding-left: 0;
+    padding-right: 0;
+}

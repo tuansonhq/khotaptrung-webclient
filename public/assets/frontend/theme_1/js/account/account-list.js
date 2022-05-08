@@ -24,11 +24,16 @@ $(document).ready(function(){
         // loadDataAccountList(page);
     });
 
+    loadDataAccountList()
     function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
         let slug_category = $('.slug_category').val();
         let slug = $('.slug').val();
 
-        var url = '/' + slug_category + '/' + slug;
+        var url = '/mua-acc/' + slug + '/data';
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         // alert(url)
         request = $.ajax({
             type: 'GET',
@@ -46,8 +51,9 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                console.log(data);
                 $("#account_data").empty().html('');
-                $("#account_data").empty().html(data);
+                $("#account_data").empty().html(data.data);
 
                 $('.loading-data__timkiem').html('');
                 $('.loading-data__all').html('');

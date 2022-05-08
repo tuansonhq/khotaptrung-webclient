@@ -40,8 +40,13 @@
                                                     $index++;
                                                     ?>
                                                     @if($index < 5)
-                                                        <div class="col-6 item_buy_list_info_in">
-                                                            {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
+                                                        <div class="row" style="margin: 0 auto;width: 100%">
+                                                            <div class="col-6 item_buy_list_info_inacc">
+                                                                {{ $att_value->parent[0]->title }} :
+                                                            </div>
+                                                            <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                {{ $att_value->title }}
+                                                            </div>
                                                         </div>
                                                     @endif
                                                 @endif
@@ -65,9 +70,15 @@
                                                                             $index++;
                                                                             ?>
                                                                             @if($index < 5)
-                                                                                <div class="col-6 item_buy_list_info_in">
-                                                                                    {{ $child->title }} : <b>{{ $param }}</b>
+                                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                                    <div class="col-6 item_buy_list_info_inacc">
+                                                                                        {{ $child->title }} :
+                                                                                    </div>
+                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                        {{ $param }}
+                                                                                    </div>
                                                                                 </div>
+
                                                                             @endif
                                                                         @endif
                                                                     @endforeach
@@ -134,9 +145,15 @@
                                                     $index++;
                                                     ?>
                                                     @if($index < 5)
-                                                        <div class="col-6 item_buy_list_info_in">
-                                                            {{ $att_value->parent[0]->title }} : <b>{{ $att_value->title }}</b>
-                                                        </div>
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-6 item_buy_list_info_inacc">
+                                                                    {{ $att_value->parent[0]->title }} :
+                                                                </div>
+                                                                <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                    {{ $att_value->title }}
+                                                                </div>
+                                                            </div>
+
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -158,21 +175,16 @@
                                                                             $index++;
                                                                             ?>
                                                                             @if($index < 5)
-                                                                                <div class="col-6 item_buy_list_info_in">
-                                                                                    {{ $child->title }} : <b>{{ $param }}</b>
+                                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                                    <div class="col-6 item_buy_list_info_inacc">
+                                                                                        {{ $child->title }} :
+                                                                                    </div>
+                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                        {{ $param }}
+                                                                                    </div>
                                                                                 </div>
                                                                             @endif
                                                                         @endif
-                                                                        {{--                                                                    @if(\App\Library\AuthCustom::check() && $key == $child->id && $child->is_slug_override != null)--}}
-                                                                        {{--                                                                        <?php--}}
-                                                                        {{--                                                                        $index++;--}}
-                                                                        {{--                                                                        ?>--}}
-                                                                        {{--                                                                        @if($index < 5)--}}
-                                                                        {{--                                                                            <div class="col-6 item_buy_list_info_in">--}}
-                                                                        {{--                                                                                {{ $child->title }} : <b>{{ $param }}</b>--}}
-                                                                        {{--                                                                            </div>--}}
-                                                                        {{--                                                                        @endif--}}
-                                                                        {{--                                                                    @endif--}}
                                                                     @endforeach
                                                                 @endforeach
                                                             @endif

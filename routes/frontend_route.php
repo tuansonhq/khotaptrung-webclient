@@ -30,6 +30,8 @@ Route::get('/clear-cache', function ()
 
 });
 
+
+
 Route::get('/session', function ()
 {
     Session::flush();
@@ -48,6 +50,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/theme', function ()
             {
                 return view('frontend.index');
+            });
+            Route::get('/404',function(){
+                return view('frontend.404.404');
             });
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
@@ -79,6 +84,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
                 Route::get('/dich-vu/{slug}/data', [ServiceController::class , "getShowData"]);
                 Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
+
+                Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
+                Route::get('/mua-acc/{slug}', [AccController::class , "getShowCategory"]);
+                Route::get('/mua-acc/{slug}/data', [AccController::class , "getShowCategoryData"]);
+
+                Route::get('/acc/{slug}', [AccController::class , "getShowAccDetail"]);
+                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowAccDetailData"]);
+
+                Route::get('/acc/{id}/databuy', [AccController::class , "getShowCategoryBuyAccData"]);
 
                 Route::group(['middleware' => ['auth_custom']], function (){
                     Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
@@ -144,12 +158,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-
-                    Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
-                    Route::get('/{slug_category}/{slug}', [AccController::class , "getShowCategory"]);
-                    Route::get('/{slug_category}/{id}/databuy', [AccController::class , "getShowCategoryData"]);
-
-
+                    
                 });
 
                 //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);

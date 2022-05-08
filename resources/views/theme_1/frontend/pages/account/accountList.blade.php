@@ -237,7 +237,12 @@
             </div>
 
             <div id="account_data">
-                @include('frontend.pages.account.function.__account__data',['dataAttribute'=>$dataAttribute])
+                <div class="body-box-loadding result-amount-loadding">
+                    <div class="d-flex justify-content-center">
+                        <span class="pulser"></span>
+                    </div>
+                </div>
+                @include('frontend.pages.account.function.__account__data')
             </div>
 
 
@@ -247,7 +252,7 @@
     </div>
 
     <input type="hidden" value="{{ isset($data->custom->slug) && $data->custom->slug != '' ? $data->custom->slug :  $data->slug }}" name="slug" class="slug">
-    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">
+{{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}
     <input type="hidden" name="id_data" class="id_data" value="">
     <input type="hidden" name="title_data" class="title_data" value="">
     <input type="hidden" name="price_data" class="price_data" value="">
