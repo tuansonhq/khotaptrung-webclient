@@ -60,11 +60,21 @@
                         },
                         success: function (data) {
                             // alert(data)
-                            if(data.status == 1){
+                            if(data.data.status == 1){
                                 var metapath = $('meta[name="path"]').attr('content');
 
                                 if (metapath == null || metapath == '' || metapath == undefined){
-                                    window.location.href = '/';
+                                    $('meta[name="path"]').attr('content',data.path);
+
+                                    var metapath = $('meta[name="path"]').attr('content');
+
+                                    if (metapath == null || metapath == '' || metapath == undefined){
+                                        window.location.href = '/';
+
+                                    }else {
+                                        window.location.href = metapath;
+
+                                    }
 
                                 }else {
                                     window.location.href = metapath;
@@ -75,7 +85,7 @@
                             }else{
                                 swal({
                                     title: "Có lỗi xảy ra !",
-                                    text: data.message,
+                                    text: data.data.message,
                                     icon: "error",
                                     buttons: {
                                         cancel: "Đóng",
@@ -204,7 +214,7 @@
                 },
                 complete: function (data) {
                     $('#reload').trigger('click');
-                    $('#form-charge-input').trigger("reset");
+                    $('#form-regist').trigger("reset");
                 }
             });
         });

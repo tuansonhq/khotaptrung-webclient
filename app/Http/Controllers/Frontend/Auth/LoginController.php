@@ -48,18 +48,27 @@ class LoginController extends Controller
                     Session::put('jwt',$result->token);
                     Session::put('exp_token',$result->exp_token);
                     Session::put('time_exp_token',$time_exp_token);
+                    $path = Session::get('path');
+                    return response()->json([
+                        'path' => $path,
+                        'data' => $result_Api->data,
+                    ]);
                     return Response()->json($result_Api->data);
                     return redirect()->to('/');
                 }
                 else{
 
-                    return Response()->json($result_Api->data);
+                    return response()->json([
+                        'data' => $result_Api->data,
+                    ]);
 //                    dd(111);
 //                    return redirect()->back()->withErrors($result->message);
                 }
             }else{
 
-                return Response()->json($result_Api->data);
+                return response()->json([
+                    'data' => $result_Api->data,
+                ]);
                 //                dd(122222);
 //                $result = $result_Api->data;
 //                return redirect()->back()->withErrors($result->message);
@@ -78,6 +87,7 @@ class LoginController extends Controller
         $data = array();
         $data['accessToken'] = $request->accessToken;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
         if(isset($result_Api) && $result_Api->httpcode == 200) {
             $result = $result_Api->data;
             if ($result->status == 1) {
@@ -87,7 +97,7 @@ class LoginController extends Controller
                 Session::put('jwt',$result->token);
                 Session::put('exp_token',$result->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
-                return redirect()->to('/');
+                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('path').'');
             } else {
                 return redirect()->back()->withErrors($result->message);
             }

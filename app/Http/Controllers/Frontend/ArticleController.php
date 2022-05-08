@@ -33,6 +33,7 @@ class ArticleController extends Controller
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $category = true;
+            Session::forget('path');
             Session::put('path', $_SERVER['REQUEST_URI']);
 
             if (theme('')->theme_key == 'theme_1'){
@@ -48,7 +49,7 @@ class ArticleController extends Controller
                     ->with('datacategory',$datacategory);
             }
         }else{
-            return 'sai';
+            return redirect('/');
         }
     }
 
@@ -96,7 +97,7 @@ class ArticleController extends Controller
                     ->with('per_page',$per_page)
                     ->with('category',$category);
             }else{
-                return 'sai';
+                return redirect('/');
             }
         }
     }
@@ -151,7 +152,7 @@ class ArticleController extends Controller
                     ->with('slug',$slug);
 
             }else{
-                return 'sai';
+                return redirect('/');
             }
         }
     }
@@ -213,7 +214,7 @@ class ArticleController extends Controller
             }
 
         }else{
-            return 'sai';
+            return redirect('/');
         }
     }
 

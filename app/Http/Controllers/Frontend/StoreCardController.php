@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
+        Session::forget('path');
+        Session::put('path', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.buy_card');
     }
     public function getTelecomStoreCard(Request $request){
+
         try{
             $url = '/store-card/get-telecom';
             $method = "GET";
@@ -117,12 +120,14 @@ class StoreCardController extends Controller
                     return response()->json([
                         'status' => 1,
                         'message' => $result->message,
+                        'data' => $result
                     ]);
                 }
                 if($result->status == 0){
                     return response()->json([
                         'status' => 0,
                         'message' => $result->message,
+                        'data' => $result
                     ]);
                 }
                 else{

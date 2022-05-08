@@ -65,7 +65,9 @@
                 },
                 success: function (data) {
                     // alert(data)
-                    if(data.status == 1){
+                    if(data.data.status == 1){
+                         $('meta[name="path"]').attr('content',data.path);
+
                         var metapath = $('meta[name="path"]').attr('content');
 
                         if (metapath == null || metapath == '' || metapath == undefined){
@@ -80,7 +82,7 @@
                     }else{
                         let html = '';
                         html +='';
-                        html += '<p style="color: red;text-align: center;font-size: 14px">'+ data.message +'</p>';
+                        html += '<p style="color: red;text-align: center;font-size: 14px">'+ data.data.message +'</p>';
                         $('.login_error').html(html)
                     }
 
