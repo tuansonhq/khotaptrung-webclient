@@ -33,8 +33,8 @@ class ArticleController extends Controller
 
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $category = true;
-            Session::forget('path');
-            Session::put('path', $_SERVER['REQUEST_URI']);
+            Session::forget('return_url');
+            Session::put('return_url', $_SERVER['REQUEST_URI']);
 
             if (theme('')->theme_key == 'theme_1'){
                 return view('frontend.pages.article.index')
