@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection

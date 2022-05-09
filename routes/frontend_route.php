@@ -47,6 +47,7 @@ Route::get('/test111', function ()
 
 Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['verify_shop']) , function (){
+
             Route::get('/theme', function ()
             {
                 return view('frontend.index');
