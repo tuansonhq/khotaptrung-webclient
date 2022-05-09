@@ -232,11 +232,7 @@
             @endforeach
         </div>
     @else
-        <div class="row pb-3 pt-3">
-            <div class="col-md-12 text-center">
-                <span style="color: red;font-size: 16px;">Hiện tại không có tài khoản nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</span>
-            </div>
-        </div>
+
     @endif
 
     <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
@@ -253,6 +249,7 @@
             @endif
         @endif
     </div>
+
 @endif
 
 
