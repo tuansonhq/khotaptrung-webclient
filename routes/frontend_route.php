@@ -104,8 +104,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
                         Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
-                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                            ->name('index');
+//                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+//                            ->name('index');
 
                         Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
                             ->name('getThongTin');
