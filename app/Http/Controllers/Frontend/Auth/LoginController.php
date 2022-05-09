@@ -100,7 +100,7 @@ class LoginController extends Controller
                 Session::put('jwt',$result->token);
                 Session::put('exp_token',$result->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
-                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('path').'');
+                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
             } else {
                 return redirect()->back()->withErrors($result->message);
             }
