@@ -104,8 +104,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
                         Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
-//                        Route::get('/profile', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-//                            ->name('index');
+                        Route::get('/profile-info', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                            ->name('index');
 
                         Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
                             ->name('getThongTin');
@@ -159,6 +159,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuMuaThe']);
 
                         Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
+
                     });
                     });
 
@@ -175,6 +176,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     {
                         return view('frontend.pages.404');
                     });
+                    Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
+                        ->name('loginfacebook');
 
                 });
 
@@ -274,8 +277,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
                     ->name('postWithdrawItem');
-                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-                ->name('loginfacebook');
+
 
 
             });

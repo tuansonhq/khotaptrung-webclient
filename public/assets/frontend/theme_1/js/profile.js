@@ -3,7 +3,7 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
     function getInfo(){
-        const url = '/profile';
+        const url = '/profile-info';
         // if(token == 'undefined' || token == null || token =='' || token == undefined){
         //     $('#info .loading').remove();
         //     $('#logout .loading').remove();
