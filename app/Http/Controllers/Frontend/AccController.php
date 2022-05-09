@@ -195,11 +195,14 @@ class AccController extends Controller
 
                 $slug_cate = '';
 
-                foreach ($data->groups as $da){
-                    if ($da->module == 'acc_category'){
-                        $slug_cate = $da->id;
+                if (isset($data->groups)){
+                    foreach ($data->groups as $da){
+                        if ($da->module == 'acc_category'){
+                            $slug_cate = $da->id;
+                        }
                     }
                 }
+
 
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
@@ -233,12 +236,14 @@ class AccController extends Controller
                 $data = $result_Api->data;
 
                 $slug_cate = '';
-
-                foreach ($data->groups as $da){
-                    if ($da->module == 'acc_category'){
-                        $slug_cate = $da->id;
+                if (isset($data->groups)){
+                    foreach ($data->groups as $da){
+                        if ($da->module == 'acc_category'){
+                            $slug_cate = $da->id;
+                        }
                     }
                 }
+
 
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
