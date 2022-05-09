@@ -164,6 +164,16 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // Route không cần Auth load dữ liệu không cache
                 Route::group(['middleware' => ['doNotCacheResponse']], function (){
                     Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
+                    Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
+                    Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
+                        ->name('login');
+                    Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
+                    Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+                        ->name('loginApi');
+                    Route::get('/404', function ()
+                    {
+                        return view('frontend.pages.404');
+                    });
 
                 });
 
