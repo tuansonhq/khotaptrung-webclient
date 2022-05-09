@@ -21,11 +21,8 @@ class AccController extends Controller
         $val['data'] = 'category_list';
         $val['module'] = 'acc_category';
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $data = $result_Api->data;
-        }else{
-            return redirect('/404');
-        }
+        $data = $result_Api->data;
+
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.account.getShowCategory')
@@ -182,43 +179,9 @@ class AccController extends Controller
 
     public function getShowAccDetail(Request $request,$slug){
 
-            $url = '/acc';
-            $method = "GET";
-            $val = array();
-            $val['data'] = 'acc_detail';
-            $val['id'] = $slug;
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $data = $result_Api->data;
-
-                $slug_cate = '';
-
-                if (isset($data->groups)){
-                    foreach ($data->groups as $da){
-                        if ($da->module == 'acc_category'){
-                            $slug_cate = $da->id;
-                        }
-                    }
-                }
-
-
-                $valcategory = array();
-                $valcategory['data'] = 'category_detail';
-                $valcategory['id'] = $slug_cate;
-
-                $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-                $data_category = $result_Api_category->data;
-
-                Session::put('path', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.account.show')
-                    ->with('slug',$slug)
-                    ->with('data_category',$data_category);
-
-            }else{
-                return redirect('/404');
-            }
+        Session::put('path', $_SERVER['REQUEST_URI']);
+        return view('frontend.pages.account.show')
+            ->with('slug',$slug);
 
     }
 
@@ -235,19 +198,9 @@ class AccController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
-                $slug_cate = '';
-                if (isset($data->groups)){
-                    foreach ($data->groups as $da){
-                        if ($da->module == 'acc_category'){
-                            $slug_cate = $da->id;
-                        }
-                    }
-                }
-
-
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
-                $valcategory['id'] = $slug_cate;
+                $valcategory['id'] = $data->groups[1]->id;
 
                 $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
                 $data_category = $result_Api_category->data;
