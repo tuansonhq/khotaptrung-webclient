@@ -16,7 +16,7 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
         $result_slider = $result_Api_slider->data;
         $data_slider = $result_slider->data;
     }else{
-        return 'sai';
+        return redirect('/404');
     }
 
     return $view->with('data_slider', $data_slider);
@@ -35,7 +35,7 @@ View::composer('frontend.widget.__content__home', function ($view) {
     if(isset($result_Api) && $result_Api->httpcode == 200){
         $data = $result_Api->data;
     }else{
-        return 'sai';
+        return redirect('/404');
     }
 // Minigame.
     $param['secret_key'] = config('api.secret_key');
@@ -55,14 +55,18 @@ View::composer('frontend.widget.__content__home', function ($view) {
     $valdichvu['limit'] = 8;
 
     $result_Apidichvu = DirectAPI::_makeRequest($urldichvu,$valdichvu,$methoddichvu);
+    if(isset($result_Apidichvu) && $result_Apidichvu->httpcode == 200){
+        $datadichvu = $result_Apidichvu->data;
 
-    $datadichvu = $result_Apidichvu->data;
+        $datadichvu = $datadichvu->data;
 
-    $datadichvu = $datadichvu->data;
-
-    if (isset($datadichvu->data)){
-        $datadichvu = new LengthAwarePaginator($datadichvu->data, $datadichvu->total, $datadichvu->per_page, $datadichvu->current_page, $datadichvu->data);
+        if (isset($datadichvu->data)){
+            $datadichvu = new LengthAwarePaginator($datadichvu->data, $datadichvu->total, $datadichvu->per_page, $datadichvu->current_page, $datadichvu->data);
+        }else{
+            return redirect('/404');
+        }
     }
+
 
     return $view->with('data', $data)->with('dataGame', $dataGame)->with('datadichvu', $datadichvu);
 });
@@ -81,6 +85,8 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
         $data = $data->data;
 
         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+    }else{
+        return redirect('/404');
     }
     return $view->with('data', $data);
 });

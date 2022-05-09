@@ -48,6 +48,8 @@ class ArticleController extends Controller
                     ->with('per_page',$per_page)
                     ->with('datacategory',$datacategory);
             }
+        }else{
+            return redirect('/404');
         }
     }
 
@@ -225,26 +227,30 @@ class ArticleController extends Controller
         $val['slug'] = $slug;
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        if(isset($result_Api) && $result_Api->httpcode == 200){
+            $result = $result_Api->data;
 
-        $result = $result_Api->data;
+            if ($result->is_router == false){
+                $data = $result->data;
+                $categoryservice = $result->categoryservice;
+                $categoryservice = $categoryservice->data;
+                //return $data;
 
-        if ($result->is_router == false){
-            $data = $result->data;
-            $categoryservice = $result->categoryservice;
-            $categoryservice = $categoryservice->data;
-            //return $data;
+                return view('frontend.pages.service.show')
+                    ->with('categoryservice',$categoryservice)
+                    ->with('data',$data)
+                    ->with('slug',$slug);
+            }
 
-            return view('frontend.pages.service.show')
-                ->with('categoryservice',$categoryservice)
-                ->with('data',$data)
-                ->with('slug',$slug);
+
+            $data = $result->categoryservice;
+
+            return view('frontend.pages.service.show_service_category')
+                ->with('slug',$slug)
+                ->with('data',$data);
+        }else{
+            return redirect('/404');
         }
 
-
-        $data = $result->categoryservice;
-
-        return view('frontend.pages.service.show_service_category')
-            ->with('slug',$slug)
-            ->with('data',$data);
     }
 }
