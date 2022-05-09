@@ -195,56 +195,51 @@ class AccController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $data = $result_Api->data;
+            $data = $result_Api->data;
 
-                $valcategory = array();
-                $valcategory['data'] = 'category_detail';
-                $valcategory['id'] = $data->groups[1]->id;
+            $valcategory = array();
+            $valcategory['data'] = 'category_detail';
+            $valcategory['id'] = $data->groups[1]->id;
 
-                $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-                $data_category = $result_Api_category->data;
-
+            $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+            $data_category = $result_Api_category->data;
+   
 //                return $data_category;
-                $dataAttribute = $data_category->childs;
+            $dataAttribute = $data_category->childs;
 
-                $valslider = array();
-                $valslider['data'] = 'list_acc';
-                $valslider['cat_slug'] = $data_category->slug;
-                $valslider['limit'] = 12;
-                $valslider['status'] = 1;
+            $valslider = array();
+            $valslider['data'] = 'list_acc';
+            $valslider['cat_slug'] = $data_category->slug;
+            $valslider['limit'] = 12;
+            $valslider['status'] = 1;
 
-                $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
-                $sliders = $result_Api_slider->data;
+            $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
+            $sliders = $result_Api_slider->data;
 
-                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
+            $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
-                $card_percent = setting('sys_card_percent');
-                $atm_percent = setting('sys_atm_percent');
+            $card_percent = setting('sys_card_percent');
+            $atm_percent = setting('sys_atm_percent');
 
-                $html = view('frontend.pages.account.function.__show__detail__acc')
-                    ->with('data_category',$data_category)
-                    ->with('data',$data)
-                    ->with('card_percent',$card_percent)
-                    ->with('atm_percent',$atm_percent)
-                    ->with('dataAttribute',$dataAttribute)->render();
+            $html = view('frontend.pages.account.function.__show__detail__acc')
+                ->with('data_category',$data_category)
+                ->with('data',$data)
+                ->with('card_percent',$card_percent)
+                ->with('atm_percent',$atm_percent)
+                ->with('dataAttribute',$dataAttribute)->render();
 
-                $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
-                    ->with('data_category',$data_category)
-                    ->with('data',$data)
-                    ->with('sliders',$sliders)
-                    ->with('dataAttribute',$dataAttribute)->render();
+            $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
+                ->with('data_category',$data_category)
+                ->with('data',$data)
+                ->with('sliders',$sliders)
+                ->with('dataAttribute',$dataAttribute)->render();
 
-                return response()->json([
-                    'data' => $html,
-                    'dataslider' => $htmlslider,
-                    'status' => 1,
-                    'message' => 'Load dữ liệu thành công',
-                ]);
-
-            }else{
-                return redirect('/404');
-            }
+            return response()->json([
+                'data' => $html,
+                'dataslider' => $htmlslider,
+                'status' => 1,
+                'message' => 'Load dữ liệu thành công',
+            ]);
         }
 
     }
