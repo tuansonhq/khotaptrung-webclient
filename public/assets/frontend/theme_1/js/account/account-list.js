@@ -69,6 +69,14 @@ $(document).ready(function(){
 
                     $("#account_data").empty().html(data.data);
 
+                    $("#load_attribute").empty().html('');
+
+                    $("#load_attribute").empty().html(data.htmlatr);
+
+                    $("#load_attribute_mobile").empty().html('');
+
+                    $("#load_attribute_mobile").empty().html(data.htmlatrmobile);
+
                     $('.loading-data__timkiem').html('');
                     $('.loading-data__all').html('');
                 }
@@ -140,7 +148,7 @@ $(document).ready(function(){
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
 
-
+        $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
         loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
@@ -223,6 +231,7 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+        $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
         loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)

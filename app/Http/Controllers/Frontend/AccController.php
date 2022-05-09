@@ -33,40 +33,38 @@ class AccController extends Controller
     public function getShowCategory(Request $request,$slug){
         $url = '/acc';
         $method = "GET";
-        $val = array();
 
         $valcategory = array();
         $valcategory['data'] = 'category_detail';
         $valcategory['slug'] = $slug;
 
         $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+
+        if (!isset($result_Api_category) || !isset($result_Api_category->data)){
+            $data = null;
+            return view('frontend.pages.account.accountList')
+                ->with('data',$data);
+        }
+
         $data = $result_Api_category->data;
 
-        $val['data'] = 'list_acc';
-        $val['cat_slug'] = $slug;
-        $val['status'] = 1;
-        $val['limit'] = 12;
-
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        if(isset($result_Api_category) && $result_Api_category->httpcode == 200 && isset($result_Api) && $result_Api->httpcode == 200){
-
-            $dataAttribute = null;
-            if (isset($data->childs)){
-                $dataAttribute = $data->childs;
-            }
-
-            Session::forget('path');
-            Session::put('path', $_SERVER['REQUEST_URI']);
-
+        if (!isset($data->title)){
+            $data = null;
             return view('frontend.pages.account.accountList')
-                ->with('data',$data)
-                ->with('dataAttribute',$dataAttribute)
-                ->with('slug',$slug);
-
-        }else{
-            return redirect('/404');
+                ->with('data',$data);
         }
+//        if (empty(json_decode(json_encode($data), true))){
+//            $data = null;
+//            return view('frontend.pages.account.accountList')
+//                ->with('data',$data);
+//        }
+
+        Session::forget('path');
+        Session::put('path', $_SERVER['REQUEST_URI']);
+
+        return view('frontend.pages.account.accountList')
+            ->with('data',$data)
+            ->with('slug',$slug);
 
     }
 
@@ -84,6 +82,13 @@ class AccController extends Controller
             $valcategory['slug'] = $slug;
 
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+            if (!isset($result_Api_category) || !isset($result_Api_category->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
             $data = $result_Api_category->data;
 
             $val['data'] = 'list_acc';
@@ -144,36 +149,52 @@ class AccController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-//            return $result_Api;
-//            return $result_Api;
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $items = $result_Api->data;
-
-                $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-
-                $dataAttribute = $data->childs;
-
-                $html =  view('frontend.pages.account.function.__account__data')
-                    ->with('data',$data)
-                    ->with('items',$items)
-                    ->with('dataAttribute',$dataAttribute)->render();
-
-                if (count($items) == 0 && $page == 1){
-                    return response()->json([
-                        'status' => 0,
-                        'data' => $html,
-                        'message' => 'Khong co du lieu.',
-                    ]);
-                }
-
+            if (!isset($result_Api) || !isset($result_Api->data)){
                 return response()->json([
-                    'status' => 1,
-                    'data' => $html,
-                    'message' => 'Load du lieu thanh cong.',
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
                 ]);
-            }else{
-                return redirect('/404');
             }
+
+            $items = $result_Api->data;
+
+
+            $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+
+            $dataAttribute = $data->childs;
+
+            if (!isset($dataAttribute)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
+            $htmlatr =  view('frontend.pages.account.widget.account_load_attribute_to_filter')
+                ->with('dataAttribute',$dataAttribute)->render();
+
+            $htmlatrmobile =  view('frontend.pages.account.widget.account_load_attribute_to_filter_mobile')
+                ->with('dataAttribute',$dataAttribute)->render();
+
+            $html =  view('frontend.pages.account.function.__account__data')
+                ->with('data',$data)
+                ->with('items',$items)
+                ->with('dataAttribute',$dataAttribute)->render();
+
+            if (count($items) == 0 && $page == 1){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
+            return response()->json([
+                'status' => 1,
+                'data' => $html,
+                'htmlatr' => $htmlatr,
+                'htmlatrmobile' => $htmlatrmobile,
+                'message' => 'Load du lieu thanh cong.',
+            ]);
         }
     }
 
@@ -182,7 +203,6 @@ class AccController extends Controller
         Session::put('path', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.account.show')
             ->with('slug',$slug);
-
     }
 
     public function getShowAccDetailData(Request $request,$slug){
@@ -194,17 +214,50 @@ class AccController extends Controller
             $val['id'] = $slug;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            if (!isset($result_Api) || !isset($result_Api->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
 
             $data = $result_Api->data;
-
+            if (!isset($data->groups[1]) || !isset($data->groups[1]->id)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+            
             $valcategory = array();
             $valcategory['data'] = 'category_detail';
             $valcategory['id'] = $data->groups[1]->id;
 
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+            if (!isset($result_Api_category)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
+            if (!isset($result_Api_category->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
             $data_category = $result_Api_category->data;
-   
-//                return $data_category;
+
+
+            if (!isset($data_category->childs) || !isset($data_category->slug)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
             $dataAttribute = $data_category->childs;
 
             $valslider = array();
@@ -214,12 +267,22 @@ class AccController extends Controller
             $valslider['status'] = 1;
 
             $result_Api_slider = DirectAPI::_makeRequest($url,$valslider,$method);
+            if (!isset($result_Api_category) || !isset($result_Api_slider->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
+            }
+
             $sliders = $result_Api_slider->data;
 
             $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
             $card_percent = setting('sys_card_percent');
             $atm_percent = setting('sys_atm_percent');
+
+            $htmlmenu = view('frontend.pages.account.function.__data__menu__buyacc')
+                ->with('data_category',$data_category)->render();
 
             $html = view('frontend.pages.account.function.__show__detail__acc')
                 ->with('data_category',$data_category)
@@ -237,6 +300,7 @@ class AccController extends Controller
             return response()->json([
                 'data' => $html,
                 'dataslider' => $htmlslider,
+                'datamenu' => $htmlmenu,
                 'status' => 1,
                 'message' => 'Load dữ liệu thành công',
             ]);
@@ -389,7 +453,6 @@ class AccController extends Controller
     {
         if (AuthCustom::check()) {
 
-//            Lấy danh sách acc khách hàng.
             $url = '/acc';
             $method = "GET";
             $val = array();
