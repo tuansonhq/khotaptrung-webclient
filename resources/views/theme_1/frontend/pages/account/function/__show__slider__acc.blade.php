@@ -99,8 +99,8 @@
                                     <div class="row">
                                         <div class="col-12 ">
                                             <div class="item_buy_list_price">
-                                                <span>{{ formatPrice($datav2->price_old) }}đ </span>
-                                                {{ formatPrice($datav2->price) }}đ
+                                                <span>{{ str_replace(',','.',number_format($datav2->price_old)) }}đ </span>
+                                                {{ str_replace(',','.',number_format($datav2->price)) }}đ
                                             </div>
 
                                         </div>

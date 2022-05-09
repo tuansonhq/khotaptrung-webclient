@@ -3,7 +3,7 @@
     @if(isset($items) && count($items) > 0)
         <div class="item_buy_list row">
             @foreach ($items as $item)
-
+{{--            @dd($item)--}}
 {{--                Nick random--}}
                 @if($item->status == 1)
                     @if($data->display_type == 2)
@@ -103,9 +103,9 @@
                                         <div class="col-6 ">
                                             <div class="item_buy_list_price2 p7">
                                                 @if(isset($data->params->price) && isset($data->params))
-                                                    {{ formatPrice($data->params->price) }}đ
+                                                    {{ str_replace(',','.',number_format($data->params->price)) }}đ
                                                 @else
-                                                    {{ formatPrice($item->price) }}đ
+                                                    {{ str_replace(',','.',number_format($item->price)) }}đ
                                                 @endif
                                             </div>
 
@@ -211,8 +211,9 @@
                                     <div class="row">
                                         <div class="col-12 ">
                                             <div class="item_buy_list_price">
-                                                <span>{{ formatPrice($item->price_old) }}đ </span>
-                                                {{ formatPrice($item->price) }}đ
+                                                <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
+                                                {{ str_replace(',','.',number_format($item->price)) }}đ
+{{--                                                {{ formatPrice($item->price) }}đ--}}
                                             </div>
 
                                         </div>
