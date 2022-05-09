@@ -13,6 +13,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class MinigameController extends Controller
 {
     public function getIndex(Request $request){
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
         try{
             $method = "GET";
             $data = array();
@@ -129,8 +131,8 @@ class MinigameController extends Controller
                     if(count($result->group->items)>0){
                         $currentPlayList = "";
                         $currentPlayList = Cache::get('currentPlayList'.$group->id);
-                        if($currentPlayList==null){                            
-                            $arrayGift = [];                       
+                        if($currentPlayList==null){
+                            $arrayGift = [];
                             $arrayGiftSpecial = [];
                             foreach ($result->group->items as $key) {
                                 if(isset($key->params->special) && $key->params->special == 1){
@@ -151,7 +153,7 @@ class MinigameController extends Controller
                                     $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
                                 }
                             }
-                            
+
                             if(count($arrayGift) > 0){
                                 for($i=0;$i<=$numNear;$i++){
                                     $fname = $firstname[rand(0,count($firstname)-1)];
@@ -162,9 +164,9 @@ class MinigameController extends Controller
                                     $gift = $arrayGift[rand(0,count($arrayGift)-1)];
                                     $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
                                 }
-                            }              
+                            }
                             $currentPlayList = $currentPlayList!=""?("Danh sách trúng thưởng: ".$currentPlayList):"";
-                            
+
                             $expiresAt = Carbon::now()->addMinutes(5);
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }

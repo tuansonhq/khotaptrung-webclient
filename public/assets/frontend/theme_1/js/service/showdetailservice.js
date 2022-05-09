@@ -102,7 +102,7 @@ $(document).ready(function(){
                     htmlmodal += '</div>';
                     htmlmodal += '<div class="modal-footer">';//l3
                         if (response.aucheck == 0){
-                            htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
+                            htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url='+window.location.href+'">Đăng nhập</a>';
                         }else if (response.aucheck == 1){
                             if (parseInt(response.balance) < parseInt(response.price)){
                                 htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the-cham" id="d3">Nạp thẻ cào</a>';

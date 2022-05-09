@@ -467,7 +467,7 @@
                     success: function(data) {
 
                         if (data.status == 4) {
-                            location.href='/login';
+                            location.href='/login?return_url='+window.location.href;
                             return;
                         } else if (data.status == 3) {
                             clearTimeout(runtime);
@@ -579,7 +579,7 @@
                     success: function(data) {
 
                         if (data.status == 4) {
-                            location.href='/login';
+                            location.href='/login?return_url='+window.location.href;
                             return;
                         } else if (data.status == 3) {
                             clearTimeout(runtime);

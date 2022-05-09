@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
-        Session::forget('path');
-        Session::put('path', $_SERVER['REQUEST_URI']);
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.buy_card');
     }
     public function getTelecomStoreCard(Request $request){
