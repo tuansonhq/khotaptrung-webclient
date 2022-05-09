@@ -6,7 +6,7 @@ $(document).ready(function(){
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('#info .loading').remove();
             $('#logout .loading').remove();
-            $('#info').attr('href','/login')
+            $('#info').attr('href','/login?return_url='+window.location.href)
             $('#logout').attr('href','/register')
             $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
@@ -14,14 +14,14 @@ $(document).ready(function(){
 
             $('#info_mobile .loading').remove();
             $('#logout_mobile .loading').remove();
-            $('#info_mobile').attr('href','/login')
+            $('#info_mobile').attr('href','/login?return_url='+window.location.href)
             $('#logout_mobile').attr('href','/register')
             $('#info_mobile').html('Đăng nhập')
             $('#logout_mobile').html('Đăng kí')
 
             $('#info_tab_mobile .loading').remove();
             $('#logout_tab_mobile .loading').remove();
-            $('#info_tab_mobile').attr('href','/login')
+            $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
             $('#logout_tab_mobile').attr('href','/register')
             $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
@@ -45,7 +45,7 @@ $(document).ready(function(){
                 if(data.status === "LOGIN"){
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
-                    $('#info').attr('href','/login')
+                    $('#info').attr('href','/login?return_url='+window.location.href)
                     $('#logout').attr('href','/register')
                     $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
@@ -53,14 +53,14 @@ $(document).ready(function(){
 
                     $('#info_mobile .loading').remove();
                     $('#logout_mobile .loading').remove();
-                    $('#info_mobile').attr('href','/login')
+                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
                     $('#logout_mobile').attr('href','/register')
                     $('#info_mobile').html('Đăng nhập')
                     $('#logout_mobile').html('Đăng kí')
 
                     $('#info_tab_mobile .loading').remove();
                     $('#logout_tab_mobile .loading').remove();
-                    $('#info_tab_mobile').attr('href','/login')
+                    $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')

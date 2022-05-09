@@ -56,6 +56,8 @@
             var formSubmit = $(this);
             var url = formSubmit.attr('action');
             var btnSubmit = formSubmit.find(':submit');
+            let url2 = new URL(window.location.href);
+            var return_url = url2.searchParams.get('return_url');
             $.ajax({
                 type: "POST",
                 url: url,
@@ -66,15 +68,23 @@
                 success: function (data) {
                     // alert(data)
                     if(data.data.status == 1){
-                         $('meta[name="path"]').attr('content',data.path);
+                        if (return_url == null || return_url == '' || return_url == undefined){
 
-                        var metapath = $('meta[name="path"]').attr('content');
+                            if (return_url == null || return_url == '' || metapath == undefined){
+                                if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                                    window.location.href = '/';
+                                }else{
+                                    window.location.href = data.return_url;
+                                }
 
-                        if (metapath == null || metapath == '' || metapath == undefined){
-                            window.location.href = '/';
+
+                            }else {
+                                window.location.href = return_url;
+
+                            }
 
                         }else {
-                            window.location.href = metapath;
+                            window.location.href = return_url;
 
                         }
 
