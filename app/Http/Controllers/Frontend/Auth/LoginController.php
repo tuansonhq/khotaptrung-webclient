@@ -15,6 +15,11 @@ class LoginController extends Controller
 {
     public function login(){
 
+//        if(!session()->has('auth_custom')){
+
+//        } else{
+//            return redirect('/');
+//        }
         $jwt = Session::get('jwt');
         if(empty($jwt)){
             return view('frontend.pages.log_in');
@@ -48,13 +53,11 @@ class LoginController extends Controller
                     Session::put('jwt',$result->token);
                     Session::put('exp_token',$result->exp_token);
                     Session::put('time_exp_token',$time_exp_token);
-                    $path = Session::get('path');
+                    $return_url = Session::get('return_url');
                     return response()->json([
-                        'path' => $path,
+                        'return_url' => $return_url,
                         'data' => $result_Api->data,
                     ]);
-                    return Response()->json($result_Api->data);
-                    return redirect()->to('/');
                 }
                 else{
 
