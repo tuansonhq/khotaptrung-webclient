@@ -40,9 +40,9 @@
                                     <td>Giá tiền:</td>
                                     <th class="text-info">
                                         @if(isset($data_category->params->price) && isset($data_category->params))
-                                            {{ formatPrice($data_category->params->price) }}đ
+                                            {{ str_replace(',','.',number_format($data_category->params->price)) }} đ
                                         @else
-                                        {{ formatPrice($data->price) }}đ
+                                            {{ str_replace(',','.',number_format($data->price)) }} đ
                                         @endif
                                     </th>
                                 </tr>
