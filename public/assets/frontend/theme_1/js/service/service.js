@@ -63,7 +63,7 @@ $(document).ready(function(){
 
     });
 
-    $('body').on('click','.btn-all',function(e){
+    $('body').on('click','.btn-tatca',function(e){
         e.preventDefault();
         // var htmlloading = '';
         // htmlloading += '<div class="loading"></div>';
@@ -71,6 +71,7 @@ $(document).ready(function(){
         // $('.loading-data__all').html(htmlloading);
 
         $('.title_data').val('');
+        $('.title').val('');
 
         var title_data = $('.title_data').val();
 

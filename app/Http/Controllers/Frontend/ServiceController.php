@@ -38,7 +38,7 @@ class ServiceController extends Controller
             return view('frontend.pages.service.index')
                 ->with('data', $data);
         } else {
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return redirect('/404');
         }
 
     }
@@ -71,7 +71,7 @@ class ServiceController extends Controller
                 return view('frontend.pages.service.function.__get__show__data')
                     ->with('data', $dataajax);
             } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                return redirect('/404');
             }
         }
     }

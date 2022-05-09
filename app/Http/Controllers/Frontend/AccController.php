@@ -61,6 +61,7 @@ class AccController extends Controller
 
             Session::forget('path');
             Session::put('path', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.account.accountList')
                 ->with('data',$data)
                 ->with('dataAttribute',$dataAttribute)
@@ -147,6 +148,7 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
 //            return $result_Api;
+//            return $result_Api;
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $items = $result_Api->data;
 
@@ -158,6 +160,14 @@ class AccController extends Controller
                     ->with('data',$data)
                     ->with('items',$items)
                     ->with('dataAttribute',$dataAttribute)->render();
+
+                if (count($items) == 0 && $page == 1){
+                    return response()->json([
+                        'status' => 0,
+                        'data' => $html,
+                        'message' => 'Khong co du lieu.',
+                    ]);
+                }
 
                 return response()->json([
                     'status' => 1,
