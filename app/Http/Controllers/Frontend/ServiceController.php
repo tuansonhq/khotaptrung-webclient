@@ -20,7 +20,8 @@ class ServiceController extends Controller
 {
 
     public function getShowService(Request $request){
-
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
         $url = '/get-show-service';
         $method = "GET";
         $val = array();

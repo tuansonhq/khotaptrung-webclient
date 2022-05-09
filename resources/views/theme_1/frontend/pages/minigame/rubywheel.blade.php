@@ -230,7 +230,7 @@
                 </button>
             </div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!               
+                Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
             </div>
             <div class="modal-footer">
                 <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
@@ -399,9 +399,9 @@
                         saleoffpass: saleoffpass,
                     },
                     type: 'POST',
-                    success: function(data) {                        
-                        if (data.status == 4) {                            
-                            location.href='/login';
+                    success: function(data) {
+                        if (data.status == 4) {
+                            location.href='/login?return_url='+window.location.href;
                         } else if (data.status == 3) {
                             $('#naptheModal').modal('show')
                             return;
@@ -545,7 +545,7 @@
                     // {
                     //     $html += "<br/><span style='font-size: 14px;color: #f90707;font-style: italic;display: block;text-align: center;'>"+saleoffmessage+"</span><br/>";
                     // }
-                    
+
                     if($('#type_play').val() == "real")
                     {
                         if(gift_revice.length == 1)
@@ -582,7 +582,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }
@@ -614,7 +614,7 @@
                                 }
                                 $totalRevice +=  parseInt(gift_revice[$i]['parrent'].params.value)*(parseInt(xvalueaDD[$i]))+ parseInt(value_gif_bonus[$i]);
                             }
-                            
+
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }

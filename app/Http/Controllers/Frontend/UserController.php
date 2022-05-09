@@ -83,6 +83,8 @@ class UserController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $result = $result_Api->data;
+                Session::forget('return_url');
+                Session::put('return_url', $_SERVER['REQUEST_URI']);
                 $request->session()->put('auth_custom', $result->user);
 
 //                dd($result);

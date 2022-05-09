@@ -580,6 +580,7 @@
                         if (data.status == 4) {
                             location.href='/login';
                             return;
+
                         } else if (data.status == 3) {
                             clearTimeout(runtime);
                             $('#naptheModal').modal('show')

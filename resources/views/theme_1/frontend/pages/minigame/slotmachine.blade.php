@@ -436,7 +436,7 @@
                     type: 'POST',
                     success: function(data) {
                         if (data.status == 4) {
-                            location.href='/login';
+                            location.href='/login?return_url='+window.location.href;
                             return;
                         } else if (data.status == 3) {
                             $('#naptheModal').modal('show')
@@ -504,7 +504,7 @@
         });
 
 
-        function getgifbonus() {            
+        function getgifbonus() {
             if($('#checkPoint').val() != "1"){
                 return;
             }
