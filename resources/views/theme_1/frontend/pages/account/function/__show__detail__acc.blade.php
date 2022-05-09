@@ -7,8 +7,8 @@
                 <div class="swiper-wrapper">
                     @foreach(explode('|',$data->image_extension) as $val)
                         <div class="swiper-slide">
-                            <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
-                                <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                             </a>
                         </div>
                     @endforeach
@@ -26,8 +26,8 @@
                 <div class="swiper-wrapper">
                     @foreach(explode('|',$data->image_extension) as $val)
                         <div class="swiper-slide">
-                            <a data-fancybox="gallerycoverDetail" href="https://media-tt.nick.vn/{{ $val }}">
-                                <img src="https://media-tt.nick.vn/{{ $val }}" alt="">
+                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                             </a>
                         </div>
                     @endforeach

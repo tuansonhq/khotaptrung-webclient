@@ -4,7 +4,7 @@
             <div class="news_content_list_item">
                 <div class="news_content_list_image">
                     <a href="/tin-tuc/{{ $item->slug }}">
-                        <img src="{{  config('api.url_media').$item->image }}" alt="">
+                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                     </a>
                 </div>
 

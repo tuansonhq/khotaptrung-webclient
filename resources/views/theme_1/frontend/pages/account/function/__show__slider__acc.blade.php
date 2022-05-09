@@ -15,13 +15,14 @@
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $datav2->randId }}">
                                         @if(isset($datav2->image))
-                                            <img class="item_buy_list_img-main" src="https://media-tt.nick.vn/{{ $datav2->image }}" alt="{{ $datav2->title }}">
+
+                                            <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($datav2->image)}}" alt="{{ $datav2->title }}">
                                         @else
                                             <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
                                         @endif
 
                                         @if(isset($datav2->image_icon))
-                                            <img class="item_buy_list_img-sale" src="https://media-tt.nick.vn/{{ $datav2->image_icon }}"  alt="{{ $datav2->title }}">
+                                            <img class="item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($datav2->image_icon)}}"  alt="{{ $datav2->title }}">
                                         @else
                                             <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
                                         @endif
