@@ -25,7 +25,7 @@ $(document).ready(function(){
     });
     setTimeout(function(){
         loadDataAccountList()
-    }, 3000);
+    }, 2000);
 
     function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
         let slug_category = $('.slug_category').val();

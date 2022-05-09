@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     setTimeout(function(){
         getShowAccDetail(slug)
-    }, 3000);
+    }, 2000);
 
 
     function getShowAccDetail(slug) {
