@@ -278,29 +278,33 @@ class UserController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
+                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                    $result = $result_Api->data;
+                    $data = $result->data;
+                    $config = $result->config;
+                    $status = $result->status;
+                    $per_page = 0;
+                    $total = 0;
+                    if (isset($data->total)){
+                        $total = $data->total;
+                    }
 
-                $result = $result_Api->data;
-                $data = $result->data;
-                $config = $result->config;
-                $status = $result->status;
-                $per_page = 0;
-                $total = 0;
-                if (isset($data->total)){
-                    $total = $data->total;
+                    if (isset($data->to)){
+                        $per_page = $data->to;
+                    }
+
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                    return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                        ->with('data', $data)
+                        ->with('total',$total)
+                        ->with('status',$status)
+                        ->with('config',$config)
+                        ->with('per_page',$per_page);
+                }else{
+                    return redirect('/404');
                 }
 
-                if (isset($data->to)){
-                    $per_page = $data->to;
-                }
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-
-                return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
-                    ->with('data', $data)
-                    ->with('total',$total)
-                    ->with('status',$status)
-                    ->with('config',$config)
-                    ->with('per_page',$per_page);
             }
 
         }
@@ -394,8 +398,8 @@ class UserController extends Controller
                     } else {
                         return redirect()->back()->withErrors($result->message);
                     }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }else{
+                    return redirect('/404');
                 }
             }
 
@@ -503,8 +507,8 @@ class UserController extends Controller
 
                         return redirect()->back()->withErrors($result->message);
                     }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                } else{
+                    return redirect('/404');
                 }
             }
 

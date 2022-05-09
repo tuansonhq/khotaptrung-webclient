@@ -24,7 +24,7 @@ class AccController extends Controller
         if(isset($result_Api) && $result_Api->httpcode == 200){
             $data = $result_Api->data;
         }else{
-            return '/404';
+            return redirect('/404');
         }
 
         return view('frontend.pages.account.getShowCategory')
@@ -66,7 +66,7 @@ class AccController extends Controller
                 ->with('slug',$slug);
 
         }else{
-            return '/404';
+            return redirect('/404');
         }
 
     }
@@ -164,7 +164,7 @@ class AccController extends Controller
                     'message' => 'Load du lieu thanh cong.',
                 ]);
             }else{
-                return '/404';
+                return redirect('/404');
             }
         }
     }
@@ -203,7 +203,7 @@ class AccController extends Controller
                     ->with('data_category',$data_category);
 
             }else{
-                return '/404';
+                return redirect('/404');
             }
 
     }
@@ -274,7 +274,7 @@ class AccController extends Controller
                 ]);
 
             }else{
-                return '/404';
+                return redirect('/404');
             }
         }
 
@@ -346,7 +346,7 @@ class AccController extends Controller
                 ]);
 
             }else{
-                return '/404';
+                return redirect('/404');
             }
         }
     }
@@ -415,7 +415,7 @@ class AccController extends Controller
                     }
 
                 }else{
-                    return '/404';
+                    return redirect('/404');
                 }
             }
         }
@@ -594,7 +594,7 @@ class AccController extends Controller
                 return view('frontend.pages.account.getBuyAccountHistory')
                     ->with('data', $data)->with('datacategory', $datacategory);
             }else{
-                return '/404';
+                return redirect('/404');
             }
         }
 
