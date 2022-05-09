@@ -33,11 +33,18 @@
                                 </tr>
                                 <tr>
                                     <td>Tên game:</td>
-                                    <th>{{ $data_category->title }}</th>
+{{--                                    @dd($data_category)--}}
+                                    <th>{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</th>
                                 </tr>
                                 <tr>
                                     <td>Giá tiền:</td>
-                                    <th class="text-info">{{ formatPrice($data->price) }}đ</th>
+                                    <th class="text-info">
+                                        @if(isset($data_category->params->price) && isset($data_category->params))
+                                            {{ formatPrice($data_category->params->price) }}đ
+                                        @else
+                                        {{ formatPrice($data->price) }}đ
+                                        @endif
+                                    </th>
                                 </tr>
                                 </tbody>
                             </table>
