@@ -10,18 +10,22 @@
         </div>
 
         <div class="game-list row">
+       
             @foreach($data as $item)
 
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                     <div class="game-list-content">
-                        <div class="game-list-image">
+                        <div class="game-list-image game-list-image__game"  style="width: 270px;height: 200px">
                             <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
-
-                                    <img class="game-list-image-sticky" src="{{ isset($item->custom->image_icon) ?  \App\Library\MediaHelpers::media($item->custom->image_icon) : \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
+                                    @if(isset($item->custom->image_icon))
+                                        <img class="game-list-image-sticky" src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
+                                    @else
+                                        <img class="game-list-image-sticky" src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
+                                    @endif
                                 @else
-                                    <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
+                                    <img class="game-list-image-sticky" src="/assets/frontend/theme_1/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
                                     <img class="game-list-image-in" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
@@ -57,7 +61,7 @@
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
 
-                                    @if(isset($item->custom) && isset($item->custom->meta))
+                                    @if(isset($item->custom) && isset($item->custom->meta) && isset($item->custom->meta->image_btn))
                                         @foreach($item->custom->meta as $key =>$val)
                                             @if($key == "image_btn")
                                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
