@@ -228,7 +228,7 @@ class AccController extends Controller
                     'message' => 'Khong co du lieu.',
                 ]);
             }
-            
+
             $valcategory = array();
             $valcategory['data'] = 'category_detail';
             $valcategory['id'] = $data->groups[1]->id;
