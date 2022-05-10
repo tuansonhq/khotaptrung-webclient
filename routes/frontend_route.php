@@ -52,11 +52,23 @@ Route::group(array('middleware' => ['theme']) , function (){
             {
                 return view('frontend.index');
             });
+            Route::get('/clear', function ()
+            {
+                \Artisan::call('cache:clear');
+                \Artisan::call('config:cache');
+                \Artisan::call('view:clear');
+                \Artisan::call('route:clear');
+                Cache::flush();
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công!'
+                ]);
+            });
 
             Route::get('/408',function(){
                 return view('errors.408');
             });
-       
+
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
