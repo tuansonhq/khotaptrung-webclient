@@ -46,7 +46,7 @@ Route::get('/test111', function ()
 //    if (theme('')->theme_key == 'theme_1'){
 
 Route::group(array('middleware' => ['theme']) , function (){
-        Route::group(array('middleware' => ['verify_shop','throttle:600,1']) , function (){
+        Route::group(array('middleware' => ['throttle:600,1','verify_shop']) , function (){
 
             Route::get('/theme', function ()
             {
@@ -99,9 +99,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                         // lấy nhà mạng mua thẻ
-                        Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
+                        Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
                         // lấy mệnh giá trong mua thẻ
-                        Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
+                        Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                             ->name('getAmountStoreCard');
                         Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
