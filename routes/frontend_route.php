@@ -60,12 +60,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
 
-                Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
-                // lấy nhà mạng mua thẻ
-                Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
-                // lấy mệnh giá trong mua thẻ
-                Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
-                    ->name('getAmountStoreCard');
+
                 // ROUTE cần auth load dữ liệu không cache
 
                 Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
@@ -102,6 +97,12 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                        Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
+                        // lấy nhà mạng mua thẻ
+                        Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->middleware('throttle:35,1')->name('getTelecomStoreCard');
+                        // lấy mệnh giá trong mua thẻ
+                        Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])->middleware('throttle:35,1')
+                            ->name('getAmountStoreCard');
                         Route::group(['middleware' => ['auth_custom']], function (){
                         //profile
                         Route::get('/profile-info', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
