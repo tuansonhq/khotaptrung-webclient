@@ -194,6 +194,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     });
                     Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
                         ->name('loginfacebook');
+                    //capcha
+                    Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
 
                 });
 
@@ -247,8 +249,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('changePassword');
                 Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
                     ->name('changePasswordApi');
-                //capcha
-                Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
+
 
                 Route::get('/show', function ()
                 {
