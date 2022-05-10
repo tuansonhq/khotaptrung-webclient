@@ -4,6 +4,7 @@
 
 namespace App\Library;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method){
@@ -44,6 +45,7 @@ class DirectAPI{
                 $resultChange->data = $result;
                 return $resultChange;
             }else{
+                Log::error(json_decode($resultRaw));
                 $loopTime++;
                 continue;
             }
