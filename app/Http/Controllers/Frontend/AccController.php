@@ -685,17 +685,25 @@ class AccController extends Controller
                             'message' => 'Không có dữ liệu 620.',
                         ]);
                     }
+                    $datacategory = $result_category->data;
 //                    return $data_category;
 //
-//                    $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
-//                        ->with('datacategory', $data_category)->render();
+                    $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
+                        ->with('datacategory', $datacategory)->render();
                     $html = view('frontend.pages.account.function.lichsu.__get__buy__account__history')
                         ->with('data', $data)->render();
+
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Khong co du lieu.',
+                        ]);
+                    }
 
                     return response()->json([
                         "success"=> true,
                         "html" => $html,
-//                        "htmlcategory" => $htmlcategory,
+                        "htmlcategory" => $htmlcategory,
                         "status" => 1,
                         "data" => $data,
                         "dataAttribute" => $dataAttribute,

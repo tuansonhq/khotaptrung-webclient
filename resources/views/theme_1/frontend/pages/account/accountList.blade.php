@@ -100,6 +100,7 @@
                             <span class="pulser"></span>
                         </div>
                     </div>
+
                     @include('frontend.pages.account.function.__account__data')
                 </div>
 

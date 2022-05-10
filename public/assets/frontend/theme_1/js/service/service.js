@@ -19,8 +19,12 @@ $(document).ready(function(){
 
     });
 
-    function loadDataService(page,title) {
+    loadDataService()
 
+    function loadDataService(page,title) {
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/dich-vu/data',
@@ -32,8 +36,20 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                $("#getshowservice_data").empty().html('');
-                $("#getshowservice_data").empty().html(data);
+                if (data.status == 1){
+
+                    $("#getshowservice_data").empty().html('');
+                    $("#getshowservice_data").empty().html(data.data);
+
+                }else if (data.status == 0){
+                    console.log(data.message)
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">Dữ liệu cần tìm không tồn tại, vui lòng thử lại.!</span></div></div>';
+
+                    $("#getshowservice_data").empty().html('');
+                    $("#getshowservice_data").empty().html(html);
+                }
+
             },
             error: function (data) {
 

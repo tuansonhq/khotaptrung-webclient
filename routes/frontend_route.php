@@ -52,9 +52,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             {
                 return view('frontend.index');
             });
-//            Route::get('/404',function(){
-//                return view('frontend.404.404');
-//            });
+            Route::get('/408',function(){
+                return view('errors.408');
+            });
             Route::post('/user/account_info', [UserController::class , "getInfo"]);
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
