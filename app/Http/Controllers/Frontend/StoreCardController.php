@@ -34,13 +34,19 @@ class StoreCardController extends Controller
                     ],200);
                 }
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+            else if(isset($result_Api) && $result_Api->httpcode == 401){
                 session()->flush();
                 return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"
                 ]);
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Hiện tại không gọi được dữ liệu từ hệ thống, vui lòng tải lại trang hoặc liên hệ QTV để xử lý, trân trọng',
+                ],200);
             }
+
         }
         catch(\Exception $e){
             Log::error($e);

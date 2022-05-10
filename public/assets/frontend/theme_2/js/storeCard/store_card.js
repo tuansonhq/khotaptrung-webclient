@@ -86,14 +86,14 @@
                             });
                         }
                         else {
-                            // swal({
-                            //     title: "Có lỗi xảy ra !",
-                            //     text: data.message,
-                            //     icon: "error",
-                            //     buttons: {
-                            //         cancel: "Đóng",
-                            //     },
-                            // })
+                            swal({
+                                title: "Có lỗi xảy ra !",
+                                text: 'Dữ liệu chưa được cấu hình, vui lòng liên hệ QTV để xử lý',
+                                icon: "error",
+                                buttons: {
+                                    cancel: "Đóng",
+                                },
+                            })
                         }
 
 
