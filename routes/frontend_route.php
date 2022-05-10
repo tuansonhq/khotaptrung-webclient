@@ -55,7 +55,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //            Route::get('/404',function(){
 //                return view('frontend.404.404');
 //            });
-            Route::post('/user/account_info', [UserController::class , "getInfo"]);
+
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
@@ -112,6 +112,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                        Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                         // lấy nhà mạng mua thẻ
                         Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
