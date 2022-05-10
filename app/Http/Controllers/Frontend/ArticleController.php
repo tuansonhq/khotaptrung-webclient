@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Session;
 
 class ArticleController extends Controller
 {
-    public function index(Request $request){
 
+    public function index(Request $request){
+        return 11111;
         $url = '/article';
         $method = "GET";
         $val = array();
@@ -30,77 +33,92 @@ class ArticleController extends Controller
             if (isset($data->to)){
                 $per_page = $data->to;
             }
+            dd(url()->current());
+//            $data = paginate($data->data,2,null,['path'=>url()->current()]);
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, ['path'=>url()->current()]);
 
-            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+            $data->setPath($request->url());
             $category = true;
             Session::forget('return_url');
             Session::put('return_url', $_SERVER['REQUEST_URI']);
 
-            if (theme('')->theme_key == 'theme_1'){
-                return view('frontend.pages.article.index')
-                    ->with('data',$data)
-                    ->with('category',$category);
-            }elseif (theme('')->theme_key == 'theme_2'){
-                return view('frontend.pages.article.index')
-                    ->with('data',$data)
-                    ->with('category',$category)
-                    ->with('total',$total)
-                    ->with('per_page',$per_page)
-                    ->with('datacategory',$datacategory);
-            }
-        }else{
-            return redirect('/404');
-        }
-    }
-
-    public function getData(Request $request){
-
-        if ($request->ajax()){
-            $page = $request->page;
-
-            $url = '/article';
-            $method = "GET";
-            $val = array();
-            $val['page'] = $page;
-
-            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
-            }
-
-            if (isset($request->slug) || $request->slug != '' || $request->slug != null){
-
-                $val['slug'] = $request->slug;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                $data = $result->data;
-                $per_page = 0;
-                $total = 0;
-
-                if (isset($data->total)){
-                    $total = $data->total;
-                }
-
-                if (isset($data->to)){
-                    $per_page = $data->to;
-                }
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                $category = true;
-
+            if($request->ajax()){
                 return view('frontend.pages.article.function.__new__data')
                     ->with('data',$data)
                     ->with('total',$total)
                     ->with('per_page',$per_page)
                     ->with('category',$category);
-            }else{
-                return redirect('/404');
             }
+            else{
+                if (theme('')->theme_key == 'theme_1'){
+                    return view('frontend.pages.article.index')
+                        ->with('data',$data)
+                        ->with('category',$category);
+                }elseif (theme('')->theme_key == 'theme_2'){
+                    return view('frontend.pages.article.index')
+                        ->with('data',$data)
+                        ->with('category',$category)
+                        ->with('total',$total)
+                        ->with('per_page',$per_page)
+                        ->with('datacategory',$datacategory);
+                }
+
+            }
+
+
+        }else{
+            return redirect('/404');
         }
     }
+
+//    public function getData(Request $request){
+//
+//        if ($request->ajax()){
+//            $page = $request->page;
+//
+//            $url = '/article';
+//            $method = "GET";
+//            $val = array();
+//            $val['page'] = $page;
+//
+//            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
+//                $val['querry'] = $request->querry;
+//            }
+//
+//            if (isset($request->slug) || $request->slug != '' || $request->slug != null){
+//
+//                $val['slug'] = $request->slug;
+//            }
+//
+//            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+//
+//            if(isset($result_Api) && $result_Api->httpcode == 200){
+//                $result = $result_Api->data;
+//                $data = $result->data;
+//                $per_page = 0;
+//                $total = 0;
+//
+//                if (isset($data->total)){
+//                    $total = $data->total;
+//                }
+//
+//                if (isset($data->to)){
+//                    $per_page = $data->to;
+//                }
+//
+//                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+//                $category = true;
+//
+//                return view('frontend.pages.article.function.__new__data')
+//                    ->with('data',$data)
+//                    ->with('total',$total)
+//                    ->with('per_page',$per_page)
+//                    ->with('category',$category);
+//            }else{
+//                return redirect('/404');
+//            }
+//        }
+//    }
 
     public function getCategoryData(Request $request,$slug){
 
