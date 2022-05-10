@@ -82,10 +82,11 @@ class AccController extends Controller
             $valcategory['slug'] = $slug;
 
             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+
             if (!isset($result_Api_category) || !isset($result_Api_category->data)){
                 return response()->json([
                     'status' => 0,
-                    'message' => 'Khong co du lieu.',
+                    'message' => $result_Api_category->message,
                 ]);
             }
 
@@ -152,7 +153,7 @@ class AccController extends Controller
             if (!isset($result_Api) || !isset($result_Api->data)){
                 return response()->json([
                     'status' => 0,
-                    'message' => 'Khong co du lieu.',
+                    'message' => $result_Api->message,
                 ]);
             }
 
@@ -237,7 +238,7 @@ class AccController extends Controller
             if (!isset($result_Api_category)){
                 return response()->json([
                     'status' => 0,
-                    'message' => 'Khong co du lieu.',
+                    'message' => $result_Api_category->message,
                 ]);
             }
 
@@ -270,7 +271,7 @@ class AccController extends Controller
             if (!isset($result_Api_category) || !isset($result_Api_slider->data)){
                 return response()->json([
                     'status' => 0,
-                    'message' => 'Khong co du lieu.',
+                    'message' => $result_Api_category->message,
                 ]);
             }
 
@@ -341,7 +342,7 @@ class AccController extends Controller
                 if (!isset($result_Api_category) || !isset($result_Api_category->data)){
                     return response()->json([
                         'status' => 0,
-                        'message' => 'Khong co du lieu.',
+                        'message' => $result_Api_category->message,
                     ]);
                 }
 
@@ -406,7 +407,7 @@ class AccController extends Controller
             }else{
                 return response()->json([
                     'status' => 0,
-                    'message' => 'Khong co du lieu.',
+                    'message' => $result_Api->message,
                 ]);
             }
         }
@@ -477,7 +478,7 @@ class AccController extends Controller
                         }elseif (isset($data->error)){
                             return response()->json([
                                 'status' => 0,
-                                'message' => 'Không có dữ liệu 480.',
+                                'message' => $data->error,
                             ]);
 //                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
                         }else{
@@ -495,7 +496,7 @@ class AccController extends Controller
                 }else{
                     return response()->json([
                         'status' => 0,
-                        'message' => 'Không có dữ liệu 498.',
+                        'message' => $result_Api->message,
                     ]);
                 }
             }else{
@@ -510,28 +511,24 @@ class AccController extends Controller
     public function getBuyAccountHistory(Request $request)
     {
         if (AuthCustom::check()) {
+            return view('frontend.pages.account.getBuyAccountHistory');
+        }else{
+            return redirect('/login');
+        }
 
-            $url = '/acc';
-            $method = "GET";
-            $val = array();
+    }
 
-            $val['data'] = 'list_acc';
-            $val['user_id'] = AuthCustom::user()->id;
-            $val['limit'] = 12;
-            $val['sort'] = 'desc';
-            $val['sort_by'] = 'published_at';
-
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            $valcategory['data'] = 'category_list';
-            $valcategory['module'] = 'acc_category';
-            $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+    public function getBuyAccountHistoryData(Request $request)
+    {
+        if (AuthCustom::check()) {
 
             if ($request->ajax()) {
                 $page = $request->page;
+
                 $dataAttribute = null;
+
                 $datashow = null;
+
                 $count = 0;
                 $url = '/acc';
                 $method = "GET";
@@ -605,9 +602,10 @@ class AccController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
+                if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api->data)) {
 
                     $data = $result_Api->data;
+
                     $key = null;
                     if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
                         if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
@@ -617,22 +615,48 @@ class AccController extends Controller
 
                             $result_Api_show = DirectAPI::_makeRequest($url,$valshow,$method);
 
+                            if (!isset($result_Api_show) || !isset($result_Api_show->data)){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Không có dữ liệu 620.',
+                                ]);
+                            }
+
                             $datashow = $result_Api_show->data;
 
                             $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
 
-                            $slug_cate = '';
-                            foreach ($datashow->groups as $da){
-                                if ($da->module == 'acc_category'){
-                                    $slug_cate = $da->id;
-                                }
+                            if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Không có dữ liệu 631.',
+                                ]);
                             }
+
                             $valcategory = array();
                             $valcategory['data'] = 'category_detail';
-                            $valcategory['id'] = $slug_cate;
+                            $valcategory['id'] = $datashow->groups[1]->id;
 
                             $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+
+                            if (!isset($result_Api_category) || !isset($result_Api_category->data)){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Không có dữ liệu 644.',
+                                ]);
+                            }
+
                             $data_category = $result_Api_category->data;
+
+                            if (!isset($data_category->childs)){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Không có dữ liệu 652.',
+                                ]);
+                            }
+
+
+
                             $dataAttribute = $data_category->childs;
 
                             if (isset($dataAttribute)){
@@ -643,14 +667,43 @@ class AccController extends Controller
 
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu 668.',
+                        ]);
                     }
 
-                    $html = view('frontend.pages.account.function.__get__buy__account__history')
+                    $valcate = array();
+                    $valcate['data'] = 'category_list';
+                    $valcate['module'] = 'acc_category';
+                    $result_category = DirectAPI::_makeRequest($url,$valcate,$method);
+
+                    if (!isset($result_category)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu 620.',
+                        ]);
+                    }
+                    $datacategory = $result_category->data;
+//                    return $data_category;
+//
+                    $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
+                        ->with('datacategory', $datacategory)->render();
+                    $html = view('frontend.pages.account.function.lichsu.__get__buy__account__history')
                         ->with('data', $data)->render();
+
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Khong co du lieu.',
+                        ]);
+                    }
 
                     return response()->json([
                         "success"=> true,
                         "html" => $html,
+                        "htmlcategory" => $htmlcategory,
                         "status" => 1,
                         "data" => $data,
                         "dataAttribute" => $dataAttribute,
@@ -662,25 +715,14 @@ class AccController extends Controller
                     ], 200);
 
                 } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu 691.',
+                    ]);
                 }
             }
-
-            if(isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_category) && $result_Api_category->httpcode == 200){
-                $data = $result_Api->data;
-
-//                return $data;
-                $datacategory = $result_Api_category->data;
-
-                if (isEmpty($data->data)) {
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                }
-
-                return view('frontend.pages.account.getBuyAccountHistory')
-                    ->with('data', $data)->with('datacategory', $datacategory);
-            }else{
-                return redirect('/404');
-            }
+        }else{
+            return redirect('/login');
         }
 
     }

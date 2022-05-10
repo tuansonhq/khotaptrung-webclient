@@ -21,12 +21,7 @@
             </div>
         </div>
         <div class="container">
-{{--            <div class="row">--}}
-{{--                <div class="col-md-12 text-center danhmucdichvu c-content-title-1">--}}
-{{--                    <h3 style="font-size: 30px;color: #3f444a;font-weight: 700;">DANH MỤC DỊCH VỤ</h3>--}}
-{{--                    <div class="c-line-center c-theme-bg"></div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+
             <div class="item_buy_form">
                 <form class="form_get_show_service">
                     <div class="row">
@@ -87,6 +82,14 @@
             </div>
 
             <div class="item_buy_list row" id="getshowservice_data">
+                <div class="col-md-12 left-right">
+                    <div class="body-box-loadding result-amount-loadding">
+                        <div class="d-flex justify-content-center">
+                            <span class="pulser"></span>
+                        </div>
+                    </div>
+                </div>
+
                 @include('frontend.pages.service.function.__get__show__data')
             </div>
 

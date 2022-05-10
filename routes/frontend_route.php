@@ -52,10 +52,11 @@ Route::group(array('middleware' => ['theme']) , function (){
             {
                 return view('frontend.index');
             });
-//            Route::get('/404',function(){
-//                return view('frontend.404.404');
-//            });
 
+            Route::get('/408',function(){
+                return view('errors.408');
+            });
+       
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
@@ -151,8 +152,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
                             ->name('getBuyServiceHistory');
 
-                        Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory'])
-                            ->name('getShowBuyServiceHistory');
+                        Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData']);
 
                         Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
                             ->name('getDeleteServiceData');

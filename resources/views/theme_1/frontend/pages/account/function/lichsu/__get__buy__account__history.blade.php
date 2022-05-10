@@ -1,5 +1,5 @@
 @if(empty($data->data))
-        <div class="table-responsive">
+        <div class="table-responsive" id="tableacchstory">
             <table class="table table-hover table-custom-res">
                 <thead>
                 <tr>
@@ -33,7 +33,9 @@
                                 @endif
                             </td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ formatPrice($item->price) }} đ</td>
+                            <td>
+                                {{ str_replace(',','.',number_format($item->price)) }} đ
+                            </td>
                             <td>
                                 @if($item->status == 1)
                                 @elseif($item->status == 2)
@@ -51,12 +53,6 @@
                             <td><a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a></td>
                         </tr>
                     @endforeach
-                @else
-                    <tr>
-                        <td colspan="8">
-                            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                        </td>
-                    </tr>
                 @endif
 
                 </tbody>

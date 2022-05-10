@@ -169,12 +169,12 @@
                         <div class="col-md-5">
 
                             <div class="row emply-btns">
-                                <div class="col-md-8 col-md-offset-2">
+                                <div class="col-md-12 col-md-offset-2">
                                     <div class=" emply-btns text-center">
                                         <input type="hidden" name="value" value="">
                                         <input type="hidden" name="selected" value="">
                                         <input type="hidden" name="server">
-                                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none" class="">Tổng: 0 Xu</a>
+                                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 Xu</a>
                                         <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
                                     </div>
                                 </div>
@@ -315,7 +315,6 @@
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content modal-content__data">
-
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,6 @@
                                             @endif
                                         @endif
 
-
                                         <span>MS: {{ $item->randId }}</span>
                                     </a>
                                 </div>

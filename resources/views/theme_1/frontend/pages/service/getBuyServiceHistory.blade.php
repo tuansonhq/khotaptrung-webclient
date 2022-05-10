@@ -2,28 +2,6 @@
 @section('content')
 
     <div class="account">
-        <div class="" style="margin-top: 15px">
-            @if ($message = Session::get('success'))
-                <div class="container">
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
-                        {{$message}}
-                    </div>
-                </div>
-            @endif
-            @if($messages=$errors->all())
-                <div class="container">
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
-                        {{$messages[0]}}
-                    </div>
-                </div>
-
-            @endif
-
-        </div>
         <div class="account_content">
             <div class="container">
                 @include('frontend.pages.account.sidebar')
@@ -58,21 +36,11 @@
 
                                     </div>
                                 </div>
-                                @if(isset($categoryservice) && count($categoryservice) > 0)
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span >Loại dịch vụ</span>
-                                            <select name="key" class="form-control key">
-                                                <option value="">-- Tất cả các dịch vụ --</option>
-                                                @foreach($categoryservice as $val)
-                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="col-md-4"></div>
-                                @endif
+
+                                <div class="col-md-4">
+                                    @include('frontend.pages.service.function.__category__history__service')
+                                </div>
+
 
                                 <div class="col-md-4">
                                     <div class="input-group">
@@ -112,7 +80,12 @@
                             </div>
                         </form>
 
-                        <div id="data_service_history">
+                        <div id="data_service_history" style="position: relative">
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
                             @include('frontend.pages.service.function.__get__buy__service__history')
                         </div>
                     </div>
