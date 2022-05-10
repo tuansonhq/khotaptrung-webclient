@@ -45,7 +45,7 @@ class DirectAPI{
                 $resultChange->data = $result;
                 return $resultChange;
             }else{
-                Log::error(json_decode($resultRaw));
+                Log::error($resultRaw);
                 $loopTime++;
                 continue;
             }
