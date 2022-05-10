@@ -98,7 +98,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
                 Route::get('/mua-acc/{slug}', [AccController::class , "getShowCategory"]);
-                Route::get('/mua-acc/{slug}/data', [AccController::class , "getShowCategoryData"]);
+//                Route::get('/mua-acc/{slug}/data', [AccController::class , "getShowCategoryData"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getShowAccDetail"]);
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowAccDetailData"]);
@@ -144,8 +144,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
                             ->name('getBuyAccountHistory');
-                        Route::get('/lich-su-mua-account/data', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistoryData'])
-                            ->name('getBuyAccountHistoryData');
+                        Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
+                            ->name('getShowpass');
                         //dịch vụ
                         Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
                             ->name('getBuyServiceHistory');

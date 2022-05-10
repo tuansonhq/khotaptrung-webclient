@@ -165,13 +165,14 @@ $(document).ready(function(){
     });
 
     loadDataAccountList()
+
     function loadDataAccountList(page,serial,key,price,status,started_at,ended_at,sort_by_data,chitiet_data,id_data) {
         if (page == null || page == '' || page == undefined){
             page = 1;
         }
         request = $.ajax({
             type: 'GET',
-            url: '/lich-su-mua-account/data',
+            url: '/lich-su-mua-account',
             data: {
                 page:page,
                 serial:serial,
@@ -192,26 +193,13 @@ $(document).ready(function(){
                 $('.chitiet_data').val(0);
                 $('.id_data').val('');
                 if (data.status == 1){
-
-                    // $('#tableacchstory').css('display','block');
+                    console.log(data);
+                    $(".booking_detail")[0].scrollIntoView();
 
                     if (data.chitiet_data == 1){
                         $('#taikhoandamua_password').modal('show');
 
                         var html = '';
-                        // if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
-                        //     html += '<div class="form-group m-t-10 row">';
-                        //     html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
-                        //     html += '<div class="col-md-6">';
-                        //     html += '<div class="input-group c-square">';
-                        //     html += '<input class="form-control c-square c-theme" type="text" placeholder="Idkey" id="idkey" readonly value="' + data.datashow.idkey + '">';
-                        //     html += '<span class="input-group-btn">';
-                        //     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
-                        //     html += '</span>';
-                        //     html += '</div>';
-                        //     html += '</div>';
-                        //     html += '</div>';
-                        // }
                         html += '<div class="form-group m-t-10 row">';
                         html += '<label class="col-md-3 control-label"><b>Tài khoản:</b></label>';
                         html += '<div class="col-md-6">';
@@ -227,33 +215,17 @@ $(document).ready(function(){
                         html += '<div class="form-group m-t-10 row">';
                         html += '<label class="col-md-3 control-label"><b>Mật khẩu:</b></label>';
                         html += '<div class="col-md-6">';
-                        html += '<div class="input-group c-square">';
+                        html += '<div class="input-group c-square" style="margin-bottom: 4px">';
                         html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
                         html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
                         html += '<span class="input-group-btn">';
-                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
+                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass" data-id="' + data.datashow.id + '">Copy</button>';
                         html += '</span>';
                         html += '</div>';
-                        html += '<span class="help-block">Click vào nút copy để sao chép mật khẩu.</span>';
+                        html += '<span class="help-block" style="font-size: 14px">Click vào nút copy để sao chép mật khẩu.</span>';
+                        html += '<span class="help-block" style="font-size: 14px">Hoặc vào icon để thấy mật khẩu.</span>';
                         html += '</div>';
                         html += '</div>';
-
-                        // if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
-                        //     html += '<div class="form-group m-t-10 row">';
-                        //     html += '<label class="col-md-3 control-label"><b>IDKey:</b></label>';
-                        //     html += '<div class="col-md-6">';
-                        //     html += '<div class="input-group c-square">';
-                        //     html += '<input type="password" class="form-control c-square c-theme show_password" name="idkey" id="idkey" placeholder="Id key" readonly value="' + data.datashow.idkey + '" >';
-                        //     html += '<span class="show-btn show-btn-idkey hide-btn"><i class="fas fa-eye fa-eye-idkey"></i></span>';
-                        //     html += '<span class="input-group-btn">';
-                        //     html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctionId()" id="getIdkey">Copy</button>';
-                        //     html += '</span>';
-                        //     html += '</div>';
-                        //     html += '<span class="help-block">Click vào nút copy để sao chép idkey.</span>';
-                        //     html += '</div>';
-                        //     html += '</div>';
-                        // }
-
                         if (data.count > 0){
                             $.each(data.dataAttribute,function(key,value){
 
@@ -281,18 +253,6 @@ $(document).ready(function(){
 
                             })
                         }
-
-                        // html += '<div class="form-group m-t-10 row">';
-                        // html += '<label class="col-md-3 control-label"><b>Mật khẩu email:</b></label>';
-                        // html += '<div class="col-md-6">';
-                        // html += '<div class="input-group c-square">';
-                        // html += '<input type="text" class="form-control c-square c-theme show_password" id="passemail" placeholder="Mật khẩu email" readonly="" value="longtest" >';
-                        // html += '<span class="input-group-btn">';
-                        // html += '<button class="btn btn-default c-font-dark copy_acc" type="button" id="getpassemail">Copy</button>';
-                        // html += '</span>';
-                        // html += '</div>';
-                        // html += '</div>';
-                        // html += '</div>';
                         //
                         if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
                             html += '<div class="form-group m-t-10 row">';
@@ -303,10 +263,9 @@ $(document).ready(function(){
                             html += '</div>';
                         }
 
-
-                        // html += '<p class="c-font-bold c-font-blue" style="font-size: 16px;font-weight: bold;color: blue">';
-                        // html += 'Đã lấy mật khẩu lần đầu tiên lúc: 01/04/2022 17:53:30';
-                        // html += '</p>';
+                        html += '<p class="c-font-bold c-font-blue" style="font-size: 14px;font-weight: bold;color: #32c5d2;">';
+                        html += 'Đã lấy mật khẩu lần đầu tiên lúc: 01/04/2022 17:53:30';
+                        html += '</p>';
 
                         html += '<div class="alert alert-info c-font-dark">';
                         html += 'Sau khi nhận tài khoản mật khẩu bạn hãy thực hiện đổi mật khẩu để bảo mật.';
@@ -331,7 +290,14 @@ $(document).ready(function(){
                     $('.loading-data__all').html('');
                 }else if (data.status == 0){
                     var html = '';
-                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">Hiện tại không có tài khoản nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</span></div></div>';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                        html += '<table class="table table-hover table-custom-res">';
+                            html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
+                            html += '<tbody>';
+                                html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                            html += '</tbody>';
+                        html += '</table>';
+                    html += '</div>';
 
                     $("#data_pay_account_history").empty().html('');
                     $("#data_pay_account_history").empty().html(html);
@@ -346,11 +312,39 @@ $(document).ready(function(){
         });
     }
 
-    $('body').on('click','.btn_timkiem',function(e){
-        // e.preventDefault();
+    $('body').on('click','#getpass',function(e){
+        e.preventDefault();
 
-
-
+        var id = $(this).data('id');
+        getShowPass(id)
     });
 
+
+    function getShowPass(id) {
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-account/showpass',
+            data: {
+                id:id,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                }else if (data.status == 0){
+
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 })

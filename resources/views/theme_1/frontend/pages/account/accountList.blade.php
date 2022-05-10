@@ -10,7 +10,11 @@
                 <div class="row pb-3 pt-3">
                     <div class="col-md-12 text-center">
                         <span style="color: red;font-size: 16px;">
-                            Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
                         </span>
                     </div>
                 </div>
@@ -38,7 +42,7 @@
                     </div>
                 </div>
             </div>
-
+            <div class="booking_detail"></div>
             <div class="container pt-3">
                 <div class="row">
                     <div class="col-sm-12">
