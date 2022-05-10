@@ -53,12 +53,6 @@
                             <td><a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a></td>
                         </tr>
                     @endforeach
-                @else
-                    <tr>
-                        <td colspan="8">
-                            <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                        </td>
-                    </tr>
                 @endif
 
                 </tbody>

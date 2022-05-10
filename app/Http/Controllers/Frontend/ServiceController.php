@@ -22,24 +22,9 @@ class ServiceController extends Controller
     public function getShowService(Request $request){
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
-        $url = '/get-show-service';
-        $method = "GET";
-        $val = array();
+        Session::put('path', $_SERVER['REQUEST_URI']);
 
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        if (isset($result_Api) && $result_Api->httpcode == 200) {
-
-            $data = $result_Api->data;
-            $data = $data->data;
-
-            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-            Session::put('path', $_SERVER['REQUEST_URI']);
-            return view('frontend.pages.service.index')
-                ->with('data', $data);
-        } else {
-            return redirect('/404');
-        }
+        return view('frontend.pages.service.index');
 
     }
 
@@ -48,67 +33,86 @@ class ServiceController extends Controller
         if ($request->ajax()){
 
             $page = $request->page;
-            $url = '/get-show-service';
+            $url = '/service';
             $method = "GET";
 
-            $valajax = array();
-            $valajax['page'] = $page;
+            $val = array();
+            $val['page'] = $page;
 
             if (isset($request->title) || $request->title != '' || $request->title != null) {
 
-                $valajax['title'] = $request->title;
+                $val['search'] = $request->title;
             }
 
-            $result_Apiajax = DirectAPI::_makeRequest($url,$valajax,$method);
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            if (isset($result_Apiajax) && $result_Apiajax->httpcode == 200) {
-
-                $dataajax = $result_Apiajax->data;
-                $dataajax = $dataajax->data;
-
-                $dataajax = new LengthAwarePaginator($dataajax->data, $dataajax->total, $dataajax->per_page, $page, $dataajax->data);
-
-                return view('frontend.pages.service.function.__get__show__data')
-                    ->with('data', $dataajax);
-            } else {
-                return redirect('/404');
+            if (!isset($result_Api) || !$result_Api->httpcode == 200){
+                return redirect('/408');
             }
+
+            if (!isset($result_Api->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Data không tồn tại.',
+                ]);
+            }
+
+            $data = $result_Api->data;
+
+            if (!isset($data->data)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Data không tồn tại.',
+                ]);
+            }
+
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+            $html = view('frontend.pages.service.function.__get__show__data')
+                ->with('data', $data)->render();
+
+            if (count($data) == 0 && $page == 1){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Không có dữ liệu.',
+                ]);
+            }
+
+            return response()->json([
+                "success"=> "Load dữ liệu thành công",
+                "status"=> 1,
+                "data" => $html,
+            ], 200);
         }
     }
 
     public function getShow(Request $request,$slug){
 
-        $url = '/get-show-service';
+        $url = '/service/'.$slug;
         $method = "GET";
         $val = array();
         $val['slug'] = $slug;
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-
-        if(isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
-            $data = $result->data;
-            if (isset($result->categoryservice)){
-                $categoryservice = $result->categoryservice;
-                $categoryservice = $categoryservice->data;
-
-                Session::put('path', $_SERVER['REQUEST_URI']);
-
-                return view('frontend.pages.service.show')
-                    ->with('categoryservice', $categoryservice)
-                    ->with('data', $data)
-                    ->with('slug', $slug);
-            }else{
-
-                Session::put('path', $_SERVER['REQUEST_URI']);
-
-                return view('frontend.pages.service.show')
-                    ->with('data', $data)
-                    ->with('slug', $slug);
-            }
-
+        if (!isset($result_Api) || !$result_Api->httpcode == 200){
+            return redirect('/408');
         }
+
+        if (!isset($result_Api->data)){
+            return response()->json([
+                'status' => 0,
+                'message' => 'Data không tồn tại.',
+            ]);
+        }
+
+        $data = $result_Api->data;
+
+        Session::put('path', $_SERVER['REQUEST_URI']);
+
+        return view('frontend.pages.service.show')
+            ->with('data', $data)
+            ->with('slug', $slug);
 
     }
 
@@ -606,7 +610,7 @@ class ServiceController extends Controller
 
         if (AuthCustom::check()) {
 
-            $url_detail = '/get-show-service';
+            $url_detail = '/service';
             $method_detail = "GET";
             $val_detail = array();
             $val_detail['id'] = $id;
