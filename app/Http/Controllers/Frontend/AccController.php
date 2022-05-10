@@ -664,9 +664,10 @@ class AccController extends Controller
                             }
                         }
                     }
-
+//                    dd($data);
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                        $data->setPath($request->url());
                     }else{
                         return response()->json([
                             'status' => 0,
