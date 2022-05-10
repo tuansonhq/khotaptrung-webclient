@@ -1,5 +1,5 @@
 @if(empty($data->data))
-        <div class="table-responsive">
+        <div class="table-responsive" id="tableacchstory">
             <table class="table table-hover table-custom-res">
                 <thead>
                 <tr>
@@ -33,7 +33,9 @@
                                 @endif
                             </td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ formatPrice($item->price) }} đ</td>
+                            <td>
+                                {{ str_replace(',','.',number_format($item->price)) }} đ
+                            </td>
                             <td>
                                 @if($item->status == 1)
                                 @elseif($item->status == 2)
