@@ -30,7 +30,7 @@ $(document).ready(function () {
                 }else if (data.status == 0){
 
                     var html = '';
-                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">Hiện tại không có tài khoản nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</span></div></div>';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
 
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(html);

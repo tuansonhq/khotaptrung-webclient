@@ -30,7 +30,7 @@ $(document).ready(function(){
         let slug_category = $('.slug_category').val();
         let slug = $('.slug').val();
 
-        var url = '/mua-acc/' + slug + '/data';
+        var url = '/mua-acc/' + slug + '';
 
         if (page == null || page == '' || page == undefined){
             page = 1;
@@ -56,7 +56,7 @@ $(document).ready(function(){
                 if (data.status == 0){
 
                     var html = '';
-                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">Hiện tại không có tài khoản nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</span></div></div>';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
 
                     $("#account_data").empty().html('');
                     $("#account_data").empty().html(html);
@@ -64,6 +64,7 @@ $(document).ready(function(){
                     $('.loading-data__timkiem').html('');
                     $('.loading-data__all').html('');
                 }else if (data.status == 1){
+                    $(".booking_detail")[0].scrollIntoView();
 
                     $("#account_data").empty().html('');
 

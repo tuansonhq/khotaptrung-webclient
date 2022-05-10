@@ -1,17 +1,7 @@
 @if(empty($data->data))
         <div class="table-responsive" id="tableacchstory">
             <table class="table table-hover table-custom-res">
-                <thead>
-                <tr>
-                    <th>Thời gian</th>
-                    <th>ID</th>
-                    <th>Game</th>
-                    <th>Tài khoản</th>
-                    <th>Trị giá</th>
-                    <th>Trạng thái</th>
-                    <th>Thao tác</th>
-                </tr>
-                </thead>
+                <thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
                 <tbody>
 
                 @if(isset($data) && count($data) > 0)
@@ -50,9 +40,15 @@
                                     <span class="badge badge-success">Thành công</span>
                                 @endif
                             </td>
-                            <td><a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a></td>
+                            <td>
+                                @if($item->status == 0)
+                                <a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
+                @else
+
                 @endif
 
                 </tbody>

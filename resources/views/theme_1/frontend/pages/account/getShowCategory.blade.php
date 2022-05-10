@@ -3,6 +3,26 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+    @if($data == null)
+        <div class="item_buy">
+
+            <div class="container pt-3">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
 
     <div class="item_buy">
         <div class="container">
@@ -70,10 +90,10 @@
                                     <div class="game-list-more-view" >
                                         <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
 
-                                            @if(isset($item->custom) && isset($item->custom->meta))
+                                            @if(isset($item->custom) && isset($item->custom->meta) && isset($item->custom->meta->image_btn))
                                                 @foreach($item->custom->meta as $key =>$val)
                                                     @if($key == "image_btn")
-                                                        <img src="{{  config('api.url_media').$val }}" alt="" >
+                                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
                                                     @endif
                                                 @endforeach
                                             @else
@@ -96,4 +116,5 @@
         </div>
     </div>
 
+    @endif
 @endsection

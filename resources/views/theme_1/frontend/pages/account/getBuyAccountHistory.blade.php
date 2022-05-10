@@ -3,6 +3,7 @@
 
     <div class="account">
         <div class="account_content">
+            <div class="booking_detail"></div>
             <div class="container">
                 @include('frontend.pages.account.sidebar')
                 <div class="account_sidebar_content">
