@@ -19,8 +19,6 @@ $(document).ready(function(){
 
     });
 
-    loadDataService()
-
     function loadDataService(page,title) {
         if (page == null || page == '' || page == undefined){
             page = 1;
