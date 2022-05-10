@@ -46,7 +46,7 @@ Route::get('/test111', function ()
 //    if (theme('')->theme_key == 'theme_1'){
 
 Route::group(array('middleware' => ['theme']) , function (){
-        Route::group(array('middleware' => ['throttle:600,1','verify_shop']) , function (){
+        Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
 
             Route::get('/theme', function ()
             {
