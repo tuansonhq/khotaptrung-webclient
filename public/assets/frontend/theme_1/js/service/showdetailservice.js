@@ -19,13 +19,12 @@ $(document).ready(function(){
         e.preventDefault();
 
         var price = $('[name="value"]').val();
-        // var htmlloading = '';
-        // htmlloading += '<div class="loading"></div>';
-        // $('.loading-data__pay').html('');
-        // $('.loading-data__pay').html(htmlloading);
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__pay').html('');
+        $('.loading-data__pay').html(htmlloading);
 
-        $('#homealert').modal('show');
-        // getModalService(price)
+        getModalService(price)
     })
 
     function getModalService(price) {

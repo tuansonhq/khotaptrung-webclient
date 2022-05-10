@@ -278,50 +278,42 @@ class ServiceController extends Controller
             }
 
 
-            $url = '/get-show-service';
+            $url = '/service/'.$slug;
             $method = "GET";
             $val = array();
             $val['slug'] = $slug;
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                $data = $result->data;
+            if(!isset($result_Api) && !$result_Api->httpcode == 200){
+                return redirect('/408');
+            }
 
-                $aucheck = 0;
-                $balance = 0;
 
-                if (AuthCustom::check()){
-                    $aucheck = 1;
-                    $jwt = Session::get('jwt');
-                    if(empty($jwt)){
-                        return response()->json([
-                            'status' => "LOGIN"
-                        ]);
-                    }
-
-                    $urlbalance = '/profile';
-                    $methodbalance = "GET";
-                    $databalance = array();
-                    $databalance['token'] = $jwt;
-
-                    $result_Apibalance = DirectAPI::_makeRequest($urlbalance,$databalance,$methodbalance);
-
-                    if(isset($result_Apibalance) && $result_Apibalance->httpcode == 200) {
-                        $resultbalance = $result_Apibalance->data;
-                        $balance = $resultbalance->user->balance;
-                    }
-                }
-
+            if (!isset($result_Api->data)){
                 return response()->json([
-                    'aucheck' => $aucheck,
-                    'params' => $data->params,
-                    'balance' => $balance,
-                    'price' => $price,
-                    'status' => 1,
+                    'status' => 0,
+                    'message' => 'Data không tồn tại.',
                 ]);
             }
+
+            $data = $result_Api->data;
+
+            $aucheck = 0;
+            $balance = 0;
+
+            if (AuthCustom::check()){
+                $aucheck = 1;
+                $balance = AuthCustom::user()->balance;
+            }
+
+            return response()->json([
+                'aucheck' => $aucheck,
+                'params' => $data->params,
+                'balance' => $balance,
+                'price' => $price,
+                'status' => 1,
+            ]);
         }
 
     }
@@ -329,20 +321,14 @@ class ServiceController extends Controller
     public function getBuyServiceHistory(Request $request)
     {
         if (AuthCustom::check()) {
-            $url = '/service/log';
-            $method = "GET";
-            $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-            $val['token'] = $jwt;
-            $val['author_id'] = AuthCustom::user()->id;
+            return view('frontend.pages.service.getBuyServiceHistory');
+        }
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+    }
 
+    public function getBuyServiceHistoryData(Request $request)
+    {
+        if (AuthCustom::check()) {
             if ($request->ajax()) {
                 $page = $request->page;
                 $url = '/service/log';
@@ -354,6 +340,7 @@ class ServiceController extends Controller
                         'status' => "LOGIN"
                     ]);
                 }
+
                 $val['token'] = $jwt;
                 $val['author_id'] = AuthCustom::user()->id;
                 $val['page'] = $page;
@@ -382,8 +369,14 @@ class ServiceController extends Controller
                 }
 
 
-
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+//                return $result_Api;
+                if(!isset($result_Api) && !$result_Api->httpcode == 200){
+                    return redirect('/408');
+                }
+
+                return $result_Api;
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
 
@@ -409,27 +402,7 @@ class ServiceController extends Controller
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
-
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                $data = $result->datatable;
-
-                if ($result->status == 1) {
-
-                    $categoryservice = $result->categoryservice;
-                    if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    }
-
-                    return view('frontend.pages.service.getBuyServiceHistory')->with('categoryservice', $categoryservice)->with('data', $data);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
-                }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
         }
-
     }
 
     public function getShowBuyServiceHistory(Request $request,$id){
@@ -610,88 +583,68 @@ class ServiceController extends Controller
 
         if (AuthCustom::check()) {
 
-            $url_detail = '/service';
-            $method_detail = "GET";
-            $val_detail = array();
-            $val_detail['id'] = $id;
+            $index = $request->index;
 
-            $result_Api_detail = DirectAPI::_makeRequest($url_detail,$val_detail,$method_detail);
+            $url = '/service/purchase';
+            $method = "POST";
+            $val = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
 
-            if(isset($result_Api_detail) && $result_Api_detail->httpcode == 200) {
-                $result_detail = $result_Api_detail->data;
-                $data_detail = $result_detail->data;
+            $val['token'] = $jwt;
+            $val['id'] = $id;
 
-                $filter_type = HelpersDecode::DecodeJson('filter_type',$data_detail->params);
+            if (!isset($request->selected) || $request->selected == null || $request->selected == '' || $request->selected == 'NaN'){}else{
+                $val['selected'] = $request->selected;
+            }
 
-                $selected = $request->selected;
-                $server = $request->get('server');
+            if ($request->get('server') || $request->get('server') == null || $request->get('server') == '' || $request->get('server') == 'NaN'){}else{
+                $val['server'] = $request->get('server');
+            }
 
-                $index = $request->index;
-
-                $url = '/service/purchase';
-                $method = "POST";
-                $val = array();
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
+            if ((int)$index > 0){
+                for ($i = 0; $i < $index; $i++){
+                    $val['customer_data'.$i] = $request->get('customer_data'.$i);
                 }
+            }
 
-                $val['token'] = $jwt;
-                $val['id'] = $id;
-                $val['selected'] = $selected;
+            if (!$request->get('rank_from') || $request->get('rank_from') == null || $request->get('rank_from') == '' || $request->get('rank_from') == 'NaN'){}else{
+                $val['rank_from'] = $request->get('rank_from');
+            }
+            if (!$request->get('rank_to') || $request->get('rank_to') == null || $request->get('rank_to') == '' || $request->get('rank_to') == 'NaN'){}else{
+                $val['rank_to'] = $request->get('rank_to');
+            }
+//            return $val;
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-                if (!isset($server) || $server == null || $server == '' || $server == 'NaN'){}else{
-                    $val['server'] = $server;
-                }
+            if(isset($result_Api) && $result_Api->httpcode == 200){
+                $data = $result_Api->data;
 
-                if ((int)$index > 0){
-                    for ($i = 0; $i < $index; $i++){
-                        $val['customer_data'.$i] = $request->get('customer_data'.$i);
-                    }
-                }
+                if (isset($data->status)){
+                    if ($data->status == 0){
 
-                if ($filter_type == 6){
-                    $rank_from = $request->get('rank_from');
-                    $rank_to = $request->get('rank_to');
-                    $val['rank_from'] = $rank_from;
-                    $val['rank_to'] = $rank_to;
-                }
-
-                $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-                if(isset($result_Api) && $result_Api->httpcode == 200){
-                    $data = $result_Api->data;
-
-                    if (isset($data->status)){
-                        if ($data->status == 0){
-
-                            return response()->json([
-                                'status' => 2,
-                                'message' => $data->message,
-                            ]);
+                        return response()->json([
+                            'status' => 2,
+                            'message' => $data->message,
+                        ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                        }elseif ($data->status == 1 ){
-                            return response()->json([
-                                'status' => 1,
-                                'message' => $data->message,
-                            ]);
+                    }elseif ($data->status == 1 ){
+                        return response()->json([
+                            'status' => 1,
+                            'message' => $data->message,
+                        ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                        }
-                    }elseif (isset($data->error)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                        ]);
-//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
-                    }else{
-                        return response()->json([
-                            'status' => 0,
-                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                        ]);
                     }
-
+                }elseif (isset($data->error)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                    ]);
+//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
                 }else{
                     return response()->json([
                         'status' => 0,
@@ -699,6 +652,11 @@ class ServiceController extends Controller
                     ]);
                 }
 
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                ]);
             }
         }
     }

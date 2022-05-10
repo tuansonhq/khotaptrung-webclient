@@ -22,11 +22,17 @@ $(document).ready(function(){
         loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
     });
 
+    loadDataServiceHistory()
+
     function loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data) {
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
 
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu-da-mua',
+            url: '/dich-vu-da-mua/data',
             data: {
                 page:page,
                 id:id_data,
