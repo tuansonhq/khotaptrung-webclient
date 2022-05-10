@@ -21,19 +21,7 @@
 
                                     </div>
                                 </div>
-                                @if(isset($datacategory) && count($datacategory) > 0)
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span >Game</span>
-                                            <select name="key" class="form-control key">
-                                                <option value="">--Tất cả game--</option>
-                                                @foreach($datacategory as $val)
-                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                @endif
+
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <span >Trạng thái</span>
@@ -70,6 +58,10 @@
                                         {{Form::select('price',array(''=>'-- Chọn giá tiền --')+config('module.acc.price'),old('price', isset($data['price']) ? $data['price'] : null),array('class'=>'form-control price'))}}
 
                                     </div>
+                                </div>
+
+                                <div class="col-md-4" id="datahtmlcategory">
+                                    @include('frontend.pages.account.function.lichsu.__game__category')
                                 </div>
                             </div>
 
@@ -116,7 +108,12 @@
                         </form>
 
                         <div id="data_pay_account_history">
-                            @include('frontend.pages.account.function.__get__buy__account__history')
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;bottom: -64px;left: 55%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
+                            @include('frontend.pages.account.function.lichsu.__get__buy__account__history')
                         </div>
                     </div>
 
@@ -156,6 +153,10 @@
         #taikhoandamua_password .copy_acc {
             border: 1px solid #d0d7de;
         }
+
+        /*#tableacchstory{*/
+        /*    display: none;*/
+        /*}*/
 
     </style>
     <input type="hidden" name="serial_data" class="serial_data" value="">
