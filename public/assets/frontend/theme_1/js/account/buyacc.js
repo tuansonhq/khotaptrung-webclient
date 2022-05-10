@@ -93,7 +93,7 @@ $(document).ready(function () {
                     $('.loadModal__acount').modal('hide');
                     swal(
                         'Lỗi!',
-                        'Vui lòng kiểm tra lại tài khoản hoặc liên hệ với chăm sóc khách hàng!',
+                        response.message,
                         'error'
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
