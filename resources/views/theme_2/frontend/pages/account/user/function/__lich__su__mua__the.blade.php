@@ -20,12 +20,11 @@
                     </div>
 
 
-
                     <div class="item-content">
                         <div class="inner">
                             <div class="item-logo mb-2 d-flex align-items-center">
 {{--                                <img src="{{ $item->image }}" class="logo me-2" alt=""> --}}
-                                                                Thẻ
+                                                                Thẻ {{json_decode($item->params)->telecom}}
                             </div>
                             <div class="mb-2">
                                 <label class="mb-1 text-secondary">Mã Pin</label>
