@@ -326,14 +326,33 @@ class AccController extends Controller
             if(isset($result_Api) && $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
+                if (!isset($data) || !isset($data->parent_id) || !isset($data->price)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Khong co du lieu.',
+                    ]);
+                }
+
                 $valcategory = array();
                 $valcategory['data'] = 'category_detail';
                 $valcategory['id'] = $data->parent_id;
 
                 $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
+                if (!isset($result_Api_category) || !isset($result_Api_category->data)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Khong co du lieu.',
+                    ]);
+                }
 
                 $data_category = $result_Api_category->data;
                 $dataAttribute = $data_category->childs;
+                if (!isset($dataAttribute)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Khong co du lieu.',
+                    ]);
+                }
 
                 $balance = 0;
 
@@ -350,14 +369,25 @@ class AccController extends Controller
                     $databalance['token'] = $jwt;
 
                     $result_Apibalance = DirectAPI::_makeRequest($urlbalance,$databalance,$methodbalance);
-
-                    if(isset($result_Apibalance) && $result_Apibalance->httpcode == 200) {
-                        $resultbalance = $result_Apibalance->data;
-                        $balance = $resultbalance->user->balance;
+                    if (!isset($result_Apibalance) || !isset($result_Apibalance->data)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Khong co du lieu.',
+                        ]);
                     }
+
+                    $resultbalance = $result_Apibalance->data;
+                    $balance = $resultbalance->user->balance;
                 }
 
                 $price = $data->price;
+
+                if ($price < 0){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Số tiền không đúng.',
+                    ]);
+                }
 
                 $html =  view('frontend.pages.account.function.buyacc')
                     ->with('dataAttribute',$dataAttribute)
@@ -374,7 +404,10 @@ class AccController extends Controller
                 ]);
 
             }else{
-                return redirect('/404');
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Khong co du lieu.',
+                ]);
             }
         }
     }
@@ -392,16 +425,24 @@ class AccController extends Controller
             $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
 
             if(isset($result_Apishow) && $result_Apishow->httpcode == 200){
+
+                if (!isset($result_Apishow->data)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu 432.',
+                    ]);
+                }
+
                 $datashow = $result_Apishow->data;
 
+                if (!isset($datashow->price)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu 441.',
+                    ]);
+                }
+
                 $amount = $datashow->price;
-
-//                $atm_percent = setting('sys_atm_percent');
-//                if (isset($atm_percent)){
-//                    $amount = (int)($amount*$atm_percent)/100;
-//                }
-
-//                return $amount;
 
                 $url = '/acc';
                 $method = "POST";
@@ -410,41 +451,58 @@ class AccController extends Controller
                 $val['data'] = 'buy_acc';
                 $val['user_id'] = AuthCustom::user()->id;
                 $val['amount'] = $amount;
+
+//                return $val;
                 $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
+//                return $result_Api;
                 if(isset($result_Api) && $result_Api->httpcode == 200){
                     $data = $result_Api->data;
 
-                    if (isset($data->success)){
-                        if ($data->success == 0){
-                            return response()->json([
-                                'status' => 2,
-                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
-                            ]);
+                    if (isset($result_Api->data)){
+                        if (isset($data->success)){
+                            if ($data->success == 0){
+                                return response()->json([
+                                    'status' => 2,
+                                    'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                                ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                        }elseif ($data->success == 1 ){
-                            return response()->json([
-                                'status' => 1,
-                                'message' => "Mua tài khoản thành công",
-                            ]);
+                            }elseif ($data->success == 1 ){
+                                return response()->json([
+                                    'status' => 1,
+                                    'message' => "Mua tài khoản thành công",
+                                ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                        }
-                    }elseif (isset($data->error)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                        ]);
+                            }
+                        }elseif (isset($data->error)){
+                            return response()->json([
+                                'status' => 0,
+                                'message' => 'Không có dữ liệu 480.',
+                            ]);
 //                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
+                        }else{
+                            return response()->json([
+                                'status' => 0,
+                                'message' => 'Không có dữ liệu 486.',
+                            ]);
+                        }
                     }else{
                         return response()->json([
                             'status' => 0,
-                            'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                            'message' => 'Không có dữ liệu 490.',
                         ]);
                     }
-
                 }else{
-                    return redirect('/404');
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu 498.',
+                    ]);
                 }
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Không có dữ liệu 504.',
+                ]);
             }
         }
     }
