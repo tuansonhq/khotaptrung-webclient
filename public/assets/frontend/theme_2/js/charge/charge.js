@@ -61,7 +61,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('#reload').trigger('click');
+                $('span#reload').trigger('click');
             }
         });
     }
