@@ -42,7 +42,7 @@ class DirectAPI{
             if($httpcode==200){
                 $result = json_decode($resultRaw);
                 $resultChange->httpcode = $httpcode;
-                $resultChange->data = $result;
+                $resultChange->dataOfApi = $result;
                 return $resultChange;
             }else{
                 Log::error($resultRaw);
