@@ -87,6 +87,25 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
 });
 
+View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {
+
+
+    $data = \Cache::rememberForever('__bai__viet__lien__quan', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+//        $dataSend['group_slug'] = 'tin-moi';
+        $dataSend['limit'] = 5;
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
     $data = \Cache::rememberForever('__dichvu__lienquan', function() {
