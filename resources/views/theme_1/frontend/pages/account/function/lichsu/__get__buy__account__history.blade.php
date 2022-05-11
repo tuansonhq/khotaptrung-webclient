@@ -73,6 +73,8 @@
 {{--    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>--}}
     <script>
 
+
+
         function myFunction() {
             var copyText = document.getElementById("password");
             copyText.select();
@@ -112,6 +114,8 @@
                 content: "Đã copy!",
                 placement: 'right',
             });
+
+
 
             tippy('#getIdkey', {
                 // default

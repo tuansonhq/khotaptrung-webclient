@@ -14,7 +14,7 @@ class ArticleController extends Controller
 {
 
     public function index(Request $request){
-        return 11111;
+ 
         $url = '/article';
         $method = "GET";
         $val = array();

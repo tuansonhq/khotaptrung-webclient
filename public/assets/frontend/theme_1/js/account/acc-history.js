@@ -206,6 +206,7 @@ $(document).ready(function(){
                         html += '<div class="input-group c-square">';
                         html += '<input class="form-control c-square c-theme" type="text" placeholder="Tài khoản taikhoan" id="taikhoan" readonly value="' + data.datashow.title + '">';
                         html += '<span class="input-group-btn">';
+
                         html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunctiontk()" id="getpasstk">Copy</button>';
                         html += '</span>';
                         html += '</div>';
@@ -215,11 +216,24 @@ $(document).ready(function(){
                         html += '<div class="form-group m-t-10 row">';
                         html += '<label class="col-md-3 control-label"><b>Mật khẩu:</b></label>';
                         html += '<div class="col-md-6">';
-                        html += '<div class="input-group c-square" style="margin-bottom: 4px">';
-                        html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
-                        html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
+                        html += '<div class="input-group c-square data__showpassword" style="margin-bottom: 4px" >';
+                        if (data.time == null || data.time == '' || data.time == undefined){
+                            html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="********" >';
+                        }else {
+                            html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+                        }
+                        if (data.time == null || data.time == '' || data.time == undefined){
+
+                        }else {
+                            html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
+                        }
+
                         html += '<span class="input-group-btn">';
-                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass" data-id="' + data.datashow.id + '">Copy</button>';
+                        if (data.time == null || data.time == '' || data.time == undefined){
+                            html += '<button class="btn btn-default c-font-dark copy_acc" type="button" id="getShowpass" data-slug="' + data.slugen + '" data-id="' + data.datashow.id + '">Copy</button>';
+                        }else {
+                            html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
+                        }
                         html += '</span>';
                         html += '</div>';
                         html += '<span class="help-block" style="font-size: 14px">Click vào nút copy để sao chép mật khẩu.</span>';
@@ -263,8 +277,13 @@ $(document).ready(function(){
                             html += '</div>';
                         }
 
-                        html += '<p class="c-font-bold c-font-blue" style="font-size: 14px;font-weight: bold;color: #32c5d2;">';
-                        html += 'Đã lấy mật khẩu lần đầu tiên lúc: 01/04/2022 17:53:30';
+                        html += '<p class="c-font-bold c-font-blue data__timeshowpass" style="font-size: 14px;font-weight: bold;color: #32c5d2;">';
+                        if (data.time == null || data.time == '' || data.time == undefined){
+
+                        }else {
+                            html += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
+                        }
+
                         html += '</p>';
 
                         html += '<div class="alert alert-info c-font-dark">';
@@ -312,39 +331,73 @@ $(document).ready(function(){
         });
     }
 
-    $('body').on('click','#getpass',function(e){
-        e.preventDefault();
+    $("#taikhoandamua_password").on('show.bs.modal', function() {
+        $('body').on('click','#getShowpass',function(e){
+            e.preventDefault();
 
-        var id = $(this).data('id');
-        getShowPass(id)
-    });
+            var id = $(this).data('id');
+            var slug = $(this).data('slug');
+
+            getShowPass(id,slug)
+        });
+
+        function getShowPass(id,slug) {
+
+            request = $.ajax({
+                type: 'GET',
+                url: '/lich-su-mua-account/showpass',
+                data: {
+                    id:id,
+                    slug:slug,
+                },
+                beforeSend: function (xhr) {
+
+                },
+                success: (data) => {
+
+                    if (data.status == 1){
+                        if (data.success == 1){
+                            var html ='';
+                            html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+
+                            html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
+                            html += '<span class="input-group-btn">';
+                            html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
+                            html += '</span>';
+                            html += '</div>';
 
 
-    function getShowPass(id) {
+                            $('#taikhoandamua_password .data__showpassword').html('');
+                            $('#taikhoandamua_password .data__showpassword').html(html);
 
-        request = $.ajax({
-            type: 'GET',
-            url: '/lich-su-mua-account/showpass',
-            data: {
-                id:id,
-            },
-            beforeSend: function (xhr) {
+                            var htmltime = '';
+                            htmltime += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
 
-            },
-            success: (data) => {
+                            $('#taikhoandamua_password .data__timeshowpass').html('');
+                            $('#taikhoandamua_password .data__timeshowpass').html(htmltime);
+                            var key = data.key;
 
-                if (data.status == 1){
+                            navigator.clipboard.writeText(key);
 
-                }else if (data.status == 0){
+                            tippy('#getShowpass', {
+                                // default
+                                trigger: 'click',
+                                content: "Đã lấy mật khẩu!",
+                                placement: 'right',
+                            });
+                        }
+                    }else if (data.status == 0){
+
+                    }
+                },
+                error: function (data) {
+
+                },
+                complete: function (data) {
 
                 }
-            },
-            error: function (data) {
+            });
+        }
+    })
 
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
 })

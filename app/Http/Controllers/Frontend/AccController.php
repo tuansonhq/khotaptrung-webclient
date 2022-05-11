@@ -497,15 +497,6 @@ class AccController extends Controller
                     'message'=>"Lỗi không gọi được dữ liệu hệ thống"
                 ]);
             }
-
-            if (!isset($result_Api) || !isset($result_Api->data)){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'Khong co du lieu.',
-                ]);
-            }
-
-
         }
 
     }
@@ -701,7 +692,6 @@ class AccController extends Controller
                                     'status' => 0,
                                     'message' => $data->error,
                                 ]);
-//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
                             }else{
                                 return response()->json([
                                     'status' => 0,
@@ -777,11 +767,11 @@ class AccController extends Controller
 
             if ($request->ajax()) {
                 $page = $request->page;
-
+                $time = null;
                 $dataAttribute = null;
 
                 $datashow = null;
-
+                $slugen = null;
                 $count = 0;
                 $url = '/acc';
                 $method = "GET";
@@ -873,6 +863,19 @@ class AccController extends Controller
                                     if( $result_Api_show->httpcode == 200 && isset($result_Api_show->data)){
 
                                         $datashow = $result_Api_show->data;
+
+                                        if (isset($datashow->params) && isset($datashow->params->show_password)){
+                                            $params = $datashow->params->show_password;
+
+                                            foreach($params as $keys => $param){
+                                                if ($keys == 'time'){
+                                                    $time = $param;
+                                                }
+                                            }
+                                        }
+
+
+                                        $slugen = $datashow->slug;
 
                                         $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
 
@@ -1008,11 +1011,13 @@ class AccController extends Controller
                                     "htmlcategory" => $htmlcategory,
                                     "status" => 1,
                                     "data" => $data,
+                                    "time" => $time,
                                     "dataAttribute" => $dataAttribute,
                                     "chitiet_data" => $chitiet_data,
                                     "id_data" => $id_data,
                                     "datashow" => $datashow,
                                     "key" => $key,
+                                    "slugen" => $slugen,
                                     "count" => $count
                                 ], 200);
                             }
@@ -1085,10 +1090,9 @@ class AccController extends Controller
     public function getShowpass(Request $request){
 
         if (AuthCustom::check()) {
-
             if ($request->ajax()) {
                 $id = $request->get('id');
-
+                $slug = $request->get('slug');
                 $url = '/acc';
                 $method = "GET";
                 $val = array();
@@ -1097,11 +1101,28 @@ class AccController extends Controller
                 $val['user_id'] = AuthCustom::user()->id;
 
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-                return $result_Api;
 
                 if(isset($result_Api) ){
 
                     if( $result_Api->httpcode == 200 && isset($result_Api->data)){
+                        $data = $result_Api->data;
+
+                        if ($data->success == 1){
+                            $key = Helpers::Decrypt($slug,config('module.acc.encrypt_key'));
+                            $time = date('Y-m-d H:i:s');
+                            return response()->json([
+                                'status' => 1,
+                                'message' => 'Lấy mật khẩu thành công',
+                                'data'=>$data,
+                                'time'=>$time,
+                                'key'=>$key
+                            ]);
+                        }else{
+                            return response()->json([
+                                'status' => 0,
+                                'message' => 'Đã lấy mật khẩu trước đó',
+                            ]);
+                        }
 
                     }
                     else if($result_Api->httpcode == 401){
@@ -1132,8 +1153,6 @@ class AccController extends Controller
                     ]);
                 }
             }
-
-            return view('frontend.pages.account.getBuyAccountHistory');
         }else{
             return redirect('/login');
         }
