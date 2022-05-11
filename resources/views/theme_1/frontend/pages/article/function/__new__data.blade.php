@@ -1,4 +1,4 @@
-@if(isset($data) && count($data) > 0)
+@if(isset($data) )
     @foreach($data as $item)
         <div class="news_content_list">
             <div class="news_content_list_item">
