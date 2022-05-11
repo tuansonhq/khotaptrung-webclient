@@ -15,76 +15,21 @@ class ArticleController extends Controller
 
     public function index(Request $request){
 
-        $url = '/article';
-        $method = "GET";
-        $val = array();
+        try{
+            $url = '/article';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['page'] = $request->page;
+            $dataSend['querry'] = $request->querry;
 
-        if ($request->ajax()){
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
 
-            $page = $request->page;
+            if(isset($response_data) && $response_data->status == 1){
 
-            $val['page'] = $page;
+                $data = $response_data->data;
 
-            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
-            }
-
-            if (isset($request->slug) || $request->slug != '' || $request->slug != null){
-
-                $val['slug'] = $request->slug;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            if(isset($result_Api) ){
-
-                if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
-                    $result = $result_Api->dataOfApi;
-                    $data = $result->data;
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    $data->setPath($request->url());
-
-                    return view('frontend.pages.article.function.__new__data')
-                        ->with('data',$data);
-                }
-                else if($result_Api->httpcode == 401){
-
-                    return response()->json([
-                        'status' => 401,
-                        'message'=>"unauthencation"
-                    ]);
-                }
-                else if($result_Api->httpcode == 408){
-                    return response()->json([
-                        'status' => 408,
-                        'message'=>"Không có phản hồi từ máy chủ (408)"
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
-                    ]);
-                }
-            }
-            else{
-
-                return response()->json([
-                    'status' => 0,
-                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
-                ]);
-            }
-        }
-
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        if(isset($result_Api)){
-            if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
-                $result = $result_Api->dataOfApi;
-                $data = $result->data;
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, ['path'=>url()->current()]);
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page,$data->data);
 
                 $data->setPath($request->url());
 
@@ -94,175 +39,64 @@ class ArticleController extends Controller
                 return view('frontend.pages.article.index')
                     ->with('data',$data);
             }
-            else if($result_Api->httpcode == 401){
-
-                $data = null;
-                $message = "unauthencation (401)";
-
-                return view('frontend.pages.article.index')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-            else if($result_Api->httpcode == 408){
-
-                $data = null;
-                $message = "Không có phản hồi từ máy chủ (408)";
-
-                return view('frontend.pages.article.index')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
             else{
-
                 $data = null;
-                $message = "Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')";
+                $message = $data->message??"Không thể lấy dữ liệu";
 
                 return view('frontend.pages.article.index')
                     ->with('message',$message)
                     ->with('data',$data);
             }
-
         }
-        else{
-            $data = null;
-            $message = "Lỗi không gọi được dữ liệu hệ thống";
-
-            return view('frontend.pages.article.index')
-                ->with('message',$message)
-                ->with('data',$data);
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
         }
+
     }
 
     public function show(Request $request,$slug){
 
         $url = '/article/'.$slug;
         $method = "GET";
-        $val = array();
+        $dataSend = array();
+        $dataSend['page'] = $request->page;
+        $dataSend['querry'] = $request->querry;
 
-        if ($request->ajax()){
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
 
-            $page = $request->page;
+        if(isset($response_data) && $response_data->status == 1){
 
-            $val['page'] = $page;
+            if ($response_data->item == 1){
 
-            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
-            }
+                Session::put('path', $_SERVER['REQUEST_URI']);
+                $data = $response_data->data;
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+                return view('frontend.pages.article.show')
+                    ->with('slug',$slug)
+                    ->with('data',$data);
+            }else{
 
-            if(isset($result_Api) ){
+                $data = $response_data->data;
+                $title = $response_data->categoryarticle;
 
-                if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
-                    $result = $result_Api->dataOfApi;
-                    $data = $result->data;
-
-                    $title = $result->categoryarticle;
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    $data->setPath($request->url());
-                    Session::put('path', $_SERVER['REQUEST_URI']);
-                    return view('frontend.pages.article.function.__new__data')
-                        ->with('title',$title)
-                        ->with('data',$data)
-                        ->with('slug',$slug);
-                }
-                else if($result_Api->httpcode == 401){
-                    session()->flush();
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"unauthencation (401)"
-                    ]);
-                }
-                else if($result_Api->httpcode == 408){
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ (408)"
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
-                    ]);
-                }
-
-            }
-            else{
-
-                return response()->json([
-                    'status' => 0,
-                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
-                ]);
-            }
-        }
-
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        if(isset($result_Api)){
-
-            if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
-                $result = $result_Api->dataOfApi;
-
-                if ($result->item == 1){
-                    $data = $result->data;
-
-                    Session::put('path', $_SERVER['REQUEST_URI']);
-                    $slug = $data->slug;
-                    $id = $data->id;
-
-                    return view('frontend.pages.article.show')
-                        ->with('slug',$slug)
-                        ->with('id',$id)
-                        ->with('data',$data);
-                }else{
-
-                    $data = $result->data;
-                    $title = $result->categoryarticle;
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                    $data->setPath($request->url());
-                    Session::put('path', $_SERVER['REQUEST_URI']);
-
-                    return view('frontend.pages.article.indexcategory')
-                        ->with('title',$title)
-                        ->with('data',$data)
-                        ->with('slug',$slug);
-                }
-            }
-            else if($result_Api->httpcode == 401){
-
-                $data = null;
-                $message = "unauthencation (401)";
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                $data->setPath($request->url());
+                Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.article.indexcategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
+                    ->with('title',$title)
+                    ->with('data',$data)
+                    ->with('slug',$slug);
             }
-            else if($result_Api->httpcode == 408){
-
-                $data = null;
-                $message = "Không có phản hồi từ máy chủ (408)";
-
-                return view('frontend.pages.article.indexcategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-            else{
-
-                $data = null;
-                $message = "Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')";
-
-                return view('frontend.pages.article.indexcategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-
         }
         else{
-
             $data = null;
-            $message = "Lỗi không gọi được dữ liệu hệ thống";
+            $message = $data->message??"Không thể lấy dữ liệu";
 
             return view('frontend.pages.article.indexcategory')
                 ->with('message',$message)
@@ -339,15 +173,15 @@ class ArticleController extends Controller
             $url = '/article';
             $method = "GET";
             $val = array();
-            $val['page'] = $page;
+            $dataSend['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
+                $dataSend['querry'] = $request->querry;
             }
 
             if (isset($request->slug) || $request->slug != '' || $request->slug != null){
 
-                $val['slug'] = $request->slug;
+                $dataSend['slug'] = $request->slug;
             }
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -375,15 +209,15 @@ class ArticleController extends Controller
             $url = '/article';
             $method = "GET";
             $val = array();
-            $val['page'] = $page;
+            $dataSend['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
+                $dataSend['querry'] = $request->querry;
             }
 
             if (isset($request->slug) || $request->slug != '' || $request->slug != null){
 
-                $val['slug'] = $request->slug;
+                $dataSend['slug'] = $request->slug;
             }
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -425,10 +259,10 @@ class ArticleController extends Controller
             $url = '/article/'.$slug;
             $method = "GET";
             $val = array();
-            $val['page'] = $page;
+            $dataSend['page'] = $page;
 
             if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
+                $dataSend['querry'] = $request->querry;
             }
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
@@ -539,7 +373,7 @@ class ArticleController extends Controller
         $url = '/show-service-category';
         $method = "GET";
         $val = array();
-        $val['slug'] = $slug;
+        $dataSend['slug'] = $slug;
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){

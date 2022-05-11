@@ -42,6 +42,7 @@
                         </div>
                     </div>
                 </div>
+                <div class="booking_detail"></div>
                 <div class="news_content">
                     <div class="container">
                         <div class="row news_content_in">
