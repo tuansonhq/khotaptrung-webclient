@@ -3,6 +3,26 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+    @if($data == null)
+        <div class="item_buy">
+
+            <div class="container pt-3">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                            <span style="color: red;font-size: 16px;">
+                                @if(isset($message))
+                                    {{ $message }}
+                                @else
+                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                                @endif
+                            </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
 
     @if(isset($data->params) && isset($data->params->article_type))
         {!! $data->params->article_type !!}
@@ -53,8 +73,7 @@
 
     </div>
 
-
-
+    @endif
 
 @endsection
 
