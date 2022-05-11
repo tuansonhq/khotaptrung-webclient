@@ -22,7 +22,22 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
 
 });
 
+//theme1
+View::composer('frontend.widget.__menu__taget', function ($view) {
 
+    $data = \Cache::rememberForever('__menu__taget', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 View::composer('frontend.widget.__content__home__game', function ($view) {
 
