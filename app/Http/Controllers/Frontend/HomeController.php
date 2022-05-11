@@ -7,6 +7,7 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
 
 class HomeController extends Controller
@@ -22,7 +23,7 @@ class HomeController extends Controller
 //        $data_menu_transaction = $result_menu_transaction->data;
 //        Session::forget('path');
 //        Session::put('path', $_SERVER['REQUEST_URI']);
-//
+
         return view('frontend.pages.index');
     }
 
