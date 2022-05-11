@@ -159,7 +159,7 @@ View::composer('frontend.widget.__menu_category_theme2', function ($view) {
     $method_menu_category  = "POST";
     $val_menu_category  = array();
     $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
-    $result_menu_category = $result_Api_menu_category->data;
+    $result_menu_category = $result_Api_menu_category->response_data;
     $data_menu_category  = $result_menu_category->data;
 
     return $view->with('data_menu_category', $data_menu_category);
@@ -234,28 +234,20 @@ View::composer('frontend.widget.__nap_the', function ($view) {
 //theme 2
 View::composer('frontend.widget.__menu__category__article__index', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-    $result = $result_Api->data;
-    $datacategory = $result->datacategory;
+    $data = \Cache::rememberForever('__menu__category__article__index', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['group_slug'] = 'tin-moi';
+        $dataSend['limit'] = 5;
 
-    $urlshow = '/article';
-    $methodshow = "GET";
-    $valshow = array();
-    $valshow['slug'] = 'tin-moi';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
 
-    if (isset($datacategory[1]->slug)){
-        $valshow['slug'] = $datacategory[1]->slug;
-    }
+    });
 
-    $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
-    $resultshow = $result_Apishow->data;
-    $data = $resultshow->data;
-    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-    return $view->with('data', $data);
+    return $view->with('data',$data);
 
 });
 
@@ -321,15 +313,17 @@ View::composer('frontend.widget.__baiviet__trangchu', function ($view) {
 
 View::composer('frontend.widget.__menu__article', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    $data = \Cache::rememberForever('__menu__category__article', function() {
+        $url = '/get-category';
+        $method = "GET";
+        $val = array();
 
-    $result = $result_Api->data;
-    $datacategory = $result->datacategory;
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-    return $view->with('datacategory', $datacategory);
+        return $data = $result_Api->response_data->datacategory??null;
+    });
+
+    return $view->with('data', $data);
 
 });
 
