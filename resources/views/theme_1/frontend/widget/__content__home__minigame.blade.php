@@ -11,7 +11,7 @@
                     <div class="game-list-content">
                         <div class="game-list-image">
                             <a class="account_category" href="/minigame-{{ $item->slug }}">
-                                                                                Anh khuyen mai
+{{--                                                                                Anh khuyen mai--}}
                                 @if(isset($item->params->image_percent_sale))
                                     <img class="game-list-image-sticky" src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="">
                                 @else
@@ -22,7 +22,7 @@
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
-                                                                                Anh chinh
+{{--                                                                                Anh chinh--}}
 
                             </a>
                         </div>

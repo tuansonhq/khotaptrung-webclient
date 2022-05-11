@@ -53,7 +53,8 @@ class ArticleController extends Controller
             }
             else{
                 $data = null;
-                $message = $data->message??"Không thể lấy dữ liệu";
+
+                $message = $response_data->message??"Không thể lấy dữ liệu";
 
                 return view('frontend.pages.article.index')
                     ->with('message',$message)
@@ -108,7 +109,7 @@ class ArticleController extends Controller
         }
         else{
             $data = null;
-            $message = $data->message??"Không thể lấy dữ liệu";
+            $message = $response_data->message??"Không thể lấy dữ liệu";
 
             return view('frontend.pages.article.indexcategory')
                 ->with('message',$message)
