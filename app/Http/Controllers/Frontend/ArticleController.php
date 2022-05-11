@@ -14,7 +14,7 @@ class ArticleController extends Controller
 {
 
     public function index(Request $request){
- 
+
         $url = '/article';
         $method = "GET";
         $val = array();
@@ -33,8 +33,7 @@ class ArticleController extends Controller
             if (isset($data->to)){
                 $per_page = $data->to;
             }
-            dd(url()->current());
-//            $data = paginate($data->data,2,null,['path'=>url()->current()]);
+
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, ['path'=>url()->current()]);
 
             $data->setPath($request->url());
