@@ -45,20 +45,18 @@ class DirectAPI{
                 $loopTime++;
                 continue;
             }
-
-
             else{
                 if($httpcode==401){
                     session()->flush();
                 }
                 $result = json_decode($resultRaw);
-                $resultChange->httpcode = $httpcode;
-                $resultChange->dataOfApi = $result;
+                $resultChange->response_code = $httpcode;
+                $resultChange->response_data = $result;
                 return $resultChange;
             }
             //timeout
-            $resultChange->httpcode = 408;
-            $resultChange->dataOfApi = null;
+            $resultChange->response_code = 408;
+            $resultChange->response_data = null;
             return $resultChange;
 
 
