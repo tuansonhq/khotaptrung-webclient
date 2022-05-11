@@ -36,15 +36,15 @@ class ServiceController extends Controller
             $url = '/service';
             $method = "GET";
 
-            $val = array();
-            $val['page'] = $page;
+            $dataSend = array();
+            $dataSend['page'] = $page;
 
             if (isset($request->title) || $request->title != '' || $request->title != null) {
 
-                $val['search'] = $request->title;
+                $dataSend['search'] = $request->title;
             }
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
             if (!isset($result_Api) || !$result_Api->httpcode == 200){
                 return redirect('/408');
@@ -90,10 +90,10 @@ class ServiceController extends Controller
 
         $url = '/service/'.$slug;
         $method = "GET";
-        $val = array();
-        $val['slug'] = $slug;
+        $dataSend = array();
+        $dataSend['slug'] = $slug;
 
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
         if (!isset($result_Api) || !$result_Api->httpcode == 200){
             return redirect('/408');
@@ -121,10 +121,10 @@ class ServiceController extends Controller
         if ($request->ajax()){
             $url = '/get-show-service';
             $method = "GET";
-            $val = array();
-            $val['slug'] = $slug;
+            $dataSend = array();
+            $dataSend['slug'] = $slug;
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200) {
                 $result = $result_Api->dataOfApi;
                 $data = $result->data;
@@ -280,10 +280,10 @@ class ServiceController extends Controller
 
             $url = '/service/'.$slug;
             $method = "GET";
-            $val = array();
-            $val['slug'] = $slug;
+            $dataSend = array();
+            $dataSend['slug'] = $slug;
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
             if(!isset($result_Api) && !$result_Api->httpcode == 200){
                 return redirect('/408');
@@ -326,7 +326,7 @@ class ServiceController extends Controller
                 $page = $request->page;
                 $url = '/service/log';
                 $method = "GET";
-                $val = array();
+                $dataSend = array();
                 $jwt = Session::get('jwt');
                 if (empty($jwt)) {
                     return response()->json([
@@ -334,35 +334,35 @@ class ServiceController extends Controller
                     ]);
                 }
 
-                $val['token'] = $jwt;
-                $val['author_id'] = AuthCustom::user()->id;
-                $val['page'] = $page;
+                $dataSend['token'] = $jwt;
+                $dataSend['author_id'] = AuthCustom::user()->id;
+                $dataSend['page'] = $page;
 
                 if (isset($request->id) || $request->id != '' || $request->id != null) {
 //                    $checkid = decodeItemID($request->serial);
-                    $val['id'] = $request->id;
+                    $dataSend['id'] = $request->id;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $val['slug_category'] = $request->key;
+                    $dataSend['slug_category'] = $request->key;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $val['status'] = $request->status;
+                    $dataSend['status'] = $request->status;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $val['started_at'] = $started_at;
+                    $dataSend['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $val['ended_at'] = $ended_at;
+                    $dataSend['ended_at'] = $ended_at;
                 }
 
 
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
 
                 if(isset($result_Api)){
                     if($result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
@@ -419,18 +419,18 @@ class ServiceController extends Controller
         if (AuthCustom::check()) {
             $url = '/service/log';
             $method = "GET";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['author_id'] = AuthCustom::user()->id;
-            $val['id'] = $id;
+            $dataSend['token'] = $jwt;
+            $dataSend['author_id'] = AuthCustom::user()->id;
+            $dataSend['id'] = $id;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             if(isset($result_Api) ){
 
                 if( $result_Api->httpcode == 200){
@@ -483,18 +483,18 @@ class ServiceController extends Controller
             $id = $request->get('id');
             $url = '/service/log';
             $method = "GET";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['author_id'] = AuthCustom::user()->id;
-            $val['id'] = $id;
+            $dataSend['token'] = $jwt;
+            $dataSend['author_id'] = AuthCustom::user()->id;
+            $dataSend['id'] = $id;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
 
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
@@ -533,18 +533,18 @@ class ServiceController extends Controller
             $id = $request->get('id');
             $url = '/service/log';
             $method = "GET";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['author_id'] = AuthCustom::user()->id;
-            $val['id'] = $id;
+            $dataSend['token'] = $jwt;
+            $dataSend['author_id'] = AuthCustom::user()->id;
+            $dataSend['id'] = $id;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
 
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
@@ -582,21 +582,21 @@ class ServiceController extends Controller
         if (AuthCustom::check()) {
             $url = '/service/log/detail/destroy/'.$id;
             $method = "POST";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['mistake_by'] = $request->mistake_by;
-            $val['note'] = $request->note;
+            $dataSend['token'] = $jwt;
+            $dataSend['mistake_by'] = $request->mistake_by;
+            $dataSend['note'] = $request->note;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 if ($result->status == 1) {
 
@@ -616,13 +616,14 @@ class ServiceController extends Controller
 
     public function postPurchase(Request $request,$id){
 
+
         if (AuthCustom::check()) {
 
             $index = $request->index;
 
             $url = '/service/purchase';
             $method = "POST";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
@@ -630,60 +631,35 @@ class ServiceController extends Controller
                 ]);
             }
 
-            $val['token'] = $jwt;
-            $val['id'] = $id;
+            $dataSend['token'] = $jwt;
+            $dataSend['id'] = $id;
 
-            if (!isset($request->selected) || $request->selected == null || $request->selected == '' || $request->selected == 'NaN'){}else{
-                $val['selected'] = $request->selected;
-            }
-
-            if ($request->get('server') || $request->get('server') == null || $request->get('server') == '' || $request->get('server') == 'NaN'){}else{
-                $val['server'] = $request->get('server');
-            }
+            $dataSend['selected'] = $request->selected;
+            $dataSend['server'] = $request->get('server');
 
             if ((int)$index > 0){
                 for ($i = 0; $i < $index; $i++){
-                    $val['customer_data'.$i] = $request->get('customer_data'.$i);
+                    $dataSend['customer_data'.$i] = $request->get('customer_data'.$i);
                 }
             }
+            $dataSend['rank_from'] = $request->get('rank_from');
+            $dataSend['rank_to'] = $request->get('rank_to');
 
-            if (!$request->get('rank_from') || $request->get('rank_from') == null || $request->get('rank_from') == '' || $request->get('rank_from') == 'NaN'){}else{
-                $val['rank_from'] = $request->get('rank_from');
-            }
-            if (!$request->get('rank_to') || $request->get('rank_to') == null || $request->get('rank_to') == '' || $request->get('rank_to') == 'NaN'){}else{
-                $val['rank_to'] = $request->get('rank_to');
-            }
-//            return $val;
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            dd($result_Api);
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $data = $result_Api->data;
 
-                if (isset($data->status)){
-                    if ($data->status == 0){
-
-                        return response()->json([
-                            'status' => 2,
-                            'message' => $data->message,
-                        ]);
-//                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                    }elseif ($data->status == 1 ){
-                        return response()->json([
-                            'status' => 1,
-                            'message' => $data->message,
-                        ]);
-//                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                    }
-                }elseif (isset($data->error)){
+                $data = $result_Api->dataOfApi;
+                if(isset($data) && $data->status == 1){
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Mua dịch vụ thành công',
+                    ],200);
+                }
+                else{
                     return response()->json([
                         'status' => 0,
-                        'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
-                    ]);
-//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
-                }else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => "Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.",
+                        'message'=>$data->message??"Không thể lấy dữ liệu"
                     ]);
                 }
 
@@ -704,25 +680,25 @@ class ServiceController extends Controller
 
             $url = '/service/log/detail/edit-info/'.$id;
             $method = "POST";
-            $val = array();
+            $dataSend = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
+            $dataSend['token'] = $jwt;
 
             if ((int)$index > 0){
                 for ($i = 0; $i < $index; $i++){
-                    $val['customer_data'.$i] = $request->get('customer_data'.$i);
+                    $dataSend['customer_data'.$i] = $request->get('customer_data'.$i);
                 }
             }
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
 
             if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 if ($result->status == 1) {
 

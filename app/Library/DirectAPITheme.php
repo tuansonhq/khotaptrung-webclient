@@ -39,17 +39,17 @@ class DirectAPITheme
             curl_close($ch);
             if($httpcode==200){
                 $result = json_decode($resultRaw);
-                $resultChange->httpcode = $httpcode;
-                $resultChange->data = $result;
+                $resultChange->response_code = $httpcode;
+                $resultChange->response_data = $result;
                 return $resultChange;
             }else{
-                Log::error($resultRaw);
+                \Log::error($resultRaw);
                 $loopTime++;
                 continue;
             }
             //timeout
-            $resultChange->httpcode = 408;
-            $resultChange->data = null;
+            $resultChange->response_code = 408;
+            $resultChange->response_data = null;
             return $resultChange;
 
 
