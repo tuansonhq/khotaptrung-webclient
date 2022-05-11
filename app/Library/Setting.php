@@ -57,9 +57,8 @@ class Setting{
         $method = "GET";
         $data = array();
         $result = DirectAPI::_makeRequest($url ,$data ,$method);
-
-        if(isset($result) && $result->httpcode == 200){
-            $seo = $result->dataOfApi->data;
+        if(isset($result) && $result->response_code == 200){
+            $seo = $result->response_data->data;
             return Cache::rememberForever('settings.all', function() use ($seo) {
                 return $seo;
             });

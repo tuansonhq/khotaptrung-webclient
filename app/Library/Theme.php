@@ -15,9 +15,9 @@ class Theme
             $url = '/theme/get-theme-config';
             $method = "GET";
             $data = array();
-            $result = DirectAPITheme::_makeRequest($url ,$data ,$method);
-            if(isset($result) && $result->httpcode == 200){
-                $seo = $result->data->data;
+            $result = DirectAPI::_makeRequest($url ,$data ,$method);
+            if(isset($result) && $result->response_code == 200){
+                $seo = $result->response_data->data;
             }
             return $seo;
         });

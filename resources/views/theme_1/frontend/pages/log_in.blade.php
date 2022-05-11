@@ -67,7 +67,8 @@
                 },
                 success: function (data) {
                     // alert(data)
-                    if(data.data.status == 1){
+                    console.log(data);
+                    if(data.status == 1){
                         if (return_url == null || return_url == '' || return_url == undefined){
 
                             if (return_url == null || return_url == '' || metapath == undefined){
@@ -92,7 +93,7 @@
                     }else{
                         let html = '';
                         html +='';
-                        html += '<p style="color: red;text-align: center;font-size: 14px">'+ data.data.message +'</p>';
+                        html += '<p style="color: red;text-align: center;font-size: 14px">'+ data.message +'</p>';
                         $('.login_error').html(html)
                     }
 

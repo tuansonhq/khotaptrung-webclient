@@ -84,7 +84,7 @@ class ChargeController extends Controller
             $method = "GET";
             $dataSend = array();
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-             $data = $result_Api->dataOfApi??null;
+             $data = $result_Api->response_data??null;
             if(isset($data) && $data->status == 1){
                 return response()->json([
                     'status' => 1,

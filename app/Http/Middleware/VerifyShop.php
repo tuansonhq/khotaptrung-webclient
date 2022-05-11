@@ -37,8 +37,7 @@ class VerifyShop extends Middleware
 
             return $data;
         });
-
-        if(isset($data) &&$data->httpcode === 200 && $data->dataOfApi->status == 1){
+        if(isset($data) &&$data->response_code === 200 && $data->response_data->status == 1){
 
             return $next($request);
 
