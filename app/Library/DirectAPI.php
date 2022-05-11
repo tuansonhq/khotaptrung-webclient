@@ -46,16 +46,11 @@ class DirectAPI{
                 continue;
             }
 
-            else if($httpcode==401){
-                session()->flush();
-                $resultChange->httpcode = 401;
-                $resultChange->dataOfApi = json_decode([
-                    'status'=>401,
-                    'message'=>'unauthencation'
-                ]);
-            }
-            else{
 
+            else{
+                if($httpcode==401){
+                    session()->flush();
+                }
                 $result = json_decode($resultRaw);
                 $resultChange->httpcode = $httpcode;
                 $resultChange->dataOfApi = $result;
