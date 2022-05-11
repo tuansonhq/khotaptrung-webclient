@@ -36,7 +36,7 @@ class UserController extends Controller
             if(isset($result_Api) ){
 
                 if( $result_Api->httpcode == 200){
-                    $result = $result_Api->data;
+                    $result = $result_Api->dataOfApi;
                     $request->session()->put('auth_custom', $result->user);
                     if($result->status == 1){
                         return response()->json([
@@ -105,7 +105,7 @@ class UserController extends Controller
 //            dd(111);
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 Session::forget('return_url');
                 Session::put('return_url', $_SERVER['REQUEST_URI']);
                 $request->session()->put('auth_custom', $result->user);
@@ -223,7 +223,7 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
 
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 $config = $result->config;
                 $status = $result->status;
@@ -236,7 +236,7 @@ class UserController extends Controller
             }
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 $config = $result->config;
                 $status = $result->status;
@@ -304,7 +304,7 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                    $result = $result_Api->dataOfApi;
                     $data = $result->data;
                     $config = $result->config;
                     $status = $result->status;
@@ -376,12 +376,12 @@ class UserController extends Controller
 
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                    $result = $result_Api->dataOfApi;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->data;
+                        $result = $result_Api->dataOfApi;
                         $data = $result->data;
 
                         $arrpin = array();
@@ -475,12 +475,12 @@ class UserController extends Controller
 
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                    $result = $result_Api->dataOfApi;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->data;
+                        $result = $result_Api->dataOfApi;
                         $data = $result->data;
 
                         $arrpin = array();

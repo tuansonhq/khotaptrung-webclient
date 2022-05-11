@@ -42,10 +42,11 @@ class LoginController extends Controller
             $data = array();
             $data['username'] = $request->username;
             $data['password'] = $request->password;
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
+            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
+
                 if($result->status == 1){
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
@@ -56,13 +57,13 @@ class LoginController extends Controller
                     $return_url = Session::get('return_url');
                     return response()->json([
                         'return_url' => $return_url,
-                        'data' => $result_Api->data,
+                        'data' => $result_Api->dataOfApi,
                     ]);
                 }
                 else{
 
                     return response()->json([
-                        'data' => $result_Api->data,
+                        'data' => $result_Api->dataOfApi,
                     ]);
 //                    dd(111);
 //                    return redirect()->back()->withErrors($result->message);
@@ -70,7 +71,7 @@ class LoginController extends Controller
             }else{
 
                 return response()->json([
-                    'data' => $result_Api->data,
+                    'data' => $result_Api->dataOfApi,
                 ]);
                 //                dd(122222);
 //                $result = $result_Api->data;
@@ -92,7 +93,7 @@ class LoginController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
         if(isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
+            $result = $result_Api->dataOfApi;
             if ($result->status == 1) {
                 $time = strtotime(Carbon::now());
                 $exp_token = $result->exp_token;
@@ -118,7 +119,7 @@ class LoginController extends Controller
                 return redirect()->to('/');
             }
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 if($result->status == 1){
                     Session::flush();
                     return redirect()->to('/');
@@ -170,7 +171,7 @@ class LoginController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 if($result->status == 1){
 //                    return 'doi mat khau thanh cong';
@@ -194,7 +195,7 @@ class LoginController extends Controller
 
                 }
             }else{
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 return response()->json([
                     'status' => 0,
                     'message' => $result->message,
