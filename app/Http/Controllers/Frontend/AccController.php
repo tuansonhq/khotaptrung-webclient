@@ -23,10 +23,8 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if(isset($result_Api)){
-            if( $result_Api->httpcode == 200){
-                $data = $result_Api->data;
-
-
+            if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
+                $data = $result_Api->dataOfApi;
 
                 Session::forget('return_url');
                 Session::put('return_url', $_SERVER['REQUEST_URI']);
@@ -87,178 +85,123 @@ class AccController extends Controller
 
         $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
 
-        if(isset($result_Api_category)){
-            if( $result_Api_category->httpcode == 200 && $result_Api_category->data){
+        if ($request->ajax()){
+            $page = $request->page;
 
-                $data = $result_Api_category->data;
+            if(isset($result_Api_category)){
 
-                if (!isset($data->title)){
-
-                    $data = null;
-                    $message = "Không thấy tiêu đề";
-
-                    return view('frontend.pages.account.accountList')
-                        ->with('message',$message)
-                        ->with('data',$data);
-                }
-
-                Session::forget('path');
-                Session::put('path', $_SERVER['REQUEST_URI']);
-
-                if ($request->ajax()){
-                    $page = $request->page;
-
-                    $url = '/acc';
-                    $method = "GET";
+                if( $result_Api_category->httpcode == 200 && isset($result_Api_category->dataOfApi)){
+                    $data = $result_Api_category->dataOfApi;
+                    $data = $data->data;
                     $val = array();
-                    $valcategory = array();
+                    $val['data'] = 'list_acc';
+                    $val['cat_slug'] = $slug;
+                    $val['page'] = $page;
+                    $val['status'] = 1;
+                    $val['limit'] = 12;
 
-                    $valcategory['data'] = 'category_detail';
-                    $valcategory['slug'] = $slug;
-
-                    $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-
-                    if(isset($result_Api_category) ){
-
-                        if( $result_Api_category->httpcode == 200 && isset($result_Api_category->data)){
-                            $data = $result_Api_category->data;
-
-                            $val['data'] = 'list_acc';
-                            $val['cat_slug'] = $slug;
-                            $val['page'] = $page;
-                            $val['status'] = 1;
-                            $val['limit'] = 12;
-
-                            if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
+                    if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
 //                        $checkid = decodeItemID($request->id_data);
-                                $val['id'] = $request->id_data;
+                        $val['id'] = $request->id_data;
+                    }
+
+                    if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
+                        $val['title'] = $request->title_data;
+                    }
+
+                    if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
+                        $val['price'] = $request->price_data;
+                    }
+
+                    if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
+                        $val['status'] = $request->status_data;
+                    }
+
+                    if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
+                        $select_data = $request->select_data;
+                        $group_ids = array();
+                        foreach(explode('|',$select_data) as $v){
+                            if ($v == "" || $v == null){
+
+                            }else{
+                                array_push($group_ids,$v);
                             }
 
-                            if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
-                                $val['title'] = $request->title_data;
-                            }
+                        }
+                        $val['group_ids'] = $group_ids;
+                    }
 
-                            if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
-                                $val['price'] = $request->price_data;
-                            }
+                    if (isset($request->sort_by_data) || $request->sort_by_data != '' || $request->sort_by_data != null){
+                        $sort_by = $request->sort_by_data;
+                        if ($sort_by == "random"){
+                            $val['sort'] = 'random';
+                        }elseif ($sort_by == "price_start"){
+                            $val['sort_by'] = 'price';
+                            $val['sort'] = 'desc';
+                        }elseif ($sort_by == "price_end"){
+                            $val['sort_by'] = 'price';
+                            $val['sort'] = 'asc';
+                        }elseif ($sort_by == "created_at_start"){
+                            $val['sort_by'] = 'created_at';
+                            $val['sort'] = 'desc';
+                        }elseif ($sort_by == "created_at_end"){
+                            $val['sort_by'] = 'created_at';
+                            $val['sort'] = 'asc';
+                        }
+                    }
 
-                            if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
-                                $val['status'] = $request->status_data;
-                            }
+                    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-                            if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
-                                $select_data = $request->select_data;
-                                $group_ids = array();
-                                foreach(explode('|',$select_data) as $v){
-                                    if ($v == "" || $v == null){
+                    if(isset($result_Api)){
 
-                                    }else{
-                                        array_push($group_ids,$v);
-                                    }
+                        if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
+                            $items = $result_Api->dataOfApi;
+                            $items = $items->data;
+                            $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+                            $items->setPath($request->url());
 
-                                }
-                                $val['group_ids'] = $group_ids;
-                            }
+                            $dataAttribute = $data->childs;
 
-                            if (isset($request->sort_by_data) || $request->sort_by_data != '' || $request->sort_by_data != null){
-                                $sort_by = $request->sort_by_data;
-                                if ($sort_by == "random"){
-                                    $val['sort'] = 'random';
-                                }elseif ($sort_by == "price_start"){
-                                    $val['sort_by'] = 'price';
-                                    $val['sort'] = 'desc';
-                                }elseif ($sort_by == "price_end"){
-                                    $val['sort_by'] = 'price';
-                                    $val['sort'] = 'asc';
-                                }elseif ($sort_by == "created_at_start"){
-                                    $val['sort_by'] = 'created_at';
-                                    $val['sort'] = 'desc';
-                                }elseif ($sort_by == "created_at_end"){
-                                    $val['sort_by'] = 'created_at';
-                                    $val['sort'] = 'asc';
-                                }
-                            }
-
-                            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-                            if(isset($result_Api)){
-
-                                if( $result_Api->httpcode == 200 && isset($result_Api->data)){
-                                    $items = $result_Api->data;
-
-                                    $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
-                                    $items->setPath($request->url());
-
-                                    $dataAttribute = $data->childs;
-
-                                    if (!isset($dataAttribute)){
-                                        return response()->json([
-                                            'status' => 0,
-                                            'message' => 'Không lấy được dữ liệu childs.',
-                                        ]);
-                                    }
-
-                                    $htmlatr =  view('frontend.pages.account.widget.account_load_attribute_to_filter')
-                                        ->with('dataAttribute',$dataAttribute)->render();
-
-                                    $htmlatrmobile =  view('frontend.pages.account.widget.account_load_attribute_to_filter_mobile')
-                                        ->with('dataAttribute',$dataAttribute)->render();
-
-                                    $html =  view('frontend.pages.account.function.__account__data')
-                                        ->with('data',$data)
-                                        ->with('items',$items)
-                                        ->with('dataAttribute',$dataAttribute)->render();
-
-                                    if (count($items) == 0 && $page == 1){
-                                        return response()->json([
-                                            'status' => 0,
-                                            'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
-                                        ]);
-                                    }
-
-                                    return response()->json([
-                                        'status' => 1,
-                                        'data' => $html,
-                                        'htmlatr' => $htmlatr,
-                                        'htmlatrmobile' => $htmlatrmobile,
-                                        'message' => 'Load du lieu thanh cong.',
-                                    ]);
-                                }
-                                else if($result_Api->httpcode == 401){
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message'=>"unauthencation (401)"
-                                    ]);
-                                }
-                                else if($result_Api->httpcode == 408){
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message'=>"Không có phản hồi từ máy chủ (408)"
-                                    ]);
-                                }
-                                else{
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
-                                    ]);
-                                }
-
-                            }
-                            else{
-
+                            if (!isset($dataAttribute)){
                                 return response()->json([
                                     'status' => 0,
-                                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                                    'message' => 'Không lấy được dữ liệu childs.',
                                 ]);
                             }
+
+                            $htmlatr =  view('frontend.pages.account.widget.account_load_attribute_to_filter')
+                                ->with('dataAttribute',$dataAttribute)->render();
+
+                            $htmlatrmobile =  view('frontend.pages.account.widget.account_load_attribute_to_filter_mobile')
+                                ->with('dataAttribute',$dataAttribute)->render();
+
+                            $html =  view('frontend.pages.account.function.__account__data')
+                                ->with('data',$data)
+                                ->with('items',$items)
+                                ->with('dataAttribute',$dataAttribute)->render();
+
+                            if (count($items) == 0 && $page == 1){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                                ]);
+                            }
+
+                            return response()->json([
+                                'status' => 1,
+                                'data' => $html,
+                                'htmlatr' => $htmlatr,
+                                'htmlatrmobile' => $htmlatrmobile,
+                                'message' => 'Load du lieu thanh cong.',
+                            ]);
                         }
-                        else if($result_Api_category->httpcode == 401){
+                        else if($result_Api->httpcode == 401){
                             return response()->json([
                                 'status' => 0,
                                 'message'=>"unauthencation (401)"
                             ]);
                         }
-                        else if($result_Api_category->httpcode == 408){
+                        else if($result_Api->httpcode == 408){
                             return response()->json([
                                 'status' => 0,
                                 'message'=>"Không có phản hồi từ máy chủ (408)"
@@ -267,7 +210,7 @@ class AccController extends Controller
                         else{
                             return response()->json([
                                 'status' => 0,
-                                'message'=>"Không có phản hồi từ máy chủ ('.$result_Api_category->httpcode.')"
+                                'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
                             ]);
                         }
 
@@ -280,6 +223,54 @@ class AccController extends Controller
                         ]);
                     }
                 }
+                else if($result_Api_category->httpcode == 401){
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>"unauthencation (401)"
+                    ]);
+                }
+                else if($result_Api_category->httpcode == 408){
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>"Không có phản hồi từ máy chủ (408)"
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api_category->httpcode.')"
+                    ]);
+                }
+
+            }
+
+            else{
+
+                return response()->json([
+                    'status' => 0,
+                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                ]);
+            }
+        }
+
+        if(isset($result_Api_category)){
+            if( $result_Api_category->httpcode == 200 && $result_Api_category->dataOfApi){
+
+                $data = $result_Api_category->dataOfApi;
+                $data = $data->data;
+//                return $data;
+                if (!isset($data->title)){
+
+                    $data = null;
+                    $message = "Không thấy tiêu đề";
+
+                    return view('frontend.pages.account.accountList')
+                        ->with('message',$message)
+                        ->with('data',$data);
+                }
+
+                Session::forget('path');
+                Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.account.accountList')
                     ->with('data',$data)
