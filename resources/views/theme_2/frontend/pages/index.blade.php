@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection

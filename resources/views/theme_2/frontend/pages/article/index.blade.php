@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('seo_head')
         @include('frontend.widget.__seo_head')
 @endsection
@@ -65,6 +68,7 @@
 
         </div>
         <div class="site-content-body bg-white last">
+
             <h4 class="title-style-left mb-3">{{ $title->title }}</h4>
             <div class="row">
                 <div class="col-lg-9 article_data">
