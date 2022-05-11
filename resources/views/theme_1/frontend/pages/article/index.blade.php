@@ -10,11 +10,7 @@
                 <div class="row pb-3 pt-3">
                     <div class="col-md-12 text-center">
                         <span style="color: red;font-size: 16px;">
-                            @if(isset($message))
-                                {{ $message }}
-                            @else
-                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
-                            @endif
+                            Không có bài viết nào.
                         </span>
                     </div>
                 </div>
@@ -23,6 +19,7 @@
 
         </div>
     @else
+        <div class="scrollarticalheader"></div>
         <div class="news">
             <div class="news_breadcrumbs">
                 <div class="container">
@@ -40,6 +37,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="news_content">
                 <div class="container">
                     <div class="row news_content_in">
@@ -72,8 +70,8 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
-        <input type="hidden" name="slug" class="slug-article" value="" />
+{{--        <input type="hidden" name="hidden_page" class="hidden_page" value="1" />--}}
+{{--        <input type="hidden" name="slug" class="slug-article" value="" />--}}
 
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     @endif

@@ -17,7 +17,7 @@ class AccController extends Controller
 
         $url = '/acc';
         $method = "GET";
-        $val = array();
+        $dataSend = array();
         $val['data'] = 'category_list';
         $val['module'] = 'acc_category';
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);

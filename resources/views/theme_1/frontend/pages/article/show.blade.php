@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    @include('frontend.widget.__menu__category__article',with(['slug'=>$data->slug]))
+                    @include('frontend.widget.__menu__category__article')
 
                 </div>
             </div>
