@@ -22,7 +22,7 @@ class ArticleController extends Controller
 
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
+            $result = $result_Api->dataOfApi;
             $data = $result->data;
             $per_page = 0;
             $total = 0;
@@ -93,7 +93,7 @@ class ArticleController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 $data = $result->data;
                 $per_page = 0;
                 $total = 0;
@@ -138,7 +138,7 @@ class ArticleController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 if ($result->is_over){
                     return response()->json([
                         'is_over'=>true
@@ -184,7 +184,7 @@ class ArticleController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
         if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
+            $result = $result_Api->dataOfApi;
 
             if ($result->item == 1){
                 $data = $result->data;
@@ -247,7 +247,7 @@ class ArticleController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
         if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
+            $result = $result_Api->dataOfApi;
 
             if ($result->is_router == false){
                 $data = $result->data;

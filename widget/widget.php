@@ -17,91 +17,87 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
         return $data = $result_Api->dataOfApi->data??null;
 
     });
-    
+
     return $view->with('data',$data);
 
 });
 
 
 
-
-
-View::composer('frontend.widget.__content__home', function ($view) {
-
-
-
+View::composer('frontend.widget.__content__home__game', function ($view) {
 
 //    Acc
-    $url = '/acc';
-    $method = "GET";
-    $val = array();
-    $val['data'] = 'category_list';
-    $val['module'] = 'acc_category';
 
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-//    if(isset($result_Api) && $result_Api->httpcode == 200){
-//
-//    }else{
-//        return redirect('/404');
-//    }
-    $data= $result_Api->dataOfApi;
+    $data = \Cache::rememberForever('__content__home__game', function() {
 
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
 
-//// Minigame.
-//    $param['secret_key'] = config('api.secret_key');
-//    $param['domain'] = \Request::server("HTTP_HOST");
-//    $url = '/minigame/get-list-minigame';
-//    $group_api = DirectAPI::_makeRequest($url,$param,$method);
-//    if(isset($group_api) && $group_api->httpcode == 200){
-//        $dataGame = $group_api->data;
-//    }else{
-//
-//    }
-////    Dich vụ
-//
-//    $urldichvu = '/get-show-service';
-//    $methoddichvu = "GET";
-//    $valdichvu = array();
-//    $valdichvu['limit'] = 8;
-//
-//    $result_Apidichvu = DirectAPI::_makeRequest($urldichvu,$valdichvu,$methoddichvu);
-//    if(isset($result_Apidichvu) && $result_Apidichvu->httpcode == 200){
-//        $datadichvu = $result_Apidichvu->data;
-//
-//        $datadichvu = $datadichvu->data;
-//
-//        if (isset($datadichvu->data)){
-//            $datadichvu = new LengthAwarePaginator($datadichvu->data, $datadichvu->total, $datadichvu->per_page, $datadichvu->current_page, $datadichvu->data);
-//        }else{
-//            return redirect('/404');
-//        }
-//    }
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
+        return $data = $result_Api->dataOfApi->data??null;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.widget.__content__home__minigame', function ($view) {
+
+//    Minigame
+
+    $data = \Cache::rememberForever('__content__home__minigame', function() {
+
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+//        $param['secret_key'] = config('api.secret_key');
+//        $param['domain'] = \Request::server("HTTP_HOST");
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->dataOfApi->data??null;
+    });
 
     return $view->with('data', $data);
 
-//        ->with('dataGame', $dataGame)
-//        ->with('datadichvu', $datadichvu);
+});
+
+View::composer('frontend.widget.__content__home__dichvu', function ($view) {
+
+    $data = \Cache::rememberForever('__content__home__dichvu', function() {
+        $url = '/get-show-service';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+//        $data = $data->data;
+//
+//        dd($data->data);
+//        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
+        return $data = $result_Api->dataOfApi->data->data??null;
+    });
+
+    return $view->with('data', $data);
+
 });
 
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
-    try{
-        $data = \Cache::forever('__dichvu__lienquan', function() {
-            $url = '/service';
-            $method = "GET";
-            $val = array();
+    $data = \Cache::rememberForever('__dichvu__lienquan', function() {
+        $url = '/service';
+        $method = "GET";
+        $val = array();
 
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-            $data = $result_Api->data;
-            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-            return $data;
-        });
-    }
-    catch(\Exception $e){
-        $data = null;
-    }
+        return $data = $result_Api->dataOfApi->data??null;
+    });
 
     return $view->with('data', $data);
 });
@@ -197,50 +193,17 @@ View::composer('frontend.widget.__menu_transaction', function ($view) {
 
 View::composer('frontend.widget.__menu__category__article', function ($view) {
 
-//    try{
-//
-//    }
-//    catch(\Exception $e){
-//        $result = null;
-//    }
-
-    $result = \Cache::rememberForever('__menu__category__article', function() {
+    $data = \Cache::rememberForever('__menu__category__article', function() {
         $url = '/get-category';
         $method = "GET";
         $val = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-        $result = $result_Api->data;
-        $datacategory = $result->datacategory;
-        $count = $result->count;
+
+        return $data = $result_Api->dataOfApi->datacategory??null;
     });
 
-
-//    $url = '/get-category';
-//    $method = "GET";
-//    $val = array();
-//
-//    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-//    $result = $result_Api->data??null;
-////        dd($result);
-//    if ($result == null || !isset($result)){
-//        $datacategory = null;
-//        $count = 0;
-//    }else{
-//        $datacategory = $result->datacategory;
-//        $count = $result->count;
-//    }
-
-//    $url = '/get-category';
-//    $method = "GET";
-//    $val = array();
-//
-//    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-//    $result = $result_Api->data;
-//    $datacategory = $result->datacategory;
-//    $count = $result->count;
-
-    return $view->with('datacategory', $datacategory)->with('count', $count);
+    return $view->with('data', $data);
 });
 
 View::composer('frontend.widget.__top_nap_the', function ($view) {
