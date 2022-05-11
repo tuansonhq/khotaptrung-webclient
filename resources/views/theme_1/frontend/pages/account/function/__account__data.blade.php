@@ -36,23 +36,25 @@
                                         ?>
                                         @if(isset($item->groups))
                                             <?php
-                                            $att_values = $item->groups;
+                                                $att_values = $item->groups;
                                             ?>
                                             @foreach($att_values as $att_value)
 
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                    @if(isset($att_value->parent[0]))
                                                     <?php
                                                     $index++;
                                                     ?>
                                                     @if($index < 5)
                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                             <div class="col-6 item_buy_list_info_inacc">
-                                                                {{ $att_value->parent[0]->title }} :
+                                                                {{ $att_value->parent[0]->title??null }} :
                                                             </div>
                                                             <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                {{ $att_value->title }}
+                                                                {{ $att_value->title??null }}
                                                             </div>
                                                         </div>
+                                                    @endif
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -77,10 +79,10 @@
                                                                             @if($index < 5)
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
                                                                                     <div class="col-6 item_buy_list_info_inacc">
-                                                                                        {{ $child->title }} :
+                                                                                        {{ $child->title??null }} :
                                                                                     </div>
                                                                                     <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ $param }}
+                                                                                        {{ $param??null }}
                                                                                     </div>
                                                                                 </div>
 
@@ -148,22 +150,25 @@
                                             <?php
                                             $att_values = $item->groups;
                                             ?>
+{{--                                            @dd($att_values)--}}
                                             @foreach($att_values as $att_value)
-
+{{--            @dd($att_value)--}}
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    <?php
-                                                    $index++;
-                                                    ?>
-                                                    @if($index < 5)
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-6 item_buy_list_info_inacc">
-                                                                    {{ $att_value->parent[0]->title }} :
+                                                    @if(isset($att_value->parent[0]))
+                                                        <?php
+                                                        $index++;
+                                                        ?>
+                                                        @if($index < 5)
+                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                    <div class="col-6 item_buy_list_info_inacc">
+                                                                        {{ $att_value->parent[0]->title??null }} :
+                                                                    </div>
+                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                        {{ $att_value->title??null    }}
+                                                                    </div>
                                                                 </div>
-                                                                <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                    {{ $att_value->title }}
-                                                                </div>
-                                                            </div>
 
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endforeach
@@ -173,7 +178,7 @@
                                             <?php
                                             $params = json_decode(json_encode($item->params->ext_info),true);
                                             ?>
-                                            @if($index < 5)
+                                            @if($index < 4)
                                                 @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                                                     @foreach($dataAttribute as $index=>$att)
                                                         @if($att->position == 'text')
@@ -187,10 +192,10 @@
                                                                             @if($index < 5)
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
                                                                                     <div class="col-6 item_buy_list_info_inacc">
-                                                                                        {{ $child->title }} :
+                                                                                        {{ $child->title??null }} :
                                                                                     </div>
                                                                                     <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ $param }}
+                                                                                        {{ $param??null }}
                                                                                     </div>
                                                                                 </div>
                                                                             @endif
