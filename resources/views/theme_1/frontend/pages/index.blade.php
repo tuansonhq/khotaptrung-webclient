@@ -33,7 +33,8 @@
                     <div class="tab-content">
                         <div class="tab-pane  fade show active" id="top_napthe">
                             <div class="content-banner-card-box">
-                                {!! widget('frontend.widget.__top_nap_the',60) !!}
+                                @include('frontend.widget.__top_nap_the');
+
 
                             </div>
                         </div>
@@ -50,9 +51,7 @@
                             <div class="col-12 slider_in" >
                                 <div class="swiper-container mySwiper slider_detail">
                                     <div class="swiper-wrapper">
-                                        {!! widget('frontend.widget.__slider__banner',60) !!}
-
-                                        @include('frontend.widget.__slider__banner',['config'=>'1'])
+                                        @include('frontend.widget.__slider__banner')
                                     </div>
                                     <!--                                  <div class="swiper-pagination"></div>-->
                                 </div>

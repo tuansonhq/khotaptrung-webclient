@@ -11,7 +11,7 @@
 
             <div class="nav-bar-category">
                 <ul class="nav">
-                    {!! widget('frontend.widget.__menu_category_desktop',60) !!}
+                    @include('frontend.widget.__menu_category_desktop')
                 </ul>
                 <div class="nav-bar-brand">
                     <a href="/">
@@ -101,7 +101,7 @@
                 <input type="checkbox" hidden class="name_input" id="nav_mobile_input" >
                 <nav class="nav_mobile">
                      <ul class="">
-                         {!! widget('frontend.widget.__menu_category_mobile',60) !!}
+                         @include('frontend.widget.__menu_category_mobile')
                     </ul>
                     <ul class="">
                         <li>
