@@ -81,7 +81,13 @@ class LoginController extends Controller
         catch(\Exception $e){
 
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return response()->json([
+                'status'=>"0",
+                'message'=>'Có lỗi phát sinh.Xin vui lòng thử lại !(Catch)',
+
+            ]);
+
+
         }
     }
     public function loginfacebook(Request $request)
