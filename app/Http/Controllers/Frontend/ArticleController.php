@@ -34,7 +34,7 @@ class ArticleController extends Controller
                 $per_page = $data->to;
             }
 
-//            $data = paginate($data->data,2,null,['path'=>url()->current()]);
+
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, ['path'=>url()->current()]);
 
             $data->setPath($request->url());

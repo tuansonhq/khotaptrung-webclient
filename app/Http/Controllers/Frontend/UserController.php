@@ -33,23 +33,46 @@ class UserController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                $request->session()->put('auth_custom', $result->user);
-                if($result->status == 1){
+            if(isset($result_Api) ){
+
+                if( $result_Api->httpcode == 200){
+                    $result = $result_Api->data;
+                    $request->session()->put('auth_custom', $result->user);
+                    if($result->status == 1){
+                        return response()->json([
+                            'status' => true,
+                            'info' => $result->user,
+                        ]);
+                    }
+                }
+                else if($result_Api->httpcode == 401){
+                    session()->flush();
                     return response()->json([
-                        'status' => true,
-                        'info' => $result->user,
+                        'status' => 401,
+                        'message'=>"unauthencation"
                     ]);
                 }
+                else if($result_Api->httpcode == 408){
+                    return response()->json([
+                        'status' => 408,
+                        'message'=>"Không có phản hồi từ máy chủ (408)"
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
+                    ]);
+                }
+
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            else{
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 0,
+                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
                 ]);
             }
+
 
         }
         catch(\Exception $e){

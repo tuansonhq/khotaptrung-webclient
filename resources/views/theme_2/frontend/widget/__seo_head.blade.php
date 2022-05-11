@@ -9,8 +9,17 @@
 
     @endif
 
+    @if(isset($title->description))
+        <meta name="description" content="{{ $title->description }}">
+    @elseif(isset($data->description))
+        <meta name="description" content="{{ $data->description }}">
 
-<meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">
+    @else
+        <meta name="description" content="{{ setting('sys_description') }}">
+
+    @endif
+
+{{--<meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
 
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
