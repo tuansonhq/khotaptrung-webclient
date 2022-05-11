@@ -51,7 +51,7 @@ class DirectAPI{
             }
             //timeout
             $resultChange->httpcode = 408;
-            $resultChange->data = null;
+            $resultChange->dataOfApi = null;
             return $resultChange;
 
 

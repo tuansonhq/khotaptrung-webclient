@@ -88,16 +88,14 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
     try{
         $data = \Cache::forever('__dichvu__lienquan', function() {
-            $url = '/get-show-service';
+            $url = '/service';
             $method = "GET";
             $val = array();
 
             $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
             $data = $result_Api->data;
-            $data = $data->data;
-
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
             return $data;
         });
     }
@@ -193,14 +191,49 @@ View::composer('frontend.widget.__menu_transaction', function ($view) {
 
 View::composer('frontend.widget.__menu__category__article', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
+//    try{
+//
+//    }
+//    catch(\Exception $e){
+//        $result = null;
+//    }
 
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-    $result = $result_Api->data;
-    $datacategory = $result->datacategory;
-    $count = $result->count;
+    $result = \Cache::rememberForever('__menu__category__article', function() {
+        $url = '/get-category';
+        $method = "GET";
+        $val = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $result = $result_Api->data;
+        $datacategory = $result->datacategory;
+        $count = $result->count;
+    });
+
+
+//    $url = '/get-category';
+//    $method = "GET";
+//    $val = array();
+//
+//    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+//    $result = $result_Api->data??null;
+////        dd($result);
+//    if ($result == null || !isset($result)){
+//        $datacategory = null;
+//        $count = 0;
+//    }else{
+//        $datacategory = $result->datacategory;
+//        $count = $result->count;
+//    }
+
+//    $url = '/get-category';
+//    $method = "GET";
+//    $val = array();
+//
+//    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+//    $result = $result_Api->data;
+//    $datacategory = $result->datacategory;
+//    $count = $result->count;
+
     return $view->with('datacategory', $datacategory)->with('count', $count);
 });
 
