@@ -14,7 +14,7 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data??null;
+        return $data = $result_Api->response_data->data??null;
 
     });
 
@@ -38,7 +38,7 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        return $data = $result_Api->dataOfApi->data??null;
+        return $data = $result_Api->response_data->data??null;
     });
 
     return $view->with('data', $data);
@@ -58,7 +58,7 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        return $data = $result_Api->dataOfApi->data??null;
+        return $data = $result_Api->response_data->data??null;
     });
 
     return $view->with('data', $data);
@@ -80,7 +80,7 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 //        dd($data->data);
 //        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
 
-        return $data = $result_Api->dataOfApi->data->data??null;
+        return $data = $result_Api->response_data->data->data??null;
     });
 
     return $view->with('data', $data);
@@ -96,7 +96,7 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        return $data = $result_Api->dataOfApi->data??null;
+        return $data = $result_Api->response_data->data??null;
     });
 
     return $view->with('data', $data);
@@ -111,7 +111,7 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data;
+        return $data = $result_Api->response_data->data;
 
     });
     return $view->with('data',$data);
@@ -128,7 +128,7 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data;
+        return $data = $result_Api->response_data->data;
 
     });
     return $view->with('data',$data);
@@ -173,7 +173,7 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data??null;
+        return $data = $result_Api->response_data->data??null;
 
     });
 
@@ -203,7 +203,7 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        return $data = $result_Api->dataOfApi->datacategory??null;
+        return $data = $result_Api->response_data->datacategory??null;
     });
 
     return $view->with('data', $data);
@@ -218,7 +218,7 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data;
+        return $data = $result_Api->response_data->data;
 
     });
     return $view->with('data',$data);
@@ -288,15 +288,16 @@ View::composer('frontend.widget.__huongdan__trangchu', function ($view) {
 
 View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    $data = \Cache::rememberForever('__content__home__dichvu', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
 
-    $result = $result_Api->data;
-    $data = $result->data;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+        return $data = $result_Api->response_data->data??null;
+    });
 
     return $view->with('data', $data);
 
