@@ -7,15 +7,17 @@ use function PHPUnit\Framework\isEmpty;
 
 //theme1
 View::composer('frontend.widget.__slider__banner', function ($view) {
+
     $data = \Cache::rememberForever('__slider__banner', function() {
         $url = '/get-slider-banner';
         $method = "GET";
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->dataOfApi->data;
+        return $data = $result_Api->dataOfApi->data??null;
 
     });
+    
     return $view->with('data',$data);
 
 });
@@ -105,8 +107,6 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 });
 
 View::composer('frontend.widget.__menu_category_desktop', function ($view) {
-
-
 
 
     $data = \Cache::rememberForever('__menu_category_desktop', function() {
