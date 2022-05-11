@@ -313,6 +313,7 @@ class ArticleController extends Controller
         $val = array();
 
         if ($request->ajax()){
+
             $page = $request->page;
 
             $val['page'] = $page;
@@ -349,40 +350,63 @@ class ArticleController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
+        if(isset($result_Api)){
 
-
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->dataOfApi;
-
-            if ($result->item == 1){
-                $data = $result->data;
-
-                $dataitem = $result->dataitem;
-                Session::put('path', $_SERVER['REQUEST_URI']);
-                $slug = $data->slug;
-                $id = $data->id;
-                return view('frontend.pages.article.show')
-                    ->with('dataitem',$dataitem)
-                    ->with('slug',$slug)
-                    ->with('id',$id)
-                    ->with('data',$data);
-            }else{
-
+            if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
                 $result = $result_Api->dataOfApi;
-                $data = $result->data;
-                $title = $result->categoryarticle;
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                if ($result->item == 1){
+                    $data = $result->data;
+                    $dataitem = $result->dataitem;
+                    Session::put('path', $_SERVER['REQUEST_URI']);
+                    $slug = $data->slug;
+                    $id = $data->id;
+                    return view('frontend.pages.article.show')
+                        ->with('dataitem',$dataitem)
+                        ->with('slug',$slug)
+                        ->with('id',$id)
+                        ->with('data',$data);
+                }else{
 
-                Session::put('path', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.article.indexcategory')
-                    ->with('title',$title)
-                    ->with('data',$data)
-                    ->with('slug',$slug);
+                    $data = $result->data;
+                    $title = $result->categoryarticle;
+
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+
+                    Session::put('path', $_SERVER['REQUEST_URI']);
+                    return view('frontend.pages.article.indexcategory')
+                        ->with('title',$title)
+                        ->with('data',$data)
+                        ->with('slug',$slug);
+                }
+            }
+            else if($result_Api->httpcode == 401){
+
+                return response()->json([
+                    'status' => 0,
+                    'message'=>"unauthencation (401)"
+                ]);
+            }
+            else if($result_Api->httpcode == 408){
+                return response()->json([
+                    'status' => 408,
+                    'message'=>"Không có phản hồi từ máy chủ (408)"
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
+                ]);
             }
 
-        }else{
-            return redirect('/404');
+        }
+        else{
+
+            return response()->json([
+                'status' => 0,
+                'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+            ]);
         }
     }
 
