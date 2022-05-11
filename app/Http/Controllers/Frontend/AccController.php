@@ -497,15 +497,6 @@ class AccController extends Controller
                     'message'=>"Lỗi không gọi được dữ liệu hệ thống"
                 ]);
             }
-
-            if (!isset($result_Api) || !isset($result_Api->data)){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'Khong co du lieu.',
-                ]);
-            }
-
-
         }
 
     }
@@ -701,7 +692,6 @@ class AccController extends Controller
                                     'status' => 0,
                                     'message' => $data->error,
                                 ]);
-//                    return redirect()->route('getBuyAccountHistory')->with('content', 'Hệ thống gặp sự cố.Vui lòng liên hệ chăm sóc khách hàng để được hỗ trợ.' );
                             }else{
                                 return response()->json([
                                     'status' => 0,
@@ -1100,7 +1090,6 @@ class AccController extends Controller
     public function getShowpass(Request $request){
 
         if (AuthCustom::check()) {
-
             if ($request->ajax()) {
                 $id = $request->get('id');
                 $slug = $request->get('slug');
@@ -1164,8 +1153,6 @@ class AccController extends Controller
                     ]);
                 }
             }
-
-            return view('frontend.pages.account.getBuyAccountHistory');
         }else{
             return redirect('/login');
         }

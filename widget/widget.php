@@ -86,21 +86,25 @@ View::composer('frontend.widget.__content__home', function ($view) {
 
 View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
-    $url = '/get-show-service';
-    $method = "GET";
-    $val = array();
+    try{
+        $data = \Cache::forever('__dichvu__lienquan', function() {
+            $url = '/get-show-service';
+            $method = "GET";
+            $val = array();
 
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-    if (isset($result_Api) && $result_Api->httpcode == 200) {
+            $data = $result_Api->data;
+            $data = $data->data;
 
-        $data = $result_Api->data;
-        $data = $data->data;
-
-        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-    }else{
-        return redirect('/404');
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+            return $data;
+        });
     }
+    catch(\Exception $e){
+        $data = null;
+    }
+
     return $view->with('data', $data);
 });
 
@@ -129,18 +133,23 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
     return $view->with('data_menu_category', $data_menu_category);
 
 
+
 });
 View::composer('frontend.widget.__menu_category', function ($view) {
 
+    try{
+        $data_menu_category = \Cache::forever('__menu_category', function() {
+            $url_menu_category = '/menu-category';
+            $method_menu_category  = "POST";
+            $val_menu_category  = array();
+            $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
+            return $result_Api_menu_category->data;
+        });
+    }
+    catch(\Exception $e){
+        $data_menu_category = null;
+    }
 
-
-    $data_menu_category = \Cache::forever('__menu_category', function() {
-        $url_menu_category = '/menu-category';
-        $method_menu_category  = "POST";
-        $val_menu_category  = array();
-        $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
-        return $result_Api_menu_category->data;
-    });
     return $view->with('data_menu_category', $data_menu_category);
 
 });
