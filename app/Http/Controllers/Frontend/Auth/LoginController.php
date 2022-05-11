@@ -168,12 +168,13 @@ class LoginController extends Controller
             $data = array();
             $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 Session::flush();
                 return redirect()->to('/');
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
                 if($result->status == 1){
                     Session::flush();
                     return redirect()->to('/');

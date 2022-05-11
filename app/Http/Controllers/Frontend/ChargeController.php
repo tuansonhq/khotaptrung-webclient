@@ -118,7 +118,7 @@ class ChargeController extends Controller
             $dataSend = array();
             $dataSend['telecom'] = $request->telecom;
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $data = $result_Api->dataOfApi??null;
+            $data = $result_Api->response_data??null;
             if(isset($data) && $data->status == 1){
                 return response()->json([
                     'status' => 1,
@@ -184,7 +184,7 @@ class ChargeController extends Controller
             $dataSend['pin'] = $request->pin;
             $dataSend['serial'] = $request->serial;
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
-            $data = $result_Api->dataOfApi??null;
+            $data = $result_Api->response_data??null;
 
             if(isset($data) && $data->status == 1){
                 return response()->json([
