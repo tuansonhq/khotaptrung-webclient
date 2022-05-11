@@ -167,15 +167,18 @@ View::composer('frontend.widget.__menu_category_theme2', function ($view) {
 });
 
 View::composer('frontend.widget.__menu_profile', function ($view) {
+    $data = \Cache::rememberForever('__menu_profile', function() {
+        $url = '/menu-profile';
+        $method = "POST";
+        $dataSend = array();
 
-    $url_menu_profile = '/menu-profile';
-    $method_menu_profile = "POST";
-    $val_menu_profile = array();
-    $result_Api_menu_profile = DirectAPI::_makeRequest($url_menu_profile ,$val_menu_profile ,$method_menu_profile );
-    $result_menu_profile = $result_Api_menu_profile->data;
-    $data_menu_profile = $result_menu_profile->data;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->dataOfApi->data??null;
 
-    return $view->with('data_menu_profile', $data_menu_profile);
+    });
+
+    return $view->with('data',$data);
+
 
 });
 

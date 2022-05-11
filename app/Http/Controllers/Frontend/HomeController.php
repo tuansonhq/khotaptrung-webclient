@@ -43,38 +43,38 @@ class HomeController extends Controller
             ->with('$data_menu_profile',$data_menu_profile);
     }
 
-    public function getTopCharge(Request $request)
-    {
-            try{
-
-                $url = '/top-charge';
-                $method = "GET";
-                $data = array();
-
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
-                    if($result->status == 1){
-                        return response()->json([
-                            'status' => 1,
-                            'data' => $result->data
-                        ]);
-                    }
-
-                    else {
-                        return redirect()->back()->withErrors($result_Api->message);
-
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            }
-            catch(\Exception $e){
-                Log::error($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-
-        }
+//    public function getTopCharge(Request $request)
+//    {
+//            try{
+//
+//                $url = '/top-charge';
+//                $method = "GET";
+//                $data = array();
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//                if (isset($result_Api) && $result_Api->httpcode == 200) {
+//                    $result = $result_Api->data;
+//                    if($result->status == 1){
+//                        return response()->json([
+//                            'status' => 1,
+//                            'data' => $result->data
+//                        ]);
+//                    }
+//
+//                    else {
+//                        return redirect()->back()->withErrors($result_Api->message);
+//
+//                    }
+//                } else {
+//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            }
+//            catch(\Exception $e){
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//
+//        }
 
 
 

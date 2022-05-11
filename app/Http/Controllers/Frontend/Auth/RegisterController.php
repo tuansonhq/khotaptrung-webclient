@@ -45,7 +45,7 @@ class RegisterController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
                 if($result->status == 1){
                     $time = strtotime(Carbon::now());
                     $exp_token = $result->exp_token;
@@ -54,17 +54,17 @@ class RegisterController extends Controller
                     Session::put('exp_token',$result->exp_token);
                     Session::put('time_exp_token',$time_exp_token);
 
-                    return Response()->json($result_Api->data);
+                    return Response()->json($result_Api->dataOfApi);
 //                    return redirect()->to('/');
                 }
                 else{
-                    return Response()->json($result_Api->data);
+                    return Response()->json($result_Api->dataOfApi);
 //                    return redirect()->back()->withErrors($result->message);
 
                 }
             }
             else{
-                return Response()->json($result_Api->data);
+                return Response()->json($result_Api->dataOfApi);
 //                $result = $result_Api->data;
 //                return redirect()->back()->withErrors($result->message);
             }

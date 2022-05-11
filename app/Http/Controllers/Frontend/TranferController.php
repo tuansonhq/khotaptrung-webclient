@@ -173,7 +173,7 @@ class TranferController extends Controller
             $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$valhistory,$method);
 
             if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+                $result = $result_Api->dataOfApi;
 
                 if($result->status == 0){
 //                    Lịch sử ATM
@@ -281,7 +281,7 @@ class TranferController extends Controller
                     $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
                     if (isset($result_Api) && $result_Api->httpcode == 200) {
-                        $tranferbank = $result_Api->data;
+                        $tranferbank = $result_Api->dataOfApi;
 
                         $tranferbankApi= $tranferbank->data[$request->dataid];
                         return response()->json([
@@ -341,7 +341,7 @@ class TranferController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
                 if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $tranferbankPost = $result_Api->data;
+                    $tranferbankPost = $result_Api->dataOfApi;
                     $message = $tranferbankPost->message;
                     if ($tranferbankPost->status==0){
                         return Response()->json($tranferbankPost->message);
@@ -353,7 +353,7 @@ class TranferController extends Controller
                         ]);
                     }
                 } else {
-                    return Response()->json($result_Api->data->message);
+                    return Response()->json($result_Api->dataOfApi->message);
                 }
             }
             catch(\Exception $e){

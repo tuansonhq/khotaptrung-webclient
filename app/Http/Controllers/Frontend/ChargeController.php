@@ -21,6 +21,7 @@ class ChargeController extends Controller
 {
     public function getDepositAuto(Request $request)
     {
+
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.account.user.pay_card');
@@ -28,6 +29,7 @@ class ChargeController extends Controller
     }
 
     public function getDepositAutoData(Request $request){
+
         if ($request->ajax()) {
 
             $page = $request->page;
@@ -76,26 +78,24 @@ class ChargeController extends Controller
 
     public function getTelecom(Request $request)
     {
+
         try{
             $url = '/deposit-auto/get-telecom';
             $method = "GET";
-            $data = array();
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ],200);
-                }
-            }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+             $data = $result_Api->dataOfApi??null;
+            if(isset($data) && $data->status == 1){
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
@@ -115,36 +115,29 @@ class ChargeController extends Controller
         try {
             $url = '/deposit-auto/get-amount';
             $method = "GET";
-            $data = array();
-            $data['telecom'] = $request->telecom;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ]);
-                }
-            }else{
+            $dataSend = array();
+            $dataSend['telecom'] = $request->telecom;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->dataOfApi??null;
+            if(isset($data) && $data->status == 1){
                 return response()->json([
                     'status' => 1,
-                    'data' => $result_Api->data->message,
-                ]);
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            else{
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-        } catch (\Exception $e) {
+        }
+        catch(\Exception $e){
             Log::error($e);
             return response()->json([
                 'status' => 0,
-                'message' => 'Có lỗi phát sinh khi lấy nhà mệnh giá nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
 
@@ -179,53 +172,42 @@ class ChargeController extends Controller
                 'status' => 0
             ]);
         }
+
+
         try {
             $url = '/deposit-auto';
             $method = "POST";
-            $data = array();
-            $data['token'] = session()->get('jwt');
-            $data['type'] = $request->type;
-            $data['amount'] = $request->amount;
-            $data['pin'] = $request->pin;
-            $data['serial'] = $request->serial;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
-                return response()->json([
+            $dataSend = array();
+            $dataSend['token'] = session()->get('jwt');
+            $dataSend['type'] = $request->type;
+            $dataSend['amount'] = $request->amount;
+            $dataSend['pin'] = $request->pin;
+            $dataSend['serial'] = $request->serial;
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+            $data = $result_Api->dataOfApi??null;
 
-                    'status' => 401,
-                    'message'=>"unauthencation"
+            if(isset($data) && $data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                    ]);
-                }
-                if($result->status == 0){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
-                    ]);
-                }
-            }
         }
-        catch (\Exception $e) {
+        catch(\Exception $e){
             Log::error($e);
             return response()->json([
                 'status' => 0,
-                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
+
     }
 
     public function getChargeDepositHistory(Request $request)

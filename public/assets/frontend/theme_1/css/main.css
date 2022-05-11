@@ -2011,6 +2011,7 @@ footer{
     min-width: 100%;
     max-height: 160px;
     min-height: 160px;
+    object-fit: cover;
 }
 .item_play_dif_slide_detail_in_active__size{
     max-height: 320px;
