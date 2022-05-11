@@ -26,6 +26,8 @@ class AccController extends Controller
             if( $result_Api->httpcode == 200){
                 $data = $result_Api->data;
 
+
+
                 Session::forget('return_url');
                 Session::put('return_url', $_SERVER['REQUEST_URI']);
                 return view('frontend.pages.account.getShowCategory')

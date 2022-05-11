@@ -14,49 +14,14 @@ $(document).ready(function(){
 
         var querry = $('.input-news').val();
 
-        loadDataIndex(page,querry)
+        var slug = $('.slug-article').val();
+
+        loadData(page,querry,slug)
     });
-
-    function loadDataIndex(page,querry) {
-
-        var url = '/tin-tuc';
-
-        request = $.ajax({
-            type: 'GET',
-            url: url,
-            data: {
-                page:page,
-                querry:querry,
-            },
-            beforeSend: function (xhr) {
-                $('#loading-item').removeClass('hide');
-            },
-            success: (data) => {
-                $(".article_data").empty().html('');
-                $(".article_data").empty().html(data);
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-                $('#loading-item').addClass('hide')
-            }
-        });
-    }
 
     function loadData(page,querry,slug) {
 
-        if (slug == null || slug == undefined || slug == ''){
-            var slug_category = $('.slug-article').val();
-
-            slug = slug_category;
-        }
-
-        if (slug == undefined || slug == null || slug == ''){
-            var url = '/tin-tuc';
-        }else {
-            var url = '/tin-tuc/'+ slug +'/data';
-        }
+        var url = '/tin-tuc/'+ slug;
 
         request = $.ajax({
             type: 'GET',
@@ -89,11 +54,9 @@ $(document).ready(function(){
         $('.hidden_page').val(1);
         page = $('.hidden_page').val();
 
-        // if (querry == '' || querry == undefined || querry == null){
-        //     return false;
-        // }
+        var slug = $('.slug-article').val();
 
-        loadDataIndex(page,querry)
+        loadData(page,querry,slug)
     })
 
 });
