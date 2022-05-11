@@ -29,6 +29,7 @@ class LoginController extends Controller
 
     }
     public function postLogin(Request $request){
+
         $this->validate($request,[
             'username'=>'required',
             'password'=>'required',
@@ -42,53 +43,100 @@ class LoginController extends Controller
             $data = array();
             $data['username'] = $request->username;
             $data['password'] = $request->password;
-
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
+            $response_data = $result_Api->response_data??null;
 
-                if($result->status == 1){
-                    $time = strtotime(Carbon::now());
-                    $exp_token = $result->exp_token;
-                    $time_exp_token = $time + $exp_token;
-                    Session::put('jwt',$result->token);
-                    Session::put('exp_token',$result->exp_token);
-                    Session::put('time_exp_token',$time_exp_token);
-                    $return_url = Session::get('return_url');
-                    return response()->json([
-                        'return_url' => $return_url,
-                        'data' => $result_Api->dataOfApi,
-                    ]);
-                }
-                else{
+            if(isset($response_data) && $response_data->status == 1){
+                $time = strtotime(Carbon::now());
+                $exp_token = $response_data->exp_token;
 
-                    return response()->json([
-                        'data' => $result_Api->dataOfApi,
-                    ]);
-//                    dd(111);
-//                    return redirect()->back()->withErrors($result->message);
-                }
-            }else{
+                $time_exp_token = $time + $exp_token;
+                Session::put('jwt',$response_data->token);
+                Session::put('exp_token',$response_data->exp_token);
+                Session::put('time_exp_token',$time_exp_token);
 
+                $return_url = Session::get('return_url');
                 return response()->json([
-                    'data' => $result_Api->dataOfApi,
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'return_url' => $return_url,
+                    'data' => $result_Api->response_data,
                 ]);
-                //                dd(122222);
-//                $result = $result_Api->data;
-//                return redirect()->back()->withErrors($result->message);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
             }
         }
         catch(\Exception $e){
-
             Log::error($e);
             return response()->json([
-                'status'=>"0",
-                'message'=>'Có lỗi phát sinh.Xin vui lòng thử lại !(Catch)',
-
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
-
-
         }
+
+
+
+
+
+//        try{
+//            $url = '/login';
+//            $method = "POST";
+//            $data = array();
+//            $data['username'] = $request->username;
+//            $data['password'] = $request->password;
+//
+//            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//
+//            if(isset($result_Api) && $result_Api->response_code == 200){
+//                $result = $result_Api->response_data;
+//                if ()
+//                if($result->status == 1){
+//                    $time = strtotime(Carbon::now());
+//                    $exp_token = $result->exp_token;
+//                    $time_exp_token = $time + $exp_token;
+//                    Session::put('jwt',$result->token);
+//                    Session::put('exp_token',$result->exp_token);
+//                    Session::put('time_exp_token',$time_exp_token);
+//                    $return_url = Session::get('return_url');
+//                    return response()->json([
+//                        'return_url' => $return_url,
+//                        'data' => $result_Api->response_data,
+//                    ]);
+//                }
+//                else{
+//
+//                    return response()->json([
+//                        'data' => $result_Api->dataOfApi,
+//                    ]);
+////                    dd(111);
+////                    return redirect()->back()->withErrors($result->message);
+//                }
+//            }else{
+//
+//                return response()->json([
+//                    'data' => $result_Api->dataOfApi,
+//                ]);
+//                //                dd(122222);
+////                $result = $result_Api->data;
+////                return redirect()->back()->withErrors($result->message);
+//            }
+//        }
+//        catch(\Exception $e){
+//
+//            Log::error($e);
+//            return response()->json([
+//                'status'=>"0",
+//                'message'=>'Có lỗi phát sinh.Xin vui lòng thử lại !(Catch)',
+//
+//            ]);
+//
+//
+//        }
     }
     public function loginfacebook(Request $request)
     {

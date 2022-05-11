@@ -34,9 +34,8 @@ class UserController extends Controller
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
             if(isset($result_Api) ){
-
-                if( $result_Api->httpcode == 200){
-                    $result = $result_Api->dataOfApi;
+                if( $result_Api->response_code == 200){
+                    $result = $result_Api->response_data;
                     $request->session()->put('auth_custom', $result->user);
                     if($result->status == 1){
                         return response()->json([
@@ -102,10 +101,11 @@ class UserController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $jwt;
+
 //            dd(111);
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
                 Session::forget('return_url');
                 Session::put('return_url', $_SERVER['REQUEST_URI']);
                 $request->session()->put('auth_custom', $result->user);
