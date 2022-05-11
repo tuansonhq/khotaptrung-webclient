@@ -11,6 +11,7 @@ class DirectAPI{
 
 
         $data ['domain'] = \Request::server("HTTP_HOST");
+        $data ['client'] = \Request::server("HTTP_HOST");
 //        $data ['domain'] = config('api.client');
         $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
