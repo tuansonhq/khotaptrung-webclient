@@ -3,18 +3,7 @@
 
     <div class="table-responsive">
         <table class="table table-hover table-custom-res">
-            <thead>
-            <tr>
-                <th>Thời gian</th>
-                <th>ID</th>
-                <th>MGD SMS</th>
-                <th>Dịch vụ</th>
-{{--                <th>Danh mục</th>--}}
-                <th>Trị giá</th>
-                <th>Thạng thái</th>
-                <th>Thao tác</th>
-            </tr>
-            </thead>
+            <thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>
             <tbody>
             @php
                 $prev = null;

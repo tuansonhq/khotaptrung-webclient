@@ -221,14 +221,25 @@ class UserController extends Controller
                     $config = $response_data->dataconfig;
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
-                    //dd($data);
-                    $html =  view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
-                        ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
                     $htmlconfig =  view('frontend.pages.account.user.function.__data_config')
                         ->with('config', $config)->render();
                     $htmlstatus =  view('frontend.pages.account.user.function.__data_status')
                         ->with('status', $status)->render();
+
+                    //dd($data);
+                    $html =  view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                        ->with('data', $data)->with('config', $config)->with('status', $status)->render();
+
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'datastatus' => $htmlstatus,
+                            'dataconfig' => $htmlconfig,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
                     return response()->json([
                         'data' => $html,
                         'datastatus' => $htmlstatus,
