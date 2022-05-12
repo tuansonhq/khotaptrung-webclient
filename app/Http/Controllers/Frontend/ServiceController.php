@@ -615,6 +615,7 @@ class ServiceController extends Controller
             $dataSend['rank_to'] = $request->get('rank_to');
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
@@ -626,6 +627,7 @@ class ServiceController extends Controller
             else{
                 return response()->json([
                     'status' => 0,
+                    'data' => $request->all(),
                     'message'=>$response_data->message??"Thanh toán thất bại vui lòng thử lại"
                 ]);
             }

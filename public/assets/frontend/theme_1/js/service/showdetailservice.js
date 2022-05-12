@@ -162,7 +162,7 @@ $(document).ready(function(){
 
             },
             success: function (response) {
-                // console.log(response)
+                console.log(response)
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     $('#homealert').modal('hide');
@@ -193,10 +193,11 @@ $(document).ready(function(){
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }else {
+
                     $('.loadModal__acount').modal('hide');
                     swal(
                         'Lỗi!',
-                        'Vui lòng kiểm tra lại tài khoản hoặc liên hệ với chăm sóc khách hàng!',
+                        response.message,
                         'error'
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
