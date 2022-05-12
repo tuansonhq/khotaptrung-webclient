@@ -1,4 +1,5 @@
 @if(empty($data->data))
+
     <div class="table-responsive">
         <table class="table table-hover table-custom-res">
             <thead>
@@ -41,12 +42,12 @@
                                 </td>
                                 <td>
                                     @if($item->is_add==1)
-                                        <span class="c-font-bold text-info">+{{formatPrice((int)$item->amount)}}đ</span>
+                                        <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                                     @elseif($item->is_add==0)
-                                        <span class="c-font-bold text-danger">-{{formatPrice((int)$item->amount)}}đ</span>
+                                        <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                                     @endif
                                 </td>
-                                <td>{{ formatPrice((int)$item->last_balance) }}đ</td>
+                                <td>{{ str_replace(',','.',number_format($item->last_balance)) }}đ</td>
                                 <td>{{ $item->description }}</td>
                                 <td>
                                     @foreach($status as $istls => $valstls)
@@ -78,13 +79,14 @@
                                 @endforeach
                             </td>
                             <td>
+
                                 @if($item->is_add==1)
-                                    <span class="c-font-bold text-info">+{{formatPrice((int)$item->amount)}}đ</span>
+                                    <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount))}} đ</span>
                                 @elseif($item->is_add==0)
-                                    <span class="c-font-bold text-danger">-{{formatPrice((int)$item->amount)}}đ</span>
+                                    <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                                 @endif
                             </td>
-                            <td>{{ formatPrice((int)$item->last_balance) }}đ</td>
+                            <td>{{ str_replace(',','.',number_format($item->last_balance)) }} đ</td>
                             <td>{{$item->description}}</td>
                             <td>
                                 @foreach($status as $istls => $valstls)
@@ -104,11 +106,11 @@
                     @endif
                 @endforeach
             @else
-                <tr>
-                    <td colspan="8">
-                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                    </td>
-                </tr>
+{{--                <tr>--}}
+{{--                    <td colspan="8">--}}
+{{--                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
             @endif
 
             </tbody>

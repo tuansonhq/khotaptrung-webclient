@@ -160,19 +160,17 @@ class UserController extends Controller
                 ]);
             }
 
-            $id_user = AuthCustom::user()->id;
-
-            $url = '/get-txns';
-            $method = "GET";
-            $data = array();
-            $data['token'] = $jwt;
-            $data['user_id'] = $id_user;
-
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
             if ($request->ajax()) {
+                $id_user = AuthCustom::user()->id;
+
+                $url = '/get-txns';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['token'] = $jwt;
+                $dataSend['user_id'] = $id_user;
 
                 $page = $request->page;
+
                 $jwt = Session::get('jwt');
                 if(empty($jwt)){
                     return response()->json([
@@ -180,80 +178,74 @@ class UserController extends Controller
                     ]);
                 }
 
-                $id_user = AuthCustom::user()->id;
-
-                $url = '/get-txns';
-                $method = "GET";
-                $data = array();
-                $data['token'] = $jwt;
-                $data['user_id'] = $id_user;
-                $data['page'] = $page;
+                $dataSend['page'] = $page;
 
                 if (isset($request->config) || $request->config != '' || $request->config != null) {
-                    $data['trade_type'] = $request->config;
+                    $dataSend['trade_type'] = $request->config;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $data['status'] = $request->status;
+                    $dataSend['status'] = $request->status;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $data['started_at'] = $started_at;
+                    $dataSend['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $data['ended_at'] = $ended_at;
+                    $dataSend['ended_at'] = $ended_at;
                 }
 
                 if (isset($request->sort_by) || $request->sort_by != '' || $request->sort_by != null){
                     $sort_by = $request->sort_by;
                     if ($sort_by == "random"){
-                        $data['sort'] = 'random';
+                        $dataSend['sort'] = 'random';
                     }elseif ($sort_by == "created_at_start"){
-                        $data['sort_by'] = 'created_at';
-                        $data['sort'] = 'desc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'desc';
                     }elseif ($sort_by == "created_at_end"){
-                        $data['sort_by'] = 'created_at';
-                        $data['sort'] = 'asc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'asc';
                     }
                 }
 
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
 
+                if(isset($response_data) && $response_data->status == 1){
 
-                $result = $result_Api->response_data;
+                    $data = $response_data->data;
+                    $status = $response_data->datastatus;
+                    $config = $response_data->dataconfig;
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    $data->setPath($request->url());
+                    //dd($data);
+                    $html =  view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                        ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
-                $config = $result->config;
-                $status = $result->status;
-                $data = $result->data;
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-
-                return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
-                    ->with('data', $data)->with('status', $status)->with('config',$config);
+                    $htmlconfig =  view('frontend.pages.account.user.function.__data_config')
+                        ->with('config', $config)->render();
+                    $htmlstatus =  view('frontend.pages.account.user.function.__data_status')
+                        ->with('status', $status)->render();
+                    return response()->json([
+                        'data' => $html,
+                        'datastatus' => $htmlstatus,
+                        'dataconfig' => $htmlconfig,
+                        'status' => 1,
+                        'message' => "Lấy dữ liệu thành công",
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
             }
 
-            if(isset($result_Api) && $result_Api->response_code == 200){
-                $result = $result_Api->response_data;
-
-                $config = $result->config;
-                $status = $result->status;
-                $data = $result->data;
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
-                return view('frontend.pages.account.user.lich-su-giao-dich')
-                    ->with('data', $data)->with('status', $status)->with('config',$config);
-            }
-            if(isset($result_Api) && $result_Api->response_code == 401){
-                session()->flush();
-                return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
-                ]);
-            }
+            return view('frontend.pages.account.user.lich-su-giao-dich');
 
         }
         catch(\Exception $e){
