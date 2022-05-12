@@ -44,14 +44,14 @@ class UserController extends Controller
                         ]);
                     }
                 }
-                else if($result_Api->httpcode == 401){
+                else if($result_Api->response_code == 401){
                     session()->flush();
                     return response()->json([
                         'status' => 401,
                         'message'=>"unauthencation"
                     ]);
                 }
-                else if($result_Api->httpcode == 408){
+                else if($result_Api->response_code == 408){
                     return response()->json([
                         'status' => 408,
                         'message'=>"Không có phản hồi từ máy chủ (408)"
@@ -60,7 +60,7 @@ class UserController extends Controller
                 else{
                     return response()->json([
                         'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
+                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->response_code.')"
                     ]);
                 }
 
@@ -118,7 +118,7 @@ class UserController extends Controller
                     ]);
                 }
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 session()->flush();
                 return response()->json([
                     'status' => 401,
@@ -223,7 +223,7 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
 
-                $result = $result_Api->dataOfApi;
+                $result = $result_Api->response_data;
 
                 $config = $result->config;
                 $status = $result->status;
@@ -235,8 +235,8 @@ class UserController extends Controller
                     ->with('data', $data)->with('status', $status)->with('config',$config);
             }
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
 
                 $config = $result->config;
                 $status = $result->status;
@@ -247,7 +247,7 @@ class UserController extends Controller
                 return view('frontend.pages.account.user.lich-su-giao-dich')
                     ->with('data', $data)->with('status', $status)->with('config',$config);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 session()->flush();
                 return response()->json([
                     'status' => 401,
@@ -303,8 +303,8 @@ class UserController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->dataOfApi;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
                     $data = $result->data;
                     $config = $result->config;
                     $status = $result->status;
@@ -375,13 +375,13 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->dataOfApi;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->dataOfApi;
+                        $result = $result_Api->response_data;
                         $data = $result->data;
 
                         $arrpin = array();
@@ -474,13 +474,13 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->dataOfApi;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->dataOfApi;
+                        $result = $result_Api->response_data;
                         $data = $result->data;
 
                         $arrpin = array();

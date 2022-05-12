@@ -189,8 +189,8 @@ class ChargeController extends Controller
             if(isset($data) && $data->status == 1){
                 return response()->json([
                     'status' => 1,
-                    'message' => 'Thành công',
-                    'data' => $data->data,
+                    'message' => $data->message,
+                    'data' => $data,
                 ],200);
             }
             else{

@@ -184,8 +184,10 @@ class LoginController extends Controller
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);        }
     }
 
 
@@ -219,68 +221,29 @@ class LoginController extends Controller
             $data['old_password'] = $request->old_password;
             $data['password'] = $request->password;
             $data['password_confirmation'] = $request->password_confirmation;
-//            $data['secret_key'] = config('api.secret_key');
-//            $data['domain'] = 'youtube.com';
-//            $data['token'] = session()->get('auth_token');
 
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            $response_data = $result_Api->response_data??null;
+            if(isset($response_data) && $response_data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message'=>$response_data->message
+                ]);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
-
-                if($result->status == 1){
-//                    return 'doi mat khau thanh cong';
-//                    $time = strtotime(Carbon::now());
-//                    $exp_token = $result->exp_token;
-//                    $time_exp_token = $time + $exp_token;
-//                    session()->put('auth_token', $result->token);
-//                    session()->put('exp_token', $result->exp_token);
-//                    session()->put('time_exp_token', $time_exp_token);
-//                    return redirect()->to('/');
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                    ]);
-
-                }
-            }else{
-                $result = $result_Api->dataOfApi;
+            }
+            else{
                 return response()->json([
                     'status' => 0,
-                    'message' => $result->message,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);        }
     }
-    // public function loginApi(Request $request){
 
-
-    //     $http = new \GuzzleHttp\Client;
-
-    //     $username = $request->username;
-    //     $password = $request->password;
-
-    //     $response = $http->post('https://backend-tt.nick.vn/api/v1/login?',[
-    //         'query'=>[
-    //             'username'=>$username,
-    //             'password'=>$password,
-    //             'secret_key'=>'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=',
-    //             'domain'=>'youtube.com',
-    //         ]
-    //     ]);
-
-    //     $result = json_decode((string)$response->getBody(),true);
-    //     return dd($result);
-    //     return view('frontend.pages.log_in');
-    // }
 }

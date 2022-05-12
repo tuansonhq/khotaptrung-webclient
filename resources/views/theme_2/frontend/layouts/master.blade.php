@@ -121,7 +121,7 @@
     <button type="button" class="btn btn-close"><i class="las la-times"></i></button>
     <div class="offcanvas-nav-inner h-100 p-3">
         <ul class="nav flex-column">
-{{--            @include('frontend.widget.__menu_category_mobile')--}}
+            @include('frontend.widget.__menu_category_mobile')
 {{--            {!! widget('frontend.widget.__menu_category_theme2') !!}--}}
 
 {{--            <li class="nav-item item-home active"><a href="/" class="nav-link"><i class="las la-home icon"></i> Trang chủ</a></li>--}}

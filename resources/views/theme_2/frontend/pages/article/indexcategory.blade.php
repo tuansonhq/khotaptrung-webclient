@@ -41,7 +41,6 @@
 
             </div>
             <div class="site-content-body bg-white last">
-
                 <h4 class="title-style-left mb-3">{{ $title->title }}</h4>
                 <div class="row">
                     <div class="col-lg-9 article_data">
