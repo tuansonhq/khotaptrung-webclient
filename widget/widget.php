@@ -68,8 +68,6 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
         $url = '/minigame/get-list-minigame';
         $method = "GET";
         $dataSend = array();
-//        $param['secret_key'] = config('api.secret_key');
-//        $param['domain'] = \Request::server("HTTP_HOST");
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
@@ -118,11 +116,11 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
     $data = \Cache::rememberForever('__dichvu__lienquan', function() {
         $url = '/service';
         $method = "GET";
-        $val = array();
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        return $data = $result_Api->response_data->data??null;
+        return $data = $result_Api->response_data->data->data??null;
     });
 
     return $view->with('data', $data);
