@@ -5,7 +5,7 @@
                 <div class="item_buy_list_in">
                     <div class="item_buy_list_img">
                         <a href="/dich-vu/{{ $item->slug }}">
-                            <img class="item_buy_list_img-main" src="{{  config('api.url_media').$item->image }}" alt="">
+                            <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </a>
                     </div>
 
