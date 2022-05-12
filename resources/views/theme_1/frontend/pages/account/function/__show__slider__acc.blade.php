@@ -18,13 +18,13 @@
 
                                             <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($datav2->image)}}" alt="{{ $datav2->title }}">
                                         @else
-                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/21TIENMOyn_1646042037.jpg" alt="">
+                                            <img class="item_buy_list_img-main" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
                                         @endif
 
                                         @if(isset($datav2->image_icon))
                                             <img class="item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($datav2->image_icon)}}"  alt="{{ $datav2->title }}">
                                         @else
-                                            <img class="item_buy_list_img-sale" src="https://shopas.net/storage/images/qf9WoDujJ6_1618225522.png"  alt="">
+                                            <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                         @endif
                                         <span>MS: {{ $datav2->randId }} </span>
                                     </a>
@@ -50,14 +50,16 @@
                                                     $index++;
                                                     ?>
                                                     @if($index < 5)
+                                                        @if(isset($att_valuev2->parent[0]))
                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                             <div class="col-6 item_buy_list_info_inacc">
-                                                                {{ $att_valuev2->parent[0]->title }} :
+                                                                {{ $att_valuev2->parent[0]->title??null }} :
                                                             </div>
                                                             <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                {{ $att_valuev2->title }}
+                                                                {{ $att_valuev2->title??null }}
                                                             </div>
                                                         </div>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             @endforeach

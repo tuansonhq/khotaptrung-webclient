@@ -5,7 +5,7 @@ $(document).ready(function () {
     getShowAccDetail(slug)
 
     function getShowAccDetail(slug) {
-
+        console.log(slug);
         var url = '/acc/'+ slug + '/showacc';
         request = $.ajax({
             type: 'GET',
@@ -17,6 +17,7 @@ $(document).ready(function () {
 
             },
             success: (data) => {
+
                 if (data.status == 1){
 
                     $('.data__menuacc').html('');

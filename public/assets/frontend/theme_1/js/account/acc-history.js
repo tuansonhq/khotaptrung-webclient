@@ -242,24 +242,27 @@ $(document).ready(function(){
                         html += '</div>';
                         if (data.count > 0){
                             $.each(data.dataAttribute,function(key,value){
-
+              
                                 if(value.position == 'text'){
                                     if (value.childs.length > 0){
                                         $.each(value.childs,function(keychild,valuechild){
-                                            $.each(data.datashow.params.ext_info,function(keyparam,valueparam){
-                                                if (keyparam == valuechild.id && valuechild.is_slug_override == 1){
-                                                    html += '<div class="form-group m-t-10 row">';
-                                                    html += '<label class="col-md-3 control-label">';
-                                                    html += '<b>';
-                                                    html += valuechild.title;
-                                                    html += '</b>';
-                                                    html += '</label>';
-                                                    html += '<div class="col-md-6">';
-                                                    html += '<input class="form-control c-square c-theme" type="text" placeholder="'+ valueparam +'" readonly value="'+ valueparam +'">';
-                                                    html += '</div>';
-                                                    html += '</div>';
-                                                }
-                                            })
+                                            if (data.datashow.params == null || data.datashow.params == undefined || data.datashow.params == ''){}else {
+                                                $.each(data.datashow.params.ext_info,function(keyparam,valueparam){
+                                                    if (keyparam == valuechild.id && valuechild.is_slug_override == 1){
+                                                        html += '<div class="form-group m-t-10 row">';
+                                                        html += '<label class="col-md-3 control-label">';
+                                                        html += '<b>';
+                                                        html += valuechild.title;
+                                                        html += '</b>';
+                                                        html += '</label>';
+                                                        html += '<div class="col-md-6">';
+                                                        html += '<input class="form-control c-square c-theme" type="text" placeholder="'+ valueparam +'" readonly value="'+ valueparam +'">';
+                                                        html += '</div>';
+                                                        html += '</div>';
+                                                    }
+                                                })
+                                            }
+
                                         })
                                     }
                                 }
@@ -469,9 +472,5 @@ $(document).ready(function(){
             }
         });
     }
-
-    $("#taikhoandamua_password").on('show.bs.modal', function() {
-
-    })
 
 })
