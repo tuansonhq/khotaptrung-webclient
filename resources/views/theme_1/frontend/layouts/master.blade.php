@@ -236,7 +236,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/jquery.cookie.min.js"></script>
 
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
+
 
 
 {{--@yield('scripts')--}}

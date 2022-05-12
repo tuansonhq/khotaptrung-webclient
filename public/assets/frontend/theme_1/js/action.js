@@ -200,6 +200,7 @@ $( document ).ready(function() {
                 }
             },
             error: function (data) {
+                console.log("111111");
                 alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
                 return;
             },

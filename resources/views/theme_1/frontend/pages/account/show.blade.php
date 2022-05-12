@@ -59,6 +59,8 @@
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>--}}
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
 
 @endsection
