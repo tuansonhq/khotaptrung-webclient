@@ -242,7 +242,7 @@ $(document).ready(function(){
                         html += '</div>';
                         if (data.count > 0){
                             $.each(data.dataAttribute,function(key,value){
-              
+
                                 if(value.position == 'text'){
                                     if (value.childs.length > 0){
                                         $.each(value.childs,function(keychild,valuechild){
