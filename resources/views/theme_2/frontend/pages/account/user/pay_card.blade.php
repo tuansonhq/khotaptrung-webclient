@@ -83,7 +83,8 @@
                                                 <div class="input-group" style="width: 100%">
                                                     <div class="captcha">
                                                       <span class="reload"  id="reload">
-{{--                                                      {!! captcha_img() !!}--}}
+
+                                                      {!! captcha_img() !!}
                                                       </span>
                                                     </div>
                                                 </div>
