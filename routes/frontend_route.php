@@ -98,7 +98,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/tin-tuc', [ArticleController::class , "index"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
-                
+
                 Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
                 Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
@@ -160,7 +160,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
                             ->name('getBuyServiceHistory');
 
-                        Route::get('/dich-vu-da-mua/data', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistoryData']);
+                        Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory']);
 
                         Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
                             ->name('getDeleteServiceData');
