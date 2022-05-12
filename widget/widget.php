@@ -122,7 +122,7 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-        return $data = $result_Api->response_data->data??null;
+        return $data = $result_Api->response_data->data->data??null;
     });
 
     return $view->with('data', $data);
