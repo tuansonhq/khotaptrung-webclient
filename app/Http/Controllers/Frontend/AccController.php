@@ -444,124 +444,81 @@ class AccController extends Controller
 
         if (AuthCustom::check()) {
 //            $slug = decodeItemID($slug);
-            $urlshow = '/acc';
+            $url = '/acc';
             $methodshow = "GET";
-            $valshow = array();
-            $valshow['data'] = 'acc_detail';
-            $valshow['id'] = $slug;
+            $dataSendShow = array();
+            $dataSendShow['data'] = 'acc_detail';
+            $dataSendShow['id'] = $slug;
 
-            $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
+            $result_show_Api = DirectAPI::_makeRequest($url,$dataSendShow,$methodshow);
+            $response_show_data = $result_show_Api->response_data??null;
 
-            if(isset($result_Apishow) ){
+            if(isset($response_show_data) && $response_show_data->status == 1){
 
-                if( $result_Apishow->httpcode == 200 && isset($result_Apishow->data)){
+                $datashow = $response_show_data->data;
 
-                    $datashow = $result_Apishow->data;
+                if (!isset($datashow->price)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu price .',
+                    ]);
+                }
 
-                    if (!isset($datashow->price)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => 'Không có dữ liệu price .',
-                        ]);
-                    }
+                $amount = $datashow->price;
 
-                    $amount = $datashow->price;
-
-                    $url = '/acc';
-                    $method = "POST";
-                    $val = array();
-                    $val['id'] = $slug;
-                    $val['data'] = 'buy_acc';
-                    $val['user_id'] = AuthCustom::user()->id;
-                    $val['amount'] = $amount;
+                $method = "POST";
+                $dataSend = array();
+                $dataSend['id'] = $slug;
+                $dataSend['data'] = 'buy_acc';
+                $dataSend['user_id'] = AuthCustom::user()->id;
+                $dataSend['amount'] = $amount;
 
 //                return $val;
-                    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-                    if(isset($result_Api)){
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
 
-                        if( $result_Api->httpcode == 200 && isset($result_Api->data)){
-                            $data = $result_Api->data;
-                            if (isset($data->success)){
-                                if ($data->success == 0){
-                                    return response()->json([
-                                        'status' => 2,
-                                        'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
-                                    ]);
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $data = $response_data->data;
+
+                    if (isset($data->success)){
+                        if ($data->success == 0){
+                            return response()->json([
+                                'status' => 2,
+                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                            ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                                }elseif ($data->success == 1 ){
-                                    return response()->json([
-                                        'status' => 1,
-                                        'message' => "Mua tài khoản thành công",
-                                    ]);
+                        }elseif ($data->success == 1 ){
+                            return response()->json([
+                                'status' => 1,
+                                'message' => "Mua tài khoản thành công",
+                            ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                                }
-                            }elseif (isset($data->error)){
-                                return response()->json([
-                                    'status' => 0,
-                                    'message' => $data->error,
-                                ]);
-                            }else{
-                                return response()->json([
-                                    'status' => 0,
-                                    'message' => 'Dữ liệu trả về không đúng.',
-                                ]);
-                            }
                         }
-                        else if($result_Api->httpcode == 401){
-                            session()->flush();
-                            return response()->json([
-                                'status' => 0,
-                                'message'=>"unauthencation (401)"
-                            ]);
-                        }
-                        else if($result_Api->httpcode == 408){
-                            return response()->json([
-                                'status' => 0,
-                                'message'=>"Không có phản hồi từ máy chủ (408)"
-                            ]);
-                        }
-                        else{
-                            return response()->json([
-                                'status' => 0,
-                                'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
-                            ]);
-                        }
-
-                    }
-                    else{
-
+                    }elseif (isset($data->error)){
                         return response()->json([
                             'status' => 0,
-                            'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                            'message' => $data->error,
+                        ]);
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Dữ liệu trả về không đúng.',
                         ]);
                     }
-                }
-                else if($result_Apishow->httpcode == 401){
-                    session()->flush();
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"unauthencation (401)"
-                    ]);
-                }
-                else if($result_Apishow->httpcode == 408){
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ (408)"
-                    ]);
                 }
                 else{
                     return response()->json([
                         'status' => 0,
-                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Apishow->httpcode.')"
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
                     ]);
                 }
 
             }
             else{
-
                 return response()->json([
                     'status' => 0,
-                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                    'message'=>$response_show_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }else{
@@ -583,13 +540,13 @@ class AccController extends Controller
                 $count = 0;
                 $url = '/acc';
                 $method = "GET";
-                $val = array();
-                $val['page'] = $page;
-                $val['data'] = 'list_acc';
-                $val['sort'] = 'desc';
-                $val['sort_by'] = 'published_at';
-                $val['limit'] = 12;
-                $val['user_id'] = AuthCustom::user()->id;
+                $dataSend = array();
+                $dataSend['page'] = $page;
+                $dataSend['data'] = 'list_acc';
+                $dataSend['sort'] = 'desc';
+                $dataSend['sort_by'] = 'published_at';
+                $dataSend['limit'] = 12;
+                $dataSend['user_id'] = AuthCustom::user()->id;
 
                 $chitiet_data = 0;
                 $id_data = null;
@@ -603,287 +560,195 @@ class AccController extends Controller
                 }
                 if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
 //                    $checkid = decodeItemID($request->serial);
-                    $val['id'] = $request->serial;
+                    $dataSend['id'] = $request->serial;
                 }
 
                 if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $val['cat_slug'] = $request->key;
+                    $dataSend['cat_slug'] = $request->key;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $val['status'] = $request->status;
+                    $dataSend['status'] = $request->status;
                 }
 
                 if (isset($request->price) || $request->price != '' || $request->price != null) {
-                    $val['price'] = $request->price;
+                    $dataSend['price'] = $request->price;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $val['started_at'] = $started_at;
+                    $dataSend['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $val['ended_at'] = $ended_at;
+                    $dataSend['ended_at'] = $ended_at;
                 }
 
                 if (isset($request->sort_by_data) || $request->sort_by_data != '' || $request->sort_by_data != null){
                     $sort_by = $request->sort_by_data;
                     if ($sort_by == "random"){
-                        $val['sort'] = 'random';
+                        $dataSend['sort'] = 'random';
                     }elseif ($sort_by == "price_start"){
-                        $val['sort_by'] = 'price';
-                        $val['sort'] = 'desc';
+                        $dataSend['sort_by'] = 'price';
+                        $dataSend['sort'] = 'desc';
                     }elseif ($sort_by == "price_end"){
-                        $val['sort_by'] = 'price';
-                        $val['sort'] = 'asc';
+                        $dataSend['sort_by'] = 'price';
+                        $dataSend['sort'] = 'asc';
                     }elseif ($sort_by == "created_at_start"){
-                        $val['sort_by'] = 'created_at';
-                        $val['sort'] = 'desc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'desc';
                     }elseif ($sort_by == "created_at_end"){
-                        $val['sort_by'] = 'created_at';
-                        $val['sort'] = 'asc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'asc';
                     }elseif ($sort_by == "published_at"){
-                        $val['sort_by'] = 'published_at';
-                        $val['sort'] = 'desc';
+                        $dataSend['sort_by'] = 'published_at';
+                        $dataSend['sort'] = 'desc';
                     }
                 }
 
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
 
-                if(isset($result_Api) ){
+                if(isset($response_data) && $response_data->status == 1){
 
-                    if( $result_Api->httpcode == 200 && isset($result_Api->data)){
-                        $data = $result_Api->data;
+                    $data = $response_data->data;
 
-                        $key = null;
-                        if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
-                            if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
-                                $valshow =array();
-                                $valshow['data'] = 'acc_detail';
-                                $valshow['id'] = $id_data;
+                    $key = null;
+                    if (isset($request->chitiet_data) || $request->chitiet_data != '' || $request->chitiet_data != null) {
+                        if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null) {
+                            $dataSendShow =array();
+                            $dataSendShow['data'] = 'acc_detail';
+                            $dataSendShow['id'] = $id_data;
 
-                                $result_Api_show = DirectAPI::_makeRequest($url,$valshow,$method);
+                            $result_show_api = DirectAPI::_makeRequest($url,$dataSendShow,$method);
+                            $response_show_data = $result_show_api->response_data??null;
 
-                                if(isset($result_Api_show) ){
+                            if(isset($response_show_data) && $response_show_data->status == 1){
 
-                                    if( $result_Api_show->httpcode == 200 && isset($result_Api_show->data)){
+                                $datashow = $response_show_data->data;
 
-                                        $datashow = $result_Api_show->data;
+                                if (isset($datashow->params) && isset($datashow->params->show_password)){
+                                    $params = $datashow->params->show_password;
 
-                                        if (isset($datashow->params) && isset($datashow->params->show_password)){
-                                            $params = $datashow->params->show_password;
-
-                                            foreach($params as $keys => $param){
-                                                if ($keys == 'time'){
-                                                    $time = $param;
-                                                }
-                                            }
-                                        }
-
-
-                                        $slugen = $datashow->slug;
-
-                                        $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
-
-                                        if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
-                                            return response()->json([
-                                                'status' => 0,
-                                                'message' => 'Không có dữ liệu groups.',
-                                            ]);
-                                        }
-
-                                        $valcategory = array();
-                                        $valcategory['data'] = 'category_detail';
-                                        $valcategory['id'] = $datashow->groups[1]->id;
-
-                                        $result_Api_category = DirectAPI::_makeRequest($url,$valcategory,$method);
-
-                                        if(isset($result_Api_category) ){
-
-                                            if( $result_Api_category->httpcode == 200 && isset($result_Api_category->data)){
-
-                                                $data_category = $result_Api_category->data;
-
-                                                if (!isset($data_category->childs)){
-                                                    return response()->json([
-                                                        'status' => 0,
-                                                        'message' => 'Không có dữ liệu childs.',
-                                                    ]);
-                                                }
-
-                                                $dataAttribute = $data_category->childs;
-
-                                                if (isset($dataAttribute)){
-                                                    $count = count($dataAttribute);
-                                                }
-                                            }
-                                            else if($result_Api_category->httpcode == 401){
-                                                session()->flush();
-                                                return response()->json([
-                                                    'status' => 0,
-                                                    'message'=>"unauthencation (401)"
-                                                ]);
-                                            }
-                                            else if($result_Api->httpcode == 408){
-                                                return response()->json([
-                                                    'status' => 0,
-                                                    'message'=>"Không có phản hồi từ máy chủ (408)"
-                                                ]);
-                                            }
-                                            else{
-                                                return response()->json([
-                                                    'status' => 0,
-                                                    'message'=>"Không có phản hồi từ máy chủ ('.$result_Api_category->httpcode.')"
-                                                ]);
-                                            }
-
-                                        }
-                                        else{
-
-                                            return response()->json([
-                                                'status' => 0,
-                                                'message'=>"Lỗi không gọi được dữ liệu hệ thống"
-                                            ]);
+                                    foreach($params as $keys => $param){
+                                        if ($keys == 'time'){
+                                            $time = $param;
                                         }
                                     }
-                                    else if($result_Api_show->httpcode == 401){
-                                        session()->flush();
+                                }
+
+                                $slugen = $datashow->slug;
+
+                                $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
+
+                                if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
+                                    return response()->json([
+                                        'status' => 0,
+                                        'message' => 'Không có dữ liệu groups.',
+                                    ]);
+                                }
+
+                                $dataSendCategory = array();
+                                $dataSendCategory['data'] = 'category_detail';
+                                $dataSendCategory['id'] = $datashow->groups[1]->id;
+
+                                $result_category_Api = DirectAPI::_makeRequest($url,$dataSendCategory,$method);
+                                $response_category_data = $result_category_Api->response_data??null;
+
+                                if(isset($response_category_data) && $response_category_data->status == 1){
+
+                                    $data_category = $response_category_data->data;
+
+                                    if (!isset($data_category->childs)){
                                         return response()->json([
                                             'status' => 0,
-                                            'message'=>"unauthencation (401)"
-                                        ]);
-                                    }
-                                    else if($result_Api_show->httpcode == 408){
-                                        return response()->json([
-                                            'status' => 0,
-                                            'message'=>"Không có phản hồi từ máy chủ (408)"
-                                        ]);
-                                    }
-                                    else{
-                                        return response()->json([
-                                            'status' => 0,
-                                            'message'=>"Không có phản hồi từ máy chủ ('.$result_Api_show->httpcode.')"
+                                            'message' => 'Không có dữ liệu childs.',
                                         ]);
                                     }
 
+                                    $dataAttribute = $data_category->childs;
+
+                                    if (isset($dataAttribute)){
+                                        $count = count($dataAttribute);
+                                    }
                                 }
                                 else{
-
                                     return response()->json([
                                         'status' => 0,
-                                        'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
                                     ]);
                                 }
-                            }
-                        }
-
-                        if (isEmpty($data->data)) {
-                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                            $data->setPath($request->url());
-                        }else{
-                            return response()->json([
-                                'status' => 0,
-                                'message' => 'Không có dữ liệu data.',
-                            ]);
-                        }
-
-                        $valcate = array();
-                        $valcate['data'] = 'category_list';
-                        $valcate['module'] = 'acc_category';
-                        $result_category = DirectAPI::_makeRequest($url,$valcate,$method);
-
-                        if(isset($result_category) ){
-
-                            if( $result_category->httpcode == 200 && isset($result_category->data)){
-
-                                $datacategory = $result_category->data;
-
-                                $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
-                                    ->with('datacategory', $datacategory)->render();
-
-                                $html = view('frontend.pages.account.function.lichsu.__get__buy__account__history')
-                                    ->with('data', $data)->render();
-
-                                if (count($data) == 0 && $page == 1){
-                                    return response()->json([
-                                        'status' => 0,
-                                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
-                                    ]);
-                                }
-
-                                return response()->json([
-                                    "success"=> true,
-                                    "html" => $html,
-                                    "htmlcategory" => $htmlcategory,
-                                    "status" => 1,
-                                    "data" => $data,
-                                    "time" => $time,
-                                    "dataAttribute" => $dataAttribute,
-                                    "chitiet_data" => $chitiet_data,
-                                    "id_data" => $id_data,
-                                    "datashow" => $datashow,
-                                    "key" => $key,
-                                    "slugen" => $slugen,
-                                    "count" => $count
-                                ], 200);
-                            }
-                            else if($result_Api->httpcode == 401){
-                                session()->flush();
-                                return response()->json([
-                                    'status' => 401,
-                                    'message'=>"unauthencation"
-                                ]);
-                            }
-                            else if($result_Api->httpcode == 408){
-                                return response()->json([
-                                    'status' => 408,
-                                    'message'=>"Không có phản hồi từ máy chủ (408)"
-                                ]);
                             }
                             else{
                                 return response()->json([
                                     'status' => 0,
-                                    'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
+                                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                                 ]);
                             }
-
                         }
-                        else{
+                    }
 
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                        $data->setPath($request->url());
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu data.',
+                        ]);
+                    }
+
+                    $dataSendCate = array();
+                    $dataSendCate['data'] = 'category_list';
+                    $dataSendCate['module'] = 'acc_category';
+                    $result_cate_api = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                    $response_cate_data = $result_cate_api->response_data??null;
+
+                    if(isset($response_cate_data) && $response_cate_data->status == 1){
+
+                        $datacategory = $response_cate_data->data;
+
+                        $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
+                            ->with('datacategory', $datacategory)->render();
+
+                        $html = view('frontend.pages.account.function.lichsu.__get__buy__account__history')
+                            ->with('data', $data)->render();
+
+                        if (count($data) == 0 && $page == 1){
                             return response()->json([
                                 'status' => 0,
-                                'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                                'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
                             ]);
                         }
-                    }
-                    else if($result_Api->httpcode == 401){
-                        session()->flush();
+
                         return response()->json([
-                            'status' => 0,
-                            'message'=>"unauthencation (401)"
-                        ]);
-                    }
-                    else if($result_Api->httpcode == 408){
-                        return response()->json([
-                            'status' => 0,
-                            'message'=>"Không có phản hồi từ máy chủ (408)"
-                        ]);
+                            "success"=> true,
+                            "html" => $html,
+                            "htmlcategory" => $htmlcategory,
+                            "status" => 1,
+                            "data" => $data,
+                            "time" => $time,
+                            "dataAttribute" => $dataAttribute,
+                            "chitiet_data" => $chitiet_data,
+                            "id_data" => $id_data,
+                            "datashow" => $datashow,
+                            "key" => $key,
+                            "slugen" => $slugen,
+                            "count" => $count
+                        ], 200);
                     }
                     else{
                         return response()->json([
                             'status' => 0,
-                            'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
+                            'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
                         ]);
                     }
-
                 }
                 else{
-
                     return response()->json([
                         'status' => 0,
-                        'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
                     ]);
                 }
             }
@@ -903,63 +768,42 @@ class AccController extends Controller
                 $slug = $request->get('slug');
                 $url = '/acc';
                 $method = "GET";
-                $val = array();
-                $val['id'] = $id;
-                $val['data'] = 'show_password';
-                $val['user_id'] = AuthCustom::user()->id;
+                $dataSend = array();
+                $dataSend['id'] = $id;
+                $dataSend['data'] = 'show_password';
+                $dataSend['user_id'] = AuthCustom::user()->id;
 
-                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
 
-                if(isset($result_Api) ){
+                if(isset($response_data) && $response_data->status == 1){
 
-                    if( $result_Api->httpcode == 200 && isset($result_Api->data)){
-                        $data = $result_Api->data;
+                    $data = $response_data->data;
 
-                        if ($data->success == 1){
-                            $key = Helpers::Decrypt($slug,config('module.acc.encrypt_key'));
-                            $time = date('Y-m-d H:i:s');
-                            return response()->json([
-                                'status' => 1,
-                                'message' => 'Lấy mật khẩu thành công',
-                                'data'=>$data,
-                                'time'=>$time,
-                                'key'=>$key
-                            ]);
-                        }else{
-                            return response()->json([
-                                'status' => 0,
-                                'message' => 'Đã lấy mật khẩu trước đó',
-                            ]);
-                        }
-
-                    }
-                    else if($result_Api->httpcode == 401){
+                    if ($data->success == 1){
+                        $key = Helpers::Decrypt($slug,config('module.acc.encrypt_key'));
+                        $time = date('Y-m-d H:i:s');
+                        return response()->json([
+                            'status' => 1,
+                            'message' => 'Lấy mật khẩu thành công',
+                            'data'=>$data,
+                            'time'=>$time,
+                            'key'=>$key
+                        ]);
+                    }else{
                         return response()->json([
                             'status' => 0,
-                            'message'=>"unauthencation (401)"
+                            'message' => 'Đã lấy mật khẩu trước đó',
                         ]);
                     }
-                    else if($result_Api->httpcode == 408){
-                        return response()->json([
-                            'status' => 0,
-                            'message'=>"Không có phản hồi từ máy chủ (408)"
-                        ]);
-                    }
-                    else{
-                        return response()->json([
-                            'status' => 0,
-                            'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')"
-                        ]);
-                    }
-
                 }
                 else{
-
                     return response()->json([
                         'status' => 0,
-                        'message'=>"Lỗi không gọi được dữ liệu hệ thống"
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
                     ]);
                 }
+
             }
         }else{
             return redirect('/login');
