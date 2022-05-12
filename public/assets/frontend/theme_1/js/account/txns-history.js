@@ -101,7 +101,9 @@ $(document).ready(function(){
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
 
     });
+
     loadDataAccountList()
+
     function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
         if (page == null || page == '' || page == undefined){
             page = 1;
