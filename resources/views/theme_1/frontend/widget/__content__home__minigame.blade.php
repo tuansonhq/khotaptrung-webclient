@@ -13,12 +13,12 @@
                             <a class="account_category" href="/minigame-{{ $item->slug }}">
 {{--                                                                                Anh khuyen mai--}}
                                 @if(isset($item->params->image_percent_sale))
-                                    <img class="game-list-image-sticky" src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="">
+                                    <img class="game-list-image-sticky" src="{{\App\Library\MediaHelpers::media($item->params->image_percent_sale)}}" alt="">
                                 @else
                                     <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in" src="{{config('api.url_media').$item->image }}" alt="">
+                                    <img class="game-list-image-in" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
@@ -39,7 +39,7 @@
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/minigame-{{ $item->slug }}">
                                     @if(isset($item->params->image_view_all))
-                                        <img src="{{config('api.url_media').$item->params->image_view_all }}" alt="">
+                                        <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="">
                                     @else
                                         <img src="/assets/frontend/{{theme('')->theme_key}}/images/muangay.jpg" alt="">
                                     @endif

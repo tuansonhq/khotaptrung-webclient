@@ -18,6 +18,11 @@ class MediaHelpers
 
 	    //nếu là link http://
 		if (strpos($path, 'http://') > -1 ||strpos($path, 'https://') > -1 ||strpos($path, '//') > -1) {
+		    if (strpos($path, 'http://') > -1){
+                $path = str_replace('http:','',$path);
+            }elseif (strpos($path, 'https://') > -1){
+                $path = str_replace('https:','',$path);
+            }
             return url($path);
 		}else{
             return config('api.url_media').'/'. ltrim($path, '/');
