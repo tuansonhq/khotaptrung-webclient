@@ -174,8 +174,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'editDestroy'])
                             ->name('editDestroy');
 
-                        Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase'])
-                            ->name('getBuyServiceHistoryData');
+                        Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase']);
 
                         Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
 

@@ -193,7 +193,7 @@ $(document).ready(function(){
                 $('.chitiet_data').val(0);
                 $('.id_data').val('');
                 if (data.status == 1){
-                    console.log(data);
+
                     $(".booking_detail")[0].scrollIntoView();
 
                     if (data.chitiet_data == 1){
@@ -262,7 +262,6 @@ $(document).ready(function(){
                                             })
                                         })
                                     }
-                                    console.log()
                                 }
 
                             })
@@ -331,73 +330,148 @@ $(document).ready(function(){
         });
     }
 
-    $("#taikhoandamua_password").on('show.bs.modal', function() {
-        $('body').on('click','#getShowpass',function(e){
-            e.preventDefault();
+    $('body').on('click','#getShowpass',function(e){
+        e.preventDefault();
 
-            var id = $(this).data('id');
-            var slug = $(this).data('slug');
+        var id = $(this).data('id');
+        var slug = $(this).data('slug');
 
-            getShowPass(id,slug)
-        });
+        getShowPass(id,slug)
+    });
 
-        function getShowPass(id,slug) {
+    function getShowPass(id,slug) {
 
-            request = $.ajax({
-                type: 'GET',
-                url: '/lich-su-mua-account/showpass',
-                data: {
-                    id:id,
-                    slug:slug,
-                },
-                beforeSend: function (xhr) {
+        request = $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-account/showpass',
+            data: {
+                id:id,
+                slug:slug,
+            },
+            beforeSend: function (xhr) {
 
-                },
-                success: (data) => {
+            },
+            success: (data) => {
 
-                    if (data.status == 1){
-                        if (data.success == 1){
-                            var html ='';
-                            html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+                if (data.status == 1){
+                    if (data.data.success == 1){
 
-                            html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
-                            html += '<span class="input-group-btn">';
-                            html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
-                            html += '</span>';
-                            html += '</div>';
+                        var html ='';
+                        html += '<input type="password" class="form-control c-square c-theme show_password" name="password" id="password" placeholder="Mật khẩu" readonly value="' + data.key + '" >';
+
+                        html += '<span class="show-btn show-btn-password hide-btn"><i class="fas fa-eye fa-eye-password"></i></span>';
+                        html += '<span class="input-group-btn">';
+                        html += '<button class="btn btn-default c-font-dark copy_acc" type="button" onclick="myFunction()" id="getpass">Copy</button>';
+                        html += '</span>';
+                        html += '</div>';
 
 
-                            $('#taikhoandamua_password .data__showpassword').html('');
-                            $('#taikhoandamua_password .data__showpassword').html(html);
+                        $('#taikhoandamua_password .data__showpassword').html('');
+                        $('#taikhoandamua_password .data__showpassword').html(html);
 
-                            var htmltime = '';
-                            htmltime += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
+                        var htmltime = '';
+                        htmltime += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
 
-                            $('#taikhoandamua_password .data__timeshowpass').html('');
-                            $('#taikhoandamua_password .data__timeshowpass').html(htmltime);
-                            var key = data.key;
+                        $('#taikhoandamua_password .data__timeshowpass').html('');
+                        $('#taikhoandamua_password .data__timeshowpass').html(htmltime);
+                        var key = data.key;
 
-                            navigator.clipboard.writeText(key);
+                        navigator.clipboard.writeText(key);
 
-                            tippy('#getShowpass', {
-                                // default
-                                trigger: 'click',
-                                content: "Đã lấy mật khẩu!",
-                                placement: 'right',
-                            });
-                        }
-                    }else if (data.status == 0){
+                        // Click event of the showPassword button
+                        $('.show-btn-password').on('click', function(){
 
+                            // Get the password field
+                            var passwordField = $('#password');
+
+                            // Get the current type of the password field will be password or text
+                            var passwordFieldType = passwordField.attr('type');
+
+                            // Check to see if the type is a password field
+                            if(passwordFieldType == 'password')
+                            {
+                                // Change the password field to text
+                                passwordField.attr('type', 'text');
+
+                                var htmlpass = '';
+                                htmlpass += '<i class="fas fa-eye-slash fa-eye-slash-password"></i>';
+                                $('.show-btn-password').html('');
+                                $('.show-btn-password').html(htmlpass);
+
+                                // Change the Text on the show password button to Hide
+                                $(this).val('Hide');
+                            } else {
+                                var htmlpass = '';
+                                htmlpass += '<i class="fas fa-eye fa-eye-password"></i>';
+                                $('.show-btn-password').html('');
+                                $('.show-btn-password').html(htmlpass);
+
+                                // If the password field type is not a password field then set it to password
+                                passwordField.attr('type', 'password');
+
+                                // Change the value of the show password button to Show
+                                $(this).val('Show');
+                            }
+                        });
+
+                        // Click event of the showPassword button
+                        $('.show-btn-idkey').on('click', function(){
+
+                            // Get the password field
+                            var passwordField = $('#idkey');
+
+                            // Get the current type of the password field will be password or text
+                            var passwordFieldType = passwordField.attr('type');
+
+                            // Check to see if the type is a password field
+                            if(passwordFieldType == 'password')
+                            {
+                                // Change the password field to text
+                                passwordField.attr('type', 'text');
+
+                                var htmlpass = '';
+                                htmlpass += '<i class="fas fa-eye-slash fa-eye-slash-idkey"></i>';
+                                $('.show-btn-idkey').html('');
+                                $('.show-btn-idkey').html(htmlpass);
+
+                                // Change the Text on the show password button to Hide
+                                $(this).val('Hide');
+                            } else {
+                                var htmlpass = '';
+                                htmlpass += '<i class="fas fa-eye fa-eye-idkey"></i>';
+                                $('.show-btn-idkey').html('');
+                                $('.show-btn-idkey').html(htmlpass);
+
+                                // If the password field type is not a password field then set it to password
+                                passwordField.attr('type', 'password');
+
+                                // Change the value of the show password button to Show
+                                $(this).val('Show');
+                            }
+                        });
+
+                        tippy('#getShowpass', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã lấy mật khẩu!",
+                            placement: 'right',
+                        });
                     }
-                },
-                error: function (data) {
-
-                },
-                complete: function (data) {
+                }else if (data.status == 0){
 
                 }
-            });
-        }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+
+    $("#taikhoandamua_password").on('show.bs.modal', function() {
+
     })
 
 })

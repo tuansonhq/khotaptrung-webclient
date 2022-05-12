@@ -61,7 +61,7 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                // console.log(response)
+
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     swal({
@@ -105,7 +105,7 @@ $(document).ready(function () {
                     let errors = response.responseJSON.errors;
 
                     jQuery.each(errors, function(index, itemData) {
-                        // console.log(itemData);
+
                         formSubmit.find('.notify-error').text(itemData[0]);
                         return false; // breaks
                     });

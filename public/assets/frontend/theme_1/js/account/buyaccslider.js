@@ -35,7 +35,7 @@ $(document).ready(function () {
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(html);
                 }
-                console.log(data)
+
             },
             error: function (data) {
 

@@ -123,7 +123,7 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                // console.log(data)
+
                 if (data.status == 1){
 
 

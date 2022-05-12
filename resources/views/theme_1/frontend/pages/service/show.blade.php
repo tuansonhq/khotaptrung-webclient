@@ -105,7 +105,7 @@
                                                 <select name="server[]" class="server-filter form-control t14" style="">
                                                     @for($i = 0; $i < count($server_data); $i++)
                                                         @if((strpos($server_data[$i], '[DELETE]') === false))
-                                                            <option value="{{$server_id[$i]}}">{{$server_data[$i]}}  </option>
+                                                            <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
                                                         @endif
                                                     @endfor
                                                 </select>

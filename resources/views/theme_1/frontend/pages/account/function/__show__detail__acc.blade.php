@@ -273,8 +273,8 @@
                 slideToClickedSlide: true,
             });
 
-            slider.controller.control = thumbs;
-            thumbs.controller.control = slider;
+            // slider.controller.control = thumbs;
+            // thumbs.controller.control = slider;
         });
     })
 </script>
