@@ -145,21 +145,27 @@ class LoginController extends Controller
         $data = array();
         $data['accessToken'] = $request->accessToken;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+        $response_data = $result_Api->response_data??null;
 
-        if(isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->dataOfApi;
-            if ($result->status == 1) {
-                $time = strtotime(Carbon::now());
-                $exp_token = $result->exp_token;
-                $time_exp_token = $time + $exp_token;
-                Session::put('jwt',$result->token);
-                Session::put('exp_token',$result->exp_token);
-                Session::put('time_exp_token',$time_exp_token);
-                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
-            } else {
-                return redirect()->back()->withErrors($result->message);
-            }
+        if(isset($response_data) && $response_data->status == 1){
+            $time = strtotime(Carbon::now());
+            $exp_token = $response_data->exp_token;
+
+            $time_exp_token = $time + $exp_token;
+            Session::put('jwt',$response_data->token);
+            Session::put('exp_token',$response_data->exp_token);
+            Session::put('time_exp_token',$time_exp_token);
+            return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
+
         }
+        else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
+
+
     }
     public function logout(Request $request){
         try{
