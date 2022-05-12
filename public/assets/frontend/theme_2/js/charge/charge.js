@@ -20,6 +20,9 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: url,
+            beforeSend: function(){
+                $('span#reload').trigger('click');
+            },
             success: function (data) {
                 if(data.status == 1){
                     let html = '';
