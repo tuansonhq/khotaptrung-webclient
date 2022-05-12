@@ -11,7 +11,7 @@ $(document).ready(function(){
             url: 'reload-captcha',
             success: function (data) {
                 $(".captcha span").html(data.captcha);
-                console.log(data.captcha)
+
             }
         });
 
@@ -66,7 +66,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('span#reload').trigger('click');
+
             }
         });
     }
