@@ -18,60 +18,29 @@ class AccController extends Controller
         $url = '/acc';
         $method = "GET";
         $dataSend = array();
-        $val['data'] = 'category_list';
-        $val['module'] = 'acc_category';
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
 
-        if(isset($result_Api)){
-            if( $result_Api->httpcode == 200 && isset($result_Api->dataOfApi)){
-                $data = $result_Api->dataOfApi;
+        if(isset($response_data) && $response_data->status == 1){
 
-                Session::forget('return_url');
-                Session::put('return_url', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.account.getShowCategory')
-                    ->with('data',$data);
-            }
-            else if($result_Api->httpcode == 401){
-                $data = null;
-                $message = "unauthencation";
-                Session::forget('return_url');
-                Session::put('return_url', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.account.getShowCategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-            else if($result_Api->httpcode == 408){
+            $data = $response_data->data;
 
-                $data = null;
-                $message = "Không có phản hồi từ máy chủ (408)";
-                Session::forget('return_url');
-                Session::put('return_url', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.account.getShowCategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-            else{
-
-                $data = null;
-                $message = "Không có phản hồi từ máy chủ ('.$result_Api->httpcode.')";
-                Session::forget('return_url');
-                Session::put('return_url', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.account.getShowCategory')
-                    ->with('message',$message)
-                    ->with('data',$data);
-            }
-
+            Session::forget('return_url');
+            Session::put('return_url', $_SERVER['REQUEST_URI']);
+            return view('frontend.pages.account.getShowCategory')
+                ->with('data',$data);
         }
         else{
 
             $data = null;
-            $message = "Lỗi không gọi được dữ liệu hệ thống";
+            $message = $response_data->message??"Không thể lấy dữ liệu";
             Session::forget('return_url');
             Session::put('return_url', $_SERVER['REQUEST_URI']);
             return view('frontend.pages.account.getShowCategory')
                 ->with('message',$message)
                 ->with('data',$data);
-
         }
     }
 
@@ -676,14 +645,14 @@ class AccController extends Controller
                                 else{
                                     return response()->json([
                                         'status' => 0,
-                                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                                        'message'=>$response_category_data->message??"Không thể lấy dữ liệu"
                                     ]);
                                 }
                             }
                             else{
                                 return response()->json([
                                     'status' => 0,
-                                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                                    'message'=>$response_show_data->message??"Không thể lấy dữ liệu"
                                 ]);
                             }
                         }

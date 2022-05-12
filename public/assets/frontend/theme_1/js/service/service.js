@@ -25,7 +25,7 @@ $(document).ready(function(){
         }
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu/data',
+            url: '/dich-vu',
             data: {
                 page:page,
                 title:title,

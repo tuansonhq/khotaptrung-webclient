@@ -32,7 +32,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu-da-mua/data',
+            url: '/dich-vu-da-mua',
             data: {
                 page:page,
                 id:id_data,
