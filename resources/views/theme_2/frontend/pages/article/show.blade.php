@@ -75,12 +75,12 @@
                     <h4 class="title-style-left mb-3">Tin tức liên quan</h4>
                     <div class="row">
 
-{{--                        @include('frontend.widget.__baiviet__lienquan')--}}
+                        @include('frontend.widget.__baiviet__lienquan',with(['id'=>$data->id]))
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
-{{--                @include('frontend.widget.__menu__category__article__index')--}}
+                @include('frontend.widget.__menu__category__article__index')
             </div>
         </div>
     </div>

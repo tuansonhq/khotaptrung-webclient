@@ -92,6 +92,7 @@ class ArticleController extends Controller
                 return view('frontend.pages.article.show')
                     ->with('slug',$slug)
                     ->with('data',$data);
+
             }else{
 
                 $data = $response_data->data;

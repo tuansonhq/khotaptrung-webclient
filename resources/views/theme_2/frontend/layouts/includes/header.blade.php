@@ -11,7 +11,7 @@
             <!-- BEGIN Site Header Nav -->
             <div class="site-header-nav">
                 <ul class="nav header-main-nav d-none d-lg-flex">
-{{--                    @include('frontend.widget.__menu_category_desktop')--}}
+                    @include('frontend.widget.__menu_category_desktop')
                 </ul>
             </div><!-- END Site Header Nav -->
             <div class="site-header-right d-flex ms-auto">

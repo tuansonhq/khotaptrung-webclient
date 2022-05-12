@@ -1,4 +1,3 @@
-
 @if(isset($data))
     @foreach($data as $val)
         <li class="nav-item active{{ $val->slug }}">

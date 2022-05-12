@@ -4,12 +4,16 @@
     <title>{{$title->title }}</title>
     @elseif(isset($data->title))
         <title>{{$data->title }}</title>
+        @elseif(Request::is('tin-tuc'))
+            <title>Tin tức tổng hợp, hướng dẫn đổi thẻ, mua thẻ, nạp game</title>
     @else
         <title>  {{setting('sys_title') }}</title>
 
     @endif
 
-    @if(isset($title->description))
+    @if(Request::is('tin-tuc'))
+        <meta name="description" content="Tổng hợp các thông tin mới nhất về các mua thẻ, đổi thẻ, nạp game nhanh chóng, chính xác nhất hiện nay">
+    @elseif(isset($title->description))
         <meta name="description" content="{{ $title->description }}">
     @elseif(isset($data->description))
         <meta name="description" content="{{ $data->description }}">
@@ -23,7 +27,7 @@
 
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
-
+    <link rel="canonical" href="{{ url()->current() }}">
 
 
 @if(isset($data->title))

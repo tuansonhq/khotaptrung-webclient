@@ -156,7 +156,7 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 
-    $data = \Cache::rememberForever('__menu_category_desktop', function() {
+    $data = \Cache::rememberForever('__menu_category_mobile', function() {
         $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
@@ -287,30 +287,23 @@ View::composer('frontend.widget.__menu__category__article__index', function ($vi
 
 View::composer('frontend.widget.__huongdan__trangchu', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
 
-    $result = $result_Api->data;
-    $datacategory = $result->datacategory;
+    $data = \Cache::rememberForever('__huongdan__trangchu', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['group_slug'] ='huong-dan';
+        $dataSend['limit'] = 5;
 
-    $urlshow = '/article';
-    $methodshow = "GET";
-    $valshow = array();
-    $valshow['slug'] = 'huong-dan';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
 
-    if (isset($datacategory[0]->slug)){
-        $valshow['slug'] = $datacategory[0]->slug;
-    }
+    });
 
-    $result_Apishow = DirectAPI::_makeRequest($urlshow,$valshow,$methodshow);
-    $resultshow = $result_Apishow->data;
-    $data = $resultshow->data;
-    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-    return $view->with('data', $data);
+    return $view->with('data',$data);
 
 });
+
 
 View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
@@ -322,7 +315,7 @@ View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        return $data = $result_Api->response_data->data??null;
+        return $data = $result_Api->response_data->data->data??null;
     });
 
     return $view->with('data', $data);
@@ -331,23 +324,26 @@ View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
 View::composer('frontend.widget.__baiviet__trangchu', function ($view) {
 
-    $url = '/article';
-    $method = "GET";
-    $val = array();
-    $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    $data = \Cache::rememberForever('__baiviet__trangchu', function() {
+        $url = '/article';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
 
-    $result = $result_Api->data;
-    $data = $result->data;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+        return $data = $result_Api->response_data->data->data??null;
+    });
 
     return $view->with('data', $data);
 
 });
 
+
+
 View::composer('frontend.widget.__menu__article', function ($view) {
 
-    $data = \Cache::rememberForever('__menu__category__article', function() {
+    $data = \Cache::rememberForever('__menu__article', function() {
         $url = '/get-category';
         $method = "GET";
         $val = array();
