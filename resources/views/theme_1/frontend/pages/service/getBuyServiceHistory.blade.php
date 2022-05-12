@@ -10,6 +10,7 @@
                         <p>DỊCH VỤ ĐÃ MUA</p>
                         <div class="account_sidebar_content_line"></div>
                     </div>
+                    <div class="booking_detail"></div>
                     <div class="account_content_transaction_history">
                         <form class="form-charge account_content_transaction_history__v2 account_service_history__v2">
                             <div class="row">
@@ -37,7 +38,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-4 data__service__cate">
                                     @include('frontend.pages.service.function.__category__history__service')
                                 </div>
 

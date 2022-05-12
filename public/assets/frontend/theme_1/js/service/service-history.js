@@ -45,9 +45,15 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                if (data.status == 1){
+                    $('#data_service_history').html('');
+                    $('#data_service_history').html(data.data);
 
-                $('#data_service_history').html('');
-                $('#data_service_history').html(data.data);
+                    $('.data__service__cate').html('');
+                    $('.data__service__cate').html(data.datacate);
+
+                    $(".booking_detail")[0].scrollIntoView();
+                }
 
             },
             error: function (data) {

@@ -365,6 +365,7 @@ class ServiceController extends Controller
                 if(isset($response_data) && $response_data->status == 1){
 
                     $data = $response_data->datatable;
+                    $datacate = $response_data->categoryservice;
 
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
@@ -373,9 +374,13 @@ class ServiceController extends Controller
                     $html = view('frontend.pages.service.function.__get__buy__service__history')
                         ->with('data', $data)->render();
 
+                    $htmlcate = view('frontend.pages.service.function.__category__history__service')
+                        ->with('datacate', $datacate)->render();
+
                     return response()->json([
                         "success"=> true,
                         "data" => $html,
+                        "datacate" => $htmlcate,
                         "status" => 1,
                     ], 200);
 
@@ -413,6 +418,8 @@ class ServiceController extends Controller
             if(isset($response_data) && $response_data->status == 1){
 
                 $data = $response_data->data;
+
+
                 return view('frontend.pages.service.historydetails')->with('data', $data);
 
             }
@@ -448,9 +455,9 @@ class ServiceController extends Controller
 
                 $data = $response_data->data;
 
-                $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
+                $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->itemconfig_ref->params);
 
-                if ($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null )){
+                if ($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null )){
                     return response()->json([
                         'status' => 0,
                         'message' => "Dịch vụ không thể xóa",
@@ -496,9 +503,9 @@ class ServiceController extends Controller
 
                 $data = $response_data->data;
 
-                $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
+                $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->itemconfig_ref->params);
 
-                if ($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null )){
+                if ($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null )){
                     return response()->json([
                         'status' => 0,
                         'message' => "Dịch vụ không thể sửa",

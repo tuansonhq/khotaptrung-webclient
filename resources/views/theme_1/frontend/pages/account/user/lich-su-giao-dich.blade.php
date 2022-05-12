@@ -10,23 +10,10 @@
                         <p>LỊCH SỬ GIAO DỊCH</p>
                         <div class="account_sidebar_content_line"></div>
                     </div>
+                    <div class="booking_detail"></div>
                     <div class="account_content_transaction_historyv2">
                         <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2">
                             <div class="row">
-                                @if(isset($config))
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span >Giao dịch</span>
-                                            <select name="config" class="form-control config">
-                                                <option value="">--Tất cả --</option>
-                                                @foreach($config as $i => $val)
-                                                    <option value="{{ $i }}">{{ $val }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                @endif
-
                                 <div class="col-md-4">
                                     <div class="input-group">
                                         <div class="input-group date" id="transaction_history_start">
@@ -48,19 +35,14 @@
                                     </div>
                                 </div>
 
-                                    @if(isset($status))
-                                        <div class="col-md-4">
-                                            <div class="input-group">
-                                                <span >Trạng thái</span>
-                                                <select name="status" class="form-control status">
-                                                    <option value="">--Tất cả --</option>
-                                                    @foreach($status as $ist => $valst)
-                                                        <option value="{{ $ist }}">{{ $valst }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    @endif
+                                <div class="col-md-4 data__config">
+                                    @include('frontend.pages.account.user.function.__data_config')
+                                </div>
+
+                                <div class="col-md-4 data__status">
+                                    @include('frontend.pages.account.user.function.__data_status')
+                                </div>
+
 
                             </div>
 
@@ -104,7 +86,12 @@
                             </div>
                         </form>
 
-                        <div id="data_lich__su_history">
+                        <div id="data_lich__su_history" style="position: relative">
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
                             @include('frontend.pages.account.user.function.__lich__su__giao__dich__data')
                         </div>
                     </div>

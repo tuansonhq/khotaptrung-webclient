@@ -102,8 +102,12 @@ $(document).ready(function(){
 
     });
 
-    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
+    loadDataAccountList()
 
+    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-giao-dich',
@@ -119,9 +123,22 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data)
-                $("#data_lich__su_history").empty().html('');
-                $("#data_lich__su_history").empty().html(data);
+                // console.log(data)
+                if (data.status == 1){
+
+
+                    $("#data_lich__su_history").empty().html('');
+                    $("#data_lich__su_history").empty().html(data.data);
+
+                    $(".data__status").empty().html('');
+                    $(".data__status").empty().html(data.datastatus);
+
+                    $(".data__config").empty().html('');
+                    $(".data__config").empty().html(data.dataconfig);
+                    $(".booking_detail")[0].scrollIntoView();
+
+                }
+
             },
             error: function (data) {
 

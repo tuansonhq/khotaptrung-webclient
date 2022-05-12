@@ -14,14 +14,14 @@
                             <div class="account_sidebar_content_line"></div>
                         </div>
                         @php
-                            $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->item_ref->params);
+                            $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->itemconfig_ref->params);
                         @endphp
 
                         <div class="account_content_transaction_history">
                             <div class="row">
                                     <div class="col-md-12">
                                         @if($data->status==1)
-                                            @if($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null ))
+                                            @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
                                             @else
                                                 <div class="btnDestroy__data">
                                                     <button class="btn btn-danger" type="button" id="btnDestroy" data-id="{{ $data->id }}" title="">Hủy bỏ yêu cầu</button>
@@ -65,7 +65,7 @@
                         <div class="padding-left" style="font-family: Roboto, sans-serif;">
                             <div class="cand-details" id="about" style="float: left;width: 100%">
                                 <h2>Tên dịch vụ</h2>
-                                <p><a class="thea_dichvu" href="/dich-vu/{{(isset($data->item_ref->slug)?$data->item_ref->slug:"Lỗi")}}">{{$data->title}}</a></p>
+                                <p><a class="thea_dichvu" href="/dich-vu/{{(isset($data->itemconfig_ref->slug)?$data->itemconfig_ref->slug:"Lỗi")}}">{{$data->title}}</a></p>
 
                                 <h2>Công việc</h2>
                                 <div class="edu-history-sec" id="education">
@@ -101,11 +101,11 @@
                                         </thead>
                                         <tbody class="m-datatable__body">
                                         @php
-                                            $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->item_ref->params);
-                                            $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->item_ref->params);
-                                            $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->item_ref->params);
+                                            $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->itemconfig_ref->params);
+                                            $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->itemconfig_ref->params);
+                                            $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->itemconfig_ref->params);
                                         @endphp
-                                        @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->item_ref->params)==1)
+                                        @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->itemconfig_ref->params)==1)
                                             <tr>
                                                 <td>1</td>
                                                 <td> Server</td>
@@ -120,7 +120,7 @@
                                             @foreach( $send_name as $index=> $aSendName)
 
                                                 <tr>
-                                                    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->item_ref->params)==1)
+                                                    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->itemconfig_ref->params)==1)
                                                         <td> {{$index+1+1}} </td>
                                                     @else
                                                         <td> {{$index+1}} </td>
@@ -153,7 +153,7 @@
 
                                     @if($data->status==1)
 
-                                        @if($input_auto==1 && ($data->item_ref->idkey!='' ||$data->item_ref->idkey!=null ))
+                                        @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
                                         @else
                                             <button class="btn btn-brand btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
 
@@ -172,8 +172,8 @@
                                                     <div class="modal-body text-left">
 
                                                         @php
-                                                            $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->item_ref->params);
-                                                            $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->item_ref->params);
+                                                            $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->itemconfig_ref->params);
+                                                            $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->itemconfig_ref->params);
                                                             $index = 0;
                                                         @endphp
                                                         @if(!empty($send_name)&& count($send_name)>0)
