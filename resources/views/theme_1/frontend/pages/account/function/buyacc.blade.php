@@ -63,10 +63,12 @@
                                     <?php $att_values = $data->groups ?>
                                     @foreach($att_values as $att_value)
                                         @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                            @if(isset($att_value->parent[0]))
                                             <tr>
-                                                <td style="width:50%">{{ $att_value->parent[0]->title }}:</td>
-                                                <td class="text-danger" style="font-weight: 700">{{ $att_value->title }}</td>
+                                                <td style="width:50%">{{ $att_value->parent[0]->title??null }}:</td>
+                                                <td class="text-danger" style="font-weight: 700">{{ $att_value->title??null }}</td>
                                             </tr>
+                                            @endif
                                         @endif
                                     @endforeach
                                 @endif

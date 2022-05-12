@@ -120,7 +120,7 @@
                                             @if(formatPrice($data->price) == '')
                                                 <span class="gallery__01__span__02">{{ round($data->price) }} ATM</span>
                                             @else
-                                                <span class="gallery__01__span__02">{{ formatPrice($data->price) }} ATM</span>
+                                                <span class="gallery__01__span__02">{{ str_replace(',','.',number_format($data->price)) }} ATM</span>
                                             @endif
                                         </div>
                                     </div>
@@ -135,6 +135,7 @@
                 <?php $att_values = $data->groups ?>
                 @foreach($att_values as $att_value)
                     @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                        @if(isset($att_value->parent[0]))
                         <div class="col-md-12">
                             <div class="row gallery__03">
                                 <div class="col-md-12 gallery__01__row">
@@ -143,15 +144,16 @@
                                             <i class="fas fa-angle-right"></i>
                                         </div>
                                         <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">{{ $att_value->parent[0]->title }}</span>
+                                            <span class="span__dangky">{{ $att_value->parent[0]->title??null }}</span>
                                         </div>
                                         <div class="col-md-6 col-6 pl-0">
-                                            <span class="span__dangky">{{ $att_value->title }}</span>
+                                            <span class="span__dangky">{{ $att_value->title??null }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endif
                 @endforeach
             @endif

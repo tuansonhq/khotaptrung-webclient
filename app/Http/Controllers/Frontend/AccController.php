@@ -228,6 +228,7 @@ class AccController extends Controller
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
+
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
