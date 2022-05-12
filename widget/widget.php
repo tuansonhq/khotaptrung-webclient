@@ -83,18 +83,11 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
 View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
     $data = \Cache::rememberForever('__content__home__dichvu', function() {
-        $url = '/get-show-service';
+        $url = '/service';
         $method = "GET";
         $dataSend = array();
         $dataSend['limit'] = 8;
-
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
-//        $data = $data->data;
-//
-//        dd($data->data);
-//        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
         return $data = $result_Api->response_data->data->data??null;
     });
 
@@ -103,7 +96,6 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 });
 
 View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {
-
 
     $data = \Cache::rememberForever('__bai__viet__lien__quan', function() {
         $url = '/article';
