@@ -137,6 +137,25 @@ $(document).ready(function(){
                     $(".data__config").empty().html(data.dataconfig);
                     $(".booking_detail")[0].scrollIntoView();
 
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
+
+                    $("#data_lich__su_history").empty().html('');
+                    $("#data_lich__su_history").empty().html(html);
+
+                    $(".data__status").empty().html('');
+                    $(".data__status").empty().html(data.datastatus);
+
+                    $(".data__config").empty().html('');
+                    $(".data__config").empty().html(data.dataconfig);
                 }
 
             },

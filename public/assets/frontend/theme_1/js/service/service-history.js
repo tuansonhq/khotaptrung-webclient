@@ -53,6 +53,21 @@ $(document).ready(function(){
                     $('.data__service__cate').html(data.datacate);
 
                     $(".booking_detail")[0].scrollIntoView();
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive">';
+                        html += '<table class="table table-hover table-custom-res">';
+                            html += '<thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>';
+                            html += '<tbody>';
+                            html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                            html += '</tbody>';
+                        html += '</table>';
+                    html += '</div>';
+
+                    $('#data_service_history').html('');
+                    $('#data_service_history').html(html);
+                    $('.data__service__cate').html('');
+                    $('.data__service__cate').html(data.datacate);
                 }
 
             },

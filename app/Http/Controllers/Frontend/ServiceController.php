@@ -371,6 +371,17 @@ class ServiceController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                     }
 
+                    if (count($data) == 0 && $page == 1){
+                        $htmlcate = view('frontend.pages.service.function.__category__history__service')
+                            ->with('datacate', $datacate)->render();
+
+                        return response()->json([
+                            'status' => 0,
+                            "datacate" => $htmlcate,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
                     $html = view('frontend.pages.service.function.__get__buy__service__history')
                         ->with('data', $data)->render();
 
