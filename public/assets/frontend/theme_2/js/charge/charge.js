@@ -8,7 +8,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: 'GET',
-            url: '/reload-captcha',
+            url: '/first-captcha',
             success: function (data) {
                 $("#reload_2").html(data.captcha);
             }
