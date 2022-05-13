@@ -5,12 +5,12 @@ $(document).ready(function(){
     }
 
 
-    $('#reload').click(function () {
+    $('#reload_2').click(function () {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $("#reload").html(data.captcha);
+                $("#reload_2").html(data.captcha);
                 console.log(data.captcha)
             }
         });
@@ -23,7 +23,7 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             beforeSend: function(){
-                $('span#reload').trigger('click');
+                $('span#reload_2').trigger('click');
             },
             success: function (data) {
 
