@@ -10,11 +10,11 @@ class CaptchaServiceController extends Controller
     //
     public function myCaptcha()
     {
-        return response()->json(['captcha'=> captcha_img()]);
+        return response()->json(['captcha'=> captcha_img('flat')]);
     }
     public function reloadCaptcha()
     {
 
-        return response()->json(['captcha'=> captcha_img()]);
+        return response()->json(['captcha'=> captcha_img('flat')]);
     }
 }
