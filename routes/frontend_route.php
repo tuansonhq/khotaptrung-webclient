@@ -129,62 +129,63 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                             ->name('getAmountStoreCard');
                         Route::group(['middleware' => ['auth_custom']], function (){
-                        //profile
-                        Route::get('/profile-info', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
-                            ->name('index');
+                            //profile
+                            Route::get('/profile-info', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
+                                ->name('index');
 
-                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
-                            ->name('getThongTin');
+                            Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
+                                ->name('getThongTin');
 
-                        Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
+                            Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
 
-                            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+                                Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+                            // route post mua thẻ
+
+                            //lịch sử nạp thẻ
+
+
+                            Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
+                                ->name('getChargeDepositHistory');
+                            Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
+                                ->name('getChargeDepositHistoryData');
+
+                            Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
+
+                            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
+                                ->name('getBuyAccountHistory');
+                            Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
+                                ->name('getShowpass');
+                            //dịch vụ
+                            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
+                                ->name('getBuyServiceHistory');
+
+                            Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory']);
+
+                            Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
+                                ->name('getDeleteServiceData');
+
+                            Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEditServiceData'])
+                                ->name('getEditServiceData');
+
+                            Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])
+                                ->name('postDestroy');
+
+                            Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'editDestroy'])
+                                ->name('editDestroy');
+
+                            Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase']);
+
+                            Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
+
+                            Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuNapThe']);
+
+                            Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuMuaThe']);
+
+                            Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
+
+                        });
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
-                        // route post mua thẻ
 
-                        //lịch sử nạp thẻ
-
-
-                        Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
-                            ->name('getChargeDepositHistory');
-                        Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
-                            ->name('getChargeDepositHistoryData');
-
-                        Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
-
-                        Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
-                            ->name('getBuyAccountHistory');
-                        Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
-                            ->name('getShowpass');
-                        //dịch vụ
-                        Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
-                            ->name('getBuyServiceHistory');
-
-                        Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory']);
-
-                        Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
-                            ->name('getDeleteServiceData');
-
-                        Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEditServiceData'])
-                            ->name('getEditServiceData');
-
-                        Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])
-                            ->name('postDestroy');
-
-                        Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'editDestroy'])
-                            ->name('editDestroy');
-
-                        Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase']);
-
-                        Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
-
-                        Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuNapThe']);
-
-                        Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuMuaThe']);
-
-                        Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
-
-                    });
                     });
 
                 // Route không cần Auth load dữ liệu không cache
