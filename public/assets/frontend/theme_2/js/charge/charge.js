@@ -4,14 +4,24 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
+    function capcha(){
 
-    $('#reload_2').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/reload-captcha',
+            success: function (data) {
+                $("#reload").html(data.captcha);
+            }
+        });
+    }
+    capcha();
+    $('#reload').click(function () {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $("#reload_2").html(data.captcha);
-                console.log(data.captcha)
+                $("#reload").html(data.captcha);
+
             }
         });
 
@@ -23,7 +33,6 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             beforeSend: function(){
-                $('span#reload_2').trigger('click');
             },
             success: function (data) {
 
@@ -191,7 +200,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('span#reload').trigger('click');
+                $('span#reload_2').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
