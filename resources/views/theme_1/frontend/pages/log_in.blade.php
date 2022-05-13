@@ -72,6 +72,7 @@
                         if (return_url == null || return_url == '' || return_url == undefined){
 
                             if (return_url == null || return_url == '' || metapath == undefined){
+
                                 if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
                                     window.location.href = '/';
                                 }else{

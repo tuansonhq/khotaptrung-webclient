@@ -268,6 +268,7 @@ class AccController extends Controller
 
                     if(isset($response_slider_data) && $response_slider_data->status == 1){
                         $sliders = $response_slider_data->data;
+
                         $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
                         $card_percent = setting('sys_card_percent');

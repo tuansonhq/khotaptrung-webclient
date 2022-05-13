@@ -30,12 +30,12 @@
                                 @endif
                             </td>
                             <td>
-                                @if(isset($item->item_ref))
-                                    {{ $item->item_ref->title }}
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
                                 @endif
                             </td>
                             {{--                        <td>{{ $item->title }}</td>--}}
-                            <td>{{ formatPrice($item->price) }} đ</td>
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
                             <td>
                                 @if($item->status == 1)
                                     <span class="badge badge-warning">Đang chờ xử lý</span>
@@ -70,12 +70,12 @@
 
                             </td>
                             <td>
-                                @if(isset($item->item_ref))
-                                    {{ $item->item_ref->title }}
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
                                 @endif
                             </td>
                             {{--                        <td>{{ $item->title }}</td>--}}
-                            <td>{{ formatPrice($item->price) }} đ</td>
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
                             <td>
                                 @if($item->status == 1)
                                     <span class="badge badge-warning">Đang chờ xử lý</span>
