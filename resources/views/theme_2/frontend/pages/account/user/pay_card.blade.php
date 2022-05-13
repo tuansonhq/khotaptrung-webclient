@@ -85,7 +85,7 @@
                                                     <div class="captcha">
                                                       <span class="reload"  id="reload">
 
-                                                      {!! captcha_img() !!}
+{{--                                                      {!! captcha_img() !!}--}}
                                                       </span>
                                                     </div>
                                                 </div>

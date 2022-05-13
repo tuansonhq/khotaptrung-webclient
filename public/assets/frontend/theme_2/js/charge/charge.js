@@ -11,7 +11,7 @@ $(document).ready(function(){
             url: 'reload-captcha',
             success: function (data) {
                 $("#reload").html(data.captcha);
-
+                console.log(data.captcha)
             }
         });
 
