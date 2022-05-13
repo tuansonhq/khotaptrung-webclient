@@ -69,6 +69,33 @@ $(document).ready(function(){
                     // // method = method || 'post';
                     // return;
                 }
+                if(data.status == 401){
+                    $('#info .loading').remove();
+                    $('#logout .loading').remove();
+                    $('#info').attr('href','/login?return_url='+window.location.href)
+                    $('#logout').attr('href','/register')
+                    $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
+                    $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
+
+
+                    $('#info_mobile .loading').remove();
+                    $('#logout_mobile .loading').remove();
+                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
+                    $('#logout_mobile').attr('href','/register')
+                    $('#info_mobile').html('Đăng nhập')
+                    $('#logout_mobile').html('Đăng kí')
+
+                    $('#info_tab_mobile .loading').remove();
+                    $('#logout_tab_mobile .loading').remove();
+                    $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
+                    $('#logout_tab_mobile').attr('href','/register')
+                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
+                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+                    //
+                    // window.location.href = '/login';
+                    // // method = method || 'post';
+                    // return;
+                }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
