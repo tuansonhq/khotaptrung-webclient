@@ -21,7 +21,6 @@ class ChargeController extends Controller
 {
     public function getDepositAuto(Request $request)
     {
-
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.account.user.pay_card');
@@ -145,6 +144,7 @@ class ChargeController extends Controller
 
     public function postTelecomDepositAuto(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'captcha' => 'required|captcha',
             'type' => 'required|regex:/^([A-Za-z0-9])+$/i',
@@ -192,6 +192,11 @@ class ChargeController extends Controller
                     'message' => $data->message,
                     'data' => $data,
                 ],200);
+            } elseif(isset($result_Api) && $result_Api->response_code == 401){
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
             }
             else{
                 return response()->json([

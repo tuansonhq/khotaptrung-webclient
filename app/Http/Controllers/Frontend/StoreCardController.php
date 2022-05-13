@@ -101,6 +101,11 @@ class StoreCardController extends Controller
                     'message' => $data->message,
                     'data' => $data,
                 ]);
+            }elseif(isset($result_Api) && $result_Api->response_code == 401){
+                return response()->json([
+                    'status' => 401,
+                    'message'=>"unauthencation"
+                ]);
             }
             else{
                 return response()->json([

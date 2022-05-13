@@ -16,6 +16,7 @@ $(document).ready(function(){
     });
 
     function getTelecom(){
+
         var url = '/get-tele-card';
         $.ajax({
             type: "GET",
@@ -143,6 +144,7 @@ $(document).ready(function(){
 
             },
             success: function (data) {
+
                 if(data.status == 1){
                     swal({
                         title: "Thành công !",
@@ -151,7 +153,7 @@ $(document).ready(function(){
                     })
                 }
                 else if(data.status == 401){
-                    window.location.href = '/login';
+                    window.location.href = '/login?return_url='+window.location.href;
                 }
                 else if(data.status == 0){
                     swal({
