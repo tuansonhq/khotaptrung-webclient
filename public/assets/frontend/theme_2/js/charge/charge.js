@@ -10,6 +10,7 @@ $(document).ready(function(){
             type: 'GET',
             url: '/reload-captcha',
             success: function (data) {
+                console.log(data)
                 $("#reload").html(data.captcha);
             }
         });
