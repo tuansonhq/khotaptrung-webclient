@@ -200,7 +200,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('span#reload_2').trigger('click');
+                $('span#reload').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
