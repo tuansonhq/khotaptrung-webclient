@@ -170,44 +170,4 @@ $( document ).ready(function() {
         format: 'LT'
     });
 
-    const csrf_token = $('meta[name="csrf-token"]').attr('content');
-    const token =  $('meta[name="jwt"]').attr('content');
-    function getInfo(){
-        const url = '/profile';
-        $.ajax({
-            type: "GET",
-            url: url,
-            cache:false,
-            data: {
-                _token:csrf_token,
-                jwt:token
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: function (data) {
-
-                if(data.status === "LOGIN"){
-                    window.location.href = '/logout';
-                    // method = method || 'post';
-                    return;
-                }
-                if(data.status === "ERROR"){
-                    alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
-                }
-                if(data.status == true){
-                    $('#username').html('<input type="text" class="form-control" name="user_name" placeholder="" value="'+data.info.username+ '" readonly>')
-                }
-            },
-            error: function (data) {
-                console.log("111111");
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-                return;
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-    getInfo();
 });
