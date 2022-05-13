@@ -10,7 +10,6 @@ $(document).ready(function(){
             type: 'GET',
             url: '/reload-captcha',
             success: function (data) {
-                console.log(data)
                 $("#reload").html(data.captcha);
             }
         });
@@ -201,6 +200,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
+
                 $('span#reload').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
