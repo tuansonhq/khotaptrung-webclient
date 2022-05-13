@@ -105,6 +105,7 @@
                                             $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->itemconfig_ref->params);
                                             $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->itemconfig_ref->params);
                                         @endphp
+
                                         @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->itemconfig_ref->params)==1)
                                             <tr>
                                                 <td>1</td>
@@ -114,11 +115,15 @@
                                                 </td>
                                             </tr>
                                         @endif
+
                                         @if(!empty($send_name)&& count($send_name)>0)
 
 
                                             @foreach( $send_name as $index=> $aSendName)
-
+{{--                                                @php--}}
+{{--                                                    $name=\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params));--}}
+{{--                                                @endphp--}}
+{{--                                                @dd($name)--}}
                                                 <tr>
                                                     @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->itemconfig_ref->params)==1)
                                                         <td> {{$index+1+1}} </td>
@@ -128,12 +133,22 @@
 
                                                     <td> {{$aSendName}} </td>
                                                     <td>
-                                                        @if($send_type[$index]==4)
-                                                            <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}" target="_blank">
-{{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
-                                                            </a>
+                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params)))
+                                                            @if($send_type[$index]==4)
+                                                                <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}" target="_blank">
+    {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
+                                                                </a>
+                                                            @else
+                                                                {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}
+                                                            @endif
                                                         @else
-                                                            {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}
+                                                            @if($send_type[$index]==4)
+                                                                <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}" target="_blank">
+                                                                    {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
+                                                                </a>
+                                                            @else
+                                                                {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}
+                                                            @endif
                                                         @endif
                                                     </td>
 
@@ -162,7 +177,7 @@
                                         <div class="modal fade" id="edit_info" role="dialog" style="display: none;" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/edit/','class'=>'m-form','method editForm'=>'post'))}}
+                                                    {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/edit/','class'=>'m-form editForm','method'=>'post'))}}
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;text-align: center">Chỉnh sửa thông tin</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -187,26 +202,47 @@
 {{--                                                                    check trường của sendname--}}
                                                                     @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
                                                                         <div class="mb-15 pt-3 pb-2">
-                                                                            <input type="text" required name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                            <input type="text" required name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                                            @else
+                                                                                <input type="text" required name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                                            @endif
                                                                         </div>
 
                                                                     @elseif($send_type[$i]==4)
                                                                         <div class="mb-15 pt-3 pb-2">
-                                                                            <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                            <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" placeholder="{{$send_name[$i]}}">
+                                                                            @else
+                                                                                <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
+                                                                            @endif
                                                                         </div>
                                                                     @elseif($send_type[$i]==5)
                                                                         <div class="mb-15 pt-3 pb-2">
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                            <input type="password" required class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" placeholder="{{$send_name[$i]}}">
+                                                                            @else
                                                                             <input type="password" required class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
+                                                                            @endif
                                                                         </div>
                                                                     @elseif($send_type[$i]==6)
                                                                         @php
-                                                                            $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                                            if (\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params))){
+                                                                                $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params));
+                                                                            }else{
+                                                                                $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                                            }
+
                                                                         @endphp
                                                                         <div class="mb-15 pt-3 pb-2">
                                                                             <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
                                                                                 @if(!empty($send_data))
                                                                                     @for ($sn = 0; $sn < count($send_data); $sn++)
-                                                                                        <option value="{{$sn}}" {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)==$sn?"selected":""}}>{{$send_data[$sn]}}</option>
+                                                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                                        <option value="{{$sn}}" {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))==$sn?"selected":""}}>{{$send_data[$sn]}}</option>
+                                                                                        @else
+                                                                                            <option value="{{$sn}}" {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)==$sn?"selected":""}}>{{$send_data[$sn]}}</option>
+                                                                                        @endif
                                                                                     @endfor
                                                                                 @endif
                                                                             </select>
@@ -283,7 +319,7 @@
 
     </style>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/historydetail.css">
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history-detail.js"></script>
 @endsection
 
 

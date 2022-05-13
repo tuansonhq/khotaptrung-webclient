@@ -52,12 +52,12 @@
                                     <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                         {{--                                                Anh khuyen mai--}}
                                         @if(isset($item->image_icon))
-                                            <img class="game-list-image-sticky" src="{{ isset($item->custom->image_icon) ?  config('api.url_media').$item->custom->image_icon :  config('api.url_media').$item->image_icon }}" alt="">
+                                            <img class="game-list-image-sticky" src="{{ isset($item->custom->image_icon) ?  \App\Library\MediaHelpers::media($item->custom->image_icon) :  \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                         @else
                                             <img class="game-list-image-sticky" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
                                         @endif
                                         @if(isset($item->image))
-                                            <img class="game-list-image-in" src="{{ isset($item->custom->image) ?  config('api.url_media').$item->custom->image :  config('api.url_media').$item->image }}" alt="">
+                                            <img class="game-list-image-in" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @else
                                             <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                         @endif
