@@ -20,60 +20,36 @@ class ServiceController extends Controller
 {
 
     public function getShowService(Request $request){
+        $url = '/service';
+        $method = "GET";
 
-        if ($request->ajax()){
+        $dataSend = array();
+        $dataSend['page'] = $request->page;
+        $dataSend['search'] = $request->title;
 
-            $page = $request->page;
-            $url = '/service';
-            $method = "GET";
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
 
-            $dataSend = array();
-            $dataSend['page'] = $page;
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
 
-            if (isset($request->title) || $request->title != '' || $request->title != null) {
-                $dataSend['search'] = $request->title;
-            }
+            $data = $response_data->data;
 
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $response_data = $result_Api->response_data??null;
-//            dd($response_data);
-            if(isset($response_data) && $response_data->status == 1){
+            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+            $data->setPath($request->url());
 
-                $data = $response_data->data;
+            Session::forget('return_url');
+            Session::put('return_url', $_SERVER['REQUEST_URI']);
+            Session::put('path', $_SERVER['REQUEST_URI']);
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+            return view('frontend.pages.service.index')->with('data', $data);
 
-                $html = view('frontend.pages.service.function.__get__show__data')
-                    ->with('data', $data)->render();
-
-                if (count($data) == 0 && $page == 1){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu.',
-                    ]);
-                }
-
-                return response()->json([
-                    "success"=> "Load dữ liệu thành công",
-                    "status"=> 1,
-                    "data" => $html,
-                ], 200);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
         }
-
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
-        Session::put('path', $_SERVER['REQUEST_URI']);
-
-        return view('frontend.pages.service.index');
-
+        else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
     }
 
     public function getShow(Request $request,$slug){

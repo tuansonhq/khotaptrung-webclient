@@ -30,7 +30,7 @@
     text-decoration: none;
 }
 .news_breadcrumbs_theme{
-    float: right;
+    /*float: right;*/
     display: inline-block;
     padding: 0;
     margin: 0;

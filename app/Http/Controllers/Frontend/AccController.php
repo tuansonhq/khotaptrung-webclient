@@ -319,7 +319,6 @@ class AccController extends Controller
                 ]);
             }
         }
-
     }
 
     public function getShowCategoryBuyAccData(Request $request,$slug){

@@ -8,10 +8,7 @@
         <div class="news_breadcrumbs">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto tintuc-auto pr-0">
-
-                    </div>
-                    <div class="col-lg-10 col-md-12 ml-lg-auto data__menuacc">
+                    <div class="col-lg-10 col-md-12 data__menuacc">
                         @include('frontend.pages.account.function.__data__menu__buyacc')
                     </div>
                 </div>
