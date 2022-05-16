@@ -48,7 +48,15 @@ Route::get('/test111', function ()
 
 Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:200,1','verify_shop']) , function (){
-
+            Route::get('/updategit', function ()
+            {
+                exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công!'
+                ]);
+            });
+            
             Route::get('/theme', function ()
             {
                 return view('frontend.index');
