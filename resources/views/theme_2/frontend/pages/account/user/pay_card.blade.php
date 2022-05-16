@@ -87,7 +87,7 @@
                                                         {!! captcha_img() !!}
                                                       </span>
                                                     </div>
-                                                    <button type="button" class="btn btn-danger reload"  id="reload_2">
+                                                    <button type="button" class="btn btn-danger reload"  id="reload_2" style="border-radius: 4px;color: white;margin-left: 8px;">
                                                         &#x21bb;
                                                     </button>
                                                 </div>
