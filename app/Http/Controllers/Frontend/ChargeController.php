@@ -19,6 +19,18 @@ use Validator;
 class ChargeController extends Controller
 
 {
+    public function index() {
+        return view('index');
+    }
+    public function capthcaFormValidate(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+            'captcha' => 'required|captcha'
+        ]);
+        dd('thanh cong');
+    }
     public function myCaptcha()
     {
         return response()->json(['captcha'=> captcha_img('flat')]);
@@ -160,8 +172,8 @@ class ChargeController extends Controller
             'pin' => 'required|between::9,22|regex:/^([A-Za-z0-9])+$/i',
             'serial' => 'required|between:9,22|regex:/^([A-Za-z0-9])+$/i',
         ],[
-//            'captcha.required' => "Nhập mã capcha",
-//            'captcha.captcha' => "Sai mã capcha",
+            'captcha.required' => "Nhập mã capcha",
+            'captcha.captcha' => "Sai mã capcha",
             'type.required' => __("Vui lòng chọn loại thẻ"),
             'type.regex' => __('Loại thẻ không được có ký tự đặc biệt'),
             'amount.required' => __("Vui lòng chọn mệnh giá"),
