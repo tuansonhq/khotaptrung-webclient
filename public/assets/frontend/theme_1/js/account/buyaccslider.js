@@ -43,7 +43,9 @@ $(document).ready(function () {
             }
         });
     }
+
     getDichVuLienQuan(slug)
+
     function getDichVuLienQuan(slug) {
 
         var url = '/dich-vu-lien-quan';
@@ -59,12 +61,6 @@ $(document).ready(function () {
             success: (data) => {
 
                 if (data.status == 1){
-
-                    $('.data__menuacc').html('');
-                    $('.data__menuacc').html(data.datamenu);
-
-                    $('#showdetailacc').html('');
-                    $('#showdetailacc').html(data.data);
 
                     $('#showslideracc').html('');
                     $('#showslideracc').html(data.dataslider);
