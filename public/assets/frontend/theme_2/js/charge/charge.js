@@ -10,8 +10,8 @@ $(document).ready(function(){
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                // $(".captcha span").html(data.captcha);
-                $("#reload_2").html(data.captcha);
+                $(".captcha span").html(data.captcha);
+                // $("#reload_2").html(data.captcha);
 
             }
         });
