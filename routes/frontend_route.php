@@ -155,8 +155,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
                                 ->name('getChargeDepositHistory');
-                            Route::get('/lich-su-nap-the/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryData'])
-                                ->name('getChargeDepositHistoryData');
+
 
                             Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
