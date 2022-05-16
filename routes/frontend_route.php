@@ -209,6 +209,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
 
 
+                    Route::get('/contact-form', [ChargeController::class, 'index']);
+                    Route::post('/captcha-validation', [ChargeController::class, 'capthcaFormValidate']);
+
                 });
 
                 //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
