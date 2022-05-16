@@ -24,8 +24,53 @@ class ServiceController extends Controller
         $method = "GET";
 
         $dataSend = array();
-        $dataSend['page'] = $request->page;
-        $dataSend['search'] = $request->title;
+
+        if ($request->ajax()){
+
+            $page = $request->page;
+            $url = '/service';
+            $method = "GET";
+
+            $dataSend = array();
+            $dataSend['page'] = $page;
+            
+            if (isset($request->title) || $request->title != '' || $request->title != null) {
+                $dataSend['search'] = $request->title;
+            }
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+
+                $data = $response_data->data;
+
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                $data->setPath($request->url());
+                $html = view('frontend.pages.service.function.__get__show__data')
+                    ->with('data', $data)->render();
+
+                if (count($data) == 0 && $page == 1){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu.',
+                    ]);
+                }
+
+                return response()->json([
+                    "success"=> "Load dữ liệu thành công",
+                    "status"=> 1,
+                    "data" => $html,
+                ], 200);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
