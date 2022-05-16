@@ -13,9 +13,10 @@
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     @endif
-
-    @if(setting('sys_schema') != '')
-        {!! setting('sys_schema') !!}
+    @if(Request::is('/'))
+        @if(setting('sys_schema') != '')
+            {!! setting('sys_schema') !!}
+        @endif
     @endif
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/custom.boostrap.css">
