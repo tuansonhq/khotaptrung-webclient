@@ -27,10 +27,7 @@
                 <div class="news_breadcrumbs">
                     <div class="container">
                         <div class="row">
-                            <div class="col-auto tintuc-auto">
-                                <div class="news_breadcrumbs_title"><a href="/tin-tuc" >Tin tức</a></div>
-                            </div>
-                            <div class="col-md-10 ml-auto">
+                            <div class="col-md-12">
                                 <ul class="news_breadcrumbs_theme">
                                     <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                                     <li>/</li>

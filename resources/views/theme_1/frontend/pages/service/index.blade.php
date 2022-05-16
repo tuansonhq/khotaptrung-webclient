@@ -7,10 +7,7 @@
         <div class="news_breadcrumbs">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto tintuc-auto">
-{{--                        <div class="news_breadcrumbs_title"><a href="/dich-vu" >Dịch vụ</a></div>--}}
-                    </div>
-                    <div class="col-md-10 col-8 ml-auto">
+                    <div class="col-md-10 col-8">
                         <ul class="news_breadcrumbs_theme">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
@@ -34,7 +31,7 @@
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <button type="submit" class="btn btn-category-service">Tìm kiếm</button>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-tatca" style="position: relative">Tất cả</a>
+                                <a href="/dich-vu" class="btn btn-danger btn-tatca" style="position: relative">Tất cả</a>
                                 <div class="row justify-content-center loading-data__all">
 
                                 </div>
@@ -71,7 +68,7 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <button type="submit" class="btn btn-category-service-mobile">Tìm kiếm</button>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-tatca-mobile">Tất cả</a>
+                                        <a href="/dich-vu" class="btn btn-danger btn-tatca-mobile">Tất cả</a>
                                     </div>
                                 </div>
                             </div>
@@ -82,14 +79,6 @@
             </div>
 
             <div class="item_buy_list row" id="getshowservice_data">
-                <div class="col-md-12 left-right">
-                    <div class="body-box-loadding result-amount-loadding">
-                        <div class="d-flex justify-content-center">
-                            <span class="pulser"></span>
-                        </div>
-                    </div>
-                </div>
-
                 @include('frontend.pages.service.function.__get__show__data')
             </div>
 

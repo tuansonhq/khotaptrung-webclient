@@ -37,10 +37,7 @@
         <div class="news_breadcrumbs">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto tintuc-auto pr-0">
-                        {{--                        <div class="news_breadcrumbs_title news_breadcrumbs_title__show"><a href="/dich-vu">Dịch vụ</a></div>--}}
-                    </div>
-                    <div class="col-lg-10 col-md-12 ml-lg-auto">
+                    <div class="col-lg-10 col-md-12">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
@@ -78,13 +75,15 @@
                             <div class="row">
                                 <div class="col-md-5 hidden-xs hidden-sm">
                                     <div class="row">
-                                        <div class="news_image">
-                                            @if(isset($data->image))
+                                        <div class="col-md-12">
+                                            <div class="news_image">
+                                                @if(isset($data->image))
 
-                                                <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Bán vàng">
-                                            @else
-                                                <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="Bán vàng">
-                                            @endif
+                                                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Bán vàng">
+                                                @else
+                                                    <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="Bán vàng">
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row__face">
