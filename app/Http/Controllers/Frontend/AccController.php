@@ -257,6 +257,82 @@ class AccController extends Controller
 
                     $dataAttribute = $data_category->childs;
 
+                    $card_percent = setting('sys_card_percent');
+                    $atm_percent = setting('sys_atm_percent');
+
+                    $htmlmenu = view('frontend.pages.account.function.__data__menu__buyacc')
+                        ->with('data_category',$data_category)->render();
+
+                    $html = view('frontend.pages.account.function.__show__detail__acc')
+                        ->with('data_category',$data_category)
+                        ->with('data',$data)
+                        ->with('card_percent',$card_percent)
+                        ->with('atm_percent',$atm_percent)
+                        ->with('dataAttribute',$dataAttribute)->render();
+
+                    return response()->json([
+                        'data' => $html,
+                        'datamenu' => $htmlmenu,
+                        'status' => 1,
+                        'message' => 'Load dữ liệu thành công',
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+    }
+
+    public function getDichVuLienQuan(Request $request){
+        if ($request->ajax()){
+            $slug = $request->slug;
+            $url = '/acc';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['data'] = 'acc_detail';
+            $dataSend['id'] = $slug;
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+                $data = $response_data->data;
+
+                if (!isset($data->groups[1]) || !isset($data->groups[1]->id)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu groups.',
+                    ]);
+                }
+
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'category_detail';
+                $dataSendCate['id'] = $data->groups[1]->id;
+
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+                if(isset($response_cate_data) && $response_cate_data->status == 1){
+                    $data_category = $response_cate_data->data;
+                    if (!isset($data_category->childs) || !isset($data_category->slug)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu childs hoặc slug.',
+                        ]);
+                    }
+
+                    $dataAttribute = $data_category->childs;
+
                     $dataSendslider = array();
                     $dataSendslider['data'] = 'list_acc';
                     $dataSendslider['cat_slug'] = $data_category->slug;
@@ -271,19 +347,6 @@ class AccController extends Controller
 
                         $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
-                        $card_percent = setting('sys_card_percent');
-                        $atm_percent = setting('sys_atm_percent');
-
-                        $htmlmenu = view('frontend.pages.account.function.__data__menu__buyacc')
-                            ->with('data_category',$data_category)->render();
-
-                        $html = view('frontend.pages.account.function.__show__detail__acc')
-                            ->with('data_category',$data_category)
-                            ->with('data',$data)
-                            ->with('card_percent',$card_percent)
-                            ->with('atm_percent',$atm_percent)
-                            ->with('dataAttribute',$dataAttribute)->render();
-
                         $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
                             ->with('data_category',$data_category)
                             ->with('data',$data)
@@ -291,9 +354,7 @@ class AccController extends Controller
                             ->with('dataAttribute',$dataAttribute)->render();
 
                         return response()->json([
-                            'data' => $html,
                             'dataslider' => $htmlslider,
-                            'datamenu' => $htmlmenu,
                             'status' => 1,
                             'message' => 'Load dữ liệu thành công',
                         ]);
