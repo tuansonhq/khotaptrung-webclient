@@ -70,8 +70,8 @@ $(document).ready(function(){
 
         var started_at = $('.started_at_data_lsnt').val();
         var ended_at =  $('.ended_at_data_lsnt').val();
-        var page = $('#hidden_page_service_lsnt').val();
-
+        // var page = $('#hidden_page_service_lsnt').val();
+        var page = 1;
         loadDataChargeHistory(page,started_at,ended_at);
     });
 

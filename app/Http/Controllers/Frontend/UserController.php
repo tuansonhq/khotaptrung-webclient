@@ -306,13 +306,16 @@ class UserController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
+
                 if (isset($result_Api) && $result_Api->response_code == 200) {
                     $result = $result_Api->response_data;
                     $data = $result->data;
-                    $config = $result->config;
-                    $status = $result->status;
+
+                    $config = $result->dataconfig;
+                    $status = $result->datastatus;
                     $per_page = 0;
                     $total = 0;
+
                     if (isset($data->total)){
                         $total = $data->total;
                     }

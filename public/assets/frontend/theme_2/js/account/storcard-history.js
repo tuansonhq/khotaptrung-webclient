@@ -58,7 +58,8 @@ $(document).ready(function(){
 
         var started_at_lsmt_data = $('.started_at_lsmt_data').val();
         var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
-        var page = $('#hidden_page_service_lsmt').val();
+        // var page = $('#hidden_page_service_lsmt').val();
+        var page = 1;
 
 
         loadDataAccountList(page,id_lsmt_data,started_at_lsmt_data,ended_at_lsmt_data)

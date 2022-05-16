@@ -5,6 +5,7 @@ $(document).ready(function(){
     $(document).on('click', '.paginate__v1_index_txns .pagination a',function(event){
         event.preventDefault();
 
+
         var page = $(this).attr('href').split('page=')[1];
 
         $('#hidden_page_service_txns').val(page);
@@ -48,8 +49,7 @@ $(document).ready(function(){
 
         var started_at_txns_data = $('.started_at_txns_data').val();
         var ended_at_txns_data = $('.ended_at_txns_data').val();
-        var page = $('#hidden_page_service_txns').val();
-
+        var page = 1;
 
         loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data)
 
@@ -65,6 +65,7 @@ $(document).ready(function(){
         var started_at_txns_data = $('.started_at_txns_data').val();
         var ended_at_txns_data = $('.ended_at_txns_data').val();
         var page = $('#hidden_page_service_txns').val();
+
 
         loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data)
 
@@ -107,7 +108,9 @@ $(document).ready(function(){
     });
 
     function loadDataAccountList(page,id_txns_data,started_at_txns_data,ended_at_txns_data) {
-
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-giao-dich-tich-hop',
