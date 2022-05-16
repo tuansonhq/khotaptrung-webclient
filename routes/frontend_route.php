@@ -56,7 +56,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     'message' => 'Thành công!'
                 ]);
             });
-            
+
             Route::get('/theme', function ()
             {
                 return view('frontend.index');
@@ -116,7 +116,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
                 Route::get('/mua-acc/{slug}', [AccController::class , "getShowCategory"]);
-//                Route::get('/mua-acc/{slug}/data', [AccController::class , "getShowCategoryData"]);
+                Route::get('/dich-vu-lien-quan', [AccController::class , "getDichVuLienQuan"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getShowAccDetail"]);
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowAccDetailData"]);
