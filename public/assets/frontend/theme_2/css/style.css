@@ -2473,3 +2473,6 @@ input[type="number"] {
 .site-header-nav .nav-item:hover a{
 
 }
+#reload_2:focus{
+    box-shadow: none;
+}
