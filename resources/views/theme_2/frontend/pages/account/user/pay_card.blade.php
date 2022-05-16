@@ -83,11 +83,13 @@
                                             <div class="d-flex mb-1 justify-content-between align-items-center">
                                                 <div class="input-group" style="width: 100%">
                                                     <div class="captcha">
-                                                      <span class="reload"  id="reload_2">
-
-{{--                                                      {!! captcha_img() !!}--}}
+                                                      <span class="reload"  id="">
+                                                        {!! captcha_img() !!}
                                                       </span>
                                                     </div>
+                                                    <button type="button" class="btn btn-danger reload"  id="reload_2">
+                                                        &#x21bb;
+                                                    </button>
                                                 </div>
                                                 <div>
                                                     <input type="text" id="capcha" name="captcha" class="form-control text-end" placeholder="#" value="" autocomplete="off" required="">

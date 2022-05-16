@@ -4,23 +4,14 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    function capcha(){
 
-        $.ajax({
-            type: 'GET',
-            url: '/first-captcha',
-            success: function (data) {
-                $("#reload_2").html(data.captcha);
-            }
-        });
-    }
-    capcha();
     $('#reload_2').click(function () {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $("#reload_2").html(data.captcha);
+                $(".captcha span").html(data.captcha);
+                // $("#reload_2").html(data.captcha);
 
             }
         });
@@ -201,7 +192,7 @@ $(document).ready(function(){
             },
             complete: function (data) {
 
-                $('span#reload_2').trigger('click');
+                $('#reload_2').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
