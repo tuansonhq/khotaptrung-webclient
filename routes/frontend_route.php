@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Frontend\AccController;
 use App\Http\Controllers\Frontend\ArticleController;
+use App\Http\Controllers\Frontend\CaptchaController;
 use App\Http\Controllers\Frontend\CaptchaServiceController;
 use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -207,6 +208,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/first-captcha', [CaptchaServiceController::class , 'myCaptcha']);
                     Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
 
+
+
+                    Route::get('/contact-form', [CaptchaController::class, 'index']);
+                    Route::post('/captcha-validation', [CaptchaController::class, 'capthcaFormValidate']);
+                    Route::get('/reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
 
                 });
 
