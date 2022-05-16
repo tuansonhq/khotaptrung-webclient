@@ -56,41 +56,54 @@ class ChargeController extends Controller
             $url = '/deposit-auto/history';
 
             $method = "GET";
-            $val = array();
+            $sendData = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['page'] = $page;
+            $sendData['token'] = $jwt;
+            $sendData['page'] = $page;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $sendData, $method);
+            $response_data = $result_Api->response_data??null;
 
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
+            if(isset($response_data) && $response_data->status == 1){
 
-                    $data = $result->data;
+                $data = $response_data->data;
 
-                    $arrpin = array();
+                $arrpin = array();
 
-                    for ($i = 0; $i < count($data->data); $i++){
-                        $pin = $data->data[$i]->pin;
-                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                        array_push($arrpin,$pin);
-                    }
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-
-                    return view('frontend.pages.account.user.function.__pay_card')
-                        ->with('data', $data)->with('arrpin',$arrpin);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
+                for ($i = 0; $i < count($data->data); $i++){
+                    $pin = $data->data[$i]->pin;
+                    $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                    array_push($arrpin,$pin);
                 }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                $html =  view('frontend.pages.account.user.function.__pay_card')
+                    ->with('data', $data)->with('arrpin',$arrpin)->render();
+
+                if (count($data) == 0 && $page == 1){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => 1,
+                    'data' => $html,
+                    'message' => 'Load du lieu thanh cong.',
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
             }
         }
     }
@@ -374,8 +387,8 @@ class ChargeController extends Controller
                 $data['token'] = $jwt;
 
                 $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
                     if ($result->status == 1) {
 
                         return view('frontend.pages.account.user.transaction_history')->with('result', $result);
