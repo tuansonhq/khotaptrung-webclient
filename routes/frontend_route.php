@@ -205,14 +205,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
                         ->name('loginfacebook');
                     //capcha
-                    Route::get('/first-captcha', [CaptchaServiceController::class , 'myCaptcha']);
-                    Route::get('/reload-captcha', [CaptchaServiceController::class , 'reloadCaptcha']);
+                    Route::get('/first-captcha', [CaptchaController::class , 'index']);
+                    Route::get('/reload-captcha', [CaptchaController::class , 'reloadCaptcha']);
 
-
-
-                    Route::get('/contact-form', [CaptchaController::class, 'index']);
-                    Route::post('/captcha-validation', [CaptchaController::class, 'capthcaFormValidate']);
-                    Route::get('/reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
 
                 });
 
