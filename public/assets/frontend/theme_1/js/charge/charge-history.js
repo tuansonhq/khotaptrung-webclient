@@ -21,8 +21,11 @@ $(document).ready(function(){
 
         loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
     });
-
+    loadDataChargeHistory();
     function loadDataChargeHistory(page, serial, key, status,started_at,ended_at) {
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
 
         request = $.ajax({
             type: 'GET',
@@ -39,9 +42,25 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data)
-                $("#data_pay_card_history_ls").empty().html('');
-                $("#data_pay_card_history_ls").empty().html(data);
+
+                if (data.status == 1){
+                    $("#data_pay_card_history_ls").empty().html('');
+                    $("#data_pay_card_history_ls").empty().html(data.data);
+                }else if (data.status == 0) {
+                    var html = '';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
+
+                    $("#data_pay_card_history_ls").empty().html('');
+                    $("#data_pay_card_history_ls").empty().html(html);
+                }
+
             },
             error: function (data) {
 

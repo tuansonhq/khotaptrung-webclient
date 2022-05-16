@@ -239,31 +239,14 @@ class ChargeController extends Controller
     {
 
         if (AuthCustom::check()) {
-            $url = '/deposit-auto/history';
+
             $method = "GET";
-            $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-
-            $val['token'] = $jwt;
-
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-            $url_telecome = '/deposit-auto/get-telecom';
-            $val_telecome = array();
-
-            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
 
             if ($request->ajax()) {
                 $page = $request->page;
 
                 $url = '/deposit-auto/history';
 
-                $method = "GET";
                 $val = array();
                 $jwt = Session::get('jwt');
                 if (empty($jwt)) {
@@ -271,6 +254,7 @@ class ChargeController extends Controller
                         'status' => "LOGIN"
                     ]);
                 }
+
                 $val['token'] = $jwt;
                 $val['page'] = $page;
 
@@ -297,51 +281,11 @@ class ChargeController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $response_data = $result_Api->response_data??null;
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                if(isset($response_data) && $response_data->status == 1){
 
-
-                    if ($result->status == 1) {
-
-                        $result = $result_Api->data;
-                        $data = $result->data;
-
-                        $arrpin = array();
-                        $arrserial = array();
-
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $serial = $data->data[$i]->serial;
-                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
-                            array_push($arrserial,$serial);
-                        }
-
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $pin = $data->data[$i]->pin;
-                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                            array_push($arrpin,$pin);
-                        }
-
-                        if (isEmpty($data->data)) {
-                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                            $data->setPath($request->url());
-                        }
-
-                        return view('frontend.pages.account.user.function.__pay_card_history')
-                            ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
-                    } else {
-                        return redirect()->back()->withErrors($result->message);
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            }
-
-            if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
-
-                    $data = $result->data;
+                    $data = $response_data->data;
 
                     $arrpin = array();
                     $arrserial = array();
@@ -358,25 +302,58 @@ class ChargeController extends Controller
                         array_push($arrpin,$pin);
                     }
 
-                    $data_telecome = $result_Api_telecome->data;
-
-                    $data_telecome = $data_telecome->data;
-
-                    // Set default page
                     if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
 
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
 
-                    return view('frontend.pages.account.user.pay_card_history')
-                        ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
+                    $html =  view('frontend.pages.account.user.function.__pay_card_history')
+                        ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
+
+                    return response()->json([
+                        'status' => 1,
+                        'data' => $html,
+                        'message' => 'Load du lieu thanh cong.',
+                    ]);
                 }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
             }
+
+            $url_telecome = '/deposit-auto/get-telecom';
+
+            $sendDatatele = array();
+
+            $result_telecome_Api = DirectAPI::_makeRequest($url_telecome, $sendDatatele, $method);
+
+            $response_tele_data = $result_telecome_Api->response_data??null;
+
+            if(isset($response_tele_data) && $response_tele_data->status == 1){
+
+                $data_telecome = $response_tele_data->data;
+
+                return view('frontend.pages.account.user.pay_card_history')->with('data_telecome', $data_telecome);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+
+
         }
 
     }

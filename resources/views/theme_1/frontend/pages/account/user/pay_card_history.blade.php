@@ -78,7 +78,12 @@
                             </div>
                         </form>
 
-                        <div id="data_pay_card_history_ls">
+                        <div id="data_pay_card_history_ls" style="position: relative">
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
                             @include('frontend.pages.account.user.function.__pay_card_history')
                         </div>
                     </div>
