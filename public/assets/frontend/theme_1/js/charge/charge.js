@@ -221,9 +221,24 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                if (data.status == 1){
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(data.data);
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
 
-                $(".paycartdata").empty().html('');
-                $(".paycartdata").empty().html(data);
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(html);
+                }
+
             },
             error: function (data) {
 

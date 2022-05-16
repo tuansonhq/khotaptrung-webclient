@@ -77,8 +77,8 @@ class TranferController extends Controller
 
                 $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
 
-                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
-                    $data = $result_ApiHistory->data;
+                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->response_code == 200) {
+                    $data = $result_ApiHistory->response_data;
                     $data = $data->data;
 
                     if (isEmpty($data->data)){
@@ -122,9 +122,9 @@ class TranferController extends Controller
 
             $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
 
-            if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+            if (isset($result_ApiHistory)== 200 && $result_ApiHistory->response_code == 200) {
 
-                $data = $result_ApiHistory->data;
+                $data = $result_ApiHistory->response_data;
 
                 if (isEmpty($data->data)){
                     $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
@@ -172,14 +172,14 @@ class TranferController extends Controller
 
             $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$valhistory,$method);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->dataOfApi;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
 
                 if($result->status == 0){
 //                    Lịch sử ATM
-                    if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
+                    if (isset($result_ApiHistory)== 200 && $result_ApiHistory->response_code == 200) {
 
-                        $dataatm = $result_ApiHistory->data;
+                        $dataatm = $result_ApiHistory->response_data;
                         $dataatm = $dataatm->data;
 
                         if (isEmpty($dataatm->data)){
@@ -195,11 +195,11 @@ class TranferController extends Controller
                             'bank' => $result->data,
                         ]);
                     } else {
-                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                        return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                     }
                 }
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 session()->flush();
                 return response()->json([
                     'status' => 401,
