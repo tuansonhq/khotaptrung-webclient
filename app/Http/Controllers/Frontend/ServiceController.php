@@ -33,7 +33,7 @@ class ServiceController extends Controller
 
             $dataSend = array();
             $dataSend['page'] = $page;
-            
+
             if (isset($request->title) || $request->title != '' || $request->title != null) {
                 $dataSend['search'] = $request->title;
             }
@@ -111,11 +111,34 @@ class ServiceController extends Controller
 
             $data = $response_data->data;
 
-            Session::put('path', $_SERVER['REQUEST_URI']);
+            $urlCate = '/service';
 
-            return view('frontend.pages.service.show')
-                ->with('data', $data)
-                ->with('slug', $slug);
+            $dataSendCate = array();
+            $dataSendCate['limit'] = 8;
+            $result_cate_Api = DirectAPI::_makeRequest($urlCate,$dataSendCate,$method);
+            $response_cate_data = $result_cate_Api->response_data??null;
+
+            if(isset($response_cate_data) && $response_cate_data->status == 1){
+
+                $datacate = $response_cate_data->data;
+
+                $datacate = new LengthAwarePaginator($datacate->data, $datacate->total, $datacate->per_page, $datacate->current_page, $datacate->data);
+                $datacate->setPath($request->url());
+//                return $datacate;
+                Session::put('path', $_SERVER['REQUEST_URI']);
+
+                return view('frontend.pages.service.show')
+                    ->with('data', $data)
+                    ->with('datacate', $datacate)
+                    ->with('slug', $slug);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
 
         }
         else{

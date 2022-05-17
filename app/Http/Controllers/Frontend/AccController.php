@@ -59,8 +59,8 @@ class AccController extends Controller
             $page = $request->page;
 
             if(isset($response_cate_data) && $response_cate_data->status == 1){
-
                 $data = $response_cate_data->data;
+
 //                return $data;
                 $dataSend = array();
                 $dataSend['data'] = 'list_acc';
@@ -130,25 +130,9 @@ class AccController extends Controller
                     $items->setPath($request->url());
 //                    dd($data);
 
-                    $dataAttribute = $data->childs;
-
-                    if (!isset($dataAttribute)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => 'Không lấy được dữ liệu childs.',
-                        ]);
-                    }
-
-                    $htmlatr =  view('frontend.pages.account.widget.account_load_attribute_to_filter')
-                        ->with('dataAttribute',$dataAttribute)->render();
-
-                    $htmlatrmobile =  view('frontend.pages.account.widget.account_load_attribute_to_filter_mobile')
-                        ->with('dataAttribute',$dataAttribute)->render();
-
                     $html =  view('frontend.pages.account.function.__account__data')
                         ->with('data',$data)
-                        ->with('items',$items)
-                        ->with('dataAttribute',$dataAttribute)->render();
+                        ->with('items',$items)->render();
 
                     if (count($items) == 0 && $page == 1){
                         return response()->json([
@@ -160,8 +144,6 @@ class AccController extends Controller
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
-                        'htmlatr' => $htmlatr,
-                        'htmlatrmobile' => $htmlatrmobile,
                         'message' => 'Load du lieu thanh cong.',
                     ]);
                 }
@@ -183,6 +165,15 @@ class AccController extends Controller
         if(isset($response_cate_data) && $response_cate_data->status == 1){
 
             $data = $response_cate_data->data;
+
+            $dataAttribute = $data->childs;
+
+            if (!isset($dataAttribute)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Không lấy được dữ liệu childs.',
+                ]);
+            }
 //                return $data;
             if (!isset($data->title)){
 
@@ -199,6 +190,7 @@ class AccController extends Controller
 
             return view('frontend.pages.account.accountList')
                 ->with('data',$data)
+                ->with('dataAttribute',$dataAttribute)
                 ->with('slug',$slug);
         }
         else{

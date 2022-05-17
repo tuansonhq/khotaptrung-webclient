@@ -70,14 +70,6 @@ $(document).ready(function(){
 
                     $("#account_data").empty().html(data.data);
 
-                    $("#load_attribute").empty().html('');
-
-                    $("#load_attribute").empty().html(data.htmlatr);
-
-                    $("#load_attribute_mobile").empty().html('');
-
-                    $("#load_attribute_mobile").empty().html(data.htmlatrmobile);
-
                     $('.loading-data__timkiem').html('');
                     $('.loading-data__all').html('');
                 }

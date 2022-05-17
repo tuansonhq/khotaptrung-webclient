@@ -1,4 +1,4 @@
-@if (isset($categoryservice) && count($categoryservice) > 0)
+@if (isset($datacate) && count($datacate) > 0)
 
     <div class="container item_play_dif__img">
         <div class="row">
@@ -6,8 +6,8 @@
                 <div class="h3" style="font-size: 24px;font-weight: 700">DỊCH VỤ KHÁC</div>
                 <div class="news_content_line"></div>
             </div>
-            @if(isset($categoryservice) && count($categoryservice) > 0)
-                @foreach ($categoryservice as $item)
+            @if(isset($datacate) && count($datacate) > 0)
+                @foreach ($datacate as $item)
                     <div class="col-6 col-sm-6 col-lg-3" style="padding-top: 24px">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">

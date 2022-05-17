@@ -603,13 +603,13 @@
 }
 .item_buy_list_info_inacc{
     font-size: 16px;
-    padding: 4px 0 0 16px !important;
+    padding: 4px 0 0 16px;
     /*text-align: center;*/
     /*margin-bottom: 5px;*/
 }
 .item_buy_list_info_inaccright{
     font-size: 16px;
-    padding: 4px 16px 0 0 !important;
+    padding: 4px 16px 0 0;
     /*text-align: center;*/
     /*margin-bottom: 5px;*/
 }

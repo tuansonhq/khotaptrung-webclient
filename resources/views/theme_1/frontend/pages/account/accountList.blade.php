@@ -3,6 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
+
     @if($data == null)
         <div class="item_buy">
 
@@ -127,7 +128,7 @@
                 </div>
             </div>
         </div>
-
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js"></script>
     @endif
 
