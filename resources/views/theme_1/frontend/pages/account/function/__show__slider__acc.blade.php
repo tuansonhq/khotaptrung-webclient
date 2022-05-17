@@ -9,8 +9,10 @@
         <div class="shop_product_another_content">
             <div class="item_buy_list row">
                 @foreach($sliders as $datav2)
-                    @if($datav2->id != $data->id)
-                        <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
+{{--                    @if($datav2->id != $data->id)--}}
+{{--                        --}}
+{{--                    @endif--}}
+                    <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $datav2->randId }}">
@@ -51,14 +53,14 @@
                                                     ?>
                                                     @if($index < 5)
                                                         @if(isset($att_valuev2->parent[0]))
-                                                        <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-6 item_buy_list_info_inacc fixcssacount">
-                                                                {{ $att_valuev2->parent[0]->title??null }} :
+                                                            <div class="row" style="margin: 0 auto;width: 100%">
+                                                                <div class="col-6 item_buy_list_info_inacc fixcssacount">
+                                                                    {{ $att_valuev2->parent[0]->title??null }} :
+                                                                </div>
+                                                                <div class="col-6 item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600">
+                                                                    {{ $att_valuev2->title??null }}
+                                                                </div>
                                                             </div>
-                                                            <div class="col-6 item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600">
-                                                                {{ $att_valuev2->title??null }}
-                                                            </div>
-                                                        </div>
                                                         @endif
                                                     @endif
                                                 @endif
@@ -85,7 +87,6 @@
                                 </div>
                             </div>
                         </div>
-                    @endif
                 @endforeach
             </div>
         </div>
