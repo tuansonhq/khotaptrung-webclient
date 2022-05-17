@@ -37,7 +37,9 @@ $(document).ready(function(){
                     var telecom = ele.val();
                     getAmount(telecom);
                     paycartDataChargeHistory();
+
                     $('#loading-data').remove();
+                    $('#form-content').show();
                     $('#form-content').removeClass('hide');
                 }
                 // else{
@@ -187,7 +189,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('span#reload').trigger('click');
+                $('#reload').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
