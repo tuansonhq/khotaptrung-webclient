@@ -394,8 +394,7 @@ button:focus{
 }
 @media (max-width: 480px) {
     .intro_store_card img{
-        width: 80%;
-        margin: auto;
+        max-width: 100%;
     }
 }
 
