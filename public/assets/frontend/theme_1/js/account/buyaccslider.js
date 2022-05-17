@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var slug = $('.slug').val();
-
+    var slug_category = $('.slug_category').val();
     getShowAccDetail(slug)
 
     function getShowAccDetail(slug) {
@@ -20,11 +20,9 @@ $(document).ready(function () {
 
                 if (data.status == 1){
 
-                    $('.data__menuacc').html('');
-                    $('.data__menuacc').html(data.datamenu);
-
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(data.data);
+
                 }else if (data.status == 0){
 
                     var html = '';
@@ -44,16 +42,16 @@ $(document).ready(function () {
         });
     }
 
-    getDichVuLienQuan(slug)
+    getDichVuLienQuan(slug_category)
 
-    function getDichVuLienQuan(slug) {
+    function getDichVuLienQuan(slug_category) {
 
         var url = '/dich-vu-lien-quan';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug
+                slug:slug_category
             },
             beforeSend: function (xhr) {
 

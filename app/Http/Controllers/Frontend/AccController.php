@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
@@ -204,10 +205,63 @@ class AccController extends Controller
     }
 
     public function getShowAccDetail(Request $request,$slug){
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'acc_detail';
+        $dataSend['id'] = $slug;
 
-        Session::put('path', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.account.show')
-            ->with('slug',$slug);
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1){
+            $data = $response_data->data;
+
+            if (!isset($data->groups[1]) || !isset($data->groups[1]->id)){
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Không có dữ liệu groups.',
+                ]);
+            }
+
+            $dataSendCate = array();
+            $dataSendCate['data'] = 'category_detail';
+            $dataSendCate['id'] = $data->groups[1]->id;
+
+            $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+            $response_cate_data = $result_Api_cate->response_data??null;
+
+            if(isset($response_cate_data) && $response_cate_data->status == 1){
+                $data_category = $response_cate_data->data;
+                if (!isset($data_category->childs) || !isset($data_category->slug)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu childs hoặc slug.',
+                    ]);
+                }
+
+                $slug_category = $data_category->slug;
+                Session::put('path', $_SERVER['REQUEST_URI']);
+
+                return view('frontend.pages.account.show')
+                    ->with('data_category',$data_category)
+                    ->with('slug_category',$slug_category)
+                    ->with('slug',$slug);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+        else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
     }
 
     public function getShowAccDetailData(Request $request,$slug){
@@ -252,9 +306,6 @@ class AccController extends Controller
                     $card_percent = setting('sys_card_percent');
                     $atm_percent = setting('sys_atm_percent');
 
-                    $htmlmenu = view('frontend.pages.account.function.__data__menu__buyacc')
-                        ->with('data_category',$data_category)->render();
-
                     $html = view('frontend.pages.account.function.__show__detail__acc')
                         ->with('data_category',$data_category)
                         ->with('data',$data)
@@ -264,7 +315,6 @@ class AccController extends Controller
 
                     return response()->json([
                         'data' => $html,
-                        'datamenu' => $htmlmenu,
                         'status' => 1,
                         'message' => 'Load dữ liệu thành công',
                     ]);
@@ -290,85 +340,34 @@ class AccController extends Controller
             $slug = $request->slug;
             $url = '/acc';
             $method = "GET";
-            $dataSend = array();
-            $dataSend['data'] = 'acc_detail';
-            $dataSend['id'] = $slug;
 
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $response_data = $result_Api->response_data??null;
+            $dataSendslider = array();
+            $dataSendslider['data'] = 'list_acc';
+            $dataSendslider['cat_slug'] = $slug;
+            $dataSendslider['limit'] = 12;
+            $dataSendslider['status'] = 1;
 
-            if(isset($response_data) && $response_data->status == 1){
-                $data = $response_data->data;
+            $result_Api_slider = DirectAPI::_makeRequest($url,$dataSendslider,$method);
+            $response_slider_data = $result_Api_slider->response_data??null;
 
-                if (!isset($data->groups[1]) || !isset($data->groups[1]->id)){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu groups.',
-                    ]);
-                }
+            if(isset($response_slider_data) && $response_slider_data->status == 1){
+                $sliders = $response_slider_data->data;
 
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'category_detail';
-                $dataSendCate['id'] = $data->groups[1]->id;
+                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
+                $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
+                    ->with('sliders',$sliders)->render();
 
-                if(isset($response_cate_data) && $response_cate_data->status == 1){
-                    $data_category = $response_cate_data->data;
-                    if (!isset($data_category->childs) || !isset($data_category->slug)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => 'Không có dữ liệu childs hoặc slug.',
-                        ]);
-                    }
-
-                    $dataAttribute = $data_category->childs;
-
-                    $dataSendslider = array();
-                    $dataSendslider['data'] = 'list_acc';
-                    $dataSendslider['cat_slug'] = $data_category->slug;
-                    $dataSendslider['limit'] = 12;
-                    $dataSendslider['status'] = 1;
-
-                    $result_Api_slider = DirectAPI::_makeRequest($url,$dataSendslider,$method);
-                    $response_slider_data = $result_Api_slider->response_data??null;
-
-                    if(isset($response_slider_data) && $response_slider_data->status == 1){
-                        $sliders = $response_slider_data->data;
-
-                        $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
-
-                        $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
-                            ->with('data_category',$data_category)
-                            ->with('data',$data)
-                            ->with('sliders',$sliders)
-                            ->with('dataAttribute',$dataAttribute)->render();
-
-                        return response()->json([
-                            'dataslider' => $htmlslider,
-                            'status' => 1,
-                            'message' => 'Load dữ liệu thành công',
-                        ]);
-                    }
-                    else{
-                        return response()->json([
-                            'status' => 0,
-                            'message'=>$response_slider_data->message??"Không thể lấy dữ liệu"
-                        ]);
-                    }
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
-                    ]);
-                }
+                return response()->json([
+                    'dataslider' => $htmlslider,
+                    'status' => 1,
+                    'message' => 'Load dữ liệu thành công',
+                ]);
             }
             else{
                 return response()->json([
                     'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    'message'=>$response_slider_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
@@ -581,29 +580,19 @@ class AccController extends Controller
                     }
 
                 }
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-//                    $checkid = decodeItemID($request->serial);
-                    $dataSend['id'] = $request->serial;
-                }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $dataSend['cat_slug'] = $request->key;
-                }
+                $dataSend['id'] = $request->serial;
+                $dataSend['id'] = $request->serial;
+                $dataSend['cat_slug'] = $request->key;
+                $dataSend['status'] = $request->status;
+                $dataSend['price'] = $request->price;
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $dataSend['status'] = $request->status;
-                }
-
-                if (isset($request->price) || $request->price != '' || $request->price != null) {
-                    $dataSend['price'] = $request->price;
-                }
-
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                if ($request->filled('started_at')) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
                     $dataSend['started_at'] = $started_at;
                 }
 
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                if ($request->filled('ended_at')) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
                     $dataSend['ended_at'] = $ended_at;
                 }

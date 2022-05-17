@@ -322,6 +322,9 @@ $(document).ready(function(){
 
                     $("#data_pay_account_history").empty().html('');
                     $("#data_pay_account_history").empty().html(html);
+
+                    $('.loading-data__timkiem').html('');
+                    $('.loading-data__all').html('');
                 }
             },
             error: function (data) {

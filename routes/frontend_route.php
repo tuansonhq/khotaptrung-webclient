@@ -50,10 +50,18 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:200,1','verify_shop']) , function (){
             Route::get('/updategit', function ()
             {
-                exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+                $data = exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+
+                \Artisan::call('cache:clear');
+                \Artisan::call('config:cache');
+                \Artisan::call('view:clear');
+                \Artisan::call('route:clear');
+                Cache::flush();
+
                 return response()->json([
                     'status' => 1,
-                    'message' => 'Thành công!'
+                    'message' => 'Thành công!',
+                    'message-git' => $data
                 ]);
             });
 
