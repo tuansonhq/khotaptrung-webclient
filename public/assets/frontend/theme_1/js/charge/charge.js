@@ -4,12 +4,12 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    $('#reload').click(function () {
+    $('#reload_1').click(function () {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $(".captcha span").html(data.captcha);
+                $(".captcha_1 span").html(data.captcha);
             }
         });
 
@@ -187,7 +187,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('#reload').trigger('click');
+                $('#reload_1').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);

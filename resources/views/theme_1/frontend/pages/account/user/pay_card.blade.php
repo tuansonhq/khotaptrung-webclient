@@ -90,13 +90,13 @@
                         <div class="input-group" style="width: 100%">
                            <input type="text" class="form-control" name="captcha" id="captcha" required>
                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
-                                <div class="captcha">
+                                <div class="captcha_1">
                                   <span class="reload"  id="">
                                   {!! captcha_img() !!}
                                   </span>
 
                                 </div>
-                                <button type="button" class="btn reload"  id="reload" style="border-radius: 4px;color: red">
+                                <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red">
                                     &#x21bb;
                                 </button>
                             </div>
