@@ -327,14 +327,9 @@ class AccController extends Controller
                         ->with('atm_percent',$atm_percent)
                         ->with('dataAttribute',$dataAttribute)->render();
 
-                    $htmlbuyacc =  view('frontend.pages.account.function.buyacc')
-                        ->with('dataAttribute',$dataAttribute)
-                        ->with('data_category',$data_category)
-                        ->with('data',$data)->render();
 
                     return response()->json([
                         'data' => $html,
-                        'databuyacc' => $htmlbuyacc,
                         'status' => 1,
                         'message' => 'Load dữ liệu thành công',
                     ]);
@@ -396,41 +391,89 @@ class AccController extends Controller
     public function getShowCategoryBuyAccData(Request $request,$slug){
         if ($request->ajax()){
 //            $slug = decodeItemID($slug);
-            $index = 0;
-            $auth = 0;
-            $balance = 0;
-            $price = $request->price;
+            $id = $slug;
 
-            if ($price <= 0){
+            $url = '/acc';
+            $method = "GET";
+            $dataSend = array();
+
+            $dataSend['data'] = 'acc_detail';
+            $dataSend['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+
+                $data = $response_data->data;
+
+                if (!isset($data->parent_id) || !isset($data->price)){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Không có dữ liệu parent_id hoặc price.',
+                    ]);
+                }
+
+                $price = $data->price;
+
+                if ($price <= 0){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Số tiền không đúng.',
+                    ]);
+                }
+
+                $dataSendcate = array();
+                $dataSendcate['data'] = 'category_detail';
+                $dataSendcate['id'] = $data->parent_id;
+
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendcate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+                if(isset($response_cate_data) && $response_cate_data->status == 1){
+
+                    $data_category = $response_cate_data->data;
+                    if (!isset($data_category->childs)){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu childs .',
+                        ]);
+                    }
+                    $dataAttribute = $data_category->childs;
+
+                    $balance = 0;
+
+                    if (AuthCustom::check()){
+                        $balance = AuthCustom::user()->balance;
+                    }
+
+                    $html =  view('frontend.pages.account.function.buyacc')
+                        ->with('dataAttribute',$dataAttribute)
+                        ->with('data_category',$data_category)
+                        ->with('price',$price)
+                        ->with('balance',$balance)
+                        ->with('data',$data)->render();
+
+                    return response()->json([
+                        'data' => $html,
+                        'price' => $price,
+                        'balance' => $balance,
+                        'status' => 1,
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }
+            else{
                 return response()->json([
-                    'message' => "Số tiền không hợp lệ",
                     'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-
-
-            if (AuthCustom::check()){
-                $auth = 1;
-                $balance = AuthCustom::user()->balance;
-            }
-
-            if ($balance < 0){
-                return response()->json([
-                    'message' => "Số dư không hợp lệ",
-                    'status' => 0,
-                ]);
-            }
-
-            if ($balance >= $price){
-                $index = 1;
-            }
-
-            return response()->json([
-                'index' => $index,
-                'auth' => $auth,
-                'slug' => $slug,
-                'status' => 1,
-            ]);
         }
     }
 

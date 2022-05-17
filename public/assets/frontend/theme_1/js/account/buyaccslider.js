@@ -23,9 +23,6 @@ $(document).ready(function () {
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(data.data);
 
-                    $('.modal-content_accountlist').html('');
-                    $('.modal-content_accountlist').html(data.databuyacc);
-
                 }else if (data.status == 0){
 
                     var html = '';
