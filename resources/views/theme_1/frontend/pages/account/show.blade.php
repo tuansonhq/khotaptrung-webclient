@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="container pt-3">
+        <div class="container pt-3 fixcssacount">
             <div class="row container__show">
 
                 <div class="col-md-12 left-right" id="showdetailacc">
