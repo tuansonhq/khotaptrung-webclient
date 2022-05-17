@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
-    getShowAccDetail(slug)
+    // getShowAccDetail(slug)
 
     function getShowAccDetail(slug) {
 
