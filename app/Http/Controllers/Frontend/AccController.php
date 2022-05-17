@@ -251,11 +251,16 @@ class AccController extends Controller
                 return view('frontend.pages.account.show')
                     ->with('data_category',$data_category)
                     ->with('slug_category',$slug_category)
-                    ->with('data',$data)
-                    ->with('card_percent',$card_percent)
-                    ->with('atm_percent',$atm_percent)
-                    ->with('dataAttribute',$dataAttribute)
                     ->with('slug',$slug);
+
+//                return view('frontend.pages.account.show')
+//                    ->with('data_category',$data_category)
+//                    ->with('slug_category',$slug_category)
+//                    ->with('data',$data)
+//                    ->with('card_percent',$card_percent)
+//                    ->with('atm_percent',$atm_percent)
+//                    ->with('dataAttribute',$dataAttribute)
+//                    ->with('slug',$slug);
 
             }
             else{
