@@ -70,7 +70,7 @@
                 <a href="javascript:void(0)" class="btn btn-danger btn-all-mobile">Tất cả</a>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 8px">
             <div class="row justify-content-end">
                 <div class="col-auto">
                     <div class="input-group">

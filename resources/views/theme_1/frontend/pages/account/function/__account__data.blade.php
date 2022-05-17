@@ -1,14 +1,14 @@
 @if(empty($data->data))
 
     @if(isset($items) && count($items) > 0)
+
         <div class="item_buy_list row">
             @foreach ($items as $item)
-{{--            @dd($item)--}}
 {{--                Nick random--}}
                 @if($item->status == 1)
                     @if($data->display_type == 2)
 
-                        <div class="col-6 col-sm-6 col-lg-3">
+                        <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
@@ -43,14 +43,14 @@
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                     @if(isset($att_value->parent[0]))
                                                     <?php
-                                                    $index++;
+                                                        $index = $index + 1;
                                                     ?>
                                                     @if($index < 5)
                                                         <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-6 item_buy_list_info_inacc">
+                                                            <div class="col-6 fixcssacount item_buy_list_info_inacc">
                                                                 {{ $att_value->parent[0]->title??null }} :
                                                             </div>
-                                                            <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                            <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                 {{ $att_value->title??null }}
                                                             </div>
                                                         </div>
@@ -60,48 +60,48 @@
                                             @endforeach
                                         @endif
 
-                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
-                                            @if($index < 5)
+{{--                                        @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                                            <?php--}}
+{{--                                            $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                                            ?>--}}
+{{--                                            @if($index < 5)--}}
 
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                            @if($index < 5)
-                                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-6 item_buy_list_info_inacc">
-                                                                                        {{ $child->title??null }} :
-                                                                                    </div>
-                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ $param??null }}
-                                                                                    </div>
-                                                                                </div>
+{{--                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                    @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                        @if($att->position == 'text')--}}
+{{--                                                            @if(isset($att->childs))--}}
+{{--                                                                @foreach($att->childs as $child)--}}
+{{--                                                                    @foreach($params as $key => $param)--}}
+{{--                                                                        @if($key == $child->id && $child->is_slug_override == null)--}}
+{{--                                                                            <?php--}}
+{{--                                                                            $index++;--}}
+{{--                                                                            ?>--}}
+{{--                                                                            @if($index < 5)--}}
+{{--                                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inacc">--}}
+{{--                                                                                        {{ $child->title??null }} :--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
+{{--                                                                                        {{ $param??null }}--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                </div>--}}
 
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endforeach
-                                                            @endif
+{{--                                                                            @endif--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
 
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endif
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
                                     </div>
                                 </div>
                                 <div class="item_buy_list_more">
                                     <div class="row">
-                                        <div class="col-6 ">
+                                        <div class="col-12 fixcssacount">
                                             <div class="item_buy_list_price2 p7">
                                                 @if(isset($data->params->price) && isset($data->params))
                                                     {{ str_replace(',','.',number_format($data->params->price)) }}đ
@@ -111,7 +111,7 @@
                                             </div>
 
                                         </div>
-                                        <a href="javascript:void(0)" class="col-6 buyacc" data-id="{{ $item->randId }}">
+                                        <a href="javascript:void(0)" class="col-12 buyacc fixcssacount" data-id="{{ $item->randId }}">
                                             <div class="item_buy_list_view">
                                                 Mua ngay
                                             </div>
@@ -124,7 +124,7 @@
 
                     @else
                         {{--                    Nick thường--}}
-                        <div class="col-6 col-sm-6 col-lg-3">
+                        <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
                                     <a href="/acc/{{ $item->randId }}">
@@ -156,14 +156,14 @@
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                     @if(isset($att_value->parent[0]))
                                                         <?php
-                                                        $index++;
+                                                        $index = $index + 1;
                                                         ?>
                                                         @if($index < 5)
                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-6 item_buy_list_info_inacc">
+                                                                    <div class="col-6 fixcssacount item_buy_list_info_inacc">
                                                                         {{ $att_value->parent[0]->title??null }} :
                                                                     </div>
-                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                    <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                         {{ $att_value->title??null    }}
                                                                     </div>
                                                                 </div>
@@ -174,46 +174,46 @@
                                             @endforeach
                                         @endif
 
-                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
-                                            @if($index < 4)
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                            @if($index < 5)
-                                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-6 item_buy_list_info_inacc">
-                                                                                        {{ $child->title??null }} :
-                                                                                    </div>
-                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ $param??null }}
-                                                                                    </div>
-                                                                                </div>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endforeach
-                                                            @endif
+{{--                                        @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                                            <?php--}}
+{{--                                            $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                                            ?>--}}
+{{--                                            @if($index < 4)--}}
+{{--                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                    @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                        @if($att->position == 'text')--}}
+{{--                                                            @if(isset($att->childs))--}}
+{{--                                                                @foreach($att->childs as $child)--}}
+{{--                                                                    @foreach($params as $key => $param)--}}
+{{--                                                                        @if($key == $child->id && $child->is_slug_override == null)--}}
+{{--                                                                            <?php--}}
+{{--                                                                            $index++;--}}
+{{--                                                                            ?>--}}
+{{--                                                                            @if($index < 5)--}}
+{{--                                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inacc">--}}
+{{--                                                                                        {{ $child->title??null }} :--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
+{{--                                                                                        {{ $param??null }}--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                </div>--}}
+{{--                                                                            @endif--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
 
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endif
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
                                     </div>
                                 </div>
                                 <div class="item_buy_list_more">
                                     <div class="row">
-                                        <div class="col-12 ">
+                                        <div class="col-12 fixcssacount">
                                             <div class="item_buy_list_price">
                                                 <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
                                                 {{ str_replace(',','.',number_format($item->price)) }}đ
@@ -221,7 +221,7 @@
                                             </div>
 
                                         </div>
-                                        <a href="/acc/{{ $item->randId }}" class="col-12">
+                                        <a href="/acc/{{ $item->randId }}" class="col-12 fixcssacount">
                                             <div class="item_buy_list_view">
                                                 Chi tiết
                                             </div>
