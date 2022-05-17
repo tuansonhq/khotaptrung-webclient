@@ -52,6 +52,7 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                $('.loading').css('display','none');
 
                 if (data.status == 0){
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
@@ -314,7 +315,7 @@ class AccController extends Controller
 
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
-                return $response_cate_data;
+
                 if(isset($response_cate_data) && $response_cate_data->status == 1){
                     $data_category = $response_cate_data->data;
                     if (!isset($data_category->childs) || !isset($data_category->slug)){
@@ -582,29 +583,19 @@ class AccController extends Controller
                     }
 
                 }
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-//                    $checkid = decodeItemID($request->serial);
-                    $dataSend['id'] = $request->serial;
-                }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $dataSend['cat_slug'] = $request->key;
-                }
+                $dataSend['id'] = $request->serial;
+                $dataSend['id'] = $request->serial;
+                $dataSend['cat_slug'] = $request->key;
+                $dataSend['status'] = $request->status;
+                $dataSend['price'] = $request->price;
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $dataSend['status'] = $request->status;
-                }
-
-                if (isset($request->price) || $request->price != '' || $request->price != null) {
-                    $dataSend['price'] = $request->price;
-                }
-
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                if ($request->filled('started_at')) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
                     $dataSend['started_at'] = $started_at;
                 }
 
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                if ($request->filled('ended_at')) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
                     $dataSend['ended_at'] = $ended_at;
                 }

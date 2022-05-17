@@ -5,28 +5,116 @@ $(document).ready(function(){
 
     $('body').on('click','#btnPurchase',function(e){
         e.preventDefault();
+        var selected = $('[name="selected"]').val();
 
-        var price = $('[name="value"]').val();
+        if (selected == null || selected == '' || selected == undefined){
+            return false;
+        }
+
+        var value = $('[name="value"]').val();
+
+        if (value == null || value == '' || value == undefined){
+            return false;
+        }
+
+        // var price = $('[name="value"]').val();
         var htmlloading = '';
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__thanhtoan').html('');
         $('.loading-data__thanhtoan').html(htmlloading);
 
-        getModalService(price)
-    })
+        const jwt =  $('meta[name="jwt').attr('content');
 
-    $('body').on('click','.pay',function(e){
-        e.preventDefault();
+        if (jwt == null || jwt == '' || jwt == undefined){
+            var html = '';
+            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }else {
 
-        var price = $('[name="value"]').val();
+            var html = '';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }
+
         var htmlloading = '';
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__pay').html('');
         $('.loading-data__pay').html(htmlloading);
 
-        getModalService(price)
+
+
+        $('#homealert').modal('show');
+        //
+        $('.loading-data__pay').html('');
+        $('.loading-data__thanhtoan').html('');
+        // // getModalService(price)
     })
 
+    $('body').on('click','.pay',function(e){
+        e.preventDefault();
+
+        var selected = $('[name="selected"]').val();
+
+        if (selected == null || selected == '' || selected == undefined){
+            return false;
+        }
+
+        var value = $('[name="value"]').val();
+
+        if (value == null || value == '' || value == undefined){
+            return false;
+        }
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__pay').html('');
+        $('.loading-data__pay').html(htmlloading);
+        const jwt =  $('meta[name="jwt').attr('content');
+
+        if (jwt == null || jwt == '' || jwt == undefined){
+            var html = '';
+            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }else {
+
+            var html = '';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }
+
+
+
+
+
+        $('#homealert').modal('show');
+
+        $('.loading-data__pay').html('');
+        $('.loading-data__thanhtoan').html('');
+        // getModalService(price)
+    })
+
+    // $('body').on('click','.pay',function(e){
+    //     e.preventDefault();
+    //
+    //     var price = $('[name="value"]').val();
+    //     var htmlloading = '';
+    //     htmlloading += '<div class="loading"></div>';
+    //     $('.loading-data__pay').html('');
+    //     $('.loading-data__pay').html(htmlloading);
+    //
+    //
+    //
+    //     $('#homealert').modal('show');
+    //     // getModalService(price)
+    // })
     function getModalService(price) {
         let slug = $('#slug').val();
 
