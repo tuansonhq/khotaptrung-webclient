@@ -2,7 +2,7 @@
 <div class="row justify-content-center" id="loading-data">
     <div class="loading"></div>
 </div>
-<div class="" id="form-content">
+<div class="" id="form-content" style="display: none">
     <form action="{{route('postTelecomDepositAuto')}}" id="form-charge" method="POST">
         @csrf
 
@@ -35,10 +35,16 @@
             <div class="col-md-12">
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control" placeholder="Mã bảo vệ" name="captcha" id="captcha">
+
                     <div class="captcha">
-                    <span class="reload"  id="reload">
-                        {!! captcha_img() !!}
-                    </span>
+                        <span class="reload"  id="">
+                            {!! captcha_img() !!}
+                        </span>
+
+                    </div>
+                    <div type="button" class="btn reload"  id="reload" style="color: red;background: #1f2228 !important;
+   border: 1px solid #30343c;">
+                        &#x21bb;
                     </div>
                 </div>
             </div>

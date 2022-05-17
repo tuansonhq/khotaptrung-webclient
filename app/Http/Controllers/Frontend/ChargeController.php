@@ -251,6 +251,7 @@ class ChargeController extends Controller
     public function getChargeDepositHistory(Request $request)
     {
 
+
         if (AuthCustom::check()) {
 
             $method = "GET";
@@ -371,40 +372,40 @@ class ChargeController extends Controller
 
     }
 
-    public function getDepositHistory(Request $request)
-    {
-        if (AuthCustom::check()) {
-            try {
-                $url = '/deposit-auto/history';
-                $method = "GET";
-                $data = array();
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
-                }
-                $data['token'] = $jwt;
-
-                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-                if (isset($result_Api) && $result_Api->response_code == 200) {
-                    $result = $result_Api->response_data;
-                    if ($result->status == 1) {
-
-                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
-                    } else {
-                        return redirect()->back()->withErrors($result->message);
-
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            } catch (\Exception $e) {
-                Log::error($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-        }
-
-    }
+//    public function getDepositHistory(Request $request)
+//    {
+//        if (AuthCustom::check()) {
+//            try {
+//                $url = '/deposit-auto/history';
+//                $method = "GET";
+//                $data = array();
+//                $jwt = Session::get('jwt');
+//                if (empty($jwt)) {
+//                    return response()->json([
+//                        'status' => "LOGIN"
+//                    ]);
+//                }
+//                $data['token'] = $jwt;
+//
+//                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+//                if (isset($result_Api) && $result_Api->response_code == 200) {
+//                    $result = $result_Api->response_data;
+//                    if ($result->status == 1) {
+//
+//                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
+//                    } else {
+//                        return redirect()->back()->withErrors($result->message);
+//
+//                    }
+//                } else {
+//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            } catch (\Exception $e) {
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//        }
+//
+//    }
 
 }
