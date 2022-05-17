@@ -37,7 +37,7 @@
         <div class="news_breadcrumbs">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-10 col-md-12">
+                    <div class="col-lg-10 col-md-12 fixcssacount">
                         <ul class="news_breadcrumbs_theme news_breadcrumbs_theme__show">
                             <li><a href="/" class="news_breadcrumbs_theme_trangchu news_breadcrumbs_theme_trangchu_a">Trang chủ</a></li>
                             <li>/</li>
@@ -69,7 +69,7 @@
 
             <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
                 @csrf
-                <div class="container detail-service">
+                <div class="container detail-service fixcssacount">
                     <div class="row">
                         <div class="col-md-7" style="margin-bottom:20px;">
                             <div class="row">
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
 
-                            <div class="row emply-btns box-body" style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">
+                            <div class="row emply-btns box-body fixboxbody" style="">
                                 {!! $data->description !!}
                             </div>
 
@@ -321,7 +321,7 @@
 
             {{--            Nội dung   --}}
 
-            <div class="container">
+            <div class="container fixcssacount">
                 <div class="job-wide-devider">
                     {{--                    Bot   --}}
                     @if(isset($bot))

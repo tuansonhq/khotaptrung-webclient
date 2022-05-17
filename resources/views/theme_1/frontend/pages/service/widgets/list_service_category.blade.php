@@ -8,7 +8,7 @@
             </div>
             @if(isset($datacate) && count($datacate) > 0)
                 @foreach ($datacate as $item)
-                    <div class="col-6 col-sm-6 col-lg-3" style="padding-top: 24px">
+                    <div class="col-6 col-sm-6 col-lg-3 fixcssacount fixslidercsssev">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
                                 <a href="/dich-vu/{{ $item->slug }}">

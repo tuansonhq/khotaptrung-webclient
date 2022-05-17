@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="col-lg-6 col-md-12 gallery__right">
-        <div class="row gallery__row">
+        <div class="row gallery__row fixcssacount">
             <div class="col-md-12">
                 <div class="row gallery__01">
                     <div class="col-md-12 gallery__01__row">
@@ -231,7 +231,7 @@
 
 
 @if(isset($data->description))
-    <div class="shop_product_another pt-3">
+    <div class="shop_product_another">
         <div class="c-content-title-1">
             <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Nổi bật</h3>
             <div class="c-line-center c-theme-bg"></div>
