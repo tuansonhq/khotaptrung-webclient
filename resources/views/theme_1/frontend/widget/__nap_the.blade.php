@@ -36,14 +36,13 @@
                 <div class="input-group" style="width: 100%">
                     <input type="text" class="form-control" placeholder="Mã bảo vệ" name="captcha" id="captcha">
 
-                    <div class="captcha">
+                    <div class="captcha_trangchu">
                         <span class="reload"  id="">
                             {!! captcha_img() !!}
                         </span>
 
                     </div>
-                    <div type="button" class="btn reload"  id="reload" style="color: red;background: #1f2228 !important;
-   border: 1px solid #30343c;">
+                    <div type="button" class="btn reload"  id="reload_trangchu" style="color: red;background: #1f2228 !important;border: 1px solid #30343c;">
                         &#x21bb;
                     </div>
                 </div>
