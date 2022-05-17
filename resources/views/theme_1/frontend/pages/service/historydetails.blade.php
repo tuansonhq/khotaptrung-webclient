@@ -6,6 +6,7 @@
             <div class="container">
                 @include('frontend.pages.account.sidebar')
                 <div class="account_sidebar_content">
+                    @if(isset($data->itemconfig_ref->params))
                     <div class="c-layout-sidebar-content ">
                         <!-- BEGIN: PAGE CONTENT -->
                         <!-- BEGIN: CONTENT/SHOPS/SHOP-ORDER-HISTORY-2 -->
@@ -310,6 +311,9 @@
                         </div>
 
                     </div>
+                    @else
+                        <span style="color: red;font-size: 16px">Không có dữ liệu</span>
+                    @endif
                 </div>
             </div>
         </div>

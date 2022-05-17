@@ -9,7 +9,9 @@
                 $prev = null;
             @endphp
             @if(isset($data) && count($data) > 0)
+{{--                @dd($data)--}}
                 @foreach ($data as $item)
+
                     @php
                         $curr = \App\Library\Helpers::formatDate($item->created_at);
                     @endphp
