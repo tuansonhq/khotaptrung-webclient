@@ -197,7 +197,7 @@
                     <div class="col-md-12 gallery__01__row">
                         <div class="row gallery__01__row2">
                             <div class="col-md-12 pl-0 pr-0">
-                                <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" style="position: relative;" data-id="{{ encodeItemID($data->id) }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay
+                                <button class="btn btn-danger gallery__bottom__span gallery__bottom__span_bg buyacc" style="position: relative;" data-price="{{ $data->price }}" data-id="{{ $data->randId }}"><i class="fas fa-cart-arrow-down"></i>&ensp;Mua ngay
                                     <div class="row justify-content-center loading-data__buyacc">
                                     </div>
                                 </button>

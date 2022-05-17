@@ -102,56 +102,13 @@
             </div>
         </div>
 
-        <div class="form-group form-group_buyacc">
-            @if(App\Library\AuthCustom::check())
-
-                    @if(isset($balance))
-                        @if($balance < $data->price)
-                        <div class="col-md-12">
-                            <label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">
-                                Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.
-                            </label>
-                        </div>
-                        @else
-                        <div class="col-md-12">
-                            <label class="form-control-label" style="text-align: center;margin: 10px 0; ">
-                                Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch
-                            </label>
-                        </div>
-                        @endif
-                    @endif
-
-            @else
-                <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">
-                    Bạn phải đăng nhập mới có thể mua tài khoản tự động.
-                </label>
-            @endif
+        <div class="form-group form-group_buyacc buyacc_form_data">
 
         </div>
 
         <div style="clear: both"></div>
     </div>
-    <div class="modal-footer">
-
-        @if(App\Library\AuthCustom::check())
-
-            @if(isset($balance))
-                @if($balance < $data->price)
-    {{--            <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"  id="d3" style="">Xác nhận mua</button>--}}
-                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
-                    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
-                @else
-                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua
-                        <div class="row justify-content-center loading-data__muangay">
-                        </div>
-                    </button>
-                @endif
-            @endif
-        @else
-            <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>
-        @endif
-
-        <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+    <div class="modal-footer data_modal_footer">
 
     </div>
 </form>
