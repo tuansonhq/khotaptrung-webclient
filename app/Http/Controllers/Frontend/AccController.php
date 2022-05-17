@@ -297,6 +297,7 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 
+
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
 
@@ -313,7 +314,7 @@ class AccController extends Controller
 
                 $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
                 $response_cate_data = $result_Api_cate->response_data??null;
-
+                return $response_cate_data;
                 if(isset($response_cate_data) && $response_cate_data->status == 1){
                     $data_category = $response_cate_data->data;
                     if (!isset($data_category->childs) || !isset($data_category->slug)){
