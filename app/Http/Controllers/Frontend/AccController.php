@@ -240,12 +240,21 @@ class AccController extends Controller
                     ]);
                 }
 
+                $dataAttribute = $data_category->childs;
+
+                $card_percent = setting('sys_card_percent');
+                $atm_percent = setting('sys_atm_percent');
+
                 $slug_category = $data_category->slug;
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.account.show')
                     ->with('data_category',$data_category)
                     ->with('slug_category',$slug_category)
+                    ->with('data',$data)
+                    ->with('card_percent',$card_percent)
+                    ->with('atm_percent',$atm_percent)
+                    ->with('dataAttribute',$dataAttribute)
                     ->with('slug',$slug);
 
             }
