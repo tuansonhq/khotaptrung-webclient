@@ -15,6 +15,7 @@
     @if(setting('sys_schema') != '')
         {!! setting('sys_schema') !!}
     @endif
+
 {{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
@@ -52,7 +53,14 @@
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">--}}
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">--}}
     @stack('style')
-
+    <style>
+        .main-lay-out{
+            background:#000 url(/assets/frontend/{{theme('')->theme_key}}/images/background_image.jpg);
+            background-attachment: fixed;background-size: 100%;
+            background-repeat: no-repeat;
+            padding-bottom: 40px;
+        }
+    </style>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
