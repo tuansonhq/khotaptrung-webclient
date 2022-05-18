@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    const jwt =  $('meta[name="jwt').attr('content');
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';
@@ -25,10 +25,43 @@ $(document).ready(function () {
 
             },
             success: (data) => {
+                if (data.status == 1){
+                    $('.loadModal__acount').modal('toggle');
+                    $('.modal-content_accountlist').html(data.data);
+                    $('.loading-data__buyacc').html('');
 
-                $('.loadModal__acount').modal('toggle');
-                $('.modal-content_accountlist').html(data.data);
-                $('.loading-data__buyacc').html('');
+                    if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+                        var html = '';
+                        html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>';
+                        html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+
+                        $('.data__modal__buyacc').html('');
+                        $('.data__modal__buyacc').html(html);
+                    }else {
+
+                        if (parseInt(data.price) > parseInt(data.balance)){
+                            var html = '';
+                            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>';
+                            html += '<a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>';
+                            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+
+                            $('.data__modal__buyacc').html('');
+                            $('.data__modal__buyacc').html(html);
+                        }else if (parseInt(data.price) <= parseInt(data.balance)){
+                            var html = '';
+                            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>';
+                            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+
+                            $('.data__modal__buyacc').html('');
+                            $('.data__modal__buyacc').html(html);
+                        }
+
+
+                        $('.data__modal__buyacc').html('');
+                        $('.data__modal__buyacc').html(html);
+                    }
+                }
+
             },
             error: function (data) {
 
