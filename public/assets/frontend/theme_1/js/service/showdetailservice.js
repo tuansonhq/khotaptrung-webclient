@@ -3,6 +3,8 @@ $(document).ready(function(){
     const media = "http://cdn.upanh.info/";
 
 
+
+
     $('body').on('click','#btnPurchase',function(e){
         e.preventDefault();
         var selected = $('[name="selected"]').val();
@@ -25,7 +27,7 @@ $(document).ready(function(){
 
         const jwt =  $('meta[name="jwt').attr('content');
 
-        if (jwt == null || jwt == '' || jwt == undefined){
+        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
             var html = '';
             html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
@@ -74,9 +76,9 @@ $(document).ready(function(){
         $('.loading-data__pay').html('');
         $('.loading-data__pay').html(htmlloading);
 
-        const jwt =  $('meta[name="jwt').attr('content');
 
-        if (jwt == null || jwt == '' || jwt == undefined){
+
+        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
             var html = '';
             html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
@@ -251,7 +253,7 @@ $(document).ready(function(){
 
             },
             success: function (response) {
-                console.log(response)
+
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     $('#homealert').modal('hide');
@@ -272,23 +274,27 @@ $(document).ready(function(){
                         })
                 }
                 else if (response.status == 2){
-                    $('.loadModal__acount').modal('hide');
-                    $('#homealert').modal('hide');
+                    // $('.loadModal__acount').modal('hide');
+                    // $('#homealert').modal('hide');
+                    var html = '';
+                    html += '<div class="col-md-12 text-center"><span style="font-size: 12px;color: red">' + response.message + '</span></div>';
 
-                    swal(
-                        'Thông báo!',
-                        response.message,
-                        'warning'
-                    )
+                    $('.error__service').html('');
+                    $('.error__service').html(html);
+                    // swal(
+                    //     'Thông báo!',
+                    //     response.message,
+                    //     'warning'
+                    // )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }else {
 
                     $('.loadModal__acount').modal('hide');
-                    swal(
-                        'Lỗi!',
-                        response.message,
-                        'error'
-                    )
+                    var html = '';
+                    html += '<div class="col-md-12 text-center"><span style="font-size: 12px;color: red">' + response.message + '</span></div>';
+
+                    $('.error__service').html('');
+                    $('.error__service').html(html);
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
                 $('.loading-data__buydichvu').html('');

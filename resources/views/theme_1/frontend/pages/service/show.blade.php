@@ -328,8 +328,13 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
+                            <div >
+                                <div class="row error__service">
 
+                                </div>
+                            </div>
                             <div class="modal-body">
+
                                 @php
                                     $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
                                     $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);

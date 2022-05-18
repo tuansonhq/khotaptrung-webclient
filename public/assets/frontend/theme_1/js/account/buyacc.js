@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    const jwt =  $('meta[name="jwt').attr('content');
+
+
+
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';
@@ -9,6 +11,8 @@ $(document).ready(function () {
         $('.loading-data__buyacc').html(htmlloading);
 
         var id = $(this).data("id");
+
+        // console.log(id)
         getBuyAcc(id)
     });
 
@@ -29,10 +33,11 @@ $(document).ready(function () {
                     $('.loadModal__acount').modal('toggle');
                     $('.modal-content_accountlist').html(data.data);
                     $('.loading-data__buyacc').html('');
+                    const jwt =  $('meta[name="jwt').attr('content');
 
-                    if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+                    if (jwt == null || jwt == '' || jwt == undefined || jwt === 'jwt'){
                         var html = '';
-                        html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>';
+                        html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/' + data.id + '">Đăng nhập</a>';
                         html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
 
                         $('.data__modal__buyacc').html('');

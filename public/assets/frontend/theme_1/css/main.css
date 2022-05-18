@@ -2161,3 +2161,10 @@ footer{
     padding-left: 0;
     padding-right: 0;
 }
+.error__service{
+    width: 100%;
+    margin: 0 auto!important;
+    padding-top: 14px;
+    justify-content: center;
+    text-align: center;
+}
