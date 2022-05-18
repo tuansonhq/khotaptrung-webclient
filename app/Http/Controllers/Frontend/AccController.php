@@ -61,7 +61,7 @@ class AccController extends Controller
 
             if(isset($response_cate_data) && $response_cate_data->status == 1){
                 $data = $response_cate_data->data;
-
+                $dataAttribute = $data->childs;
 //                return $data;
                 $dataSend = array();
                 $dataSend['data'] = 'list_acc';
@@ -129,10 +129,10 @@ class AccController extends Controller
 
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $items->setPath($request->url());
-//                    dd($data);
 
                     $html =  view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
+                        ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)->render();
 
                     if (count($items) == 0 && $page == 1){
