@@ -4,12 +4,12 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    $('#reload_1').click(function () {
+    $('#reload_trangchu').click(function () {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $(".captcha_1 span").html(data.captcha);
+                $(".captcha_trangchu span").html(data.captcha);
             }
         });
 
@@ -21,6 +21,9 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: url,
+            beforeSend: function (xhr) {
+                $('#form-content').hide();
+            },
             success: function (data) {
                 if(data.status == 1){
                     let html = '';
@@ -37,7 +40,9 @@ $(document).ready(function(){
                     var telecom = ele.val();
                     getAmount(telecom);
                     paycartDataChargeHistory();
+
                     $('#loading-data').remove();
+                    $('#form-content').show();
                     $('#form-content').removeClass('hide');
                 }
                 // else{
@@ -187,7 +192,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('#reload_1').trigger('click');
+                $('#reload_trangchu').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);

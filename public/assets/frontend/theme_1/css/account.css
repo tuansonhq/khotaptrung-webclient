@@ -319,10 +319,18 @@
 .c-content-box.c-size-lg {
     padding: 40px 0;
 }
-.captcha{
-    border: 1px solid #ced4da;
+/*.captcha{*/
+/*    border: 1px solid #ced4da;*/
+/*}*/
+button:focus{
+    box-shadow: none;
 }
+
 .captcha img{
+    width: 100%;
+    height: 100%;
+}
+.captcha_trangchu img{
     width: 100%;
     height: 100%;
 }
@@ -386,8 +394,7 @@
 }
 @media (max-width: 480px) {
     .intro_store_card img{
-        width: 80%;
-        margin: auto;
+        max-width: 100%;
     }
 }
 

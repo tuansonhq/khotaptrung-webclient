@@ -6,7 +6,7 @@
 @endpush
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/top_charge/top_charge.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js"></script>
 @endpush
 {{--@section('content')--}}
 @section('content')
