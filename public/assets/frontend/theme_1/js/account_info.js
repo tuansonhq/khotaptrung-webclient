@@ -1,7 +1,6 @@
 $(document).ready(function(){
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
-    getInfo();
     function getInfo(){
         const url = '/user/account_info';
         if(token == 'undefined' || token == null || token =='' || token == undefined){
@@ -65,7 +64,6 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-                    $('meta[name="jwt').attr('content','');
                     //
                     // window.location.href = '/login';
                     // // method = method || 'post';
@@ -93,7 +91,6 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-                    $('meta[name="jwt').attr('content','');
                     //
                     // window.location.href = '/login';
                     // // method = method || 'post';
@@ -103,14 +100,11 @@ $(document).ready(function(){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
-                    console.log(data)
                     $('#username').val(data.info.username);
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
                     $('#info').attr('href','/thong-tin')
                     $('#logout').attr('href','/logout')
-
-                    $('meta[name="jwt').attr('content',data.jwt);
 
                     // mobile tab
                     $('#info_tab_mobile .loading').remove();
@@ -144,8 +138,6 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất');
 
 
-
-
                     $(document).on('scroll',function(){
                         if($(window).width() > 1024){
                             if ($(this).scrollTop() > 100) {
@@ -169,7 +161,7 @@ $(document).ready(function(){
             }
         });
     }
-
+    getInfo();
 
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
