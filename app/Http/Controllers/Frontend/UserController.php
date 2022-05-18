@@ -23,7 +23,6 @@ class UserController extends Controller
 
         try{
             $jwt = Session::get('jwt');
-            
             if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
@@ -34,7 +33,6 @@ class UserController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
             if(isset($result_Api) ){
                 if( $result_Api->response_code == 200){
                     $result = $result_Api->response_data;
@@ -42,7 +40,6 @@ class UserController extends Controller
                     if($result->status == 1){
                         return response()->json([
                             'status' => true,
-                            'jwt' => $jwt,
                             'info' => $result->user,
                         ]);
                     }
