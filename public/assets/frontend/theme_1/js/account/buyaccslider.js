@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
+
     getShowAccDetail(slug)
 
     function getShowAccDetail(slug) {
@@ -46,7 +47,7 @@ $(document).ready(function () {
 
     function getDichVuLienQuan(slug_category) {
 
-        var url = '/dich-vu-lien-quan';
+        var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,

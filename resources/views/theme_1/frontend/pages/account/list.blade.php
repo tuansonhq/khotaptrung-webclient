@@ -103,7 +103,7 @@
                         </div>
                     </div>
 
-                    @include('frontend.pages.account.function.__account__data')
+                    @include('frontend.pages.account.widget.__datalist')
                 </div>
 
 

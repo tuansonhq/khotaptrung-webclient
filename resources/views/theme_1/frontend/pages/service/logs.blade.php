@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="col-md-4 data__service__cate">
-                                    @include('frontend.pages.service.function.__category__history__service')
+                                    @include('frontend.pages.service.widget.__datacategorylogs')
                                 </div>
 
 
@@ -87,7 +87,7 @@
                                     <span class="pulser"></span>
                                 </div>
                             </div>
-                            @include('frontend.pages.service.function.__get__buy__service__history')
+                            @include('frontend.pages.service.widget.__datalogs')
                         </div>
                     </div>
 

@@ -19,7 +19,7 @@ use function PHPUnit\Framework\isEmpty;
 class ServiceController extends Controller
 {
 
-    public function getShowService(Request $request){
+    public function getList(Request $request){
         $url = '/service';
         $method = "GET";
 
@@ -47,7 +47,7 @@ class ServiceController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                 $data->setPath($request->url());
-                $html = view('frontend.pages.service.function.__get__show__data')
+                $html = view('frontend.pages.service.widget.__datalist')
                     ->with('data', $data)->render();
 
                 if (count($data) == 0 && $page == 1){
@@ -86,7 +86,7 @@ class ServiceController extends Controller
             Session::put('return_url', $_SERVER['REQUEST_URI']);
             Session::put('path', $_SERVER['REQUEST_URI']);
 
-            return view('frontend.pages.service.index')->with('data', $data);
+            return view('frontend.pages.service.list')->with('data', $data);
 
         }
         else{
@@ -97,7 +97,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function getShow(Request $request,$slug){
+    public function getDetail(Request $request,$slug){
 
         $url = '/service/'.$slug;
         $method = "GET";
@@ -127,7 +127,7 @@ class ServiceController extends Controller
 //                return $datacate;
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
-                return view('frontend.pages.service.show')
+                return view('frontend.pages.service.detail')
                     ->with('data', $data)
                     ->with('datacate', $datacate)
                     ->with('slug', $slug);
@@ -149,217 +149,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function getShowData(Request $request,$slug){
-
-        if ($request->ajax()){
-            $url = '/get-show-service';
-            $method = "GET";
-            $dataSend = array();
-            $dataSend['slug'] = $slug;
-
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $response_data = $result_Api->response_data??null;
-//            dd($response_data);
-            if(isset($response_data) && $response_data->status == 1){
-
-                $data = $response_data->data;
-
-                $sluggroup = '';
-                if (isset($data->groups[0]->slug)){
-                    $sluggroup = $data->groups[0]->slug;
-                }
-                $titlegroup = '';
-                if (isset($data->groups[0]->title)){
-                    $titlegroup = $data->groups[0]->title;
-                }
-
-                $descriptiondetail = $data->description;
-                $imagedetail = $data->image;
-                $titledetail = $data->title;
-//Kiem tra may chu.
-
-                $server_mode = null;
-                $server_data = null;
-                $server_id = null;
-
-                $server_mode = HelpersDecode::DecodeJson('server_mode',$data->params);
-
-                if ($server_mode == 1){
-                    $server_data = HelpersDecode::DecodeJson('server_data',$data->params);
-                    $server_id = HelpersDecode::DecodeJson('server_id',$data->params);
-                }
-
-//dich vu may chu khac
-                $filter_type = null;
-                $name = null;
-                $price = null;
-                $filter_name = null;
-                $input_pack_min = null;
-                $input_pack_max = null;
-                $params = null;
-                $params = $data->params;
-
-                $filter_type = HelpersDecode::DecodeJson('filter_type',$data->params);
-
-                if ($filter_type == 4){
-                    $name= HelpersDecode::DecodeJson('name',$data->params);
-                    $price= HelpersDecode::DecodeJson('price',$data->params);
-                    $filter_name = HelpersDecode::DecodeJson('filter_name',$data->params);
-
-                    return response()->json([
-                        'sluggroup' => $sluggroup,
-                        'titlegroup' => $titlegroup,
-                        'descriptiondetail' => $descriptiondetail,
-                        'imagedetail' => $imagedetail,
-                        'titledetail' => $titledetail,
-                        'server_mode' => $server_mode,
-                        'server_data' => $server_data,
-                        'server_id' => $server_id,
-                        'filter_type' => $filter_type,
-                        'name' => $name,
-                        'price' => $price,
-                        'params' => $params,
-                        'filter_name' => $filter_name,
-                        'status' => 1,
-                    ]);
-                }elseif ($filter_type == 7){
-                    $input_pack_min = HelpersDecode::DecodeJson('input_pack_min',$data->params);
-                    $input_pack_max = HelpersDecode::DecodeJson('input_pack_max',$data->params);
-                    $filter_name = HelpersDecode::DecodeJson('filter_name',$data->params);
-
-                    return response()->json([
-                        'sluggroup' => $sluggroup,
-                        'titlegroup' => $titlegroup,
-                        'descriptiondetail' => $descriptiondetail,
-                        'imagedetail' => $imagedetail,
-                        'titledetail' => $titledetail,
-                        'server_mode' => $server_mode,
-                        'server_data' => $server_data,
-                        'server_id' => $server_id,
-                        'filter_name' => $filter_name,
-                        'params' => $params,
-                        'filter_type' => $filter_type,
-                        'input_pack_min' => $input_pack_min,
-                        'input_pack_max' => $input_pack_max,
-                        'status' => 1,
-                    ]);
-                }elseif ($filter_type == 5){
-                    $name= HelpersDecode::DecodeJson('name',$data->params);
-                    $price= HelpersDecode::DecodeJson('price',$data->params);
-                    $filter_name = HelpersDecode::DecodeJson('filter_name',$data->params);
-
-                    return response()->json([
-                        'sluggroup' => $sluggroup,
-                        'titlegroup' => $titlegroup,
-                        'descriptiondetail' => $descriptiondetail,
-                        'imagedetail' => $imagedetail,
-                        'titledetail' => $titledetail,
-                        'server_mode' => $server_mode,
-                        'server_data' => $server_data,
-                        'server_id' => $server_id,
-                        'filter_type' => $filter_type,
-                        'name' => $name,
-                        'price' => $price,
-                        'params' => $params,
-                        'filter_name' => $filter_name,
-                        'status' => 1,
-                    ]);
-                }elseif ($filter_type == 6){
-
-                    $name= HelpersDecode::DecodeJson('name',$data->params);
-                    $price= HelpersDecode::DecodeJson('price',$data->params);
-                    $filter_name = HelpersDecode::DecodeJson('filter_name',$data->params);
-
-                    $aucheck = 0;
-
-                    if (AuthCustom::check()){
-                        $aucheck = 1;
-                    }
-
-
-                    return response()->json([
-                        'sluggroup' => $sluggroup,
-                        'titlegroup' => $titlegroup,
-                        'descriptiondetail' => $descriptiondetail,
-                        'imagedetail' => $imagedetail,
-                        'titledetail' => $titledetail,
-                        'server_mode' => $server_mode,
-                        'server_data' => $server_data,
-                        'server_id' => $server_id,
-                        'filter_type' => $filter_type,
-                        'name' => $name,
-                        'price' => $price,
-                        'aucheck' => $aucheck,
-                        'filter_name' => $filter_name,
-                        'status' => 1,
-                    ]);
-                }
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
-        }
-
-    }
-
-    public function getShowModalData(Request $request,$slug){
-
-        if ($request->ajax()){
-            $price = $request->price;
-
-            if ($price <= 0 || $price == '' || $price == null){
-                return response()->json([
-                    'status' => 0,
-                    'price' => $price,
-                    'message' => 'Số tiền không hợp lệ',
-                ]);
-            }
-
-
-            $url = '/service/'.$slug;
-            $method = "GET";
-            $dataSend = array();
-            $dataSend['slug'] = $slug;
-
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $response_data = $result_Api->response_data??null;
-//            dd($response_data);
-            if(isset($response_data) && $response_data->status == 1){
-
-                $data = $response_data->data;
-
-                $aucheck = 0;
-                $balance = 0;
-
-                if (AuthCustom::check()){
-                    $aucheck = 1;
-                    $balance = AuthCustom::user()->balance;
-                }
-
-                return response()->json([
-                    'aucheck' => $aucheck,
-                    'params' => $data->params,
-                    'balance' => $balance,
-                    'price' => $price,
-                    'status' => 1,
-                ]);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
-        }
-
-    }
-
-    public function getBuyServiceHistory(Request $request)
+    public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {
 
@@ -426,10 +216,10 @@ class ServiceController extends Controller
                         ]);
                     }
 
-                    $html = view('frontend.pages.service.function.__get__buy__service__history')
+                    $html = view('frontend.pages.service.widget.__datalogs')
                         ->with('data', $data)->render();
 
-                    $htmlcate = view('frontend.pages.service.function.__category__history__service')
+                    $htmlcate = view('frontend.pages.service.widget.__datacategorylogs')
                         ->with('datacate', $datacate)->render();
 
                     return response()->json([
@@ -448,12 +238,12 @@ class ServiceController extends Controller
                 }
             }
 
-            return view('frontend.pages.service.getBuyServiceHistory');
+            return view('frontend.pages.service.logs');
         }
 
     }
 
-    public function getShowBuyServiceHistory(Request $request,$id){
+    public function getLogsDetail(Request $request,$id){
         if (AuthCustom::check()) {
             $url = '/service/log/detail';
             $method = "GET";
@@ -470,12 +260,13 @@ class ServiceController extends Controller
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
 
+
             if(isset($response_data) && $response_data->status == 1){
 
                 $data = $response_data->data;
 
 
-                return view('frontend.pages.service.historydetails')->with('data', $data);
+                return view('frontend.pages.service.logsdetail')->with('data', $data);
 
             }
             else{
@@ -487,7 +278,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function getDeleteServiceData(Request $request){
+    public function getDelete(Request $request){
 
         if (AuthCustom::check()) {
             $id = $request->get('id');
@@ -534,7 +325,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function getEditServiceData(Request $request){
+    public function getEdit(Request $request){
         if (AuthCustom::check()) {
 
             $id = $request->get('id');

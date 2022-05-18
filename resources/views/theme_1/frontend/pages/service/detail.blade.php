@@ -338,6 +338,7 @@
                                 @php
                                     $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
                                     $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+                                    $index = 0;
                                 @endphp
                                 @if(!empty($send_name)&& count($send_name)>0)
 
@@ -346,19 +347,31 @@
                                             <span class="mb-15 control-label bb">{{$send_name[$i]}}:</span>
                                             {{--check trường của sendname--}}
                                             @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
                                                 <div class="mb-15">
                                                     <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
                                                 </div>
 
                                             @elseif($send_type[$i]==4)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
                                                 <div class="mb-15">
                                                     <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                 </div>
                                             @elseif($send_type[$i]==5)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
                                                 <div class="mb-15">
                                                     <input type="password" required class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                 </div>
                                             @elseif($send_type[$i]==6)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
                                                 @php
                                                     $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                 @endphp
@@ -379,9 +392,12 @@
                                     <p> Bạn thực sự muốn thanh toán?</p>
                                 @endif
                             </div>
+
+                            <input type="hidden" name="index" value="{{ $index }}">
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(Auth::check())
+
                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>
@@ -541,8 +557,8 @@
             </div>
 
             {{--            DỊCH VỤ KHÁC     --}}
-            {{--        {!! widget('frontend.pages.service.widgets.list_service_category',60) !!}--}}
-            @include('frontend.pages.service.widgets.list_service_category')
+            {{--        {!! widget('frontend.pages.service.widget.list_service_category',60) !!}--}}
+            @include('frontend.pages.service.widget.__related')
 
         </div>
 

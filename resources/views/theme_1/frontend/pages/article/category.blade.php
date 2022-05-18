@@ -58,10 +58,10 @@
                                     </div>
                                 </form>
                                 <div class="article_data">
-                                    @include('frontend.pages.article.function.__new__data')
+                                    @include('frontend.pages.article.widget.__datalist')
                                 </div>
                             </div>
-                            {!! widget('frontend.widget.__menu__category__article',60) !!}
+                            @include('frontend.widget.__menu__category__article')
                         </div>
                     </div>
                 </div>

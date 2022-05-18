@@ -62,7 +62,7 @@
                                 </div>
 
                                 <div class="col-md-4" id="datahtmlcategory">
-                                    @include('frontend.pages.account.function.lichsu.__game__category')
+                                    @include('frontend.pages.account.widget.__datacategorylogs')
                                 </div>
                             </div>
 
@@ -114,7 +114,7 @@
                                     <span class="pulser"></span>
                                 </div>
                             </div>
-                            @include('frontend.pages.account.function.lichsu.__get__buy__account__history')
+                            @include('frontend.pages.account.widget.__datalogs')
                         </div>
                     </div>
 

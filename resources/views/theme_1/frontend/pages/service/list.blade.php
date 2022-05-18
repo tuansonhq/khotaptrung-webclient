@@ -79,7 +79,7 @@
             </div>
 
             <div class="item_buy_list row" id="getshowservice_data">
-                @include('frontend.pages.service.function.__get__show__data')
+                @include('frontend.pages.service.widget.__datalist')
             </div>
 
         </div>
