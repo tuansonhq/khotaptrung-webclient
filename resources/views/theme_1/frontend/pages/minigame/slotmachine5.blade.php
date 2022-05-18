@@ -243,7 +243,7 @@
                                 @foreach($result->log as $item)
                                     <tr>
                                         <td>{{substr($item->author->username, 0, 3)}}***</td>
-                                        <th>{{$item->item_ref->title}}</th>
+                                        <th>{{$item->item_ref->parrent->title??""}}</th>
                                         <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
                                     </tr>
                                 @endforeach

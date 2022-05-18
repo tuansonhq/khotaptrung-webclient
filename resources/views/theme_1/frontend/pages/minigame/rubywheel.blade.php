@@ -97,7 +97,7 @@
                                 @foreach($result->log as $item)
                                     <tr>
                                         <th>{{$item->author->username}}</th>
-                                        <th>{{$item->item_ref->parrent->title}}</th>
+                                        <th>{{$item->item_ref->parrent->title??""}}</th>
                                         <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
                                     </tr>
                                 @endforeach

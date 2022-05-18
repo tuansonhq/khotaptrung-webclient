@@ -26,8 +26,8 @@ class MinigameController extends Controller
             // if(!isset($group_api)){
                 $url = '/minigame/get-list-minigame';
                 $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($group_api) && $group_api->httpcode == 200 ) {
-                    $group_api = $group_api->data->data;
+                if (isset($group_api) && $group_api->response_code == 200 ) {
+                    $group_api = $group_api->response_data->data;
                 }
             //     try{
             //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -49,8 +49,8 @@ class MinigameController extends Controller
             $data['id'] = $group->id;
             $data['module'] = explode('-', $group->module)[0];
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                $result_out = $result_Api->data;
+            if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                $result_out = $result_Api->response_data;
                 if ($result_out->status == 1) {
                     $result = $result_out->data;
 
@@ -230,8 +230,8 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigame';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if ($result->status == 1) {
                         return response()->json([
                             'free_wheel'=> $result->free_wheel,
@@ -254,7 +254,7 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    if($result_Api->httpcode==401){
+                    if($result_Api->response_code==401){
                         return response()->json([
                             'status' => 4,
                             'msg'=> 'Vui lòng đăng nhập lại.'
@@ -299,8 +299,8 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigamebonus';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if ($result->status == 1) {
                         return response()->json([
                             'free_wheel'=> $result->free_wheel,
@@ -322,7 +322,7 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    if($result_Api->httpcode==401){
+                    if($result_Api->response_code==401){
                         return response()->json([
                             'status' => 4,
                             'msg'=> 'Vui lòng đăng nhập lại.'
@@ -358,8 +358,8 @@ class MinigameController extends Controller
                 // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                    if (isset($group_api) && $group_api->httpcode == 200 ) {
-                        $group_api = $group_api->data->data;
+                    if (isset($group_api) && $group_api->response_code == 200 ) {
+                        $group_api = $group_api->response_data->data;
                     }
                 //     try{
                 //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -390,8 +390,8 @@ class MinigameController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
                         return redirect()->back()->withErrors($result_out->message);
                     } else {
@@ -427,8 +427,8 @@ class MinigameController extends Controller
                 // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                    if (isset($group_api) && $group_api->httpcode == 200 ) {
-                        $group_api = $group_api->data->data;
+                    if (isset($group_api) && $group_api->response_code == 200 ) {
+                        $group_api = $group_api->response_data->data;
                     }
                 //     try{
                 //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -458,8 +458,8 @@ class MinigameController extends Controller
                     $data['ended_at'] = $request->get('ended_at');
                 }
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
                         return redirect()->back()->withErrors($result_out->message);
                     } else {
@@ -495,8 +495,8 @@ class MinigameController extends Controller
                 $data['page'] = $request->page;
                 $data['game_type'] = $game_type;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {
                         return redirect('login');
                     } else {
@@ -546,8 +546,8 @@ class MinigameController extends Controller
                 $data['idgame'] = $request->idgame;
                 $data['phone'] = $request->phone;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {
                         return redirect('login');
                     }else if(isset($result->status) && $result->status == 0){
