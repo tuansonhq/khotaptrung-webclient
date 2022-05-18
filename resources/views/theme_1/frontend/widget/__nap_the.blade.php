@@ -38,7 +38,7 @@
 
                     <div class="captcha_trangchu">
                         <span class="reload"  id="">
-                            {!! captcha_img() !!}
+{{--                            {!! captcha_img() !!}--}}
                         </span>
 
                     </div>
@@ -50,13 +50,8 @@
 
         </div>
         <div class="form-group" >
-            <div class="col-12">
-                @if (App\Library\AuthCustom::check())
-                    <button class="btn btn-submit" type="submit">Nạp thẻ</button>
-                @else
-                    <a class="btn btn-submit" onclick="window.location.href='/login'">Nạp thẻ</a>
+            <div class="col-12" id="form-charge-submit">
 
-                @endif
             </div>
         </div>
 
