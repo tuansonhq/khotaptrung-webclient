@@ -65,10 +65,8 @@ $(document).ready(function(){
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
                     $('meta[name="jwt"]').attr('content','jwt');
-                    //
-                    // window.location.href = '/login';
-                    // // method = method || 'post';
-                    // return;
+                    $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
+
                 }
                 if(data.status == 401){
                     $('#info .loading').remove();
@@ -93,10 +91,8 @@ $(document).ready(function(){
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
                     $('meta[name="jwt"]').attr('content','jwt');
-                    //
-                    // window.location.href = '/login';
-                    // // method = method || 'post';
-                    // return;
+                    $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
+
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
@@ -140,7 +136,7 @@ $(document).ready(function(){
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất');
                     $('meta[name="jwt"]').attr('content',data.jwt);
-
+                    $('#form-charge-submit').html('<button class="btn btn-submit" type="submit">Nạp thẻ</button>')
                     $(document).on('scroll',function(){
                         if($(window).width() > 1024){
                             if ($(this).scrollTop() > 100) {
