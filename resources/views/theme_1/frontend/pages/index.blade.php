@@ -5,8 +5,8 @@
 @push('style')
 @endpush
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/top_charge/top_charge.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/top_charge/top_charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js?v={{time()}}"></script>
 @endpush
 {{--@section('content')--}}
 @section('content')
