@@ -23,8 +23,7 @@ class UserController extends Controller
 
         try{
             $jwt = Session::get('jwt');
-
-            return $jwt;
+            
             if(empty($jwt)){
                 return response()->json([
                     'status' => "LOGIN"
