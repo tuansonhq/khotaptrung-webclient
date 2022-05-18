@@ -40,6 +40,7 @@ class UserController extends Controller
                     if($result->status == 1){
                         return response()->json([
                             'status' => true,
+                            'jwt' => $jwt,
                             'info' => $result->user,
                         ]);
                     }
