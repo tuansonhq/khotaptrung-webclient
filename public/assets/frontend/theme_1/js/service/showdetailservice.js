@@ -73,6 +73,7 @@ $(document).ready(function(){
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__pay').html('');
         $('.loading-data__pay').html(htmlloading);
+
         const jwt =  $('meta[name="jwt').attr('content');
 
         if (jwt == null || jwt == '' || jwt == undefined){
