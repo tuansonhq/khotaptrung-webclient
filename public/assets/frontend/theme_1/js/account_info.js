@@ -25,7 +25,7 @@ $(document).ready(function(){
             $('#logout_tab_mobile').attr('href','/register')
             $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-
+            $('meta[name="jwt"]').attr('content','jwt');
 
 
             return;
@@ -64,6 +64,7 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+                    $('meta[name="jwt"]').attr('content','jwt');
                     //
                     // window.location.href = '/login';
                     // // method = method || 'post';
@@ -91,6 +92,7 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+                    $('meta[name="jwt"]').attr('content','jwt');
                     //
                     // window.location.href = '/login';
                     // // method = method || 'post';
@@ -100,6 +102,7 @@ $(document).ready(function(){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
+
                     $('#username').val(data.info.username);
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
@@ -136,7 +139,7 @@ $(document).ready(function(){
                     $('#logout_tab_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất');
-
+                    $('meta[name="jwt"]').attr('content',data.jwt);
 
                     $(document).on('scroll',function(){
                         if($(window).width() > 1024){
