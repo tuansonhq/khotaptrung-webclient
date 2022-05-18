@@ -9,7 +9,7 @@
                 $prev = null;
             @endphp
             @if(isset($data) && count($data) > 0)
-{{--                @dd($data)--}}
+                {{--                @dd($data)--}}
                 @foreach ($data as $item)
 
                     @php
@@ -101,11 +101,11 @@
 
                 @endforeach
             @else
-{{--            <tr>--}}
-{{--                <td colspan="8">--}}
-{{--                    <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
-{{--                </td>--}}
-{{--            </tr>--}}
+                {{--            <tr>--}}
+                {{--                <td colspan="8">--}}
+                {{--                    <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
+                {{--                </td>--}}
+                {{--            </tr>--}}
             @endif
 
             </tbody>
@@ -128,6 +128,7 @@
     </div>
 
 @endif
+
 
 
 

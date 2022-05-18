@@ -113,23 +113,21 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
 
-                Route::get('/tin-tuc', [ArticleController::class , "index"]);
-                Route::get('/tin-tuc/{slug}', [ArticleController::class , "show"]);
+                Route::get('/tin-tuc', [ArticleController::class , "getList"]);
+                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
 
-                Route::get('/dich-vu', [ServiceController::class , "getShowService"]);
-                Route::get('/dich-vu/data', [ServiceController::class , "getShowServiceData"]);
-                Route::get('/dich-vu/{slug}', [ServiceController::class , "getShow"]);
-                Route::get('/dich-vu/{slug}/data', [ServiceController::class , "getShowData"]);
-                Route::get('/dich-vu/{slug}/modaldata', [ServiceController::class , "getShowModalData"]);
+                Route::get('/dich-vu', [ServiceController::class , "getList"]);
+                Route::get('/dich-vu/{slug}', [ServiceController::class , "getDetail"]);
 
-                Route::get('/mua-acc', [AccController::class , "getShowDanhmucCategory"]);
-                Route::get('/mua-acc/{slug}', [AccController::class , "getShowCategory"]);
-                Route::get('/dich-vu-lien-quan', [AccController::class , "getDichVuLienQuan"]);
 
-                Route::get('/acc/{slug}', [AccController::class , "getShowAccDetail"]);
-                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowAccDetailData"]);
+                Route::get('/mua-acc', [AccController::class , "getCategory"]);
+                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+                Route::get('/related-acc', [AccController::class , "getRelated"]);
 
-                Route::get('/acc/{id}/databuy', [AccController::class , "getShowCategoryBuyAccData"]);
+                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
+
+                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
 
                 Route::group(['middleware' => ['auth_custom']], function (){
@@ -167,20 +165,20 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
-                            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getBuyAccountHistory'])
+                            Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])
                                 ->name('getBuyAccountHistory');
                             Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
                                 ->name('getShowpass');
                             //dịch vụ
-                            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getBuyServiceHistory'])
+                            Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogs'])
                                 ->name('getBuyServiceHistory');
 
-                            Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getShowBuyServiceHistory']);
+                            Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogsDetail']);
 
-                            Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDeleteServiceData'])
+                            Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
 
-                            Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEditServiceData'])
+                            Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
 
                             Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])

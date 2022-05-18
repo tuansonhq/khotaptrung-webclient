@@ -1,76 +1,76 @@
 @if(empty($data->data))
-        <div class="table-responsive" id="tableacchstory">
-            <table class="table table-hover table-custom-res">
-                <thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
-                <tbody>
+    <div class="table-responsive" id="tableacchstory">
+        <table class="table table-hover table-custom-res">
+            <thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+            <tbody>
 
-                @if(isset($data) && count($data) > 0)
-                    @foreach ($data as $item)
-                        <tr>
-                            <td>{{ formatDateTime($item->published_at) }}</td>
-                            <td>
-                                @if(isset($item->randId))
-                                    #{{ $item->randId }}
-                                @endif
-                            </td>
-                            <td>
-                                @if(isset($item->groups))
-                                    @foreach($item->groups as $val)
-                                        @if($val->module == 'acc_category')
-                                            {{ $val->title }}
-                                        @endif
-                                    @endforeach
-                                @endif
-                            </td>
-                            <td>{{ $item->title }}</td>
-                            <td>
-                                {{ str_replace(',','.',number_format($item->price)) }} đ
-                            </td>
-                            <td>
-                                @if($item->status == 1)
-                                @elseif($item->status == 2)
-                                    <span class="badge badge-warning">Chờ xử lý</span>
-                                @elseif($item->status == 3)
-                                    <span class="badge badge-warning">Đang check thông tin</span>
-                                @elseif($item->status == 4)
-                                    <span class="badge badge-danger">Sai thông tin</span>
-                                @elseif($item->status == 5)
-                                    <span class="badge badge-danger">Đã xoá</span>
-                                @elseif($item->status == 0)
-                                    <span class="badge badge-success">Thành công</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if($item->status == 0)
+            @if(isset($data) && count($data) > 0)
+                @foreach ($data as $item)
+                    <tr>
+                        <td>{{ formatDateTime($item->published_at) }}</td>
+                        <td>
+                            @if(isset($item->randId))
+                                #{{ $item->randId }}
+                            @endif
+                        </td>
+                        <td>
+                            @if(isset($item->groups))
+                                @foreach($item->groups as $val)
+                                    @if($val->module == 'acc_category')
+                                        {{ $val->title }}
+                                    @endif
+                                @endforeach
+                            @endif
+                        </td>
+                        <td>{{ $item->title }}</td>
+                        <td>
+                            {{ str_replace(',','.',number_format($item->price)) }} đ
+                        </td>
+                        <td>
+                            @if($item->status == 1)
+                            @elseif($item->status == 2)
+                                <span class="badge badge-warning">Chờ xử lý</span>
+                            @elseif($item->status == 3)
+                                <span class="badge badge-warning">Đang check thông tin</span>
+                            @elseif($item->status == 4)
+                                <span class="badge badge-danger">Sai thông tin</span>
+                            @elseif($item->status == 5)
+                                <span class="badge badge-danger">Đã xoá</span>
+                            @elseif($item->status == 0)
+                                <span class="badge badge-success">Thành công</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($item->status == 0)
                                 <a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                @else
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            @else
 
-                @endif
+            @endif
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
-        <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
 
-            @if(isset($data))
-                @if($data->total()>1)
-                    <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
-                        <div class="col-auto paginate__category__col">
-                            <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
-                            </div>
+        @if(isset($data))
+            @if($data->total()>1)
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                    <div class="col-auto paginate__category__col">
+                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
-                @endif
+                </div>
             @endif
-        </div>
-{{--    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>--}}
-{{--    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>--}}
+        @endif
+    </div>
+    {{--    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>--}}
+    {{--    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>--}}
     <script>
 
 
@@ -230,4 +230,3 @@
         }
     </style>
 @endif
-

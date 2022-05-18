@@ -26,8 +26,7 @@
             <div class="row container__show">
 
                 <div class="col-md-12 left-right" id="showdetailacc">
-
-                    @include('frontend.pages.account.function.__show__detail__acc')
+                    @include('frontend.pages.account.widget.__datadetail')
                 </div>
             </div>
 
@@ -43,7 +42,7 @@
                             <span class="pulser"></span>
                         </div>
                     </div>
-                    @include('frontend.pages.account.function.__show__slider__acc')
+                    @include('frontend.pages.account.widget.__related')
 
                 </div>
             </div>

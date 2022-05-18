@@ -14,7 +14,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class AccController extends Controller
 {
-    public function getShowDanhmucCategory(Request $request){
+    public function getCategory(Request $request){
 
         $url = '/acc';
         $method = "GET";
@@ -30,7 +30,7 @@ class AccController extends Controller
 
             Session::forget('return_url');
             Session::put('return_url', $_SERVER['REQUEST_URI']);
-            return view('frontend.pages.account.getShowCategory')
+            return view('frontend.pages.account.category')
                 ->with('data',$data);
         }
         else{
@@ -39,13 +39,13 @@ class AccController extends Controller
             $message = $response_data->message??"Không thể lấy dữ liệu";
             Session::forget('return_url');
             Session::put('return_url', $_SERVER['REQUEST_URI']);
-            return view('frontend.pages.account.getShowCategory')
+            return view('frontend.pages.account.category')
                 ->with('message',$message)
                 ->with('data',$data);
         }
     }
 
-    public function getShowCategory(Request $request,$slug){
+    public function getList(Request $request,$slug){
         $url = '/acc';
         $method = "GET";
 
@@ -131,7 +131,7 @@ class AccController extends Controller
                     $items->setPath($request->url());
 //                    dd($data);
 
-                    $html =  view('frontend.pages.account.function.__account__data')
+                    $html =  view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
                         ->with('items',$items)->render();
 
@@ -181,7 +181,7 @@ class AccController extends Controller
                 $data = null;
                 $message = "Không thấy tiêu đề";
 
-                return view('frontend.pages.account.accountList')
+                return view('frontend.pages.account.list')
                     ->with('message',$message)
                     ->with('data',$data);
             }
@@ -189,7 +189,7 @@ class AccController extends Controller
             Session::forget('path');
             Session::put('path', $_SERVER['REQUEST_URI']);
 
-            return view('frontend.pages.account.accountList')
+            return view('frontend.pages.account.list')
                 ->with('data',$data)
                 ->with('dataAttribute',$dataAttribute)
                 ->with('slug',$slug);
@@ -198,13 +198,13 @@ class AccController extends Controller
             $data = null;
             $message = $response_cate_data->message??"Không thể lấy dữ liệu";
 
-            return view('frontend.pages.account.accountList')
+            return view('frontend.pages.account.list')
                 ->with('message',$message)
                 ->with('data',$data);
         }
     }
 
-    public function getShowAccDetail(Request $request,$slug){
+    public function getDetail(Request $request,$slug){
         $url = '/acc';
         $method = "GET";
         $dataSend = array();
@@ -248,7 +248,7 @@ class AccController extends Controller
                 $slug_category = $data_category->slug;
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
-                return view('frontend.pages.account.show')
+                return view('frontend.pages.account.detail')
                     ->with('data_category',$data_category)
                     ->with('slug_category',$slug_category)
                     ->with('slug',$slug);
@@ -278,7 +278,7 @@ class AccController extends Controller
         }
     }
 
-    public function getShowAccDetailData(Request $request,$slug){
+    public function getShowDetail(Request $request,$slug){
         if ($request->ajax()){
             $url = '/acc';
             $method = "GET";
@@ -320,7 +320,7 @@ class AccController extends Controller
                     $card_percent = setting('sys_card_percent');
                     $atm_percent = setting('sys_atm_percent');
 
-                    $html = view('frontend.pages.account.function.__show__detail__acc')
+                    $html = view('frontend.pages.account.widget.__datadetail')
                         ->with('data_category',$data_category)
                         ->with('data',$data)
                         ->with('card_percent',$card_percent)
@@ -350,7 +350,7 @@ class AccController extends Controller
         }
     }
 
-    public function getDichVuLienQuan(Request $request){
+    public function getRelated(Request $request){
         if ($request->ajax()){
             $slug = $request->slug;
             $url = '/acc';
@@ -370,7 +370,7 @@ class AccController extends Controller
 
                 $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
 
-                $htmlslider = view('frontend.pages.account.function.__show__slider__acc')
+                $htmlslider = view('frontend.pages.account.widget.__related')
                     ->with('sliders',$sliders)->render();
 
                 return response()->json([
@@ -388,7 +388,7 @@ class AccController extends Controller
         }
     }
 
-    public function getShowCategoryBuyAccData(Request $request,$slug){
+    public function getBuyAccount(Request $request,$slug){
         if ($request->ajax()){
 //            $slug = decodeItemID($slug);
             $id = $slug;
@@ -447,7 +447,7 @@ class AccController extends Controller
                         $balance = AuthCustom::user()->balance;
                     }
 
-                    $html =  view('frontend.pages.account.function.buyacc')
+                    $html =  view('frontend.pages.account.widget.__buyacc')
                         ->with('dataAttribute',$dataAttribute)
                         ->with('data_category',$data_category)
                         ->with('price',$price)
@@ -564,7 +564,7 @@ class AccController extends Controller
         }
     }
 
-    public function getBuyAccountHistory(Request $request)
+    public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {
 
@@ -737,10 +737,10 @@ class AccController extends Controller
 
                         $datacategory = $response_cate_data->data;
 
-                        $htmlcategory = view('frontend.pages.account.function.lichsu.__game__category')
+                        $htmlcategory = view('frontend.pages.account.widget.__datacategorylogs')
                             ->with('datacategory', $datacategory)->render();
 
-                        $html = view('frontend.pages.account.function.lichsu.__get__buy__account__history')
+                        $html = view('frontend.pages.account.widget.__datalogs')
                             ->with('data', $data)->render();
 
                         if (count($data) == 0 && $page == 1){
@@ -781,7 +781,7 @@ class AccController extends Controller
                 }
             }
 
-            return view('frontend.pages.account.getBuyAccountHistory');
+            return view('frontend.pages.account.logs');
         }else{
             return redirect('/login');
         }

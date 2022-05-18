@@ -13,7 +13,7 @@ use Session;
 class ArticleController extends Controller
 {
 
-    public function index(Request $request){
+    public function getList(Request $request){
 
         try{
             $url = '/article';
@@ -46,7 +46,7 @@ class ArticleController extends Controller
                 Session::forget('return_url');
                 Session::put('return_url', $_SERVER['REQUEST_URI']);
 
-                return view('frontend.pages.article.index')
+                return view('frontend.pages.article.list')
                     ->with('total',$total)
                     ->with('per_page',$per_page)
                     ->with('data',$data);
@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
                 $message = $response_data->message??"Không thể lấy dữ liệu";
 
-                return view('frontend.pages.article.index')
+                return view('frontend.pages.article.list')
                     ->with('message',$message)
                     ->with('data',$data);
             }
@@ -71,7 +71,7 @@ class ArticleController extends Controller
 
     }
 
-    public function show(Request $request,$slug){
+    public function getDetail(Request $request,$slug){
 
         $url = '/article/'.$slug;
         $method = "GET";
@@ -89,7 +89,7 @@ class ArticleController extends Controller
                 Session::put('path', $_SERVER['REQUEST_URI']);
                 $data = $response_data->data;
 
-                return view('frontend.pages.article.show')
+                return view('frontend.pages.article.detail')
                     ->with('slug',$slug)
                     ->with('data',$data);
 
@@ -102,7 +102,7 @@ class ArticleController extends Controller
                 $data->setPath($request->url());
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
-                return view('frontend.pages.article.indexcategory')
+                return view('frontend.pages.article.category')
                     ->with('title',$title)
                     ->with('data',$data)
                     ->with('slug',$slug);
@@ -112,7 +112,7 @@ class ArticleController extends Controller
             $data = null;
             $message = $response_data->message??"Không thể lấy dữ liệu";
 
-            return view('frontend.pages.article.indexcategory')
+            return view('frontend.pages.article.category')
                 ->with('message',$message)
                 ->with('data',$data);
         }
