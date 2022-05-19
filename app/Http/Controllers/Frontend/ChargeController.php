@@ -31,17 +31,18 @@ class ChargeController extends Controller
         ]);
         dd('thanh cong');
     }
-//    public function myCaptcha()
-//    {
-//        return response()->json(['captcha'=> captcha_img('flat')]);
-//    }
+
     public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+    public function myCaptcha()
     {
         return response()->json(['captcha'=> captcha_img('flat')]);
     }
     public function reloadCaptcha2()
     {
-        return response()->json(['captcha'=> captcha_img()]);
+        return response()->json(['captcha'=> captcha_img('flat')]);
     }
     public function getDepositAuto(Request $request)
     {
