@@ -10,10 +10,11 @@ $(document).ready(function () {
         $('.loading-data__buyacc').html('');
         $('.loading-data__buyacc').html(htmlloading);
 
-        var id = $(this).data("id");
+        // var id = $(this).data("id");
 
-        // console.log(id)
-        getBuyAcc(id)
+        $('.loadModal__acount').modal('toggle');
+        $('.loading-data__buyacc').html('');
+        // getBuyAcc(id)
     });
 
     function getBuyAcc(id) {
@@ -30,6 +31,7 @@ $(document).ready(function () {
             },
             success: (data) => {
                 if (data.status == 1){
+
                     $('.loadModal__acount').modal('toggle');
                     $('.modal-content_accountlist').html(data.data);
                     $('.loading-data__buyacc').html('');
@@ -162,7 +164,6 @@ $(document).ready(function () {
 
 
     })
-
 
 
 });

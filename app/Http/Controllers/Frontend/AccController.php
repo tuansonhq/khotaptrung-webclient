@@ -130,8 +130,15 @@ class AccController extends Controller
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $items->setPath($request->url());
 
+                    $balance = 0;
+
+                    if (AuthCustom::check()){
+                        $balance = AuthCustom::user()->balance;
+                    }
+
                     $html =  view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
+                        ->with('balance',$balance)
                         ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)->render();
 
@@ -240,11 +247,6 @@ class AccController extends Controller
                     ]);
                 }
 
-                $dataAttribute = $data_category->childs;
-
-                $card_percent = setting('sys_card_percent');
-                $atm_percent = setting('sys_atm_percent');
-
                 $slug_category = $data_category->slug;
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
@@ -252,15 +254,6 @@ class AccController extends Controller
                     ->with('data_category',$data_category)
                     ->with('slug_category',$slug_category)
                     ->with('slug',$slug);
-
-//                return view('frontend.pages.account.show')
-//                    ->with('data_category',$data_category)
-//                    ->with('slug_category',$slug_category)
-//                    ->with('data',$data)
-//                    ->with('card_percent',$card_percent)
-//                    ->with('atm_percent',$atm_percent)
-//                    ->with('dataAttribute',$dataAttribute)
-//                    ->with('slug',$slug);
 
             }
             else{
@@ -299,6 +292,15 @@ class AccController extends Controller
                     ]);
                 }
 
+                $price = $data->price;
+
+                if ($price <= 0){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Số tiền không đúng.',
+                    ]);
+                }
+
                 $dataSendCate = array();
                 $dataSendCate['data'] = 'category_detail';
                 $dataSendCate['id'] = $data->groups[1]->id;
@@ -320,6 +322,12 @@ class AccController extends Controller
                     $card_percent = setting('sys_card_percent');
                     $atm_percent = setting('sys_atm_percent');
 
+                    $balance = 0;
+
+                    if (AuthCustom::check()){
+                        $balance = AuthCustom::user()->balance;
+                    }
+
                     $html = view('frontend.pages.account.widget.__datadetail')
                         ->with('data_category',$data_category)
                         ->with('data',$data)
@@ -327,10 +335,18 @@ class AccController extends Controller
                         ->with('atm_percent',$atm_percent)
                         ->with('dataAttribute',$dataAttribute)->render();
 
+                    $htmlbuyacc =  view('frontend.pages.account.widget.__buyacc')
+                        ->with('dataAttribute',$dataAttribute)
+                        ->with('data_category',$data_category)
+                        ->with('data',$data)->render();
 
                     return response()->json([
                         'data' => $html,
+                        'htmlbuyacc' => $htmlbuyacc,
                         'status' => 1,
+                        'id' => encodeItemID($data->id),
+                        'price' => $price,
+                        'balance' => $balance,
                         'message' => 'Load dữ liệu thành công',
                     ]);
                 }
@@ -523,7 +539,7 @@ class AccController extends Controller
                         if ($data->success == 0){
                             return response()->json([
                                 'status' => 2,
-                                'message' => 'Nick đã có người mua. Vui lòng chọn nick khác nhé.',
+                                'message' => $data->message,
                             ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
                         }elseif ($data->success == 1 ){

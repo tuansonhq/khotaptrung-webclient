@@ -32,11 +32,6 @@
 
             <div class="row marginauto">
                 <div class="col-md-12 left-right" id="showslideracc">
-{{--                    <div class="body-box-loadding result-amount-loadding">--}}
-{{--                        <div class="d-flex justify-content-center" style="padding-top: 112px;">--}}
-{{--                            <span class="pulser"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                     <div class="body-box-loadding result-amount-loadding">
                         <div class="d-flex justify-content-center" style="padding-top: 112px;">
                             <span class="pulser"></span>
