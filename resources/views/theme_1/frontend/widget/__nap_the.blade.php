@@ -54,8 +54,7 @@
              @if (App\Library\AuthCustom::check())
                 <button class="btn btn-submit" type="submit">Nạp thẻ</button>
             @else
-                <a class="btn btn-submit" onclick="window.location.href='/login'">Nạp thẻ</a>
-
+                <button class="btn btn-submit"  onclick="window.location.href='/login'">Nạp thẻ</button>
             @endif
             </div>
         </div>
