@@ -3,6 +3,26 @@
     @include('frontend.widget.__seo_head')
 @endsection
 @section('content')
+
+@if($data == null)
+    <div class="item_buy">
+        <div class="container pt-3" style="padding-bottom: 600px">
+            <div class="row pb-3 pt-3">
+                <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+@else
     <div class="item_buy">
         <div class="news_breadcrumbs">
             <div class="container">
@@ -88,7 +108,7 @@
     <input type="hidden" name="title_data" class="title_data" value="" />
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service.js"></script>
-
+@endif
 @endsection
 
 

@@ -90,10 +90,13 @@ class ServiceController extends Controller
 
         }
         else{
-            return response()->json([
-                'status' => 0,
-                'message'=>$response_data->message??"Không thể lấy dữ liệu"
-            ]);
+            $data =null;
+            $message = "Không thể lấy dữ liệu";
+            return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
+//            return response()->json([
+//                'status' => 0,
+//                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+//            ]);
         }
     }
 
