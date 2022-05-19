@@ -98,10 +98,11 @@
                                 </div>
 
                             </div>
-                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red">
-                                &#x21bb;
-                            </button>
+
                         </div>
+                         <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red">
+                             &#x21bb;
+                         </button>
                      </div>
                   </div>
                   <div class="form-group row " style="margin: 20px 0">
