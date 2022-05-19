@@ -42,9 +42,10 @@ class CacheAllSuccessfulGetRequestsCustom extends BaseCacheProfile {
     }
     public function useCacheNameSuffix(Request $request) : string
     {
-        return AuthCustom::check()
-        ? (string) AuthCustom::user()->id
-        : '';
+
+        return AuthCustom::check();
+//        ? (string) AuthCustom::user()->id
+//        : '';
     }
     public function shouldCacheRequest(Request $request): bool
     {
