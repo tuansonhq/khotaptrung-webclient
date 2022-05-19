@@ -3,16 +3,7 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
-    function getCaptcha(){
-        $.ajax({
-            type: 'GET',
-            url: 'first-captcha',
-            success: function (data) {
-                $(".captcha_1 span").html(data.captcha);
-            }
-        });
-    }
-    getCaptcha();
+    
     $('#reload_1').click(function () {
         $.ajax({
             type: 'GET',

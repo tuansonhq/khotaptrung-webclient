@@ -92,7 +92,7 @@
                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                 <div class="captcha_1">
                                   <span class="reload"  id="">
-                                  {!! captcha_img() !!}
+                                  {!! captcha_img('flat') !!}
                                   </span>
 
                                 </div>
