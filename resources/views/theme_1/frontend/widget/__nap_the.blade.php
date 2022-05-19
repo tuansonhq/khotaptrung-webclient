@@ -51,11 +51,11 @@
         </div>
         <div class="form-group" >
             <div class="col-12" id="form-charge-submit">
-             @if (App\Library\AuthCustom::check())
+{{--             @if (App\Library\AuthCustom::check())--}}
                 <button class="btn btn-submit" type="submit">Nạp thẻ</button>
-            @else
-                <button class="btn btn-submit"  onclick="window.location.href='/login'">Nạp thẻ</button>
-            @endif
+{{--            @else--}}
+{{--                <button class="btn btn-submit"  onclick="window.location.href='/login'">Nạp thẻ</button>--}}
+{{--            @endif--}}
             </div>
         </div>
 
