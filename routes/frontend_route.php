@@ -220,6 +220,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     //capcha
                     Route::get('/first-captcha', [ChargeController::class , 'myCaptcha']);
                     Route::get('/reload-captcha', [ChargeController::class , 'reloadCaptcha']);
+                    Route::get('/reload-captcha2', [ChargeController::class , 'reloadCaptcha2']);
 
 
                     Route::get('/contact-form', [ChargeController::class, 'index']);
