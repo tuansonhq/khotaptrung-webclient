@@ -4,6 +4,7 @@
 
         <div class="item_buy_list row">
             @foreach ($items as $item)
+{{--                @dd($item)--}}
                 {{--                Nick random--}}
                 @if($item->status == 1)
                     @if($data->display_type == 2)
@@ -103,15 +104,11 @@
                                     <div class="row">
                                         <div class="col-12 fixcssacount">
                                             <div class="item_buy_list_price2 p7">
-                                                @if(isset($data->params->price) && isset($data->params))
-                                                    {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                @else
-                                                    {{ str_replace(',','.',number_format($item->price)) }}đ
-                                                @endif
+                                                {{ str_replace(',','.',number_format($item->price)) }}đ
                                             </div>
 
                                         </div>
-                                        <a href="javascript:void(0)" class="col-12 buyacc fixcssacount" data-id="{{ $item->randId }}">
+                                        <a href="javascript:void(0)" class="col-12 buyacc fixcssacount" data-balance="{{ $balance }}" data-params="{{ isset($item->params) && isset($item->params->ext_info) ? json_encode($item->params->ext_info) : '' }}" data-groups="{{ isset($item->groups) ? json_encode($item->groups) : '' }}" data-price="{{ $item->price }}" data-game="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" data-attribute="{{ json_encode($dataAttribute) }}" data-id="{{ $item->randId }}">
                                             <div class="item_buy_list_view">
                                                 Mua ngay
                                             </div>
