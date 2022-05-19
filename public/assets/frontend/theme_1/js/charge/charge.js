@@ -137,7 +137,7 @@ $(document).ready(function(){
 
     getTelecom();
 
-    $('#form-charge').submit(function (e) {
+    $('#form-charge2').submit(function (e) {
         e.preventDefault();
         var formSubmit = $(this);
         var url = formSubmit.attr('action');

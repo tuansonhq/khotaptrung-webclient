@@ -199,6 +199,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         });
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+                        Route::post('/nap-the-tu-dong', [\App\Http\Controllers\Frontend\ChargeController::class , 'postCharge'])->name('postCharge');
 
                     });
 
