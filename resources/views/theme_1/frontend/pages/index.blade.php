@@ -78,6 +78,8 @@
                 </div>
             </div>
 
+{{--            @include('frontend.widget.__dich__vu__noi__bat')--}}
+
             @include('frontend.widget.__content__home__game')
 
             @include('frontend.widget.__content__home__dichvu')
