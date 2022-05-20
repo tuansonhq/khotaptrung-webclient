@@ -256,14 +256,14 @@ class ChargeController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'captcha' => 'required|captcha',
+            'captcha1' => 'required|captcha',
             'type' => 'required|regex:/^([A-Za-z0-9])+$/i',
             'amount' => 'required|integer|in:10000,20000,30000,50000,100000,200000,300000,500000,1000000,2000000,3000000,5000000',
             'pin' => 'required|between::9,22|regex:/^([A-Za-z0-9])+$/i',
             'serial' => 'required|between:9,22|regex:/^([A-Za-z0-9])+$/i',
         ],[
-            'captcha.required' => "Nhập mã capcha",
-            'captcha.captcha' => "Sai mã capcha",
+            'captcha1.required' => "Nhập mã capcha",
+            'captcha1.captcha' => "Sai mã capcha",
             'type.required' => __("Vui lòng chọn loại thẻ"),
             'type.regex' => __('Loại thẻ không được có ký tự đặc biệt'),
             'amount.required' => __("Vui lòng chọn mệnh giá"),
