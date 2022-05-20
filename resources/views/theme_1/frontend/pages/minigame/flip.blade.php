@@ -21,7 +21,7 @@
                             <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
                                     <img class="imgnen" src="{{config('api.url_media').$result->group->params->image_static}}">
-                                    <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{config('api.url_media').$result->group->params->image_static}}">
+                                    <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                 </div>
                             </div>
                         @endfor
@@ -128,9 +128,9 @@
                                     <div class="item_play_dif_slide_detail_in">
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img src="{{config('api.url_media').$item->image}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                                 @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                <img src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->params->image_percent_sale) }}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -147,7 +147,7 @@
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
                                                     @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                    <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                     @else
                                                     Chơi ngay
                                                     @endif
@@ -266,7 +266,7 @@
                     <div class="tab-content">
                         <div id="tap1-pane-1" aria-labelledby="tap1-tab-1" role="tabpanel" aria-hidden="false" class="tab-pane active in">
                             <div>
-                                
+
                                 @if(count($topDayList)>0)
                                 <div class="top-info-section">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon-user.png" class="" alt="top donate"><img src="/assets/frontend/{{theme('')->theme_key}}/image/no1_top_list.png" class="background-top1" alt="s">
@@ -341,7 +341,7 @@
     <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
 @endforeach
 @foreach($result->group->items as $item)
-    <input type="hidden" class="image_gift" value="{{config('api.url_media').$item->parrent->image}}">
+    <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
 @endforeach
 <input type="hidden" id="type_play" value="real">
 <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
@@ -378,7 +378,7 @@ $(document).ready(function(e){
     $('.play').click(function(){
         roll_check = true;
         $('.boxflip img.flip-box-front').each(function(){
-            $(this).attr('src','{{config('api.url_media').$result->group->params->image_static}}');
+            $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
         })
         $('.boxflip img.flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
@@ -389,7 +389,7 @@ $(document).ready(function(e){
     $('.num-play-try').click(function(){
         roll_check = true;
         $('.boxflip img.flip-box-front').each(function(){
-            $(this).attr('src','{{config('api.url_media').$result->group->params->image_static}}');
+            $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
         })
         $('.boxflip img.flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
@@ -477,7 +477,7 @@ $(document).ready(function(e){
                         else
                         {
                             $('.continue').html("Chơi thử tiếp");
-                        }  
+                        }
                         return;
                     }
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;
