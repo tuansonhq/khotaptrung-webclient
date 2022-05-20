@@ -34,11 +34,11 @@
         <div class="form-group row">
             <div class="col-md-12">
                 <div class="input-group" style="width: 100%">
-                    <input type="text" class="form-control" placeholder="Mã bảo vệ" name="captcha" id="captcha">
+                    <input type="text" class="form-control" placeholder="Mã bảo vệ" name="captcha" id="captcha1">
 
                     <div class="captcha_trangchu">
                         <span class="reload"  id="">
-                            {!! captcha_img() !!}
+                            <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode1').src ='https://muathengay.com/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha1').focus();" id="captchaCode1" alt="" class="captcha">
                         </span>
 
                     </div>

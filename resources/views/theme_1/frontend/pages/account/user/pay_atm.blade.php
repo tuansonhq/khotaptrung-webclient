@@ -86,9 +86,9 @@
                                         <div class="input-group" style="width: 100%">
                                             <input type="text"  name="captcha" class="form-control" placeholder="Mã bảo vệ">
                                             <div class="captcha">
-                                            <span class="reload"  id="reload"  >
-                                                {!! captcha_img() !!}
-                                            </span>
+{{--                                            <span class="reload"  id="reload"  >--}}
+{{--                                                {!! captcha_img() !!}--}}
+{{--                                            </span>--}}
                                             </div>
                                         </div>
                                     </div>

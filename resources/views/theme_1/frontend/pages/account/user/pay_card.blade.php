@@ -88,11 +88,11 @@
                      </label>
                      <div class="col-md-6">
                         <div class="input-group" style="width: 100%">
-                           <input type="text" class="form-control" name="captcha1"  required>
+                           <input type="text" class="form-control" name="captcha1" id="captcha"  required>
                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                 <div class="captcha_1">
                                   <span class="reload">
-                                      <img src="{{captcha_src()}}" onclick="this.src='/captcha/default?'+Math.random()" id="captchaCode" alt="" class="captcha">
+                                      <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode').src ='https://muathengay.com/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
 
 {{--                                  {!! captcha_img('flat') !!}--}}
                                   </span>
