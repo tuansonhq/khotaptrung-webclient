@@ -3,20 +3,17 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
-    function getCaptcha(){
-        $('#reload_1').trigger('click');
-    };
-    getCaptcha();
-    $('#reload_1').click(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'reload-captcha2',
-            success: function (data) {
-                $(".captcha_1 span").html(data.captcha);
-            }
-        });
 
-    });
+    // $('#reload_1').click(function () {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: 'reload-captcha2',
+    //         success: function (data) {
+    //             $(".captcha_1 span").html(data.captcha);
+    //         }
+    //     });
+    //
+    // });
 
     function getTelecom(){
 
@@ -65,7 +62,6 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('#reload_1').trigger('click');
             }
         });
     }
