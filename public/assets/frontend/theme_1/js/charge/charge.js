@@ -3,7 +3,10 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
-    
+    function getCaptcha(){
+        $('#reload_1').trigger('click');
+    };
+    getCaptcha();
     $('#reload_1').click(function () {
         $.ajax({
             type: 'GET',
@@ -62,7 +65,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-
+                $('#reload_1').trigger('click');
             }
         });
     }
