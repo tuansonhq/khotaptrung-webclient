@@ -12,7 +12,7 @@
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
-                                    <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
+                                    <a href="javascript:void(0)" class="buyacc" data-balance="{{ $balance }}" data-params="{{ isset($item->params) && isset($item->params->ext_info) ? json_encode($item->params->ext_info) : '' }}" data-groups="{{ isset($item->groups) ? json_encode($item->groups) : '' }}" data-price="{{ $item->price }}" data-game="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" data-attribute="{{ json_encode($dataAttribute) }}" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
                                             <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}">
                                         @else

@@ -1,4 +1,4 @@
-
+@dd($data)
 @if(isset($data) && count($data) > 0)
 
     <div class="container item_play_dif__img pt-3">
