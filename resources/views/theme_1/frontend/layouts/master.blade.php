@@ -57,7 +57,7 @@
         .main-lay-out{
             background:#000 url(/assets/frontend/{{theme('')->theme_key}}/images/background_image.jpg);
             background-attachment: fixed;background-size: 100%;
-            background-repeat: no-repeat;
+
             padding-bottom: 40px;
         }
     </style>

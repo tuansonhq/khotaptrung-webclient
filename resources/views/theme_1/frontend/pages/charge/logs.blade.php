@@ -5,7 +5,7 @@
 
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.layouts.includes.menu_profile')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>THẺ CÀO ĐÃ NẠP</p>
@@ -84,7 +84,7 @@
                                     <span class="pulser"></span>
                                 </div>
                             </div>
-                            @include('frontend.pages.account.user.function.__pay_card_history')
+                            @include('frontend.pages.charge.widget.__charge_history')
                         </div>
                     </div>
 

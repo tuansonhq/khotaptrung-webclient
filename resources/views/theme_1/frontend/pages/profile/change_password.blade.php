@@ -9,7 +9,7 @@
     <div class="account">
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.layouts.includes.menu_profile')
                 <div class="account_sidebar_content">
                     <div class="account_pay_card">
                         <div class="account_sidebar_content_title">

@@ -85,7 +85,7 @@ class TranferController extends Controller
                         $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
                     }
 
-                    return view('frontend.pages.account.user.pay_atm')->with('data',$data);
+                    return view('frontend.pages.transfer.index')->with('data',$data);
                 } else {
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
@@ -186,7 +186,7 @@ class TranferController extends Controller
                             $dataatm = new LengthAwarePaginator($dataatm->data,$dataatm->total,$dataatm->per_page,$page,$dataatm->data);
                         }
 
-                        $html = view('frontend.pages.account.user.function.__pay_atm')
+                        $html = view('frontend.pages.transfer.widget.__tranfer_history')
                             ->with('data', $dataatm)->render();
 
                         return response()->json([
@@ -313,12 +313,12 @@ class TranferController extends Controller
 
     public function postTranferBank(Request $request)
     {
-//        $validator = $this->validate($request,[
-//            'captcha' => 'required|captcha'
-//        ],[
-//            'captcha.required' => "Nhập mã capcha",
-//            'captcha.captcha' =>"Sai mã capcha",
-//        ]);
+        $validator = $this->validate($request,[
+            'captcha' => 'required|captcha'
+        ],[
+            'captcha.required' => "Nhập mã capcha",
+            'captcha.captcha' =>"Sai mã capcha",
+        ]);
 //
 //        if ($validator->fails()) {
 //            return Response()->json($validator->errors());

@@ -48,7 +48,7 @@ class ChargeController extends Controller
     {
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.account.user.pay_card');
+        return view('frontend.pages.charge.index');
 
     }
 
@@ -88,7 +88,7 @@ class ChargeController extends Controller
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                $html =  view('frontend.pages.account.user.function.__pay_card')
+                $html =  view('frontend.pages.charge.widget.__charge')
                     ->with('data', $data)->with('arrpin',$arrpin)->render();
 
                 if (count($data) == 0 && $page == 1){
@@ -405,7 +405,7 @@ class ChargeController extends Controller
                         ]);
                     }
 
-                    $html =  view('frontend.pages.account.user.function.__pay_card_history')
+                    $html =  view('frontend.pages.charge.widget.__charge_history')
                         ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 
                     return response()->json([
@@ -434,7 +434,7 @@ class ChargeController extends Controller
 
                 $data_telecome = $response_tele_data->data;
 
-                return view('frontend.pages.account.user.pay_card_history')->with('data_telecome', $data_telecome);
+                return view('frontend.pages.charge.logs')->with('data_telecome', $data_telecome);
 
             }
             else{

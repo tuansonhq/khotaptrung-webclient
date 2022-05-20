@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function info(Request $request)
     {
-        return view('frontend.pages.account.user.index');
+        return view('frontend.pages.profile.index');
 
     }
 
@@ -223,13 +223,13 @@ class UserController extends Controller
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
 
-                    $htmlconfig =  view('frontend.pages.account.user.function.__data_config')
+                    $htmlconfig =  view('frontend.pages.transaction.widget.__data_config')
                         ->with('config', $config)->render();
-                    $htmlstatus =  view('frontend.pages.account.user.function.__data_status')
+                    $htmlstatus =  view('frontend.pages.transaction.widget.__data_status')
                         ->with('status', $status)->render();
 
                     //dd($data);
-                    $html =  view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                    $html =  view('frontend.pages.transaction.widget.__transaction_history')
                         ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
                     if (count($data) == 0 && $page == 1){
@@ -257,7 +257,7 @@ class UserController extends Controller
                 }
             }
 
-            return view('frontend.pages.account.user.lich-su-giao-dich');
+            return view('theme_1.frontend.pages.transaction.logs');
 
         }
         catch(\Exception $e){

@@ -198,7 +198,7 @@ class LoginController extends Controller
 
 
     public function changePassword(){
-        return view('frontend.pages.account.changePassword');
+        return view('frontend.pages.profile.change_password');
     }
     public function changePasswordApi(Request $request){
         $this->validate($request,[
