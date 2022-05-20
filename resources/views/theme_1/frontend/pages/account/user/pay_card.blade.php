@@ -92,7 +92,9 @@
                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                 <div class="captcha_1">
                                   <span class="reload">
-                                  {!! captcha_img('flat') !!}
+                                      <img src="{{captcha_src()}}" onclick="this.src='/captcha/default?'+Math.random()" id="captchaCode" alt="" class="captcha">
+
+{{--                                  {!! captcha_img('flat') !!}--}}
                                   </span>
 
                                 </div>
