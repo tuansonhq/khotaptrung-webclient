@@ -322,12 +322,6 @@ class AccController extends Controller
                     $card_percent = setting('sys_card_percent');
                     $atm_percent = setting('sys_atm_percent');
 
-                    $balance = 0;
-
-                    if (AuthCustom::check()){
-                        $balance = AuthCustom::user()->balance;
-                    }
-
                     $html = view('frontend.pages.account.widget.__datadetail')
                         ->with('data_category',$data_category)
                         ->with('data',$data)
@@ -335,18 +329,11 @@ class AccController extends Controller
                         ->with('atm_percent',$atm_percent)
                         ->with('dataAttribute',$dataAttribute)->render();
 
-                    $htmlbuyacc =  view('frontend.pages.account.widget.__buyacc')
-                        ->with('dataAttribute',$dataAttribute)
-                        ->with('data_category',$data_category)
-                        ->with('data',$data)->render();
 
                     return response()->json([
                         'data' => $html,
-                        'htmlbuyacc' => $htmlbuyacc,
                         'status' => 1,
                         'id' => encodeItemID($data->id),
-                        'price' => $price,
-                        'balance' => $balance,
                         'message' => 'Load dữ liệu thành công',
                     ]);
                 }

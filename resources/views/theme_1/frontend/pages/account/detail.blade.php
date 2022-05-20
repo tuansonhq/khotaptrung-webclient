@@ -41,16 +41,7 @@
 
                 </div>
             </div>
-            {{--                @include('frontend.widget.__account__category',['sliders',$sliders])--}}
 
-        </div>
-    </div>
-
-    <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-dialog__account" role="document">
-            <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
-            <div class="modal-content modal-content_accountlist">
-            </div>
         </div>
     </div>
 

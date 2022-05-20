@@ -234,42 +234,7 @@
 
                         </div>
                     </form>
-                    <style>
 
-                        .c-content-tab-4.c-opt-3 > .nav > li > a {
-                            color: #ffffff;
-                            background-color: #d5e0ea;
-                        }
-                        .c-content-tab-4.c-opt-3 > .nav > li > a.active {
-                            color: #ffffff;
-                            background-color: #5bc2ce!important;
-                        }
-                        .c-content-tab-4 ul{
-                            padding-left: 0!important;
-                        }
-                        .c-content-tab-4 ul li{
-                            list-style: none!important;
-                        }
-
-                        .justified__ul_li{
-                            width: 50% !important;
-                            text-align: center!important;
-
-                        }
-
-                        .justified__ul_li a{
-                            display: flex!important;
-                            justify-content: center;
-                            padding: 20px;
-                        }
-                        .justified__ul_li a:hover{
-                            text-decoration: none!important;
-                        }
-                        .c-content-tab-4.c-opt-3 > .nav > li > a {
-                            color: #ffffff;
-                            background-color: #d5e0ea;
-                        }
-                    </style>
                 </div>
             </div>
         </div>
