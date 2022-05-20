@@ -4,7 +4,7 @@
     <div class="account">
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.layouts.includes.menu_profile')
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>LỊCH SỬ GIAO DỊCH</p>
@@ -36,27 +36,27 @@
                                 </div>
 
                                 <div class="col-md-4 data__config">
-                                    @include('frontend.pages.account.user.function.__data_config')
+                                    @include('frontend.pages.transaction.widget.__data_config')
                                 </div>
 
                                 <div class="col-md-4 data__status">
-                                    @include('frontend.pages.account.user.function.__data_status')
+                                    @include('frontend.pages.transaction.widget.__data_status')
                                 </div>
 
 
                             </div>
 
                             <div class="row">
-{{--                                <div class="col-12 item_buy_form_search">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="input-group">--}}
-{{--                                                <button type="submit" class="btn">Tìm kiếm</button>--}}
-{{--                                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="col-12 item_buy_form_search">--}}
+                                {{--                                    <div class="row">--}}
+                                {{--                                        <div class="col-md-6">--}}
+                                {{--                                            <div class="input-group">--}}
+                                {{--                                                <button type="submit" class="btn">Tìm kiếm</button>--}}
+                                {{--                                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>--}}
+                                {{--                                            </div>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
 
                                 <div class="col-12 item_buy_form_search">
                                     <div class="row">
@@ -66,21 +66,21 @@
                                                 <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
                                             </div>
                                         </div>
-{{--                                        <div class="col-12 col-md-6">--}}
-{{--                                            <div class="row justify-content-end">--}}
-{{--                                                <div class="col-12 col-md-auto">--}}
-{{--                                                    <div class="input-group">--}}
-{{--                                                        <span class="input-group-addon">Sắp xếp theo</span>--}}
-{{--                                                        <select type="text" name="sort_by" class="form-control sort_by">--}}
-{{--                                                            <option value="">Chọn cách sắp xếp</option>--}}
-{{--                                                            <option value="random">Ngẫu nhiên</option>--}}
-{{--                                                            <option value="created_at_start">Giao dịch mới nhất</option>--}}
-{{--                                                            <option value="created_at_end">Giao dịch cũ nhất</option>--}}
-{{--                                                        </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        {{--                                        <div class="col-12 col-md-6">--}}
+                                        {{--                                            <div class="row justify-content-end">--}}
+                                        {{--                                                <div class="col-12 col-md-auto">--}}
+                                        {{--                                                    <div class="input-group">--}}
+                                        {{--                                                        <span class="input-group-addon">Sắp xếp theo</span>--}}
+                                        {{--                                                        <select type="text" name="sort_by" class="form-control sort_by">--}}
+                                        {{--                                                            <option value="">Chọn cách sắp xếp</option>--}}
+                                        {{--                                                            <option value="random">Ngẫu nhiên</option>--}}
+                                        {{--                                                            <option value="created_at_start">Giao dịch mới nhất</option>--}}
+                                        {{--                                                            <option value="created_at_end">Giao dịch cũ nhất</option>--}}
+                                        {{--                                                        </select>--}}
+                                        {{--                                                    </div>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                            </div>--}}
+                                        {{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                     <span class="pulser"></span>
                                 </div>
                             </div>
-                            @include('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                            @include('frontend.pages.transaction.widget.__transaction_history')
                         </div>
                     </div>
 

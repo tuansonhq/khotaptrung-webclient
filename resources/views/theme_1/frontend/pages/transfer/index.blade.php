@@ -11,7 +11,7 @@
 
         <div class="account_content">
             <div class="container">
-                @include('frontend.pages.account.sidebar')
+                @include('frontend.layouts.includes.menu_profile')
                 <div class="account_sidebar_content ">
                     <div class="account_pay_card ">
                         <div class="account_sidebar_content_title">
@@ -32,18 +32,18 @@
                         <form action="{{route('postTranferBank')}}" method="POST" id="form-recharge" class="comfirm_tranfer_alert_out">
                             @csrf
                             <div class="form_tranfer">
-{{--                                <div class="form-group row">--}}
-{{--                                    <label class="col-md-3 control-label">--}}
-{{--                                        Tài khoản--}}
+                                {{--                                <div class="form-group row">--}}
+                                {{--                                    <label class="col-md-3 control-label">--}}
+                                {{--                                        Tài khoản--}}
 
-{{--                                    </label>--}}
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <div class="input-group" style="width: 100%" id="username">--}}
-{{--                                            <input type="text" class="form-control" value=""  readonly>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                {{--                                    </label>--}}
+                                {{--                                    <div class="col-md-6">--}}
+                                {{--                                        <div class="input-group" style="width: 100%" id="username">--}}
+                                {{--                                            <input type="text" class="form-control" value=""  readonly>--}}
+                                {{--                                        </div>--}}
+                                {{--                                    </div>--}}
 
-{{--                                </div>--}}
+                                {{--                                </div>--}}
                                 <div class="form-group row ">
 
                                     <label class="col-md-3 control-label">
@@ -51,14 +51,14 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-{{--                                            @if(isset($tranferbank->data))--}}
-                                                <select name="id_bank" id="bank_tranfer" class="form-control" data-id="">
-                                                    <option value="">-- Vui lòng chọn ngân hàng chuyển khoản --</option>
-{{--                                                    @foreach($tranferbank->data as $key=>$items)--}}
-{{--                                                        <option value="{{$items->title}}"  data-id="{{$key}}">{{$items->title}}</option>--}}
-{{--                                                    @endforeach--}}
-                                                </select>
-{{--                                            @endif--}}
+                                            {{--                                            @if(isset($tranferbank->data))--}}
+                                            <select name="id_bank" id="bank_tranfer" class="form-control" data-id="">
+                                                <option value="">-- Vui lòng chọn ngân hàng chuyển khoản --</option>
+                                                {{--                                                    @foreach($tranferbank->data as $key=>$items)--}}
+                                                {{--                                                        <option value="{{$items->title}}"  data-id="{{$key}}">{{$items->title}}</option>--}}
+                                                {{--                                                    @endforeach--}}
+                                            </select>
+                                            {{--                                            @endif--}}
                                         </div>
                                     </div>
 
@@ -86,9 +86,9 @@
                                         <div class="input-group" style="width: 100%">
                                             <input type="text"  name="captcha" class="form-control" placeholder="Mã bảo vệ">
                                             <div class="captcha">
-{{--                                            <span class="reload"  id="reload"  >--}}
-{{--                                                {!! captcha_img() !!}--}}
-{{--                                            </span>--}}
+                                                {{--                                            <span class="reload"  id="reload"  >--}}
+                                                {{--                                                {!! captcha_img() !!}--}}
+                                                {{--                                            </span>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                             </div>
                         </div>
                         <div class="data_pay_card_history__atm">
-                            @include('frontend.pages.account.user.function.__pay_atm')
+                            @include('frontend.pages.transfer.widget.__tranfer_history')
                         </div>
                     </div>
 
