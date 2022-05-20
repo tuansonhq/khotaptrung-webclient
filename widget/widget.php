@@ -23,6 +23,23 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
 });
 
 //theme1
+View::composer('frontend.widget.__dich__vu__noi__bat', function ($view) {
+
+    $data = \Cache::rememberForever('__dich__vu__noi__bat', function() {
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+//theme1
 View::composer('frontend.widget.__menu__taget', function ($view) {
 
     $data = \Cache::rememberForever('__menu__taget', function() {
