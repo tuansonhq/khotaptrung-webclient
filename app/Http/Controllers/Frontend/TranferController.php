@@ -313,12 +313,12 @@ class TranferController extends Controller
 
     public function postTranferBank(Request $request)
     {
-        $validator = $this->validate($request,[
-            'captcha' => 'required|captcha'
-        ],[
-            'captcha.required' => "Nhập mã capcha",
-            'captcha.captcha' =>"Sai mã capcha",
-        ]);
+//        $validator = $this->validate($request,[
+//            'captcha' => 'required|captcha'
+//        ],[
+//            'captcha.required' => "Nhập mã capcha",
+//            'captcha.captcha' =>"Sai mã capcha",
+//        ]);
 //
 //        if ($validator->fails()) {
 //            return Response()->json($validator->errors());
