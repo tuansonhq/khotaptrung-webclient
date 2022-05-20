@@ -209,7 +209,7 @@ class ServiceController extends Controller
                     }
 
                     if (count($data) == 0 && $page == 1){
-                        $htmlcate = view('frontend.pages.service.widget.__datalogs')
+                        $htmlcate = view('frontend.pages.service.widget.__datacategorylogs')
                             ->with('datacate', $datacate)->render();
 
                         return response()->json([
