@@ -1,3 +1,4 @@
+
 @if(isset($data) && count($data) > 0)
 <div class="content-items content-items-spin">
     <div class="container">
