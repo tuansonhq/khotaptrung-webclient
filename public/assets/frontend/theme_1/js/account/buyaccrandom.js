@@ -206,6 +206,8 @@ $(document).ready(function () {
 
             },
             success: function (response) {
+                
+                $('.data__form__random').html('');
 
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');

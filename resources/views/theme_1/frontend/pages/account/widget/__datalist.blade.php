@@ -283,26 +283,27 @@
                                 <div class="item_buy_list_info">
                                     <div class="row item_buy_list_info__row">
                                         <?php
-                                        $index = 0;
+                                        $total = 0;
                                         ?>
                                         @if(isset($item->groups))
                                             <?php
                                             $att_values = $item->groups;
                                             ?>
+
                                             {{--                                            @dd($att_values)--}}
                                             @foreach($att_values as $att_value)
                                                 {{--            @dd($att_value)--}}
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                     @if(isset($att_value->parent[0]))
-                                                        <?php
-                                                        $index = $index + 1;
-                                                        ?>
-                                                        @if($index < 5)
+                                                        @if($total < 4)
+                                                            <?php
+                                                                $total = $total + 1;
+                                                            ?>
                                                             <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-6 fixcssacount item_buy_list_info_inacc">
+                                                                <div class="col-5 fixcssacount item_buy_list_info_inacc">
                                                                     {{ $att_value->parent[0]->title??null }} :
                                                                 </div>
-                                                                <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                <div class="col-7 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                     {{ $att_value->title??null    }}
                                                                 </div>
                                                             </div>
@@ -317,7 +318,8 @@
                                             <?php
                                             $params = json_decode(json_encode($item->params->ext_info),true);
                                             ?>
-                                            @if($index < 4)
+
+                                            @if($total < 4)
                                                 @if(!is_null($dataAttribute) && count($dataAttribute)>0)
                                                     @foreach($dataAttribute as $index=>$att)
                                                         @if($att->position == 'text')
@@ -325,18 +327,20 @@
                                                                 @foreach($att->childs as $child)
                                                                     @foreach($params as $key => $param)
                                                                         @if($key == $child->id && $child->is_slug_override == null)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                            @if($index < 5)
+
+                                                                            @if($total < 4)
+                                                                                    <?php
+                                                                                    $total = $total + 1;
+                                                                                    ?>
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-6 item_buy_list_info_inacc">
+                                                                                    <div class="col-5 item_buy_list_info_inacc">
                                                                                         {{ $child->title??null }} :
                                                                                     </div>
-                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                    <div class="col-7 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                                         {{ $param??null }}
                                                                                     </div>
                                                                                 </div>
+                                                                            @else
                                                                             @endif
                                                                         @endif
                                                                     @endforeach
@@ -350,6 +354,7 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 <div class="item_buy_list_more">
                                     <div class="row">
                                         <div class="col-12 fixcssacount">
