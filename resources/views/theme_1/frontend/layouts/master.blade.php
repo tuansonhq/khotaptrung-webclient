@@ -79,7 +79,7 @@
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/record/record.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
 
