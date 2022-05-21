@@ -189,11 +189,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase']);
 
-                            Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTranTichHop']);
+                            Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTransactionShopCard']);
 
-                            Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuNapThe']);
+                            Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getChargeHistory']);
 
-                            Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getLichSuMuaThe']);
+                            Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
 

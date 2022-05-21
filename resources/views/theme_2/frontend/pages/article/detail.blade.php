@@ -18,6 +18,7 @@
             <li class="nav-item">
                 <a href="/tin-tuc" class="nav-link">Tin tức chung</a>
             </li>
+
             @include('frontend.widget.__menu__article')
         </ul>
         <div>
@@ -52,19 +53,19 @@
                         </div>
                     </div>
                     <div class="article-main d-flex pt-4 elsticky-wrap">
-{{--                        <div class="social-share">--}}
-{{--                            <ul class="nav social-icons flex-column elsticky">--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="#" class="nav-link"><i class="las la-share"></i></a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item facebook">--}}
-{{--                                    <a href="#" class="nav-link"><i class="lab la-facebook-f"></i></a>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-item twitter">--}}
-{{--                                    <a href="#" class="nav-link"><i class="lab la-twitter"></i></a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="social-share">--}}
+                        {{--                            <ul class="nav social-icons flex-column elsticky">--}}
+                        {{--                                <li class="nav-item">--}}
+                        {{--                                    <a href="#" class="nav-link"><i class="las la-share"></i></a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li class="nav-item facebook">--}}
+                        {{--                                    <a href="#" class="nav-link"><i class="lab la-facebook-f"></i></a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li class="nav-item twitter">--}}
+                        {{--                                    <a href="#" class="nav-link"><i class="lab la-twitter"></i></a>--}}
+                        {{--                                </li>--}}
+                        {{--                            </ul>--}}
+                        {{--                        </div>--}}
                         <div class="article-content flex-grow-1 news_detail_content">
                             {!! $data->content !!}
 

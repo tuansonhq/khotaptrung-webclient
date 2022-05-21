@@ -268,7 +268,7 @@ class UserController extends Controller
         }
     }
 
-    public function getTranTichHop(Request $request){
+    public function getTransactionShopCard(Request $request){
 
         try{
 
@@ -327,7 +327,7 @@ class UserController extends Controller
 
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
 
-                    return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
+                    return view('frontend.pages.transaction.logs')
                         ->with('data', $data)
                         ->with('total',$total)
                         ->with('status',$status)
@@ -348,7 +348,7 @@ class UserController extends Controller
         }
     }
 
-    public function getLichSuNapThe(Request $request){
+    public function getChargeHistory(Request $request){
 
         try{
 
@@ -421,7 +421,7 @@ class UserController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.pages.account.user.function.__lich__su__nap__the')
+                        return view('frontend.pages.charge.logs')
                             ->with('data',$data)
                             ->with('arrpin',$arrpin)
                             ->with('total',$total)
@@ -444,7 +444,7 @@ class UserController extends Controller
         }
     }
 
-    public function getLichSuMuaThe(Request $request){
+    public function getStoreHistory(Request $request){
 
         try{
 
@@ -529,7 +529,7 @@ class UserController extends Controller
                        }
 
 
-                        return view('frontend.pages.account.user.function.__lich__su__mua__the')
+                        return view('frontend.pages.storecard.logs')
                             ->with('data',$data)
                             ->with('total',$total)
                             ->with('per_page',$per_page)
