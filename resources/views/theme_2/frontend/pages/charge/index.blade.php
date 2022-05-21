@@ -3,7 +3,7 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('seo_head')
-        @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head')
 @endsection
 @push('js')
     <script>
@@ -22,9 +22,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link active" href="#" id="deposit-via-card-tab" data-bs-toggle="tab" data-bs-target="#deposit-via-card" type="button" role="tab" aria-controls="deposit via card" aria-selected="true"><span><i class="las la-receipt"></i> Nạp bằng thẻ</span></a>
                     </li>
-{{--                    <li class="nav-item" role="presentation">--}}
-{{--                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="true"><span><i class="las la-money-check-alt"></i> <span>Nạp ATM - Ví</span></a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="nav-item" role="presentation">--}}
+                    {{--                        <a class="nav-link" href="#" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="true"><span><i class="las la-money-check-alt"></i> <span>Nạp ATM - Ví</span></a>--}}
+                    {{--                    </li>--}}
                 </ul>
                 <div class="tab-content mb-4">
                     <!-- BEGIN Tab Content Deposit -->
@@ -32,7 +32,6 @@
                         @if (setting('sys_charge_content') != "")
                             <div class="" role="alert">
                                 {!! setting('sys_charge_content') !!}
-
                             </div>
                         @endif
                         <form action="{{route('postTelecomDepositAuto')}}" method="POST"  id="form-charge"class="form-horizontal form-charge">
@@ -168,28 +167,28 @@
             </div>
             <div class="col-lg-4">
                 <!-- BEGIN History -->
-{{--                <div class="mb-4 p-3 bg-light rounded">--}}
-{{--                    <h6 class="text-warning mb-0"><i class="las la-clock"></i> Lịch sử nạp tiền</h6>--}}
-{{--                    <ul class="list-item-default mb-3">--}}
-{{--                        <li class="item">--}}
-{{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
-{{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
-{{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
-{{--                        </li>--}}
-{{--                        <li class="item">--}}
-{{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
-{{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
-{{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
-{{--                        </li>--}}
-{{--                        <li class="item">--}}
-{{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
-{{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
-{{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                    <p class="text-center mb-0"><a href="#">Xem tất cả</a></p>--}}
-{{--                </div>--}}
-                <!-- BEGIN Support Block -->
+            {{--                <div class="mb-4 p-3 bg-light rounded">--}}
+            {{--                    <h6 class="text-warning mb-0"><i class="las la-clock"></i> Lịch sử nạp tiền</h6>--}}
+            {{--                    <ul class="list-item-default mb-3">--}}
+            {{--                        <li class="item">--}}
+            {{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
+            {{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
+            {{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="item">--}}
+            {{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
+            {{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
+            {{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
+            {{--                        </li>--}}
+            {{--                        <li class="item">--}}
+            {{--                            <div class="item-title"><a href="#">Nạp tiền từ tài khoản Vietcombank</a></div>--}}
+            {{--                            <div class="item-meta small text-secondary">10:20 21/21/2020</div>--}}
+            {{--                            <div class="icon"><i class="las la-angle-right"></i></div>--}}
+            {{--                        </li>--}}
+            {{--                    </ul>--}}
+            {{--                    <p class="text-center mb-0"><a href="#">Xem tất cả</a></p>--}}
+            {{--                </div>--}}
+            <!-- BEGIN Support Block -->
                 <div class="mb-4">
                     <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>
                     <!-- BEGIN Support Item -->

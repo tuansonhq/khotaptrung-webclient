@@ -6,24 +6,24 @@
                 <div class="media-placeholder item-thumb ratio-2-1 rounded">
 
 
-                        <div class="media-inner aling-items-end">
-                            <a href="/tin-tuc/{{ $item->slug }}">
-                                <img src="{{$item->image}}" alt="" class="bg rounded">
-                            </a>
+                    <div class="media-inner aling-items-end">
+                        <a href="/tin-tuc/{{ $item->slug }}">
+                            <img src="{{$item->image}}" alt="" class="bg rounded">
+                        </a>
 
-                            <div class="align-items-bottom">
-                                {{--                            <div class="align-items-end h-100 text-white">--}}
-                                <h3 class="item-title">
-                                    @if(isset($item->url_redirect_301))
-                                        <a target="_blank" href="{{ $item->url_redirect_301 }}" class="text-white">{{ $item->title }}</a>
-                                    @else
-                                        <a href="/tin-tuc/{{ $item->slug }}" class="text-white">{{ $item->title }}</a>
-                                    @endif
-                                </h3>
-                                {{--                            </div>--}}
-                            </div>
-
+                        <div class="align-items-bottom">
+                            {{--                            <div class="align-items-end h-100 text-white">--}}
+                            <h3 class="item-title">
+                                @if(isset($item->url_redirect_301))
+                                    <a target="_blank" href="{{ $item->url_redirect_301 }}" class="text-white">{{ $item->title }}</a>
+                                @else
+                                    <a href="/tin-tuc/{{ $item->slug }}" class="text-white">{{ $item->title }}</a>
+                                @endif
+                            </h3>
+                            {{--                            </div>--}}
                         </div>
+
+                    </div>
 
 
                 </div>
@@ -78,7 +78,7 @@
         <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2 border-top pt-3">
             <div class="text-secondary mb-2">
                 @if(isset($total) && isset($per_page))
-                Hiển thị {{ $per_page }} / {{ $total }} kết quả
+                    Hiển thị {{ $per_page }} / {{ $total }} kết quả
                 @endif
             </div>
 

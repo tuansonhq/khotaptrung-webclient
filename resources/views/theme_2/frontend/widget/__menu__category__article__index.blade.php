@@ -1,4 +1,3 @@
-
 @if(isset($data) && count($data) > 0)
 <!-- BEGIN Recent Posts -->
 
