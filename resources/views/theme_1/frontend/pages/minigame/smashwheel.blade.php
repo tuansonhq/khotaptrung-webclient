@@ -24,7 +24,7 @@
                         @endif
 
                         <div id="start-played" class="item_play_spin_shake">
-                            <img src="{{config('api.url_media').$result->group->image_icon}}">
+                            <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
                         </div>
                         @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
@@ -33,9 +33,9 @@
                         </div>
                         @endif
 
-                        <img src="{{config('api.url_media').$result->group->params->image_static}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{config('api.url_media').$result->group->params->image_background}}) no-repeat center center;background-size: contain;" alt="">
-                        <input type="hidden" value="{{config('api.url_media').$result->group->params->image_static}}" id="hdImageLD">
-                        <input type="hidden" value="{{config('api.url_media').$result->group->params->image_animation}}" id="hdImageDapLu">
+                        <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{config('api.url_media').$result->group->params->image_background}}) no-repeat center center;background-size: contain;" alt="">
+                        <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
+                        <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                     </div>
                     <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
                     <div class="item_spin_dropdown">
@@ -97,9 +97,9 @@
                                     <div class="item_play_dif_slide_detail_in">
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img src="{{config('api.url_media').$item->image}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                                <img src="{{\App\Library\MediaHelpers::media($item->image}}" alt="{{$item->title)}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                                 @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                <img src="{{config('api.url_media').$item->params->image_percent_sale}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_percent_sale)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -116,7 +116,7 @@
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
                                                     @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                    <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
+                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                     @else
                                                     Chơi ngay
                                                     @endif
@@ -409,6 +409,7 @@
                             location.href='/login?return_url='+window.location.href;
                         } else if (data.status == 3) {
                             $('#lac_lixi').attr('src',$("#hdImageLD").val());
+                            roll_check = true;
                             $('#naptheModal').modal('show')
                             return;
                         } else if (data.status == 0) {
@@ -559,7 +560,7 @@
                             // {
                             //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                             // }
-                            $html += "<span>Kết quả: "+gift_revice[0]["parrent"].title+"</span><br/>";
+                            $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
                             if(gift_detail.winbox == 1){
                                 $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
                                 //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
@@ -577,7 +578,7 @@
                             // {
                             //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
                             // }
-                            $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]['parrent'].title;
+                            $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
                             if(gift_revice[$i].winbox == 1){
                                 $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>"+$strDiscountcode+"<br/>";
                             }
@@ -595,7 +596,7 @@
                 {
                     if(gift_revice.length == 1)
                     {
-                            $html += "<span>Kết quả chơi thử: "+gift_revice[0]["parrent"].title+"</span><br/>";
+                            $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
                             if(gift_detail.winbox == 1){
                                 $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
                                 //$html += "<span>chơi được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
@@ -609,7 +610,7 @@
                         $html += "<span><b>Mua X"+gift_revice.length+":</b></span><br/>";
                         for($i=0;$i<gift_revice.length;$i++)
                         {
-                            $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]['parrent'].title;
+                            $html += "<span>Lần chơi "+($i + 1)+": "+gift_revice[$i]["title"];
                             if(gift_revice[$i].winbox == 1){
                                 $html +=" - nhận được: "+gift_revice[$i]["parrent"].params.value+" X"+(parseInt(xvalueaDD[$i]))+" = "+parseInt(gift_revice[$i]["parrent"].params.value)*(parseInt(xvalueaDD[$i]))+""+msg_random_bonus[$i]+"</span><br/>";
                             }

@@ -462,6 +462,7 @@ $(document).ready(function(e){
                     if (data.status == 4) {
                         location.href='/login';
                     } else if (data.status == 3) {
+                    	roll_check = true;
                         $('#naptheModal').modal('show');
                         return;
                     } else if (data.status == 0) {
@@ -567,7 +568,7 @@ $(document).ready(function(e){
                                     // {
                                     //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                                     // }
-                                    $html += "<span>Kết quả: "+gift_revice[0]["parrent"].title+"</span><br/>";
+                                    $html += "<span>Kết quả: "+gift_revice[0]["title"]+"</span><br/>";
                                     if(gift_detail.winbox == 1){
                                         $html += "<span>Mua X1: Nhận được "+gift_gift_revice[$i]['parrent'].title+"</span><br/>";
                                         //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>"+$strDiscountcode;
@@ -603,7 +604,7 @@ $(document).ready(function(e){
                         {
                             if(gift_revice.length == 1)
                             {
-                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["parrent"].title+"</span><br/>";
+                                    $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
                                     if(gift_detail.winbox == 1){
                                         $html += "<span>Mua X1: Nhận được "+gift_revice[0]["parrent"].params.value+"</span><br/>";
                                         //$html += "<span>Lật được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
