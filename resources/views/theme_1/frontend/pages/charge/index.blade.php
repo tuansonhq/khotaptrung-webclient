@@ -87,23 +87,17 @@
                                         Mã bảo vệ:
                                     </label>
                                     <div class="col-md-6">
-                                        <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" name="captcha1" id="captcha"  required>
-                                            <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
-                                                <div class="captcha_1">
-                                  <span class="reload">
-                                      <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode').src =new URL(window.location.href).origin+'/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
-
-{{--                                  {!! captcha_img('flat') !!}--}}
-                                  </span>
-
-                                                </div>
-
+                                        <div class="form-group mt-4 mb-4">
+                                            <div class="captcha">
+                                                <span>{!! captcha_img() !!}</span>
+                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                                    &#x21bb;
+                                                </button>
                                             </div>
-                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src='captcha/default?'+Math.random()">
-                                                &#x21bb;
-                                            </button>
+                                        </div>
 
+                                        <div class="form-group mb-4">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha1">
                                         </div>
 
                                     </div>
