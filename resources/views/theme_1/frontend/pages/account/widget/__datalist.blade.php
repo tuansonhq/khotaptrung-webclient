@@ -10,17 +10,113 @@
                     @if($data->display_type == 2)
 
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
-                            <div class="item_buy_list_in">
+                            <div class="item_buy_list_in" style="position: relative">
+
+                                <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
+                                    <h3 style="position: relative">Thông tin tài khoản</h3>
+                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>
+
+                                    <div class="slider-container">
+                                        <div class="slider-turn" style="width: 100%">
+                                            <?php
+                                            $index = 0;
+                                            ?>
+                                            @if(isset($item->groups))
+                                                <?php
+                                                $att_values = $item->groups;
+                                                ?>
+                                                @foreach($att_values as $att_value)
+
+                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                        @if(isset($att_value->parent[0]))
+                                                            <?php
+                                                            $index = $index + 1;
+                                                            ?>
+                                                            @if($index < 5)
+                                                                <div class="row" style="margin: 0 auto;width: 100%">
+                                                                    <div class="col-6 fixcssacount item_buy_list_info_inacc">
+                                                                        {{ $att_value->parent[0]->title??null }} :
+                                                                    </div>
+                                                                    <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                        {{ $att_value->title??null }}
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
+                                            @if(isset($item->params) && isset($item->params->ext_info))
+                                                <?php
+                                                $params = json_decode(json_encode($item->params->ext_info),true);
+                                                ?>
+                                                @if($index < 5)
+
+                                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                        @foreach($dataAttribute as $index=>$att)
+                                                            @if($att->position == 'text')
+                                                                @if(isset($att->childs))
+                                                                    @foreach($att->childs as $child)
+                                                                        @foreach($params as $key => $param)
+                                                                            @if($key == $child->id && $child->is_slug_override == null)
+                                                                                <?php
+                                                                                $index++;
+                                                                                ?>
+                                                                                @if($index < 5)
+                                                                                    <div class="row" style="margin: 0 auto;width: 100%">
+                                                                                        <div class="col-6 item_buy_list_info_inacc">
+                                                                                            {{ $child->title??null }} :
+                                                                                        </div>
+                                                                                        <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                            {{ $param??null }}
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                @endif
+
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(".close{{ $item->randId }}").on("click", function(e) {
+                                        $('.tooltipaccount{{ $item->randId }}').addClass('hide');
+                                    });
+                                    $(".item_buy_list_img-main{{ $item->randId }}")
+                                        .on('mouseenter', function() {
+                                            $('.tooltipaccount{{ $item->randId }}').removeClass('hide');
+                                        })
+                                        .on('mouseout', function() {
+                                            $('.tooltipaccount{{ $item->randId }}').addClass('hide');
+                                        });
+
+
+                                    {{--$(".item_buy_list_img-main{{ $item->randId }}").hover(--}}
+                                    {{--    function() {--}}
+                                    {{--        --}}
+                                    {{--    },--}}
+                                    {{--);--}}
+                                </script>
                                 <div class="item_buy_list_img">
                                     <a href="javascript:void(0)" class="buyacc" data-balance="{{ $balance }}" data-params="{{ isset($item->params) && isset($item->params->ext_info) ? json_encode($item->params->ext_info) : '' }}" data-groups="{{ isset($item->groups) ? json_encode($item->groups) : '' }}" data-price="{{ $item->price }}" data-game="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" data-attribute="{{ json_encode($dataAttribute) }}" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
-                                            <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}">
+                                            <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}">
                                         @else
 
                                             @if(isset($item->image))
-                                                <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                             @else
-                                                <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
+                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
                                             @endif
                                         @endif
 
@@ -30,76 +126,76 @@
                                 <div class="item_buy_list_description">
                                     bảo hành 100%,lỗi hoàn tiền
                                 </div>
-                                <div class="item_buy_list_info">
-                                    <div class="row item_buy_list_info__row">
-                                        <?php
-                                        $index = 0;
-                                        ?>
-                                        @if(isset($item->groups))
-                                            <?php
-                                            $att_values = $item->groups;
-                                            ?>
-                                            @foreach($att_values as $att_value)
+{{--                                <div class="item_buy_list_info">--}}
+{{--                                    <div class="row item_buy_list_info__row">--}}
+{{--                                        <?php--}}
+{{--                                        $index = 0;--}}
+{{--                                        ?>--}}
+{{--                                        @if(isset($item->groups))--}}
+{{--                                            <?php--}}
+{{--                                            $att_values = $item->groups;--}}
+{{--                                            ?>--}}
+{{--                                            @foreach($att_values as $att_value)--}}
 
-                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    @if(isset($att_value->parent[0]))
-                                                        <?php
-                                                        $index = $index + 1;
-                                                        ?>
-                                                        @if($index < 5)
-                                                            <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-6 fixcssacount item_buy_list_info_inacc">
-                                                                    {{ $att_value->parent[0]->title??null }} :
-                                                                </div>
-                                                                <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                    {{ $att_value->title??null }}
-                                                                </div>
-                                                            </div>
-                                                        @endif
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                        @endif
+{{--                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)--}}
+{{--                                                    @if(isset($att_value->parent[0]))--}}
+{{--                                                        <?php--}}
+{{--                                                        $index = $index + 1;--}}
+{{--                                                        ?>--}}
+{{--                                                        @if($index < 5)--}}
+{{--                                                            <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                <div class="col-6 fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                    {{ $att_value->parent[0]->title??null }} :--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
+{{--                                                                    {{ $att_value->title??null }}--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        @endif--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
+{{--                                            @endforeach--}}
+{{--                                        @endif--}}
 
-                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                            <?php
-                                            $params = json_decode(json_encode($item->params->ext_info),true);
-                                            ?>
-                                            @if($index < 5)
+{{--                                        @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                                            <?php--}}
+{{--                                            $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                                            ?>--}}
+{{--                                            @if($index < 5)--}}
 
-                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                    @foreach($dataAttribute as $index=>$att)
-                                                        @if($att->position == 'text')
-                                                            @if(isset($att->childs))
-                                                                @foreach($att->childs as $child)
-                                                                    @foreach($params as $key => $param)
-                                                                        @if($key == $child->id && $child->is_slug_override == null)
-                                                                            <?php
-                                                                            $index++;
-                                                                            ?>
-                                                                            @if($index < 5)
-                                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-6 item_buy_list_info_inacc">
-                                                                                        {{ $child->title??null }} :
-                                                                                    </div>
-                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
-                                                                                        {{ $param??null }}
-                                                                                    </div>
-                                                                                </div>
+{{--                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                    @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                        @if($att->position == 'text')--}}
+{{--                                                            @if(isset($att->childs))--}}
+{{--                                                                @foreach($att->childs as $child)--}}
+{{--                                                                    @foreach($params as $key => $param)--}}
+{{--                                                                        @if($key == $child->id && $child->is_slug_override == null)--}}
+{{--                                                                            <?php--}}
+{{--                                                                            $index++;--}}
+{{--                                                                            ?>--}}
+{{--                                                                            @if($index < 5)--}}
+{{--                                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inacc">--}}
+{{--                                                                                        {{ $child->title??null }} :--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
+{{--                                                                                        {{ $param??null }}--}}
+{{--                                                                                    </div>--}}
+{{--                                                                                </div>--}}
 
-                                                                            @endif
-                                                                        @endif
-                                                                    @endforeach
-                                                                @endforeach
-                                                            @endif
+{{--                                                                            @endif--}}
+{{--                                                                        @endif--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                @endforeach--}}
+{{--                                                            @endif--}}
 
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                        @endif
-                                    </div>
-                                </div>
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="item_buy_list_more">
                                     <div class="row">
                                         <div class="col-12 fixcssacount">
@@ -161,11 +257,6 @@
                                                         <tr>
                                                             <td>Giá tiền:</td>
                                                             <th class="text-info">
-                                                                {{--                                                                @if(isset($data->params->price) && isset($data->params))--}}
-                                                                {{--                                                                    {{ str_replace(',','.',number_format($data->params->price)) }} đ--}}
-                                                                {{--                                                                @else--}}
-                                                                {{--                                                                    --}}
-                                                                {{--                                                                @endif--}}
                                                                 {{ str_replace(',','.',number_format($item->price)) }} đ
                                                             </th>
                                                         </tr>
@@ -225,6 +316,7 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-group form-group_buyacc ">
                                     @if(App\Library\AuthCustom::check())
 
@@ -260,6 +352,155 @@
                             </div>
                         </form>
                     </div>
+
+                        <style>
+
+                            .tooltipaccount h3 {
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: #666;
+                                margin: 16px;
+                            }
+                            .tooltipaccount a {
+                                text-decoration: none;
+                                color: #3476CA;
+                            }
+                            .tooltipaccount a:hover {
+                                color: #6CB5F3;
+                            }
+
+                            .tooltipaccount{
+                                position: absolute;
+                                width: 100%;
+                                height: auto;
+                                left: 100%;
+                                top: 40px;
+                                z-index: 9;
+                                background-color: #F3F3F3;
+                                border-radius: 6px;
+                                box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.4);
+                            }
+                            .tooltipaccount:before {
+                                content: '';
+                                position: absolute;
+                                left: -14px;
+                                top: 28px;
+                                border-style: solid;
+                                border-width: 10px 14px 10px 0;
+                                border-color: rgba(0, 0, 0, 0) #F3F3F3 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+                            }
+
+                            .tooltipaccount p {
+                                width: 350px;
+                                font-size: 16px;
+                                color: #a8aab2;
+                                font-weight: 400;
+                                line-height: 28px;
+                                float: left;
+                                margin: 0;
+                            }
+                            .tooltipaccount .bottom {
+                                display: -webkit-box;
+                                display: -moz-box;
+                                display: -ms-flexbox;
+                                display: -webkit-flex;
+                                display: flex;
+                                width: 100%;
+                                bottom: 0;
+                                position: absolute;
+                            }
+                            .tooltipaccount .bottom .step {
+                                flex: 3;
+                                -webkit-flex: 3;
+                                -ms-flex: 3;
+                                width: 100%;
+                                height: 54px;
+                                background-color: #373942;
+                                border-bottom-left-radius: 6px;
+                                display: flex;
+                            }
+                            .tooltipaccount .bottom .step span {
+                                flex: 1;
+                                -webkit-flex: 1;
+                                -ms-flex: 1;
+                                line-height: 54px;
+                                color: #fff;
+                                margin-left: 25px;
+                                font-size: 18px;
+                            }
+                            .tooltipaccount .bottom .step ul {
+                                flex: 2;
+                                -webkit-flex: 2;
+                                -ms-flex: 2;
+                                list-style: none;
+                                height: 10px;
+                                margin: 23px 0;
+                                padding-left: 15px;
+                            }
+                            .tooltipaccount .bottom .step ul li {
+                                position: relative;
+                                height: 7px;
+                                width: 7px;
+                                margin: 0 10px;
+                                float: left;
+                                border-radius: 50%;
+                                background: none;
+                                border: 1px solid #535560;
+                            }
+                            .tooltipaccount .bottom .step ul li:first-child:before {
+                                width: 0;
+                            }
+                            .tooltipaccount .bottom .step ul li:before {
+                                content: '';
+                                position: absolute;
+                                width: 20px;
+                                border-top: 1px solid #535560;
+                                left: -21px;
+                                top: 3px;
+                            }
+                            .tooltipaccount .bottom .step ul li.true {
+                                background-color: #7a7d86;
+                            }
+                            .tooltipaccount .bottom .step ul li.active {
+                                background-color: #fff;
+                                box-shadow: 0 0 6px rgba(255, 255, 255, 0.78);
+                            }
+                            .tooltipaccount .close {
+                                cursor: pointer;
+                            }
+                            .close_position{
+                                font-size: 16px!important;
+                                position: absolute;
+                                top: 16px;
+                                right: 16px;
+                            }
+                            .tooltipaccount .btn {
+                                flex: 1;
+                                background-color: #6cb5f3;
+                                border: 0;
+                                margin: 0;
+                                padding: 0;
+                                text-transform: uppercase;
+                                color: #fff;
+                                font-weight: bold;
+                                border-bottom-right-radius: 6px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            }
+                            .tooltipaccount .btn:hover {
+                                background-color: #6BA5D6;
+                                transition: all 0.3s;
+                            }
+                            .tooltipaccount .btn:active {
+                                background-color: #5F8AAF;
+                            }
+                            .tooltipaccount .slider-container {
+                                width: 100%;
+                                padding-bottom: 16px;
+                                overflow: hidden;
+                            }
+
+                        </style>
 
                     @else
                         {{--                    Nick thường--}}
