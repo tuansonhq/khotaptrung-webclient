@@ -16,7 +16,6 @@
                             <p>NẠP THẺ</p>
                             <div class="account_sidebar_content_line"></div>
                         </div>
-
                         @if (setting('sys_charge_content') != "")
                             <div class="alert alert-primary" role="alert">
                                 {!! setting('sys_charge_content') !!}
@@ -26,17 +25,8 @@
                         <div class="row justify-content-center" id="loading-data">
                             <div class="loading"></div>
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div><br />
-                        @endif
                         <div class="col-auto pl-0 pr-0 hide" id="form-content">
-                            <form method="post" action="{{url('captcha-validation')}}">
+                            <form action="{{route('postCharge')}}" method="POST" class="form-charge" id="form-charge2">
                                 @csrf
                                 {{--                   <div class="form-group row">--}}
                                 {{--                    <label class="col-md-3 control-label">--}}
@@ -97,17 +87,23 @@
                                         Mã bảo vệ:
                                     </label>
                                     <div class="col-md-6">
-                                        <div class="form-group mt-4 mb-4">
-                                            <div class="captcha">
-                                                <span>{!! captcha_img() !!}</span>
-                                                <button type="button" class="btn btn-danger" class="reload" id="reload">
-                                                    &#x21bb;
-                                                </button>
-                                            </div>
-                                        </div>
+                                        <div class="input-group" style="width: 100%">
+                                            <input type="text" class="form-control" name="captcha1" id="captcha"  required>
+                                            <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
+                                                <div class="captcha_1">
+                                  <span class="reload">
+                                      <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode').src =new URL(window.location.href).origin+'/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
 
-                                        <div class="form-group mb-4">
-                                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+{{--                                  {!! captcha_img('flat') !!}--}}
+                                  </span>
+
+                                                </div>
+
+                                            </div>
+                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src='captcha/default?'+Math.random()">
+                                                &#x21bb;
+                                            </button>
+
                                         </div>
 
                                     </div>
