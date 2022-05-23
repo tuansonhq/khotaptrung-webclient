@@ -15,6 +15,16 @@ $(document).ready(function(){
     //
     // });
 
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+    });
+
     function getTelecom(){
 
         var url = '/get-tele-card';
@@ -186,7 +196,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('#reload_1').trigger('click');
+                // $('#reload_1').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
