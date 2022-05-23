@@ -16,6 +16,7 @@
                             <p>NẠP THẺ</p>
                             <div class="account_sidebar_content_line"></div>
                         </div>
+
                         @if (setting('sys_charge_content') != "")
                             <div class="alert alert-primary" role="alert">
                                 {!! setting('sys_charge_content') !!}
@@ -25,8 +26,17 @@
                         <div class="row justify-content-center" id="loading-data">
                             <div class="loading"></div>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div><br />
+                        @endif
                         <div class="col-auto pl-0 pr-0 hide" id="form-content">
-                            <form action="{{route('postCharge')}}" method="POST" class="form-charge" id="form-charge2">
+                            <form method="post" action="{{url('captcha-validation')}}">
                                 @csrf
                                 {{--                   <div class="form-group row">--}}
                                 {{--                    <label class="col-md-3 control-label">--}}
@@ -97,7 +107,7 @@
                                         </div>
 
                                         <div class="form-group mb-4">
-                                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha1">
+                                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
                                         </div>
 
                                     </div>
