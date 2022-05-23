@@ -67,7 +67,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             Route::get('/theme', function ()
             {
-                return view('frontend.index');
+                return view('index');
             });
             Route::get('/clear', function ()
             {
@@ -106,12 +106,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 });
 
-                // ROUTE cần auth load dữ liệu không cache
 
-                Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
-                Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
-
-                Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
 
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
@@ -153,7 +148,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
 
-                                Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
+                            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
                             // route post mua thẻ
 
                             //lịch sử nạp thẻ
@@ -198,6 +193,12 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
 
                         });
+                        // ROUTE cần auth load dữ liệu không cache
+
+                        Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
+                        Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
+
+                        Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
                         Route::post('/nap-the-tu-dong', [\App\Http\Controllers\Frontend\ChargeController::class , 'postCharge'])->name('postCharge');
 
