@@ -16,7 +16,6 @@
                             <li>/</li>
                             <li><a href="/mua-acc/{{ isset($data_category->custom->slug) ? $data_category->custom->slug :  $data_category->slug }}" class="news_breadcrumbs_theme_tintuc_a"><p class="news_breadcrumbs_theme_tintuc">{{ isset($data_category->custom->title) ? $data_category->custom->title :  $data_category->title }}</p></a></li>
                         </ul>
-{{--                        @include('frontend.pages.account.function.__data__menu__buyacc')--}}
                     </div>
                 </div>
             </div>
@@ -38,7 +37,6 @@
                         </div>
                     </div>
                     @include('frontend.pages.account.widget.__related')
-
                 </div>
             </div>
 
