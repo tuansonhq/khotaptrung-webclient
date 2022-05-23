@@ -14,7 +14,7 @@
 
                                 <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
                                     <h3 style="position: relative">Thông tin tài khoản</h3>
-                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>
+{{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
 
                                     <div class="slider-container">
                                         <div class="slider-turn" style="width: 100%">
