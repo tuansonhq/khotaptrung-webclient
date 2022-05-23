@@ -11,7 +11,7 @@
 
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in" style="position: relative">
-
+                                @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))
                                 <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
                                     <h3 style="position: relative">Thông tin tài khoản</h3>
 {{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
@@ -107,6 +107,7 @@
                                     {{--    },--}}
                                     {{--);--}}
                                 </script>
+                                @endif
                                 <div class="item_buy_list_img">
                                     <a href="javascript:void(0)" class="buyacc" data-balance="{{ $balance }}" data-params="{{ isset($item->params) && isset($item->params->ext_info) ? json_encode($item->params->ext_info) : '' }}" data-groups="{{ isset($item->groups) ? json_encode($item->groups) : '' }}" data-price="{{ $item->price }}" data-game="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" data-attribute="{{ json_encode($dataAttribute) }}" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
@@ -376,7 +377,7 @@
                                 left: 100%;
                                 top: 40px;
                                 z-index: 9;
-                                background-color: #F3F3F3;
+                                background-color: #FFFFFF!important;
                                 border-radius: 6px;
                                 box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.4);
                             }
@@ -387,7 +388,7 @@
                                 top: 28px;
                                 border-style: solid;
                                 border-width: 10px 14px 10px 0;
-                                border-color: rgba(0, 0, 0, 0) #F3F3F3 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+                                border-color: rgba(0, 0, 0, 0) #FFFFFF; rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
                             }
 
                             .tooltipaccount p {
