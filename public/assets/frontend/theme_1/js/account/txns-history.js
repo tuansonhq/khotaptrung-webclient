@@ -24,6 +24,11 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accounttxns', function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+
         var config = $('.config').val();
         var started_at = $('.started_at').val();
         var ended_at = $('.ended_at').val();
@@ -67,6 +72,11 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmlloading);
 
         $('.config_data').val('');
         $('.status_data').val('');
@@ -123,7 +133,7 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-
+                $('.loading-data__timkiem').html('');
                 if (data.status == 1){
 
 

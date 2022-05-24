@@ -62,8 +62,18 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="input-group">
-                                                <button type="submit" class="btn">Tìm kiếm</button>
-                                                <a href="javascript:void(0)" class="btn btn-danger btn-all">Tất cả</a>
+                                                <button type="submit" class="btn btn-timkiem" style="position: relative">
+                                                    Tìm kiếm
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
+                                                <a href="javascript:void(0)" class="btn btn-danger btn-all" style="position: relative">
+                                                    Tất cả
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                         {{--                                        <div class="col-12 col-md-6">--}}
