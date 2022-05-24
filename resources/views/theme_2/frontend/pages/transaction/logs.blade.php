@@ -1,20 +1,20 @@
 @if(empty($data->data))
 
-<div class="table-responsive">
-    <table cellspacing="0" cellpadding="0" class="table table-hover">
-        <thead>
-        <tr>
-            <th class="text-secondary">Thời gian</th>
-            <th class="text-secondary">ID</th>
-            <th class="text-secondary">Tài khoản </th>
-            <th class="text-secondary">Giao dịch</th>
-            <th class="text-secondary">Số tiền</th>
-            <th class="text-secondary">Số dư cuối</th>
-            <th class="text-secondary">Nội dung</th>
-            <th class="text-secondary">Trạng thái</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="table-responsive">
+        <table cellspacing="0" cellpadding="0" class="table table-hover">
+            <thead>
+            <tr>
+                <th class="text-secondary">Thời gian</th>
+                <th class="text-secondary">ID</th>
+                <th class="text-secondary">Tài khoản </th>
+                <th class="text-secondary">Giao dịch</th>
+                <th class="text-secondary">Số tiền</th>
+                <th class="text-secondary">Số dư cuối</th>
+                <th class="text-secondary">Nội dung</th>
+                <th class="text-secondary">Trạng thái</th>
+            </tr>
+            </thead>
+            <tbody>
 
             @php
                 $prev = null;
@@ -114,9 +114,9 @@
                 </tr>
             @endif
 
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 
 @endif
 <div class="row">

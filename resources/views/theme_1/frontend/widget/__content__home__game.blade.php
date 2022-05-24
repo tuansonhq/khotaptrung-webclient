@@ -20,7 +20,7 @@
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
                                     @if(isset($item->custom->image_icon))
-                                        <img class="game-list-image-sticky" src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
+                                        <img class="game-list-image-sticky lazy" src="{{ \App\Library\MediaHelpers::media($item->custom->image_icon) }}" alt="">
                                     @else
                                         <img class="game-list-image-sticky" src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                     @endif
@@ -28,7 +28,7 @@
                                     <img class="game-list-image-sticky" src="/assets/frontend/theme_1/images/giamgia.png" alt="">
                                 @endif
                                 @if(isset($item->image))
-                                    <img class="game-list-image-in" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                    <img class="game-list-image-in lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                 @else
                                     <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
                                 @endif
@@ -64,7 +64,7 @@
                                     @if(isset($item->custom) && isset($item->custom->meta) && isset($item->custom->meta->image_btn))
                                         @foreach($item->custom->meta as $key =>$val)
                                             @if($key == "image_btn")
-                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
+                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                             @endif
                                         @endforeach
                                     @else
