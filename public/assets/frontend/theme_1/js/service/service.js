@@ -34,6 +34,7 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                $('.loading-data__timkiem').html('');
                 if (data.status == 1){
 
                     $("#getshowservice_data").empty().html('');
@@ -61,7 +62,12 @@ $(document).ready(function(){
     $(document).on('submit', '.form_get_show_service', function(e){
         e.preventDefault();
 
-        var title = $('.title').val();
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+
+        var title = $('.form_get_show_service .title').val();
 
         if (title == null || title == undefined || title == ''){
             $('.title_data').val('');
@@ -83,6 +89,10 @@ $(document).ready(function(){
         // htmlloading += '<div class="loading"></div>';
         // $('.loading-data__all').html('');
         // $('.loading-data__all').html(htmlloading);
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-tatca .loading-data__timkiem').html('');
+        $('.btn-tatca .loading-data__timkiem').html(htmlloading);
 
         $('.title_data').val('');
         $('.title').val('');
@@ -95,10 +105,46 @@ $(document).ready(function(){
 
     });
 
-    // $('.btn-news').click(function (e) {
-    //     e.preventDefault();
-    //     var querry = $('.input-news').val();
-    //
-    //     window.location.href = '/dich-vu?page=1&querry=' + querry + '';
-    // })
+    $(document).on('submit', '.form_category_service_mobile', function(e){
+        e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn_timkiem_mobile .loading-data__timkiem').html('');
+        $('.btn_timkiem_mobile .loading-data__timkiem').html(htmlloading);
+
+        var title = $('.form_category_service_mobile .title').val();
+
+        if (title == null || title == undefined || title == ''){
+            $('.title_data').val('');
+        }else {
+            $('.title_data').val(title);
+        }
+
+        var title_data = $('.title_data').val();
+
+        var page = $('#hidden_page_service__show').val();
+
+        loadDataService(page,title_data)
+
+    });
+
+    $('body').on('click','.btn-tatca-mobile',function(e){
+        e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-tatca-mobile .loading-data__timkiem').html('');
+        $('.btn-tatca-mobile .loading-data__timkiem').html(htmlloading);
+
+        $('.title_data').val('');
+        $('.form_category_service_mobile .title').val('');
+
+        var title_data = $('.title_data').val();
+
+        var page = $('#hidden_page_service__show').val();
+
+        loadDataService(page,title_data)
+
+    });
 })

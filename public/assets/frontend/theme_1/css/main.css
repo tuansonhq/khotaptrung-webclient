@@ -1604,9 +1604,17 @@ footer{
     .hidelistacountrandom{
         display: block!important;
     }
+    .loading-data__timkiem{
+        left: 40%!important;
+        top: 10px!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .loading-data__timkiem{
+        left: 40%!important;
+        top: 10px!important;
+    }
     .hidelistacountrandom{
         display: block!important;
     }

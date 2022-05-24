@@ -45,6 +45,8 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                $('.loading-data__timkiem').html('');
+
                 if (data.status == 1){
                     $('#data_service_history').html('');
                     $('#data_service_history').html(data.data);
@@ -83,11 +85,10 @@ $(document).ready(function(){
     $(document).on('submit', '.account_service_history__v2', function(e){
         e.preventDefault();
 
-        // var htmlloading = '';
-        //
-        // htmlloading += '<div class="loading"></div>';
-        // $('.loading-data__timkiem').html('');
-        // $('.loading-data__timkiem').html(htmlloading);
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
 
         var id = $('.id').val();
         var key = $('.key').val();
@@ -140,6 +141,11 @@ $(document).ready(function(){
     $('body').on('click','.btn-all',function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmlloading);
+
         $('.id_data').val('');
         $('.key_data').val('');
         $('.status_data').val('');
@@ -159,6 +165,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-hom-nay',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-hom-nay .loading-data__timkiem').html('');
+        $('.btn-hom-nay .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_day_dv').val();
 
         var dateEndTime = $('.end_at_day_dv').val();
@@ -182,6 +194,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-hom-qua',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-hom-qua .loading-data__timkiem').html('');
+        $('.btn-hom-qua .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_yes_dv').val();
         var dateEndTime = $('.end_at_yes_dv').val();
 
@@ -204,6 +222,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-thang-nay',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-thang-nay .loading-data__timkiem').html('');
+        $('.btn-thang-nay .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_month_dv').val();
         var dateEndTime = $('.end_at_month_dv').val();
 

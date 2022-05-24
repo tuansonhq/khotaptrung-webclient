@@ -66,17 +66,40 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit" style="position: relative"><i class="fas fa-search"></i>
+                                    <button class="btn c-theme-btn c-btn-square m-b-10 btn-timkiem" type="submit" style="position: relative"><i class="fas fa-search"></i>
                                         Tìm kiếm
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
                                     </button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm nay</a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Hôm qua </a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tháng này</a>
-                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 c-theme-btn btn-all mb-2 mr-2"><i class="fas fa-calendar-alt"></i> Tất cả</a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-nay mb-2 mr-2" style="position: relative">
+                                        <i class="fas fa-calendar-alt"></i> Hôm nay
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-hom-qua mb-2 mr-2" style="position: relative">
+                                        <i class="fas fa-calendar-alt"></i> Hôm qua
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" class="btn c-btn-square m-b-10 btn-danger btn-thang-nay mb-2 mr-2" style="position: relative">
+                                        <i class="fas fa-calendar-alt"></i> Tháng này
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </a>
+                                    <a href="javascript:void(0)" class="loaddingtatca btn c-btn-square m-b-10 c-theme-btn btn-all mb-2 mr-2" style="position: relative">
+                                        <i class="fas fa-calendar-alt"></i> Tất cả
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </form>

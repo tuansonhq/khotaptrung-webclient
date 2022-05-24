@@ -44,17 +44,28 @@
                     <div class="row">
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
-                                <span class="input-group-addon">Tìm kiếm</span>
+                                <span class="input-group-addon">
+                                    Tìm kiếm
+
+                                </span>
                                 <input type="text" name="title" class="form-control title" placeholder="Tìm kiếm">
                             </div>
                         </div>
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
-                                <button type="submit" class="btn btn-category-service">Tìm kiếm</button>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-tatca" style="position: relative">Tất cả</a>
-                                <div class="row justify-content-center loading-data__all">
+                                <button type="submit" class="btn btn-category-service btn-timkiem" style="position: relative">
+                                    Tìm kiếm
+                                    <div class="row justify-content-center loading-data__timkiem">
 
-                                </div>
+                                    </div>
+                                </button>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-tatca" style="position: relative">
+                                    Tất cả
+                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                    </div>
+                                </a>
+
                             </div>
                         </div>
                     </div>
@@ -82,13 +93,23 @@
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
                                         <span class="input-group-addon">Tìm kiếm</span>
-                                        <input type="text" class="form-control input-news-mobile" placeholder="Tìm kiếm">
+                                        <input type="text" name="title" class="form-control input-news-mobile title" placeholder="Tìm kiếm">
                                     </div>
                                 </div>
                                 <div class="col-12 item_buy_form_search">
                                     <div class="input-group">
-                                        <button type="submit" class="btn btn-category-service-mobile">Tìm kiếm</button>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-tatca-mobile">Tất cả</a>
+                                        <button type="submit" class="btn btn-category-service-mobile btn_timkiem_mobile" style="position: relative">
+                                            Tìm kiếm
+                                            <div class="row justify-content-center loading-data__timkiem">
+
+                                            </div>
+                                        </button>
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-tatca-mobile">
+                                            Tất cả
+                                            <div class="row justify-content-center loading-data__timkiem">
+
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
