@@ -1,6 +1,4 @@
 @if(isset($data))
-
-
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
@@ -250,7 +248,7 @@
                                         <a href="#paymentv2" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
                                     </li>
                                     <li role="presentation" class="justified__ul_li">
-                                        <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Tài khoản</a>
+                                        <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Thông tin tài khoản</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -334,6 +332,7 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -396,42 +395,6 @@
     @endif
 @endif
 
-{{--<style>--}}
-
-{{--    .c-content-tab-4.c-opt-3 > .nav > li > a {--}}
-{{--        color: #ffffff;--}}
-{{--        background-color: #d5e0ea;--}}
-{{--    }--}}
-{{--    .c-content-tab-4.c-opt-3 > .nav > li > a.active {--}}
-{{--        color: #ffffff;--}}
-{{--        background-color: #5bc2ce!important;--}}
-{{--    }--}}
-{{--    .c-content-tab-4 ul{--}}
-{{--        padding-left: 0!important;--}}
-{{--    }--}}
-{{--    .c-content-tab-4 ul li{--}}
-{{--        list-style: none!important;--}}
-{{--    }--}}
-
-{{--    .justified__ul_li{--}}
-{{--        width: 50% !important;--}}
-{{--        text-align: center!important;--}}
-
-{{--    }--}}
-
-{{--    .justified__ul_li a{--}}
-{{--        display: flex!important;--}}
-{{--        justify-content: center;--}}
-{{--        padding: 20px;--}}
-{{--    }--}}
-{{--    .justified__ul_li a:hover{--}}
-{{--        text-decoration: none!important;--}}
-{{--    }--}}
-{{--    .c-content-tab-4.c-opt-3 > .nav > li > a {--}}
-{{--        color: #ffffff;--}}
-{{--        background-color: #d5e0ea;--}}
-{{--    }--}}
-{{--</style>--}}
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/slider.js"></script>
 
