@@ -39,7 +39,7 @@
 
                         <div class="description_product">
 
-                            <ul class="nav nav-tab-booking" role="tablist" >
+                            <ul class="nav nav-tab-booking" role="tablist" style="">
                                 <li role="presentation" class="" >
                                     <a  class="nav-item active" data-toggle="tab" href="#acc_info" role="tab"  >
                                        Thông tin
@@ -77,7 +77,7 @@
                                 </li>
                                 <li role="presentation" class="" >
                                     <a  class="nav-item " data-toggle="tab" href="#tftmapskins-tab" role="tab"  >
-                                        Dame đòn đánh tft ( trưởng lực )
+                                        Chưởng lực TFT
 
                                     </a>
                                 </li>
@@ -95,7 +95,7 @@
                                     <div class="row m-0" id="champions-list">
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
                                                         <span class="costume_title">
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
                                                         <span class="costume_title">
@@ -121,7 +121,7 @@
                                         </div>
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
                                                         <span class="costume_title">
@@ -132,218 +132,6 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                            <div class="costume_item_detail">
-                                                <a href="">
-                                                    <div class="costume_image">
-                                                        <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                        <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                    </div>
-
-                                                </a>
-                                            </div>
-                                        </div>
-
 
                                     </div>
                                 </div>
@@ -354,225 +142,28 @@
                                     </div>
                                     <div class="row m-0" id="acc_costume_list">
                                         <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
+                                            <a data-fancybox="acc_costume_list" href="/assets/frontend/theme_1/images/tuong.png">
                                                 <div class="generals_image">
                                                     <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
                                                     <span class="generals_title">
                                                            Galio
-                                                        </span>
+                                                    </span>
                                                 </div>
 
                                             </a>
                                         </div>
                                         <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong2.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong3.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
+                                            <a data-fancybox="acc_costume_list" href="/assets/frontend/theme_1/images/tuong.png">
                                                 <div class="generals_image">
                                                     <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
                                                     <span class="generals_title">
                                                            Galio
-                                                        </span>
+                                                    </span>
                                                 </div>
 
                                             </a>
                                         </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
 
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                        <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                            <a href="">
-                                                <div class="generals_image">
-                                                    <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                    <span class="generals_title">
-                                                           Galio
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
 
 
 
@@ -586,7 +177,7 @@
                                     <div class="row m-0" id="acc_color_list">
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac.png">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/dasac.png" alt="">
                                                         <span class="costume_title">
@@ -600,7 +191,7 @@
                                         </div>
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac2.png">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/dasac2.png" alt="">
                                                         <span class="costume_title">
@@ -614,7 +205,7 @@
                                         </div>
                                         <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="costume_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac3.png">
                                                     <div class="costume_image">
                                                         <img src="/assets/frontend/theme_1/images/dasac3.png" alt="">
                                                         <span class="costume_title">
@@ -638,7 +229,7 @@
                                     <div class="row m-0" id="tftcompanions_list">
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/linhthu.png" alt="">
 
@@ -652,7 +243,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/linhthu.png" alt="">
 
@@ -666,7 +257,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu3.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/linhthu3.png" alt="">
 
@@ -680,7 +271,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu2.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/linhthu2.png" alt="">
 
@@ -705,7 +296,7 @@
                                     <div class="row m-0" id="tftdamageskins_list">
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/sandau.png" alt="">
                                                         <div class="mapskin_title">
@@ -719,7 +310,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau2.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/sandau2.png" alt="">
                                                         <div class="mapskin_title">
@@ -733,7 +324,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau3.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/sandau3.png" alt="">
                                                         <div class="mapskin_title">
@@ -758,7 +349,7 @@
                                     <div class="row m-0" id="tftmapskins_list">
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
                                                         <div class="mapskin_title">
@@ -772,7 +363,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
                                                         <div class="mapskin_title">
@@ -786,7 +377,7 @@
                                         </div>
                                         <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
                                             <div class="skin_item_detail">
-                                                <a href="">
+                                                <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
                                                     <div class="skin_image">
                                                         <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
                                                         <div class="mapskin_title">
