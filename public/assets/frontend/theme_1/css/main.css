@@ -1598,9 +1598,21 @@ footer{
     .game-list-title h3 {
         font-size: 14px!important;
     }
+    .item_buy_list_info_inacc{
+        font-size: 14px!important;
+    }
+    .hidelistacountrandom{
+        display: block!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .hidelistacountrandom{
+        display: block!important;
+    }
+    .item_buy_list_info_inacc{
+        font-size: 14px!important;
+    }
     .game-list-title h3 {
         font-size: 14px!important;
     }
@@ -1781,6 +1793,9 @@ footer{
     }
 }
 
+.hidelistacountrandom{
+    display: none;
+}
 /*.news_content iframe{*/
 /*    max-width: 90%!important;*/
 /*    padding: 12px 0;*/
