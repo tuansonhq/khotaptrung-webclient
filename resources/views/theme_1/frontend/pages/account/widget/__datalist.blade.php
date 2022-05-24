@@ -9,11 +9,11 @@
                 @if($item->status == 1)
                     @if($data->display_type == 2)
 
-                        <div class="col-6 fixcssacount col-sm-6 col-lg-3">
+                    <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in" style="position: relative">
                                 @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))
                                 <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
-                                    <h3 style="position: relative">Thông tin tài khoản</h3>
+                                    <h3 style="position: relative;text-align: center" >Thông tin tài khoản</h3>
 {{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
 
                                     <div class="slider-container">
@@ -34,10 +34,10 @@
                                                             ?>
                                                             @if($index < 5)
                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-6 fixcssacount item_buy_list_info_inacc">
+                                                                    <div class="col-5 fixcssacount item_buy_list_info_inacc" style="padding-right: 0">
                                                                         {{ $att_value->parent[0]->title??null }} :
                                                                     </div>
-                                                                    <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                    <div class="col-7 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;padding-left: 0">
                                                                         {{ $att_value->title??null }}
                                                                     </div>
                                                                 </div>
@@ -65,10 +65,10 @@
                                                                                 ?>
                                                                                 @if($index < 5)
                                                                                     <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                        <div class="col-6 item_buy_list_info_inacc">
+                                                                                        <div class="col-5 item_buy_list_info_inacc" style="padding-right: 0">
                                                                                             {{ $child->title??null }} :
                                                                                         </div>
-                                                                                        <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                        <div class="col-7 item_buy_list_info_inaccright" style="color: #666;font-weight: 600;padding-left: 0">
                                                                                             {{ $param??null }}
                                                                                         </div>
                                                                                     </div>
@@ -127,76 +127,6 @@
                                 <div class="item_buy_list_description">
                                     bảo hành 100%,lỗi hoàn tiền
                                 </div>
-{{--                                <div class="item_buy_list_info">--}}
-{{--                                    <div class="row item_buy_list_info__row">--}}
-{{--                                        <?php--}}
-{{--                                        $index = 0;--}}
-{{--                                        ?>--}}
-{{--                                        @if(isset($item->groups))--}}
-{{--                                            <?php--}}
-{{--                                            $att_values = $item->groups;--}}
-{{--                                            ?>--}}
-{{--                                            @foreach($att_values as $att_value)--}}
-
-{{--                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)--}}
-{{--                                                    @if(isset($att_value->parent[0]))--}}
-{{--                                                        <?php--}}
-{{--                                                        $index = $index + 1;--}}
-{{--                                                        ?>--}}
-{{--                                                        @if($index < 5)--}}
-{{--                                                            <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                                <div class="col-6 fixcssacount item_buy_list_info_inacc">--}}
-{{--                                                                    {{ $att_value->parent[0]->title??null }} :--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
-{{--                                                                    {{ $att_value->title??null }}--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        @endif--}}
-{{--                                                    @endif--}}
-{{--                                                @endif--}}
-{{--                                            @endforeach--}}
-{{--                                        @endif--}}
-
-{{--                                        @if(isset($item->params) && isset($item->params->ext_info))--}}
-{{--                                            <?php--}}
-{{--                                            $params = json_decode(json_encode($item->params->ext_info),true);--}}
-{{--                                            ?>--}}
-{{--                                            @if($index < 5)--}}
-
-{{--                                                @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
-{{--                                                    @foreach($dataAttribute as $index=>$att)--}}
-{{--                                                        @if($att->position == 'text')--}}
-{{--                                                            @if(isset($att->childs))--}}
-{{--                                                                @foreach($att->childs as $child)--}}
-{{--                                                                    @foreach($params as $key => $param)--}}
-{{--                                                                        @if($key == $child->id && $child->is_slug_override == null)--}}
-{{--                                                                            <?php--}}
-{{--                                                                            $index++;--}}
-{{--                                                                            ?>--}}
-{{--                                                                            @if($index < 5)--}}
-{{--                                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                                                    <div class="col-6 item_buy_list_info_inacc">--}}
-{{--                                                                                        {{ $child->title??null }} :--}}
-{{--                                                                                    </div>--}}
-{{--                                                                                    <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">--}}
-{{--                                                                                        {{ $param??null }}--}}
-{{--                                                                                    </div>--}}
-{{--                                                                                </div>--}}
-
-{{--                                                                            @endif--}}
-{{--                                                                        @endif--}}
-{{--                                                                    @endforeach--}}
-{{--                                                                @endforeach--}}
-{{--                                                            @endif--}}
-
-{{--                                                        @endif--}}
-{{--                                                    @endforeach--}}
-{{--                                                @endif--}}
-{{--                                            @endif--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                                 <div class="item_buy_list_more">
                                     <div class="row">
                                         <div class="col-12 fixcssacount">
@@ -231,18 +161,19 @@
                                 <div class="c-content-tab-4 c-opt-3" role="tabpanel">
                                     <ul class="nav nav-justified nav-justified__ul" role="tablist">
                                         <li role="presentation" class="active justified__ul_li">
-                                            <a href="#paymentv2" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active">Thanh toán</a>
+                                            <a href="#paymentv2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active paymentv2{{ $item->randId }}">Thanh toán</a>
                                         </li>
                                         <li role="presentation" class="justified__ul_li">
-                                            <a href="#info2" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16">Tài khoản</a>
+                                            <a href="#infov2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16 infov2{{ $item->randId }}">Thông tin tài khoản</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active show" id="paymentv2">
+                                        <div role="tabpanel" class="tab-pane fade in active show tabpaymentv2{{ $item->randId }}" id="paymentv2{{ $item->randId }}">
                                             <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                                                 <li class="c-font-dark">
                                                     <table class="table table-striped">
-                                                        <tbody><tr>
+                                                        <tbody>
+                                                        <tr>
                                                             <th colspan="2">Thông tin tài khoản #{{ $item->randId }}</th>
                                                         </tr>
                                                         </tbody><tbody>
@@ -266,7 +197,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="info2">
+                                        <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
                                             <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
                                                 <li class="c-font-dark">
                                                     <table class="table table-striped">
@@ -317,7 +248,31 @@
                                     </div>
                                 </div>
 
+                                <script>
+                                    $(document).ready(function () {
+                                        $(document).on('click', '.paymentv2{{ $item->randId }}',function(e){
+                                            e.preventDefault();
+                                            $('.tabpaymentv2{{ $item->randId }}').addClass('in');
+                                            $('.tabpaymentv2{{ $item->randId }}').addClass('active');
+                                            $('.tabpaymentv2{{ $item->randId }}').addClass('show');
 
+                                            $('.tabinfov2{{ $item->randId }}').removeClass('show');
+                                            $('.tabinfov2{{ $item->randId }}').removeClass('active');
+                                            $('.tabinfov2{{ $item->randId }}').removeClass('in');
+                                        });
+
+                                        $(document).on('click', '.infov2{{ $item->randId }}',function(e){
+                                            e.preventDefault();
+                                            $('.tabinfov2{{ $item->randId }}').addClass('in');
+                                            $('.tabinfov2{{ $item->randId }}').addClass('active');
+                                            $('.tabinfov2{{ $item->randId }}').addClass('show');
+
+                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('show');
+                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('active');
+                                            $('.tabpaymentv2{{ $item->randId }}').removeClass('in');
+                                        });
+                                    })
+                                </script>
                                 <div class="form-group form-group_buyacc ">
                                     @if(App\Library\AuthCustom::check())
 
@@ -542,10 +497,10 @@
                                                                 $total = $total + 1;
                                                             ?>
                                                             <div class="row" style="margin: 0 auto;width: 100%">
-                                                                <div class="col-5 fixcssacount item_buy_list_info_inacc">
+                                                                <div class="col-5 fixcssacount item_buy_list_info_inacc" style="padding-right: 0">
                                                                     {{ $att_value->parent[0]->title??null }} :
                                                                 </div>
-                                                                <div class="col-7 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                <div class="col-7 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;padding-left: 0">
                                                                     {{ $att_value->title??null    }}
                                                                 </div>
                                                             </div>
@@ -575,10 +530,10 @@
                                                                                     $total = $total + 1;
                                                                                     ?>
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-5 item_buy_list_info_inacc">
+                                                                                    <div class="col-5 item_buy_list_info_inacc" style="padding-right: 0">
                                                                                         {{ $child->title??null }} :
                                                                                     </div>
-                                                                                    <div class="col-7 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                    <div class="col-7 item_buy_list_info_inaccright" style="color: #666;font-weight: 600;padding-left: 0">
                                                                                         {{ $param??null }}
                                                                                     </div>
                                                                                 </div>
