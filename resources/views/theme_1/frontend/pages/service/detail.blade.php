@@ -173,7 +173,7 @@
                                         <input type="hidden" name="value" value="">
                                         <input type="hidden" name="selected" value="">
                                         <input type="hidden" name="server">
-                                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 Xu</a>
+                                        <a id="txtPrice" style="font-size: 20px;font-weight: bold;text-decoration: none;color: #FFFFFF" class="">Tổng: 0 VNĐ</a>
                                         <button id="btnPurchase" type="button" style="font-size: 20px;" class="followus"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</button>
                                     </div>
                                 </div>
