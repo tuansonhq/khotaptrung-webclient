@@ -344,7 +344,12 @@
     margin-right: 0;
     margin-left: 0;
 }
+@media (min-width: 992px) {
+    .description_product .nav{
+        justify-content: space-around;
+    }
 
+}
 @media (max-width: 992px) {
     .mapskin_title{
         font-size: 12px;
@@ -360,7 +365,11 @@
         width: 100%;
     }
     .nav-tab-booking li a{
-        width: 100%;
+        width: 160px;
+    }
+    .description_product .nav{
+        flex-wrap: nowrap;
+        overflow-x: scroll;
     }
 }
 #champions-list{
