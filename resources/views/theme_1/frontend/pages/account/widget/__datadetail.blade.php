@@ -7,7 +7,7 @@
                         @foreach(explode('|',$data->image_extension) as $val)
                             <div class="swiper-slide">
                                 <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" >
                                 </a>
                             </div>
                         @endforeach
@@ -26,7 +26,7 @@
                         @foreach(explode('|',$data->image_extension) as $val)
                             <div class="swiper-slide">
                                 <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                 </a>
                             </div>
                         @endforeach
