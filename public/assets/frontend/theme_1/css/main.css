@@ -1606,7 +1606,7 @@ footer{
         font-size: 14px!important;
     }
     .item_buy_list_info_inacc{
-        font-size: 14px!important;
+        font-size: 12px!important;
     }
     .hidelistacountrandom{
         display: block!important;
@@ -1615,9 +1615,26 @@ footer{
         left: 40%!important;
         top: 10px!important;
     }
+    .item_buy_list_info_inaccright{
+        font-size: 12px!important;
+    }
+    .item_buy_list_info {
+        margin-top: 10px;
+        min-height: 90px!important;
+        max-height: 120px;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .item_buy_list_info {
+        margin-top: 10px;
+        min-height: 90px!important;
+        max-height: 120px;
+    }
+    .item_buy_list_info_inaccright{
+        font-size: 12px!important;
+    }
+
     .loading-data__timkiem{
         left: 40%!important;
         top: 10px!important;
@@ -1626,7 +1643,7 @@ footer{
         display: block!important;
     }
     .item_buy_list_info_inacc{
-        font-size: 14px!important;
+        font-size: 12px!important;
     }
     .game-list-title h3 {
         font-size: 14px!important;

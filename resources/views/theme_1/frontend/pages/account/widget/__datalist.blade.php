@@ -177,10 +177,10 @@
                                                                                                                 ?>
                                                                                                                 @if($index < 5)
                                                                                                                     <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                                                        <div class="col-6 item_buy_list_info_inacc">
+                                                                                                                        <div class="col-6 fixcssacount item_buy_list_info_inacc">
                                                                                                                             {{ $child->title??null }} :
                                                                                                                         </div>
-                                                                                                                        <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                                                        <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                                                                             {{ $param??null }}
                                                                                                                         </div>
                                                                                                                     </div>
@@ -602,10 +602,10 @@
                                                                                     $total = $total + 1;
                                                                                     ?>
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-md-5 col-6 item_buy_list_info_inacc">
+                                                                                    <div class="col-md-5 col-6 fixcssacount item_buy_list_info_inacc">
                                                                                         {{ $child->title??null }} :
                                                                                     </div>
-                                                                                    <div class="col-md-7 col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600;">
+                                                                                    <div class="col-md-7 col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;">
                                                                                         {{ $param??null }}
                                                                                     </div>
                                                                                 </div>
