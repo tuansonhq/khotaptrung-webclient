@@ -58,7 +58,9 @@
                                                                 {{ $att_valuev2->parent[0]->title??null }} :
                                                             </div>
                                                             <div class="col-6 item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600">
-                                                                {{ $att_valuev2->title??null }}
+{{--                                                                {{ $att_valuev2->title??null }}--}}
+                                                                {{ isset($att_valuev2->title) ? \Str::limit($att_valuev2->title,16) : null }}
+
                                                             </div>
                                                         </div>
                                                     @endif
