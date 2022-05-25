@@ -65,10 +65,10 @@
                                                                                 ?>
                                                                                 @if($index < 5)
                                                                                     <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                        <div class="col-md-5 col-6 item_buy_list_info_inacc">
+                                                                                        <div class="col-md-7 col-6 item_buy_list_info_inacc">
                                                                                             {{ $child->title??null }} :
                                                                                         </div>
-                                                                                        <div class="col-md-7 col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                        <div class="col-md-5 col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                                             {{ $param??null }}
                                                                                         </div>
                                                                                     </div>
@@ -196,8 +196,14 @@
                                 <div class="item_buy_list_more">
                                     <div class="row">
                                         <div class="col-12 fixcssacount">
-                                            <div class="item_buy_list_price2 p7">
+{{--                                            <div class="item_buy_list_price2 p7">--}}
+{{--                                                {{ str_replace(',','.',number_format($item->price)) }}đ--}}
+{{--                                            </div>--}}
+
+                                            <div class="item_buy_list_price">
+                                                <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
                                                 {{ str_replace(',','.',number_format($item->price)) }}đ
+                                                {{--                                                {{ formatPrice($item->price) }}đ--}}
                                             </div>
 
                                         </div>
