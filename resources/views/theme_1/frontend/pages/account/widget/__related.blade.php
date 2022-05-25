@@ -18,13 +18,13 @@
                                 <a href="/acc/{{ $datav2->randId }}">
                                     @if(isset($datav2->image))
 
-                                        <img class="item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($datav2->image)}}" alt="{{ $datav2->title }}">
+                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($datav2->image)}}" alt="{{ $datav2->title }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
                                     @endif
 
                                     @if(isset($datav2->image_icon))
-                                        <img class="item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($datav2->image_icon)}}"  alt="{{ $datav2->title }}">
+                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($datav2->image_icon)}}"  alt="{{ $datav2->title }}">
                                     @else
                                         <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                     @endif
