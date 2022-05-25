@@ -30,6 +30,7 @@
             </div>
 {{--            lấy trang phục--}}
 
+            @include('frontend.pages.account.widget.__chitietnick')
 
 {{--            lấy trang phục--}}
 
