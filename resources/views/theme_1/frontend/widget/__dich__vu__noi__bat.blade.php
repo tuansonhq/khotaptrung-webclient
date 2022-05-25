@@ -7,7 +7,7 @@
         </div>
 
         <div class="game-list row" id="dichvunoibat">
-            <div class="col-12 item_play_dif_slide pt-3 pb-5" >
+            <div class="col-12 item_play_dif_slide pt-3" >
                 <div class="swiper-container item_play_dif_slide_detail item_news" >
                     <div class="swiper-wrapper">
                         @foreach($data as $item)
