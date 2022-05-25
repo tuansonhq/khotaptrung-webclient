@@ -177,10 +177,10 @@
                                                                                                                 ?>
                                                                                                                 @if($index < 5)
                                                                                                                     <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                                                        <div class="col-6 item_buy_list_info_inacc">
+                                                                                                                        <div class="col-6 fixcssacount item_buy_list_info_inacc">
                                                                                                                             {{ $child->title??null }} :
                                                                                                                         </div>
-                                                                                                                        <div class="col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
+                                                                                                                        <div class="col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600">
                                                                                                                             {{ $param??null }}
                                                                                                                         </div>
                                                                                                                     </div>
@@ -374,7 +374,7 @@
                                         <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                     @endif
                                 @else
-                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $item->randId }}">Đăng nhập</a>
+                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/mua-acc/{{ isset($data->custom->slug) ? $data->custom->slug :  $data->slug }}">Đăng nhập</a>
                                 @endif
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
                             </div>
@@ -573,7 +573,8 @@
                                                                     {{ $att_value->parent[0]->title??null }} :
                                                                 </div>
                                                                 <div class="col-md-7 col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;">
-                                                                    {{ $att_value->title??null    }}
+{{--                                                                    {{ $att_value->title??null }}--}}
+                                                                    {{ isset($att_value->title)? substr($att_value->title, 0, 20) : null }}
                                                                 </div>
                                                             </div>
 
@@ -602,11 +603,12 @@
                                                                                     $total = $total + 1;
                                                                                     ?>
                                                                                 <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                    <div class="col-md-5 col-6 item_buy_list_info_inacc">
+                                                                                    <div class="col-md-5 col-6 fixcssacount item_buy_list_info_inacc">
                                                                                         {{ $child->title??null }} :
                                                                                     </div>
-                                                                                    <div class="col-md-7 col-6 item_buy_list_info_inaccright" style="color: #666;font-weight: 600;">
-                                                                                        {{ $param??null }}
+                                                                                    <div class="col-md-7 col-6 fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;">
+{{--                                                                                        {{ $param??null }}--}}
+                                                                                        {{ isset($param) ? substr($param, 0, 20) : null }}
                                                                                     </div>
                                                                                 </div>
                                                                             @else
