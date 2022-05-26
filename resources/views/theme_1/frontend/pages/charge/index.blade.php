@@ -26,7 +26,7 @@
                             <div class="loading"></div>
                         </div>
                         <div class="col-auto pl-0 pr-0 hide" id="form-content">
-                            <form action="{{route('postCharge')}}" method="POST" class="form-charge" id="form-charge2">
+                            <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge" id="form-charge2">
                                 @csrf
                                 {{--                   <div class="form-group row">--}}
                                 {{--                    <label class="col-md-3 control-label">--}}
