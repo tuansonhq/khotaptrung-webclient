@@ -180,78 +180,7 @@ class ChargeController extends Controller
 
     }
 
-    public function postTelecomDepositAuto(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'captcha' => 'required|captcha',
-            'type' => 'required|regex:/^([A-Za-z0-9])+$/i',
-            'amount' => 'required|integer|in:10000,20000,30000,50000,100000,200000,300000,500000,1000000,2000000,3000000,5000000',
-            'pin' => 'required|between::9,22|regex:/^([A-Za-z0-9])+$/i',
-            'serial' => 'required|between:9,22|regex:/^([A-Za-z0-9])+$/i',
-        ],[
-            'captcha.required' => "Nhập mã capcha",
-            'captcha.captcha' => "Sai mã capcha",
-            'type.required' => __("Vui lòng chọn loại thẻ"),
-            'type.regex' => __('Loại thẻ không được có ký tự đặc biệt'),
-            'amount.required' => __("Vui lòng chọn mệnh giá"),
-            'amount.in' => __("Mệnh giá không đúng định dạng"),
-            'amount.integer' => __("Mệnh giá không đúng định dạng"),
-            'pin.required' => __("Vui lòng nhập mã thẻ"),
-            'pin.between' => __("Mã thẻ phải từ 9 - 16 ký tự"),
-            'pin.regex' => __('Mã thẻ không được có ký tự đặc biệt'),
-            'serial.required' => __("Vui lòng nhập số serial"),
-            'serial.between' => __("Serial thẻ phải từ 9 - 16 ký tự"),
-            'serial.regex' => __('Serial thẻ không được có ký tự đặc biệt'),
-        ]);
-        if($validator->fails()){
-            return response()->json([
-                'message' => $validator->errors()->first(),
-                'status' => 0
-            ]);
-        }
-
-
-        try {
-            $url = '/deposit-auto';
-            $method = "POST";
-            $dataSend = array();
-            $dataSend['token'] = session()->get('jwt');
-            $dataSend['type'] = $request->type;
-            $dataSend['amount'] = $request->amount;
-            $dataSend['pin'] = $request->pin;
-            $dataSend['serial'] = $request->serial;
-            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
-            $data = $result_Api->response_data??null;
-
-            if(isset($data) && $data->status == 1){
-                return response()->json([
-                    'status' => 1,
-                    'message' => $data->message,
-                    'data' => $data,
-                ],200);
-            } elseif(isset($result_Api) && $result_Api->response_code == 401){
-                return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
-                ]);
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
-        }
-        catch(\Exception $e){
-            Log::error($e);
-            return response()->json([
-                'status' => 0,
-                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
-            ]);
-        }
-
-    }
+  
     public function postCharge(Request $request)
     {
 
