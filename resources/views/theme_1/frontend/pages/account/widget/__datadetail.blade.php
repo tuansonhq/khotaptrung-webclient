@@ -337,7 +337,7 @@
                             </div>
 
                             <div class="form-group form-group_buyacc ">
-                                @if(App\Library\AuthCustom::check())
+                                @if(App\Library\AuthFrontendCustom::check())
 
                                     @if(App\Library\AuthCustom::user()->balance < $data->price)
                                         <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
