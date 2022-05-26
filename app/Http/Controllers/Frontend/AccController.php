@@ -193,8 +193,8 @@ class AccController extends Controller
                     ->with('data',$data);
             }
 
-            Session::forget('path');
-            Session::put('path', $_SERVER['REQUEST_URI']);
+            Session::forget('return_url');
+            Session::put('return_url', $_SERVER['REQUEST_URI']);
 
             return view('frontend.pages.account.list')
                 ->with('data',$data)
