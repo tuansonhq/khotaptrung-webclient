@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-
+    @dd($data)
     <div class="account">
         <div class="account_content">
             <div class="container">
@@ -22,12 +22,17 @@
                             <div class="row">
                                     <div class="col-md-12">
                                         @if($data->status==1)
-                                            @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
+                                            @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' || $data->itemconfig_ref->idkey!=null ))
                                             @else
+                                                @if($data->gate_id == 1)
+
+                                                @else
+
                                                 <div class="btnDestroy__data">
                                                     <button class="btn btn-danger" type="button" id="btnDestroy" data-id="{{ $data->id }}" title="">Hủy bỏ yêu cầu</button>
                                                 </div>
 
+                                                @endif
                                             @endif
 
                                             <div class="modal fade" id="destroyModal" role="dialog" style="display: none;" aria-hidden="true">
