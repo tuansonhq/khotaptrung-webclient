@@ -54,10 +54,10 @@
                                                 @if($index < 5)
                                                     @if(isset($att_valuev2->parent[0]))
                                                         <div class="row" style="margin: 0 auto;width: 100%">
-                                                            <div class="col-6 item_buy_list_info_inacc fixcssacount">
+                                                            <div class="col-auto item_buy_list_info_inacc fixcssacount">
                                                                 {{ $att_valuev2->parent[0]->title??null }} :
                                                             </div>
-                                                            <div class="col-6 item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600">
+                                                            <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
 {{--                                                                {{ $att_valuev2->title??null }}--}}
                                                                 {{ isset($att_valuev2->title) ? \Str::limit($att_valuev2->title,16) : null }}
 
