@@ -337,13 +337,13 @@
                             </div>
 
                             <div class="form-group form-group_buyacc ">
-                                @if(App\Library\AuthCustom::check())
+                                @if(App\Library\AuthFrontendCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                        <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
-                                    @else
+{{--                                    @if(App\Library\AuthCustom::user()->balance < $data->price)--}}
+{{--                                        <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>--}}
+{{--                                    @else--}}
                                         <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
-                                    @endif
+{{--                                    @endif--}}
 
                                 @else
                                     <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>
