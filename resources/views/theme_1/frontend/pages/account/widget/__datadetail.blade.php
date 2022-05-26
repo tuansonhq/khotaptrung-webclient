@@ -339,11 +339,11 @@
                             <div class="form-group form-group_buyacc ">
                                 @if(App\Library\AuthFrontendCustom::check())
 
-{{--                                    @if(App\Library\AuthCustom::user()->balance < $data->price)--}}
-{{--                                        <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>--}}
-{{--                                    @else--}}
+                                    @if(App\Library\AuthCustom::user()->balance < $data->price)
+                                        <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
+                                    @else
                                         <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
-{{--                                    @endif--}}
+                                    @endif
 
                                 @else
                                     <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>
@@ -356,14 +356,14 @@
 
                         <div class="modal-footer">
 
-                            @if(App\Library\AuthFrontendCustom::check())
+                            @if(App\Library\AuthCustom::check())
 
-{{--                                @if(App\Library\AuthCustom::user()->balance > $data->price)--}}
-{{--                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>--}}
-{{--                                @else--}}
+                                @if(App\Library\AuthCustom::user()->balance > $data->price)
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
+                                @else
                                     <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
                                     <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
-{{--                                @endif--}}
+                                @endif
                             @else
                                 <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>
                             @endif
