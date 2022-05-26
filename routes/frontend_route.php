@@ -199,7 +199,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
 
                         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
-                        Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+                        Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postCharge'])->name('postCharge');
                         Route::post('/nap-the-tu-dong', [\App\Http\Controllers\Frontend\ChargeController::class , 'postCharge'])->name('postCharge');
 
                     });
