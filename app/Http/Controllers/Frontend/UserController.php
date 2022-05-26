@@ -38,6 +38,7 @@ class UserController extends Controller
                 if( $result_Api->response_code == 200){
                     $result = $result_Api->response_data;
                     Session::put('auth_custom', $result->user);
+                    dd(Session::get('auth_custom'));
 //                    $request->session()->put('auth_custom', $result->user);
 
                     if($result->status == 1){
