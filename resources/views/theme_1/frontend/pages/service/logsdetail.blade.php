@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
-    @dd($data)
+
     <div class="account">
         <div class="account_content">
             <div class="container">
