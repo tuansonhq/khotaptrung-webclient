@@ -72,6 +72,12 @@ $(document).ready(function(){
                                 window.location.reload();
                             }
                         })
+                }else if (response.status == 0){
+                    var html = '';
+                    html += '<span style="color: red;font-size: 12px">' + response.message + '</span>';
+
+                    $('.error__deleteserrvice').html('');
+                    $('.error__deleteserrvice').html(html);
                 }
 
             },

@@ -40,8 +40,12 @@
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
+                                                        <div class="error__deleteserrvice" style="width: 100%;text-align: center;margin-bottom: 0">
+
+                                                        </div>
                                                         <div class="modal-body">
-                                                            <span class="mb-15 control-label bb">Lỗi thuộc về:</span>
+
+                                                            <span class="mb-15 control-label bb" style="font-size: 14px;color: black;padding-bottom: 8px;">Lỗi thuộc về:</span>
                                                             <div class="mb-15">
                                                                 {{Form::select('mistake_by',array(''=>'-- Không chọn --')+config('module.service.mistake_by'),Request::get('mistake_by'),array('required'=>'','class'=>"form-control"))}}
                                                             </div>
