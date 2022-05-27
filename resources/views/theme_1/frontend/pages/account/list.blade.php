@@ -114,6 +114,7 @@
 
 
         <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
+        <input type="hidden" value="{{ $id }}" name="idcategory" class="idcategory">
         {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}
         <input type="hidden" name="id_data" class="id_data" value="">
         <input type="hidden" name="title_data" class="title_data" value="">

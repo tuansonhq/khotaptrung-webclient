@@ -27,10 +27,10 @@ $(document).ready(function(){
     loadDataAccountList()
 
     function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
-        let slug_category = $('.slug_category').val();
+        let id = $('.idcategory').val();
         let slug = $('.slug').val();
 
-        var url = '/mua-acc/' + slug + '';
+        var url = '/mua-acc/' + slug + '&'+ id +'';
 
         if (page == null || page == '' || page == undefined){
             page = 1;

@@ -140,7 +140,6 @@ class UserController extends Controller
         }
     }
 
-
     public function getThongTin(Request $request)
     {
         try{
