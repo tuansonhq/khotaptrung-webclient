@@ -116,7 +116,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
+
                 Route::get('/mua-acc/{slug}&{id}', [AccController::class , "getList"]);
+
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
@@ -201,7 +203,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
-                        Route::post('/nap-the-tu-dong', [\App\Http\Controllers\Frontend\ChargeController::class , 'postCharge'])->name('postCharge');
 
                     });
 
