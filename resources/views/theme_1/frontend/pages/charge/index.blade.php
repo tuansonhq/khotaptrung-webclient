@@ -92,7 +92,7 @@
                                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                                 <div class="captcha_1">
                                   <span class="reload">
-                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src =new URL(window.location.href).origin+'/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
+                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
 
 {{--                                  {!! captcha_img('flat') !!}--}}
                                   </span>
