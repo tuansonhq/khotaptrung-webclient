@@ -47,14 +47,12 @@ class AccController extends Controller
         }
     }
 
-    public function getList(Request $request,$slug){
+    public function getList(Request $request,$slug,$id){
         $url = '/acc';
         $method = "GET";
-
         $dataSendCate = array();
         $dataSendCate['data'] = 'category_detail';
-        $dataSendCate['slug'] = $slug;
-
+        $dataSendCate['id'] = $id;
         $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
         $response_cate_data = $result_Api_cate->response_data??null;
 
@@ -202,6 +200,7 @@ class AccController extends Controller
             return view('frontend.pages.account.list')
                 ->with('data',$data)
                 ->with('dataAttribute',$dataAttribute)
+                ->with('id',$id)
                 ->with('slug',$slug);
         }
         else{

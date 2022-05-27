@@ -116,7 +116,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
-                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+
+                Route::get('/mua-acc/{slug}&{id}', [AccController::class , "getList"]);
+
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
@@ -131,6 +133,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+
                         Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                         // lấy nhà mạng mua thẻ

@@ -16,7 +16,7 @@
                 <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3  p-5 ppk">
                     <div class="game-list-content">
                         <div class="game-list-image game-list-image__game">
-                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}&{{ $item->id }}">
                                 {{--                                                Anh khuyen mai--}}
                                 @if(isset($item->image_icon))
                                     @if(isset($item->custom->image_icon))
@@ -37,7 +37,7 @@
                             </a>
                         </div>
                         <div class="game-list-title">
-                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}&{{ $item->id }}">
                                 <h3><strong>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</strong></h3>
                             </a>
                         </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
-                                <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                                <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}&{{ $item->id }}">
 
                                     @if(isset($item->custom) && isset($item->custom->meta) && isset($item->custom->meta->image_btn))
                                         @foreach($item->custom->meta as $key =>$val)
