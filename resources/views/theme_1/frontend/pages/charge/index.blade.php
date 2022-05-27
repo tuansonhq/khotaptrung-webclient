@@ -100,7 +100,7 @@
                                                 </div>
 
                                             </div>
-                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src='captcha/default?'+Math.random()">
+                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src= {{captcha_src('flat')}}+Math.random()">
                                                 &#x21bb;
                                             </button>
 
