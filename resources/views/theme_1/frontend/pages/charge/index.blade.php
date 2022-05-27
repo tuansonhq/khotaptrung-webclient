@@ -3,7 +3,7 @@
 @push('style')
 @endpush
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_1/js/charge/charge.js?v={{time()}}"></script>
 @endpush
 @section('content')
     <div class="account">
@@ -26,7 +26,7 @@
                             <div class="loading"></div>
                         </div>
                         <div class="col-auto pl-0 pr-0 hide" id="form-content">
-                            <form action="{{route('postCharge')}}" method="POST" class="form-charge" id="form-charge2">
+                            <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge" id="form-charge2">
                                 @csrf
                                 {{--                   <div class="form-group row">--}}
                                 {{--                    <label class="col-md-3 control-label">--}}
@@ -88,11 +88,11 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" name="captcha1" id="captcha"  required>
+                                            <input type="text" class="form-control" name="captcha" id="captcha"  required>
                                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                                 <div class="captcha_1">
                                   <span class="reload">
-                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src =new URL(window.location.href).origin+'/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
+                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
 
 {{--                                  {!! captcha_img('flat') !!}--}}
                                   </span>
@@ -100,7 +100,7 @@
                                                 </div>
 
                                             </div>
-                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src='captcha/default?'+Math.random()">
+                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src= {{captcha_src('flat')}}+Math.random()">
                                                 &#x21bb;
                                             </button>
 

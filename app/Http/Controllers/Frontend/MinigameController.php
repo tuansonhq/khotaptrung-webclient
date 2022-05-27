@@ -128,8 +128,8 @@ class MinigameController extends Controller
                     if($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to){
                         $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
                     }
+                    $currentPlayList = "";
                     if(count($result->group->items)>0){
-                        $currentPlayList = "";
                         $currentPlayList = Cache::get('currentPlayList'.$group->id);
                         if($currentPlayList==null){
                             $arrayGift = [];

@@ -38,7 +38,7 @@
 
                     <div class="captcha_trangchu">
                         <span class="reload"  id="">
-                            <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode1').src =new URL(window.location.href).origin+'/captcha/flat?5PIwtnW2'+Math.random();document.getElementById('captcha1').focus();" id="captchaCode1" alt="" class="captcha">
+                            <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode1').src = {{captcha_src('default')}}+Math.random();document.getElementById('captcha1').focus();" id="captchaCode1" alt="" class="captcha">
                         </span>
 
                     </div>
@@ -51,11 +51,8 @@
         </div>
         <div class="form-group" >
             <div class="col-12" id="form-charge-submit">
-{{--             @if (App\Library\AuthCustom::check())--}}
                 <button class="btn btn-submit" type="submit">Nạp thẻ</button>
-{{--            @else--}}
-{{--                <button class="btn btn-submit"  onclick="window.location.href='/login'">Nạp thẻ</button>--}}
-{{--            @endif--}}
+
             </div>
         </div>
 
