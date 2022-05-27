@@ -88,11 +88,11 @@
                                     </label>
                                     <div class="col-md-6">
                                         <div class="input-group" style="width: 100%">
-                                            <input type="text" class="form-control" name="captcha1" id="captcha"  required>
+                                            <input type="text" class="form-control" name="captcha" id="captcha"  required>
                                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                                 <div class="captcha_1">
                                   <span class="reload">
-                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
+                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captchaCode').focus();" id="captchaCode" alt="" class="captcha">
 
 {{--                                  {!! captcha_img('flat') !!}--}}
                                   </span>
