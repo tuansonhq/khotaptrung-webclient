@@ -117,7 +117,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
-                Route::get('/mua-acc/{slug}&{id}', [AccController::class , "getList"]);
+                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
 
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
