@@ -32,7 +32,7 @@
             $("#btnPurchase").click();
         })
     </script>
-
+    <input type="hidden" name="slug_category" class="slug_category" value="{{ $data->slug }}">
     <div class="c-layout-page">
         <div class="news_breadcrumbs">
             <div class="container">
@@ -400,7 +400,7 @@
 
                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
-                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>
+                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
                                     @endif
                                 </div>
 
