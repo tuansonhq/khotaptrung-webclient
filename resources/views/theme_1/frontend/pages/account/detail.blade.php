@@ -29,7 +29,7 @@
                 </div>
             </div>
 {{--            lấy trang phục--}}
-            @if(isset($data_category->custom->slug) ? $data_category->custom->slug == 'nick-lien-minh' :  $data_category->slug == 'nick-lien-minh'))
+            @if(isset($data_category->custom->slug) ? $data_category->custom->slug == 'nick-lien-minh' :  $data_category->slug == 'nick-lien-minh')
                 @include('frontend.pages.account.widget.__chitietnick')
             @endif
 {{--            lấy trang phục--}}
