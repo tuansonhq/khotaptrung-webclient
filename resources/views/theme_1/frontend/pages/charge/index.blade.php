@@ -91,16 +91,19 @@
                                             <input type="text" class="form-control" name="captcha" id="captcha"  required>
                                             <div style="    border: 1px solid #ced4da;height: 38px;display:flex">
                                                 <div class="captcha_1">
-                                  <span class="reload">
-                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">
+                                                  <span class="reload">
+                {{--                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">--}}
 
-{{--                                  {!! captcha_img('flat') !!}--}}
-                                  </span>
+                                                            {!! captcha_img('flat') !!}
+                                                  </span>
 
                                                 </div>
 
                                             </div>
-                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src= {{captcha_src('flat')}}+Math.random()">
+{{--                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" onclick="document.getElementById('captchaCode').src= {{captcha_src('flat')}}+Math.random()">--}}
+{{--                                                &#x21bb;--}}
+{{--                                            </button>--}}
+                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red" >
                                                 &#x21bb;
                                             </button>
 
