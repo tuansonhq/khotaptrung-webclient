@@ -39,7 +39,6 @@ $(document).ready(function(){
                     paycartDataChargeHistory();
                     $('#loading-data').remove();
                     $('#form-content').removeClass('hide');
-                    $('#reload_1').trigger('click');
                 }
                 // else{
                 //     swal({
