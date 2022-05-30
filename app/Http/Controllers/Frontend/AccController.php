@@ -213,68 +213,12 @@ class AccController extends Controller
     }
 
     public function getDetail(Request $request,$slug){
-        $url = '/acc';
-        $method = "GET";
-        $dataSend = array();
-        $dataSend['data'] = 'acc_detail';
-        $dataSend['id'] = $slug;
-
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        $response_data = $result_Api->response_data??null;
-
-        if(isset($response_data) && $response_data->status == 1){
-            $data = $response_data->data;
-
-            if (!isset($data->parent_id) || !isset($data->parent_id)){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'Không có dữ liệu parent_id.',
-                ]);
-            }
-            $parent_id = $data->parent_id;
-            $dataSendCate = array();
-            $dataSendCate['data'] = 'category_detail';
-            $dataSendCate['id'] = $parent_id;
-
-            $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-            $response_cate_data = $result_Api_cate->response_data??null;
-
-            if(isset($response_cate_data) && $response_cate_data->status == 1){
-                $data_category = $response_cate_data->data;
-                if (!isset($data_category->childs) || !isset($data_category->slug)){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu childs hoặc slug.',
-                    ]);
-                }
-
-                $slug_category = $data_category->slug;
-                Session::put('path', $_SERVER['REQUEST_URI']);
-                Session::get('auth_custom');
-
-                return view('frontend.pages.account.detail')
-                    ->with('data_category',$data_category)
-                    ->with('slug_category',$slug_category)
-                    ->with('slug',$slug);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
-        }
-        else{
-            return response()->json([
-                'status' => 0,
-                'message'=>$response_data->message??"Không thể lấy dữ liệu"
-            ]);
-        }
+        return view('frontend.pages.account.detail')->with('slug',$slug);
     }
 
     public function getShowDetail(Request $request,$slug){
         if ($request->ajax()){
+
             $url = '/acc';
             $method = "GET";
             $dataSend = array();
@@ -286,65 +230,27 @@ class AccController extends Controller
 
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
+                $data_category = $data->category;
 
-                if (!isset($data->groups[1]) || !isset($data->groups[1]->id)){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu groups.',
-                    ]);
-                }
-
-                $price = $data->price;
-
-                if ($price <= 0){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Số tiền không đúng.',
-                    ]);
-                }
-
-                $dataSendCate = array();
-                $dataSendCate['data'] = 'category_detail';
-                $dataSendCate['id'] = $data->groups[1]->id;
-
-                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                $response_cate_data = $result_Api_cate->response_data??null;
-
-                if(isset($response_cate_data) && $response_cate_data->status == 1){
-                    $data_category = $response_cate_data->data;
-                    if (!isset($data_category->childs) || !isset($data_category->slug)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => 'Không có dữ liệu childs hoặc slug.',
-                        ]);
-                    }
-
-                    $dataAttribute = $data_category->childs;
-
-                    $card_percent = setting('sys_card_percent');
-                    $atm_percent = setting('sys_atm_percent');
-
-                    $html = view('frontend.pages.account.widget.__datadetail')
-                        ->with('data_category',$data_category)
-                        ->with('data',$data)
-                        ->with('card_percent',$card_percent)
-                        ->with('atm_percent',$atm_percent)
-                        ->with('dataAttribute',$dataAttribute)->render();
+                $card_percent = setting('sys_card_percent');
+                $atm_percent = setting('sys_atm_percent');
+                $htmlmenu = view('frontend.pages.account.widget.__datamenu')
+                    ->with('data',$data)->render();
 
 
-                    return response()->json([
-                        'data' => $html,
-                        'status' => 1,
-                        'id' => encodeItemID($data->id),
-                        'message' => 'Load dữ liệu thành công',
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
-                    ]);
-                }
+                $html = view('frontend.pages.account.widget.__datadetail')
+                    ->with('data_category',$data_category)
+                    ->with('data',$data)
+                    ->with('card_percent',$card_percent)
+                    ->with('atm_percent',$atm_percent)->render();
+
+                return response()->json([
+                    'data' => $html,
+                    'datamenu' => $htmlmenu,
+                    'status' => 1,
+                    'id' => encodeItemID($data->id),
+                    'message' => 'Load dữ liệu thành công',
+                ]);
             }
             else{
                 return response()->json([

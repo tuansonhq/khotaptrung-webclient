@@ -26,6 +26,9 @@ $(document).ready(function () {
 
                     $('.loading-data__buyacc').html('');
 
+                    $('.data__menuacc').html('');
+                    $('.data__menuacc').html(data.datamenu);
+
                 }else if (data.status == 0){
 
                     var html = '';
@@ -33,6 +36,7 @@ $(document).ready(function () {
 
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(html);
+
 
                     var htmlform = '';
                     htmlform += '<label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>';
