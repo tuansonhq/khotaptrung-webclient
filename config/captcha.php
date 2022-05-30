@@ -3,16 +3,17 @@
 return [
     'characters' => ['2', '3', '4', '6', '7', '8', '9'],
     'default' => [
-        'length' => 9,
+        'length' => 3,
         'width' => 120,
         'height' => 36,
         'quality' => 90,
         'math' => false,
         'expire' => 60,
         'encrypt' => false,
+        'bgColor' => '#fff',
     ],
     'math' => [
-        'length' => 9,
+        'length' => 3,
         'width' => 120,
         'height' => 36,
         'quality' => 90,
@@ -36,7 +37,7 @@ return [
         'height' => 32,
     ],
     'inverse' => [
-        'length' => 5,
+        'length' => 3,
         'width' => 120,
         'height' => 36,
         'quality' => 90,
