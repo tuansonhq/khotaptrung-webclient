@@ -47,12 +47,12 @@ class AccController extends Controller
         }
     }
 
-    public function getList(Request $request,$slug,$id){
+    public function getList(Request $request,$slug){
         $url = '/acc';
         $method = "GET";
         $dataSendCate = array();
         $dataSendCate['data'] = 'category_detail';
-        $dataSendCate['id'] = $id;
+        $dataSendCate['slug'] = $slug;
         $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
         $response_cate_data = $result_Api_cate->response_data??null;
 
@@ -200,7 +200,6 @@ class AccController extends Controller
             return view('frontend.pages.account.list')
                 ->with('data',$data)
                 ->with('dataAttribute',$dataAttribute)
-                ->with('id',$id)
                 ->with('slug',$slug);
         }
         else{
@@ -487,82 +486,49 @@ class AccController extends Controller
     public function postBuyAccount(Request $request,$slug_category,$slug){
 
         if (AuthCustom::check()) {
-//            $slug = decodeItemID($slug);
             $url = '/acc';
-            $methodshow = "GET";
-            $dataSendShow = array();
-            $dataSendShow['data'] = 'acc_detail';
-            $dataSendShow['id'] = $slug;
+            $method = "POST";
+            $dataSend = array();
+            $dataSend['id'] = $slug;
+            $dataSend['data'] = 'buy_acc';
+            $dataSend['user_id'] = AuthCustom::user()->id;
 
-            $result_show_Api = DirectAPI::_makeRequest($url,$dataSendShow,$methodshow);
-            $response_show_data = $result_show_Api->response_data??null;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
 
-            if(isset($response_show_data) && $response_show_data->status == 1){
+            if(isset($response_data) && $response_data->status == 1){
 
-                $datashow = $response_show_data->data;
+                $data = $response_data->data;
 
-                if (!isset($datashow->price)){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Không có dữ liệu price .',
-                    ]);
-                }
-
-                $amount = $datashow->price;
-
-                $method = "POST";
-                $dataSend = array();
-                $dataSend['id'] = $slug;
-                $dataSend['data'] = 'buy_acc';
-                $dataSend['user_id'] = AuthCustom::user()->id;
-                $dataSend['amount'] = $amount;
-
-//                return $val;
-                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-                $response_data = $result_Api->response_data??null;
-
-                if(isset($response_data) && $response_data->status == 1){
-
-                    $data = $response_data->data;
-
-                    if (isset($data->success)){
-                        if ($data->success == 0){
-                            return response()->json([
-                                'status' => 2,
-                                'message' => $data->message,
-                            ]);
-//                        return redirect()->route('getBuyAccountHistory')->with('content', $data->message );
-                        }elseif ($data->success == 1 ){
-                            return response()->json([
-                                'status' => 1,
-                                'message' => "Mua tài khoản thành công",
-                            ]);
+                if (isset($data->success)){
+                    if ($data->success == 0){
+                        return response()->json([
+                            'status' => 2,
+                            'message' => $data->message,
+                        ]);
+                    }elseif ($data->success == 1 ){
+                        return response()->json([
+                            'status' => 1,
+                            'message' => "Mua tài khoản thành công",
+                        ]);
 //                        return redirect()->route('getBuyAccountHistory')->with('content', 'Mua tài khoản thành công');
-                        }
-                    }elseif (isset($data->error)){
-                        return response()->json([
-                            'status' => 0,
-                            'message' => $data->error,
-                        ]);
-                    }else{
-                        return response()->json([
-                            'status' => 0,
-                            'message' => 'Dữ liệu trả về không đúng.',
-                        ]);
                     }
-                }
-                else{
+                }elseif (isset($data->error)){
                     return response()->json([
                         'status' => 0,
-                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                        'message' => $data->error,
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Dữ liệu trả về không đúng.',
                     ]);
                 }
-
             }
             else{
                 return response()->json([
                     'status' => 0,
-                    'message'=>$response_show_data->message??"Không thể lấy dữ liệu"
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }else{
