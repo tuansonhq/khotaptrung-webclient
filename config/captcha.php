@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'characters' => ['2', '3', '4', '6', '7', '8', '9'],
+    'characters' => ['a', 'b', 'c', 'd','e'],
     'default' => [
         'length' => 3,
         'width' => 120,
