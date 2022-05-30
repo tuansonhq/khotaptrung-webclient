@@ -9,7 +9,8 @@ $(document).ready(function(){
             type: 'GET',
             url: 'reload-captcha2',
             success: function (data) {
-                $(".captcha_1 span").html(data.captcha);
+                console.log(data)
+                $(".captcha_1 span").html(data);
             }
         });
 

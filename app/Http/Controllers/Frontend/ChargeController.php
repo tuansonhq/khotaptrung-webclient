@@ -34,6 +34,7 @@ class ChargeController extends Controller
 
     public function reloadCaptcha()
     {
+
         return response()->json(['captcha'=> captcha_img()]);
     }
     public function myCaptcha()
@@ -42,7 +43,7 @@ class ChargeController extends Controller
     }
     public function reloadCaptcha2()
     {
-        return response()->json(['captcha'=> captcha_img('flat')]);
+        return captcha_img('flat');
     }
     public function getDepositAuto(Request $request)
     {
