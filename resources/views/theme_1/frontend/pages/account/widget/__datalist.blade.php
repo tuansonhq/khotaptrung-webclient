@@ -4,7 +4,7 @@
 
         <div class="item_buy_list row">
             @foreach ($items as $item)
-{{--                @dd($item)--}}
+             
                 {{--                Nick random--}}
                 @if($item->status == 1)
                     @if($data->display_type == 2)

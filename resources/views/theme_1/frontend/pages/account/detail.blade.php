@@ -41,7 +41,7 @@
                             <span class="pulser"></span>
                         </div>
                     </div>
-                    @include('frontend.pages.account.widget.__related')
+{{--                    @include('frontend.pages.account.widget.__related')--}}
                 </div>
             </div>
 
