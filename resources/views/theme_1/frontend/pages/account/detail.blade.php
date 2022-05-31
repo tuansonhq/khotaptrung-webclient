@@ -3,7 +3,7 @@
     @include('frontend.widget.__seo_head')
 @endsection
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="noindex,noindex" />
 @endsection
 @section('content')
 
