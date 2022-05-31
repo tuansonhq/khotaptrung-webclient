@@ -1634,6 +1634,9 @@ footer{
     .nav-bar-brand img {
         height: 48px!important;
     }
+    .nav-bar-brand {
+        width: 120px!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
