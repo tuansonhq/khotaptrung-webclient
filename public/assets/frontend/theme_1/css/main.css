@@ -1624,9 +1624,29 @@ footer{
         /*min-height: 90px!important;*/
         /*max-height: 120px;*/
     }
+    .nav-bar-category-mobile span a {
+        padding: 4px 8px!important;
+        margin-right: 8px!important;
+    }
+    .nav-bar-brand {
+        margin: 9px 0px!important;
+    }
+    .nav-bar-brand img {
+        height: 48px!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .nav-bar-category-mobile span a {
+        padding: 4px 8px!important;
+        margin-right: 8px!important;
+    }
+    .nav-bar-brand {
+        margin: 9px 0px!important;
+    }
+    .nav-bar-brand img {
+        height: 48px!important;
+    }
     .item_buy_list_info {
         margin-top: 11px;
         /*min-height: 90px!important;*/

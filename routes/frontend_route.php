@@ -86,6 +86,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('errors.408');
             });
 
+            Route::get('/chi-tiet-caythue',function(){
+                return view('frontend.pages.account.list');
+            });
+
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
                 Route::get('/', [HomeController::class , "index"]);
@@ -106,9 +110,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 });
 
-
-
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
+
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
 
                 Route::get('/dich-vu', [ServiceController::class , "getList"]);
