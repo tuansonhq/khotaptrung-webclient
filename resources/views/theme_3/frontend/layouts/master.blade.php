@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/animate/animate.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/OwlCarousel2/owl.carousel.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/date-picker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_3/lib/fancybox/fancybox.css">
@@ -34,11 +34,10 @@
     <script src="/assets/frontend/theme_3/lib/jquery/jquery.min.js"></script>
 {{--    jquery--}}
     <script src="/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="/assets/frontend/theme_3/date-picker/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.min.js"></script>
     <script src="/assets/frontend/theme_3/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
     <script src="/assets/frontend/theme_3/lib/lazyload/lazyloadGen.js"></script>
     <script src="/assets/frontend/theme_3/lib/toastr/toastr.min.js"></script>
-    <script src="/assets/frontend/theme_3/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/theme_3/lib/sweetalert2/sw2.js"></script>
     @stack('js')
 
