@@ -7,7 +7,7 @@ $(document).ready(function(){
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha2',
+            url: 'reload-captcha',
             success: function (data) {
                 console.log(data)
                 $(".captcha_1 span").html(data);
