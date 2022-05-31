@@ -259,7 +259,7 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
         $dataSend = array();
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->response_data->data;
+        return $data = $result_Api->response_data->data??null;
 
     });
     return $view->with('data',$data);
