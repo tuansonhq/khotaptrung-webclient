@@ -1,4 +1,4 @@
-@if(isset($sliders) && count($sliders))
+@if(isset($data) && count($data))
 
     <div class="shop_product_another pt-3">
         <div class="c-content-title-1">
@@ -8,27 +8,27 @@
 
         <div class="shop_product_another_content">
             <div class="item_buy_list row">
-                @foreach($sliders as $datav2)
+                @foreach($data as $item)
                     {{--                    @if($datav2->id != $data->id)--}}
                     {{--                        --}}
                     {{--                    @endif--}}
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
-                                <a href="/acc/{{ $datav2->randId }}">
-                                    @if(isset($datav2->image))
+                                <a href="/acc/{{ $item->randId }}">
+                                    @if(isset($item->image))
 
-                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($datav2->image)}}" alt="{{ $datav2->title }}">
+                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
                                     @endif
 
-                                    @if(isset($datav2->image_icon))
-                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($datav2->image_icon)}}"  alt="{{ $datav2->title }}">
+                                    @if(isset($item->image_icon))
+                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}"  alt="{{ $item->title }}">
                                     @else
                                         <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                     @endif
-                                    <span>MS: {{ $datav2->randId }} </span>
+                                    <span>MS: {{ $item->randId }} </span>
                                 </a>
                             </div>
                             <div class="item_buy_list_description">
@@ -40,26 +40,26 @@
                                     $index = 0;
                                     ?>
 
-                                    @if(isset($datav2->groups))
+                                    @if(isset($item->groups))
                                         <?php
-                                        $att_valuesv2 = $datav2->groups;
+                                        $att_values = $item->groups;
                                         ?>
                                         {{--                                                @dd($att_valuesv2)--}}
-                                        @foreach($att_valuesv2 as $att_valuev2)
+                                        @foreach($att_values as $att_value)
 
-                                            @if(isset($att_valuev2->module) && $att_valuev2->module == 'acc_label' && $att_valuev2->is_slug_override == null)
+                                            @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                 <?php
                                                 $index++;
                                                 ?>
                                                 @if($index < 5)
-                                                    @if(isset($att_valuev2->parent[0]))
+                                                    @if(isset($att_value->parent[0]))
                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                             <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                {{ $att_valuev2->parent[0]->title??null }} :
+                                                                {{ $att_value->parent[0]->title??null }} :
                                                             </div>
                                                             <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
 {{--                                                                {{ $att_valuev2->title??null }}--}}
-                                                                {{ isset($att_valuev2->title) ? \Str::limit($att_valuev2->title,16) : null }}
+                                                                {{ isset($att_value->title) ? \Str::limit($att_value->title,16) : null }}
 
                                                             </div>
                                                         </div>
@@ -68,18 +68,64 @@
                                             @endif
                                         @endforeach
                                     @endif
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                            <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                            @if(isset($item->childs) && count($item->childs)>0)
+                                                @foreach($item->childs as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id)
+                                                                        <tr>
+                                                                            <td style="width:50%">{{ $child->title }}:</td>
+                                                                            <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+{{--                                    @if(isset($datav2->params) && isset($datav2->params->ext_info))--}}
+{{--                                            <?php--}}
+{{--                                            $params = json_decode(json_encode($datav2->params->ext_info),true);--}}
+{{--                                            ?>--}}
+{{--                                            @if($index < 5)--}}
+
+{{--                                                @foreach($params as $key => $param)--}}
+{{--                                                    <?php--}}
+{{--                                                    $index++;--}}
+{{--                                                    ?>--}}
+{{--                                                @if($index < 5)--}}
+{{--                                                    <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                            {{ $key }} :--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                            {{ $param??null }}--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+
+{{--                                                @endif--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
+{{--                                        @endif--}}
                                 </div>
                             </div>
                             <div class="item_buy_list_more">
                                 <div class="row">
                                     <div class="col-12 fixcssacount">
                                         <div class="item_buy_list_price">
-                                            <span>{{ str_replace(',','.',number_format($datav2->price_old)) }}đ </span>
-                                            {{ str_replace(',','.',number_format($datav2->price)) }}đ
+                                            <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
+                                            {{ str_replace(',','.',number_format($item->price)) }}đ
                                         </div>
 
                                     </div>
-                                    <a href="/acc/{{ $datav2->randId }}" class="col-12 fixcssacount">
+                                    <a href="/acc/{{ $item->randId }}" class="col-12 fixcssacount">
                                         <div class="item_buy_list_view">
                                             Chi tiết
                                         </div>

@@ -62,7 +62,7 @@ class AccController extends Controller
             if(isset($response_cate_data) && $response_cate_data->status == 1){
                 $data = $response_cate_data->data;
                 $dataAttribute = $data->childs;
-//                return $data;
+
                 $dataSend = array();
                 $dataSend['data'] = 'list_acc';
                 $dataSend['cat_slug'] = $slug;
@@ -277,12 +277,12 @@ class AccController extends Controller
             $response_slider_data = $result_Api_slider->response_data??null;
 
             if(isset($response_slider_data) && $response_slider_data->status == 1){
-                $sliders = $response_slider_data->data;
+                $data = $response_slider_data->data;
 
-                $sliders = new LengthAwarePaginator($sliders->data,$sliders->total,$sliders->per_page,$sliders->current_page,$sliders->data);
+                $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
                 $htmlslider = view('frontend.pages.account.widget.__related')
-                    ->with('sliders',$sliders)->render();
+                    ->with('data',$data)->render();
 
                 return response()->json([
                     'dataslider' => $htmlslider,
