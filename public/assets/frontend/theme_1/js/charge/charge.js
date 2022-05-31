@@ -3,7 +3,7 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
-    reload_captcha()
+
     function reload_captcha() {
         $.ajax({
             type: 'GET',
@@ -103,6 +103,8 @@ $(document).ready(function(){
                         });
                     }
                     $('select#amount').html(html);
+
+                    reload_captcha()
                 }
                 // else{
                 //     swal({
