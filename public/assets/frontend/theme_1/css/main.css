@@ -1416,9 +1416,24 @@ footer{
     .item_play_dif_slide_description__size{
         padding-top: 0!important;
     }
-
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
 }
 @media only screen and (min-width: 376px) and (max-width: 573px) {
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
     .content {
         padding-top: 80px!important;
     }
@@ -1640,6 +1655,14 @@ footer{
 }
 
 @media only screen and (max-width: 376px) {
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
     .nav-bar-brand {
         width: 120px!important;
     }
