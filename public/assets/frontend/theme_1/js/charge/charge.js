@@ -10,7 +10,7 @@ $(document).ready(function(){
             url: 'reload-captcha',
             success: function (data) {
                 console.log(data)
-                $(".captcha_1 span").html(data);
+                $(".captcha_1 span").html(data.captcha);
             }
         });
     }
@@ -20,7 +20,7 @@ $(document).ready(function(){
             type: 'GET',
             url: 'reload-captcha2',
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 $(".captcha_1 span").html(data);
             }
         });
