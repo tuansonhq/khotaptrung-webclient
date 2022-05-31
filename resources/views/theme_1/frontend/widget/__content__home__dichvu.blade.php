@@ -39,7 +39,31 @@
                                 <div class="countime"></div>
 
                                 <p></p>
-                                <p></p>
+                                @if(isset($item->total_order))
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <p>Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</p>
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                        <p>Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</p>
+                                    @endif
+
+                                @else
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <p>Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <p>Giao dịch: 0</p>
+                                    @endif
+
+                                @endif
+
 
                             </div>
                             <div class="game-list-more">

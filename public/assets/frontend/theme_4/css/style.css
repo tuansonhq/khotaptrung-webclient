@@ -18,14 +18,25 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    /*height: auto;*/
     overflow-x: hidden;
+    background-color: #EFEFEF;
+    /*background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%*/
 }
+
+button:focus {
+    outline:0px;
+}
+p{
+     margin-bottom: 5px!important;
+ }
 
 button:focus {
     outline:0px;
 }
 
 .form-control:focus {
+    /*border-color: #32c5d2 !important;*/
     box-shadow: 0 0 0 0.08rem #32c5d2 !important;
 }
 input[type="text"] {
@@ -45,26 +56,37 @@ input[type="text"] {
     --silver_color: #26A44D;
     --gold-color: #FF9F47;
     --bonze-color: #F35D5D;
+
 }
 
 *{
     box-sizing: inherit;
     font-family: 'Roboto', sans-serif;
     font-family: 'Roboto Condensed', sans-serif;
+
 }
 
 
 html{
+
     line-height: 1.6rem;
     box-sizing: border-box;
     color: white;
 }
 
+/*              Banner       */
+.banner-container-ct{
+    padding-top: 16px;
+    padding-left: 0;
+    padding-right: 0;
+}
 
+.banner-container-ct img{
+    border-radius: 12px;
+    width: 100%;
+    object-fit: cover;
+}
 
-/*content*/
+.menu-container-ct{
 
-
-
-
-
+}
