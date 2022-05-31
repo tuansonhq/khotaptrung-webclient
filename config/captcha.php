@@ -4,13 +4,14 @@ return [
     'characters' => ['a', 'b', 'c', 'd','e'],
     'default' => [
         'length' => 3,
-        'width' => 120,
+        'width' => 80,
         'height' => 36,
         'quality' => 90,
         'math' => false,
         'expire' => 60,
         'encrypt' => true,
-        'bgColor' => '#fff',
+        'bgColor'   => '#ffffff',
+        'fontColors'=> ['#f44336'],
     ],
     'math' => [
         'length' => 3,
@@ -22,13 +23,13 @@ return [
 
     'flat' => [
         'length' => 3,
-        'width' => 160,
-        'height' => 46,
+        'width' => 80,
+        'height' => 36,
         'quality' => 90,
         'lines' => 6,
         'bgImage' => false,
-        'bgColor' => '#fff',
-        'fontColors' => ['#2c3e50', '#c0392b', '#16a085', '#c0392b', '#8e44ad', '#303f9f', '#f57c00', '#795548'],
+        'bgColor'   => '#ffffff',
+        'fontColors'=> ['#f44336'],
         'contrast' => -5,
     ],
     'mini' => [

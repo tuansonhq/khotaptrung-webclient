@@ -4,6 +4,9 @@
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 @endpush
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 
 

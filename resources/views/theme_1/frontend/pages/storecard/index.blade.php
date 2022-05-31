@@ -5,6 +5,9 @@
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
 @endpush
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 
 

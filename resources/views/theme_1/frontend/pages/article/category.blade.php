@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
         @if($data == null)
             <div class="item_buy">

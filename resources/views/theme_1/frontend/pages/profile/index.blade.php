@@ -7,6 +7,9 @@
         })
     </script>
 @endpush
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 
     <div class="account">
