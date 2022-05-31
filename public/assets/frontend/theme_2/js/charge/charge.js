@@ -4,7 +4,16 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-
+    function reload_captcha() {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                console.log(data)
+                $(".captcha_1 span").html(data.captcha);
+            }
+        });
+    }
     $('#reload_2').click(function () {
         $.ajax({
             type: 'GET',
@@ -98,6 +107,7 @@ $(document).ready(function(){
                         });
                     }
                     $('select#amount').html(html);
+                    reload_captcha()
                 }
                 else{
                     swal({
