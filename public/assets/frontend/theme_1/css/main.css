@@ -1640,6 +1640,9 @@ footer{
 }
 
 @media only screen and (max-width: 376px) {
+    .nav-bar-brand {
+        width: 120px!important;
+    }
     .nav-bar-category-mobile span a {
         padding: 4px 8px!important;
         margin-right: 8px!important;
