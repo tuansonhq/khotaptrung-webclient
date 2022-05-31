@@ -24,9 +24,9 @@
                                 </span>
                                     </div>
 
-                                    <div class="col-12 item_buy_list_info_in">
-                                        <span></span>
-                                    </div>
+{{--                                    <div class="col-12 item_buy_list_info_in">--}}
+{{--                                        <span></span>--}}
+{{--                                    </div>--}}
 
                                     <div class="col-12 item_buy_list_info_in">
                                         @if(isset($item->total_order))

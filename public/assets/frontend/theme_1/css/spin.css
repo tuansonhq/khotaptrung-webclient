@@ -561,7 +561,7 @@
     height: 75px;
 }
 .item_buy_list_img-main{
-    height: 180px;
+    /*height: 180px;*/
     max-width: 100%;
     width: 100%;
     object-fit: cover;
@@ -588,9 +588,7 @@
     text-align: center;
 }
 .item_buy_list_info {
-    margin-top: 10px;
-    min-height: 120px;
-    max-height: 120px;
+    margin-top: 11px;
 }
 .item_buy_list_info .row{
     margin: 0;
@@ -599,7 +597,7 @@
     font-size: 15px;
     padding: 5px;
     text-align: center;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
 }
 .item_buy_list_info_inacc{
     font-size: 16px;
@@ -622,7 +620,7 @@
     margin-bottom: 12px;
 }
 .item_buy_list_more{
-    padding: 12px;
+    padding: 8px 12px 0 12px;
 }
 .item_buy_list_more a{
     text-decoration: none;
