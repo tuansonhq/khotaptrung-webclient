@@ -10,7 +10,7 @@ $(document).ready(function(){
             url: 'reload-captcha',
             success: function (data) {
                 console.log(data)
-                $(".captcha_1 span").html(data.captcha);
+                $(".captcha span").html(data.captcha);
             }
         });
     }
