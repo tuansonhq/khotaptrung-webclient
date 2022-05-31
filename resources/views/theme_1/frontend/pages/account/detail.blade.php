@@ -22,11 +22,6 @@
 
                 </div>
             </div>
-{{--            lấy trang phục--}}
-{{--            @if(isset($data_category->custom->slug) ? $data_category->custom->slug == 'nick-lien-minh' :  $data_category->slug == 'nick-lien-minh')--}}
-{{--                @include('frontend.pages.account.widget.__chitietnick')--}}
-{{--            @endif--}}
-{{--            lấy trang phục--}}
 
             <div class="row marginauto">
                 <div class="col-md-12 left-right" id="showslideracc">
@@ -35,7 +30,7 @@
                             <span class="pulser"></span>
                         </div>
                     </div>
-{{--                    @include('frontend.pages.account.widget.__related')--}}
+
                 </div>
             </div>
 
@@ -43,8 +38,6 @@
     </div>
 
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
-{{--    <input type="hidden" name="slug_category" class="slug_category" value="{{ $slug_category }}">--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>--}}
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
