@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="col-12 item_buy_list_info_in">
-                                <span></span>
+                                <span>Giao dịch: 50.000đ</span>
                             </div>
 
                         </div>
