@@ -1,6 +1,8 @@
 @if(empty($data->data))
     @if(isset($data) && count($data) > 0)
+
         @foreach ($data as $item)
+
             <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                 <div class="item_buy_list_in">
                     <div class="item_buy_list_img">
@@ -22,7 +24,30 @@
                             </div>
 
                             <div class="col-12 item_buy_list_info_in">
-                                <span></span>
+                                @if(isset($item->total_order))
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <span>Giao dịch: {{ str_replace(',','.',number_format($item->total_order + $val)) }}</span>
+                                            @endif
+                                        @endforeach
+
+                                    @else
+                                        <span>Giao dịch: {{ str_replace(',','.',number_format($item->total_order)) }}</span>
+                                    @endif
+
+                                @else
+                                    @if($item->params_plus)
+                                        @foreach($item->params_plus as $key => $val)
+                                            @if($key == 'fk_buy')
+                                                <span>Giao dịch: {{ str_replace(',','.',number_format($val)) }}</span>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <span>Giao dịch: 0</span>
+                                    @endif
+
+                                @endif
                             </div>
 
                         </div>
