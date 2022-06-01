@@ -10,6 +10,8 @@ use App\Library\DirectAPI;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Session;
+use function GuzzleHttp\Promise\all;
+use App\Library\Helpers;
 
 class LoginController extends Controller
 {
@@ -80,63 +82,6 @@ class LoginController extends Controller
         }
 
 
-
-
-
-//        try{
-//            $url = '/login';
-//            $method = "POST";
-//            $data = array();
-//            $data['username'] = $request->username;
-//            $data['password'] = $request->password;
-//
-//            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-//
-//            if(isset($result_Api) && $result_Api->response_code == 200){
-//                $result = $result_Api->response_data;
-//                if ()
-//                if($result->status == 1){
-//                    $time = strtotime(Carbon::now());
-//                    $exp_token = $result->exp_token;
-//                    $time_exp_token = $time + $exp_token;
-//                    Session::put('jwt',$result->token);
-//                    Session::put('exp_token',$result->exp_token);
-//                    Session::put('time_exp_token',$time_exp_token);
-//                    $return_url = Session::get('return_url');
-//                    return response()->json([
-//                        'return_url' => $return_url,
-//                        'data' => $result_Api->response_data,
-//                    ]);
-//                }
-//                else{
-//
-//                    return response()->json([
-//                        'data' => $result_Api->dataOfApi,
-//                    ]);
-////                    dd(111);
-////                    return redirect()->back()->withErrors($result->message);
-//                }
-//            }else{
-//
-//                return response()->json([
-//                    'data' => $result_Api->dataOfApi,
-//                ]);
-//                //                dd(122222);
-////                $result = $result_Api->data;
-////                return redirect()->back()->withErrors($result->message);
-//            }
-//        }
-//        catch(\Exception $e){
-//
-//            Log::error($e);
-//            return response()->json([
-//                'status'=>"0",
-//                'message'=>'Có lỗi phát sinh.Xin vui lòng thử lại !(Catch)',
-//
-//            ]);
-//
-//
-//        }
     }
     public function loginfacebook(Request $request)
     {
@@ -251,5 +196,45 @@ class LoginController extends Controller
                 'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);        }
     }
+    public function accesUser(Request $request){
+        if (!$request->get('sign')){
+            return "Mã khóa bị thiếu";
+        }
+        $sign = $request->get('sign');
+        $data = Helpers::Decrypt($sign,config('module.user.encrypt'));
+        $data = explode(',',$data);
+        $token = $data[0];
+        $time = $data[1];
+        if (Carbon::now()->greaterThan(Carbon::createFromTimestamp($time))) {
+             return "Mã khóa hết hiệu lực";
+        }
 
+        $url = '/profile';
+        $method = "GET";
+        $data = array();
+        $data['token'] = $token;
+        $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+        if(isset($result_Api) ){
+            if( $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
+                Session::put('jwt',$token);
+                Session::put('auth_custom', $result->user);
+                return redirect()->to('/');
+            }
+            else if($result_Api->response_code == 401){
+                return "Token không được xác thực";
+            }
+            else if($result_Api->response_code == 408){
+                return "Không có phản hồi từ máy chủ (408)";
+            }
+            else{
+                return "Không có phản hồi từ máy chủ ('.$result_Api->response_code.')";
+            }
+
+        }
+        else{
+         return "Lỗi không gọi được dữ liệu hệ thống";
+        }
+
+    }
 }
