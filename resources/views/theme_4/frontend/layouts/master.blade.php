@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/fancybox/fancybox.css">
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/steps/jquery-steps.css">
+
+
+    <link rel="stylesheet" href="/assets/frontend/theme_4/lib/select-nice/select-nice.css?v={{time()}}">
     @stack('style')
     {{--    jquery--}}
     <script src="/assets/frontend/theme_4/lib/jquery/jquery.min.js"></script>
@@ -40,6 +43,11 @@
     <script src="/assets/frontend/theme_4/lib/toastr/toastr.min.js"></script>
     <script src="/assets/frontend/theme_4/js/sweetalert.min.js"></script>
     <script src="/assets/frontend/theme_4/lib/sweetalert2/sw2.js"></script>
+
+
+    <script src="/assets/frontend/theme_4/lib/select-nice/select-nice.js?v={{time()}}"></script>
+
+    <script src="/assets/frontend/theme_4/js/jquery.nice-select.min.js?v={{time()}}"></script>
     @stack('js')
 
     @yield('seo_head')
