@@ -87,7 +87,15 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
 
             Route::get('/chi-tiet-caythue',function(){
-                return view('frontend.pages.account.list');
+                return view('frontend.pages.chitiet');
+            });
+
+            Route::get('/napgame',function(){
+                return view('frontend.pages.napgame');
+            });
+
+            Route::get('/chitietnapgame',function(){
+                return view('frontend.pages.chitietnapgame');
             });
 
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
