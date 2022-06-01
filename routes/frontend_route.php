@@ -215,6 +215,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                     Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
                         ->name('login');
+                    Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
                     Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
                     Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
                         ->name('loginApi');

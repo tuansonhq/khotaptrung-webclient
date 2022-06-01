@@ -2,6 +2,9 @@
 
 
 return [
+    'user'=>[
+        'encrypt' => env('ENCRYPT_USER')
+    ],
     'charge' => [
         'key'=>"charge",
         'title'=>"Nạp thẻ tự động",
