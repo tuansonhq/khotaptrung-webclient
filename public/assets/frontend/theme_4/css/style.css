@@ -158,7 +158,6 @@ html{
     padding-top: 16px;
 }
 
-
 .body-title-ct span,
 .body-search-ct span{
     font-family: 'Open Sans';
@@ -912,6 +911,9 @@ html{
     top: 4px;
     right: 0;
     cursor: pointer;
+}
+.web-media-ct{
+    padding-bottom: 82px;
 }
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
