@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/animate/animate.min.css">
     <link rel="stylesheet" href="/assets/frontend/theme_4/css/style.css">
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/steps/jquery-steps.css">
+    <link rel="stylesheet" href="/assets/frontend/theme_4/lib/swiper/swiper.min.css">
 {{--    Thêm css --}}
     <link rel="stylesheet" href="/assets/frontend/theme_4/lib/select-nice/select-nice.css">
     {{--    jquery--}}
     <script src="/assets/frontend/theme_4/lib/jquery/jquery.min.js"></script>
     {{--    jquery--}}
     <script src="/assets/frontend/theme_4/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/frontend/theme_4/lib/swiper/swiper.min.js"></script>
 
 {{--    Thêm  js  --}}
     <script src="/assets/frontend/theme_4/lib/select-nice/select-nice.js"></script>
@@ -59,13 +61,13 @@
     </section>
 
     {{--   Bopdy --}}
-    <section class="bottom-container-ct">
+    <section >
         <div class="container body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
                 <div class="col-lg-5 col-12 body-container-detail-left-ct">
                     <form action="" method="POST">
                         @csrf
-                    <div class="row marginauto body-row-ct">
+                    <div class="row marginauto body-row-ct web-media-ct">
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
@@ -487,10 +489,293 @@
         </div>
     </section>
 
+    <section class="bottom-container-ct">
+        <div class="container body-container-ct">
+            <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
+                <div class="col-md-12 left-right">
+                    <div class="row marginauto body-row-ct media-ctbg-ct">
 
+                        <div class="col-md-12 left-right napgamekhac">
+                            <div class="row marginauto">
+                                <div class="col-md-12 text-left left-right">
+                                    <span>Các dịch vụ cày thuê game khác</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto body-detail-ct">
+                                <div class="swiper-container list-nap-game col-md-12 text-left left-right">
+                                    <div class="swiper-wrapper">
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lienquan.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Liên quân Mobile</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Garena freefire</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>PUBG Mobile</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Liên Minh Huyền Thoại</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Tốc chiến</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Auto Chess</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Bang Bang</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Cyber Punk 2077</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/csgo.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>CSGO</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Garena freefire</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>PUBG Mobile</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Liên Minh Huyền Thoại</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Tốc chiến</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Auto Chess</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Bang Bang</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="swiper-slide body-detail-ctng-col-ct">
+                                            <div class="row marginauto">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                                    <a href="">
+                                                        <span>Cyber Punk 2077</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </div>
 
-<div class="modal fade login show" id="successModal" aria-modal="true" style="display: block;">
+<div class="modal fade login show default-Modal" id="successModal" aria-modal="true" style="display: block;">
     <div class="modal-dialog modal-md modal-dialog-centered login animated">
         <!--        <div class="image-login"></div>-->
         <div class="modal-content">
@@ -563,6 +848,39 @@
 </script>
 <script>
     $(document).ready(function (e) {
+
+        var product_list = new Swiper('.list-nap-game', {
+            autoplay: false,
+            // preloadImages: false,
+            updateOnImagesReady: true,
+            // lazyLoading: false,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+
+            loop: false,
+            centeredSlides: false,
+            slidesPerView: 8,
+            speed: 800,
+            spaceBetween: 8,
+            touchMove: true,
+            freeModeSticky:true,
+            grabCursor: true,
+            observer: true,
+            observeParents: true,
+            breakpoints: {
+                992: {
+                    slidesPerView: 6,
+                },
+                768:{
+                    slidesPerView: 4,
+                },
+                480: {
+                    slidesPerView: 3.5,
+
+                }
+            }
+        });
 
         // Click event of the showPassword button
         $('.show-btn-password').on('click', function(){
