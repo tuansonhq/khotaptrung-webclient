@@ -1,17 +1,18 @@
 <?php
 
 return [
-    'characters' => ['a', 'b', 'c', 'd','e'],
+    'characters' => ['1', '2', '3', '4','5','6','7','8','9'],
     'default' => [
-        'length' => 3,
-        'width' => 80,
-        'height' => 36,
-        'quality' => 90,
-        'math' => false,
-        'expire' => 60,
-        'encrypt' => true,
+        'length'    => 3,
+        'width'     => 60,
+        'height'    => 32,
+        'quality'   => 100,
+        'lines'     => -1,
+        'fontSize' => 99,
+        'bgImage'   => false,
         'bgColor'   => '#ffffff',
         'fontColors'=> ['#f44336'],
+        'angle'     => 0,
     ],
     'math' => [
         'length' => 3,
@@ -22,15 +23,16 @@ return [
     ],
 
     'flat' => [
-        'length' => 3,
-        'width' => 80,
-        'height' => 36,
-        'quality' => 90,
-        'lines' => 6,
-        'bgImage' => false,
+        'length'    => 3,
+        'width'     => 60,
+        'height'    => 32,
+        'quality'   => 100,
+        'lines'     => -1,
+        'fontSize' => 99,
+        'bgImage'   => false,
         'bgColor'   => '#ffffff',
         'fontColors'=> ['#f44336'],
-        'contrast' => -5,
+        'angle'     => 0,
     ],
     'mini' => [
         'length' => 3,
