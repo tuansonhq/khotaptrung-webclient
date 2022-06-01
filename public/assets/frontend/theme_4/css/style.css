@@ -238,7 +238,15 @@ html{
     padding: 16px 8px 16px 8px;
     width: 12.5%;
 }
+.body-detail-ctng-col-ct{
+    padding: 16px 0 16px 0;
+}
 .body-detail-col-ct img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+}
+.body-detail-ctng-col-ct img{
     width: 100%;
     object-fit: cover;
     border-radius: 16px;
@@ -888,7 +896,23 @@ html{
     overflow: hidden;
 }
 
-
+.body-detail-col-span-ct a:hover{
+    text-decoration: none;
+}
+.napgamekhac span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #434657;
+}
+.img-close-ct{
+    position: absolute;
+    top: 4px;
+    right: 0;
+    cursor: pointer;
+}
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-header-col-ct h3{
@@ -906,8 +930,14 @@ html{
 /*  Ipat  */
 @media (min-width: 768px) and (max-width: 992px) {
     .body-detail-col-ct {
-        padding: 12px 8px 12px 8px;
+        padding: 12px 8px 12px 8px!important;
         width: 20%!important;
+    }
+    .body-detail-ctng-col-ct{
+        padding: 12px 0 12px 0!important;
+    }
+    .body-detail-ctng-col-ct{
+        padding: 12px 0 12px 0!important;
     }
     .footer-row-col-ct{
         padding-top: 16px!important;
@@ -944,6 +974,9 @@ html{
     .body-detail-col-ct {
         padding: 12px 8px 12px 8px;
         width: 25%!important;
+    }
+    .body-detail-ctng-col-ct{
+        padding: 12px 0 12px 0!important;
     }
     .input-search-ct{
         width: 300px!important;
@@ -1006,6 +1039,9 @@ html{
         padding: 4px 8px 6px 4px;
         width: 33.33%!important;
     }
+    .body-detail-ctng-col-ct{
+        padding: 4px 0 4px 0!important;
+    }
     .body-detail-row-ct{
         padding-left: 12px!important;
         padding-right: 12px!important;
@@ -1040,9 +1076,7 @@ html{
     .banner-mobile-back{
         width: 10% !important;
     }
-    .banner-mobile-span{
-        width: 90% !important;
-    }
+
     .banner-mobile-span h3{
         font-family: 'Open Sans';
         font-style: normal;
@@ -1101,8 +1135,32 @@ html{
     .body-search-ct{
         padding-top: 16px!important;
     }
+    .back-position-ct{
+        position: absolute;
+        top: 16px;
+        left: 0;
+    }
+    .media-ctbg-ct{
+        margin-top: 20px!important;
+    }
+    .modal-body-success-ct{
+        padding-left: 16px!important;
+        padding-right: 16px!important;
+    }
 }
 @media only screen and (max-width: 376px) {
+    .modal-body-success-ct{
+        padding-left: 8px!important;
+        padding-right: 8px!important;
+    }
+    .media-ctbg-ct{
+        margin-top: 20px!important;
+    }
+    .back-position-ct{
+        position: absolute;
+        top: 16px;
+        left: 0;
+    }
     .body-search-ct{
         padding-top: 16px!important;
     }
@@ -1158,9 +1216,7 @@ html{
     .banner-mobile-back{
         width: 10% !important;
     }
-    .banner-mobile-span{
-        width: 90% !important;
-    }
+
     .banner-mobile-span h3{
         font-family: 'Open Sans';
         font-style: normal;
@@ -1205,6 +1261,9 @@ html{
     .body-detail-col-ct {
         padding: 4px 8px 6px 4px;
         width: 33.33%!important;
+    }
+    .body-detail-ctng-col-ct{
+        padding: 4px 0 4px 0!important;
     }
     .body-detail-row-ct{
         padding-left: 12px!important;

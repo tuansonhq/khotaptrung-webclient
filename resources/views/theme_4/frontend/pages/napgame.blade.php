@@ -29,11 +29,10 @@
     {{--  Header mobile  --}}
     <section class="media-mobile">
         <div class="container banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right banner-mobile-back">
-                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="">
-                </div>
-                <div class="col-auto left-right banner-mobile-span text-center">
+
+            <div class="row marginauto banner-mobile-row-ct" style="position: relative">
+                <img class="lazy back-position-ct" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="" >
+                <div class="col-12 left-right banner-mobile-span text-center">
                     <h3>Nạp tài khoản game</h3>
                 </div>
             </div>
@@ -133,10 +132,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lienquan.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lienquan.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên quân Mobile</span>
+                                                    <a href="">
+                                                        <span>Liên quân Mobile</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -145,10 +148,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Garena freefire</span>
+                                                    <a href="">
+                                                        <span>Garena freefire</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -157,10 +164,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>PUBG Mobile</span>
+                                                    <a href="">
+                                                        <span>PUBG Mobile</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -169,10 +180,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên Minh Huyền Thoại</span>
+                                                    <a href="">
+                                                        <span>Liên Minh Huyền Thoại</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -181,10 +196,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
+                                                    <a href="">
+                                                        <span>Tốc chiến</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -193,10 +212,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
+                                                    <a href="">
+                                                        <span>Auto Chess</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -205,10 +228,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
+                                                    <a href="">
+                                                        <span>Bang Bang</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -217,10 +244,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Cyber Punk 2077</span>
+                                                    <a href="">
+                                                        <span>Cyber Punk 2077</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -229,10 +260,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/csgo.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/csgo.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>CSGO</span>
+                                                    <a href="">
+                                                        <span>CSGO</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -241,10 +276,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Garena freefire</span>
+                                                    <a href="">
+                                                        <span>Garena freefire</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -253,10 +292,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>PUBG Mobile</span>
+                                                    <a href="">
+                                                        <span>PUBG Mobile</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -265,10 +308,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên Minh Huyền Thoại</span>
+                                                    <a href="">
+                                                        <span>Liên Minh Huyền Thoại</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -277,10 +324,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
+                                                    <a href="">
+                                                        <span>Tốc chiến</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -289,10 +340,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
+                                                    <a href="">
+                                                        <span>Auto Chess</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -301,10 +356,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
+                                                    <a href="">
+                                                        <span>Bang Bang</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -313,10 +372,14 @@
                                         <div class="col-auto body-detail-col-ct">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
-                                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    <a href="">
+                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                    </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Cyber Punk 2077</span>
+                                                    <a href="">
+                                                        <span>Cyber Punk 2077</span>
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -325,6 +388,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 

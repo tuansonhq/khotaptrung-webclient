@@ -35,14 +35,13 @@
     {{--  Header mobile  --}}
     <section class="media-mobile">
         <div class="container banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right banner-mobile-back">
-                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="">
-                </div>
-                <div class="col-auto left-right banner-mobile-span text-center">
+            <div class="row marginauto banner-mobile-row-ct" style="position: relative">
+                <img class="lazy back-position-ct" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="" >
+                <div class="col-12 left-right banner-mobile-span text-center">
                     <h3>Cày Thuê</h3>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -487,6 +486,7 @@
             </div>
         </div>
     </section>
+
 
 </div>
 
