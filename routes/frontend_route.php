@@ -94,6 +94,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.pages.napgame');
             });
 
+            Route::get('/danhsachnick',function(){
+                return view('frontend.pages.account');
+            });
+
             Route::get('/chitietnapgame',function(){
                 return view('frontend.pages.chitietnapgame');
             });
