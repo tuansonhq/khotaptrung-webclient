@@ -38,6 +38,7 @@
             </div>
         </div>
     </section>
+
     {{--    Banner--}}
     <section class="media-web">
         <div class="container banner-container-ct">
@@ -526,6 +527,7 @@
             </div>
         </div>
     </section>
+
 </div>
 
 <script>
