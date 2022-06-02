@@ -50,7 +50,7 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:200,1','verify_shop']) , function (){
             Route::get('/updategit', function ()
             {
-                $data = exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+                $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
 
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
@@ -87,7 +87,19 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
 
             Route::get('/chi-tiet-caythue',function(){
-                return view('frontend.pages.account.list');
+                return view('frontend.pages.chitiet');
+            });
+
+            Route::get('/napgame',function(){
+                return view('frontend.pages.napgame');
+            });
+
+            Route::get('/danhsachnick',function(){
+                return view('frontend.pages.account');
+            });
+
+            Route::get('/chitietnapgame',function(){
+                return view('frontend.pages.chitietnapgame');
             });
 
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');

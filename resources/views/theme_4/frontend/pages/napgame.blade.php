@@ -26,35 +26,36 @@
 
 @include('frontend.layouts.includes.header')
 <div class="content" style="">
-{{--  Header mobile  --}}
+    {{--  Header mobile  --}}
     <section class="media-mobile">
         <div class="container banner-mobile-container-ct">
+
             <div class="row marginauto banner-mobile-row-ct" style="position: relative">
                 <img class="lazy back-position-ct" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="" >
                 <div class="col-12 left-right banner-mobile-span text-center">
-                    <h3>Cày Thuê</h3>
+                    <h3>Nạp tài khoản game</h3>
                 </div>
             </div>
         </div>
     </section>
-{{--    Banner--}}
+    {{--    Banner--}}
     <section class="media-web">
         <div class="container banner-container-ct">
-            <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/banner-home.png" alt="">
+            <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/napgame-bg.png" alt="">
         </div>
     </section>
-{{--  Menu  --}}
+    {{--  Menu  --}}
     <section class="media-web">
         <div class="container menu-container-ct">
             <ul>
                 <li><a href="">Trang chủ</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="">Cày thuê</a></li>
+                <li class="menu-container-li-ct"><a href="">Nạp tài khoản game</a></li>
             </ul>
         </div>
     </section>
 
-{{--   Bopđyy --}}
+    {{--   Bopđyy --}}
     <section>
         <div class="container body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
@@ -64,10 +65,10 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
                                 <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/caythue.png" alt="">
+                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/napgameicon.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-8 body-header-col-ct">
-                                    <h3>Cày thuê</h3>
+                                    <h3>Nạp Tài khoản Game</h3>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +76,7 @@
                         <div class="col-md-12 left-right media-mobile">
                             <div class="row marginauto banner-container-ct">
                                 <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/banner-home.png" alt="">
+                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/napgame-bg.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +84,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-title-ct">
                                 <div class="col-md-12 text-left left-right">
-                                    <span>Chọn game muốn Cày</span>
+                                    <span>Chọn game muốn nạp</span>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +101,7 @@
                             <form action="" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
-                                        <input type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
+                                        <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
                                         <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
@@ -115,7 +116,7 @@
                             <form action="" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
-                                        <input type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
+                                        <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
                                         <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/search.png" alt="">
                                     </div>
                                 </div>
@@ -387,6 +388,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -462,6 +464,7 @@
 
 
 </html>
+
 
 
 

@@ -1,3 +1,3 @@
-<div class="p-3">
+<div class="header-mobile">
     <h3>Header</h3>
 </div>
