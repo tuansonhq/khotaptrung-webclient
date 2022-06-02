@@ -2,15 +2,6 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
-@push('style')
-@endpush
-@push('js')
-
-@endpush
-{{--@section('content')--}}
-@section('meta_robots')
-    <meta name="robots" content="index,follow" />
-@endsection
 @section('content')
     <p>nam</p>
 {{--    <div class="layout-page">--}}
