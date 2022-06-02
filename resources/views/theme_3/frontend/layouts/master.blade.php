@@ -33,6 +33,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css">
 
+
 </head>
 <body>
 <div class="layout">
