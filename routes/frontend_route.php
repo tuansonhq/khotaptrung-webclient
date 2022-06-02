@@ -98,6 +98,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.pages.account');
             });
 
+            Route::get('/caythue',function(){
+                return view('frontend.pages.caythue');
+            });
+
             Route::get('/chitietnapgame',function(){
                 return view('frontend.pages.chitietnapgame');
             });

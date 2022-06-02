@@ -35,7 +35,7 @@ input[type="text"] {
     color: black;
 }
 .layout{
-    background-color: #E5E5E5;
+    background-color: #EFEFEF;
 }
 
 :root{
@@ -69,7 +69,7 @@ a:hover{
 
 }
 @media (min-width: 1200px){
-    .header-container{
+    .container-fix{
         max-width: 1240px;
     }
 }

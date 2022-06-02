@@ -1,63 +1,46 @@
-<!doctype html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="robots" content="index,follow" />
-    <meta name="path" content="" />
-    <meta name="jwt" content="jwt" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/frontend/theme_4/lib/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_4/lib/animate/animate.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_4/css/style.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_4/lib/steps/jquery-steps.css">
+@extends('frontend.layouts.master')
 
-    {{--    jquery--}}
-    <script src="/assets/frontend/theme_4/lib/jquery/jquery.min.js"></script>
-    {{--    jquery--}}
-    <script src="/assets/frontend/theme_4/lib/bootstrap/bootstrap.min.js"></script>
+@section('content')
 
-</head>
-<body>
-
-
-@include('frontend.layouts.includes.header')
-<div class="content" style="">
-
-{{--  Header mobile  --}}
+    {{--  Header mobile  --}}
     <section class="media-mobile">
-        <div class="container banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct" style="position: relative">
-                <img class="lazy back-position-ct" src="/assets/frontend/theme_4/images/cay-thue/back.png" alt="" >
-                <div class="col-12 left-right banner-mobile-span text-center">
-                    <h3>Cày Thuê</h3>
+        <div class="container container-fix banner-mobile-container-ct">
+            <div class="row marginauto banner-mobile-row-ct">
+                <div class="col-auto left-right" style="width: 10%">
+                    <a href="" class="previous-step-one" style="line-height: 28px">
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                    </a>
+                </div>
+
+                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
+                    <h3>Nạp tài khoản game</h3>
+                </div>
+                <div class="col-auto left-right" style="width: 10%">
                 </div>
             </div>
+
         </div>
     </section>
-{{--    Banner--}}
+    {{--    Banner--}}
     <section class="media-web">
-        <div class="container banner-container-ct">
-            <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/banner-home.png" alt="">
+        <div class="container container-fix banner-container-ct">
+            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/napgame-bg.png" alt="">
         </div>
     </section>
-{{--  Menu  --}}
+    {{--  Menu  --}}
     <section class="media-web">
-        <div class="container menu-container-ct">
+        <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="">Cày thuê</a></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><a href="">Nạp tài khoản game</a></li>
             </ul>
         </div>
     </section>
 
-{{--   Bopđyy --}}
+    {{--   Bopđyy --}}
     <section>
-        <div class="container body-container-ct">
+        <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
                 <div class="col-md-12 left-right">
                     <div class="row marginauto body-row-ct">
@@ -65,10 +48,10 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
                                 <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/caythue.png" alt="">
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/napgameicon.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-8 body-header-col-ct">
-                                    <h3>Cày thuê</h3>
+                                    <h3>Nạp Tài khoản Game</h3>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +59,7 @@
                         <div class="col-md-12 left-right media-mobile">
                             <div class="row marginauto banner-container-ct">
                                 <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/banner-home.png" alt="">
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/napgame-bg.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +67,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-title-ct">
                                 <div class="col-md-12 text-left left-right">
-                                    <span>Chọn game muốn Cày</span>
+                                    <span>Chọn game muốn nạp</span>
                                 </div>
                             </div>
                         </div>
@@ -101,8 +84,8 @@
                             <form action="" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
-                                        <input type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/search.png" alt="">
+                                        <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
                                         <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -116,8 +99,8 @@
                             <form action="" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
-                                        <input type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/search.png" alt="">
+                                        <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                 </div>
                             </form>
@@ -133,7 +116,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lienquan.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lienquan.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -149,7 +132,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -165,7 +148,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -181,7 +164,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -197,7 +180,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -213,7 +196,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -229,7 +212,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -245,7 +228,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -261,7 +244,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/csgo.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/csgo.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -277,7 +260,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/freefire.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -293,7 +276,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bubg.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -309,7 +292,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/lmht.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -325,7 +308,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/tocchien.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -341,7 +324,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/autochest.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -357,7 +340,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/bangbang.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -373,7 +356,7 @@
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right">
                                                     <a href="">
-                                                        <img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/cyber.png" alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -388,6 +371,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -396,7 +380,7 @@
     </section>
 
     <section class="section-footer">
-        <div class="container body-container-ct">
+        <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct">
                 <div class="col-md-12 left-right">
                     <div class="row marginauto body-row-ct footer-row-ct">
@@ -431,10 +415,10 @@
 
                         <div class="col-md-12 left-right text-center">
                             <div class="view-more">
-                                Xem thêm <img src="/assets/frontend/theme_4/images/cay-thue/jump-down.png" alt="">
+                                Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/jump-down.png" alt="">
                             </div>
                             <div class="view-less">
-                                Thu gọn <img src="/assets/frontend/theme_4/images/cay-thue/jump-down-down.png" alt="">
+                                Thu gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/jump-down-down.png" alt="">
                             </div>
                         </div>
 
@@ -445,25 +429,9 @@
         </div>
     </section>
 
-</div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nap-game/nap-game.js?v={{time()}}"></script>
+@endsection
 
-<script>
-    $('.view-more').click(function(){
-        $('.view-less').css("display","block");
-        $('.view-more').css("display","none");
-        $(".footer-row-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.view-less').click(function(){
-        $('.view-more').css("display","block");
-        $('.view-less').css("display","none");
-        $(".footer-row-ct .content-video-in").removeClass( "showtext");
-    });
-
-</script>
-</body>
-
-
-</html>
 
 
 
