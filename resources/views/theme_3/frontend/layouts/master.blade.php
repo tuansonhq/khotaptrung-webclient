@@ -32,6 +32,7 @@
     <script src="/assets/frontend/lib/toastr/toastr.min.js"></script>
     <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
     <link rel="stylesheet" href="/assets/frontend/css/style.css">
+    <link rel="stylesheet" href="/assets/frontend/css/style_trong.css">
 
 </head>
 <body>
