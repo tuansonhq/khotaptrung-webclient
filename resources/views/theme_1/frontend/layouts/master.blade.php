@@ -16,7 +16,7 @@
         {!! setting('sys_schema') !!}
     @endif
 
-    <title>Kho lưu trữ</title>
+{{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
@@ -49,9 +49,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css?v={{time()}}">
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">
+{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.css">--}}
+{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_banner)){{theme('')->theme_config->sys_config_banner ? theme('')->theme_config->sys_config_banner : ''}}@endif/theme.css">--}}
+{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/@if(isset(theme('')->theme_config->sys_config_menu_news)){{theme('')->theme_config->sys_config_menu_news ? theme('')->theme_config->sys_config_menu_news : ''}}@endif/theme.css">--}}
     @stack('style')
     <style>
         .main-lay-out{
@@ -61,31 +61,31 @@
             padding-bottom: 40px;
         }
     </style>
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap-popover/bootstrap-popover.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/jquery.barrating.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/jquery.barrating.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/rateit/examples.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/sweetalert.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>--}}
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -130,7 +130,7 @@
     @stack('js')
 
     @yield('seo_head')
-    @if(Request::is('/'))
+        @if(Request::is('/'))
         <style>
             .content{
                 padding-top: 140px;
@@ -211,38 +211,38 @@
 </script>
 
 @include('frontend.layouts.includes.footer')
-{{--<script>--}}
-{{--    @if(\App\Library\AuthCustom::check())--}}
-{{--    $( document ).ready(function() {--}}
-{{--    $(document).on('scroll',function(){--}}
-{{--        if($(window).width() > 1024){--}}
-{{--            if ($(this).scrollTop() > 100) {--}}
-{{--                $("#logout").css("display","none");--}}
+<script>
+    @if(\App\Library\AuthCustom::check())
+    $( document ).ready(function() {
+    $(document).on('scroll',function(){
+        if($(window).width() > 1024){
+            if ($(this).scrollTop() > 100) {
+                $("#logout").css("display","none");
 
-{{--            } else {--}}
-{{--                $("#logout").css("display","inline");--}}
-{{--            }--}}
-{{--        }--}}
+            } else {
+                $("#logout").css("display","inline");
+            }
+        }
 
-{{--    });--}}
-{{--    });--}}
-{{--    @endif--}}
+    });
+    });
+    @endif
 
 
-{{--</script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>--}}
+</script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/action.js?v={{time()}}"></script>
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/@if(isset(theme('')->theme_config->sys_config_menu)){{theme('')->theme_config->sys_config_menu ? theme('')->theme_config->sys_config_menu : ''}}@endif/theme.js"></script>--}}
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js?v={{time()}}"></script>--}}
-{{--<script src="/assets/frontend/{{theme('')->theme_key}}/js/jquery.cookie.min.js"></script>--}}
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/swiper.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/jquery.cookie.min.js"></script>
 
 
 
