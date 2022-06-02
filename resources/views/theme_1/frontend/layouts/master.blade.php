@@ -171,7 +171,7 @@
 {{--    <!-- End Google Tag Manager (noscript) -->--}}
 {{--@endif--}}
 <div class="{{ Request::is('/')?'main-lay-out':'' }}">
-    @include('frontend.layouts.includes.header')
+{{--    @include('frontend.layouts.includes.header')--}}
     <div class="content" style="">
         @yield('content')
     </div>
