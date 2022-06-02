@@ -9,56 +9,33 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="path" content="" />
     <meta name="jwt" content="jwt" />
-    @if(setting('sys_google_search_console') != '')
-        <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
-    @endif
-    @if(setting('sys_schema') != '')
-        {!! setting('sys_schema') !!}
-    @endif
+    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/sweetalert2/sw2.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/sweetalert2/sw2.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/bootstrap/bootstrap.min.css">
     <!--    swiper-->
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/swiper/swiper.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/animate/animate.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/OwlCarousel2/owl.carousel.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/fancybox/fancybox.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/toastr/toastr.css">
-    <link rel="stylesheet" href="/assets/frontend/theme_3/lib/steps/jquery-steps.css">
-    @stack('style')
-{{--    jquery--}}
-    <script src="/assets/frontend/theme_3/lib/jquery/jquery.min.js"></script>
-{{--    jquery--}}
-    <script src="/assets/frontend/theme_3/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="/assets/frontend/theme_3/lib/date-picker/bootstrap-datetimepicker.min.js"></script>
-    <script src="/assets/frontend/theme_3/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
-    <script src="/assets/frontend/theme_3/lib/lazyload/lazyloadGen.js"></script>
-    <script src="/assets/frontend/theme_3/lib/toastr/toastr.min.js"></script>
-    <script src="/assets/frontend/theme_3/lib/sweetalert2/sw2.js"></script>
-    @stack('js')
+    <link rel="stylesheet" href="/assets/frontend/lib/swiper/swiper.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/animate/animate.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/OwlCarousel2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/date-picker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/toastr/toastr.css">
+    <link rel="stylesheet" href="/assets/frontend/lib/steps/jquery-steps.css">
+    <script src="/assets/frontend/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/frontend/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="/assets/frontend/lib/date-picker/bootstrap-datetimepicker.min.js"></script>
+    <script src="/assets/frontend/lib/bootstrapdatepicker/bootstrap-datepicker.min.js"></script>
+    <script src="/assets/frontend/lib/lazyload/lazyloadGen.js"></script>
+    <script src="/assets/frontend/lib/toastr/toastr.min.js"></script>
+    <script src="/assets/frontend/lib/sweetalert2/sw2.js"></script>
+    <link rel="stylesheet" href="/assets/frontend/css/style.css">
 
-    @yield('seo_head')
-    @if(setting('sys_google_tag_manager_head') != '')
-    <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
-        <!-- End Google Tag Manager -->
-    @endif
 </head>
 <body>
-@if(setting('sys_google_tag_manager_body') != '')
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
-                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-@endif
+<div class="layout">
 
     @include('frontend.layouts.includes.header')
     <div class="content" style="">
@@ -66,41 +43,18 @@
     </div>
     @include('frontend.layouts.includes.footer')
 
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root" style="    z-index: 666;"></div>
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
 </div>
-<script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "{{setting('sys_id_chat_message') }}");
 
-    chatbox.setAttribute("attribution", "biz_inbox");
-</script>
 
-<!-- Your SDK code -->
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            xfbml            : true,
-            version          : 'v13.0'
-        });
-    };
+<!-- Messenger Plugin chat Code -->
 
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<script src="/assets/frontend/theme_3/lib/fancybox/fancybox.umd.js"></script>
-<script src="/assets/frontend/theme_3/lib/fancybox/jquery.fancybox.min.js"></script>
-<script src="/assets/frontend/theme_3/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
-<script src="/assets/frontend/theme_3/lib/slick/slick.min.js"></script>
-<script src="/assets/frontend/theme_3/lib/swiper/swiper.min.js"></script>
+<script src="/assets/frontend/lib/fancybox/fancybox.umd.js"></script>
+<script src="/assets/frontend/lib/fancybox/jquery.fancybox.min.js"></script>
+<script src="/assets/frontend/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
+<script src="/assets/frontend/lib/slick/slick.min.js"></script>
+<script src="/assets/frontend/lib/swiper/swiper.min.js"></script>
+<script src="/assets/frontend/js/main.js"></script>
+<script src="/assets/frontend/js/swiper.js"></script>
 
 </body>
 
