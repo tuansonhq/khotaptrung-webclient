@@ -64,6 +64,16 @@
     padding-top: 16px;
     padding-bottom: 16px;
 }
+
+.body-row-napgame-ct{
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 40px;
+}
+
 .body-header-col-ct{
     padding-left: 8px;
     padding-right: 0;
@@ -136,6 +146,18 @@
     line-height: 150%;
     color: #434657;
 }
+.input-search-ct:hover{
+    color: #82869E;
+    background: #F3F3F7;;
+    border: 1px solid #BCBFD6;
+}
+.input-search-ct:active, .input-search-ct:focus {
+    border-color: #FDE4CC;
+    background: #F3F3F7;
+    color: #1B1D29;
+}
+
+
 .body-form-search-button-ct{
     padding-left: 12px;
     padding-right: 0;
@@ -146,15 +168,27 @@
     background-color: #F67600;
     color: #FFFFFF;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     width: 120px;
     height: 40px;
     transition: .2s;
 }
+.modal-footer-success-row-ct a span{
+    font-size: 16px;
+}
+.modal-footer-success-row-not-ct a span{
+    font-size: 16px;
+}
 .timkiem-button-ct:hover{
-    border: 1px solid #F67600;
-    background-color: transparent;
-    color: #F67600;
+    /*border: 1px solid #DD6A00;*/
+    background-color: #DD6A00;
+    color: #ffffff;
+    transition: .2s;
+}
+.timkiem-button-ct:hover:active{
+    /*border: 1px solid #C55E00;*/
+    background-color: #C55E00;
+    color: #ffffff;
     transition: .2s;
 }
 .body-detail-ct{
@@ -464,8 +498,14 @@
 }
 
 .input-defautf-ct:hover{
-    color: #F67600;
-    border: 1px solid #F67600;
+    color: #82869E;
+    background: #F3F3F7;;
+    border: 1px solid #BCBFD6;
+}
+.input-defautf-ct:active, .input-defautf-ct:focus {
+    border-color: #FDE4CC;
+    background: #F3F3F7;
+    color: #1B1D29;
 }
 .input-defautf-ct::placeholder{
     font-family: 'Open Sans';
@@ -506,15 +546,41 @@
     line-height: 150%;
 }
 .button-default-ct:hover{
-    border: 1px solid #DD6A00;
     background-color: #DD6A00;
     color: #FFFFFF;
 }
 .button-default-ct:hover:active{
-    border: 1px solid #C55E00;
     background-color: #C55E00;
     color: #FFFFFF;
 }
+
+
+.button-default-modal-ct{
+    border: none;
+    border-radius: 8px;
+    background-color: #F67600;
+    color: #FFFFFF;
+    font-weight: 600;
+    padding: 12px 24px;
+    width: 100%;
+    height: 48px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 150%;
+}
+.button-default-modal-ct:hover{
+    background-color: #DD6A00;
+    color: #FFFFFF;
+}
+.button-default-modal-ct:hover:active{
+    background-color: #C55E00;
+    color: #FFFFFF;
+}
+
+
+
+
 .bottom-container-ct{
     padding-bottom: 60px;
 }
@@ -700,7 +766,7 @@
     color: #FFFFFF;
 }
 .modal-footer-success-row-not-ct a{
-    padding: 12px 40px;
+    padding: 12px 32px;
     line-height: 48px;
     font-family: 'Open Sans';
     font-style: normal;
@@ -750,7 +816,7 @@
 
 
 .show-detail-service-ct .content-video-in{
-    max-height: 200px;
+    max-height: 226px;
     overflow: hidden;
 }
 .show-detail-service-ct .view-more,.show-detail-service-ct .view-less{
@@ -784,7 +850,7 @@
 
 
 .show-detail-caythue-ct .content-video-in{
-    max-height: 200px;
+    max-height: 226px;
     overflow: hidden;
 }
 .show-detail-caythue-ct .view-more,.show-detail-caythue-ct .view-less{
@@ -822,6 +888,13 @@
     right: 8px;
     top: 16px;
 }
+
+.show-btn-password-mobile{
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 16px;
+}
 .body-title-detail-media-ct{
     width: 50%;
 }
@@ -835,7 +908,7 @@
 
 
 .show-detail-napgame-ct .content-video-in{
-    max-height: 310px;
+    max-height: 326px;
     overflow: hidden;
 }
 .show-detail-napgame-ct .view-more,.show-detail-napgame-ct .view-less{
@@ -884,13 +957,25 @@
     right: 0;
     cursor: pointer;
 }
+
+.img-close-nick-ct{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
 #service-detail .web-media-ct{
-    padding-bottom: 90px;
+    padding-bottom: 142px;
 }
  .web-media-ct{
     padding-bottom: 118px;
 }
 .modal-header-order-ct{
+    border-bottom: 0!important;
+    padding: 16px 16px 0 16px;
+}
+.modal-header-nick-ct{
     border-bottom: 0!important;
     padding: 16px 16px 0 16px;
 }
@@ -902,6 +987,26 @@
     line-height: 150%;
     color: #1B1D29;
 }
+.order-errors{
+    padding-top: 8px;
+}
+.order-errors small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #DA4343;
+}
+.modal-header-nick-ct span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1B1D29;
+}
+
 .modal-body-order-ct{
     padding: 16px;
 }
@@ -926,13 +1031,40 @@
 .background-order-col-right-ct{
     margin-left: auto;
 }
-.background-order-col-right-ct small{
+.background-nick-col-top-ct small{
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 150%;
     color: #434657;
+}
+
+.background-nick-select-left-ct small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #434657;
+}
+
+.background-nick-select-right-ct{
+    margin-left: auto;
+}
+.background-nick-col-bottom-ct{
+    padding-top: 8px;
+}
+.modal-nick-padding{
+    padding-top: 16px;
+}
+.background-nick-col-right-ct small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1B1D29;
 }
 .title-order-ct span{
     font-family: 'Open Sans';
@@ -965,6 +1097,11 @@
     padding-top: 24px;
     padding-bottom: 8px;
 }
+
+.padding-nicks-footer-ct{
+    padding-top: 16px;
+}
+
 .padding-order-footer-mobile-ct{
     padding-top: 178px;
     padding-bottom: 8px;
@@ -1056,7 +1193,143 @@
     z-index: 9;
     transition: all 0.2s;
 }
+.hover-overlay-ct{
+    cursor: pointer;
+}
+.hover-overlay-ct:hover span{
+    color: #F67600;
+}
 
+.nick-findter{
+    cursor: pointer;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+.nick-findter ul{
+    padding-left: 0;
+    margin-bottom: 0;
+    float: left;
+}
+.nick-findter li{
+    list-style: none;
+    float: left;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #434657;
+}
+.margin-findter{
+    margin-left: 4px;
+}
+
+.nick-findter-row{
+    margin-top: -24px;
+}
+
+
+/* aaaaaaaaaaaaaaa   */
+
+.default-select-ratio{
+    display: flex;
+}
+
+.default-select-ratio{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+}
+
+.switch-input:checked + .switch-label {
+    /* Switch Rail */
+    /* Switch Knob */
+}
+.switch-input:checked + .switch-label:before {
+    background-color: #F67600;
+}
+.switch-input:checked + .switch-label:after {
+    left: 16px;
+    background-color: #fff;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+}
+/* Hide the checkbox input (only needed for `:checked` property) */
+.switch-input {
+    display: none;
+}
+/* Switch */
+.switch-label {
+    display: block;
+    height: 22px;
+    width: 36px;
+    /*text-indent: -150%;*/
+    clip: rect(0 0 0 0);
+    color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* Switch Rail & Knob */
+    /* Switch Rail */
+    /* Switch Knob */
+}
+.switch-label:before,
+.switch-label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+.switch-label:before {
+    height: 22px;
+    width: 36px;
+    border: 1px solid #E4E5F0;
+    background-color: #E4E5F0;
+    border-radius: 9999em;
+    transition: background-color 0.25s ease;
+}
+.switch-label:after {
+    top: 3px;
+    left: 2px;
+    height: 16px;
+    width: 16px;
+    border-radius: 100%;
+    background-color: #A7ABC3;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+    transition: left 0.25s ease;
+}
+
+.prepend-nick{
+    padding-left: 0;
+    padding-right: 8px;
+}
+.prepend-nick a{
+    background: #F3F3F7;
+    border-radius: 100px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 150%;
+    color: #434657;
+    padding: 8px 40px 8px 12px;
+;
+}
+.prepend-nick a:hover{
+    text-decoration: none;
+}
+
+.close-item-nick{
+    position: absolute;
+    right: 16px;
+    top: 4px;
+    cursor: pointer;
+}
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-header-col-ct h3{
@@ -1073,16 +1346,22 @@
         width: 20%;
     }
     .show-detail-caythue-ct .content-video-in{
-        max-height: 250px;
+        /*max-height: 250px;*/
     }
     .show-detail-service-ct .content-video-in {
-        max-height: 250px;
+        /*max-height: 250px;*/
     }
     #service-detail .web-media-ct {
-        padding-bottom: 74px;
+        padding-bottom: 24px;
     }
     .bottom-container-ct {
         padding-bottom: 60px;
+    }
+    .section-footer{
+        padding-bottom: 90px;
+    }
+    .body-row-napgame-ct{
+        padding-bottom: 24px;
     }
 }
 
@@ -1114,6 +1393,9 @@
     .body-row-ct{
         border-radius: 0!important;
     }
+    .body-row-napgame-ct{
+        border-radius: 0!important;
+    }
     .banner-detail-ct img{
         border-bottom-left-radius: 0!important;
         border-bottom-right-radius: 0!important;
@@ -1132,6 +1414,22 @@
     }
     .body-detail-account-small-span-ct .fist-li-account {
         font-size: 16px;
+    }
+    .section-footer{
+        padding-bottom: 0;
+    }
+    .footer-row-ct .view-more, .footer-row-ct .view-less{
+        padding-top: 8px!important;
+        padding-bottom: 8px!important;
+    }
+    .footer-row-col-ct p{
+        margin-bottom: 8px!important;
+    }
+    #service-detail .web-media-ct{
+        padding-bottom: 24px;
+    }
+    .body-row-napgame-ct{
+        padding-bottom: 24px;
     }
 }
 
@@ -1163,6 +1461,9 @@
     .body-row-ct{
         border-radius: 0!important;
     }
+    .body-row-napgame-ct{
+        border-radius: 0!important;
+    }
     .banner-detail-ct img{
         border-bottom-left-radius: 0!important;
         border-bottom-right-radius: 0!important;
@@ -1190,6 +1491,22 @@
         width: 30px;
     }
 
+    .section-footer{
+        padding-bottom: 0;
+    }
+    .footer-row-ct .view-more, .footer-row-ct .view-less{
+        padding-top: 8px!important;
+        padding-bottom: 8px!important;
+    }
+    .footer-row-col-ct p{
+        margin-bottom: 8px!important;
+    }
+    #service-detail .web-media-ct{
+        padding-bottom: 24px;
+    }
+    .body-row-napgame-ct{
+        padding-bottom: 24px;
+    }
 }
 
 @media only screen and (min-width: 376px) and (max-width: 573px) {
@@ -1203,6 +1520,9 @@
         width: 24px!important;
     }
     .body-row-ct{
+        border-radius: 0!important;
+    }
+    .body-row-napgame-ct{
         border-radius: 0!important;
     }
     .body-title-ct span, .body-search-ct span{
@@ -1304,6 +1624,9 @@
     .password-mobile{
         padding-top: 12px!important;
     }
+    .password-mobile-napgame{
+        /*padding-top: 12px!important;*/
+    }
     .button-default-ct {
         height: 48px!important;
         font-size: 16px!important;
@@ -1396,9 +1719,27 @@
     .modal-body-span-success-ct span{
         font-size: 14px!important;
     }
+    .show-detail-service-ct .view-more, .show-detail-service-ct .view-less{
+        font-size: 12px!important;
+    }
+    .body-row-napgame-ct{
+        padding-bottom: 0px;
+    }
+    .body-detail-right-ng-ct{
+        margin-top: 0!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .body-detail-right-ng-ct{
+        margin-top: 0!important;
+    }
+    .body-row-napgame-ct{
+        padding-bottom: 0px;
+    }
+    .show-detail-service-ct .view-more, .show-detail-service-ct .view-less{
+        font-size: 12px!important;
+    }
     .modal-body-span-success-ct span{
         font-size: 14px!important;
     }
@@ -1488,6 +1829,9 @@
     .password-mobile{
         padding-top: 12px!important;
     }
+    .password-mobile-napgame{
+        /*padding-top: 12px!important;*/
+    }
     .body-title-detail-span-ct li{
         font-size: 14px!important;
     }
@@ -1559,6 +1903,9 @@
         width: 24px!important;
     }
     .body-row-ct{
+        border-radius: 0!important;
+    }
+    .body-row-napgame-ct{
         border-radius: 0!important;
     }
     .body-title-ct span, .body-search-ct span{

@@ -53,7 +53,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -61,7 +61,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -73,8 +73,44 @@ $(document).ready(function (e) {
         }
     });
 
+    $('.show-btn-password-mobile').on('click', function(){
+
+        // Get the password field
+        var passwordField = $('#password-mobile');
+
+        // Get the current type of the password field will be password or text
+        var passwordFieldType = passwordField.attr('type');
+
+        // Check to see if the type is a password field
+        if(passwordFieldType == 'password')
+        {
+            // Change the password field to text
+            passwordField.attr('type', 'text');
+
+            var htmlpass = '';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            $('.show-btn-password-mobile').html('');
+            $('.show-btn-password-mobile').html(htmlpass);
+
+            // Change the Text on the show password button to Hide
+            $(this).val('Hide');
+        } else {
+            var htmlpass = '';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            $('.show-btn-password-mobile').html('');
+            $('.show-btn-password-mobile').html(htmlpass);
+
+            // If the password field type is not a password field then set it to password
+            passwordField.attr('type', 'password');
+
+            // Change the value of the show password button to Show
+            $(this).val('Show');
+        }
+    });
+
     $('.open-modal').on('click', function(){
         $('#openOrder').modal('show');
+
     })
 
     $('.openSuccess').on('click', function(){
@@ -83,6 +119,7 @@ $(document).ready(function (e) {
 
     // $('#successModal').modal('show');
     $('.wide').niceSelect();
+
 
     tippy('.checkbox-info-ct', {
         // default
