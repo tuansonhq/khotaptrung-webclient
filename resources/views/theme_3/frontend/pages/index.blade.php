@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <div class="banner-home" style=" background: url(assets/frontend/image/banner.png) no-repeat center center / cover;">
+
+    <div class="banner-home" style=" background: url(assets/frontend/{{theme('')->theme_key}}/image/banner.png) no-repeat center center / cover;">
         <div class="container">
             <div class="d-flex justify-content-between">
                 <div class="box-list-service">
@@ -9,56 +10,56 @@
                     <ul class="list-service">
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Nạp thẻ cào</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home2.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home2.png" alt="">
                                 <span>Nạp ATM- VÍ</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home3.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home3.png" alt="">
                                 <span>Mua thẻ game</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Mua Acc game</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Dịch vụ game</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Vòng quay</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Mua Acc game</span>
                             </a>
 
                         </li>
                         <li class="item-service">
                             <a href="">
-                                <img src="assets/frontend/image/service_home.png" alt="">
+                                <img src="assets/frontend/{{theme('')->theme_key}}/image/service_home.png" alt="">
                                 <span>Mua thẻ game</span>
                             </a>
                         </li>
@@ -66,7 +67,7 @@
                     </ul>
                 </div>
                 <div class="box-list-top top-list">
-                    <p><img src="assets/frontend/image/star_top.png" alt=""> Top nạp thẻ</p>
+                    <p><img src="assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
                     <div class="top-days ">
                         <ul class="nav justify-content-between row" role="tablist" >
                             <li class="nav-item col-md-4 p-md-0" role="presentation">
@@ -84,17 +85,17 @@
                         <div class="tab-pane fade active show item-top mt-3" id="sevendays" role="tabpanel" aria-labelledby="sevendays-tab" >
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -104,7 +105,7 @@
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -115,17 +116,17 @@
                         <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -135,7 +136,7 @@
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -146,17 +147,17 @@
                         <div class="tab-pane  fade item-top mt-3" id="sixtydays"  role="tabpanel" aria-labelledby="sixty-tab">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -166,7 +167,7 @@
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                    <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -186,7 +187,7 @@
         <div class="flash-sales block-product">
             <div class="product-header d-flex">
                     <span>
-                        <img src="assets/frontend/image/flash_sales.png" alt="">
+                        <img src="assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Giảm sốc trong ngày</p>
                 <div class="timer" id="timer">
@@ -197,7 +198,7 @@
 
                 <div class="text-view-more">
                     <a href="">
-                        Xem thêm <img src="assets/frontend/image/view_more.png" alt="">
+                        Xem thêm <img src="assets/frontend/{{theme('')->theme_key}}/image/view_more.png" alt="">
                     </a>
 
                 </div>
@@ -208,7 +209,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -235,7 +236,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -262,7 +263,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -289,7 +290,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -316,7 +317,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -343,7 +344,7 @@
                         <div class="swiper-slide" >
                             <div class="item-product__box-img">
                                 <a href="">
-                                    <img src="assets/frontend/image/product.png" alt="">
+                                    <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                 </a>
                             </div>
                             <div class="item-product__box-content">
@@ -374,7 +375,7 @@
         <div class=" block-product">
             <div class="product-header d-flex">
                     <span>
-                        <img src="assets/frontend/image/flash_sales.png" alt="">
+                        <img src="assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Dành cho bạn</p>
                 <div class="product-catecory" >
@@ -393,7 +394,7 @@
 
                 <div class="text-view-more">
                     <a href="">
-                        Xem thêm <img src="assets/frontend/image/view_more.png" alt="">
+                        Xem thêm <img src="assets/frontend/{{theme('')->theme_key}}/image/view_more.png" alt="">
                     </a>
 
                 </div>
@@ -405,7 +406,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -432,7 +433,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -459,7 +460,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -486,7 +487,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -513,7 +514,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -540,7 +541,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -573,7 +574,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product2.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product2.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -600,7 +601,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -627,7 +628,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -654,7 +655,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -681,7 +682,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -708,7 +709,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -741,7 +742,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product3.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product3.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -768,7 +769,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -795,7 +796,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -822,7 +823,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -849,7 +850,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -876,7 +877,7 @@
                             <div class="swiper-slide" >
                                 <div class="item-product__box-img">
                                     <a href="">
-                                        <img src="assets/frontend/image/product.png" alt="">
+                                        <img src="assets/frontend/{{theme('')->theme_key}}/image/product.png" alt="">
                                     </a>
                                 </div>
                                 <div class="item-product__box-content">
@@ -913,7 +914,7 @@
                 </div>
                 <div class="col-md-4 p-md-2" >
                     <div class=" top-list">
-                        <p><img src="assets/frontend/image/star_top.png" alt=""> Top nạp thẻ</p>
+                        <p><img src="assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
                         <div class="top-days ">
                             <ul class="nav justify-content-between row" role="tablist" >
                                 <li class="nav-item col-md-4 p-md-0" role="presentation">
@@ -931,17 +932,17 @@
                             <div class="tab-pane fade active show item-top mt-3" id="sevendays" role="tabpanel" aria-labelledby="sevendays-tab" >
                                 <ul class="nav flex-column">
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài hai dòng </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -951,7 +952,7 @@
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -962,17 +963,17 @@
                             <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">
                                 <ul class="nav flex-column">
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài hai dòng </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -982,7 +983,7 @@
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -993,17 +994,17 @@
                             <div class="tab-pane  fade item-top mt-3" id="sixtydays"  role="tabpanel" aria-labelledby="sixty-tab">
                                 <ul class="nav flex-column">
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài hai dòng </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -1013,7 +1014,7 @@
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
                                     <li class="d-flex">
-                                        <span><img src="assets/frontend/image/top_star.png" alt=""></span>
+                                        <span><img src="assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                         <span class="top-name">Tên dài </span>
                                         <span class="float-right top-amount">100.000.000đ</span>
                                     </li>
@@ -1029,5 +1030,6 @@
             </div>
         </div>
     </div>
+
 @endsection
 

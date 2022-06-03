@@ -87,19 +87,27 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
 
             Route::get('/chi-tiet-caythue',function(){
-                return view('frontend.pages.chitiet');
-            });
-
-            Route::get('/napgame',function(){
-                return view('frontend.pages.napgame');
+                return view('frontend.html.chitiet');
             });
 
             Route::get('/danhsachnick',function(){
-                return view('frontend.pages.account');
+                return view('frontend.html.danhsachnick');
+            });
+
+            Route::get('/napgame',function(){
+                return view('frontend.html.napgame');
+            });
+
+            Route::get('/nick',function(){
+                return view('frontend.html.nick');
+            });
+
+            Route::get('/caythue',function(){
+                return view('frontend.html.caythue');
             });
 
             Route::get('/chitietnapgame',function(){
-                return view('frontend.pages.chitietnapgame');
+                return view('frontend.html.chitietnapgame');
             });
 
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
