@@ -20,7 +20,7 @@
                     <ul class="nav " role="tablist" >
                         <li role="presentation" class="nav-item active" >
                             <a  class="active" data-toggle="tab" href="#top_napthe" role="tab"  >
-                                TOP NẠP THẺ THÁNG 02
+                                TOP NẠP THẺ THÁNG 0{{Carbon\Carbon::now()->month}}
                             </a>
                         </li>
                         <li role="presentation" class="" >
