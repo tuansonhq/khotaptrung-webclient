@@ -770,14 +770,14 @@
     @if(isset($data->description))
         <div class="shop_product_another">
             <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Nổi bật</h3>
+                <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">CHI TIẾT</h3>
                 <div class="c-line-center c-theme-bg"></div>
             </div>
 
             <div class="shop_product_another_content">
                 <div class="item_buy_list row">
                     <div class="col-md-12">
-                        <span style="text-transform: uppercase">{!! $data->description !!}</span>
+                        <span>{!! $data->description !!}</span>
                     </div>
                 </div>
             </div>
