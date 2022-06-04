@@ -2,6 +2,7 @@
 
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+    <meta name="robots" content="index,follow" />
 @endsection
 @push('js')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js?v={{time()}}"></script>

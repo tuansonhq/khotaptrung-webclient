@@ -2,7 +2,9 @@
 
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    <meta name="robots" content="index,follow" />
 @endsection
+
 @push('js')
     <script>
         $(document).ready(function(){

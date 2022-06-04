@@ -22,7 +22,7 @@
         <meta name="description" content="{{ setting('sys_description') }}">
 
     @endif
-    @if(Request::is('/'))
+    @if(Request::is('/') )
         <meta name="robots" content="index,follow" />
     @else
         <meta name="robots" content="noindex,nofollow" />

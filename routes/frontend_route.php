@@ -323,15 +323,17 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
                         ->name('getAmountCharge');
                     //Nạp thẻ Atm
-                    Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
-                        ->name('getBank');
+                    Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+                    Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+                        ->name('getIdCode');
 
-
-                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
-                        ->name('postDepositBank');
-                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
-                        ->name('postTranferBank');
+//
+//
+//                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
+//                        ->name('postDepositBank');
+//                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
+//                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
+//                        ->name('postTranferBank');
 
 
                 });
