@@ -94,10 +94,8 @@
                                                 <span class="gallery__02__span__02">ATM chỉ cần</span>
                                             </div>
                                             <div class="col-md-12">
-                                                @if(formatPrice($atm_percent*$data->price/100) == '')
-                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($atm_percent*$data->price/100))) }} ATM</span>
-                                                @else
-                                                    <span class="gallery__01__span__02">{{ formatPrice($atm_percent*$data->price/100) }} ATM</span>
+                                                @if(isset($data->price_atm))
+                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
                                                 @endif
                                             </div>
                                         </div>
