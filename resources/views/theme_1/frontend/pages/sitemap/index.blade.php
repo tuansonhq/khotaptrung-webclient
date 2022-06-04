@@ -16,10 +16,18 @@
     </url>
 
 
-    @foreach ($menu??[] as $item)
-        <url>
-            <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>
+{{--    @foreach ($menu??[] as $item)--}}
+{{--        <url>--}}
+{{--            <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>--}}
 {{--            <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
+{{--            <changefreq>weekly</changefreq>--}}
+{{--            <priority>0.9</priority>--}}
+{{--        </url>--}}
+{{--    @endforeach--}}
+    @foreach ($acc??[] as $item)
+        <url>
+            <loc>{{Request::root()}}{{'/mua-acc/'. $item->slug }}</loc>
+            {{--            <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
             <changefreq>weekly</changefreq>
             <priority>0.9</priority>
         </url>
@@ -36,14 +44,24 @@
 
     @endforeach
     @foreach($arrArticle??[] as $article)
-    @foreach ($article  ??[] as $item)
-        <url>
-            <loc>{{Request::root()}}{{'/tin-tuc/'. $item->slug }}</loc>
-            <lastmod>{{ $item->created_at }}</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.65</priority>
-        </url>
+        @foreach ($article  ??[] as $item)
+            <url>
+                <loc>{{Request::root()}}{{'/tin-tuc/'. $item->slug }}</loc>
+                <lastmod>{{ $item->created_at }}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.65</priority>
+            </url>
+        @endforeach
     @endforeach
+    @foreach($arrService??[] as $service)
+        @foreach ($service  ??[] as $item)
+            <url>
+                <loc>{{Request::root()}}{{'/dich-vu/'. $item->slug }}</loc>
+                <lastmod>{{ $item->created_at }}</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.65</priority>
+            </url>
+        @endforeach
     @endforeach
 </urlset>
 
