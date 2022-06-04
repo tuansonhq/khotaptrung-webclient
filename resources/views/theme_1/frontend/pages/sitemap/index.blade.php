@@ -24,6 +24,20 @@
 {{--            <priority>0.9</priority>--}}
 {{--        </url>--}}
 {{--    @endforeach--}}
+    @foreach ($mini_game??[] as $item)
+        <url>
+            <loc>{{Request::root()}}{{'/'. $item->slug }}</loc>
+            {{--            <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
+            <changefreq>weekly</changefreq>
+            <priority>0.9</priority>
+        </url>
+    @endforeach
+    <url>
+        <loc>{{Request::root()}}{{'/mua-acc/'}}</loc>
+{{--        <lastmod>{{ $item->created_at->tz('UTC')->toAtomString() }}</lastmod>--}}
+        <changefreq>weekly</changefreq>
+        <priority>0.65</priority>
+    </url>
     @foreach ($acc??[] as $item)
         <url>
             <loc>{{Request::root()}}{{'/mua-acc/'. $item->slug }}</loc>
@@ -53,6 +67,12 @@
             </url>
         @endforeach
     @endforeach
+    <url>
+        <loc>{{Request::root()}}{{'/dich-vu/'}}</loc>
+        <lastmod>{{ $item->created_at }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.65</priority>
+    </url>
     @foreach($arrService??[] as $service)
         @foreach ($service  ??[] as $item)
             <url>

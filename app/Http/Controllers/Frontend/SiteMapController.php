@@ -41,17 +41,27 @@ class SiteMapController extends Controller
         $val_service  = array();
         $result_service   = DirectAPI::_makeRequest($url_service ,$val_service ,$method_get );
 
+//        mini-game
+        $url_minigame = '/minigame/get-list-minigame';
+        $val_minigame = array();
+        $result_minigame  = DirectAPI::_makeRequest($url_minigame ,$val_minigame ,$method_get );
+
+
         $response_data_menu_category = $result_Api_menu_category->response_data??null;
         $response_data_article = $result_article->response_data??null;
         $response_data_article_category = $result_article_category->response_data??null;
         $response_data_acc = $result_acc->response_data??null;
         $response_data_service = $result_service->response_data??null;
+        $response_data_minigame = $result_minigame->response_data??null;
+
 
 
 
         if(isset($response_data_menu_category) && $response_data_menu_category->status == 1 && isset($response_data_menu_category) && $response_data_menu_category->status == 1 && isset($response_data_article) && $response_data_article->status == 1 ){
             $menu = $response_data_menu_category->data;
             $acc = $response_data_acc->data;
+
+            $mini_game = $response_data_minigame->data;
 
 //            tin tức
             $article_category = $response_data_article_category->datacategory;
@@ -85,6 +95,7 @@ class SiteMapController extends Controller
             return response()->view('frontend.pages.sitemap.index', [
                 'menu' => $menu,
                 'acc' => $acc,
+                'mini_game' => $mini_game,
                 'article_category' => $article_category,
                 'arrArticle' => $arrArticle,
                 'arrService' => $arrService,
