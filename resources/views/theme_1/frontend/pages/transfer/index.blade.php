@@ -26,7 +26,7 @@
                                 @if (setting('sys_tranfer_content') != "")
                                 {!! setting('sys_tranfer_content') !!}
                                 @endif
-                                    <div class="transfer-code" style="display: flex"></div>
+                                    <div class="transfer-code" ></div>
 
                             </div>
 
