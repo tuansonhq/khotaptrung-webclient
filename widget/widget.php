@@ -91,6 +91,7 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
         return $data = $result_Api->response_data->data??null;
     });
 
+//    dd($data);
     return $view->with('data', $data);
 
 });
