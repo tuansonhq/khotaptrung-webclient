@@ -64,7 +64,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -72,7 +72,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -99,7 +99,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -107,7 +107,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_4/images/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
