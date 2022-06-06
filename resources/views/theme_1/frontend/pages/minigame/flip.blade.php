@@ -20,8 +20,18 @@
                         @for ($i = 0; $i < count($result->group->items); $i++)
                             <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                    <img class="imgnen" src="{{config('api.url_media').$result->group->params->image_static}}">
+                                    <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
                                     <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                    <div class="row" id="boxfliphide" style="display: none;">
+                        @for ($i = 0; $i < count($result->group->items); $i++)
+                            <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
+                                <div data-inner=" inner{{$i}}" class="item_flip_inner">
+                                    <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                    <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                 </div>
                             </div>
                         @endfor
@@ -35,7 +45,7 @@
                     @if($result->checkPoint==1)
                     <div class="item_spin_progress">
                         <div class="item_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                        <div class="item_spin_progress_percent">{{$result->pointuser}}/100 point</div>
+                        <div class="item_spin_progress_percent">{{$result->pointuser==''?'0':$result->pointuser}}/100 point</div>
                     </div>
                     <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
                     @endif
@@ -101,7 +111,7 @@
                             <tbody>
                                 @foreach($result->log as $item)
                                     <tr>
-                                        <th>{{$item->author->username}}</th>
+                                        <th>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</th>
                                         <th>{{$item->item_ref->parrent->title??""}}</th>
                                         <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
                                     </tr>
@@ -447,11 +457,10 @@ $(document).ready(function(e){
                 },
                 type: 'post',
                 success: function (data) {
-                    console.log(data);
                     gift_detail = data.gift_detail;
                     setTimeout(function(){
                         if(gift_detail != undefined){
-                            $('.boxflip .active').attr('src','{{config('api.url_media')}}'+gift_detail.image);
+                            $('.boxflip .active').attr('src',gift_detail.image);
                             $('.boxflip .active').css({'transform': 'rotateY(180deg)'});
                             $('.boxflip .active').prev().addClass('transparent');
                             $('.boxflip .active').parent().css({'transform': 'rotateY(180deg)'});
@@ -462,7 +471,7 @@ $(document).ready(function(e){
                     if (data.status == 4) {
                         location.href='/login';
                     } else if (data.status == 3) {
-                    	roll_check = true;
+                        roll_check = true;
                         $('#naptheModal').modal('show');
                         return;
                     } else if (data.status == 0) {
@@ -502,21 +511,20 @@ $(document).ready(function(e){
                     if($('#type_play').val()=='real'){
                         userpoint = data.userpoint;
                         if(userpoint<100){
-                            $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                            $(".item_spin_progress_bubble").css("width", userpoint + "%")
                         }else{
                             $(".item_spin_progress_bubble").css("width", "100%");
                             $(".item_spin_progress_bubble").addClass('clickgif');
                         }
-                        $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                        $(".item_spin_progress_percent").html(userpoint + "/100 point");
                         $("#saleoffpass").val("");
                         //saleoffmessage = data.saleMessage;
                     }
-                    console.log(gift_list);
 
                     setTimeout(function(){
                         var i=0;
                         $('.boxflip img.noactive').each(function(){
-                            $(this).attr('src','{{config('api.url_media')}}'+gift_list[i].image);
+                            $(this).attr('src',gift_list[i].image);
                             $(this).css({'transform': 'rotateY(180deg)'});
                             $(this).prev().addClass('transparent');
                             $(this).parent().css({'transform': 'rotateY(180deg)'});
@@ -720,11 +728,7 @@ $(document).ready(function(e){
     }
 
     $('.continue').click(function(){
-        var html = '';
-        for (i = 0; i < '{{count($result->group->items)}}'; i++){
-            html += `<div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'><div data-inner=" inner`+i+`" class="item_flip_inner"><img class="imgnen" src="{{config('api.url_media').$result->group->params->image_static}}"><img data-inner="inner`+i+`" class="item_flip_inner_image img_remove flip-box-front inner`+i+`" src="{{config('api.url_media').$result->group->params->image_static}}"></div></div>`;
-        }
-        $('.boxflip').html(html);
+        $('.boxflip').html(document.getElementById('boxfliphide').innerHTML);
         $('.continue').hide();
         $('.play').hide();
         $('.num-play-try').hide();

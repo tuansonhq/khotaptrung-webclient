@@ -193,10 +193,12 @@ class MinigameController extends Controller
                             return redirect()->back()->withErrors($result_out->message);
                     }
                 } else {
-                    return redirect()->back()->withErrors($result_out->message);
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             } else {
-                return redirect()->back()->withErrors($result_Api->message);
+                logger('minigame: '.$result_Api->message);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
         catch(\Exception $e){
@@ -402,7 +404,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    return 'sai';
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -470,7 +473,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    return 'sai';
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){

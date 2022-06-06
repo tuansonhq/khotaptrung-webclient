@@ -242,7 +242,7 @@
                             @if(isset($result->log) && count($result->log) > 0)
                                 @foreach($result->log as $item)
                                     <tr>
-                                        <td>{{substr($item->author->username, 0, 3)}}***</td>
+                                        <th>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</th>
                                         <th>{{$item->item_ref->parrent->title??""}}</th>
                                         <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
                                     </tr>

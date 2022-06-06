@@ -29,7 +29,7 @@
                         @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
                             <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                            <div class="item_play_spin_progress_percent">{{$result->pointuser}}/100 point</div>
+                            <div class="item_play_spin_progress_percent">{{$result->pointuser==''?'0':$result->pointuser}}/100 point</div>
                         </div>
                         @endif
 
@@ -83,9 +83,8 @@
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng minigame khác</p>
+                <p>Các minigame khác</p>
                 <div class="item_play_line"></div>
-
             </div>
             <div class="item_play_dif">
                 <div class="row" style="position: relative">
@@ -97,9 +96,9 @@
                                     <div class="item_play_dif_slide_detail_in">
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($item->image}}" alt="{{$item->title)}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                                 @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_percent_sale)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->params->image_percent_sale) }}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -116,7 +115,7 @@
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
                                                     @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                     @else
                                                     Chơi ngay
                                                     @endif
@@ -177,7 +176,7 @@
                         <tbody>
                             @foreach($result->log as $item)
                                 <tr>
-                                    <th>{{$item->author->username}}</th>
+                                        <th>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</th>
                                         <th>{{$item->item_ref->parrent->title??""}}</th>
                                     <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
                                 </tr>
@@ -225,7 +224,7 @@
             </div>
             <div class="middle nohuthang" style="text-align: center;padding: 15px 0;color: blue"></div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-
+                <div class="appendContent" style='color:blue'></div>
             </div>
             <div class="modal-footer">
                 <a href="#" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Rút quà</a>
@@ -424,7 +423,7 @@
                         console.log(gift_detail);
                         if(gift_detail.image.length > 0)
                         {
-                            $('#lac_lixi').attr('src','{{config("api.url_media")}}'+gift_detail.image);
+                            $('#lac_lixi').attr('src',gift_detail.image);
                         }
                         gift_revice = data.arr_gift;
                         //arrDiscount = data.arrDiscount;
@@ -487,9 +486,9 @@
                     gift_detail = data.gift_detail;
                     if(gift_detail.image.length > 0)
                     {
-                        $('#lac_lixi').attr('src','{{config("api.url_media")}}'+gift_detail.image);
+                        $('#lac_lixi').attr('src',gift_detail.image);
                     }
-                    $('#noticeModal .content-popup').append("<div style='color:blue'>" + data.msg + " - " + data.arr_gift[0].title + "</div>");
+                    $('#noticeModal .content-popup .appendContent').append(data.msg + " - " + data.arr_gift[0].title);
                     //$("#noticeModalNoHu #btnWithdraw").hide();
                     $('#noticeModal').modal('show');
                     var userpoint = data.userpoint;
