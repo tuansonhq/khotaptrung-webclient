@@ -197,6 +197,9 @@
                                                             <span aria-hidden="true">×</span>
                                                         </button>
                                                     </div>
+                                                    <div class="error__editerrvice" style="width: 100%;text-align: center;margin-bottom: 0">
+
+                                                    </div>
                                                     <div class="modal-body text-left">
 
                                                         @php
@@ -315,7 +318,7 @@
                                 </div>
                                 <div style="text-align: right">
                                 </div>
-                                <h2>Trao đổi  <a href="/inbox/{{$data->id}}/send" class="btn btn-brand btn-edit" id="btn-edit">Nhắn tin</a></h2>
+                                <h2>Trao đổi  <a href="/inbox/send/{{$data->id}}" class="btn btn-brand btn-edit" id="btn-edit">Nhắn tin</a></h2>
                                 <div class="edu-history-sec" id="awards">
                                     <span>Chưa có nội dung</span>
                                 </div>

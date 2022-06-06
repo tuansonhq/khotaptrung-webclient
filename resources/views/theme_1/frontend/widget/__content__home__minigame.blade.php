@@ -16,7 +16,7 @@
                                 @if(isset($item->params->image_percent_sale))
                                     <img class="game-list-image-sticky lazy" src="{{\App\Library\MediaHelpers::media($item->params->image_percent_sale)}}" alt="">
                                 @else
-                                    <img class="game-list-image-sticky lazy" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
+
                                 @endif
                                 @if(isset($item->image))
                                     <img class="game-list-image-in lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
@@ -35,6 +35,17 @@
                         <div class="game-list-description">
                             <div class="countime"></div>
                             <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}} </p>
+
+                            <div class="row marginauto price-minigame">
+                                <div class="col-md-12 left-right">
+                                    @if(isset($item->params->percent_sale))
+                                    <span class="oldPrice">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</span>
+                                    @else
+                                    @endif
+                                    <span class="newPrice">{{ str_replace(',','.',number_format($item->price)) }} đ</span>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="game-list-more">
                             <div class="game-list-more-view" >

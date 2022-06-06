@@ -129,6 +129,7 @@ $(document).ready(function (e) {
         theme: 'light',
         content: "Đã copy!",
     });
+
     tippy('.option-info-ct', {
         // default
         placement: 'top',

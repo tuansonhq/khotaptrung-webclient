@@ -102,6 +102,14 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.html.nick');
             });
 
+            Route::get('/nickdetail',function(){
+                return view('frontend.html.nickdetail');
+            });
+
+            Route::get('/loi404',function(){
+                return view('frontend.html.404');
+            });
+
             Route::get('/caythue',function(){
                 return view('frontend.html.caythue');
             });
@@ -136,7 +144,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/dich-vu', [ServiceController::class , "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getDetail"]);
-
+                Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
@@ -156,6 +164,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                        Route::get('/inbox/send/{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getInbox'])
+                            ->name('getInbox');
 
                         Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -183,7 +193,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
                                 ->name('getChargeDepositHistory');
 
-
                             Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
                             Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])
@@ -202,11 +211,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
 
+
+
                             Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])
                                 ->name('postDestroy');
 
-                            Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'editDestroy'])
-                                ->name('editDestroy');
+                            Route::post('/dich-vu-da-mua-{id}/edit',[\App\Http\Controllers\Frontend\ServiceController::class , 'postEdit'])
+                                ->name('postEdit');
 
                             Route::post('/dich-vu/{id}/purchase',[\App\Http\Controllers\Frontend\ServiceController::class , 'postPurchase']);
 

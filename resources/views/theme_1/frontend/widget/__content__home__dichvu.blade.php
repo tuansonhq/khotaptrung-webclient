@@ -19,7 +19,7 @@
                                     @if(isset($item->image_icon))
                                         <img class="game-list-image-sticky lazy" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}" alt="">
                                     @else
-                                        <img class="game-list-image-sticky lazy" src="/assets/frontend/{{theme('')->theme_key}}/images/giamgia.png" alt="">
+
                                     @endif
                                     @if(isset($item->image))
                                         <img class="game-list-image-in lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">

@@ -25,7 +25,7 @@
                                         <img class="game-list-image-sticky" src="{{ \App\Library\MediaHelpers::media($item->image_icon) }}" alt="">
                                     @endif
                                 @else
-                                    <img class="game-list-image-sticky" src="/assets/frontend/theme_1/images/giamgia.png" alt="">
+
                                 @endif
                                 @if(isset($item->image))
                                     <img class="game-list-image-in lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">

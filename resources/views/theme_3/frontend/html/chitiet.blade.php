@@ -466,261 +466,223 @@
                                         <div class="swiper-wrapper">
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lienquan.png" alt="" style="position: relative">
-                                                        </a>
-
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lienquan.png" alt="" style="position: relative">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        <span>Liên quân Mobile</span>
+                                                    </div>
+                                                </div>
+                                                </a>
+                                            </div>
+
+                                            <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
+                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Liên quân Mobile</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>Garena freefire</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>PUBG Mobile</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Liên Minh Huyền Thoại</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
-                                                        </a>
+
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>Tốc chiến</span>
-                                                        </a>
+                                                        <span>Tốc chiến</span>
                                                     </div>
                                                 </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
+
+                                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
+
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Auto Chess</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Bang Bang</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
-                                                        </a>
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>Cyber Punk 2077</span>
-                                                        </a>
+                                                        <span>Cyber Punk 2077</span>
                                                     </div>
                                                 </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/csgo.png" alt="">
-                                                        </a>
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/csgo.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>CSGO</span>
-                                                        </a>
+                                                        <span>CSGO</span>
                                                     </div>
                                                 </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
-                                                        </a>
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>Garena freefire</span>
-                                                        </a>
+                                                        <span>Garena freefire</span>
                                                     </div>
                                                 </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
+                                                <a href="">
                                                 <div class="row marginauto hover-overlay-ct">
                                                     <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
-                                                        </a>
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
-                                                            <span>PUBG Mobile</span>
-                                                        </a>
+                                                        <span>PUBG Mobile</span>
                                                     </div>
                                                 </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Liên Minh Huyền Thoại</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
-                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
+
+                                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
+
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Tốc chiến</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Auto Chess</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                        </div>
 
+                                                    </div>
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Bang Bang</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
+                                                        </div>
 
+                                                    </div>
+                                                </a>
                                             </div>
 
                                             <div class="swiper-slide body-detail-ctng-col-ct">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
-                                                        <a href="">
+                                                <a href="">
+                                                    <div class="row marginauto hover-overlay-ct">
+                                                        <div class="col-md-12 left-right default-overlay-ct">
                                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <a href="">
+                                                        </div>
+                                                        <div class="col-md-12 left-right text-center body-detail-col-span-ct">
                                                             <span>Cyber Punk 2077</span>
-                                                        </a>
+                                                        </div>
                                                     </div>
-                                                </div>
-
+                                                </a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
