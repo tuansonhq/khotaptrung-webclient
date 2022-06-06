@@ -109,11 +109,35 @@
 
                             </thead>
                             <tbody>
+                                @php
+                                    $count = 0;
+                                    $countname = 0;
+                                    $listname = explode(",",$result->group->params->user_wheel);
+                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                @endphp
                                 @foreach($result->log as $item)
+                                    @php
+                                        $count++;
+                                        $add_time=strtotime($item->created_at)+rand(1,2);
+                                        $add_date= date('Y-m-d H:i:s',$add_time);
+                                    @endphp
+                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                     <tr>
-                                        <th>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</th>
-                                        <th>{{$item->item_ref->parrent->title??""}}</th>
-                                        <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
+                                        <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
+                                        <td>{{trim($listprice[$countname])}}</td>
+                                        <td>{{\Carbon\Carbon::parse($add_time)->format('Y-m-d H:i')}}</td>
+                                    </tr>
+                                    @endif
+                                    @php
+                                        if($count==5){
+                                            $count = 0;
+                                            $countname++;
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
+                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
