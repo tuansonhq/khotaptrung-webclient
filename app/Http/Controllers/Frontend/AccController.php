@@ -48,6 +48,7 @@ class AccController extends Controller
     }
 
     public function getList(Request $request,$slug){
+
         $url = '/acc';
         $method = "GET";
         $dataSendCate = array();

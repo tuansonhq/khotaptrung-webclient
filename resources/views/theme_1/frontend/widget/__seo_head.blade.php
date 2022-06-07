@@ -25,6 +25,7 @@
     <meta name="description" content="{{ setting('sys_description') }}">
 
 @endif
+
 @if(isset($data->title))
     <meta property="og:title" content="{{$data->title}}">
 @elseif(isset($title->title))
@@ -49,4 +50,24 @@
 {{--    <title>{{$data->title??setting('sys_title') }}</title>--}}
 {{--    <meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
 {{--@endif--}}
-
+@if(isset($data))
+    @if(Request::is('mua-acc/'. !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug .''))
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Mua Acc Game Giá Rẻ",
+            "item": "https://{{ config('api.client') }}/mua-acc"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "✅(Đã xác minh uy tín)",
+            "item": "https://https://{{ config('api.client') }}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
+          }]
+        }
+    </script>
+    @endif
+@endif
