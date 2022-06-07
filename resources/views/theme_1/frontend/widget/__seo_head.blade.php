@@ -13,6 +13,9 @@
 
 @if(Request::is('tin-tuc'))
     <meta name="description" content="Tin tức">
+@elseif(Request::is('mua-acc'))
+    <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
+    <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
 @elseif(isset($title->description))
     <meta name="description" content="{{ $title->description }}">
 @elseif(isset($data->description))

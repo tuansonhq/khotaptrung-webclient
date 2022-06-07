@@ -49,13 +49,19 @@
                     <div class="col-sm-12">
                         <div class="alert alert-info box-text hidetext" role="alert">
                             <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
-                            @if(isset($data->description))
-                                {!! isset($data->custom->description) ? $data->custom->description :  $data->description !!}
+                            @if($data->custom->description)
+                                {!!  $data->custom->description !!}
+                            @else
+                                @if(isset($data->description))
+                                    {!!  $data->description !!}
+                                @else
+                                    @if(isset($data->content))
+                                        {!! isset($data->custom->content) ? $data->custom->content :  $data->content !!}
+                                    @endif
+                                @endif
                             @endif
                             <br>
-                            @if(isset($data->content))
-                                {!! isset($data->custom->content) ? $data->custom->content :  $data->content !!}
-                            @endif
+
                         </div>
                         <div style="text-align: center;margin: 15px 0">
                             <span class="viewmore">Xem tất cả »</span>
