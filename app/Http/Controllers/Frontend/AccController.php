@@ -214,10 +214,33 @@ class AccController extends Controller
     }
 
     public function getDetail(Request $request,$slug){
-        return view('frontend.pages.account.detail')->with('slug',$slug);
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'acc_detail';
+        $dataSend['id'] = $slug;
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1){
+            $data = $response_data->data;
+            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug);
+        }
+        else{
+            $data = null;
+            $message = $response_cate_data->message??"Không thể lấy dữ liệu";
+
+            return view('frontend.pages.account.detail')
+                ->with('message',$message)
+                ->with('data',$data);
+        }
+
+
     }
 
     public function getShowDetail(Request $request,$slug){
+
         if ($request->ajax()){
 
             $url = '/acc';
