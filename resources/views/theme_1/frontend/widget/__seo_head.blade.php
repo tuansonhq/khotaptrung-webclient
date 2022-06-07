@@ -50,8 +50,9 @@
 {{--    <title>{{$data->title??setting('sys_title') }}</title>--}}
 {{--    <meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
 {{--@endif--}}
+
 @if(isset($data))
-    @if(Request::is('mua-acc/'. !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug .''))
+    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <script type="application/ld+json">
         {
           "@context": "https://schema.org/",
