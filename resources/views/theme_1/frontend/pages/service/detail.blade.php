@@ -6,6 +6,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
     <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
@@ -58,7 +59,7 @@
 
             </div>
             <div class="text-center showcontent">
-                <h2 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h2>
+                <h1 style="font-size: 30px;font-weight: bold;text-transform: uppercase">DỊCH VỤ {{ $data->title }}</h1>
                 @if(isset($data->groups[0]->slug))
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
@@ -182,9 +183,9 @@
                                 </div>
                             </div>
 
-                            <div class="row emply-btns box-body fixboxbody" style="">
-                                {!! $data->description !!}
-                            </div>
+{{--                            <div class="row emply-btns box-body fixboxbody" style="">--}}
+{{--                                {!! $data->description !!}--}}
+{{--                            </div>--}}
 
                         </div>
                     </div>
@@ -545,12 +546,16 @@
                         </div>
                     @endif
                     {{--MO tả --}}
+
                     <div class="row">
                         <div class="col-lg-12 column">
                             <div class="job-details">
                                 <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;">Mô tả</h2>
-                                <div class="article-content">
+                                <div class="article-content hidetext">
                                     {!! $data->content  !!}
+                                </div>
+                                <div style="text-align: center;margin: 15px 0">
+                                    <span class="viewmore">Xem tất cả »</span>
                                 </div>
                             </div>
                         </div>
