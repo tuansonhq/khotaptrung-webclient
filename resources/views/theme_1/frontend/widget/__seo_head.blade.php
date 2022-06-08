@@ -91,12 +91,12 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Mua Acc Game Giá Rẻ",
-            "item": "https://{{ config('api.client') }}/mua-acc"
+            "item": "https://{{\Request::server ("HTTP_HOST")}}/mua-acc"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "✅(Đã xác minh uy tín)",
-            "item": "https://https://{{ config('api.client') }}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
+            "item": "https://https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}"
           }]
         }
     </script>
@@ -112,7 +112,7 @@
                      "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",
                     "brand": {
                         "@type": "Brand",
-                        "name": "{{ config('api.client') }}"
+                        "name": "{{\Request::server ("HTTP_HOST")}}"
                       },
                     "aggregateRating": {
                         "@type": "AggregateRating",
@@ -127,7 +127,7 @@
                     "mpn": "{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                     "offers": {
                             "@type": "Offer",
-                             "url": "https://{{ config('api.client') }}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
+                             "url": "https://{{\Request::server ("HTTP_HOST")}}/mua-acc/{{ !isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug }}",
                             "priceCurrency": "VND",
                             "price": "7700",
                             "priceValidUntil": "2099-12-31",
@@ -151,8 +151,8 @@
         {
           "@context": "http://schema.org",
           "@type": "WebSite",
-          "name": "https://{{ config('api.client') }}",
-              "url": "https://{{ config('api.client') }}"
+          "name": "https://{{\Request::server ("HTTP_HOST")}}",
+              "url": "https://{{\Request::server ("HTTP_HOST")}}"
         }
       ]
     }
@@ -167,12 +167,12 @@
                 "@type"": ""ListItem",
                 "position": 1,
                 "name": "Dịch Vụ All Game",
-                "item": "https://{{ config('api.client') }}/dich-vu/"
+                "item": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/"
               },{
                 "@type": "ListItem",
                 "position": 2,
                 "name": "✅(Đã xác minh uy tín)",
-                "item": "https://{{ config('api.client') }}/dich-vu/{{ $data->slug }}"
+                "item": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/{{ $data->slug }}"
               }]
             }
             </script>
@@ -203,7 +203,7 @@
                     "mpn": "{{ $data->slug??'' }}",
                     "offers": {
                             "@type": "Offer",
-                             "url": "https://{{ config('api.client') }}/dich-vu/",
+                             "url": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/",
                             "priceCurrency": "VND",
                             "price": "7700",
                             "priceValidUntil": "2099-12-31",
@@ -227,8 +227,8 @@
         {
           "@context": "http://schema.org",
           "@type": "WebSite",
-          "name": "{{ config('api.client') }}",
-              "url": "https://{{ config('api.client') }}/"
+          "name": "{{\Request::server ("HTTP_HOST")}}",
+              "url": "https://{{\Request::server ("HTTP_HOST")}}/"
         }
       ]
     }
