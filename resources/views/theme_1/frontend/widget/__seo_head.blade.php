@@ -241,4 +241,7 @@
 
     </script>
     @endif
+
+@elseif(setting('sys_schema') != '')
+    {!! setting('sys_schema') !!}
 @endif
