@@ -532,6 +532,7 @@
 
                     @else
                         {{--                    Nick thường--}}
+
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
                                 <div class="item_buy_list_img">
@@ -563,14 +564,15 @@
                                             @foreach($att_values as $att_value)
                                                 {{--            @dd($att_value)--}}
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    @if(isset($att_value->parent[0]))
+{{--                                                        @dd($att_value->parent)--}}
+                                                    @if(isset($att_value->parent))
                                                         @if($total < 4)
                                                             <?php
                                                                 $total = $total + 1;
                                                             ?>
                                                             <div class="row" style="margin: 0 auto;width: 100%">
                                                                 <div class="col-auto text-left fixcssacount item_buy_list_info_inacc"">
-                                                                    {{ $att_value->parent[0]->title??null }} :
+                                                                    {{ $att_value->parent->title??null }} :
                                                                 </div>
                                                                 <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
 {{--                                                                    {{ $att_value->title??null }}--}}
