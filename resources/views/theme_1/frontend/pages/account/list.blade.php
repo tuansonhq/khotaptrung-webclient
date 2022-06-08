@@ -57,12 +57,19 @@
                                 @if(isset($data->description))
                                     {!!  $data->description !!}
                                 @else
-                                    @if(isset($data->content))
-                                        {!! isset($data->custom->content) ? $data->custom->content :  $data->content !!}
-                                    @endif
+
                                 @endif
                             @endif
                             <br>
+                            @if($data->custom->content)
+                                {!!  $data->custom->content !!}
+                            @else
+                                @if(isset($data->content))
+                                    {!!  $data->content !!}
+                                @else
+
+                                @endif
+                            @endif
 
                         </div>
                         <div style="text-align: center;margin: 15px 0">
