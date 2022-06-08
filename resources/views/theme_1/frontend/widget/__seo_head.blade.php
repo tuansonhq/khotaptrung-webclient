@@ -3,6 +3,10 @@
     <title>Tin tức</title>
 @elseif(Request::is('mua-acc'))
     <title>Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1</title>
+@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
+    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
+        <title>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</title>
+    @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
 @elseif(isset($data->randId))
@@ -15,13 +19,16 @@
     <title>{{$data->title }}</title>
 @else
     <title>  {{setting('sys_title') }}</title>
-
 @endif
 
 @if(Request::is('tin-tuc'))
     <meta name="description" content="Tin tức">
 @elseif(Request::is('mua-acc'))
     <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
+@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
+    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
+        <meta name="description" content="{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}">
+    @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
     <meta name="description" content="{{ $data->description??'' }}">
@@ -42,6 +49,10 @@
     @endif
 @elseif(Request::is('mua-acc'))
     <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
+@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
+    @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
+        <meta property="og:title" content="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}">
+    @endif
 @elseif(Request::is('dich-vu'))
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
 @elseif(isset($title->title))
