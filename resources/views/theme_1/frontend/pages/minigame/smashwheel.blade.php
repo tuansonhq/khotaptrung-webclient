@@ -1,9 +1,12 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
+@endsection
 @section('content')
     <div class="item_play">
         <div class="container">
             <div class="item_play_title">
-                <p>{{$result->group->title}}</p>
+                <h1>{{$result->group->title}}</h1>
                 <div class="item_play_line"></div>
 
             </div>
