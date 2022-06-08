@@ -6,6 +6,8 @@
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <title>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</title>
+    @elseif(Request::is('dich-vu/'. $data->slug .''))
+        <title>{{ $data->title??'' }}</title>
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
@@ -28,6 +30,8 @@
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <meta name="description" content="{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}">
+    @elseif(Request::is('dich-vu/'. $data->slug .''))
+        <meta name="description" content="{{ $data->description??'' }}">
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
@@ -52,6 +56,8 @@
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <meta property="og:title" content="{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}">
+    @elseif(Request::is('dich-vu/'. $data->slug .''))
+        <meta property="og:title" content="{{ $data->title??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
