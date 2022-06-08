@@ -12,9 +12,7 @@
     @if(setting('sys_google_search_console') != '')
         <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />
     @endif
-    @if(setting('sys_schema') != '')
-        {!! setting('sys_schema') !!}
-    @endif
+
 
 {{--    <title>Kho lưu trữ</title>--}}
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
