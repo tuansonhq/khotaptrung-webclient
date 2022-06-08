@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex,noindex" />
 @endsection
 @section('content')
-        @dd($data)
+
     @if($data == null)
         <div class="item_buy">
 
