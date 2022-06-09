@@ -163,9 +163,8 @@ $(document).ready(function(){
 
             },
             success: function (response) {
-                $('#edit_info').modal('hide');
-                if(response.status == 1){
 
+                if(response.status == 1){
 
                     swal({
                         title: "Thông báo!",
@@ -178,12 +177,21 @@ $(document).ready(function(){
                                 window.location.reload();
                             }
                         })
-                }else {
+                    $('#edit_info').modal('hide');
+                }else if (response.status == 0){
+                    var html = '';
+                    html += '<span style="color: red;font-size: 12px">' + response.message + '</span>';
+                    $('.error__editerrvice').css('padding-top',16);
+                    $('.error__editerrvice').html('');
+                    $('.error__editerrvice').html(html);
+                }
+                else {
                     swal(
                         'Thông báo!',
                         response.message,
                         'warning'
                     )
+                    $('#edit_info').modal('hide');
                 }
 
             },

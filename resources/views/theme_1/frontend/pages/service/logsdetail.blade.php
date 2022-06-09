@@ -133,6 +133,7 @@
 
 
                                             @foreach( $send_name as $index=> $aSendName)
+
 {{--                                                @php--}}
 {{--                                                    $name=\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params));--}}
 {{--                                                @endphp--}}
@@ -147,6 +148,7 @@
                                                     <td> {{$aSendName}} </td>
                                                     <td>
                                                         @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params)))
+
                                                             @if($send_type[$index]==4)
                                                                 <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}" target="_blank">
     {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
@@ -155,12 +157,14 @@
                                                                 {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}
                                                             @endif
                                                         @else
+
                                                             @if($send_type[$index]==4)
+                                                                @dd("2222222222")
                                                                 <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}" target="_blank">
                                                                     {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
                                                                 </a>
                                                             @else
-                                                                {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}
+                                                                {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)?? null}}
                                                             @endif
                                                         @endif
                                                     </td>

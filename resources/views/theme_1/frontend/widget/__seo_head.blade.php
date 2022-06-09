@@ -89,7 +89,7 @@
 
 @if(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-        <script type="application/ld+json">
+    <script type="application/ld+json">
         {
           "@context": "https://schema.org/",
           "@type": "BreadcrumbList",
@@ -106,6 +106,7 @@
           }]
         }
     </script>
+
     <script type="application/ld+json">
     {
           "@graph":
@@ -164,6 +165,7 @@
     }
 
     </script>
+
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <script type="application/ld+json">
             {

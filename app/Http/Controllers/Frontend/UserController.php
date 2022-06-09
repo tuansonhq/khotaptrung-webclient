@@ -38,7 +38,7 @@ class UserController extends Controller
                     $result = $result_Api->response_data;
                     Session::put('auth_custom', $result->user);
 //                    $request->session()->put('auth_custom', $result->user);
-                    
+
                     if($result->status == 1){
                         return response()->json([
                             'status' => true,
@@ -219,8 +219,8 @@ class UserController extends Controller
                 if(isset($response_data) && $response_data->status == 1){
 
                     $data = $response_data->data;
-                    $status = $response_data->datastatus;
-                    $config = $response_data->dataconfig;
+                    $config = config('module.txns.trade_type_api');
+                    $status = config('module.txns.status');
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
 
