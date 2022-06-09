@@ -233,15 +233,19 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
-
+                            //Nạp thẻ Atm
+                            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+                            Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+                                ->name('getIdCode');
+                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
                         Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
                         Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
-
                         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
 
                     });
 
@@ -338,10 +342,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('postDeposit');
                     Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
                         ->name('getAmountCharge');
-                    //Nạp thẻ Atm
-                    Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
-                    Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
-                        ->name('getIdCode');
+
 
 //
 //

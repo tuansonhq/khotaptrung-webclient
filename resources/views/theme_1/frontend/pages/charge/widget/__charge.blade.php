@@ -1,5 +1,5 @@
 @if(empty($data->data))
-    <div class="table-responsive">
+    <div class="table-responsive"   >
         <table class="table table-hover table-custom-res">
             <thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>
 

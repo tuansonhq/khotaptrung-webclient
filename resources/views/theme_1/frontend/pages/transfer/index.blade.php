@@ -9,9 +9,7 @@
 @endsection
 @section('content')
 
-
     <div class="account">
-
         <div class="account_content">
             <div class="container">
                 @include('frontend.layouts.includes.menu_profile')
@@ -21,7 +19,6 @@
                             <p>NẠP VÍ / ATM</p>
                             <div class="account_sidebar_content_line"></div>
                         </div>
-
                             <div class="recharge_atm alert alert-info" role="alert">
                                 @if (setting('sys_tranfer_content') != "")
                                 {!! setting('sys_tranfer_content') !!}
@@ -32,7 +29,7 @@
 
 
 
-                        <div class="data_pay_card_history__atm">
+                        <div class="recharge_atm_data">
                             @include('frontend.pages.transfer.widget.__tranfer_history')
                         </div>
                     </div>
@@ -43,9 +40,6 @@
     </div>
 
     <input type="hidden" name="hidden_page_atm" id="hidden_page_atm" value="1" />
-    <script>
 
-
-    </script>
 
 @endsection
