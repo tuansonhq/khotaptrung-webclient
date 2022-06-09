@@ -52,10 +52,10 @@
                                                 $index++;
                                                 ?>
                                                 @if($index < 5)
-                                                    @if(isset($att_value->parent[0]))
+                                                    @if(isset($att_value->parent))
                                                         <div class="row" style="margin: 0 auto;width: 100%">
                                                             <div class="col-auto item_buy_list_info_inacc fixcssacount">
-                                                                {{ $att_value->parent[0]->title??null }} :
+                                                                {{ $att_value->parent->title??null }} :
                                                             </div>
                                                             <div class="col-auto item_buy_list_info_inaccright fixcssacount" style="color: #666;font-weight: 600;margin-left: auto">
 {{--                                                                {{ $att_valuev2->title??null }}--}}

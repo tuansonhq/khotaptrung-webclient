@@ -133,7 +133,7 @@
                     <?php $att_values = $data->groups ?>
                     @foreach($att_values as $att_value)
                         @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                            @if(isset($att_value->parent[0]))
+                            @if(isset($att_value->parent))
                                 <div class="col-md-12">
                                     <div class="row gallery__03">
                                         <div class="col-md-12 gallery__01__row">
@@ -142,7 +142,7 @@
                                                     <i class="fas fa-angle-right"></i>
                                                 </div>
                                                 <div class="col-md-4 col-4 pl-0">
-                                                    <span class="span__dangky">{{ $att_value->parent[0]->title??null }}</span>
+                                                    <span class="span__dangky">{{ $att_value->parent->title??null }}</span>
                                                 </div>
                                                 <div class="col-md-6 col-6 pl-0">
                                                     <span class="span__dangky">{{ $att_value->title??null }}</span>
@@ -302,11 +302,12 @@
                                                     </tr>
                                                     @if(isset($data->groups))
                                                         <?php $att_values = $data->groups ?>
+
                                                         @foreach($att_values as $att_value)
                                                             @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                @if(isset($att_value->parent[0]))
+                                                                @if(isset($att_value->parent))
                                                                     <tr>
-                                                                        <td style="width:50%">{{ $att_value->parent[0]->title??null }}:</td>
+                                                                        <td style="width:50%">{{ $att_value->parent->title??null }}:</td>
                                                                         <td class="text-danger" style="font-weight: 700">{{ $att_value->title??null }}</td>
                                                                     </tr>
                                                                 @endif

@@ -52,7 +52,7 @@
 </div>
 
 
-<!-- Messenger Plugin chat Code -->
+<!-- Code cua tao -->
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 

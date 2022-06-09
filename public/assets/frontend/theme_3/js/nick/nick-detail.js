@@ -323,9 +323,6 @@ $(document).ready(function (e) {
         if (animating) return false;
         animating = true;
 
-        // current_fs = $('#mobile-caythue .input-next-step-one').parent();
-        // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
-
         current_fs = $('#fieldset-one');
         next_fs = $('#fieldset-three');
         //show the next fieldset
@@ -423,6 +420,7 @@ $(document).ready(function (e) {
         $('.data-scroll-mobile').html(html);
 
     });
+
     $('body').on('click','.down-scroll-mobile',function(){
 
         $('.tragop-order-body-row-ct').css('padding',0);
