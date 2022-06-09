@@ -1,12 +1,15 @@
+
+@if(empty($data->data))
+
 <div class="table-responsive">
     <table class="table table-hover table-custom-res">
         <thead>
         <tr>
             <th>Thời gian</th>
-            <th>Mã yêu cầu</th>
-            <th>Ngân hàng</th>
-            <th>Chủ tài khoản</th>
-            <th>Số tài khoản</th>
+{{--            <th>Mã yêu cầu</th>--}}
+{{--            <th>Ngân hàng</th>--}}
+{{--            <th>Chủ tài khoản</th>--}}
+{{--            <th>Số tài khoản</th>--}}
             <th>Số tiền</th>
             <th>Thực nhận</th>
             <th>Trạng thái</th>
@@ -19,18 +22,18 @@
                 @foreach ($data as $item)
                     <tr>
                         <td>{{ formatDateTime($item->created_at) }}</td>
-                        <td>{{ $item->params->content_bank }}</td>
-                        <td>{{ $item->bank->title }}</td>
-                        <td>{{ $item->bank->params->account_name }}</td>
-                        <td>
-                            {{ $item->bank->params->number_account }}
-                        </td>
+{{--                        <td>{{ $item->params->content_bank }}</td>--}}
+{{--                        <td>{{ $item->bank->title }}</td>--}}
+{{--                        <td>{{ $item->bank->params->account_name }}</td>--}}
+{{--                        <td>--}}
+{{--                            {{ $item->bank->params->number_account }}--}}
+{{--                        </td>--}}
                         <td>
                             {{ formatPrice($item->price) }}
                         </td>
                         <td>
-                            @if(isset($item->real_received_amount))
-                                {{ formatPrice($item->real_received_amount) }}
+                            @if(isset($item->real_received_price))
+                                {{ formatPrice($item->real_received_price) }}
                             @else
                                 0
                             @endif
@@ -49,11 +52,11 @@
                     </tr>
                 @endforeach
             @else
-                {{--                <tr class="account_content_transaction_history">--}}
-                {{--                    <td colspan="8">--}}
-                {{--                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
-                {{--                    </td>--}}
-                {{--                </tr>--}}
+                                <tr class="account_content_transaction_history">
+                                    <td colspan="8">
+                                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
+                                    </td>
+                                </tr>
             @endif
 
         @endif
@@ -62,7 +65,7 @@
     </table>
 </div>
 
-<div class="col-md-12 left-right justify-content-end paginate__v1__vl paginate__v1__ls paginate__v1_mobie frontend__panigate">
+<div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__nt paginate__v1_mobie frontend__panigate">
     @if(isset($data))
         @if($data->total()>1)
             <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
@@ -75,5 +78,6 @@
         @endif
     @endif
 </div>
+@endif
 
 

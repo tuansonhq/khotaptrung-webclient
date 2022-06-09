@@ -32,9 +32,11 @@ $(document).ready(function(){
         });
     }
     getIdCode();
-    let page = $('#hidden_page_atm').val();
+    paycartDataChargeATMHistory();
+    // let page = $('#hidden_page_atm').val();
 
-    $(document).on('click', '.paginate__v1__vl .pagination a',function(event){
+    $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
+        console.log(22222)
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
@@ -43,16 +45,16 @@ $(document).ready(function(){
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
+        paycartDataChargeATMHistory(page);
 
 
-        loadDataTransferHistoryATM(page);
     });
 
-    function loadDataTransferHistoryATM(page) {
+    function paycartDataChargeATMHistory(page) {
 
         request = $.ajax({
             type: 'GET',
-            url: '/get-bank',
+            url: '/recharge-atm/data',
             data: {
                 page:page,
             },
@@ -60,9 +62,26 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data);
-                $('.data_pay_card_history__atm').empty().html('');
-                $('.data_pay_card_history__atm').empty().html(data.html);
+
+                if (data.status == 1){
+
+                    $(".recharge_atm_data").empty().html('');
+                    $(".recharge_atm_data").empty().html(data.data);
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr> <th>Thời gian</th><th>Số tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
+
+                    $(".recharge_atm_data").empty().html('');
+                    $(".recharge_atm_data").empty().html(html);
+                }
+
             },
             error: function (data) {
 
@@ -72,4 +91,5 @@ $(document).ready(function(){
             }
         });
     }
+
 })

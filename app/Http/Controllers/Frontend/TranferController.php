@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Log;
@@ -54,6 +55,58 @@ class TranferController extends Controller
         }
     }
 
+    public function getHistoryTranfer(Request $request){
+
+        if ($request->ajax()) {
+
+            $page = $request->page;
+
+            $url = '/transfer/history';
+
+            $method = "GET";
+            $sendData = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $sendData['token'] = $jwt;
+            $sendData['page'] = $page;
+
+            $result_Api = DirectAPI::_makeRequest($url, $sendData, $method);
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+
+                $data = $response_data->data;
+
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                $html =  view('frontend.pages.transfer.widget.__tranfer_history')
+                    ->with('data', $data)->render();
+
+                if (count($data) == 0 && $page == 1){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => 1,
+                    'data' => $html,
+                    'message' => 'Load du lieu thanh cong.',
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+    }
 
 //    public function getBankData(Request $request)
 //    {
