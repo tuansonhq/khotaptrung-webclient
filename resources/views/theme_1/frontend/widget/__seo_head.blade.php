@@ -115,7 +115,7 @@
                 "@context": "http://schema.org/",
                 "@type": "Product",
                 "name": "{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}",
-                    "description": "{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}";
+                    "description": "{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}",
                      "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",
                     "brand": {
                         "@type": "Brand",
@@ -192,7 +192,7 @@
                 "@context": "http://schema.org/",
                 "@type": "Product",
                 "name": "{{ $data->title??'' }}",
-                    "description": "Hệ thống bán RP liên minh giá rẻ. Đảm bảo RP sạch 100%.Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Ngoài cách nạp RP - LOL ( Liên Minh ) trực tiếp, các bạn có thể mua thẻ Garena giá rẻ với chiết khấu lên đến 5% tại đây.";
+                    "description": "Hệ thống bán RP liên minh giá rẻ. Đảm bảo RP sạch 100%.Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Ngoài cách nạp RP - LOL ( Liên Minh ) trực tiếp, các bạn có thể mua thẻ Garena giá rẻ với chiết khấu lên đến 5% tại đây.",
                      "image": "{{ $data->image??'' }}",
                     "brand": {
                         "@type": "Brand",
