@@ -29,7 +29,7 @@
                         </div>
                         @if($result->checkVoucher==1)
 	                    <div class="item_play_spin_sale-off">
-	                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+	                        <input type="text" placeholder="Nhập mã giảm giá">
 	                    </div>
 	                @endif
 
