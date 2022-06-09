@@ -194,3 +194,61 @@
 @endsection
 
 
+<script type="application/ld+json">
+    {
+          "@graph":
+      [
+          {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": "NICK FREE FIRE GIÁ RẺ",
+                    "description": "Shop bán nick free fire online giá rẻ uy tín. Đây là địa chỉ bán nick FF được nhiều game thủ và youtuber tin tưởng và sử dụng với nhiều ưu đãi khi mua acc FF tại shop Webnick.vn.";
+                     "image": "https://cdn.upanh.info/storage/upload/images/MUA-NICK-FF-SIEU-RE.gif",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "webnick"
+                      },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "5",
+                        "bestRating": "5",
+                        "worstRating": "4",
+                        "ratingCount": "79396",
+                        "reviewCount": "793986"
+                    },
+                    "sku": "nick-free-fire",
+                    "gtin8": "nick-free-fire",
+                    "mpn": "nick-free-fire",
+                    "offers": {
+                            "@type": "Offer",
+                             "url": "https://webnick.vn/mua-acc/",
+                            "priceCurrency": "VND",
+                            "price": "7700",
+                            "priceValidUntil": "2099-12-31",
+                            "availability": "https://schema.org/InStock",
+                            "itemCondition": "https://schema.org/NewCondition"
+                          },
+                    "review": {
+                    "@type": "Review",
+                    "name": "NICK FREE FIRE GIÁ RẺ",
+                    "reviewBody": "Đã mua acc game thành công, giá rẻ hơn so với các shop khác, thời gian giao dịch và nhận nick rất nhanh, web mua nick game uy tín",
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5",
+                      "worstRating": "4"
+                    },
+                    "author": {"@type": "Person", "name": "An"},
+                    "publisher": {"@type": "Organization", "name": "An"}
+                  }
+          },
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "name": "https://napgamegiare.net",
+              "url": "https://napgamegiare.net"
+        }
+      ]
+    }
+
+    </script>
