@@ -424,7 +424,7 @@
             <div class="container fixcssacount">
                 <div class="job-wide-devider">
                     {{--                    Bot   --}}
-                    @if(isset($bot))
+                    @if(isset($data_bot))
                         <div class="row">
                             <div class="col-lg-12 column">
                                 <div class="job-details">
@@ -448,95 +448,21 @@
                                             </tr>
                                             </thead>
                                             <tbody class="m-datatable__body-bot">
-                                            <tr>
-                                                <td>1</td>
-                                                <td>dubaish1</td>
+                                            @foreach($data_bot as $key=> $bot)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $bot->uname }}</td>
 
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>2</td>
-                                                <td>dubaish2</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>3</td>
-                                                <td>dubaish3</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>4</td>
-                                                <td>dubaish4</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>7</td>
-                                                <td>dubaish7</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>8</td>
-                                                <td>daicawang</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>5</td>
-                                                <td>dubaish5</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>6</td>
-                                                <td>dubaish6</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>9</td>
-                                                <td>dubaish99</td>
-
-                                                <td>39</td>
-                                                <td>
-                                                    <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                </td>
-                                            </tr>
+                                                    <td>{{ $bot->zone }}</td>
+                                                    <td>
+                                                        @if($bot->active == 'on')
+                                                        <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
+                                                        @else
+                                                            <span style="color:#212529;font-weight: bold">[OFFLINE]</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
                                             </tbody>
                                         </table>

@@ -28,14 +28,14 @@
                                                 @foreach($att_values as $att_value)
 
                                                     @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                        @if(isset($att_value->parent[0]))
+                                                        @if(isset($att_value->parent))
                                                             <?php
                                                             $index = $index + 1;
                                                             ?>
                                                             @if($index < 5)
                                                                 <div class="row" style="margin: 0 auto;width: 100%">
                                                                     <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">
-                                                                        {{ $att_value->parent[0]->title??null }} :
+                                                                        {{ $att_value->parent->title??null }} :
                                                                     </div>
                                                                     <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">
                                                                         {{ $att_value->title??null }}
@@ -133,14 +133,14 @@
                                             @foreach($att_values as $att_value)
 
                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                    @if(isset($att_value->parent[0]))
+                                                    @if(isset($att_value->parent))
                                                         <?php
                                                         $index = $index + 1;
                                                         ?>
                                                         @if($index < 5)
                                                             <div class="row" style="margin: 0 auto;width: 100%">
                                                                 <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                    {{ $att_value->parent[0]->title??null }} :
+                                                                    {{ $att_value->parent->title??null }} :
                                                                 </div>
                                                                 <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
     {{--                                                                                                        {{ $att_value->title??null }}--}}
@@ -281,9 +281,9 @@
                                                             <?php $att_values = $item->groups ?>
                                                             @foreach($att_values as $att_value)
                                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                    @if(isset($att_value->parent[0]))
+                                                                    @if(isset($att_value->parent))
                                                                         <tr>
-                                                                            <td style="width:50%">{{ $att_value->parent[0]->title??null }}:</td>
+                                                                            <td style="width:50%">{{ $att_value->parent->title??null }}:</td>
                                                                             <td class="text-danger" style="font-weight: 700">{{ $att_value->title??null }}</td>
                                                                         </tr>
                                                                     @endif

@@ -102,6 +102,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.html.nick');
             });
 
+            Route::get('/lichsu',function(){
+                return view('frontend.html.lichsu');
+            });
+
             Route::get('/nickdetail',function(){
                 return view('frontend.html.nickdetail');
             });
@@ -164,8 +168,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                        Route::get('/inbox/send/{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getInbox'])
-                            ->name('getInbox');
+
 
                         Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -205,13 +208,15 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogsDetail']);
 
+                            Route::get('/inbox/send/{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getInbox'])
+                                ->name('getInbox');
+                            Route::post('/inbox/send/{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'portInbox'])
+                                ->name('portInbox');
                             Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
 
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
-
-
 
                             Route::post('/dich-vu-da-mua-{id}/destroy',[\App\Http\Controllers\Frontend\ServiceController::class , 'postDestroy'])
                                 ->name('postDestroy');

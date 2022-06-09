@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Library\AuthCustom;
 use App\Library\DirectAPI;
+use App\Library\Files;
 use App\Library\Helpers;
 use App\Library\HelpersDecode;
 use Illuminate\Http\Request;
@@ -113,7 +114,7 @@ class ServiceController extends Controller
         if(isset($response_data) && $response_data->status == 1){
 
             $data = $response_data->data;
-
+            $data_bot = $response_data->data_bot??null;
             $urlCate = '/service';
 
             $dataSendCate = array();
@@ -132,7 +133,8 @@ class ServiceController extends Controller
 
                 return view('frontend.pages.service.detail')
                     ->with('data', $data)
-                    ->with('datacate', $datacate)
+                    ->with('data', $data)
+                    ->with('data_bot', $data_bot)
                     ->with('slug', $slug);
 
             }
@@ -268,7 +270,6 @@ class ServiceController extends Controller
 
                 $data = $response_data->data;
 
-
                 return view('frontend.pages.service.logsdetail')->with('data', $data);
 
             }
@@ -331,7 +332,6 @@ class ServiceController extends Controller
     public function getEdit(Request $request){
         if (AuthCustom::check()) {
 
-            $id = $request->get('id');
             $id = $request->get('id');
             $url = '/service/log/detail';
             $method = "GET";
@@ -471,7 +471,7 @@ class ServiceController extends Controller
         }
     }
 
-    public function editDestroy(Request $request,$id){
+    public function postEdit(Request $request,$id){
 
         if (AuthCustom::check()) {
 //
@@ -493,6 +493,7 @@ class ServiceController extends Controller
                     $dataSend['customer_data'.$i] = $request->get('customer_data'.$i);
                 }
             }
+
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
 
@@ -519,5 +520,98 @@ class ServiceController extends Controller
             }
         }
 
+    }
+
+    public function getInbox(Request $request,$id){
+        if (AuthCustom::check()) {
+
+            $url = '/inbox/'.$id.'/send';
+            $method = "GET";
+            $dataSend = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+
+            $dataSend['token'] = $jwt;
+            $dataSend['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+            $response_data = $result_Api->response_data??null;
+//            dd($result_Api);
+            if(isset($response_data) && $response_data->status == 1){
+
+                $data = $response_data->data;
+                $conversation = $data->conversation;
+                $inbox = $data->inbox;
+                $item = $data->order;
+
+                return view('frontend.pages.service.chat')
+                    ->with('conversation',$conversation)
+                    ->with('inbox',$inbox)
+                    ->with('item',$item );
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+
+        }
+
+    }
+
+    public function portInbox(Request $request,$id){
+        $this->validate($request, [
+            'captcha' => 'required|captcha'
+        ], [
+            'captcha.required' => "Vui lòng nhập mã bảo vệ",
+            'captcha.captcha' => "Mã bảo vệ không đúng",
+        ]);
+
+        if($request->filled('image') && count($request->image)>5){
+            return redirect()->back()->withErrors('Bạn có thể upload tối đa 5 hình ảnh');
+        };
+
+        $this->validate($request, [
+            'image.*' => 'mimes:jpg,jpeg,png,gif|max:10000',
+            'message' => 'required',
+        ], [
+            'image.*.mimes' => 'Ảnh đính kèm không đúng định dạng jpg,jpeg,png,gif',
+            'message.required' => 'Vui lòng nhập nội dung trao đổi',
+        ]);
+
+        $url = '/inbox/'.$id.'/send';
+        $method = "POST";
+        $dataSend = array();
+        $jwt = Session::get('jwt');
+        if (empty($jwt)) {
+            return response()->json([
+                'status' => "LOGIN"
+            ]);
+        }
+
+        $dataSend['token'] = $jwt;
+        $dataSend['id'] = $id;
+
+        $image="";
+
+        if($request->hasFile('image')){
+            //upload image
+            $dataSend['image'] = $request->image;
+        }
+
+        $dataSend['message'] = $request->message;
+
+        $dataSend['complain'] = $request->complain;
+
+        $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+        $response_data = $result_Api->response_data??null;
+
+        return $response_data;
     }
 }
