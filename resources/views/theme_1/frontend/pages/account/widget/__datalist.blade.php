@@ -110,7 +110,7 @@
                                             @if(isset($item->image))
                                                 <img class="lazy item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                             @else
-                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">
+{{--                                                <img class="item_buy_list_img-main item_buy_list_img-main{{ $item->randId }}" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                                             @endif
                                         @endif
 
@@ -201,9 +201,14 @@
 {{--                                            </div>--}}
 
                                             <div class="item_buy_list_price">
+                                                @if(isset($data->params) && isset($data->params->price))
+                                                    <span>{{ str_replace(',','.',number_format($data->params->price_old)) }}đ </span>
+                                                    {{ str_replace(',','.',number_format($data->params->price)) }}đ
+                                                @else
                                                 <span>{{ str_replace(',','.',number_format($item->price_old)) }}đ </span>
                                                 {{ str_replace(',','.',number_format($item->price)) }}đ
                                                 {{--                                                {{ formatPrice($item->price) }}đ--}}
+                                                @endif
                                             </div>
 
                                         </div>
