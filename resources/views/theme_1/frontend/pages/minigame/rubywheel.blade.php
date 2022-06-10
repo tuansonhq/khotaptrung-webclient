@@ -299,7 +299,7 @@
                                 </div>
                                 @endif
                                 @if(count($topDayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -328,7 +328,7 @@
                                 </div>
                                 @endif
                                 @if(count($top7DayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>
