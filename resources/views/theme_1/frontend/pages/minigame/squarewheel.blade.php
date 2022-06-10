@@ -464,10 +464,14 @@
         var free_wheel = 0;
         var value_gif_bonus = '';
         var msg_random_bonus = '';
+        var startat = 0;
 
         //Click nút quay
         $('body').delegate('#start-played', 'click', function() {
+
             if (roll_check) {
+                num = startat;
+                startat = 0;
                 fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
@@ -581,7 +585,9 @@
 
         $('body').delegate('.num-play-try', 'click', function() {
             if (roll_check) {
-                fakeLoop();
+                num = startat;
+                startat = 0;
+                //fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
                 typeRoll = "try";
@@ -707,7 +713,7 @@
                 }
             } else {
                 roll_check = true;
-
+                startat = target;
                 $("#btnWithdraw").show();
                 if (gift_detail.winbox == 0) {
                     $("#btnWithdraw").hide();
