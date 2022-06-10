@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\ServiceController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 use App\Library\AuthCustom;
@@ -37,6 +38,15 @@ Route::get('/session', function ()
 {
     Session::flush();
     return redirect()->to('/');
+});
+Route::get('/github/test', function (Request $request)
+{
+    $path = storage_path() ."/logs/github/";
+    if(!\File::exists($path)){
+        \File::makeDirectory($path, $mode = "0755", true, true);
+    }
+    $txt = Carbon::now().":".$request->fullUrl().json_encode($request->all());
+    \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
 });
 Route::get('/test111', function ()
 {
