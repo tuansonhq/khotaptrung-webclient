@@ -2371,3 +2371,18 @@ footer{
     text-transform: uppercase;
     text-align: center;
 }
+
+.edu-hisinfo h3{
+    font-size: 16px;
+    color: #3f444a;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.edu-hisinfo p{
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.edu-hisinfo span{
+    font-size: 16px;
+    color: #3f444a;
+}

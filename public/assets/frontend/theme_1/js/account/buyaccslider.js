@@ -56,16 +56,16 @@ $(document).ready(function () {
         });
     }
 
-    getDichVuLienQuan(slug_category)
+    getDichVuLienQuan(slug)
 
-    function getDichVuLienQuan(slug_category) {
+    function getDichVuLienQuan(slug) {
 
         var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug_category
+                slug:slug
             },
             beforeSend: function (xhr) {
 
