@@ -20,8 +20,10 @@
                         <h2 style="text-align: center;font-size: 25px;color: #3f444a;">
                             Trao đổi dịch vụ <a href="/dich-vu-da-mua-{{$item->id}}" style="color: #32c5d2;">#{{$item->id}}</a>
                         </h2>
-                        <div class="edu-history-sec" id="experience">
-
+                        <div class="error-chat">
+                            <span style="font-size: 14px;color: red;margin-bottom: 16px">Lỗi rồi em ơi</span>
+                        </div>
+                        <div class="edu-history-sec pt-3" id="experience">
 
                             @forelse($inbox  ?: [] as $aInbox)
 
@@ -30,9 +32,9 @@
                                     <div class="edu-hisinfo">
                                         @if($conversation->type==1)
 
-                                            @if($aInbox->username==$conversation->author)
+                                            @if($aInbox->user->id == $conversation->author_id)
                                                 <h3>Người yêu cầu(order)</h3>
-                                            @elseif($aInbox->username==$conversation->buyer)
+                                            @elseif($aInbox->user->id == $conversation->buyer_id)
                                                 <h3>Người thực hiện</h3>
                                             @else
                                                 <h3>Người hỗ trợ</h3>
@@ -40,9 +42,9 @@
 
                                         @else
 
-                                            @if($aInbox->username==$conversation->author)
+                                            @if($aInbox->user->user_id==$conversation->author_id)
                                                 <h3>Người bán</h3>
-                                            @elseif($aInbox->username==$conversation->buyer)
+                                            @elseif($aInbox->user->user_id==$conversation->buyer_id)
                                                 <h3>Người mua</h3>
                                             @else
                                                 <h3>Người hỗ trợ</h3>
@@ -72,7 +74,7 @@
 
                     <div style="float: left;width: 100%">
 
-                        <form method="POST" enctype="multipart/form-data" action="/inbox/send/{{$item->id}}" accept-charset="UTF-8" class="form-horizontal form-charge">
+                        <form method="POST" id="chatFrom" enctype="multipart/form-data" action="/inbox/send/{{$item->id}}" accept-charset="UTF-8" class="form-horizontal form-charge">
                             {{csrf_field()}}
 
                             <div class="left-right col-sm-offset-1 col-sm-9">
@@ -88,8 +90,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-12 left-right control-label" style="font-weight: 400;color: #3f444a;">Hình ảnh:</label>
                                     <div class="col-sm-12 left-right">
-                                        <input multiple="" accept=".jpg,.png,.gif" type="file" name="image[]">
-                                        {{--<input type="file" class="form-control c-square" accept=".jpg,.png,.gif" type="file" name="image[]">--}}
+{{--                                        <input multiple="" accept=".jpg,.png,.gif" type="file" name="image[]">--}}
+                                        <input type="file" name="image" accept="image/*" multiple="">
                                     </div>
 
                                 </div>
@@ -174,22 +176,92 @@
     </style>
 
     <script>
-        $(".chat-history").scrollTop($(".chat-history")[0].scrollHeight);
 
 
-        $("#btn_pick_image").click(function () {
-            $("#file_pick_image").click();
-        });
+        $(document).ready(function () {
+            $('#chatFrom').submit(function (e) {
+                e.preventDefault();
+                var formSubmit = $(this);
+                var url = formSubmit.attr('action');
+                var btnSubmit = formSubmit.find(':submit');
+                btnSubmit.prop('disabled', true);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formSubmit.serialize(), // serializes the form's elements.
+                    beforeSend: function (xhr) {
+
+                    },
+                    success: function (response) {
+
+                        if(response.status == 1){
+
+                            swal({
+                                title: "Gửi tin nhắn thành công",
+                                // text: "Phản hồi của bạn sẽ được gửi thẳng đến QTV và được .",
+                                type: "success",
+                                confirmButtonText: "Về dịch vụ đã mua",
+                                showCancelButton: true,
+                                cancelButtonText: "Đóng",
+                            })
+                                .then((result) => {
+                                    if (result.value) {
+                                        window.location = '/dich-vu-da-mua';
+                                    } else if (result.dismiss === "Đóng") {
+                                        location.reload();
+                                    }else {
+                                        location.reload();
+                                    }
+                                })
+                        }
+                        else if (response.status == 2){
+                            $('.loadModal__acount').modal('hide');
+
+                            swal(
+                                'Thông báo!',
+                                response.message,
+                                'warning'
+                            )
+                            $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                        }else {
+                            $('.loadModal__acount').modal('hide');
+                            swal(
+                                'Lỗi!',
+                                response.message,
+                                'error'
+                            )
+                            $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                        }
+                        $('.loading-data__muangay').html('');
+                    },
+                    error: function (response) {
+                        if(response.status === 422 || response.status === 429) {
+                            let errors = response.responseJSON.errors;
+
+                            jQuery.each(errors, function(index, itemData) {
+
+                                formSubmit.find('.notify-error').text(itemData[0]);
+                                return false; // breaks
+                            });
+                        }else if(response.status === 0){
+                            alert(response.message);
+                            $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
+                        }
+                        else {
+                            $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
+                        }
+                    },
+                    complete: function (data) {
+                        btnSubmit.prop('disabled', false);
+                    }
+                })
 
 
-        $('#file_pick_image').on("change", function (e) {
-            var temp = "";
-            for (var i = 0; i < $(this)[0].files.length; ++i) {
-                temp += '<span class="m-badge  m-badge--success">' + $(this)[0].files.item(i).name + '</span> ';
-            }
-//						console.log($(this).parent().find(".imggem"));
-            $(this).parent().find(".img-label").html(temp);
-        });
+            })
+        })
+
+
     </script>
 @endsection
 

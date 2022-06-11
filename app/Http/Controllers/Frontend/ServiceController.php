@@ -9,6 +9,7 @@ use App\Library\DirectAPI;
 use App\Library\Files;
 use App\Library\Helpers;
 use App\Library\HelpersDecode;
+use App\Library\MediaHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Log;
@@ -106,9 +107,10 @@ class ServiceController extends Controller
         $url = '/service/'.$slug;
         $method = "GET";
         $dataSend = array();
-        $dataSend['slug'] = $slug;
+//        $dataSend['slug'] = $slug;
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
         $response_data = $result_Api->response_data??null;
 
         if(isset($response_data) && $response_data->status == 1){
@@ -598,12 +600,12 @@ class ServiceController extends Controller
         $dataSend['token'] = $jwt;
         $dataSend['id'] = $id;
 
-        $image="";
+        $image= $request->image;
 
-        if($request->hasFile('image')){
-            //upload image
-            $dataSend['image'] = $request->image;
-        }
+        $image = MediaHelpers::upload_image($image,'upload_client',null,null,null,false);
+
+        $dataSend['image'] = $image;
+
 
         $dataSend['message'] = $request->message;
 
@@ -612,6 +614,28 @@ class ServiceController extends Controller
         $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
         $response_data = $result_Api->response_data??null;
 
-        return $response_data;
+        if(isset($response_data) && $response_data->status == 1){
+
+            if ($response_data->status == 1) {
+
+                return response()->json([
+                    'status' => 1,
+                    'message' => $response_data->message,
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'message' => $response_data->message,
+                ]);
+            }
+
+        }
+        else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
+//        return $response_data;
     }
 }

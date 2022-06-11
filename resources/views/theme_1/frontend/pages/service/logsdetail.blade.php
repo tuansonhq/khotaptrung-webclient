@@ -322,7 +322,7 @@
                                 </div>
                                 <div style="text-align: right">
                                 </div>
-                                <h2>Trao đổi  <a href="/inbox/send/{{$data->id}}" class="btn btn-brand btn-edit" id="btn-edit">Nhắn tin</a></h2>
+                                <h2>Trao đổi  <a href="/inbox/send/{{$data->id}}" class="btn btn-brand btn-edit" >Nhắn tin</a></h2>
                                 <div class="edu-history-sec" id="awards">
                                     <span>Chưa có nội dung</span>
                                 </div>
