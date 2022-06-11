@@ -9,9 +9,7 @@
         <div class="shop_product_another_content">
             <div class="item_buy_list row">
                 @foreach($data as $item)
-                    {{--                    @if($datav2->id != $data->id)--}}
-                    {{--                        --}}
-                    {{--                    @endif--}}
+
                     <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                         <div class="item_buy_list_in">
                             <div class="item_buy_list_img">
@@ -68,10 +66,11 @@
                                             @endif
                                         @endforeach
                                     @endif
+
                                     @if(isset($item->params) && isset($item->params->ext_info))
                                             <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                            @if(isset($item->childs) && count($item->childs)>0)
-                                                @foreach($item->childs as $index=>$att)
+                                            @if(isset($item->category->childs) && count($item->category->childs)>0)
+                                                @foreach($item->category->childs as $index=>$att)
                                                     @if($att->position == 'text')
                                                         @if(isset($att->childs))
                                                             @foreach($att->childs as $child)

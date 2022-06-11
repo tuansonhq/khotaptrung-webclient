@@ -223,6 +223,7 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
+//        return $result_Api;
         if(isset($response_data) && $response_data->status == 1){
             $data = $response_data->data;
             return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug);
@@ -288,20 +289,21 @@ class AccController extends Controller
     public function getRelated(Request $request){
         if ($request->ajax()){
             $slug = $request->slug;
-            $url = '/acc';
+            $url = '/get-relate-acc';
             $method = "GET";
 
-            $dataSendslider = array();
-            $dataSendslider['data'] = 'list_acc';
-            $dataSendslider['cat_slug'] = $slug;
-            $dataSendslider['limit'] = 12;
-            $dataSendslider['status'] = 1;
+            $dataSend = array();
+//            $dataSendslider['data'] = 'list_acc';
+            $dataSend['id'] = $slug;
+            $dataSend['limit'] = 12;
+            $dataSend['status'] = 1;
 
-            $result_Api_slider = DirectAPI::_makeRequest($url,$dataSendslider,$method);
-            $response_slider_data = $result_Api_slider->response_data??null;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-            if(isset($response_slider_data) && $response_slider_data->status == 1){
-                $data = $response_slider_data->data;
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+                $data = $response_data->data;
 
                 $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
 
@@ -317,7 +319,7 @@ class AccController extends Controller
             else{
                 return response()->json([
                     'status' => 0,
-                    'message'=>$response_slider_data->message??"Không thể lấy dữ liệu"
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }

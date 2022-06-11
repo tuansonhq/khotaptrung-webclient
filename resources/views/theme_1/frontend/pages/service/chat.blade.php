@@ -199,7 +199,6 @@
 
                             swal({
                                 title: "Gửi tin nhắn thành công",
-                                // text: "Phản hồi của bạn sẽ được gửi thẳng đến QTV và được .",
                                 type: "success",
                                 confirmButtonText: "Về dịch vụ đã mua",
                                 showCancelButton: true,
