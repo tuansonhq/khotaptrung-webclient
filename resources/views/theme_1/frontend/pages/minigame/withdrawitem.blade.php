@@ -186,16 +186,16 @@
             }
             $('#proccessModal').modal('show');
         })
-        $.ajax({
-            url: '/withdrawitemajax-{{$game_type}}',
-            datatype:'json',
-            data:{
-                _token: $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'post',
-            success: function (data) {
-                $('.account_sidebar_content').html(data.msg);
-            }
-        })
+        // $.ajax({
+        //     url: '/withdrawitemajax-{{$game_type}}',
+        //     datatype:'json',
+        //     data:{
+        //         _token: $('meta[name="csrf-token"]').attr('content')
+        //     },
+        //     type: 'post',
+        //     success: function (data) {
+        //         $('.account_sidebar_content').html(data.msg);
+        //     }
+        // })
 </script>
 @endsection
