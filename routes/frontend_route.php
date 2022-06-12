@@ -381,6 +381,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('getWithdrawItem');
                     Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
                         ->name('postWithdrawItem');
+                    Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])
+                        ->name('postWithdrawItemAjax');
                 });
 
 

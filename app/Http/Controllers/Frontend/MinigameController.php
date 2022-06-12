@@ -514,7 +514,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
                     }
                 } else {
-                    return 'sai';
+                    logger('withdrawitem: '.$result_Api->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -523,6 +524,60 @@ class MinigameController extends Controller
             }
         }else{
             return redirect('login');
+        }
+    }
+
+    public function postWithdrawItemAjax(Request $request){
+        try{
+            if(empty(Session::get('jwt'))){
+                return response()->json([
+                    'status' => 4,
+                    'msg'=> 'Vui lòng đăng nhập !'
+                ], 200);
+            }
+            $game_type = $request->game_type;
+            $method = "GET";
+            $data = array();
+            $data['token'] = Session::get('jwt');;
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = \Request::server("HTTP_HOST");
+            $url = '/minigame/get-withdraw-item';
+            $data['page'] = $request->page;
+            $data['game_type'] = $game_type;
+            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                $result = $result_Api->response_data;
+                if (isset($result->status) && $result->status == 4) {
+                    return response()->json([
+                        'status' => 4,
+                        'msg'=> 'Vui lòng đăng nhập !'
+                    ], 200);
+                } else {
+                    $paginatedItems = null;
+                    if($result->withdraw_history->total>0){
+                        $perPage = $result->withdraw_history->per_page??0;
+                        $total = $result->withdraw_history->total??0;
+                        $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
+                        $paginatedItems->setPath($request->url());
+                    }
+
+                    return response()->json([
+                        'status' => $result->status,
+                        'msg'=> view('frontend.pages.minigame.withdrawitemajax', compact('paginatedItems','result','game_type'))->render()
+                    ], 200);
+                }
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                ], 200);
+            }
+        }
+        catch(\Exception $e){
+            return response()->json([
+                'status' => 0,
+                'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+            ], 200);
         }
     }
 
@@ -560,7 +615,8 @@ class MinigameController extends Controller
                         return redirect()->back()->with('success',__($result->msg));
                     }
                 } else {
-                    return 'sai';
+                    logger('withdrawitem: '.$result_Api->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
