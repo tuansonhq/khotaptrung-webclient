@@ -6,7 +6,17 @@ $(document).ready(function(){
         if(token == 'undefined' || token == null || token =='' || token == undefined){
             $('#info .loading').remove();
             $('#logout .loading').remove();
-            $('#info').attr('href','/login')
+            if (window.location.pathname == '/login'){
+                $('#info').attr('href','')
+            }else {
+                $('#info').attr('href','/login?return_url='+window.location.href)
+            }
+            if (window.location.pathname == '/login'){
+                $('#info_tab_mobile').attr('href','#')
+
+            }else {
+                $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
+            }
             $('#logout').attr('href','/register')
             $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
@@ -14,18 +24,18 @@ $(document).ready(function(){
 
             $('#info_mobile .loading').remove();
             $('#logout_mobile .loading').remove();
-            $('#info_mobile').attr('href','/login')
+            $('#info_mobile').attr('href','/login?return_url='+window.location.href)
             $('#logout_mobile').attr('href','/register')
             $('#info_mobile').html('Đăng nhập')
             $('#logout_mobile').html('Đăng kí')
 
             $('#info_tab_mobile .loading').remove();
             $('#logout_tab_mobile .loading').remove();
-            $('#info_tab_mobile').attr('href','/login')
+            $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
             $('#logout_tab_mobile').attr('href','/register')
             $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
             $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-
+            $('meta[name="jwt"]').attr('content','jwt');
 
 
             return;
@@ -45,7 +55,17 @@ $(document).ready(function(){
                 if(data.status === "LOGIN"){
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
-                    $('#info').attr('href','/login')
+                    if (window.location.pathname == '/login'){
+                        $('#info').attr('href','')
+                    }else {
+                        $('#info').attr('href','/login?return_url='+window.location.href)
+                    }
+                    if (window.location.pathname == '/login'){
+                        $('#info_tab_mobile').attr('href','#')
+
+                    }else {
+                        $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
+                    }
                     $('#logout').attr('href','/register')
                     $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
@@ -53,26 +73,62 @@ $(document).ready(function(){
 
                     $('#info_mobile .loading').remove();
                     $('#logout_mobile .loading').remove();
-                    $('#info_mobile').attr('href','/login')
+                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
                     $('#logout_mobile').attr('href','/register')
                     $('#info_mobile').html('Đăng nhập')
                     $('#logout_mobile').html('Đăng kí')
 
                     $('#info_tab_mobile .loading').remove();
                     $('#logout_tab_mobile .loading').remove();
-                    $('#info_tab_mobile').attr('href','/login')
+                    // $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
                     $('#logout_tab_mobile').attr('href','/register')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
                     $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
-                    //
-                    // window.location.href = '/login';
-                    // // method = method || 'post';
-                    // return;
+                    $('meta[name="jwt"]').attr('content','jwt');
+                    // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
+
+                }
+                if(data.status == 401){
+                    $('#info .loading').remove();
+                    $('#logout .loading').remove();
+                    if (window.location.pathname == '/login'){
+                        $('#info').attr('href','')
+                    }else {
+                        $('#info').attr('href','/login?return_url='+window.location.href)
+                    }
+                    if (window.location.pathname == '/login'){
+                        $('#info_tab_mobile').attr('href','#')
+
+                    }else {
+                        $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
+                    }
+                    $('#logout').attr('href','/register')
+                    $('#info').html('<i class="fas fa-user"></i> Đăng nhập')
+                    $('#logout').html('<i class="fas fa-user"></i> Đăng kí')
+
+
+                    $('#info_mobile .loading').remove();
+                    $('#logout_mobile .loading').remove();
+                    $('#info_mobile').attr('href','/login?return_url='+window.location.href)
+                    $('#logout_mobile').attr('href','/register')
+                    $('#info_mobile').html('Đăng nhập')
+                    $('#logout_mobile').html('Đăng kí')
+
+                    $('#info_tab_mobile .loading').remove();
+                    $('#logout_tab_mobile .loading').remove();
+                    // $('#info_tab_mobile').attr('href','/login?return_url='+window.location.href)
+                    $('#logout_tab_mobile').attr('href','/register')
+                    $('#info_tab_mobile').html('<i class="fas fa-user"></i> Đăng nhập')
+                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng kí')
+                    $('meta[name="jwt"]').attr('content','jwt');
+                    // $('#form-charge-submit').html('<a href="/login" class="btn btn-submit" >Nạp thẻ</a>')
+
                 }
                 if(data.status === "ERROR"){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
+
                     $('#username').val(data.info.username);
                     $('#info .loading').remove();
                     $('#logout .loading').remove();
@@ -108,9 +164,9 @@ $(document).ready(function(){
 
                     $('#logout_tab_mobile').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
                     $('#info_tab_mobile').html('<i class="fas fa-user"></i> '+fn(data.info.username, 12) +' - $' +formatNumber(data.info.balance))
-                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất')
-
-
+                    $('#logout_tab_mobile').html('<i class="fas fa-user"></i> Đăng xuất');
+                    $('meta[name="jwt"]').attr('content',data.jwt);
+                    // $('#form-charge-submit').html('<button class="btn btn-submit" type="submit">Nạp thẻ</button>')
                     $(document).on('scroll',function(){
                         if($(window).width() > 1024){
                             if ($(this).scrollTop() > 100) {
@@ -126,7 +182,7 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
+                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
                 return;
             },
             complete: function (data) {
@@ -144,69 +200,4 @@ $(document).ready(function(){
     }
 
 });
-//
-// // new
-// $(document).ready(function(){
-//     const csrf_token = $('meta[name="csrf-token"]').attr('content');
-//     const token =  $('meta[name="jwt"]').attr('content');
-//     function getInfo(){
-//         const url = '/user/account_info';
-//         if(token == 'undefined' || token == null || token =='' || token == undefined){
-//             $('#info .loading').remove();
-//             $('#logout .loading').remove();
-//             $('#info').attr('href','/login');
-//             $('#logout').attr('href','/register');
-//             $('#info').html('<i class="fas fa-user"></i> Đăng nhập');
-//             $('#logout').html('<i class="fas fa-user"></i> Đăng kí');
-//             return;
-//         }
-//         $.ajax({
-//             type: "POST",
-//             url: url,
-//             cache:false,
-//             data: {
-//                 _token:csrf_token,
-//                 jwt:token
-//             },
-//             beforeSend: function (xhr) {
-//
-//             },
-//             success: function (data) {
-//                 // if(data.status === "LOGIN"){
-//                 //     window.location.href = '/login';
-//                 //     // method = method || 'post';
-//                 //     return;
-//                 // }
-//                 // if(data.status === "ERROR"){
-//                 //     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
-//                 // }
-//                 console.log(data);
-//                 if(data.status == 1){
-//                     $('#info .loading').remove();
-//                     $('#logout .loading').remove();
-//                     $('#info').attr('href','/thong-tin')
-//                     $('#logout').attr('href','/logout')
-//                     $('#logout-form').attr('href','/logout')
-//
-//                     $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-//                     $('#info').html('<i class="fas fa-user"></i> '+data.info.username)
-//                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
-//                 }
-//                 else{
-//                     $('#info').attr('href','/login');
-//                     $('#logout').attr('href','/register');
-//                     $('#info').html('<i class="fas fa-user"></i> Đăng nhập');
-//                     $('#logout').html('<i class="fas fa-user"></i> Đăng kí');
-//                 }
-//             },
-//             error: function (data) {
-//                 alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!')
-//                 return;
-//             },
-//             complete: function (data) {
-//
-//             }
-//         });
-//     }
-//     getInfo();
-// });
+

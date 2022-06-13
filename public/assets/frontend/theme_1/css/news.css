@@ -30,7 +30,7 @@
     text-decoration: none;
 }
 .news_breadcrumbs_theme{
-    float: right;
+    /*float: right;*/
     display: inline-block;
     padding: 0;
     margin: 0;
@@ -110,6 +110,7 @@
     width: 100%;
     max-height: 138px;
     min-height: 138px;
+    object-fit: cover;
 }
 .news_content_list_info{
     float: left;

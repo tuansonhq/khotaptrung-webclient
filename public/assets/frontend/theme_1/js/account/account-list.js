@@ -24,11 +24,17 @@ $(document).ready(function(){
         // loadDataAccountList(page);
     });
 
+    loadDataAccountList()
+
     function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
-        let slug_category = $('.slug_category').val();
+
         let slug = $('.slug').val();
 
-        var url = '/' + slug_category + '/' + slug;
+        var url = '/mua-acc/' + slug;
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         // alert(url)
         request = $.ajax({
             type: 'GET',
@@ -46,11 +52,29 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                $("#account_data").empty().html('');
-                $("#account_data").empty().html(data);
+                $('.loading').css('display','none');
 
-                $('.loading-data__timkiem').html('');
-                $('.loading-data__all').html('');
+                if (data.status == 0){
+
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+
+                    $("#account_data").empty().html('');
+                    $("#account_data").empty().html(html);
+
+                    $('.loading-data__timkiem').html('');
+                    $('.loading-data__all').html('');
+                }else if (data.status == 1){
+                    $(".booking_detail")[0].scrollIntoView();
+
+                    $("#account_data").empty().html('');
+
+                    $("#account_data").empty().html(data.data);
+
+                    $('.loading-data__timkiem').html('');
+                    $('.loading-data__all').html('');
+                }
+
             },
             error: function (data) {
 
@@ -118,7 +142,7 @@ $(document).ready(function(){
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
 
-
+        $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
         loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
@@ -201,6 +225,7 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+        $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
         loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)

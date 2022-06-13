@@ -10,11 +10,18 @@ use App\Library\DirectAPI;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Session;
+use function GuzzleHttp\Promise\all;
+use App\Library\Helpers;
 
 class LoginController extends Controller
 {
     public function login(){
 
+//        if(!session()->has('auth_custom')){
+
+//        } else{
+//            return redirect('/');
+//        }
         $jwt = Session::get('jwt');
         if(empty($jwt)){
             return view('frontend.pages.log_in');
@@ -24,6 +31,7 @@ class LoginController extends Controller
 
     }
     public function postLogin(Request $request){
+
         $this->validate($request,[
             'username'=>'required',
             'password'=>'required',
@@ -38,47 +46,42 @@ class LoginController extends Controller
             $data['username'] = $request->username;
             $data['password'] = $request->password;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            $response_data = $result_Api->response_data??null;
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    $time = strtotime(Carbon::now());
-                    $exp_token = $result->exp_token;
-                    $time_exp_token = $time + $exp_token;
-                    Session::put('jwt',$result->token);
-                    Session::put('exp_token',$result->exp_token);
-                    Session::put('time_exp_token',$time_exp_token);
-                    $path = Session::get('path');
-                    return response()->json([
-                        'path' => $path,
-                        'data' => $result_Api->data,
-                    ]);
-                    return Response()->json($result_Api->data);
-                    return redirect()->to('/');
-                }
-                else{
+            if(isset($response_data) && $response_data->status == 1){
+                $time = strtotime(Carbon::now());
+                $exp_token = $response_data->exp_token;
 
-                    return response()->json([
-                        'data' => $result_Api->data,
-                    ]);
-//                    dd(111);
-//                    return redirect()->back()->withErrors($result->message);
-                }
-            }else{
-
+                $time_exp_token = $time + $exp_token;
+                Session::put('jwt',$response_data->token);
+                Session::put('exp_token',$response_data->exp_token);
+                Session::put('time_exp_token',$time_exp_token);
+                Session::put('auth_custom',$response_data->user);
+                $return_url = Session::get('return_url');
                 return response()->json([
-                    'data' => $result_Api->data,
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'return_url' => $return_url,
+                    'data' => $result_Api->response_data,
                 ]);
-                //                dd(122222);
-//                $result = $result_Api->data;
-//                return redirect()->back()->withErrors($result->message);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
             }
         }
         catch(\Exception $e){
-
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
         }
+
+
     }
     public function loginfacebook(Request $request)
     {
@@ -87,21 +90,27 @@ class LoginController extends Controller
         $data = array();
         $data['accessToken'] = $request->accessToken;
         $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+        $response_data = $result_Api->response_data??null;
 
-        if(isset($result_Api) && $result_Api->httpcode == 200) {
-            $result = $result_Api->data;
-            if ($result->status == 1) {
-                $time = strtotime(Carbon::now());
-                $exp_token = $result->exp_token;
-                $time_exp_token = $time + $exp_token;
-                Session::put('jwt',$result->token);
-                Session::put('exp_token',$result->exp_token);
-                Session::put('time_exp_token',$time_exp_token);
-                return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('path').'');
-            } else {
-                return redirect()->back()->withErrors($result->message);
-            }
+        if(isset($response_data) && $response_data->status == 1){
+            $time = strtotime(Carbon::now());
+            $exp_token = $response_data->exp_token;
+
+            $time_exp_token = $time + $exp_token;
+            Session::put('jwt',$response_data->token);
+            Session::put('exp_token',$response_data->exp_token);
+            Session::put('time_exp_token',$time_exp_token);
+            return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
+
         }
+        else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
+
+
     }
     public function logout(Request $request){
         try{
@@ -110,12 +119,13 @@ class LoginController extends Controller
             $data = array();
             $data['token'] = $request->session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 Session::flush();
                 return redirect()->to('/');
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
                 if($result->status == 1){
                     Session::flush();
                     return redirect()->to('/');
@@ -125,13 +135,15 @@ class LoginController extends Controller
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);        }
     }
 
 
     public function changePassword(){
-        return view('frontend.pages.account.changePassword');
+        return view('frontend.pages.profile.change_password');
     }
     public function changePasswordApi(Request $request){
         $this->validate($request,[
@@ -160,68 +172,69 @@ class LoginController extends Controller
             $data['old_password'] = $request->old_password;
             $data['password'] = $request->password;
             $data['password_confirmation'] = $request->password_confirmation;
-//            $data['secret_key'] = config('api.secret_key');
-//            $data['domain'] = 'youtube.com';
-//            $data['token'] = session()->get('auth_token');
 
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            $response_data = $result_Api->response_data??null;
+            if(isset($response_data) && $response_data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message'=>$response_data->message
+                ]);
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-
-                if($result->status == 1){
-//                    return 'doi mat khau thanh cong';
-//                    $time = strtotime(Carbon::now());
-//                    $exp_token = $result->exp_token;
-//                    $time_exp_token = $time + $exp_token;
-//                    session()->put('auth_token', $result->token);
-//                    session()->put('exp_token', $result->exp_token);
-//                    session()->put('time_exp_token', $time_exp_token);
-//                    return redirect()->to('/');
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                    ]);
-
-                }
-            }else{
-                $result = $result_Api->data;
+            }
+            else{
                 return response()->json([
                     'status' => 0,
-                    'message' => $result->message,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
         catch(\Exception $e){
             Log::error($e);
-            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-        }
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);        }
     }
-    // public function loginApi(Request $request){
+    public function accesUser(Request $request){
+        if (!$request->get('sign')){
+            return "Mã khóa bị thiếu";
+        }
+        $sign = $request->get('sign');
+        $data = Helpers::Decrypt($sign,config('module.user.encrypt'));
+        $data = explode(',',$data);
+        $token = $data[0];
+        $time = $data[1];
+        if (Carbon::now()->greaterThan(Carbon::createFromTimestamp($time))) {
+             return "Mã khóa hết hiệu lực";
+        }
 
+        $url = '/profile';
+        $method = "GET";
+        $data = array();
+        $data['token'] = $token;
+        $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+        if(isset($result_Api) ){
+            if( $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
+                Session::put('jwt',$token);
+                Session::put('auth_custom', $result->user);
+                return redirect()->to('/');
+            }
+            else if($result_Api->response_code == 401){
+                return "Token không được xác thực";
+            }
+            else if($result_Api->response_code == 408){
+                return "Không có phản hồi từ máy chủ (408)";
+            }
+            else{
+                return "Không có phản hồi từ máy chủ ('.$result_Api->response_code.')";
+            }
 
-    //     $http = new \GuzzleHttp\Client;
+        }
+        else{
+         return "Lỗi không gọi được dữ liệu hệ thống";
+        }
 
-    //     $username = $request->username;
-    //     $password = $request->password;
-
-    //     $response = $http->post('https://backend-tt.nick.vn/api/v1/login?',[
-    //         'query'=>[
-    //             'username'=>$username,
-    //             'password'=>$password,
-    //             'secret_key'=>'ZmpVMXozMTJQVDFoSFUrSmFkYVdNZWNpVDg0eHpZRVBjbEl4SE0zUVk0dz0=',
-    //             'domain'=>'youtube.com',
-    //         ]
-    //     ]);
-
-    //     $result = json_decode((string)$response->getBody(),true);
-    //     return dd($result);
-    //     return view('frontend.pages.log_in');
-    // }
+    }
 }

@@ -17,4 +17,16 @@ class AuthCustom{
         }
         return null;
     }
+//    public static function check(){
+//        if(session()->has('jwt')){
+//            return true;
+//        }
+//        return false;
+//    }
+//    public static function user(){
+//        if(session()->has('jwt')){
+//            return session()->get('jwt');
+//        }
+//        return null;
+//    }
 }

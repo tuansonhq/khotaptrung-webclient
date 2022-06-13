@@ -146,9 +146,9 @@ tr.selected td{
     border-radius: 5px;
     font-size: 20px;
 }
-#input_pack:focus{
-    border-color: #fb236a;
-}
+/*#input_pack:focus{*/
+/*    border-color: #fb236a;*/
+/*}*/
 .confirm-server{
     width: 100%;
     padding: 15px 10px;

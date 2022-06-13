@@ -7,22 +7,18 @@ use App\Library\AuthCustom;
 use App\Library\DirectAPI;
 use App\Library\Helpers;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
 
 class HomeController extends Controller
 {
     public function index(){
 
-        $url_menu_transaction = '/menu-transaction';
-        $method_menu_transaction = "POST";
-        $val_menu_transaction = array();
-        $result_Api_menu_transaction = DirectAPI::_makeRequest($url_menu_transaction ,$val_menu_transaction ,$method_menu_transaction);
-        $result_menu_transaction = $result_Api_menu_transaction->data;
-        $data_menu_transaction = $result_menu_transaction->data;
-        Session::forget('path');
-        Session::put('path', $_SERVER['REQUEST_URI']);
-//
-        return view('frontend.pages.index')->with('data_menu_transaction',$data_menu_transaction);
+
+//        Session::forget('path');
+//        Session::put('path', $_SERVER['REQUEST_URI']);
+
+        return view('frontend.pages.index');
     }
 
     public function profile(){
@@ -41,38 +37,38 @@ class HomeController extends Controller
             ->with('$data_menu_profile',$data_menu_profile);
     }
 
-    public function getTopCharge(Request $request)
-    {
-            try{
-
-                $url = '/top-charge';
-                $method = "GET";
-                $data = array();
-
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
-                    if($result->status == 1){
-                        return response()->json([
-                            'status' => 1,
-                            'data' => $result->data
-                        ]);
-                    }
-
-                    else {
-                        return redirect()->back()->withErrors($result_Api->message);
-
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            }
-            catch(\Exception $e){
-                Log::error($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-
-        }
+//    public function getTopCharge(Request $request)
+//    {
+//            try{
+//
+//                $url = '/top-charge';
+//                $method = "GET";
+//                $data = array();
+//
+//                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+//                if (isset($result_Api) && $result_Api->httpcode == 200) {
+//                    $result = $result_Api->data;
+//                    if($result->status == 1){
+//                        return response()->json([
+//                            'status' => 1,
+//                            'data' => $result->data
+//                        ]);
+//                    }
+//
+//                    else {
+//                        return redirect()->back()->withErrors($result_Api->message);
+//
+//                    }
+//                } else {
+//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            }
+//            catch(\Exception $e){
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//
+//        }
 
 
 

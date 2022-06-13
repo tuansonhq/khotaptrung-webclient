@@ -8,8 +8,6 @@ html{
 
     line-height: 1.6rem;
     box-sizing: border-box;
-    /*width: 100%;*/
-    /*height: 100%;*/
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
@@ -43,10 +41,7 @@ body {
 
     /*background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100%*/
 }
-.main-lay-out{
-    background:#000 url("https://www.shopas.net/storage/images/W1NwDQ3DiP_1640248137.jpeg");background-attachment: fixed;background-size: 100;
-    padding-bottom: 40px;
-}
+
 button:focus {
     outline:0px;
 }
@@ -222,7 +217,7 @@ header .nav-bar{
 }
 .nav_mobile ul{
     list-style: none;
-    margin: 0px -15px !important;
+    margin: 0px -6px 0 -20px !important
 }
 .nav_mobile ul li{
     padding: 10px 20px 10px 0;
@@ -551,6 +546,7 @@ header .nav-bar{
 
 .game-list-image{
     position: relative;
+
 }
 .game-list-image, .game-list-title, .game-list-description, .game-list-more {
     position: relative;
@@ -559,6 +555,7 @@ header .nav-bar{
 .game-list-image a{
     position: relative;
     display: block;
+    height: 160px;
 }
 
 .game-list-image-sticky{
@@ -570,6 +567,8 @@ header .nav-bar{
 }
 .game-list-image-in{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .game-list .p-5{
     padding: 5px !important;
@@ -592,8 +591,10 @@ header .nav-bar{
     color: #f1c40f;
     font-size: 14px;
     text-align: center;
-    padding-top: 9px;
+    padding-top: 24px;
     text-transform: uppercase;
+    margin-bottom: 0!important;
+    padding-bottom: 8px;
 }
 
 .game-list-description{
@@ -628,7 +629,7 @@ header .nav-bar{
 }
 
 .game-list-more{
-    padding: 48px 0;
+    padding: 16px 0;
 }
 .game-list-more-view {
     text-align: center;
@@ -755,9 +756,9 @@ header .nav-bar{
         height: 80px
 
     }
-    .nav-bar-brand{
-        margin: 12px 0;
-    }
+    /*.nav-bar-brand{*/
+    /*    margin: 12px 0;*/
+    /*}*/
     .nav-bar-brand img {
         height: 41px;
     }
@@ -912,7 +913,7 @@ header .nav-bar{
     font-weight: 500;
     font-size: 12px;
     transition: 0.1s;
-    color: #7d8691;
+    color: white;
     letter-spacing: 1px;
     display: block;
     margin: 0;
@@ -1117,6 +1118,15 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
+    #dichvunoibat .item_play_dif_slide_img img{
+        /*background-size: cover;*/
+        width: 100%;
+        max-width: 100%!important;
+        min-width: 100%!important;
+        max-height: initial!important;
+        min-height: initial!important;
+        object-fit: cover;
+    }
     .item_play_dif_slide_detail_in_active__size{
         max-height: 300px!important;
         min-height: 300px!important;
@@ -1237,11 +1247,23 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
+    #dichvunoibat .item_play_dif_slide_img img{
+        /*background-size: cover;*/
+        width: 100%;
+        max-width: 100%!important;
+        min-width: 100%!important;
+        max-height: initial!important;
+        min-height: initial!important;
+        object-fit: cover;
+    }
     .item_play_dif_slide_detail_in_active__size{
         max-height: 280px!important;
         min-height: 280px!important;
     }
-
+    #dichvunoibat .item_play_dif_slide_detail_in_active__size{
+        max-height: 260px!important;
+        min-height: 194px!important;
+    }
     .item_play_dif_slide_title span,
     .item_play_dif_slide_title{
         font-size: 14px!important;
@@ -1369,6 +1391,15 @@ footer{
         max-height: 120px!important;
         min-height: 120px!important;
     }
+    #dichvunoibat .item_play_dif_slide_img img{
+        /*background-size: cover;*/
+        width: 100%;
+        max-width: 100%!important;
+        min-width: 100%!important;
+        max-height: initial!important;
+        min-height: initial!important;
+        object-fit: cover;
+    }
     .item_play_dif_slide_detail_in_active__size{
         max-height: 300px!important;
         min-height: 300px!important;
@@ -1385,9 +1416,24 @@ footer{
     .item_play_dif_slide_description__size{
         padding-top: 0!important;
     }
-
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
 }
 @media only screen and (min-width: 376px) and (max-width: 573px) {
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
     .content {
         padding-top: 80px!important;
     }
@@ -1449,7 +1495,7 @@ footer{
         padding-top: 24px!important;
     }
     .item_buy_list_img-main {
-        height: 150px!important;
+        /*height: 150px!important;*/
     }
     .item_buy_filter__category{
         padding-top: 24px!important;
@@ -1490,6 +1536,10 @@ footer{
     }
     .gallery{
         max-width: 100% !important;
+    }
+    #dichvunoibat .item_play_dif_slide_detail_in_active__size{
+        max-height: 260px!important;
+        min-height: 194px!important;
     }
     .shop_product_detailS{
         padding-top: 8px!important;
@@ -1541,6 +1591,15 @@ footer{
         max-height: 100px!important;
         min-height: 100px!important;
     }
+    #dichvunoibat .item_play_dif_slide_img img{
+        /*background-size: cover;*/
+        width: 100%;
+        max-width: 100%!important;
+        min-width: 100%!important;
+        max-height: initial!important;
+        min-height: initial!important;
+        object-fit: cover;
+    }
     .item_play_dif_slide_detail_in_active__size{
         max-height: 260px!important;
         min-height: 260px!important;
@@ -1560,12 +1619,97 @@ footer{
 
     .game-list-title h3 {
         font-size: 14px!important;
+        padding-top: 16px!important;
+    }
+    .item_buy_list_info_inacc{
+        font-size: 12px!important;
+    }
+    .hidelistacountrandom{
+        display: block!important;
+    }
+    .loading-data__timkiem{
+        left: 40%!important;
+        top: 10px!important;
+    }
+    .item_buy_list_info_inaccright{
+        font-size: 12px!important;
+    }
+    .item_buy_list_info {
+        margin-top: 11px;
+        /*min-height: 90px!important;*/
+        /*max-height: 120px;*/
+    }
+    .nav-bar-category-mobile span a {
+        padding: 4px 8px!important;
+        margin-right: 8px!important;
+    }
+    .nav-bar-brand {
+        margin: 9px 0px!important;
+    }
+    .nav-bar-brand img {
+        height: 48px!important;
+    }
+    .nav-bar-brand {
+        width: 120px!important;
+    }
+    .item_play_title h1{
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
     }
 }
 
 @media only screen and (max-width: 376px) {
+    .item_play_title h1{
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .marginauto{
+        width: 100%!important;
+        margin: 0 auto!important;
+    }
+    .left-right {
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    .nav-bar-brand {
+        width: 120px!important;
+    }
+    .nav-bar-category-mobile span a {
+        padding: 4px 8px!important;
+        margin-right: 8px!important;
+    }
+    .nav-bar-brand {
+        margin: 9px 0px!important;
+    }
+    .nav-bar-brand img {
+        height: 48px!important;
+    }
+    .item_buy_list_info {
+        margin-top: 11px;
+        /*min-height: 90px!important;*/
+        /*max-height: 120px;*/
+    }
+    .item_buy_list_info_inaccright{
+        font-size: 12px!important;
+    }
+
+    .loading-data__timkiem{
+        left: 40%!important;
+        top: 10px!important;
+    }
+    .hidelistacountrandom{
+        display: block!important;
+    }
+    .item_buy_list_info_inacc{
+        font-size: 12px!important;
+    }
     .game-list-title h3 {
         font-size: 14px!important;
+        padding-top: 16px!important;
     }
 
     .content {
@@ -1632,7 +1776,7 @@ footer{
         padding-top: 24px!important;
     }
     .item_buy_list_img-main {
-        height: 120px!important;
+        /*height: 120px!important;*/
     }
     .item_buy_list_info_in {
          margin-bottom: 0!important;
@@ -1717,11 +1861,23 @@ footer{
         max-height: 100px!important;
         min-height: 100px!important;
     }
+    #dichvunoibat .item_play_dif_slide_img img{
+        /*background-size: cover;*/
+        width: 100%;
+        max-width: 100%!important;
+        min-width: 100%!important;
+        max-height: initial!important;
+        min-height: initial!important;
+        object-fit: cover;
+    }
     .item_play_dif_slide_detail_in_active__size{
         max-height: 260px!important;
         min-height: 260px!important;
     }
-
+    #dichvunoibat .item_play_dif_slide_detail_in_active__size{
+        max-height: 260px!important;
+        min-height: 194px!important;
+    }
     .item_play_dif_slide_title span,
     .item_play_dif_slide_title{
         font-size: 14px!important;
@@ -1735,6 +1891,9 @@ footer{
     }
 }
 
+.hidelistacountrandom{
+    display: none;
+}
 /*.news_content iframe{*/
 /*    max-width: 90%!important;*/
 /*    padding: 12px 0;*/
@@ -1894,6 +2053,13 @@ footer{
         overflow: hidden;
     }
 }
+@media        only screen and (max-width: 992px) {
+    .game-list-image a{
+        position: relative;
+        display: block;
+        height: 120px;
+    }
+}
 
 .box-text{
     margin-bottom: 5px;
@@ -1986,6 +2152,12 @@ footer{
     border: 1px solid #cccccc;
     padding: 2px;
 }
+#dichvunoibat .item_play_dif_slide_detail_in_active__size{
+    background: transparent;
+    border-radius: 4px;
+    border: none;
+    padding: 2px;
+}
 .item_play_dif_slide_title{
     padding: 8px;
     font-weight: 900;
@@ -2004,6 +2176,7 @@ footer{
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .item_play_dif_slide_img img{
     background-size: cover;
     width: 100%;
@@ -2011,7 +2184,17 @@ footer{
     min-width: 100%;
     max-height: 160px;
     min-height: 160px;
+    object-fit: cover;
 }
+#dichvunoibat .item_play_dif_slide_img img{
+    /*background-size: cover;*/
+    width: 100%;
+    max-width: 100%!important;
+    min-width: 100%!important;
+    max-height: initial;
+    min-height: initial;
+    object-fit: cover;
+ }
 .item_play_dif_slide_detail_in_active__size{
     max-height: 320px;
     min-height: 320px;
@@ -2107,3 +2290,99 @@ footer{
     min-height: 280px;
 }
 
+.loginBox__layma__button404:hover {
+    text-decoration: none;
+}
+.loginBox__layma__button {
+    width: 100%;
+    background: #212529;
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    /* margin: 4px 0px; */
+    height: 48px;
+    box-sizing: border-box;
+    flex: none;
+    flex-grow: 0;
+    border: none;
+}
+.loginBox__layma__button span {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    text-align: center;
+    color: #FFFFFF;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 8px;
+}
+.loginBox__layma__button404 {
+    padding: 8px 16px;
+    margin-left: 56px;
+}
+.marginauto {
+    width: 100%;
+    margin: 0 auto;
+}
+.left-right {
+    padding-left: 0;
+    padding-right: 0;
+}
+.error__service{
+    width: 100%;
+    margin: 0 auto!important;
+    padding-top: 14px;
+    justify-content: center;
+    text-align: center;
+}
+.oldPrice {
+    text-decoration: line-through;
+    color: #3f0;
+    border: 2px solid;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 16px;
+}
+.newPrice {
+    border: 2px solid red;
+    padding: 5px 15px;
+    color: red;
+    display: inline;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 16px;
+}
+.price-minigame{
+
+    padding-top: 8px;
+}
+.item_play_title h1{
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.edu-hisinfo h3{
+    font-size: 16px;
+    color: #3f444a;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.edu-hisinfo p{
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.edu-hisinfo span{
+    font-size: 16px;
+    color: #3f444a;
+}

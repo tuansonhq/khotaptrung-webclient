@@ -1,21 +1,17 @@
-
+@if(isset($data))
 <ul class="content-banner-card-top">
-{{--    @foreach($data as $items => $item)--}}
-{{--        <li>--}}
-{{--            <i>{{$items ? $items : '0'}}</i>--}}
-{{--            <span>{{$item->fullname ? $item->fullname : $item->username}}</span>--}}
-{{--            <label >--}}
-{{--                @if(isset($item->amount))--}}
-{{--                    {{str_replace(',','.',number_format($item->amount))}}--}}
+    @foreach($data as $index => $item)
+        <li>
 
-{{--                @else--}}
-{{--                    0--}}
-{{--                @endif--}}
-{{--               <sup>đ</sup>--}}
-{{--            </label>--}}
-{{--        </li>--}}
-{{--    @endforeach--}}
+            <p>{{$index+1}}</p>
+            <span>{{$item->fullname ? $item->fullname : $item->username}}</span>
+            <label >
+                {{str_replace(',','.',number_format($item->amount))}}
+               <sup>đ</sup>
+            </label>
+        </li>
+    @endforeach
 
 </ul>
-{{--@endif--}}
+@endif
 

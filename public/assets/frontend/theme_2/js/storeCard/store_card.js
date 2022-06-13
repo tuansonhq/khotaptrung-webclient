@@ -46,7 +46,11 @@
                 }
             });
             const url = '/store-card/get-telecom';
+
             $.ajax({
+                // headers: {
+                //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                // },
                 type: "GET",
                 url: url,
                 data:{
@@ -62,7 +66,7 @@
                                 html+=' <div class="col-md-3 col-6 item-telecom">'
                                 html+=' <div class="item-gateway me-2" data-key="'+value.key+'">'
                                 html+=' <div class="text-center">'
-                                html+='  <img src="'+ 'https://media-tt.nick.vn/'+value.image +'" class="mw-100 img" alt="">'
+                                html+='  <img src="' +value.image +'" class="mw-100 img" alt="">'
                                 html+=' </div>'
                                 html+=' </div>'
                                 html+=' </div>'
@@ -82,14 +86,14 @@
                             });
                         }
                         else {
-                            // swal({
-                            //     title: "Có lỗi xảy ra !",
-                            //     text: data.message,
-                            //     icon: "error",
-                            //     buttons: {
-                            //         cancel: "Đóng",
-                            //     },
-                            // })
+                            swal({
+                                title: "Có lỗi xảy ra !",
+                                text: 'Dữ liệu chưa được cấu hình, vui lòng liên hệ QTV để xử lý',
+                                icon: "error",
+                                buttons: {
+                                    cancel: "Đóng",
+                                },
+                            })
                         }
 
 
@@ -144,6 +148,9 @@
                     data:{
                         telecom:key,
                     },
+                    // headers: {
+                    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    // },
                     success: function (data) {
                         render += '<div class="pb-5 block-number gateway-telecom">';
                         render += '<div class="icon">2</div>';
@@ -308,7 +315,7 @@
                 render += '<td>Số tiền cần nạp thêm</td>';
                 render += '<td id="text-auth-balance" class="text-end"><strong class="text-danger">'+formatNumber(money_1)+'</strong></td>';
                 render += '<td class="text-end text-secondary" width="20">đ</td>';
-                $(".text-noti-balance").html(' <p class="mb-0">Không đủ tiền trong tài khoàn vui lòng <a href="/nap-the" target="_blank" class="border-bottom">nạp thêm</a>  vào tài khoản</p>')
+                $(".text-noti-balance").html('<div class="alert alert-warning " role="alert"> <p class="mb-0">Không đủ tiền trong tài khoàn vui lòng <a href="/nap-the" target="_blank" class="border-bottom">nạp thêm</a>  vào tài khoản</p></div>')
             }else{
                 render +='<td>Số tiền còn lại</td>';
                 render += '<td id="text-auth-balance" class="text-end"><strong class="text-danger">'+formatNumber(money)+'</strong></td>';
@@ -357,6 +364,7 @@
             $temp.val($.trim(data)).select();
             document.execCommand("copy");
             $temp.remove();
+            toastr.success('Sao chép thành công!');
         });
 
 
@@ -396,19 +404,22 @@
 
 
                         if(data.status == 1){
+
+
                             html += '<div class="alert alert-success mb-3 text-center" role="alert">';
                             html += '<p class="display-6 mb-0 text-success"><i class="las la-glass-cheers"></i></p>';
-                            html += '<p class="mb-0">Cảm ơn bạn đã lựa chọn chúng tôi, thông tin mã thẻ dưới đây hoặc bạn có thể xem lại trong mục, hồ sơ cá nhân -> <a href="/user/profile?log=transaction-history">thẻ đã mua</a></p>';
+                            html += '<p class="mb-0">Cảm ơn bạn đã lựa chọn chúng tôi, thông tin mã thẻ dưới đây hoặc bạn có thể xem lại trong mục, hồ sơ cá nhân -> <a href="/thong-tin">thẻ đã mua</a></p>';
                             html += '</div>';
                             btnSubmit.prop('disabled', true);
                             swal({
                                 title: "Thành công !",
-                                text: data.message,
+                                text: data.data.message,
                                 icon: "success",
                             })
-                            let html = '';
-                            if(data.data.length > 0){
-                                $.each(data.data,function(key,value){
+                            let render_html = '';
+                            if(data.data.data_card.length > 0){
+
+                                $.each(data.data.data_card,function(key,value){
                                     // html+='<div class="col-md-4 p-2">'
                                     // html+='<div class="alert alert-info">'
                                     // html+='<p>Mã thẻ'+key+' </p>'
@@ -429,12 +440,16 @@
 
                                     render_html += '<tbody>';
                                     render_html += '<tr>';
+                                    render_html += '<td class="text-secondary">Thẻ '+key+'</td>';
+                                    render_html += '<td colspan="2"></td>';
+                                    render_html += '</tr>';
+                                    render_html += '<tr>';
                                     render_html += '<td class="text-secondary">Loại mã thẻ</td>';
-                                    render_html += '<td colspan="2">'+key+'</td>';
+                                    render_html += '<td colspan="2">'+value.telecom_key+'</td>';
                                     render_html += '</tr>';
                                     render_html += '<tr>';
                                     render_html += '<td class="text-secondary">Mệnh giá</td>';
-                                    render_html += '<td colspan="2">'+formatNumber(amount)+' VNĐ</td>';
+                                    render_html += '<td colspan="2">'+formatNumber(value.amount)+' VNĐ</td>';
                                     render_html += '</tr>';
                                     render_html += '<tr>';
                                     render_html += '<td class="text-secondary">Số series</td>';
@@ -443,15 +458,15 @@
                                     render_html += '<tr>';
                                     render_html += '<td class="text-secondary">Mã Pin</td>';
                                     render_html += '<td><strong class="text-warning">'+value.pin+'</strong></td>';
-                                    render_html += "<td width='30'><a href='#'><i class='las la-copy' data-id=\"" + value.pin + "\"></i></a></td>";
+                                    render_html += '<td width="30"><a href="#"><i class="las la-copy" data-id="' + value.pin + '"></i></a></td>';
                                     render_html += '</tr>';
                                     render_html += '</tbody>';
+                                    render_html += '</br>';
 
                                 });
                                 $('.table-store-card').html(render_html);
 
                             }
-                            $('.success_storecard').html(html);
                         }
                         else if(data.status == 401){
                             window.location.href = '/login';

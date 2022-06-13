@@ -2,6 +2,9 @@
 
 
 return [
+    'user'=>[
+        'encrypt' => env('ENCRYPT_USER')
+    ],
     'charge' => [
         'key'=>"charge",
         'title'=>"Nạp thẻ tự động",
@@ -83,6 +86,22 @@ return [
             '117' => 'Quay xèng trúng nick',
             '118' => 'Quay xèng trúng tiền',
             '119' => 'Vòng quay trúng nick',
+        ],
+        'trade_type_api' => [
+            'charge' => 'Nạp thẻ tự động',
+            'service_purchase' => 'Thanh toán dịch vụ',
+            'transfer' => 'Nạp Ví - ATM tự động',
+            'rubywheel' => 'Mingame vòng quay',
+            'flip' => 'Mingame lật hình',
+            'plus_money' => 'Cộng tiền',
+            'minus_money' => 'Trừ tiền',
+            'slotmachine' => 'Mingame quay xèng',
+            'slotmachine5' => 'Mingame quay xèng 5 giải',
+            'squarewheel' => 'Mingame quay vòng vòng',
+            'smashwheel' => 'Mingame đập lu đồng',
+            'rungcay' => 'Mingame rung cây',
+            'gieoque' => 'Mingame gieo quẻ',
+            'buy_acc' => 'Mua tài khoản',
         ],
         'status' => [
             '0' => 'Không thành công',

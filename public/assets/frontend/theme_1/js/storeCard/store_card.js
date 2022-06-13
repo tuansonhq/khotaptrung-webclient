@@ -237,7 +237,7 @@ $(document).ready(function(){
                         $('.success_storecard').html(html);
                     }
                     else if(data.status == 401){
-                        window.location.href = '/login';
+                        window.location.href = '/login?return_url='+window.location.href;
                     }
                     else if(data.status == 0){
                         swal({

@@ -22,7 +22,13 @@ $(document).ready(function(){
         loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
     });
 
+    loadDataServiceHistory()
+
     function loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data) {
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
 
         request = $.ajax({
             type: 'GET',
@@ -39,9 +45,32 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                $('.loading-data__timkiem').html('');
 
-                $('#data_service_history').html('');
-                $('#data_service_history').html(data.data);
+                if (data.status == 1){
+                    $('#data_service_history').html('');
+                    $('#data_service_history').html(data.data);
+
+                    $('.data__service__cate').html('');
+                    $('.data__service__cate').html(data.datacate);
+
+                    $(".booking_detail")[0].scrollIntoView();
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive">';
+                        html += '<table class="table table-hover table-custom-res">';
+                            html += '<thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>';
+                            html += '<tbody>';
+                            html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                            html += '</tbody>';
+                        html += '</table>';
+                    html += '</div>';
+
+                    $('#data_service_history').html('');
+                    $('#data_service_history').html(html);
+                    $('.data__service__cate').html('');
+                    $('.data__service__cate').html(data.datacate);
+                }
 
             },
             error: function (data) {
@@ -56,11 +85,10 @@ $(document).ready(function(){
     $(document).on('submit', '.account_service_history__v2', function(e){
         e.preventDefault();
 
-        // var htmlloading = '';
-        //
-        // htmlloading += '<div class="loading"></div>';
-        // $('.loading-data__timkiem').html('');
-        // $('.loading-data__timkiem').html(htmlloading);
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
 
         var id = $('.id').val();
         var key = $('.key').val();
@@ -113,6 +141,11 @@ $(document).ready(function(){
     $('body').on('click','.btn-all',function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmlloading);
+
         $('.id_data').val('');
         $('.key_data').val('');
         $('.status_data').val('');
@@ -132,6 +165,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-hom-nay',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-hom-nay .loading-data__timkiem').html('');
+        $('.btn-hom-nay .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_day_dv').val();
 
         var dateEndTime = $('.end_at_day_dv').val();
@@ -155,6 +194,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-hom-qua',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-hom-qua .loading-data__timkiem').html('');
+        $('.btn-hom-qua .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_yes_dv').val();
         var dateEndTime = $('.end_at_yes_dv').val();
 
@@ -177,6 +222,12 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-thang-nay',function(e){
         e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-thang-nay .loading-data__timkiem').html('');
+        $('.btn-thang-nay .loading-data__timkiem').html(htmlloading);
+
         var datestartTime = $('.started_at_month_dv').val();
         var dateEndTime = $('.end_at_month_dv').val();
 
@@ -197,203 +248,4 @@ $(document).ready(function(){
 
     });
 
-    $('body').on('click','#btnDestroy',function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-
-        console.log(id)
-        getDestroyModal(id);
-
-    })
-
-    function getDestroyModal(id) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: 'destroyservice',
-            data: {
-                id:id
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-
-                if (data.status == 1){
-
-                    $('#destroyModal').modal('show');
-                }else {
-                    window.location.reload();
-                }
-
-
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-
-    $(document).on('submit', '.destroyForm', function(e){
-        e.preventDefault();
-
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        btnSubmit.prop('disabled', true);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-
-            },
-            success: function (response) {
-                // console.log(response)
-                if(response.status == 1){
-                    $('#destroyModal').modal('hide');
-
-                    $('.btnDestroy__data').html('');
-                    swal({
-                        title: "Thông báo!",
-                        text: response.message,
-                        type: "success",
-                        confirmButtonText: "Đóng!",
-                    })
-                        .then((result) => {
-                            if (result.value) {
-                                window.location.reload();
-                            }
-                        })
-                }
-
-            },
-            error: function (response) {
-                if(response.status === 422 || response.status === 429) {
-                    let errors = response.responseJSON.errors;
-
-                    jQuery.each(errors, function(index, itemData) {
-                        // console.log(itemData);
-                        formSubmit.find('.notify-error').text(itemData[0]);
-                        return false; // breaks
-                    });
-                }else if(response.status === 0){
-                    alert(response.message);
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
-                }
-                else {
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
-                }
-            },
-            complete: function (data) {
-                btnSubmit.prop('disabled', false);
-            }
-        })
-
-
-    })
-
-    $('body').on('click','#btn-edit',function(e){
-        e.preventDefault();
-        var id = $(this).data('id');
-        var index = $('.index').val();
-
-        getEditModal(id,index);
-
-    })
-
-    function getEditModal(id,index) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: 'editservice',
-            data: {
-                id:id,
-                index:index
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-
-                if (data.status == 1){
-
-                    $('#edit_info').modal('show');
-                }else {
-                    window.location.reload();
-                }
-
-
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-
-    $(document).on('submit', '.editForm', function(e){
-        e.preventDefault();
-
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        btnSubmit.prop('disabled', true);
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-
-            },
-            success: function (response) {
-
-                if(response.status == 1){
-                    $('#edit_info').modal('hide');
-
-                    swal({
-                        title: "Thông báo!",
-                        text: response.message,
-                        type: "success",
-                        confirmButtonText: "Đóng!",
-                    })
-                        .then((result) => {
-                            if (result.value) {
-                                window.location.reload();
-                            }
-                        })
-                }
-
-            },
-            error: function (response) {
-                if(response.status === 422 || response.status === 429) {
-                    let errors = response.responseJSON.errors;
-
-                    jQuery.each(errors, function(index, itemData) {
-                        // console.log(itemData);
-                        formSubmit.find('.notify-error').text(itemData[0]);
-                        return false; // breaks
-                    });
-                }else if(response.status === 0){
-                    alert(response.message);
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
-                }
-                else {
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
-                }
-            },
-            complete: function (data) {
-                btnSubmit.prop('disabled', false);
-            }
-        })
-
-
-    })
 })

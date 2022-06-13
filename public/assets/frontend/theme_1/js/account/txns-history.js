@@ -24,6 +24,11 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accounttxns', function(e){
         e.preventDefault();
 
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+
         var config = $('.config').val();
         var started_at = $('.started_at').val();
         var ended_at = $('.ended_at').val();
@@ -68,6 +73,11 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-all',function(e){
 
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmlloading);
+
         $('.config_data').val('');
         $('.status_data').val('');
         $('.started_at_data').val('');
@@ -102,8 +112,12 @@ $(document).ready(function(){
 
     });
 
-    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
+    loadDataAccountList()
 
+    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-giao-dich',
@@ -119,9 +133,41 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                console.log(data)
-                $("#data_lich__su_history").empty().html('');
-                $("#data_lich__su_history").empty().html(data);
+                $('.loading-data__timkiem').html('');
+                if (data.status == 1){
+
+
+                    $("#data_lich__su_history").empty().html('');
+                    $("#data_lich__su_history").empty().html(data.data);
+
+                    $(".data__status").empty().html('');
+                    $(".data__status").empty().html(data.datastatus);
+
+                    $(".data__config").empty().html('');
+                    $(".data__config").empty().html(data.dataconfig);
+                    $(".booking_detail")[0].scrollIntoView();
+
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
+
+                    $("#data_lich__su_history").empty().html('');
+                    $("#data_lich__su_history").empty().html(html);
+
+                    $(".data__status").empty().html('');
+                    $(".data__status").empty().html(data.datastatus);
+
+                    $(".data__config").empty().html('');
+                    $(".data__config").empty().html(data.dataconfig);
+                }
+
             },
             error: function (data) {
 

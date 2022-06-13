@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+
+
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';
@@ -8,36 +10,12 @@ $(document).ready(function () {
         $('.loading-data__buyacc').html('');
         $('.loading-data__buyacc').html(htmlloading);
 
-        var id = $(this).data("id");
-        getBuyAcc(id)
+        // var id = $(this).data("id");
+
+        $('.loadModal__acount').modal('toggle');
+        $('.loading-data__buyacc').html('');
+        // getBuyAcc(id)
     });
-
-    function getBuyAcc(id) {
-
-        var url = '/acc/'+ id+ '/databuy';
-        request = $.ajax({
-            type: 'GET',
-            url: url,
-            data: {
-                // id:id
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-
-                $('.loadModal__acount').modal('toggle');
-                $('.modal-content_accountlist').html(data.data);
-                $('.loading-data__buyacc').html('');
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
 
     $(document).on('submit', '.formDonhangAccount', function(e){
         e.preventDefault();
@@ -61,14 +39,14 @@ $(document).ready(function () {
 
             },
             success: function (response) {
-                // console.log(response)
+
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     swal({
-                        title: "Mua tài khoản thành công?",
+                        title: "Mua tài khoản thành công",
                         text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
                         type: "success",
-                        confirmButtonText: "Về lịch sử đơn hàng!",
+                        confirmButtonText: "Về lịch sử đơn hàng",
                         showCancelButton: true,
                         cancelButtonText: "Đóng",
                     })
@@ -93,7 +71,7 @@ $(document).ready(function () {
                     $('.loadModal__acount').modal('hide');
                     swal(
                         'Lỗi!',
-                        'Vui lòng kiểm tra lại tài khoản hoặc liên hệ với chăm sóc khách hàng!',
+                        response.message,
                         'error'
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
@@ -105,7 +83,7 @@ $(document).ready(function () {
                     let errors = response.responseJSON.errors;
 
                     jQuery.each(errors, function(index, itemData) {
-                        // console.log(itemData);
+
                         formSubmit.find('.notify-error').text(itemData[0]);
                         return false; // breaks
                     });

@@ -19,14 +19,42 @@ use Validator;
 class ChargeController extends Controller
 
 {
-    public function getDepositAuto(Request $request)
+    public function index() {
+        return view('index');
+    }
+    public function capthcaFormValidate(Request $request) {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'username' => 'required',
+            'captcha' => 'required|captcha'
+        ]);
+        dd('thanh cong');
+    }
+
+    public function reloadCaptcha()
     {
 
-        return view('frontend.pages.account.user.pay_card');
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+    public function myCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img('flat')]);
+    }
+    public function reloadCaptcha2()
+    {
+        return captcha_img('flat');
+    }
+    public function getDepositAuto(Request $request)
+    {
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
+        return view('frontend.pages.charge.index');
 
     }
 
     public function getDepositAutoData(Request $request){
+
         if ($request->ajax()) {
 
             $page = $request->page;
@@ -34,67 +62,78 @@ class ChargeController extends Controller
             $url = '/deposit-auto/history';
 
             $method = "GET";
-            $val = array();
+            $sendData = array();
             $jwt = Session::get('jwt');
             if (empty($jwt)) {
                 return response()->json([
                     'status' => "LOGIN"
                 ]);
             }
-            $val['token'] = $jwt;
-            $val['page'] = $page;
+            $sendData['token'] = $jwt;
+            $sendData['page'] = $page;
 
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+            $result_Api = DirectAPI::_makeRequest($url, $sendData, $method);
+            $response_data = $result_Api->response_data??null;
 
-            if (isset($result_Api) && $result_Api->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
+            if(isset($response_data) && $response_data->status == 1){
 
-                    $data = $result->data;
+                $data = $response_data->data;
 
-                    $arrpin = array();
+                $arrpin = array();
 
-                    for ($i = 0; $i < count($data->data); $i++){
-                        $pin = $data->data[$i]->pin;
-                        $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                        array_push($arrpin,$pin);
-                    }
-
-                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-
-                    return view('frontend.pages.account.user.function.__pay_card')
-                        ->with('data', $data)->with('arrpin',$arrpin);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
+                for ($i = 0; $i < count($data->data); $i++){
+                    $pin = $data->data[$i]->pin;
+                    $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+                    array_push($arrpin,$pin);
                 }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                $html =  view('frontend.pages.charge.widget.__charge')
+                    ->with('data', $data)->with('arrpin',$arrpin)->render();
+
+                if (count($data) == 0 && $page == 1){
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                    ]);
+                }
+
+                return response()->json([
+                    'status' => 1,
+                    'data' => $html,
+                    'message' => 'Load du lieu thanh cong.',
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
             }
         }
     }
 
     public function getTelecom(Request $request)
     {
+
         try{
             $url = '/deposit-auto/get-telecom';
             $method = "GET";
-            $data = array();
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ],200);
-                }
-            }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+             $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
@@ -114,36 +153,29 @@ class ChargeController extends Controller
         try {
             $url = '/deposit-auto/get-amount';
             $method = "GET";
-            $data = array();
-            $data['telecom'] = $request->telecom;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ]);
-                }
-            }else{
+            $dataSend = array();
+            $dataSend['telecom'] = $request->telecom;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
                 return response()->json([
                     'status' => 1,
-                    'data' => $result_Api->data->message,
-                ]);
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            else{
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-        } catch (\Exception $e) {
+        }
+        catch(\Exception $e){
             Log::error($e);
             return response()->json([
                 'status' => 0,
-                'message' => 'Có lỗi phát sinh khi lấy nhà mệnh giá nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
 
@@ -151,6 +183,7 @@ class ChargeController extends Controller
 
     public function postTelecomDepositAuto(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'captcha' => 'required|captcha',
             'type' => 'required|regex:/^([A-Za-z0-9])+$/i',
@@ -178,84 +211,63 @@ class ChargeController extends Controller
                 'status' => 0
             ]);
         }
+
+
         try {
             $url = '/deposit-auto';
             $method = "POST";
-            $data = array();
-            $data['token'] = session()->get('jwt');
-            $data['type'] = $request->type;
-            $data['amount'] = $request->amount;
-            $data['pin'] = $request->pin;
-            $data['serial'] = $request->serial;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
-                return response()->json([
+            $dataSend = array();
+            $dataSend['token'] = session()->get('jwt');
+            $dataSend['type'] = $request->type;
+            $dataSend['amount'] = $request->amount;
+            $dataSend['pin'] = $request->pin;
+            $dataSend['serial'] = $request->serial;
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+            $data = $result_Api->response_data??null;
 
+            if(isset($data) && $data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message' => $data->message,
+                    'data' => $data,
+                ],200);
+            } elseif(isset($result_Api) && $result_Api->response_code == 401){
+                return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"
                 ]);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                    ]);
-                }
-                if($result->status == 0){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
-                    ]);
-                }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
             }
         }
-        catch (\Exception $e) {
+        catch(\Exception $e){
             Log::error($e);
             return response()->json([
                 'status' => 0,
-                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
+
     }
+
 
     public function getChargeDepositHistory(Request $request)
     {
 
+
         if (AuthCustom::check()) {
-            $url = '/deposit-auto/history';
+
             $method = "GET";
-            $val = array();
-            $jwt = Session::get('jwt');
-            if (empty($jwt)) {
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-
-            $val['token'] = $jwt;
-
-            $result_Api = DirectAPI::_makeRequest($url, $val, $method);
-
-            $url_telecome = '/deposit-auto/get-telecom';
-            $val_telecome = array();
-
-            $result_Api_telecome = DirectAPI::_makeRequest($url_telecome, $val_telecome, $method);
 
             if ($request->ajax()) {
                 $page = $request->page;
 
                 $url = '/deposit-auto/history';
 
-                $method = "GET";
                 $val = array();
                 $jwt = Session::get('jwt');
                 if (empty($jwt)) {
@@ -263,6 +275,7 @@ class ChargeController extends Controller
                         'status' => "LOGIN"
                     ]);
                 }
+
                 $val['token'] = $jwt;
                 $val['page'] = $page;
 
@@ -289,51 +302,11 @@ class ChargeController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+                $response_data = $result_Api->response_data??null;
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                if(isset($response_data) && $response_data->status == 1){
 
-
-                    if ($result->status == 1) {
-
-                        $result = $result_Api->data;
-                        $data = $result->data;
-
-                        $arrpin = array();
-                        $arrserial = array();
-
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $serial = $data->data[$i]->serial;
-                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
-                            array_push($arrserial,$serial);
-                        }
-
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $pin = $data->data[$i]->pin;
-                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                            array_push($arrpin,$pin);
-                        }
-
-                        if (isEmpty($data->data)) {
-                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                            $data->setPath($request->url());
-                        }
-
-                        return view('frontend.pages.account.user.function.__pay_card_history')
-                            ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
-                    } else {
-                        return redirect()->back()->withErrors($result->message);
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-                }
-            }
-
-            if (isset($result_Api) && $result_Api->httpcode == 200 && isset($result_Api_telecome) && $result_Api_telecome->httpcode == 200) {
-                $result = $result_Api->data;
-                if ($result->status == 1) {
-
-                    $data = $result->data;
+                    $data = $response_data->data;
 
                     $arrpin = array();
                     $arrserial = array();
@@ -350,63 +323,96 @@ class ChargeController extends Controller
                         array_push($arrpin,$pin);
                     }
 
-                    $data_telecome = $result_Api_telecome->data;
-
-                    $data_telecome = $data_telecome->data;
-
-                    // Set default page
                     if (isEmpty($data->data)) {
-                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
 
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
 
-                    return view('frontend.pages.account.user.pay_card_history')
-                        ->with('data', $data)->with('data_telecome', $data_telecome)->with('arrpin',$arrpin)->with('arrserial',$arrserial);
-                } else {
-                    return redirect()->back()->withErrors($result->message);
-                }
-            } else {
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-            }
-        }
+                    $html =  view('frontend.pages.charge.widget.__charge_history')
+                        ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 
-    }
-
-    public function getDepositHistory(Request $request)
-    {
-        if (AuthCustom::check()) {
-            try {
-                $url = '/deposit-auto/history';
-                $method = "GET";
-                $data = array();
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
                     return response()->json([
-                        'status' => "LOGIN"
+                        'status' => 1,
+                        'data' => $html,
+                        'message' => 'Load du lieu thanh cong.',
                     ]);
                 }
-                $data['token'] = $jwt;
-
-                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
-                    if ($result->status == 1) {
-
-                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
-                    } else {
-                        return redirect()->back()->withErrors($result->message);
-
-                    }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
                 }
-            } catch (\Exception $e) {
-                Log::error($e);
-                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
+
+            $url_telecome = '/deposit-auto/get-telecom';
+
+            $sendDatatele = array();
+
+            $result_telecome_Api = DirectAPI::_makeRequest($url_telecome, $sendDatatele, $method);
+
+            $response_tele_data = $result_telecome_Api->response_data??null;
+
+            if(isset($response_tele_data) && $response_tele_data->status == 1){
+
+                $data_telecome = $response_tele_data->data;
+
+                return view('frontend.pages.charge.logs')->with('data_telecome', $data_telecome);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+
+
         }
 
     }
+
+//    public function getDepositHistory(Request $request)
+//    {
+//        if (AuthCustom::check()) {
+//            try {
+//                $url = '/deposit-auto/history';
+//                $method = "GET";
+//                $data = array();
+//                $jwt = Session::get('jwt');
+//                if (empty($jwt)) {
+//                    return response()->json([
+//                        'status' => "LOGIN"
+//                    ]);
+//                }
+//                $data['token'] = $jwt;
+//
+//                $result_Api = DirectAPI::_makeRequest($url, $data, $method);
+//                if (isset($result_Api) && $result_Api->response_code == 200) {
+//                    $result = $result_Api->response_data;
+//                    if ($result->status == 1) {
+//
+//                        return view('frontend.pages.account.user.transaction_history')->with('result', $result);
+//                    } else {
+//                        return redirect()->back()->withErrors($result->message);
+//
+//                    }
+//                } else {
+//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//                }
+//            } catch (\Exception $e) {
+//                Log::error($e);
+//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+//            }
+//        }
+//
+//    }
 
 }

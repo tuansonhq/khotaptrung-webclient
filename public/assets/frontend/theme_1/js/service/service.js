@@ -1,7 +1,7 @@
 $(document).ready(function(){
     let page = $('#hidden_page_service__show').val();
 
-    loadDataService();
+    // loadDataService();
 
     $(document).on('click', '.paginate__v1__get__service .pagination a',function(event){
         event.preventDefault();
@@ -20,10 +20,12 @@ $(document).ready(function(){
     });
 
     function loadDataService(page,title) {
-
+        // if (page == null || page == '' || page == undefined){
+        //     page = 1;
+        // }
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu/data',
+            url: '/dich-vu',
             data: {
                 page:page,
                 title:title,
@@ -32,8 +34,21 @@ $(document).ready(function(){
 
             },
             success: (data) => {
-                $("#getshowservice_data").empty().html('');
-                $("#getshowservice_data").empty().html(data);
+                $('.loading-data__timkiem').html('');
+                if (data.status == 1){
+
+                    $("#getshowservice_data").empty().html('');
+                    $("#getshowservice_data").empty().html(data.data);
+
+                }else if (data.status == 0){
+                    console.log(data.message)
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">Dữ liệu cần tìm không tồn tại, vui lòng thử lại.!</span></div></div>';
+
+                    $("#getshowservice_data").empty().html('');
+                    $("#getshowservice_data").empty().html(html);
+                }
+
             },
             error: function (data) {
 
@@ -47,7 +62,12 @@ $(document).ready(function(){
     $(document).on('submit', '.form_get_show_service', function(e){
         e.preventDefault();
 
-        var title = $('.title').val();
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+
+        var title = $('.form_get_show_service .title').val();
 
         if (title == null || title == undefined || title == ''){
             $('.title_data').val('');
@@ -63,14 +83,62 @@ $(document).ready(function(){
 
     });
 
-    $('body').on('click','.btn-all',function(e){
+    $('body').on('click','.btn-tatca',function(e){
         e.preventDefault();
         // var htmlloading = '';
         // htmlloading += '<div class="loading"></div>';
         // $('.loading-data__all').html('');
         // $('.loading-data__all').html(htmlloading);
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-tatca .loading-data__timkiem').html('');
+        $('.btn-tatca .loading-data__timkiem').html(htmlloading);
 
         $('.title_data').val('');
+        $('.title').val('');
+
+        var title_data = $('.title_data').val();
+
+        var page = $('#hidden_page_service__show').val();
+
+        loadDataService(page,title_data)
+
+    });
+
+    $(document).on('submit', '.form_category_service_mobile', function(e){
+        e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn_timkiem_mobile .loading-data__timkiem').html('');
+        $('.btn_timkiem_mobile .loading-data__timkiem').html(htmlloading);
+
+        var title = $('.form_category_service_mobile .title').val();
+
+        if (title == null || title == undefined || title == ''){
+            $('.title_data').val('');
+        }else {
+            $('.title_data').val(title);
+        }
+
+        var title_data = $('.title_data').val();
+
+        var page = $('#hidden_page_service__show').val();
+
+        loadDataService(page,title_data)
+
+    });
+
+    $('body').on('click','.btn-tatca-mobile',function(e){
+        e.preventDefault();
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-tatca-mobile .loading-data__timkiem').html('');
+        $('.btn-tatca-mobile .loading-data__timkiem').html(htmlloading);
+
+        $('.title_data').val('');
+        $('.form_category_service_mobile .title').val('');
 
         var title_data = $('.title_data').val();
 

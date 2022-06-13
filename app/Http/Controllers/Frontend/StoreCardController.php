@@ -12,33 +12,60 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
-        Session::forget('path');
-        Session::put('path', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.buy_card');
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
+        return view('frontend.pages.storecard.index');
     }
     public function getTelecomStoreCard(Request $request){
-
         try{
             $url = '/store-card/get-telecom';
             $method = "GET";
-            $data = array();
-
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ],200);
-                }
-            }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            $dataSend = array();
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
+        }
+    }
+    public function getAmountStoreCard(Request $request)
+    {
+
+        try{
+            $url = '/store-card/get-amount';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['telecom'] = $request->telecom;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'data' => $data->data,
+                ],200);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
         }
@@ -51,102 +78,48 @@ class StoreCardController extends Controller
         }
 
 
-    }
-    public function getAmountStoreCard(Request $request)
-    {
 
-        try {
-            $url = '/store-card/get-amount';
-            $method = "GET";
-            $data = array();
-            $data['telecom'] = $request->telecom;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công',
-                        'data' => $result->data,
-                    ]);
-                }
-            }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
-                return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
-                ]);
-            }
-        } catch (\Exception $e) {
-            Log::error($e);
-            return response()->json([
-                'status' => 0,
-                'message' => 'Có lỗi phát sinh khi lấy nhà mệnh giá nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
-            ]);
-        }
 
     }
 
     public function postStoreCard(Request $request)
+
     {
-
-        try {
-
+        try{
             $url = '/store-card';
             $method = "POST";
-            $data = array();
-            $data['token'] = session()->get('jwt');
-            $data['telecom_key'] = $request->telecom;
-            $data['amount'] = $request->amount;
-            $data['quantity'] = $request->quantity;
-            $result_Api = DirectAPI::_makeRequest($url, $data, $method);
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            $dataSend = array();
+            $dataSend['token'] = session()->get('jwt');
+            $dataSend['telecom_key'] = $request->telecom;
+            $dataSend['amount'] = $request->amount;
+            $dataSend['quantity'] = $request->quantity;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+            if(isset($data) && $data->status == 1){
+                return response()->json([
+                    'status' => 1,
+                    'message' => $data->message,
+                    'data' => $data,
+                ]);
+            }elseif(isset($result_Api) && $result_Api->response_code == 401){
                 return response()->json([
                     'status' => 401,
                     'message'=>"unauthencation"
                 ]);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 422){
+            else{
                 return response()->json([
                     'status' => 0,
-                    'message' => $result_Api->message,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if($result->status == 1){
-                    return response()->json([
-                        'status' => 1,
-                        'message' => $result->message,
-                        'data' => $result
-                    ]);
-                }
-                if($result->status == 0){
-                    return response()->json([
-                        'status' => 0,
-                        'message' => $result->message,
-                        'data' => $result
-                    ]);
-                }
-                else{
-                    return response()->json([
-                        'status' => 0,
-                        'message' => 'Đã xảy ra lỗi trong quá trình xử lý dữ liệu, vui lòng kiểm tra lại.',
-                    ]);
-                }
-            }
         }
-        catch (\Exception $e) {
+        catch(\Exception $e){
             Log::error($e);
             return response()->json([
                 'status' => 0,
-                'message' => 'Có lỗi phát sinh từ hệ thống.Vui lòng liên hệ QTV để kịp thời xử lý',
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
     }
-
-
-
 }

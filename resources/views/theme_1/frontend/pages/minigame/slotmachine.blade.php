@@ -1,9 +1,12 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
+@endsection
 @section('content')
     <div class="item_play">
         <div class="container">
             <div class="item_play_title">
-                <p>{{$result->group->title}}</p>
+                <h1>{{$result->group->title}}</h1>
                 <div class="item_play_line"></div>
 
             </div>
@@ -16,7 +19,7 @@
             <div class="row d-flex justify-content-between">
                 <div class="col-lg-9 col-md-12">
                     <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
-                    <div class="item_slot" style="background: url({{config('api.url_media').$result->group->params->image_background}})" >
+                    <div class="item_slot" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
                         <div class="item_slot_inner">
                             <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
                             <div id="slot2" class="item_slot_inner_img a1" style=""></div>
@@ -25,7 +28,7 @@
                     </div>
                     @if($result->checkVoucher==1)
                     <div class="item_spin_sale-off">
-                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+                        <input type="text" placeholder="Nhập mã giảm giá">
                     </div>
                     @endif
 
@@ -96,9 +99,9 @@
                                     <div class="item_play_dif_slide_detail_in">
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img src="{{config('api.url_media').$item->image}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                                 @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                <img src="{{config('api.url_media').$item->params->image_view_all}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -115,7 +118,7 @@
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
                                                     @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                    <img src="{{config('api.url_media').$item->params->image_view_all}}"  alt="{{$item->title}}">
+                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
                                                     @else
                                                     Quay ngay
                                                     @endif
@@ -226,7 +229,7 @@
                 <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
                     <div class="c-content-title-1" style="margin: 0 auto">
                     </div>
-                    <div class="list-roll-inner">
+                    <div class="list-roll-inner" style="width: 100%">
                         <table cellpadding="10" class="table table-striped">
                             <tbody>
                             <tr>
@@ -236,19 +239,37 @@
                             </tr>
                             </tbody>
                             <tbody>
-                            @if(isset($result->log) && count($result->log) > 0)
+                                @php
+                                    $count = 0;
+                                    $countname = 0;
+                                    $listname = explode(",",$result->group->params->user_wheel);
+                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                @endphp
                                 @foreach($result->log as $item)
+                                    @php
+                                        $count++;
+                                        $add_time=strtotime($item->created_at)+rand(1,2);
+                                        $add_date= date('Y-m-d H:i:s',$add_time);
+                                    @endphp
+                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                     <tr>
-                                        <td>{{substr($item->author->username, 0, 3)}}***</td>
-                                        <th>{{$item->item_ref->title}}</th>
-                                        <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
+                                        <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
+                                        <td>{{trim($listprice[$countname])}}</td>
+                                        <td>{{\Carbon\Carbon::parse($add_time)->format('Y-m-d H:i')}}</td>
+                                    </tr>
+                                    @endif
+                                    @php
+                                        if($count==5){
+                                            $count = 0;
+                                            $countname++;
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
+                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
-                            @else
-                                <tr>
-                                    <th colspan="3">Dữ liệu đang được cập nhật...</th>
-                                </tr>
-                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -292,7 +313,7 @@
                                 </div>
                                 @endif
                                 @if(count($topDayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -321,7 +342,7 @@
                                 </div>
                                 @endif
                                 @if(count($top7DayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -436,9 +457,10 @@
                     type: 'POST',
                     success: function(data) {
                         if (data.status == 4) {
-                            location.href='/login';
+                            location.href='/login?return_url='+window.location.href;
                             return;
                         } else if (data.status == 3) {
+                            roll_check = true;
                             $('#naptheModal').modal('show')
                             return;
                         } else if (data.status == 0) {
@@ -504,7 +526,7 @@
         });
 
 
-        function getgifbonus() {            
+        function getgifbonus() {
             if($('#checkPoint').val() != "1"){
                 return;
             }
@@ -785,7 +807,7 @@
                         // {
                         //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                         // }
-                        $html += "<span>Kết quả: " + gift_revice[0]["parrent"].title + "</span><br/>";
+                        $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
                         if (gift_detail.winbox == 1) {
                             $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
                             $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
@@ -800,7 +822,7 @@
                             // {
                             //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[$i]+"</b></span>";
                             // }
-                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
+                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
                             if (gift_revice[$i].winbox == 1) {
                                 $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>"  + "<br/>";
                             } else {
@@ -813,7 +835,7 @@
                     }
                 } else {
                     if (gift_revice.length == 1) {
-                        $html += "<span>Kết quả chơi thử: " + gift_revice[0]["parrent"].title + "</span><br/>";
+                        $html += "<span>Kết quả chơi thử: " + gift_revice[0]["title"] + "</span><br/>";
                         if (gift_detail.winbox == 1) {
                             $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
                             $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
@@ -824,7 +846,7 @@
                         $html += "<span>Kết quả chơi thử: Nhận " + gift_revice.length + " phần thưởng cho " + gift_revice.length + " lượt quay.</span><br/>";
                         $html += "<span><b>Mua X" + gift_revice.length + ":</b></span><br/>";
                         for ($i = 0; $i < gift_revice.length; $i++) {
-                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]['parrent'].title;
+                            $html += "<span>Lần quay " + ($i + 1) + ": " + gift_revice[$i]["title"];
                             if (gift_revice[$i].winbox == 1) {
                                 $html += " - nhận được: " + gift_revice[$i]["parrent"].params.value + " X" + (parseInt(xvalueaDD[$i])) + " = " + parseInt(gift_revice[$i]["parrent"].params.value) * (parseInt(xvalueaDD[$i])) + "" + msg_random_bonus[$i] + "</span><br/>";
                             } else {
@@ -933,7 +955,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{config('api.url_media').$gift->parrent->image}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
 @endforeach
 #slot1,#slot2,#slot3{
     display: inline-block;

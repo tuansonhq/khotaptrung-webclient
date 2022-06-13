@@ -1,8 +1,12 @@
 @extends('frontend.layouts.master')
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('seo_head')
-    {{--    @include('frontend.widget.__seo_head')--}}
+        @include('frontend.widget.__seo_head')
 @endsection
 @section('content')
+
     <div class="site-content-body first last bg-white p-0">
         <div class="row align-items-stretch">
             <div class="col-lg-8">
@@ -51,6 +55,9 @@
                     var formSubmit = $(this);
                     var url = formSubmit.attr('action');
                     var btnSubmit = formSubmit.find(':submit');
+                    let url2 = new URL(window.location.href);
+
+                    var return_url = url2.searchParams.get('return_url');
                     $.ajax({
                         type: "POST",
                         url: url,
@@ -59,33 +66,31 @@
                         beforeSend: function (xhr) {
                         },
                         success: function (data) {
-                            // alert(data)
-                            if(data.data.status == 1){
-                                var metapath = $('meta[name="path"]').attr('content');
 
-                                if (metapath == null || metapath == '' || metapath == undefined){
-                                    $('meta[name="path"]').attr('content',data.path);
+                            if(data.status == 1){
+                                if (return_url == null || return_url == '' || return_url == undefined){
 
-                                    var metapath = $('meta[name="path"]').attr('content');
+                                    if (return_url == null || return_url == '' || metapath == undefined){
+                                        if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                                            window.location.href = '/';
+                                        }else{
+                                            window.location.href = data.return_url;
+                                        }
 
-                                    if (metapath == null || metapath == '' || metapath == undefined){
-                                        window.location.href = '/';
 
                                     }else {
-                                        window.location.href = metapath;
+                                        window.location.href = return_url;
 
                                     }
 
                                 }else {
-                                    window.location.href = metapath;
+                                    window.location.href = return_url;
 
                                 }
-
-
                             }else{
                                 swal({
                                     title: "Có lỗi xảy ra !",
-                                    text: data.data.message,
+                                    text: data.message,
                                     icon: "error",
                                     buttons: {
                                         cancel: "Đóng",
@@ -112,7 +117,7 @@
                         <div class="mb-3">
                             <label class="label mb-1">Tên tài khoản</label>
                             <div class="input-group">
-                                <input type="text" id="username" name="username" class="form-control border-end-0" placeholder="" value="">
+                                <input type="text" id="username" name="username" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-user"></i></span>
                             </div>
                         </div>
@@ -133,14 +138,14 @@
                         <div class="mb-3">
                             <label class="label mb-1">Mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" id="password" name="password" class="form-control border-end-0" placeholder="" value="">
+                                <input type="password" id="password" name="password" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="label mb-1">Nhập lại mật khẩu</label>
                             <div class="input-group">
-                                <input type="password" id="password_repeat" name="password_confirmation" class="form-control border-end-0" placeholder="" value="">
+                                <input type="password" id="password_repeat" name="password_confirmation" class="form-control border-end-0" placeholder="" value="" required>
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
@@ -165,6 +170,9 @@
             var formSubmit = $(this);
             var url = formSubmit.attr('action');
             var btnSubmit = formSubmit.find(':submit');
+            let url2 = new URL(window.location.href);
+
+            var return_url = url2.searchParams.get('return_url');
             $.ajax({
                 type: "POST",
                 url: url,
@@ -173,18 +181,18 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (data) {
-                    console.log(data)
-                    // alert(data)
                     if(data.status == 1){
-                        var metapath = $('meta[name="path"]').attr('content');
+                        if (return_url == null || return_url == '' || return_url == undefined){
 
-                        if (metapath == null || metapath == '' || metapath == undefined){
+                            if (return_url == null || return_url == '' || metapath == undefined){
+                                window.location.href = '/';
+                            }else {
+                                window.location.href = return_url;
 
-                            window.location.href = '/';
+                            }
 
                         }else {
-
-                            window.location.href = metapath;
+                            window.location.href = return_url;
 
                         }
 
@@ -210,7 +218,7 @@
                 },
                 error: function (data) {
                     alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
-                    btnSubmit.text('Đăng nhập');
+                    btnSubmit.text('Đăng ký');
                 },
                 complete: function (data) {
                     $('#reload').trigger('click');

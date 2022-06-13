@@ -1,32 +1,123 @@
 $(document).ready(function(){
 
-    const media = "https://media-tt.nick.vn/";
+    const media = "http://cdn.upanh.info/";
+
+
 
 
     $('body').on('click','#btnPurchase',function(e){
         e.preventDefault();
+        var selected = $('[name="selected"]').val();
 
-        var price = $('[name="value"]').val();
+        if (selected == null || selected == '' || selected == undefined){
+            return false;
+        }
+
+        var value = $('[name="value"]').val();
+
+        if (value == null || value == '' || value == undefined){
+            return false;
+        }
+
+        // var price = $('[name="value"]').val();
         var htmlloading = '';
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__thanhtoan').html('');
         $('.loading-data__thanhtoan').html(htmlloading);
 
-        getModalService(price)
-    })
+        const jwt =  $('meta[name="jwt').attr('content');
+        var slug = $('.slug_category').val();
+        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+            var html = '';
+            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/' + slug + '">Đăng nhập</a>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }else {
 
-    $('body').on('click','.pay',function(e){
-        e.preventDefault();
+            var html = '';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }
 
-        var price = $('[name="value"]').val();
         var htmlloading = '';
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__pay').html('');
         $('.loading-data__pay').html(htmlloading);
 
-        getModalService(price)
+
+
+        $('#homealert').modal('show');
+        //
+        $('.loading-data__pay').html('');
+        $('.loading-data__thanhtoan').html('');
+        // // getModalService(price)
     })
 
+    $('body').on('click','.pay',function(e){
+        e.preventDefault();
+
+        var selected = $('[name="selected"]').val();
+
+        if (selected == null || selected == '' || selected == undefined){
+            return false;
+        }
+
+        var value = $('[name="value"]').val();
+
+        if (value == null || value == '' || value == undefined){
+            return false;
+        }
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.loading-data__pay').html('');
+        $('.loading-data__pay').html(htmlloading);
+
+
+
+        if (jwt == null || jwt == '' || jwt == undefined || jwt == 'jwt'){
+            var html = '';
+            html += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }else {
+
+            var html = '';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
+            $('.modal-footer__data').html('');
+            $('.modal-footer__data').html(html);
+        }
+
+
+
+
+
+        $('#homealert').modal('show');
+
+        $('.loading-data__pay').html('');
+        $('.loading-data__thanhtoan').html('');
+        // getModalService(price)
+    })
+
+    // $('body').on('click','.pay',function(e){
+    //     e.preventDefault();
+    //
+    //     var price = $('[name="value"]').val();
+    //     var htmlloading = '';
+    //     htmlloading += '<div class="loading"></div>';
+    //     $('.loading-data__pay').html('');
+    //     $('.loading-data__pay').html(htmlloading);
+    //
+    //
+    //
+    //     $('#homealert').modal('show');
+    //     // getModalService(price)
+    // })
     function getModalService(price) {
         let slug = $('#slug').val();
 
@@ -102,7 +193,7 @@ $(document).ready(function(){
                     htmlmodal += '</div>';
                     htmlmodal += '<div class="modal-footer">';//l3
                         if (response.aucheck == 0){
-                            htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login">Đăng nhập</a>';
+                            htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url='+window.location.href+'">Đăng nhập</a>';
                         }else if (response.aucheck == 1){
                             if (parseInt(response.balance) < parseInt(response.price)){
                                 htmlmodal += '<a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the-cham" id="d3">Nạp thẻ cào</a>';
@@ -162,7 +253,7 @@ $(document).ready(function(){
 
             },
             success: function (response) {
-                // console.log(response)
+
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     $('#homealert').modal('hide');
@@ -183,22 +274,27 @@ $(document).ready(function(){
                         })
                 }
                 else if (response.status == 2){
-                    $('.loadModal__acount').modal('hide');
-                    $('#homealert').modal('hide');
+                    // $('.loadModal__acount').modal('hide');
+                    // $('#homealert').modal('hide');
+                    var html = '';
+                    html += '<div class="col-md-12 text-center"><span style="font-size: 12px;color: red">' + response.message + '</span></div>';
 
-                    swal(
-                        'Thông báo!',
-                        response.message,
-                        'warning'
-                    )
+                    $('.error__service').html('');
+                    $('.error__service').html(html);
+                    // swal(
+                    //     'Thông báo!',
+                    //     response.message,
+                    //     'warning'
+                    // )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }else {
+
                     $('.loadModal__acount').modal('hide');
-                    swal(
-                        'Lỗi!',
-                        'Vui lòng kiểm tra lại tài khoản hoặc liên hệ với chăm sóc khách hàng!',
-                        'error'
-                    )
+                    var html = '';
+                    html += '<div class="col-md-12 text-center"><span style="font-size: 12px;color: red">' + response.message + '</span></div>';
+
+                    $('.error__service').html('');
+                    $('.error__service').html(html);
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
                 $('.loading-data__buydichvu').html('');

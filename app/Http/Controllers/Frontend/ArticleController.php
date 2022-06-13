@@ -6,129 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Library\DirectAPI;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Session;
 
 class ArticleController extends Controller
 {
-    public function index(Request $request){
 
-        $url = '/article';
-        $method = "GET";
-        $val = array();
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+    public function getList(Request $request){
 
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
-            $data = $result->data;
-            $datacategory = $result->datacategory;
-            $per_page = 0;
-            $total = 0;
-            if (isset($data->total)){
-                $total = $data->total;
-            }
-
-            if (isset($data->to)){
-                $per_page = $data->to;
-            }
-
-            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-            $category = true;
-            Session::forget('path');
-            Session::put('path', $_SERVER['REQUEST_URI']);
-
-            if (theme('')->theme_key == 'theme_1'){
-                return view('frontend.pages.article.index')
-                    ->with('data',$data)
-                    ->with('category',$category);
-            }elseif (theme('')->theme_key == 'theme_2'){
-                return view('frontend.pages.article.index')
-                    ->with('data',$data)
-                    ->with('category',$category)
-                    ->with('total',$total)
-                    ->with('per_page',$per_page)
-                    ->with('datacategory',$datacategory);
-            }
-        }else{
-            return redirect('/');
-        }
-    }
-
-    public function getData(Request $request){
-
-        if ($request->ajax()){
-            $page = $request->page;
-
+        try{
             $url = '/article';
             $method = "GET";
-            $val = array();
-            $val['page'] = $page;
+            $dataSend = array();
+            $dataSend['page'] = $request->page;
+            $dataSend['querry'] = $request->querry;
 
-            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
-            }
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
 
-            if (isset($request->slug) || $request->slug != '' || $request->slug != null){
+            if(isset($response_data) && $response_data->status == 1){
 
-                $val['slug'] = $request->slug;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                $data = $result->data;
-                $per_page = 0;
-                $total = 0;
-
-                if (isset($data->total)){
-                    $total = $data->total;
-                }
-
-                if (isset($data->to)){
-                    $per_page = $data->to;
-                }
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-                $category = true;
-
-                return view('frontend.pages.article.function.__new__data')
-                    ->with('data',$data)
-                    ->with('total',$total)
-                    ->with('per_page',$per_page)
-                    ->with('category',$category);
-            }else{
-                return redirect('/');
-            }
-        }
-    }
-
-    public function getCategoryData(Request $request,$slug){
-
-        if ($request->ajax()){
-            $page = $request->page;
-
-            $url = '/article/'.$slug;
-            $method = "GET";
-            $val = array();
-            $val['page'] = $page;
-
-            if (isset($request->querry) || $request->querry != '' || $request->querry != null){
-                $val['querry'] = $request->querry;
-            }
-
-            $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                if ($result->is_over){
-                    return response()->json([
-                        'is_over'=>true
-                    ]);
-                }
-                $data = $result->data;
-                $datacategory = $result->datacategory;
-//                $data = $data->data;
-                $title = $result->categoryarticle;
+                $data = $response_data->data;
 
                 $per_page = 0;
                 $total = 0;
@@ -140,111 +39,83 @@ class ArticleController extends Controller
                     $per_page = $data->to;
                 }
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
+                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page,$data->data);
 
-                Session::put('path', $_SERVER['REQUEST_URI']);
-                return view('frontend.pages.article.function.__new__data')
-                    ->with('title',$title)
-                    ->with('data',$data)
-                    ->with('per_page',$per_page)
+                $data->setPath($request->url());
+
+                Session::forget('return_url');
+                Session::put('return_url', $_SERVER['REQUEST_URI']);
+
+                return view('frontend.pages.article.list')
                     ->with('total',$total)
-                    ->with('datacategory',$datacategory)
-                    ->with('slug',$slug);
+                    ->with('per_page',$per_page)
+                    ->with('data',$data);
+            }
+            else{
+                $data = null;
 
-            }else{
-                return redirect('/');
+                $message = $response_data->message??"Không thể lấy dữ liệu";
+
+                return view('frontend.pages.article.list')
+                    ->with('message',$message)
+                    ->with('data',$data);
             }
         }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
+            ]);
+        }
+
     }
 
-    public function show(Request $request,$slug){
+    public function getDetail(Request $request,$slug){
 
         $url = '/article/'.$slug;
         $method = "GET";
-        $val = array();
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        $dataSend = array();
+        $dataSend['page'] = $request->page;
+        $dataSend['querry'] = $request->querry;
 
-        if(isset($result_Api) && $result_Api->httpcode == 200){
-            $result = $result_Api->data;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
 
-            if ($result->item == 1){
-                $data = $result->data;
+        if(isset($response_data) && $response_data->status == 1){
 
-                $dataitem = $result->dataitem;
+            if ($response_data->item == 1){
+
                 Session::put('path', $_SERVER['REQUEST_URI']);
-                $slug = $data->slug;
-                return view('frontend.pages.article.show')
-                    ->with('dataitem',$dataitem)
+                $data = $response_data->data;
+
+                return view('frontend.pages.article.detail')
                     ->with('slug',$slug)
                     ->with('data',$data);
+
             }else{
-                $result = $result_Api->data;
-                $data = $result->data;
-                $datacategory = $result->datacategory;
-                $title = $result->categoryarticle;
 
-                $per_page = 0;
-                $total = 0;
-                if (isset($data->total)){
-                    $total = $data->total;
-                }
-
-                if (isset($data->to)){
-                    $per_page = $data->to;
-                }
+                $data = $response_data->data;
+                $title = $response_data->categoryarticle;
 
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
+                $data->setPath($request->url());
                 Session::put('path', $_SERVER['REQUEST_URI']);
-                if (theme('')->theme_key == 'theme_1'){
-                    return view('frontend.pages.article.index')
-                        ->with('title',$title)
-                        ->with('data',$data)
-                        ->with('slug',$slug);
-                }elseif (theme('')->theme_key == 'theme_2'){
-                    return view('frontend.pages.article.index')
-                        ->with('title',$title)
-                        ->with('data',$data)
-                        ->with('per_page',$per_page)
-                        ->with('total',$total)
-                        ->with('datacategory',$datacategory)
-                        ->with('slug',$slug);
-                }
 
+                return view('frontend.pages.article.category')
+                    ->with('title',$title)
+                    ->with('data',$data)
+                    ->with('slug',$slug);
             }
+        }
+        else{
+            $data = null;
+            $message = $response_data->message??"Không thể lấy dữ liệu";
 
-        }else{
-            return redirect('/');
+            return view('frontend.pages.article.category')
+                ->with('message',$message)
+                ->with('data',$data);
         }
     }
 
-    public function showArticleCategory(Request $request,$slug){
-        $url = '/show-service-category';
-        $method = "GET";
-        $val = array();
-        $val['slug'] = $slug;
-
-        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
-
-        $result = $result_Api->data;
-
-        if ($result->is_router == false){
-            $data = $result->data;
-            $categoryservice = $result->categoryservice;
-            $categoryservice = $categoryservice->data;
-            //return $data;
-
-            return view('frontend.pages.service.show')
-                ->with('categoryservice',$categoryservice)
-                ->with('data',$data)
-                ->with('slug',$slug);
-        }
-
-
-        $data = $result->categoryservice;
-
-        return view('frontend.pages.service.show_service_category')
-            ->with('slug',$slug)
-            ->with('data',$data);
-    }
 }

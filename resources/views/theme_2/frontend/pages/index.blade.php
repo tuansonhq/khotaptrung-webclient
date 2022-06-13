@@ -1,9 +1,11 @@
 @extends('frontend.layouts.master')
+
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+    <meta name="robots" content="index,follow" />
 @endsection
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js?v={{time()}}"></script>
     <script>
         $(document).ready(function(){
             $('.item-').addClass('active')
@@ -159,7 +161,7 @@
 
                                             </tr>
                                         </table>
-                                        <div class="alert alert-warning mb-3 text-noti-balance" role="alert">
+                                        <div class="mb-3 text-noti-balance" >
                                         </div>
                                     </div>
                                     <div class="text-end">
@@ -175,7 +177,7 @@
                                     <div class="info-buy-card" class="p-3 border-dashed mb-3">
                                         <h6 class="title-style-left mb-3">Thông tin thẻ</h6>
                                         <div class="row align-items-stretch">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-12">
                                                 <div class="table-responsive">
                                                     <table class="table table-sm table-striped table-borderless table-store-card" cellspacing="0" cellpadding="0">
 

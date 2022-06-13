@@ -4,12 +4,24 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
 
-    $('#reload').click(function () {
+    function reload_captcha() {
         $.ajax({
             type: 'GET',
             url: 'reload-captcha',
             success: function (data) {
-                $(".captcha span").html(data.captcha);
+                console.log(data)
+                $(".captcha_1 span").html(data.captcha);
+            }
+        });
+    }
+
+    $('#reload_1').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha2',
+            success: function (data) {
+                // console.log(data)
+                $(".captcha_1 span").html(data);
             }
         });
 
@@ -61,7 +73,6 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-
             }
         });
     }
@@ -92,6 +103,8 @@ $(document).ready(function(){
                         });
                     }
                     $('select#amount').html(html);
+
+                    reload_captcha()
                 }
                 // else{
                 //     swal({
@@ -127,7 +140,7 @@ $(document).ready(function(){
 
     getTelecom();
 
-    $('#form-charge').submit(function (e) {
+    $('#form-charge2').submit(function (e) {
         e.preventDefault();
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
@@ -143,6 +156,7 @@ $(document).ready(function(){
 
             },
             success: function (data) {
+
                 if(data.status == 1){
                     swal({
                         title: "Thành công !",
@@ -151,7 +165,7 @@ $(document).ready(function(){
                     })
                 }
                 else if(data.status == 401){
-                    window.location.href = '/login';
+                    window.location.href = '/login?return_url='+window.location.href;
                 }
                 else if(data.status == 0){
                     swal({
@@ -185,7 +199,7 @@ $(document).ready(function(){
                 })
             },
             complete: function (data) {
-                $('span#reload').trigger('click');
+                $('#reload_1').trigger('click');
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
@@ -219,9 +233,24 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                if (data.status == 1){
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(data.data);
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
 
-                $(".paycartdata").empty().html('');
-                $(".paycartdata").empty().html(data);
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(html);
+                }
+
             },
             error: function (data) {
 

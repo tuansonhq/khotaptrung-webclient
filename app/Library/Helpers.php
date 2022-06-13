@@ -131,4 +131,32 @@ class Helpers
         return $time;
     }
 
+    public static function ConvertToAgoTime($time)
+    {
+        $time = strtotime($time);
+
+        $time = time() - $time; // to get the time since that moment
+
+        if ($time == 0) {
+            return "Vừa xong";
+        }
+        $tokens = array(
+            31536000 => 'năm',
+            2592000 => 'tháng',
+            604800 => 'tuần trước',
+            86400 => 'ngày trước',
+            3600 => 'giờ trước',
+            60 => 'phút trước',
+            1 => 'giây trước',
+
+        );
+
+        foreach ($tokens as $unit => $text) {
+            if ($time < $unit) continue;
+            $numberOfUnits = floor($time / $unit);
+            return $numberOfUnits . ' ' . $text . (($numberOfUnits > 1) ? '' : '');
+        }
+
+    }
+
 }

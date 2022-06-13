@@ -33,23 +33,48 @@ class UserController extends Controller
             $data = array();
             $data['token'] = $jwt;
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-                $request->session()->put('auth_custom', $result->user);
-                if($result->status == 1){
+            if(isset($result_Api) ){
+                if( $result_Api->response_code == 200){
+                    $result = $result_Api->response_data;
+                    Session::put('auth_custom', $result->user);
+//                    $request->session()->put('auth_custom', $result->user);
+
+                    if($result->status == 1){
+                        return response()->json([
+                            'status' => true,
+                            'jwt' => $jwt,
+                            'info' => $result->user,
+                        ]);
+                    }
+                }
+                else if($result_Api->response_code == 401){
+                    session()->flush();
                     return response()->json([
-                        'status' => true,
-                        'info' => $result->user,
+                        'status' => 401,
+                        'message'=>"unauthencation"
                     ]);
                 }
+                else if($result_Api->response_code == 408){
+                    return response()->json([
+                        'status' => 408,
+                        'message'=>"Không có phản hồi từ máy chủ (408)"
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>"Không có phản hồi từ máy chủ ('.$result_Api->response_code.')"
+                    ]);
+                }
+
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
+            else{
                 return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
+                    'status' => 0,
+                    'message'=>"Lỗi không gọi được dữ liệu hệ thống"
                 ]);
             }
+
 
         }
         catch(\Exception $e){
@@ -62,13 +87,12 @@ class UserController extends Controller
 
     public function info(Request $request)
     {
-        return view('frontend.pages.account.user.index');
+        return view('frontend.pages.profile.index');
 
     }
 
     public function profile(Request $request)
     {
-//        return view('frontend.pages.account.user.index');
         try{
             $jwt = Session::get('jwt');
             if(empty($jwt)){
@@ -80,10 +104,13 @@ class UserController extends Controller
             $method = "GET";
             $data = array();
             $data['token'] = $jwt;
+
 //            dd(111);
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
+            if(isset($result_Api) && $result_Api->response_code == 200){
+                $result = $result_Api->response_data;
+                Session::forget('return_url');
+                Session::put('return_url', $_SERVER['REQUEST_URI']);
                 $request->session()->put('auth_custom', $result->user);
 
 //                dd($result);
@@ -94,7 +121,7 @@ class UserController extends Controller
                     ]);
                 }
             }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
+            if(isset($result_Api) && $result_Api->response_code == 401){
                 session()->flush();
                 return response()->json([
                     'status' => 401,
@@ -111,10 +138,8 @@ class UserController extends Controller
         }
     }
 
-
     public function getThongTin(Request $request)
     {
-//        return view('frontend.pages.account.user.index');
         try{
 
             return view('theme_2.frontend.pages.account.user.index');
@@ -137,19 +162,17 @@ class UserController extends Controller
                 ]);
             }
 
-            $id_user = AuthCustom::user()->id;
-
-            $url = '/get-txns';
-            $method = "GET";
-            $data = array();
-            $data['token'] = $jwt;
-            $data['user_id'] = $id_user;
-
-            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-
             if ($request->ajax()) {
+                $id_user = AuthCustom::user()->id;
+
+                $url = '/get-txns';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['token'] = $jwt;
+                $dataSend['user_id'] = $id_user;
 
                 $page = $request->page;
+
                 $jwt = Session::get('jwt');
                 if(empty($jwt)){
                     return response()->json([
@@ -157,80 +180,85 @@ class UserController extends Controller
                     ]);
                 }
 
-                $id_user = AuthCustom::user()->id;
-
-                $url = '/get-txns';
-                $method = "GET";
-                $data = array();
-                $data['token'] = $jwt;
-                $data['user_id'] = $id_user;
-                $data['page'] = $page;
+                $dataSend['page'] = $page;
 
                 if (isset($request->config) || $request->config != '' || $request->config != null) {
-                    $data['trade_type'] = $request->config;
+                    $dataSend['trade_type'] = $request->config;
                 }
 
                 if (isset($request->status) || $request->status != '' || $request->status != null) {
-                    $data['status'] = $request->status;
+                    $dataSend['status'] = $request->status;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $data['started_at'] = $started_at;
+                    $dataSend['started_at'] = $started_at;
                 }
 
                 if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $data['ended_at'] = $ended_at;
+                    $dataSend['ended_at'] = $ended_at;
                 }
 
                 if (isset($request->sort_by) || $request->sort_by != '' || $request->sort_by != null){
                     $sort_by = $request->sort_by;
                     if ($sort_by == "random"){
-                        $data['sort'] = 'random';
+                        $dataSend['sort'] = 'random';
                     }elseif ($sort_by == "created_at_start"){
-                        $data['sort_by'] = 'created_at';
-                        $data['sort'] = 'desc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'desc';
                     }elseif ($sort_by == "created_at_end"){
-                        $data['sort_by'] = 'created_at';
-                        $data['sort'] = 'asc';
+                        $dataSend['sort_by'] = 'created_at';
+                        $dataSend['sort'] = 'asc';
                     }
                 }
 
-                $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+                $response_data = $result_Api->response_data??null;
 
+                if(isset($response_data) && $response_data->status == 1){
 
-                $result = $result_Api->data;
+                    $data = $response_data->data;
+                    $config = config('module.txns.trade_type_api');
+                    $status = config('module.txns.status');
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    $data->setPath($request->url());
 
-                $config = $result->config;
-                $status = $result->status;
-                $data = $result->data;
+                    $htmlconfig =  view('frontend.pages.transaction.widget.__data_config')
+                        ->with('config', $config)->render();
+                    $htmlstatus =  view('frontend.pages.transaction.widget.__data_status')
+                        ->with('status', $status)->render();
 
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                    //dd($data);
+                    $html =  view('frontend.pages.transaction.widget.__transaction_history')
+                        ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
-                return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
-                    ->with('data', $data)->with('status', $status)->with('config',$config);
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'datastatus' => $htmlstatus,
+                            'dataconfig' => $htmlconfig,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
+                    return response()->json([
+                        'data' => $html,
+                        'datastatus' => $htmlstatus,
+                        'dataconfig' => $htmlconfig,
+                        'status' => 1,
+                        'message' => "Lấy dữ liệu thành công",
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
             }
 
-            if(isset($result_Api) && $result_Api->httpcode == 200){
-                $result = $result_Api->data;
-
-                $config = $result->config;
-                $status = $result->status;
-                $data = $result->data;
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
-
-                return view('frontend.pages.account.user.lich-su-giao-dich')
-                    ->with('data', $data)->with('status', $status)->with('config',$config);
-            }
-            if(isset($result_Api) && $result_Api->httpcode == 401){
-                session()->flush();
-                return response()->json([
-                    'status' => 401,
-                    'message'=>"unauthencation"
-                ]);
-            }
+            return view('theme_1.frontend.pages.transaction.logs');
 
         }
         catch(\Exception $e){
@@ -241,7 +269,7 @@ class UserController extends Controller
         }
     }
 
-    public function getTranTichHop(Request $request){
+    public function getTransactionShopCard(Request $request){
 
         try{
 
@@ -281,25 +309,35 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
 
 
-                $result = $result_Api->data;
-                $data = $result->data;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
+                    $data = $result->data;
 
-                $per_page = 0;
-                $total = 0;
-                if (isset($data->total)){
-                    $total = $data->total;
+                    $config = $result->dataconfig;
+                    $status = $result->datastatus;
+                    $per_page = 0;
+                    $total = 0;
+
+                    if (isset($data->total)){
+                        $total = $data->total;
+                    }
+
+                    if (isset($data->to)){
+                        $per_page = $data->to;
+                    }
+
+                    $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+
+                    return view('frontend.pages.transaction.logs')
+                        ->with('data', $data)
+                        ->with('total',$total)
+                        ->with('status',$status)
+                        ->with('config',$config)
+                        ->with('per_page',$per_page);
+                }else{
+                    return redirect('/404');
                 }
 
-                if (isset($data->to)){
-                    $per_page = $data->to;
-                }
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-
-                return view('frontend.pages.account.user.function.__lich__su__giao__dich__data')
-                    ->with('data', $data)
-                    ->with('total',$total)
-                    ->with('per_page',$per_page);
             }
 
         }
@@ -311,7 +349,7 @@ class UserController extends Controller
         }
     }
 
-    public function getLichSuNapThe(Request $request){
+    public function getChargeHistory(Request $request){
 
         try{
 
@@ -345,13 +383,13 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->data;
+                        $result = $result_Api->response_data;
                         $data = $result->data;
 
                         $arrpin = array();
@@ -384,7 +422,7 @@ class UserController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.pages.account.user.function.__lich__su__nap__the')
+                        return view('frontend.pages.charge.logs')
                             ->with('data',$data)
                             ->with('arrpin',$arrpin)
                             ->with('total',$total)
@@ -393,8 +431,8 @@ class UserController extends Controller
                     } else {
                         return redirect()->back()->withErrors($result->message);
                     }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                }else{
+                    return redirect('/404');
                 }
             }
 
@@ -407,7 +445,7 @@ class UserController extends Controller
         }
     }
 
-    public function getLichSuMuaThe(Request $request){
+    public function getStoreHistory(Request $request){
 
         try{
 
@@ -444,29 +482,37 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
 
 
-                if (isset($result_Api) && $result_Api->httpcode == 200) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
 
 
                     if ($result->status == 1) {
 
-                        $result = $result_Api->data;
+                        $result = $result_Api->response_data;
                         $data = $result->data;
 
                         $arrpin = array();
                         $arrserial = array();
 
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $serial = $data->data[$i]->serial;
-                            $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
-                            array_push($arrserial,$serial);
-                        }
+//                        for ($i = 0; $i < count($data->data); $i++){
+//                            for ($i = 0; $i < count($data->data[$i]->card); $i++){
+//
+//                                $serial = $data->data[$i]->card[0]->serial;
+//
+//                                $serial = Helpers::Decrypt($serial,config('module.charge.key_encrypt'));
+//
+//                                array_push($arrserial,$serial);
+//
+//                                $pin = $data->data[$i]->card[0]->pin;
+//                                $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
+//
+//                                array_push($arrpin,$pin);
+//
+//                            }
+//                            dd($arrpin);
+//                        }
 
-                        for ($i = 0; $i < count($data->data); $i++){
-                            $pin = $data->data[$i]->pin;
-                            $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
-                            array_push($arrpin,$pin);
-                        }
+
 
                         $per_page = 0;
                         $total = 0;
@@ -478,22 +524,24 @@ class UserController extends Controller
                             $per_page = $data->to;
                         }
 
-                        if (isEmpty($data->data)) {
-                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
-                            $data->setPath($request->url());
-                        }
+                       if (isEmpty($data->data)) {
+                           $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                           $data->setPath($request->url());
+                       }
 
-                        return view('frontend.pages.account.user.function.__lich__su__nap__the')
+
+                        return view('frontend.pages.storecard.logs')
                             ->with('data',$data)
-                            ->with('arrpin',$arrpin)
                             ->with('total',$total)
                             ->with('per_page',$per_page)
+                            ->with('arrpin',$arrpin)
                             ->with('arrserial',$arrserial);
                     } else {
+
                         return redirect()->back()->withErrors($result->message);
                     }
-                } else {
-                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+                } else{
+                    return redirect('/404');
                 }
             }
 

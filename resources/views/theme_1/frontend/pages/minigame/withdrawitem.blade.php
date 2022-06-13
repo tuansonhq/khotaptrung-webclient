@@ -175,6 +175,7 @@
         </div>
     </div>
 </div>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <script type="text/javascript">
 
         $("body").delegate(".proccess_toggle","click",function(){
@@ -185,5 +186,16 @@
             }
             $('#proccessModal').modal('show');
         })
+        // $.ajax({
+        //     url: '/withdrawitemajax-{{$game_type}}',
+        //     datatype:'json',
+        //     data:{
+        //         _token: $('meta[name="csrf-token"]').attr('content')
+        //     },
+        //     type: 'post',
+        //     success: function (data) {
+        //         $('.account_sidebar_content').html(data.msg);
+        //     }
+        // })
 </script>
 @endsection

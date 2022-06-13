@@ -3,7 +3,7 @@ $(document).ready(function(){
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
     function getInfo(){
-        const url = '/profile';
+        const url = '/profile-info';
         $.ajax({
             type: "GET",
             url: url,
@@ -20,7 +20,7 @@ $(document).ready(function(){
                     alert('Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu')
                 }
                 if(data.status == true){
-                    $('#info_create').html('Tham gia:'+data.info.id)
+                    $('#info_create').html('Id: '+data.info.id)
                     $('#info_name').html(data.info.username +'<i class="las la-check-circle text-success"></i>')
                     $('#info_phone').val(data.info.id);
                     // $('#info_balance').html('<span>'+data.info.balance+'</span>')

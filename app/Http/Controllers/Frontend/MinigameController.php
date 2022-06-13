@@ -13,6 +13,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class MinigameController extends Controller
 {
     public function getIndex(Request $request){
+        Session::forget('return_url');
+        Session::put('return_url', $_SERVER['REQUEST_URI']);
         try{
             $method = "GET";
             $data = array();
@@ -24,8 +26,8 @@ class MinigameController extends Controller
             // if(!isset($group_api)){
                 $url = '/minigame/get-list-minigame';
                 $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($group_api) && $group_api->httpcode == 200 ) {
-                    $group_api = $group_api->data->data;
+                if (isset($group_api) && $group_api->response_code == 200 ) {
+                    $group_api = $group_api->response_data->data;
                 }
             //     try{
             //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -47,8 +49,8 @@ class MinigameController extends Controller
             $data['id'] = $group->id;
             $data['module'] = explode('-', $group->module)[0];
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-            if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                $result_out = $result_Api->data;
+            if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                $result_out = $result_Api->response_data;
                 if ($result_out->status == 1) {
                     $result = $result_out->data;
 
@@ -126,11 +128,11 @@ class MinigameController extends Controller
                     if($group->params->special_num_from > 0 && $group->params->special_num_to > 0 && $group->params->special_num_from < $group->params->special_num_to){
                         $numNearSpecial = rand($group->params->special_num_from, $group->params->special_num_to);
                     }
+                    $currentPlayList = "";
                     if(count($result->group->items)>0){
-                        $currentPlayList = "";
                         $currentPlayList = Cache::get('currentPlayList'.$group->id);
-                        if($currentPlayList==null){                            
-                            $arrayGift = [];                       
+                        if($currentPlayList==null){
+                            $arrayGift = [];
                             $arrayGiftSpecial = [];
                             foreach ($result->group->items as $key) {
                                 if(isset($key->params->special) && $key->params->special == 1){
@@ -151,7 +153,7 @@ class MinigameController extends Controller
                                     $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
                                 }
                             }
-                            
+
                             if(count($arrayGift) > 0){
                                 for($i=0;$i<=$numNear;$i++){
                                     $fname = $firstname[rand(0,count($firstname)-1)];
@@ -162,9 +164,9 @@ class MinigameController extends Controller
                                     $gift = $arrayGift[rand(0,count($arrayGift)-1)];
                                     $currentPlayList = $currentPlayList.'&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #28a745"><i class="menu-icon fas fa-user"></i>&nbsp;&nbsp;'.$name.'</span> - đã trúng '.$gift;
                                 }
-                            }              
+                            }
                             $currentPlayList = $currentPlayList!=""?("Danh sách trúng thưởng: ".$currentPlayList):"";
-                            
+
                             $expiresAt = Carbon::now()->addMinutes(5);
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }
@@ -191,10 +193,12 @@ class MinigameController extends Controller
                             return redirect()->back()->withErrors($result_out->message);
                     }
                 } else {
-                    return redirect()->back()->withErrors($result_out->message);
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             } else {
-                return redirect()->back()->withErrors($result_Api->message);
+                logger('minigame: '.$result_Api->message);
+                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
         catch(\Exception $e){
@@ -228,8 +232,8 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigame';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if ($result->status == 1) {
                         return response()->json([
                             'free_wheel'=> $result->free_wheel,
@@ -252,7 +256,7 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    if($result_Api->httpcode==401){
+                    if($result_Api->response_code==401){
                         return response()->json([
                             'status' => 4,
                             'msg'=> 'Vui lòng đăng nhập lại.'
@@ -297,8 +301,8 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigamebonus';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if ($result->status == 1) {
                         return response()->json([
                             'free_wheel'=> $result->free_wheel,
@@ -320,7 +324,7 @@ class MinigameController extends Controller
                         ], 200);
                     }
                 } else {
-                    if($result_Api->httpcode==401){
+                    if($result_Api->response_code==401){
                         return response()->json([
                             'status' => 4,
                             'msg'=> 'Vui lòng đăng nhập lại.'
@@ -356,8 +360,8 @@ class MinigameController extends Controller
                 // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                    if (isset($group_api) && $group_api->httpcode == 200 ) {
-                        $group_api = $group_api->data->data;
+                    if (isset($group_api) && $group_api->response_code == 200 ) {
+                        $group_api = $group_api->response_data->data;
                     }
                 //     try{
                 //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -388,8 +392,8 @@ class MinigameController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
                         return redirect()->back()->withErrors($result_out->message);
                     } else {
@@ -400,7 +404,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    return 'sai';
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -425,8 +430,8 @@ class MinigameController extends Controller
                 // if(!isset($group_api)){
                     $url = '/minigame/get-list-minigame';
                     $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                    if (isset($group_api) && $group_api->httpcode == 200 ) {
-                        $group_api = $group_api->data->data;
+                    if (isset($group_api) && $group_api->response_code == 200 ) {
+                        $group_api = $group_api->response_data->data;
                     }
                 //     try{
                 //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
@@ -456,8 +461,8 @@ class MinigameController extends Controller
                     $data['ended_at'] = $request->get('ended_at');
                 }
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
                         return redirect()->back()->withErrors($result_out->message);
                     } else {
@@ -468,7 +473,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    return 'sai';
+                    logger('minigame: '.$result_out->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -493,8 +499,8 @@ class MinigameController extends Controller
                 $data['page'] = $request->page;
                 $data['game_type'] = $game_type;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {
                         return redirect('login');
                     } else {
@@ -508,7 +514,8 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
                     }
                 } else {
-                    return 'sai';
+                    logger('withdrawitem: '.$result_Api->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
@@ -517,6 +524,60 @@ class MinigameController extends Controller
             }
         }else{
             return redirect('login');
+        }
+    }
+
+    public function postWithdrawItemAjax(Request $request){
+        try{
+            if(empty(Session::get('jwt'))){
+                return response()->json([
+                    'status' => 4,
+                    'msg'=> 'Vui lòng đăng nhập !'
+                ], 200);
+            }
+            $game_type = $request->game_type;
+            $method = "GET";
+            $data = array();
+            $data['token'] = Session::get('jwt');;
+            $data['secret_key'] = config('api.secret_key');
+            $data['domain'] = \Request::server("HTTP_HOST");
+            $url = '/minigame/get-withdraw-item';
+            $data['page'] = $request->page;
+            $data['game_type'] = $game_type;
+            $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+            if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                $result = $result_Api->response_data;
+                if (isset($result->status) && $result->status == 4) {
+                    return response()->json([
+                        'status' => 4,
+                        'msg'=> 'Vui lòng đăng nhập !'
+                    ], 200);
+                } else {
+                    $paginatedItems = null;
+                    if($result->withdraw_history->total>0){
+                        $perPage = $result->withdraw_history->per_page??0;
+                        $total = $result->withdraw_history->total??0;
+                        $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
+                        $paginatedItems->setPath($request->url());
+                    }
+
+                    return response()->json([
+                        'status' => $result->status,
+                        'msg'=> view('frontend.pages.minigame.withdrawitemajax', compact('paginatedItems','result','game_type'))->render()
+                    ], 200);
+                }
+            } else {
+                return response()->json([
+                    'status' => 0,
+                    'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+                ], 200);
+            }
+        }
+        catch(\Exception $e){
+            return response()->json([
+                'status' => 0,
+                'msg'=> 'Có lỗi phát sinh.Xin vui lòng thử lại !'
+            ], 200);
         }
     }
 
@@ -544,8 +605,8 @@ class MinigameController extends Controller
                 $data['idgame'] = $request->idgame;
                 $data['phone'] = $request->phone;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-                    $result = $result_Api->data;
+                if (isset($result_Api) && $result_Api->response_code == 200 ) {
+                    $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {
                         return redirect('login');
                     }else if(isset($result->status) && $result->status == 0){
@@ -554,7 +615,8 @@ class MinigameController extends Controller
                         return redirect()->back()->with('success',__($result->msg));
                     }
                 } else {
-                    return 'sai';
+                    logger('withdrawitem: '.$result_Api->message);
+                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
             catch(\Exception $e){
