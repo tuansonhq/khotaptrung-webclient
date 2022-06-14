@@ -32,11 +32,11 @@
                         @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
                             <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                            <div class="item_play_spin_progress_percent">{{$result->pointuser}}/100 point</div>
+                            <div class="item_play_spin_progress_percent">{{$result->pointuser==''?'0':$result->pointuser}}/100 point</div>
                         </div>
                         @endif
 
-                        <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{config('api.url_media').$result->group->params->image_background}}) no-repeat center center;background-size: contain;" alt="">
+                        <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">
                         <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
                         <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                     </div>
@@ -86,9 +86,8 @@
             </div>
             @if($groups_other!=null)
             <div class="item_play_title">
-                <p>Các vòng minigame khác</p>
+                <p>Các minigame khác</p>
                 <div class="item_play_line"></div>
-
             </div>
             <div class="item_play_dif">
                 <div class="row" style="position: relative">
@@ -100,9 +99,9 @@
                                     <div class="item_play_dif_slide_detail_in">
                                         <div class="item_play_dif_slide_img">
                                             <a href="{{route('getIndex',[$item->slug])}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($item->image}}" alt="{{$item->title)}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}"  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
                                                 @if(isset($item->params->image_percent_sale) && $item->params->image_percent_sale!=null)
-                                                <img src="{{\App\Library\MediaHelpers::media($item->params->image_percent_sale)}}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
+                                                <img src="{{ \App\Library\MediaHelpers::media($item->params->image_percent_sale) }}" alt="{{$item->title}}" class="item_play_dif_slide_img_sale">
                                                 @endif
                                             </a>
                                         </div>
@@ -119,7 +118,7 @@
                                             <div class="item_play_dif_slide_more_view" >
                                                 <a href="{{route('getIndex',[$item->slug])}}">
                                                     @if(isset($item->params->image_view_all) && $item->params->image_view_all!=null)
-                                                    <img src="{{\App\Library\MediaHelpers::media($item->params->image_view_all)}}"  alt="{{$item->title}}">
+                                                    <img src="{{ \App\Library\MediaHelpers::media($item->params->image_view_all) }}"  alt="{{$item->title}}">
                                                     @else
                                                     Chơi ngay
                                                     @endif
@@ -168,7 +167,7 @@
             <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
                 <div class="c-content-title-1" style="margin: 0 auto">
                 </div>
-                <div class="list-roll-inner">
+                <div class="list-roll-inner" style="width: 100%">
                     <table cellpadding="10" class="table table-striped">
                         <tbody>
                         <tr>
@@ -177,12 +176,35 @@
                             <th>Thời gian</th>
                         </tr>
                         </tbody>
-                        <tbody>
+                            @php
+                                $count = 0;
+                                $countname = 0;
+                                $listname = explode(",",$result->group->params->user_wheel);
+                                $listprice = explode(",",$result->group->params->user_wheel_order);
+                            @endphp
                             @foreach($result->log as $item)
+                                @php
+                                    $count++;
+                                    $add_time=strtotime($item->created_at)+rand(1,2);
+                                    $add_date= date('Y-m-d H:i:s',$add_time);
+                                @endphp
+                                @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                 <tr>
-                                    <th>{{$item->author->username}}</th>
-                                        <th>{{$item->item_ref->parrent->title??""}}</th>
-                                    <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
+                                    <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
+                                    <td>{{trim($listprice[$countname])}}</td>
+                                    <td>{{\Carbon\Carbon::parse($add_time)->format('Y-m-d H:i')}}</td>
+                                </tr>
+                                @endif
+                                @php
+                                    if($count==5){
+                                        $count = 0;
+                                        $countname++;
+                                    }
+                                @endphp
+                                <tr>
+                                    <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
+                                    <td>{{$item->item_ref->parrent->title??""}}</td>
+                                    <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -228,7 +250,7 @@
             </div>
             <div class="middle nohuthang" style="text-align: center;padding: 15px 0;color: blue"></div>
             <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-
+                <div class="appendContent" style='color:blue'></div>
             </div>
             <div class="modal-footer">
                 <a href="#" id="btnWithdraw" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Rút quà</a>
@@ -291,7 +313,7 @@
                                 </div>
                                 @endif
                                 @if(count($topDayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -320,7 +342,7 @@
                                 </div>
                                 @endif
                                 @if(count($top7DayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -427,7 +449,7 @@
                         console.log(gift_detail);
                         if(gift_detail.image.length > 0)
                         {
-                            $('#lac_lixi').attr('src','{{config("api.url_media")}}'+gift_detail.image);
+                            $('#lac_lixi').attr('src',gift_detail.image);
                         }
                         gift_revice = data.arr_gift;
                         //arrDiscount = data.arrDiscount;
@@ -490,9 +512,9 @@
                     gift_detail = data.gift_detail;
                     if(gift_detail.image.length > 0)
                     {
-                        $('#lac_lixi').attr('src','{{config("api.url_media")}}'+gift_detail.image);
+                        $('#lac_lixi').attr('src',gift_detail.image);
                     }
-                    $('#noticeModal .content-popup').append("<div style='color:blue'>" + data.msg + " - " + data.arr_gift[0].title + "</div>");
+                    $('#noticeModal .content-popup .appendContent').append(data.msg + " - " + data.arr_gift[0].title);
                     //$("#noticeModalNoHu #btnWithdraw").hide();
                     $('#noticeModal').modal('show');
                     var userpoint = data.userpoint;

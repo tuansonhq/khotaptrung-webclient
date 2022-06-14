@@ -29,7 +29,7 @@
                         </div>
                         @if($result->checkVoucher==1)
 	                    <div class="item_play_spin_sale-off">
-	                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+	                        <input type="text" placeholder="Nhập mã giảm giá">
 	                    </div>
 	                @endif
 
@@ -232,7 +232,7 @@
                 <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
                     <div class="c-content-title-1" style="margin: 0 auto">
                     </div>
-                    <div class="list-roll-inner">
+                    <div class="list-roll-inner" style="width: 100%">
                         <table cellpadding="10" class="table table-striped">
                             <tbody>
                             <tr>
@@ -242,19 +242,37 @@
                             </tr>
                             </tbody>
                             <tbody>
-                            @if(isset($result->log) && count($result->log) > 0)
+                                @php
+                                    $count = 0;
+                                    $countname = 0;
+                                    $listname = explode(",",$result->group->params->user_wheel);
+                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                @endphp
                                 @foreach($result->log as $item)
+                                    @php
+                                        $count++;
+                                        $add_time=strtotime($item->created_at)+rand(1,2);
+                                        $add_date= date('Y-m-d H:i:s',$add_time);
+                                    @endphp
+                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                     <tr>
-                                        <td>{{substr($item->author->username, 0, 3)}}***</td>
-                                        <th>{{$item->item_ref->parrent->title??""}}</th>
-                                        <th>{{date('Y-m-d H:i',strtotime($item->created_at))}}</th>
+                                        <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
+                                        <td>{{trim($listprice[$countname])}}</td>
+                                        <td>{{\Carbon\Carbon::parse($add_time)->format('Y-m-d H:i')}}</td>
+                                    </tr>
+                                    @endif
+                                    @php
+                                        if($count==5){
+                                            $count = 0;
+                                            $countname++;
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
+                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
-                            @else
-                                <tr>
-                                    <th colspan="3">Dữ liệu đang được cập nhật...</th>
-                                </tr>
-                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -298,7 +316,7 @@
                                 </div>
                                 @endif
                                 @if(count($topDayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -327,7 +345,7 @@
                                 </div>
                                 @endif
                                 @if(count($top7DayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>

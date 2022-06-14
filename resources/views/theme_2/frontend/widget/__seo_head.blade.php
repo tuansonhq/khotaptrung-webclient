@@ -22,11 +22,7 @@
         <meta name="description" content="{{ setting('sys_description') }}">
 
     @endif
-    @if(Request::is('/'))
-        <meta name="robots" content="index,follow" />
-    @else
-        <meta name="robots" content="noindex,nofollow" />
-    @endif
+
 
 {{--<meta name="description" content="{{ strip_tags($data->description??setting('sys_description')) }}">--}}
 

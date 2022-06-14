@@ -1,7 +1,9 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+    <meta name="robots" content="noindex,follow" />
 @endsection
+
 @section('content')
     @if($data == null)
         <div class="item_buy">

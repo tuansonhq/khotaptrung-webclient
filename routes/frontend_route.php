@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\ServiceController;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Library\DirectAPI;
 use App\Library\AuthCustom;
@@ -38,6 +39,15 @@ Route::get('/session', function ()
     Session::flush();
     return redirect()->to('/');
 });
+Route::get('/github/test', function (Request $request)
+{
+    $path = storage_path() ."/logs/github/";
+    if(!\File::exists($path)){
+        \File::makeDirectory($path, $mode = "0755", true, true);
+    }
+    $txt = Carbon::now().":".$request->fullUrl().json_encode($request->all());
+    \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
+});
 Route::get('/test111', function ()
 {
     return 1111;
@@ -47,7 +57,7 @@ Route::get('/test111', function ()
 //    if (theme('')->theme_key == 'theme_1'){
 
 Route::group(array('middleware' => ['theme']) , function (){
-        Route::group(array('middleware' => ['throttle:200,1','verify_shop']) , function (){
+        Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
             Route::get('/updategit', function ()
             {
                 $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
@@ -233,15 +243,19 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
-
+                            //Nạp thẻ Atm
+                            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+                            Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+                                ->name('getIdCode');
+                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
                         Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
                         Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
-
                         Route::get('/get-amount-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecomDepositAuto']);
                         Route::post('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'postTelecomDepositAuto'])->name('postTelecomDepositAuto');
+
 
                     });
 
@@ -338,36 +352,38 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('postDeposit');
                     Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
                         ->name('getAmountCharge');
-                    //Nạp thẻ Atm
-                    Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'getBank'])
-                        ->name('getBank');
 
 
-                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
-                        ->name('postDepositBank');
-                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
-                        ->name('postTranferBank');
+//
+//
+//                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
+//                        ->name('postDepositBank');
+//                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
+//                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
+//                        ->name('postTranferBank');
 
 
                 });
 
                 //minigame
-                Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
-                    ->name('postRoll');
-                Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
-                    ->name('postBonus');
-                Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
-                    ->name('getLog');
-                Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
-                    ->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                    ->name('getIndex');
-                Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
-                    ->name('getWithdrawItem');
-                Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
-                    ->name('postWithdrawItem');
-
+                Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                    Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
+                        ->name('postRoll');
+                    Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
+                        ->name('postBonus');
+                    Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])
+                        ->name('getLog');
+                    Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
+                        ->name('getLogAcc');
+                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                        ->name('getIndex');
+                    Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
+                        ->name('getWithdrawItem');
+                    Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
+                        ->name('postWithdrawItem');
+                    Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])
+                        ->name('postWithdrawItemAjax');
+                });
 
 
             });

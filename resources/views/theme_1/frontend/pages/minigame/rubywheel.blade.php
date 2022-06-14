@@ -28,7 +28,7 @@
 
                     @if($result->checkVoucher==1)
                     <div class="item_spin_sale-off">
-                        <input type="text" readonly="" placeholder="Nhập mã giảm giá">
+                        <input type="text" placeholder="Nhập mã giảm giá">
                     </div>
                     @endif
 
@@ -98,11 +98,35 @@
 
                             </thead>
                             <tbody>
+                                @php
+                                    $count = 0;
+                                    $countname = 0;
+                                    $listname = explode(",",$result->group->params->user_wheel);
+                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                @endphp
                                 @foreach($result->log as $item)
+                                    @php
+                                        $count++;
+                                        $add_time=strtotime($item->created_at)+rand(1,2);
+                                        $add_date= date('Y-m-d H:i:s',$add_time);
+                                    @endphp
+                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                     <tr>
-                                        <th>{{$item->author->username}}</th>
-                                        <th>{{$item->item_ref->parrent->title??""}}</th>
-                                        <th>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</th>
+                                        <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
+                                        <td>{{trim($listprice[$countname])}}</td>
+                                        <td>{{\Carbon\Carbon::parse($add_time)->format('Y-m-d H:i')}}</td>
+                                    </tr>
+                                    @endif
+                                    @php
+                                        if($count==5){
+                                            $count = 0;
+                                            $countname++;
+                                        }
+                                    @endphp
+                                    <tr>
+                                        <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
+                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -275,7 +299,7 @@
                                 </div>
                                 @endif
                                 @if(count($topDayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($topDayList as $item)
                                     @if($loop->index>0)
                                     <li>
@@ -304,7 +328,7 @@
                                 </div>
                                 @endif
                                 @if(count($top7DayList)>1)
-                                <ul class="rank-list">
+                                <ul class="rank-list" style="max-height: 300px; overflow-y: scroll;">
                                     @foreach($top7DayList as $item)
                                     @if($loop->index>0)
                                     <li>

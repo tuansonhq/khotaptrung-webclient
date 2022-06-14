@@ -1,9 +1,7 @@
 @extends('frontend.layouts.master')
-@section('meta_robots')
-    <meta name="robots" content="noindex,nofollow" />
-@endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @push('js')
 
