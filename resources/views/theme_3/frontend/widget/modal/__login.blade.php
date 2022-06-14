@@ -3,18 +3,18 @@
         <div class="modal-content">
             <div class="modal-login-container" id="modal-login-container">
                 <div class="modal-login-form-container sign-up-container">
-                    <img class="close-login-modal" src="assets/{{env('THEME_VERSION')}}/image/images_1/close_dark.svg" alt="">
+                    <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
                     <form class="modal-login-form" id="formRegister" action="/register" method="POST">
                         <h1>Đăng ký</h1>
                         {{-- <div class="social-container">
                             <a href="" class="social">
-                                <img src="assets/{{env('THEME_VERSION')}}/image/images_1/fb_icon.svg" alt="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                             </a>
                             <a href="" class="social">
-                                <img src="assets/{{env('THEME_VERSION')}}/image/images_1/google_icon.svg" alt="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/google_icon.svg" alt="">
                             </a>
                             <a href="" class="social">
-                                <img src="assets/{{env('THEME_VERSION')}}/image/images_1/discord_icon.svg" alt="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/discord_icon.svg" alt="">
                             </a>
                         </div>
                         <span>Hoặc đăng ký bằng tài khoản</span> --}}
@@ -26,22 +26,22 @@
                         <p class="modal-login-error" id="phoneRegisterError"></p>
                         <div class="password-input-container">
                             <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off">
-                            <img class="password-input-hide" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                            <img class="password-input-show" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-hide.svg" alt="" >
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
                         <p class="modal-login-error" id="passwordRegisterError"></p>
                         <button type="submit">Đăng ký</button>
                     </form>
                 </div>
-                <div class="modal-login-form-container sign-in-container">
+                <div class="modal-login-form-container sign-in-container"   >
                     <form class="modal-login-form" id="formLogin" action="/login" method="POST">
                         <h1>Đăng nhập</h1>
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
                         <p class="modal-login-error" id="usernameError"></p>
                         <div class="password-input-container">
                             <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
-                            <img class="password-input-hide" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                            <img class="password-input-show" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-hide.svg" alt="" >
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
                         <p class="modal-login-error" id="passwordError"></p>
                         <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>
@@ -49,20 +49,20 @@
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
                             <a href="" class="social">
-                                <img src="assets/{{env('THEME_VERSION')}}/image/images_1/fb_icon.svg" alt="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                             </a>
                         </div>
                     </form>
                 </div>
                 <div class="modal-login-overlay-container">
                     <div class="modal-login-overlay">
-                        <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('assets/{{env('THEME_VERSION')}}/image/images_1/login_modal_bg.png')">
+                        <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
                             <h1>Bạn đã có tài khoản?</h1>
                             <p>Đăng nhập tại đây</p>
                             <button id="signIn">Đăng nhập</button>
                         </div>
-                        <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('assets/{{env('THEME_VERSION')}}/image/images_1/login_modal_bg.png')">
-                            <img class="close-login-modal" src="assets/{{env('THEME_VERSION')}}/image/images_1/close.svg" alt="">
+                        <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
+                            <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close.svg" alt="">
                             <h1>Bạn chưa có tài khoản?</h1>
                             <p>Vui lòng đăng ký ngay tại đây</p>
                             <button id="signUp">Đăng ký</button>
@@ -89,8 +89,8 @@
             <p class="modal-login-error" id="usernameError"></p>
             <div class="password-input-container">
                 <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
-                <img class="password-input-hide" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                <img class="password-input-show" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-hide.svg" alt="" >
+                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
             </div>
             <p class="modal-login-error" id="passwordError"></p>
             <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>
@@ -98,7 +98,7 @@
             <h1>Hoặc đăng nhập qua</h1>
             <div class="social-container">
                 <a href="" class="social">
-                    <img src="assets/{{env('THEME_VERSION')}}/image/images_1/fb_icon.svg" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                 </a>
             </div>
             <p id="changeFormRegister" class="mobile-auth-change-form">Bạn chưa có tài khoản? <span>Đăng ký tại đây</span></p>
@@ -112,8 +112,8 @@
             <p class="modal-login-error" id="phoneRegisterErrorMobile"></p>
             <div class="password-input-container">
                 <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off">
-                <img class="password-input-hide" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                <img class="password-input-show" src="assets/{{env('THEME_VERSION')}}/image/images_1/eye-hide.svg" alt="" >
+                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
             </div>
             <p class="modal-login-error" id="passwordRegisterError"></p>
             <button type="submit">Đăng ký</button>

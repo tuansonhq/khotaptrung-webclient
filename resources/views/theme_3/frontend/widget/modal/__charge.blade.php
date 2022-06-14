@@ -8,7 +8,7 @@
                     <div class="col-12 span__donhang text-center" style="position: relative">
                         <span>Xác nhận thanh toán</span>
                         <div class="close" data-dismiss="modal" aria-label="Close">
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                         <span>Nhà mạng</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/gate.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/gate.png" alt="">
                                     </div>
                                 </div>
 
