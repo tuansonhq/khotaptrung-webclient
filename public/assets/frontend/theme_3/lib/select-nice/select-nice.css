@@ -32,33 +32,28 @@
     background: #F3F3F7;
 }
 .nice-select:active, .nice-select.open, .nice-select:focus {
-    border-color: #FDE4CC;
+    border-color: #F67600;
     background: #F3F3F7;
 }
 .nice-select:after {
-    border-bottom: 2px solid #999;
-    border-right: 2px solid #999;
     content: '';
+    background-image: url(/assets/theme_3/image/icons/arrows/arrow-select-nice.png);
     display: block;
-    height: 5px;
-    margin-top: -4px;
+    height: 16px;
+    width: 16px;
     pointer-events: none;
     position: absolute;
     right: 12px;
     top: 50%;
-    -webkit-transform-origin: 66% 66%;
-    -ms-transform-origin: 66% 66%;
-    transform-origin: 66% 66%;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
+    transform: translateY(-50%);
     -webkit-transition: all 0.15s ease-in-out;
     transition: all 0.15s ease-in-out;
-    width: 5px; }
+}
 .nice-select.open:after {
-    -webkit-transform: rotate(-135deg);
-    -ms-transform: rotate(-135deg);
-    transform: rotate(-135deg); }
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    transform: translateY(-50%) rotate(-180deg);
+}
 .nice-select.open .list {
     opacity: 1;
     pointer-events: auto;

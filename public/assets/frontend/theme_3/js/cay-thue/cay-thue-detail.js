@@ -53,7 +53,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/images_1/eye-show.svg" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -61,7 +61,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/images_1/eye-hide.svg" alt="">';
             $('.show-btn-password').html('');
             $('.show-btn-password').html(htmlpass);
 
@@ -88,7 +88,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -96,7 +96,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.show-btn-password-mobile').html('');
             $('.show-btn-password-mobile').html(htmlpass);
 
@@ -107,11 +107,6 @@ $(document).ready(function (e) {
             $(this).val('Show');
         }
     });
-
-    $('.open-modal').on('click', function(){
-        $('#openOrder').modal('show');
-
-    })
 
     $('.openSuccess').on('click', function(){
         $('#successModal').modal('show');
@@ -141,7 +136,7 @@ $(document).ready(function (e) {
 
     //    Step
 
-    $('body').on('click','#mobile-caythue .button-next-step-one',function(){
+    $('body').on('click','.button-next-step-one',function(){
         if (animating) return false;
         animating = true;
 
@@ -167,7 +162,7 @@ $(document).ready(function (e) {
         });
     })
 
-    $('body').on('click','#mobile-caythue .previous-step-one',function(){
+    $('body').on('click','.previous-step-one',function(){
 
         if(animating) return false;
         animating = true;
@@ -199,7 +194,7 @@ $(document).ready(function (e) {
         });
     });
 
-    $('body').on('click','#mobile-caythue .button-next-step-two',function(){
+    $('body').on('click','.button-next-step-two',function(){
 
         if(animating) return false;
         animating = true;
@@ -233,27 +228,157 @@ $(document).ready(function (e) {
         $('#successModal').modal('show');
     });
 
-    $('.show-detail-service-ct .view-more').click(function(){
-        $('.show-detail-service-ct .view-less').css("display","block");
-        $('.show-detail-service-ct .view-more').css("display","none");
-        $(".show-detail-service-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.show-detail-service-ct .view-less').click(function(){
-        $('.show-detail-service-ct .view-more').css("display","block");
-        $('.show-detail-service-ct .view-less').css("display","none");
-        $(".show-detail-service-ct .content-video-in").removeClass( "showtext");
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
+
+            $('.content-video-in').css('max-height', 'initial')
+            $('.content-video-in').removeClass('content-video-in-add')
+
+        } else {
+            $('.content-video-in').addClass('content-video-in-add')
+            $('.content-video-in::after').show()
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
     });
 
-    $('.show-detail-caythue-ct .view-more').click(function(){
-        $('.show-detail-caythue-ct .view-less').css("display","block");
-        $('.show-detail-caythue-ct .view-more').css("display","none");
-        $(".show-detail-caythue-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.show-detail-caythue-ct .view-less').click(function(){
-        $('.show-detail-caythue-ct .view-more').css("display","block");
-        $('.show-detail-caythue-ct .view-less').css("display","none");
-        $(".show-detail-caythue-ct .content-video-in").removeClass( "showtext");
-    });
+    $('body').on('click','.close-modal-default',function(e){
+        e.preventDefault();
+        $('#successModal').modal('hide');
+        $('#openOrder').modal('hide');
+    })
 
+    $('body').on('click','.btn-data',function(e){
+        e.preventDefault();
+        var index = 0;
+        var isSet = true;
+
+        var rankstvalue = $('.data-select-rank-start .list .option.selected').data('value');
+        var rankst = $('.data-select-rank-start .list .option.selected').text();
+
+        if (rankst == null || rankst == undefined || rankst == 'Chọn rank hiện tại' || rankstvalue == null || rankstvalue == undefined || rankstvalue == ''){
+
+            var htmlrankst = '';
+            htmlrankst += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn rank hiện tại.</small></div></div>';
+
+            $('.rank-start-error').html('');
+            $('.rank-start-error').html(htmlrankst);
+
+            $('.data-select-rank-start .nice-select').css('border-color','#DA4343');
+
+            isSet = false;
+        }else {
+            $('.rank-start-error').html('');
+            $('.data-select-rank-start .nice-select').css('border-color','#DCDEE9');
+        }
+
+        var rankmmvalue = $('.data-select-rank-end .list .option.selected').data('value');
+        var rankmm = $('.data-select-rank-end .list .option.selected').text();
+
+        if (rankmm == null || rankmm == undefined || rankmm == 'Chọn rank hiện tại' || rankmmvalue == null || rankmmvalue == undefined || rankmmvalue == ''){
+
+            var htmlrankmm = '';
+            htmlrankmm += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn rank mong muốn.</small></div></div>';
+
+            $('.rank-end-error').html('');
+            $('.rank-end-error').html(htmlrankmm);
+
+            $('.data-select-rank-end .nice-select').css('border-color','#DA4343');
+
+            isSet = false;
+        }else {
+            $('.rank-end-error').html('');
+            $('.data-select-rank-end .nice-select').css('border-color','#DCDEE9');
+        }
+
+        var servervalue = $('.data-select-server .list .option.selected').data('value');
+        var server = $('.data-select-server .list .option.selected').text();
+
+        if (server == null || server == undefined || server == 'Chọn server' || servervalue == null || servervalue == undefined || servervalue == ''){
+
+            var htmlserver = '';
+            htmlserver += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn server.</small></div></div>';
+
+            $('.server-error').html('');
+            $('.server-error').html(htmlserver);
+
+            $('.data-select-server .nice-select').css('border-color','#DA4343');
+
+            isSet = false;
+        }else {
+            $('.server-error').html('');
+            $('.data-select-server .nice-select').css('border-color','#DCDEE9');
+        }
+
+        var herovalue = $('.data-select-hero .list .option.selected').data('value');
+        var hero = $('.data-select-hero .list .option.selected').text();
+
+        if (hero == null || hero == undefined || hero == 'Ví dụ: Yasuyo' || herovalue == null || herovalue == undefined || herovalue == ''){
+
+            var htmlserver = '';
+            htmlserver += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn tướng.</small></div></div>';
+
+            $('.hero-error').html('');
+            $('.hero-error').html(htmlserver);
+
+            $('.data-select-hero .nice-select').css('border-color','#DA4343');
+
+            isSet = false;
+        }else {
+            $('.hero-error').html('');
+            $('.data-select-hero .nice-select').css('border-color','#DCDEE9');
+        }
+
+        var username = $('.username').val();
+
+        if (username == null || username == undefined || username == ''){
+            var htmltk = '';
+            htmltk += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập tài khoản game.</small></div></div>';
+
+            $('.tk-error').html('');
+            $('.tk-error').html(htmltk);
+
+            $('.username').css('border-color','#DA4343');
+            isSet =  false;
+        }else {
+            $('.tk-error').html('');
+            $('.username').css('border-color','#DCDEE9');
+        }
+
+        var password = $('.password').val();
+
+        if (password == null || password == undefined || password == ''){
+            var htmlpw = '';
+            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mật khẩu game.</small></div></div>';
+
+            $('.pw-error').html('');
+            $('.pw-error').html(htmlpw);
+
+            $('.password').css('border-color','#DA4343');
+
+            isSet =  false;
+        }else {
+            $('.password').css('border-color','#DCDEE9');
+            $('.pw-error').html('');
+        }
+
+        if (isSet == false){
+            return false;
+        }
+
+        $('#openOrder').modal('show');
+
+    })
+
+
+    $('body').on('click','.openSuccess',function(e){
+        $('#openOrder').modal('hide');
+        $('#successModal').modal('show');
+    })
 
 })
