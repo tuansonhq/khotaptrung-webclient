@@ -1,13 +1,21 @@
 $(document).ready(function (e) {
-    $('.view-more').click(function(){
-        $('.view-less').css("display","block");
-        $('.view-more').css("display","none");
-        $(".footer-row-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.view-less').click(function(){
-        $('.view-more').css("display","block");
-        $('.view-less').css("display","none");
-        $(".footer-row-ct .content-video-in").removeClass( "showtext");
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
+
+            $('.content-video-in').css('max-height', 'initial')
+            $('.content-video-in').removeClass('content-video-in-add')
+
+        } else {
+            $('.content-video-in').addClass('content-video-in-add')
+            $('.content-video-in::after').show()
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
     });
 
     $('body').on('click','.nick-findter',function(){
@@ -20,6 +28,7 @@ $(document).ready(function (e) {
         var id = $('.id').val();
         var isSet = false;
         var defaulthtml = '';
+        var index = 0;
         $('.nick-findter-data').html('');
         $('.nick-findter-data').html(defaulthtml);
 
@@ -31,9 +40,10 @@ $(document).ready(function (e) {
                 return false;
             }
             var htmlid = '';
-            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlid);
             isSet = true;
+            index = index + 1;
         }
 
         var pricevalue = $('.price-finter-nick .list .option.selected').data('value');
@@ -44,9 +54,10 @@ $(document).ready(function (e) {
                 return false;
             }
             var htmlprice = '';
-            htmlprice += '<div class="col-auto prepend-nick prepend-nick-price" style="position: relative"><a href="javascript:void(0)">' + price + '</a><img class="lazy close-item-nick imgae-nick-price" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlprice += '<div class="col-auto prepend-nick prepend-nick-price" style="position: relative"><a href="javascript:void(0)">' + price + '</a><img class="lazy close-item-nick imgae-nick-price" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlprice);
             isSet = true;
+            index = index + 1;
         }
 
         var statusvalue = $('.status-finter-nick .list .option.selected').data('value');
@@ -58,9 +69,10 @@ $(document).ready(function (e) {
             }
 
             var htmlstatus = '';
-            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlstatus);
             isSet = true;
+            index = index + 1;
         }
 
         var rankvalue = $('.rank-finter-nick .list .option.selected').data('value');
@@ -71,9 +83,10 @@ $(document).ready(function (e) {
                 return false;
             }
             var htmlrank = '';
-            htmlrank += '<div class="col-auto prepend-nick prepend-nick-rank" style="position: relative"><a href="javascript:void(0)">' + rank + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlrank += '<div class="col-auto prepend-nick prepend-nick-rank" style="position: relative"><a href="javascript:void(0)">' + rank + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlrank);
             isSet = true;
+            index = index + 1;
         }
 
 
@@ -93,16 +106,21 @@ $(document).ready(function (e) {
                         return false;
                     }
                     var htmlswitch = '';
-                    htmlswitch += '<div class="col-auto prepend-nick prepend-nick-switch" data-val="' + data_switch + '" style="position: relative"><a href="javascript:void(0)">' + text_switch + '</a><img class="lazy close-item-nick imgae-nick-switch" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+                    htmlswitch += '<div class="col-auto prepend-nick prepend-nick-switch" data-val="' + data_switch + '" style="position: relative"><a href="javascript:void(0)">' + text_switch + '</a><img class="lazy close-item-nick imgae-nick-switch" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
                     $('.nick-findter-data').prepend(htmlswitch);
                     isSet = true;
+                    index = index + 1;
                 }
 
             }
         });
 
-        if (isSet == false){
-            // $('.nick-findter-row').css('margin-top',-24);
+        if (parseInt(index) > 0){
+            $('.overlay-find').html(index);
+            $('.overlay-find').css('display','block');
+        }else {
+            $('.overlay-find').html(index);
+            $('.overlay-find').css('display','none');
         }
 
     }
@@ -202,4 +220,10 @@ $(document).ready(function (e) {
             }
         }
     });
+
+
+    $('body').on('click','.close-modal-default',function(e){
+        e.preventDefault();
+        $('#openFinter').modal('hide');
+    })
 })

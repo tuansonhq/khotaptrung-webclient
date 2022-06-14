@@ -1,14 +1,22 @@
 $(document).ready(function (e) {
 
-    $('.view-more').click(function(){
-        $('.view-less').css("display","block");
-        $('.view-more').css("display","none");
-        $(".footer-row-ct .content-video-in").addClass( "showtext" );
-    });
-    $('.view-less').click(function(){
-        $('.view-more').css("display","block");
-        $('.view-less').css("display","none");
-        $(".footer-row-ct .content-video-in").removeClass( "showtext");
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
+
+            $('.content-video-in').css('max-height', 'initial')
+            $('.content-video-in').removeClass('content-video-in-add')
+
+        } else {
+            $('.content-video-in').addClass('content-video-in-add')
+            $('.content-video-in::after').show()
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
     });
 
     $(function(){
@@ -148,8 +156,6 @@ $(document).ready(function (e) {
         }
     });
 
-    // $('#successModal').modal('show')
-
     $('.wide').niceSelect();
 
     tippy('#getShowpass', {
@@ -188,7 +194,7 @@ $(document).ready(function (e) {
             passwordField.attr('type', 'text');
 
             var htmlpass = '';
-            htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+            htmlpass += '<img class="lazy img-show-password" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
             $('.getCopypass').html('');
             $('.getCopypass').html(htmlpass);
 
@@ -196,7 +202,7 @@ $(document).ready(function (e) {
             $(this).val('Hide');
         } else {
             var htmlpass = '';
-            htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+            htmlpass += '<img class="lazy img-show-password" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
             $('.getCopypass').html('');
             $('.getCopypass').html(htmlpass);
 
@@ -414,7 +420,7 @@ $(document).ready(function (e) {
 
         var html = '';
 
-        html += '<div class="row marginauto down-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/frontend/theme_3/image/nick/up.png" alt=""></div></div>';
+        html += '<div class="row marginauto down-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/theme_3/image/nick/up.png" alt=""></div></div>';
 
         $('.data-scroll-mobile').html('');
         $('.data-scroll-mobile').html(html);
@@ -428,10 +434,30 @@ $(document).ready(function (e) {
 
         var html = '';
 
-        html += '<div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/frontend/theme_3/image/nick/up.png" alt=""></div></div>';
+        html += '<div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/theme_3/image/nick/up.png" alt=""></div></div>';
 
         $('.data-scroll-mobile').html('');
         $('.data-scroll-mobile').html(html);
 
     });
+
+    $('body').on('click','.btn-tra-gop',function(){
+        $('#traGop').modal('show')
+    })
+
+    $('body').on('click','.openSuccess',function(){
+        $('#successModal').modal('show')
+    })
+
+
+    $('body').on('click','.btn-mua-ngay',function(){
+        $('#openOrder').modal('show')
+    })
+
+    $('body').on('click','.close-modal-default',function(){
+        $('#openOrder').modal('hide')
+        $('#successModal').modal('hide')
+        $('#traGop').modal('hide')
+    })
+
 })
