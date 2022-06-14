@@ -39,6 +39,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/tippy/tippy.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
+{{--    nam--}}
 </head>
 <body>
 <div class="layout">
