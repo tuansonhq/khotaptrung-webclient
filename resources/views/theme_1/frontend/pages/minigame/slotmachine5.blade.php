@@ -479,12 +479,12 @@
                             var num1=0;
                             var num2=0;
                             var num3=0;
-                            if(gift_detail.winbox == 1){
+                            if(gift_detail.winbox == 0){
                                 var num1 = parseInt(gift_detail.order)+1;
-                                var num2 = randomExpert(1,{{count($result->group->items)}},num1,'999999');
-                                var num3 = randomExpert(1,{{count($result->group->items)}},num1,num2);
-                                var num4 = randomExpert(1,{{count($result->group->items)}},num1,num2);
-                                var num5 = randomExpert(1,{{count($result->group->items)}},num1,num2);
+                                var num2 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,'999999');
+                                var num3 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
+                                var num4 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
+                                var num5 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
                             }else{
                                 var num1 = parseInt(gift_detail.order)+1;
                                 var num2 = parseInt(gift_detail.order)+1;
@@ -499,11 +499,11 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num4 =  randomExpert(1,{{count($result->group->items)-4}},num1,'999999');
+                                        num4 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
-                                        num4 =  randomExpert(4,{{count($result->group->items)}},num1,'999999');
+                                        num4 =  randomExpert(4,parseInt('{{count($result->group->items)}}'),num1,'999999');
                                     }
                                 }
                                 if(xvalue == 2)
@@ -515,11 +515,11 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num5 =  randomExpert(1,{{count($result->group->items)-4}},num1,'999999');
+                                        num5 =  randomExpert(1,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
-                                        num5 =  randomExpert(4,{{count($result->group->items)}},num1,'999999');
+                                        num5 =  randomExpert(4,parseInt('{{count($result->group->items)}}'),num1,'999999');
                                     }
                                 }
                             }
@@ -639,12 +639,12 @@
                             var num1=0;
                             var num2=0;
                             var num3=0;
-                            if(gift_detail.winbox == 1){
+                            if(gift_detail.winbox == 0){
                                 var num1 = parseInt(gift_detail.order)+1;
-                                var num2 = randomExpert(1,{{count($result->group->items)}},num1,'999999');
-                                var num3 = randomExpert(1,{{count($result->group->items)}},num1,num2);
-                                var num4 = randomExpert(1,{{count($result->group->items)}},num1,num2);
-                                var num5 = randomExpert(1,{{count($result->group->items)}},num1,num2);
+                                var num2 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,'999999');
+                                var num3 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
+                                var num4 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
+                                var num5 = randomExpert(1,parseInt('{{count($result->group->items)}}'),num1,num2);
                             }else{
                                 var num1 = parseInt(gift_detail.order)+1;
                                 var num2 = parseInt(gift_detail.order)+1;
@@ -659,11 +659,11 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num4 =  randomExpert(1,{{count($result->group->items)-4}},num1,'999999');
+                                        num4 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
-                                        num4 =  randomExpert(4,{{count($result->group->items)}},num1,'999999');
+                                        num4 =  randomExpert(4,parseInt('{{count($result->group->items)}}'),num1,'999999');
                                     }
                                 }
                                 if(xvalue == 2)
@@ -675,11 +675,11 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num5 =  randomExpert(1,{{count($result->group->items)-4}},num1,'999999');
+                                        num5 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
-                                        num5 =  randomExpert(4,{{count($result->group->items)}},num1,'999999');
+                                        num5 =  randomExpert(4,parseInt('{{count($result->group->items)}}'),num1,'999999');
                                     }
                                 }
                             }
@@ -789,12 +789,12 @@
                 document.getElementById("slot3").className='a1'
                 document.getElementById("slot4").className='a1'
                 document.getElementById("slot5").className='a1'
-                var numChanges = randomInt(1,4)*{{count($result->group->items)}};
+                var numChanges = randomInt(1,4)*parseInt('{{count($result->group->items)}}');
                 var numeberSlot1 = numChanges+one
-                var numeberSlot2 = numChanges+2*{{count($result->group->items)}}+two;
-                var numeberSlot3 = numChanges+4*{{count($result->group->items)}}+three;
-                var numeberSlot4 = numChanges+6*{{count($result->group->items)}}+four;
-                var numeberSlot5 = numChanges+8*{{count($result->group->items)}}+five;
+                var numeberSlot2 = numChanges+2*parseInt('{{count($result->group->items)}}')+two;
+                var numeberSlot3 = numChanges+4*parseInt('{{count($result->group->items)}}')+three;
+                var numeberSlot4 = numChanges+6*parseInt('{{count($result->group->items)}}')+four;
+                var numeberSlot5 = numChanges+8*parseInt('{{count($result->group->items)}}')+five;
                 var i1 = 0;
                 var i2 = 0;
                 var i3 = 0;
@@ -986,7 +986,7 @@
                             //     $strDiscountcode="<span>Bạn nhận được 1 mã giảm giá khuyến mãi đi kèm: <b>"+arrDiscount[0]+"</b></span>";
                             // }
                             $html += "<span>Kết quả: " + gift_revice[0]["title"] + "</span><br/>";
-                            if (gift_detail.winbox == 0) {
+                            if (gift_detail.winbox == 1) {
                                 $html += "<span>Mua X1: Nhận được " + gift_revice[0]["parrent"].params.value + "</span><br/>";
                                 $html += "<span>Quay được "+(xvalue+3)+" hình trùng nhau. Nhận X"+(xvalueaDD[0])+" giải thưởng: "+gift_revice[0]["parrent"].params.value*(xvalueaDD[0])+""+msg_random_bonus[0]+"</span><br/>";
                                 $html += "<span>Tổng cộng: " + parseInt(gift_revice[0]["parrent"].params.value) * (parseInt(xvalueaDD[0])) + "</span>";
