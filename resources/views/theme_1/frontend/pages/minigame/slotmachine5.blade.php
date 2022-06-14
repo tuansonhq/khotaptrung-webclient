@@ -499,7 +499,7 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num4 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
+                                        num4 =  randomExpert(1,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
@@ -659,7 +659,7 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num4 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
+                                        num4 =  randomExpert(1,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
@@ -675,7 +675,7 @@
                                 {
                                     if(num1>4)
                                     {
-                                        num5 =  randomExpert(1,,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
+                                        num5 =  randomExpert(1,parseInt('{{count($result->group->items)-4}}'),num1,'999999');
                                     }
                                     else
                                     {
