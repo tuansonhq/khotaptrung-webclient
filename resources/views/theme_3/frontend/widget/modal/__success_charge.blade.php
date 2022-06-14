@@ -7,7 +7,7 @@
                     <div class="col-md-12 text-center">
                         <span>Nạp thẻ thành công</span>
                         <div class="close" data-dismiss="modal" aria-label="Close">
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
 
                         </div>
                     </div>
@@ -17,7 +17,7 @@
             <div class="modal-body modal-body-success-ct">
                 <div class="row marginauto justify-content-center">
                     <div class="col-auto">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                     </div>
                 </div>
                 <div class="row marginauto modal-body-span-success-ct justify-content-center">
