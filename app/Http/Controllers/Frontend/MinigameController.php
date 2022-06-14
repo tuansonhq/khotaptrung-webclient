@@ -193,11 +193,11 @@ class MinigameController extends Controller
                             return redirect()->back()->withErrors($result_out->message);
                     }
                 } else {
-                    logger('minigame: '.$result_out->message);
+                    logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             } else {
-                logger('minigame: '.$result_Api->message);
+                logger('minigame: '.$result_Api->response_data->msg);
                 return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
             }
         }
@@ -395,7 +395,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
-                        return redirect()->back()->withErrors($result_out->message);
+                        return redirect()->back()->withErrors($result_out->msg);
                     } else {
                         $perPage = $result->per_page??0;
                         $total = $result->total??0;
@@ -404,7 +404,7 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    logger('minigame: '.$result_out->message);
+                    logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
@@ -464,7 +464,7 @@ class MinigameController extends Controller
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 0) {
-                        return redirect()->back()->withErrors($result_out->message);
+                        return redirect()->back()->withErrors($result->msg);
                     } else {
                         $perPage = $result->per_page??0;
                         $total = $result->total??0;
@@ -473,7 +473,7 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.logacc', compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
-                    logger('minigame: '.$result_out->message);
+                    logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
@@ -514,7 +514,7 @@ class MinigameController extends Controller
                         return view('frontend.pages.minigame.withdrawitem', compact('paginatedItems','result','game_type'));
                     }
                 } else {
-                    logger('withdrawitem: '.$result_Api->message);
+                    logger('withdrawitem: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }
@@ -612,10 +612,10 @@ class MinigameController extends Controller
                     }else if(isset($result->status) && $result->status == 0){
                         return redirect()->back()->withErrors($result->msg);
                     }else {
-                        return redirect()->back()->with('success',__($result->msg));
+                        return redirect()->back()->with('success',$result->msg);
                     }
                 } else {
-                    logger('withdrawitem: '.$result_Api->message);
+                    logger('withdrawitem: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
                 }
             }

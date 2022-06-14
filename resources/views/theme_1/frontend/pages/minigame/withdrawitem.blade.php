@@ -54,7 +54,7 @@
                     </script>
                 </div>
                 <div class="text-center" style="color: #eb5d68;font-size: 18px;    margin: -14px auto 12px auto;    font-weight: 600;">Số {{isset($result->gametype->image)?$result->gametype->image:'vật phẩm'}} hiện có: {{number_format($result->number_item)}}</div>
-                <form class="form-horizontal" method="POST">
+                <form class="form-horizontal form-withdraw" method="POST">
                     {{csrf_field()}}
                     <div class="form-group row">
                         <label class="col-md-3 control-label">
@@ -97,7 +97,12 @@
                     </div>
                     <div class="form-group row " style="margin: 20px 0">
                         <div class="col-md-6" style="    margin-left: 25%;">
-                            <button class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block">Thực hiện</button>
+                            <button id="btn-confirm" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold btn-block">Thực hiện</button>
+                            <script>
+                                $(".form-withdraw").submit(function(){
+                                    $("#btn-confirm").prop( "disabled", true);
+                                });
+                            </script>
                         </div>
                     </div>
                 </form>
