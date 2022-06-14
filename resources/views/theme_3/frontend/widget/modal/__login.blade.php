@@ -34,7 +34,8 @@
                     </form>
                 </div>
                 <div class="modal-login-form-container sign-in-container"   >
-                    <form class="modal-login-form" id="formLogin" action="/login" method="POST">
+                    <form class="modal-login-form" action="{{route('login')}}" id="formLogin"  method="POST">
+                        @csrf
                         <h1>Đăng nhập</h1>
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
                         <p class="modal-login-error" id="usernameError"></p>
@@ -44,7 +45,7 @@
                             <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
                         <p class="modal-login-error" id="passwordError"></p>
-                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>
+{{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
                         <button type="submit">Đăng nhập</button>
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
@@ -121,3 +122,66 @@
         </form>
     </div>
 </div>
+<script>
+
+    $('#formLogin').submit(function (e) {
+
+        e.preventDefault();
+        var formSubmit = $(this);
+        var url = formSubmit.attr('action');
+        var btnSubmit = formSubmit.find(':submit');
+        let url2 = new URL(window.location.href);
+
+        var return_url = url2.searchParams.get('return_url');
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache:false,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
+
+            },
+            success: function (data) {
+                console.log(data)
+                if(data.status == 1){
+                    if (return_url == null || return_url == '' || return_url == undefined){
+
+                        if (return_url == null || return_url == '' || metapath == undefined){
+                            if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                                window.location.href = '/';
+                            }else{
+                                window.location.href = data.return_url;
+                            }
+
+
+                        }else {
+                            window.location.href = return_url;
+
+                        }
+
+                    }else {
+                        window.location.href = return_url;
+
+                    }
+                }else{
+                    swal({
+                        title: "Có lỗi xảy ra !",
+                        text: data.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
+                }
+
+            },
+            error: function (data) {
+                alert('non');
+                btnSubmit.text('Đăng nhập');
+            },
+            complete: function (data) {
+                $('#form-login').trigger("reset");
+            }
+        });
+    });
+</script>
