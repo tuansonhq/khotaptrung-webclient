@@ -61,7 +61,8 @@ $(document).ready(function(){
                     $('.box-account').show();
                     $('.box-deposit-charge').show();
                     $('#account-id').html(' <span >ID: </span>'+ data.info.id );
-                    $('#account-name').html(fn(data.info.username, 6) );
+                    $('.box-deposit-charge').html(' <a class="btn btn-submit" href="/nap-the">Nạp thẻ </a>' );
+                    $('#account-name').html(fn(data.info.username, 12) );
                     $('.account-balance').html('Số dư: ' +formatNumber(data.info.balance) );
                     $('#account-balance').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
                     $('.log-out-button').html(' <a class="btn btn-submit" onclick="event.preventDefault();\n' +
