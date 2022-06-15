@@ -1,4 +1,4 @@
-extends('frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
@@ -18,12 +18,12 @@ extends('frontend.layouts.master')
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <a href="" class="card--back">
+            <a href="/tin-tuc" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
             <h4>Tin cộng đồng</h4>
         </div>
-        <div class="card --custom mt-0 mt-lg-3 p-3">
+        <div class="card --custom mt-0 mt-lg-3 p-3" id="list-article">
             <div class="card--header">
                 <div class="card--header__title">
                     <div class="title__icon mr-1"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/lightning.png" alt=""></div>
@@ -356,7 +356,7 @@ extends('frontend.layouts.master')
                         </div>
                     </div>
 
-                    <div class="col-md-12 left-right justify-content-end default-paginate d-none d-lg-block">
+                    <div class="col-md-12 left-right justify-content-end default-paginate">
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">

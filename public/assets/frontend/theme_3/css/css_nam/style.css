@@ -349,7 +349,7 @@ header nav.heading .header-container{
     margin-left: 38px;
 }
 .item-about{
-    margin: 0 14px;
+    margin: 0 16px;
     text-align: center;
 
 }
@@ -518,7 +518,7 @@ header nav.heading .header-container{
     transition: .2s;
 
 }
-.box-login a{
+.box-logined a{
     background-color: transparent;
     border-radius: 8px;
     color: var(--primary-color);
@@ -529,7 +529,7 @@ header nav.heading .header-container{
     border: 1px solid var(--primary-color);
 
 }
-.box-login a:hover{
+.box-logined a:hover{
     background-color: var(--primary-color);
     color: white;
     transition: .2s;
@@ -871,13 +871,12 @@ header nav.heading .header-container{
 .list-product .swiper-slide{
     border-radius: var(--primary-border);
     border: 1px solid #DCDEE9;
-    transition: .2s;
 }
 .list-product .swiper-slide:hover{
     border: 1px solid var(--primary-color);
     /*transform: translateY(-0.1rem);*/
     /*box-shadow: 0px 2px 10px 0px #00000033;*/
-    transition: .2s;
+    transition: .2s ease-out;
 
 }
 .list-product .swiper-slide:hover .item-product__box-img::after{
@@ -1198,9 +1197,18 @@ header nav.heading .header-container{
     cursor: pointer;
     transition: .2s;
 }
-.log-out-button{
-    padding: 7.5px 0;
-}
+/*.log-out-button a{*/
+
+/*    border-radius: var(--primary-border);*/
+/*    font-size: 16px;*/
+/*    font-weight: 600;*/
+/*    background-color: var(--primary-color);*/
+/*    */
+/*    border: 1px solid var(--primary-color);*/
+/*    cursor: pointer;*/
+/*    transition: .2s;*/
+/*    padding: 7.5px 0;*/
+/*}*/
 .primary-button:hover{
     background-color: transparent;
     transition: .2s;
@@ -1288,7 +1296,6 @@ header nav.heading .header-container{
 }
 .list-news .swiper-slide{
     border: none;
-    transition: .2s;
 
 
 }
@@ -1568,3 +1575,50 @@ header nav.heading .header-container{
 .box-account-mobile_close{
     display: none;
 }
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /*margin: 12px 30px -5px;*/
+    margin-top: 6px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: #FFF8F2;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+}
+.btn-loading{
+    padding:6px 46px;
+    background: #EBEBEB;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+.box-logined,.box-account,.box-registed,.box-deposit-charge{
+    display: none;
+}
+.log-out-button a{
+    display: flex;
+    border-radius: var(--primary-border);
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--primary-color);
+
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: .2s;
+    padding: 7.5px 0;
+    justify-content: center;
+}
+.log-out-button a{color: white;transition: .2s}
+.log-out-button a:hover{color: var(--primary-color);transition: .2s;background-color: white;}
