@@ -63,7 +63,7 @@
                 @if(isset($data->groups[0]->slug))
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
-                        <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">Ngọc rồng</a></p>
+                        <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">{{ $data->groups[0]->title }}</a></p>
                     </div>
                 </div>
                 @endif
@@ -600,7 +600,7 @@
         function UpdatePrice() {
             var price = 0;
             var itemselect = '';
-
+            console.log(data)
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
             }
@@ -805,7 +805,7 @@
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
             total = parseInt(total / 1000 * data.input_pack_rate);
-
+            console.log(discount)
             $('#txtDiscount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/,'');

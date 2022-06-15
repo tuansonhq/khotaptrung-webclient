@@ -112,8 +112,7 @@ class ServiceController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
         $response_data = $result_Api->response_data??null;
-
-        if(isset($response_data) && $response_data->status == 1){
+        if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
             $data_bot = $response_data->data_bot??null;
@@ -122,6 +121,7 @@ class ServiceController extends Controller
             $dataSendCate = array();
             $dataSendCate['limit'] = 8;
             $result_cate_Api = DirectAPI::_makeRequest($urlCate,$dataSendCate,$method);
+
             $response_cate_data = $result_cate_Api->response_data??null;
 
             if(isset($response_cate_data) && $response_cate_data->status == 1){

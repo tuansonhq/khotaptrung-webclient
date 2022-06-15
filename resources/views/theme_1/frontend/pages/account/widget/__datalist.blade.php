@@ -23,7 +23,7 @@
                                             ?>
                                             @if(isset($item->groups))
                                                 <?php
-                                                $att_values = $item->groups;
+                                                    $att_values = $item->groups;
                                                 ?>
                                                 @foreach($att_values as $att_value)
 
