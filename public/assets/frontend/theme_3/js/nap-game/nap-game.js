@@ -1,15 +1,22 @@
 $(document).ready(function (e) {
 
-    $('.view-more').click(function(){
-        $('.view-less').css("display","block");
-        $('.view-more').css("display","none");
-        $(".footer-row-ct .content-video-in").addClass( "showtext" );
-    });
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
 
-    $('.view-less').click(function(){
-        $('.view-more').css("display","block");
-        $('.view-less').css("display","none");
-        $(".footer-row-ct .content-video-in").removeClass( "showtext");
+            $('.content-video-in').css('max-height', 'initial')
+            $('.content-video-in').removeClass('content-video-in-add')
+
+        } else {
+            $('.content-video-in').addClass('content-video-in-add')
+            $('.content-video-in::after').show()
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
     });
 
 })

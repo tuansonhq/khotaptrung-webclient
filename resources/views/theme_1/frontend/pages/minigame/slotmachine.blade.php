@@ -438,7 +438,7 @@
         $('body').delegate('#start-played', 'click', function() {
 
             if (roll_check) {
-                fakeLoop();
+                //fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
                 typeRoll = "real";
@@ -474,15 +474,15 @@
                         var num1=0;
                         var num2=0;
                         var num3=0;
-                        if(gift_detail.winbox == 1){
+                        if(gift_detail.winbox == 0){
                             num1 = parseInt(gift_detail.order)+1;
                             num2 = num1 + 1;
-                            if(num2 > {{count($result->group->items)}}){
-                                num2 = num2 - {{count($result->group->items)}};
+                            if(num2 > parseInt('{{count($result->group->items)}}')){
+                                num2 = num2 - parseInt('{{count($result->group->items)}}');
                             }
                             num3 = num2 + 1;
-                            if(num3 > {{count($result->group->items)}}){
-                                num3 = num3 - {{count($result->group->items)}};
+                            if(num3 > parseInt('{{count($result->group->items)}}')){
+                                num3 = num3 - parseInt('{{count($result->group->items)}}');
                             }
                         }else{
                             num1 = parseInt(gift_detail.order)+1;
@@ -570,7 +570,7 @@
 
         $('body').delegate('.num-play-try', 'click', function() {
             if (roll_check) {
-                fakeLoop();
+                //fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
                 typeRoll = "try";
@@ -605,15 +605,15 @@
                         var num1=0;
                         var num2=0;
                         var num3=0;
-                        if(gift_detail.winbox == 1){
+                        if(gift_detail.winbox == 0){
                             num1 = parseInt(gift_detail.order)+1;
                             num2 = num1 + 1;
-                            if(num2 > {{count($result->group->items)}}){
-                                num2 = num2 - {{count($result->group->items)}};
+                            if(num2 > parseInt('{{count($result->group->items)}}')){
+                                num2 = num2 - parseInt('{{count($result->group->items)}}');
                             }
                             num3 = num2 + 1;
-                            if(num3 > {{count($result->group->items)}}){
-                                num3 = num3 - {{count($result->group->items)}};
+                            if(num3 > parseInt('{{count($result->group->items)}}')){
+                                num3 = num3 - parseInt('{{count($result->group->items)}}');
                             }
                         }else{
                             num1 = parseInt(gift_detail.order)+1;
@@ -654,55 +654,55 @@
             }
         });
 
-        function fakeLoop(){
-            document.getElementById("slot1").className='a1'
-            document.getElementById("slot2").className='a1'
-            document.getElementById("slot3").className='a1'
-            var i1 = 0;
-            var i2 = 0;
-            var i3 = 0;
-            slot1_fake = setInterval(spin1_fake, 50);
-            slot2_fake = setInterval(spin2_fake, 50);
-            slot3_fake = setInterval(spin3_fake, 50);
+        // function fakeLoop(){
+        //     document.getElementById("slot1").className='a1'
+        //     document.getElementById("slot2").className='a1'
+        //     document.getElementById("slot3").className='a1'
+        //     var i1 = 0;
+        //     var i2 = 0;
+        //     var i3 = 0;
+        //     slot1_fake = setInterval(spin1_fake, 50);
+        //     slot2_fake = setInterval(spin2_fake, 50);
+        //     slot3_fake = setInterval(spin3_fake, 50);
 
-            function spin1_fake() {
-                i1++;
-                slotTile = document.getElementById("slot1");
-                if (slotTile.className=="a{{count($result->group->items)}}"){
-                    slotTile.className = "a0";
-                }
-                slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-            }
-            function spin2_fake(){
-                i2++;
-                slotTile = document.getElementById("slot2");
-                if (slotTile.className=="a{{count($result->group->items)}}"){
-                    slotTile.className = "a0";
-                }
-                slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-            }
-            function spin3_fake(){
-                i3++;
-                slotTile = document.getElementById("slot3");
-                if (slotTile.className=="a{{count($result->group->items)}}"){
-                    slotTile.className = "a0";
-                }
-                slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-            }
-        }
+        //     function spin1_fake() {
+        //         i1++;
+        //         slotTile = document.getElementById("slot1");
+        //         if (slotTile.className=="a{{count($result->group->items)}}"){
+        //             slotTile.className = "a0";
+        //         }
+        //         slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+        //     }
+        //     function spin2_fake(){
+        //         i2++;
+        //         slotTile = document.getElementById("slot2");
+        //         if (slotTile.className=="a{{count($result->group->items)}}"){
+        //             slotTile.className = "a0";
+        //         }
+        //         slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+        //     }
+        //     function spin3_fake(){
+        //         i3++;
+        //         slotTile = document.getElementById("slot3");
+        //         if (slotTile.className=="a{{count($result->group->items)}}"){
+        //             slotTile.className = "a0";
+        //         }
+        //         slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+        //     }
+        // }
 
 
         function doSlot(one, two, three){
-            clearInterval(slot1_fake);
-            clearInterval(slot2_fake);
-            clearInterval(slot3_fake);
+            // clearInterval(slot1_fake);
+            // clearInterval(slot2_fake);
+            // clearInterval(slot3_fake);
             document.getElementById("slot1").className='a1'
             document.getElementById("slot2").className='a1'
             document.getElementById("slot3").className='a1'
-            var numChanges = randomInt(1,4)*{{count($result->group->items)}};
+            var numChanges = randomInt(1,4)*parseInt('{{count($result->group->items)}}');
             var numeberSlot1 = numChanges+one
-            var numeberSlot2 = numChanges+2*{{count($result->group->items)}}+two
-            var numeberSlot3 = numChanges+4*{{count($result->group->items)}}+three
+            var numeberSlot2 = numChanges+2*parseInt('{{count($result->group->items)}}')+two
+            var numeberSlot3 = numChanges+4*parseInt('{{count($result->group->items)}}')+three
             var i1 = 0;
             var i2 = 0;
             var i3 = 0;

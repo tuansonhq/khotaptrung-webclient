@@ -78,7 +78,7 @@
                         <a class="btn btn-primary num-play-try">Chơi thử</a>
                         @endif
                         <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
-                        <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a>
+                        <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -420,7 +420,7 @@ $(document).ready(function(e){
         $('.boxflip img.flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
         $('.play').hide();
-        $('.continue').hide();
+        //$('.continue').hide();
         $('#type_play').val('real');
     })
     $('.num-play-try').click(function(){
@@ -431,7 +431,7 @@ $(document).ready(function(e){
         $('.boxflip img.flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
         $('.play').hide();
-        $('.continue').hide();
+        //$('.continue').hide();
         $('#type_play').val('try');
     })
     function initial(){
@@ -506,15 +506,17 @@ $(document).ready(function(e){
                         $("#btnWithdraw").hide();
                         $('.content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
-                        $('.continue').show();
-                        if($('#type_play').val() == "real")
-                        {
-                            $('.continue').html("Chơi tiếp");
-                        }
-                        else
-                        {
-                            $('.continue').html("Chơi thử tiếp");
-                        }
+                        $('.num-play-try').show();
+                        $('.play').show();
+                        //$('.continue').show();
+                        // if($('#type_play').val() == "real")
+                        // {
+                        //     $('.continue').html("Chơi tiếp");
+                        // }
+                        // else
+                        // {
+                        //     $('.continue').html("Chơi thử tiếp");
+                        // }
                         return;
                     }
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;
@@ -675,15 +677,17 @@ $(document).ready(function(e){
                     }
                     setTimeout(function(){
                         $('#noticeModal').modal('show');
-                        $('.continue').show();
-                        if($('#type_play').val() == "real")
-                        {
-                            $('.continue').html("Chơi tiếp");
-                        }
-                        else
-                        {
-                            $('.continue').html("Chơi thử tiếp");
-                        }
+                        //$('.continue').show();
+                        $('.num-play-try').show();
+                        $('.play').show();
+                        // if($('#type_play').val() == "real")
+                        // {
+                        //     $('.continue').html("Chơi tiếp");
+                        // }
+                        // else
+                        // {
+                        //     $('.continue').html("Chơi thử tiếp");
+                        // }
                     },2500);
                 },
                 error: function(){
@@ -754,13 +758,13 @@ $(document).ready(function(e){
       return array;
     }
 
-    $('.continue').click(function(){
-        $('.boxflip').html(document.getElementById('boxfliphide').innerHTML);
-        $('.continue').hide();
-        $('.play').hide();
-        $('.num-play-try').hide();
-        roll_check = true;
-    });
+    // $('.continue').click(function(){
+    //     $('.boxflip').html(document.getElementById('boxfliphide').innerHTML);
+    //     $('.continue').hide();
+    //     $('.play').hide();
+    //     $('.num-play-try').hide();
+    //     roll_check = true;
+    // });
 });
 
 </script>
