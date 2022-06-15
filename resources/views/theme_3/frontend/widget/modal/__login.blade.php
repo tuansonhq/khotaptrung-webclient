@@ -37,14 +37,15 @@
                     <form class="modal-login-form" action="{{route('login')}}" id="formLogin"  method="POST">
                         @csrf
                         <h1>Đăng nhập</h1>
+                        <p class="modal-login-error text-center" id="LoginError" ></p>
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
-                        <p class="modal-login-error" id="usernameError"></p>
+
                         <div class="password-input-container">
                             <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
                             <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
                             <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
-                        <p class="modal-login-error" id="passwordError"></p>
+{{--                        <p class="modal-login-error" id="passwordError"></p>--}}
 {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
                         <button type="submit">Đăng nhập</button>
                         <span>Hoặc đăng nhập qua</span>
@@ -142,7 +143,7 @@
 
             },
             success: function (data) {
-                console.log(data)
+
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
 
@@ -164,14 +165,15 @@
 
                     }
                 }else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    $('#LoginError').html(data.message)
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
 
             },
