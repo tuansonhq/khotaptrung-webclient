@@ -21,6 +21,7 @@ class Theme
             }
             return $seo;
         });
+
     }
 //    public static function getTheme($key){
 //      if (empty($key)){

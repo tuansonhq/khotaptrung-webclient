@@ -78,7 +78,7 @@
                         <div class="padding-left" style="font-family: Roboto, sans-serif;">
                             <div class="cand-details" id="about" style="float: left;width: 100%">
                                 <h2>Tên dịch vụ</h2>
-                                <p><a class="thea_dichvu" href="/dich-vu/{{(isset($data->itemconfig_ref->slug)?$data->itemconfig_ref->slug:"Lỗi")}}">{{$data->title}}</a></p>
+                                <p><a class="thea_dichvu" href="/dich-vu/{{(isset($data->itemconfig_ref->slug)?$data->itemconfig_ref->slug:"Lỗi")}}">{{$data->itemconfig_ref->title}}</a></p>
 
                                 <h2>Công việc</h2>
                                 <div class="edu-history-sec" id="education">
@@ -88,7 +88,8 @@
                                                 <i class="fa fa-briefcase" aria-hidden="true"></i>
                                                 <div class="edu-hisinfo">
                                                     <h3>{{$aWorkName->title}}</h3>
-                                                    <i>{{ formatPrice($aWorkName->unit_price) }} VNĐ</i>
+                                                    <i>{{ str_replace(',','.',number_format($aWorkName->unit_price)) }} VNĐ</i>
+
                                                 </div>
                                             </div>
                                         @endforeach
@@ -159,7 +160,7 @@
                                                         @else
 
                                                             @if($send_type[$index]==4)
-                                                                @dd("2222222222")
+
                                                                 <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}" target="_blank">
                                                                     {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
                                                                 </a>

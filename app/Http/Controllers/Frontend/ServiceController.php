@@ -112,8 +112,7 @@ class ServiceController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
         $response_data = $result_Api->response_data??null;
-
-        if(isset($response_data) && $response_data->status == 1){
+        if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
             $data_bot = $response_data->data_bot??null;
@@ -122,6 +121,7 @@ class ServiceController extends Controller
             $dataSendCate = array();
             $dataSendCate['limit'] = 8;
             $result_cate_Api = DirectAPI::_makeRequest($urlCate,$dataSendCate,$method);
+//            return $result_cate_Api;
             $response_cate_data = $result_cate_Api->response_data??null;
 
             if(isset($response_cate_data) && $response_cate_data->status == 1){
@@ -130,12 +130,12 @@ class ServiceController extends Controller
 
                 $datacate = new LengthAwarePaginator($datacate->data, $datacate->total, $datacate->per_page, $datacate->current_page, $datacate->data);
                 $datacate->setPath($request->url());
-//                return $datacate;
+
                 Session::put('path', $_SERVER['REQUEST_URI']);
 
                 return view('frontend.pages.service.detail')
                     ->with('data', $data)
-                    ->with('data', $data)
+                    ->with('datacate', $datacate)
                     ->with('data_bot', $data_bot)
                     ->with('slug', $slug);
 

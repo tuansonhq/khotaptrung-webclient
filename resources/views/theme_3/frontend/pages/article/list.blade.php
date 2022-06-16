@@ -126,7 +126,7 @@
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
                                 </div>
                             </div>
                         </div>

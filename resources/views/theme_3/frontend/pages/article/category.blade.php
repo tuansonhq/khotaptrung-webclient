@@ -10,10 +10,10 @@
                 <a href="/" class="breadcrum--link">Trang chủ</a>
             </li>
             <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">Hướng dẫn game</a>
+                <a href="" class="breadcrum--link">Tin tức</a>
             </li>
             <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">Tin tức</a>
+                <a href="" class="breadcrum--link">{{ $title->slug }}</a>
             </li>
         </ul>
         {{--content--}}
@@ -28,7 +28,7 @@
             <div class="card--header">
                 <div class="card--header__title">
                     <div class="title__icon mr-1"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/lightning.png" alt=""></div>
-                    <h4>Tin cộng đồng</h4>
+                    <h4>Tin tức/{{$title->slug}}</h4>
                 </div>
             </div>
             <div class="card--body mt-3">

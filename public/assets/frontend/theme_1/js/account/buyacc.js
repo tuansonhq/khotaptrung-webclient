@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-
-
     $(document).on('click', '.buyacc',function(e){
         e.preventDefault();
         var htmlloading = '';

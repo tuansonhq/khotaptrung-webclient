@@ -63,7 +63,7 @@
                 @if(isset($data->groups[0]->slug))
                 <div class="row d-sm-none  d-md-none  d-lg-none text-center">
                     <div class="col-md-12">
-                        <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">Ngọc rồng</a></p>
+                        <p style="margin-top: 15px;font-size: 23px;text-align: center" class="bb"><i class="fa fa-server" aria-hidden="true"></i> <a href="/dich-vu/{{ $data->groups[0]->slug }}" style="color:#32c5d2">{{ $data->groups[0]->title }}</a></p>
                     </div>
                 </div>
                 @endif
@@ -600,7 +600,7 @@
         function UpdatePrice() {
             var price = 0;
             var itemselect = '';
-
+            console.log(data)
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
             }
@@ -787,21 +787,26 @@
 
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
+
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+
+                    }
+                }
             }
             else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
-            }
-            for (var i = 0; i < s_price.length; i++) {
 
-                if (price >= s_price[i] && s_price[i] != null) {
-                    current = s_price[i];
-                    index = i;
-                    discount = s_discount[i];
-                    total = price * s_discount[i];
-
-                }
+                discount = s_discount[server];
+                total = price * discount;
             }
+
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
             total = parseInt(total / 1000 * data.input_pack_rate);

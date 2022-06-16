@@ -293,7 +293,6 @@ class AccController extends Controller
             $method = "GET";
 
             $dataSend = array();
-//            $dataSendslider['data'] = 'list_acc';
             $dataSend['id'] = $slug;
             $dataSend['limit'] = 12;
             $dataSend['status'] = 1;

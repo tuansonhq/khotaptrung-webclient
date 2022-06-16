@@ -92,45 +92,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 ]);
             });
 
-            Route::get('/408',function(){
-                return view('errors.408');
-            });
-
-            Route::get('/chi-tiet-caythue',function(){
-                return view('frontend.html.chitiet');
-            });
-
-            Route::get('/danhsachnick',function(){
-                return view('frontend.html.danhsachnick');
-            });
-
-            Route::get('/napgame',function(){
-                return view('frontend.html.napgame');
-            });
-
-            Route::get('/nick',function(){
-                return view('frontend.html.nick');
-            });
-
-            Route::get('/lichsu',function(){
-                return view('frontend.html.lichsu');
-            });
-
-            Route::get('/nickdetail',function(){
-                return view('frontend.html.nickdetail');
-            });
-
-            Route::get('/loi404',function(){
-                return view('frontend.html.404');
-            });
-
-            Route::get('/caythue',function(){
-                return view('frontend.html.caythue');
-            });
-
-            Route::get('/chitietnapgame',function(){
-                return view('frontend.html.chitietnapgame');
-            });
 
             Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
             Route::group(['middleware' => ['cacheResponse: 604800']], function (){
@@ -163,6 +124,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+
+                Route::get('/lich-su-tra-gop',function(){
+                    return view('frontend.pages.account.logs-installment');
+                });
 
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 

@@ -39,7 +39,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('theme_3.frontend.widget.__navbar__profile')
+                @include('frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="scroll-into-view"></div>
                         <div class="col-md-12 logs-search left-right">
 
                             <div class="row marginauto">
@@ -62,7 +62,12 @@
                                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
-                                                <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
+                                                <button type="submit" class="timkiem-button-ct">
+                                                    Tìm kiếm
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -92,35 +97,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table">
-                                <div class="col-md-12 left-right">
-                                    <table class="table table-responsive-lg table-striped table-hover table-logs">
-                                        <thead>
-                                        <tr>
-                                            <th>Thời gian</th>
-                                            <th>ID</th>
-                                            <th>Tài khoản</th>
-                                            <th>Giao dịch</th>
-                                            <th>Số tiền</th>
-                                            <th>Số dư cuối</th>
-                                            <th>Nội dung</th>
-                                            <th>Trạng thái</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <tr style="width: 100%" id="table-notdata">
-                                            <td colspan="8"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
 {{--                        <div class="col-md-12 logs-table left-right">--}}
-{{--                            <div class="row marginauto default-table">--}}
+{{--                            <div class="row default-table">--}}
 {{--                                <div class="col-md-12 left-right">--}}
 {{--                                    <table class="table table-responsive-lg table-striped table-hover table-logs">--}}
 {{--                                        <thead>--}}
@@ -137,245 +115,25 @@
 {{--                                        </thead>--}}
 {{--                                        <tbody>--}}
 
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-{{--                                        <tr>--}}
-{{--                                            <td>09-02-2022 08:32</td>--}}
-{{--                                            <td>#4171</td>--}}
-
-{{--                                            <td>Tuấn Sơn</td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua Nick--}}
-{{--                                            </td>--}}
-
-{{--                                            <td>--}}
-{{--                                                1.000.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                970.000 đ--}}
-{{--                                            </td>--}}
-{{--                                            <td>--}}
-{{--                                                Mua nick liên quân--}}
-{{--                                            </td>--}}
-{{--                                            <td><span class="badge badge-success">Thành công</span></td>--}}
-{{--                                        </tr>--}}
-
+{{--                                        <tr style="width: 100%" id="table-notdata"><td colspan="8"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>--}}
 {{--                                        </tbody>--}}
 {{--                                    </table>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
 {{--                        </div>--}}
 
-{{--                        <div class="col-md-12 left-right justify-content-end default-paginate">--}}
-
-{{--                            <div class="row marinautooo justify-content-center">--}}
-{{--                                <div class="col-auto">--}}
-{{--                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">--}}
-{{--                                        <ul class="pagination pagination-sm">--}}
-
-{{--                                            <li class="page-item disabled">--}}
-{{--                                                        <span class="page-link">--}}
-{{--                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/back.png" alt="">--}}
-{{--                                                        </span>--}}
-{{--                                            </li>--}}
-
-{{--                                            <li class="page-item active"><span class="page-link">1</span></li>--}}
-{{--                                            <li class="page-item"><a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2">2</a></li>--}}
-{{--                                            <li class="page-item"><a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=3">3</a></li>--}}
-
-{{--                                            <li class="page-item disabled hidden-xs"><span class="page-link">...</span></li>--}}
-
-{{--                                            <li class="page-item hidden-xs"><a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=14">14</a></li>--}}
+                        <div class="col-md-12 logs-table left-right">
+                            <div class="row default-table" id="data_lich__su_history" style="position: relative">
+                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                    <div class="d-flex justify-content-center">
+                                        <span class="pulser"></span>
+                                    </div>
+                                </div>
+                                @include('frontend.pages.transaction.widget.__transaction_history')
+                            </div>
+                        </div>
 
 
-{{--                                            <li class="page-item">--}}
-{{--                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2" rel="next">--}}
-{{--                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/forward.png" alt="">--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                     </div>
                 </div>
@@ -400,38 +158,19 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form action="">
+                    <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Loại giao dịch</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                        <select class="wide transaction" name="transaction">
-                                            <option>Chọn</option>
-                                            <option value="3">Bán nick</option>
-                                            <option value="4">Nạp thẻ</option>
-                                            <option value="5">Cày thuê</option>
-                                            <option value="5">Dịch vụ</option>
-                                        </select>
-                                    </div>
+                                <div class="row marginauto data__config">
+                                    @include('frontend.pages.transaction.widget.__data_config')
                                 </div>
                             </div>
 
                             <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Trạng thái</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status">
-                                            <option>Chọn</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
-                                        </select>
-                                    </div>
+                                <div class="row marginauto data__status">
+                                    @include('frontend.pages.transaction.widget.__data_status')
+
                                 </div>
                             </div>
 
@@ -458,7 +197,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" name="ended_at" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
@@ -472,14 +211,26 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                         <div class="row marginauto modal-footer-success-row-not-ct">
                                             <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct reset-find"><span>Thiết lập lại</span></a>
+                                                <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
+                                                    <span>
+                                                        Thiết lập lại
+                                                    </span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="button">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
+                                                    Áp dụng
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -495,7 +246,16 @@
 
     </div>
 
+    <input type="hidden" name="config_data" class="config_data" value="">
+    <input type="hidden" name="status_data" class="status_data" value="">
+    <input type="hidden" name="started_at_data" class="started_at_data" value="">
+    <input type="hidden" name="ended_at_data" class="ended_at_data" value="">
+    <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
+    <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns.js"></script>
+
+
 @endsection
 
 

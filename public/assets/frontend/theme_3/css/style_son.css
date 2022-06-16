@@ -344,8 +344,9 @@
 
 .body-detail-col-ct img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 .body-detail-ctng-col-ct img{
     width: 100%;
@@ -858,7 +859,7 @@
     padding-right: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 .body-detail-right-ng-ct{
     background-color: #ffffff;
@@ -1721,6 +1722,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 .default-paginate {
     padding-top: 20px;
+    padding-bottom: 16px;
 }
 .default-paginate .pagination {
     margin: 0;
@@ -2424,6 +2426,8 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     background: #FFF8F2;
     box-shadow: inset 0px -1px 0px #F1F1F1;
 }
+
+
 .nav-bar-child span{
     font-family: 'Open Sans';
     font-style: normal;
@@ -2502,6 +2506,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .default-table{
     border: 1px solid #BCBFD6;
     border-radius: 8px;
+    /*padding-bottom: 16px;*/
 }
 
 .default-table .table td{
@@ -3174,6 +3179,66 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
 /*end xem thêm footer*/
 
+
+
+/*Xem thêm profile*/
+
+.__icon__profile:after
+{
+    content: '';
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.__icon__profile.--sm__profile {
+    width: 24px;
+    height: 24px;
+}
+
+.global__link__profile {
+    display: flex;
+    color: #1990FF;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.5;
+    align-items: center;
+    justify-content: start;
+    transition: .2s;
+}
+.global__link__profile:hover {
+    color: #F67600;
+    transition: .2s;
+}
+.global__link__profile:focus {
+    color: #C55E00;
+}
+
+.__icon__profile.--link__profile {
+    -webkit-mask: var(--path) center/contain;
+    background-color: #434657;
+}
+.global__link__profile:hover .__icon__profile.--link__profile {
+    background-color: #F67600;
+    transition: .2s;
+}
+
+.nav-bar-child a:hover .global__link__profile .__icon__profile.--link__profile {
+    background-color: #F67600;
+    transition: .2s;
+}
+
+.nav-bar-child.active .__icon__profile.--link__profile {
+    background-color: #F67600;
+    transition: .2s;
+}
+
+    /*end xem thêm profile*/
+
+
+
+
 .content-video-in-add::after {
 
     content: "";
@@ -3197,6 +3262,44 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 16px;
     /*padding-bottom: 20px;*/
 }
+
+.body-box-loadding{
+    text-align: center;
+    position: relative;
+    min-height: 450px;
+}
+.result-amount-loadding{
+    min-height: 245px !important;
+}
+.pulser {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    border-radius: 100px;
+    margin-top: 8px;
+    width: 30px;
+    height: 30px;
+    border: 10px solid #F67600;
+    animation-name: pulse, fadeout;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+}
+@keyframes pulse {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); -webkit-filter: blur(5px); }
+}
+.loading-data__timkiem{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(50%,-50%);
+}
+
+#openFinter::-webkit-scrollbar {
+    display: none!important;
+}
+
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-header-col-ct h3{
