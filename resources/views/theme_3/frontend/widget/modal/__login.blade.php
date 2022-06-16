@@ -1,11 +1,14 @@
+@if(!App\Library\AuthCustom::check())
 <div class="modal fade" id="loginModal">
     <div class="modal-dialog modal-lg modal-dialog-centered animated">
         <div class="modal-content">
             <div class="modal-login-container" id="modal-login-container">
                 <div class="modal-login-form-container sign-up-container">
                     <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
-                    <form class="modal-login-form" id="formRegister" action="/register" method="POST">
+                    <form class="modal-login-form" id="formRegister" action="{{route('register')}}" method="POST">
+                        @csrf
                         <h1>Đăng ký</h1>
+                        <p class="modal-login-error text-center" id="registError"></p>
                         {{-- <div class="social-container">
                             <a href="" class="social">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
@@ -19,17 +22,22 @@
                         </div>
                         <span>Hoặc đăng ký bằng tài khoản</span> --}}
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản">
-                        <p class="modal-login-error" id="usernameRegisterError"></p>
-                        <input class="input-primary" type="text" name="email" placeholder="Nhập email">
-                        <p class="modal-login-error" id="emailRegisterError"></p>
-                        <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">
-                        <p class="modal-login-error" id="phoneRegisterError"></p>
+
+{{--                        <input class="input-primary" type="text" name="email" placeholder="Nhập email">--}}
+{{--                        <p class="modal-login-error" id="emailRegisterError"></p>--}}
+{{--                        <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">--}}
+{{--                        <p class="modal-login-error" id="phoneRegisterError"></p>--}}
                         <div class="password-input-container">
                             <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off">
                             <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
                             <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
-                        <p class="modal-login-error" id="passwordRegisterError"></p>
+                        <div class="password-input-container">
+                            <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off">
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
+                        </div>
+{{--                        <p class="modal-login-error" id="passwordRegisterError"></p>--}}
                         <button type="submit">Đăng ký</button>
                     </form>
                 </div>
@@ -37,19 +45,20 @@
                     <form class="modal-login-form" action="{{route('login')}}" id="formLogin"  method="POST">
                         @csrf
                         <h1>Đăng nhập</h1>
+                        <p class="modal-login-error text-center" id="LoginError" ></p>
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
-                        <p class="modal-login-error" id="usernameError"></p>
+
                         <div class="password-input-container">
                             <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
                             <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
                             <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
                         </div>
-                        <p class="modal-login-error" id="passwordError"></p>
+{{--                        <p class="modal-login-error" id="passwordError"></p>--}}
 {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
                         <button type="submit">Đăng nhập</button>
                         <span>Hoặc đăng nhập qua</span>
                         <div class="social-container">
-                            <a href="" class="social">
+                            <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
                             </a>
                         </div>
@@ -74,7 +83,7 @@
         </div>
     </div>
 </div>
-
+@endif
 <div class="mobile-auth">
     <div class="mobile-auth-nav">
         <div class="auth-nav-option auth-nav-option-active">
@@ -142,7 +151,7 @@
 
             },
             success: function (data) {
-                console.log(data)
+
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
 
@@ -164,14 +173,15 @@
 
                     }
                 }else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    $('#LoginError').html(data.message)
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
 
             },
@@ -181,6 +191,69 @@
             },
             complete: function (data) {
                 $('#form-login').trigger("reset");
+            }
+        });
+    });
+    $('#formRegister').submit(function (e) {
+        e.preventDefault();
+        var formSubmit = $(this);
+        var url = formSubmit.attr('action');
+        var btnSubmit = formSubmit.find(':submit');
+        let url2 = new URL(window.location.href);
+
+        var return_url = url2.searchParams.get('return_url');
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache:false,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
+            },
+            success: function (data) {
+
+                if(data.status == 1){
+                    if (return_url == null || return_url == '' || return_url == undefined){
+
+                        if (return_url == null || return_url == '' || metapath == undefined){
+                            window.location.href = '/';
+                        }else {
+                            window.location.href = return_url;
+
+                        }
+
+                    }else {
+                        window.location.href = return_url;
+
+                    }
+
+                }else{
+                    $('#registError').html(data.message)
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
+                }
+
+                // if(data.status == 1){
+                //     alert(da);
+                // }
+                // else{
+                //     alert(data);
+                //     btnSubmit.text('Thanh toán');
+                //     btnSubmit.prop('disabled', false);
+                // }
+            },
+            error: function (data) {
+                alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
+                btnSubmit.text('Đăng ký');
+            },
+            complete: function (data) {
+                $('#reload').trigger('click');
+                $('#form-regist').trigger("reset");
             }
         });
     });
