@@ -286,6 +286,44 @@ class AccController extends Controller
         }
     }
 
+    public function getRelated(Request $request){
+        if ($request->ajax()){
+            $slug = $request->slug;
+            $url = '/get-relate-acc';
+            $method = "GET";
+
+            $dataSend = array();
+            $dataSend['id'] = $slug;
+            $dataSend['limit'] = 12;
+            $dataSend['status'] = 1;
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+                $data = $response_data->data;
+
+                $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$data->current_page,$data->data);
+
+                $htmlslider = view('frontend.pages.account.widget.__related')
+                    ->with('data',$data)->render();
+
+                return response()->json([
+                    'dataslider' => $htmlslider,
+                    'status' => 1,
+                    'message' => 'Load dữ liệu thành công',
+                ]);
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+    }
+
     public function getBuyAccount(Request $request,$slug){
         if ($request->ajax()){
 //            $slug = decodeItemID($slug);
