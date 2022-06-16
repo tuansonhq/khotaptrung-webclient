@@ -61,6 +61,7 @@
 
                                 </div>
                             </form>
+
                             <div class="article_data">
                                 @include('frontend.pages.article.widget.__datalist')
                             </div>
