@@ -18,3 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/api/clear-cache', [App\Http\Controllers\Api\CacheController::class , 'clearCache']);
+
+Route::get('/api/ip', [App\Http\Controllers\Api\IPController::class , 'getIp']);
