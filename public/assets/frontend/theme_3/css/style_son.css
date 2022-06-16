@@ -344,8 +344,9 @@
 
 .body-detail-col-ct img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 .body-detail-ctng-col-ct img{
     width: 100%;
@@ -858,7 +859,7 @@
     padding-right: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 .body-detail-right-ng-ct{
     background-color: #ffffff;
