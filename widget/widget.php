@@ -221,8 +221,8 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
 
     return $view->with('data',$data);
 
-
 });
+
 
 View::composer('frontend.widget.__menu_transaction', function ($view) {
 
