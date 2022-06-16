@@ -4,7 +4,7 @@
     <span>Loại giao dịch</span>
 </div>
 <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-    <select class="wide transaction" name="transaction">
+    <select class="wide config" name="config">
         <option>Chọn</option>
         @foreach($config as $i => $val)
             <option value="{{ $i }}">{{ $val }}</option>

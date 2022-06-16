@@ -784,28 +784,28 @@
 
 
             if (data.server_mode == 1 && data.server_price == 1) {
-                console.log("111111111")
+
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
+
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+
+                    }
+                }
             }
             else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
 
                 discount = s_discount[server];
-
+                total = price * discount;
             }
-            total = price * discount;
-            // for (var i = 0; i < s_price.length; i++) {
-            //
-            //     if (price >= s_price[i] && s_price[i] != null) {
-            //         current = s_price[i];
-            //         index = i;
-            //         discount = s_discount[i];
-            //         total = price * s_discount[i];
-            //
-            //     }
-            // }
 
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
