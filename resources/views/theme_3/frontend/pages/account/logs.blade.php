@@ -50,25 +50,27 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="scroll-into-view"></div>
                         <div class="col-md-12 logs-search left-right">
 
                             <div class="row marginauto">
                                 <div class="col-12 left-right">
+                                    <form class="search-txns">
                                     <div class="row marginauto body-form-search-ct">
                                         <div class="col-auto left-right">
-                                            <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
+                                            <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
                                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                         </div>
                                         <div class="col-4 body-form-search-button-ct media-web">
-                                            <button type="button" class="timkiem-button-ct">
-                                                Tìm kiếm
+                                            <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
+                                                <span class="span-timkiem">Tìm kiếm</span>
                                                 <div class="row justify-content-center loading-data__timkiem">
 
                                                 </div>
                                             </button>
                                         </div>
                                     </div>
+                                    </form>
                                 </div>
                                 <div class="col-auto ml-auto left-right">
 
@@ -97,7 +99,7 @@
 
                         <div class="col-md-12 logs-table left-right">
                             <div class="row default-table" id="data_pay_account_history" style="position: relative">
-                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
                                     <div class="d-flex justify-content-center">
                                         <span class="pulser"></span>
                                     </div>
@@ -130,7 +132,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form action="">
+                    <form class="form-charge__accountls">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -143,11 +145,23 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-12 left-right" id="datahtmlcategory">
-                                @include('frontend.pages.account.widget.__datacategorylogs')
+                            @if(isset($datacategory) && count($datacategory) > 0)
+                            <div class="col-md-12 left-right">
+                                <div class="row marginauto modal-nick-padding">
+                                        <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
+                                            <span>Game</span>
+                                        </div>
+                                        <div class="col-12 left-right background-nick-col-bottom-ct game-finter-nick">
+                                            <select class="wide game key" name="key">
+                                                <option>Chọn</option>
+                                                @foreach($datacategory as $val)
+                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                             </div>
-
+                            @endif
                             <div class="col-md-12 left-right modal-nick-padding">
                                 <div class="row marginauto">
                                     <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
@@ -209,14 +223,26 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                         <div class="row marginauto modal-footer-success-row-not-ct">
                                             <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct reset-find"><span>Thiết lập lại</span></a>
+                                                <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
+                                                    <span class="span-reset">
+                                                        Thiết lập lại
+                                                    </span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="button">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
+                                                    <span class="span-ap-dung">Áp dụng</span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

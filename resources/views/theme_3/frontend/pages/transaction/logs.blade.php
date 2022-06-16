@@ -55,15 +55,15 @@
 
                             <div class="row marginauto">
                                 <div class="col-12 left-right">
-                                    <form action="" method="POST">
+                                    <form class="search-txns">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
-                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
+                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
                                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
-                                                <button type="submit" class="timkiem-button-ct">
-                                                    Tìm kiếm
+                                                <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
+                                                    <span class="span-timkiem">Tìm kiếm</span>
                                                     <div class="row justify-content-center loading-data__timkiem">
 
                                                     </div>
@@ -97,34 +97,10 @@
                             </div>
                         </div>
 
-{{--                        <div class="col-md-12 logs-table left-right">--}}
-{{--                            <div class="row default-table">--}}
-{{--                                <div class="col-md-12 left-right">--}}
-{{--                                    <table class="table table-responsive-lg table-striped table-hover table-logs">--}}
-{{--                                        <thead>--}}
-{{--                                        <tr>--}}
-{{--                                            <th>Thời gian</th>--}}
-{{--                                            <th>ID</th>--}}
-{{--                                            <th>Tài khoản</th>--}}
-{{--                                            <th>Giao dịch</th>--}}
-{{--                                            <th>Số tiền</th>--}}
-{{--                                            <th>Số dư cuối</th>--}}
-{{--                                            <th>Nội dung</th>--}}
-{{--                                            <th>Trạng thái</th>--}}
-{{--                                        </tr>--}}
-{{--                                        </thead>--}}
-{{--                                        <tbody>--}}
-
-{{--                                        <tr style="width: 100%" id="table-notdata"><td colspan="8"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>--}}
-{{--                                        </tbody>--}}
-{{--                                    </table>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                         <div class="col-md-12 logs-table left-right">
                             <div class="row default-table" id="data_lich__su_history" style="position: relative">
-                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
                                     <div class="d-flex justify-content-center">
                                         <span class="pulser"></span>
                                     </div>
@@ -163,13 +139,39 @@
 
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto data__config">
-                                    @include('frontend.pages.transaction.widget.__data_config')
+                                    @if(isset($config))
+                                        <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
+                                            <span>Loại giao dịch</span>
+                                        </div>
+                                        <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
+                                            <select class="wide config" name="config">
+                                                <option>Chọn</option>
+                                                @foreach($config as $i => $val)
+                                                    <option value="{{ $i }}">{{ $val }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="col-md-12 left-right modal-nick-padding">
                                 <div class="row marginauto data__status">
-                                    @include('frontend.pages.transaction.widget.__data_status')
+                                    @if(isset($status))
+
+                                        <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
+                                            <span>Trạng thái</span>
+                                        </div>
+                                        <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
+                                            <select class="wide status" name="status">
+                                                <option>Chọn</option>
+                                                @foreach($status as $ist => $valst)
+                                                    <option value="{{ $ist }}">{{ $valst }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    @endif
 
                                 </div>
                             </div>
@@ -212,7 +214,7 @@
                                         <div class="row marginauto modal-footer-success-row-not-ct">
                                             <div class="col-md-12 left-right">
                                                 <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
-                                                    <span>
+                                                    <span class="span-reset">
                                                         Thiết lập lại
                                                     </span>
                                                     <div class="row justify-content-center loading-data__timkiem">
@@ -226,7 +228,7 @@
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
                                                 <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
-                                                    Áp dụng
+                                                    <span class="span-ap-dung">Áp dụng</span>
                                                     <div class="row justify-content-center loading-data__timkiem">
 
                                                     </div>

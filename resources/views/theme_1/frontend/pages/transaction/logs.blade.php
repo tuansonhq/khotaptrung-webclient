@@ -39,11 +39,31 @@
                                 </div>
 
                                 <div class="col-md-4 data__config">
-                                    @include('frontend.pages.transaction.widget.__data_config')
+                                    @if(isset($config))
+                                        <div class="input-group">
+                                            <span >Giao dịch</span>
+                                            <select name="config" class="form-control config">
+                                                <option value="">--Tất cả --</option>
+                                                @foreach($config as $i => $val)
+                                                    <option value="{{ $i }}">{{ $val }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
                                 </div>
 
                                 <div class="col-md-4 data__status">
-                                    @include('frontend.pages.transaction.widget.__data_status')
+                                    @if(isset($status))
+                                        <div class="input-group">
+                                            <span >Trạng thái</span>
+                                            <select name="status" class="form-control status">
+                                                <option value="">--Tất cả --</option>
+                                                @foreach($status as $ist => $valst)
+                                                    <option value="{{ $ist }}">{{ $valst }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
                                 </div>
 
 

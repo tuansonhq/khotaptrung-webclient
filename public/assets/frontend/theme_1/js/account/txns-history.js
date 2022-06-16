@@ -140,11 +140,6 @@ $(document).ready(function(){
                     $("#data_lich__su_history").empty().html('');
                     $("#data_lich__su_history").empty().html(data.data);
 
-                    $(".data__status").empty().html('');
-                    $(".data__status").empty().html(data.datastatus);
-
-                    $(".data__config").empty().html('');
-                    $(".data__config").empty().html(data.dataconfig);
                     $(".booking_detail")[0].scrollIntoView();
 
                 }else if (data.status == 0){
@@ -161,11 +156,6 @@ $(document).ready(function(){
                     $("#data_lich__su_history").empty().html('');
                     $("#data_lich__su_history").empty().html(html);
 
-                    $(".data__status").empty().html('');
-                    $(".data__status").empty().html(data.datastatus);
-
-                    $(".data__config").empty().html('');
-                    $(".data__config").empty().html(data.dataconfig);
                 }
 
             },
