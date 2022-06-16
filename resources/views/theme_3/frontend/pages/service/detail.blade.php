@@ -3,6 +3,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
 @endsection
 @section('content')
+
     @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
         @php
             $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);

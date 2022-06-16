@@ -1,6 +1,6 @@
 @if(empty($data->data))
 
-    <table class="table table-responsive-lg table-striped table-hover table-logs">
+    <table class="table table-striped table-hover table-logs">
         <thead>
         <tr>
             <th>Thời gian</th>
@@ -25,7 +25,7 @@
                 @endphp
                 @if($curr != $prev)
                     <tr>
-                        <td colspan="8"><b>Ngày {{$curr}}</b></td>
+                        <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
                     </tr>
                     <tr>
                         <td>{{ formatDateTime($item->created_at) }}</td>
@@ -122,14 +122,13 @@
 
 
     <div class="col-md-12 left-right justify-content-end default-paginate">
-
         @if(isset($data))
             @if($data->total()>1)
 
                 <div class="row marinautooo justify-content-center">
                     <div class="col-auto">
                         <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
-                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
                         </div>
                     </div>
                 </div>
@@ -144,5 +143,9 @@
             copyText.setSelectionRange(0, 99999); /* For mobile devices */
             navigator.clipboard.writeText(copyText.value);
         }
+        $(document).ready(function (e) {
+
+        })
+
     </script>
 @endif

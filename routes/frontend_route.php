@@ -125,6 +125,10 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
 
+                Route::get('/lich-su-tra-gop',function(){
+                    return view('frontend.pages.account.logs-installment');
+                });
+
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);

@@ -291,8 +291,8 @@ $(document).ready(function (e) {
             success: (data) => {
                 $('.loading-data__timkiem').html('');
                 $('#openFinter').modal('hide');
-                if (data.status == 1){
 
+                if (data.status == 1){
 
                     $("#data_lich__su_history").empty().html('');
                     $("#data_lich__su_history").empty().html(data.data);
@@ -304,7 +304,7 @@ $(document).ready(function (e) {
                     $(".data__config").empty().html(data.dataconfig);
 
 
-                    $(".booking_detail")[0].scrollIntoView();
+                    $(".scroll-into-view")[0].scrollIntoView();
 
                 }else if (data.status == 0){
                     var html = '';
@@ -325,8 +325,9 @@ $(document).ready(function (e) {
 
                     $(".data__config").empty().html('');
                     $(".data__config").empty().html(data.dataconfig);
-                }
 
+                }
+                $('#data_lich__su_history .table-logs').addClass('table-responsive');
             },
             error: function (data) {
 

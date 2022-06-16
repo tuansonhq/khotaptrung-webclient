@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="scroll-into-view"></div>
                         <div class="col-md-12 logs-search left-right">
 
                             <div class="row marginauto">
