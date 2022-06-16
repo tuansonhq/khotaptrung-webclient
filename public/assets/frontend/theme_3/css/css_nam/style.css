@@ -1580,7 +1580,7 @@ header nav.heading .header-container{
     width: 20px;
     height: 20px;
     /*margin: 12px 30px -5px;*/
-    margin-top: 6px;
+    /*margin-top: 6px;*/
     border: 3px solid var(--primary-color);
     border-radius: 50%;
     border-top-color: #FFF8F2;

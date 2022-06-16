@@ -111,7 +111,9 @@ class ServiceController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
+//        return $result_Api;
         $response_data = $result_Api->response_data??null;
+
         if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
@@ -159,25 +161,25 @@ class ServiceController extends Controller
     public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {
+            $url = '/service/log';
+            $method = "GET";
+            $dataSend = array();
+            $jwt = Session::get('jwt');
+            if (empty($jwt)) {
+                return response()->json([
+                    'status' => "LOGIN"
+                ]);
+            }
+            $dataSend['token'] = $jwt;
+            $dataSend['author_id'] = AuthCustom::user()->id;
 
             if ($request->ajax()) {
                 $page = $request->page;
-                $url = '/service/log';
-                $method = "GET";
-                $dataSend = array();
-                $jwt = Session::get('jwt');
-                if (empty($jwt)) {
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
-                }
 
-                $dataSend['token'] = $jwt;
-                $dataSend['author_id'] = AuthCustom::user()->id;
                 $dataSend['page'] = $page;
 
                 if (isset($request->id) || $request->id != '' || $request->id != null) {
-//                    $checkid = decodeItemID($request->serial);
+
                     $dataSend['id'] = $request->id;
                 }
 
@@ -206,19 +208,15 @@ class ServiceController extends Controller
                 if(isset($response_data) && $response_data->status == 1){
 
                     $data = $response_data->datatable;
-                    $datacate = $response_data->categoryservice;
 
                     if (isEmpty($data->data)) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
                     }
 
                     if (count($data) == 0 && $page == 1){
-                        $htmlcate = view('frontend.pages.service.widget.__datacategorylogs')
-                            ->with('datacate', $datacate)->render();
 
                         return response()->json([
                             'status' => 0,
-                            "datacate" => $htmlcate,
                             'message' => 'Không có dữ liệu !',
                         ]);
                     }
@@ -226,13 +224,10 @@ class ServiceController extends Controller
                     $html = view('frontend.pages.service.widget.__datalogs')
                         ->with('data', $data)->render();
 
-                    $htmlcate = view('frontend.pages.service.widget.__datacategorylogs')
-                        ->with('datacate', $datacate)->render();
 
                     return response()->json([
                         "success"=> true,
                         "data" => $html,
-                        "datacate" => $htmlcate,
                         "status" => 1,
                     ], 200);
 
@@ -245,7 +240,24 @@ class ServiceController extends Controller
                 }
             }
 
-            return view('frontend.pages.service.logs');
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+
+
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && $response_data->status == 1){
+
+                $datacate = $response_data->categoryservice;
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>"Không thể tải dữ liệu vui lòng thử lại."
+                ]);
+            }
+
+            return view('frontend.pages.service.logs')->with('datacate',$datacate);
         }
 
     }
@@ -454,6 +466,7 @@ class ServiceController extends Controller
             $dataSend['rank_from'] = $request->get('rank_from');
             $dataSend['rank_to'] = $request->get('rank_to');
 
+            return $dataSend;
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 

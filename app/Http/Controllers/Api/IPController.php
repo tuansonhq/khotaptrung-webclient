@@ -23,7 +23,7 @@ class IPController extends Controller
             'message' => 'Thành công!',
             'ip' => $ip
         ]);
-        
+
     }
 
 }

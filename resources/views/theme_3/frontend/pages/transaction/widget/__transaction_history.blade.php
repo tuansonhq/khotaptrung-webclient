@@ -121,7 +121,7 @@
     </table>
 
 
-    <div class="col-md-12 left-right justify-content-end default-paginate">
+    <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
         @if(isset($data))
             @if($data->total()>1)
 
