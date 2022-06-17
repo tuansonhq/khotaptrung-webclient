@@ -1206,6 +1206,22 @@ a:hover .__icon.--path__custom:after
 .service--thumbnail {
     height: 128px;
 }
+
+.label--checkbox {
+    display: flex;
+}
+
+.label--checkbox .label--checkbox__name {
+    cursor: pointer;
+    font-size: 14px;
+    color: #82869E;
+    font-weight: 400;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {

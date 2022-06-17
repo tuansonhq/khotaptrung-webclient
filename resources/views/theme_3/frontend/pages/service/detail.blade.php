@@ -15,6 +15,7 @@
         $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
         $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
     @endphp
+{{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
     <form id="formBookingStepMobie" action="" method="POST">
         {{csrf_field()}}
@@ -93,55 +94,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 left-right">
-{{--                                                <div class="row body-title-detail-ct">--}}
-{{--                                                    <div class="col-auto text-left detail-service-col body-title-detail-col-ct">--}}
-{{--                                                        <div class="row marginauto">--}}
-{{--                                                            <div class="col-md-12 left-right body-title-detail-span-ct">--}}
-{{--                                                                <span>Rank hiện tại</span>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">--}}
-{{--                                                                <select class="wide" name="rank-start">--}}
-{{--                                                                    <option value="">Chọn rank hiện tại</option>--}}
-{{--                                                                    <option value="3">Vàng 4</option>--}}
-{{--                                                                    <option value="4">Vàng 5</option>--}}
-{{--                                                                    <option value="5">Vàng 6</option>--}}
-{{--                                                                    <option value="5">Vàng 7</option>--}}
-{{--                                                                </select>--}}
-{{--                                                            </div>--}}
 
-{{--                                                            <div class="col-m-12 rank-start-error">--}}
-
-{{--                                                            </div>--}}
-
-{{--                                                        </div>--}}
-
-
-{{--                                                    </div>--}}
-
-{{--                                                    <div class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">--}}
-{{--                                                        <div class="row marginauto">--}}
-{{--                                                            <div class="col-md-12 left-right body-title-detail-span-ct">--}}
-{{--                                                                <span>Rank mong muốn</span>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div--}}
-{{--                                                                class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">--}}
-{{--                                                                <select class="wide" name="rank-end">--}}
-{{--                                                                    <option value="">Chọn rank hiện tại</option>--}}
-{{--                                                                    <option value="3">Vàng 4</option>--}}
-{{--                                                                    <option value="4">Vàng 5</option>--}}
-{{--                                                                    <option value="5">Vàng 6</option>--}}
-{{--                                                                    <option value="5">Vàng 7</option>--}}
-{{--                                                                </select>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-m-12 rank-end-error">--}}
-
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-
-{{--                                                </div>--}}
-                                            </div>
 
                                             {{-- Kiểm tra máy chủ --}}
                                             @if( isset($server_data) && isset($server_id))
@@ -152,12 +105,11 @@
                                                             <div class="row marginauto">
                                                                 <div
                                                                     class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>Server</span>
+                                                                    <span>Chọn máy chủ</span>
                                                                 </div>
                                                                 <div
                                                                     class="col-md-12 left-right body-title-detail-select-ct data-select-server">
                                                                     <select class="wide" name="server">
-                                                                        <option value="">Chọn Server</option>
                                                                         @forelse($server_data as $k_server => $server)
                                                                             @if(!strpos($server_data[$k_server], '[DELETE]'))
                                                                                 <option value="{{ $server_id[$k_server] }}">{{ $server_data[$k_server] }}</option>
@@ -186,11 +138,127 @@
                                                 @case('3')
                                                 @break
                                                 @case('4')
+                                                <div class="col-md-12 left-right body-title-ct">
+                                                    <div class="row marginauto">
+                                                        <div class="col-md-12 text-left left-right">
+                                                            <div class="row marginauto">
+                                                                <div
+                                                                    class="col-md-12 left-right body-title-detail-span-ct">
+                                                                    <span>Chọn gói nạp:</span>
+                                                                </div>
+                                                                <div
+                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                                                    <select class="wide" name="selected">
+                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                            @if(!!$name)
+                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                            @endif
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-m-12 server-error">
 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 @break
                                                 @case('5')
+                                                <div class="col-md-12 left-right body-title-ct" id="select-multi">
+                                                    <div class="row marginauto">
+
+                                                        <div class="col-md-12 text-left left-right">
+                                                            <div class="row marginauto">
+                                                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                    <span>{{ $data_params['filter_name'] }}</span>
+                                                                </div>
+                                                                <div class="col-md-12 left-right">
+                                                                    <div class="row body-title-detail-checkbox-ct">
+                                                                        @if(!empty($data_params['name']))
+                                                                            @forelse($data_params['name'] as $k_name => $name)
+                                                                                @if(!!$name)
+                                                                        <div class="col-auto body-title-detail-checkbox-col-ct">
+                                                                            <label for="{{$name . $k_name}}" class="input-ratio-ct">
+                                                                                <span class="label--checkbox">
+                                                                                    <div class="label--checkbox__name">
+                                                                                        {{ $name }}
+                                                                                    </div>
+                                                                                    <span class="checkbox-info-ct label--checkbox__tippy" data-tippy-content="{{ $name }}">
+                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
+                                                                                    </span>
+                                                                                </span>
+                                                                                <input id="{{$name . $k_name}}" type="checkbox"
+                                                                                       class="allgame" name="option"
+                                                                                       value="{{ $k_name }}">
+                                                                                <span class="input-ratio-checkmark-ct"></span>
+                                                                            </label>
+                                                                        </div>
+                                                                                @endif
+                                                                            @empty
+                                                                            @endforelse
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                                 @break
                                                 @case('6')
+                                                <div class="col-md-12 left-right">
+                                                    <div class="row body-title-detail-ct">
+                                                        <div class="col-auto text-left detail-service-col body-title-detail-col-ct">
+                                                            <div class="row marginauto">
+                                                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                    <span>Rank hiện tại</span>
+                                                                </div>
+                                                                <div class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
+                                                                    <select class="wide js-selected" name="rank-from">
+                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                            @if(!!$name)
+                                                                            <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                            @endif
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-m-12 rank-start-error">
+
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
+                                                            <div class="row marginauto">
+                                                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                    <span>Rank mong muốn</span>
+                                                                </div>
+                                                                <div
+                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
+                                                                    <select class="wide js-selected" name="rank-to">
+                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                            @if(!!$name)
+                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                            @endif
+                                                                        @empty
+                                                                        @endforelse
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-m-12 rank-end-error">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                                 @break
                                                 @case('7')
                                                 <div class="row marginauto">
@@ -229,131 +297,7 @@
                                                 @break
                                                 @default
                                             @endswitch
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
 
-                                                    <div class="col-md-12 text-left left-right">
-{{--                                                        <div class="row marginauto">--}}
-{{--                                                            <div class="col-md-12 left-right body-title-detail-span-ct">--}}
-{{--                                                                <span>Tùy chọn mở rộng</span>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="col-md-12 left-right">--}}
-{{--                                                                <div class="row body-title-detail-checkbox-ct">--}}
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-01" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Chơi cùng Booster+50.00%</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-01" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-02" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Tùy chọn vị trí+20.00%</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-02" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-03" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Đặt lịch cày</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-03" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-04" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Cày siêu tốc+35.00%</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-04" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-05" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Tùy chọn tướng+30.00%</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-05" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div--}}
-{{--                                                                        class="col-auto body-title-detail-checkbox-col-ct">--}}
-{{--                                                                        <label for="tuychon-06" class="input-ratio-ct">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                <li>Chọn Booster</li>--}}
-{{--                                                                                <li class="checkbox-info-ct"><img--}}
-{{--                                                                                        class="lazy"--}}
-{{--                                                                                        src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                                                        alt=""></li>--}}
-{{--                                                                            </ul>--}}
-{{--                                                                            <input id="tuychon-06" type="checkbox"--}}
-{{--                                                                                   class="allgame" name="option"--}}
-{{--                                                                                   value="on">--}}
-{{--                                                                            <span--}}
-{{--                                                                                class="input-ratio-checkmark-ct"></span>--}}
-{{--                                                                        </label>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-                                                    </div>
-
-                                                </div>
-                                            </div>
 
                                             <div class="col-md-12 left-right body-title-ct">
 {{--                                                <div class="row marginauto">--}}
@@ -540,7 +484,7 @@
                             </div>
 
                             {{--                block 3           --}}
-                            <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
+                            <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto"  >
 
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto">

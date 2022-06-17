@@ -784,7 +784,6 @@
 
 
             if (data.server_mode == 1 && data.server_price == 1) {
-
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
             }
@@ -799,13 +798,13 @@
                     index = i;
                     discount = s_discount[i];
                     total = price * s_discount[i];
-
                 }
             }
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
             total = parseInt(total / 1000 * data.input_pack_rate);
             console.log(discount)
+
             $('#txtDiscount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/,'');
@@ -822,6 +821,7 @@
         $('#input_pack').bind('focus keyup', function () {
             UpdateTotal();
         });
+
         $(document).ready(function () {
             UpdatePrice();
         });
@@ -831,6 +831,7 @@
             Confirm(value, index);
         }
     </script>
+
     @endif
 @endsection
 

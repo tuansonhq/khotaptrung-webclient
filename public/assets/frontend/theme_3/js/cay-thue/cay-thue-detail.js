@@ -122,7 +122,7 @@ $(document).ready(function (e) {
         arrow: true,
         animation: 'fade',
         theme: 'light',
-        content: "Đã copy!",
+        // content: $(this).data('name'),
     });
 
     tippy('.option-info-ct', {

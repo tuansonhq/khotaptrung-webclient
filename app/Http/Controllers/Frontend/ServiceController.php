@@ -379,7 +379,7 @@ class ServiceController extends Controller
     }
 
     public function postDestroy(Request $request,$id){
-
+        dd($request->all());
         if (AuthCustom::check()) {
             $url = '/service/log/detail/destroy/'.$id;
             $method = "POST";
