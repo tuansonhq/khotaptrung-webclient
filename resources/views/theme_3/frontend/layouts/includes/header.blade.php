@@ -333,49 +333,49 @@
             <ul>
                 <li>
                     <a href="/nap-the">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-charge">Nạp thẻ cào</span>
                     </a>
                 </li>
                 <li>
                     <a href="/nap-the#atm_card">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span >Nạp ATM -Ví</span>
                     </a>
                 </li>
                 <li>
                     <a href="/nap-the#wallet_card">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span >Nạp ví điện tử</span>
                     </a>
                 </li>
                 <li>
                     <a href="/mua-the">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-store">Mua thẻ Game</span>
                     </a>
                 </li>
                 <li>
                     <a href="/mua-acc">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-buy__acc">Mua Acc Game</span>
                     </a>
                 </li>
                 <li>
                     <a href="/dich-vu">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-service">Dịch vụ Game</span>
                     </a>
                 </li>
                 <li>
                     <a href="/recharge-game">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-recharge_game">Nạp game</span>
                     </a>
                 </li>
                 <li>
                     <a href="/minigame">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/service1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                         <span id="nav-minigame">Vòng quay</span>
                     </a>
                 </li>
@@ -720,7 +720,7 @@
         <ul class=" ">
             <li>
                 <a href="/">
-                    <img src="./assets/{{env('THEME_VERSION')}}/image/home.png" alt="">
+                    <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
                     <span>Trang chủ</span>
                     <div class="mobile-logo">
                         <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
@@ -730,70 +730,70 @@
             </li>
             <li>
                 <a href="">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/menu_category1.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category1.png" alt="">
                     <span>Khuyến mãi</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/menu_category2.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category2.png" alt="">
                     <span>Sư kiện hot</span>
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
             <li>
                 <a href="/nap-the">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant1.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant1.png" alt="">
                     <span>Nạp thẻ cào</span>
                 </a>
             </li>
 
             <li>
                 <a href="/nap-the">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant2.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant2.png" alt="">
                     <span>Nạp ATM-Ví</span>
                 </a>
             </li>
             <li>
                 <a href="/mua-the">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant3.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant3.png" alt="">
                     <span>Mua thẻ</span>
                 </a>
             </li>
             <li>
                 <a href="/mua-acc">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant4.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant4.png" alt="">
                     <span>Mua Acc Game</span>
                 </a>
             </li>
             <li>
                 <a href="/dich-vu">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant5.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant5.png" alt="">
                     <span>Dịch vụ Game</span>
                 </a>
             </li>
             <li>
                 <a href="/minigame">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant6.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant6.png" alt="">
                     <span>Vòng quay</span>
                 </a>
             </li>
             <li>
                 <a href="/recharge-game">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant7.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant7.png" alt="">
                     <span>Nạp tài khoản game</span>
                 </a>
             </li>
             <li>
                 <a href="/recharge-game">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant9.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant9.png" alt="">
                     <span>Tin tức</span>
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
             <li id="login_menu">
 {{--                <a href="">--}}
-{{--                    <img src="/assets/{{env('THEME_VERSION')}}/image/menu_category6.png" alt="">--}}
+{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
 {{--                    <span>Đăng nhập/ Đăng ký</span>--}}
 {{--                </a>--}}
             </li>
