@@ -121,33 +121,33 @@
                                 <div class="col-auto left-right sort-nick-right">
                                     <div class="row marginauto">
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input id="sort-1" class="sort" type="radio" name="sort" value="1" style="display: none">
+                                            <input id="sort-1" class="sort" type="radio" name="sort" value="random" hidden>
                                             <label for="sort-1" class="item-sort-nick-label">
-                                                <span>Khuyến mãi tốt nhất</span>
+                                                <span>Ngẫu nhiên</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-2" class="sort" type="radio" name="sort" value="2" style="display: none">
+                                            <input checked id="sort-2" class="sort" type="radio" name="sort" value="price_start" hidden>
                                             <label for="sort-2" class="item-sort-nick-label">
-                                                <span>Bán chạy nhất</span>
+                                                <span>Giá giảm dần</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-32" class="sort" type="radio" name="sort" value="3" style="display: none">
+                                            <input checked id="sort-32" class="sort" type="radio" name="sort" value="price_end" hidden>
                                             <label for="sort-3" class="item-sort-nick-label">
-                                                <span>Mới về</span>
-                                            </label>
-                                        </div>
-                                        <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-4" class="sort" type="radio" name="sort" value="4" style="display: none">
-                                            <label for="sort-4" class="item-sort-nick-label">
                                                 <span>Giá tăng dần</span>
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-5" class="sort" type="radio" name="sort" value="5" style="display: none">
+                                            <input checked id="sort-4" class="sort" type="radio" name="sort" value="created_at_start" hidden>
+                                            <label for="sort-4" class="item-sort-nick-label">
+                                                <span>Mới nhất</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-auto left-right item-sort-nick">
+                                            <input checked id="sort-5" class="sort" type="radio" name="sort" value="created_at_end" hidden>
                                             <label for="sort-5" class="item-sort-nick-label">
-                                                <span>Giá giảm dần</span>
+                                                <span>Cũ nhất</span>
                                             </label>
                                         </div>
                                     </div>
@@ -156,7 +156,10 @@
                             </div>
                         </div>
 
-                        @include('frontend.pages.account.widget.__data__list')
+                        <div id="account_data">
+                            @include('frontend.pages.account.widget.__datalist')
+                        </div>
+
 
                     </div>
                 </div>
@@ -188,7 +191,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form action="">
+                    <form id="accountFilter" action="">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -209,7 +212,7 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct price-finter-nick">
                                         <select class="wide price" name="price">
-                                            <option>Chọn giá tiền</option>
+                                            <option value="" selected disabled>Chọn giá tiền</option>
                                             <option value="0-50000">Dưới 50K</option>
                                             <option value="50000-200000">Từ 50K - 200K</option>
                                             <option value="200000-500000">Từ 200K - 500K</option>
@@ -229,7 +232,7 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                         <select class="wide status" name="status">
-                                            <option>Chọn trạng thái</option>
+                                            <option value="" selected disabled>Chọn trạng thái</option>
                                             <option value="1">Chưa bán</option>
                                             <option value="2">Đã bán</option>
                                         </select>
@@ -237,72 +240,27 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct">
-                                        <small>Rank</small>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct rank-finter-nick">
-                                        <select class="wide rank" name="rank">
-                                            <option>Chọn rank</option>
-                                            <option value="3">Vàng 4</option>
-                                            <option value="4">Vàng 5</option>
-                                            <option value="5">Vàng 6</option>
-                                            <option value="5">Vàng 7</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-auto left-right background-nick-select-left-ct">
-                                        <small>Ngọc 90</small>
-                                    </div>
-                                    <div class="col-auto left-right background-nick-select-right-ct">
-                                        <div class="default-select-ratio">
-                                            <div class="switch">
-                                                <input id="gem" name="switch" type="checkbox" value="1" data-title="Ngọc 90" class="switch-input switch-input-1" >
-                                                <label for="gem" class="switch-label">Switch</label>
+                            @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                @foreach($dataAttribute as $val)
+                                    @if($val->position == 'select')
+                                        <div class="col-md-12 left-right modal-nick-padding">
+                                            <div class="row marginauto">
+                                                <div class="col-12 left-right background-nick-col-top-ct">
+                                                    <small>{{ $val->title }}</small>
+                                                </div>
+                                                <div class="col-12 left-right background-nick-col-bottom-ct">
+                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}"">
+                                                        <option value="" selected disabled>--Không chọn--</option>
+                                                        @foreach($val->childs as $child)
+                                                            <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-auto left-right background-nick-select-left-ct">
-                                        <small>Nick có tướng trong đá quý</small>
-                                    </div>
-                                    <div class="col-auto left-right background-nick-select-right-ct">
-                                        <div class="default-select-ratio">
-                                            <div class="switch">
-                                                <input id="hero" name="switch" type="checkbox" data-title="Nick có tướng trong đá quý" value="2" class="switch-input switch-input-2" >
-                                                <label for="hero" class="switch-label">Switch</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-auto left-right background-nick-select-left-ct">
-                                        <small>Nick có trang phục trong đá quý</small>
-                                    </div>
-                                    <div class="col-auto left-right background-nick-select-right-ct">
-                                        <div class="default-select-ratio">
-                                            <div class="switch">
-                                                <input id="skill" name="switch" type="checkbox" data-title="Nick có trang phục trong đá quý" value="3" class="switch-input switch-input-3" >
-                                                <label for="skill" class="switch-label">Switch</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    @endif
+                                @endforeach
+                            @endif
 
                             <div class="col-md-12 left-right padding-nicks-footer-ct">
 
@@ -317,7 +275,7 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="button">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="submit">Áp dụng</button>
                                             </div>
                                         </div>
                                     </div>
@@ -331,6 +289,8 @@
         </div>
 
     </div>
+
+    <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
 @endsection
