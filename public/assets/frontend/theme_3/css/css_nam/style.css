@@ -417,7 +417,7 @@ header nav.heading .header-container{
     position: absolute;
     top: 64px;
     cursor: context-menu;
-    left: 28px;
+    left: 0;
     display: none;
     background-color: white;
     width: 280px;
@@ -650,6 +650,13 @@ header nav.heading .header-container{
 .box-logo img{
     width: 140px;
 }
+.mobile-logo{
+    position: absolute;
+    right: 16px;
+}
+.mobile-logo img{
+    width: 70px;
+}
 @media (max-width: 1200px){
     .box-deposit, .box-about,.box-search,.menu-category{
         display: none;
@@ -751,6 +758,9 @@ header nav.heading .header-container{
 .item-service a{
     display: flex;
 }
+.item-service img{
+    width: 24px;
+}
 .item-service a{
     color: var(--primary-text);
     font-weight: 400;
@@ -759,7 +769,7 @@ header nav.heading .header-container{
     padding: 10px 16px;
 }
 .item-service a:hover{
-   background-color: #FEF1E6;
+    background-color: #FEF1E6;
     transition: .2s;
 }
 .item-service>a>div{
@@ -880,7 +890,7 @@ header nav.heading .header-container{
 
 }
 .list-product .swiper-slide:hover .item-product__box-img::after{
-   background: var(--primary-color);
+    background: var(--primary-color);
     opacity: .2;
     transition: .2s;
     z-index: 999;
@@ -889,7 +899,7 @@ header nav.heading .header-container{
 
 
 .list-product .item-other-nick:hover .item-product__box-img::after,.list-product .item-other-nick:hover .item-product__box-img::after,.list-news .swiper-slide:hover .item-product__box-img::after{
-   background: var(--primary-color);
+    background: var(--primary-color);
     opacity: .2;
     transition: .2s;
     z-index: 99;
@@ -964,6 +974,7 @@ header nav.heading .header-container{
     color: var(--text-black-color);
     line-height:150%;
 }
+
 .old-price{
     display: inline-block;
     margin: 0 12px 8px 12px !important;
@@ -982,6 +993,35 @@ header nav.heading .header-container{
     line-height:150%;
     font-weight: 600;
 }
+
+.special-price__minigame{
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height:150%;
+
+}
+
+.old-price__minigame{
+    display: inline-block;
+    margin: 0 12px 8px 12px !important;
+    /*float: left;*/
+    font-size: 12px;
+
+    text-decoration: line-through;
+    color: #F3F3F7;
+}
+.item-product__sticker-percent__minigame{
+    display: inline-block;
+    padding: 1px 6px;
+    color: var(--primary-color);
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    line-height:150%;
+    font-weight: 600;
+}
+
 .box-product{
     margin-top: 18px;
 }
@@ -1005,22 +1045,25 @@ header nav.heading .header-container{
 /*mini game*/
 .item-minigame_first{
     width: 100%;
-    height: 382.88px;
+    height: 516px;
     position: relative;
     border-radius: var(--primary-border);
     transition: .2s;
     overflow: hidden;
     display: inline-block;
     box-sizing: border-box;
+    border: 2px solid transparent;
 }
 .item-minigame_second{
-    width: 100%; height: 185px;
-    margin-bottom: 12px;
+    width: 100%; height: 250px;
+    margin-bottom: 10px;
     border-radius: var(--primary-border);
     position: relative;
     overflow: hidden;
     display: inline-block;
     box-sizing: border-box;
+    border: 2px solid transparent;
+
 }
 .item-minigame_first>a>img,.item-minigame_second>a>img{
     width: 100%;
@@ -1046,6 +1089,14 @@ header nav.heading .header-container{
     background: linear-gradient(rgba(255, 255, 255, 0) , #262323);
     border-radius: var(--primary-border);
     z-index: 1;
+}
+.item-minigame_first:hover{
+    border: 2px solid var(--primary-color);
+    transition: .2s;
+}
+.item-minigame_second:hover{
+    border: 2px solid var(--primary-color);
+    transition: .2s;
 }
 .item-minigame_second a::before{
     position: absolute;
@@ -1089,14 +1140,17 @@ header nav.heading .header-container{
 }
 .item-minigame-name{
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 150%;
+    margin-bottom: 4px;
 }
 .item-minigame-name_detail{
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
     color: white;
+
+
 }
 .item-minigame-amount{
     font-size: 18px;
@@ -1105,9 +1159,10 @@ header nav.heading .header-container{
     color: #FFA940;
 }
 .item-minigame-user{
-    color: #FBFBFD;
+    color: #F3F3F3;
     font-size: 14px;
     font-weight: 400;
+    margin-bottom: 4px;
 }
 .item-minigame-view{
     font-size: 14px;
@@ -1130,6 +1185,9 @@ header nav.heading .header-container{
     margin: auto;
     text-align: center;
     transition: .2s;
+}
+.menu-category-mobile>ul>li img{
+    width: 24px;
 }
 .item-product-service:hover{
     transform: translateY(-0.2rem);
@@ -1374,11 +1432,14 @@ header nav.heading .header-container{
 }
 @media (max-width: 1200px ) and (min-width: 992px) {
     .item-minigame_first {
-        height: 244px;
+        height: 333px;
     }
     .item-minigame_second {
-        height: 122px;
+        height: 160px;
         margin-bottom: 8px;
+    }
+    .item-minigame-content{
+        bottom: 0;
     }
 }
 @media (max-width: 992px ) {
@@ -1423,6 +1484,19 @@ header nav.heading .header-container{
     .item-minigame_first {
         height: 328px;
     }
+    .item-minigame-content{
+        bottom: 0;
+    }
+    .item-minigame-user{
+        font-size: 12px;
+    }
+    .special-price__minigame{
+        font-size: 14px;
+    }
+    .item-product__sticker-percent__minigame{
+        font-size: 10px;
+    }
+
     .list-minigame_box-right{
         margin-top: 8px;
     }
@@ -1532,7 +1606,9 @@ header nav.heading .header-container{
     .top-list p img{
         width: 24px;
     }
-
+    .item-minigame_first {
+        height: 223px;
+    }
 }
 
 @media (max-width: 486px) {
@@ -1580,7 +1656,7 @@ header nav.heading .header-container{
     width: 20px;
     height: 20px;
     /*margin: 12px 30px -5px;*/
-    /*margin-top: 6px;*/
+    margin-top: 6px;
     border: 3px solid var(--primary-color);
     border-radius: 50%;
     border-top-color: #FFF8F2;
@@ -1622,3 +1698,17 @@ header nav.heading .header-container{
 }
 .log-out-button a{color: white;transition: .2s}
 .log-out-button a:hover{color: var(--primary-color);transition: .2s;background-color: white;}
+.box-login-mobile{
+    display: none;
+}
+.box-loading-mobile{
+    margin-left: 16px;
+}
+@media (max-width: 992px) {
+    .box-login{
+        display: none;
+    }
+    .box-login-mobile{
+        display: block;
+    }
+}
