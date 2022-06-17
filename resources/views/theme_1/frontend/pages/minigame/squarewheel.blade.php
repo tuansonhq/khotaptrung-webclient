@@ -470,9 +470,10 @@
         $('body').delegate('#start-played', 'click', function() {
 
             if (roll_check) {
+                num_current = startat;
                 num = startat;
                 startat = 0;
-                fakeLoop();
+                //fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
                 typeRoll = "real";
@@ -585,6 +586,7 @@
 
         $('body').delegate('.num-play-try', 'click', function() {
             if (roll_check) {
+                num_current = startat;
                 num = startat;
                 startat = 0;
                 //fakeLoop();
@@ -659,26 +661,26 @@
         });
 
 
-        function fakeLoop(){
-            num++;
-            num_current++;
-            if(num_current>11){
-                num_current = 0;
-            }
-            $('.box img').removeClass('active');
-            $('.gift'+(num_current)+' img').addClass('active');
+        // function fakeLoop(){
+        //     num++;
+        //     num_current++;
+        //     if(num_current>11){
+        //         num_current = 0;
+        //     }
+        //     $('.box img').removeClass('active');
+        //     $('.gift'+(num_current)+' img').addClass('active');
 
-            if(num<4){
-                time = 400
-            }else if(num<8){
-                time = 200
-            }else if(num>7){
-                time = 60
-            }
-            runtime = setTimeout(function(){
-                fakeLoop();
-            },time);
-        }
+        //     if(num<4){
+        //         time = 400
+        //     }else if(num<8){
+        //         time = 200
+        //     }else if(num>7){
+        //         time = 60
+        //     }
+        //     runtime = setTimeout(function(){
+        //         fakeLoop();
+        //     },time);
+        // }
 
 
         function loop() {

@@ -470,7 +470,7 @@
                                 return;
                             } else if (data.status == 0) {
                                 roll_check = true;
-                                $('.content-popup').text(data.msg);
+                                $('#noticeModal .content-popup').text(data.msg);
                                 $('#noticeModal').modal('show');
                                 return;
                             }
@@ -552,7 +552,7 @@
 
                         },
                         error: function() {
-                            $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                            $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                             $('#noticeModal').modal('show');
                         }
                     })
@@ -574,7 +574,7 @@
                     type: 'POST',
                     success: function(data) {
                         if (data.status == 0) {
-                            $('.content-popup').text(data.msg);
+                            $('#noticeModal .content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
                             return;
                         }
@@ -595,7 +595,7 @@
                         },6000)
                     },
                     error: function() {
-                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                        $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                         $('#noticeModal').modal('show');
                     }
                 })
@@ -630,7 +630,7 @@
                                 return;
                             } else if (data.status == 0) {
                                 roll_check = true;
-                                $('.content-popup').text(data.msg);
+                                $('#noticeModal .content-popup').text(data.msg);
                                 $('#noticeModal').modal('show');
                                 return;
                             }
@@ -712,7 +712,7 @@
 
                         },
                         error: function() {
-                            $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                            $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                             $('#noticeModal').modal('show');
                         }
                     })
@@ -1039,7 +1039,7 @@
                     }
                 }
 
-                $('.content-popup').html($html);
+                $('#noticeModal .content-popup').html($html);
 
                 if (userpoint > 99) {
                     getgifbonus();
