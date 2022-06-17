@@ -162,6 +162,9 @@ class UserController extends Controller
                 ]);
             }
 
+            $config = config('module.txns.trade_type_api');
+            $status = config('module.txns.status');
+
             if ($request->ajax()) {
                 $id_user = AuthCustom::user()->id;
 
@@ -181,6 +184,10 @@ class UserController extends Controller
                 }
 
                 $dataSend['page'] = $page;
+
+                if (isset($request->id) || $request->id != '' || $request->id != null) {
+                    $dataSend['id'] = $request->id;
+                }
 
                 if (isset($request->config) || $request->config != '' || $request->config != null) {
                     $dataSend['trade_type'] = $request->config;
@@ -214,38 +221,29 @@ class UserController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
 
                     $data = $response_data->data;
-                    $config = config('module.txns.trade_type_api');
-                    $status = config('module.txns.status');
+
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
 
-                    $htmlconfig =  view('frontend.pages.transaction.widget.__data_config')
-                        ->with('config', $config)->render();
-                    $htmlstatus =  view('frontend.pages.transaction.widget.__data_status')
-                        ->with('status', $status)->render();
 
-                    //dd($data);
                     $html =  view('frontend.pages.transaction.widget.__transaction_history')
                         ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
                     if (count($data) == 0 && $page == 1){
                         return response()->json([
                             'status' => 0,
-                            'datastatus' => $htmlstatus,
-                            'dataconfig' => $htmlconfig,
                             'message' => 'Không có dữ liệu !',
                         ]);
                     }
 
                     return response()->json([
                         'data' => $html,
-                        'datastatus' => $htmlstatus,
-                        'dataconfig' => $htmlconfig,
                         'status' => 1,
                         'message' => "Lấy dữ liệu thành công",
                     ]);
@@ -258,7 +256,10 @@ class UserController extends Controller
                 }
             }
 
-            return view('theme_1.frontend.pages.transaction.logs');
+            $config = config('module.txns.trade_type_api');
+            $status = config('module.txns.status');
+
+            return view('frontend.pages.transaction.logs')->with('config',$config)->with('status',$status);
 
         }
         catch(\Exception $e){

@@ -702,7 +702,7 @@
 /*style for order detail*/
 .order--detail {
     --color-primary: #F67600;
-    /*padding: 0 0 0 10px;*/
+    padding: 0 0 0 10px;
 }
 .order--detail .card.--custom {
     padding: 16px;
@@ -1103,6 +1103,7 @@
 {
     content: '';
     display: block;
+    position: relative;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1117,6 +1118,19 @@
     width: 16px;
     height: 16px;
 }
+.__icon.--md:after {
+    width: 24px;
+    height: 24px;
+}
+.__icon.--path__custom:after {
+    -webkit-mask: var(--path) center/contain;
+    background-color: #434657;
+    -webkit-mask-repeat: no-repeat;
+}
+a:hover .__icon.--path__custom:after
+{
+    background-color: var(--color-primary);
+}
 .__icon.--link {
     -webkit-mask: var(--path) center/contain;
     background-color: #1990FF;
@@ -1128,11 +1142,14 @@
     background-color: #0F5699;
 }
 
-.article:hover .article--title__link {
+.article:hover .article--title__link,
+#new-article-update .article:hover .article--title__link
+{
     color: var(--color-primary);
     transition: all ease .2s;
 }
-.article .article--thumbnail a:after {
+
+#list-article .article--thumbnail a:after {
     content: '';
     opacity: .2;
     position: absolute;
@@ -1142,16 +1159,52 @@
     bottom: 0;
     transition: all ease .2s;
 }
-.article:hover .article--thumbnail a:after {
-    content: '';
+#list-article .article:hover .article--thumbnail a:after {
     background-color: var(--color-primary);
-    opacity: .2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     transition: all ease .2s;
+}
+
+
+#new-article-update .card--header__title {
+    font-weight: 600;
+}
+#new-article-update .article--thumbnail {
+    height: 150px;
+    margin-right: 10px;
+}
+#new-article-update .article--info {
+    padding: 0 0 0 10px;
+}
+#new-article-update .card--header {
+    margin-bottom: 20px;
+}
+
+#new-article-update .article--description {
+    margin: .75rem 0;
+    color: #434657;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+#new-article-update .article {
+    border-bottom: 1px solid #DCDEE9;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+#new-article-update .article:last-child {
+    margin-bottom: 12px;
+}
+#new-article-update .article .article--title__link {
+    font-weight: 600;
+    font-size: 20px;
+    color: #1B1D29;
+}
+
+/*Dịch vụ */
+.service--thumbnail {
+    height: 128px;
 }
 /* Small Screen */
 @media screen and (max-width: 1200px) {
@@ -1299,12 +1352,12 @@
         padding: 12px;
         background: #FDE4CC;
     }
-   .step .card__detail .card--info__name,
-   .step .card__detail .card--info__value
-   {
-       font-size: 12px;
-       color: #434657;
-   }
+    .step .card__detail .card--info__name,
+    .step .card__detail .card--info__value
+    {
+        font-size: 12px;
+        color: #434657;
+    }
     .step .card__detail .card--info__name {
         font-weight: 600;
     }
@@ -1342,9 +1395,9 @@
         overflow: auto;
     }
 
-    /*.order--detail {*/
-    /*    padding: 0;*/
-    /*}*/
+    .order--detail {
+        padding: 0;
+    }
     .card--detail {
         padding: 0 1rem;
         margin-bottom: 16px;
@@ -1418,11 +1471,14 @@
     #article--news .article {
         display: flex;
     }
-    #article--news .article .article--thumbnail {
+    #article--news .article .article--thumbnail,
+    #new-article-update .article--thumbnail
+    {
         height: 72px;
     }
-    .article .article--title .article--title__link {
+    #new-article-update .article--title .article--title__link {
         font-size: 12px;
+        min-height: 40px;
     }
     #article--news .article--title {
         height: auto;
@@ -1444,5 +1500,14 @@
     .card--rise.--secondary .btn.-primary {
         margin: 16px -16px 8px;
         width: calc(100% + 2rem);
+    }
+    #new-article-update .article--info {
+        padding: 0 0 0 2px;
+    }
+    #new-article-update .article {
+        padding-bottom: 1rem;
+    }
+    #card--body__news {
+        margin-top: 12px;
     }
 }

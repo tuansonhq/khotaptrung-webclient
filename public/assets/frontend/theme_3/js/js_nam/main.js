@@ -44,30 +44,35 @@ $('.icon-search-close').click(function (e) {
     }
 });
 // menu profile side
-var menu_profile = false;
-$('.box-account-mobile_open').click(function (e) {
-
-    if (!menu_profile) {
-
-        e.preventDefault();
-        $('.menu-profile-mobile').addClass('menu-profile-mobile_show');
-        $('.box-account-mobile_open').css('display', 'none');
-        $('.box-account-mobile_close').css('display', 'block');
-        menu_profile = true;
-
-    }
-});
-
-$('.box-account-mobile_close').click(function (e) {
-    if (menu_profile) {
-        e.preventDefault();
-        $('.menu-profile-mobile').removeClass('menu-profile-mobile_show');
-        $('.box-account-mobile_close').css('display', 'none');
-        $('.box-account-mobile_open').css('display', 'block');
-        menu_profile = false;
-    }
-});
-
+// var menu_profile = false;
+// $('.box-account-mobile_open').click(function (e) {
+//
+//     if (!menu_profile) {
+//
+//         e.preventDefault();
+//         $('.menu-profile-mobile').addClass('menu-profile-mobile_show');
+//         $('.box-account-mobile_open').css('display', 'none');
+//         $('.box-account-mobile_close').css('display', 'block');
+//         menu_profile = true;
+//
+//     }
+// });
+//
+// $('.box-account-mobile_close').click(function (e) {
+//     if (menu_profile) {
+//         e.preventDefault();
+//         $('.menu-profile-mobile').removeClass('menu-profile-mobile_show');
+//         $('.box-account-mobile_close').css('display', 'none');
+//         $('.box-account-mobile_open').css('display', 'block');
+//         menu_profile = false;
+//     }
+// });
+function openMenuProfile(){
+    // let width = $(window).width();
+    setTimeout(function(){
+        $('.menu-profile-mobile').toggleClass('menu-profile-mobile_show');
+    }, 0);
+}
 var user = function() {
     $('.box-account-logined').click(function(e) {
         // e.preventDefault(); // stops link from making page jump to the top

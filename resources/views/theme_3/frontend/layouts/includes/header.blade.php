@@ -150,166 +150,178 @@
 
                 </div>
             </div>
-{{--            <div class="box-account d-none d-md-block">--}}
-{{--                <div class="box-account-logined">--}}
-{{--                    <div class="account-name">--}}
-{{--                        <div >Namcuteboy...</div>--}}
-{{--                        <div class="account-balance">Số dư: 100.000</div>--}}
-{{--                    </div>--}}
-{{--                    <div class="account-avatar">--}}
-{{--                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="account-triangle ">--}}
-{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="account-logined-content">--}}
-{{--                        <!--                                <div class="arrow down"></div>-->--}}
-{{--                        <div class=" d-flex">--}}
-{{--                            <div class="acount-logined_img">--}}
-{{--                                <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="account-logined_info">--}}
-{{--                                <div class="">--}}
-{{--                                    <span class="">ID: </span>1234567--}}
-{{--                                </div>--}}
-{{--                                <div class="">--}}
-{{--                                    <span class="">Số dư: </span>0 đ--}}
-{{--                                </div>--}}
-{{--                                <div class="">--}}
-{{--                                    <span class="">Xu khóa: </span>0 xu--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+            <div class="box-login">
+                <div class="box-loading btn-loading">
+                    <div class="loading"></div>
+                </div>
+                <div class="box-logined box-deposit">
+{{--                    <a class="btn btn-submit" onclick="openLoginModal();">--}}
+{{--                        Đăng nhập--}}
+{{--                    </a>--}}
+                </div>
+{{--                d-none d-md-block--}}
+                <div class="box-account ">
+                    <div class="box-account-logined">
+                        <div class="account-name">
+                            <div id="account-name" class="text-center"></div>
+                            <div  class="account-balance"></div>
+                        </div>
+                        <div class="account-avatar">
+                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                        </div>
+                        <div class="account-triangle ">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
+                        </div>
+                        <div class="account-logined-content">
+                            <!--                                <div class="arrow down"></div>-->
+                            <div class=" d-flex">
+                                <div class="acount-logined_img">
+                                    <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                                </div>
+                                <div class="account-logined_info">
+                                    <div id="account-id">
 
-{{--                        </div>--}}
-{{--                        <hr>--}}
-{{--                        <div class="account-menu-content">--}}
-{{--                            <div class="account-menu_nav mb-fix-16">--}}
-{{--                                <div class="account-menu_parent mb-fix-12">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_info.png" alt=""> Tài khoản--}}
+                                    </div>
+                                    <div id="account-balance">
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/profile">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Thông tin tài khoản</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+{{--                                    <div class="">--}}
+{{--                                        <span class="">Xu khóa: </span>0 xu--}}
+{{--                                    </div>--}}
+                                </div>
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/change-password">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Đổi mật khẩu</span>--}}
-{{--                                    </a>--}}
+                            </div>
+                            <hr>
+                            <div class="account-menu-content">
+                                <div class="account-menu_nav mb-fix-16">
+                                    <div class="account-menu_parent mb-fix-12">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_info.png" alt=""> Tài khoản
 
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="account-menu_nav mb-fix-16">--}}
-{{--                                <div class="account-menu_parent mb-fix-12">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_trans.png" alt=""> Quản lý giao dịch--}}
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/profile">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Thông tin tài khoản</span>
+                                        </a>
 
-{{--                                    <a href="/rut-tien">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Rút tiền ATM - Ví điện tử</span>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/rut-vat-pham">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Rút Vật phẩm</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/change-password">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Đổi mật khẩu</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="account-menu_nav mb-fix-16">--}}
-{{--                                <div class="account-menu_parent mb-fix-12">--}}
-{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_trans_history.png" alt=""> Lịch sử giao dịch--}}
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-giao-dich">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Biến động số dư</span>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-nap-the">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Lịch sử nạp thẻ</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                </div>
+                                <div class="account-menu_nav mb-fix-16">
+                                    <div class="account-menu_parent mb-fix-12">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_trans.png" alt=""> Quản lý giao dịch
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/the-cao-da-mua">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Thẻ cào đã mua</span>--}}
-{{--                                    </a>--}}
+                                        <a href="/rut-tien">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Rút tiền ATM - Ví điện tử</span>
+                                        </a>
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/rut-vat-pham">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Rút Vật phẩm</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-dich-vu">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Dịch vụ đã mua</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                </div>
+                                <div class="account-menu_nav mb-fix-16">
+                                    <div class="account-menu_parent mb-fix-12">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/account_trans_history.png" alt=""> Lịch sử giao dịch
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-giao-dich">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span> Biến động số dư</span>
+                                        </a>
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-nap-the">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Lịch sử nạp thẻ</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-atm-tu-dong">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Lịch sử nạp ATM tự động</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/the-cao-da-mua">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Thẻ cào đã mua</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-mua-nick">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Tài khoản đã mua</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-dich-vu">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Dịch vụ đã mua</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                                <div class="account-menu_child pt-fix-4 pb-fix-4">--}}
-{{--                                    <a href="/lich-su-tra-gop">--}}
-{{--                                        <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Tài khoản trả góp</span>--}}
-{{--                                    </a>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-atm-tu-dong">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Lịch sử nạp ATM tự động</span>
+                                        </a>
 
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="w-100 primary-button log-out-button text-center">--}}
-{{--                            Đăng xuất--}}
-{{--                        </div>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-mua-nick">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Tài khoản đã mua</span>
+                                        </a>
 
-{{--                    </div>--}}
-{{--                </div>--}}
+                                    </div>
+                                    <div class="account-menu_child pt-fix-4 pb-fix-4">
+                                        <a href="/lich-su-tra-gop">
+                                            <div class="pr-fix-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/arrow-right.png" alt=""> </div> <span>Tài khoản trả góp</span>
+                                        </a>
 
-{{--            </div>--}}
-{{--            <div class="box-account-mobile d-block d-md-none">--}}
-{{--                <div class="box-account-logined box-account-mobile_open">--}}
-
-{{--                    <div class="account-avatar">--}}
-{{--                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="box-account-mobile ">--}}
-{{--                <div class="box-account-logined box-account-mobile_close">--}}
-
-{{--                    <div class="account-avatar">--}}
-{{--                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
-{{--                    </div>--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100 log-out-button text-center">
 
 
+                            </div>
 
-            <div class="box-login box-deposit">
-                  <a class="btn btn-submit" onclick="openLoginModal();">
-                     Đăng nhập
-                  </a>
-              </div>
-            <div class="box-regist box-deposit">
-                <a class="btn btn-submit" onclick="openRegisterModal();">
-                    Đăng ký
-                </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-{{--            <div class="box-deposit">--}}
-{{--                <a class="btn btn-submit">--}}
-{{--                    Nạp thẻ--}}
-{{--                </a>--}}
-{{--            </div>--}}
+
+            <div class="box-login">
+                <div class="box-loading btn-loading">
+                    <div class="loading"></div>
+                </div>
+                <div class="box-deposit-charge box-deposit">
+                    <a class="btn btn-submit">
+                        Nạp thẻ
+                    </a>
+                </div>
+                <div class="box-registed box-deposit">
+                    <a class="btn btn-submit" onclick="openRegisterModal();">
+                        Đăng ký
+                    </a>
+                </div>
+            </div>
+
+
+{{--                mobile--}}
+
+            <div class="box-login-mobile">
+                <div class="box-loading-mobile ">
+                    <div class="loading"></div>
+                </div>
+
+                <div class="box-account-mobile ">
+{{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
+{{--                        <div class="account-avatar">--}}
+{{--                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </div>
+            </div>
+
         </div>
+
+
 
     </nav>
 
@@ -376,6 +388,21 @@
             {{--Bắt đầu vòng lặp --}}
             <div class="col-md-12 left-right nav-bar-hr">
                 {{--                                    Vong lap thang bố--}}
+                <div class="acount-logined_mobile d-flex m-3">
+                    <div class="acount-logined_img">
+                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                    </div>
+                    <div class="account-logined_info">
+                        <div id="account-id-mobile">
+{{--                            <span class="">ID: </span>1234567--}}
+                        </div>
+                        <div id="account-balance-mobile">
+{{--                            <span class="">Số dư: </span>0 đ--}}
+                        </div>
+
+                    </div>
+
+                </div>
                 <div class="row marginauto nav-bar-nick nav-bar-parent">
                     <div class="col-md-12 left-right">
                         <div class="row marginauto nav-bar-parent-title">
@@ -692,6 +719,16 @@
     <div class="menu-category-mobile">
         <ul class=" ">
             <li>
+                <a href="/">
+                    <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
+                    <span>Trang chủ</span>
+                    <div class="mobile-logo">
+                        <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
+                    </div>
+
+                </a>
+            </li>
+            <li>
                 <a href="">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category1.png" alt="">
                     <span>Khuyến mãi</span>
@@ -706,48 +743,63 @@
             <div class="menu-category-mobile-partition"></div>
             <li>
                 <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category3.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant1.png" alt="">
                     <span>Nạp thẻ cào</span>
                 </a>
             </li>
 
             <li>
                 <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category4.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant2.png" alt="">
                     <span>Nạp ATM-Ví</span>
                 </a>
             </li>
             <li>
                 <a href="/mua-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category7.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant3.png" alt="">
                     <span>Mua thẻ</span>
                 </a>
             </li>
             <li>
                 <a href="/mua-acc">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category5.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant4.png" alt="">
                     <span>Mua Acc Game</span>
                 </a>
             </li>
             <li>
                 <a href="/dich-vu">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category8.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant5.png" alt="">
                     <span>Dịch vụ Game</span>
                 </a>
             </li>
             <li>
                 <a href="/minigame">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category9.png" alt="">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant6.png" alt="">
                     <span>Vòng quay</span>
                 </a>
             </li>
-            <div class="menu-category-mobile-partition"></div>
             <li>
-                <a href="">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">
-                    <span>Đăng nhập/ Đăng ký</span>
+                <a href="/recharge-game">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant7.png" alt="">
+                    <span>Nạp tài khoản game</span>
                 </a>
+            </li>
+            <li>
+                <a href="/recharge-game">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant9.png" alt="">
+                    <span>Tin tức</span>
+                </a>
+            </li>
+            <div class="menu-category-mobile-partition"></div>
+            <li id="login_menu">
+{{--                <a href="">--}}
+{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
+{{--                    <span>Đăng nhập/ Đăng ký</span>--}}
+{{--                </a>--}}
             </li>
         </ul>
     </div>
 </div>
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
