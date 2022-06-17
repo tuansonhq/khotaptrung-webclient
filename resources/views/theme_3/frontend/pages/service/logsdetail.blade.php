@@ -72,6 +72,38 @@
                                             @endforeach
                                         @endif
                                         </div>
+
+                                    </div>
+                                    <div class="card--rise --gray mt-lg-4 mt-3">
+                                        <div class="card--rise__title">
+                                            Tiến độ
+                                        </div>
+                                        <ul class="order--timelines">
+                                            <li class="order--timeline">
+                                                <div class="order--status">
+                                                    Đang chờ
+                                                </div>
+                                                <div class="order--date">
+                                                    18/10/2021 - 04:20
+                                                </div>
+                                            </li>
+                                            <li class="order--timeline">
+                                                <div class="order--status">
+                                                    Đang chờ
+                                                </div>
+                                                <div class="order--date">
+                                                    18/10/2021 - 04:20
+                                                </div>
+                                            </li>
+                                            <li class="order--timeline">
+                                                <div class="order--status">
+                                                    Đang chờ
+                                                </div>
+                                                <div class="order--date">
+                                                    18/10/2021 - 04:20
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -81,88 +113,103 @@
                                 $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->itemconfig_ref->params);
                             @endphp
                             <div class="col-12 col-lg-6 px-1 pr-lg-3">
-                                <div class="card--rise --gray">
-                                    <div class="card--rise__title">
-                                        Thông tin đính kèm
+
+                                <div class="row marginauto mb-4 chat-box">
+                                    <div class="col-md-12 left-right">
+                                        <div class="row marginauto chat-box-row">
+                                            <div class="col-md-12 left-right chat-box-col">
+                                                <span>Thông tin đính kèm</span>
+                                            </div>
+                                            <div class="col-md-12 left-right chat-box-col">
+                                                <small>Tài khoản Garena: </small><span>mrt_2810</span>
+                                            </div>
+                                            <div class="col-md-12 left-right chat-box-col">
+                                                <small>Tài khoản: </small><span>Test</span>
+                                            </div>
+                                            <div class="col-md-12 left-right chat-box-col">
+                                                <small>Mật khẩu Garena: </small><span>Xuantan_2810</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->itemconfig_ref->params)==1)
-                                        <div class="order__attr">
-                                            <div class="card__attr">
-                                                <div class="card--value__attr">
-                                                    Server:<span class="card__info">{{isset($server_data[$data->position])?$server_data[$data->position]:""}}</span>
+                                </div>
+{{--                                <div class="card--rise --gray">--}}
+
+{{--                                </div>--}}
+
+{{--                                <div class="card--rise --gray mb-4">--}}
+{{--                                    <div class="card--rise__title">--}}
+{{--                                        Trao đổi--}}
+{{--                                    </div>--}}
+{{--                                    <div class="card__attr">--}}
+{{--                                        <div class="card--value__attr">--}}
+{{--                                            Chưa có nội dung--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="row marginauto mb-4 chat-box">
+                                   <div class="col-md-12 left-right">
+                                       <div class="row marginauto header-chat">
+                                           <div class="col-md-12 left-right chat-box-col">
+                                               <span>Trao đổi dịch vụ</span><small>#F67600</small>
+                                           </div>
+                                       </div>
+                                       <div class="row marginauto body-chat">
+                                           <div class="col-md-12 left-right chat-hover">
+                                                <div class="row marginauto" id="chat-scroll">
+                                                    <div class="col-md-12 left-right body-chat-col">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right body-chat-title">
+                                                                <span>Người yêu cầu order</span>
+                                                            </div>
+                                                            <div class="col-md-12 left-right body-chat-content">
+                                                                <small>1h trước:</small><span>Mình thay đổi nội dung bạn ơi</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 left-right body-chat-col body-chat-col-dark">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right body-chat-title">
+                                                                <span>Người yêu cầu order</span>
+                                                            </div>
+                                                            <div class="col-md-12 left-right body-chat-content">
+                                                                <small>1h trước:</small><span>Mình thay đổi nội dung bạn ơi</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 left-right body-chat-col">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right body-chat-title">
+                                                                <span>Người yêu cầu order</span>
+                                                            </div>
+                                                            <div class="col-md-12 left-right body-chat-content">
+                                                                <small>1h trước:</small><span>Mình thay đổi nội dung bạn ơi</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 left-right body-chat-col body-chat-col-dark">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right body-chat-title">
+                                                                <span>Người yêu cầu order</span>
+                                                            </div>
+                                                            <div class="col-md-12 left-right body-chat-content">
+                                                                <small>1h trước:</small><span>Mình thay đổi nội dung bạn ơi</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 left-right body-chat-col">
+                                                        <div class="row marginauto">
+                                                            <div class="col-md-12 left-right body-chat-title">
+                                                                <span>Người yêu cầu order</span>
+                                                            </div>
+                                                            <div class="col-md-12 left-right body-chat-content">
+                                                                <small>1h trước:</small><span>Mình thay đổi nội dung bạn ơi</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    @if(!empty($send_name)&& count($send_name)>0)
-
-                                        @foreach( $send_name as $index=> $aSendName)
-
-                                        @endforeach
-
-                                    @endif
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Tài khoản Garena:<span class="card__info">mrt_2810</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Tài khoản:<span class="card__info">Test</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Mật khẩu Garena:<span class="card__info">Xuantan_2810</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--rise --gray">
-                                    <div class="card--rise__title">
-                                        Tiến độ
-                                    </div>
-                                    <ul class="order--timelines">
-                                        <li class="order--timeline">
-                                            <div class="order--status">
-                                                Đang chờ
-                                            </div>
-                                            <div class="order--date">
-                                                18/10/2021 - 04:20
-                                            </div>
-                                        </li>
-                                        <li class="order--timeline">
-                                            <div class="order--status">
-                                                Đang chờ
-                                            </div>
-                                            <div class="order--date">
-                                                18/10/2021 - 04:20
-                                            </div>
-                                        </li>
-                                        <li class="order--timeline">
-                                            <div class="order--status">
-                                                Đang chờ
-                                            </div>
-                                            <div class="order--date">
-                                                18/10/2021 - 04:20
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card--rise --gray mb-4">
-                                    <div class="card--rise__title">
-                                        Trao đổi
-                                    </div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Chưa có nội dung
-                                        </div>
-                                    </div>
+                                           </div>
+                                       </div>
+                                   </div>
                                 </div>
                                 <div class="mx-2 mx-lg-0">
                                     <a href="/nhan-tin" class="btn -primary btn-big">Nhắn tin</a>

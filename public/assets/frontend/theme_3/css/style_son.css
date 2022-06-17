@@ -3331,6 +3331,151 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding-top: 16px;
 }
 
+.chat-box{
+    background: #FFFFFF;
+    border: 1px solid #DCDEE9;
+    border-radius: 8px;
+}
+
+.chat-box-row{
+    padding: 8px 12px;
+}
+.chat-box-col:first-child{
+    padding-top: 0;
+}
+.chat-box-col{
+    padding-top: 16px;
+}
+
+.chat-box-col span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #434657;
+}
+
+.chat-box-col small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #82869E;
+
+}
+
+.header-chat{
+    background: #F3F3F7;
+   border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.header-chat{
+    padding: 8px 12px;
+}
+.header-chat span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #434657;
+}
+
+.header-chat small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #F67600;
+    margin-left: 12px;
+}
+
+.body-chat-col{
+    padding: 8px 12px;
+}
+.body-chat-col-dark{
+    background: #FBFBFD;
+}
+.body-chat-col:last-child{
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.body-chat-title span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: #434657;
+}
+
+.body-chat-content small{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #A7ABC3;
+}
+
+.body-chat-content span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #434657;
+    margin-left: 12px;
+}
+
+#chat-scroll{
+    max-height: 260px;
+    overflow: auto;
+}
+
+.chat-hover:hover #chat-scroll::-webkit-scrollbar-thumb{
+    background-color: #F67600;
+}
+
+#chat-scroll::-webkit-scrollbar-track
+{
+    position: absolute;
+    top: 100px;
+    left: -60px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color:  transparent;
+    border: none;
+}
+#chat-scroll::-webkit-scrollbar-thumb{
+    background-color: pink;
+
+}
+#chat-scroll::-webkit-scrollbar
+{
+    width: 4px;
+    border: none;
+}
+
+#chat-scroll::-webkit-scrollbar-thumb
+{
+    /*Màu thanh sroll*/
+    background: rgba(27, 29, 41, 0.5);
+    border-radius: 100px;
+    border: none;
+    margin-left: 20px;
+    height: 20px;
+}
+
+
+/* Hêt */
+
+
+
+
+
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-header-col-ct h3{
@@ -4763,6 +4908,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
+    .chat-box-col span,
+    .chat-box-col small{
+        font-size: 14px;
+    }
+    .chat-box-col{
+        padding-top: 12px;
+    }
 }
 
 @media only screen and (min-width: 495px) and (max-width: 573px) {
@@ -4776,6 +4928,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
 }
 @media only screen and (max-width: 376px) {
+    .chat-box-col{
+        padding-top: 12px;
+    }
+    .chat-box-col span,
+    .chat-box-col small{
+        font-size: 14px;
+    }
     .table-logs{
         display: block;
         width: 100%;

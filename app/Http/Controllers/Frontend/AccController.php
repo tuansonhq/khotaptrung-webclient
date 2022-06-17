@@ -127,6 +127,12 @@ class AccController extends Controller
 
                     $items = $response_data->data;
 
+                    if (isset($items->status) && $items->status == 0){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                        ]);
+                    }
 
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $items->setPath($request->url());
