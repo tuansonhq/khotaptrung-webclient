@@ -85,7 +85,7 @@ $(document).ready(function(){
                             'document.getElementById(\'logout-form\').submit();"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng xuất</span></a>')
 
                     }
-                    $('meta[name="jwt"]').attr('content',data.jwt);
+                    $('meta[name="jwt"]').attr('content',data.token);
 
                 }
             },
