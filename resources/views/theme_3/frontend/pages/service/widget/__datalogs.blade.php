@@ -67,8 +67,8 @@
                             @endif
                         </td>
                         <td class="text-right">
-                            <a href="/lich-su-dich-vu/detail" class="refund-default openHoanTien">Chi tiết</a>
-                            <a href="/nhan-tin" class="refund-default refund-default-tt openTTTraGop">Nhắn tin</a>
+                            <a href="/dich-vu-da-mua-{{$item->id}}" class="refund-default openHoanTien">Chi tiết</a>
+                            <a href="/inbox/send/{{$item->id}}" class="refund-default refund-default-tt openTTTraGop">Nhắn tin</a>
                         </td>
                     </tr>
                         @php

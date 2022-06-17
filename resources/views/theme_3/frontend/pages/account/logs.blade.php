@@ -291,30 +291,49 @@
                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                             <span>Tài khoản</span>
                                         </div>
-                                        <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">
-                                            <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">
-                                            <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
+                                        <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-tai-khoan">
+{{--                                            <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+{{--                                            <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">--}}
                                         </div>
-                                        <div class="row marginauto title-tra-gop-success-row">
-                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                <span>Mật khẩu</span>
-                                            </div>
-                                            <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick">
-                                                <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="123456" placeholder="******">
-                                                <img class="lazy img-copy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopypass">
-                                                <div class="getCopypass">
-                                                    <img class="lazy img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
+                                        <div class="col-md-12 left-right">
+                                            <div class="row marginauto title-tra-gop-success-row">
+                                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                    <span>Mật khẩu</span>
                                                 </div>
-
-
+                                                <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick data-password">
+                                                    {{--                                                <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="123456" placeholder="******">--}}
+                                                    {{--                                                <img class="lazy img-copy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopypass">--}}
+                                                    {{--                                                <div class="getCopypass">--}}
+                                                    {{--                                                    <img class="lazy img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">--}}
+                                                    {{--                                                </div>--}}
+                                                </div>
                                             </div>
-                                        </div></div>
+                                        </div>
+
+                                        <div class="col-md-12 left-right data-child">
+{{--                                            <div class="row marginauto add-child">--}}
+{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
+{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+                                        </div>
+
+                                        <div class="col-md-12 left-right data-ttbxung">
+{{--                                            <div class="row marginauto add-child">--}}
+{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
+{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right title-tra-gop text-center">
-                            <small>Đã lấy mật khẩu lúc: 05-05-2022, 121:32:56</small>
+                        <div class="col-md-12 left-right title-tra-gop text-center data-time">
+{{--                            <small>Đã lấy mật khẩu lúc: 05-05-2022, 121:32:56</small>--}}
                         </div>
 
                         <div class="col-md-12 left-right padding-order-16-ct">

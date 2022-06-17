@@ -59,7 +59,7 @@
                     </td>
                     <td>
                         @if($item->status == 0)
-                            <a href="javascript:void(0)" class="badge badge-info show_chitiet" data-id="{{ $item->id }}">Chi tiết</a>
+                            <a href="javascript:void(0)" class="refund-default openHoanTien show_chitiet" data-id="{{ $item->id }}">Chi tiết</a>
                         @endif
                     </td>
                 </tr>

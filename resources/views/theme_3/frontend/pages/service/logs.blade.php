@@ -10,7 +10,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href=/lich-su-dich-vu">Dịch vụ đã mua</a></li>
+                <li class="menu-container-li-ct"><a href="/dich-vu-da-mua">Dịch vụ đã mua</a></li>
             </ul>
         </div>
     </section>
@@ -20,7 +20,7 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>

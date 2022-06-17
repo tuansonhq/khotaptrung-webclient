@@ -3,7 +3,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
-
+{{--    @dd($data)--}}
     <div class="account">
         <div class="account_content">
             <div class="container">
@@ -148,12 +148,15 @@
 
                                                     <td> {{$aSendName}} </td>
                                                     <td>
+
                                                         @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params)))
 
                                                             @if($send_type[$index]==4)
                                                                 <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}" target="_blank">
     {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
                                                                 </a>
+                                                            @elseif($send_type[$index]==5)
+                                                                ******
                                                             @else
                                                                 {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}
                                                             @endif
@@ -164,8 +167,11 @@
                                                                 <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)}}" target="_blank">
                                                                     {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
                                                                 </a>
+                                                            @elseif($send_type[$index]==5)
+                                                                ******
                                                             @else
                                                                 {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)?? null}}
+
                                                             @endif
                                                         @endif
                                                     </td>
@@ -188,8 +194,11 @@
 
                                         @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
                                         @else
-                                            <button class="btn btn-brand btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
 
+                                            @if($data->gate_id == 1)
+                                            @else
+                                            <button class="btn btn-brand btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
+                                            @endif
                                         @endif
 
                                         <div class="modal fade" id="edit_info" role="dialog" style="display: none;" aria-hidden="true">
