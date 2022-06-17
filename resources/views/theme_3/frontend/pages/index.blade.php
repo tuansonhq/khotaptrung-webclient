@@ -214,7 +214,7 @@
 
                 <div class="text-view-more">
 
-                    <a href="/dich-vu" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/dich-vu" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
 
                 </div>
             </div>
@@ -289,7 +289,7 @@
                 </div>
 
                 <div class="text-view-more">
-                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
                 </div>
             </div>
             <div class="box-product">
@@ -495,7 +495,7 @@
 
                 <div class="text-view-more">
 
-                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
 
                 </div>
             </div>
@@ -1091,10 +1091,10 @@
                         <div class="footer-row-ct d-lg-none d-block">
                             <div  class="col-md-12 left-right text-center js-toggle-content">
                                 <div class="view-more-top ">
-                                    Xem thêm <img src="/assets/theme_3/image/icons/arrow-down.png" alt="">
+                                    Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png" alt="">
                                 </div>
                                 <div class="view-less-top ">
-                                    Rút gọn <img src="/assets/theme_3/image/icons/iconright.png" alt="">
+                                    Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png" alt="">
                                 </div>
                             </div>
 
@@ -1118,7 +1118,7 @@
 
                             <div class="text-view-more">
 
-                                <a href="/minigame" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                                <a href="/minigame" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
 
                             </div>
                         </div>
@@ -1409,7 +1409,7 @@
                     {{--                <a href="">--}}
                     {{--                    Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/view_more.png" alt="">--}}
                     {{--                </a>--}}
-                    <a href="/dich-vu" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/dich-vu" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
                 </div>
             </div>
             <div class="box-product">
@@ -1483,7 +1483,7 @@
 
                             {{--                        <div class="text-view-more">--}}
 
-                            {{--                            <a href="/nap-the" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>--}}
+                            {{--                            <a href="/nap-the" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>--}}
 
                             {{--                        </div>--}}
                         </div>
@@ -1614,7 +1614,7 @@
                                                         </div>
                                                         <div class="card--attr__value">
                                                             <div class="card--logo">
-                                                                <img src="/assets/theme_3/image/cards-logo/zing.png" alt="">
+                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1635,7 +1635,7 @@
                                                             <div class="card__info"> 19037861065016</div>
 
                                                             <div class="icon--coppy js-copy-text" aria-describedby="tippy-7">
-                                                                <img src="/assets/theme_3/image/icons/copy-black.png" alt="">
+                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1647,7 +1647,7 @@
                                                             <div class="card__info"> NAP DTGRN 103764</div>
 
                                                             <div class="icon--coppy js-copy-text" aria-describedby="tippy-7">
-                                                                <img src="/assets/theme_3/image/icons/copy-black.png" alt="">
+                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1756,7 +1756,7 @@
 
                 <div class="text-view-more">
 
-                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
 
                 </div>
             </div>
@@ -1852,7 +1852,7 @@
 
                             {{--                        <div class="text-view-more">--}}
 
-                            {{--                            <a href="/mua-acc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>--}}
+                            {{--                            <a href="/mua-acc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>--}}
 
                             {{--                        </div>--}}
                         </div>
@@ -3060,7 +3060,7 @@
 
                 <div class="text-view-more">
 
-                    <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+                    <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
 
                 </div>
             </div>
