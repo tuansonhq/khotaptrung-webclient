@@ -24,25 +24,6 @@
                     <div class="col-md-12 left-right footer-default-body-col">
                         <small>37 Nguyễn Văn Huyên,Quân hoa,Cầu Giấy,Hà Nội</small>
                     </div>
-{{--                    <div class="col-md-12 left-right footer-default-body-col">--}}
-{{--                        <div class="row footer-default-icon-row">--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/facebook.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/istgram.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/tictoc.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/twid.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/youtube.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
             <div class="col-auto media-footer-order-two footer-default-col left-right text-left">
@@ -112,7 +93,10 @@
                     <div class="col-md-12 left-right footer-default-ul-foor footer-default-two-col">
                         <ul>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Hỗ trợ bán hàng: 1900 1111</a>
+                                <a href="javascript:void(0)" class="global__link__footer">
+                                    <i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>
+                                    Hỗ trợ bán hàng: 1900 1111
+                                </a>
                             </li>
                             <li>
                                 <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Chăm sóc khách hàng: 1900 2222</a>

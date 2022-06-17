@@ -220,6 +220,7 @@ class UserController extends Controller
 
                     $data = $response_data->data;
                     $config = config('module.txns.trade_type_api');
+
                     $status = config('module.txns.status');
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
@@ -229,7 +230,6 @@ class UserController extends Controller
                     $htmlstatus =  view('frontend.pages.transaction.widget.__data_status')
                         ->with('status', $status)->render();
 
-                    //dd($data);
                     $html =  view('frontend.pages.transaction.widget.__transaction_history')
                         ->with('data', $data)->with('config', $config)->with('status', $status)->render();
 
@@ -258,7 +258,7 @@ class UserController extends Controller
                 }
             }
 
-            return view('theme_1.frontend.pages.transaction.logs');
+            return view('frontend.pages.transaction.logs');
 
         }
         catch(\Exception $e){
