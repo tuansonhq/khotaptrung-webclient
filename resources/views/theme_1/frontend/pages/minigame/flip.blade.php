@@ -639,6 +639,7 @@ $(document).ready(function(e){
                         }
                         else
                         {
+                            $("#btnWithdraw").hide();
                             if(gift_revice.length == 1)
                             {
                                     $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
