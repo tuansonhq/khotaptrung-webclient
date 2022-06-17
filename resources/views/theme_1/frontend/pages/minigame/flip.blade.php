@@ -21,7 +21,7 @@
                     <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                     <div class="row boxflip">
                         @for ($i = 0; $i < count($result->group->items); $i++)
-                            <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
+                            <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
                                     <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
                                     <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="row" id="boxfliphide" style="display: none;">
                         @for ($i = 0; $i < count($result->group->items); $i++)
-                            <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
+                            <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
                                     <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
                                     <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
