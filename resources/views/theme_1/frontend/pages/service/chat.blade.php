@@ -21,7 +21,7 @@
                             Trao đổi dịch vụ <a href="/dich-vu-da-mua-{{$item->id}}" style="color: #32c5d2;">#{{$item->id}}</a>
                         </h2>
                         <div class="error-chat">
-                            <span style="font-size: 14px;color: red;margin-bottom: 16px">Lỗi rồi em ơi</span>
+{{--                            <span style="font-size: 14px;color: red;margin-bottom: 16px">Lỗi rồi em ơi</span>--}}
                         </div>
                         <div class="edu-history-sec pt-3" id="experience">
 

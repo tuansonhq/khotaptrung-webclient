@@ -785,24 +785,29 @@
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
+
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+
+                    }
+                }
             }
             else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
-            }
-            for (var i = 0; i < s_price.length; i++) {
 
-                if (price >= s_price[i] && s_price[i] != null) {
-                    current = s_price[i];
-                    index = i;
-                    discount = s_discount[i];
-                    total = price * s_discount[i];
-                }
+                discount = s_discount[server];
+                total = price * discount;
             }
+
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
             total = parseInt(total / 1000 * data.input_pack_rate);
-            console.log(discount)
 
             $('#txtDiscount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
@@ -820,7 +825,6 @@
         $('#input_pack').bind('focus keyup', function () {
             UpdateTotal();
         });
-
         $(document).ready(function () {
             UpdatePrice();
         });
@@ -830,7 +834,6 @@
             Confirm(value, index);
         }
     </script>
-
     @endif
 @endsection
 

@@ -127,6 +127,12 @@ class AccController extends Controller
 
                     $items = $response_data->data;
 
+                    if (isset($items->status) && $items->status == 0){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                        ]);
+                    }
 
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
                     $items->setPath($request->url());
@@ -471,6 +477,9 @@ class AccController extends Controller
     {
         if (AuthCustom::check()) {
 
+            $url = '/acc';
+            $method = "GET";
+
             if ($request->ajax()) {
                 $page = $request->page;
                 $time = null;
@@ -479,14 +488,12 @@ class AccController extends Controller
                 $datashow = null;
                 $slugen = null;
                 $count = 0;
-                $url = '/acc';
-                $method = "GET";
                 $dataSend = array();
                 $dataSend['page'] = $page;
                 $dataSend['data'] = 'list_acc';
                 $dataSend['sort'] = 'desc';
                 $dataSend['sort_by'] = 'published_at';
-                $dataSend['limit'] = 12;
+                $dataSend['limit'] = 10;
                 $dataSend['user_id'] = AuthCustom::user()->id;
 
                 $chitiet_data = 0;
@@ -500,7 +507,6 @@ class AccController extends Controller
 
                 }
 
-                $dataSend['id'] = $request->serial;
                 $dataSend['id'] = $request->serial;
                 $dataSend['cat_slug'] = $request->key;
                 $dataSend['status'] = $request->status;
@@ -630,51 +636,31 @@ class AccController extends Controller
                         ]);
                     }
 
-                    $dataSendCate = array();
-                    $dataSendCate['data'] = 'category_list';
-                    $dataSendCate['module'] = 'acc_category';
-                    $result_cate_api = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-                    $response_cate_data = $result_cate_api->response_data??null;
+                    $html = view('frontend.pages.account.widget.__datalogs')
+                        ->with('data', $data)->render();
 
-                    if(isset($response_cate_data) && $response_cate_data->status == 1){
-
-                        $datacategory = $response_cate_data->data;
-
-                        $htmlcategory = view('frontend.pages.account.widget.__datacategorylogs')
-                            ->with('datacategory', $datacategory)->render();
-
-                        $html = view('frontend.pages.account.widget.__datalogs')
-                            ->with('data', $data)->render();
-
-                        if (count($data) == 0 && $page == 1){
-                            return response()->json([
-                                'status' => 0,
-                                'message' => 'Không có dữ liệu !',
-                            ]);
-                        }
-
-                        return response()->json([
-                            "success"=> true,
-                            "html" => $html,
-                            "htmlcategory" => $htmlcategory,
-                            "status" => 1,
-                            "data" => $data,
-                            "time" => $time,
-                            "dataAttribute" => $dataAttribute,
-                            "chitiet_data" => $chitiet_data,
-                            "id_data" => $id_data,
-                            "datashow" => $datashow,
-                            "key" => $key,
-                            "slugen" => $slugen,
-                            "count" => $count
-                        ], 200);
-                    }
-                    else{
+                    if (count($data) == 0 && $page == 1){
                         return response()->json([
                             'status' => 0,
-                            'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                            'message' => 'Không có dữ liệu !',
                         ]);
                     }
+
+                    return response()->json([
+                        "success"=> true,
+                        "html" => $html,
+                        "status" => 1,
+                        "data" => $data,
+                        "time" => $time,
+                        "dataAttribute" => $dataAttribute,
+                        "chitiet_data" => $chitiet_data,
+                        "id_data" => $id_data,
+                        "datashow" => $datashow,
+                        "key" => $key,
+                        "slugen" => $slugen,
+                        "count" => $count
+                    ], 200);
+
                 }
                 else{
                     return response()->json([
@@ -684,7 +670,25 @@ class AccController extends Controller
                 }
             }
 
-            return view('frontend.pages.account.logs');
+            $dataSendCate = array();
+            $dataSendCate['data'] = 'category_list';
+            $dataSendCate['module'] = 'acc_category';
+            $result_cate_api = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+            $response_cate_data = $result_cate_api->response_data??null;
+
+            if(isset($response_cate_data) && $response_cate_data->status == 1){
+
+                $datacategory = $response_cate_data->data;
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+
+            return view('frontend.pages.account.logs')->with('datacategory',$datacategory);
         }else{
             return redirect('/login');
         }
