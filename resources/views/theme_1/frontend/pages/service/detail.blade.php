@@ -401,7 +401,6 @@
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(Auth::check())
-
                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>

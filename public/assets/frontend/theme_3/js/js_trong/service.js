@@ -41,7 +41,6 @@ $('input[numberic]').on('keypress', function (e) {
 });
 
 let data_params = JSON.parse($('#data_params').val());
-console.log(data_params)
 let purchase_name;
 data_params['filter_type'] == 7 ? purchase_name = data_params['filter_name'] : purchase_name = 'VNĐ';
 
@@ -56,7 +55,6 @@ switch (data_params['filter_type']) {
         break
     // chọn một
     case '4':
-        let itemselect = -1;
         $("select[name=selected]").change(function (elm, select) {
             itemselect = parseInt($('select[name=selected] option').filter(':selected').val());
             UpdatePrice4();
@@ -65,48 +63,42 @@ switch (data_params['filter_type']) {
             server = parseInt($('select[name=server] option').filter(':selected').val());
             UpdatePrice4();
         });
-        itemselect = parseInt($('select[name=selected] option').filter(':selected').val());
+        let itemselect_value = parseInt($('select[name=selected] option').filter(':selected').val());
+        let itemselect_name = $('select[name=selected] option').filter(':selected').text();
         UpdatePrice4();
 
     function UpdatePrice4() {
         let price = 0;
-        if (itemselect == -1) {
+        if (itemselect_value == -1) {
             return;
         }
 
         if (data_params.server_mode == 1 && data_params.server_price == 1) {
             let s_price = data_params["price" + server];
-            price = parseInt(s_price[itemselect]);
+            price = parseInt(s_price[itemselect_value]);
         } else {
             let s_price = data_params["price"];
-            price = parseInt(s_price[itemselect]);
+            price = parseInt(s_price[itemselect_value]);
         }
 
         price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
         price = price.split('').reverse().join('').replace(/^[\.]/, '');
         txt_price.text(price + ' VNĐ');
 
-        // $('[name="selected"]').val($(".s-filter").val());
-
-        // $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-        //     $(this).removeClass();
-        // });
-        // $('tbody tr.selected').removeClass('selected');
-        // $('tbody tr').eq(itemselect).addClass('selected');
+    //    Modal
+        $('.service_pack').html(`<small>${itemselect_name}</small>`);
+        $('#txt-price-total').text(`${price} VNĐ`);
     }
-
-    function ConfirmBuy(value) {
-        var index = $('.server-filter').val();
-        Confirm(value, index);
-    }
-
         break;
     // Dạng chọn nhiều
     case '5':
         $('#select-multi input[type="checkbox"]').change(function () {
             UpdatePrice5();
+            checkPack();
         });
+
     function UpdatePrice5() {
+        let checked = $('#select-multi input[type="checkbox"]:checked');
         var total = 0;
         var itemselect = '';
         if (data_params.server_mode == 1 && data_params.server_price == 1) {
@@ -116,19 +108,36 @@ switch (data_params['filter_type']) {
             var s_price = data_params["price"];
         }
 
-        let checked = $('#select-multi input[type="checkbox"]:checked');
         if (checked.length > 0) {
             checked.each(function (idx, elm) {
                 total += parseInt(s_price[$(elm).val()]);
                 if (!!itemselect) {
                     itemselect += '|';
                 }
-                itemselect += $(elm).val();
+                itemselect += $(this).val();
             });
+            $('input[name=selected]').val(itemselect)
         }
         total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
         total = total.split('').reverse().join('').replace(/^[\.]/,'');
         txt_price.text(total + ' VNĐ');
+    //    modal
+        $('#txt-price-total').text(total + ' VNĐ');
+    }
+    function checkPack() {
+        let checked = $('#select-multi input[type="checkbox"]:checked');
+        if (checked.length){
+            $('.service_pack').html('')
+            checked.each(function (elm) {
+                let text = $(this).parent().find('.label--checkbox__name').text().trim();
+                let html = '';
+                html += `<small>`;
+                html += `${text}`;
+                html += `</small>`;
+                html += `<br>`;
+                $('.service_pack').append(html);
+            });
+        }
     }
         break
     // trong khoảng
@@ -139,8 +148,10 @@ switch (data_params['filter_type']) {
         UpdatePrice6();
 
         function UpdatePrice6() {
-            let rank_from = $('select[name=rank-from] option').filter(':selected').val();
-            let rank_to = $('select[name=rank-to] option').filter(':selected').val();
+            let rank_from = $('select[name=rank_from] option').filter(':selected').val();
+            let rank_to = $('select[name=rank_to] option').filter(':selected').val();
+            let rank_from_name = $('select[name=rank_from] option').filter(':selected').text();
+            let rank_to_name = $('select[name=rank_to] option').filter(':selected').text();
             let price = data_params.price;
 
             let total = 0;
@@ -154,6 +165,10 @@ switch (data_params['filter_type']) {
         total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
         total = total.split('').reverse().join('').replace(/^[\.]/,'');
         txt_price.html(total + ' VNĐ');
+
+    //    Modal
+            $('.service_pack').html(`<small>${rank_from_name} - ${rank_to_name}</small>`);
+            $('#txt-price-total').text(`${total} VNĐ`);
     }
         break;
     // điền số tiền
@@ -173,7 +188,8 @@ switch (data_params['filter_type']) {
         var current = 0;
         var discount = 0;
         let server_id = server;
-
+        let price_show = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        price_show = price_show.split('').reverse().join('').replace(/^[\.]/, '');
         if (!!price) {
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
                 var s_price = data_params["price" + server_id];
@@ -194,65 +210,61 @@ switch (data_params['filter_type']) {
                 total = price * discount;
             }
             total = parseInt(total / 1000 * data_params.input_pack_rate);
-
             $('#txt-discount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
             txt_price.html('');
             txt_price.text(total + " " + purchase_name);
+
+            // thông tin modal
+            $('.service_pack').html(`<small>${total} ${purchase_name}</small>`);
+            $('#txt-price-total').text(`${price_show} VNĐ`);
         } else {
             txt_price.text('Tiền nhập không đúng');
+
+            // thông tin modal
+            $('.service_pack').html(`<small>Tiền nhập không đúng</small>`);
+            $('#txt-price-total').text(`${price_show} VNĐ`);
         }
-    }
-
-    function UpdatePrice() {
-
-        var container = $('.m-datatable__body').html('');
-
-
-        if (data_params.server_mode == 1 && data_params.server_price == 1) {
-
-            var s_price = data_params["price" + server];
-            var s_discount = data_params["discount" + server];
-        } else {
-            var s_price = data_params["price"];
-        }
-
-
-        for (var i = 0; i < data_params.name.length; i++) {
-
-            var price = s_price[i];
-            var discount = s_price[i];
-
-
-            if (s_price != null && s_discount != null) {
-                var ptemp = '';
-
-                if (data.length == 1) {
-                    ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
-                } else {
-                    ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
-                }
-                var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
-                    '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
-                    '<td class="m-datatable__cell">' + data_params.name[i] + '</td>' +
-                    '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
-                    '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
-                    '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data_params.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
-
-                $(temp).appendTo(container);
-            }
-        }
-        UpdateTotal();
     }
 
         input_pack.bind('focus keyup', function () {
             UpdateTotal();
         });
         $('select[name=server]').on('change', function () {
-            UpdateTotal()
+            UpdateTotal();
         });
         UpdateTotal()
         break;
     default:
+}
+
+
+function checkboxRequired(selector){
+    let checkboxs = $(`${selector}:checked`);
+    return !checkboxs.length;
+}
+
+$('.submit-form').on('click',function () {
+    let data_form = $('#formDataService').serializeArray().reduce(function(obj, item) {
+        obj[item.name] = item.value;
+        return obj;
+    }, {});
+    console.log(data_form);
+    let url = $('#formDataService').attr('action');
+
+    $.ajax({
+        type:"POST",
+        url:url,
+        data:data_form,
+        success:function (res) {
+            console.log(res);
+        }
+    })
+})
+
+let count_data_send = $('#section-data-send').children().length;
+function isOdd(num) {return num % 2;}
+if (isOdd(count_data_send)){
+    $('#section-data-send .body-title-detail-col-ct').last().css('width','100%');
 }
