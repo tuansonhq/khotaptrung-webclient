@@ -688,55 +688,7 @@
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
-
-            <li>
-                <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant1.png" alt="">
-                    <span>Nạp thẻ cào</span>
-                </a>
-            </li>
-            <li>
-                <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant2.png" alt="">
-                    <span>Nạp ATM-Ví</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mua-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant3.png" alt="">
-                    <span>Mua thẻ</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mua-acc">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant4.png" alt="">
-                    <span>Mua Acc Game</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dich-vu">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant5.png" alt="">
-                    <span>Dịch vụ Game</span>
-                </a>
-            </li>
-            <li>
-                <a href="/minigame">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant6.png" alt="">
-                    <span>Vòng quay</span>
-                </a>
-            </li>
-            <li>
-                <a href="/recharge-game">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant7.png" alt="">
-                    <span>Nạp tài khoản game</span>
-                </a>
-            </li>
-            <li>
-                <a href="/recharge-game">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant9.png" alt="">
-                    <span>Tin tức</span>
-                </a>
-            </li>
+                @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
             <div class="menu-category-mobile-partition"></div>
             <li id="login_menu">
 {{--                <a href="">--}}
