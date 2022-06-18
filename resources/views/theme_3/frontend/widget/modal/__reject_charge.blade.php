@@ -22,7 +22,7 @@
                 </div>
                 <div class="row marginauto modal-body-span-success-ct justify-content-center">
                     <div class="col-md-12 left-right text-center">
-                        <span style="font-size: 14px">Đã xảy ra lỗi trong quá trình nạp thẻ, vui lòng liên hệ fanpage để được hỗ trợ.</span>
+                        <span style="font-size: 14px" id="reject_charge"></span>
                     </div>
 
                 </div>
