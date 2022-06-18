@@ -516,7 +516,7 @@
                             {{--                block 3           --}}
                             <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
 
-                                <div class="col-md-12 left-right">
+                                <div class="col-md-12 left-right px-3 px-lg-0">
                                     <div class="row marginauto">
                                         <div class="col-md-12 col-8 body-header-col-km-left-ct">
                                             <small>Hướng dẫn thuê cày</small>
@@ -524,7 +524,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 left-right card--desc">
+                                <div class="col-md-12 left-right card--desc px-3 px-lg-0">
                                     <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
                                         <div
                                             class="col-md-12 text-left left-right content-video-in double-click content-video-in content-video-in-add">
@@ -625,12 +625,12 @@
                                     <span>Thông tin yêu cầu</span>
                                 </div>
 
-                                <div class="col-md-12 left-right" id="order-errors">
-{{--                                    <div class="row marginauto order-errors">--}}
-{{--                                        <div class="col-md-12 left-right">--}}
-{{--                                            <small>Lỗi rồi em ơi</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                <div class="col-md-12 left-right modal__error__message">
+                                    <div class="row marginauto order-errors">
+                                        <div class="col-md-12 left-right">
+                                            <small></small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12 left-right padding-order-ct">
