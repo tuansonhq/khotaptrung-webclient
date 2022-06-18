@@ -13,7 +13,7 @@
                 <a href="" class="breadcrum--link">Tin tức</a>
             </li>
             <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">{{ $title->slug }}</a>
+                <a href="" class="breadcrum--link">{{ $title->title }}</a>
             </li>
         </ul>
         {{--content--}}
