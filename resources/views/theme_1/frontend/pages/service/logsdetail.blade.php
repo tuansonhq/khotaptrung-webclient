@@ -195,7 +195,7 @@
                                         @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
                                         @else
 
-                                            @if($data->gate_id == 1)
+                                            @if($data->itemconfig_ref->idkey =='nrogem')
                                             @else
                                             <button class="btn btn-brand btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
                                             @endif
