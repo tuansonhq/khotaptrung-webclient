@@ -337,61 +337,8 @@
 </header>
 <div class="header ">
 
-    <div class="menu-category">
-        <div class="container container-fix">
-            <ul>
-                <li>
-                    <a href="/nap-the">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-charge">Nạp thẻ cào</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/nap-the#atm_card">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span >Nạp ATM -Ví</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/nap-the#wallet_card">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span >Nạp ví điện tử</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/mua-the">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-store">Mua thẻ Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/mua-acc">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-buy__acc">Mua Acc Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dich-vu">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-service">Dịch vụ Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/recharge-game">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-recharge_game">Nạp game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/minigame">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-minigame">Vòng quay</span>
-                    </a>
-                </li>
+    @include('frontend.widget.__head__dich__vu__noi__bat')
 
-            </ul>
-        </div>
-    </div>
     <div class="menu-profile-mobile">
         <div class="row marginauto">
             {{--Bắt đầu vòng lặp --}}
@@ -725,13 +672,13 @@
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
+
             <li>
                 <a href="/nap-the">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category3.png" alt="">
                     <span>Nạp thẻ cào</span>
                 </a>
             </li>
-
             <li>
                 <a href="/nap-the">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category4.png" alt="">
