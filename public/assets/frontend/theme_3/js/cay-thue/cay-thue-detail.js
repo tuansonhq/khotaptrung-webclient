@@ -31,7 +31,7 @@ $(document).ready(function (e) {
                 slidesPerView: 4,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 3.2,
 
             }
         }
@@ -114,7 +114,6 @@ $(document).ready(function (e) {
 
     // $('#successModal').modal('show');
     $('.wide').niceSelect();
-
 
     tippy('.checkbox-info-ct', {
         // default
@@ -272,16 +271,30 @@ $(document).ready(function (e) {
             });
         }
         if ($('.allgame[type=checkbox]').length){
-            if (checkboxRequired('')){
+            if (checkboxRequired('input.allgame[type=checkbox]')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
                 is_ok = 0;
                 $('#error-mes-checkbox').html(html)
-            }else {
-                $('#error-mes-checkbox').html('')
+            }
+
+            else {
+                $('#error-mes-checkbox').html('');
+            }
+        }
+        let confirm_rules = $('.confirm-rules');
+        if (!confirm_rules.length){
+            if (confirm_rules.is(':checked')){
+                html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
+                is_ok = 0;
+                $('.confirm-rules').parent().next().html(html)
             }
         }
         if (is_ok){
-            $('#openOrder').modal('show');
+            if ($(document).width() > 1200) {
+                $('#openOrder').modal('show');
+            }else {
+                $('.button-next-step-one').trigger('click')
+            }
         }
     });
 

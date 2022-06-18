@@ -3,6 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js" type="text/javascript"></script>
 @endsection
@@ -275,12 +276,12 @@
                                                     <div class="col-md-12 left-right body-title-detail-select-ct">
                                                         <input autocomplete="off" class="input-defautf-ct mb-2"
                                                                id="input_pack"
-                                                               value="{{ $data_params['input_pack_min'] }}"
+                                                               value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
                                                                name="selected"
-                                                               pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
                                                                type="text"
                                                                placeholder="Số tiền"
                                                                numberic
+                                                               currency
                                                                required>
                                                         <span id="text-pack">
                                                             Số tiền thanh toán phải từ
@@ -396,18 +397,19 @@
                                                                 </div>
                                                                 @break
                                                                 @case('7')
-                                                                <div class="col-md-12 left-right">
+                                                                <div class="col-md-12 left-right " id="confirm-rules">
                                                                     <div class="row body-title-detail-checkbox-ct m-0 p-0">
                                                                         <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                            <label for="data-send-{{$k_send_name.$send_type[$k_send_name]}}" class="input-ratio-ct">
-                                                                                <span class="label--checkbox">
+                                                                            <label for="customer_data{{$k_send_name}}" class="input-ratio-ct">
+                                                                                <span class="label--checkbox" >
                                                                                     <div class="label--checkbox__name">
                                                                                         {{ $send_name_text }}
                                                                                     </div>
                                                                                 </span>
-                                                                                <input id="data-send-{{$k_send_name.$send_type[$k_send_name] }}" type="checkbox" class="allgame" name="customer_data{{$k_send_name}}">
+                                                                                <input id="customer_data{{$k_send_name}}" type="checkbox" class="confirm-rules" name="customer_data{{$k_send_name}}">
                                                                                 <span class="input-ratio-checkmark-ct --overwrite"></span>
                                                                             </label>
+                                                                            <div class="error-message"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -441,7 +443,8 @@
                                                     <div class="col-md-12 text-left left-right">
                                                         @if(App\Library\AuthCustom::check())
                                                         <button class="button-default-ct btn-data  media-web open-modal" type="button">Thuê ngay</button>
-                                                        <button class="button-default-ct button-next-step-one media-mobile" type="button">Thuê ngay</button>
+                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thuê ngay</button>
+                                                            <div class="button-next-step-one d-none"></div>
                                                         @else
                                                             <button class="button-default-ct media-web open-modal" type="button" onclick="openLoginModal();">Thuê ngay</button>
                                                             <button class="button-default-ct media-mobile" type="button" onclick="openLoginModal();">Thuê ngay</button>
@@ -513,7 +516,7 @@
                             {{--                block 3           --}}
                             <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
 
-                                <div class="col-md-12 left-right">
+                                <div class="col-md-12 left-right px-3 px-lg-0">
                                     <div class="row marginauto">
                                         <div class="col-md-12 col-8 body-header-col-km-left-ct">
                                             <small>Hướng dẫn thuê cày</small>
@@ -521,7 +524,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12 left-right card--desc">
+                                <div class="col-md-12 left-right card--desc px-3 px-lg-0">
                                     <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
                                         <div
                                             class="col-md-12 text-left left-right content-video-in double-click content-video-in content-video-in-add">
@@ -565,17 +568,18 @@
                         <div class="modal-body modal-body-success-ct">
                             <div class="row marginauto justify-content-center">
                                 <div class="col-auto">
-                                    <img class="lazy"
-                                         src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png"
-                                         alt="">
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                                 </div>
                             </div>
                             <div class="row marginauto modal-body-span-success-ct justify-content-center">
-                                <div class="col-md-12 text-center">
-                                    <span>Yêu cầu thuê đã được gửi đến </span><small>Shop Cày Thuê</small>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <span>Bạn vui lòng kiểm tra Email để xác nhận nha!</span>
+{{--                                <div class="col-md-12 text-center">--}}
+{{--                                    <span>Yêu cầu thuê đã được gửi đến </span><small>Shop Cày Thuê</small>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-12 text-center">--}}
+{{--                                    <span>Bạn vui lòng kiểm tra Email để xác nhận nha!</span>--}}
+{{--                                </div>--}}
+                                <div class="col-md-12 text-center js-message-res">
+                                    <span></span>
                                 </div>
                             </div>
                             <div class="row marginauto justify-content-center modal-footer-success-ct">
@@ -621,12 +625,12 @@
                                     <span>Thông tin yêu cầu</span>
                                 </div>
 
-                                <div class="col-md-12 left-right" id="order-errors">
-{{--                                    <div class="row marginauto order-errors">--}}
-{{--                                        <div class="col-md-12 left-right">--}}
-{{--                                            <small>Lỗi rồi em ơi</small>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                <div class="col-md-12 left-right modal__error__message">
+                                    <div class="row marginauto order-errors">
+                                        <div class="col-md-12 left-right">
+                                            <small></small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-12 left-right padding-order-ct">
@@ -705,7 +709,7 @@
                                                     <span>Tổng thanh toán</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <span id="txt-price-total">0 đ</span>
+                                                    <span class="total--price">0 đ</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -754,12 +758,12 @@
                         <span>Thông tin yêu cầu</span>
                     </div>
 
-                    <div class="col-md-12 left-right" id="order-errors">
-{{--                        <div class="row marginauto order-errors">--}}
-{{--                            <div class="col-md-12 left-right">--}}
-{{--                                <small>Lỗi rồi em ơi</small>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                    <div class="col-md-12 left-right modal__error__message">
+                        <div class="row marginauto order-errors">
+                            <div class="col-md-12 left-right">
+                                <small></small>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-12 left-right padding-order-ct">
@@ -770,7 +774,7 @@
                                         <span>Tài khoản</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Nam Hải</small>
+                                        <small>{{ @App\Library\AuthCustom::user()->username }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -782,10 +786,10 @@
                             <div class="col-md-12 left-right background-order-ct">
                                 <div class="row marginauto background-order-body-row-ct">
                                     <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Game</span>
+                                        <span>Dịch vụ</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
+                                        <small>{{ @$data->title }}</small>
                                     </div>
                                 </div>
 
@@ -793,26 +797,8 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Gói</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Vàng-Kim Cương</small>
-                                    </div>
-                                </div>
+                                    <div class="col-auto left-right background-order-col-right-ct service_pack">
 
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Chiết khấu</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>3%</small>
-                                    </div>
-                                </div>
-
-                                <div class="row marginauto background-order-body-bottom-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Báo giá</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>100.000 đ</small>
                                     </div>
                                 </div>
                             </div>
@@ -854,8 +840,8 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Tài khoản</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <span>97.000 đ</span>
+                                    <div class="col-auto left-right background-order-col-right-ct total--price">
+                                        <span>0 đ</span>
                                     </div>
                                 </div>
                             </div>
@@ -865,7 +851,9 @@
                     <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile">
                         <div class="row marginauto" style="padding: 12px 16px">
                             <div class="col-md-12 left-right">
-                                <button class="button-default-ct button-next-step-two" type="button">Xác nhận</button>
+                                <button class="button-default-ct submit-form" type="button">Xác nhận</button>
+                                <div class="button-next-step-two d-none"></div>
+                                <div class="openSuccess d-none"></div>
                             </div>
                         </div>
                     </div>
@@ -875,13 +863,6 @@
             <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
         </fieldset>
-{{--    <form action="" style="display: none" id="data-submit">--}}
-{{--        <input type="hidden" name="id" value="">--}}
-{{--        <input type="hidden" name="server" value="">--}}
-{{--        <input type="hidden" name="selected" value="">--}}
-{{--        <input type="hidden" name="rank_form" value="">--}}
-{{--        <input type="hidden" name="rank_to" value="">--}}
-{{--    </form>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>
 
 @endsection
