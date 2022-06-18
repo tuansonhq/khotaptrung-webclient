@@ -244,7 +244,6 @@ $(document).ready(function(){
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         btnSubmit.prop('disabled', true);
-
         $.ajax({
             type: "POST",
             url: url,

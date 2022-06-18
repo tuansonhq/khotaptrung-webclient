@@ -783,7 +783,8 @@
 .card--rise.--gray .order__attr {
     padding: 0;
 }
-.card--rise .order__attr .order--value__attr {
+.card--rise .order__attr .order--value__attr,
+.card--rise .order__attr .order--value__attr a{
     max-width: 45%;
     font-weight: 600;
     color: #1B1D29;
@@ -1206,6 +1207,36 @@ a:hover .__icon.--path__custom:after
 .service--thumbnail {
     height: 128px;
 }
+
+.label--checkbox {
+    display: flex;
+}
+
+.label--checkbox .label--checkbox__name {
+    cursor: pointer;
+    font-size: 14px;
+    color: #82869E;
+    font-weight: 400;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+.input-ratio-checkmark-ct.--overwrite {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    margin-top: 0;
+    transform: translateY(-50%);
+}
+
+
+.invalid {
+    border-color: #DA4343;
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {
@@ -1509,5 +1540,15 @@ a:hover .__icon.--path__custom:after
     }
     #card--body__news {
         margin-top: 12px;
+    }
+
+/*    Dịch vụ */
+
+    .label--checkbox .label--checkbox__name {
+        display: block;
+    }
+    .input-ratio-checkmark-ct.--overwrite {
+        top: 2px;
+        transform: none;
     }
 }
