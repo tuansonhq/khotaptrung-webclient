@@ -28,8 +28,6 @@ use \Illuminate\Support\Facades\Session;
 Route::get('/clear-cache', function ()
 {
 
-
-
 });
 
 
@@ -48,6 +46,7 @@ Route::get('/github/test', function (Request $request)
     $txt = Carbon::now().":".$request->fullUrl().json_encode($request->all());
     \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
 });
+
 Route::get('/test111', function ()
 {
     return 1111;
@@ -74,7 +73,18 @@ Route::group(array('middleware' => ['theme']) , function (){
                     'message-git' => $data
                 ]);
             });
+            Route::get('/tesstt', function ()
+            {
+                $url = '/get-random-acc';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['module'] = 'acc_category';
 
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+                return $result_Api;
+                return view('index');
+            });
             Route::get('/theme', function ()
             {
                 return view('index');

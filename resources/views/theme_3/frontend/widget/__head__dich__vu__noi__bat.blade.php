@@ -10,9 +10,9 @@
                     @else
                     <a target="_blank" href="{{ $item->url }}">
                     @endif
-                    </a>
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
                     <span id="nav-charge">{{ $item->title }}</span>
+                    </a>
                 </a>
             </li>
             @endforeach
