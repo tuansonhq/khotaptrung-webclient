@@ -263,6 +263,7 @@ class ServiceController extends Controller
     }
 
     public function getLogsDetail(Request $request,$id){
+
         if (AuthCustom::check()) {
             $url = '/service/log/detail';
             $method = "GET";
@@ -279,12 +280,39 @@ class ServiceController extends Controller
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
 
-
             if(isset($response_data) && $response_data->status == 1){
 
                 $data = $response_data->data;
 
-                return view('frontend.pages.service.logsdetail')->with('data', $data);
+                $urlInbox = '/inbox/'.$id.'/send';
+                $methodInbox = "GET";
+                $dataSendInbox = array();
+
+
+                $dataSendInbox['token'] = $jwt;
+                $dataSendInbox['id'] = $id;
+
+                $result_Inbox_Api = DirectAPI::_makeRequest($urlInbox, $dataSendInbox, $methodInbox);
+                $response_Inbox_data = $result_Inbox_Api->response_data??null;
+
+                if(isset($response_Inbox_data) && $response_Inbox_data->status == 1){
+
+                    $dataInbox = $response_Inbox_data->data;
+                    $conversation = $dataInbox->conversation;
+                    $inbox = $dataInbox->inbox;
+                    $itemInbox = $dataInbox->order;
+
+                    return view('frontend.pages.service.logsdetail')->with('data', $data)->with('itemInbox', $itemInbox)->with('inbox', $inbox)->with('conversation', $conversation);
+
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+
+
 
             }
             else{
@@ -562,10 +590,32 @@ class ServiceController extends Controller
                 $inbox = $data->inbox;
                 $item = $data->order;
 
-                return view('frontend.pages.service.chat')
-                    ->with('conversation',$conversation)
-                    ->with('inbox',$inbox)
-                    ->with('item',$item );
+                $urlItem = '/service/log/detail';
+                $methodItem = "GET";
+                $dataSendItem = array();
+
+                $dataSendItem['token'] = $jwt;
+                $dataSendItem['id'] = $id;
+
+                $result_Item_Api = DirectAPI::_makeRequest($urlItem, $dataSendItem, $methodItem);
+                $response_Item_data = $result_Item_Api->response_data??null;
+
+                if(isset($response_Item_data) && $response_Item_data->status == 1){
+
+                    $dataItem = $response_Item_data->data;
+
+                    return view('frontend.pages.service.chat')
+                        ->with('conversation',$conversation)
+                        ->with('inbox',$inbox)
+                        ->with('dataItem',$dataItem)
+                        ->with('item',$item );
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
 
             }
             else{
