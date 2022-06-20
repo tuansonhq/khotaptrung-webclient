@@ -2,7 +2,36 @@ $(document).ready(function(){
 
     const media = "http://cdn.upanh.info/";
 
+    var slug = $('#slug').val();
 
+    getShowBot(slug)
+
+    function getShowBot(slug){
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/show-bot',
+            data: {
+                slug:slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (response) => {
+
+                if (response.status == 1){
+                    $('.data-bot').html('');
+                    $('.data-bot').html(response.data);
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 
 
     $('body').on('click','#btnPurchase',function(e){
@@ -104,20 +133,7 @@ $(document).ready(function(){
         // getModalService(price)
     })
 
-    // $('body').on('click','.pay',function(e){
-    //     e.preventDefault();
-    //
-    //     var price = $('[name="value"]').val();
-    //     var htmlloading = '';
-    //     htmlloading += '<div class="loading"></div>';
-    //     $('.loading-data__pay').html('');
-    //     $('.loading-data__pay').html(htmlloading);
-    //
-    //
-    //
-    //     $('#homealert').modal('show');
-    //     // getModalService(price)
-    // })
+
     function getModalService(price) {
         let slug = $('#slug').val();
 
@@ -244,7 +260,6 @@ $(document).ready(function(){
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         btnSubmit.prop('disabled', true);
-
         $.ajax({
             type: "POST",
             url: url,

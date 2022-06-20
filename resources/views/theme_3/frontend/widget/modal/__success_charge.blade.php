@@ -21,8 +21,8 @@
                     </div>
                 </div>
                 <div class="row marginauto modal-body-span-success-ct justify-content-center">
-                    <div class="col-md-12 text-center" style="font-size: 14px">
-                        Tài khoản sẽ được cộng tiền ngay sau khi kiểm tra nếu thẻ đúng. Nếu sai thông tin hoặc xảy ra lỗi, vui lòng liên hệ fanpage để được hỗ trợ.
+                    <div class="col-md-12 text-center" style="font-size: 14px" id="success_charge">
+
                     </div>
 
                 </div>

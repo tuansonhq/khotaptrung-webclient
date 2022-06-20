@@ -44,30 +44,35 @@ $('.icon-search-close').click(function (e) {
     }
 });
 // menu profile side
-var menu_profile = false;
-$('.box-account-mobile_open').click(function (e) {
-
-    if (!menu_profile) {
-
-        e.preventDefault();
-        $('.menu-profile-mobile').addClass('menu-profile-mobile_show');
-        $('.box-account-mobile_open').css('display', 'none');
-        $('.box-account-mobile_close').css('display', 'block');
-        menu_profile = true;
-
-    }
-});
-
-$('.box-account-mobile_close').click(function (e) {
-    if (menu_profile) {
-        e.preventDefault();
-        $('.menu-profile-mobile').removeClass('menu-profile-mobile_show');
-        $('.box-account-mobile_close').css('display', 'none');
-        $('.box-account-mobile_open').css('display', 'block');
-        menu_profile = false;
-    }
-});
-
+// var menu_profile = false;
+// $('.box-account-mobile_open').click(function (e) {
+//
+//     if (!menu_profile) {
+//
+//         e.preventDefault();
+//         $('.menu-profile-mobile').addClass('menu-profile-mobile_show');
+//         $('.box-account-mobile_open').css('display', 'none');
+//         $('.box-account-mobile_close').css('display', 'block');
+//         menu_profile = true;
+//
+//     }
+// });
+//
+// $('.box-account-mobile_close').click(function (e) {
+//     if (menu_profile) {
+//         e.preventDefault();
+//         $('.menu-profile-mobile').removeClass('menu-profile-mobile_show');
+//         $('.box-account-mobile_close').css('display', 'none');
+//         $('.box-account-mobile_open').css('display', 'block');
+//         menu_profile = false;
+//     }
+// });
+function openMenuProfile(){
+    // let width = $(window).width();
+    setTimeout(function(){
+        $('.menu-profile-mobile').toggleClass('menu-profile-mobile_show');
+    }, 0);
+}
 var user = function() {
     $('.box-account-logined').click(function(e) {
         // e.preventDefault(); // stops link from making page jump to the top
@@ -107,29 +112,7 @@ $(document).ready(function (e) {
     //    Step
 
     $('body').on('click','#charge_next.button-next-step-one',function(){
-        if (animating) return false;
-        animating = true;
 
-        // current_fs = $('#mobile-caythue .input-next-step-one').parent();
-        // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
-
-        current_fs = $('#fieldset-one_transaction');
-        next_fs = $('#fieldset-two-charge');
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.animate({opacity: 0}, {
-            step: function (now, mx) {
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                next_fs.css({'left': left, 'opacity': opacity});
-            },
-            complete: function () {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
     })
     $('body').on('click','#recharge_atm_next.button-next-step-one',function(){
         if (animating) return false;
@@ -139,7 +122,7 @@ $(document).ready(function (e) {
         // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
 
         current_fs = $('#fieldset-one_transaction');
-        next_fs = $('#fieldset-two-recharge-atm');
+        next_fs = $('#fieldset-two-transfer');
         //show the next fieldset
         next_fs.show();
         //hide the current fieldset with style
@@ -218,7 +201,7 @@ $(document).ready(function (e) {
         if(animating) return false;
         animating = true;
 
-        current_fs = $('#fieldset-two-recharge-atm');
+        current_fs = $('#fieldset-two-transfer');
         previous_fs = $('#fieldset-one_transaction');
 
         //show the previous fieldset
@@ -361,21 +344,21 @@ $(document).ready(function (e) {
     //     $('#rejectChargeModal').modal('show');
     // })
 
-    $('body').on('click','.btn-data-charge_atm',function(e){
-        e.preventDefault();
-
-        $('#successChargeAtmModal').modal('show');
-    })
-    $('body').on('click','.btn-data-charge_atm',function(e){
-        e.preventDefault();
-
-        $('#successChargeAtmModal').modal('show');
-    })
-    $('body').on('click','.btn-data-wallet_card',function(e){
-        e.preventDefault();
-
-        $('#successWalletCardModal').modal('show');
-    })
+    // $('body').on('click','.btn-data-charge_atm',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successChargeAtmModal').modal('show');
+    // })
+    // $('body').on('click','.btn-data-charge_atm',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successChargeAtmModal').modal('show');
+    // })
+    // $('body').on('click','.btn-data-wallet_card',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successWalletCardModal').modal('show');
+    // })
 
 
 })

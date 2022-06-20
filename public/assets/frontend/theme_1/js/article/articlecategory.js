@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-    $('.btn-news').click(function (e) {
+    $('.btn-article').click(function (e) {
         e.preventDefault();
-        var querry = $('.input-news').val();
+        var querry = $('.input-article').val();
 
         var slug = $('.slug-article').val();
 

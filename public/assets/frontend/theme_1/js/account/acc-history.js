@@ -301,9 +301,6 @@ $(document).ready(function(){
 
                     }
 
-                    $('#datahtmlcategory').html('');
-                    $('#datahtmlcategory').html(data.htmlcategory);
-
                     $("#data_pay_account_history").empty().html('');
                     $("#data_pay_account_history").empty().html(data.html);
 

@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     // get tele
     function getIdCode(){
-        var url = '/recharge-atm-code';
+        var url = '/transfer-code';
         $.ajax({
             type: "GET",
             url: url,
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
         request = $.ajax({
             type: 'GET',
-            url: '/recharge-atm/data',
+            url: '/transfer/data',
             data: {
                 page:page,
             },

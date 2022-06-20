@@ -16,11 +16,13 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
+
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.transfer.index');
 
     }
+
     public function getIdCode(Request $request)
     {
 
@@ -31,6 +33,7 @@ class TranferController extends Controller
             $dataSend['token'] = session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $data = $result_Api->response_data??null;
+
 
             if(isset($data) && $data->status == 1){
                 return response()->json([
@@ -108,6 +111,37 @@ class TranferController extends Controller
         }
     }
 
+    public function logs(Request $request)
+    {
+
+        try {
+            $url = '/transfer/get-code';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['token'] = session()->get('jwt');
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $data = $result_Api->response_data??null;
+
+            if(isset($data) && $data->status == 1){
+
+                return view('frontend.pages.transfer.logs')->with('data', $data->data);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+
+        }   catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi phát sinh ',
+            ]);
+        }
+    }
 //    public function getBankData(Request $request)
 //    {
 //        if ($request->ajax() && AuthCustom::check()) {

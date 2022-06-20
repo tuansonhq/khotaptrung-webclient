@@ -28,8 +28,6 @@ use \Illuminate\Support\Facades\Session;
 Route::get('/clear-cache', function ()
 {
 
-
-
 });
 
 
@@ -48,6 +46,7 @@ Route::get('/github/test', function (Request $request)
     $txt = Carbon::now().":".$request->fullUrl().json_encode($request->all());
     \File::append($path.Carbon::now()->format('Y-m-d').".txt",$txt."\n");
 });
+
 Route::get('/test111', function ()
 {
     return 1111;
@@ -74,7 +73,18 @@ Route::group(array('middleware' => ['theme']) , function (){
                     'message-git' => $data
                 ]);
             });
+            Route::get('/tesstt', function ()
+            {
+                $url = '/get-random-acc';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['module'] = 'acc_category';
 
+                $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+                return $result_Api;
+                return view('index');
+            });
             Route::get('/theme', function ()
             {
                 return view('index');
@@ -118,12 +128,22 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
 
                 Route::get('/dich-vu', [ServiceController::class , "getList"]);
+
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getDetail"]);
+
+                Route::get('/show-bot', [ServiceController::class , "showBot"]);
+
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+
+                Route::get('/lich-su-tra-gop',function(){
+                    return view('frontend.pages.account.logs-installment');
+                });
+
+                Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
@@ -184,6 +204,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
 
+
+
+
+
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
 
@@ -198,15 +222,21 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTransactionShopCard']);
 
                             Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getChargeHistory']);
+                            Route::get('/lich-su-nap-the-atm', [\App\Http\Controllers\Frontend\UserController::class , 'getChargeATMHistory']);
 
                             Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                             //Nạp thẻ Atm
-                            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
-                            Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+
+                            Route::get('/transfer', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+
+                            Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
                                 ->name('getIdCode');
-                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
+
+                            Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
+
+                            Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
@@ -315,10 +345,10 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 //
 //
-//                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
+//                    Route::get('/transfer-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
 //                        ->name('postDepositBank');
 //                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-//                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
+//                    Route::post('/transfer-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
 //                        ->name('postTranferBank');
 
 

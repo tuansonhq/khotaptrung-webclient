@@ -109,7 +109,7 @@
 
             $('.account_lich-su-nap-the').addClass('menu_active')
 
-            @elseif(Request::is('recharge-atm'))
+            @elseif(Request::is('transfer'))
 
             $('.account_recharge-atm').addClass('menu_active')
 

@@ -56,7 +56,15 @@
 
 </head>
 <body>
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(document).ready(function () {
+            $('#loginModal').modal('show');
+        });
+    </script>
+@endif
 <script>
+
     $(document).ready(function () {
         @if(Request::is('nap-the'))
 

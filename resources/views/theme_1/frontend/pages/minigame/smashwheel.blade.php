@@ -440,7 +440,7 @@
                         } else if (data.status == 0) {
                             $('#lac_lixi').attr('src',$("#hdImageLD").val());
                             roll_check = true;
-                            $('.content-popup').text(data.msg);
+                            $('#noticeModal .content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
                             return;
                         }
@@ -483,7 +483,7 @@
                     },
                     error: function() {
                         $('#lac_lixi').attr('src',$("#hdImageLD").val());
-                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                        $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                         $('#noticeModal').modal('show');
                     }
                 })
@@ -505,7 +505,7 @@
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 0) {
-                        $('.content-popup').text(data.msg);
+                        $('#noticeModal .content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
                         return;
                     }
@@ -532,7 +532,7 @@
                     },6000)
                 },
                 error: function() {
-                    $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                    $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                     $('#noticeModal').modal('show');
                 }
             })
@@ -619,6 +619,7 @@
                 }
                 else
                 {
+                    $("#btnWithdraw").hide();
                     if(gift_revice.length == 1)
                     {
                             $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
@@ -651,7 +652,7 @@
                 }
             }
 
-            $('.content-popup').html($html);
+            $('#noticeModal .content-popup').html($html);
 
             if (userpoint > 99) {
                 getgifbonus();
