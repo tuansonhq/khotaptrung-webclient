@@ -7,7 +7,7 @@ $(document).ready(function(){
     getShowBot(slug)
 
     function getShowBot(slug){
-       
+
         request = $.ajax({
             type: 'GET',
             url: '/show-bot',
@@ -18,7 +18,7 @@ $(document).ready(function(){
 
             },
             success: (response) => {
-                console.log(response)
+
                 if (response.status == 1){
                     $('.data-bot').html('');
                     $('.data-bot').html(response.data);
