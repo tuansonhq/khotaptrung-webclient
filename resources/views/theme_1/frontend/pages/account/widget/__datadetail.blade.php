@@ -61,73 +61,44 @@
                         </div>
                     </div>
                 </div>
-                @if(isset($card_percent))
-                    <div class="col-md-12 gallery__pt">
-                        <div class="row gallery__02">
-                            <div class="col-md-12 gallery__01__row">
-                                <div class="row">
-                                    <div class="col-md-5 col-sm-5 col-5">
-                                        <div class="row text-left">
-                                            <div class="col-md-12">
-                                                <span class="gallery__02__span__02">THẺ CÀO</span>
-                                            </div>
-                                            <div class="col-md-12">
-                                                {{--                                                    @dd(formatPrice($card_percent*$data->price/100))--}}
-                                                @if(formatPrice($card_percent*$data->price/100) == '')
-                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($card_percent*$data->price/100))) }} CARD</span>
-                                                @else
-                                                    <span class="gallery__01__span__02">{{ formatPrice($card_percent*$data->price/100) }} CARD</span>
-                                                @endif
-                                            </div>
+
+                <div class="col-md-12 gallery__pt">
+                    <div class="row gallery__02">
+                        <div class="col-md-12 gallery__01__row">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-5 col-5">
+                                    <div class="row text-left">
+                                        <div class="col-md-12">
+                                            <span class="gallery__02__span__02">THẺ CÀO</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
-                                        <div class="row text-center">
-                                            <div class="col-md-12">
-                                                <span class="hoac">Hoặc</span>
-                                            </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
+                                    <div class="row text-center">
+                                        <div class="col-md-12">
+                                            <span class="hoac">Hoặc</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-5 col-sm-5 col-5">
-                                        <div class="row text-right">
-                                            <div class="col-md-12">
-                                                <span class="gallery__02__span__02">ATM chỉ cần</span>
-                                            </div>
-                                            <div class="col-md-12">
-                                                @if(isset($data->price_atm))
-                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
-                                                @endif
-                                            </div>
+                                </div>
+                                <div class="col-md-5 col-sm-5 col-5">
+                                    <div class="row text-right">
+                                        <div class="col-md-12">
+                                            <span class="gallery__02__span__02">ATM chỉ cần</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            @if(isset($data->price_atm))
+                                                <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @else
-                    <div class="col-md-12 gallery__pt">
-                        <div class="row gallery__02">
-                            <div class="col-md-12 gallery__01__row">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-5 col-5">
-                                        <div class="row text-left">
-                                            <div class="col-md-12">
-                                                <span class="gallery__02__span__02">ATM</span>
-                                            </div>
-                                            <div class="col-md-12">
-                                                @if(formatPrice($data->price) == '')
-                                                    <span class="gallery__01__span__02">{{ round($data->price) }} ATM</span>
-                                                @else
-                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format($data->price)) }} ATM</span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                </div>
 
                 @if(isset($data->groups))
                     <?php $att_values = $data->groups ?>
