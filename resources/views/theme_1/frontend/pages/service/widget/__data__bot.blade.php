@@ -1,4 +1,5 @@
 @if(isset($data_bot))
+
     <div class="row">
         <div class="col-lg-12 column">
             <div class="job-details">
@@ -32,7 +33,7 @@
                                     @if($bot->active == 'on')
                                         <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
                                     @else
-                                        <span style="color:#212529;font-weight: bold">[OFFLINE]</span>
+                                        <span style="color:#DA4343;font-weight: bold">[OFFLINE]</span>
                                     @endif
                                 </td>
                             </tr>

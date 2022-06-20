@@ -463,7 +463,7 @@
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
 
     <script>
 
