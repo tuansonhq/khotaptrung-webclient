@@ -219,10 +219,15 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                             //Nạp thẻ Atm
-                            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
-                            Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+
+                            Route::get('/transfer', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+
+                            Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
                                 ->name('getIdCode');
-                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
+
+                            Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
+
+                            Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
@@ -331,10 +336,10 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 //
 //
-//                    Route::get('/recharge-atm-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
+//                    Route::get('/transfer-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
 //                        ->name('postDepositBank');
 //                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-//                    Route::post('/recharge-atm-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
+//                    Route::post('/transfer-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
 //                        ->name('postTranferBank');
 
 
