@@ -165,4 +165,6 @@
     <div class="after"></div>
     <script src="/assets/frontend/theme_2/js/charge/charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_2/js/transfer/transfer.js?v={{time()}}"></script>
+
+    <div id="copy"></div>
 @endsection
