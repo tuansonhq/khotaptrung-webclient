@@ -155,6 +155,8 @@ class UserController extends Controller
     public function getTran(Request $request){
         try{
 
+
+
             $jwt = Session::get('jwt');
             if(empty($jwt)){
                 return response()->json([
@@ -167,7 +169,6 @@ class UserController extends Controller
 
             if ($request->ajax()) {
                 $id_user = AuthCustom::user()->id;
-
                 $url = '/get-txns';
                 $method = "GET";
                 $dataSend = array();
@@ -223,6 +224,7 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
                 $response_data = $result_Api->response_data??null;
+
 
                 if(isset($response_data) && $response_data->status == 1){
 
@@ -285,7 +287,6 @@ class UserController extends Controller
                 }
 
                 $id_user = AuthCustom::user()->id;
-
                 $url = '/get-txns';
                 $method = "GET";
                 $data = array();
@@ -314,8 +315,8 @@ class UserController extends Controller
                     $result = $result_Api->response_data;
                     $data = $result->data;
 
-                    $config = $result->dataconfig;
-                    $status = $result->datastatus;
+                    $config = config('module.txns.trade_type_api');
+                    $status = config('module.txns.status');
                     $per_page = 0;
                     $total = 0;
 
@@ -391,10 +392,12 @@ class UserController extends Controller
                     if ($result->status == 1) {
 
                         $result = $result_Api->response_data;
+
                         $data = $result->data;
 
                         $arrpin = array();
                         $arrserial = array();
+                        $arr_declare_amount = array();
 
                         for ($i = 0; $i < count($data->data); $i++){
                             $serial = $data->data[$i]->serial;
@@ -406,6 +409,10 @@ class UserController extends Controller
                             $pin = $data->data[$i]->pin;
                             $pin = Helpers::Decrypt($pin,config('module.charge.key_encrypt'));
                             array_push($arrpin,$pin);
+                        }
+                        for ($i = 0; $i < count($data->data); $i++){
+                            $declare_amount = $data->data[$i]->declare_amount;
+                            array_push($arr_declare_amount,$declare_amount);
                         }
 
                         $per_page = 0;
@@ -423,12 +430,92 @@ class UserController extends Controller
                             $data->setPath($request->url());
                         }
 
+
+
                         return view('frontend.pages.charge.logs')
                             ->with('data',$data)
                             ->with('arrpin',$arrpin)
                             ->with('total',$total)
                             ->with('per_page',$per_page)
-                            ->with('arrserial',$arrserial);
+                            ->with('arrserial',$arrserial)
+                            ->with('arr_declare_amount',$arr_declare_amount);
+                    } else {
+                        return redirect()->back()->withErrors($result->message);
+                    }
+                }else{
+                    return redirect('/404');
+                }
+            }
+
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => "ERROR"
+            ]);
+        }
+    }
+
+    public function getChargeATMHistory(Request $request){
+
+        try{
+
+            if ($request->ajax()) {
+                $page = $request->page;
+                $url = '/transfer/history';
+                $method = "GET";
+                $val = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $val['token'] = $jwt;
+                $val['page'] = $page;
+
+
+//                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+//                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+//                    $val['started_at'] = $started_at;
+//                }
+//
+//                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+//                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+//                    $val['ended_at'] = $ended_at;
+//                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+
+
+                if (isset($result_Api) && $result_Api->response_code == 200) {
+                    $result = $result_Api->response_data;
+                    if ($result->status == 1) {
+
+                        $result = $result_Api->response_data;
+
+                        $data = $result->data;
+
+                        $per_page = 0;
+                        $total = 0;
+                        if (isset($data->total)){
+                            $total = $data->total;
+                        }
+
+                        if (isset($data->to)){
+                            $per_page = $data->to;
+                        }
+
+                        if (isEmpty($data->data)) {
+                            $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                            $data->setPath($request->url());
+                        }
+
+                        return view('frontend.pages.tranfer.logs')
+                            ->with('data',$data)
+                            ->with('total',$total)
+                            ->with('per_page',$per_page);
+
                     } else {
                         return redirect()->back()->withErrors($result->message);
                     }

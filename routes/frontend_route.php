@@ -222,6 +222,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-giao-dich-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getTransactionShopCard']);
 
                             Route::get('/lich-su-nap-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getChargeHistory']);
+                            Route::get('/lich-su-nap-the-atm', [\App\Http\Controllers\Frontend\UserController::class , 'getChargeATMHistory']);
 
                             Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
