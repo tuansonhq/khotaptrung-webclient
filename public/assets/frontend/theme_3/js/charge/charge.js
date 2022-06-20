@@ -163,64 +163,144 @@ $(document).ready(function(){
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
-
+        let width = $(window).width();
         $('#openCharge').modal('show');
         $('#btn-confirm-charge').off().on('click', function (m) {
 
             btnSubmit.text('Đang xử lý...');
             btnSubmit.prop('disabled', true);
-            $.ajax({
-                type: "POST",
-                url: url,
-                cache:false,
-                data: formSubmit.serialize(), // serializes the form's elements.
-                beforeSend: function (xhr) {
 
-                },
-                success: function (data) {
+            if (width < 992){
+                if (animating) return false;
+                animating = true;
 
-                    $('#openCharge').modal('hide');
+                // current_fs = $('#mobile-caythue .input-next-step-one').parent();
+                // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
 
-                    if(data.status == 1){
-                        $('#successChargeModal').modal('show');
-                        $('#success_charge').html(data.message)
+                current_fs = $('#fieldset-one_transaction');
+                next_fs = $('#fieldset-two-charge');
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({opacity: 0}, {
+                    step: function (now, mx) {
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        next_fs.css({'left': left, 'opacity': opacity});
+                    },
+                    complete: function () {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
+                });
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache:false,
+                    data: formSubmit.serialize(), // serializes the form's elements.
+                    beforeSend: function (xhr) {
 
-                    }
-                    else if(data.status == 401){
-                        window.location.href = '/login?return_url='+window.location.href;
-                    }
-                    else if(data.status == 0){
-                        $('#rejectChargeModal').modal('show');
-                        $('#reject_charge').html(data.message)
-                    }
-                    else{
+                    },
+                    success: function (data) {
+
+                        $('#openCharge').modal('hide');
+
+                        if(data.status == 1){
+                            $('#successChargeModal').modal('show');
+                            $('#success_charge').html(data.message)
+
+                        }
+                        else if(data.status == 401){
+                            window.location.href = '/login?return_url='+window.location.href;
+                        }
+                        else if(data.status == 0){
+                            $('#rejectChargeModal').modal('show');
+                            $('#reject_charge').html(data.message)
+                        }
+                        else{
+                            swal({
+                                title: "Có lỗi xảy ra !",
+                                text: data.message,
+                                icon: "error",
+                                buttons: {
+                                    cancel: "Đóng",
+                                },
+                            })
+                        }
+                    },
+                    error: function (data) {
                         swal({
                             title: "Có lỗi xảy ra !",
-                            text: data.message,
+                            text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
                             icon: "error",
                             buttons: {
                                 cancel: "Đóng",
                             },
                         })
+                    },
+                    complete: function (data) {
+                        $('#reload_1').trigger('click');
+                        formSubmit.trigger("reset");
+                        btnSubmit.text('Nạp thẻ');
+                        btnSubmit.prop('disabled', false);
                     }
-                },
-                error: function (data) {
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
-                },
-                complete: function (data) {
-                    $('#reload_1').trigger('click');
-                    formSubmit.trigger("reset");
-                    btnSubmit.text('Nạp thẻ');
-                    btnSubmit.prop('disabled', false);
-                }
-            });
+                });
+            }else {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    cache:false,
+                    data: formSubmit.serialize(), // serializes the form's elements.
+                    beforeSend: function (xhr) {
+
+                    },
+                    success: function (data) {
+
+                        $('#openCharge').modal('hide');
+
+                        if(data.status == 1){
+                            $('#successChargeModal').modal('show');
+                            $('#success_charge').html(data.message)
+
+                        }
+                        else if(data.status == 401){
+                            window.location.href = '/login?return_url='+window.location.href;
+                        }
+                        else if(data.status == 0){
+                            $('#rejectChargeModal').modal('show');
+                            $('#reject_charge').html(data.message)
+                        }
+                        else{
+                            swal({
+                                title: "Có lỗi xảy ra !",
+                                text: data.message,
+                                icon: "error",
+                                buttons: {
+                                    cancel: "Đóng",
+                                },
+                            })
+                        }
+                    },
+                    error: function (data) {
+                        swal({
+                            title: "Có lỗi xảy ra !",
+                            text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                            icon: "error",
+                            buttons: {
+                                cancel: "Đóng",
+                            },
+                        })
+                    },
+                    complete: function (data) {
+                        $('#reload_1').trigger('click');
+                        formSubmit.trigger("reset");
+                        btnSubmit.text('Nạp thẻ');
+                        btnSubmit.prop('disabled', false);
+                    }
+                });
+            }
+
 
         });
 
