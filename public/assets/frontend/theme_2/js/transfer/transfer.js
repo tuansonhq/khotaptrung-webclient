@@ -9,7 +9,7 @@ $(document).ready(function(){
             success: function (data) {
                 if(data.status == 1){
                     let html = '';
-                    html += data.data +'  <span style="padding-left: 8px;cursor: pointer"><i class="fas fa-copy"  data-id="'+ data.data +'"></i></span>';
+                    html += data.data +'  <a href="#"><i class="las la-copy" data-id="' + data.data + '"></i></a>';
                     $('.transfer-code').html(html)
 
 
@@ -30,6 +30,15 @@ $(document).ready(function(){
         });
     }
     getIdCode();
+    $('body').on('click','i.la-copy',function(e){
+        data = $(this).data('id');
+        var $temp = $("<input>");
+        $("body #copy").html($temp);
+        $temp.val($.trim(data)).select();
+        document.execCommand("copy");
+        $temp.remove();
+        toastr.success('Sao chép thành công!');
+    });
 
 
 })
