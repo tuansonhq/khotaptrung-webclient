@@ -419,7 +419,6 @@ class ServiceController extends Controller
     }
 
     public function postDestroy(Request $request,$id){
-
         if (AuthCustom::check()) {
             $url = '/service/log/detail/destroy/'.$id;
             $method = "POST";
@@ -464,7 +463,6 @@ class ServiceController extends Controller
     }
 
     public function postPurchase(Request $request,$id){
-
         if (AuthCustom::check()) {
 
             $index = $request->index;

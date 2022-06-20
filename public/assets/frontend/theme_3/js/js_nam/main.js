@@ -366,21 +366,21 @@ $(document).ready(function (e) {
     //     $('#rejectChargeModal').modal('show');
     // })
 
-    $('body').on('click','.btn-data-charge_atm',function(e){
-        e.preventDefault();
-
-        $('#successChargeAtmModal').modal('show');
-    })
-    $('body').on('click','.btn-data-charge_atm',function(e){
-        e.preventDefault();
-
-        $('#successChargeAtmModal').modal('show');
-    })
-    $('body').on('click','.btn-data-wallet_card',function(e){
-        e.preventDefault();
-
-        $('#successWalletCardModal').modal('show');
-    })
+    // $('body').on('click','.btn-data-charge_atm',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successChargeAtmModal').modal('show');
+    // })
+    // $('body').on('click','.btn-data-charge_atm',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successChargeAtmModal').modal('show');
+    // })
+    // $('body').on('click','.btn-data-wallet_card',function(e){
+    //     e.preventDefault();
+    //
+    //     $('#successWalletCardModal').modal('show');
+    // })
 
 
 })
