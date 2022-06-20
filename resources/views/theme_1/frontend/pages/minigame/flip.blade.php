@@ -21,7 +21,7 @@
                     <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                     <div class="row boxflip">
                         @for ($i = 0; $i < count($result->group->items); $i++)
-                            <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
+                            <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
                                     <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
                                     <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="row" id="boxfliphide" style="display: none;">
                         @for ($i = 0; $i < count($result->group->items); $i++)
-                            <div class='flipimg col-6 col-sm-4 col-lg-4 flip-box'>
+                            <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                 <div data-inner=" inner{{$i}}" class="item_flip_inner">
                                     <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
                                     <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
@@ -417,7 +417,10 @@ $(document).ready(function(e){
         $('.boxflip img.flip-box-front').each(function(){
             $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
         })
-        $('.boxflip img.flip-box-front').addClass('img_remove');
+        $('.boxflip .flip-box-front').css({'transform': 'rotateY(0deg)'});
+        $('.boxflip .flip-box-front').parent().css({'transform': 'rotateY(0deg)'});
+        $('.boxflip .flip-box-front').prev().removeClass('transparent');
+        $('.boxflip .flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
         $('.play').hide();
         //$('.continue').hide();
@@ -428,6 +431,9 @@ $(document).ready(function(e){
         $('.boxflip img.flip-box-front').each(function(){
             $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
         })
+        $('.boxflip .flip-box-front').css({'transform': 'rotateY(0deg)'});
+        $('.boxflip .flip-box-front').parent().css({'transform': 'rotateY(0deg)'});
+        $('.boxflip .flip-box-front').prev().removeClass('transparent');
         $('.boxflip img.flip-box-front').addClass('img_remove');
         $('.num-play-try').hide();
         $('.play').hide();
@@ -504,7 +510,7 @@ $(document).ready(function(e){
                     } else if (data.status == 0) {
                         roll_check = true;
                         $("#btnWithdraw").hide();
-                        $('.content-popup').text(data.msg);
+                        $('#noticeModal .content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
                         $('.num-play-try').show();
                         $('.play').show();
@@ -639,6 +645,7 @@ $(document).ready(function(e){
                         }
                         else
                         {
+                            $("#btnWithdraw").hide();
                             if(gift_revice.length == 1)
                             {
                                     $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
@@ -671,7 +678,7 @@ $(document).ready(function(e){
                         }
                     }
 
-                    $('.content-popup').html($html);
+                    $('#noticeModal .content-popup').html($html);
                     if (userpoint > 99) {
                         getgifbonus();
                     }
@@ -691,7 +698,7 @@ $(document).ready(function(e){
                     },2500);
                 },
                 error: function(){
-                    $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                    $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                     $('#noticeModal').modal('show');
                     roll_check = true;
                 }
@@ -714,7 +721,7 @@ $(document).ready(function(e){
             type: 'POST',
             success: function(data) {
                 if (data.status == 0) {
-                    $('.content-popup').text(data.msg);
+                    $('#noticeModal .content-popup').text(data.msg);
                     $('#noticeModal').modal('show');
                     return;
                 }
@@ -736,7 +743,7 @@ $(document).ready(function(e){
                 },6000)
             },
             error: function() {
-                $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                 $('#noticeModal').modal('show');
             }
         })

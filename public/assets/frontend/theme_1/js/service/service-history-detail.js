@@ -115,6 +115,9 @@ $(document).ready(function(){
 
     })
 
+
+
+
     function getEditModal(id,index) {
 
         request = $.ajax({

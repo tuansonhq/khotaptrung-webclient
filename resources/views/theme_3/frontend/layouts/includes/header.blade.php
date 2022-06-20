@@ -305,29 +305,20 @@
 
 {{--                mobile--}}
 
-            <div class="box-login">
-                    <div class="box-account-mobile d-block d-md-none">
-                        <div class="box-account-logined box-account-mobile_open">
-
-                            <div class="account-avatar">
-                                <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="box-account-mobile ">
-                        <div class="box-account-logined box-account-mobile_close">
-
-                            <div class="account-avatar">
-                                <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
-                            </div>
-
-                        </div>
-                    </div>
+            <div class="box-login-mobile">
+                <div class="box-loading-mobile ">
+                    <div class="loading"></div>
                 </div>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
+
+                <div class="box-account-mobile ">
+{{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
+{{--                        <div class="account-avatar">--}}
+{{--                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </div>
+            </div>
+
         </div>
 
 
@@ -337,66 +328,28 @@
 </header>
 <div class="header ">
 
-    <div class="menu-category">
-        <div class="container container-fix">
-            <ul>
-                <li>
-                    <a href="/nap-the">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-charge">Nạp thẻ cào</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/nap-the#atm_card">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span >Nạp ATM -Ví</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/nap-the#wallet_card">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span >Nạp ví điện tử</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/mua-the">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-store">Mua thẻ Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/mua-acc">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-buy__acc">Mua Acc Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/dich-vu">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-service">Dịch vụ Game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/recharge-game">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-recharge_game">Nạp game</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/minigame">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service1.png" alt="">
-                        <span id="nav-minigame">Vòng quay</span>
-                    </a>
-                </li>
+    @include('frontend.widget.__head__dich__vu__noi__bat')
 
-            </ul>
-        </div>
-    </div>
     <div class="menu-profile-mobile">
         <div class="row marginauto">
             {{--Bắt đầu vòng lặp --}}
             <div class="col-md-12 left-right nav-bar-hr">
                 {{--                                    Vong lap thang bố--}}
+                <div class="acount-logined_mobile d-flex m-3">
+                    <div class="acount-logined_img">
+                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                    </div>
+                    <div class="account-logined_info">
+                        <div id="account-id-mobile">
+{{--                            <span class="">ID: </span>1234567--}}
+                        </div>
+                        <div id="account-balance-mobile">
+{{--                            <span class="">Số dư: </span>0 đ--}}
+                        </div>
+
+                    </div>
+
+                </div>
                 <div class="row marginauto nav-bar-nick nav-bar-parent">
                     <div class="col-md-12 left-right">
                         <div class="row marginauto nav-bar-parent-title">
@@ -713,6 +666,16 @@
     <div class="menu-category-mobile">
         <ul class=" ">
             <li>
+                <a href="/">
+                    <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
+                    <span>Trang chủ</span>
+                    <div class="mobile-logo">
+                        <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
+                    </div>
+
+                </a>
+            </li>
+            <li>
                 <a href="">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category1.png" alt="">
                     <span>Khuyến mãi</span>
@@ -725,50 +688,17 @@
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
-            <li>
-                <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category3.png" alt="">
-                    <span>Nạp thẻ cào</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="/nap-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category4.png" alt="">
-                    <span>Nạp ATM-Ví</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mua-the">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category7.png" alt="">
-                    <span>Mua thẻ</span>
-                </a>
-            </li>
-            <li>
-                <a href="/mua-acc">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category5.png" alt="">
-                    <span>Mua Acc Game</span>
-                </a>
-            </li>
-            <li>
-                <a href="/dich-vu">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category8.png" alt="">
-                    <span>Dịch vụ Game</span>
-                </a>
-            </li>
-            <li>
-                <a href="/minigame">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category9.png" alt="">
-                    <span>Vòng quay</span>
-                </a>
-            </li>
+                @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
             <div class="menu-category-mobile-partition"></div>
-            <li>
-                <a href="">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">
-                    <span>Đăng nhập/ Đăng ký</span>
-                </a>
+            <li id="login_menu">
+{{--                <a href="">--}}
+{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
+{{--                    <span>Đăng nhập/ Đăng ký</span>--}}
+{{--                </a>--}}
             </li>
         </ul>
     </div>
 </div>
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+    @csrf
+</form>

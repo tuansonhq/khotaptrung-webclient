@@ -1,10 +1,11 @@
-$('.timkiem-button-ct').on('click',function () {
-   let keyword = convertToSlug($('#keyword--search').val());
-   $('.js-service').each(function () {
-       let slug_service = $(this).find('img').attr('alt');
-       $(this).toggle(slug_service.indexOf(keyword) > -1)
-   })
+$('.timkiem-button-ct').on('click', function () {
+    let keyword = convertToSlug($('#keyword--search').val());
+    $('.js-service').each(function () {
+        let slug_service = $(this).find('img').attr('alt');
+        $(this).toggle(slug_service.indexOf(keyword) > -1)
+    })
 });
+
 function convertToSlug(title) {
     var slug;
     //Đổi chữ hoa thành chữ thường
@@ -33,111 +34,247 @@ function convertToSlug(title) {
     // trả về kết quả
     return slug;
 }
+
 // only allow numeric input
 $('input[numberic]').on('keypress', function (e) {
-    if (isNaN(this.value + String.fromCharCode(e.keyCode))) return false;
+    var angka = (e.which) ? e.which : e.keyCode
+    if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
+        return false;
+    return true;
 });
 
 let data_params = JSON.parse($('#data_params').val());
-
-console.log(data_params);
-
 let purchase_name;
+data_params['filter_type'] == 7 ? purchase_name = data_params['filter_name'] : purchase_name = 'VNĐ';
 
-data_params['filter_type'] == 7 ?
-    purchase_name = data_params['filter_name'] :
-    purchase_name ='VNĐ';
-let server = -1;
 let input_pack = $('#input_pack');
 let txt_price = $('#txt-price');
+let server = -1;
+server = parseInt($('select[name=server] option').filter(':selected').val());
 
-UpdateTotal();
-input_pack.bind('focus keyup', function () {
-    UpdateTotal();
-});
+switch (data_params['filter_type']) {
+    // Dạng tiền tệ
+    case '3':
+        break
+    // chọn một
+    case '4':
+        $("select[name=selected]").change(function (elm, select) {
+            itemselect = parseInt($('select[name=selected] option').filter(':selected').val());
+            UpdatePrice4();
+        });
+        $("select[name=server]").change(function (elm, select) {
+            server = parseInt($('select[name=server] option').filter(':selected').val());
+            UpdatePrice4();
+        });
+        let itemselect_value = parseInt($('select[name=selected] option').filter(':selected').val());
+        let itemselect_name = $('select[name=selected] option').filter(':selected').text();
+        UpdatePrice4();
 
-$('select[name=server]').on('change',function () {
-    UpdatePrice();
-});
+    function UpdatePrice4() {
+        let price = 0;
+        if (itemselect_value == -1) {
+            return;
+        }
 
-function UpdateTotal() {
-    var price = parseInt(input_pack.val().replace(/,/g, ''));
+        if (data_params.server_mode == 1 && data_params.server_price == 1) {
+            let s_price = data_params["price" + server];
+            price = parseInt(s_price[itemselect_value]);
+        } else {
+            let s_price = data_params["price"];
+            price = parseInt(s_price[itemselect_value]);
+        }
 
-    if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
-        // $('button[type="submit"]').addClass('not-allow');
-        txt_price.text('Tiền nhập không đúng');
-        return;
-    } else {
-        // $('button[type="submit"]').removeClass('not-allow');
+        price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        price = price.split('').reverse().join('').replace(/^[\.]/, '');
+        txt_price.text(price + ' VNĐ');
+
+        //    Modal
+        $('.service_pack').html(`<small>${itemselect_name}</small>`);
+        $('.total--price').text(`${price} VNĐ`);
+        //    Mobile
     }
-    var total = 0;
-    var index = 0;
-    var current = 0;
-    var discount = 0;
 
-    if (data_params.server_mode == 1 && data_params.server_price == 1) {
+        break;
+    // Dạng chọn nhiều
+    case '5':
+        $('#select-multi input[type="checkbox"]').change(function () {
+            UpdatePrice5();
+            checkPack();
+        });
 
-        var s_price = data_params["price" + server];
-        var s_discount = data_params["discount" + server];
+    function UpdatePrice5() {
+        let checked = $('#select-multi input[type="checkbox"]:checked');
+        var total = 0;
+        var itemselect = '';
+        if (data_params.server_mode == 1 && data_params.server_price == 1) {
+            var s_price = data_params["price" + server];
+        } else {
+            var s_price = data_params["price"];
+        }
+
+        if (checked.length > 0) {
+            checked.each(function (idx, elm) {
+                total += parseInt(s_price[$(elm).val()]);
+                if (!!itemselect) {
+                    itemselect += '|';
+                }
+                itemselect += $(this).val();
+            });
+            $('input[name=selected]').val(itemselect)
+        }
+        total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        total = total.split('').reverse().join('').replace(/^[\.]/, '');
+        txt_price.text(total + ' VNĐ');
+        //    modal
+        $('.total--price').text(total + ' VNĐ');
     }
-    else {
-        var s_price = data_params["price"];
-        var s_discount = data_params["discount"];
-    }
-    for (var i = 0; i < s_price.length; i++) {
 
-        if (price >= s_price[i] && s_price[i] != null) {
-            current = s_price[i];
-            index = i;
-            discount = s_discount[i];
-            total = price * s_discount[i];
-
+    function checkPack() {
+        let checked = $('#select-multi input[type="checkbox"]:checked');
+        if (checked.length) {
+            $('.service_pack').html('')
+            checked.each(function (elm) {
+                let text = $(this).parent().find('.label--checkbox__name').text().trim();
+                let html = '';
+                html += `<small>`;
+                html += `${text}`;
+                html += `</small>`;
+                $('.service_pack').append(html);
+            });
         }
     }
-    $('[name="value"]').val('');
-    $('[name="value"]').val(price);
-    total = parseInt(total / 1000 * data_params.input_pack_rate);
 
-    $('#txt-discount').val(discount);
-    total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-    total = total.split('').reverse().join('').replace(/^[\.]/,'');
-    txt_price.html('');
-    txt_price.text(total + " " + purchase_name);
-    // txt_price.removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-    //     $(this).removeClass();
-    // });
-    $('[name="selected"]').val(price);
-    $('.m-datatable__body tbody tr.selected').removeClass('selected');
-    $('.m-datatable__body tbody tr').eq(index).addClass('selected');
+        break
+    // trong khoảng
+    case '6':
+        $('.js-selected').on('change', function () {
+            UpdatePrice6();
+        });
+        UpdatePrice6();
+
+    function UpdatePrice6() {
+        let rank_from = $('select[name=rank_from] option').filter(':selected').val();
+        let rank_to = $('select[name=rank_to] option').filter(':selected').val();
+        let rank_from_name = $('select[name=rank_from] option').filter(':selected').text();
+        let rank_to_name = $('select[name=rank_to] option').filter(':selected').text();
+        let price = data_params.price;
+
+        let total = 0;
+        if (rank_from < rank_to) {
+            for (var i = parseInt(rank_from + 1); i <= rank_to; i++) {
+                total += parseInt(price[i] - price[i - 1]);
+            }
+        }
+
+
+        total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        total = total.split('').reverse().join('').replace(/^[\.]/, '');
+        txt_price.html(total + ' VNĐ');
+
+        //    Modal
+        $('.service_pack').html(`<small>${rank_from_name} - ${rank_to_name}</small>`);
+        $('.total--price').text(`${total} VNĐ`);
+    }
+
+        break;
+    // điền số tiền
+    case '7':
+
+    function UpdateTotal() {
+
+        var price = parseInt(input_pack.val().replace(/\./g, ''));
+        if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
+            // $('button[type="submit"]').addClass('not-allow');
+            txt_price.text('Tiền nhập không đúng');
+            return;
+        }
+        var total = 0;
+        var index = 0;
+        var current = 0;
+        var discount = 0;
+        let server_id = server;
+        let price_show = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+        price_show = price_show.split('').reverse().join('').replace(/^[\.]/, '');
+        if (!!price) {
+            if (data_params.server_mode == 1 && data_params.server_price == 1) {
+                var s_price = data_params["price" + server_id];
+                var s_discount = data_params["discount" + server_id];
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+                    }
+                }
+            } else {
+                var s_price = data_params["price"];
+                var s_discount = data_params["discount"];
+                discount = s_discount[server_id];
+                total = price * discount;
+            }
+            total = parseInt(total / 1000 * data_params.input_pack_rate);
+            $('#txt-discount').val(discount);
+            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            total = total.split('').reverse().join('').replace(/^[\.]/, '');
+            txt_price.html('');
+            txt_price.text(total + " " + purchase_name);
+
+            // thông tin modal
+            $('.service_pack').html(`<small>${total} ${purchase_name}</small>`);
+            $('.total--price').text(`${price_show} VNĐ`);
+        } else {
+            txt_price.text('Tiền nhập không đúng');
+
+            // thông tin modal
+            $('.service_pack').html(`<small>Tiền nhập không đúng</small>`);
+            $('.total--price').text(`${price_show} VNĐ`);
+        }
+    }
+
+        input_pack.bind('focus keyup', function () {
+            UpdateTotal();
+        });
+        $('select[name=server]').on('change', function () {
+            UpdateTotal();
+        });
+        UpdateTotal()
+        break;
+    default:
 }
 
 
-
-function UpdatePrice() {
-    let itemselect = -1;
-    var price = 0;
-    if (itemselect == -1) {
-        return;
-    }
-
-    if (data.server_mode == 1 && data.server_price == 1) {
-        var s_price = data["price" + server];
-        price = parseInt(s_price[itemselect]);
-    }
-    else {
-        var s_price = data["price"];
-        price = parseInt(s_price[itemselect]);
-    }
-    $('[name="value"]').val('');
-    $('[name="value"]').val(price);
-    price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-    price = price.split('').reverse().join('').replace(/^[\.]/,'');
-    $('#txt-price').html('Tổng: ' + price + ' VNĐ');
-    $('[name="selected"]').val($(".s-filter").val());
-
-    $('#txt-price').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-        $(this).removeClass();
-    });
-    $('tbody tr.selected').removeClass('selected');
-    $('tbody tr').eq(itemselect).addClass('selected');
+function checkboxRequired(selector) {
+    let checkboxs = $(`${selector}:checked`);
+    return !checkboxs.length;
 }
+
+$('.submit-form').on('click', function () {
+    let data_form = $('#formDataService').serializeArray().reduce(function (obj, item) {
+        obj[item.name] = item.value;
+        return obj;
+    }, {});
+    let url = $('#formDataService').attr('action');
+    data_form.selected = data_form.selected.replace(/\./g, "");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data_form,
+        success: function (res) {
+            if (res.status) {
+                $('.js-message-res span').text(res.message)
+                if ($(document).width() > 1200){
+                    $('.openSuccess').trigger('click')
+                } else {
+                    $('.button-next-step-two').trigger('click');
+                }
+            }
+            else {
+                $('.modal__error__message small').text(res.message)
+            }
+        }
+    })
+})
+
+

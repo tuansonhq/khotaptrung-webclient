@@ -143,39 +143,119 @@ $(document).ready(function (e) {
         $('.status-finter-nick .current').html('Chọn');
         $('.status-finter-nick .list:first-child').addClass('selected');
         loadData();
+
+        $('.status_data').val('');
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
     })
 
     $('body').on('click','.prepend-nick-times',function(){
         $('.started_at').val('');
 
         loadData();
+
+        $('.started_at_data').val('');
+        $('.ended_at_data').val('');
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
     })
 
     $('body').on('click','.prepend-nick-transaction',function(){
-        $('.transaction').val('');
-        $('.transaction').niceSelect('update');
+        $('.config').val('');
+        $('.config').niceSelect('update');
         $('.transaction-finter-nick .current').html('Chọn');
         $('.transaction-finter-nick .list:first-child').addClass('selected');
         loadData();
+
+        $('.config_data').val('');
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
     })
 
     $('body').on('click','.prepend-nick-timee',function(){
         $('.ended_at').val('');
 
         loadData();
+
+        $('.started_at_data').val('');
+        $('.ended_at_data').val('');
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
     })
 
     $('body').on('click','.prepend-nick-timese',function(){
         $('.ended_at').val('');
         $('.started_at').val('');
         loadData();
+
+        $('.started_at_data').val('');
+        $('.ended_at_data').val('');
+
+        var config_data = $('.config_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
     })
 
     $('body').on('click','.reset-find',function(){
+
+        $('.span-reset').html('')
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-reset .loading-data__timkiem').html('');
+        $('.btn-reset .loading-data__timkiem').html(htmlloading);
+
+
         $('.ended_at').val('');
         $('.started_at').val('');
-        $('.transaction').val('');
-        $('.transaction').niceSelect('update');
+        $('.config').val('');
+        $('.config').niceSelect('update');
         $('.status').val('');
         $('.status').niceSelect('update');
         $('.transaction-finter-nick .current').html('Chọn');
@@ -188,8 +268,26 @@ $(document).ready(function (e) {
                 $(this).prop('checked', false);
             }
         });
+
         loadData();
 
+        $('.config_data').val('');
+        $('.status_data').val('');
+        $('.started_at_data').val('');
+        $('.ended_at_data').val('');
+        $('.sort_by_data').val('');
+        var config_data = $('.config_data').val();
+
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        $('.search').val('');
+        var id = $('.search').val();
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
 
     })
 
@@ -218,18 +316,45 @@ $(document).ready(function (e) {
         loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
     });
 
-    $(document).on('submit', '.form-charge__accounttxns', function(e){
+    $(document).on('submit', '.search-txns', function(e){
         e.preventDefault();
 
+        $('.span-timkiem').html('');
+
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-timkiem .loading-data__timkiem').html('');
+        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+
+        var id = $('.search').val();
+
+        var config_data = $('.config_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+        var sort_by_data = $('.sort_by_data').val();
+        var page = 1;
+
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
+    })
+
+    $(document).on('submit', '.form-charge__accounttxns', function(e){
+        e.preventDefault();
+        $('.span-ap-dung').html('');
         var htmlloading = '';
         htmlloading += '<div class="loading"></div>';
         $('.btn-ap-dung .loading-data__timkiem').html('');
         $('.btn-ap-dung .loading-data__timkiem').html(htmlloading);
 
-        var config = $('.config').val();
+        // var config = $('.config').val();
+        var configvalue = $('.transaction-finter-nick .list .option.selected').data('value');
+        var config = $('.transaction-finter-nick .list .option.selected').text();
+
         var started_at = $('.started_at').val();
         var ended_at = $('.ended_at').val();
-        var status = $('.status').val();
+
+        var statusvalue = $('.status-finter-nick .list .option.selected').data('value');
+        var status = $('.status-finter-nick .list .option.selected').text();
 
         if (started_at == null || started_at == undefined || started_at == ''){
             $('.started_at_data').val('');
@@ -243,16 +368,16 @@ $(document).ready(function (e) {
             $('.ended_at_data').val(ended_at);
         }
 
-        if (config == null || config == undefined || config == ''){
+        if (configvalue == null || configvalue == undefined || configvalue == 'Chon' || config == null || config == undefined || config == 'Chọn'){
             $('.config_data').val('');
         }else {
-            $('.config_data').val(config);
+            $('.config_data').val(configvalue);
         }
 
-        if (status == null || status == undefined || status == ''){
+        if (status == null || status == undefined || status == '' || statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn'){
             $('.status_data').val('');
         }else {
-            $('.status_data').val(status);
+            $('.status_data').val(statusvalue);
         }
 
         var config_data = $('.config_data').val();
@@ -261,16 +386,18 @@ $(document).ready(function (e) {
         var started_at_data = $('.started_at_data').val();
         var ended_at_data = $('.ended_at_data').val();
         var sort_by_data = $('.sort_by_data').val();
-        var page = $('#hidden_page_service').val();
+        var page = 1;
 
+        $('.search').val('');
+        var id = $('.search').val();
 
-        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data)
+        loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id)
 
     });
 
     loadDataAccountList()
 
-    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data) {
+    function loadDataAccountList(page,config_data,status_data,started_at_data,ended_at_data,sort_by_data,id) {
         if (page == null || page == '' || page == undefined){
             page = 1;
         }
@@ -284,11 +411,13 @@ $(document).ready(function (e) {
                 started_at:started_at_data,
                 ended_at:ended_at_data,
                 sort_by:sort_by_data,
+                id:id,
             },
             beforeSend: function (xhr) {
 
             },
             success: (data) => {
+
                 $('.loading-data__timkiem').html('');
                 $('#openFinter').modal('hide');
 
@@ -296,12 +425,6 @@ $(document).ready(function (e) {
 
                     $("#data_lich__su_history").empty().html('');
                     $("#data_lich__su_history").empty().html(data.data);
-
-                    $(".data__status").empty().html('');
-                    $(".data__status").empty().html(data.datastatus);
-
-                    $(".data__config").empty().html('');
-                    $(".data__config").empty().html(data.dataconfig);
 
 
                     $(".scroll-into-view")[0].scrollIntoView();
@@ -320,14 +443,16 @@ $(document).ready(function (e) {
                     $("#data_lich__su_history").empty().html('');
                     $("#data_lich__su_history").empty().html(html);
 
-                    $(".data__status").empty().html('');
-                    $(".data__status").empty().html(data.datastatus);
-
-                    $(".data__config").empty().html('');
-                    $(".data__config").empty().html(data.dataconfig);
 
                 }
+
+                $('#data_lich__su_history .default-paginate').removeClass('default-paginate-addpadding');
+
                 $('#data_lich__su_history .table-logs').addClass('table-responsive');
+
+                $('.span-ap-dung').html('Áp dụng');
+                $('.span-reset').html('Thiết lập lại');
+                $('.span-timkiem').html('Tìm kiếm');
             },
             error: function (data) {
 

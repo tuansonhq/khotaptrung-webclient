@@ -31,7 +31,7 @@ $(document).ready(function (e) {
                 slidesPerView: 4,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 3.2,
 
             }
         }
@@ -115,14 +115,13 @@ $(document).ready(function (e) {
     // $('#successModal').modal('show');
     $('.wide').niceSelect();
 
-
     tippy('.checkbox-info-ct', {
         // default
         placement: 'top',
         arrow: true,
         animation: 'fade',
         theme: 'light',
-        content: "Đã copy!",
+        // content: $(this).data('name'),
     });
 
     tippy('.option-info-ct', {
@@ -253,128 +252,51 @@ $(document).ready(function (e) {
         $('#openOrder').modal('hide');
     })
 
-    $('body').on('click','.btn-data',function(e){
-        e.preventDefault();
-        var index = 0;
-        var isSet = true;
+    $('body').on('click','.btn-data',function(){
+        let is_ok = 1;
+        let html = '';
 
-        var rankstvalue = $('.data-select-rank-start .list .option.selected').data('value');
-        var rankst = $('.data-select-rank-start .list .option.selected').text();
-
-        if (rankst == null || rankst == undefined || rankst == 'Chọn rank hiện tại' || rankstvalue == null || rankstvalue == undefined || rankstvalue == ''){
-
-            var htmlrankst = '';
-            htmlrankst += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn rank hiện tại.</small></div></div>';
-
-            $('.rank-start-error').html('');
-            $('.rank-start-error').html(htmlrankst);
-
-            $('.data-select-rank-start .nice-select').css('border-color','#DA4343');
-
-            isSet = false;
-        }else {
-            $('.rank-start-error').html('');
-            $('.data-select-rank-start .nice-select').css('border-color','#DCDEE9');
+        let required = $('input[required]');
+        if (required.length){
+            required.each(function () {
+                $(this).toggleClass('invalid',!$(this).val().trim());
+                if (!$(this).val().trim()){
+                    is_ok = 0;
+                    let text = $(this).parent().prev().text().trim().toLowerCase();
+                    html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập ${text}</small></div></div>`
+                    $(this).parent().next().html(html)
+                }else {
+                    $(this).parent().next().text('')
+                }
+            });
         }
+        if ($('.allgame[type=checkbox]').length){
+            if (checkboxRequired('input.allgame[type=checkbox]')){
+                html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
+                is_ok = 0;
+                $('#error-mes-checkbox').html(html)
+            }
 
-        var rankmmvalue = $('.data-select-rank-end .list .option.selected').data('value');
-        var rankmm = $('.data-select-rank-end .list .option.selected').text();
-
-        if (rankmm == null || rankmm == undefined || rankmm == 'Chọn rank hiện tại' || rankmmvalue == null || rankmmvalue == undefined || rankmmvalue == ''){
-
-            var htmlrankmm = '';
-            htmlrankmm += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn rank mong muốn.</small></div></div>';
-
-            $('.rank-end-error').html('');
-            $('.rank-end-error').html(htmlrankmm);
-
-            $('.data-select-rank-end .nice-select').css('border-color','#DA4343');
-
-            isSet = false;
-        }else {
-            $('.rank-end-error').html('');
-            $('.data-select-rank-end .nice-select').css('border-color','#DCDEE9');
+            else {
+                $('#error-mes-checkbox').html('');
+            }
         }
-
-        var servervalue = $('.data-select-server .list .option.selected').data('value');
-        var server = $('.data-select-server .list .option.selected').text();
-
-        if (server == null || server == undefined || server == 'Chọn server' || servervalue == null || servervalue == undefined || servervalue == ''){
-
-            var htmlserver = '';
-            htmlserver += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn server.</small></div></div>';
-
-            $('.server-error').html('');
-            $('.server-error').html(htmlserver);
-
-            $('.data-select-server .nice-select').css('border-color','#DA4343');
-
-            isSet = false;
-        }else {
-            $('.server-error').html('');
-            $('.data-select-server .nice-select').css('border-color','#DCDEE9');
+        let confirm_rules = $('.confirm-rules');
+        if (!confirm_rules.length){
+            if (confirm_rules.is(':checked')){
+                html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
+                is_ok = 0;
+                $('.confirm-rules').parent().next().html(html)
+            }
         }
-
-        var herovalue = $('.data-select-hero .list .option.selected').data('value');
-        var hero = $('.data-select-hero .list .option.selected').text();
-
-        if (hero == null || hero == undefined || hero == 'Ví dụ: Yasuyo' || herovalue == null || herovalue == undefined || herovalue == ''){
-
-            var htmlserver = '';
-            htmlserver += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa chọn tướng.</small></div></div>';
-
-            $('.hero-error').html('');
-            $('.hero-error').html(htmlserver);
-
-            $('.data-select-hero .nice-select').css('border-color','#DA4343');
-
-            isSet = false;
-        }else {
-            $('.hero-error').html('');
-            $('.data-select-hero .nice-select').css('border-color','#DCDEE9');
+        if (is_ok){
+            if ($(document).width() > 1200) {
+                $('#openOrder').modal('show');
+            }else {
+                $('.button-next-step-one').trigger('click')
+            }
         }
-
-        var username = $('.username').val();
-
-        if (username == null || username == undefined || username == ''){
-            var htmltk = '';
-            htmltk += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập tài khoản game.</small></div></div>';
-
-            $('.tk-error').html('');
-            $('.tk-error').html(htmltk);
-
-            $('.username').css('border-color','#DA4343');
-            isSet =  false;
-        }else {
-            $('.tk-error').html('');
-            $('.username').css('border-color','#DCDEE9');
-        }
-
-        var password = $('.password').val();
-
-        if (password == null || password == undefined || password == ''){
-            var htmlpw = '';
-            htmlpw += '<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập mật khẩu game.</small></div></div>';
-
-            $('.pw-error').html('');
-            $('.pw-error').html(htmlpw);
-
-            $('.password').css('border-color','#DA4343');
-
-            isSet =  false;
-        }else {
-            $('.password').css('border-color','#DCDEE9');
-            $('.pw-error').html('');
-        }
-
-        if (isSet == false){
-            return false;
-        }
-
-        $('#openOrder').modal('show');
-
-    })
-
+    });
 
     $('body').on('click','.openSuccess',function(e){
         $('#openOrder').modal('hide');

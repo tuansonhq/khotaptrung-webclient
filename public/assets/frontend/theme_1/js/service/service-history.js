@@ -51,9 +51,6 @@ $(document).ready(function(){
                     $('#data_service_history').html('');
                     $('#data_service_history').html(data.data);
 
-                    $('.data__service__cate').html('');
-                    $('.data__service__cate').html(data.datacate);
-
                     $(".booking_detail")[0].scrollIntoView();
                 }else if (data.status == 0){
                     var html = '';
@@ -68,8 +65,6 @@ $(document).ready(function(){
 
                     $('#data_service_history').html('');
                     $('#data_service_history').html(html);
-                    $('.data__service__cate').html('');
-                    $('.data__service__cate').html(data.datacate);
                 }
 
             },
