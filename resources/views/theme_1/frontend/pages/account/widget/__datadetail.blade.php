@@ -155,50 +155,28 @@
                         @endif
                     @endforeach
                 @endif
-                @if(isset($item->params) && isset($item->params->ext_info))
-                    <?php $params = json_decode(json_encode($item->params->ext_info),true); ?>
-                    @if(isset($data->childs) && count($data->childs)>0)
-                        @foreach($data->childs as $index=>$att)
-                            @if($att->position == 'text')
-                                @if(isset($att->childs))
-                                    @foreach($att->childs as $child)
-                                        @foreach($params as $key => $param)
-                                            @if($key == $child->id)
-                                                <tr>
-                                                    <td style="width:50%">{{ $child->title }}:</td>
-                                                    <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    @endforeach
-                                @endif
-
-                            @endif
-                        @endforeach
-                    @endif
+                @if(isset($data->params) && isset($data->params->ext_info))
+                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                    @foreach($params as $key => $param)
+                        <div class="col-md-12">
+                            <div class="row gallery__03">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto span__dangky__auto">
+                                            <i class="fas fa-angle-right"></i>
+                                        </div>
+                                        <div class="col-md-4 col-4 pl-0">
+                                            <span class="span__dangky">{{ $key }}</span>
+                                        </div>
+                                        <div class="col-md-6 col-6 pl-0">
+                                            <span class="span__dangky">{{ $param }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 @endif
-{{--                @if(isset($data->params) && isset($data->params->ext_info))--}}
-{{--                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>--}}
-{{--                    @foreach($params as $key => $param)--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="row gallery__03">--}}
-{{--                                <div class="col-md-12 gallery__01__row">--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-auto span__dangky__auto">--}}
-{{--                                            <i class="fas fa-angle-right"></i>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-4 col-4 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $key }}</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6 col-6 pl-0">--}}
-{{--                                            <span class="span__dangky">{{ $param }}</span>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    @endforeach--}}
-{{--                @endif--}}
                 <div class="col-md-12 gallery__bottom">
                     <div class="row text-center">
                         <div class="col-md-12 gallery__01__row">
@@ -315,37 +293,15 @@
                                                         @endforeach
                                                     @endif
 
-                                                    @if(isset($item->params) && isset($item->params->ext_info))
-                                                        <?php $params = json_decode(json_encode($item->params->ext_info),true); ?>
-                                                        @if(isset($data->childs) && count($data->childs)>0)
-                                                            @foreach($data->childs as $index=>$att)
-                                                                @if($att->position == 'text')
-                                                                    @if(isset($att->childs))
-                                                                        @foreach($att->childs as $child)
-                                                                            @foreach($params as $key => $param)
-                                                                                @if($key == $child->id)
-                                                                                    <tr>
-                                                                                        <td style="width:50%">{{ $child->title }}:</td>
-                                                                                        <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                                                    </tr>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endforeach
-                                                                    @endif
-
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
+                                                    @if(isset($data->params) && isset($data->params->ext_info))
+                                                        <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                                        @foreach($params as $key => $param)
+                                                            <tr>
+                                                                <td style="width:50%">{{ $key }}:</td>
+                                                                <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
+                                                            </tr>
+                                                        @endforeach
                                                     @endif
-{{--                                                    @if(isset($data->params) && isset($data->params->ext_info))--}}
-{{--                                                        <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>--}}
-{{--                                                        @foreach($params as $key => $param)--}}
-{{--                                                            <tr>--}}
-{{--                                                                <td style="width:50%">{{ $key }}:</td>--}}
-{{--                                                                <td class="text-danger" style="font-weight: 700">{{ $param }}</td>--}}
-{{--                                                            </tr>--}}
-{{--                                                        @endforeach--}}
-{{--                                                    @endif--}}
                                                     </tbody>
                                                 </table>
                                             </li>
