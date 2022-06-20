@@ -282,6 +282,7 @@ $(document).ready(function (e) {
             }
         }
         let confirm_rules = $('.confirm-rules');
+        // nếu không có nút confirm nào checked 
         if (!confirm_rules.length){
             if (confirm_rules.is(':checked')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
