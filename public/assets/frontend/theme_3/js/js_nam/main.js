@@ -112,29 +112,7 @@ $(document).ready(function (e) {
     //    Step
 
     $('body').on('click','#charge_next.button-next-step-one',function(){
-        if (animating) return false;
-        animating = true;
 
-        // current_fs = $('#mobile-caythue .input-next-step-one').parent();
-        // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
-
-        current_fs = $('#fieldset-one_transaction');
-        next_fs = $('#fieldset-two-charge');
-        //show the next fieldset
-        next_fs.show();
-        //hide the current fieldset with style
-        current_fs.animate({opacity: 0}, {
-            step: function (now, mx) {
-                left = (now * 50) + "%";
-                opacity = 1 - now;
-                next_fs.css({'left': left, 'opacity': opacity});
-            },
-            complete: function () {
-                current_fs.hide();
-                animating = false;
-            },
-            easing: 'easeInOutBack'
-        });
     })
     $('body').on('click','#recharge_atm_next.button-next-step-one',function(){
         if (animating) return false;
