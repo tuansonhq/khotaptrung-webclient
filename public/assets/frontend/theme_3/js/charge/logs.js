@@ -477,5 +477,4 @@ $(document).ready(function (e) {
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     });
 
-
 })

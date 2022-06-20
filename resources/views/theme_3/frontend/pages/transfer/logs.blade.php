@@ -95,7 +95,7 @@
                         {{--                        Co dữ liệu   --}}
 
                         <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table" id="data_lich__su_history" style="position: relative">
+                            <div class="row default-table" id="data_pay_card_history_ls" style="position: relative">
                                 <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
                                     <div class="d-flex justify-content-center">
                                         <span class="pulser"></span>
