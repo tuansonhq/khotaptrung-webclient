@@ -234,7 +234,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
                             Route::get('/recharge-atm-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
                                 ->name('getIdCode');
-                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer'])
+                            Route::get('/recharge-atm/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
