@@ -134,7 +134,7 @@ var swiper_article= new Swiper(".article--slider", {
     loop:true,
 });
 
-// option swiper article news
+// option swiper article article
 var swiper_article_banner = new Swiper(".article--slider__news", {
     spaceBetween: 16,
     slidesPerView:4,

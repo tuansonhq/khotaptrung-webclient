@@ -26,8 +26,7 @@ class VerifyShop extends Middleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
 
-
-    public function handle(Request $request, Closure $next)
+    public function handle( $request, Closure $next)
     {
 
         $data = Cache::rememberForever('verify_shop', function()  {
