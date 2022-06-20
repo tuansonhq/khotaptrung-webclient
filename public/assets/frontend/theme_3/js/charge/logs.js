@@ -48,17 +48,17 @@ $(document).ready(function (e) {
         $('.nick-findter-data').html('');
         $('.nick-findter-data').html(defaulthtml);
 
-        var id = $('.id').val();
+        var serial = $('.serial').val();
 
-        if (id == null || id == undefined || id == ''){}else {
+        if (serial == null || serial == undefined || serial == ''){}else {
             if ($('.prepend-nick').hasClass('prepend-nick-id')){
                 return false;
             }
-            if (parseInt(id.length) > 50){
+            if (parseInt(serial.length) > 50){
                 return false;
             }
             var htmlid = '';
-            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + serial + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlid);
             isSet = true;
             index = index + 1;
@@ -79,15 +79,15 @@ $(document).ready(function (e) {
             index = index + 1;
         }
 
-        var servicevalue = $('.service-finter-nick .list .option.selected').data('value');
-        var service = $('.service-finter-nick .list .option.selected').text();
+        var transactionvalue = $('.transaction-finter-nick .list .option.selected').data('value');
+        var transaction = $('.transaction-finter-nick .list .option.selected').text();
 
-        if (service == null || service == undefined || service == 'Chọn' || servicevalue == null || servicevalue == undefined || servicevalue == 'Chọn'){}else {
-            if ($('.prepend-nick').hasClass('prepend-nick-service')){
+        if (transaction == null || transaction == undefined || transaction == 'Chọn' || transactionvalue == null || transactionvalue == undefined || transactionvalue == 'Chọn'){}else {
+            if ($('.prepend-nick').hasClass('prepend-nick-transaction')){
                 return false;
             }
             var htmlrank = '';
-            htmlrank += '<div class="col-auto prepend-nick prepend-nick-service" style="position: relative"><a href="javascript:void(0)">' + service + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlrank += '<div class="col-auto prepend-nick prepend-nick-transaction" style="position: relative"><a href="javascript:void(0)">' + transaction + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlrank);
             isSet = true;
             index = index + 1;
@@ -154,71 +154,78 @@ $(document).ready(function (e) {
     })
 
     $('body').on('click','.prepend-nick-status',function(){
+
         $('.status').val('');
         $('.status').niceSelect('update');
         $('.status-finter-nick .current').html('Chọn');
         $('.status-finter-nick .list:first-child').addClass('selected');
-        loadData();
-
-        $('.status_data').val('');
-
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
-        var page = 1;
-
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
-    })
-    $('body').on('click','.prepend-nick-id',function(){
-        $('.id').val('');
 
         loadData();
 
-        $('.id_data').val('');
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.started_at_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
+
     $('body').on('click','.prepend-nick-times',function(){
         $('.started_at').val('');
 
         loadData();
 
-        $('.started_at_data').val('');
-        $('.ended_at_data').val('');
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.started_at_data_ls').val('');
+        $('.ended_at_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
-    $('body').on('click','.prepend-nick-service',function(){
-        $('.service').val('');
-        $('.service').niceSelect('update');
-        $('.service-finter-nick .current').html('Chọn');
-        $('.service-finter-nick .list:first-child').addClass('selected');
+    $('body').on('click','.prepend-nick-id',function(){
+        $('.serial').val('');
+
         loadData();
 
-        $('.key_data').val('');
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.serial_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
+    })
+
+    $('body').on('click','.prepend-nick-transaction',function(){
+        $('.transaction').val('');
+        $('.transaction').niceSelect('update');
+        $('.transaction-finter-nick .current').html('Chọn');
+        $('.transaction-finter-nick .list:first-child').addClass('selected');
+        loadData();
+
+        $('.key_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
+        var page = 1;
+
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
     $('body').on('click','.prepend-nick-timee',function(){
@@ -226,33 +233,81 @@ $(document).ready(function (e) {
 
         loadData();
 
-        $('.started_at_data').val('');
-        $('.ended_at_data').val('');
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.started_at_data_ls').val('');
+        $('.ended_at_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
+
     $('body').on('click','.prepend-nick-timese',function(){
         $('.ended_at').val('');
         $('.started_at').val('');
         loadData();
 
-        $('.started_at_data').val('');
-        $('.ended_at_data').val('');
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.started_at_data_ls').val('');
+        $('.ended_at_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
+
+
+    $('body').on('click','.reset-find',function(){
+
+        $('.span-reset').html('')
+        var htmlloading = '';
+        htmlloading += '<div class="loading"></div>';
+        $('.btn-reset .loading-data__timkiem').html('');
+        $('.btn-reset .loading-data__timkiem').html(htmlloading);
+
+        $('.id').val('');
+        $('.ended_at').val('');
+        $('.started_at').val('');
+        $('.transaction').val('');
+        $('.transaction').niceSelect('update');
+        $('.status').val('');
+        $('.status').niceSelect('update');
+        $('.transaction-finter-nick .current').html('Chọn');
+        $('.transaction-finter-nick .list:first-child').addClass('selected');
+        $('.status-finter-nick .current').html('Chọn');
+        $('.status-finter-nick .list:first-child').addClass('selected');
+
+        $('input[name="switch"]:checked').each(function () {
+            if (this.checked) {
+                $(this).prop('checked', false);
+            }
+        });
+        loadData();
+
+        $('.serial_data_ls').val('');
+        $('.key_data_ls').val('');
+        $('.status_data_ls').val('');
+        $('.started_at_data_ls').val('');
+        $('.ended_at_data_ls').val('');
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
+        var page = 1;
+
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
+    })
+
 
     $(document).on('submit', '.search-txns', function(e){
         e.preventDefault();
@@ -264,71 +319,23 @@ $(document).ready(function (e) {
         $('.btn-timkiem .loading-data__timkiem').html('');
         $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
 
-        var id = $('.search').val();
+        var key = $('.search').val();
 
-        $('.id_data').val(id);
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        $('.serial_data_ls').val(key);
+
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
-    $('body').on('click','.reset-find',function(){
-
-        $('.span-reset').html('')
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
-        $('.btn-reset .loading-data__timkiem').html('');
-        $('.btn-reset .loading-data__timkiem').html(htmlloading);
-
-
-        $('.id').val('');
-        $('.ended_at').val('');
-        $('.started_at').val('');
-        $('.service').val('');
-        $('.service').niceSelect('update');
-        $('.status').val('');
-        $('.status').niceSelect('update');
-        $('.service-finter-nick .current').html('Chọn');
-        $('.service-finter-nick .list:first-child').addClass('selected');
-        $('.status-finter-nick .current').html('Chọn');
-        $('.status-finter-nick .list:first-child').addClass('selected');
-
-        $('input[name="switch"]:checked').each(function () {
-            if (this.checked) {
-                $(this).prop('checked', false);
-            }
-        });
-        loadData();
-
-
-        $('.id_data').val('');
-        $('.key_data').val('');
-        $('.status_data').val('');
-        $('.started_at_data').val('');
-        $('.ended_at_data').val('');
-
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
-        var page = 1;
-
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+    $('body').on('click','.close-modal-default',function(){
+        $('#openFinter').modal('hide')
     })
-
-
-    $('body').on('click','.close-modal-default',function(e){
-        e.preventDefault();
-        $('#openFinter').modal('hide');
-    })
-
-    let page = $('#hidden_page').val();
 
     $(document).on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
@@ -340,34 +347,32 @@ $(document).ready(function (e) {
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        var serial = $('.serial_data_ls').val();
+        var key =  $('.key_data_ls').val();
+        var status =  $('.status_data_ls').val();
+        var started_at = $('.started_at_data_ls').val();
+        var ended_at =  $('.ended_at_data_ls').val();
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
+        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
     });
 
-    loadDataServiceHistory()
+    loadDataChargeHistory();
 
-
-    function loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data) {
-
+    function loadDataChargeHistory(page, serial, key, status,started_at,ended_at) {
         if (page == null || page == '' || page == undefined){
             page = 1;
         }
 
         request = $.ajax({
             type: 'GET',
-            url: '/dich-vu-da-mua',
+            url: '/lich-su-nap-the',
             data: {
                 page:page,
-                id:id_data,
-                key:key_data,
-                status:status_data,
-                started_at:started_at_data,
-                ended_at:ended_at_data,
+                serial:serial,
+                key:key,
+                status:status,
+                started_at:started_at,
+                ended_at:ended_at,
             },
             beforeSend: function (xhr) {
 
@@ -376,24 +381,21 @@ $(document).ready(function (e) {
                 $('.loading-data__timkiem').html('');
                 $('#openFinter').modal('hide');
                 if (data.status == 1){
-                    $('#data_service_history').html('');
-                    $('#data_service_history').html(data.data);
-
-                    $(".scroll-into-view")[0].scrollIntoView();
-                }else if (data.status == 0){
+                    $("#data_pay_card_history_ls").empty().html('');
+                    $("#data_pay_card_history_ls").empty().html(data.data);
+                }else if (data.status == 0) {
                     var html = '';
-                    html += '<div class="table-responsive">';
+                    html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';
 
-                    $('#data_service_history').html('');
-                    $('#data_service_history').html(html);
-
+                    $("#data_pay_card_history_ls").empty().html('');
+                    $("#data_pay_card_history_ls").empty().html(html);
                 }
 
                 $('#data_service_history .default-paginate').removeClass('default-paginate-addpadding');
@@ -413,7 +415,7 @@ $(document).ready(function (e) {
         });
     }
 
-    $(document).on('submit', '.account_service_history__v2', function(e){
+    $(document).on('submit', '.form-charge_ls', function(e){
         e.preventDefault();
 
         $('.span-ap-dung').html('');
@@ -422,10 +424,10 @@ $(document).ready(function (e) {
         $('.btn-ap-dung .loading-data__timkiem').html('');
         $('.btn-ap-dung .loading-data__timkiem').html(htmlloading);
 
-        var id = $('.id').val();
+        var serial = $('.serial').val();
 
-        var servicevalue = $('.service-finter-nick .list .option.selected').data('value');
-        var service = $('.service-finter-nick .list .option.selected').text();
+        var keyvalue = $('.transaction-finter-nick .list .option.selected').data('value');
+        var key = $('.transaction-finter-nick .list .option.selected').text();
 
         var statusvalue = $('.status-finter-nick .list .option.selected').data('value');
         var status = $('.status-finter-nick .list .option.selected').text();
@@ -433,46 +435,46 @@ $(document).ready(function (e) {
         var started_at = $('.started_at').val();
         var ended_at = $('.ended_at').val();
 
-        if (id == null || id == undefined || id == ''){
-            $('.id_data').val('');
+        if (serial == null || serial == undefined || serial == ''){
+            $('.serial_data_ls').val('');
         }else {
-            $('.id_data').val(id);
+            $('.serial_data_ls').val(serial);
         }
 
+        if (keyvalue == null || keyvalue == undefined || keyvalue == 'Chọn' || key == null || key == undefined || key == 'Chọn'){
+            $('.key_data_ls').val('');
+        }else {
+            $('.key_data_ls').val(keyvalue);
+        }
+
+        if (statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn' || status == null || status == undefined || status == 'Chọn'){
+            $('.status_data_ls').val('');
+        }else {
+            $('.status_data_ls').val(statusvalue);
+        }
+
+        var started_at = $('.started_at').val();
         if (started_at == null || started_at == undefined || started_at == ''){
-            $('.started_at_data').val('');
+            $('.started_at_data_ls').val('');
         }else {
-            $('.started_at_data').val(started_at);
+            $('.started_at_data_ls').val(started_at);
         }
 
+        var ended_at =  $('.ended_at').val();
         if (ended_at == null || ended_at == undefined || ended_at == ''){
-            $('.ended_at_data').val('');
+            $('.ended_at_data_ls').val('');
         }else {
-            $('.ended_at_data').val(ended_at);
+            $('.ended_at_data_ls').val(ended_at);
         }
 
-        if (service == null || service == undefined || service == 'Chọn' || servicevalue == null || servicevalue == undefined || servicevalue == 'Chọn'){
-            $('.key_data').val('');
-        }else {
-            $('.key_data').val(servicevalue);
-        }
-
-        if (status == null || status == undefined || status == 'Chọn' || statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn'){
-            $('.status_data').val('');
-        }else {
-            $('.status_data').val(statusvalue);
-        }
-
-
-        var id_data = $('.id_data').val();
-        var key_data = $('.key_data').val();
-        var status_data = $('.status_data').val();
-        var started_at_data = $('.started_at_data').val();
-        var ended_at_data = $('.ended_at_data').val();
+        var serial_data = $('.serial_data_ls').val();
+        var key_data =  $('.key_data_ls').val();
+        var status_data =  $('.status_data_ls').val();
+        var started_at_data = $('.started_at_data_ls').val();
+        var ended_at_data =  $('.ended_at_data_ls').val();
         var page = 1;
 
-        loadDataServiceHistory(page,id_data,key_data,status_data,started_at_data,ended_at_data)
-
+        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     });
 
 

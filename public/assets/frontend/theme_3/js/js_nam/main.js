@@ -144,7 +144,7 @@ $(document).ready(function (e) {
         // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
 
         current_fs = $('#fieldset-one_transaction');
-        next_fs = $('#fieldset-two-recharge-atm');
+        next_fs = $('#fieldset-two-transfer');
         //show the next fieldset
         next_fs.show();
         //hide the current fieldset with style
@@ -223,7 +223,7 @@ $(document).ready(function (e) {
         if(animating) return false;
         animating = true;
 
-        current_fs = $('#fieldset-two-recharge-atm');
+        current_fs = $('#fieldset-two-transfer');
         previous_fs = $('#fieldset-one_transaction');
 
         //show the previous fieldset
