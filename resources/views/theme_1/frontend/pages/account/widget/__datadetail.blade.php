@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                @if(isset($card_percent) && isset($atm_percent))
+                @if(isset($card_percent))
                     <div class="col-md-12 gallery__pt">
                         <div class="row gallery__02">
                             <div class="col-md-12 gallery__01__row">

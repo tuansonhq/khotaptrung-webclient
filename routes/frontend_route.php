@@ -128,7 +128,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
 
                 Route::get('/dich-vu', [ServiceController::class , "getList"]);
+
                 Route::get('/dich-vu/{slug}', [ServiceController::class , "getDetail"]);
+
+                Route::get('/show-bot', [ServiceController::class , "showBot"]);
+
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
@@ -199,6 +203,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                                 ->name('portInbox');
                             Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
+
+
+
+
 
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
