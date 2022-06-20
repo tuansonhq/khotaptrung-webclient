@@ -110,14 +110,11 @@ class ServiceController extends Controller
 //        $dataSend['slug'] = $slug;
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
-//        return $result_Api;
         $response_data = $result_Api->response_data??null;
 
         if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
-            $data_bot = $response_data->data_bot??null;
             $urlCate = '/service';
 
             $dataSendCate = array();
@@ -138,7 +135,6 @@ class ServiceController extends Controller
                 return view('frontend.pages.service.detail')
                     ->with('data', $data)
                     ->with('datacate', $datacate)
-                    ->with('data_bot', $data_bot)
                     ->with('slug', $slug);
 
             }
@@ -158,6 +154,40 @@ class ServiceController extends Controller
         }
     }
 
+    public function showBot(Request $request){
+        if ($request->ajax()){
+            $slug = $request->slug;
+
+            $url = '/service/'.$slug;
+            $method = "GET";
+            $dataSend = array();
+//        $dataSend['slug'] = $slug;
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            if(isset($response_data) && ($response_data->status??"") == 1){
+
+                $data_bot = $response_data->data_bot??null;
+
+                $html =  view('frontend.pages.service.widget.__data__bot')
+                    ->with('data_bot',$data_bot)->render();
+
+                return response()->json([
+                    'status' => 1,
+                    'data' => $html,
+                    'message' => 'Load du lieu thanh cong.',
+                ]);
+
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+        }
+    }
     public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {

@@ -95,257 +95,16 @@
                         {{--                        Co dữ liệu   --}}
 
                         <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table">
-                                <div class="col-md-12 left-right">
-                                    <table class="table table-responsive-lg table-striped table-hover table-logs">
-                                        <thead>
-                                        <tr>
-                                            <th>Thời gian</th>
-                                            <th>Chủ tài khoản</th>
-                                            <th>Ngân hàng</th>
-                                            <th>Số tài khoản</th>
-                                            <th>Tiền</th>
-                                            <th>THực nhận</th>
-                                            <th>Trạng thái</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-danger">Thất bại</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-warning">Chờ xử lý</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Chim sẻ đi nắng</td>
-
-                                            <td>Techcombank</td>
-                                            <td>
-                                                1903 204 9988 123
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right justify-content-end default-paginate">
-                            <div class="row marinautooo justify-content-center">
-                                <div class="col-auto">
-                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                        <ul class="pagination pagination-sm">
-                                            <li class="page-item disabled">
-                                                <a href="" class="page-link">
-                                                </a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <span class="page-link">1</span>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=3">3</a>
-                                            </li>
-                                            <li class="page-item disabled hidden-xs">
-                                                <span class="page-link">...</span>
-                                            </li>
-                                            <li class="page-item hidden-xs">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=14">14</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2" rel="next"></a>
-                                            </li>
-                                        </ul>
+                            <div class="row default-table" id="data_lich__su_history" style="position: relative">
+                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
+                                    <div class="d-flex justify-content-center">
+                                        <span class="pulser"></span>
                                     </div>
                                 </div>
+                                @include('frontend.pages.transfer.widget.__tranfer_history')
                             </div>
                         </div>
 
-                        {{--                        <div class="col-md-12 logs-table left-right">--}}
-                        {{--                            <div class="row marginauto default-table">--}}
-                        {{--                                <div class="col-md-12 left-right">--}}
-                        {{--                                    <table class="table table-responsive-lg table-striped table-hover table-logs">--}}
-                        {{--                                        <thead>--}}
-                        {{--                                        <tr>--}}
-                        {{--                                            <th>Thời gian</th>--}}
-                        {{--                                            <th>Kiểu nạp</th>--}}
-                        {{--                                            <th>Nhà mạng</th>--}}
-                        {{--                                            <th>Mã thẻ/Serial</th>--}}
-                        {{--                                            <th>Mệnh giá</th>--}}
-                        {{--                                            <th>THực nhận</th>--}}
-                        {{--                                            <th>Trạng thái</th>--}}
-                        {{--                                        </tr>--}}
-                        {{--                                        </thead>--}}
-                        {{--                                        <tbody>--}}
-
-                        {{--                                        <tr style="width: 100%" id="table-notdata">--}}
-                        {{--                                            <td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td>--}}
-                        {{--                                        </tr>--}}
-                        {{--                                        </tbody>--}}
-                        {{--                                    </table>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                     </div>
                 </div>
 
@@ -439,14 +198,26 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                         <div class="row marginauto modal-footer-success-row-not-ct">
                                             <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct reset-find"><span>Thiết lập lại</span></a>
+                                                <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
+                                                    <span class="span-reset">
+                                                        Thiết lập lại
+                                                    </span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="button">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
+                                                    <span class="span-ap-dung">Áp dụng</span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -462,7 +233,7 @@
 
     </div>
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/logs.js"></script>
 @endsection
 
 

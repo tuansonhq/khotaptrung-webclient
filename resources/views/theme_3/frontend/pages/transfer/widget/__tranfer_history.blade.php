@@ -1,83 +1,211 @@
 
 @if(empty($data->data))
-
-<div class="table-responsive">
-    <table class="table table-hover table-custom-res">
+@dd($data)
+<div class="col-md-12 left-right">
+    <table class="table table-striped table-hover table-logs" id="table-default">
         <thead>
         <tr>
             <th>Thời gian</th>
-{{--            <th>Mã yêu cầu</th>--}}
-{{--            <th>Ngân hàng</th>--}}
-{{--            <th>Chủ tài khoản</th>--}}
-{{--            <th>Số tài khoản</th>--}}
-            <th>Số tiền</th>
-            <th>Thực nhận</th>
+            <th>Chủ tài khoản</th>
+            <th>Ngân hàng</th>
+            <th>Số tài khoản</th>
+            <th>Tiền</th>
+            <th>THực nhận</th>
             <th>Trạng thái</th>
         </tr>
-
         </thead>
         <tbody>
-        @if(empty($data->data))
-            @if(isset($data) && count($data) > 0)
-                @foreach ($data as $item)
-                    <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
-{{--                        <td>{{ $item->params->content_bank }}</td>--}}
-{{--                        <td>{{ $item->bank->title }}</td>--}}
-{{--                        <td>{{ $item->bank->params->account_name }}</td>--}}
-{{--                        <td>--}}
-{{--                            {{ $item->bank->params->number_account }}--}}
-{{--                        </td>--}}
-                        <td>
-                            {{ formatPrice($item->price) }}
-                        </td>
-                        <td>
-                            @if(isset($item->real_received_price))
-                                {{ formatPrice($item->real_received_price) }}
-                            @else
-                                0
-                            @endif
-                        </td>
-                        <td>
-                            @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
-                            @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
-                            @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
-                            @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-            @else
-                                <tr class="account_content_transaction_history">
-                                    <td colspan="8">
-                                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                                    </td>
-                                </tr>
-            @endif
 
-        @endif
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-danger">Thất bại</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-warning">Chờ xử lý</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+        <tr>
+            <td>09-02-2022 08:32</td>
+            <td>Chim sẻ đi nắng</td>
+
+            <td>Techcombank</td>
+            <td>
+                1903 204 9988 123
+            </td>
+
+            <td>
+                1.000.000 đ
+            </td>
+            <td>
+                970.000 đ
+            </td>
+            <td><span class="badge badge-success">Thành công</span></td>
+        </tr>
+
         </tbody>
-
     </table>
 </div>
 
-<div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1__nt paginate__v1_mobie frontend__panigate">
+<div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
+
     @if(isset($data))
         @if($data->total()>1)
-            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
-                <div class="col-auto paginate__category__col">
-                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                        {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+
+            <div class="row marinautooo justify-content-center">
+                <div class="col-auto">
+                    <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
+                        {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
                     </div>
                 </div>
             </div>
         @endif
     @endif
 </div>
-@endif
 
+@endif
 
