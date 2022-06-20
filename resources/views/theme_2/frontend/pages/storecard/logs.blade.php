@@ -10,6 +10,7 @@
 
             @foreach ($data as $key => $item)
                 @foreach($item->card as $itemCard)
+
                     <div class="col-lg-3 col-md-6">
                         <!-- BEGIN Purchased Item -->
 
@@ -44,6 +45,12 @@
                                             {{--                                        {{ $item->serial }}--}}
                                             {{--                                    @endif--}}
                                             {{  App\Library\Helpers::Decrypt($itemCard->serial,config('module.charge.key_encrypt')) }}
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 d-flex justify-content-between">
+                                        <div class="text-secondary">Mệnh giá</div>
+                                        <div>
+                                            <td>{{ formatPrice((int)$itemCard->amount) }} đ</td>
                                         </div>
                                     </div>
                                 </div>
