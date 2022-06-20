@@ -84,7 +84,7 @@
                                             <div class="col-md-12 left-right">
                                                 <div class="row marginauto banner-container-ct">
                                                     <div class="col-md-12 text-left left-right">
-                                                        <img class="lazy" src="{{ @$data->image_banner }}" alt="">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image_banner)}}" alt="Banner">
                                                     </div>
                                                 </div>
                                             </div>
@@ -497,16 +497,7 @@
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto body-title-ct show-detail-service-ct">
                                         <div class="col-md-12 text-left left-right">
-                                            <p>Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới
-                                                trẻ hiện nay, đặc biệt là các game online
-                                                hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game
-                                                đối kháng, game thẻ bài, gam kiếm hiệp hay
-                                                game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và</p>
-                                            <p>Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới
-                                                trẻ hiện nay, đặc biệt là các game online
-                                                hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game
-                                                đối kháng, game thẻ bài, gam kiếm hiệp hay
-                                                game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và</p>
+                                            {!! @$data->description !!}
                                         </div>
                                     </div>
                                 </div>
@@ -516,6 +507,50 @@
                             {{--                block 3           --}}
                             <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
 
+                                        {{-- BOT --}}
+                                @if(isset($data_bot))
+                                <div class="col-md-12 left-right px-3 px-lg-0">
+                                    <div class="row marginauto">
+                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
+                                            <small>Vị trí (Mặc định ở vách núi KAKAROT Khu 39)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 left-right my-4">
+                                    <div class="table-custom">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Server</th>
+                                                <th>Nhân vật</th>
+                                                <th>Khu vực</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($data_bot as $key=> $bot)
+                                                <tr>
+                                                    <td>{{ ++$key }}</td>
+                                                    <td>{{ $bot->uname }}</td>
+
+                                                    <td>{{ $bot->zone }}</td>
+                                                    <td>
+                                                        @if($bot->active == 'on')
+                                                            <div class="tag__status --online">Online</div>
+                                                        @else
+                                                            <div class="tag__status --offline">Offline</div>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                @endif
+
+                                        {{--End BOT--}}
                                 <div class="col-md-12 left-right px-3 px-lg-0">
                                     <div class="row marginauto">
                                         <div class="col-md-12 col-8 body-header-col-km-left-ct">

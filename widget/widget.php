@@ -145,6 +145,25 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__tin__tuc', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__tin__tuc', function() {
+
+        $url = '/show-category-article';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->datacategory??null;
+    });
+
+    return $view->with('data', $data);
+});
+
+
 View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
 //    Minigame
