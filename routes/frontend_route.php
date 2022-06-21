@@ -63,7 +63,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                ablcccccccccccccccccccccccc
                 $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
-                $output = shell_exec($command);
+                $output = exec($command);
                 dd($command,$output);
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
