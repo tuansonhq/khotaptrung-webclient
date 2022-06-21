@@ -55,8 +55,6 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
-//    aaaaaaaâ
-//    bbbbbbbbbbbbbbbb
     $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
     $output = shell_exec($command);
