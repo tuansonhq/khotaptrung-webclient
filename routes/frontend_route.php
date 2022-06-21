@@ -55,13 +55,13 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
-    shell_exec('git remote set-url origin git@github.com:/tannm2611/khotaptrung-webclient.git');
+    $set = shell_exec('git remote set-url origin git@github.com:/tannm2611/khotaptrung-webclient.git');
     $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
     $output = shell_exec($command);
 //    Lam sao day em oi
 
-    dd($command, $output);
+    dd($command, $output, $set);
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
     \Artisan::call('view:clear');
