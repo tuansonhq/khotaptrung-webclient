@@ -91,7 +91,7 @@
                                 {{--                            {{ $arrserial[$key] }}--}}
                                 {{--                            @endif--}}
                             </td>
-                            <td>{{ formatPrice($item->declare_amount) }}</td>
+                            <td>{{ formatPrice((int)$item->declare_amount) }} đ</td>
                             <td>
                                 @if($item->status == 1)
                                     <b class="text-primary">{{config('module.charge.status.1')}}</b>
@@ -161,4 +161,4 @@
 </div>
 
 
-0
+

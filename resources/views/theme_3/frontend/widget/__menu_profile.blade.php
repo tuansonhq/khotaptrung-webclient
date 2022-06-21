@@ -115,12 +115,6 @@
             $('.add-active_the-cao-da-mua').addClass('active')
         })
     </script>
-@elseif(Request::is('lich-su-atm-tu-dong'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_lich-su-atm-tu-dong').addClass('active')
-        })
-    </script>
 @elseif(Request::is('the-cao-da-mua/detail'))
     <script>
         $(document).ready(function (e) {
@@ -137,6 +131,12 @@
     <script>
         $(document).ready(function (e) {
             $('.add-active_lich-su-quay-thuong').addClass('active')
+        })
+    </script>
+@elseif(Request::is('lich-su-atm-tu-dong'))
+    <script>
+        $(document).ready(function (e) {
+            $('.add-active_lich-su-nap-atm-tu-dong').addClass('active')
         })
     </script>
 @elseif(Request::is('rut-tien'))

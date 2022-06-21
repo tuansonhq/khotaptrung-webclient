@@ -470,9 +470,10 @@
         $('body').delegate('#start-played', 'click', function() {
 
             if (roll_check) {
+                num_current = startat;
                 num = startat;
                 startat = 0;
-                fakeLoop();
+                //fakeLoop();
                 roll_check = false;
                 saleoffpass = $("#saleoffpass").val();
                 typeRoll = "real";
@@ -502,7 +503,7 @@
                         } else if (data.status == 0) {
                             clearTimeout(runtime);
                             roll_check = true;
-                            $('.content-popup').text(data.msg);
+                            $('#noticeModal .content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
                             return;
                         }
@@ -536,7 +537,7 @@
                         $("#saleoffpass").val("");
                     },
                     error: function() {
-                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                        $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                         $('#noticeModal').modal('show');
                     }
                 })
@@ -555,7 +556,7 @@
                 type: 'POST',
                 success: function(data) {
                     if (data.status == 0) {
-                        $('.content-popup').text(data.msg);
+                        $('#noticeModal .content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
                         return;
                     }
@@ -576,7 +577,7 @@
                     },6000)
                 },
                 error: function() {
-                    $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                    $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                     $('#noticeModal').modal('show');
                 }
             })
@@ -585,6 +586,7 @@
 
         $('body').delegate('.num-play-try', 'click', function() {
             if (roll_check) {
+                num_current = startat;
                 num = startat;
                 startat = 0;
                 //fakeLoop();
@@ -617,7 +619,7 @@
                         } else if (data.status == 0) {
                             clearTimeout(runtime);
                             roll_check = true;
-                            $('.content-popup').text(data.msg);
+                            $('#noticeModal .content-popup').text(data.msg);
                             $('#noticeModal').modal('show');
                             return;
                         }
@@ -651,7 +653,7 @@
                         $("#saleoffpass").val("");
                     },
                     error: function() {
-                        $('.content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
+                        $('#noticeModal .content-popup').text('Có lỗi xảy ra. Vui lòng thử lại!');
                         $('#noticeModal').modal('show');
                     }
                 })
@@ -659,26 +661,26 @@
         });
 
 
-        function fakeLoop(){
-            num++;
-            num_current++;
-            if(num_current>11){
-                num_current = 0;
-            }
-            $('.box img').removeClass('active');
-            $('.gift'+(num_current)+' img').addClass('active');
+        // function fakeLoop(){
+        //     num++;
+        //     num_current++;
+        //     if(num_current>11){
+        //         num_current = 0;
+        //     }
+        //     $('.box img').removeClass('active');
+        //     $('.gift'+(num_current)+' img').addClass('active');
 
-            if(num<4){
-                time = 400
-            }else if(num<8){
-                time = 200
-            }else if(num>7){
-                time = 60
-            }
-            runtime = setTimeout(function(){
-                fakeLoop();
-            },time);
-        }
+        //     if(num<4){
+        //         time = 400
+        //     }else if(num<8){
+        //         time = 200
+        //     }else if(num>7){
+        //         time = 60
+        //     }
+        //     runtime = setTimeout(function(){
+        //         fakeLoop();
+        //     },time);
+        // }
 
 
         function loop() {
@@ -792,6 +794,7 @@
                     }
                     else
                     {
+                        $("#btnWithdraw").hide();
                         if(gift_revice.length == 1)
                         {
                                 $html += "<span>Kết quả chơi thử: "+gift_revice[0]["title"]+"</span><br/>";
@@ -824,7 +827,7 @@
                     }
                 }
 
-                $('.content-popup').html($html);
+                $('#noticeModal .content-popup').html($html);
 
                 if (userpoint > 99) {
                     getgifbonus();

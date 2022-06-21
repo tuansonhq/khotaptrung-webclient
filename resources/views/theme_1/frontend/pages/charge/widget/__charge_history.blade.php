@@ -79,7 +79,7 @@
                                 {{--                            {{ $arrserial[$key] }}--}}
                                 {{--                            @endif--}}
                             </td>
-                            <td>{{ formatPrice($item->declare_amount) }}</td>
+                            <td>{{ str_replace(',','.',number_format($item->declare_amount)) }}</td>
                             <td>
                                 @if($item->status == 1)
                                     <span class="badge badge-primary">{{config('module.charge.status.1')}}</span>
@@ -99,7 +99,7 @@
                             </td>
                             <td>
                                 @if(isset($item->real_received_amount))
-                                    {{ formatPrice($item->real_received_amount) }}
+                                    {{ str_replace(',','.',number_format($item->real_received_amount)) }} đ
                                 @else
                                     0
                                 @endif

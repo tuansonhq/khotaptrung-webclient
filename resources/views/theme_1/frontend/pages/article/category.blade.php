@@ -8,7 +8,6 @@
 @section('content')
         @if($data == null)
             <div class="item_buy">
-
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
@@ -21,9 +20,7 @@
                             </span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         @else
             <div class="news">
@@ -49,7 +46,6 @@
                             <div class="col-md-9 col-sm-12">
                                 <form>
                                     <div class="row">
-
                                         <div class="col-md-4" style="margin-bottom: 15px">
                                             <input type="text" class="form-control input-news" placeholder="Nhập từ khoá...">
                                         </div>
@@ -57,7 +53,6 @@
                                             <input type="submit" class="btn btn-news" value="Tìm kiếm">
                                             <a href="/tin-tuc" class="btn btn-danger">Tất Cả</a>
                                         </div>
-
                                     </div>
                                 </form>
                                 <div class="article_data">
@@ -71,7 +66,6 @@
             </div>
             <input type="hidden" name="hidden_page" class="hidden_page" value="1" />
             <input type="hidden" name="slug" class="slug-article" value="{{ $slug }}" />
-
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/articlecategory.js"></script>
         @endif
 @endsection

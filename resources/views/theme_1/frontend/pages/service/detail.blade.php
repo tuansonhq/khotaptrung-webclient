@@ -401,7 +401,6 @@
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(Auth::check())
-
                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
@@ -424,53 +423,13 @@
             <div class="container fixcssacount">
                 <div class="job-wide-devider">
                     {{--                    Bot   --}}
-                    @if(isset($data_bot))
-                        <div class="row">
-                            <div class="col-lg-12 column">
-                                <div class="job-details">
-                                    <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(MẶC ĐỊNH Ở VÁCH NÚI KAKAROT KHU 39)</span></h2>
-                                    <div class="table-bot m_datatable m-datatable m-datatable--default m-datatable--loaded">
-                                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                            <thead class="m-datatable__head">
-                                            <tr class="m-datatable__row">
-                                                <th style="" class="m-datatable__cell">
-                                                    Server
-                                                </th>
-                                                <th class="m-datatable__cell">
-                                                    Nhân vật
-                                                </th>
-                                                <th style="" class="m-datatable__cell">
-                                                    Khu vực
-                                                </th>
-                                                <th style="" class="m-datatable__cell">
-                                                    Trạng thái
-                                                </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody class="m-datatable__body-bot">
-                                            @foreach($data_bot as $key=> $bot)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $bot->uname }}</td>
 
-                                                    <td>{{ $bot->zone }}</td>
-                                                    <td>
-                                                        @if($bot->active == 'on')
-                                                        <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                                        @else
-                                                            <span style="color:#212529;font-weight: bold">[OFFLINE]</span>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                    <div class="row marginauto">
+                        <div class="col-md-12 left-right data-bot">
 
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                    @endif
+                    </div>
+
                     {{--MO tả --}}
 
                     <div class="row">
@@ -504,7 +463,7 @@
 
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
 
     <script>
 
@@ -784,7 +743,6 @@
 
 
             if (data.server_mode == 1 && data.server_price == 1) {
-
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
 

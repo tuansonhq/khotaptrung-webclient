@@ -304,6 +304,8 @@ $(document).ready(function (e) {
             }
         });
         loadData();
+
+
         $('.id_data').val('');
         $('.key_data').val('');
         $('.status_data').val('');
