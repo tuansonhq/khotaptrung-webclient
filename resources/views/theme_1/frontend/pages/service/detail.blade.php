@@ -83,9 +83,9 @@
                                             <div class="news_image">
                                                 @if(isset($data->image))
 
-                                                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Bán vàng">
+                                                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->groups[0]->title }}">
                                                 @else
-                                                    <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="Bán vàng">
+                                                    <img src="https://nick.vn/storage/images/nfjY80CaXR_1623228739.jpg" alt="{{ $data->groups[0]->title }}">
                                                 @endif
                                             </div>
                                         </div>
