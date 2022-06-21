@@ -20,7 +20,7 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
@@ -55,14 +55,19 @@
 
                             <div class="row marginauto">
                                 <div class="col-12 left-right">
-                                    <form action="" method="POST">
+                                    <form class="search-txns">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
                                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
-                                                <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
+                                                <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
+                                                    <span class="span-timkiem">Tìm kiếm</span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -128,23 +133,24 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form action="">
-                        <div class="row marginauto">
+                    <form class="form-charge_ls account_content_transaction_history__v2">
+                    <div class="row marginauto">
 
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Ngân hàng</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                        <select class="wide transaction" name="transaction">
-                                            <option>Chọn</option>
-                                            <option value="1">Techcombank</option>
-                                            <option value="2">BIDV</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
+{{--                                <div class="row marginauto">--}}
+{{--                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">--}}
+{{--                                        <span>Ngân hàng</span>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">--}}
+{{--                                        <select class="wide transaction" name="transaction">--}}
+{{--                                            <option>Chọn</option>--}}
+{{--                                            <option value="1">Techcombank</option>--}}
+{{--                                            <option value="2">BIDV</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
 
                             <div class="col-md-12 left-right modal-nick-padding">
                                 <div class="row marginauto">
@@ -154,8 +160,10 @@
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                         <select class="wide status" name="status">
                                             <option>Chọn</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
+                                            <option value="1">Thành công(Đúng số tiền)</option>
+                                            <option value="0">Thất bại</option>
+                                            <option value="2">Chờ xử lý</option>
+                                            <option value="3">Thành công(Sai số tiền)</option>
                                         </select>
                                     </div>
                                 </div>
