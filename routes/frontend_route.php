@@ -65,7 +65,7 @@ Route::get('/updategit', function ()
     $output = shell_exec ("2>&1 git pull $auth $txtbranch");
 
 //    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
-
+    dd($output,$auth);
 //    $output = shell_exec($command);
 //    Lam sao day em oi
 
