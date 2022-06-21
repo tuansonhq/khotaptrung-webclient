@@ -55,9 +55,10 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
+//                ablcccccccccccccccccccccccc
     $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
-    $output = exec($command);
+    $output = shell_exec($command);
     dd($command,$output);
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
@@ -71,7 +72,6 @@ Route::get('/updategit', function ()
         'message-git' => $output
     ]);
 });
-
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
 
