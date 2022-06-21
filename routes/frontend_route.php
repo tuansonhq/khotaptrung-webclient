@@ -60,7 +60,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/updategit', function ()
             {
 
-
+//                ablcccccccccccccccccccccccc
                 $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
                 $output = shell_exec($command);
@@ -77,6 +77,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     'message-git' => $output
                 ]);
             });
+
             Route::get('/tesstt', function ()
             {
                 $url = '/get-random-acc';
