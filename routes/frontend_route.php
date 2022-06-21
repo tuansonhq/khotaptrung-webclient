@@ -61,11 +61,13 @@ Route::group(array('middleware' => ['theme']) , function (){
             {
 
 
-                $output = shell_exec('ls -lart');
+//                $output = shell_exec('ls -lart');
 //                echo "<pre>$output</pre>";
-                return $output;
 
-                $data = shell_exec('git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch'));
+                $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+                return $command;
+
+                $data = shell_exec($command);
 
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
