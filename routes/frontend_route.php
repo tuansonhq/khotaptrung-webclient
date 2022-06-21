@@ -54,21 +54,14 @@ Route::get('/test111', function ()
 
 Route::get('/updategit', function ()
 {
-    $txtusername = 'tuanson1985';
-    $txtpassword = '157748ts';
-    $gitrepo = 'github.com/tannm2611/khotaptrung-webclient.git';
 
-    $auth       = 'https://' . $txtusername . ':' . $txtpassword . '@' . $gitrepo;
-    $txtbranch = 'dev';
+    shell_exec('git remote set-url origin git@github.com:/tannm2611/khotaptrung-webclient.git');
+    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
-//    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
-    $output = shell_exec ("2>&1 git pull $auth $txtbranch");
-
-//    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
-    dd($output,$auth);
-//    $output = shell_exec($command);
+    $output = shell_exec($command);
 //    Lam sao day em oi
 
+    dd($command, $output);
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
     \Artisan::call('view:clear');
