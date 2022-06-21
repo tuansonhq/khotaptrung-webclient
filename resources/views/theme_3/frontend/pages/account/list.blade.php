@@ -76,7 +76,7 @@
 
                             <div class="row marginauto">
                                 <div class="col-12 left-right">
-                                    <form action="" method="POST">
+                                    <form id="idFilterForm" method="POST">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Nhập từ khóa">
@@ -284,6 +284,290 @@
                         </div>
                     </form>
 
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade login show order-modal" id="successModal" aria-modal="true">
+
+        <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header p-0" style="border-bottom: 0">
+                    <div class="row marginauto modal-header-order-ct">
+                        <div class="col-12 span__donhang text-center" style="position: relative">
+                            <span>Mua tài khoản thành công</span>
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-body modal-body-order-ct">
+                    <div class="row marginauto">
+
+                        <div class="col-md-12 left-right image-success">
+                            <div class="row marginauto justify-content-center">
+                                <div class="col-auto">
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right title-tra-gop-success">
+                            <div class="row body-title-detail-ct">
+                                <div class="col-md-12 text-left body-title-detail-col-ct">
+                                    <div class="row marginauto">
+                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Tài khoản</span>
+                                        </div>
+                                        <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">
+                                            <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">
+                                            <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
+                                        </div>
+                                        <div class="row marginauto title-tra-gop-success-row">
+                                            <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                <span>Mật khẩu</span>
+                                            </div>
+                                            <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick">
+                                                <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="123456" placeholder="******">
+                                                <img class="lazy img-copy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopypass">
+                                                <div class="getCopypass">
+                                                    <img class="lazy img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
+                                                </div>
+
+
+                                            </div>
+                                        </div></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 left-right">
+                            <div class="row body-title-detail-ct">
+
+                                <div class="col-md-6 text-left body-title-detail-nick-col-ct">
+                                    <div class="row marginauto">
+                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Trả trước</span>
+                                        </div>
+                                        <div class="col-md-12 left-right body-title-detail-select-ct">
+                                            <input readonly autocomplete="off" class="input-defautf-ct input-modal-defautf-ct-play" type="text" placeholder="50.000">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-6 text-left body-title-detail-nick-col-ct">
+                                    <div class="row marginauto password-mobile">
+                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Trả lần 2</span>
+                                        </div>
+                                        <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
+                                            <input readonly autocomplete="off" class="input-defautf-ct" type="text" placeholder="200.000">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right title-tra-gop text-center">
+                            <small>Đã lấy mật khẩu lúc: 05-05-2022, 121:32:56</small>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-28-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto title-success-thanh-cong">
+                                        <div class="col-md-12 left-right">
+                                            <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
+                                        </div>
+                                        <div class="col-md-12 left-right padding-order-ct">
+                                            <span>Để tránh các trường hợp xấu xảy ra, quý khách vui lòng thêm thông tin (Email và Số điện thoại) Để đảm bảo không có vấn đề sau khi giao dịch tại shop! Xin cảm ơn!</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto justify-content-center gallery-right-footer">
+                                <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                    <div class="row marginauto modal-footer-success-row-not-ct">
+                                        <div class="col-md-12 left-right">
+                                            <a href="javascript:void(0)" class="button-not-bg-ct close-modal-default"><span>Đóng</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                    <div class="row marginauto modal-footer-success-row-ct">
+                                        <div class="col-md-12 left-right">
+                                            <a href="/" class="button-bg-ct"><span>Đổi mật khẩu</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
+
+        <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header p-0" style="border-bottom: 0">
+                    <div class="row marginauto modal-header-order-ct">
+                        <div class="col-12 span__donhang text-center" style="position: relative">
+                            <span>Xác nhận thanh toán</span>
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-body modal-body-order-ct">
+                    <div class="row marginauto">
+
+                        <div class="col-md-12 left-right title-order-ct">
+                            <span>Thông tin acc</span>
+                        </div>
+
+                        <div class="col-md-12 left-right" id="order-errors">
+                            <div class="row marginauto order-errors">
+                                <div class="col-md-12 left-right">
+                                    <small>Lỗi rồi em ơi</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Tài khoản</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>Nam Hải</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Game</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Rank</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>Tinh Anh</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Số lượng</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>01</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Chiết khấu</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>3%</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto background-order-body-bottom-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Thành tiền</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>100.000 đ</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Phương thức thanh toán</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>Tài khoản Shopbrand</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="row marginauto background-order-body-bottom-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Phí thanh toán</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>Miễn phí</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Tài khoản</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <span>97.000 đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-footer-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right">
+                                    <button class="button-default-ct openSuccess" type="button">Xác nhận</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

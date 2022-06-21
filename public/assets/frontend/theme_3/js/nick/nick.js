@@ -68,7 +68,7 @@ $(document).ready(function (e) {
             filterCount++ ;
             formData = {...formData, id_data: id_data };
             html+= '<div class="col-auto prepend-nick" style="position: relative" data-key="id_data">' +
-                        '<a href="javascript:void(0)"> ID: ' + id_data + '</a>' +
+                        '<a href="javascript:void(0)" id="prependNickLink"> ID: ' + id_data + '</a>' +
                         '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
                     '</div>';
         } else {
@@ -162,6 +162,30 @@ $(document).ready(function (e) {
         }
     });
 
+    $('#idFilterForm').on('submit', function (e) {
+        e.preventDefault();
+        let searchValue = $(this).find('input[name="search"]').val();
+        if (searchValue) {
+            if ( $('#prependNickLink').length > 0 ) {
+                $('#prependNickLink').text(`ID: ${searchValue}`);
+            } else {
+                html = '<div class="col-auto prepend-nick" style="position: relative" data-key="id_data">' +
+                            '<a href="javascript:void(0)" id="prependNickLink"> ID: ' + searchValue + '</a>' +
+                            '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                        '</div>';
+                $('.nick-findter-data').append(html);
+            }
+            formData = {...formData, id_data: searchValue };
+            loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+        }
+    });
+
+    $(document).on('click', '.paginate__v1 a.page-link',function(event){
+        event.preventDefault();
+
+        var page = $(this).attr('href').split('page=')[1];
+        loadDataAccountList(page, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+    });
 
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
@@ -271,5 +295,10 @@ $(document).ready(function (e) {
             }
         });
     }
+
+    $(document).on('click', '.buy-random-acc', (event) => {
+        event.preventDefault();
+        $('#openOrder').modal('show');
+    });
 
 })

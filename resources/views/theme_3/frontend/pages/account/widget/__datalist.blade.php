@@ -13,7 +13,7 @@
                                 @if($data->display_type == 2)
 
                                     <div class="col-auto body-detail-nick-col-ct">
-                                        <a href="javascript:void(0)" class="list-item-nick-hover">
+                                        <a href="javascript:void(0)" class="list-item-nick-hover buy-random-acc">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
@@ -34,15 +34,6 @@
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>
-                                                        {{-- <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>Rank: 91</small>
-                                                        </div>
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>Tướng: 91</small>
-                                                        </div>
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>Ngọc: 91</small>
-                                                        </div> --}}
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
                                                                 @if(isset($data->params) && isset($data->params->price))                                                                    
@@ -50,7 +41,7 @@
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
                                                                         if (isset($data->params->price_old)) {
-                                                                            $sale_percent = ($data->params->price_old - $data->params->price) / $data->params->price_old;
+                                                                            $sale_percent = (($data->params->price_old - $data->params->price) / $data->params->price_old) * 100;
                                                                             $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                                                         } else {
                                                                             $sale_percent = 0;
@@ -62,7 +53,7 @@
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
                                                                     @php
                                                                         if (isset($item->price_old)) {
-                                                                            $sale_percent = ($item->price_old - $item->price) / $item->price_old;
+                                                                            $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
                                                                             $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
                                                                         } else {
                                                                             $sale_percent = 0;
@@ -204,16 +195,14 @@
             @else
             @endif
 
-            <div class="col-md-12 left-right justify-content-end default-paginate">
-
-                {{-- @dd($items) --}}
+            <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
         
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
-                                    {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
+                                    {{ $items->appends(request()->query())->links('pagination::bootstrap-default-4') }}
                                 </div>
                             </div>
                         </div>

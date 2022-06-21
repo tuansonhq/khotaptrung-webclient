@@ -1,5 +1,102 @@
 $(document).ready(function (e) {
 
+    var slug = $('.slug').val();
+
+    getShowAccDetail(slug);
+    getRelatedAcc(slug);
+
+    function getShowAccDetail(slug) {
+
+        var url = '/acc/'+ slug + '/showacc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                // id:id
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showdetailacc').html('');
+                    $('#showdetailacc').html(data.data);
+
+                    //Loading blur when data is being loaded
+                    $('.loading-data__buyacc').html('');
+
+                    $('#pageBreadcrumb').html('');
+                    $('#pageBreadcrumb').html(data.datamenu);
+                    activateGalleryThumbs();
+                    activateGallerySlider();
+
+                }else if (data.status == 0){
+
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+
+                    $('#showdetailacc').html('');
+                    $('#showdetailacc').html(html);
+
+
+                    var htmlform = '';
+                    htmlform += '<label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>';
+
+                    $('.form__data__buyacc').html('');
+                    $('.form__data__buyacc').html(htmlform);
+
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    };
+
+    function getRelatedAcc(slug) {
+
+        var url = '/related-acc';
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                slug:slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    $('#showslideracc').html('');
+                    $('#showslideracc').html(data.dataslider);
+                    activateRelatedSlider();
+                }else if (data.status == 0){
+
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+
+                    $('#showslideracc').html('');
+                    $('#showslideracc').html(html);
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    };
+
     function handleToggleContent(){
         $('.js-toggle-content .view-less').toggle();
         $('.js-toggle-content .view-more').toggle();
@@ -15,17 +112,103 @@ $(document).ready(function (e) {
         }
     }
 
+    $(document).on('submit', '.formDonhangAccount', function(e){
+        e.preventDefault();
+        var htmlloading = '';
+
+        htmlloading += '<div class="loading"></div>';
+        $('.openSuccess').html('');
+        $('.openSuccess').html(htmlloading);
+
+        var formSubmit = $(this);
+        var url = formSubmit.attr('action');
+        var btnSubmit = formSubmit.find(':submit');
+        btnSubmit.prop('disabled', true);
+        $('.loginBox__layma__button__displayabs').prop('disabled', true);
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
+
+            },
+            success: function (response) {
+
+                if(response.status == 1){
+                    $('.loadModal__acount').modal('hide');
+                    swal({
+                        title: "Mua tài khoản thành công",
+                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
+                        type: "success",
+                        confirmButtonText: "Về lịch sử đơn hàng",
+                        showCancelButton: true,
+                        cancelButtonText: "Đóng",
+                    })
+                        .then((result) => {
+                            if (result.value) {
+                                window.location = '/lich-su-mua-account';
+                            } else if (result.dismiss === 'đóng') {
+
+                            }
+                        })
+                }
+                else if (response.status == 2){
+                    $('.loadModal__acount').modal('hide');
+
+                    swal(
+                        'Thông báo!',
+                        response.message,
+                        'warning'
+                    )
+                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                }else {
+                    $('.loadModal__acount').modal('hide');
+                    swal(
+                        'Lỗi!',
+                        response.message,
+                        'error'
+                    )
+                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                }
+                $('.loading-data__muangay').html('');
+            },
+            error: function (response) {
+                if(response.status === 422 || response.status === 429) {
+                    let errors = response.responseJSON.errors;
+
+                    jQuery.each(errors, function(index, itemData) {
+
+                        formSubmit.find('.notify-error').text(itemData[0]);
+                        return false; // breaks
+                    });
+                }else if(response.status === 0){
+                    alert(response.message);
+                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
+                }
+                else {
+                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
+                }
+            },
+            complete: function (data) {
+                btnSubmit.prop('disabled', false);
+            }
+        })
+
+
+    });
+
     $('.js-toggle-content').click(function () {
         handleToggleContent();
     });
 
-    $(function(){
+    function activateGallerySlider () {
         var slider = new Swiper ('.gallery-slider', {
             autoplay: {
                 delay: 2000,
-
+    
             },
-
+    
             slidesPerView: 1,
             centeredSlides: true,
             loop: false,
@@ -35,7 +218,9 @@ $(document).ready(function (e) {
                 prevEl: '.swiper-button-prev',
             },
         });
+    }
 
+    function activateGalleryThumbs () {
         var thumbs = new Swiper ('.gallery-thumbs', {
             slidesPerView: 6.5,
             spaceBetween: 8,
@@ -51,110 +236,48 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 3.2,
-
+    
                 }
             }
         });
-    });
+    }
 
-    var list_dong_gia = new Swiper('.list-dong-gia', {
-        autoplay: false,
-        // preloadImages: false,
-        updateOnImagesReady: true,
-        // lazyLoading: false,
-        watchSlidesVisibility: false,
-        lazyLoadingInPrevNext: false,
-        lazyLoadingOnTransitionStart: false,
-
-        loop: false,
-        centeredSlides: false,
-        slidesPerView: 4.5,
-        speed: 800,
-        spaceBetween: 0,
-        touchMove: true,
-        freeModeSticky:true,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        breakpoints: {
-            992: {
-                slidesPerView: 3.2,
-            },
-            768:{
-                slidesPerView: 2.5,
-            },
-            480: {
-                slidesPerView: 1.8,
-
+    function activateRelatedSlider(params) {
+        var list_dong_gia = new Swiper('.list-dong-gia', {
+            autoplay: false,
+            // preloadImages: false,
+            updateOnImagesReady: true,
+            // lazyLoading: false,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+    
+            loop: false,
+            centeredSlides: false,
+            slidesPerView: 4.5,
+            speed: 800,
+            spaceBetween: 0,
+            touchMove: true,
+            freeModeSticky:true,
+            grabCursor: true,
+            observer: true,
+            observeParents: true,
+            breakpoints: {
+                992: {
+                    slidesPerView: 3.2,
+                },
+                768:{
+                    slidesPerView: 2.5,
+                },
+                480: {
+                    slidesPerView: 1.8,
+    
+                }
             }
-        }
-    });
+        });
+    }
 
-    var list_uu_dai = new Swiper('.list-uu-dai', {
-        autoplay: false,
-        // preloadImages: false,
-        updateOnImagesReady: true,
-        // lazyLoading: false,
-        watchSlidesVisibility: false,
-        lazyLoadingInPrevNext: false,
-        lazyLoadingOnTransitionStart: false,
 
-        loop: false,
-        centeredSlides: false,
-        slidesPerView: 4.5,
-        speed: 800,
-        spaceBetween: 0,
-        touchMove: true,
-        freeModeSticky:true,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        breakpoints: {
-            992: {
-                slidesPerView: 3.2,
-            },
-            768:{
-                slidesPerView: 2.5,
-            },
-            480: {
-                slidesPerView: 1.8,
-
-            }
-        }
-    });
-
-    var list_da_xem = new Swiper('.list-da-xem', {
-        autoplay: false,
-        // preloadImages: false,
-        updateOnImagesReady: true,
-        // lazyLoading: false,
-        watchSlidesVisibility: false,
-        lazyLoadingInPrevNext: false,
-        lazyLoadingOnTransitionStart: false,
-
-        loop: false,
-        centeredSlides: false,
-        slidesPerView: 4.5,
-        speed: 800,
-        spaceBetween: 0,
-        touchMove: true,
-        freeModeSticky:true,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        breakpoints: {
-            992: {
-                slidesPerView: 3.2,
-            },
-            768:{
-                slidesPerView: 2.5,
-            },
-            480: {
-                slidesPerView: 1.8,
-
-            }
-        }
-    });
 
     $('.wide').niceSelect();
 
