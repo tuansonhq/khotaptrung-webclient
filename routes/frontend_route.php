@@ -56,7 +56,7 @@ Route::get('/updategit', function ()
 {
 
 //                ablcccccccccccccccccccccccc
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+    $command='cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html/ && git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
     $output = shell_exec($command);
     dd($command,$output);
