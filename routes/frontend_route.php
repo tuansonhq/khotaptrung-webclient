@@ -54,10 +54,12 @@ Route::get('/test111', function ()
 
 Route::get('/updategit', function ()
 {
+    $shell_output = array();
+    $status = NULL;
 
-    $command='git pull --progress https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+    $command='2>&1 git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
-    $output = shell_exec($command);
+    $output = shell_exec($command,$shell_output,$status);
     dd($command,$output);
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
