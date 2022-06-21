@@ -180,7 +180,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                                 ->name('getThongTin');
 
                             Route::get('/the-cao-da-mua', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStore'])
-                                ->name('getLogsStore');
+                                ->name('getLogsStoreCard');
 
                             Route::get('/the-cao-da-mua/data', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStoreData'])
                                 ->name('getLogsStore');
