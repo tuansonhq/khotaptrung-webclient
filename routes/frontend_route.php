@@ -55,13 +55,12 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
-    $set = shell_exec('git remote set-url origin git@github.com:/tannm2611/khotaptrung-webclient.git');
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+    $command='sudo -u www-data git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
 
     $output = shell_exec($command);
 //    Lam sao day em oi
 
-    dd($command, $output, $set);
+    dd($command, $output);
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
     \Artisan::call('view:clear');
@@ -86,7 +85,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                 $url = '/get-random-acc';
                 $method = "GET";
                 $dataSend = array();
-                $dataSend['module'] = 'acc_category';
 
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
@@ -185,8 +183,11 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/the-cao-da-mua', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStore'])
                                 ->name('getLogsStore');
 
+                            Route::get('/the-cao-da-mua-{id}', [\App\Http\Controllers\Frontend\UserController::class , 'getShowLogsStore'])
+                                ->name('getShowLogsStore');
+
                             Route::get('/the-cao-da-mua/data', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStoreData'])
-                                ->name('getLogsStore');
+                                ->name('getLogsStoreData');
 
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
 

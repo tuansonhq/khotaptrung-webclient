@@ -306,7 +306,7 @@ $(document).ready(function (e) {
         var page = 1;
 
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
-    })
+    });
 
 
     $(document).on('submit', '.search-txns', function(e){
@@ -331,7 +331,7 @@ $(document).ready(function (e) {
         var page = 1;
 
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
-    })
+    });
 
     $('body').on('click','.close-modal-default',function(){
         $('#openFinter').modal('hide')

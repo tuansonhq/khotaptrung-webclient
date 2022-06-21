@@ -32,6 +32,7 @@ class TranferController extends Controller
             $dataSend = array();
             $dataSend['token'] = session()->get('jwt');
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
             $data = $result_Api->response_data??null;
 
 
@@ -78,6 +79,7 @@ class TranferController extends Controller
             $sendData['page'] = $page;
 
             $result_Api = DirectAPI::_makeRequest($url, $sendData, $method);
+
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
@@ -115,24 +117,9 @@ class TranferController extends Controller
     {
 
         try {
-            $url = '/transfer/get-code';
-            $method = "GET";
-            $dataSend = array();
-            $dataSend['token'] = session()->get('jwt');
-            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-            $data = $result_Api->response_data??null;
-
-            if(isset($data) && $data->status == 1){
-
-                return view('frontend.pages.transfer.logs')->with('data', $data->data);
-
-            }
-            else{
-                return response()->json([
-                    'status' => 0,
-                    'message'=>$data->message??"Không thể lấy dữ liệu"
-                ]);
-            }
+            Session::forget('return_url');
+            Session::put('return_url', $_SERVER['REQUEST_URI']);
+            return view('frontend.pages.transfer.logs');
 
         }   catch(\Exception $e){
             Log::error($e);
