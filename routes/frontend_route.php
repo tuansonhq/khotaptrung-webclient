@@ -54,8 +54,17 @@ Route::get('/test111', function ()
 
 Route::get('/updategit', function ()
 {
+    $txtusername = 'tuanson1985';
+    $txtpassword = '157748ts';
+    $gitrepo = 'github.com/tannm2611/khotaptrung-webclient.git';
 
-    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+    $auth       = 'https://' . $txtusername . ':' . $txtpassword . '@' . $gitrepo;
+    $txtbranch = 'dev';
+
+//    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+    $command = shell_exec ("2>&1 git pull $auth $txtbranch");
+
+//    $command='sudo git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
 
     $output = shell_exec($command);
 //    Lam sao day em oi
