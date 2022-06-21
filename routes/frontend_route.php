@@ -59,7 +59,7 @@ Route::get('/updategit', function ()
 
     $output = shell_exec($command);
 //    Lam sao day em oi
-    dd($command,$output);
+
     \Artisan::call('cache:clear');
     \Artisan::call('config:cache');
     \Artisan::call('view:clear');
