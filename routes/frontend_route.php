@@ -61,13 +61,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             {
 
 
-//                $output = shell_exec('ls -lart');
-//                echo "<pre>$output</pre>";
-
                 $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
-                return $command;
 
-                $data = shell_exec($command);
+                $output = shell_exec($command);
 
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
@@ -78,7 +74,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return response()->json([
                     'status' => 1,
                     'message' => 'Thành công!',
-                    'message-git' => $data
+                    'message-git' => $output
                 ]);
             });
             Route::get('/tesstt', function ()
