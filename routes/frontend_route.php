@@ -52,30 +52,32 @@ Route::get('/test111', function ()
     return 1111;
 })->middleware('throttle:5,1');
 
+Route::get('/updategit', function ()
+{
+
+    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
+
+    $output = exec($command);
+    dd($command,$output);
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+    Cache::flush();
+
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
+        'message-git' => $output
+    ]);
+});
+
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
 
 Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
-            Route::get('/updategit', function ()
-            {
 
-                $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch');
-
-                $output = exec($command);
-                dd($command,$output);
-                \Artisan::call('cache:clear');
-                \Artisan::call('config:cache');
-                \Artisan::call('view:clear');
-                \Artisan::call('route:clear');
-                Cache::flush();
-
-                return response()->json([
-                    'status' => 1,
-                    'message' => 'Thành công!',
-                    'message-git' => $output
-                ]);
-            });
 
             Route::get('/tesstt', function ()
             {
