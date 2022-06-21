@@ -59,7 +59,7 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
             Route::get('/updategit', function ()
             {
-                $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master');
+                $data = shell_exec('git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch'));
 
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
