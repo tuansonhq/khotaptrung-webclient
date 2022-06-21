@@ -55,7 +55,7 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+    $command='cd .. && git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
 
     $output = shell_exec($command);
     dd($command,$output);
