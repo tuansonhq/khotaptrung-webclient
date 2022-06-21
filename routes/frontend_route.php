@@ -59,7 +59,7 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
             Route::get('/updategit', function ()
             {
-                $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
+                $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git master');
 
                 \Artisan::call('cache:clear');
                 \Artisan::call('config:cache');
@@ -174,6 +174,12 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
                                 ->name('getThongTin');
 
+                            Route::get('/the-cao-da-mua', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStore'])
+                                ->name('getLogsStore');
+
+                            Route::get('/the-cao-da-mua/data', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStoreData'])
+                                ->name('getLogsStore');
+
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
 
                             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
@@ -204,10 +210,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
 
-
-
-
-
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
 
@@ -237,7 +239,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
                             Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
-                            
+
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
