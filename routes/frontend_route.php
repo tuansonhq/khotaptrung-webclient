@@ -240,7 +240,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
                             //Nạp thẻ Atm
 
-                            Route::get('/transfer', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
+                            Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
 
                             Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
                                 ->name('getIdCode');
