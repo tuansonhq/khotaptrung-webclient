@@ -24,6 +24,7 @@ class IPController extends Controller
         // grab URL and pass it to the browser
         $ip = curl_exec ($ch);
         curl_close ($ch);
+        
         return response()->json([
             'status' => 1,
             'message' => 'Thành công!',
