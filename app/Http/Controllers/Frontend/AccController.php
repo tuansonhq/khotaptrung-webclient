@@ -577,7 +577,9 @@ class AccController extends Controller
 
                                 $slugen = $datashow->slug;
 
-                                $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
+                                if (isset($time) && $time != null){
+                                    $key = Helpers::Decrypt($datashow->slug,config('module.acc.encrypt_key'));
+                                }
 
                                 if (!isset($datashow->groups[1]) || !isset($datashow->groups[1]->id)){
                                     return response()->json([
@@ -650,7 +652,6 @@ class AccController extends Controller
                         "success"=> true,
                         "html" => $html,
                         "status" => 1,
-                        "data" => $data,
                         "time" => $time,
                         "dataAttribute" => $dataAttribute,
                         "chitiet_data" => $chitiet_data,
