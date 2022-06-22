@@ -24,6 +24,9 @@ $(document).ready(function (e) {
                     $('#showdetailacc').html('');
                     $('#showdetailacc').html(data.data);
 
+                    $('#fieldset-two').append($('#fieldsetTwoPayment').html());
+                    $('#fieldsetTwoPayment').remove();
+
                     //Loading blur when data is being loaded
                     $('.loading-data__buyacc').html('');
 
@@ -114,17 +117,15 @@ $(document).ready(function (e) {
 
     $(document).on('submit', '.formDonhangAccount', function(e){
         e.preventDefault();
-        var htmlloading = '';
-
-        htmlloading += '<div class="loading"></div>';
-        $('.openSuccess').html('');
-        $('.openSuccess').html(htmlloading);
 
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
+        var btnText = $(btnSubmit).text();
+        $(btnSubmit).text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
-        $('.loginBox__layma__button__displayabs').prop('disabled', true);
+
+        let accountID = formSubmit.data('id');
 
         $.ajax({
             type: "POST",
@@ -135,43 +136,27 @@ $(document).ready(function (e) {
             },
             success: function (response) {
 
+                $('#openOrder').modal('hide');
                 if(response.status == 1){
-                    $('.loadModal__acount').modal('hide');
-                    swal({
-                        title: "Mua tài khoản thành công",
-                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
-                        type: "success",
-                        confirmButtonText: "Về lịch sử đơn hàng",
-                        showCancelButton: true,
-                        cancelButtonText: "Đóng",
-                    })
-                        .then((result) => {
-                            if (result.value) {
-                                window.location = '/lich-su-mua-account';
-                            } else if (result.dismiss === 'đóng') {
-
-                            }
-                        })
+                    getDataAccountPurchase(accountID);
                 }
                 else if (response.status == 2){
-                    $('.loadModal__acount').modal('hide');
-
                     swal(
                         'Thông báo!',
                         response.message,
                         'warning'
                     )
-                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                    $(btnSubmit).prop('disabled', false);
+                    $(btnSubmit).text(btnText);
                 }else {
-                    $('.loadModal__acount').modal('hide');
                     swal(
                         'Lỗi!',
                         response.message,
                         'error'
                     )
-                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                    $(btnSubmit).prop('disabled', false);
+                    $(btnSubmit).text(btnText);
                 }
-                $('.loading-data__muangay').html('');
             },
             error: function (response) {
                 if(response.status === 422 || response.status === 429) {
@@ -179,15 +164,15 @@ $(document).ready(function (e) {
 
                     jQuery.each(errors, function(index, itemData) {
 
-                        formSubmit.find('.notify-error').text(itemData[0]);
+                        formSubmit.find('.order-errors .purchaseError').empty();
+                        formSubmit.find('.order-errors .purchaseError').html(`<small>${itemData[0]}</small>`);
                         return false; // breaks
                     });
                 }else if(response.status === 0){
                     alert(response.message);
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
                 }
                 else {
-                    $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
+                    alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
                 }
             },
             complete: function (data) {
@@ -197,6 +182,340 @@ $(document).ready(function (e) {
 
 
     });
+
+    function getDataAccountPurchase (accountID) {
+        request = $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-account',
+            data: {
+                page:1,
+                id_data:accountID,
+                chitiet_data: 1,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+
+                    if (data.chitiet_data == 1){
+
+                        //Tài khoản.
+
+                        var htmltk = '';
+                        htmltk += '<input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="'+ data.datashow.title +'">';
+                        htmltk += '<img class="lazy " src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopyemail">';
+
+                        $('.data-tai-khoan').html('');
+                        $('.data-tai-khoan').html(htmltk);
+
+                        //Mạt khẩu
+
+                        var htmlpass = '';
+
+                        if (data.time == null || data.time == '' || data.time == undefined){
+                            htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="******" placeholder="Mật khẩu">';
+                            htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" id="getpass" alt="" data-slug="' + data.slugen + '" data-id="' + data.datashow.id + '">';
+                        }else {
+                            htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="' + data.key + '" placeholder="Mật khẩu">';
+                            htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopypass">';
+                            htmlpass += '<div class="getCopypass">';
+                            htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+                            htmlpass += '</div>';
+                        }
+
+
+                        $('.data-password').html('');
+                        $('.data-password').html(htmlpass);
+
+
+                        //thời gian.
+                        var htmltg = '';
+
+                        if (data.time == null || data.time == '' || data.time == undefined){
+
+                        }else {
+                            htmltg += '<small>';
+                            htmltg += 'Đã lấy mật khẩu lúc: ' + data.time;
+                            htmltg += '</small>';
+                            // html += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
+                        }
+
+
+                        $('.data-time').html('');
+                        $('.data-time').html(htmltg);
+
+                        //child
+
+                        var htmlchild = '';
+
+                        if (data.count > 0){
+                            $.each(data.dataAttribute,function(key,value){
+
+                                if(value.position == 'text'){
+                                    if (value.childs.length > 0){
+                                        $.each(value.childs,function(keychild,valuechild){
+                                            if (data.datashow.params == null || data.datashow.params == undefined || data.datashow.params == ''){}else {
+                                                $.each(data.datashow.params.ext_info,function(keyparam,valueparam){
+                                                    if (keyparam == valuechild.id && valuechild.is_slug_override == 1){
+
+                                                        htmlchild += '<div class="row marginauto add-child">';
+                                                        htmlchild += '<div class="col-md-12 left-right body-title-detail-span-ct"><span>' + valuechild.title + '</span></div>';
+                                                        htmlchild += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+                                                        htmlchild += '<input readonly autocomplete="off" placeholder="'+ valueparam +'" class="input-defautf-ct" type="text" value="'+ valueparam +'">';
+                                                        htmlchild += '</div>';
+                                                        htmlchild += '</div>';
+
+                                                    }
+                                                })
+                                            }
+
+                                        })
+                                    }
+                                }
+
+                            })
+                        }
+
+                        $('.add-child').html('');
+                        $('.add-child').html(htmlchild);
+
+                        //Thông tin bổ xung
+
+                        var htmlboxung = '';
+
+                        if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
+                            htmlboxung += '<div class="row marginauto add-child">';
+                            htmlboxung += '<div class="col-md-12 left-right body-title-detail-span-ct"><span>T.tin bổ sung:</span></div>';
+                            htmlboxung += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+                            htmlboxung += '<input readonly autocomplete="off" placeholder="Thông tin bổ sung" class="input-defautf-ct" type="text" value="' + data.datashow.idkey + '">';
+                            htmlboxung += '</div>';
+                            htmlboxung += '</div>';
+                        }
+
+                        $('.data-ttbxung').html('');
+                        $('.data-ttbxung').html(htmlboxung);
+
+                        tippy('#getShowpass', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã lấy mật khẩu!",
+                            placement: 'right',
+                        });
+
+                        tippy('#getCopypass', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã copy mật khẩu!",
+                            placement: 'right',
+                        });
+
+                        tippy('#getCopyemail', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã copy email!",
+                            placement: 'right',
+                        });
+
+                        $('#successModal .getCopypass').on('click', function(){
+
+                            // Get the password field
+                            var passwordField = $('#password');
+
+                            // Get the current type of the password field will be password or text
+                            var passwordFieldType = passwordField.attr('type');
+
+                            // Check to see if the type is a password field
+                            if(passwordFieldType == 'password')
+                            {
+                                // Change the password field to text
+                                passwordField.attr('type', 'text');
+
+                                var htmlpass = '';
+                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+                                $('.getCopypass').html('');
+                                $('.getCopypass').html(htmlpass);
+
+                                // Change the Text on the show password button to Hide
+                                $(this).val('Hide');
+                            } else {
+                                var htmlpass = '';
+                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+                                $('.getCopypass').html('');
+                                $('.getCopypass').html(htmlpass);
+
+                                // If the password field type is not a password field then set it to password
+                                passwordField.attr('type', 'password');
+
+                                // Change the value of the show password button to Show
+                                $(this).val('Show');
+                            }
+                        });
+
+                        $('#getCopyemail').on('click', function(){
+                            var copyText = $('#email').val();
+
+                            navigator.clipboard.writeText(copyText);
+                        });
+
+                        $('#getCopypass').on('click', function(){
+                            var copyText = $('#password').val();
+
+                            navigator.clipboard.writeText(copyText);
+                        });
+
+                        $('#successModal').modal('show');
+
+                    }
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    };
+
+    $('body').on('click','#getpass',function(e){
+        e.preventDefault();
+
+        var id = $(this).data('id');
+        var slug = $(this).data('slug');
+
+        getShowPass(id,slug)
+    });
+
+    function getShowPass(id,slug) {
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-account/showpass',
+            data: {
+                id:id,
+                slug:slug,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+
+                if (data.status == 1){
+                    if (data.data.success == 1){
+
+                        //Mạt khẩu
+
+                        var htmlpass = '';
+
+                        htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="' + data.key + '" placeholder="Mật khẩu">';
+                        htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopypass">';
+                        htmlpass += '<div class="getCopypass">';
+                        htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+                        htmlpass += '</div>';
+
+
+                        $('#successModal .data-password').html('');
+                        $('#successModal .data-password').html(htmlpass);
+
+                        //thời gian.
+                        var htmltg = '';
+
+                        htmltg += '<small>';
+                        htmltg += 'Đã lấy mật khẩu lúc: ' + data.time;
+                        htmltg += '</small>';
+
+                        $('#successModal .data-time').html('');
+                        $('#successModal .data-time').html(htmltg);
+
+                        var key = data.key;
+
+                        navigator.clipboard.writeText(key);
+
+                        tippy('#getShowpass', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã lấy mật khẩu!",
+                            placement: 'right',
+                        });
+
+                        tippy('#getCopypass', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã copy mật khẩu!",
+                            placement: 'right',
+                        });
+
+                        tippy('#getCopyemail', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã copy email!",
+                            placement: 'right',
+                        });
+
+                        $('#successModal .getCopypass').on('click', function(){
+
+
+                            // Get the password field
+                            var passwordField = $('#password');
+
+                            // Get the current type of the password field will be password or text
+                            var passwordFieldType = passwordField.attr('type');
+
+                            // Check to see if the type is a password field
+                            if(passwordFieldType == 'password')
+                            {
+                                // Change the password field to text
+                                passwordField.attr('type', 'text');
+
+                                var htmlpass = '';
+                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
+                                $('.getCopypass').html('');
+                                $('.getCopypass').html(htmlpass);
+
+                                // Change the Text on the show password button to Hide
+                                $(this).val('Hide');
+                            } else {
+                                var htmlpass = '';
+                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
+                                $('.getCopypass').html('');
+                                $('.getCopypass').html(htmlpass);
+
+                                // If the password field type is not a password field then set it to password
+                                passwordField.attr('type', 'password');
+
+                                // Change the value of the show password button to Show
+                                $(this).val('Show');
+                            }
+                        });
+
+                        $('#getCopyemail').on('click', function(){
+                            var copyText = $('#email').val();
+
+                            navigator.clipboard.writeText(copyText);
+                        });
+
+                        $('#getCopypass').on('click', function(){
+                            var copyText = $('#password').val();
+
+                            navigator.clipboard.writeText(copyText);
+                        });
+
+
+                    }
+                }else if (data.status == 0){
+
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 
     $('.js-toggle-content').click(function () {
         handleToggleContent();
@@ -280,74 +599,6 @@ $(document).ready(function (e) {
 
 
     $('.wide').niceSelect();
-
-    tippy('#getShowpass', {
-        // default
-        trigger: 'click',
-        content: "Đã lấy mật khẩu!",
-        placement: 'right',
-    });
-
-    tippy('#getCopypass', {
-        // default
-        trigger: 'click',
-        content: "Đã copy mật khẩu!",
-        placement: 'right',
-    });
-
-    tippy('#getCopyemail', {
-        // default
-        trigger: 'click',
-        content: "Đã copy email!",
-        placement: 'right',
-    });
-
-    $('.getCopypass').on('click', function(){
-
-        // Get the password field
-        var passwordField = $('#password');
-
-        // Get the current type of the password field will be password or text
-        var passwordFieldType = passwordField.attr('type');
-
-        // Check to see if the type is a password field
-        if(passwordFieldType == 'password')
-        {
-            // Change the password field to text
-            passwordField.attr('type', 'text');
-
-            var htmlpass = '';
-            htmlpass += '<img class="lazy img-show-password" src="/assets/theme_3/image/cay-thue/eyeshow.png" alt="">';
-            $('.getCopypass').html('');
-            $('.getCopypass').html(htmlpass);
-
-            // Change the Text on the show password button to Hide
-            $(this).val('Hide');
-        } else {
-            var htmlpass = '';
-            htmlpass += '<img class="lazy img-show-password" src="/assets/theme_3/image/cay-thue/eyehide.png" alt="">';
-            $('.getCopypass').html('');
-            $('.getCopypass').html(htmlpass);
-
-            // If the password field type is not a password field then set it to password
-            passwordField.attr('type', 'password');
-
-            // Change the value of the show password button to Show
-            $(this).val('Show');
-        }
-    });
-
-    $('#getCopyemail').on('click', function(){
-        var copyText = $('#email').val();
-
-        navigator.clipboard.writeText(copyText);
-    })
-
-    $('.getCopypass').on('click', function(){
-        var copyText = $('#password').val();
-
-        navigator.clipboard.writeText(copyText);
-    })
 
     //    Step
 
@@ -564,13 +815,9 @@ $(document).ready(function (e) {
 
     });
 
-    $('body').on('click','.btn-tra-gop',function(){
-        $('#traGop').modal('show')
-    })
-
-    $('body').on('click','.openSuccess',function(){
-        $('#successModal').modal('show')
-    })
+    // $('body').on('click','.btn-tra-gop',function(){
+    //     $('#traGop').modal('show')
+    // })
 
 
     $('body').on('click','.btn-mua-ngay',function(){

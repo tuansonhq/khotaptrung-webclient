@@ -298,7 +298,23 @@ $(document).ready(function (e) {
 
     $(document).on('click', '.buy-random-acc', (event) => {
         event.preventDefault();
+        // var htmlloading = '';
+
+        // htmlloading += '<div class="loading"></div>';
+        // $('.loading-data__buyacc').html('');
+        // $('.loading-data__buyacc').html(htmlloading);
+
+        var id = $(event.currentTarget).data("id");
+
+        var html = $('.formDonhangAccount' + id + '').html();
+
+
+
+        $('.data-account-random').html('');
+        $('.data-account-random').html(html);
+
         $('#openOrder').modal('show');
+        // $('.loading-data__buyacc').html('');
     });
 
 })
