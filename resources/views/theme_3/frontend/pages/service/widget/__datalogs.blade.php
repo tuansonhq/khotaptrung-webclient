@@ -2,18 +2,7 @@
 
     <div class="col-md-12 left-right">
         <table class="table table-striped table-hover table-logs" id="table-default">
-            <thead>
-            <tr>
-                <th>Thời gian</th>
-                <th>ID</th>
-                <th>Mã GD SMS</th>
-                <th>Dịch vụ</th>
-{{--                <th>Danh mục</th>--}}
-                <th style="width: 30%">Trị giá</th>
-                <th>Trạng thái</th>
-                <th>Thao tác</th>
-            </tr>
-            </thead>
+            <thead><tr><th>Thời gian</th><th>ID</th><th>Mã GD SMS</th><th>Dịch vụ</th><th style="width: 30%">Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
             <tbody>
             @php
                 $prev = null;

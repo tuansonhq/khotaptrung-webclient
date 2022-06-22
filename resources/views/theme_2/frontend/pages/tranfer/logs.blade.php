@@ -26,17 +26,17 @@
                         </tr>
                         <tr>
                             <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ $item->telecom_key }}</td>
+                            <td>{{ $item->price }}</td>
                             <td>{{ formatPrice((int)$item->price) }} đ</td>
                             <td>
                                 @if($item->status == 2 )
-                                    <span class="text-warning">{{config('module.tranfer.status.2')}}</span>
+                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
                                 @elseif($item->status == 1)
-                                    <span class="text-primary">{{config('module.tranfer.status.1')}}</span>
+                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
                                 @elseif($item->status == 0)
-                                    <span class="text-warning">{{config('module.tranfer.status.0')}}</span>
+                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
                                 @elseif($item->status == 3)
-                                    <span class="text-danger">{{config('module.tranfer.status.3')}}</span>
+                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
                                 @endif
                             </td>
                         </tr>
@@ -46,15 +46,17 @@
                     @else
                         <tr>
                             <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ $item->telecom_key }}</td>
+                            <td>{{ $item->price }}</td>
                             <td>{{ formatPrice((int)$item->price) }} đ</td>
                             <td>
-                                @if(isset($item->real_received_price))
-                                    <span class="c-font-bold text-info"> {{ formatPrice($item->real_received_price) }}</span>
-
-                                @else
-                                    <span class="c-font-bold text-info"> 0</span>
-
+                                @if($item->status == 2 )
+                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
+                                @elseif($item->status == 1)
+                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
+                                @elseif($item->status == 0)
+                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
+                                @elseif($item->status == 3)
+                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
                                 @endif
                             </td>
                         </tr>

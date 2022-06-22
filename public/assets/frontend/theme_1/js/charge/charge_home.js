@@ -24,6 +24,16 @@ $(document).ready(function(){
     //
     // });
 
+    function reload_captcha_home() {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha_trangchu span").html(data.captcha);
+            }
+        });
+    }
+
     function getTelecom(){
 
         var url = '/get-tele-card';
@@ -107,6 +117,7 @@ $(document).ready(function(){
                         });
                     }
                     $('select#amount').html(html);
+                    reload_captcha_home()
                 }
                 // else{
                 //     swal({

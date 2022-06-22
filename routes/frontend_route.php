@@ -52,33 +52,39 @@ Route::get('/test111', function ()
     return 1111;
 })->middleware('throttle:5,1');
 
+Route::get('/updategit', function ()
+{
+
+    $command='sudo -u www-data git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+
+    $output = shell_exec($command);
+//    Lam sao day em oi
+
+    dd($command, $output);
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+    Cache::flush();
+
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
+        'message-git' => $output
+    ]);
+});
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
 
 Route::group(array('middleware' => ['theme']) , function (){
         Route::group(array('middleware' => ['throttle:300,1','verify_shop']) , function (){
-            Route::get('/updategit', function ()
-            {
-                $data = shell_exec('git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev');
 
-                \Artisan::call('cache:clear');
-                \Artisan::call('config:cache');
-                \Artisan::call('view:clear');
-                \Artisan::call('route:clear');
-                Cache::flush();
 
-                return response()->json([
-                    'status' => 1,
-                    'message' => 'Thành công!',
-                    'message-git' => $data
-                ]);
-            });
             Route::get('/tesstt', function ()
             {
                 $url = '/get-random-acc';
                 $method = "GET";
                 $dataSend = array();
-                $dataSend['module'] = 'acc_category';
 
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
@@ -174,6 +180,15 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'getThongTin'])
                                 ->name('getThongTin');
 
+                            Route::get('/the-cao-da-mua', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStore'])
+                                ->name('getLogsStoreCard');
+
+                            Route::get('/the-cao-da-mua-{id}', [\App\Http\Controllers\Frontend\UserController::class , 'getShowLogsStore'])
+                                ->name('getShowLogsStore');
+
+                            Route::get('/the-cao-da-mua/data', [\App\Http\Controllers\Frontend\UserController::class , 'getLogsStoreData'])
+                                ->name('getLogsStoreData');
+
                             Route::get('/thong-tin', [\App\Http\Controllers\Frontend\UserController::class , 'info']);
 
                             Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])->name('getDepositAuto');
@@ -204,10 +219,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/destroyservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getDelete'])
                                 ->name('getDeleteServiceData');
 
-
-
-
-
                             Route::get('/editservice', [\App\Http\Controllers\Frontend\ServiceController::class , 'getEdit'])
                                 ->name('getEditServiceData');
 
@@ -237,7 +248,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                             Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
                             Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
-                            
+
                         });
                         // ROUTE cần auth load dữ liệu không cache
 
