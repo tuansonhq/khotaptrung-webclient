@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST">
+                            <form class="media-form-search" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
@@ -89,7 +89,7 @@
                         </div>
 
                         <div class="col-md-12 left-right media-mobile">
-                            <form action="" method="POST">
+                            <form class="media-form-search" method="POST">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
                                         <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">

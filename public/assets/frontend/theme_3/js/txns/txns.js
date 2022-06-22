@@ -433,7 +433,7 @@ $(document).ready(function (e) {
                     var html = '';
                     html += '<div class="table-responsive">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản</th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr style="width: 100%" id="table-notdata"><td colspan="8"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
                     html += '</tbody>';

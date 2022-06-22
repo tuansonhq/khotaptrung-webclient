@@ -21,13 +21,13 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Lịch sử nạp thẻ</h3>
+                    <h3>Lịch sử mua thẻ</h3>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -47,7 +47,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto logs-title">
                                 <div class="col-md-12 left-right">
-                                    <span>Biến động số dư</span>
+                                    <span>Lịch sử mua thẻ</span>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
 
                             <div class="row marginauto">
                                 <div class="col-12 left-right">
-                                    <form action="" method="POST">
+                                    <form class="search-txns">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
@@ -94,280 +94,16 @@
                         </div>
 
                         <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table">
-                                <div class="col-md-12 left-right">
-                                    <table class="table table-responsive-lg table-striped table-hover table-logs">
-                                        <thead>
-                                        <tr>
-                                            <th>Thời gian</th>
-                                            <th>Kiểu nạp</th>
-                                            <th>Nhà mạng</th>
-                                            <th>Mã thẻ/Serial</th>
-                                            <th>Mệnh giá</th>
-                                            <th>THực nhận</th>
-                                            <th>Trạng thái</th>
-                                            <th>Chi tiết</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-danger">Thẻ sai</span></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-warning">Chờ xử lý</span></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>09-02-2022 08:32</td>
-                                            <td>Nạp tự động</td>
-
-                                            <td>Viettel</td>
-                                            <td>
-                                                <p>MT: 123456789</p>
-                                                <p>SR: 123456789</p>
-                                            </td>
-
-                                            <td>
-                                                1.000.000 đ
-                                            </td>
-                                            <td>
-                                                970.000 đ
-                                            </td>
-                                            <td><span class="badge badge-success">Thành công</span></td>
-                                            <td><a href="/the-cao-da-mua/detail" class="refund-default openHoanTien">Chi tiết</a></td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right justify-content-end default-paginate">
-                            <div class="row marinautooo justify-content-center">
-                                <div class="col-auto">
-                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                        <ul class="pagination pagination-sm">
-                                            <li class="page-item disabled">
-                                                <a href="" class="page-link">
-                                                </a>
-                                            </li>
-                                            <li class="page-item active">
-                                                <span class="page-link">1</span>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2">2</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=3">3</a>
-                                            </li>
-                                            <li class="page-item disabled hidden-xs">
-                                                <span class="page-link">...</span>
-                                            </li>
-                                            <li class="page-item hidden-xs">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=14">14</a>
-                                            </li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2" rel="next"></a>
-                                            </li>
-                                        </ul>
+                            <div class="row default-table" id="data_pay_card_history_ls" style="position: relative">
+                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
+                                    <div class="d-flex justify-content-center">
+                                        <span class="pulser"></span>
                                     </div>
                                 </div>
+                                @include('frontend.pages.storeCard.widget.__datalogs')
                             </div>
                         </div>
 
-
-                        {{--                        <div class="col-md-12 logs-table left-right">--}}
-                        {{--                            <div class="row marginauto default-table">--}}
-                        {{--                                <div class="col-md-12 left-right">--}}
-                        {{--                                    <table class="table table-responsive-lg table-striped table-hover table-logs">--}}
-                        {{--                                        <thead>--}}
-                        {{--                                        <tr>--}}
-                        {{--                                            <th>Thời gian</th>--}}
-                        {{--                                            <th>Kiểu nạp</th>--}}
-                        {{--                                            <th>Nhà mạng</th>--}}
-                        {{--                                            <th>Mã thẻ/Serial</th>--}}
-                        {{--                                            <th>Mệnh giá</th>--}}
-                        {{--                                            <th>THực nhận</th>--}}
-                        {{--                                            <th>Trạng thái</th>--}}
-                        {{--                                        </tr>--}}
-                        {{--                                        </thead>--}}
-                        {{--                                        <tbody>--}}
-
-                        {{--                                        <tr style="width: 100%" id="table-notdata">--}}
-                        {{--                                            <td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td>--}}
-                        {{--                                        </tr>--}}
-                        {{--                                        </tbody>--}}
-                        {{--                                    </table>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                     </div>
                 </div>
 
@@ -391,7 +127,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form action="">
+                    <form class="form-charge_ls account_content_transaction_history__v2">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -472,14 +208,26 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                         <div class="row marginauto modal-footer-success-row-not-ct">
                                             <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct reset-find"><span>Thiết lập lại</span></a>
+                                                <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
+                                                    <span class="span-reset">
+                                                        Thiết lập lại
+                                                    </span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="button">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
+                                                    <span class="span-ap-dung">Áp dụng</span>
+                                                    <div class="row justify-content-center loading-data__timkiem">
+
+                                                    </div>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -494,6 +242,20 @@
         </div>
 
     </div>
+
+    <input type="hidden" class="started_at_day_ls" name="started_at_day_ls" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_day_ls" name="end_at_day_ls" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_yes_ls" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_yes_ls" name="end_at_yes_ls" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
+    <input type="hidden" class="started_at_month_ls" name="started_at_month_ls" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
+    <input type="hidden" class="end_at_month_ls" name="end_at_month_ls" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
+
+    <input type="hidden" name="serial_data_ls" class="serial_data_ls">
+    <input type="hidden" name="key_data_ls" class="key_data_ls">
+    <input type="hidden" name="status_data_ls" class="status_data_ls">
+    <input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
+    <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
+    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs.js"></script>
 @endsection

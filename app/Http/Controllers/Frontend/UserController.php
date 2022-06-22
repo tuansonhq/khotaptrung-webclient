@@ -155,8 +155,6 @@ class UserController extends Controller
     public function getTran(Request $request){
         try{
 
-
-
             $jwt = Session::get('jwt');
             if(empty($jwt)){
                 return response()->json([
@@ -174,6 +172,7 @@ class UserController extends Controller
                 $dataSend = array();
                 $dataSend['token'] = $jwt;
                 $dataSend['user_id'] = $id_user;
+
 
                 $page = $request->page;
 
@@ -224,7 +223,6 @@ class UserController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
                 $response_data = $result_Api->response_data??null;
-
 
                 if(isset($response_data) && $response_data->status == 1){
 
@@ -533,11 +531,143 @@ class UserController extends Controller
         }
     }
 
+    public function getLogsStore(Request $request){
+
+        return view('frontend.pages.storecard.logs');
+    }
+
+    public function getLogsStoreData(Request $request){
+
+        try{
+
+            if ($request->ajax()) {
+
+                $page = $request->page;
+
+                $url = '/store-card/history';
+
+                $method = "GET";
+                $dataSend = array();
+                $jwt = Session::get('jwt');
+                if (empty($jwt)) {
+                    return response()->json([
+                        'status' => "LOGIN"
+                    ]);
+                }
+                $dataSend['token'] = $jwt;
+                $dataSend['page'] = $page;
+
+                if (isset($request->id) || $request->id != '' || $request->id != null) {
+                    $data['id'] = $request->id;
+                }
+
+                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $dataSend['started_at'] = $started_at;
+                }
+
+                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                    $data['serial'] = $request->serial;
+                }
+
+                if (isset($request->telecom) || $request->telecom != '' || $request->telecom != null) {
+                    $data['telecom'] = $request->telecom;
+                }
+
+                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $dataSend['ended_at'] = $ended_at;
+                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $data = $response_data->data;
+
+                    $arrpin = array();
+                    $arrserial = array();
+
+                    $per_page = 0;
+                    $total = 0;
+
+                    if (isset($data->total)){
+                        $total = $data->total;
+                    }
+
+                    if (isset($data->to)){
+                        $per_page = $data->to;
+                    }
+
+                    if (isEmpty($data->data)) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                        $data->setPath($request->url());
+                    }
+
+                    $html = view('frontend.pages.storeCard.widget.__datalogs')
+                        ->with('data',$data)
+                        ->with('total',$total)
+                        ->with('per_page',$per_page)
+                        ->with('arrpin',$arrpin)
+                        ->with('arrserial',$arrserial)->render();
+
+                    return response()->json([
+                        'status' => 1,
+                        'data' => $html,
+                        'message' => 'Load du lieu thanh cong.',
+                    ]);
+
+                } else{
+                    return redirect('/404');
+                }
+            }
+
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => "ERROR"
+            ]);
+        }
+    }
+
+    public function getShowLogsStore(Request $request,$id){
+
+        $url = '/store-card/history/'.$id;
+
+        $method = "GET";
+        $dataSend = array();
+        $jwt = Session::get('jwt');
+        if (empty($jwt)) {
+            return response()->json([
+                'status' => "LOGIN"
+            ]);
+        }
+        $dataSend['token'] = $jwt;
+
+        $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1){
+
+            $data = $response_data->data;
+
+            return view('frontend.pages.storecard.detail')->with('data',$data);
+
+        } else{
+            return redirect('/404');
+        }
+
+
+    }
+
     public function getStoreHistory(Request $request){
 
         try{
 
             if ($request->ajax()) {
+
                 $page = $request->page;
 
                 $url = '/store-card/history';
@@ -555,6 +685,10 @@ class UserController extends Controller
 
                 if (isset($request->id) || $request->id != '' || $request->id != null) {
                     $data['id'] = $request->id;
+                }
+
+                if (isset($request->telecom) || $request->telecom != '' || $request->telecom != null) {
+                    $data['telecom'] = $request->telecom;
                 }
 
                 if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {

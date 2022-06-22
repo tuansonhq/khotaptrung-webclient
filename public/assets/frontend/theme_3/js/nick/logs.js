@@ -576,7 +576,7 @@ $(document).ready(function (e) {
                         //Tài khoản.
 
                         var htmltk = '';
-                        htmltk += '<input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">';
+                        htmltk += '<input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="' + data.datashow.title + '">';
                         htmltk += '<img class="lazy " src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopyemail">';
 
                         $('.data-tai-khoan').html('');
@@ -749,7 +749,7 @@ $(document).ready(function (e) {
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>ID</th><th style="width: 30%">Game</th><th>Tài Khoản</th><th style="width: 20%">Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
                     html += '</tbody>';
