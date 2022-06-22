@@ -4962,6 +4962,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         margin: auto;
     }
 }
+
 @media only screen and (max-width: 376px) {
 
     .chat-box-col{

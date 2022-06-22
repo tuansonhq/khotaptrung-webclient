@@ -10,6 +10,12 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 class IPController extends Controller
 {
     public function getIp(Request $request){
+
+        \Artisan::call('cache:clear');
+        \Artisan::call('config:cache');
+        \Artisan::call('view:clear');
+        \Artisan::call('route:clear');
+
         $ch = curl_init ();
         // set URL and other appropriate options
         curl_setopt ($ch, CURLOPT_URL, "http://ipecho.net/plain");
