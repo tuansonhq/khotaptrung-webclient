@@ -24,169 +24,168 @@ $(document).ready(function (e) {
 
     $('.wide').niceSelect();
 
-    function loadData() {
-        var id = $('.id').val();
-        var isSet = false;
-        var defaulthtml = '';
-        var index = 0;
-        $('.nick-findter-data').html('');
-        $('.nick-findter-data').html(defaulthtml);
+    //Manage filter
+    var filterCount = 0;
+    var formData = {};
+    
+    $('#accountFilter').submit(function (e) { 
+        e.preventDefault();
+        //Filter item html
+        filterCount = 0;
+        let html = '';
+        let itemSelected = '';
 
-        if (id == null || id == undefined || id == ''){}else {
-            if ($('.prepend-nick').hasClass('prepend-nick-id')){
-                return false;
-            }
-            if (parseInt(id.length) > 50){
-                return false;
-            }
-            var htmlid = '';
-            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
-            $('.nick-findter-data').prepend(htmlid);
-            isSet = true;
-            index = index + 1;
-        }
-
-        var pricevalue = $('.price-finter-nick .list .option.selected').data('value');
-        var price = $('.price-finter-nick .list .option.selected').text();
-
-        if (price == null || price == undefined || price == '' || pricevalue == null || pricevalue == undefined || pricevalue == 'Chọn giá tiền'){}else {
-            if ($('.prepend-nick').hasClass('prepend-nick-price')){
-                return false;
-            }
-            var htmlprice = '';
-            htmlprice += '<div class="col-auto prepend-nick prepend-nick-price" style="position: relative"><a href="javascript:void(0)">' + price + '</a><img class="lazy close-item-nick imgae-nick-price" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
-            $('.nick-findter-data').prepend(htmlprice);
-            isSet = true;
-            index = index + 1;
-        }
-
-        var statusvalue = $('.status-finter-nick .list .option.selected').data('value');
-        var status = $('.status-finter-nick .list .option.selected').text();
-
-        if (status == null || status == undefined || status == '' || statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn trạng thái'){}else {
-            if ($('.prepend-nick').hasClass('prepend-nick-status')){
-                return false;
+        //Get data of each input in form and append into the formData object => if null then remove the null property
+        var id_data = $('.input-defautf-ct.id').val();
+        var price_data = $('.wide.price').val();
+        var status_data = $('.wide.status').val();
+        // var select_data = $('.select_data').val();
+        // var sort_by_data = $('.sort_by_data').val();
+        $('select.account-filter-field').each(function (idx, elm) {
+            if (itemSelected != '') {
+                itemSelected += '|';
             }
 
-            var htmlstatus = '';
-            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
-            $('.nick-findter-data').prepend(htmlstatus);
-            isSet = true;
-            index = index + 1;
-        }
-
-        var rankvalue = $('.rank-finter-nick .list .option.selected').data('value');
-        var rank = $('.rank-finter-nick .list .option.selected').text();
-
-        if (rank == null || rank == undefined || rank == '' || rankvalue == null || rankvalue == undefined || rankvalue == 'Chọn rank'){}else {
-            if ($('.prepend-nick').hasClass('prepend-nick-rank')){
-                return false;
-            }
-            var htmlrank = '';
-            htmlrank += '<div class="col-auto prepend-nick prepend-nick-rank" style="position: relative"><a href="javascript:void(0)">' + rank + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
-            $('.nick-findter-data').prepend(htmlrank);
-            isSet = true;
-            index = index + 1;
-        }
-
-
-        var data_switch = '';
-        var text_switch = '';
-
-        $('input[name="switch"]:checked').each(function () {
-            if (this.checked) {
-                if (data_switch != '') {
-                    data_switch += '|';
-                }
-
-                text_switch = $(this).data('title');
-                data_switch = $(this).val();
-                if (text_switch == null || text_switch == undefined || text_switch == '' || data_switch == null || data_switch == undefined || data_switch == ''){}else {
-                    if ($('.prepend-nick').hasClass('prepend-nick-switch-' + data_switch + '')){
-                        return false;
-                    }
-                    var htmlswitch = '';
-                    htmlswitch += '<div class="col-auto prepend-nick prepend-nick-switch" data-val="' + data_switch + '" style="position: relative"><a href="javascript:void(0)">' + text_switch + '</a><img class="lazy close-item-nick imgae-nick-switch" src="/assets/theme_3/image/nick/close.png" alt=""></div>';
-                    $('.nick-findter-data').prepend(htmlswitch);
-                    isSet = true;
-                    index = index + 1;
-                }
-
+            if ($(elm).val()) {
+                itemSelected += $(elm).val();
+                let selectTitle = $(elm).data('title');
+                let innerText = selectTitle + ': ' + $(elm).find('option:selected').text();
+                html+= '<div class="col-auto prepend-nick" style="position: relative" data-key="item_selected" data-value='+ $(elm).val() +'>' +
+                            '<a href="javascript:void(0)">' + innerText + '</a>' +
+                            '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                        '</div>';
+                filterCount++;
             }
         });
 
-        if (parseInt(index) > 0){
-            $('.overlay-find').html(index);
-            $('.overlay-find').css('display','block');
-        }else {
-            $('.overlay-find').html(index);
-            $('.overlay-find').css('display','none');
+        if (itemSelected) {
+            formData = {...formData, item_selected: itemSelected };
+        } else {
+            delete formData['item_selected']
         }
 
-    }
+        if (id_data) {
+            filterCount++ ;
+            formData = {...formData, id_data: id_data };
+            html+= '<div class="col-auto prepend-nick" style="position: relative" data-key="id_data">' +
+                        '<a href="javascript:void(0)" id="prependNickLink"> ID: ' + id_data + '</a>' +
+                        '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                    '</div>';
+        } else {
+            delete formData['id_data'];
+        }
 
-    $('body').on('click','.button-modal-nick',function(){
-        loadData();
-    })
+        if (price_data) {
+            filterCount++ ;
+            let innerText = $('.nice-select.wide.price .option.selected').text();
+            formData = {...formData, price_data: price_data };
+            html+= '<div class="col-auto prepend-nick" style="position: relative" data-key="price_data">' +
+                        '<a href="javascript:void(0)">' + innerText + '</a>' +
+                        '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                    '</div>';
+        } else {
+            delete formData['price_data'];
+        }
 
-    $('body').on('click','.prepend-nick-id',function(){
-        $('.id').val('');
+        if (status_data) {
+            filterCount++ ;
+            let innerText = $('.nice-select.wide.status .option.selected').text();
+            formData = {...formData, status_data: status_data };
+            html+= '<div class="col-auto prepend-nick" style="position: relative" data-key="status_data">' +
+                        '<a href="javascript:void(0)">' + innerText + '</a>' +
+                        '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                    '</div>';
+        } else {
+            delete formData['status_data'];
+        }
 
-        loadData();
-    })
+        //Empty current than add new html
+        $('.nick-findter-data').empty();
+        $('.nick-findter-data').append(html);
+        
+        //Check filter count and update count text
+        $('.overlay-find').text(filterCount);
+        if (filterCount > 0) {
+            $('.overlay-find').css('display', 'block');
+        } else {
+            $('.overlay-find').css('display', 'none');
+        }
+        loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+        $('#openFinter').modal('hide');
+    });
 
-    $('body').on('click','.prepend-nick-price',function(){
-        $('.price').val('');
-        $('.price').niceSelect('update');
-        $('.price-finter-nick .current').html('Chọn giá tiền');
-        $('.price-finter-nick .list li').first().addClass('selected');
-        loadData();
-    })
+    //Reset form
+    $('.reset-find').click(() => {
+        $('#accountFilter').trigger('reset');
 
-    $('body').on('click','.prepend-nick-status',function(){
-        $('.status').val('');
-        $('.status').niceSelect('update');
-        $('.status-finter-nick .current').html('Chọn trạng thái');
-        $('.status-finter-nick .list:first-child').addClass('selected');
-        loadData();
-    })
+        $('.wide').niceSelect('update');
+    });
 
-    $('body').on('click','.prepend-nick-rank',function(){
-        $('.rank').val('');
-        $('.rank').niceSelect('update');
-        $('.rank-finter-nick .current').html('Chọn rank');
-        $('.rank-finter-nick .list:first-child').addClass('selected');
-        loadData();
-    })
+    //Action when click on delete button in filter-activated
+    $(document).on('click', '.close-item-nick', (event) => {
+        let deleteButton = event.target;
+        let filterElement = $(deleteButton).parent();
+        let key = filterElement.data('key');
+        if (key == "item_selected") {
+            let value = filterElement.data('value');
+            formData[key] = formData[key].replace(value, '');
+        } else {
+            delete formData[key];
+        }
 
-    $('body').on('click','.prepend-nick-switch',function(){
-        var val = $(this).data('val');
-        $('.switch-input-' + val + '').prop('checked', false);
-        loadData();
-    })
+        $(filterElement).remove();
 
-    $('body').on('click','.reset-find',function(){
-        $('.id').val('');
-        $('.rank').val('');
-        $('.rank').niceSelect('update');
-        $('.status').val('');
-        $('.status').niceSelect('update');
-        $('.price').val('');
-        $('.price').niceSelect('update');
-        $('.rank-finter-nick .current').html('Chọn rank');
-        $('.rank-finter-nick .list:first-child').addClass('selected');
-        $('.status-finter-nick .current').html('Chọn trạng thái');
-        $('.status-finter-nick .list:first-child').addClass('selected');
-        $('.price-finter-nick .current').html('Chọn giá tiền');
-        $('.price-finter-nick .list li').first().addClass('selected');
+        //Check filter count and update count text
+        filterCount-- ;
+        $('.overlay-find').text(filterCount);
+        if (filterCount > 0) {
+            $('.overlay-find').css('display', 'block');
+        } else {
+            $('.overlay-find').css('display', 'none');
+        }
 
-        $('input[name="switch"]:checked').each(function () {
-            if (this.checked) {
-                $(this).prop('checked', false);
+        loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+    });
+
+    //Radio button action at .item-sort-nick-label
+    $('.item-sort-nick-label').on('click', function (e) {
+        e.preventDefault();
+        let inputElement = $(this).parent().find('input[type="radio"][name="sort"]');
+        if ($(inputElement).is(":checked")) {
+            $(inputElement).prop('checked', false);
+            delete formData['sort_data'];
+            loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+        } else {
+            $(inputElement).prop('checked', true);
+            formData = {...formData, sort_data: $(inputElement).val() };
+            loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+        }
+    });
+
+    $('#idFilterForm').on('submit', function (e) {
+        e.preventDefault();
+        let searchValue = $(this).find('input[name="search"]').val();
+        if (searchValue) {
+            if ( $('#prependNickLink').length > 0 ) {
+                $('#prependNickLink').text(`ID: ${searchValue}`);
+            } else {
+                html = '<div class="col-auto prepend-nick" style="position: relative" data-key="id_data">' +
+                            '<a href="javascript:void(0)" id="prependNickLink"> ID: ' + searchValue + '</a>' +
+                            '<img class="lazy close-item-nick" src="/assets/frontend/theme_3/image/nick/close.png" alt="">' +
+                        '</div>';
+                $('.nick-findter-data').append(html);
             }
-        });
-        loadData();
-    })
+            formData = {...formData, id_data: searchValue };
+            loadDataAccountList(1, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+        }
+    });
+
+    $(document).on('click', '.paginate__v1 a.page-link',function(event){
+        event.preventDefault();
+
+        var page = $(this).attr('href').split('page=')[1];
+        loadDataAccountList(page, formData['id_data'], formData['title_data'], formData['price_data'], formData['status_data'], formData['item_selected'], formData['sort_data']);
+    });
 
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
@@ -226,4 +225,96 @@ $(document).ready(function (e) {
         e.preventDefault();
         $('#openFinter').modal('hide');
     })
+
+    // Function when user search
+    $('.media-form-search').submit(function (e) { 
+        e.preventDefault();
+        let searchValue = $(this).find('input.input-search-ct').val().toLowerCase();
+        $('.body-detail-nick-col-ct').css('display', 'block');
+        $('.body-detail-nick-col-ct').each(function () {
+            let title = $(this).data('title').toLowerCase();
+            if (title.indexOf(searchValue) < 0) {
+                $(this).css('display', 'none');
+            }
+        });
+    });
+
+    loadDataAccountList();
+
+    function loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data) {
+
+        let slug = $('.slug').val();
+
+        var url = '/mua-acc/' + slug;
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
+        // alert(url)
+        request = $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                page:page,
+                id_data:id_data,
+                title_data:title_data,
+                price_data:price_data,
+                status_data:status_data,
+                select_data:select_data,
+                sort_by_data:sort_by_data
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+                $('.loading').css('display','none');
+
+                if (data.status == 0){
+
+                    var html = '';
+                    html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
+
+                    $("#account_data").empty().html('');
+                    $("#account_data").empty().html(html);
+
+                }else if (data.status == 1){
+                    // $(".booking_detail")[0].scrollIntoView();
+
+                    $("#account_data").empty().html('');
+
+                    $("#account_data").empty().html(data.data);
+
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+
+    $(document).on('click', '.buy-random-acc', (event) => {
+        event.preventDefault();
+        // var htmlloading = '';
+
+        // htmlloading += '<div class="loading"></div>';
+        // $('.loading-data__buyacc').html('');
+        // $('.loading-data__buyacc').html(htmlloading);
+
+        var id = $(event.currentTarget).data("id");
+
+        var html = $('.formDonhangAccount' + id + '').html();
+
+
+
+        $('.data-account-random').html('');
+        $('.data-account-random').html(html);
+
+        $('#openOrder').modal('show');
+        // $('.loading-data__buyacc').html('');
+    });
+
 })
