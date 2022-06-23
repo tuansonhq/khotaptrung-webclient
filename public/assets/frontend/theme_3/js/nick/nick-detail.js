@@ -138,7 +138,7 @@ $(document).ready(function (e) {
 
                 $('#openOrder').modal('hide');
                 if(response.status == 1){
-                    getDataAccountPurchase(accountID);
+                    $('#successModal').modal('show');
                 }
                 else if (response.status == 2){
                     swal(
@@ -183,209 +183,13 @@ $(document).ready(function (e) {
 
     });
 
-    function getDataAccountPurchase (accountID) {
-        request = $.ajax({
-            type: 'GET',
-            url: '/lich-su-mua-account',
-            data: {
-                page:1,
-                id_data:accountID,
-                chitiet_data: 1,
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-
-                if (data.status == 1){
-
-                    if (data.chitiet_data == 1){
-
-                        //Tài khoản.
-
-                        var htmltk = '';
-                        htmltk += '<input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="'+ data.datashow.title +'">';
-                        htmltk += '<img class="lazy " src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopyemail">';
-
-                        $('.data-tai-khoan').html('');
-                        $('.data-tai-khoan').html(htmltk);
-
-                        //Mạt khẩu
-
-                        var htmlpass = '';
-
-                        if (data.time == null || data.time == '' || data.time == undefined){
-                            htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="******" placeholder="Mật khẩu">';
-                            htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" id="getpass" alt="" data-slug="' + data.slugen + '" data-id="' + data.datashow.id + '">';
-                        }else {
-                            htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="' + data.key + '" placeholder="Mật khẩu">';
-                            htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopypass">';
-                            htmlpass += '<div class="getCopypass">';
-                            htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
-                            htmlpass += '</div>';
-                        }
-
-
-                        $('.data-password').html('');
-                        $('.data-password').html(htmlpass);
-
-
-                        //thời gian.
-                        var htmltg = '';
-
-                        if (data.time == null || data.time == '' || data.time == undefined){
-
-                        }else {
-                            htmltg += '<small>';
-                            htmltg += 'Đã lấy mật khẩu lúc: ' + data.time;
-                            htmltg += '</small>';
-                            // html += 'Đã lấy mật khẩu lần đầu tiên lúc: ' + data.time + '';
-                        }
-
-
-                        $('.data-time').html('');
-                        $('.data-time').html(htmltg);
-
-                        //child
-
-                        var htmlchild = '';
-
-                        if (data.count > 0){
-                            $.each(data.dataAttribute,function(key,value){
-
-                                if(value.position == 'text'){
-                                    if (value.childs.length > 0){
-                                        $.each(value.childs,function(keychild,valuechild){
-                                            if (data.datashow.params == null || data.datashow.params == undefined || data.datashow.params == ''){}else {
-                                                $.each(data.datashow.params.ext_info,function(keyparam,valueparam){
-                                                    if (keyparam == valuechild.id && valuechild.is_slug_override == 1){
-
-                                                        htmlchild += '<div class="row marginauto add-child">';
-                                                        htmlchild += '<div class="col-md-12 left-right body-title-detail-span-ct"><span>' + valuechild.title + '</span></div>';
-                                                        htmlchild += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
-                                                        htmlchild += '<input readonly autocomplete="off" placeholder="'+ valueparam +'" class="input-defautf-ct" type="text" value="'+ valueparam +'">';
-                                                        htmlchild += '</div>';
-                                                        htmlchild += '</div>';
-
-                                                    }
-                                                })
-                                            }
-
-                                        })
-                                    }
-                                }
-
-                            })
-                        }
-
-                        $('.add-child').html('');
-                        $('.add-child').html(htmlchild);
-
-                        //Thông tin bổ xung
-
-                        var htmlboxung = '';
-
-                        if (data.datashow == null || data.datashow == '' || data.datashow == undefined || data.datashow.idkey == null || data.datashow.idkey == '' || data.datashow.idkey == undefined){}else {
-                            htmlboxung += '<div class="row marginauto add-child">';
-                            htmlboxung += '<div class="col-md-12 left-right body-title-detail-span-ct"><span>T.tin bổ sung:</span></div>';
-                            htmlboxung += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
-                            htmlboxung += '<input readonly autocomplete="off" placeholder="Thông tin bổ sung" class="input-defautf-ct" type="text" value="' + data.datashow.idkey + '">';
-                            htmlboxung += '</div>';
-                            htmlboxung += '</div>';
-                        }
-
-                        $('.data-ttbxung').html('');
-                        $('.data-ttbxung').html(htmlboxung);
-
-                        tippy('#getShowpass', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã lấy mật khẩu!",
-                            placement: 'right',
-                        });
-
-                        tippy('#getCopypass', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã copy mật khẩu!",
-                            placement: 'right',
-                        });
-
-                        tippy('#getCopyemail', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã copy email!",
-                            placement: 'right',
-                        });
-
-                        $('#successModal .getCopypass').on('click', function(){
-
-                            // Get the password field
-                            var passwordField = $('#password');
-
-                            // Get the current type of the password field will be password or text
-                            var passwordFieldType = passwordField.attr('type');
-
-                            // Check to see if the type is a password field
-                            if(passwordFieldType == 'password')
-                            {
-                                // Change the password field to text
-                                passwordField.attr('type', 'text');
-
-                                var htmlpass = '';
-                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
-                                $('.getCopypass').html('');
-                                $('.getCopypass').html(htmlpass);
-
-                                // Change the Text on the show password button to Hide
-                                $(this).val('Hide');
-                            } else {
-                                var htmlpass = '';
-                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
-                                $('.getCopypass').html('');
-                                $('.getCopypass').html(htmlpass);
-
-                                // If the password field type is not a password field then set it to password
-                                passwordField.attr('type', 'password');
-
-                                // Change the value of the show password button to Show
-                                $(this).val('Show');
-                            }
-                        });
-
-                        $('#getCopyemail').on('click', function(){
-                            var copyText = $('#email').val();
-
-                            navigator.clipboard.writeText(copyText);
-                        });
-
-                        $('#getCopypass').on('click', function(){
-                            var copyText = $('#password').val();
-
-                            navigator.clipboard.writeText(copyText);
-                        });
-
-                        $('#successModal').modal('show');
-
-                    }
-                }
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    };
-
     $('body').on('click','#getpass',function(e){
         e.preventDefault();
 
-        var id = $(this).data('id');
-        var slug = $(this).data('slug');
+        var id = $(e.target).data('id');
+        var slug = $(e.target).data('slug');
 
-        getShowPass(id,slug)
+        getShowPass(id,slug);
     });
 
     function getShowPass(id,slug) {
@@ -607,7 +411,7 @@ $(document).ready(function (e) {
     var animating; //flag to prevent quick multi-click glitches
 
     //xac nhan don hang
-    $('body').on('click','.button-next-step-one',function(){
+    $('body').on('click','.button-next-step-one',function(event){
         if (animating) return false;
         animating = true;
 
@@ -631,7 +435,14 @@ $(document).ready(function (e) {
             },
             easing: 'easeInOutBack'
         });
-    })
+
+        let title = $(event.target).data('title');
+        let slug = $(event.target).data('slug');
+        let id = $(event.target).data('id');
+        $('#email').val(title);
+        $('#getpass').attr('data-slug', slug);
+        $('#getpass').attr('data-id', id);
+    });
 
     $('body').on('click','.previous-step-one',function(){
 
@@ -820,14 +631,20 @@ $(document).ready(function (e) {
     // })
 
 
-    $('body').on('click','.btn-mua-ngay',function(){
-        $('#openOrder').modal('show')
-    })
+    $('body').on('click','.btn-mua-ngay',function(event){
+        $('#openOrder').modal('show');
+        let title = $(event.target).data('title');
+        let slug = $(event.target).data('slug');
+        let id = $(event.target).data('id');
+        $('#email').val(title);
+        $('#getpass').attr('data-slug', slug);
+        $('#getpass').attr('data-id', id);
+    });
 
     $('body').on('click','.close-modal-default',function(){
         $('#openOrder').modal('hide')
         $('#successModal').modal('hide')
         $('#traGop').modal('hide')
-    })
+    });
 
 })

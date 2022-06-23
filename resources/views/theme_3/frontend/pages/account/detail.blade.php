@@ -236,7 +236,8 @@
                                                 <span>Tài khoản</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-tai-khoan">
-
+                                               <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="">
+                                               <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
                                             </div>
                                             <div class="col-md-12 left-right">
                                                 <div class="row marginauto title-tra-gop-success-row">
@@ -244,17 +245,28 @@
                                                         <span>Mật khẩu</span>
                                                     </div>
                                                     <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick data-password">
-
+                                                        <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="" placeholder="******">
+                                                        <img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" id="getpass" alt="">
                                                     </div>
                                                 </div>
                                             </div>
     
                                             <div class="col-md-12 left-right data-child">
-
+    {{--                                            <div class="row marginauto add-child">--}}
+    {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+    {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
+    {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
                                             </div>
     
                                             <div class="col-md-12 left-right data-ttbxung">
-
+    {{--                                            <div class="row marginauto add-child">--}}
+    {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+    {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
+    {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+    {{--                                                </div>--}}
+    {{--                                            </div>--}}
                                             </div>
                                         </div>
                                     </div>
@@ -305,9 +317,7 @@
     
         </div>
 
-        <input type="hidden" name="previous" class="input-
-        
-        back-step-two" value="Trang trước"/>
+        <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
 
     </fieldset>
