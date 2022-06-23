@@ -12,7 +12,7 @@
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
 
-                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
+                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}" data-title="{{ $item->title }}" data-slug="{{ $item->slug }}">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct">
@@ -28,9 +28,6 @@
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
-                                                        <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
-                                                            <span>{{ $item->title }}</span>
-                                                        </div>
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>
