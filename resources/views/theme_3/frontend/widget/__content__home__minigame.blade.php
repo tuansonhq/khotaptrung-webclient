@@ -1,4 +1,4 @@
-@dd($data)
+@if(isset($data) && count($data) > 0)
 <div class="block-mini-game mt-fix-20">
     <div class="row">
         <div class="col-lg-12 col-md-12 pr-md-0" >
@@ -291,3 +291,4 @@
 
     </div>
 </div>
+@endif

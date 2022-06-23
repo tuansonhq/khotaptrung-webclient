@@ -29,12 +29,7 @@ class MinigameController extends Controller
                 if (isset($group_api) && $group_api->response_code == 200 ) {
                     $group_api = $group_api->response_data->data;
                 }
-            //     try{
-            //         Cache::put('minigame_list', $group_api, now()->addMinutes(5));
-            //     }catch(Exception $e){
-            //         logger($e);
-            //     }
-            // }
+
             $groups = array_filter($group_api, function ($value) use ($request){
                 return $value->slug== $request->slug;
             });

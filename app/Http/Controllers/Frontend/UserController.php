@@ -155,13 +155,6 @@ class UserController extends Controller
     public function getTran(Request $request){
         try{
 
-            $jwt = Session::get('jwt');
-            if(empty($jwt)){
-                return response()->json([
-                    'status' => "LOGIN"
-                ]);
-            }
-
             $config = config('module.txns.trade_type_api');
             $status = config('module.txns.status');
 
@@ -170,19 +163,9 @@ class UserController extends Controller
                 $url = '/get-txns';
                 $method = "GET";
                 $dataSend = array();
-                $dataSend['token'] = $jwt;
                 $dataSend['user_id'] = $id_user;
 
-
                 $page = $request->page;
-
-                $jwt = Session::get('jwt');
-                if(empty($jwt)){
-                    return response()->json([
-                        'status' => "LOGIN"
-                    ]);
-                }
-
                 $dataSend['page'] = $page;
 
                 if (isset($request->id) || $request->id != '' || $request->id != null) {
