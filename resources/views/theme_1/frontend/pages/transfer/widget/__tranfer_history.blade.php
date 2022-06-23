@@ -29,11 +29,11 @@
 {{--                            {{ $item->bank->params->number_account }}--}}
 {{--                        </td>--}}
                         <td>
-                            {{ formatPrice($item->price) }}
+                            {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>
                         <td>
                             @if(isset($item->real_received_price))
-                                {{ formatPrice($item->real_received_price) }}
+                                {{ str_replace(',','.',number_format($item->real_received_price)) }} đ
                             @else
                                 0
                             @endif
