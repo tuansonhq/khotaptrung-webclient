@@ -14,7 +14,12 @@ class StoreCardController extends Controller
     public function getStoreCard(){
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.storecard.index');
+        if (theme('')->theme_key=='theme_1'){
+            return redirect('/');
+        }else{
+            return view('frontend.pages.storecard.index');
+        }
+
     }
     public function getTelecomStoreCard(Request $request){
         try{
