@@ -30,6 +30,7 @@
                         <div id="start-played" class="item_play_spin_shake">
                             <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
                         </div>
+
                         @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
                             <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>

@@ -1,11 +1,12 @@
 $(document).ready(function () {
     setActiveTable();
     setActiveTableMobile();
+    var started_at = $('.started_at').val();
 
     $('#rotationSelectBlock').niceSelect();
 
     // Set the date we're counting down to
-    var countDownDate = new Date("June 30, 2022 18:00:00").getTime();
+    var countDownDate = new Date(started_at).getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -25,9 +26,9 @@ $(document).ready(function () {
         $('#hourRemain').text(hours);
         $('#minuteRemain').text(minutes);
         $('#secondRemain').text(seconds);
-        
 
-        // If the count down is finished, write some text 
+
+        // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
             $('#hourRemain').text('0');
@@ -37,21 +38,21 @@ $(document).ready(function () {
     }, 1000);
 
     //See more see less button functions
-    $('#seeMore').click(function (e) { 
+    $('#seeMore').click(function (e) {
         e.preventDefault();
         $('.service-detail-content').addClass('show-content');
         $(this).css('display','none');
         $('#seeLess').css('display', 'block');
     });
 
-    $('#seeLess').click(function (e) { 
+    $('#seeLess').click(function (e) {
         e.preventDefault();
         $('.service-detail-content').removeClass('show-content');
         $(this).css('display','none');
         $('#seeMore').css('display', 'block');
     });
 
-    $('.leaderboard-seemore').click(function (e) { 
+    $('.leaderboard-seemore').click(function (e) {
         e.preventDefault();
         $('.leaderboard-md .leaderboard-content').addClass('leaderboard-content-showmore');
         $(this).css('display','none');

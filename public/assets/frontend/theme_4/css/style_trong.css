@@ -703,7 +703,8 @@
     margin-top: 24px;
 }
 .mobile--confirm__payment,
-.mobile--success__payment
+.mobile--success__payment,
+.mobile--fail__payment
 {
     display: none;
 }

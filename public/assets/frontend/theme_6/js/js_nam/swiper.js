@@ -156,6 +156,61 @@ var product_list = new Swiper('.list-product', {
     touchMove: true,
     freeModeSticky:true,
     grabCursor: true,
+    
+    keyboard: {
+        enabled: true,
+    },
+    breakpoints: {
+        1024: {
+            slidesPerView: 3.2,
+        },
+        992: {
+            slidesPerView: 3.6,
+        },
+
+        768: {
+            slidesPerView: 2.4,
+        },
+        480: {
+            slidesPerView: 1.8,
+            spaceBetween: 6,
+        }
+    }
+});
+
+var related_service_list = new Swiper('.banner-home-slider', {
+    slidesPerView: 1,
+    autoplay: true,
+    speed: 500,
+    spaceBetween: 5,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+    },
+});
+
+var related_service_list = new Swiper('.list-related-service', {
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    loop: false,
+    centeredSlides: false,
+    slidesPerView: 5,
+
+    speed: 2000,
+    spaceBetween: 16,
+    freeMode: true,
+    velocityRatio: 20,
+    touchMove: true,
+    freeModeSticky:true,
+    grabCursor: true,
     observer: true,
     observeParents: true,
     keyboard: {

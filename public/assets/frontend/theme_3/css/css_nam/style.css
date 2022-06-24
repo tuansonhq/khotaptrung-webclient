@@ -1433,6 +1433,10 @@ header nav.heading .header-container{
         height: 120px;
         overflow: hidden;
     }
+    item-top-content-minigame{
+        height: 416px;
+        overflow: hidden;
+    }
     .showtext_top{
         height: auto;
     }
@@ -1447,6 +1451,11 @@ header nav.heading .header-container{
         padding-top: 16px;
         padding-bottom: 16px;
         cursor: pointer;
+    }
+
+    .item-top-content-minigame{
+        height: 416px;
+        overflow: hidden;
     }
 }
 @media (max-width: 1200px ) and (min-width: 992px) {
