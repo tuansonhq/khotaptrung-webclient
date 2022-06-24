@@ -521,7 +521,6 @@ class ServiceController extends Controller
             }
             $dataSend['rank_from'] = $request->get('rank_from');
             $dataSend['rank_to'] = $request->get('rank_to');
-
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 

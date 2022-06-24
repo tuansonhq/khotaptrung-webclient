@@ -277,4 +277,22 @@ $('.submit-form').on('click', function () {
     })
 })
 
+    // BOT
+    let table_bot = $('#table-bot');
+    $.ajax({
+        type: 'GET',
+        url: '/show-bot',
+        data: {
+            slug: $('#slug').val(),
+        },
+        success: (response) => {
+            if (response.status){
+                table_bot.html('');
+                table_bot.html(response.data);
+            }
+        },
+        error: function (data) {
+
+        },
+    })
 

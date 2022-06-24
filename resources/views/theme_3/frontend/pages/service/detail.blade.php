@@ -4,7 +4,7 @@
 @endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js" type="text/javascript"></script>
 @endsection
 @section('content')
@@ -17,13 +17,14 @@
     @endif
     @php
         $data_params = json_decode($data->params,true);
-
         $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
         $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
     @endphp
     {{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
-        <fieldset id="fieldset-one">
+    <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
+
+    <fieldset id="fieldset-one">
             <section class="media-mobile">
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
@@ -133,7 +134,6 @@
                                                 {{--                                                6 Dạng chọn từ A->B (trong khoảng) --}}
                                                 {{--                                                7 Dạng nhập tiền để thanh toán  --}}
                                                 @case('3')
-
                                                 @break
                                                 @case('4')
                                                 <div class="col-md-12 left-right body-title-ct">
@@ -508,48 +508,9 @@
                             <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
 
                                         {{-- BOT --}}
-                                @if(isset($data_bot))
-                                <div class="col-md-12 left-right px-3 px-lg-0">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                            <small>Vị trí (Mặc định ở vách núi KAKAROT Khu 39)</small>
-                                        </div>
-                                    </div>
+                                <div class="col-md-12 left-right px-3 px-lg-0" id="table-bot">
+
                                 </div>
-                                <div class="col-md-12 left-right my-4">
-                                    <div class="table-custom">
-                                        <table>
-                                            <thead>
-                                            <tr>
-                                                <th>Server</th>
-                                                <th>Nhân vật</th>
-                                                <th>Khu vực</th>
-                                                <th>Trạng thái</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($data_bot as $key=> $bot)
-                                                <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{{ $bot->uname }}</td>
-
-                                                    <td>{{ $bot->zone }}</td>
-                                                    <td>
-                                                        @if($bot->active == 'on')
-                                                            <div class="tag__status --online">Online</div>
-                                                        @else
-                                                            <div class="tag__status --offline">Offline</div>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                @endif
-
                                         {{--End BOT--}}
                                 <div class="col-md-12 left-right px-3 px-lg-0">
                                     <div class="row marginauto">
