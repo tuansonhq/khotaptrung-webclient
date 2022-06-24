@@ -323,9 +323,17 @@ $(document).ready(function () {
                                 html_current += `        </div>`;
                                 html_current += `    </div>`;
                                 if (width > 1199) {
-                                    html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
+                                    if (auth_check){
+                                        html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card"  data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
+                                    }else {
+                                        html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" onclick="openLoginModal();">Chọn mua</button>`;
+                                    }
                                 }else{
-                                    html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card js_step" data-go_to="step2">Chọn mua</button>`;
+                                    if (auth_check){
+                                        html_current += `      <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>`;
+                                    }else {
+                                        html_current += `      <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>`;
+                                    }
                                 }
                                 html_current += `</div>`;
 
