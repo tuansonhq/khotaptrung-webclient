@@ -234,7 +234,7 @@
                                         </label>
                                     </li>
                                     <li class="deno__item col-4 col-lg-4">
-                                        <input type="radio" id="card-20" name="card-value " hidden>
+                                        <input type="radio" id="card-20" name="card-value" hidden>
                                         <label for="card-20" class="deno__value card-item-value">
                                             <span>20.000 đ</span>
                                         </label>
