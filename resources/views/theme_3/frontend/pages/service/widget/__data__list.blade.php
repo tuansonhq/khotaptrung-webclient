@@ -2,6 +2,7 @@
     <div class="row marginauto body-detail-ct">
         <div class="col-md-12 text-left left-right">
             <div class="row body-detail-row-ct">
+{{--                @dd($data)--}}
                 @forelse($data as $service)
                 <div class="col-auto body-detail-col-ct js-service">
                     <a href="/dich-vu/{{ @$service->slug }}">

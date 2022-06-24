@@ -173,7 +173,6 @@ class UserController extends Controller
                 $dataSend['token'] = $jwt;
                 $dataSend['user_id'] = $id_user;
 
-
                 $page = $request->page;
 
                 $jwt = Session::get('jwt');

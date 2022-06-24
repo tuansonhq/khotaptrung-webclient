@@ -55,7 +55,7 @@ Route::get('/test111', function ()
 Route::get('/updategit', function ()
 {
 
-    $command='sudo -u www-data git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
 
     $output = shell_exec($command);
 //    Lam sao day em oi
@@ -167,6 +167,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
+                        Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
+                        Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
                         // lấy nhà mạng mua thẻ
                         Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
                         // lấy mệnh giá trong mua thẻ

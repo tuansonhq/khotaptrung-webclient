@@ -16,6 +16,7 @@ $(document).ready(function(){
     }
 
     $('#reload_1').click(function () {
+        $('.refresh-captcha img').toggleClass("down");
         $.ajax({
             type: 'GET',
             url: 'reload-captcha2',
@@ -49,7 +50,7 @@ $(document).ready(function(){
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
                     getAmount(telecom);
-                    $('#charge_name').html(' <small>'+telecom+'</small>')
+                    $('.charge_name').html(' <small>'+telecom+'</small>')
                     paycartDataChargeHistory();
 
                     $('.loading-data').remove();
@@ -89,13 +90,14 @@ $(document).ready(function(){
                     $('.amount-loading').remove();
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
+                    console.log(data.data)
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
                             html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
                             if (key == 0){
-                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" value="'+value.amount+'"  hidden checked>'
+                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'"  hidden checked>'
                             }else {
-                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" value="'+value.amount+'" hidden>'
+                                html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>'
                             }
 
                             html += '<label for="recharge_amount_'+key+'">'
@@ -109,10 +111,16 @@ $(document).ready(function(){
 
                     $('#amount').html(html);
 
+                    amount_checked =  $('input[name=amount]:checked');
 
+                    $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
+                    $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
+                    $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
                     $('input[name=amount]').change(function(){
+                        $('.charge_amount').html(' <small>'+ formatNumber($(this).val()) +'</small>')
+                        $('.charge_price').html(' <span>'+ formatNumber($(this).val()) +'</span>')
+                        $('.charge_ratito').html(' <small>'+ formatNumber($(this).attr("data-ratito")) +'</small>')
 
-                        $('#charge_amount').html(' <small>'+$(this).val()+'</small>')
                     });
 
 
@@ -149,6 +157,10 @@ $(document).ready(function(){
 
     $('body').on('change','#telecom',function(){
         var telecom = $(this).val();
+        $('.charge_name').html(' <small>'+telecom+'</small>')
+        $('.charge_amount').html('')
+        $('.charge_price').html('')
+        $('.charge_ratito').html('')
         getAmount(telecom)
     });
 
@@ -157,152 +169,113 @@ $(document).ready(function(){
 
 
 
+    var formSubmit = $('#form-charge2');
+    var url = formSubmit.attr('action');
+    var btnSubmit = formSubmit.find(':submit');
+    let width = $(window).width();
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
 
-    $('#form-charge2').submit(function (e) {
-        e.preventDefault();
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        let width = $(window).width();
-        $('#openCharge').modal('show');
-        $('#btn-confirm-charge').off().on('click', function (m) {
+    function postCharge(){
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache:false,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
 
-            btnSubmit.text('Đang xử lý...');
-            btnSubmit.prop('disabled', true);
+            },
+            success: function (data) {
 
-            if (width < 992){
-                if (animating) return false;
-                animating = true;
+                $('#openCharge').modal('hide');
 
-                // current_fs = $('#mobile-caythue .input-next-step-one').parent();
-                // next_fs = $('#mobile-caythue .input-next-step-one').parent().next();
+                if(data.status == 1){
+                    $('#successChargeModal').modal('show');
+                    $('#success_charge').html(data.message)
 
-                current_fs = $('#fieldset-one_transaction');
-                next_fs = $('#fieldset-two-charge');
-                //show the next fieldset
-                next_fs.show();
-                //hide the current fieldset with style
-                current_fs.animate({opacity: 0}, {
-                    step: function (now, mx) {
-                        left = (now * 50) + "%";
-                        opacity = 1 - now;
-                        next_fs.css({'left': left, 'opacity': opacity});
+                }
+                else if(data.status == 401){
+                    window.location.href = '/login?return_url='+window.location.href;
+                }
+                else if(data.status == 0){
+                    $('#rejectChargeModal').modal('show');
+                    $('#reject_charge').html(data.message)
+                }
+                else{
+                    swal({
+                        title: "Có lỗi xảy ra !",
+                        text: data.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
+                }
+            },
+            error: function (data) {
+                swal({
+                    title: "Có lỗi xảy ra !",
+                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                    icon: "error",
+                    buttons: {
+                        cancel: "Đóng",
                     },
-                    complete: function () {
-                        current_fs.hide();
-                        animating = false;
-                    },
-                    easing: 'easeInOutBack'
-                });
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    cache:false,
-                    data: formSubmit.serialize(), // serializes the form's elements.
-                    beforeSend: function (xhr) {
-
-                    },
-                    success: function (data) {
-
-                        $('#openCharge').modal('hide');
-
-                        if(data.status == 1){
-                            $('#successChargeModal').modal('show');
-                            $('#success_charge').html(data.message)
-
-                        }
-                        else if(data.status == 401){
-                            window.location.href = '/login?return_url='+window.location.href;
-                        }
-                        else if(data.status == 0){
-                            $('#rejectChargeModal').modal('show');
-                            $('#reject_charge').html(data.message)
-                        }
-                        else{
-                            swal({
-                                title: "Có lỗi xảy ra !",
-                                text: data.message,
-                                icon: "error",
-                                buttons: {
-                                    cancel: "Đóng",
-                                },
-                            })
-                        }
-                    },
-                    error: function (data) {
-                        swal({
-                            title: "Có lỗi xảy ra !",
-                            text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                            icon: "error",
-                            buttons: {
-                                cancel: "Đóng",
-                            },
-                        })
-                    },
-                    complete: function (data) {
-                        $('#reload_1').trigger('click');
-                        formSubmit.trigger("reset");
-                        btnSubmit.text('Nạp thẻ');
-                        btnSubmit.prop('disabled', false);
-                    }
-                });
-            }else {
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    cache:false,
-                    data: formSubmit.serialize(), // serializes the form's elements.
-                    beforeSend: function (xhr) {
-
-                    },
-                    success: function (data) {
-
-                        $('#openCharge').modal('hide');
-
-                        if(data.status == 1){
-                            $('#successChargeModal').modal('show');
-                            $('#success_charge').html(data.message)
-
-                        }
-                        else if(data.status == 401){
-                            window.location.href = '/login?return_url='+window.location.href;
-                        }
-                        else if(data.status == 0){
-                            $('#rejectChargeModal').modal('show');
-                            $('#reject_charge').html(data.message)
-                        }
-                        else{
-                            swal({
-                                title: "Có lỗi xảy ra !",
-                                text: data.message,
-                                icon: "error",
-                                buttons: {
-                                    cancel: "Đóng",
-                                },
-                            })
-                        }
-                    },
-                    error: function (data) {
-                        swal({
-                            title: "Có lỗi xảy ra !",
-                            text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
-                            icon: "error",
-                            buttons: {
-                                cancel: "Đóng",
-                            },
-                        })
-                    },
-                    complete: function (data) {
-                        $('#reload_1').trigger('click');
-                        formSubmit.trigger("reset");
-                        btnSubmit.text('Nạp thẻ');
-                        btnSubmit.prop('disabled', false);
-                    }
-                });
+                })
+            },
+            complete: function (data) {
+                $('#reload_1').trigger('click');
+                formSubmit.trigger("reset");
+                btnSubmit.text('Nạp thẻ');
+                btnSubmit.prop('disabled', false);
             }
-
-
         });
+    }
+
+    formSubmit.submit(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (width < 992){
+            if (animating) return false;
+            animating = true;
+            current_fs = $('#fieldset-one_transaction');
+            next_fs = $('#fieldset-two-charge');
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({opacity: 0}, {
+                step: function (now, mx) {
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    next_fs.css({'left': left, 'opacity': opacity});
+                },
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        }else {
+            $('#openCharge').modal('show');
+        }
+
+
+    });
+    $('.btn-confirm-charge').on('click', function (m) {
+
+        btnSubmit.text('Đang xử lý...');
+        btnSubmit.prop('disabled', true);
+
+        if (width < 992){
+            postCharge()
+
+        }else {
+            postCharge()
+        }
+        return false;
+
+
 
 
 

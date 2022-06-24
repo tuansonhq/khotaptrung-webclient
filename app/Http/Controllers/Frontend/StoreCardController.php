@@ -14,8 +14,15 @@ class StoreCardController extends Controller
     public function getStoreCard(){
         Session::forget('return_url');
         Session::put('return_url', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.storecard.index');
+        $data_host =\Request::server ("HTTP_HOST");
+        if ($data_host ='shopngocrong.net'){
+            return redirect('/');
+        }else{
+            return view('frontend.pages.storecard.index');
+        }
+
     }
+
     public function getTelecomStoreCard(Request $request){
         try{
             $url = '/store-card/get-telecom';
@@ -45,9 +52,9 @@ class StoreCardController extends Controller
             ]);
         }
     }
+
     public function getAmountStoreCard(Request $request)
     {
-
         try{
             $url = '/store-card/get-amount';
             $method = "GET";
@@ -76,10 +83,6 @@ class StoreCardController extends Controller
                 'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
-
-
-
-
     }
 
     public function postStoreCard(Request $request)
@@ -121,5 +124,14 @@ class StoreCardController extends Controller
                 'message' => 'Có lỗi phát sinh khi lấy nhà mạng nạp thẻ, vui lòng liên hệ QTV để xử lý.',
             ]);
         }
+    }
+
+    public function showListCard($name)
+    {
+        return view('frontend.pages.storecard.card-list');
+    }
+    public function showDetailCard($name,$value)
+    {
+        return view('frontend.pages.storecard.card-single');
     }
 }
