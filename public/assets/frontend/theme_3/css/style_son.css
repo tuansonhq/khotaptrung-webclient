@@ -1384,6 +1384,19 @@
     padding-top: 178px;
     padding-bottom: 8px;
 }
+
+.unbalance-case-button {
+    display: block;
+    padding: 0.75rem;
+    width: 100%;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.unbalance-case-button:hover {
+    color: #FFFFFF;
+}
+
 .body-detail-account-small-span-ct ul{
     padding-left: 0;
     margin-bottom: 0;

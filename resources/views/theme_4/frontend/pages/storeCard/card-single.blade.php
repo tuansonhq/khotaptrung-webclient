@@ -196,7 +196,8 @@
     <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
     <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
     <input type="hidden" value="{{ request()->route('value') }}" id="isValue">
-    {{-- confirm payment mobile--}}
+    <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
+    <!-- Xác Nhận Thanh Toán Mobile-->
     <div class="mobile--confirm__payment step">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step1">
@@ -271,8 +272,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn -primary btn-big -ps__end js_step" data-go_to="step3">Xác nhận
-            </button>
+            <button type="button" class="btn -primary btn-big -ps__end js-send-data">Xác nhận</button>
         </div>
     </div>
     <!-- Modal Xác Nhận Thanh Toán-->
@@ -355,12 +355,13 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment">Xác nhận</button>
+                    {{--                    <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment">Xác nhận</button>--}}
+                    <button type="button" class="btn -primary btn-big js-send-data">Xác nhận</button>
                 </div>
             </div>
         </div>
     </div>
-    {{-- success payment mobile--}}
+    <!-- Thanh Toán Thành Công Mobile-->
     <div class="mobile--success__payment step">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step2">
@@ -383,148 +384,36 @@
                 Thông tin thẻ
             </div>
             <div class="card--list">
-                <div class="card__detail">
-                    <div class="card--header__detail">
-                        <div class="card--info__wrap">
-                            <div class="card--logo">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                            </div>
-                            <div class="card--info">
-                                <div class="card--info__name">
-                                    Zing 1
-                                </div>
-                                <div class="card--info__value">
-                                    100.000 đ
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card--gray">
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Mã thẻ
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    48563415693486456
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Seri
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    12121212121
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                {{--                JS PASTE HTML HERE--}}
+            </div>
+            <div class="step--content__end">
+                <a href="/" class="btn -secondary btn-big">Về trang chủ</a>
+                <a href="/mua-the" class="btn -primary btn-big">Mua thêm</a>
+            </div>
+        </div>
+    </div>
+    <!-- Thanh Toán Không Thành Công Mobile-->
+    <div class="mobile--fail__payment step">
+        <div class="step--header">
+            <a href="" class="step--back js_step" data-go_to="step2">
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            </a>
+            <div class="step--header__title">
+                Mua thẻ không thành công
+            </div>
+        </div>
+        <div class="step--content">
+            <div class="card--gray card__notify">
+                <div class="card__message">
+                    Rất tiếc, giao dịch của bạn đã thất bại
                 </div>
-                <div class="card__detail">
-                    <div class="card--header__detail">
-                        <div class="card--info__wrap">
-                            <div class="card--logo">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                            </div>
-                            <div class="card--info">
-                                <div class="card--info__name">
-                                    Zing 1
-                                </div>
-                                <div class="card--info__value">
-                                    100.000 đ
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card--gray">
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Mã thẻ
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    48563415693486456
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Seri
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    12121212121
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card__detail">
-                    <div class="card--header__detail">
-                        <div class="card--info__wrap">
-                            <div class="card--logo">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                            </div>
-                            <div class="card--info">
-                                <div class="card--info__name">
-                                    Zing 1
-                                </div>
-                                <div class="card--info__value">
-                                    100.000 đ
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card--gray">
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Mã thẻ
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    48563415693486456
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card--attr">
-                            <div class="card--attr__name">
-                                Seri
-                            </div>
-                            <div class="card--attr__value -bold">
-                                <div class="card__info">
-                                    12121212121
-                                </div>
-                                <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                <div class="card--success__icon">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
                 </div>
             </div>
             <div class="step--content__end">
-                <a href="" class="btn -secondary btn-big">Về trang chủ</a>
-                <a href="" class="btn -primary btn-big">Mua thêm</a>
+                <a href="/" class="btn -secondary btn-big">Về trang chủ</a>
+                <a href="/nap-tien" class="btn -primary btn-big">Nạp tiền</a>
             </div>
         </div>
     </div>
@@ -546,7 +435,7 @@
                             Chúc mừng bạn đã giao dịch thành công
                         </div>
                         <div class="card--success__icon">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/success.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/success.png" alt="icon">
                         </div>
                     </div>
                     <div class="dialog--content__title">
@@ -559,16 +448,15 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
-                                         alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" class="telecom__logo" alt="logo">
                                 </div>
                             </div>
                         </div>
                         <div class="card--attr">
                             <div class="card--attr__name">
-                                Giá niêm yết
+                                Mệnh giá
                             </div>
-                            <div class="card--attr__value">
+                            <div class="card--attr__value card--attr__deno">
                                 10.000 đ
                             </div>
                         </div>
@@ -576,7 +464,7 @@
                             <div class="card--attr__name">
                                 Số lượng
                             </div>
-                            <div class="card--attr__value">
+                            <div class="card--attr__value card--attr__quantity">
                                 01
                             </div>
                         </div>
@@ -625,7 +513,6 @@
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -677,7 +564,49 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big">Mua thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Mua Thất Bại-->
+    <div class="modal fade login show default-Modal" id="modal--fail__payment" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-success-ct">
+                    <div class="row marginauto modal-header-success-row-ct text-center">
+                        <div class="col-md-12 text-center" style="position: relative">
+                            <span>Mua thẻ không thành công</span>
+                            <div class="close" data-dismiss="modal" aria-label="Close">
+                                <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body modal-body-success-ct">
+                    <div class="row marginauto justify-content-center">
+                        <div class="col-auto">
+                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                        <div class="col-md-12 left-right text-center">
+                            <span style="font-size: 14px" id="message--error--buy"></span>
+                        </div>
+
+                    </div>
+                    <div class="row marginauto justify-content-center modal-footer-success-ct">
+
+                        <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
+                            <div class="row marginauto modal-footer-success-row-ct">
+                                <div class="col-md-12 left-right">
+                                    <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
