@@ -44,6 +44,7 @@ class MinigameController extends Controller
             $data['id'] = $group->id;
             $data['module'] = explode('-', $group->module)[0];
             $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
             if (isset($result_Api) && $result_Api->response_code == 200 ) {
                 $result_out = $result_Api->response_data;
                 if ($result_out->status == 1) {

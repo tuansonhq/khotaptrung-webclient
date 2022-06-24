@@ -8,7 +8,7 @@
     <div class="container container-fix">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <div class="rotation-notify text-slider">
-                <img class="img-text-slider" src="/assets/theme_3/image/images_1/sound.svg" alt="">
+                <img class="img-text-slider" src="frontend/{{theme('')->theme_key}}/images_1/sound.svg" alt="">
                 <marquee class="rotation-marquee marquee-move">
                     <div class="rotation-marquee-item marquee-item">
                         <h6 class="text-item">Dương</h6> <p class="content-text">Đã trúng <span id="prize">1000 kim cương</span> <span id="prizeTime" style="color: #82869E;">1h trước</span></p>
@@ -816,7 +816,7 @@
         </div>
     </div>
 
-    <div class="block-card-item mt-fix-20">
+    <div class="block-card-item mt-fix-20 service-mobile">
         <div class="row">
             <div class="col-lg-5 col-md-12"  style="min-height: 100%">
                 <div class=" block-product "  >
@@ -1087,7 +1087,7 @@
         </div>
     </div>
 
-    <div class=" block-product mt-fix-20 mt-md-fix-8">
+    <div class=" block-product mt-fix-20 mt-md-fix-8 service-mobile">
         <div class="d-flex product-header-item">
                     <span>
                         <img src="/assets/{{env('THEME_VERSION')}}/image/news.png" alt="">
@@ -1199,7 +1199,7 @@
         </div>
     </div>
 
-    <div class=" block-product mt-fix-20 mt-md-fix-8">
+    <div class=" block-product mt-fix-20 mt-md-fix-8 service-mobile">
         <div class="product-header d-flex">
                     <span>
                         <img src="/assets/{{env('THEME_VERSION')}}/image/news.png" alt="">
@@ -1564,7 +1564,7 @@
         </div>
 
     </div>
-    <div class="block-product mt-fix-20">
+    <div class="block-product mt-fix-20 service-mobile">
 
         <div class="box-product">
             <div class="swiper-container  list-intro" >
