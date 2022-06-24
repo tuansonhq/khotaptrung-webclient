@@ -417,7 +417,7 @@ header nav.heading .header-container{
     position: absolute;
     top: 64px;
     cursor: context-menu;
-    left: 28px;
+    left: 0;
     display: none;
     background-color: white;
     width: 280px;
@@ -1201,14 +1201,33 @@ header nav.heading .header-container{
 
 /*nạp tiền*/
 .captcha{
-    margin: 0 16px;
+    margin: 0 8px;
+    width: 150px;
 
 }
+
 .refresh-captcha{
     border:none;
     border-radius: 8px;
-    background: transparent;
+    background: #FBFBFD;
+
+
 }
+.refresh-captcha img{
+    -moz-transition: all .8s linear;
+    -webkit-transition: all .8s linear;
+    transition: all .8s linear;
+    padding: 0 16px;
+}
+
+.refresh-captcha .down {
+    -moz-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+/*.refresh-captcha img{*/
+/*    padding: 0 8px;*/
+/*}*/
 .item-product-service>a>div{
     margin-top: 0.75rem;
     font-weight: 600;
@@ -1344,7 +1363,7 @@ header nav.heading .header-container{
     object-fit: cover;
     border-radius: 8px 0 0 8px;
 }
-/*.news*/
+/*.article*/
 .item-news-img{
     height: 163px;
     overflow: hidden;
@@ -1698,6 +1717,27 @@ header nav.heading .header-container{
 }
 .log-out-button a{color: white;transition: .2s}
 .log-out-button a:hover{color: var(--primary-color);transition: .2s;background-color: white;}
+.box-login-mobile{
+    display: none;
+}
+.box-loading-mobile{
+    margin-left: 16px;
+}
+@media (max-width: 992px) {
+    .box-login{
+        display: none;
+    }
+    .box-login-mobile{
+        display: block;
+    }
+}
+.reload img{
+    border-radius: 8px;
+}
+.hide_charge{
+    display: none;
+}
+
 /*loading*/
 .loading-spokes {
     position: relative;

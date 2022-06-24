@@ -51,8 +51,19 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
 </head>
 <body>
+@if(Session::has('check_login'))
+    <script>
+        $(document).ready(function () {
+            $('#loginModal').modal('show');
+        });
+    </script>
+    @php
+        Session::pull('check_login');
+    @endphp
+@endif
 <script>
     $(document).ready(function () {
         @if(Request::is('nap-the'))
