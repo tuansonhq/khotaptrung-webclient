@@ -88,7 +88,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-                return $result_Api;
                 return view('index');
             });
             Route::get('/theme', function ()
