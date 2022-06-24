@@ -23,11 +23,19 @@ class LoginController extends Controller
 //            return redirect('/');
 //        }
         $jwt = Session::get('jwt');
-        if(empty($jwt)){
-            return view('frontend.pages.log_in');
+
+        if (theme('')->theme_key = 'theme_1'){
+            Session::put('check_login', 33);
+            return view('frontend.pages.index');
+
         }else{
-            return redirect('/');
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
         }
+
 
     }
     public function postLogin(Request $request){

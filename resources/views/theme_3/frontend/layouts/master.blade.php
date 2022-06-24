@@ -56,12 +56,16 @@
 
 </head>
 <body>
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+
+@if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
             $('#loginModal').modal('show');
         });
     </script>
+    @php
+        Session::pull('check_login');
+    @endphp
 @endif
 <script>
 

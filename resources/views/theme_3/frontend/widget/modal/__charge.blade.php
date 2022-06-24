@@ -25,7 +25,7 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Nhà mạng</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct" id="charge_name">
+                                    <div class="col-auto left-right background-order-col-right-ct charge_name" id="">
 {{--                                        <small>10.000 đ</small>--}}
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Giá niêm yết</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct" id="charge_amount">
+                                    <div class="col-auto left-right background-order-col-right-ct charge_amount" id="">
 {{--                                        <small>10.000 đ</small>--}}
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Chiết khấu</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct" id="charge_ratito">
+                                    <div class="col-auto left-right background-order-col-right-ct charge_ratito" id="">
 {{--                                        <small>3%</small>--}}
                                     </div>
                                 </div>
@@ -75,10 +75,10 @@
                             <div class="col-md-12 left-right background-order-ct">
                                 <div class="row marginauto background-order-row-ct">
                                     <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Tài khoản</span>
+                                        <span>Số tiền thực nhận</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <span>97.000 đ</span>
+                                    <div class="col-auto left-right background-order-col-right-ct charge_price">
+{{--                                        <span>97.000 đ</span>--}}
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                     <div class="col-md-12 left-right padding-order-footer-ct">
                         <div class="row marginauto">
                             <div class="col-md-12 left-right">
-                                <button class="button-default-nick-ct " id="btn-confirm-charge" type="button">Xác nhận</button>
+                                <button class="button-default-nick-ct btn-confirm-charge" id="" type="button">Xác nhận</button>
                             </div>
                         </div>
                     </div>
