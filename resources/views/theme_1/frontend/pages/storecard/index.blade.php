@@ -36,7 +36,7 @@
                       <div class="col-md-7 row justify-content-center" id="loading-data">
                           <div class="loading"></div>
                       </div>
-                     <div class="col-md-7 hide" id="formStoreCard">
+                     <div class="col-md-7 hide" id="formStoreCard"  >
                         <div class="mb-2 control-label bb"><strong>Chọn nhà mạng:</strong> </div>
                         <div class="mb-3">
                            <select name="telecom" id="telecom_storecard" class="server-filter form-control t14" style="">

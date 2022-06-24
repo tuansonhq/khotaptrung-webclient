@@ -28,7 +28,7 @@
                 </div>
                 <div class="row marginauto justify-content-center modal-footer-success-ct">
 
-                    <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
+                    <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
                         <div class="row marginauto modal-footer-success-row-ct">
                             <div class="col-md-12 left-right">
                                 <a href="/" class="button-bg-ct" style="display: flex;justify-content: center"><span>Đi tới fanpage</span></a>
