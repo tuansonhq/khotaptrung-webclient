@@ -93,6 +93,7 @@ class AccController extends Controller
                     foreach(explode('|',$select_data) as $v){
                         if ($v == "" || $v == null){
 
+
                         }else{
                             array_push($group_ids,$v);
                         }
