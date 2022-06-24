@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 column">
             <div class="job-details">
-                <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(MẶC ĐỊNH Ở VÁCH NÚI KAKAROT KHU 39)</span></h2>
+                <h2 style="margin-bottom: 23px;font-size: 20px;font-weight: bold;text-transform: uppercase;float: left">Vị trí <span style="font-size:14px;margin-top: 8px;margin-left:5px;font-weight:bold;">(MẶC ĐỊNH Ở VÁCH NÚI KAKAROT)</span></h2>
                 <div class="table-bot m_datatable m-datatable m-datatable--default m-datatable--loaded">
                     <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                         <thead class="m-datatable__head">
