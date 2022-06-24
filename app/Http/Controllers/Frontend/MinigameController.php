@@ -228,6 +228,7 @@ class MinigameController extends Controller
 
                 $url = '/minigame/post-minigame';
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
                     if ($result->status == 1) {
