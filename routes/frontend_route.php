@@ -167,6 +167,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                         Route::post('/user/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
+                        Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
+                        Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
                         // lấy nhà mạng mua thẻ
                         Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
                         // lấy mệnh giá trong mua thẻ
