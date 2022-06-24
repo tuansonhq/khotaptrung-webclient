@@ -69,12 +69,9 @@
                         <div class="card--body">
                             <ul class="nav nav-tabs tabs--cards" role="tablist">
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link active" id="card-game-tab" data-toggle="tab" href="#card-game"
-                                       role="tab" aria-controls="card-game" aria-selected="true">Thẻ game</a>
+                                    <a class="nav-link active" id="card-game-tab" data-toggle="tab" href="#card-game" role="tab" aria-controls="card-game" aria-selected="true">Thẻ game</a>
                                 <li class="nav-item" role="presentation">
-                                    <a class="nav-link" id="card-phone-tab" data-toggle="tab" href="#card-phone"
-                                       role="tab"
-                                       aria-controls="card-phone" aria-selected="false">Thẻ điện thoại</a>
+                                    <a class="nav-link" id="card-phone-tab" data-toggle="tab" href="#card-phone" role="tab" aria-controls="card-phone" aria-selected="false">Thẻ điện thoại</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
