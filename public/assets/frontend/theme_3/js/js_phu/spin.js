@@ -126,4 +126,21 @@ $(document).ready(function () {
         $('.leaderboard-md .date-listing').css('width', `${width}px` );
     }
 
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
+
+            $('.content-video-in').css('max-height', 'initial')
+
+        } else {
+
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
+    });
+
 });

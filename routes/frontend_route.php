@@ -269,7 +269,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('login');
                     Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
                     Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                    Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+                    Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
                         ->name('loginApi');
                     Route::get('/404', function ()
                     {
