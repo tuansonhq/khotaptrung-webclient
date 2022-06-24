@@ -24,16 +24,22 @@ class LoginController extends Controller
 //        }
         $jwt = Session::get('jwt');
 
-        if (theme('')->theme_key = 'theme_1'){
-            Session::put('check_login', 33);
-            return view('frontend.pages.index');
-
-        }else{
+        if (theme('')->theme_key = 'theme_1'  ){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
             }else{
                 return redirect('/');
             }
+
+        }elseif (theme('')->theme_key = 'theme_2'){
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
+        }else{
+            Session::put('check_login', 33);
+            return view('frontend.pages.index');
         }
 
 
