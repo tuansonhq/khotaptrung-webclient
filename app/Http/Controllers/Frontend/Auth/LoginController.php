@@ -23,11 +23,25 @@ class LoginController extends Controller
 //            return redirect('/');
 //        }
         $jwt = Session::get('jwt');
-        if(empty($jwt)){
-            return view('frontend.pages.log_in');
+
+        if (theme('')->theme_key = 'theme_1'  ){
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
+
+        }elseif (theme('')->theme_key = 'theme_2'){
+            if(empty($jwt)){
+                return view('frontend.pages.log_in');
+            }else{
+                return redirect('/');
+            }
         }else{
-            return redirect('/');
+            Session::put('check_login', 33);
+            return view('frontend.pages.index');
         }
+
 
     }
     public function postLogin(Request $request){

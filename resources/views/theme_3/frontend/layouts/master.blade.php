@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
+    <link rel="stylesheet" href="assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
     @if (!Auth::check())
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
@@ -52,16 +52,20 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 
 </head>
 <body>
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+
+@if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
             $('#loginModal').modal('show');
         });
     </script>
+    @php
+        Session::pull('check_login');
+    @endphp
 @endif
 <script>
 

@@ -3,6 +3,7 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
+
     function getTelecom (){
         const url = '/store-card/get-telecom';
         $.ajax({
