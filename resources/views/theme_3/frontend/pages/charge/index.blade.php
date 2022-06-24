@@ -9,8 +9,6 @@
 @section('content')
 
     <div class="container container-fix">
-
-
         <div class="block-card-item " >
             <fieldset id="fieldset-one_transaction">
                 <section class="media-mobile">
@@ -63,8 +61,7 @@
 {{--                                    </li>--}}
                                 </ul>
                             </div>
-
-                            <div class=" tab-content">
+                                <div class=" tab-content">
                                 <div class="tab-pane fade active show  mt-3" id="charge_card" role="tabpanel" >
                                     <div class="loading-data">
                                         <div class="loader">
@@ -149,22 +146,22 @@
                                             <div class="default-form-group mb-fix-20">
                                                 <label class="text-form">Mã số thẻ</label>
                                                 <div class="col-md-12 p-0">
-                                                    <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ">
+                                                    <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" required>
 
                                                 </div>
                                             </div>
                                             <div class="default-form-group mb-fix-20">
                                                 <label class="text-form">Số Seri</label>
                                                 <div class="col-md-12 p-0">
-                                                    <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ">
+                                                    <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" required>
 
                                                 </div>
                                             </div>
                                             <div class="default-form-group mb-fix-20">
                                                 <label class="text-form">Mã bảo vệ</label>
                                                 <div class="col-md-12 p-0 d-flex">
-                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ">
-                                                    <div class="captcha captcha_1">
+                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
+                                                    <div class="captcha captcha_1" >
                                                         <span class="reload">
                                                              {!! captcha_img('flat') !!}
                                                         </span>
@@ -195,43 +192,11 @@
                                 <div class="tab-pane fade  mt-3 " id="atm_card" role="tabpanel" >
                                     <form action="">
                                         <div class="box-charge-card">
-                                            <div class="atm-card-title mb-fix-20">
-                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>
-                                            </div>
+{{--                                            <div class="atm-card-title mb-fix-20">--}}
+{{--                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>--}}
+{{--                                            </div>--}}
                                             <div class="dialog--content mb-fix-20">
                                                 <div class="card--gray">
-{{--                                                    <div class="card--attr">--}}
-{{--                                                        <div class="card--attr__name">--}}
-{{--                                                            Ngân hàng Kỹ thương Việt Nam--}}
-{{--                                                            (Techcombank)--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="card--attr__value">--}}
-{{--                                                            <div class="card--logo">--}}
-{{--                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="card--attr">--}}
-{{--                                                        <div class="card--attr__name">--}}
-{{--                                                            Chủ tài khoản--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="card--attr__value">--}}
-{{--                                                            BUI THI NHAM--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                    <div class="card--attr">--}}
-{{--                                                        <div class="card--attr__name">--}}
-{{--                                                            Số tài khoản--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="card--attr__value d-flex">--}}
-
-{{--                                                            <div class="card__info"> 19037861065016</div>--}}
-
-{{--                                                            <div class="icon--coppy js-copy-text" aria-describedby="tippy-7">--}}
-{{--                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
                                                     @if (setting('sys_tranfer_content') != "")
                                                         {!! setting('sys_tranfer_content') !!}
                                                     @endif
@@ -239,10 +204,10 @@
                                                         <div class="card--attr__name">
                                                             Nội dung chuyển tiền
                                                         </div>
-                                                        <div class="card--attr__value d-flex">
-                                                            <div class="card__info"> NAP DTGRN 103764</div>
+                                                        <div class="card--attr__value d-flex " >
+                                                            <div class="card__info transfer-code" id=""></div>
 
-                                                            <div class="icon--coppy js-copy-text" aria-describedby="tippy-7">
+                                                            <div class="icon--coppy js-copy-text" aria-describedby="tippy-7" >
                                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
                                                             </div>
                                                         </div>
@@ -250,180 +215,133 @@
 
                                                 </div>
                                             </div>
-
-                                            <div class="default-form-group d-none d-md-block ">
-                                                <button  class="w-100 primary-button button-default-ct btn-data-charge_atm" type="button">
-                                                    Xác nhận
-                                                </button>
-                                            </div>
-                                            <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none">
-                                                <div class="row marginauto" style="padding: 12px 16px">
-                                                    <div class="col-md-12 left-right">
-                                                        <button id="recharge_atm_next" class="button-default-ct btn-data-charge_atm" type="button">Xác nhận</button>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-
-
-                    </div>
+                            </div>
+                         </div>
                     </div>
                     <div class="col-lg-7 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
                         <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
                     </div>
                  </div>
              </fieldset>
-        <fieldset id="fieldset-two-charge" style="background-color: white">
-            <section>
-                <div class="container container-fix banner-mobile-container-ct">
-                    <div class="row marginauto banner-mobile-row-ct">
-                        <div class="col-auto left-right" style="width: 10%">
-                            <img id="charge_prev" class="lazy previous-step-one" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                        </div>
-
-                        <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h3>Xác nhận thanh toán</h3>
-                        </div>
-                        <div class="col-auto left-right" style="width: 10%">
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section>
-                <div class="row marginauto" style="padding: 12px 16px">
-
-                    <div class="col-md-12 left-right title-order-ct">
-                        <span>Thông tin nạp thẻ</span>
-                    </div>
-
-                    {{--                        <div class="col-md-12 left-right" id="order-errors">--}}
-                    {{--                            <div class="row marginauto order-errors">--}}
-                    {{--                                <div class="col-md-12 left-right">--}}
-                    {{--                                    <small>Lỗi rồi em ơi</small>--}}
-                    {{--                                </div>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
-
-
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Game</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Gói</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Vàng-Kim Cương</small>
-                                    </div>
-                                </div>
-
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Chiết khấu</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>3%</small>
-                                    </div>
-                                </div>
-
-                                <div class="row marginauto background-order-body-bottom-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Báo giá</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>100.000 đ</small>
-                                    </div>
-                                </div>
+            <fieldset id="fieldset-two-charge" style="background-color: white">
+                <section>
+                    <div class="container container-fix banner-mobile-container-ct">
+                        <div class="row marginauto banner-mobile-row-ct">
+                            <div class="col-auto left-right" style="width: 10%">
+                                <img id="charge_prev" class="lazy previous-step-one" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                             </div>
 
+                            <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
+                                <h3>Xác nhận thanh toán</h3>
+                            </div>
+                            <div class="col-auto left-right" style="width: 10%">
+                            </div>
                         </div>
+
                     </div>
+                </section>
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
+                <section>
+                    <div class="row marginauto" style="padding: 12px 16px">
 
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Phương thức thanh toán</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <span>Tài khoản Shopbrand</span>
-                                    </div>
-                                </div>
+                        <div class="col-md-12 left-right title-order-ct">
+                            <span>Thông tin nạp thẻ</span>
+                        </div>
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Nhà mạng</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct charge_name">
 
-                                <div class="row marginauto background-order-body-bottom-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Phí thanh toán</span>
+                                        </div>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Miễn phí</small>
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Giá niêm yết</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct charge_amount">
+
+                                        </div>
                                     </div>
+
+                                    <div class="row marginauto background-order-body-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Chiết khấu</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct charge_ratito">
+
+                                        </div>
+                                    </div>
+
+
                                 </div>
 
                             </div>
-
                         </div>
-                    </div>
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
-                                <div class="row marginauto background-order-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Tài khoản</span>
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-body-bottom-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Phí thanh toán</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <small>Miễn phí</small>
+                                        </div>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <span>97.000 đ</span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right padding-order-ct">
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right background-order-ct">
+                                    <div class="row marginauto background-order-row-ct">
+                                        <div class="col-auto left-right background-order-col-left-ct">
+                                            <span>Số tiền thực nhận</span>
+                                        </div>
+                                        <div class="col-auto left-right background-order-col-right-ct">
+                                            <span>97.000 đ</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile">
-                        <div class="row marginauto" style="padding: 12px 16px">
-                            <div class="col-md-12 left-right">
-                                <button class="button-default-ct button-next-step-two" type="button">Xác nhận</button>
+                        <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile">
+                            <div class="row marginauto" style="padding: 12px 16px">
+                                <div class="col-md-12 left-right">
+                                    <button class="button-default-ct button-next-step-two btn-confirm-charge" type="button">Xác nhận</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
+              <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
         </fieldset>
 
-
-
-
-
-
-
-
+         </div>
     </div>
-
 
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
 
-        <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+
 @endsection

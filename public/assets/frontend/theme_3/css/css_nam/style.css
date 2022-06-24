@@ -1201,14 +1201,33 @@ header nav.heading .header-container{
 
 /*nạp tiền*/
 .captcha{
-    margin: 0 16px;
+    margin: 0 8px;
+    width: 150px;
 
 }
+
 .refresh-captcha{
     border:none;
     border-radius: 8px;
-    background: transparent;
+    background: #FBFBFD;
+
+
 }
+.refresh-captcha img{
+    -moz-transition: all .8s linear;
+    -webkit-transition: all .8s linear;
+    transition: all .8s linear;
+    padding: 0 16px;
+}
+
+.refresh-captcha .down {
+    -moz-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg);
+}
+/*.refresh-captcha img{*/
+/*    padding: 0 8px;*/
+/*}*/
 .item-product-service>a>div{
     margin-top: 0.75rem;
     font-weight: 600;
