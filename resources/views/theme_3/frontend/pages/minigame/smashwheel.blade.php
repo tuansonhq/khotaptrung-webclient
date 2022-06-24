@@ -49,7 +49,8 @@
                             </p>
                             @endif
                         </div>
-                        @dd($result)
+
+                        @if(isset($currentPlayList) && $currentPlayList != '')
                         <div class="rotation-notify">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                             <marquee class="rotation-marquee">
@@ -58,6 +59,7 @@
                                 </div>
                             </marquee>
                         </div>
+                        @endif
                         <div class="rotation-sale">
                             <div class="rotation-sale-header">
                                 <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/flash_img.png" alt=""> Flash sale</p>
@@ -72,9 +74,15 @@
                             </div>
                             <div class="rotation-sale-content">
                                 <p>
-                                    <span id="rotationFirstPrice">240.00đ</span>
-                                    <span id="rotationSalePrice">160.000đ</span>
-                                    <span id="rotationSaleRatio">Giảm 66%</span>
+                                    <span id="rotationFirstPrice">
+                                        @if(isset($result->params->percent_sale))
+                                            {{ str_replace(',','.',number_format(($result->params->percent_sale*$result->group->price)/100 + $result->group->price)) }} đ
+                                        @endif
+                                    </span>
+                                    <span id="rotationSalePrice">{{ str_replace(',','.',number_format($result->group->price)) }} đ</span>
+                                    @if(isset($result->params->percent_sale))
+                                    <span id="rotationSaleRatio">Giảm {{ $result->params->percent_sale }}%</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -97,45 +105,56 @@
                                 </div>
                             </div>
                             <div class="progress-wrapper">
-                                <div class="progress-bar">
-
-                                </div>
+                                <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                             </div>
                         </div>
                         <div class="rotation-inputs row">
+                            @if($result->checkVoucher==1)
                             <div class="col-12 col-md-6">
                                 <input class="input-primary" type="text" name="discount_code" placeholder="Nhập mã giảm giá">
                             </div>
+                            @endif
                             <div class="col-12 col-md-6">
                                 <select class="rotation-inputs-select select-primary" name="type" id="rotationSelectBlock">
-                                    <option value="0">Quay 1 lần - Giá 10k</option>
-                                    <option value="1">Quay 1 lần - Giá 10k</option>
-                                    <option value="2">Quay 1 lần - Giá 10k</option>
+                                    <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần chơi</option>
+                                    @if($result->group->params->price_sticky_3 > 0))
+                                    <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần chơi</option>
+                                    @endif
+                                    @if($result->group->params->price_sticky_5 > 0))
+                                    <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần chơi</option>
+                                    @endif
+                                    @if($result->group->params->price_sticky_7 > 0))
+                                    <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần chơi</option>
+                                    @endif
+                                    @if($result->group->params->price_sticky_10 > 0))
+                                    <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần chơi</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <div class="rotation-buttons row">
+                            @if($result->group->params->is_try == 1)
                             <div class="col-6">
-                                <button id="playerDemo" class="button-secondary button-demo">Chơi thử</button>
+                                <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
                             </div>
+                            @endif
                             <div class="col-6">
-                                <button id="playButton" class="button-primary button-play">Quay ngay</button>
+                                <button id="start-played" class="button-primary button-play">Quay ngay</button>
                             </div>
                         </div>
                     </div>
+                    @if(isset($result->group->description))
                     <div class="service-detail">
                         <h6>Chi tiết dịch vụ</h6>
                         <div class="service-detail-content">
-                            Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới trẻ hiện nay, đặc biệt là các game online hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game đối kháng, game thẻ bài, gam kiếm hiệp hay game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và ngày càng tăng cao. Đặc biệt với các game thủ muốn đua top hay muốn có những vật phẩm giá trị trong game. Hãy cùng napgamegiare.net tìm hiểu các thông tin liên quan đến nạp game ngay sau đây nhé !
-
-                            Nạp game là gì?
-                            Nạp game hiểu một cách đơn giản là việc nạp tiền vào trong game để mua sắm các vật phẩm, các món đồ trong game hay thực hiện các nhiệm vụ, tăng cấp cho nhân vật trong game. Đây là hình thức vô cùng phổ biến đối với các game thủ. Khi người chơi dùng tiền mặt để nạp vào game thì số tiền này sẽ quy đổi thành một đơn vị, đồng tiền trong game, có thể kể đến như: sò - garena, thóc - funtap, kim cương - gosu,.... Vậy tại sao cần nạp game, nạp game sẽ được những gì ?
+                            {!! $result->group->description !!}
                         </div>
                         <div class="see-more">
                             <span id="seeMore">Xem thêm</span>
                             <span id="seeLess" style="display: none;">Rút gọn</span>
                         </div>
                     </div>
+                    @endif
                     <div class="rotation-leaderboard leaderboard-md">
                         <div class="leaderboard-header">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
@@ -144,374 +163,92 @@
                         <div class="leaderboard-type row no-gutters">
                             <div class="col-4">
                                 <div class="listed-date">
+                                    Hôm nay
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="listed-date">
                                     7 ngày
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="listed-date">
-                                    30 ngày
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="listed-date">
-                                    60 ngày
+                                    Quà đua top
                                 </div>
                             </div>
                             <div class="date-listing"></div>
                         </div>
                         <div class="leaderboard-table">
-                            <div class="leaderboard-table-container">
+                            <div class="leaderboard-table-container item-top-content-minigame">
                                 <div class="leaderboard-head row no-gutters">
                                     <div class="leaderboard-head-item col-3">
                                         <p>Tài khoản</p>
                                     </div>
                                     <div class="leaderboard-head-item col-5">
-                                        <p>Giải thưởng</p>
+{{--                                        <p>Giải thưởng</p>--}}
                                     </div>
                                     <div class="leaderboard-head-item col-4">
-                                        <p>Thời gian</p>
+                                        <p>Lượt quay</p>
                                     </div>
                                 </div>
-                                <div class="leaderboard-content leaderboard-1">
-                                    <div class="leaderboard-item row no-gutters">
+                                <div class="leaderboard-content leaderboard-1 item-top-content">
+
+                                    @if(isset($topDayList))
+                                        @foreach($topDayList as $item)
+                                            <div class="leaderboard-item row no-gutters">
                                         <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
+                                            <p>{{$item['name']}}</p>
                                         </div>
                                         <div class="col-5">
-                                            +100.000 kim cương
+{{--                                            +100.000 kim cương--}}
                                         </div>
                                         <div class="col-4">
-                                            2022-04-08, 20:30
+                                            {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
                                         </div>
                                     </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
+
                                 </div>
                                 <div class="leaderboard-content leaderboard-2" style="display: none;">
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
+                                    @if(isset($top7DayList))
+                                        @foreach($top7DayList as $item)
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-3 leaderboard-item-name">
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-5">
+{{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <div class="leaderboard-content leaderboard-3" style="display: none;">
+
                                     <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
+                                        <div class="col-12 leaderboard-item-name">
+                                            {!!$result->group->params->phanthuong!!}
                                         </div>
                                     </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-3 leaderboard-item-name">
-                                            <p>Shinn Shinn</p>
-                                        </div>
-                                        <div class="col-5">
-                                            +100.000 kim cương
-                                        </div>
-                                        <div class="col-4">
-                                            2022-04-08, 20:30
-                                        </div>
-                                    </div>
+
                                 </div>
+
+
                             </div>
                         </div>
-                        <div class="leaderboard-seemore">
-                            <p>Xem thêm</p>
+                        <div class="footer-row-ct d-lg-none d-block">
+                            <div  class="col-md-12 left-right text-center js-toggle-content">
+                                <div class="view-more-top">
+                                    Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png" alt="">
+                                </div>
+                                <div class="view-less-top">
+                                    Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png" alt="">
+                                </div>
+                            </div>
                         </div>
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
@@ -522,6 +259,7 @@
                             </div>
                         </div>
                     </div>
+                    @if(isset($inbox))
                     <div class="rotation-comment">
                         <h6>Bình luận</h6>
                         <div class="comment-block">
@@ -661,6 +399,7 @@
                             </div>
                         </form>
                     </div>
+                    @endif
                 </div>
                 <div class="col-12 col-lg-5 rotation-content-sm">
                     <div class="rotation-leaderboard leaderboard-lg">
@@ -679,17 +418,17 @@
                         <div class="leaderboard-type row no-gutters">
                             <div class="col-4">
                                 <div class="listed-date">
+                                    Hôm nay
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="listed-date">
                                     7 ngày
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="listed-date">
-                                    30 ngày
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="listed-date">
-                                    60 ngày
+                                    Quà đua top
                                 </div>
                             </div>
                             <div class="date-listing"></div>
@@ -700,377 +439,94 @@
                                     <p>Tài khoản</p>
                                 </div>
                                 <div class="leaderboard-head-item col-4">
-                                    <p>Giải thưởng</p>
+{{--                                    <p>Giải thưởng</p>--}}
                                 </div>
                                 <div class="leaderboard-head-item col-4">
-                                    <p>Thời gian</p>
+                                    <p>Lượt quay</p>
                                 </div>
                             </div>
-                            <div class="leaderboard-content leaderboard-1">
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>4</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>5</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>6</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>7</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>8</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>9</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>10</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
+                            <div class="leaderboard-content leaderboard-1 minigame-scroll">
+                                @if(isset($topDayList))
+                                    @foreach($topDayList as $key => $item)
+                                        @if($key < 3)
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+{{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <span>{{ $key + 1 }}</span>
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+{{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+
                             </div>
-                            <div class="leaderboard-content leaderboard-2" style="display: none;">
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>4</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>5</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>6</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>7</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>8</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>9</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>10</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
+                            <div class="leaderboard-content leaderboard-2 minigame-scroll" style="display: none;">
+                                @if(isset($top7DayList))
+                                    @foreach($top7DayList as $key => $item)
+                                        @if($key < 3)
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+{{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <span>{{ $key + 1 }}</span>
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+{{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+
                             </div>
                             <div class="leaderboard-content leaderboard-3" style="display: none;">
+                                @if(isset($result->group->params->phanthuong))
                                 <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
+                                    <div class="col-12 leaderboard-item-name">
+                                        {!!$result->group->params->phanthuong!!}
                                     </div>
                                 </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
+                                @else
+                                    <div class="leaderboard-item row no-gutters">
+                                        <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                            Không có dữ liệu
+                                        </div>
                                     </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>4</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>5</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>6</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>7</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>8</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>9</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
-                                <div class="leaderboard-item row no-gutters">
-                                    <div class="col-4 leaderboard-item-name">
-                                        <span>10</span>
-                                        <p>Shinn Shinn</p>
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        +100.000 kim cương
-                                    </div>
-                                    <div class="col-4 leaderboard-item-ar">
-                                        2022-04-08, 20:30
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -1350,6 +806,8 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     @include('theme_3.frontend.widget.modal.__rotation_history')
     @include('theme_3.frontend.widget.modal.__rotation_prize')
 

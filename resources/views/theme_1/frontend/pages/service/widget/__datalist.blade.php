@@ -2,7 +2,7 @@
     @if(isset($data) && count($data) > 0)
 
         @foreach ($data as $item)
-        {{ formatDateTime($item->created_at) }}
+    
             <div class="col-6 col-sm-6 col-lg-3 fixcssacount">
                 <div class="item_buy_list_in">
                     <div class="item_buy_list_img">
