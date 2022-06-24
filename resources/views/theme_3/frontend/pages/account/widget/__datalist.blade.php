@@ -380,27 +380,19 @@
                                                                     @if(App\Library\AuthCustom::user()->balance > $item->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
-                                                                        <div class="row marginauto justify-content-center gallery-right-footer">
+                                                                        <div class="row marginauto justify-content-center">
                                                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                                <div class="row marginauto nick-detail-button">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/nap-the" class="button-not-bg-ct">
-                                                                                            <ul>
-                                                                                                <li><small>Thẻ cào</small></li>
-                                                                                            </ul>
-                                                                                        </a>
-                                                                                    </div>
+                                                                                <div class="col-md-12 left-right">
+                                                                                    <a href="/nap-the" class="unbalance-case-button button-primary">
+                                                                                        Thẻ cào
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                                                <div class="row marginauto nick-detail-button">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/recharge-atm" class="button-not-bg-ct">
-                                                                                            <ul>
-                                                                                                <li><small>ATM, Momo</small></li>
-                                                                                            </ul>
-                                                                                        </a>
-                                                                                    </div>
+                                                                                <div class="col-md-12 left-right">
+                                                                                    <a href="/recharge-atm" class="unbalance-case-button button-primary">
+                                                                                        ATM, Momo
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -431,9 +423,9 @@
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
-                                                        <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                                        {{-- <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
                                                             <span>{{ $item->title }}</span>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>
