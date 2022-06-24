@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/minigame.css">
 @endsection
 @section('content')
-    <div class="banner-home " style=" background: url(/assets/{{env('THEME_VERSION')}}/image/banner_01.png) no-repeat center center / cover;">
+    <div class="banner-home " style=" background: url(/assets/frontend/{{theme('')->theme_key}}/image/banner_01.png) no-repeat center center / cover;">
         <div class="container container-fix">
             <div class="d-flex justify-content-between">
                 <div class=" d-g-lg-none">
@@ -13,28 +13,28 @@
                         <ul class="list-service">
                             <li class="item-service">
                                 <a href="/mua-the">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant2.png" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant2.png" alt="">
                                     <div>Nạp tiền</div>
                                 </a>
 
                             </li>
                             <li class="item-service">
                                 <a href="/dich-vu">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant4.png" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant4.png" alt="">
                                     <div>Shop acc giá rẻ</div>
                                 </a>
 
                             </li>
                             <li class="item-service">
                                 <a href="/recharge-game">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant6.png" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant6.png" alt="">
                                     <div>Vòng quay</div>
                                 </a>
 
                             </li>
                             <li class="item-service">
                                 <a href="/tin-tuc">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant9.png" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant9.png" alt="">
                                     <div>Tin tức</div>
                                 </a>
                             </li>
@@ -51,7 +51,7 @@
                     </marquee>
                 </div>
                 <div class="box-list-top top-list d-g-lg-none">
-                    <p><img src="/assets/{{env('THEME_VERSION')}}/image/star_top.png" alt=""> Top nạp T6</p>
+                    <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T6</p>
                     <div class="top-days default-tab pr-fix-16 pl-fix-16">
                         <ul class="nav justify-content-between row" role="tablist" >
                             <li class="nav-item col-md-4 p-md-0" role="presentation">
@@ -69,17 +69,17 @@
                         <div class="tab-pane fade active show item-top mt-3" id="sevendays" role="tabpanel" aria-labelledby="sevendays-tab" >
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Yến Munn </span>
                                     <span class="float-right top-amount">100.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Yan </span>
                                     <span class="float-right top-amount">100.000đ</span>
                                 </li>
@@ -109,17 +109,17 @@
                         <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -145,17 +145,17 @@
                         <div class="tab-pane  fade item-top mt-3" id="sixtydays"  role="tabpanel" aria-labelledby="sixty-tab">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -206,53 +206,53 @@
                 <div class=" d-flex justify-content-lg-between row" >
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/nap-the">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant1.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant1.png" alt="">
                             <div>Nạp thẻ cào</div>
                         </a>
 
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/nap-the">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant2.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant2.png" alt="">
                             <div>Nạp ATM -Ví</div>
                         </a>
 
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/mua-the">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant3.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant3.png" alt="">
                             <div>Mua thẻ Game</div>
                         </a>
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/mua-acc">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant4.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant4.png" alt="">
 
                             <div>Mua Acc Game</div>
                         </a>
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/dich-vu">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant5.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant5.png" alt="">
                             <div>Dịch vụ Game</div>
                         </a>
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/minigame">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant6.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant6.png" alt="">
                             <br>
                             <div>Vòng quay</div>
                         </a>
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/recharge-game">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant7.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant7.png" alt="">
                             <div>Nạp game</div>
                         </a>
                     </div>
                     <div class="item-product item-product-service col-lg-auto col-md-3 col-4 mb-fix-16">
                         <a href="/nap-the">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/service_significant9.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/service_significant9.png" alt="">
                             <div>Tin tức</div>
                         </a>
                     </div>
@@ -264,7 +264,7 @@
         <div class="flash-sales block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Giảm sốc <span class="d-g-md-none"> trong ngày</span></p>
                 <div class="timer d-flex" id="timer">
@@ -284,7 +284,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product2.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -313,7 +313,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product3.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -342,7 +342,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product1.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -371,7 +371,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product2.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -400,7 +400,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product2.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -429,7 +429,7 @@
                             <a href="/acc/id">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/product2.gif" alt="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -461,7 +461,7 @@
 
         <div class="top-list row d-md-none d-block mt-fix-20">
             <div class=" col-md-12" >
-                <p class="text-center"><img src="/assets/{{env('THEME_VERSION')}}/image/star_top.png" alt=""> Top nạp thẻ</p>
+                <p class="text-center"><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
                 <div class="top-days default-tab">
                     <ul class="nav justify-content-between row pr-fix-16 pl-fix-16" role="tablist" >
                         <li class="nav-item col-4 col-md-4 p-0  p-md-0" role="presentation">
@@ -480,17 +480,17 @@
                         <div class="item-top-content">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -542,7 +542,7 @@
                     <div class=" block-product ">
                         <div class="product-header d-flex">
                         <span>
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_title.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame_title.png" alt="">
                         </span>
                             <p class="text-title" >Vòng quay may mắn</p>
                             <div class="navbar-spacer"></div>
@@ -557,7 +557,7 @@
                                 <div class="list-minigame_box-left col-md-8 px-2">
                                     <div class="item-minigame_first ">
                                         <a href="/minigame/slug">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame.png" alt="">
                                             <div class="item-minigame-content">
                                                 <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                 <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -577,7 +577,7 @@
                                         <div class="col-md-12 pr-fix-8 pl-fix-8 ">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -598,7 +598,7 @@
                                         <div class="col-md-12 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -624,7 +624,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8 ">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -645,7 +645,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame6.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -666,7 +666,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -693,7 +693,7 @@
                                 <div class="list-minigame_box-left w-100">
                                     <div class="item-minigame_first">
                                         <a href="/minigame/slug">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
                                             <div class="item-minigame-content">
                                                 <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                 <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -716,7 +716,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -736,7 +736,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -756,7 +756,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -776,7 +776,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -796,7 +796,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -827,7 +827,7 @@
         <div class=" block-product mt-fix-20">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Danh mục acc game</p>
                 <div class="product-catecory" ></div>
@@ -855,7 +855,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -880,7 +880,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_02.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -905,7 +905,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_03.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -930,7 +930,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_04.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -955,7 +955,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -980,7 +980,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_02.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1012,7 +1012,7 @@
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -1038,7 +1038,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_02.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1063,7 +1063,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_03.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1088,7 +1088,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_04.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1114,7 +1114,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1145,7 +1145,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1170,7 +1170,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_02.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1195,7 +1195,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_03.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1220,7 +1220,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_04.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1245,7 +1245,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_01.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1270,7 +1270,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/acc_02.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1302,7 +1302,7 @@
         <div class=" block-product mt-fix-20">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Danh mục xu khóa</p>
                 <div class="product-catecory" ></div>
@@ -1330,7 +1330,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1352,7 +1352,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1375,7 +1375,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_3.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_3.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1397,7 +1397,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_4.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_4.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1421,7 +1421,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1445,7 +1445,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1474,7 +1474,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1496,7 +1496,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1519,7 +1519,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1543,7 +1543,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_4.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_4.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1567,7 +1567,7 @@
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -1597,7 +1597,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1619,7 +1619,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1641,7 +1641,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_3.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_3.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1665,7 +1665,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_4.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_4.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1689,7 +1689,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1712,7 +1712,7 @@
                             <div class="swiper-slide " >
                                 <a href="/acc/id">
                                     <div class="item-product__box-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/product/xu_khoa_2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/xu_khoa_2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -1741,9 +1741,9 @@
         </div>
 
         <div class=" block-product mt-fix-20 mt-md-fix-8">
-            <div class="d-flex product-header-item">
+            <div class="d-flex product-header-item product-header">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/news.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
                     </span>
                 <p class="text-title text-content-service">Các dịch vụ liên quan</p>
                 <div class="product-catecory"></div>
@@ -1758,7 +1758,7 @@
                             <div  class="swiper-slide ">
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/service/ser_1.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service/ser_1.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -1770,7 +1770,7 @@
                             <div  class="swiper-slide " >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/service/ser_2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service/ser_2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -1782,7 +1782,7 @@
                             <div  class="swiper-slide " >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/service/ser_3.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service/ser_3.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -1794,7 +1794,7 @@
                             <div  class="swiper-slide " >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/service/ser_4.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service/ser_4.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -1806,7 +1806,7 @@
                             <div  class="swiper-slide " >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/service/ser_5.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/service/ser_5.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -1824,9 +1824,9 @@
         <div class=" block-product mt-fix-20 mt-md-fix-8">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/news.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
                     </span>
-                <p class="text-title">Tin tức</p>
+                <p class="text-title">Tin nổi bật</p>
                 <div class="product-catecory " >
                     <ul class="nav d-g-md-none" role="tablist" >
                         <li class="nav-item" role="presentation">
@@ -1874,7 +1874,7 @@
                             <div class="swiper-slide" >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1893,7 +1893,7 @@
                             <div class="swiper-slide" >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1912,7 +1912,7 @@
                             <div class="swiper-slide" >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1931,7 +1931,7 @@
                             <div class="swiper-slide" >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image2.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image2.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1950,7 +1950,7 @@
                             <div class="swiper-slide" >
                                 <a href="/tin-tuc">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1980,7 +1980,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -1999,7 +1999,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2018,7 +2018,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2037,7 +2037,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2065,7 +2065,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2084,7 +2084,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2103,7 +2103,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -2118,7 +2118,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -2133,7 +2133,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
 
@@ -2152,7 +2152,7 @@
                             <div class="swiper-slide" >
                                 <a href="">
                                     <div class="item-product__box-img item-news-img">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/news_image.png" alt="">
+                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
                                     </div>
                                     <div class="item-product__box-content item-news-content">
                                         <div class="item-product__box-name">
@@ -2179,7 +2179,7 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" >
                             <div class="item-intro-img">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/intro1.png" alt=""></div>
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro1.png" alt=""></div>
                             <div class="list-intro-title">
                                 Sản phẩm, dịch vụ đa dạng, cập nhật thường xuyên
                             </div>
@@ -2190,7 +2190,7 @@
                         </div>
                         <div class="swiper-slide" >
                             <div class="item-intro-img">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/intro2.png" alt=""></div>
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro2.png" alt=""></div>
                             <div class="list-intro-title">
                                 Hàng nghìn khách hàng tin tưởng
                             </div>
@@ -2201,7 +2201,7 @@
                         </div>
                         <div class="swiper-slide" >
                             <div class="item-intro-img">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/intro3.png" alt=""></div>
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro3.png" alt=""></div>
                             <div class="list-intro-title">
                                 Trung tâm trợ giúp hỗ trợ tư vấn 24/24
                             </div>
@@ -2212,16 +2212,14 @@
                         </div>
                         <div class="swiper-slide" >
                             <div class="item-intro-img">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/intro4.png" alt=""></div>
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/intro4.png" alt=""></div>
                             <div class="list-intro-title">
                                 Giá cả ưu đãi, siêu rẻ trên thị trường
                             </div>
                             <div class="list-intro-content">
                                 Cung cấp những sản phẩm với giá cả tốt nhất cùng với đó là những ưu đãi vô cùng hấp dẫn.
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
