@@ -310,7 +310,7 @@
                     <div class="loading"></div>
                 </div>
 
-                <div class="box-account-mobile ">
+                <div class="box-account-mobile">
 {{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
 {{--                        <div class="account-avatar">--}}
 {{--                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
