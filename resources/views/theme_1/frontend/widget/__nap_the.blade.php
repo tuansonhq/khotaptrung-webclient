@@ -38,11 +38,11 @@
 
                     <div class="captcha_trangchu">
                         <span class="reload"  id="">
-                            <img src="{{captcha_src()}}"  id="captchaCode1" alt="" class="captcha">
+                            <img src="{{captcha_src()}}" onclick="document.getElementById('captchaCode1').src = {{captcha_src('default')}}+Math.random();document.getElementById('captcha1').focus();" id="captchaCode1" alt="" class="captcha">
                         </span>
 
                     </div>
-                    <div type="button" class="btn reload"  id="reload_trangchu"  style="color: red;background: #1f2228 !important;border: 1px solid #30343c;">
+                    <div type="button" class="btn reload"  id="reload_trangchu" onclick="document.getElementById('captchaCode1').src='captcha/default?'+Math.random()" style="color: red;background: #1f2228 !important;border: 1px solid #30343c;">
                         &#x21bb;
                     </div>
                 </div>

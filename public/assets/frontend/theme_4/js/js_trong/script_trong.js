@@ -38,7 +38,7 @@ function handleToggleContent(){
 }
 
 // Coppy text vào bộ nhớ
-$(document).on('click','.js-copy-text', function () {
+$('.js-copy-text').on('click', function () {
     let text_value = $(this).parent().find('.card__info').text().trim();
     navigator.clipboard.writeText(text_value);
 });
@@ -52,8 +52,12 @@ tippy('.js-copy-text', {
 
 
 // option swiper card
+let slider_count = 1;
+if ($('.slider--card .swiper-wrapper').children().length > 1) {
+    slider_count = 1.25;
+}
 var swiper_card = new Swiper(".slider--card", {
-    slidesPerView: 1,
+    slidesPerView: slider_count,
     spaceBetween: 16,
     freeMode: true,
     observer: true,

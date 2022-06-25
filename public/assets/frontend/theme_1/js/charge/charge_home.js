@@ -13,16 +13,16 @@ $(document).ready(function(){
     //     });
     // }
     // getCaptcha();
-    $('#reload_trangchu').click(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'reload-captcha',
-            success: function (data) {
-                $(".captcha_trangchu span").html(data.captcha);
-            }
-        });
-
-    });
+    // $('#reload_trangchu').click(function () {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: 'reload-captcha',
+    //         success: function (data) {
+    //             $(".captcha_trangchu span").html(data.captcha);
+    //         }
+    //     });
+    //
+    // });
 
     function reload_captcha_home() {
         $.ajax({

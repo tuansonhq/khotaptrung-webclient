@@ -6,16 +6,10 @@
 @media (max-width: 767px) {
     .img-slider-mobile{
         height: 176px;
-        border-radius: 0;
     }
 }
 .carousel-slider-item{
     padding-top: 16px;
-}
-@media (max-width: 767px) {
-    .carousel-slider-item{
-        padding-top: 0;
-    }
 }
 
 .text-slider{
@@ -63,35 +57,17 @@
     padding: 8px 0;
     margin-left: 3.2rem;
 }
-/*@media (max-width: 767px) {*/
-/*    .text-buy-card{*/
-/*        padding-right: 332px !important;*/
-/*    }*/
-/*}*/
 @media (max-width: 767px) {
     .text-buy-card{
-        padding-right: 8px !important;
-        margin: 0 !important;
-        text-align: left !important;
+        padding-right: 332px !important;
     }
 }
-
 
 .buy-card{
     padding-top: 20px;
 }
-@media (max-width: 767px) {
-    .buy-card{
-        padding-top: 0;
-    }
-}
 .choose-card{
     padding-top: 20px;
-}
-@media (max-width: 767px) {
-    .choose-card{
-        padding-top: 0;
-    }
 }
 .select-tag-type{
     display: flex;
@@ -125,8 +101,4 @@
 .text-content-service{
     padding-left: 8px;
 }
-@media (max-width: 767px) {
-    .service-mobile{
-        margin-top: 12px !important;
-    }
-}
+
