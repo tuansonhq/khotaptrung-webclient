@@ -38,7 +38,7 @@ function handleToggleContent(){
 }
 
 // Coppy text vào bộ nhớ
-$('.js-copy-text').on('click', function () {
+$(document).on('click','.js-copy-text', function () {
     let text_value = $(this).parent().find('.card__info').text().trim();
     navigator.clipboard.writeText(text_value);
 });
@@ -52,12 +52,8 @@ tippy('.js-copy-text', {
 
 
 // option swiper card
-let slider_count = 1;
-if ($('.slider--card .swiper-wrapper').children().length > 1) {
-    slider_count = 1.25;
-}
 var swiper_card = new Swiper(".slider--card", {
-    slidesPerView: slider_count,
+    slidesPerView: 1,
     spaceBetween: 16,
     freeMode: true,
     observer: true,
@@ -78,7 +74,7 @@ var swiper_article= new Swiper(".article--slider", {
     loop:true,
 });
 
-// option swiper article news
+// option swiper article article
 var swiper_article_banner = new Swiper(".article--slider__news", {
     spaceBetween: 16,
     slidesPerView:4,

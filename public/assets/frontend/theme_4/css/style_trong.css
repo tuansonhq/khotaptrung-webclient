@@ -703,7 +703,8 @@
     margin-top: 24px;
 }
 .mobile--confirm__payment,
-.mobile--success__payment
+.mobile--success__payment,
+.mobile--fail__payment
 {
     display: none;
 }
@@ -1016,7 +1017,7 @@
     transition: all ease .3s;
 }
 
-/* article news   */
+/* article article   */
 .article .article--thumbnail  {
     overflow: hidden;
     border-radius: 8px;
