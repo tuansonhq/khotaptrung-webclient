@@ -179,7 +179,9 @@
                             <div class="date-listing"></div>
                         </div>
                         <div class="leaderboard-table">
-                            <div class="leaderboard-table-container item-top-content-minigame">
+
+                            <div class="leaderboard-table-container content-video-in">
+
                                 <div class="leaderboard-head row no-gutters">
                                     <div class="leaderboard-head-item col-3">
                                         <p>Tài khoản</p>
@@ -191,7 +193,9 @@
                                         <p>Lượt quay</p>
                                     </div>
                                 </div>
-                                <div class="leaderboard-content leaderboard-1 item-top-content">
+
+                                <div class="leaderboard-content leaderboard-1 content-video-in">
+
 
                                     @if(isset($topDayList))
                                         @foreach($topDayList as $item)
@@ -240,14 +244,14 @@
 
                             </div>
                         </div>
-                        <div class="footer-row-ct d-lg-none d-block">
-                            <div  class="col-md-12 left-right text-center js-toggle-content">
-                                <div class="view-more-top">
-                                    Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png" alt="">
-                                </div>
-                                <div class="view-less-top">
-                                    Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png" alt="">
-                                </div>
+
+                        <div class="col-md-12 left-right text-center js-toggle-content media-web pb-3">
+                            <div class="view-more">
+                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
+                            </div>
+                            <div class="view-less">
+                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
+
                             </div>
                         </div>
                         <div class="leaderboard-buttons row">
@@ -530,57 +534,56 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rotation-advertise">
-                        <a href="#" target="_blank">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
-                        </a>
-                    </div>
-                    <div class="rotation-advertise">
-                        <a href="#" target="_blank">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
-                        </a>
-                    </div>
-                    <div class="rotation-advertise">
-                        <a href="#" target="_blank">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
-                        </a>
-                    </div>
+                    @if($groups_other!=null)
+                        @foreach($groups_other as $key => $item)
+                            @if($key < 3)
+                                <div class="rotation-advertise">
+                                    <a href="{{route('getIndex',[$item->slug])}}" target="_blank">
+                                        <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>
 
+        @if($groups_other!=null)
         <div class=" block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
-                <p class="text-title">Mini game liên quan</span></p>
+                <p class="text-title"><span>Mini game liên quan</span></p>
                 <div class="product-catecory"></div>
 
             </div>
             <div class="box-product">
                 <div class="swiper-container list-product" >
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
+                        @foreach($groups_other as $key => $item)
+                            @if($key > 3)
+                                <div class="swiper-slide" >
+                            <a href="{{route('getIndex',[$item->slug])}}">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
+                                    <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
 
                                 </div>
                                 <div class="item-product__box-content">
 
 
                                     <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
+                                        {{$item->title}}
                                     </div>
                                     <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
+                                        Đã bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
                                     </div>
                                     <div class="item-product__box-price">
 
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
+                                        <div class="special-price">{{number_format($item->price)}} đ</div>
+                                        <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
                                         <div class="item-product__sticker-percent">
                                             -50%
                                         </div>
@@ -589,222 +592,141 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-        <div class=" block-product mt-fix-20 ">
-            <div class="product-header d-flex">
-                    <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
-                    </span>
-                <p class="text-title">Mini game đã chơi gần đây</span></p>
-                <div class="product-catecory"></div>
+        @endif
+{{--        <div class=" block-product mt-fix-20 ">--}}
+{{--            <div class="product-header d-flex">--}}
+{{--                    <span>--}}
+{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">--}}
+{{--                    </span>--}}
+{{--                <p class="text-title"><span>Mini game đã chơi gần đây</span></p>--}}
+{{--                <div class="product-catecory"></div>--}}
 
-            </div>
-            <div class="box-product">
-                <div class="swiper-container list-product" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
+{{--            </div>--}}
+{{--            <div class="box-product">--}}
+{{--                <div class="swiper-container list-product" >--}}
+{{--                    <div class="swiper-wrapper">--}}
+{{--                        <div class="swiper-slide" >--}}
+{{--                            <a href="/minigame/slug">--}}
+{{--                                <div class="item-product__box-img">--}}
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame4.gif" alt="">--}}
 
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
+{{--                                </div>--}}
+{{--                                <div class="item-product__box-content">--}}
 
 
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
+{{--                                    <div class="item-product__box-name">--}}
+{{--                                        Acc liên quan siêu vip--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-sale">--}}
+{{--                                        Đã bán: 68,9K--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-price">--}}
 
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
+{{--                                        <div class="special-price">15.000đ</div>--}}
+{{--                                        <div class="old-price">30.000đ</div>--}}
+{{--                                        <div class="item-product__sticker-percent">--}}
+{{--                                            -50%--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="swiper-slide" >--}}
+{{--                            <a href="/minigame/slug">--}}
+{{--                                <div class="item-product__box-img">--}}
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame5.gif" alt="">
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame6.gif" alt="">--}}
 
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/minigame/slug">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
+{{--                                </div>--}}
+{{--                                <div class="item-product__box-content">--}}
 
 
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
+{{--                                    <div class="item-product__box-name">--}}
+{{--                                        Acc liên quan siêu vip--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-sale">--}}
+{{--                                        Đã bán: 68,9K--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-price">--}}
 
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
+{{--                                        <div class="special-price">15.000đ</div>--}}
+{{--                                        <div class="old-price">30.000đ</div>--}}
+{{--                                        <div class="item-product__sticker-percent">--}}
+{{--                                            -50%--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="swiper-slide" >--}}
+{{--                            <a href="/minigame/slug">--}}
+{{--                                <div class="item-product__box-img">--}}
+
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame5.gif" alt="">--}}
+
+{{--                                </div>--}}
+{{--                                <div class="item-product__box-content">--}}
+
+
+{{--                                    <div class="item-product__box-name">--}}
+{{--                                        Acc liên quan siêu vip--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-sale">--}}
+{{--                                        Đã bán: 68,9K--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-price">--}}
+
+{{--                                        <div class="special-price">15.000đ</div>--}}
+{{--                                        <div class="old-price">30.000đ</div>--}}
+{{--                                        <div class="item-product__sticker-percent">--}}
+{{--                                            -50%--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="swiper-slide" >--}}
+{{--                            <a href="/minigame/slug">--}}
+{{--                                <div class="item-product__box-img">--}}
+
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame3.gif" alt="">--}}
+
+{{--                                </div>--}}
+{{--                                <div class="item-product__box-content">--}}
+
+
+{{--                                    <div class="item-product__box-name">--}}
+{{--                                        Acc liên quan siêu vip--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-sale">--}}
+{{--                                        Đã bán: 68,9K--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-product__box-price">--}}
+
+{{--                                        <div class="special-price">15.000đ</div>--}}
+{{--                                        <div class="old-price">30.000đ</div>--}}
+{{--                                        <div class="item-product__sticker-percent">--}}
+{{--                                            -50%--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
