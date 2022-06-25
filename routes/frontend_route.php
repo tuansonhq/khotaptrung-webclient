@@ -140,8 +140,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
-                Route::get('/mua-acc', [AccController::class , "getCategory"]);
-
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
 
                 Route::get('/lich-su-tra-gop',function(){
@@ -151,6 +149,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
 
                 Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
