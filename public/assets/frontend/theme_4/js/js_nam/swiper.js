@@ -33,7 +33,7 @@ var intro_list = new Swiper('.list-intro', {
         }
     }
 });
-var news_list = new Swiper('.list-news', {
+var news_list = new Swiper('.list-article', {
     autoplay: false,
 
     updateOnImagesReady: true,
