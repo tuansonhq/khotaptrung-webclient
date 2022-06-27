@@ -336,10 +336,10 @@
          </div>
     </div>
 
-    @include('theme_3.frontend.widget.modal.__success_charge')
-    @include('theme_3.frontend.widget.modal.__reject_charge')
-    @include('theme_3.frontend.widget.modal.__success_charge_atm')
-    @include('theme_3.frontend.widget.modal.__success_wallet_card')
+    @include('frontend.widget.modal.__success_charge')
+    @include('frontend.widget.modal.__reject_charge')
+    @include('.frontend.widget.modal.__success_charge_atm')
+    @include('frontend.widget.modal.__success_wallet_card')
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>

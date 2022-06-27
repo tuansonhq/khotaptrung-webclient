@@ -93,7 +93,7 @@
             </div>
             <div class="box-logo d-none d-lg-block">
                 <a href="/">
-                    <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
                 </a>
             </div>
             <div class="box-search">
@@ -670,7 +670,7 @@
                     <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
                     <span>Trang chủ</span>
                     <div class="mobile-logo">
-                        <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
+                        <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
                     </div>
 
                 </a>
