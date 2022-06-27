@@ -140,8 +140,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
-                Route::get('/mua-acc', [AccController::class , "getCategory"]);
-
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
 
                 Route::get('/lich-su-tra-gop',function(){
@@ -151,6 +149,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
 
                 Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
 
                 Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
@@ -269,7 +268,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('login');
                     Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
                     Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-                    Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
+                    Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
                         ->name('loginApi');
                     Route::get('/404', function ()
                     {

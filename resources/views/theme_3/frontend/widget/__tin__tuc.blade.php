@@ -76,14 +76,14 @@
                         $('.news_game_li-{{ $item->slug }}').addClass('active');
                         $('.news_game_li-mobile-{{ $item->slug }}').addClass('active');
 
-                        $(document).on('click', '.onclick-news-game',function(e){
+                        $(document).on('click', '.onclick-article-game',function(e){
                             var slug = $(this).data('slug');
                             $('#news_game-' + slug + '').addClass('active');
                             $('#news_game-' + slug + '').addClass('show');
                             $('.news_game_li-' + slug + '').addClass('active');
                         });
 
-                        $(document).on('click', '.onclick-news-game-mobile',function(e){
+                        $(document).on('click', '.onclick-article-game-mobile',function(e){
                             var slug = $(this).data('slug');
                             $('#news_game-' + slug + '').addClass('active');
                             $('#news_game-' + slug + '').addClass('show');
