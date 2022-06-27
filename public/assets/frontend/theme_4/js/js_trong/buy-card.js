@@ -87,6 +87,7 @@ $(document).ready(function () {
                     let card_nav_phone = $('#card--phone__nav');
                     let card_other = $('#card--other__wrapper');
                     let data = res.data;
+                    console.log(data)
                     data.forEach(function (card) {
                         if (card.key.toLowerCase() === card_is) {
                             data_telecom = card

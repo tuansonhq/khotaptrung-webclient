@@ -48,17 +48,17 @@ $(document).ready(function (e) {
         $('.nick-findter-data').html('');
         $('.nick-findter-data').html(defaulthtml);
 
-        var serial = $('.serial').val();
+        var id = $('.id').val();
 
-        if (serial == null || serial == undefined || serial == ''){}else {
+        if (id == null || id == undefined || id == ''){}else {
             if ($('.prepend-nick').hasClass('prepend-nick-id')){
                 return false;
             }
-            if (parseInt(serial.length) > 50){
+            if (parseInt(id.length) > 50){
                 return false;
             }
             var htmlid = '';
-            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + serial + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlid);
             isSet = true;
             index = index + 1;
@@ -67,13 +67,13 @@ $(document).ready(function (e) {
         var statusvalue = $('.status-finter-nick .list .option.selected').data('value');
         var status = $('.status-finter-nick .list .option.selected').text();
 
-        if (status == null || status == undefined || status == 'Chọn' || statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn'){}else {
+        if (status == null || status == undefined || status == '' || statusvalue == null || statusvalue == undefined || statusvalue == 'Chọn'){}else {
             if ($('.prepend-nick').hasClass('prepend-nick-status')){
                 return false;
             }
 
             var htmlstatus = '';
-            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlstatus);
             isSet = true;
             index = index + 1;
@@ -82,12 +82,12 @@ $(document).ready(function (e) {
         var transactionvalue = $('.transaction-finter-nick .list .option.selected').data('value');
         var transaction = $('.transaction-finter-nick .list .option.selected').text();
 
-        if (transaction == null || transaction == undefined || transaction == 'Chọn' || transactionvalue == null || transactionvalue == undefined || transactionvalue == 'Chọn'){}else {
+        if (transaction == null || transaction == undefined || transaction == '' || transactionvalue == null || transactionvalue == undefined || transactionvalue == 'Chọn'){}else {
             if ($('.prepend-nick').hasClass('prepend-nick-transaction')){
                 return false;
             }
             var htmlrank = '';
-            htmlrank += '<div class="col-auto prepend-nick prepend-nick-transaction" style="position: relative"><a href="javascript:void(0)">' + transaction + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
+            htmlrank += '<div class="col-auto prepend-nick prepend-nick-transaction" style="position: relative"><a href="javascript:void(0)">' + transaction + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlrank);
             isSet = true;
             index = index + 1;
@@ -104,7 +104,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += 'Trước - ' + ended_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);
@@ -118,7 +118,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += 'Sau - ' + started_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);
@@ -130,7 +130,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += started_at + ' - ' + ended_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);
@@ -154,16 +154,13 @@ $(document).ready(function (e) {
     })
 
     $('body').on('click','.prepend-nick-status',function(){
-
         $('.status').val('');
         $('.status').niceSelect('update');
         $('.status-finter-nick .current').html('Chọn');
         $('.status-finter-nick .list:first-child').addClass('selected');
-
         loadData();
 
-        $('.started_at_data_ls').val('');
-
+        $('.status_data_ls').val('');
         var serial_data = $('.serial_data_ls').val();
         var key_data =  $('.key_data_ls').val();
         var status_data =  $('.status_data_ls').val();
@@ -181,7 +178,6 @@ $(document).ready(function (e) {
 
         $('.started_at_data_ls').val('');
         $('.ended_at_data_ls').val('');
-
         var serial_data = $('.serial_data_ls').val();
         var key_data =  $('.key_data_ls').val();
         var status_data =  $('.status_data_ls').val();
@@ -193,20 +189,9 @@ $(document).ready(function (e) {
     })
 
     $('body').on('click','.prepend-nick-id',function(){
-        $('.serial').val('');
+        $('.id').val('');
 
         loadData();
-
-        $('.serial_data_ls').val('');
-
-        var serial_data = $('.serial_data_ls').val();
-        var key_data =  $('.key_data_ls').val();
-        var status_data =  $('.status_data_ls').val();
-        var started_at_data = $('.started_at_data_ls').val();
-        var ended_at_data =  $('.ended_at_data_ls').val();
-        var page = 1;
-
-        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
     $('body').on('click','.prepend-nick-transaction',function(){
@@ -215,17 +200,6 @@ $(document).ready(function (e) {
         $('.transaction-finter-nick .current').html('Chọn');
         $('.transaction-finter-nick .list:first-child').addClass('selected');
         loadData();
-
-        $('.key_data_ls').val('');
-
-        var serial_data = $('.serial_data_ls').val();
-        var key_data =  $('.key_data_ls').val();
-        var status_data =  $('.status_data_ls').val();
-        var started_at_data = $('.started_at_data_ls').val();
-        var ended_at_data =  $('.ended_at_data_ls').val();
-        var page = 1;
-
-        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
     $('body').on('click','.prepend-nick-timee',function(){
@@ -235,7 +209,6 @@ $(document).ready(function (e) {
 
         $('.started_at_data_ls').val('');
         $('.ended_at_data_ls').val('');
-
         var serial_data = $('.serial_data_ls').val();
         var key_data =  $('.key_data_ls').val();
         var status_data =  $('.status_data_ls').val();
@@ -245,7 +218,6 @@ $(document).ready(function (e) {
 
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
-
     $('body').on('click','.prepend-nick-timese',function(){
         $('.ended_at').val('');
         $('.started_at').val('');
@@ -253,7 +225,6 @@ $(document).ready(function (e) {
 
         $('.started_at_data_ls').val('');
         $('.ended_at_data_ls').val('');
-
         var serial_data = $('.serial_data_ls').val();
         var key_data =  $('.key_data_ls').val();
         var status_data =  $('.status_data_ls').val();
@@ -264,15 +235,7 @@ $(document).ready(function (e) {
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     })
 
-
     $('body').on('click','.reset-find',function(){
-
-        $('.span-reset').html('')
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
-        $('.btn-reset .loading-data__timkiem').html('');
-        $('.btn-reset .loading-data__timkiem').html(htmlloading);
-
         $('.id').val('');
         $('.ended_at').val('');
         $('.started_at').val('');
@@ -306,32 +269,7 @@ $(document).ready(function (e) {
         var page = 1;
 
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
-    });
-
-
-    $(document).on('submit', '.search-txns', function(e){
-        e.preventDefault();
-
-        $('.span-timkiem').html('');
-
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
-        $('.btn-timkiem .loading-data__timkiem').html('');
-        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
-
-        var key = $('.search').val();
-
-        $('.serial_data_ls').val(key);
-
-        var serial_data = $('.serial_data_ls').val();
-        var key_data =  $('.key_data_ls').val();
-        var status_data =  $('.status_data_ls').val();
-        var started_at_data = $('.started_at_data_ls').val();
-        var ended_at_data =  $('.ended_at_data_ls').val();
-        var page = 1;
-
-        loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
-    });
+    })
 
     $('body').on('click','.close-modal-default',function(){
         $('#openFinter').modal('hide')
@@ -365,7 +303,7 @@ $(document).ready(function (e) {
 
         request = $.ajax({
             type: 'GET',
-            url: '/lich-su-nap-the',
+            url: '/transfer/data',
             data: {
                 page:page,
                 serial:serial,
@@ -387,7 +325,7 @@ $(document).ready(function (e) {
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>THực nhận</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
                     html += '</tbody>';
@@ -476,5 +414,4 @@ $(document).ready(function (e) {
 
         loadDataChargeHistory(page, serial_data, key_data, status_data,started_at_data,ended_at_data);
     });
-
 })
