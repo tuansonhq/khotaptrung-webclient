@@ -1,4 +1,3 @@
-
 @foreach($data??[] as $item)
     <div class="swiper-slide" >
         <a href="">

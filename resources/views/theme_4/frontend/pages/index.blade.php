@@ -5,49 +5,10 @@
 @endsection
 @section('content')
 
-    <div class="container container-fix">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <div class="rotation-notify text-slider">
-                <img class="img-text-slider" src="frontend/{{theme('')->theme_key}}/images_1/sound.svg" alt="">
-                <marquee class="rotation-marquee marquee-move">
-                    <div class="rotation-marquee-item marquee-item">
-                        <h6 class="text-item">Dương</h6> <p class="content-text">Đã trúng <span id="prize">1000 kim cương</span> <span id="prizeTime" style="color: #82869E;">1h trước</span></p>
-                    </div>
-                </marquee>
-            </div>
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner carousel-slider-item">
-                <div class="carousel-item active">
-                    <img class="d-block w-100 img-slider img-slider-mobile" src="https://i.rada.vn/data/image/2021/01/12/Free-Fire-MAX-1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-slider img-slider-mobile" src="https://game8.vn/media/202004/images/free-fire-without-1.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-slider img-slider-mobile" src="https://trochoisinhton.vn/wp-content/uploads/2020/06/thumbnail-1024x576.jpg" alt="Third slide">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
+@include('frontend.widget.__slider__banner')
 
 
 <div class="container container-fix">
-
-
-
-
     <div class="container-fix container">
         <div class="content__wrap" id="content-store-card">
             <div class="row" id="screen--first">
