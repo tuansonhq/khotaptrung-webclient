@@ -35,14 +35,14 @@
                     <div class="tab-content">
                         <div class="tab-pane  fade show active" id="top_napthe">
                             <div class="content-banner-card-box">
-                                @include('frontend.widget.__top_nap_the');
+                                @include('frontend.widget.__top_nap_the')
 
 
                             </div>
                         </div>
                         <div class="tab-pane  fade show " id="napthe">
                             <div class="content-banner-card-form">
-                                @include('frontend.widget.__nap_the');
+                                @include('frontend.widget.__nap_the')
 {{--                                {!! widget('frontend.widget.__nap_the') !!}--}}
                             </div>
                         </div>

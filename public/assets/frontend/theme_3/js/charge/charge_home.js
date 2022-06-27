@@ -52,7 +52,6 @@ $(document).ready(function(){
                     getAmount(telecom);
                     $('.charge_name').html(' <small>'+telecom+'</small>')
 
-
                     $('.loading-data').remove();
 
 
@@ -235,44 +234,13 @@ $(document).ready(function(){
     formSubmit.submit(function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        if (width < 992){
-            if (animating) return false;
-            animating = true;
-            current_fs = $('#fieldset-one_transaction');
-            next_fs = $('#fieldset-two-charge');
-            //show the next fieldset
-            next_fs.show();
-            //hide the current fieldset with style
-            current_fs.animate({opacity: 0}, {
-                step: function (now, mx) {
-                    left = (now * 50) + "%";
-                    opacity = 1 - now;
-                    next_fs.css({'left': left, 'opacity': opacity});
-                },
-                complete: function () {
-                    current_fs.hide();
-                    animating = false;
-                },
-                easing: 'easeInOutBack'
-            });
-        }else {
-            $('#openCharge').modal('show');
-        }
-
-
+        $('#openCharge').modal('show');
     });
     $('.btn-confirm-charge').on('click', function (m) {
 
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
-
-        if (width < 992){
-            postCharge()
-
-        }else {
-            postCharge()
-        }
+        postCharge()
         return false;
 
 
