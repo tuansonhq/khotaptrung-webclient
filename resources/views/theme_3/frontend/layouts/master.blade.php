@@ -101,7 +101,7 @@
 
 @endif
 @if (!Auth::check())
-    @include('frontend.widget.modal.__login')
+    @include('theme_3.frontend.widget.modal.__login')
 @endif
 
 <!-- Messenger Plugin chat Code -->

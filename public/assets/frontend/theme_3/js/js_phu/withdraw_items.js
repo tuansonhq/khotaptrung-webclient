@@ -1,8 +1,8 @@
 $(document).ready(function () {
     setActiveTable();
 
-    $('#itemTypeSelect').niceSelect();
-    $('#packageTypeSelect').niceSelect();
+    $('#game_type').niceSelect();
+    $('#package').niceSelect();
     $('#transactionTypeInput').niceSelect();
     $('#transactionStatusInput').niceSelect();
 
@@ -92,7 +92,7 @@ $(document).ready(function () {
         let eyeHide = $(this).parent().find('.withdraw-password-hide');
         $(this).css('display','none');
         eyeHide.css('display','block');
-        $(inputPassword).attr('type', 'text'); 
+        $(inputPassword).attr('type', 'text');
     });
 
     $('.withdraw-password-hide').click(function(e) {
@@ -100,10 +100,10 @@ $(document).ready(function () {
         let eyeShow = $(this).parent().find('.withdraw-password-show');
         $(this).css('display','none');
         eyeShow.css('display','block');
-        $(inputPassword).attr('type', 'password'); 
+        $(inputPassword).attr('type', 'password');
     });
 
-    //End js hide show  
+    //End js hide show
 
     //Onclick filter modal show
     $('.history-filter').click(() => {
@@ -117,8 +117,8 @@ $(document).ready(function () {
     //Manage filter
     var filterCount = 0;
     var formData = {};
-    
-    $('#filterForm').submit(function (e) { 
+
+    $('#filterForm').submit(function (e) {
         e.preventDefault();
         //Filter item html
         filterCount = 0;
@@ -202,7 +202,7 @@ $(document).ready(function () {
         //Empty current than add new html
         $('.current-filter').empty();
         $('.current-filter').append(html);
-        
+
         //Check filter count and update count text
         $('.filter-count').text(filterCount);
         if (filterCount > 0) {

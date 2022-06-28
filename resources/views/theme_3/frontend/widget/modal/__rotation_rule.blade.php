@@ -12,17 +12,8 @@
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rotation-rule.png" alt="">
                 </div>
                 <div class="rotation-rule-text">
-                    {{ $thele }}
+                    {!! $thele??null !!}
                 </div>
-{{--                <div class="rotation-rule-text">--}}
-{{--                    Cách chơi rất đơn giản khi bạn quay kim quay dừng ở vị trí nào bạn sẽ nhận được phần thưởng tương ứng ở vị trí đó--}}
-{{--                </div>--}}
-{{--                <div class="rotation-rule-text">--}}
-{{--                    Rất nhiều phần quà hấp dẫn đang chờ đợi bạn.--}}
-{{--                </div>--}}
-{{--                <div class="rotation-rule-text">--}}
-{{--                    Chúc bạn chơi game vui vẻ và may mắn !!--}}
-{{--                </div>--}}
                 <div class="rotation-modal-btn row no-gutters">
                     <div class="col-6">
                         <button class="button-secondary">Chơi thử</button>
