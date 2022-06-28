@@ -10,7 +10,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>
+                <li class="menu-container-li-ct"><a href="/lich-su-atm-tu-dong">Lịch sử nạp ATM tự động</a></li>
             </ul>
         </div>
     </section>
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Lịch sử nạp thẻ</h3>
+                    <h3>Lịch sử nạp ATM- tự động</h3>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -46,7 +46,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto logs-title">
                                 <div class="col-md-12 left-right">
-                                    <span>Lịch sử nạp thẻ</span>
+                                    <span>Lịch sử nạp ATM- tự động</span>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     <form class="search-txns">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
-                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
+                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
                                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
@@ -97,7 +97,7 @@
                             </div>
                         </div>
 
-{{--                        Co dữ liệu   --}}
+                        {{--                        Co dữ liệu   --}}
 
                         <div class="col-md-12 logs-table left-right">
                             <div class="row default-table" id="data_pay_card_history_ls" style="position: relative">
@@ -106,7 +106,7 @@
                                         <span class="pulser"></span>
                                     </div>
                                 </div>
-                                @include('frontend.pages.charge.widget.__charge_history')
+                                @include('frontend.pages.transfer.widget.__tranfer_history')
                             </div>
                         </div>
 
@@ -134,37 +134,22 @@
 
                 <div class="modal-body modal-body-order-ct">
                     <form class="form-charge_ls account_content_transaction_history__v2">
-                        <div class="row marginauto">
+                    <div class="row marginauto">
 
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Thẻ cào</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" name="serial" class="input-defautf-ct serial" type="text" placeholder="Nhập mã số">
-                                    </div>
-                                </div>
-                            </div>
-
-                            @if(isset($data_telecome) && count($data_telecome) > 0)
-                                <div class="col-md-12 left-right modal-nick-padding">
-                                    <div class="row marginauto">
-                                        <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                            <span>Loại thẻ</span>
-                                        </div>
-                                        <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-
-                                            <select class="wide transaction" name="transaction">
-                                                <option>Chọn</option>
-                                                @foreach($data_telecome as $val)
-                                                <option value="{{ $val->key }}">{{ $val->title }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+{{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
+{{--                                <div class="row marginauto">--}}
+{{--                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">--}}
+{{--                                        <span>Ngân hàng</span>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">--}}
+{{--                                        <select class="wide transaction" name="transaction">--}}
+{{--                                            <option>Chọn</option>--}}
+{{--                                            <option value="1">Techcombank</option>--}}
+{{--                                            <option value="2">BIDV</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
                             <div class="col-md-12 left-right modal-nick-padding">
@@ -173,7 +158,13 @@
                                         <span>Trạng thái</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        {{Form::select('status',array(''=>'Chọn')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'wide status'))}}
+                                        <select class="wide status" name="status">
+                                            <option>Chọn</option>
+                                            <option value="1">Thành công(Đúng số tiền)</option>
+                                            <option value="0">Thất bại</option>
+                                            <option value="2">Chờ xử lý</option>
+                                            <option value="3">Thành công(Sai số tiền)</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -250,21 +241,7 @@
 
     </div>
 
-    <input type="hidden" class="started_at_day_ls" name="started_at_day_ls" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_day_ls" name="end_at_day_ls" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_yes_ls" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_yes_ls" name="end_at_yes_ls" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_month_ls" name="started_at_month_ls" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_month_ls" name="end_at_month_ls" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
-
-    <input type="hidden" name="serial_data_ls" class="serial_data_ls">
-    <input type="hidden" name="key_data_ls" class="key_data_ls">
-    <input type="hidden" name="status_data_ls" class="status_data_ls">
-    <input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
-    <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
-    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
-
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/logs.js"></script>
 @endsection
 
 

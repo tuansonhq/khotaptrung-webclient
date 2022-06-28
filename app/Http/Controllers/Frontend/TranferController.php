@@ -115,7 +115,6 @@ class TranferController extends Controller
 
     public function logs(Request $request)
     {
-
         try {
             Session::forget('return_url');
             Session::put('return_url', $_SERVER['REQUEST_URI']);

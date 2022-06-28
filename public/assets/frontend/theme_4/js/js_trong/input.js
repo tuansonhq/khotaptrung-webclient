@@ -10,7 +10,7 @@ $('body').delegate('input.input--amount','input',function () {
     }
 })
 
-$(document).on('click','.js-amount', function () {
+$(document).on('click','.js-amount', function (e) {
     let input = $(this).parent().find('input.input--amount');
     let value = input.val();
     if ($(this).data('action') === 'add') {
@@ -22,6 +22,8 @@ $(document).on('click','.js-amount', function () {
     if (input.val() > 20) {
         input.val(20)
     }
+
+    $('input[name=card-quantity]').trigger(jQuery.Event('keypress', { keyCode: 13 }))
 });
 
 //format number

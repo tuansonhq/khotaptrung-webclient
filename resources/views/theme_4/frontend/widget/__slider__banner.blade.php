@@ -5,7 +5,7 @@
             <img class="img-text-slider" src="frontend/{{theme('')->theme_key}}/images_1/sound.svg" alt="">
             <marquee class="rotation-marquee marquee-move">
                 <div class="rotation-marquee-item marquee-item">
-                    <h6 class="text-item">Dương</h6> <p class="content-text">Đã trúng <span id="prize">1000 kim cương</span> <span id="prizeTime" style="color: #82869E;">1h trước</span></p>
+                    {!! setting('sys_marquee') !!}
                 </div>
             </marquee>
         </div>
