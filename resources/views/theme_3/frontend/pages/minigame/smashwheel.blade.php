@@ -179,7 +179,9 @@
                             <div class="date-listing"></div>
                         </div>
                         <div class="leaderboard-table">
+
                             <div class="leaderboard-table-container content-video-in">
+
                                 <div class="leaderboard-head row no-gutters">
                                     <div class="leaderboard-head-item col-3">
                                         <p>Tài khoản</p>
@@ -191,7 +193,9 @@
                                         <p>Lượt quay</p>
                                     </div>
                                 </div>
+
                                 <div class="leaderboard-content leaderboard-1 content-video-in">
+
 
                                     @if(isset($topDayList))
                                         @foreach($topDayList as $item)
@@ -240,12 +244,14 @@
 
                             </div>
                         </div>
+
                         <div class="col-md-12 left-right text-center js-toggle-content media-web pb-3">
                             <div class="view-more">
                                 <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
                             </div>
                             <div class="view-less">
                                 <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
+
                             </div>
                         </div>
                         <div class="leaderboard-buttons row">

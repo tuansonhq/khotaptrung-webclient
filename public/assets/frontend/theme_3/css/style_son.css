@@ -3549,10 +3549,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     height: 20px;
 }
 
+
 .leaderboard-table .content-video-in{
     max-height: 470px;
     overflow: hidden;
 }
+
 
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {

@@ -126,6 +126,7 @@ $(document).ready(function () {
         $('.leaderboard-md .date-listing').css('width', `${width}px` );
     }
 
+
     function handleToggleContent(){
         $('.js-toggle-content .view-less').toggle();
         $('.js-toggle-content .view-more').toggle();
@@ -142,5 +143,6 @@ $(document).ready(function () {
     $('.js-toggle-content').click(function () {
         handleToggleContent();
     });
+
 
 });
