@@ -20,13 +20,13 @@
                 <a href="/the-cao-da-mua" class="breadcrum--link">Thẻ cào đã mua</a>
             </li>
             <li class="breadcrum--item">
-                <a href="/the-cao-da-mua/detail" class="breadcrum--link">Chi tiết</a>
+                <a href="/the-cao-da-mua-{{ $data->id }}" class="breadcrum--link">Chi tiết</a>
             </li>
         </ul>
 
         <div class="row m-0">
             {{--navbar--}}
-            @include('theme_3.frontend.widget.__navbar__profile')
+            @include('frontend.widget.__navbar__profile')
             {{--content--}}
             <div class="col-12 col-lg-9 p-0 order--detail">
                 <div class="card--mobile__title">
@@ -44,94 +44,48 @@
                     <div class="card--body">
                         <div class="row">
                             <div class="col-12 col-lg-6 p_0 pl_1 card--detail">
-                                <div class="card--rise">
-                                    <div class="order__title">Mua thẻ 1</div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Mã thẻ:<span class="card__info">48563415693486451</span>
+
+                                @if(isset($data->card))
+                                @foreach($data->card as $key => $val)
+                                        <div class="card--rise">
+                                            <div class="order__title">Mua thẻ {{ $key + 1 }}</div>
+                                            <div class="card__attr">
+                                                <div class="card--value__attr">
+                                                    Mã thẻ:<span class="card__info">
+                                                        {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}
+                                                    </span>
+                                                </div>
+                                                <div class="js-copy-text">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="card__attr">
+                                                <div class="card--value__attr">
+                                                    Serial:<span class="card__info">
+                                                        {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}
+                                                    </span>
+                                                </div>
+                                                <div class="js-copy-text">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Serial:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--rise">
-                                    <div class="order__title">Mua thẻ 1</div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Mã thẻ:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Serial:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--rise">
-                                    <div class="order__title">Mua thẻ 1</div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Mã thẻ:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Serial:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--rise">
-                                    <div class="order__title">Mua thẻ 1</div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Mã thẻ:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="card__attr">
-                                        <div class="card--value__attr">
-                                            Serial:<span class="card__info">48563415693486451</span>
-                                        </div>
-                                        <div class="js-copy-text">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @endif
+
                             </div>
+
                             <div class="col-12 col-lg-6 p_0 px_1">
                                 <div class="card--rise --secondary">
                                     <div class="card--rise__title">
-                                        Thanh toán cho đơn hàng <span class="order__id">#33415</span>
+                                        Thanh toán cho đơn hàng <span class="order__id">#{{ $data->id }}</span>
                                     </div>
                                     <div class="order__attr">
                                         <div class="order--name__attr">
                                             Mã số
                                         </div>
                                         <div class="order--value__attr">
-                                            12412
+                                            {{ $data->id }}
                                         </div>
                                     </div>
                                     <div class="order__attr">
@@ -139,7 +93,7 @@
                                             Mô tả
                                         </div>
                                         <div class="order--value__attr">
-                                            2 thẻ Garena 20.000đ
+                                            {{ $data->content }}
                                         </div>
                                     </div>
                                     <div class="order__attr">
@@ -147,7 +101,19 @@
                                             Trạng thái
                                         </div>
                                         <div class="order--value__attr">
-                                            Thành công
+                                            @if($data->status == 1)
+                                                Thành công
+                                            @elseif($data->status == 0)
+                                                Thất bại
+                                            @elseif($data->status == 3)
+                                                Đã hủy
+                                            @elseif($data->status == 2)
+                                                Đang chờ xử lý
+                                            @elseif($data->status == 4)
+                                                Lỗi gọi nhà cung cấp
+                                            @elseif($data->status == 5)
+                                                Lỗi hệ thống
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="order__attr">
@@ -155,7 +121,7 @@
                                             Số tiền
                                         </div>
                                         <div class="order--value__attr">
-                                            40.000 đ
+                                            {{ str_replace(',','.',number_format($data->real_received_price)) }} đ
                                         </div>
                                     </div>
                                     <div class="order__attr">
@@ -163,7 +129,7 @@
                                             Chiết khấu
                                         </div>
                                         <div class="order--value__attr">
-                                            0%
+                                            {{ $data->ratio }} %
                                         </div>
                                     </div>
                                     <div class="order__attr">
@@ -171,7 +137,7 @@
                                             Ngày tạo
                                         </div>
                                         <div class="order--value__attr">
-                                            19/12/2021 04:20
+                                            {{ formatDateTime($data->created_at) }}
                                         </div>
                                     </div>
                                     <a href="/mua-the" class="btn -primary btn-big">Mua lại</a>

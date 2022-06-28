@@ -373,10 +373,7 @@ class ChargeController extends Controller
                     'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-
-
         }
-
     }
 
 //    public function getDepositHistory(Request $request)

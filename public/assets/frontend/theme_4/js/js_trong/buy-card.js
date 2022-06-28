@@ -462,7 +462,8 @@ $(document).ready(function () {
                             })
                             $('#modal--success__payment').modal('show');
                         }
-                    }else {
+                    }
+                    else {
                         $('#message--error--buy').text(res.message);
                         $('#modal--fail__payment').modal('show')
                     }
