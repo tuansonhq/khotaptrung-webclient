@@ -3,7 +3,7 @@ $(document).ready(function () {
     setActiveTableMobile();
     var started_at = $('.started_at').val();
 
-    $('#rotationSelectBlock').niceSelect();
+    $('#numrolllop').niceSelect();
 
     // Set the date we're counting down to
     var countDownDate = new Date(started_at).getTime();

@@ -685,19 +685,27 @@
                                         @if(App\Library\AuthCustom::user()->balance > $data->price)
                                             <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
                                         @else
-                                            <div class="row marginauto justify-content-center">
+                                            <div class="row marginauto justify-content-center gallery-right-footer">
                                                 <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/nap-the" class="unbalance-case-button button-primary">
-                                                            Thẻ cào
-                                                        </a>
+                                                    <div class="row marginauto nick-detail-button">
+                                                        <div class="col-md-12 left-right">
+                                                            <a href="/nap-the" class="button-not-bg-ct">
+                                                                <ul>
+                                                                    <li><small>Thẻ cào</small></li>
+                                                                </ul>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/recharge-atm" class="unbalance-case-button button-primary">
-                                                            ATM, Momo
-                                                        </a>
+                                                    <div class="row marginauto nick-detail-button">
+                                                        <div class="col-md-12 left-right">
+                                                            <a href="/recharge-atm" class="button-not-bg-ct">
+                                                                <ul>
+                                                                    <li><small>ATM, Momo</small></li>
+                                                                </ul>
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
