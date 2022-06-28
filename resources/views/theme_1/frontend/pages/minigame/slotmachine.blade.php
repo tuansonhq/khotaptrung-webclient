@@ -3,6 +3,7 @@
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
 @section('content')
+
     <div class="item_play">
         <div class="container">
             <div class="item_play_title">
@@ -768,7 +769,7 @@
                 $("#btnWithdraw").hide();
             } else {
                 if (gift_detail.gift_type == 0) {
-                    $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
+                    $("#btnWithdraw").html("Rút qùa" + $("#withdrawruby_" + gift_detail.game_type).val());
                     $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                 } else if (gift_detail.gift_type == 1) {
                     $("#btnWithdraw").html("Kiểm tra nick trúng");
