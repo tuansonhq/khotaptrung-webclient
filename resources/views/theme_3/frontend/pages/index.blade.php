@@ -858,6 +858,7 @@
         @include('frontend.widget.__content__home__minigame')
 
         @include('frontend.widget.__list_serve_remark')
+
         @include('frontend.widget.__nap_the')
 
         @include('frontend.widget.__content__home__game')
