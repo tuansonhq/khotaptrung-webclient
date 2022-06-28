@@ -928,6 +928,12 @@ header nav.heading .header-container{
     font-weight: 600;
     text-decoration: none;
     line-height: 150%;
+
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
 }
 .item-product__box-id,.item-product__box-date{
     color: #82869E;

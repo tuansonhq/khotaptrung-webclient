@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
     <meta name="jwt" content="jwt"/>
+
+    @yield('meta_robots')
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link
@@ -52,6 +54,8 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
+
+    @yield('seo_head')
 </head>
 <body>
 @if(Session::has('check_login'))
