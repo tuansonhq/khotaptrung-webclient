@@ -71,7 +71,6 @@
             </div>
             <div class="content-advertise ">
                 <div class="container">
-
                     <marquee width="100%" behavior="scroll" >
 
                         <p style=""><strong>{!! setting('sys_marquee') !!}</strong>  </p>

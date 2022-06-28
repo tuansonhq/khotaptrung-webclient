@@ -38,6 +38,7 @@
 .marquee-item{
     display: inline-block;
     width: 616px;
+    margin-bottom: -14px
 }
 .marquee-move{
     display: block;
