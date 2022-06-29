@@ -1,6 +1,6 @@
 {{--@dd($data)--}}
 <div class=" block-product mt-fix-20 mt-md-fix-8 service-mobile">
-    <div class="d-flex product-header-item">
+    <div class="d-flex product-header-item product-header">
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
                     </span>
@@ -17,15 +17,12 @@
                     @forelse($data as $k_service => $service)
                     <div  class="swiper-slide">
                         <a href="dich-vu/{{ @$service->slug }}">
-                            <div class="item-product__box-img item-news-img">
+                            <div class="item-product__box-img item-news-img item-service-image">
                                 <img src="{{ @$service->image }}" alt="{{ @$service->slug }}">
                             </div>
                             <div class="item-product__box-content item-news-content">
-                                <div class="item-product__box-name">
+                                <div class="item-product__box-name item-service__box-name">
                                     {{ @$service->title }}
-                                </div>
-                                <div class="item-product__box-date">
-                                    {{ date('d/m/Y',strtotime($service->created_at)) }}
                                 </div>
                             </div>
                         </a>
