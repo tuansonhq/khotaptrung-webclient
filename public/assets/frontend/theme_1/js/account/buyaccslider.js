@@ -75,7 +75,9 @@ $(document).ready(function () {
                 if (data.status == 1){
 
                     $('#showslideracc').html('');
+
                     $('#showslideracc').html(data.dataslider);
+
                 }else if (data.status == 0){
 
                     var html = '';
