@@ -58,7 +58,7 @@ $(document).ready(function (e) {
                 return false;
             }
             var htmlid = '';
-            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
+            htmlid += '<div class="col-auto prepend-nick prepend-nick-id" style="position: relative"><a href="javascript:void(0)">' + id + '</a><img class="lazy close-item-nick imgae-nick-id" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlid);
             isSet = true;
             index = index + 1;
@@ -73,7 +73,7 @@ $(document).ready(function (e) {
             }
 
             var htmlstatus = '';
-            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
+            htmlstatus += '<div class="col-auto prepend-nick prepend-nick-status" style="position: relative"><a href="javascript:void(0)">' + status + '</a><img class="lazy close-item-nick imgae-nick-status" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlstatus);
             isSet = true;
             index = index + 1;
@@ -87,7 +87,7 @@ $(document).ready(function (e) {
                 return false;
             }
             var htmlrank = '';
-            htmlrank += '<div class="col-auto prepend-nick prepend-nick-transaction" style="position: relative"><a href="javascript:void(0)">' + transaction + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt=""></div>';
+            htmlrank += '<div class="col-auto prepend-nick prepend-nick-transaction" style="position: relative"><a href="javascript:void(0)">' + transaction + '</a><img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt=""></div>';
             $('.nick-findter-data').prepend(htmlrank);
             isSet = true;
             index = index + 1;
@@ -104,7 +104,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += 'Trước - ' + ended_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);
@@ -118,7 +118,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += 'Sau - ' + started_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);
@@ -130,7 +130,7 @@ $(document).ready(function (e) {
                 htmltime += '<a href="javascript:void(0)">';
                 htmltime += started_at + ' - ' + ended_at;
                 htmltime += '</a>';
-                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_4/image/nick/close.png" alt="">';
+                htmltime += '<img class="lazy close-item-nick imgae-nick-rank" src="/assets/frontend/theme_3/image/nick/close.png" alt="">';
                 htmltime += '</div>';
 
                 $('.nick-findter-data').prepend(htmltime);

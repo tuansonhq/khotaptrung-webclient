@@ -51,7 +51,7 @@ $(document).ready(function(){
                     var telecom = ele.val();
                     getAmount(telecom);
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-
+                    paycartDataChargeHistory();
 
                     $('.loading-data').remove();
 
@@ -281,4 +281,57 @@ $(document).ready(function(){
 
     });
 
+    $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
+        event.preventDefault();
+
+        var page = $(this).attr('href').split('page=')[1];
+
+        $('#hidden_page_service_nt').val(page);
+
+        $('li').removeClass('active');
+        $(this).parent().addClass('active');
+
+
+        paycartDataChargeHistory(page);
+    });
+
+    function paycartDataChargeHistory(page) {
+
+        request = $.ajax({
+            type: 'GET',
+            url: '/get-tele-card/data',
+            data: {
+                page:page,
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (data) => {
+                if (data.status == 1){
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(data.data);
+                }else if (data.status == 0){
+                    var html = '';
+                    html += '<div class="table-responsive" id="tableacchstory">';
+                    html += '<table class="table table-hover table-custom-res">';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<tbody>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '</tbody>';
+                    html += '</table>';
+                    html += '</div>';
+
+                    $(".paycartdata").empty().html('');
+                    $(".paycartdata").empty().html(html);
+                }
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
 });

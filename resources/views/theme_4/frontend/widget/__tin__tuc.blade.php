@@ -16,8 +16,8 @@
         </div>
     </div>
     <div class="box-product-content">
-        <div class="box-product">
-            <div class="swiper-container list-news">
+        <div class="box-product swiper">
+            <div class="swiper-container list-article">
                 <div class="swiper-wrapper">
                     @forelse($data[0]->items as $k_article => $article)
                         <div class="swiper-slide">
@@ -30,7 +30,7 @@
                                         {{ @$article->title }}
                                     </div>
                                     <div class="item-product__box-date">
-                                        {{ formatDateTime($article->created_at) }}
+                                        {{ date('d/m/Y',strtotime($article->created_at)) }}
                                     </div>
                                 </div>
                             </a>

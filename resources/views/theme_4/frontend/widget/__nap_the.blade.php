@@ -134,19 +134,13 @@
 
                                         </div>
                                     </div>
-                                    <div class="default-form-group mb-fix-20 d-none d-md-block ">
+                                    <div class="default-form-group mb-fix-20  ">
                                         {{--                                                btn-charge-data--}}
                                         <button  class="w-100 primary-button button-default-ct " type="submit">
                                             Nạp ngay
                                         </button>
                                     </div>
-                                    <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none">
-                                        <div class="row marginauto" style="padding: 12px 16px">
-                                            <div class="col-md-12 left-right">
-                                                <button id="charge_next" class="button-default-ct button-next-step-one" type="submit">Nạp ngay</button>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     @include('frontend.widget.modal.__charge')
                                 </div>
                             </form>

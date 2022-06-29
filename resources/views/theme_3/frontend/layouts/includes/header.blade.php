@@ -93,7 +93,7 @@
             </div>
             <div class="box-logo d-none d-lg-block">
                 <a href="/">
-                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                    <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="">
                 </a>
             </div>
             <div class="box-search">
@@ -231,7 +231,7 @@
                     <div class="loading"></div>
                 </div>
 
-                <div class="box-account-mobile">
+                <div class="box-account-mobile ">
 {{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
 {{--                        <div class="account-avatar">--}}
 {{--                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
@@ -286,7 +286,7 @@
                     <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
                     <span>Trang chủ</span>
                     <div class="mobile-logo">
-                        <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                        <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
                     </div>
 
                 </a>

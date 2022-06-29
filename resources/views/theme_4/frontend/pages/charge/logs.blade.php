@@ -39,7 +39,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('theme_3.frontend.widget.__navbar__profile')
+                @include('frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">

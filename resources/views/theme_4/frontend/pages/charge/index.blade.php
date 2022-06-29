@@ -338,7 +338,7 @@
 
     @include('frontend.widget.modal.__success_charge')
     @include('frontend.widget.modal.__reject_charge')
-    @include('frontend.widget.modal.__success_charge_atm')
+    @include('.frontend.widget.modal.__success_charge_atm')
     @include('frontend.widget.modal.__success_wallet_card')
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js?v={{time()}}"></script>
