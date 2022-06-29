@@ -256,7 +256,9 @@
                         </div>
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
@@ -409,7 +411,9 @@
                     <div class="rotation-leaderboard leaderboard-lg">
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay thưởng</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
