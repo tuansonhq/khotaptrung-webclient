@@ -1,4 +1,4 @@
-
+/* slider index */
 .text-slider{
     margin-bottom: 1.25rem;
     background: #F3F3F7;
@@ -35,15 +35,18 @@
     font-size: 14px;
     color: #434657;
 }
+/* marquee */
 .marquee-item{
     display: inline-block;
     width: 616px;
+    margin-bottom: -14px
 }
 .marquee-move{
     display: block;
     padding: 8px 0;
     margin-left: 3.2rem;
 }
+/* end marquee */
 @media (max-width: 767px) {
     .text-buy-card{
         padding-right: 332px !important;
@@ -55,6 +58,25 @@
         top: 58px;
     }
 }
+/* service */
 .text-content-service{
     padding-left: 8px;
 }
+
+.item-service-image img {
+    height: 129px;
+    border-radius: 8px;
+}
+.item-product__box-content .item-service__box-name{
+    text-align:center ;
+}
+.item-service-image{
+    height: 132px;
+}
+@media (max-width: 767px) {
+    .item-service-image{
+        height: 102px;
+        border-radius: 8px;
+    }
+}
+/* end service */

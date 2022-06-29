@@ -57,6 +57,7 @@
 .marquee-item{
     display: inline-block;
     width: 820px;
+    margin-bottom: -14px
 }
 .marquee-move{
     display: block;
@@ -128,5 +129,22 @@
 @media (max-width: 767px) {
     .service-mobile{
         margin-top: 12px !important;
+    }
+}
+
+.item-service-image img {
+    height: 129px;
+    border-radius: 8px;
+}
+.item-product__box-content .item-service__box-name{
+    text-align:center ;
+}
+.item-service-image{
+    height: 132px;
+}
+@media (max-width: 767px) {
+    .item-service-image{
+        height: 102px;
+        border-radius: 8px;
     }
 }
