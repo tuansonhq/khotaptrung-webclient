@@ -14,7 +14,7 @@
             <ul class="breadcrumb breadcrumb-arrow">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="minigame">Danh mục vòng quay</a></li>
-                <li class="breadcrumb-item"><a href="minigame/slug">{{$result->group->title}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{{$result->group->title}}</a></li>
             </ul>
         </section>
         <section class="breadcrumb-mobile">
