@@ -108,14 +108,14 @@
                                     <div class="default-form-group mb-fix-20">
                                         <label class="text-form">Mã số thẻ</label>
                                         <div class="col-md-12 p-0">
-                                            <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" required>
+                                            <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" numberic required >
 
                                         </div>
                                     </div>
                                     <div class="default-form-group mb-fix-20">
                                         <label class="text-form">Số Seri</label>
                                         <div class="col-md-12 p-0">
-                                            <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" required>
+                                            <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" numberic required>
 
                                         </div>
                                     </div>
