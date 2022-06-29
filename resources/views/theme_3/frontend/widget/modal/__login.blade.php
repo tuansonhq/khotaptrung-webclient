@@ -162,25 +162,13 @@
             success: function (data) {
 
                 if(data.status == 1){
-                    if (return_url == null || return_url == '' || return_url == undefined){
+                    if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                        window.location.reload();
 
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
-                                window.location.href = '/';
-                            }else{
-                                window.location.href = data.return_url;
-                            }
-
-
-                        }else {
-                            window.location.href = return_url;
-
-                        }
-
-                    }else {
-                        window.location.href = return_url;
-
+                    }else{
+                        window.location.href = data.return_url;
                     }
+
                 }else{
                     $('.LoginError').html(data.message)
                     // swal({

@@ -51,7 +51,7 @@ $(document).ready(function(){
                     var telecom = ele.val();
                     getAmount(telecom);
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-                    paycartDataChargeHistory();
+
 
                     $('.loading-data').remove();
 
