@@ -163,7 +163,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
 
-                        Route::post('/user/account_info', [UserController::class , "getInfo"]);
+                        Route::post('/profile/account_info', [UserController::class , "getInfo"]);
                         Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                         Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                         Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
@@ -266,7 +266,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                     Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
                         ->name('login');
-                    Route::get('/user/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
+                    Route::get('/profile/access', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'accesUser']);
                     Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
                     Route::post('/loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
                         ->name('loginApi');
@@ -290,7 +290,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
                 Route::get('/rut-vat-pham', function ()
                 {
-                    return view('frontend.pages.account.user.rutvatpham');
+                    return view('frontend.pages.account.profile.rutvatpham');
                 });
 
                 Route::get('/quay-ngay', function ()
@@ -313,20 +313,20 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
                 Route::get('/tai-khoan-da-mua', function ()
                 {
-                    return view('frontend.pages.account.user.account_buy');
+                    return view('frontend.pages.account.profile.account_buy');
                 });
                 Route::get('/tai-khoan-tra-gop', function ()
                 {
-                    return view('frontend.pages.account.user.account_installment');
+                    return view('frontend.pages.account.profile.account_installment');
                 });
                 Route::get('/lich-su-quay-thuong', function ()
                 {
-                    return view('frontend.pages.account.user.spin_history');
+                    return view('frontend.pages.account.profile.spin_history');
                 });
 
                 Route::get('/gieo-que', function ()
                 {
-                    return view('frontend.pages.account.user.gieoque');
+                    return view('frontend.pages.account.profile.gieoque');
                 });
                 //đăng nhập, đăng xuất, đăng ký
 
@@ -435,9 +435,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                {
 //                    return view('frontend.theme_2.pages.index');
 //                });
-//                Route::get('/user/profile', function ()
+//                Route::get('/profile/profile', function ()
 //                {
-//                    return view('frontend.theme_2.pages.user.profile');
+//                    return view('frontend.theme_2.pages.profile.profile');
 //                });
 ////                Route::get('/blog', function ()
 ////                {
