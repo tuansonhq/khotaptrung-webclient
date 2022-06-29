@@ -42,72 +42,78 @@
                 <div class="col-lg-9 col-12 body-container-detail-right-ct ">
                     <div class="row marginauto logs-content profile-category">
                         <div class="col-md-12 left-right">
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto logs-title">
-                                        <div class="col-md-12 left-right">
-                                            <span>Đổi mật khẩu</span>
+                            <form action="{{route('changePasswordApi')}}" method="POST" id="form-changePassword">
+                                @csrf
+                                <div class="row marginauto">
+                                    <div class="col-md-12 left-right">
+                                        <div class="row marginauto logs-title">
+                                            <div class="col-md-12 left-right">
+                                                <span>Đổi mật khẩu</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-m-12 password-confirm-error changepassword_error">
 
-                                <div class="col-md-12 left-right text-change-password-default">
-
-                                    <div class="row marginauto change-password-first change-password-row">
-                                        <div class="col-12 left-right">
-                                            <span>Mật khẩu cũ</span>
-                                        </div>
-                                        <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-old" autocomplete="off" placeholder="Nhập mật khẩu cũ">
-                                        </div>
                                     </div>
+                                    <div class="col-md-12 left-right text-change-password-default">
 
-                                </div>
-                                <div class="col-m-12 password-old-error">
-
-                                </div>
-                                <div class="col-md-12 left-right text-change-password-default">
-
-                                    <div class="row marginauto change-password-last change-password-row">
-                                        <div class="col-12 left-right">
-                                            <span>Mật khẩu mới</span>
-                                        </div>
-                                        <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-new" autocomplete="off" placeholder="Nhập mật khẩu mới">
+                                        <div class="row marginauto change-password-first change-password-row">
+                                            <div class="col-12 left-right">
+                                                <span>Mật khẩu cũ</span>
+                                            </div>
+                                            <div class="col-auto change-password-default change-password-col-last left-right">
+                                                <input type="text" name="old_password" class="input-defautf-ct password-old" autocomplete="off" placeholder="Nhập mật khẩu cũ">
+                                            </div>
                                         </div>
 
                                     </div>
+                                    <div class="col-m-12 password-old-error">
 
-                                </div>
-                                <div class="col-m-12 password-new-error">
+                                    </div>
+                                    <div class="col-md-12 left-right text-change-password-default">
 
-                                </div>
-                                <div class="col-md-12 left-right text-change-password-default">
+                                        <div class="row marginauto change-password-last change-password-row">
+                                            <div class="col-12 left-right">
+                                                <span>Mật khẩu mới</span>
+                                            </div>
+                                            <div class="col-auto change-password-default change-password-col-last left-right">
+                                                <input type="text" class="input-defautf-ct password-new" name="password" autocomplete="off" placeholder="Nhập mật khẩu mới">
+                                            </div>
 
-                                    <div class="row marginauto change-password-last change-password-row">
-                                        <div class="col-12 left-right">
-                                            <span>Xác nhận mật khẩu</span>
-                                        </div>
-                                        <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-confirm" autocomplete="off" placeholder="Xác nhận mật khẩu">
                                         </div>
 
                                     </div>
+                                    <div class="col-m-12 password-new-error">
 
-                                </div>
-                                <div class="col-m-12 password-confirm-error">
-
-                                </div>
-                                <div class="col-md-12 left-right text-change-password-default">
-
-                                    <div class="row marginauto change-password-last change-password-row">
-                                        <div class="col-auto  change-password-default change-password-col-last left-right">
-                                            <button class="button-default-ct btn-data" type="button">Đổi mật khẩu</button>
-                                        </div>
                                     </div>
+                                    <div class="col-md-12 left-right text-change-password-default">
 
+                                        <div class="row marginauto change-password-last change-password-row">
+                                            <div class="col-12 left-right">
+                                                <span>Xác nhận mật khẩu</span>
+                                            </div>
+                                            <div class="col-auto change-password-default change-password-col-last left-right">
+                                                <input type="text" class="input-defautf-ct password-confirm" name="password_confirmation" autocomplete="off" placeholder="Xác nhận mật khẩu">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-m-12 password-confirm-error ">
+
+                                    </div>
+                                    <div class="col-md-12 left-right text-change-password-default">
+
+                                        <div class="row marginauto change-password-last change-password-row">
+                                            <div class="col-auto  change-password-default change-password-col-last left-right">
+                                                <button class="button-default-ct btn-data" type="submit">Đổi mật khẩu</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -149,7 +155,10 @@
                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                             <div class="row marginauto modal-footer-success-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <a href="/" class="button-bg-ct"><span>Đăng nhập lại</span></a>
+                                    <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="button-bg-ct"><span>Đăng nhập lại</span></a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
                         </div>
