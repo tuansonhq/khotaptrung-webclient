@@ -147,7 +147,11 @@
                                         0 đ
                                     </span>
                                 </div>
-                                <button type="button" class="btn -primary btn-big" id="btn-confirm">Chọn mua</button>
+                                @if(App\Library\AuthCustom::check())
+                                    <button type="button" class="btn -primary btn-big" id="btn-confirm">Chọn mua</button>
+                                @else
+                                    <button type="button" class="btn -primary btn-big mt-3" onclick="openLoginModal();">Chọn mua</button>
+                                @endif
                             </div>
                         </div>
                     </div>

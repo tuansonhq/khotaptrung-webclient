@@ -30,10 +30,10 @@ function Validator(options) {
             if (errorMessage) break;
         }
         if (errorMessage) {
-            errorElement.innerText = errorMessage;
+            errorElement.innerHTML = errorMessage;
             getParent(inputElement, options.formGroupSelector).classList.add('invalid');
         } else {
-            errorElement.innerText = '';
+            errorElement.innerHTML = '';
             getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
         }
 
@@ -91,7 +91,6 @@ function Validator(options) {
         }
 
         options.rules.forEach(function (rule) {
-
             if (Array.isArray(selectorRules[rule.selector])) {
                 selectorRules[rule.selector].push(rule.test);
             } else {
@@ -104,8 +103,8 @@ function Validator(options) {
                     validate(inputElement, rule)
                 }
                 inputElement.oninput = function () {
-                    let errorElement = getParent(inputElement, options.formGroupSelector).querySelector('.form-message');
-                    errorElement.innerText = '';
+                    let errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
+                    errorElement.innerHTML = '';
                     getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
                 }
             })
