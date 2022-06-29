@@ -43,7 +43,10 @@ $('input[numberic]').on('keypress', function (e) {
     return true;
 });
 
-let data_params = JSON.parse($('#data_params').val());
+let data_params = $('#data_params');
+if (data_params.length){
+    data_params = JSON.parse(data_params.val());
+}
 let purchase_name;
 data_params['filter_type'] == 7 ? purchase_name = data_params['filter_name'] : purchase_name = 'VNĐ';
 

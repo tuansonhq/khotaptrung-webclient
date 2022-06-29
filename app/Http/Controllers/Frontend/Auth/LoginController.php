@@ -24,14 +24,14 @@ class LoginController extends Controller
 //        }
         $jwt = Session::get('jwt');
 
-        if (theme('')->theme_key = 'theme_1'){
+        if (theme('')->theme_key == 'theme_1'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
             }else{
                 return redirect('/');
             }
 
-        }elseif (theme('')->theme_key = 'theme_2'){
+        }elseif (theme('')->theme_key == 'theme_2'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
             }else{
@@ -159,6 +159,7 @@ class LoginController extends Controller
     public function changePassword(){
         return view('frontend.pages.profile.change_password');
     }
+
     public function changePasswordApi(Request $request){
         $this->validate($request,[
             'old_password'=>'required',

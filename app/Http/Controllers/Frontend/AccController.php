@@ -230,10 +230,10 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
-//        return $result_Api;
         if(isset($response_data) && $response_data->status == 1){
             $data = $response_data->data;
-            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug);
+            $slug_category = $data->category->slug;
+            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug)->with('slug_category',$slug_category);
         }
         else{
             $data = null;
@@ -296,13 +296,14 @@ class AccController extends Controller
     public function getRelated(Request $request){
         if ($request->ajax()){
             $slug = $request->slug;
-            $url = '/get-relate-acc';
+            $url = '/acc';
             $method = "GET";
 
             $dataSend = array();
-            $dataSend['id'] = $slug;
-            $dataSend['limit'] = 12;
+            $dataSend['data'] = 'list_acc';
+            $dataSend['cat_slug'] = $slug;
             $dataSend['status'] = 1;
+            $dataSend['limit'] = 12;
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
