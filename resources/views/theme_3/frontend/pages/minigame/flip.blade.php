@@ -9,6 +9,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
 @endsection
 @section('content')
+{{--    Vịht vàng--}}
     <div class="container_page container">
         <section class="breadcrumb-container">
             <ul class="breadcrumb breadcrumb-arrow">
