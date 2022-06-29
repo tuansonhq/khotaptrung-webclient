@@ -43,7 +43,7 @@
                 {{--                                    Vong lap thang con--}}
                 @foreach ($data as $key_child => $child_item)
                     @if ($item->id == $child_item->parent_id)
-                <div class="row marginauto nav-bar-nick nav-bar-child add-active_{{ $child_item->slug }}">
+                <div class="row marginauto nav-bar-nick nav-bar-child add-active_{{ $child_item->slug }} {{ '/'.request()->path() == $child_item->url ? 'active' : ''}}">
                     <div class="col-12 left-right">
                         <a href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="">
                             <div class="row marginauto">
@@ -64,85 +64,4 @@
             </div>
         @endif
     @endforeach
-@endif
-
-@if(Request::is('profile'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_thong-tin-tai-khoan-1-1').addClass('active')
-        })
-    </script>
-
-@elseif(Request::is('change-password'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_doi-mat-khau').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-giao-dich'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_bien-dong-so-du').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-nap-the'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_lich-su-nap-the-1-1').addClass('active')
-        })
-    </script>
-@elseif(Request::is('dich-vu-da-mua'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_dich-vu-da-mua-2-1').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-mua-account'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_tai-khoan-da-mua-1-1').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-tra-gop'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_tai-khoan-tra-gop').addClass('active')
-        })
-    </script>
-@elseif(Request::is('the-cao-da-mua'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_the-cao-da-mua').addClass('active')
-        })
-    </script>
-@elseif(Request::is('the-cao-da-mua/detail'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_the-cao-da-mua').addClass('active')
-        })
-    </script>
-@elseif(Request::is('rut-vat-pham'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_withdraw-items').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-quay-thuong'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_lich-su-quay-thuong').addClass('active')
-        })
-    </script>
-@elseif(Request::is('lich-su-atm-tu-dong'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_lich-su-nap-atm-tu-dong').addClass('active')
-        })
-    </script>
-@elseif(Request::is('rut-tien'))
-    <script>
-        $(document).ready(function (e) {
-            $('.add-active_withdraw-money').addClass('active')
-        })
-    </script>
 @endif
