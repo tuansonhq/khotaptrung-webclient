@@ -368,6 +368,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             //minigame
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])
+                    ->name('getCategory');
+
                 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
                     ->name('postRoll');
                 Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])

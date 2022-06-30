@@ -9,6 +9,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
 @endsection
 @section('content')
+{{--    Vịht vàng--}}
     <div class="container_page container">
         <section class="breadcrumb-container">
             <ul class="breadcrumb breadcrumb-arrow">
@@ -267,7 +268,9 @@
                         </div>
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
@@ -420,7 +423,9 @@
                     <div class="rotation-leaderboard leaderboard-lg">
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay thưởng</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>

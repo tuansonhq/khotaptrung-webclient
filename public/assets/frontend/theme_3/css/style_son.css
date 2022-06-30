@@ -3607,7 +3607,21 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     display: flex;
 }
 
-
+.the-a-lich-su{
+    padding: 0.75rem 0;
+    font-weight: 600;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+}
+.logs-vat-pham-left{
+    padding-left: 0;
+    padding-right: 8px;
+}
+.logs-vat-pham-right{
+    padding-left: 8px;
+    padding-right: 0;
+}
 /*  Lap top  */
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-header-col-ct h3{
