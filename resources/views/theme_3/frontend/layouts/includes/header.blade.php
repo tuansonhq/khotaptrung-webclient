@@ -91,7 +91,7 @@
             <div class="close-hamburger-sidebar">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/hamburger_nav.png" alt="">
             </div>
-            <div class="box-logo d-none d-lg-block">
+            <div class="box-logo ">
                 <a href="/">
                     <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
                 </a>

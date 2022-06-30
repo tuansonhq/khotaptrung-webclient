@@ -715,7 +715,13 @@ header nav.heading .header-container{
         margin-bottom: 0;
         /*padding-bottom: 1rem;*/
     }
-
+    .box-logo {
+        margin-left: 12px;
+        margin-bottom: 4px;
+    }
+    .box-logo img {
+        width: 70px;
+    }
 }
 
 
