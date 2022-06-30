@@ -1829,3 +1829,6 @@ header nav.heading .header-container{
     width: 4px;
     height: 8px;
 }
+#atm_card .card--gray .card--attr.transfer-title{
+    display: none;
+}

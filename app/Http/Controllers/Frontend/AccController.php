@@ -28,9 +28,9 @@ class AccController extends Controller
 
             $data = $response_data->data;
 
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.account.category')
                 ->with('data',$data);
         }
@@ -38,9 +38,9 @@ class AccController extends Controller
 
             $data = null;
             $message = $response_data->message??"Không thể lấy dữ liệu";
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.account.category')
                 ->with('message',$message)
                 ->with('data',$data);
@@ -201,9 +201,9 @@ class AccController extends Controller
                     ->with('data',$data);
             }
 
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
 
             return view('frontend.pages.account.list')
                 ->with('data',$data)

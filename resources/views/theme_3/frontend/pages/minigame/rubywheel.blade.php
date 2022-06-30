@@ -78,12 +78,15 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="item_spin ">
-                            <div class="rotation-button ani-zoom" id="start-played">
-                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
-                            </div>
 
-                            <img style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                        <div class="rotation">
+                            <div class="item_spin ">
+                                <div class="rotation-button ani-zoom" id="start-played">
+                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                </div>
+
+                                <img style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                            </div>
                         </div>
                         @if($result->checkPoint==1)
                         <div class="rotation-points">

@@ -84,8 +84,7 @@ class ServiceController extends Controller
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $data->setPath($request->url());
 
-            Session::forget('return_url');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             Session::put('path', $_SERVER['REQUEST_URI']);
 
             return view('frontend.pages.service.list')->with('data', $data);

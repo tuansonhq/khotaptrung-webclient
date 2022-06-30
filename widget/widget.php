@@ -219,6 +219,26 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
 });
 
+View::composer('frontend.widget.__content__category__minigame', function ($view) {
+
+//    Minigame
+
+    $data = \Cache::rememberForever('__content__category__minigame', function() {
+
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+//    dd($data);
+    return $view->with('data', $data);
+
+});
+
 View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
     $data = \Cache::rememberForever('__content__home__dichvu', function() {

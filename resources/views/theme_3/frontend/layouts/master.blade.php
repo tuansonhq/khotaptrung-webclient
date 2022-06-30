@@ -53,7 +53,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
-
+    @if(\App\Library\AuthFrontendCustom::check())
+        <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+    @endif
 </head>
 <body>
 
