@@ -118,6 +118,10 @@ $(document).ready(function () {
                     $('#modal--fail__payment').modal('show');
                 }
             },
+            error: function (res) {
+                $('#message--error--buy').text('');
+                $('#modal--fail__payment').modal('show');
+            },
             complete: function () {
                 $('#confirmSubmitButton').prop("disabled", false);
                 $('#confirmSubmitButton').text("Xác nhận");
@@ -128,7 +132,6 @@ $(document).ready(function () {
     });
 
     $('#confirmMobileButton').on('click', function(e) {
-        console.log(1);
         e.preventDefault();
         $.ajax({
             url:'/mua-the',
@@ -213,6 +216,10 @@ $(document).ready(function () {
                     $('#modal--fail__payment').modal('show');
                 }
             },
+            error: function (res) {
+                $('#message--error--buy').text('');
+                $('#modal--fail__payment').modal('show');
+            }, 
             complete: function () {
                 $('#confirmMobileButton').prop("disabled", false);
                 $('#confirmMobileButton').text("Xác nhận");
