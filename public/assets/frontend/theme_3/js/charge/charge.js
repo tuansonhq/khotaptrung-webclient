@@ -39,7 +39,7 @@ $(document).ready(function(){
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.key+'</option>';
+                            html += '<option value="'+value.key+'">'+value.title+'</option>';
                         });
                     }
                     else{

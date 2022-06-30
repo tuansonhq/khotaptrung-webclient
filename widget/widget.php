@@ -426,6 +426,23 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
 
 
 });
+View::composer('frontend.widget.__top_nap_the_mobile', function ($view) {
+
+
+    $data = \Cache::rememberForever('__top_nap_the_mobile', function() {
+        $url = '/top-charge';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+    return $view->with('data',$data);
+
+
+
+});
 
 View::composer('frontend.widget.__nap_the', function ($view) {
     return $view;
