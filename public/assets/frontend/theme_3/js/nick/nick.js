@@ -269,34 +269,26 @@ $(document).ready(function (e) {
                 sort_by_data:sort_by_data
             },
             beforeSend: function (xhr) {
-
+                $("#account_data").empty().html('');
+                $("#listLoader").removeClass('d-none');
             },
             success: (data) => {
                 $('.loading').css('display','none');
 
                 if (data.status == 0){
-
-                    var html = '';
+                    let html = '';
                     html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + data.message + '</span></div></div>';
 
-                    $("#account_data").empty().html('');
                     $("#account_data").empty().html(html);
-
                 }else if (data.status == 1){
-                    // $(".booking_detail")[0].scrollIntoView();
-
-                    $("#account_data").empty().html('');
-
                     $("#account_data").empty().html(data.data);
-
                 }
-
             },
             error: function (data) {
 
             },
             complete: function (data) {
-
+                $("#listLoader").addClass('d-none');
             }
         });
     }

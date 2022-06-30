@@ -157,6 +157,38 @@
                         </div>
 
                         <div id="account_data" style="width: 100%;">
+                            
+                        </div>
+
+                        <div id="listLoader" style="width: 100%;">
+                            <div class="loader position-relative" style="padding: 1rem">
+                                <div class="loading-spokes">
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 

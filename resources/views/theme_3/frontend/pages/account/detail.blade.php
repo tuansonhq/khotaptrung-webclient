@@ -7,6 +7,37 @@
         </div>
 
         {{--   Bopđyy --}}
+        <section id="detailLoader">
+            <div class="loader position-relative" style="margin: 4rem 0">
+                <div class="loading-spokes">
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="showdetailacc">
             {{-- @include('frontend.pages.account.widget.__datadetail') --}}
         </section>
@@ -510,6 +541,8 @@
     </fieldset> --}}
 
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
+    <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>
 @endsection
 
