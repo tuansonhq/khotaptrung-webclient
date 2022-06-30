@@ -250,12 +250,17 @@ $(document).ready(function () {
                         //Increase loop index
                         loop_index++;
 
-                        //Apepnd HTML
-                        if (card.params.teltecom_type == 2) {
+                        if (card.params && card.params.teltecom_type) {
+                            //Apepnd HTML
+                            if (card.params.teltecom_type == 2) {
+                                $('#cardGameList').append(html);
+                            }
+                            if (card.params.teltecom_type == 1) {
+                                $('#cardPhoneList').append(html);
+                            }
+
+                        } else {
                             $('#cardGameList').append(html);
-                        }
-                        if (card.params.teltecom_type == 1) {
-                            $('#cardPhoneList').append(html);
                         }
                     });
 
@@ -271,6 +276,7 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
+                $('.section--amount__card').removeClass('d-none');
             }
         });
     };

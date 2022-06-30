@@ -1,9 +1,10 @@
 $(document).ready(function (e) {
 
     var slug = $('.slug').val();
+    var slug_category = $('.slug_category').val();
 
     getShowAccDetail(slug);
-    getRelatedAcc(slug);
+    getRelatedAcc(slug_category);
 
     function getShowAccDetail(slug) {
 
@@ -57,19 +58,19 @@ $(document).ready(function (e) {
 
             },
             complete: function (data) {
-
+                $('#detailLoader').addClass('d-none');
             }
         });
     };
 
-    function getRelatedAcc(slug) {
+    function getRelatedAcc(slug_category) {
 
         var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug
+                slug:slug_category
             },
             beforeSend: function (xhr) {
 

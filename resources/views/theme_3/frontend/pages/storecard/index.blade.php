@@ -48,7 +48,7 @@
                                 <div class="tab--title">Chọn loại thẻ</div>
                                 <div class="tab-pane fade show active" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
                                     <ul class="cards__list row" id="cardGameList">
-                                        <div class="loader position-relative">
+                                        <div class="loader position-relative" style="margin: 2rem 0">
                                             <div class="loading-spokes">
                                                 <div class="spoke-container">
                                                     <div class="spoke"></div>
@@ -102,10 +102,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 mb_1 section--amount__card">
+                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 mb_1 section--amount__card d-none">
                     <div class="card --custom">
                         <div class="card--body" id="amountWidget">
-                            <div class="loader position-relative">
+                            <div class="loader position-relative" style="margin: 2rem 0">
                                 <div class="loading-spokes">
                                     <div class="spoke-container">
                                         <div class="spoke"></div>

@@ -183,8 +183,11 @@
                                             <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
-                                                        <button type="button" class="button-default-nick-ct btn-mua-ngay media-web" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
-                                                        <button type="button" class="button-default-nick-ct media-mobile button-next-step-one" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                        @if (App\Library\AuthCustom::check())
+                                                            <button type="button" class="button-default-nick-ct btn-mua-ngay media-web" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                        @else
+                                                            <button type="button" class="button-default-nick-ct btn-mua-ngay media-web" onclick="openLoginModal();">Mua ngay</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -418,8 +421,11 @@
                                             <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
-                                                        <button type="button" class="button-default-nick-ct media-web" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
-                                                        <button type="button" class="button-default-nick-ct media-mobile button-next-step-one" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                        @if (App\Library\AuthCustom::check())
+                                                            <button type="button" class="button-default-nick-ct media-mobile button-next-step-one" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                        @else
+                                                            <button type="button" class="button-default-nick-ct media-mobile" onclick="openLoginModal();">Mua ngay</button>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
