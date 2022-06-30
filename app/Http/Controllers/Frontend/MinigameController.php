@@ -13,8 +13,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class MinigameController extends Controller
 {
     public function getIndex(Request $request){
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
+
         try{
             $method = "GET";
             $data = array();
