@@ -80,7 +80,7 @@ $(document).ready(function(){
                         $('#account-id-mobile').html(' <span >ID: </span>'+ data.info.id );
                         $('#account-balance-mobile').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
                         $('.box-loading-mobile').hide();
-                        $('.box-account-mobile').html('<div class="box-account-logined " onclick="openMenuProfile()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.jpg" alt=""></div> </div>')
+                        $('.box-account-mobile').html('<div class="box-account-logined " onclick="openMenuProfile()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar_icon.jpg" alt=""></div> </div>')
                         $('#login_menu').html('<a class="btn btn-submit" onclick="event.preventDefault();\n' +
                             'document.getElementById(\'logout-form\').submit();"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng xuất</span></a>')
 
