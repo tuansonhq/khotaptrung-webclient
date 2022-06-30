@@ -56,6 +56,8 @@
     @if(\App\Library\AuthFrontendCustom::check())
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
     @endif
+
+    @yield('seo_head')
 </head>
 <body>
 
