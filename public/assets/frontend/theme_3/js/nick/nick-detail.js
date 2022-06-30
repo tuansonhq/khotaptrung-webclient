@@ -330,9 +330,9 @@ $(document).ready(function (e) {
         var slider = new Swiper ('.gallery-slider', {
             autoplay: {
                 delay: 2000,
-    
+
             },
-    
+
             slidesPerView: 1,
             centeredSlides: true,
             loop: false,
@@ -346,7 +346,7 @@ $(document).ready(function (e) {
 
     function activateGalleryThumbs () {
         var thumbs = new Swiper ('.gallery-thumbs', {
-            slidesPerView: 6.5,
+            slidesPerView: 5.5,
             spaceBetween: 8,
             centeredSlides: false,
             loop: false,
@@ -360,7 +360,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 3.2,
-    
+
                 }
             }
         });
@@ -375,7 +375,7 @@ $(document).ready(function (e) {
             watchSlidesVisibility: false,
             lazyLoadingInPrevNext: false,
             lazyLoadingOnTransitionStart: false,
-    
+
             loop: false,
             centeredSlides: false,
             slidesPerView: 4.5,
@@ -395,7 +395,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 1.8,
-    
+
                 }
             }
         });
