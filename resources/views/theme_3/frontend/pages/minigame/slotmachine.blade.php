@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="rotation">
-                            <div class="item_slot" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
+                            <div class="item_slot item_slot-ba-qua" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}});background-repeat: no-repeat" >
                                 <div class="item_slot_inner">
                                     <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
                                     <div id="slot2" class="item_slot_inner_img a1" style=""></div>
@@ -1259,8 +1259,42 @@
         width: 100px;
         height: 79px;
         padding: 0 28px;
+        background-repeat: no-repeat;
     }
+    /*  Lap top  */
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        #slot1,#slot2,#slot3 {
+            background-size: 60px 48px!important;
+            width: 60px!important;
+            margin: 0 28px!important;
+            height: 48px;
+        }
+    }
+    @media only screen and (min-width: 573px) and (max-width: 768px) {
+        #slot1,#slot2,#slot3 {
+            background-size: 64px 48px!important;
+            width: 64px!important;
+            margin: 0 22px!important;
+            height: 50px!important;
+        }
+    }
+    @media only screen and (min-width: 376px) and (max-width: 573px) {
+        #slot1,#slot2,#slot3 {
+            background-size: 56px 40px!important;
+            width: 48px!important;
+            margin: 0px 9px!important;
+            height: 48px!important;
+        }
 
+    }
+    @media only screen and (max-width: 376px) {
+        #slot1,#slot2,#slot3 {
+            background-size: 56px 40px!important;
+            width: 48px!important;
+            margin: 0px 9px!important;
+            height: 48px!important;
+        }
+    }
 </style>
 @endsection
 
