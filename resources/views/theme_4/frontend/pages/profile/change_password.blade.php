@@ -3,6 +3,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/user/change-password.js?v={{time()}}"></script>
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     {{--  Menu  --}}
     <section class="media-web">
