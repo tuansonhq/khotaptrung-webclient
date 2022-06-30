@@ -306,13 +306,8 @@
             </li>
             <div class="menu-category-mobile-partition"></div>
             @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
-            <div class="menu-category-mobile-partition"></div>
-            <li id="login_menu">
-                {{--                <a href="">--}}
-                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
-                {{--                    <span>Đăng nhập/ Đăng ký</span>--}}
-                {{--                </a>--}}
-            </li>
+{{--            <div class="menu-category-mobile-partition"></div>--}}
+
         </ul>
     </div>
 </div>
