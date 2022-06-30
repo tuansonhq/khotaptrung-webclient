@@ -22,6 +22,8 @@ $('.js-amount').on('click', function () {
     if (input.val() > 20) {
         input.val(20)
     }
+
+    $('input[name=card-amount]').trigger('input');
 });
 
 // see more desc service
@@ -112,13 +114,6 @@ let slider_count = 1;
 if ($('.slider--card .swiper-wrapper').children().length > 1) {
     slider_count = 1.25;
 }
-var swiper_card = new Swiper(".slider--card", {
-    slidesPerView: slider_count,
-    spaceBetween: 16,
-    freeMode: true,
-    observer: true,
-    observeParents: true,
-});
 
 // option swiper article banner
 var swiper_article= new Swiper(".article--slider", {
