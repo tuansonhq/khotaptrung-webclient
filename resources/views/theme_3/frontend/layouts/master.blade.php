@@ -74,20 +74,20 @@
 <script>
 
     $(document).ready(function () {
-        @if(Request::is('nap-the'))
+{{--        @if(Request::is('nap-the'))--}}
 
-        $('#nav-charge').addClass('nav-profile-active')
-        @elseif(Request::is('mua-the'))
-        $('#nav-store').addClass('nav-profile-active')
-        @elseif(Request::is('mua-acc'))
-        $('#nav-buy__acc').addClass('nav-profile-active')
-        @elseif(Request::is('dich-vu'))
-        $('#nav-service').addClass('nav-profile-active')
-        @elseif(Request::is('recharge-game'))
-        $('#nav-recharge_game').addClass('nav-profile-active')
-        @elseif(Request::is('minigame'))
-        $('#nav-minigame').addClass('nav-profile-active')
-        @endif
+{{--        $('#nav-charge').addClass('nav-profile-active')--}}
+{{--        @elseif(Request::is('mua-the'))--}}
+{{--        $('#nav-store').addClass('nav-profile-active')--}}
+{{--        @elseif(Request::is('mua-acc'))--}}
+{{--        $('#nav-buy__acc').addClass('nav-profile-active')--}}
+{{--        @elseif(Request::is('dich-vu'))--}}
+{{--        $('#nav-service').addClass('nav-profile-active')--}}
+{{--        @elseif(Request::is('recharge-game'))--}}
+{{--        $('#nav-recharge_game').addClass('nav-profile-active')--}}
+{{--        @elseif(Request::is('minigame'))--}}
+{{--        $('#nav-minigame').addClass('nav-profile-active')--}}
+{{--        @endif--}}
     })
 </script>
 @include('frontend.layouts.includes.header')
