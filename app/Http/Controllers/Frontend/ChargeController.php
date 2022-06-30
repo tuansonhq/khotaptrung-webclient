@@ -47,8 +47,7 @@ class ChargeController extends Controller
     }
     public function getDepositAuto(Request $request)
     {
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
+
         return view('frontend.pages.charge.index');
 
     }

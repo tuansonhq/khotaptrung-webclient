@@ -17,8 +17,6 @@ class TranferController extends Controller
     public function index(Request $request)
     {
 
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
         return view('frontend.pages.transfer.index');
 
     }
@@ -116,8 +114,7 @@ class TranferController extends Controller
     public function logs(Request $request)
     {
         try {
-            Session::forget('return_url');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.transfer.logs');
 
         }   catch(\Exception $e){
