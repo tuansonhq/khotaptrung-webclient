@@ -1,14 +1,16 @@
 @extends('frontend.layouts.master')
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/validate.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/user/change-password.js?v={{time()}}"></script>
+@endsection
 @section('content')
-
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/profile">Đổi mật khẩu</a></li>
+                <li class="menu-container-li-ct"><a href="">Đổi mật khẩu</a></li>
             </ul>
         </div>
     </section>
@@ -18,7 +20,7 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="#" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
@@ -37,11 +39,13 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct profile-category-body body-container-row-mobile-ct">
-                @include('theme_3.frontend.widget.__navbar__profile')
+                @include('frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct ">
                     <div class="row marginauto logs-content profile-category">
                         <div class="col-md-12 left-right">
+                            <form action="{{route('changePasswordApi')}}" method="POST" id="form-changePassword">
+                                @csrf
                             <div class="row marginauto">
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto logs-title">
@@ -50,7 +54,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 left-right text-change-password-default">
 
                                     <div class="row marginauto change-password-first change-password-row">
@@ -58,13 +61,12 @@
                                             <span>Mật khẩu cũ</span>
                                         </div>
                                         <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-old" autocomplete="off" placeholder="Nhập mật khẩu cũ">
+                                            <input type="text" class="input-defautf-ct password-old" name="old_password" autocomplete="off" placeholder="Nhập mật khẩu cũ">
                                         </div>
                                     </div>
+                                    <div class="col-m-12 message-error">
 
-                                </div>
-                                <div class="col-m-12 password-old-error">
-
+                                    </div>
                                 </div>
                                 <div class="col-md-12 left-right text-change-password-default">
 
@@ -73,14 +75,13 @@
                                             <span>Mật khẩu mới</span>
                                         </div>
                                         <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-new" autocomplete="off" placeholder="Nhập mật khẩu mới">
+                                            <input type="text" class="input-defautf-ct password-new" name="password" autocomplete="off" placeholder="Nhập mật khẩu mới">
                                         </div>
 
                                     </div>
+                                    <div class="col-m-12 message-error">
 
-                                </div>
-                                <div class="col-m-12 password-new-error">
-
+                                    </div>
                                 </div>
                                 <div class="col-md-12 left-right text-change-password-default">
 
@@ -89,25 +90,23 @@
                                             <span>Xác nhận mật khẩu</span>
                                         </div>
                                         <div class="col-auto change-password-default change-password-col-last left-right">
-                                            <input type="text" class="input-defautf-ct password-confirm" autocomplete="off" placeholder="Xác nhận mật khẩu">
+                                            <input type="text" class="input-defautf-ct password-confirm" name="password_confirmation" autocomplete="off" placeholder="Xác nhận mật khẩu">
                                         </div>
 
                                     </div>
-
-                                </div>
-                                <div class="col-m-12 password-confirm-error">
-
+                                    <div class="col-m-12 message-error"></div>
                                 </div>
                                 <div class="col-md-12 left-right text-change-password-default">
 
                                     <div class="row marginauto change-password-last change-password-row">
                                         <div class="col-auto  change-password-default change-password-col-last left-right">
-                                            <button class="button-default-ct btn-data" type="button">Đổi mật khẩu</button>
+                                            <button class="button-default-ct btn-data" type="submit">Đổi mật khẩu</button>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -122,7 +121,7 @@
                 <div class="modal-header modal-header-success-ct">
                     <div class="row marginauto modal-header-success-row-ct justify-content-center">
                         <div class="col-md-12 text-center">
-                            <span>Thay đổi mật khẩu thành công</span>
+                            <span class="modal_message">Thay đổi mật khẩu thành công</span>
                         </div>
                     </div>
                 </div>
@@ -158,6 +157,5 @@
             </div>
         </div>
     </div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/user/change-password.js"></script>
 @endsection
 

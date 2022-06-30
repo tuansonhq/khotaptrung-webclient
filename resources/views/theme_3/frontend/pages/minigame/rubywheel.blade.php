@@ -14,7 +14,7 @@
             <ul class="breadcrumb breadcrumb-arrow">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="minigame">Danh mục vòng quay</a></li>
-                <li class="breadcrumb-item"><a href="minigame/slug">{{$result->group->title}}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{{$result->group->title}}</a></li>
             </ul>
         </section>
         <section class="breadcrumb-mobile">
@@ -252,7 +252,9 @@
                         </div>
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
@@ -405,7 +407,9 @@
                     <div class="rotation-leaderboard leaderboard-lg">
                         <div class="leaderboard-buttons row">
                             <div class="col-6">
-                                <button class="button-secondary history-spin-button">Lịch sử quay thưởng</button>
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>

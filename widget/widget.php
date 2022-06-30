@@ -61,7 +61,7 @@ View::composer('frontend.widget.__menu__taget', function ($view) {
 View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 
     $data = \Cache::rememberForever('__head__dich__vu__noi__bat', function() {
-        $url = '/menu-transaction';
+        $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
@@ -78,7 +78,7 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 View::composer('frontend.widget.__head__dich__vu__noi__bat__mobile', function ($view) {
 
     $data = \Cache::rememberForever('__head__dich__vu__noi__bat__mobile', function() {
-        $url = '/menu-transaction';
+        $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
@@ -319,6 +319,20 @@ View::composer('frontend.widget.__menu_category_theme2', function ($view) {
 
 View::composer('frontend.widget.__menu_profile', function ($view) {
     $data = \Cache::rememberForever('__menu_profile', function() {
+        $url = '/menu-profile';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
+    $data = \Cache::rememberForever('__menu_profile_desktop', function() {
         $url = '/menu-profile';
         $method = "POST";
         $dataSend = array();
