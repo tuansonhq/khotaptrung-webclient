@@ -926,6 +926,6 @@
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
-    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+
 @endsection
 

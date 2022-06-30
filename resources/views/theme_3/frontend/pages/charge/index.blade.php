@@ -200,7 +200,7 @@
                                                     @if (setting('sys_tranfer_content') != "")
                                                         {!! setting('sys_tranfer_content') !!}
                                                     @endif
-                                                    <div class="card--attr">
+                                                    <div class="card--attr transfer-title">
                                                         <div class="card--attr__name">
                                                             Nội dung chuyển tiền
                                                         </div>
@@ -342,6 +342,7 @@
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
-    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+
+{{--    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>--}}
 
 @endsection
