@@ -56,16 +56,16 @@ $(document).ready(function () {
         });
     }
 
-    getDichVuLienQuan(slug)
+    getDichVuLienQuan(slug_category)
 
-    function getDichVuLienQuan(slug) {
+    function getDichVuLienQuan(slug_category) {
 
         var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug
+                slug:slug_category
             },
             beforeSend: function (xhr) {
 
@@ -75,7 +75,9 @@ $(document).ready(function () {
                 if (data.status == 1){
 
                     $('#showslideracc').html('');
+
                     $('#showslideracc').html(data.dataslider);
+
                 }else if (data.status == 0){
 
                     var html = '';

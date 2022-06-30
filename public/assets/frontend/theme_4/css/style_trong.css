@@ -1350,6 +1350,19 @@ a:hover .__icon.--path__custom:after
     background-color: #DA4343;
 }
 
+.message-error {
+    margin-top: .5rem;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #DA4343;
+}
+.message-error:empty {
+    margin-top: 0;
+}
+.invalid input {
+    border-color: rgb(218, 67, 67);
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {

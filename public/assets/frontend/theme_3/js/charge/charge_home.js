@@ -39,7 +39,7 @@ $(document).ready(function(){
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.key+'</option>';
+                            html += '<option value="'+value.key+'">'+value.title+'</option>';
                         });
                     }
                     else{
@@ -111,7 +111,7 @@ $(document).ready(function(){
                     $('#amount').html(html);
 
                     amount_checked =  $('input[name=amount]:checked');
-
+                    updatePriceCharge()
                     $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
                     $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
                     $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
@@ -243,10 +243,39 @@ $(document).ready(function(){
         postCharge()
         return false;
 
-
-
-
-
     });
+    function updatePriceCharge() {
+
+        $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
+        $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
+        $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
+        $('input[name=amount]').change(function(){
+            $('.charge_amount').html(' <small>'+ formatNumber($(this).val()) +'</small>')
+            $('.charge_price').html(' <span>'+ formatNumber($(this).val()) +'</span>')
+            $('.charge_ratito').html(' <small>'+ formatNumber($(this).attr("data-ratito")) +'</small>')
+
+        });
+
+
+        var amount=amount_checked.val();
+        var ratio=amount_checked.attr("data-ratito");
+
+        if(ratio<=0 || ratio=="" || ratio==null){
+            ratio=100;
+        }
+        var sale=amount-(amount*ratio/100);
+        var total=amount-sale;
+        // var total=sale*quantity;
+        var totalnotsale = amount
+        if(sale != 0){
+            $('.charge_total').html('<span>' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+        }else {
+            $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+        }
+    }
+
+
 
 });

@@ -625,4 +625,8 @@ class MinigameController extends Controller
         }
     }
 
+    public function getCategory(Request $request){
+
+        return view('frontend.pages.minigame.category');
+    }
 }

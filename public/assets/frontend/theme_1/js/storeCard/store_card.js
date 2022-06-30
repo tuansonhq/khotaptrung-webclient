@@ -144,9 +144,6 @@ $(document).ready(function(){
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
-            console.log('amount:'+amount);
-            console.log('ratio:'+ratio);
-            console.log('quantity:'+quantity);
             return;
         }
         if(ratio<=0 || ratio=="" || ratio==null){
@@ -156,7 +153,6 @@ $(document).ready(function(){
         var total=(amount-sale) *quantity;
         // var total=sale*quantity;
         var totalnotsale = amount*quantity
-        console.log(sale)
         if(sale != 0){
             $('#txtPrice').html('Tổng: ' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ');
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {

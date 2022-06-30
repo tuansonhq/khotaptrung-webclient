@@ -58,7 +58,7 @@
                                             <span>ID của bạn</span>
                                         </div>
                                         <div class="col-auto left-right">
-                                            <small>156415</small>
+                                            <small id="info_id"></small>
                                         </div>
                                     </div>
                                     <div class="row marginauto profile-row">
@@ -66,7 +66,7 @@
                                             <span>Tên tài khoản</span>
                                         </div>
                                         <div class="col-auto profile-auto left-right">
-                                            <small>Trần Thành Đạt</small>
+                                            <small id="info_name"></small>
                                         </div>
                                     </div>
                                     <div class="row marginauto profile-row">
@@ -74,33 +74,10 @@
                                             <span>Số dư tài khoản</span>
                                         </div>
                                         <div class="col-auto profile-auto left-right">
-                                            <small>0đ</small>
+                                            <small id="info_balance"></small>
                                         </div>
                                     </div>
-                                    <div class="row marginauto profile-row">
-                                        <div class="col-auto profile-auto left-right">
-                                            <span>Bảo mật ODP</span>
-                                        </div>
-                                        <div class="col-auto profile-auto left-right">
-                                            <small>0912 345 678</small>
-                                        </div>
-                                    </div>
-                                    <div class="row marginauto profile-row">
-                                        <div class="col-auto profile-auto left-right">
-                                            <span>Loại tài khoản</span>
-                                        </div>
-                                        <div class="col-auto profile-auto left-right">
-                                            <small>Thành viên</small>
-                                        </div>
-                                    </div>
-                                    <div class="row marginauto profile-row">
-                                        <div class="col-auto profile-auto left-right">
-                                            <span>Ngày tham gia</span>
-                                        </div>
-                                        <div class="col-auto profile-auto left-right">
-                                            <small>02/10/2021</small>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -110,6 +87,5 @@
             </div>
         </div>
     </section>
-
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js?v={{time()}}"></script>
 @endsection
