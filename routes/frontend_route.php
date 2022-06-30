@@ -248,7 +248,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
                     Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
-
+                    Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+                        ->name('changePassword');
+                    Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+                        ->name('changePasswordApi');
                 });
                 // ROUTE cần auth load dữ liệu không cache
 
@@ -333,10 +336,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                 ->name('register');
             Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-            Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-                ->name('changePassword');
-            Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-                ->name('changePasswordApi');
+
 
 
             Route::get('/show', function ()
