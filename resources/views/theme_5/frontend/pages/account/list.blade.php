@@ -8,7 +8,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="" class="previous-step-one" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -29,11 +29,11 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/mua-acc">Danh mục Shop Account</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/mua-acc/slug">Liên quân mobile</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/mua-acc">Danh sách Nick</a></li>
             </ul>
         </div>
@@ -45,6 +45,9 @@
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
 
                 <div class="col-md-12 left-right">
+                    <div class="container container-fix banner-container-ct">
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner_home02.png" alt="">
+                    </div>
                     <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
                         <div class="col-md-12 left-right">
                             <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/list-nick-bg.png" alt="">
@@ -54,9 +57,6 @@
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
-                                <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
-                                </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
                                     <h3>Danh sách Nick Liên quân Mobile</h3>
                                 </div>
@@ -164,6 +164,7 @@
             </div>
         </div>
     </section>
+
     <section class="media-mobile">
         <div class="row marginauto intermediary-ct" style="height: 20px;background: #EFEFEF">
 

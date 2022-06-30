@@ -15,9 +15,10 @@
     </section>
 
     {{--    Banner--}}
+
     <section class="media-web">
         <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
+            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
         </div>
     </section>
     {{--  Menu  --}}
@@ -25,7 +26,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/mua-acc">Danh mục Shop Account</a></li>
             </ul>
         </div>
@@ -87,7 +88,6 @@
                             </form>
 
                         </div>
-
                         <div class="col-md-12 left-right media-mobile">
                             <form action="" method="POST">
                                 <div class="row marginauto body-form-search-ct">
@@ -97,11 +97,9 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
 
                         @include('frontend.pages.account.widget.__data__category')
-
 
                     </div>
                 </div>
@@ -110,6 +108,7 @@
         </div>
     </section>
 
+    @include('frontend.pages.account.widget.__category__content')
 
 
     <script src="/assets/{{env('THEME_VERSION')}}/js/nick/nick.js?v={{time()}}"></script>
