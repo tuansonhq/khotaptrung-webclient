@@ -14,7 +14,7 @@
                 <section class="media-mobile">
                     <div class=" banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
-                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" >
+                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                             </div>
 
@@ -178,7 +178,7 @@
                                                     Nạp ngay
                                                 </button>
                                             </div>
-                                            <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none">
+                                            <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none" style="padding-top: 0">
                                                 <div class="row marginauto" style="padding: 12px 16px">
                                                     <div class="col-md-12 left-right">
                                                         <button id="charge_next" class="button-default-ct button-next-step-one" type="submit">Nạp ngay</button>
@@ -311,8 +311,8 @@
                                         <div class="col-auto left-right background-order-col-left-ct">
                                             <span>Số tiền thực nhận</span>
                                         </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
-                                            <span>97.000 đ</span>
+                                        <div class="col-auto left-right background-order-col-right-ct charge_total">
+
                                         </div>
                                     </div>
                                 </div>
