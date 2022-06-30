@@ -51,7 +51,7 @@ $(document).ready(function(){
                     var telecom = ele.val();
                     getAmount(telecom);
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-                    paycartDataChargeHistory();
+
 
                     $('.loading-data').remove();
 
@@ -112,7 +112,7 @@ $(document).ready(function(){
                     $('#amount').html(html);
 
                     amount_checked =  $('input[name=amount]:checked');
-
+                    updatePriceCharge()
                     $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
                     $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
                     $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
@@ -281,57 +281,35 @@ $(document).ready(function(){
 
     });
 
-    $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
-        event.preventDefault();
+    function updatePriceCharge() {
 
-        var page = $(this).attr('href').split('page=')[1];
+        $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
+        $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
+        $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
+        $('input[name=amount]').change(function(){
+            $('.charge_amount').html(' <small>'+ formatNumber($(this).val()) +'</small>')
+            $('.charge_price').html(' <span>'+ formatNumber($(this).val()) +'</span>')
+            $('.charge_ratito').html(' <small>'+ formatNumber($(this).attr("data-ratito")) +'</small>')
 
-        $('#hidden_page_service_nt').val(page);
-
-        $('li').removeClass('active');
-        $(this).parent().addClass('active');
-
-
-        paycartDataChargeHistory(page);
-    });
-
-    function paycartDataChargeHistory(page) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: '/get-tele-card/data',
-            data: {
-                page:page,
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-                if (data.status == 1){
-                    $(".paycartdata").empty().html('');
-                    $(".paycartdata").empty().html(data.data);
-                }else if (data.status == 0){
-                    var html = '';
-                    html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
-                    html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
-                    html += '</tbody>';
-                    html += '</table>';
-                    html += '</div>';
-
-                    $(".paycartdata").empty().html('');
-                    $(".paycartdata").empty().html(html);
-                }
-
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
         });
+
+
+        var amount=amount_checked.val();
+        var ratio=amount_checked.attr("data-ratito");
+
+        if(ratio<=0 || ratio=="" || ratio==null){
+            ratio=100;
+        }
+        var sale=amount-(amount*ratio/100);
+        var total=amount-sale;
+        // var total=sale*quantity;
+        var totalnotsale = amount
+        if(sale != 0){
+            $('.charge_total').html('<span>' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+        }else {
+            $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+        }
     }
 });

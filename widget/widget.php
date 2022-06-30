@@ -73,6 +73,21 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+View::composer('frontend.widget.__list_service', function ($view) {
+
+    $data = \Cache::rememberForever('__list_service', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 //theme3
 View::composer('frontend.widget.__head__dich__vu__noi__bat__mobile', function ($view) {
@@ -92,9 +107,9 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat__mobile', function ($
 });
 
 //theme3
-View::composer('frontend.widget.__index__dich__vu__noi__bat', function ($view) {
+View::composer('frontend.widget.__list_serve_remark', function ($view) {
 
-    $data = \Cache::rememberForever('__index__dich__vu__noi__bat', function() {
+    $data = \Cache::rememberForever('__list_serve_remark', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();
@@ -109,9 +124,9 @@ View::composer('frontend.widget.__index__dich__vu__noi__bat', function ($view) {
 });
 
 //theme3
-View::composer('frontend.widget.__index__dich__vu__noi__bat__mobile', function ($view) {
+View::composer('frontend.widget.__list_serve_remark_mobile', function ($view) {
 
-    $data = \Cache::rememberForever('__index__dich__vu__noi__bat__mobile', function() {
+    $data = \Cache::rememberForever('__list_serve_remark_mobile', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();

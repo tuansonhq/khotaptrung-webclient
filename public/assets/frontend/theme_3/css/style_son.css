@@ -1,3 +1,6 @@
+:root {
+    --filter-primary-color: invert(48%) sepia(23%) saturate(4446%) hue-rotate(5deg) brightness(101%) contrast(101%);
+}
 .modal-open{
     overflow: auto;
     padding-right:0 !important;
@@ -3243,21 +3246,23 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .__icon__profile.--link__profile {
-    -webkit-mask: var(--path) center/contain;
-    background-color: #434657;
+    background-image: var(--path);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .global__link__profile:hover .__icon__profile.--link__profile {
-    background-color: #F67600;
+    filter: var(--filter-primary-color);
     transition: .2s;
 }
 
 .nav-bar-child a:hover .global__link__profile .__icon__profile.--link__profile {
-    background-color: #F67600;
+    filter: var(--filter-primary-color);
     transition: .2s;
 }
 
 .nav-bar-child.active .__icon__profile.--link__profile {
-    background-color: #F67600;
+    filter: var(--filter-primary-color);
     transition: .2s;
 }
 

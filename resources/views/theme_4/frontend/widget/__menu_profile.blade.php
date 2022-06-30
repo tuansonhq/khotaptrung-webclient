@@ -48,10 +48,10 @@
                         <a href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="">
                             <div class="row marginauto">
                                 <div class="col-auto left-right global__link__profile">
-                                    <i class="__icon__profile --sm__profile --link__profile" style="--path : url({{ $child_item->image_icon??'' }})"></i>
+                                    <i class="__icon__profile --sm__profile --link__profile" style="--path : url({{@$child_item->image_icon}})"></i>
                                 </div>
                                 <div class="col-10 nav-bar-log-top-body-col">
-                                    <span>{{$child_item->title}}</span>
+                                    <span>{{@$child_item->title}}</span>
                                 </div>
                             </div>
                         </a>

@@ -1,3 +1,4 @@
+@if(isset($data) && count($data) > 0)
 <div class=" block-product mt-fix-20">
     <div class="product-header d-flex">
                     <span>
@@ -15,24 +16,37 @@
         <div class="box-product tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
             <div class="swiper-container list-product" >
                 <div class="swiper-wrapper">
+                    @foreach($data as $item)
                     <div class="swiper-slide ">
-                        <a href="/acc/id">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
+                                    @if(isset($item->image))
+                                        <img class="game-list-image-in lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                    @else
+                                        <img class="game-list-image-in" src="/assets/frontend/{{theme('')->theme_key}}/images/ff.jpg" alt="">
+                                    @endif
                             </div>
                             <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên quân Mobile
+                                <div class="item-product__box-name item-acc-name">
+                                    {{ isset($item->custom->title) ? $item->custom->title :  $item->title }}
                                 </div>
                                 <div class="item-product__box-sale">
-                                    Số tài khoản: 40K
+                                    @if(isset($item->items_count))
+                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                            Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }}
+                                        @else
+                                            Số tài khoản: {{ $item->items_count }}
+                                        @endif
+                                    @else
+                                        Số tài khoản: 9999
+                                    @endif
                                 </div>
                                 <div class="item-product__box-sale">
                                     Đã bán: 40K
                                 </div>
                                 <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
+                                    <div class="special-price">{{$item->params->price}}</div>
+                                    <div class="old-price">{{$item->params->price_old}}</div>
                                     <div class="item-product__sticker-percent">
                                         -50%
                                     </div>
@@ -40,424 +54,10 @@
                             </div>
                         </a>
                     </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Freefire
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    PUBG Mobile
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên Minh Huyền Thoại
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Acc liên quan siêu vip
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Acc liên quan siêu vip
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box-product tab-pane fade" id="favourite_game" role="tabpanel" aria-labelledby="favourite_game-tab">
-            <div class="swiper-container list-product" >
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
-
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên quân Mobile
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 40K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 40K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Freefire
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    PUBG Mobile
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên Minh Huyền Thoại
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Acc liên quan siêu vip
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản : 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box-product tab-pane fade" id="suggestions" role="tabpanel" aria-labelledby="suggestions-tab">
-            <div class="swiper-container list-product" >
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên quân Mobile
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Freefire
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_03.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    PUBG Mobile
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_04.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Liên Minh Huyền Thoại
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_01.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Acc liên quan siêu vip
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide " >
-                        <a href="/acc/id">
-                            <div class="item-product__box-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product/acc_02.png" alt="">
-                            </div>
-                            <div class="item-product__box-content">
-                                <div class="item-product__box-name">
-                                    Acc liên quan siêu vip
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Số tài khoản: 68,9K
-                                </div>
-                                <div class="item-product__box-sale">
-                                    Đã bán: 68,9K
-                                </div>
-                                <div class="item-product__box-price">
-                                    <div class="special-price">15.000đ</div>
-                                    <div class="old-price">30.000đ</div>
-                                    <div class="item-product__sticker-percent">
-                                        -50%
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endif

@@ -77,7 +77,7 @@
                                     <div class="col-auto left-right background-order-col-left-ct">
                                         <span>Số tiền thực nhận</span>
                                     </div>
-                                    <div class="col-auto left-right background-order-col-right-ct charge_price">
+                                    <div class="col-auto left-right background-order-col-right-ct charge_total">
 {{--                                        <span>97.000 đ</span>--}}
                                     </div>
                                 </div>

@@ -1775,7 +1775,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     background: transparent;
     border: none;
 }
-.default-paginate .pagination-sm .page-item.disabled .page-link{
+.default-paginate .pagination-sm .page-item:first-child.disabled .page-link{
     background: #F3F3F7;
     border: 1px solid #BCBFD6;
 }

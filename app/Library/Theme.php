@@ -18,6 +18,8 @@ class Theme
             $result = DirectAPI::_makeRequest($url ,$data ,$method);
             if(isset($result) && $result->response_code == 200){
                 $seo = $result->response_data->data;
+            }else{
+                $seo = 'theme_1';
             }
             return $seo;
         });
