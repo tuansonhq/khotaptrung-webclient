@@ -64,32 +64,24 @@
 @if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
-            $('#loginModal').modal('show');
+            let width = $(window).width();
+            setTimeout(function(){
+                if ( width > 1200 ) {
+                    $('#loginModal').modal('show');
+                    setTimeout(() => {
+                        $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                    }, 200);
+                } else {
+                    $('.mobile-auth').toggleClass('mobile-auth-show');
+                }
+            }, 0);
         });
     </script>
     @php
         Session::pull('check_login');
     @endphp
 @endif
-<script>
 
-    $(document).ready(function () {
-{{--        @if(Request::is('nap-the'))--}}
-
-{{--        $('#nav-charge').addClass('nav-profile-active')--}}
-{{--        @elseif(Request::is('mua-the'))--}}
-{{--        $('#nav-store').addClass('nav-profile-active')--}}
-{{--        @elseif(Request::is('mua-acc'))--}}
-{{--        $('#nav-buy__acc').addClass('nav-profile-active')--}}
-{{--        @elseif(Request::is('dich-vu'))--}}
-{{--        $('#nav-service').addClass('nav-profile-active')--}}
-{{--        @elseif(Request::is('recharge-game'))--}}
-{{--        $('#nav-recharge_game').addClass('nav-profile-active')--}}
-{{--        @elseif(Request::is('minigame'))--}}
-{{--        $('#nav-minigame').addClass('nav-profile-active')--}}
-{{--        @endif--}}
-    })
-</script>
 @include('frontend.layouts.includes.header')
 <div class="layout">
 
