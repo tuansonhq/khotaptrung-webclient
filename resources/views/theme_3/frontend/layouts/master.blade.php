@@ -93,6 +93,13 @@
 
 </div>
 @if(Request::is('/'))
+    <style>
+        @media (max-width: 992px){
+            .content{
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
 @include('frontend.layouts.includes.footer')
 
 @endif

@@ -31,7 +31,7 @@
 
 {{--        @include('frontend.widget.__play__recently__home')--}}
 
-
+        @include('frontend.widget.__top_nap_the_mobile')
         <div class="top-list row d-md-none d-block mt-fix-20">
             <div class=" col-md-12" >
                 <p class="text-center"><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
