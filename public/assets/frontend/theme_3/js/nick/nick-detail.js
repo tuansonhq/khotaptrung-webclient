@@ -1,9 +1,10 @@
 $(document).ready(function (e) {
 
     var slug = $('.slug').val();
+    var slug_category = $('.slug_category').val();
 
     getShowAccDetail(slug);
-    getRelatedAcc(slug);
+    getRelatedAcc(slug_category);
 
     function getShowAccDetail(slug) {
 
@@ -57,19 +58,19 @@ $(document).ready(function (e) {
 
             },
             complete: function (data) {
-
+                $('#detailLoader').addClass('d-none');
             }
         });
     };
 
-    function getRelatedAcc(slug) {
+    function getRelatedAcc(slug_category) {
 
         var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug
+                slug:slug_category
             },
             beforeSend: function (xhr) {
 
@@ -329,9 +330,9 @@ $(document).ready(function (e) {
         var slider = new Swiper ('.gallery-slider', {
             autoplay: {
                 delay: 2000,
-    
+
             },
-    
+
             slidesPerView: 1,
             centeredSlides: true,
             loop: false,
@@ -345,7 +346,7 @@ $(document).ready(function (e) {
 
     function activateGalleryThumbs () {
         var thumbs = new Swiper ('.gallery-thumbs', {
-            slidesPerView: 6.5,
+            slidesPerView: 5.5,
             spaceBetween: 8,
             centeredSlides: false,
             loop: false,
@@ -359,7 +360,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 3.2,
-    
+
                 }
             }
         });
@@ -374,7 +375,7 @@ $(document).ready(function (e) {
             watchSlidesVisibility: false,
             lazyLoadingInPrevNext: false,
             lazyLoadingOnTransitionStart: false,
-    
+
             loop: false,
             centeredSlides: false,
             slidesPerView: 4.5,
@@ -394,7 +395,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 1.8,
-    
+
                 }
             }
         });

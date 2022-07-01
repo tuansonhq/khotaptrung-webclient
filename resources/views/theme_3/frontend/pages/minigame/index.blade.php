@@ -52,6 +52,7 @@
 
                             </div>
                         </div>
+
                         <div class="box-product " >
                             <div class="row list-minigame" >
 

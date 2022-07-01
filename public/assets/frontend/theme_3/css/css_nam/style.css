@@ -86,7 +86,7 @@ a:hover{
     box-shadow: 0px 1px 4px 0px #00000033;
     transition: .2s;
 }
-.nav-profile-active{
+.menu-category li a.nav-profile-active{
     color: var(--primary-color);
 }
 .menu-profile-mobile,.menu-profile-mobile{
@@ -713,9 +713,15 @@ header nav.heading .header-container{
     }
     .content{
         margin-bottom: 0;
-        padding-bottom: 1rem;
+        /*padding-bottom: 1rem;*/
     }
-
+    .box-logo {
+        margin-left: 12px;
+        margin-bottom: 4px;
+    }
+    .box-logo img {
+        width: 70px;
+    }
 }
 
 
@@ -1492,6 +1498,16 @@ header nav.heading .header-container{
 
     .item-minigame-name {
         font-size: 14px;
+        overflow: hidden;
+        -webkit-line-clamp: 1;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+    }
+    .old-price__minigame {
+        display: inline-block;
+        margin: 0 8px 0 8px !important;
+
     }
     .item-minigame-amount {
         font-size: 16px;
@@ -1523,7 +1539,7 @@ header nav.heading .header-container{
         height: 328px;
     }
     .item-minigame-content{
-        bottom: 0;
+        bottom: 12px;
     }
     .item-minigame-user{
         font-size: 12px;
@@ -1828,4 +1844,33 @@ header nav.heading .header-container{
 .amount-loading .loading-spokes .spoke-container .spoke{
     width: 4px;
     height: 8px;
+}
+#atm_card .card--gray .card--attr.transfer-title{
+    display: none;
+}
+.modal-loader-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    z-index: 4000;
+}
+.modal-loader-content {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+.modal-loader-spin {
+    display: block;
+    border: 7px solid var(--primary-color);
+    border-left-color: #FFF;
+    border-radius: 100%;
+    width: 67px;
+    height: 67px;
+    margin: 25px auto;
+    animation: spin 1.25s linear infinite;
 }

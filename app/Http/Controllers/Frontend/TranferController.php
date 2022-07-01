@@ -16,10 +16,12 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
+        if (theme('')->theme_key == 'theme_1'){
+            return view('frontend.pages.transfer.index');
+        }else{
+            return view('frontend.pages.charge.index');
+        }
 
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.transfer.index');
 
     }
 
@@ -116,8 +118,7 @@ class TranferController extends Controller
     public function logs(Request $request)
     {
         try {
-            Session::forget('return_url');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.transfer.logs');
 
         }   catch(\Exception $e){

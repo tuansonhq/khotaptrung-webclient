@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="rotation">
-                            <div class="rotation-button" id="start-played" style="bottom: 16px">
+                            <div class="rotation-button rotation-button-quanhuy" id="start-played">
                                 <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
                             </div>
                             <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">

@@ -31,7 +31,7 @@
                     <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
                         <div class="row marginauto modal-footer-success-row-ct">
                             <div class="col-md-12 left-right">
-                                <a href="/" class="button-bg-ct" style="display: flex;justify-content: center"><span>Đi tới fanpage</span></a>
+                                <a href="#" class="button-bg-ct" data-dismiss="modal" aria-label="Close"  style="display: flex;justify-content: center"><span>Đóng</span></a>
                             </div>
                         </div>
                     </div>
