@@ -2498,7 +2498,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 
 .nav-bar-nick:last-child{
-    box-shadow: none;
+    /*box-shadow: none;*/
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }

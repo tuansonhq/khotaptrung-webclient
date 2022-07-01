@@ -225,8 +225,10 @@ $(document).ready(function(){
             complete: function (data) {
                 $('#reload_1').trigger('click');
                 formSubmit.trigger("reset");
-                btnSubmit.text('Nạp thẻ');
+                btnSubmit.text('Nạp ngay');
                 btnSubmit.prop('disabled', false);
+                $('.btn-confirm-charge').text('Xác nhận');
+                $('.btn-confirm-charge').prop('disabled', false);
             }
         });
     }
@@ -240,6 +242,8 @@ $(document).ready(function(){
 
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
+        $('.btn-confirm-charge').text('Đang xử lý...');
+        $('.btn-confirm-charge').prop('disabled', true);
         postCharge()
         return false;
 

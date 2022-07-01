@@ -228,6 +228,8 @@ $(document).ready(function(){
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
+                $('.btn-confirm-charge').text('Xác nhận');
+                $('.btn-confirm-charge').prop('disabled', false);
             }
         });
     }
@@ -266,7 +268,8 @@ $(document).ready(function(){
 
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
-
+        $('.btn-confirm-charge').text('Đang xử lý...');
+        $('.btn-confirm-charge').prop('disabled', true);
         if (width < 992){
             postCharge()
 
@@ -325,4 +328,16 @@ $(document).ready(function(){
 
 
     }
+
+
+    $('#nav_charge').click(function () {
+        let base_url = `${window.location.origin}/nap-the`;
+        window.history.pushState("charge_card","", base_url);
+        $('#charge_title').text('Nạp thẻ cào')
+    });
+    $('#nav_charge_atm').click(function () {
+        let base_url = `${window.location.origin}/recharge-atm`;
+        window.history.pushState("charge_card","", base_url);
+        $('#charge_title').text('ATM tự động')
+    });
 });

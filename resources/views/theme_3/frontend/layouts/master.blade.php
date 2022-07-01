@@ -81,7 +81,11 @@
         Session::pull('check_login');
     @endphp
 @endif
-
+<div class="modal-loader-container">
+    <div class="modal-loader-content">
+        <span class="modal-loader-spin"></span>
+    </div>
+</div>
 @include('frontend.layouts.includes.header')
 <div class="layout">
 

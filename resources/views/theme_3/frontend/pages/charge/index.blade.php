@@ -32,8 +32,8 @@
                             <li><a href="">Trang chủ</a></li>
                             <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                             <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>
-                            {{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
-                            {{--                            <li class="menu-container-li-ct"><a href="">Cày xếp hạng ELO/ Liên Minh</a></li>--}}
+                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                            <li class="menu-container-li-ct"><a href="" id="charge_title">@if(Request::is('nap-the')) Nạp thẻ cào @elseif(Request::is('recharge-atm'))  ATM tự động @endif</a></li>
                         </ul>
                     </div>
                 </section>
@@ -51,10 +51,10 @@
                                 <div class="default-tab pr-fix-16 pl-fix-16">
                                 <ul class="nav justify-content-between row" role="tablist" >
                                     <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
-                                        <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
+                                        <a  class="nav-link @if(Request::is('nap-the')) active @endif  text-center " data-toggle="tab" href="#charge_card" id="nav_charge" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
                                     </li >
                                     <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
-                                        <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
+                                        <a  class="nav-link @if(Request::is('recharge-atm')) active @endif text-center "  data-toggle="tab" href="#atm_card" id="nav_charge_atm" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
                                     </li>
 {{--                                    <li class="nav-item col-6col-md-6 p-0 p-md-0" role="presentation">--}}
 {{--                                        <a  class="nav-link text-center " data-toggle="tab" href="#wallet_card" role="tab" aria-selected="false">Ví điện tử</a>--}}
@@ -62,7 +62,7 @@
                                 </ul>
                             </div>
                                 <div class=" tab-content">
-                                <div class="tab-pane fade active show  mt-3" id="charge_card" role="tabpanel" >
+                                <div class="tab-pane @if(Request::is('nap-the')) active show @endif fade   mt-3" id="charge_card" role="tabpanel" >
                                     <div class="loading-data">
                                         <div class="loader">
                                             <div class="loading-spokes">
@@ -189,7 +189,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade  mt-3 " id="atm_card" role="tabpanel" >
+                                <div class="tab-pane  @if(Request::is('recharge-atm')) active show @endif fade  mt-3 " id="atm_card" role="tabpanel" >
                                     <form action="">
                                         <div class="box-charge-card">
 {{--                                            <div class="atm-card-title mb-fix-20">--}}
