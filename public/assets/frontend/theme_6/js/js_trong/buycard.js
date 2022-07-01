@@ -279,7 +279,7 @@ $(document).ready(function () {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
-
+                    
                     $('.section--amount__card').removeClass('d-none');
                 }
             },
