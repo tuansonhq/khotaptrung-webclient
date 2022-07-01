@@ -97,7 +97,7 @@
                                 <span class="top-name">Yaiba</span>
                                 <span class="float-right top-amount">100.000đ</span>
                             </li>
-                            <a href="/nap-the"><button type="button" class="btn -primary btn-big" id="btn-confirm">Nạp ngay</button></a>
+                            <a href="/nap-the"><button style="background: var(--primary-color);" type="button" class="btn -primary btn-big" id="btn-confirm">Nạp ngay</button></a>
                         </ul>
                     </div>
                     <div class="tab-pane fade item-top mt-3" id="thirtydays" role="tabpanel" aria-labelledby="thirtyday-tab">

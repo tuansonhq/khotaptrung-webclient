@@ -45,7 +45,7 @@
             </section>
 
             {{--   Bopđyy --}}
-            @include('frontend.pages.account.widget.__data__detail')
+            @include('frontend.pages.account.widget.__datadetail')
 
             <section>
                 <div class="container container-fix body-container-ct">
