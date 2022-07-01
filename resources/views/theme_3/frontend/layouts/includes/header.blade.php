@@ -168,7 +168,7 @@
                         </div>
                         <div class="account-avatar">
 
-                            <img src="/assets/frontend/theme_3/image/avatar.jpg" alt="">
+                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                         </div>
                         <div class="account-triangle ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
@@ -177,7 +177,7 @@
                             <!--                                <div class="arrow down"></div>-->
                             <div class=" d-flex">
                                 <div class="acount-logined_img">
-                                    <img src="/assets/frontend/theme_3/image/avatar.jpg" alt="">
+                                    <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                                 </div>
                                 <div class="account-logined_info">
                                     <div id="account-id">
@@ -235,7 +235,7 @@
                 <div class="box-account-mobile">
                     {{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
                     {{--                        <div class="account-avatar">--}}
-                    {{--                            <img src="/assets/frontend/theme_3/image/avatar.jpg" alt="">--}}
+                    {{--                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">--}}
                     {{--                        </div>--}}
                     {{--                    </div>--}}
                 </div>
@@ -259,7 +259,7 @@
                 {{--                                    Vong lap thang bố--}}
                 <div class="acount-logined_mobile d-flex m-3">
                     <div class="acount-logined_img">
-                        <img src="/assets/frontend/theme_3/image/avatar.jpg" alt="">
+                        <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                     </div>
                     <div class="account-logined_info">
                         <div id="account-id-mobile">
@@ -286,9 +286,6 @@
                 <a href="/">
                     <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
                     <span>Trang chủ</span>
-                    <div class="mobile-logo">
-                        <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
-                    </div>
 
                 </a>
             </li>

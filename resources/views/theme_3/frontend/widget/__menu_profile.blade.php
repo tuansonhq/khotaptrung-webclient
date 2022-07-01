@@ -65,9 +65,9 @@
             </div>
         @endif
     @endforeach
-    <div class="row marginauto nav-bar-nick nav-bar-parent nav-bar-child" style="margin-top: -20px">
+    <div class="row marginauto nav-bar-nick nav-bar-child d-block d-lg-none" style="margin-top: -20px">
         <div class="col-md-12 left-right">
-            <li id="login_menu">
+            <li id="login_menu" style="list-style: none">
                 {{--                <a href="">--}}
                 {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
                 {{--                    <span>Đăng nhập/ Đăng ký</span>--}}

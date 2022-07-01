@@ -3,7 +3,7 @@
 
 <div class="col-md-12 left-right">
     <table class="table table-striped table-hover table-logs" id="table-default">
-        <thead><tr><th>Thời gian</th><th>Nội dung</th><th>Nhà mạng</th><th>Mã thẻ/Serial</th><th>Mệnh giá</th><th>THực nhận</th><th>Trạng thái</th><th>Chi tiết</th></tr></thead>
+        <thead><tr><th>Thời gian</th><th>Nội dung</th><th>Nhà mạng</th><th>Mã thẻ/Serial</th><th>Mệnh giá</th><th>Thực nhận</th><th>Trạng thái</th><th>Chi tiết</th></tr></thead>
         <tbody>
         @if(isset($data) && count($data) > 0)
             @php
