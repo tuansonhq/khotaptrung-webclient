@@ -61,7 +61,19 @@
                 @endforeach
                 {{--                                    Vong lap thang con--}}
 
+
             </div>
         @endif
     @endforeach
+    <div class="row marginauto nav-bar-nick nav-bar-parent nav-bar-child" style="margin-top: -20px">
+        <div class="col-md-12 left-right">
+            <li id="login_menu">
+                {{--                <a href="">--}}
+                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
+                {{--                    <span>Đăng nhập/ Đăng ký</span>--}}
+                {{--                </a>--}}
+            </li>
+        </div>
+
+    </div>
 @endif

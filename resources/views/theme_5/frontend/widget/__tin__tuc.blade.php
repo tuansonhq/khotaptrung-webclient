@@ -26,7 +26,7 @@
                                         {{ @$article->title }}
                                     </div>
                                     <div class="item-product__box-date">
-                                        {{ formatDateTime($article->created_at) }}
+                                        {{ date('d/m/Y',strtotime($article->created_at)) }}
                                     </div>
                                 </div>
                             </a>

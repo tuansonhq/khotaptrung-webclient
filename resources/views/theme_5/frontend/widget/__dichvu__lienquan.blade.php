@@ -15,7 +15,7 @@
                 <div class="swiper-wrapper">
                     @foreach($data as $service)
                     <div  class="swiper-slide ">
-                        <a href="/tin-tuc">
+                        <a href="/dich-vu">
                             <div class="item-product__box-img item-news-img item-service-image">
                                 <img src="{{$service->image}}" alt="">
                             </div>
