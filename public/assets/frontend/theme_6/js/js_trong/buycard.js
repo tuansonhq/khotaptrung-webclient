@@ -26,7 +26,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
-        console.log(1);
         e.preventDefault();
         $.ajax({
             url:'/mua-the',
