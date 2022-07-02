@@ -23,7 +23,7 @@
     </div>
 
     <div class="top-navigation d-none d-lg-block">
-        <div class="container">
+        <div class="header-container container" style="padding: 0">
             <ul>
                 <li>
                     <a href="">
@@ -152,7 +152,9 @@
             </div>
             <div class="box-login">
                 <div class="box-loading btn-loading">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
                 <div class="box-logined box-deposit">
                     {{--                    <a class="btn btn-submit" onclick="openLoginModal();">--}}
@@ -210,7 +212,9 @@
 
             <div class="box-login">
                 <div class="box-loading btn-loading">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
                 <div class="box-deposit-charge box-deposit">
                     <a class="btn btn-submit">
@@ -229,7 +233,9 @@
 
             <div class="box-login-mobile">
                 <div class="box-loading-mobile ">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
 
                 <div class="box-account-mobile">
