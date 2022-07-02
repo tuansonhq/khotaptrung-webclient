@@ -340,7 +340,10 @@
 }
 
 .body-detail-nick-col-ct img.img-list-nick-category{
-    height: 200px;
+    /*height: 200px;*/
+
+    height: 100%;
+    object-fit: cover;
 }
 
 .body-detail-nick-slider-ct img{
@@ -371,6 +374,7 @@
 }
 .body-detail-nick-col-ct img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -1467,6 +1471,7 @@
 .default-overlay-nick-ct{
     position: relative;
     cursor: pointer;
+    height: 171px;
 }
 .default-overlay-ct::before{
     position: absolute;

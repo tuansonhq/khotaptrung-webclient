@@ -15,7 +15,7 @@
 
                 </div>
                 <div class="box-list-top top-list d-g-lg-none">
-                    <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
+                    <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</p>
                     @include('frontend.widget.__top_nap_the')
                 </div>
             </div>
@@ -27,9 +27,9 @@
 
         @include('frontend.widget.__list_serve_remark_mobile')
 
-{{--        @include('frontend.widget.__hotsale')--}}
+        @include('frontend.widget.__hotsale')
 
-{{--        @include('frontend.widget.__play__recently__home')--}}
+        @include('frontend.widget.__play__recently__home')
 
         @include('frontend.widget.__top_nap_the_mobile')
 
@@ -106,6 +106,8 @@
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
-
+    @if(\App\Library\AuthFrontendCustom::check())
+        <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+    @endif
 @endsection
 
