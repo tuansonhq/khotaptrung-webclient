@@ -8,7 +8,7 @@
     <section class="media-mobile">
         <div class="container container-fix banner-mobile-container-ct">
             <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%">
+                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                 </div>
 
@@ -112,7 +112,7 @@
         </div>
     </section>
 
-    {{--    @include('frontend.pages.service.widget.__category__content')--}}
+        @include('frontend.pages.service.widget.__category__content')
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue.js?v={{time()}}"></script>
 @endsection
