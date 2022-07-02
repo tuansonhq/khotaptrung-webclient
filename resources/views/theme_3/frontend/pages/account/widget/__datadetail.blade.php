@@ -184,7 +184,7 @@
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
                                                         @if (App\Library\AuthCustom::check())
-                                                            <button type="button" class="button-default-nick-ct btn-mua-ngay media-web" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                            <button type="button" class="button-default-nick-ct btn-mua-ngay media-web">Mua ngay</button>
                                                         @else
                                                             <button type="button" class="button-default-nick-ct btn-mua-ngay media-web" onclick="openLoginModal();">Mua ngay</button>
                                                         @endif
@@ -422,7 +422,7 @@
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
                                                         @if (App\Library\AuthCustom::check())
-                                                            <button type="button" class="button-default-nick-ct media-mobile button-next-step-one" data-title="{{ $data->title }}" data-slug="{{ $data->slug }}" data-id="{{ $data->id }}">Mua ngay</button>
+                                                            <button type="button" class="button-default-nick-ct media-mobile button-next-step-one">Mua ngay</button>
                                                         @else
                                                             <button type="button" class="button-default-nick-ct media-mobile" onclick="openLoginModal();">Mua ngay</button>
                                                         @endif
@@ -693,26 +693,14 @@
                                         @else
                                             <div class="row marginauto justify-content-center gallery-right-footer">
                                                 <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                    <div class="row marginauto nick-detail-button">
-                                                        <div class="col-md-12 left-right">
-                                                            <a href="/nap-the" class="button-not-bg-ct">
-                                                                <ul>
-                                                                    <li><small>Thẻ cào</small></li>
-                                                                </ul>
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                    <button type="button" class="button-success-secondary">
+                                                        <a href="/nap-the" style="display: block">Mua ngay</a>
+                                                    </button>
                                                 </div>
                                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                    <div class="row marginauto nick-detail-button">
-                                                        <div class="col-md-12 left-right">
-                                                            <a href="/recharge-atm" class="button-not-bg-ct">
-                                                                <ul>
-                                                                    <li><small>ATM, Momo</small></li>
-                                                                </ul>
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                    <button type="button" class="button-success-primary">
+                                                        <a href="/recharge-atm" style="display: block">ATM, Momo</a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         @endif
@@ -901,26 +889,14 @@
                                 @else
                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                            <div class="row marginauto nick-detail-button">
-                                                <div class="col-md-12 left-right">
-                                                    <a href="/nap-the" class="button-not-bg-ct">
-                                                        <ul>
-                                                            <li><small>Thẻ cào</small></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button type="button" class="button-success-secondary">
+                                                <a href="/nap-the" style="display: block">Mua ngay</a>
+                                            </button>
                                         </div>
                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                            <div class="row marginauto nick-detail-button">
-                                                <div class="col-md-12 left-right">
-                                                    <a href="/recharge-atm" class="button-not-bg-ct">
-                                                        <ul>
-                                                            <li><small>ATM, Momo</small></li>
-                                                        </ul>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <button type="button" class="button-success-primary">
+                                                <a href="/recharge-atm" style="display: block">ATM, Momo</a>
+                                            </button>
                                         </div>
                                     </div>
                                 @endif
