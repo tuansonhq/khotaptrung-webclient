@@ -20,7 +20,7 @@
                     @if(isset($data))
                         <ul class="nav flex-column">
                             @foreach($data as $index => $item)
-                                @if($index<5)
+                                @if($index<8)
                                     @if($index<3)
                                         <li class="d-flex">
                                             <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
