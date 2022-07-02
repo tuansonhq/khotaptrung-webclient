@@ -116,6 +116,8 @@ class LoginController extends Controller
             Session::put('jwt',$response_data->token);
             Session::put('exp_token',$response_data->exp_token);
             Session::put('time_exp_token',$time_exp_token);
+            $return_url = Session::get('url.intended');
+            return redirect()->intended();
             return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
 
         }
