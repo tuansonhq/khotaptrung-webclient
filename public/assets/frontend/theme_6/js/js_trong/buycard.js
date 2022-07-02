@@ -2,7 +2,7 @@ $(document).ready(function () {
     getListCard();
 
     var swiper_card = new Swiper(".slider--card", {
-        slidesPerView: 1,
+        slidesPerView: slider_count,
         spaceBetween: 16,
         freeMode: true,
         observer: true,
@@ -39,7 +39,7 @@ $(document).ready(function () {
             success:function (res) {
                 // handle data callback
                 $('#modal--confirm__payment').modal('hide');
-                if(res.status && res.status != 401){
+                if(res.status){
                     let data = res.data;
                     let cardImage = $('input[name="card-type"]:checked').data('img');
                     let cardName = $('input[name="card-type"]:checked').val();
@@ -143,7 +143,7 @@ $(document).ready(function () {
             },
             success:function (res) {
                 // handle data callback
-                if(res.status && res.status != 401) {
+                if(res.status){
                     let data = res.data;
                     let cardImage = $('input[name="card-type"]:checked').data('img');
                     let cardName = $('input[name="card-type"]:checked').val();
@@ -278,7 +278,7 @@ $(document).ready(function () {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
-
+                    
                     $('.section--amount__card').removeClass('d-none');
                 }
             },
@@ -392,6 +392,7 @@ $(document).ready(function () {
     }
 
     function resetConfirmModal () {
+        $('#modal--confirm__payment #confirmCard').empty();
         $('#modal--confirm__payment #confirmPrice').text('');
         $('#modal--confirm__payment #confirmQuantity').text('');
         $('#modal--confirm__payment #confirmDiscount').text('');

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    //JS mua the module
+
     getListCard();
 
     var swiper_card = new Swiper(".slider--card", {
@@ -20,12 +22,10 @@ $(document).ready(function () {
         e.preventDefault();
         resetConfirmModal();
         prepareConfirmModal();
-        resetMobileConfirm();
-        prepareMobileConfirm();
         prepareDataSend();
     });
 
-    $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
+    $('#modal--confirm__payment #confirmSubmitButton').on('click', function(e) {
         e.preventDefault();
         $.ajax({
             url:'/mua-the',
@@ -39,7 +39,7 @@ $(document).ready(function () {
             success:function (res) {
                 // handle data callback
                 $('#modal--confirm__payment').modal('hide');
-                if(res.status && res.status != 401){
+                if ( res.status && res.status !== 401 ) {
                     let data = res.data;
                     let cardImage = $('input[name="card-type"]:checked').data('img');
                     let cardName = $('input[name="card-type"]:checked').val();
@@ -130,101 +130,32 @@ $(document).ready(function () {
         $('#modal--confirm__payment').modal('hide');
     });
 
-    $('#confirmMobileButton').on('click', function(e) {
-        e.preventDefault();
-        $.ajax({
-            url:'/mua-the',
-            type:'POST',
-            data: dataSend,
-            beforeSend: function () {
-                $('#confirmMobileButton').prop("disabled", true);
-                $('#confirmMobileButton').text("Đang xử lý");
-                resetSuccessMobile();
-            },
-            success:function (res) {
-                // handle data callback
-                if(res.status && res.status != 401) {
-                    let data = res.data;
-                    let cardImage = $('input[name="card-type"]:checked').data('img');
-                    let cardName = $('input[name="card-type"]:checked').val();
+    // only allow numeric input
+    $('input[numberic]').on('keypress', function (e) {
+        if (isNaN(this.value + String.fromCharCode(e.keyCode))) return false;
+    });
 
-                    $('#modal--success__payment .card__message').text(res.message);
-                    $('#modal--success__payment #successCard').attr('src', cardImage);
-                    $('#modal--success__payment #successPrice').text(formatNumber(dataSend.amount) + ' đ');
-                    $('#modal--success__payment #successQuantity').text(dataSend.quantity);
-                    if (data.length > 0){
+    // Tăng giảm số lượng mua thẻ
+    $('input.input--amount').on('input',function () {
+        if ($(this).val() > 20){
+            $(this).val(20);
+        }
+    })
 
-                        //Append HTML for mobile layout
-                        data.forEach(function (card) {
-                            let html_card_mobile = '';
-                            html_card_mobile += `<div class="card__detail">`;
-                            html_card_mobile += `<div class="card--header__detail">`;
-                            html_card_mobile += `<div class="card--info__wrap">`;
-                            html_card_mobile += `<div class="card--logo">`;
-                            html_card_mobile += `<img src="${cardImage}" alt="">`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--info">`;
-                            html_card_mobile += `<div class="card--info__name">`;
-                            html_card_mobile += `${cardName}`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--info__value">`;
-                            html_card_mobile += ` ${formatNumber(dataSend.amount)} đ`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--gray">`;
-                            html_card_mobile += `<div class="card--attr">`;
-                            html_card_mobile += `<div class="card--attr__name">`;
-                            html_card_mobile += `Mã thẻ`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--attr__value -bold">`;
-                            html_card_mobile += `<div class="card__info">`;
-                            html_card_mobile += `${card.pin}`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="icon--coppy js-copy-text">`;
-                            html_card_mobile += `<img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--attr">`;
-                            html_card_mobile += `<div class="card--attr__name">`;
-                            html_card_mobile += `Seri`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="card--attr__value -bold">`;
-                            html_card_mobile += `<div class="card__info">`;
-                            html_card_mobile += `${card.pin}`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `<div class="icon--coppy js-copy-text">`;
-                            html_card_mobile += `<img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            html_card_mobile += `</div>`;
-                            
-                            $('#mobile--success__payment .card--list').append(html_card_mobile);
-                        });
-                    }
+    $('.js-amount').on('click', function () {
+        let input = $(this).parent().find('input.input--amount');
+        let value = input.val();
+        if ($(this).data('action') === 'add') {
+            input.val(++value);
+        }
+        if ($(this).data('action') === 'minus' && value > 1) {
+            input.val(--value);
+        }
+        if (input.val() > 20) {
+            input.val(20)
+        }
 
-                    $('.mobile--confirm__payment').hide();
-                    $('.mobile--success__payment').show();
-                }
-                else {
-                    $('#message--error--buy').text(res.message);
-                    $('#modal--fail__payment').modal('show');
-                }
-            },
-            error: function (res) {
-                $('#message--error--buy').text('');
-                $('#modal--fail__payment').modal('show');
-            }, 
-            complete: function () {
-                $('#confirmMobileButton').prop("disabled", false);
-                $('#confirmMobileButton').text("Xác nhận");
-            }
-        });
-
+        $('input[name=card-amount]').trigger('input');
     });
 
     function formatNumber(num) {
@@ -241,7 +172,7 @@ $(document).ready(function () {
                     let loop_index = 0;
                     data.forEach(function (card) {
                         let html = '';
-                        html += `<li class="cards__item col-4 col-lg-2 p_0">`;
+                        html += `<li class="cards__item tag-card-item tag-card-item-mobile p_0">`;
                         //Check if it is the first loop
                         if (loop_index === 0) {
                             html += `<input type="radio" id="card-${card.id}" value="${card.key}" data-img="${card.image}" name="card-type" checked hidden>`;
@@ -278,7 +209,7 @@ $(document).ready(function () {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
-
+                    
                     $('.section--amount__card').removeClass('d-none');
                 }
             },
@@ -321,7 +252,7 @@ $(document).ready(function () {
                         } else {
                             html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
                         }
-                        html += `<label for="amount-${card.id}" class="deno__value">`;
+                        html += `<label for="amount-${card.id}" class="deno__value card-item-value">`;
                         html += `<span>${formatNumber(card.amount)} đ</span>`;
                         html += `</label>`;
                         html += `</li>`;
@@ -382,15 +313,6 @@ $(document).ready(function () {
     }
 
     //Reset data in confirm modal
-    function resetMobileConfirm () {
-        $('#confirmMobileCard').empty();
-        $('#confirmMobilePrice').text('');
-        $('#confirmMobileQuantity').text('');
-        $('#confirmMobileDiscount').text('');
-        $('#confirmMobileTotal').text('');
-        $('#totalMobileBill').text('');
-    }
-
     function resetConfirmModal () {
         $('#modal--confirm__payment #confirmPrice').text('');
         $('#modal--confirm__payment #confirmQuantity').text('');
@@ -405,11 +327,6 @@ $(document).ready(function () {
         $('#modal--success__payment #successQuantity').text('');
         $('#modal--success__payment .swiper-wrapper').empty();
         swiper_card.update();
-    }
-
-    function resetSuccessMobile() {
-        $('#mobile--success__payment .card__message').text('');
-        $('#mobile--success__payment .card--list').empty();
     }
 
     //append new data into confirm modal
@@ -427,22 +344,6 @@ $(document).ready(function () {
         $('#modal--confirm__payment #totalBill').text(`${formatNumber( calculatePrice() )} đ`);
     }
 
-    function prepareMobileConfirm () {
-        let confirmCard = $('input[name="card-type"]:checked').data('img');
-        let confirmPrice = $('input[name="card-value"]:checked').val();
-        let confirmQuantity = $('input[name="card-amount"]').val();
-        let confirmDiscount = $('input[name="card-value"]:checked').data('discount');
-
-        console.log(confirmCard, confirmPrice, confirmQuantity, confirmDiscount);
-
-        $('#confirmMobileCard').attr('src',confirmCard);
-        $('#confirmMobilePrice').text(`${formatNumber( confirmPrice )} đ`);
-        $('#confirmMobileQuantity').text(confirmQuantity);
-        $('#confirmMobileDiscount').text(`${100 - confirmDiscount}%`);
-        $('#confirmMobileTotal').text(`${formatNumber( calculatePrice() )} đ`);
-        $('#totalMobileBill').text(`${formatNumber( calculatePrice() )} đ`);
-    }
-
     //Append new data to submit to backend
     function prepareDataSend() {
         let amount = $('input[name="card-value"]:checked').val();
@@ -453,4 +354,6 @@ $(document).ready(function () {
         dataSend.telecom = telecom.toUpperCase();
         dataSend.quantity = quantity;
     }
+
+    //JS mua the module end 
 });
