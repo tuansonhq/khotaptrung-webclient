@@ -316,19 +316,14 @@
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto justify-content-center gallery-right-footer">
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                        <div class="row marginauto modal-footer-success-row-not-ct">
-                                            <div class="col-md-12 left-right">
-                                                {{-- <a href="javascript:void(0)" class="button-not-bg-ct close-modal-default"><span>Đóng</span></a> --}}
-                                                <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
-                                            </div>
-                                        </div>
+                                        <button type="button" class="button-success-secondary">
+                                            <a href="/" style="display: block">Về trang chủ</a>
+                                        </button>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                        <div class="row marginauto modal-footer-success-row-ct">
-                                            <div class="col-md-12 left-right">
-                                                <a href="/lich-su-mua-account" class="button-bg-ct"><span>Lịch sử mua Acc</span></a>
-                                            </div>
-                                        </div>
+                                        <button type="button" class="button-success-primary">
+                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử mua Acc</a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

@@ -3299,6 +3299,56 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     /*padding-bottom: 20px;*/
 }
 
+.button-success-secondary {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #F67600;
+    border-radius: 8px;
+}
+
+.button-success-secondary a {
+    display: block;
+    color: #F67600;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.button-success-secondary:hover {
+    background: #F67600;
+}
+
+.button-success-secondary:hover:active {
+    background: #C55E00;
+}
+
+.button-success-secondary:hover a {
+    color: #FFFFFF;
+}
+
+.button-success-primary {
+    width: 100%;
+    border: 1px solid #F67600;
+    border-radius: 8px;
+    background-color: #F67600;
+}
+
+.button-success-primary a {
+    display: block;
+    color: #FFFFFF;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.button-success-primary:hover {
+    background-color: #DD6A00;
+}
+
+.button-success-primary:hover:active {
+    background-color: #C55E00;
+}
+
 .body-box-loadding{
     text-align: center;
     position: relative;
