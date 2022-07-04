@@ -38,8 +38,8 @@
                     </div>
                 </section>
                 <div class="row">
-                    <div class="col-lg-5 col-md-12"  style="min-height: 100%">
-                        <div class=" block-product "  style="min-height: 780px">
+                    <div class="col-lg-7 col-md-12"  style="min-height: 100%">
+                        <div class=" block-product "  style="min-height: 720px">
                             <div class="product-header d-none d-md-flex">
                                 <span>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
@@ -159,25 +159,48 @@
                                             </div>
                                             <div class="default-form-group mb-fix-20">
                                                 <label class="text-form">Mã bảo vệ</label>
-                                                <div class="col-md-12 p-0 d-flex">
-                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
-                                                    <div class="captcha captcha_1" >
+                                                <div class="row p-0">
+                                                    <div class="col-md-7 d-flex ">
+                                                        <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
+                                                        <div class="captcha captcha_1" >
                                                         <span class="reload">
                                                              {!! captcha_img('flat') !!}
                                                         </span>
-                                                    </div>
-                                                    <button class="refresh-captcha" id="reload_1" type="button">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
-                                                    </button>
+                                                        </div>
+                                                        <button class="refresh-captcha" id="reload_1" type="button">
+                                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
+                                                        </button>
 
+                                                    </div>
+                                                    <div class="col-md-5 mt-md-fix-20 d-none d-md-block">
+                                                        <button  class=" primary-button button-default-ct w-75 w-md-100"  type="submit" style="float: right">
+                                                            Nạp ngay
+                                                        </button>
+                                                    </div>
                                                 </div>
+
                                             </div>
-                                            <div class="default-form-group mb-fix-20 d-none d-md-block ">
+{{--                                            <div class="default-form-group mb-fix-20">--}}
+{{--                                                <label class="text-form">Mã bảo vệ</label>--}}
+{{--                                                <div class="col-md-12 p-0 d-flex">--}}
+{{--                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>--}}
+{{--                                                    <div class="captcha captcha_1" >--}}
+{{--                                                        <span class="reload">--}}
+{{--                                                             {!! captcha_img('flat') !!}--}}
+{{--                                                        </span>--}}
+{{--                                                    </div>--}}
+{{--                                                    <button class="refresh-captcha" id="reload_1" type="button">--}}
+{{--                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">--}}
+{{--                                                    </button>--}}
+
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="default-form-group mb-fix-20 d-none d-md-block ">--}}
 {{--                                                btn-charge-data--}}
-                                                <button  class="w-100 primary-button button-default-ct " type="submit">
-                                                    Nạp ngay
-                                                </button>
-                                            </div>
+{{--                                                <button  class="w-100 primary-button button-default-ct " type="submit">--}}
+{{--                                                    Nạp ngay--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
                                             <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none" style="padding-top: 0">
                                                 <div class="row marginauto" style="padding: 12px 16px">
                                                     <div class="col-md-12 left-right">
@@ -222,7 +245,7 @@
                             </div>
                          </div>
                     </div>
-                    <div class="col-lg-7 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
+                    <div class="col-lg-5 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
                         <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
                     </div>
                  </div>
@@ -343,6 +366,6 @@
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
 
-{{--    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
 
 @endsection

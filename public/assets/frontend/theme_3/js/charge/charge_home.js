@@ -92,7 +92,7 @@ $(document).ready(function(){
                     console.log(data.data)
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
+                            html += '<div class=" col-4 col-md-3 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
                             if (key == 0){
                                 html += '<input  name="amount" type="radio" id="recharge_amount_'+key+'" data-ratito="'+value.ratio_true_amount+'" value="'+value.amount+'"  hidden checked>'
                             }else {
