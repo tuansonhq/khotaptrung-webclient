@@ -698,7 +698,7 @@
                                             <div class="row marginauto justify-content-center gallery-right-footer">
                                                 <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                                     <button type="button" class="button-success-secondary">
-                                                        <a href="/nap-the" style="display: block">Mua ngay</a>
+                                                        <a href="/nap-the" style="display: block">Nạp thẻ</a>
                                                     </button>
                                                 </div>
                                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
@@ -894,7 +894,7 @@
                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                             <button type="button" class="button-success-secondary">
-                                                <a href="/nap-the" style="display: block">Mua ngay</a>
+                                                <a href="/nap-the" style="display: block">Nap thẻ</a>
                                             </button>
                                         </div>
                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
