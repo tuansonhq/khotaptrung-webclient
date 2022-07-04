@@ -340,7 +340,10 @@
 }
 
 .body-detail-nick-col-ct img.img-list-nick-category{
-    height: 200px;
+    /*height: 200px;*/
+
+    height: 100%;
+    object-fit: cover;
 }
 
 .body-detail-nick-slider-ct img{
@@ -371,6 +374,7 @@
 }
 .body-detail-nick-col-ct img{
     width: 100%;
+    height: 100%;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -1467,6 +1471,7 @@
 .default-overlay-nick-ct{
     position: relative;
     cursor: pointer;
+    height: 171px;
 }
 .default-overlay-ct::before{
     position: absolute;
@@ -3297,6 +3302,56 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .footer-detail-account-col{
     padding-top: 16px;
     /*padding-bottom: 20px;*/
+}
+
+.button-success-secondary {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #F67600;
+    border-radius: 8px;
+}
+
+.button-success-secondary a {
+    display: block;
+    color: #F67600;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.button-success-secondary:hover {
+    background: #F67600;
+}
+
+.button-success-secondary:hover:active {
+    background: #C55E00;
+}
+
+.button-success-secondary:hover a {
+    color: #FFFFFF;
+}
+
+.button-success-primary {
+    width: 100%;
+    border: 1px solid #F67600;
+    border-radius: 8px;
+    background-color: #F67600;
+}
+
+.button-success-primary a {
+    display: block;
+    color: #FFFFFF;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.button-success-primary:hover {
+    background-color: #DD6A00;
+}
+
+.button-success-primary:hover:active {
+    background-color: #C55E00;
 }
 
 .body-box-loadding{

@@ -72,7 +72,15 @@
                                             <span class="gallery__02__span__02">THẺ CÀO</span>
                                         </div>
                                         <div class="col-md-12">
-                                            <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+
+                                            @if(isset($card_percent))
+                                                @if($card_percent == 0)
+                                                @else
+                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+                                                @endif
+                                            @else
+                                                <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

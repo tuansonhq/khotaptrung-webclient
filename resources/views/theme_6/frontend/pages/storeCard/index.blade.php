@@ -148,7 +148,7 @@
                                         <button class="btn--amount -minus js-amount" data-action="minus">
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/minus.png" alt="">
                                         </button>
-                                        <input type="text" name="card-amount" class="input--amount" value="1" numberic>
+                                        <input type="text" name="card-amount" class="input--amount" value="1" numeric>
                                         <button class="btn--amount -add js-amount" data-action="add">
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/add.png" alt="">
                                         </button>
@@ -308,7 +308,8 @@
                                     </div>
                                     <div class="card--attr__value">
                                         <div class="card--logo">
-                                            <img id="confirmCard" src="" alt="">
+                                            <img id="confirmCard" src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
+                                                 alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -317,7 +318,7 @@
                                         Giá niêm yết
                                     </div>
                                     <div class="card--attr__value" id="confirmPrice">
-                                        
+                                        10.000 đ
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -325,7 +326,7 @@
                                         Số lượng
                                     </div>
                                     <div class="card--attr__value" id="confirmQuantity">
-                                        
+                                        01
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -333,7 +334,7 @@
                                         Chiết khấu
                                     </div>
                                     <div class="card--attr__value" id="confirmDiscount">
-                                        
+                                        3%
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -341,7 +342,7 @@
                                         Thành tiền
                                     </div>
                                     <div class="card--attr__value" id="confirmTotal">
-                                        
+                                        9.700 đ
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +370,7 @@
                                         Tổng thanh toán
                                     </div>
                                     <div class="card--attr__value" id="totalBill">
-                                        
+                                        9.700 đ
                                     </div>
                                 </div>
                             </div>

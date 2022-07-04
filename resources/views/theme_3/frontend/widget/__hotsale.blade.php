@@ -4,18 +4,18 @@
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
         <p class="text-title">Giảm sốc <span class="d-g-md-none"> trong ngày</span></p>
-        <div class="timer" id="timer">
-            <span id="hourHome"></span>
-            <span id="minuteHome"></span>
-            <span id="secondHome"></span>
+        <div class="timer  d-flex" id="timer">
+            <div id="hourHome"></div>
+            <div id="minuteHome"></div>
+            <div id="secondHome"></div>
         </div>
 
         <div class="text-view-more">
-            <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>
+            <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
         </div>
     </div>
     <div class="box-product">
-        <div class="swiper-container list-product" >
+        <div class="swiper-container list-product swiper-product" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide" >
                     <a href="/minigame/slug">
