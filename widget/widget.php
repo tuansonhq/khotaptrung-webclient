@@ -490,7 +490,7 @@ View::composer('frontend.widget.__huongdan__trangchu', function ($view) {
 
 View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
-    $data = \Cache::rememberForever('__content__home__dichvu', function() {
+    $data = \Cache::rememberForever('__baiviet__lienquan', function() {
         $url = '/article';
         $method = "GET";
         $dataSend = array();
