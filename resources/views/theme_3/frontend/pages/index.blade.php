@@ -1,4 +1,3 @@
-
 @extends('frontend.layouts.master')
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
@@ -39,6 +38,8 @@
         @include('frontend.widget.__list_serve_remark')
 
         @include('frontend.widget.__nap_the')
+
+        @include('frontend.widget.__card_purchase')
 
         @include('frontend.widget.__content__home__game')
         <div class="block-other-nick mt-fix-20">
@@ -1299,6 +1300,7 @@
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
+    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
     @if(\App\Library\AuthFrontendCustom::check())
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>

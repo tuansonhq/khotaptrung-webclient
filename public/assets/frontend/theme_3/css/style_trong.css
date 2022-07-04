@@ -172,6 +172,10 @@
     margin-bottom: 8px;
 }
 
+#content-store-card .cards__item.card__item-tag {
+    width: 20%;
+}
+
 #content-store-card .cards__item label {
     display: block;
     box-sizing: border-box;
@@ -1805,5 +1809,11 @@ a:hover .__icon.--path__custom:after {
 
     .service--thumbnail {
         height: 104px;
+    }
+}
+
+@media (max-width: 767px) {
+    #content-store-card .cards__item.card__item-tag {
+        width: 33.333%;
     }
 }
