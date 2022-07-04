@@ -80,7 +80,7 @@
                                                 <div class="row marginauto gallery-footer-row">
                                                     <div class="col-auto left-right">
                                                         <ul>
-                                                            @if(isset($data->price) && isset($data->price_old))                                                                    
+                                                            @if(isset($data->price) && isset($data->price_old))
                                                                 <li class="gallery-footer-fisrt-li">{{ str_replace(',','.',number_format($data->price_old)) }}đ</li>
                                                                 <li class="gallery-footer-two-li">{{ str_replace(',','.',number_format($data->price)) }}đ</li>
                                                                 @php
@@ -193,51 +193,55 @@
                                             </div>
                                         </div>
 
-                                        @if (isset($data->price_atm))
-                                            <div class="row marginauto justify-content-center gallery-right-footer">
-                                                <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                    <div class="row marginauto nick-detail-button">
-                                                        <div class="col-md-12 left-right">
-                                                            <a href="/nap-the" class="button-not-bg-ct">
-                                                                <ul>
-                                                                    <li><small>Thẻ cào</small></li>
-                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
-                                                                </ul>
-                                                            </a>
+                                        <div class="row marginauto justify-content-center gallery-right-footer">
+                                            @if(isset($card_percent))
+                                                @if($card_percent == 0)
+                                                @else
+                                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                                        <div class="row marginauto nick-detail-button">
+                                                            <div class="col-md-12 left-right">
+                                                                <a href="/nap-the" class="button-not-bg-ct">
+                                                                    <ul>
+                                                                        <li><small>Thẻ cào</small></li>
+                                                                        <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
+                                                                    </ul>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                    <div class="row marginauto nick-detail-button">
-                                                        <div class="col-md-12 left-right">
-                                                            <a href="/recharge-atm" class="button-not-bg-ct">
-                                                                <ul>
-                                                                    <li><small>ATM, Momo</small></li>
-                                                                    @if(isset($data->price_atm))
-                                                                        <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
-                                                                    @endif
-                                                                </ul>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="row marginauto justify-content-center gallery-right-footer">
-                                                <div class="col-md-12 col-12 modal-footer-success-col-left-ct">
-                                                    <div class="row marginauto nick-detail-button">
-                                                        <div class="col-md-12 left-right">
-                                                            <a href="/nap-the" class="button-not-bg-ct">
-                                                                <ul>
-                                                                    <li><small>Thẻ cào</small></li>
-                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
-                                                                </ul>
-                                                            </a>
-                                                        </div>
+                                                @endif
+                                            @else
+                                            <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                                <div class="row marginauto nick-detail-button">
+                                                    <div class="col-md-12 left-right">
+                                                        <a href="/nap-the" class="button-not-bg-ct">
+                                                            <ul>
+                                                                <li><small>Thẻ cào</small></li>
+                                                                <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
+                                                            </ul>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                            @endif
+
+                                            @if(isset($data->price_atm))
+                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                                <div class="row marginauto nick-detail-button">
+                                                    <div class="col-md-12 left-right">
+                                                        <a href="/recharge-atm" class="button-not-bg-ct">
+                                                            <ul>
+                                                                <li><small>ATM, Momo</small></li>
+                                                                @if(isset($data->price_atm))
+                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
+                                                                @endif
+                                                            </ul>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +321,7 @@
                                                 <div class="row marginauto gallery-footer-row">
                                                     <div class="col-auto left-right">
                                                         <ul>
-                                                            @if(isset($data->price) && isset($data->price_old))                                                                    
+                                                            @if(isset($data->price) && isset($data->price_old))
                                                                 <li class="gallery-footer-fisrt-li">{{ str_replace(',','.',number_format($data->price_old)) }}đ</li>
                                                                 <li class="gallery-footer-two-li">{{ str_replace(',','.',number_format($data->price)) }}đ</li>
                                                                 @php
@@ -565,7 +569,7 @@
                             </div>
                         </div>
 
-                    
+
                         <div class="col-md-12 left-right padding-order-ct">
                             <div class="row marginauto">
                                 <div class="col-md-12 left-right background-order-ct">
