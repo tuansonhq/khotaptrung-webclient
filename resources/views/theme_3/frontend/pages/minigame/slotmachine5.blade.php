@@ -1434,6 +1434,41 @@
             height: 93px;
             background-repeat: no-repeat;
         }
+
+        @media only screen and (min-width: 992px) and (max-width: 1200px) {
+            #slot1,#slot2,#slot3,#slot4,#slot5{
+                background-size: 80px 80px!important;
+                width: 80px!important;
+                height: 80px!important;
+                margin: 0 5px!important;
+            }
+        }
+        @media only screen and (min-width: 573px) and (max-width: 768px) {
+            #slot1,#slot2,#slot3,#slot4,#slot5{
+                background-size: 74px 74px!important;
+                width: 74px!important;
+                height: 74px!important;
+                margin: 0 5.5px!important;
+            }
+        }
+        @media only screen and (min-width: 376px) and (max-width: 573px) {
+            #slot1,#slot2,#slot3,#slot4,#slot5{
+                background-size: 54px 52px!important;
+                width: 54px!important;
+                height: 54px!important;
+                margin: 0 4.3px!important;
+            }
+
+        }
+
+        @media only screen and (max-width: 376px) {
+            #slot1,#slot2,#slot3,#slot4,#slot5{
+                background-size: 54px 52px!important;
+                width: 54px!important;
+                height: 54px!important;
+                margin: 0 4.3px!important;
+            }
+        }
     </style>
 @endsection
 

@@ -4,7 +4,7 @@
     background: #F3F3F7;
     border-radius: 8px;
     position: absolute;
-    top: 150px;
+    top: 178px;
     z-index: 99;
     margin-top: 12px;
     left: 617px;
@@ -80,3 +80,11 @@
     }
 }
 /* end service */
+/* danh muc acc game */
+.item-acc-name{
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word
+}

@@ -13,8 +13,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class MinigameController extends Controller
 {
     public function getIndex(Request $request){
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
+
         try{
             $method = "GET";
             $data = array();
@@ -602,6 +601,7 @@ class MinigameController extends Controller
                 $data['idgame'] = $request->idgame;
                 $data['phone'] = $request->phone;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {
@@ -625,4 +625,8 @@ class MinigameController extends Controller
         }
     }
 
+    public function getCategory(Request $request){
+
+        return view('frontend.pages.minigame.category');
+    }
 }

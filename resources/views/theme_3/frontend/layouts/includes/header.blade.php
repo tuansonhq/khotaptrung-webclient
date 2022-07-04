@@ -23,7 +23,7 @@
     </div>
 
     <div class="top-navigation d-none d-lg-block">
-        <div class="container">
+        <div class="header-container container" style="padding: 0">
             <ul>
                 <li>
                     <a href="">
@@ -91,9 +91,9 @@
             <div class="close-hamburger-sidebar">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/hamburger_nav.png" alt="">
             </div>
-            <div class="box-logo d-none d-lg-block">
+            <div class="box-logo ">
                 <a href="/">
-                    <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
                 </a>
             </div>
             <div class="box-search">
@@ -152,14 +152,16 @@
             </div>
             <div class="box-login">
                 <div class="box-loading btn-loading">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
                 <div class="box-logined box-deposit">
-{{--                    <a class="btn btn-submit" onclick="openLoginModal();">--}}
-{{--                        Đăng nhập--}}
-{{--                    </a>--}}
+                    {{--                    <a class="btn btn-submit" onclick="openLoginModal();">--}}
+                    {{--                        Đăng nhập--}}
+                    {{--                    </a>--}}
                 </div>
-{{--                d-none d-md-block--}}
+                {{--                d-none d-md-block--}}
                 <div class="box-account ">
                     <div class="box-account-logined">
                         <div class="account-name">
@@ -167,7 +169,8 @@
                             <div  class="account-balance"></div>
                         </div>
                         <div class="account-avatar">
-                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+
+                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                         </div>
                         <div class="account-triangle ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
@@ -176,7 +179,7 @@
                             <!--                                <div class="arrow down"></div>-->
                             <div class=" d-flex">
                                 <div class="acount-logined_img">
-                                    <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                                    <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                                 </div>
                                 <div class="account-logined_info">
                                     <div id="account-id">
@@ -185,9 +188,9 @@
                                     <div id="account-balance">
 
                                     </div>
-{{--                                    <div class="">--}}
-{{--                                        <span class="">Xu khóa: </span>0 xu--}}
-{{--                                    </div>--}}
+                                    {{--                                    <div class="">--}}
+                                    {{--                                        <span class="">Xu khóa: </span>0 xu--}}
+                                    {{--                                    </div>--}}
                                 </div>
 
                             </div>
@@ -209,7 +212,9 @@
 
             <div class="box-login">
                 <div class="box-loading btn-loading">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
                 <div class="box-deposit-charge box-deposit">
                     <a class="btn btn-submit">
@@ -224,19 +229,21 @@
             </div>
 
 
-{{--                mobile--}}
+            {{--                mobile--}}
 
             <div class="box-login-mobile">
                 <div class="box-loading-mobile ">
-                    <div class="loading"></div>
+                    <div class="loading">
+                        <div class="loading-child"></div>
+                    </div>
                 </div>
 
-                <div class="box-account-mobile ">
-{{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
-{{--                        <div class="account-avatar">--}}
-{{--                            <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                <div class="box-account-mobile">
+                    {{--                    <div class="box-account-logined " onclick="openMenuProfile()">--}}
+                    {{--                        <div class="account-avatar">--}}
+                    {{--                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
 
@@ -258,14 +265,14 @@
                 {{--                                    Vong lap thang bố--}}
                 <div class="acount-logined_mobile d-flex m-3">
                     <div class="acount-logined_img">
-                        <img src="https://media.passionzone.net/storage/upload_client/uenyodh6b1nrvudqbgqzndztaisyut09/dARAcxhD8b_1652346785.jpg" alt="">
+                        <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                     </div>
                     <div class="account-logined_info">
                         <div id="account-id-mobile">
-{{--                            <span class="">ID: </span>1234567--}}
+                            {{--                            <span class="">ID: </span>1234567--}}
                         </div>
                         <div id="account-balance-mobile">
-{{--                            <span class="">Số dư: </span>0 đ--}}
+                            {{--                            <span class="">Số dư: </span>0 đ--}}
                         </div>
 
                     </div>
@@ -285,9 +292,6 @@
                 <a href="/">
                     <img src="./assets/frontend/{{theme('')->theme_key}}/image/home.png" alt="">
                     <span>Trang chủ</span>
-                    <div class="mobile-logo">
-                        <img src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="" >
-                    </div>
 
                 </a>
             </li>
@@ -304,14 +308,9 @@
                 </a>
             </li>
             <div class="menu-category-mobile-partition"></div>
-                @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
-            <div class="menu-category-mobile-partition"></div>
-            <li id="login_menu">
-{{--                <a href="">--}}
-{{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
-{{--                    <span>Đăng nhập/ Đăng ký</span>--}}
-{{--                </a>--}}
-            </li>
+            @include('frontend.widget.__head__dich__vu__noi__bat__mobile')
+{{--            <div class="menu-category-mobile-partition"></div>--}}
+
         </ul>
     </div>
 </div>

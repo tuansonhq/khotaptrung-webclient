@@ -4,66 +4,25 @@
     <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/minigame.css">
 @endsection
 
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/homepage.js"></script>
+@endsection
+
 @section('content')
 
 <div class="container container-fix">
     <div class="d-flex banner-home">
         <div class="banner-marquee-container">
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
-            <marquee class="banner-marquee">
-                <p>KHUYẾN MẠI 100% THẺ CÀO, MUA NICK LIÊN QUÂN VIP GIÁ CHỈ TỪ 100K, NHẬN QUÀ MIỄN PHÍ, GIÁ TRỊ KHỦNG</p>
-            </marquee>
+            @if (setting('sys_marquee') )
+                <marquee class="banner-marquee">
+                    <p>{!! setting('sys_marquee') !!}</p>
+                </marquee>
+            @endif
         </div>
-        <div class="swiper-container banner-home-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="banner-home-slide-img">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="banner-home-slide-img">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="banner-home-slide-img">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="banner-home-slide-img">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="banner-home-slide-img">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/arrow-prev.png" alt="">
-            </div>
-            <div class="swiper-button-next">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/arrow-next.png" alt="">
-            </div>
-        </div>
+        @include('frontend.widget.__slider__banner')
     </div>
+
     <div class="block-product gaming-recharge mt-fix-20">
         <div class="gaming-recharge-header d-flex">
             <span>
@@ -550,176 +509,83 @@
                         <div class="tab-content">
                             <div class="tab--title">Chọn loại thẻ</div>
                             <div class="tab-pane fade show active select-tag-type" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
-                                <ul class="cards__list row">
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-zing" name="card-type" checked="" hidden="">
-                                        <label for="card-zing">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" class="card--logo" alt="card-zing">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-gate" name="card-type" hidden="">
-                                        <label for="card-gate">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/gate.png" class="card--logo" alt="card-gate">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-garena" name="card-type" hidden="">
-                                        <label for="card-garena">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/garena.png" class="card--logo" alt="card-garena">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-vcoin" name="card-type" hidden="">
-                                        <label for="card-vcoin">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/vcoin.png" class="card--logo" alt="card-vcoin">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-bit" name="card-type" hidden="">
-                                        <label for="card-bit">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/bit.png" class="card--logo" alt="card-bit">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-ongame" name="card-type" hidden="">
-                                        <label for="card-ongame">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/ongame.png" class="card--logo" alt="card-ongame">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-scoin" name="card-type" hidden="">
-                                        <label for="card-scoin">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/scoin.png" class="card--logo" alt="card-scoin">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-appota" name="card-type" hidden="">
-                                        <label for="card-appota">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/appota.png" class="card--logo" alt="card-appota">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-funcard" name="card-type" hidden="">
-                                        <label for="card-funcard">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/funcard.png" class="card--logo" alt="card-funcard">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-sohacoin" name="card-type" hidden="">
-                                        <label for="card-sohacoin">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/sohacoin.png" class="card--logo" alt="card-sohacoin">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-kulgame" name="card-type" hidden="">
-                                        <label for="card-kulgame">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/kulgame.png" class="card--logo" alt="card-kulgame">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-gosu" name="card-type" hidden="">
-                                        <label for="card-gosu">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/gosu.png" class="card--logo" alt="card-gosu">
-                                        </label>
-                                    </li>
+                                <ul class="cards__list row" id="cardGameList">
+                                    <div class="loader position-relative" style="margin: 2rem 0">
+                                        <div class="loading-spokes">
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                            <div class="spoke-container">
+                                                <div class="spoke"></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
-                                <ul class="cards__list row">
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-viettel" name="card-type" hidden="">
-                                        <label for="card-viettel">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/viettel.png" class="card--logo" alt="card-viettel">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-mobifone" name="card-type" hidden="">
-                                        <label for="card-mobifone">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/mobifone.png" class="card--logo" alt="card-mobifone">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-gmobile" name="card-type" hidden="">
-                                        <label for="card-gmobile">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/gmobile.png" class="card--logo" alt="card-gmobile">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-vinaphone" name="card-type" hidden="">
-                                        <label for="card-vinaphone">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/vinaphone.png" class="card--logo" alt="card-vinaphone">
-                                        </label>
-                                    </li>
-                                    <li class="cards__item tag-card-item tag-card-item-mobile p_0">
-                                        <input type="radio" id="card-vietnammobile" name="card-type" hidden="">
-                                        <label for="card-vietnammobile">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/vietnammobile.png" class="card--logo" alt="card-vietnammobile">
-                                        </label>
-                                    </li>
+                                <ul class="cards__list row" id="cardPhoneList">
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card">
+            <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card d-none">
                 <div class="card --custom">
-                    <div class="card--body">
+                    <div class="card--body" id="amountWidget">
+                        <div class="loader position-relative" style="margin: 2rem 0">
+                            <div class="loading-spokes">
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="denos--wrap">
                             <div class="denos--title">
                                 Chọn mệnh giá
                             </div>
-                            <ul class="deno__list row">
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-10" name="card-value" checked="" hidden="">
-                                    <label for="card-10" class="deno__value card-item-value">
-                                        <span>10.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-20" name="card-value" hidden="">
-                                    <label for="card-20" class="deno__value card-item-value">
-                                        <span>20.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-30" name="card-value" hidden="">
-                                    <label for="card-30" class="deno__value card-item-value">
-                                        <span>30.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-50" name="card-value" hidden="">
-                                    <label for="card-50" class="deno__value card-item-value">
-                                        <span>50.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-100" name="card-value" hidden="">
-                                    <label for="card-100" class="deno__value card-item-value">
-                                        <span>100.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-200" name="card-value" hidden="">
-                                    <label for="card-200" class="deno__value card-item-value">
-                                        <span>200.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-300" name="card-value" hidden="">
-                                    <label for="card-300" class="deno__value card-item-value">
-                                        <span>300.000 đ</span>
-                                    </label>
-                                </li>
-                                <li class="deno__item col-4 col-lg-4">
-                                    <input type="radio" id="card-500" name="card-value" hidden="">
-                                    <label for="card-500" class="deno__value card-item-value">
-                                        <span>500.000 đ</span>
-                                    </label>
-                                </li>
-
+                            <ul class="deno__list row" id="cardAmountList">
+                                
                             </ul>
                             <div class="card--amount">
                                 <span class="card--amount__title">
@@ -736,11 +602,12 @@
                                 </div>
                             </div>
                             <div class="discount">
+                                <input name="card-discount" type="hidden" value="">
                                 <span class="discount--title">
                                     Chiết khấu
                                 </span>
                                 <span class="discount--value">
-                                    3%
+                                    
                                 </span>
                             </div>
                             <div class="price--total">
@@ -748,10 +615,14 @@
                                     Thành tiền
                                 </span>
                                 <span class="price--total__value">
-                                    97.000 đ
+                                    
                                 </span>
                             </div>
-                            <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
+                            @if (App\Library\AuthCustom::check())
+                                <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
+                            @else
+                                <button type="button" class="btn -primary btn-big js_step" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -781,7 +652,7 @@
                                 </div>
                                 <div class="card--attr__value">
                                     <div class="card--logo">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
+                                        <img id="confirmCard" src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -789,32 +660,32 @@
                                 <div class="card--attr__name">
                                     Giá niêm yết
                                 </div>
-                                <div class="card--attr__value">
-                                    10.000 đ
+                                <div class="card--attr__value" id="confirmPrice">
+
                                 </div>
                             </div>
                             <div class="card--attr">
                                 <div class="card--attr__name">
                                     Số lượng
                                 </div>
-                                <div class="card--attr__value">
-                                    01
+                                <div class="card--attr__value" id="confirmQuantity">
+                                    
                                 </div>
                             </div>
                             <div class="card--attr">
                                 <div class="card--attr__name">
                                     Chiết khấu
                                 </div>
-                                <div class="card--attr__value">
-                                    3%
+                                <div class="card--attr__value" id="confirmDiscount">
+                                    
                                 </div>
                             </div>
                             <div class="card--attr">
                                 <div class="card--attr__name">
                                     Thành tiền
                                 </div>
-                                <div class="card--attr__value">
-                                    9.700 đ
+                                <div class="card--attr__value" id="confirmTotal">
+
                                 </div>
                             </div>
                         </div>
@@ -841,12 +712,12 @@
                                 <div class="card--attr__name">
                                     Tổng thanh toán
                                 </div>
-                                <div class="card--attr__value">
-                                    9.700 đ
+                                <div class="card--attr__value" id="totalBill">
+                                    
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment">Xác nhận</button>
+                        <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment" id="confirmSubmitButton">Xác nhận</button>
                     </div>
                 </div>
             </div>
@@ -883,7 +754,7 @@
                                 </div>
                                 <div class="card--attr__value">
                                     <div class="card--logo">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
+                                        <img id="successCard" src="" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -891,16 +762,16 @@
                                 <div class="card--attr__name">
                                     Giá niêm yết
                                 </div>
-                                <div class="card--attr__value">
-                                    10.000 đ
+                                <div class="card--attr__value" id="successPrice">
+
                                 </div>
                             </div>
                             <div class="card--attr">
                                 <div class="card--attr__name">
                                     Số lượng
                                 </div>
-                                <div class="card--attr__value">
-                                    01
+                                <div class="card--attr__value" id="successQuantity">
+
                                 </div>
                             </div>
                         </div>
@@ -910,14 +781,14 @@
                                     <div class="card--header__detail">
                                         <div class="card--info__wrap">
                                             <div class="card--logo">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
+                                                <img src="" alt="">
                                             </div>
                                             <div class="card--info">
                                                 <div class="card--info__name">
-                                                    Zing 1
+                                                    
                                                 </div>
                                                 <div class="card--info__value">
-                                                    100.000 đ
+                                                    đ
                                                 </div>
                                             </div>
                                         </div>
@@ -929,7 +800,7 @@
                                             </div>
                                             <div class="card--attr__value">
                                                 <div class="card__info">
-                                                    48563415693486456
+                                                    
                                                 </div>
                                                 <div class="icon--coppy js-copy-text">
                                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
@@ -942,53 +813,7 @@
                                             </div>
                                             <div class="card--attr__value">
                                                 <div class="card__info">
-                                                    12121212121
-                                                </div>
-                                                <div class="icon--coppy js-copy-text">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide card__detail">
-                                    <div class="card--header__detail">
-                                        <div class="card--info__wrap">
-                                            <div class="card--logo">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                                            </div>
-                                            <div class="card--info">
-                                                <div class="card--info__name">
-                                                    Zing 1
-                                                </div>
-                                                <div class="card--info__value">
-                                                    100.000 đ
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--gray">
-                                        <div class="card--attr">
-                                            <div class="card--attr__name">
-                                                Mã thẻ
-                                            </div>
-                                            <div class="card--attr__value">
-                                                <div class="card__info">
-                                                    48563415693486456
-                                                </div>
-                                                <div class="icon--coppy js-copy-text">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card--attr">
-                                            <div class="card--attr__name">
-                                                Seri
-                                            </div>
-                                            <div class="card--attr__value">
-                                                <div class="card__info">
-                                                    12121212121
+                                                    
                                                 </div>
                                                 <div class="icon--coppy js-copy-text">
                                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
@@ -1001,6 +826,49 @@
                             </div>
                         </div>
                         <button type="submit" class="btn -primary btn-big">Mua thêm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Mua Thất Bại-->
+        <div class="modal fade login show default-Modal" id="modal--fail__payment" aria-modal="true">
+            <div class="modal-dialog modal-md modal-dialog-centered login animated">
+                <!--        <div class="image-login"></div>-->
+                <div class="modal-content">
+                    <div class="modal-header modal-header-success-ct">
+                        <div class="row marginauto modal-header-success-row-ct text-center">
+                            <div class="col-md-12 text-center" style="position: relative">
+                                <span>Mua thẻ không thành công</span>
+                                <div class="close" data-dismiss="modal" aria-label="Close">
+                                    <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body modal-body-success-ct">
+                        <div class="row marginauto justify-content-center">
+                            <div class="col-auto">
+                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                            </div>
+                        </div>
+                        <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                            <div class="col-md-12 left-right text-center">
+                                <span style="font-size: 14px" id="message--error--buy"></span>
+                            </div>
+
+                        </div>
+                        <div class="row marginauto justify-content-center modal-footer-success-ct">
+
+                            <div class="col-md-12 col-6 modal-footer-success-col-right-ct">
+                                <div class="row marginauto modal-footer-success-row-ct">
+                                    <div class="col-md-12 left-right">
+                                        <a href="/nap-the" class="button-bg-ct" style="display: flex;justify-content: center"><span>Nạp thẻ</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1076,372 +944,9 @@
             </div>
         </div>
     </div>
+    
+    @include('frontend.widget.__tin__tuc')
 
-    <div class=" block-product mt-fix-20 mt-md-fix-8">
-        <div class="product-header d-flex">
-                    <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
-                    </span>
-            <p class="text-title">Tin tức</p>
-            <div class="product-catecory " >
-                <ul class="nav d-g-md-none" role="tablist" >
-                    <li class="nav-item" role="presentation">
-                        <a  class="nav-link active"  data-toggle="tab" href="#news_game" role="tab" aria-selected="true">Tin game</a>
-                    </li >
-                    <li class="nav-item" role="presentation">
-                        <a  class="nav-link"   data-toggle="tab" href="#news_gamble" role="tab" aria-selected="false"> Cá độ</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a  class="nav-link"  data-toggle="tab" href="#news_soccer" role="tab" aria-selected="false">Bóng đá</a>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <a  class="nav-link"  data-toggle="tab" href="#news_soccer" role="tab" aria-selected="false">Bóng đá</a>
-                    </li>
-                </ul>
-            </div>
-
-
-            <div class="text-view-more">
-
-                <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_6/image/icons/arrow-right-blue.png)"></i></a>
-
-            </div>
-        </div>
-        <div class="product-catecory d-none d-g-lg-block pt-fix-16 pr-fix-16 pl-fix-16" >
-            <ul class="nav justify-content-between row" role="tablist" >
-                <li class="nav-item col-3 p-0 col-md-4 p-md-0" role="presentation">
-                    <a  class="pb-fix-8 d-flex justify-content-center active"  data-toggle="tab" href="#news_game" role="tab" aria-selected="true">Tin game</a>
-                </li >
-                <li class="nav-item col-3 p-0 col-md-4 p-md-0" role="presentation">
-                    <a  class="pb-fix-8 d-flex justify-content-center"  data-toggle="tab" href="#news_gamble" role="tab" aria-selected="false"> Cá độ</a>
-                </li>
-                <li class="nav-item col-3 p-0 col-md-4 p-md-0" role="presentation">
-                    <a  class="pb-fix-8 d-flex justify-content-center" data-toggle="tab" href="#news_soccer" role="tab" aria-selected="false"> Bóng đá</a>
-                </li>
-                <li class="nav-item col-3 p-0 col-md-4 p-md-0" role="presentation">
-                    <a  class="pb-fix-8 d-flex justify-content-center" data-toggle="tab" href="#news_soccer" role="tab" aria-selected="false"> Idol</a>
-                </li>
-            </ul>
-        </div>
-        <div class="box-product-content tab-content">
-            <div class="box-product tab-pane fade active show" id="news_game" role="tabpanel" >
-                <div class="swiper-container  list-news" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <a href="/tin-tuc">
-                            <div class="item-product__box-img item-news-img">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                            </div>
-                            <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                            </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/tin-tuc">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/tin-tuc">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image2.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/tin-tuc">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image2.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="/tin-tuc">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-
-
-
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="box-product tab-pane fade " id="news_gamble" role="tabpanel" >
-                <div class="swiper-container  list-news" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-            <div class="box-product tab-pane fade " id="news_soccer" role="tabpanel" >
-                <div class="swiper-containe list-news" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide" >
-                            <a href="">
-                                <div class="item-product__box-img item-news-img">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/news_image.png" alt="">
-                                </div>
-                                <div class="item-product__box-content item-news-content">
-
-
-                                    <div class="item-product__box-name">
-                                        U23 Việt Nam và giấc mơ vô địch
-                                    </div>
-                                    <div class="item-product__box-date">
-                                        21/01/2022
-                                    </div>
-
-
-                                </div>
-                            </a>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
     <div class="block-product mt-fix-20">
 
         <div class="box-product">
@@ -1498,9 +1003,9 @@
     </div>
 </div>
 
-@include('theme_6.frontend.widget.modal.__charge')
-@include('theme_6.frontend.widget.modal.__success_charge')
-@include('theme_6.frontend.widget.modal.__reject_charge')
-@include('theme_6.frontend.widget.modal.__success_charge_atm')
-@include('theme_6.frontend.widget.modal.__success_wallet_card')
+@include('frontend.widget.modal.__charge')
+@include('frontend.widget.modal.__success_charge')
+@include('frontend.widget.modal.__reject_charge')
+@include('frontend.widget.modal.__success_charge_atm')
+@include('frontend.widget.modal.__success_wallet_card')
 @endsection

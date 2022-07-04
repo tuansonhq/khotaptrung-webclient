@@ -12,16 +12,16 @@
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
 
-                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}" data-title="{{ $item->title }}" data-slug="{{ $item->slug }}">
+                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
+                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
                                                     @else
 
                                                         @if(isset($item->image))
-                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                            <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                         @else
                                                         @endif
                                                     @endif
@@ -65,146 +65,6 @@
                                             </div>
                                         </a>
                                     </div>
-
-                                    {{-- <div class="formDonhangAccount{{ $item->randId }} hide">
-                                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
-                                            {{ csrf_field() }}
-                
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Xác nhận mua tài khoản</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                
-                                            <div class="modal-body">
-                                                <div class="c-content-tab-4 c-opt-3" role="tabpanel">
-                                                    <ul class="nav nav-justified nav-justified__ul" role="tablist">
-                                                        <li role="presentation" class="active justified__ul_li">
-                                                            <a href="#paymentv2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="true" class="c-font-16 active paymentv2{{ $item->randId }}">Thanh toán</a>
-                                                        </li>
-                                                        <li role="presentation" class="justified__ul_li">
-                                                            <a href="#infov2{{ $item->randId }}" role="tab" data-toggle="tab" aria-selected="false" class="c-font-16 infov2{{ $item->randId }}">Thông tin tài khoản</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content">
-                                                        <div role="tabpanel" class="tab-pane fade in active show tabpaymentv2{{ $item->randId }}" id="paymentv2{{ $item->randId }}">
-                                                            <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
-                                                                <li class="c-font-dark">
-                                                                    <table class="table table-striped">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <th colspan="2">Thông tin tài khoản #{{ $item->randId }}</th>
-                                                                        </tr>
-                                                                        </tbody><tbody>
-                                                                        <tr>
-                                                                            <td>Nhà phát hành:</td>
-                                                                            <th>{{ $item->groups[0]->title }}</th>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Tên game:</td>
-                                                                            <th>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</th>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Giá tiền:</td>
-                                                                            <th class="text-info">
-                                                                                @if(isset($data->params) && isset($data->params->price))
-                                                                                    {{ str_replace(',','.',number_format($data->params->price)) }}đ
-                                                                                @else
-                                                                                    {{ str_replace(',','.',number_format($item->price)) }}đ
-                                                                                @endif
-                                                                            </th>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div role="tabpanel" class="tab-pane fade tabinfov2{{ $item->randId }}" id="infov2{{ $item->randId }}">
-                                                            <ul class="c-tab-items p-t-0 p-b-0 p-l-5 p-r-5">
-                                                                <li class="c-font-dark">
-                                                                    <table class="table table-striped">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <th colspan="2">Chi tiết tài khoản #{{ $item->randId }}</th>
-                                                                        </tr>
-                                                                        @if(isset($item->groups))
-                                                                            <?php $att_values = $item->groups ?>
-                                                                            @foreach($att_values as $att_value)
-                                                                                @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                                    @if(isset($att_value->parent))
-                                                                                        <tr>
-                                                                                            <td style="width:50%">{{ $att_value->parent->title??null }}:</td>
-                                                                                            <td class="text-danger" style="font-weight: 700">{{ $att_value->title??null }}</td>
-                                                                                        </tr>
-                                                                                    @endif
-                                                                                @endif
-                                                                            @endforeach
-                                                                        @endif
-                                                                        @if(isset($item->params) && isset($item->params->ext_info))
-                                                                            <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
-                                                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                                                @foreach($dataAttribute as $index=>$att)
-                                                                                    @if($att->position == 'text')
-                                                                                        @if(isset($att->childs))
-                                                                                            @foreach($att->childs as $child)
-                                                                                                @foreach($params as $key => $param)
-                                                                                                    @if($key == $child->id)
-                                                                                                        <tr>
-                                                                                                            <td style="width:50%">{{ $child->title }}:</td>
-                                                                                                            <td class="text-danger" style="font-weight: 700">{{ $param }}</td>
-                                                                                                        </tr>
-                                                                                                    @endif
-                                                                                                @endforeach
-                                                                                            @endforeach
-                                                                                        @endif
-                
-                                                                                    @endif
-                                                                                @endforeach
-                                                                            @endif
-                                                                        @endif
-                                                                        </tbody>
-                                                                    </table>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group form-group_buyacc ">
-                                                    @if(App\Library\AuthCustom::check())
-                
-                                                        @if(App\Library\AuthCustom::user()->balance < $item->price)
-                                                            <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
-                                                        @else
-                                                            <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
-                                                        @endif
-                
-                                                    @else
-                                                        <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>
-                                                    @endif
-                
-                                                </div>
-                
-                                                <div style="clear: both"></div>
-                                            </div>
-                
-                                            <div class="modal-footer">
-                
-                                                @if(App\Library\AuthCustom::check())
-                
-                                                    @if(App\Library\AuthCustom::user()->balance > $item->price)
-                                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
-                                                    @else
-                                                        <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
-                                                        <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
-                                                    @endif
-                                                @else
-                                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/mua-acc/{{ isset($data->custom->slug) ? $data->custom->slug :  $data->slug }}&{{ $data->id }}">Đăng nhập</a>
-                                                @endif
-                                                <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
-                                            </div>
-                                        </form>
-                                    </div> --}}
 
                                     <div class="formDonhangAccount{{ $item->randId }}" style="display: none">
                                         <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
@@ -424,7 +284,7 @@
                                                 <div class="col-md-12 left-right default-overlay-nick-ct">
                                                     @if(isset($item->image))
 
-                                                        <img class="item_buy_list_img-main lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                     @else
                                                         {{--                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
                                                     @endif

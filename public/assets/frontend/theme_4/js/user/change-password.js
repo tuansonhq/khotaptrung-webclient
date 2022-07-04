@@ -23,7 +23,6 @@ Validator({
             beforeSend: function (xhr) {
             },
             success: function (res) {
-                console.log(res)
                 if (res.status == 'LOGIN'){
                     openLoginModal();
                 }

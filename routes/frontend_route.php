@@ -27,7 +27,16 @@ use \Illuminate\Support\Facades\Session;
 
 Route::get('/clear-cache', function ()
 {
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+    Cache::flush();
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
 
+    ]);
 });
 
 
@@ -51,7 +60,7 @@ Route::get('/test111', function ()
 {
     return 1111;
 })->middleware('throttle:5,1');
-
+Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 Route::get('/updategit', function ()
 {
 
@@ -248,7 +257,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
                     Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
-
+                    Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+                        ->name('changePassword');
+                    Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+                        ->name('changePasswordApi');
                 });
                 // ROUTE cần auth load dữ liệu không cache
 
@@ -333,10 +345,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                 ->name('register');
             Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-            Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-                ->name('changePassword');
-            Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-                ->name('changePasswordApi');
+
 
 
             Route::get('/show', function ()
@@ -368,6 +377,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             //minigame
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
+                Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])
+                    ->name('getCategory');
+
                 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])
                     ->name('postRoll');
                 Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])
