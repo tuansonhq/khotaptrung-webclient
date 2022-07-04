@@ -71,19 +71,6 @@
                                         <div class="col-md-5 col-sm-5 col-5">
                                             <div class="row text-left">
                                                 <div class="col-md-12">
-                                                    <span class="gallery__02__span__02">ATM</span>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    @if(isset($data->price_atm))
-                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="col-md-5 col-sm-5 col-5">
-                                            <div class="row text-left">
-                                                <div class="col-md-12">
                                                     <span class="gallery__02__span__02">THẺ CÀO</span>
                                                 </div>
                                                 <div class="col-md-12">
@@ -102,6 +89,19 @@
                                         </div>
                                         <div class="col-md-5 col-sm-5 col-5">
                                             <div class="row text-right">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">ATM</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    @if(isset($data->price_atm))
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-left">
                                                 <div class="col-md-12">
                                                     <span class="gallery__02__span__02">ATM</span>
                                                 </div>
