@@ -101,7 +101,7 @@
                                         });
                                 </script>
                                 @endif
-                                <div class="item_buy_list_img">
+                                <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
                                             <img class="item_buy_list_img-main lazy item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
@@ -545,7 +545,7 @@
 
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
+                                <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="/acc/{{ $item->randId }}">
                                         @if(isset($item->image))
 
@@ -560,7 +560,7 @@
                                 <div class="item_buy_list_description">
                                     bảo hành 100%,lỗi hoàn tiền
                                 </div>
-                                <div class="item_buy_list_info">
+                                <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
                                         <?php
                                         $total = 0;
