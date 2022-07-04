@@ -196,7 +196,6 @@
                                         <div class="row marginauto justify-content-center gallery-right-footer">
                                             @if(isset($card_percent))
                                                 @if($card_percent == 0)
-                                                @else
                                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                                         <div class="row marginauto nick-detail-button">
                                                             <div class="col-md-12 left-right">
@@ -209,6 +208,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                @else
+                                                    
                                                 @endif
                                             @else
                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">

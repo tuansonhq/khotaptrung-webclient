@@ -64,7 +64,7 @@ Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name
 Route::get('/updategit', function ()
 {
 
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
     $output = shell_exec($command);
 //    Lam sao day em oi

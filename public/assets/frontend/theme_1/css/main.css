@@ -1425,6 +1425,7 @@ footer{
         margin: 0 auto!important;
     }
 }
+
 @media only screen and (min-width: 376px) and (max-width: 573px) {
     .marginauto{
         width: 100%!important;
@@ -2386,3 +2387,52 @@ footer{
     font-size: 16px;
     color: #3f444a;
 }
+.item_buy_list_img_custom{
+    height: 150px;
+    max-height: 150px;
+}
+
+.item_buy_list_info_custom{
+    height: 110px;
+}
+/*  Lap top  */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .item_buy_list_img_custom{
+        height: 120px;
+        max-height: 120px;
+    }
+}
+/*  Ipat  */
+@media (min-width: 768px) and (max-width: 992px) {
+    .item_buy_list_img_custom{
+        height: 194px;
+        max-height: 194px;
+    }
+}
+@media only screen and (min-width: 573px) and (max-width: 768px) {
+    .item_buy_list_img_custom{
+        height: 140px;
+        max-height: 140px;
+    }
+}
+@media only screen and (min-width: 376px) and (max-width: 573px) {
+    .item_buy_list_img_custom{
+        height: 120px;
+        max-height: 120px;
+    }
+    .item_buy_list_info_custom{
+        height: 86px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .item_buy_list_img_custom{
+        height: 100px;
+        max-height: 100px;
+    }
+    .item_buy_list_info_custom{
+        height: 86px;
+    }
+}
+
+
