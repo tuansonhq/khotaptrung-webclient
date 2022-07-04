@@ -16,7 +16,7 @@ class Helpers
 
     public static function formatDateTime($date){
 
-        return \Carbon\Carbon::parse($date)->format('d/m/Y H:s');
+        return \Carbon\Carbon::parse($date)->format('d/m/Y H:i:s');
     }
 
     public static function formatDate($date){

@@ -27,7 +27,16 @@ use \Illuminate\Support\Facades\Session;
 
 Route::get('/clear-cache', function ()
 {
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+    Cache::flush();
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
 
+    ]);
 });
 
 
@@ -51,7 +60,7 @@ Route::get('/test111', function ()
 {
     return 1111;
 })->middleware('throttle:5,1');
-
+Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 Route::get('/updategit', function ()
 {
 
