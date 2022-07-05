@@ -108,7 +108,6 @@
                         @include('frontend.pages.service.widget.__data__list')
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
