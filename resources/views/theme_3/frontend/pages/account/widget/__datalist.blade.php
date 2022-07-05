@@ -15,7 +15,7 @@
                                     <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
-                                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                                <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
                                                     @else
@@ -23,6 +23,7 @@
                                                         @if(isset($item->image))
                                                             <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                         @else
+                                                            <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
                                                     @endif
                                                 </div>
@@ -281,12 +282,11 @@
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
                                             <div class="row marginauto">
-                                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                                <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
-
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                     @else
-                                                        {{--                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
+                                                        <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
@@ -355,6 +355,12 @@
                                                                     @endforeach
                                                                 @endif
                                                             @endif
+                                                        @endif
+
+                                                        @if ($total < 4)
+                                                            @for ($i = 0; $i < 4 - $total; $i++)
+                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
+                                                            @endfor
                                                         @endif
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
