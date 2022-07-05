@@ -172,7 +172,7 @@
               "@context": "https://schema.org/",
               "@type": "BreadcrumbList",
               "itemListElement": [{
-                "@type"": ""ListItem",
+                "@type"": "ListItem",
                 "position": 1,
                 "name": "{{\Request::server ("HTTP_HOST")}}",
                 "item": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/"
