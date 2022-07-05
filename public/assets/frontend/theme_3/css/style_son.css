@@ -6001,4 +6001,36 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         padding-bottom: 8px;
     }
 }
-
+.comment-item-own{
+    justify-content: flex-end;
+}
+.comment-info-own{
+    text-align: right;
+}
+.comment-detail-own{
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+.comment-info-own span::before{
+    display: none !important;
+}
+.comment-info-own span::after {
+    content: "";
+    height: 3px;
+    width: 3px;
+    background-color: #82869E;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-left: 8px;
+}
+.comment-interact-own{
+    text-align: right;
+}
+.comment-interact-own span{
+    margin-right: 0 !important;
+    margin-left: 2.5rem;
+}
+.comment-content-own{
+    text-align: right;
+}
