@@ -6,7 +6,6 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             success: function (data) {
-                console.log(data)
                 if(data.status == 1){
 
                     // html += '<p class="text-danger">'+ data.data +'</p>  <span style="padding-left: 8px;cursor: pointer"><i class="fas fa-copy"  data-id="'+ data.data +'"></i></span>';

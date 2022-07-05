@@ -256,8 +256,6 @@ class ChargeController extends Controller
 
     public function getChargeDepositHistory(Request $request)
     {
-
-
         if (AuthCustom::check()) {
 
             $method = "GET";
@@ -278,28 +276,27 @@ class ChargeController extends Controller
                 $val['token'] = $jwt;
                 $val['page'] = $page;
 
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                if ($request->filled('serial')) {
                     $val['serial'] = $request->serial;
                 }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                if ($request->filled('key')) {
                     $val['key'] = $request->key;
                 }
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                if ($request->filled('key')) {
                     $val['status'] = $request->status;
                 }
 
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                if ($request->filled('started_at')) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
                     $val['started_at'] = $started_at;
                 }
 
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                if ($request->filled('ended_at')) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
                     $val['ended_at'] = $ended_at;
                 }
-
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
                 $response_data = $result_Api->response_data??null;
 

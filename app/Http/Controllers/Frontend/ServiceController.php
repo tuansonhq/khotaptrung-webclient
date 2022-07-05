@@ -187,6 +187,7 @@ class ServiceController extends Controller
             }
         }
     }
+
     public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {
@@ -207,16 +208,15 @@ class ServiceController extends Controller
 
                 $dataSend['page'] = $page;
 
-                if (isset($request->id) || $request->id != '' || $request->id != null) {
-
+                if ($request->filled('id')) {
                     $dataSend['id'] = $request->id;
                 }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $dataSend['slug_category'] = $request->key;
+                if ($request->filled('slug_category')) {
+                    $dataSend['slug_category'] = $request->slug_category;
                 }
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                if ($request->filled('status')) {
                     $dataSend['status'] = $request->status;
                 }
 
