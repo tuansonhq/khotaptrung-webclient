@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="item_play_dif_slide_description__size">
                                         {{--                                {!! substr($item->description, 0, 150); !!}--}}
-                                        {!! $item->description !!}
+                                        {!! $item->seo_description !!}
                                         {{--                                @if(strlen($item->description) < 120)--}}
                                         {{--                                    {!! substr($item->description, 0, 120); !!}--}}
                                         {{--                                @else--}}
