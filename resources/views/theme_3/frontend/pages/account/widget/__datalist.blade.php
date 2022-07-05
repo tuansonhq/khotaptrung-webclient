@@ -1,4 +1,4 @@
-@if(empty($data->data)))
+@if(empty($data->data))
     <div class="col-md-12 left-right">
         <div class="row marginauto body-detail-ct">
             @if(isset($items) && count($items) > 0)
