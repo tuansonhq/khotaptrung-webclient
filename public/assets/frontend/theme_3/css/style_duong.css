@@ -1,4 +1,4 @@
-/* css chon game nap gia re */
+/* css service game */
 
 .block-product.gaming-recharge {
     padding: 18px 21px 2px 21px;
@@ -57,5 +57,11 @@
     font-weight: 600;
     font-size: 14px;
     margin-left: 0.75rem;
+}
+
+@media (max-width: 767px) {
+    .gaming-recharge-form-detail button{
+        display: none;
+    }
 }
 /*end*/

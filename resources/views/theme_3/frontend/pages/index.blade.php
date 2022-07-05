@@ -32,6 +32,7 @@
 
         @include('frontend.widget.__top_nap_the_mobile')
 
+        @include('frontend.widget.__chon__game__muon__nap')
 
         @include('frontend.widget.__content__home__minigame')
 
@@ -1306,4 +1307,3 @@
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
     @endif
 @endsection
-
