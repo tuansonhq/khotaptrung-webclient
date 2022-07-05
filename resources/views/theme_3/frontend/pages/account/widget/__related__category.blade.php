@@ -21,7 +21,7 @@
                                             <div class="swiper-slide body-detail-ctng-col-ct">
                                                 <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                                 <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct">
+                                                    <div class="col-md-12 left-right default-overlay-ct related-acc-category">
                                                         <img class="lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right text-center body-detail-col-span-ct">
