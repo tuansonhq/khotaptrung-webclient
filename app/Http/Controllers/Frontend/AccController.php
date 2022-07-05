@@ -24,6 +24,7 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
+
         if(isset($response_data) && $response_data->status == 1){
 
             $data = $response_data->data;
@@ -264,7 +265,8 @@ class AccController extends Controller
                 $data = $response_data->data;
                 $data_category = $data->category;
 
-                $card_percent = setting('sys_card_percent');
+                $card_percent = (int)setting('sys_card_setting');
+
                 $atm_percent = setting('sys_atm_percent');
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
@@ -381,6 +383,7 @@ class AccController extends Controller
                         return response()->json([
                             'status' => 0,
                             'message' => 'Không có dữ liệu childs .',
+
                         ]);
                     }
                     $dataAttribute = $data_category->childs;

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
     <link rel="stylesheet" href="assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
     @if (!Auth::check())
@@ -51,41 +52,37 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
-    @if(\App\Library\AuthFrontendCustom::check())
-        <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
-    @endif
+
+
+    @yield('seo_head')
 </head>
 <body>
 
 @if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
-            $('#loginModal').modal('show');
+            let width = $(window).width();
+            setTimeout(function(){
+                if ( width > 1200 ) {
+                    $('#loginModal').modal('show');
+                    setTimeout(() => {
+                        $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                    }, 200);
+                } else {
+                    $('.mobile-auth').toggleClass('mobile-auth-show');
+                }
+            }, 0);
         });
     </script>
     @php
         Session::pull('check_login');
     @endphp
 @endif
-<script>
-
-    $(document).ready(function () {
-        @if(Request::is('nap-the'))
-
-        $('#nav-charge').addClass('nav-profile-active')
-        @elseif(Request::is('mua-the'))
-        $('#nav-store').addClass('nav-profile-active')
-        @elseif(Request::is('mua-acc'))
-        $('#nav-buy__acc').addClass('nav-profile-active')
-        @elseif(Request::is('dich-vu'))
-        $('#nav-service').addClass('nav-profile-active')
-        @elseif(Request::is('recharge-game'))
-        $('#nav-recharge_game').addClass('nav-profile-active')
-        @elseif(Request::is('minigame'))
-        $('#nav-minigame').addClass('nav-profile-active')
-        @endif
-    })
-</script>
+<div class="modal-loader-container">
+    <div class="modal-loader-content">
+        <span class="modal-loader-spin"></span>
+    </div>
+</div>
 @include('frontend.layouts.includes.header')
 <div class="layout">
 
@@ -97,6 +94,13 @@
 
 </div>
 @if(Request::is('/'))
+    <style>
+        @media (max-width: 992px){
+            .content{
+                padding-bottom: 1rem;
+            }
+        }
+    </style>
 @include('frontend.layouts.includes.footer')
 
 @endif

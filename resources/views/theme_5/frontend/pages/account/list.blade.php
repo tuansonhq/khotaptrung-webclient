@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-{{--                        Find    --}}
+                        {{--                        Find    --}}
                         <div class="col-md-12 left-right">
 
                             <div class="row marginauto">
@@ -112,7 +112,7 @@
 
                             </div>
                         </div>
-{{--End find   --}}
+                        {{--End find   --}}
                         <div class="col-md-12 left-right media-web">
                             <div class="row marginauto body-search-ct sort-nick">
                                 <div class="col-auto text-left left-right sort-nick-left">
@@ -158,7 +158,7 @@
 
                         <div id="account_data" style="width: 100%;">
                         </div>
-
+                        @include('frontend.pages.account.widget.__datalist')
 
                     </div>
                 </div>
@@ -166,6 +166,7 @@
             </div>
         </div>
     </section>
+
     <section class="media-mobile">
         <div class="row marginauto intermediary-ct" style="height: 20px;background: #EFEFEF">
 
@@ -248,12 +249,12 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}"">
-                                                        <option value="" selected disabled>--Không chọn--</option>
-                                                        @foreach($val->childs as $child)
-                                                            <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @foreach($val->childs as $child)
+                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
                                                         @endforeach
-                                                    </select>
+                                                        </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -323,8 +324,8 @@
                                             <span>Tài khoản</span>
                                         </div>
                                         <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-tai-khoan">
-                                           <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="">
-                                           <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
+                                            <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="">
+                                            <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
                                         </div>
                                         <div class="col-md-12 left-right">
                                             <div class="row marginauto title-tra-gop-success-row">
@@ -339,21 +340,21 @@
                                         </div>
 
                                         <div class="col-md-12 left-right data-child">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="row marginauto add-child">--}}
+                                            {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+                                            {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
+                                            {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            </div>--}}
                                         </div>
 
                                         <div class="col-md-12 left-right data-ttbxung">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                            {{--                                            <div class="row marginauto add-child">--}}
+                                            {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
+                                            {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
+                                            {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>

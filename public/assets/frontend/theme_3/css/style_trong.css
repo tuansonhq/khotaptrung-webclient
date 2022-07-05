@@ -172,6 +172,10 @@
     margin-bottom: 8px;
 }
 
+#content-store-card .cards__item.card__item-tag {
+    width: 20%;
+}
+
 #content-store-card .cards__item label {
     display: block;
     box-sizing: border-box;
@@ -199,7 +203,7 @@
 
 
 #content-store-card .cards__item .card--logo {
-    max-width: 100%;
+    max-width: 80%;
     max-height: 100%;
     position: absolute;
     top: 50%;
@@ -1454,6 +1458,16 @@ a:hover .__icon.--path__custom:after {
 .tag__status.--offline{
     background-color: #DA4343;
 }
+.message-error {
+    margin-top: .5rem;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #DA4343;
+}
+.message-error:empty {
+    margin-top: 0;
+}
 .loading-table {
     position: absolute;
     top: 50%;
@@ -1849,5 +1863,11 @@ a:hover .__icon.--path__custom:after {
 
     .service--thumbnail {
         height: 104px;
+    }
+}
+
+@media (max-width: 767px) {
+    #content-store-card .cards__item.card__item-tag {
+        width: 33.333%;
     }
 }

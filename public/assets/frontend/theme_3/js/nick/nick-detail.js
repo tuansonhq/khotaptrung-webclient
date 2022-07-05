@@ -1,9 +1,10 @@
 $(document).ready(function (e) {
 
     var slug = $('.slug').val();
+    var slug_category = $('.slug_category').val();
 
     getShowAccDetail(slug);
-    getRelatedAcc(slug);
+    getRelatedAcc(slug_category);
 
     function getShowAccDetail(slug) {
 
@@ -57,19 +58,19 @@ $(document).ready(function (e) {
 
             },
             complete: function (data) {
-
+                $('#detailLoader').addClass('d-none');
             }
         });
     };
 
-    function getRelatedAcc(slug) {
+    function getRelatedAcc(slug_category) {
 
         var url = '/related-acc';
         request = $.ajax({
             type: 'GET',
             url: url,
             data: {
-                slug:slug
+                slug:slug_category
             },
             beforeSend: function (xhr) {
 
@@ -183,144 +184,6 @@ $(document).ready(function (e) {
 
     });
 
-    $('body').on('click','#getpass',function(e){
-        e.preventDefault();
-
-        var id = $(e.target).data('id');
-        var slug = $(e.target).data('slug');
-
-        getShowPass(id,slug);
-    });
-
-    function getShowPass(id,slug) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: '/lich-su-mua-account/showpass',
-            data: {
-                id:id,
-                slug:slug,
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-
-                if (data.status == 1){
-                    if (data.data.success == 1){
-
-                        //Mạt khẩu
-
-                        var htmlpass = '';
-
-                        htmlpass += '<input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="' + data.key + '" placeholder="Mật khẩu">';
-                        htmlpass += '<img class="lazy img-copy" src="/assets/frontend/theme_3/image/nick/copy.png" alt="" id="getCopypass">';
-                        htmlpass += '<div class="getCopypass">';
-                        htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
-                        htmlpass += '</div>';
-
-
-                        $('#successModal .data-password').html('');
-                        $('#successModal .data-password').html(htmlpass);
-
-                        //thời gian.
-                        var htmltg = '';
-
-                        htmltg += '<small>';
-                        htmltg += 'Đã lấy mật khẩu lúc: ' + data.time;
-                        htmltg += '</small>';
-
-                        $('#successModal .data-time').html('');
-                        $('#successModal .data-time').html(htmltg);
-
-                        var key = data.key;
-
-                        navigator.clipboard.writeText(key);
-
-                        tippy('#getShowpass', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã lấy mật khẩu!",
-                            placement: 'right',
-                        });
-
-                        tippy('#getCopypass', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã copy mật khẩu!",
-                            placement: 'right',
-                        });
-
-                        tippy('#getCopyemail', {
-                            // default
-                            trigger: 'click',
-                            content: "Đã copy email!",
-                            placement: 'right',
-                        });
-
-                        $('#successModal .getCopypass').on('click', function(){
-
-
-                            // Get the password field
-                            var passwordField = $('#password');
-
-                            // Get the current type of the password field will be password or text
-                            var passwordFieldType = passwordField.attr('type');
-
-                            // Check to see if the type is a password field
-                            if(passwordFieldType == 'password')
-                            {
-                                // Change the password field to text
-                                passwordField.attr('type', 'text');
-
-                                var htmlpass = '';
-                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyeshow.png" alt="">';
-                                $('.getCopypass').html('');
-                                $('.getCopypass').html(htmlpass);
-
-                                // Change the Text on the show password button to Hide
-                                $(this).val('Hide');
-                            } else {
-                                var htmlpass = '';
-                                htmlpass += '<img class="lazy img-show-password" src="/assets/frontend/theme_3/image/cay-thue/eyehide.png" alt="">';
-                                $('.getCopypass').html('');
-                                $('.getCopypass').html(htmlpass);
-
-                                // If the password field type is not a password field then set it to password
-                                passwordField.attr('type', 'password');
-
-                                // Change the value of the show password button to Show
-                                $(this).val('Show');
-                            }
-                        });
-
-                        $('#getCopyemail').on('click', function(){
-                            var copyText = $('#email').val();
-
-                            navigator.clipboard.writeText(copyText);
-                        });
-
-                        $('#getCopypass').on('click', function(){
-                            var copyText = $('#password').val();
-
-                            navigator.clipboard.writeText(copyText);
-                        });
-
-
-                    }
-                }else if (data.status == 0){
-
-                }
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
-
-            }
-        });
-    }
-
     $('.js-toggle-content').click(function () {
         handleToggleContent();
     });
@@ -329,9 +192,9 @@ $(document).ready(function (e) {
         var slider = new Swiper ('.gallery-slider', {
             autoplay: {
                 delay: 2000,
-    
+
             },
-    
+
             slidesPerView: 1,
             centeredSlides: true,
             loop: false,
@@ -345,7 +208,7 @@ $(document).ready(function (e) {
 
     function activateGalleryThumbs () {
         var thumbs = new Swiper ('.gallery-thumbs', {
-            slidesPerView: 6.5,
+            slidesPerView: 5.5,
             spaceBetween: 8,
             centeredSlides: false,
             loop: false,
@@ -359,7 +222,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 3.2,
-    
+
                 }
             }
         });
@@ -374,7 +237,7 @@ $(document).ready(function (e) {
             watchSlidesVisibility: false,
             lazyLoadingInPrevNext: false,
             lazyLoadingOnTransitionStart: false,
-    
+
             loop: false,
             centeredSlides: false,
             slidesPerView: 4.5,
@@ -394,7 +257,7 @@ $(document).ready(function (e) {
                 },
                 480: {
                     slidesPerView: 1.8,
-    
+
                 }
             }
         });
@@ -435,13 +298,6 @@ $(document).ready(function (e) {
             },
             easing: 'easeInOutBack'
         });
-
-        let title = $(event.target).data('title');
-        let slug = $(event.target).data('slug');
-        let id = $(event.target).data('id');
-        $('#email').val(title);
-        $('#getpass').attr('data-slug', slug);
-        $('#getpass').attr('data-id', id);
     });
 
     $('body').on('click','.previous-step-one',function(){
@@ -633,12 +489,6 @@ $(document).ready(function (e) {
 
     $('body').on('click','.btn-mua-ngay',function(event){
         $('#openOrder').modal('show');
-        let title = $(event.target).data('title');
-        let slug = $(event.target).data('slug');
-        let id = $(event.target).data('id');
-        $('#email').val(title);
-        $('#getpass').attr('data-slug', slug);
-        $('#getpass').attr('data-id', id);
     });
 
     $('body').on('click','.close-modal-default',function(){

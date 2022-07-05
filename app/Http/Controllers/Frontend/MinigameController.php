@@ -601,6 +601,7 @@ class MinigameController extends Controller
                 $data['idgame'] = $request->idgame;
                 $data['phone'] = $request->phone;
                 $result_Api = DirectAPI::_makeRequest($url,$data,$method);
+
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
                     if (isset($result->status) && $result->status == 4) {

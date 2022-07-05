@@ -48,7 +48,7 @@
                                 <div class="tab--title">Chọn loại thẻ</div>
                                 <div class="tab-pane fade show active" id="card-game" role="tabpanel" aria-labelledby="card-game-tab">
                                     <ul class="cards__list row" id="cardGameList">
-                                        <div class="loader position-relative">
+                                        <div class="loader position-relative" style="margin: 2rem 0">
                                             <div class="loading-spokes">
                                                 <div class="spoke-container">
                                                     <div class="spoke"></div>
@@ -102,10 +102,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 mb_1 section--amount__card">
+                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 mb_1 section--amount__card d-none">
                     <div class="card --custom">
                         <div class="card--body" id="amountWidget">
-                            <div class="loader position-relative">
+                            <div class="loader position-relative" style="margin: 2rem 0">
                                 <div class="loading-spokes">
                                     <div class="spoke-container">
                                         <div class="spoke"></div>
@@ -148,7 +148,7 @@
                                         <button class="btn--amount -minus js-amount" data-action="minus">
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/minus.png" alt="">
                                         </button>
-                                        <input type="text" name="card-amount" class="input--amount" value="1" numeric>
+                                        <input type="text" name="card-amount" class="input--amount" value="1" numberic>
                                         <button class="btn--amount -add js-amount" data-action="add">
                                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/add.png" alt="">
                                         </button>
@@ -308,8 +308,7 @@
                                     </div>
                                     <div class="card--attr__value">
                                         <div class="card--logo">
-                                            <img id="confirmCard" src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png"
-                                                 alt="">
+                                            <img id="confirmCard" src="" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -318,7 +317,7 @@
                                         Giá niêm yết
                                     </div>
                                     <div class="card--attr__value" id="confirmPrice">
-                                        10.000 đ
+                                        
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -326,7 +325,7 @@
                                         Số lượng
                                     </div>
                                     <div class="card--attr__value" id="confirmQuantity">
-                                        01
+                                        
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -334,7 +333,7 @@
                                         Chiết khấu
                                     </div>
                                     <div class="card--attr__value" id="confirmDiscount">
-                                        3%
+                                        
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -342,7 +341,7 @@
                                         Thành tiền
                                     </div>
                                     <div class="card--attr__value" id="confirmTotal">
-                                        9.700 đ
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +369,7 @@
                                         Tổng thanh toán
                                     </div>
                                     <div class="card--attr__value" id="totalBill">
-                                        9.700 đ
+                                        
                                     </div>
                                 </div>
                             </div>

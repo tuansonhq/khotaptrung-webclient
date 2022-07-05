@@ -1,3 +1,4 @@
+
 <div class=" block-product mt-fix-20 mt-md-fix-8">
     <div class="d-flex product-header-item product-header">
                     <span>
@@ -15,9 +16,9 @@
                 <div class="swiper-wrapper">
                     @foreach($data as $service)
                     <div  class="swiper-slide ">
-                        <a href="/tin-tuc">
+                        <a href="/dich-vu">
                             <div class="item-product__box-img item-news-img item-service-image">
-                                <img src="{{$service->image}}" alt="">
+                                <img src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="">
                             </div>
                             <div class="item-product__box-content item-news-content">
                                 <div class="item-product__box-name item-service__box-name">

@@ -27,7 +27,16 @@ use \Illuminate\Support\Facades\Session;
 
 Route::get('/clear-cache', function ()
 {
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('route:clear');
+    Cache::flush();
+    return response()->json([
+        'status' => 1,
+        'message' => 'Thành công!',
 
+    ]);
 });
 
 
@@ -51,11 +60,11 @@ Route::get('/test111', function ()
 {
     return 1111;
 })->middleware('throttle:5,1');
-
+Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
 Route::get('/updategit', function ()
 {
 
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
     $output = shell_exec($command);
 //    Lam sao day em oi
@@ -257,7 +266,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
                     Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
-
+                    Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
+                        ->name('changePassword');
+                    Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
+                        ->name('changePasswordApi');
                 });
                 // ROUTE cần auth load dữ liệu không cache
 
@@ -342,10 +354,7 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                 ->name('register');
             Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-            Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-                ->name('changePassword');
-            Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-                ->name('changePasswordApi');
+
 
 
             Route::get('/show', function ()

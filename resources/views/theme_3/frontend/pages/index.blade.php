@@ -1,4 +1,3 @@
-
 @extends('frontend.layouts.master')
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
@@ -6,863 +5,1308 @@
 @endsection
 
 @section('content')
-    <div class="banner-home " style=" background: url(/assets/frontend/{{theme('')->theme_key}}/image/banner.png) no-repeat center center / cover;">
-        <div class="container container-fix">
-            <div class="d-flex justify-content-between">
-                <div class="box-list-service d-g-lg-none">
-                    <p>Dịch vụ</p>
-                    @include('frontend.widget.__list_service')
 
-                </div>
-                <div class="box-list-top top-list d-g-lg-none">
-                    <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
-                    @include('frontend.widget.__top_nap_the')
+    <div class="banner-home " >
+
+
+        @if(theme('')->theme_config->sys_config_banner =='banner_single')
+            <div class="banner-image">
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
+            </div>
+        @elseif(theme('')->theme_config->sys_config_banner =='banner_slide')
+            <div class="banner-slide swiper-container container container-fix " >
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/assets/frontend/theme_3/image/minigame3.gif" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//backend.dev.tichhop.pro/storage/upload/images/RANDOM-FF-VIP-2.gif" alt="">
+                    </div>
                 </div>
             </div>
+        @endif
+        <div class="banner-content">
+            <div class="container @if(theme('')->theme_config->sys_config_banner == 'banner_single') container-fix @endif" >
+                <div class="d-flex justify-content-between">
+                    @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+                        <div class="box-list-service d-g-lg-none">
+                            <p>Dịch vụ</p>
 
+                            @include('frontend.widget.__list_service')
+                        </div>
+                    @endif
+
+                    @if(setting('sys_marquee'))
+                    <div class="rotation-notify text-slider" @if(theme('')->theme_config->sys_menu_service == 'menu_service_1' && theme('')->theme_config->sys_top_charge == 'top_charge_open') style="margin: 20px 12px 0 12px;" @endif>
+
+                        <marquee class="rotation-marquee marquee-move">
+                            <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
+                            <div class="rotation-marquee-item marquee-item">
+                                {!! setting('sys_marquee') !!}
+                            </div>
+                        </marquee>
+                    </div>
+                        @endif
+                    @if(isset(theme('')->theme_config->sys_top_charge) && theme('')->theme_config->sys_top_charge == 'top_charge_open')
+                        <div class="box-list-top top-list d-g-lg-none">
+                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</p>
+
+                            @include('frontend.widget.__top_nap_the')
+
+
+                        </div>
+                    @endif
+                </div>
+
+            </div>
         </div>
+
 
     </div>
     <div class="container container-fix">
-        @include('frontend.widget.__list_serve_remark_mobile')
 
-        <div class="flash-sales block-product mt-fix-20 ">
-            <div class="product-header d-flex">
-                    <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
-                    </span>
-                <p class="text-title">Giảm sốc <span class="d-g-md-none"> trong ngày</span></p>
-                <div class="timer d-flex" id="timer">
-                    <div id="hourHome"></div>
-                    <div id="minuteHome"></div>
-                    <div id="secondHome"></div>
-                </div>
+{{--        Dịch vụ nổi bật mobile--}}
+        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+            @include('frontend.widget.__list_serve_remark_mobile')
+        @endif
 
-                <div class="text-view-more">
-                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
-                </div>
-            </div>
-            <div class="box-product">
-                <div class="swiper-container list-product" >
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
+{{--            Hot sale--}}
+        @if(isset(theme('')->theme_config->sys_config_hotsale) && theme('')->theme_config->sys_config_hotsale == 'hot_sale_1')
+             @include('frontend.widget.__hotsale')
+        @endif
+{{--            Chơi gần đây--}}
+        @if(isset(theme('')->theme_config->sys_config_category_acc) && theme('')->theme_config->sys_config_category_acc == 'category_acc_1')
+             @include('frontend.widget.__play__recently__home')
+        @endif
+{{--            Top nạp thẻ mobile--}}
+        @if(isset(theme('')->theme_config->sys_top_charge) && theme('')->theme_config->sys_top_charge == 'top_charge_open')
+            @include('frontend.widget.__top_nap_the_mobile')
+        @endif
+{{--             Minigame--}}
+        @if(isset(theme('')->theme_config->sys_config_minigame) && theme('')->theme_config->sys_config_minigame == 'minigame_0')
+              @include('frontend.widget.__content__home__minigame')
+        @endif
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+{{--             Dịch vụ nổi bật--}}
+        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+            @include('frontend.widget.__list_serve_remark')
+        @endif
+{{--                Nạp thẻ--}}
+        @if(isset(theme('')->theme_config->sys_charge_card) && theme('')->theme_config->sys_charge_card == 'charge_card_1')
+            @include('frontend.widget.__nap_the')
+        @endif
+{{--                Mua thẻ--}}
+        @if(isset(theme('')->theme_config->sys_store_card) && theme('')->theme_config->sys_store_card == 'store_card_1')
+            @include('frontend.widget.__card_purchase')
+        @endif
+{{--                Danh mục mua acc--}}
+        @if(isset(theme('')->theme_config->sys_config_buy_acc) && theme('')->theme_config->sys_config_buy_acc == 'buy_acc_1')
+             @include('frontend.widget.__content__home__game')
+        @endif
+        @if(isset(theme('')->theme_config->sys_config_nick) && theme('')->theme_config->sys_config_nick == 'nick_acc_1')
+            <div class="block-other-nick mt-fix-20">
+            <div class="row mr-fix-10 ml-fix-10">
+                <div class="col-12 col-md-6 col-lg-3 pr-fix-10 pl-fix-10 ">
+                    <div class="block-product mb-md-fix-12">
+                        <div class="product-header d-flex">
+                                <span>
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_dif.png" alt="">
+                                </span>
+                            <p class="text-title" >Liên quân Mobile</p>
+                            <div class="navbar-spacer"></div>
 
-                                </div>
-                                <div class="item-product__box-content">
+                            {{--                        <div class="text-view-more">--}}
 
+                            {{--                            <a href="/mua-acc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/theme_3/image/icons/arrow-right-blue.png)"></i></a>--}}
 
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </a>
-
+                            {{--                        </div>--}}
                         </div>
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
+                        <div class="box-product box-other-nick" >
+                            <div class="list-product d-g-md-none mt-fix-4">
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
 
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
                                         </div>
-                                    </div>
-
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
+                                        <div class="item-product__box-content">
 
 
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
 
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-
+                                    </a>
                                 </div>
-                            </a>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
 
-                        </div>
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
                                         </div>
-                                    </div>
-
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
-
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
+                                        <div class="item-product__box-content">
 
 
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
 
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-
+                                    </a>
                                 </div>
-                            </a>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
 
-                        </div>
-                        <div class="swiper-slide " >
-                            <a href="/acc/id">
-                                <div class="item-product__box-img">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
 
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                </div>
-                                <div class="item-product__box-content">
-
-
-                                    <div class="item-product__box-name">
-                                        Acc liên quan siêu vip
-                                    </div>
-                                    <div class="item-product__box-sale">
-                                        Đã bán: 68,9K
-                                    </div>
-                                    <div class="item-product__box-price">
-
-                                        <div class="special-price">15.000đ</div>
-                                        <div class="old-price">30.000đ</div>
-                                        <div class="item-product__sticker-percent">
-                                            -50%
                                         </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <div class="swiper-container list-product list-other-nick mt-fix-12 d-none d-g-md-block"   >
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product6.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
                                     </div>
 
                                 </div>
-                            </a>
+                            </div>
 
                         </div>
                     </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 pr-fix-10 pl-fix-10">
+                    <div class="block-product mb-md-fix-12">
+                        <div class="product-header d-flex">
+                                <span>
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_dif.png" alt="">
+                                </span>
+                            <p class="text-title" >PUBG</p>
+                            <div class="navbar-spacer"></div>
+
+
+                        </div>
+                        <div class="box-product box-other-nick" >
+                            <div class="list-product d-g-md-none mt-fix-4">
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <div class="swiper-container list-product list-other-nick mt-fix-12 d-none d-g-md-block"   >
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 pr-fix-10 pl-fix-10 ">
+                    <div class="block-product mb-md-fix-12">
+                        <div class="product-header d-flex">
+                                <span>
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_dif.png" alt="">
+                                </span>
+                            <p class="text-title" >Pokemon Go</p>
+                            <div class="navbar-spacer"></div>
+
+
+                        </div>
+                        <div class="box-product box-other-nick" >
+                            <div class="list-product d-g-md-none mt-fix-4">
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product6.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="swiper-container list-product list-other-nick mt-fix-12 d-none d-g-md-block"   >
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-3 pr-fix-10 pl-fix-10 ">
+                    <div class="block-product mb-md-fix-12">
+                        <div class="product-header d-flex">
+                                <span>
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_dif.png" alt="">
+                                </span>
+                            <p class="text-title" >Pokemon Go</p>
+                            <div class="navbar-spacer"></div>
+
+
+                        </div>
+                        <div class="box-product box-other-nick" >
+                            <div class="list-product d-g-md-none mt-fix-4">
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="item-product item-other-nick mt-fix-16">
+                                    <a href="/acc/id">
+                                        <div class="item-product__box-img">
+
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
+
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                Acc liên quan siêu vip
+                                            </div>
+                                            <div class="item-product__box-id">
+                                                ID: #1365898
+                                            </div>
+                                            <div class="item-product__box-rank">
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+                                                <div>Rank: 91</div>
+
+                                            </div>
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">15.000đ</div>
+                                                <div class="old-price">30.000đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                            </div>
+                            <div class="swiper-container list-product list-other-nick mt-fix-12 d-none d-g-md-block"   >
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div>Rank: 91</div>
+                                                    <div>Rank: 91</div>
+                                                    <div>Rank: 91</div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="swiper-slide" >
+                                        <div class="item-product__box-img">
+                                            <a href="/acc/id">
+                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="item-product__box-content">
+
+                                            <a href="/acc/id">
+                                                <div class="item-product__box-name">
+                                                    Acc liên quan siêu vip
+                                                </div>
+                                                <div class="item-product__box-id">
+                                                    ID: #1365898
+                                                </div>
+                                                <div class="item-product__box-rank">
+                                                    <div class="item-product__box-rank">
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                        <div>Rank: 91</div>
+                                                    </div>
+                                                </div>
+                                                <div class="item-product__box-price">
+
+                                                    <div class="special-price">15.000đ</div>
+                                                    <div class="old-price">30.000đ</div>
+                                                    <div class="item-product__sticker-percent">
+                                                        -50%
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <div class=" block-product mt-fix-20">
-            <div class="product-header d-flex">
-                    <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
-                    </span>
-                <p class="text-title">Dành cho bạn</p>
-                <div class="product-catecory" >
-                    <ul class="nav d-g-md-none" role="tablist" >
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link active" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-selected="true">Tài khoản game</a>
-                        </li >
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link"  id="favourite_game-tab" data-toggle="tab" href="#favourite_game" role="tab" aria-selected="false"> Game yêu thích</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a  class="nav-link" id="suggestions-tab" data-toggle="tab" href="#suggestions" role="tab" aria-selected="false">Gợi ý cho bạn</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="text-view-more">
-
-                    <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
-
-                </div>
-            </div>
-            <div class="product-catecory d-none d-g-lg-block pt-fix-16 pr-fix-16 pl-fix-16" >
-                <ul class="nav justify-content-between row" role="tablist" >
-                    <li class="nav-item col-4 p-0 col-md-4 p-md-0" role="presentation">
-                        <a  class="pb-fix-8 d-flex justify-content-center active"  data-toggle="tab" href="#account" role="tab" aria-selected="true">Tài khoản game</a>
-                    </li >
-                    <li class="nav-item col-4 p-0 col-md-4 p-md-0" role="presentation">
-                        <a  class="pb-fix-8 d-flex justify-content-center"  data-toggle="tab" href="#favourite_game" role="tab" aria-selected="false"> Game yêu thích</a>
-                    </li>
-                    <li class="nav-item col-4 p-0 col-md-4 p-md-0" role="presentation">
-                        <a  class="pb-fix-8 d-flex justify-content-center" data-toggle="tab" href="#suggestions" role="tab" aria-selected="false">Gợi ý cho bạn</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="box-product-content tab-content">
-                <div class="box-product tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product3.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product1.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="box-product tab-pane fade" id="favourite_game" role="tabpanel" aria-labelledby="favourite_game-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-product tab-pane fade" id="suggestions" role="tabpanel" aria-labelledby="suggestions-tab">
-                    <div class="swiper-container list-product" >
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                            <div class="swiper-slide " >
-                                <a href="/acc/id">
-                                    <div class="item-product__box-img">
-
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/product2.gif" alt="">
-
-                                    </div>
-                                    <div class="item-product__box-content">
-
-
-                                        <div class="item-product__box-name">
-                                            Acc liên quan siêu vip
-                                        </div>
-                                        <div class="item-product__box-sale">
-                                            Đã bán: 68,9K
-                                        </div>
-                                        <div class="item-product__box-price">
-
-                                            <div class="special-price">15.000đ</div>
-                                            <div class="old-price">30.000đ</div>
-                                            <div class="item-product__sticker-percent">
-                                                -50%
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="top-list row d-md-none d-block mt-fix-20">
-            <div class=" col-md-12" >
-                <p class="text-center"><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp thẻ</p>
-                <div class="top-days default-tab">
-                    <ul class="nav justify-content-between row pr-fix-16 pl-fix-16" role="tablist" >
-                        <li class="nav-item col-4 col-md-4 p-0  p-md-0" role="presentation">
-                            <a  class="active pb-fix-8 d-flex justify-content-center" id="sevendays-minigame-tab" data-toggle="tab" href="#sevendays-minigame" role="tab" aria-selected="true">7 ngày</a>
-                        </li >
-                        <li class="nav-item col-4 col-md-4 p-0 p-md-0" role="presentation">
-                            <a  class="pb-fix-8 d-flex justify-content-center"  id="thirtyday-minigame-tab" data-toggle="tab" href="#thirtydays-minigame" role="tab" aria-selected="false"> 30 ngày</a>
-                        </li>
-                        <li class="nav-item col-4 col-md-4 p-0 p-md-0" role="presentation">
-                            <a  class=" pb-fix-8 d-flex justify-content-center" id="sixty-minigame-tab" data-toggle="tab" href="#sixtydays-minigame" role="tab" aria-selected="false">60 ngày</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="top-content tab-content">
-                    <div class="tab-pane fade active show item-top mt-3" id="sevendays-minigame" role="tabpanel" aria-labelledby="sevendays-minigame-tab" >
-                        <div class="item-top-content">
-                            <ul class="nav flex-column">
-                                <li class="d-flex">
-                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài hai dòng </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span><img src="/assets/frontend/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
-                                    <span class="top-name">Tên dài </span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">4</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">5</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">6</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-                                <li class="d-flex">
-                                    <span class="top-rank"><div style="">7</div></span>
-                                    <span class="top-name">Tên dài hai dòng Tên dài hai dòng</span>
-                                    <span class="float-right top-amount">100.000.000đ</span>
-                                </li>
-
-
-                            </ul>
-                        </div>
-
-                        <div class="footer-row-ct d-lg-none d-block">
-                            <div  class="col-md-12 left-right text-center js-toggle-content">
-                                <div class="view-more-top ">
-                                    Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png" alt="">
-                                </div>
-                                <div class="view-less-top ">
-                                    Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @include('frontend.widget.__content__home__minigame')
-
-        @include('frontend.widget.__list_serve_remark')
-        @include('frontend.widget.__nap_the')
-
-        @include('frontend.widget.__content__home__game')
-
-        @include('frontend.widget.__tin__tuc')
+        @endif
+{{--                 Tin tức--}}
+        @if(isset(theme('')->theme_config->sys_config_news) &&  theme('')->theme_config->sys_config_news == 'news_1')
+            @include('frontend.widget.__tin__tuc')
+        @endif
 
         <div class="block-product mt-fix-20">
 
@@ -925,7 +1369,10 @@
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
+    <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
-
+    @if(\App\Library\AuthFrontendCustom::check())
+        <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+    @endif
 @endsection
 

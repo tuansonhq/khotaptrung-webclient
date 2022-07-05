@@ -42,11 +42,32 @@
                         </div>
                         <div class="type-listing"></div>
                     </div>
+                    @if ($message = Session::get('success'))
+                        <div class="container">
+                            <div class="col-md-12">
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                    {{$message}}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if($messages=$errors->all())
+                        <div class="container">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">×</span></button>
+                                    {{$messages[0]}}
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     <div class="withdraw-body">
                         <div class="withdraw-tab-container">
                             <div class="withdraw-tab">
-                                <form class="form-horizontal form-withdraw" method="POST">
-                                    {{csrf_field()}}
+
                                     <div class="withdraw-tab-header">
                                         RÚT VẬT PHẨM GAME {{config('constants.game_type.'.$game_type)}}
                                     </div>
@@ -66,6 +87,8 @@
                                             window.location.href = $( "select#game_type" ).val();
                                         });
                                     </script>
+                                <form class="form-horizontal form-withdraw" method="POST">
+                                    {{csrf_field()}}
                                     <div class="input-block">
                                         <h6>Gói muốn rút</h6>
                                         <select class="select-primary withdraw-select" id="package" name="package">

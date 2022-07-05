@@ -157,6 +157,38 @@
                         </div>
 
                         <div id="account_data" style="width: 100%;">
+                            
+                        </div>
+
+                        <div id="listLoader" style="width: 100%;">
+                            <div class="loader position-relative" style="padding: 1rem">
+                                <div class="loading-spokes">
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -315,7 +347,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right title-tra-gop-success">
+                        {{-- <div class="col-md-12 left-right title-tra-gop-success">
                             <div class="row body-title-detail-ct">
                                 <div class="col-md-12 text-left body-title-detail-col-ct">
                                     <div class="row marginauto">
@@ -339,21 +371,11 @@
                                         </div>
 
                                         <div class="col-md-12 left-right data-child">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+
                                         </div>
 
                                         <div class="col-md-12 left-right data-ttbxung">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+
                                         </div>
                                     </div>
                                 </div>
@@ -377,21 +399,22 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto justify-content-center gallery-right-footer">
                                 <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                     <div class="row marginauto modal-footer-success-row-not-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="javascript:void(0)" class="button-not-bg-ct close-modal-success"><span>Đóng</span></a>
+                                            {{-- <a href="javascript:void(0)" class="button-not-bg-ct close-modal-default"><span>Đóng</span></a> --}}
+                                            <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/change-password" class="button-bg-ct"><span>Đổi mật khẩu</span></a>
+                                            <a href="/lich-su-mua-account" class="button-bg-ct"><span>Lịch sử mua Acc</span></a>
                                         </div>
                                     </div>
                                 </div>

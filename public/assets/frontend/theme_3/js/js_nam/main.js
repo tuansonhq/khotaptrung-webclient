@@ -359,6 +359,28 @@ $(document).ready(function (e) {
     //
     //     $('#successWalletCardModal').modal('show');
     // })
+    Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
+        dragToClose: true,
+        animated: true,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: false,
+            // zoom: 200
+        },
+
+        slideshow: true,
+        Toolbar: {
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
 
 
 })

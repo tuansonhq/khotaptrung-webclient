@@ -1,0 +1,61 @@
+/* css chon game nap gia re */
+
+.block-product.gaming-recharge {
+    padding: 18px 21px 2px 21px;
+}
+.gaming-recharge-header {
+    border-bottom: 1px solid #DCDEE9;
+    padding-bottom: 18px;
+}
+
+.gaming-recharge-header p {
+    margin-left: 0.5rem;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1B1D29;
+    margin-bottom: 0;
+}
+.gaming-recharge-search-header {
+    padding: 0.75rem 0;
+}
+
+.gaming-recharge-search-header p {
+    font-weight: 600;
+    font-size: 16px;
+    color: #434657;
+    margin-bottom: 0;
+}
+.gaming-recharge-search-form {
+    padding: 0.75rem 0;
+}
+
+.gaming-recharge-search-form h6 {
+    font-weight: 600;
+    font-size: 16px;
+    color: #1B1D29;
+    margin-bottom: 0.5rem;
+}
+.gaming-recharge-form-detail {
+    position: relative;
+}
+
+.gaming-recharge-form-detail input {
+    height: 40px;
+    padding-left: 2.75rem;
+    width: 340px;
+}
+
+.gaming-recharge-form-detail img {
+    position: absolute;
+    left: 12px;
+    top: 18%;
+}
+
+.gaming-recharge-form-detail button {
+    height: 40px;
+    width: 120px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 0.75rem;
+}
+/*end*/

@@ -16,8 +16,12 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
+        if (theme('')->theme_key == 'theme_1'){
+            return view('frontend.pages.transfer.index');
+        }else{
+            return view('frontend.pages.charge.index');
+        }
 
-        return view('frontend.pages.transfer.index');
 
     }
 

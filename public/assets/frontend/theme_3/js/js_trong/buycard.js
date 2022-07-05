@@ -2,7 +2,7 @@ $(document).ready(function () {
     getListCard();
 
     var swiper_card = new Swiper(".slider--card", {
-        slidesPerView: slider_count,
+        slidesPerView: 1,
         spaceBetween: 16,
         freeMode: true,
         observer: true,
@@ -26,7 +26,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '#modal--confirm__payment #confirmSubmitButton', function(e) {
-        console.log(1);
         e.preventDefault();
         $.ajax({
             url:'/mua-the',
@@ -40,7 +39,7 @@ $(document).ready(function () {
             success:function (res) {
                 // handle data callback
                 $('#modal--confirm__payment').modal('hide');
-                if(res.status){
+                if(res.status && res.status != 401){
                     let data = res.data;
                     let cardImage = $('input[name="card-type"]:checked').data('img');
                     let cardName = $('input[name="card-type"]:checked').val();
@@ -118,6 +117,10 @@ $(document).ready(function () {
                     $('#modal--fail__payment').modal('show');
                 }
             },
+            error: function (res) {
+                $('#message--error--buy').text('');
+                $('#modal--fail__payment').modal('show');
+            },
             complete: function () {
                 $('#confirmSubmitButton').prop("disabled", false);
                 $('#confirmSubmitButton').text("Xác nhận");
@@ -128,7 +131,6 @@ $(document).ready(function () {
     });
 
     $('#confirmMobileButton').on('click', function(e) {
-        console.log(1);
         e.preventDefault();
         $.ajax({
             url:'/mua-the',
@@ -141,7 +143,7 @@ $(document).ready(function () {
             },
             success:function (res) {
                 // handle data callback
-                if(res.status){
+                if(res.status && res.status != 401) {
                     let data = res.data;
                     let cardImage = $('input[name="card-type"]:checked').data('img');
                     let cardName = $('input[name="card-type"]:checked').val();
@@ -213,6 +215,10 @@ $(document).ready(function () {
                     $('#modal--fail__payment').modal('show');
                 }
             },
+            error: function (res) {
+                $('#message--error--buy').text('');
+                $('#modal--fail__payment').modal('show');
+            }, 
             complete: function () {
                 $('#confirmMobileButton').prop("disabled", false);
                 $('#confirmMobileButton').text("Xác nhận");
@@ -250,12 +256,17 @@ $(document).ready(function () {
                         //Increase loop index
                         loop_index++;
 
-                        //Apepnd HTML
-                        if (card.params.teltecom_type == 2) {
+                        if (card.params && card.params.teltecom_type) {
+                            //Apepnd HTML
+                            if (card.params.teltecom_type == 2) {
+                                $('#cardGameList').append(html);
+                            }
+                            if (card.params.teltecom_type == 1) {
+                                $('#cardPhoneList').append(html);
+                            }
+
+                        } else {
                             $('#cardGameList').append(html);
-                        }
-                        if (card.params.teltecom_type == 1) {
-                            $('#cardPhoneList').append(html);
                         }
                     });
 
@@ -267,7 +278,12 @@ $(document).ready(function () {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
+
+                    $('.section--amount__card').removeClass('d-none');
                 }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi load dữ liệu! Vui lòng load lại trang!")
             },
             complete: function () {
                 $('#cardGameList .loader').addClass('d-none');
@@ -376,7 +392,6 @@ $(document).ready(function () {
     }
 
     function resetConfirmModal () {
-        $('#modal--confirm__payment #confirmCard').empty();
         $('#modal--confirm__payment #confirmPrice').text('');
         $('#modal--confirm__payment #confirmQuantity').text('');
         $('#modal--confirm__payment #confirmDiscount').text('');

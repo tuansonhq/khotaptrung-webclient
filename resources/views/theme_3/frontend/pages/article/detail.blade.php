@@ -48,7 +48,7 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <a href="" class="card--back">
+            <a href="/tin-tuc" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
             <h4>Chi tiết tin tức</h4>

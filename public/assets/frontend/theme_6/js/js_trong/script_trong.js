@@ -22,6 +22,8 @@ $('.js-amount').on('click', function () {
     if (input.val() > 20) {
         input.val(20)
     }
+    
+    $('input[name=card-amount]').trigger('input');
 });
 
 // see more desc service

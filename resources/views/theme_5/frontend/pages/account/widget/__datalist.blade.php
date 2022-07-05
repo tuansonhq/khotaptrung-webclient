@@ -33,7 +33,7 @@
                                                         </div>
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -69,14 +69,14 @@
                                     {{-- <div class="formDonhangAccount{{ $item->randId }} hide">
                                         <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
                                             {{ csrf_field() }}
-                
+
                                             <div class="modal-header">
                                                 <h4 class="modal-title">Xác nhận mua tài khoản</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
-                
+
                                             <div class="modal-body">
                                                 <div class="c-content-tab-4 c-opt-3" role="tabpanel">
                                                     <ul class="nav nav-justified nav-justified__ul" role="tablist">
@@ -158,7 +158,7 @@
                                                                                                 @endforeach
                                                                                             @endforeach
                                                                                         @endif
-                
+
                                                                                     @endif
                                                                                 @endforeach
                                                                             @endif
@@ -172,26 +172,26 @@
                                                 </div>
                                                 <div class="form-group form-group_buyacc ">
                                                     @if(App\Library\AuthCustom::check())
-                
+
                                                         @if(App\Library\AuthCustom::user()->balance < $item->price)
                                                             <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
                                                         @else
                                                             <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
                                                         @endif
-                
+
                                                     @else
                                                         <label class="col-md-12 form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn phải đăng nhập mới có thể mua tài khoản tự động.</label>
                                                     @endif
-                
+
                                                 </div>
-                
+
                                                 <div style="clear: both"></div>
                                             </div>
-                
+
                                             <div class="modal-footer">
-                
+
                                                 @if(App\Library\AuthCustom::check())
-                
+
                                                     @if(App\Library\AuthCustom::user()->balance > $item->price)
                                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                                     @else
@@ -216,16 +216,16 @@
                                                         <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                                     </div>
                                                 </div>
-                            
+
                                             </div>
-                            
+
                                             <div class="modal-body modal-body-order-ct">
                                                 <div class="row marginauto">
-                            
+
                                                     <div class="col-md-12 left-right title-order-ct">
                                                         <span>Thông tin acc</span>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right" id="order-errors">
                                                         <div class="row marginauto order-errors">
                                                             <div class="col-md-12 left-right">
@@ -256,8 +256,8 @@
                                                             </div>
                                                         </div>
                                                     @endif
-                            
-                            
+
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -269,7 +269,7 @@
                                                                         <small>{{ $item->groups[0]->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Tên game</span>
@@ -278,7 +278,7 @@
                                                                         <small>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Giá tiền</span>
@@ -294,10 +294,10 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -340,17 +340,17 @@
                                                                                         @endforeach
                                                                                     @endforeach
                                                                                 @endif
-        
+
                                                                             @endif
                                                                         @endforeach
                                                                     @endif
                                                                 @endif
-                            
+
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -371,7 +371,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
@@ -438,18 +438,18 @@
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>
                                                         <?php
-                                                            $total = 0;
+                                                        $total = 0;
                                                         ?>
                                                         @if(isset($item->groups))
                                                             <?php
-                                                                $att_values = $item->groups;
+                                                            $att_values = $item->groups;
                                                             ?>
                                                             @foreach($att_values as $att_value)
                                                                 @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                                     @if(isset($att_value->parent))
                                                                         @if($total < 4)
                                                                             <?php
-                                                                                $total = $total + 1;
+                                                                            $total = $total + 1;
                                                                             ?>
 
                                                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
@@ -464,7 +464,7 @@
 
                                                         @if(isset($item->params) && isset($item->params->ext_info))
                                                             <?php
-                                                                $params = json_decode(json_encode($item->params->ext_info),true);
+                                                            $params = json_decode(json_encode($item->params->ext_info),true);
                                                             ?>
 
                                                             @if($total < 4)
@@ -478,7 +478,7 @@
 
                                                                                             @if($total < 4)
                                                                                                 <?php
-                                                                                                    $total = $total + 1;
+                                                                                                $total = $total + 1;
                                                                                                 ?>
 
                                                                                                 <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
@@ -499,7 +499,7 @@
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -545,7 +545,7 @@
             <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
-        
+
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">

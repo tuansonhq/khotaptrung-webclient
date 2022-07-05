@@ -19,7 +19,7 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open">
+            <span class="card--back box-account-mobile_open" onclick="openMenuProfile()">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </span>
             <h4>Tin tức</h4>
