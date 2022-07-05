@@ -34,7 +34,7 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             success: function (data) {
-                console.log(data)
+
                 if(data.status == 1){
                     let html = '';
                     if(data.data.length > 0){

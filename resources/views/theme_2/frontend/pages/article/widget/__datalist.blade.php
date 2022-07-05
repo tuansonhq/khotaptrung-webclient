@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="item-summary">
-                        {!! $item->description !!}
+                        {!! $item->seo_description !!}
                     </div>
                 </div>
             </div><!-- END Item -->
