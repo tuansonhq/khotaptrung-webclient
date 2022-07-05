@@ -1,4 +1,5 @@
 @if(isset($data) )
+
     @foreach($data as $item)
         <div class="news_content_list">
             <div class="news_content_list_item">
@@ -27,7 +28,7 @@
                     </div>
 
                     <div class="news_content_list_decription">
-                        {!! $item->description !!}
+                        {!! $item->seo_description !!}
                     </div>
                 </div>
             </div>
