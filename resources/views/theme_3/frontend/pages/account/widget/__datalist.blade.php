@@ -1,5 +1,4 @@
-@if(empty($data->data))
-
+@if(empty($data->data)))
     <div class="col-md-12 left-right">
         <div class="row marginauto body-detail-ct">
             @if(isset($items) && count($items) > 0)
@@ -34,7 +33,7 @@
                                                         </div>
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -77,16 +76,16 @@
                                                         <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                                     </div>
                                                 </div>
-                            
+
                                             </div>
-                            
+
                                             <div class="modal-body modal-body-order-ct">
                                                 <div class="row marginauto">
-                            
+
                                                     <div class="col-md-12 left-right title-order-ct">
                                                         <span>Thông tin acc</span>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right" id="order-errors">
                                                         <div class="row marginauto order-errors">
                                                             <div class="col-md-12 left-right">
@@ -117,8 +116,8 @@
                                                             </div>
                                                         </div>
                                                     @endif
-                            
-                            
+
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -130,7 +129,7 @@
                                                                         <small>{{ $item->groups[0]->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Tên game</span>
@@ -139,7 +138,7 @@
                                                                         <small>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Giá tiền</span>
@@ -155,10 +154,10 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -201,17 +200,17 @@
                                                                                         @endforeach
                                                                                     @endforeach
                                                                                 @endif
-        
+
                                                                             @endif
                                                                         @endforeach
                                                                     @endif
                                                                 @endif
-                            
+
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -232,7 +231,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
@@ -365,7 +364,7 @@
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -411,7 +410,7 @@
             <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
-        
+
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">

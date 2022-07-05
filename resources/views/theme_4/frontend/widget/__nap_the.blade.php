@@ -1,11 +1,12 @@
 <div class="block-card-item mt-fix-20">
     <div class="row">
         <div class="col-lg-5 col-md-12"  style="min-height: 100%">
+
             <div class=" block-product "  style="min-height: 780px">
-                <div class="product-header d-none d-md-flex">
-                                <span>
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
-                                </span>
+                <div class="product-header d-flex d-md-flex">
+                    <span>
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
+                    </span>
                     <p class="text-title" >Nạp tiền</p>
                     <div class="navbar-spacer"></div>
                 </div>
@@ -108,14 +109,14 @@
                                     <div class="default-form-group mb-fix-20">
                                         <label class="text-form">Mã số thẻ</label>
                                         <div class="col-md-12 p-0">
-                                            <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" numberic required >
+                                            <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" required>
 
                                         </div>
                                     </div>
                                     <div class="default-form-group mb-fix-20">
                                         <label class="text-form">Số Seri</label>
                                         <div class="col-md-12 p-0">
-                                            <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" numberic required>
+                                            <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" required>
 
                                         </div>
                                     </div>
@@ -156,7 +157,10 @@
                                             @if (setting('sys_tranfer_content') != "")
                                                 {!! setting('sys_tranfer_content') !!}
                                             @endif
-                                            <div class="card--attr">
+                                            <div class="error_transfer_code">
+                                                <p style="text-align: center; margin: auto; color: red;font-weight: 600;font-size: 14px"> Vui lòng đăng nhập để nhận được nội dung chuyển tiền </p>
+                                            </div>
+                                            <div class="card--attr transfer-title">
                                                 <div class="card--attr__name">
                                                     Nội dung chuyển tiền
                                                 </div>
