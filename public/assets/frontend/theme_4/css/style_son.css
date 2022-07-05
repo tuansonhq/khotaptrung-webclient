@@ -3249,20 +3249,14 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     background-repeat: no-repeat;
     background-size: cover;
 }
-.global__link__profile:hover .__icon__profile.--link__profile:after {
+.global__link__profile:hover .__icon__profile.--link__profile:after,
+.nav-bar-child.active .__icon__profile.--link__profile:after,
+.nav-bar-child a:hover .global__link__profile .__icon__profile.--link__profile:after
+{
     transition: .2s;
     filter: var(--filter-primary-color);
 }
 
-.nav-bar-child a:hover .global__link__profile .__icon__profile.--link__profile:after {
-    transition: .2s;
-    filter: var(--filter-primary-color);
-}
-
-.nav-bar-child.active .__icon__profile.--link__profile:after {
-    transition: .2s;
-    filter: var(--filter-primary-color);
-}
 
     /*end xem thêm profile*/
 

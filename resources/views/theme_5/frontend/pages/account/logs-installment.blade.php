@@ -7,9 +7,9 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-tra-gop">Tài khoản trả góp</a></li>
             </ul>
         </div>
@@ -21,7 +21,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="" class="previous-step-one" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -59,7 +59,7 @@
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
                                                 <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -75,7 +75,7 @@
                                             <ul>
                                                 <li class="li-boloc">Bộ lọc</li>
                                                 <li class="margin-findter">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/filter.png" alt="">
+                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                                     <span class="overlay-find">
                                                         0
                                                     </span>
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="row marginauto nick-findter-data">
-                                {{--                                        <div class="col-auto prepend-nick" style="position: relative"><a href="">Từ 500K - 1 Triệu</a><img class="lazy close-item-nick" src="/assets/{{env('THEME_VERSION')}}/image/nick/close.png" alt=""></div>--}}
+                                {{--                                        <div class="col-auto prepend-nick" style="position: relative"><a href="">Từ 500K - 1 Triệu</a><img class="lazy close-item-nick" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/close.png" alt=""></div>--}}
                             </div>
                         </div>
 
@@ -361,7 +361,7 @@
                     <div class="row marginauto modal-header-nick-ct">
                         <div class="col-12 left-right text-center" style="position: relative">
                             <span>Bộ lọc</span>
-                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -501,7 +501,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Hủy bỏ trả góp và hoàn tiền</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -573,7 +573,7 @@
                                 <div class="col-auto text-left body-title-detail-col-center-ng-ct">
                                     <div class="row marginauto password-mobile capcha-image-bg">
                                         <div class="col-md-12 left-right body-title-detail-select-ct">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/capcha.png" alt="">
+                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -581,7 +581,7 @@
                                 <div class="col-auto text-left body-title-detail-col-right-ng-ct">
                                     <div class="row marginauto password-mobile capcha-image-bg">
                                         <div class="col-md-12 left-right body-title-detail-select-ct">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/rf-capcha.png" alt="">
+                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -628,7 +628,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Thanh toán trả góp</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -700,7 +700,7 @@
                                 <div class="col-auto text-left body-title-detail-col-center-ng-ct">
                                     <div class="row marginauto password-mobile capcha-image-bg">
                                         <div class="col-md-12 left-right body-title-detail-select-ct">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/capcha.png" alt="">
+                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -708,7 +708,7 @@
                                 <div class="col-auto text-left body-title-detail-col-right-ng-ct">
                                     <div class="row marginauto password-mobile capcha-image-bg">
                                         <div class="col-md-12 left-right body-title-detail-select-ct">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/rf-capcha.png" alt="">
+                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -754,7 +754,7 @@
                     <div class="row marginauto modal-header-order-ct">
                         <div class="col-12 span__donhang text-center" style="position: relative">
                             <span>Mua tài khoản thành công</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -766,7 +766,7 @@
                         <div class="col-md-12 left-right image-success">
                             <div class="row marginauto justify-content-center">
                                 <div class="col-auto">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
+                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -780,7 +780,7 @@
                                         </div>
                                         <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">
                                             <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">
-                                            <img class="lazy " src="/assets/{{env('THEME_VERSION')}}/image/nick/copy.png" alt="" id="getCopyemail">
+                                            <img class="lazy " src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
                                         </div>
                                         <div class="row marginauto title-tra-gop-success-row">
                                             <div class="col-md-12 left-right body-title-detail-span-ct">
@@ -788,9 +788,9 @@
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick">
                                                 <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="123456" placeholder="******">
-                                                <img class="lazy img-copy" src="/assets/{{env('THEME_VERSION')}}/image/nick/copy.png" alt="" id="getCopypass">
+                                                <img class="lazy img-copy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopypass">
                                                 <div class="getCopypass">
-                                                    <img class="lazy img-show-password" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
+                                                    <img class="lazy img-show-password" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
                                                 </div>
 
 
@@ -845,7 +845,7 @@
 
     </div>
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/nick/logs-installment.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/logs-installment.js"></script>
 
 @endsection
 

@@ -885,47 +885,47 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12 left-right padding-order-footer-ct fixcungbuttonmobile">
-                        <div class="row marginauto" style="padding: 12px 16px">
-                            <div class="col-md-12 left-right">
-                                @if(App\Library\AuthCustom::check())
+                <div class="col-md-12 left-right padding-order-footer-ct fixcungbuttonmobile">
+                    <div class="row marginauto" style="padding: 12px 16px">
+                        <div class="col-md-12 left-right">
+                            @if(App\Library\AuthCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance > $data->price)
-                                        <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
-                                    @else
-                                        <div class="row marginauto justify-content-center gallery-right-footer">
-                                            <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                <div class="row marginauto nick-detail-button">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/nap-the" class="button-not-bg-ct">
-                                                            <ul>
-                                                                <li><small>Thẻ cào</small></li>
-                                                            </ul>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                <div class="row marginauto nick-detail-button">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/recharge-atm" class="button-not-bg-ct">
-                                                            <ul>
-                                                                <li><small>ATM, Momo</small></li>
-                                                            </ul>
-                                                        </a>
-                                                    </div>
+                                @if(App\Library\AuthCustom::user()->balance > $data->price)
+                                    <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
+                                @else
+                                    <div class="row marginauto justify-content-center gallery-right-footer">
+                                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                            <div class="row marginauto nick-detail-button">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="/nap-the" class="button-not-bg-ct">
+                                                        <ul>
+                                                            <li><small>Thẻ cào</small></li>
+                                                        </ul>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endif
-                                @else
-                                    <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
+                                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                            <div class="row marginauto nick-detail-button">
+                                                <div class="col-md-12 left-right">
+                                                    <a href="/recharge-atm" class="button-not-bg-ct">
+                                                        <ul>
+                                                            <li><small>ATM, Momo</small></li>
+                                                        </ul>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
-                            </div>
+                            @else
+                                <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
+                            @endif
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
             <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
         </form>

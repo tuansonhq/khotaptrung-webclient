@@ -211,13 +211,22 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
+                    /*Theme_1*/
                     Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])
                         ->name('getBuyAccountHistory');
+                    /*Theme_3*/
+                    Route::get('/lich-su-mua-nick', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustom'])
+                        ->name('nick-buyed');
+                    Route::get('/lich-su-mua-account/get-first-pass', [\App\Http\Controllers\Frontend\AccController::class , 'getFirstPass'])
+                        ->name('get-first-pass');
+
+
                     Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
                         ->name('getShowpass');
                     //dịch vụ
                     Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogs'])
                         ->name('getBuyServiceHistory');
+
 
                     Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogsDetail']);
 

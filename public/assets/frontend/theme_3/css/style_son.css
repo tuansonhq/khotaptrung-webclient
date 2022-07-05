@@ -1827,7 +1827,9 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     background: transparent;
     border: none;
 }
-.default-paginate .pagination-sm .page-item:first-child.disabled .page-link{
+.default-paginate .pagination-sm .page-item:first-child.disabled .page-link ,
+.default-paginate .pagination-sm .page-item:last-child.disabled .page-link
+{
     background: #F3F3F7;
     border: 1px solid #BCBFD6;
 }
@@ -2602,7 +2604,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     font-size: 14px;
     line-height: 150%;
     color: #1B1D29;
-
+    white-space: nowrap;
 }
 .logs-table .table tr{
     padding: 12px;
@@ -2622,6 +2624,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .logs-table .table tr td{
     padding: 12px;
+    vertical-align: middle;
 }
 
 
@@ -2656,10 +2659,10 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 #openFinter .modal-content{
     background: #ffffff;
 }
-.logs-table .table tr td,
-.logs-table .table th{
-    white-space: nowrap;
-}
+/*.logs-table .table tr td,*/
+/*.logs-table .table th{*/
+/*    white-space: nowrap;*/
+/*}*/
 
 .overlay-find{
     text-align: center;
@@ -2773,15 +2776,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     color: #434657!important;
 }
 .refund-default{
-    font-family: 'Open Sans';
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 150%;
     color: #F67600;
     border: 1px solid #F67600;
     border-radius: 8px;
-    padding: 4px 12px;
+    padding: 4px 6px;
     cursor: pointer;
     transition: .2s;
 }
@@ -2828,7 +2829,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     font-size: 12px;
     line-height: 150%;
     color: #FFFFFF;
-    /*width: 94px;*/
+    /*white-space: pre-wrap;*/
     border-radius: 4px;
 }
 .table-logs .badge-success{
@@ -2843,7 +2844,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border-radius: 4px;
 }
 .refund-default-tt{
-    margin-left: 8px;
+    margin-left: 6px;
 }
 .delete-account p{
     margin-bottom: 0;
