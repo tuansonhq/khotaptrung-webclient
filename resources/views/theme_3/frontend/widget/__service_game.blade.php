@@ -12,54 +12,58 @@
         </div>
         <div class="gaming-recharge-search-form">
             <h6>Tìm kiếm</h6>
-            <form class="gaming-recharge-form-detail">
-                <input type="text" class="input-primary" placeholder="Tìm kiếm theo game" name="">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                <button class="button-primary">Tìm kiếm</button>
+            <form action="" method="POST" class="gaming-recharge-form-detail">
+                <div class="row marginauto body-form-search-ct">
+                    <div class="col-md-auto col-12 left-right">
+                        <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                    </div>
+                    <div class="col-4 body-form-search-button-ct">
+                        <button type="button" class="timkiem-button-ct">Tìm kiếm</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <div class="box-product">
         <div class=" list-product d-flex flex-wrap" >
 
-            <div class="item-product item-nick ">
+            <div class="item-product item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game1.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game1.png" alt="Liên quân Mobile">
                     </div>
-
                     <div class="item-nick-name">Liên quân Mobile</div>
                 </a>
             </div>
-
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game2.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game2.png" alt="Garena freefire">
                     </div>
                     <div class="item-nick-name">Garena freefire</div>
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="">
                     <div class="item-nick-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game3.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game3.png" alt="PUBG Mobile">
                     </div>
                     <div class="item-nick-name">PUBG Mobile</div>
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game4.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game4.png" alt="Liên Minh Huyền Thoại">
                     </div>
                     <div class="item-nick-name">Liên Minh Huyền Thoại</div>
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game5.png" alt="">
@@ -68,7 +72,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game6.png" alt="">
@@ -77,7 +81,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game7.png" alt="">
@@ -86,7 +90,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game8.png" alt="">
@@ -95,7 +99,7 @@
                 </a>
 
             </div>
-            <div class="item-product item-nick ">
+            <div class="item-product item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game1.png" alt="">
@@ -105,7 +109,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game2.png" alt="">
@@ -114,7 +118,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game3.png" alt="">
@@ -123,7 +127,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game4.png" alt="">
@@ -132,7 +136,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game5.png" alt="">
@@ -141,7 +145,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game6.png" alt="">
@@ -150,7 +154,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game7.png" alt="">
@@ -159,7 +163,7 @@
                 </a>
 
             </div>
-            <div class="item-product  item-nick">
+            <div class="item-product  item-nick js-service">
                 <a href="/mua-acc/slug">
                     <div class="item-nick-img">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_game8.png" alt="">
@@ -172,3 +176,6 @@
         </div>
     </div>
 </div>
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?" type="text/javascript"></script>
+@endsection
