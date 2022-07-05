@@ -48,7 +48,7 @@
 .gaming-recharge-form-detail img {
     position: absolute;
     left: 12px;
-    top: 18%;
+    top: 46%;
 }
 
 .gaming-recharge-form-detail button {
@@ -60,7 +60,7 @@
 }
 
 @media (max-width: 767px) {
-    .gaming-recharge-form-detail button{
+    .gaming-recharge-search-form button{
         display: none;
     }
 }

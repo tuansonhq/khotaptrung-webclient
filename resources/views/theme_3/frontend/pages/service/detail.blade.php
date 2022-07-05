@@ -150,8 +150,7 @@
                                                                     <select class="wide" name="selected">
                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                             @if(!!$name)
-                                                                                <option
-                                                                                    value="{{ $k_name }}">{{ $name }}</option>
+                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
                                                                             @endif
                                                                         @empty
                                                                         @endforelse

@@ -7,10 +7,10 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href=/lich-su-dich-vu">Dịch vụ đã mua</a></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><a href=/dich-vu-da-mua">Dịch vụ đã mua</a></li>
             </ul>
         </div>
     </section>
@@ -21,7 +21,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -39,7 +39,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('theme_3.frontend.widget.__navbar__profile')
+                @include('frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">
@@ -59,7 +59,7 @@
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
                                                 <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -75,7 +75,7 @@
                                             <ul>
                                                 <li class="li-boloc">Bộ lọc</li>
                                                 <li class="margin-findter">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/filter.png" alt="">
+                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                                     <span class="overlay-find">
                                                         0
                                                     </span>
@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table">
+                            <div class="row default-table mb-3">
                                 <div class="col-md-12 left-right">
                                     <table class="table table-responsive table-striped table-hover table-logs" id="table-default">
                                         <thead>
@@ -391,7 +391,7 @@
                     <div class="row marginauto modal-header-nick-ct">
                         <div class="col-12 left-right text-center" style="position: relative">
                             <span>Bộ lọc</span>
-                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -502,7 +502,7 @@
 
     </div>
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/cay-thue/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/logs.js"></script>
 @endsection
 
 

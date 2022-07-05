@@ -240,10 +240,10 @@ class UserController extends Controller
                             'message' => 'Không có dữ liệu !',
                         ]);
                     }
-
                     return response()->json([
                         'data' => $html,
                         'status' => 1,
+                        'last_page'=>$data->lastPage(),
                         'message' => "Lấy dữ liệu thành công",
                     ]);
                 }
@@ -531,12 +531,23 @@ class UserController extends Controller
     }
 
     public function getLogsStore(Request $request){
-
-        return view('frontend.pages.storecard.logs');
+        $url = '/store-card/get-telecom';
+        $method = "GET";
+        $sendData = array();
+        $result_Api = DirectAPI::_makeRequest($url, $sendData, $method);
+        $data_res = $result_Api->response_data;
+        $data_telecom = [];
+        if($data_res->status){
+            $data_telecom = $data_res->data;
+        }
+        $data_category = [
+            'telecoms'=>$data_telecom,
+            'status'=>config('module.store-card.status'),
+        ];
+        return view('frontend.pages.storecard.logs',compact('data_category'));
     }
 
     public function getLogsStoreData(Request $request){
-
         try{
 
             if ($request->ajax()) {
@@ -556,31 +567,29 @@ class UserController extends Controller
                 $dataSend['token'] = $jwt;
                 $dataSend['page'] = $page;
 
-                if (isset($request->id) || $request->id != '' || $request->id != null) {
-                    $data['id'] = $request->id;
+                if ($request->filled('pin')) {
+                    $dataSend['pin'] = $request->pin;
                 }
 
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
-                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
-                    $dataSend['started_at'] = $started_at;
+                if ($request->filled('serial')) {
+                    $dataSend['serial'] = $request->serial;
                 }
 
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
-                    $data['serial'] = $request->serial;
+                if ($request->filled('telecom')) {
+                    $dataSend['telecom'] = $request->telecom;
+                }
+                if ($request->filled('status')) {
+                    $dataSend['status'] = $request->status;
                 }
 
-                if (isset($request->telecom) || $request->telecom != '' || $request->telecom != null) {
-                    $data['telecom'] = $request->telecom;
+                if ($request->filled('started_at')) {
+                    $dataSend['started_at'] = \Carbon\Carbon::parse($request->started_at)->format('d/m/Y H:i:s');
                 }
-
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
-                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
-                    $dataSend['ended_at'] = $ended_at;
+                if ($request->filled('ended_at')) {
+                    $dataSend['ended_at'] = \Carbon\Carbon::parse($request->ended_at)->format('d/m/Y H:i:s');
                 }
-
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
                 $response_data = $result_Api->response_data??null;
-
                 if(isset($response_data) && $response_data->status == 1){
 
                     $data = $response_data->data;
@@ -603,7 +612,6 @@ class UserController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
-
                     $html = view('frontend.pages.storeCard.widget.__datalogs')
                         ->with('data',$data)
                         ->with('total',$total)
@@ -614,11 +622,16 @@ class UserController extends Controller
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
-                        'message' => 'Load du lieu thanh cong.',
+                        'total'=>$total,
+                        'last_page'=>$data->lastPage(),
+                        'message' => 'Load dữ liệu thành công',
                     ]);
-
-                } else{
-                    return redirect('/404');
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message' => $response_data->message??'',
+                    ]);
                 }
             }
 

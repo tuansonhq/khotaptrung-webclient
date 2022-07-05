@@ -64,7 +64,7 @@ Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name
 Route::get('/updategit', function ()
 {
 
-    $command='git pull https://'.config('git.git_secret').'@github.com/tannm2611/khotaptrung-webclient.git '.config('git.git_branch').' 2>&1';
+    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
     $output = shell_exec($command);
 //    Lam sao day em oi
@@ -211,13 +211,22 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
+                    /*Theme_1*/
                     Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])
                         ->name('getBuyAccountHistory');
+                    /*Theme_3*/
+                    Route::get('/lich-su-mua-nick', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustom'])
+                        ->name('nick-buyed');
+                    Route::get('/lich-su-mua-account/get-first-pass', [\App\Http\Controllers\Frontend\AccController::class , 'getFirstPass'])
+                        ->name('get-first-pass');
+
+
                     Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
                         ->name('getShowpass');
                     //dịch vụ
                     Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogs'])
                         ->name('getBuyServiceHistory');
+
 
                     Route::get('/dich-vu-da-mua-{id}', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogsDetail']);
 

@@ -143,4 +143,16 @@ return [
 
 
     ],
+    'store-card' => [
+        'key'=>"store-card",
+        'title'=>"Thống kê mua thẻ",
+        'status' => [
+            '0' => 'Thất bại',
+            '1' => 'Thành công',
+            '2' => 'Đang chờ',
+            '3' => 'Đã hủy', // trường hợp này sau sẽ dùng cho thanh toán cổng thẻ
+            '4' => 'Lỗi gọi nhà cung cấp',
+            '5' => 'Lỗi hệ thống'
+        ],
+    ],
 ];

@@ -9,7 +9,7 @@
                 <th>Nhà mạng</th>
                 <th>Mã thẻ/Serial</th>
                 <th>Mệnh giá</th>
-                <th>THực nhận</th>
+                <th>Thực nhận</th>
                 <th>Trạng thái</th>
             </tr>
             </thead>
@@ -24,10 +24,10 @@
                     @endphp
                     @if($curr != $prev)
                         <tr>
-                            <td colspan="8"><b>Ngày {{$curr}}</b></td>
+                            <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
                         </tr>
                         <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                             <td>Nạp tự động</td>
 
                             <td>{{ $item->telecom_key }}</td>
@@ -77,7 +77,7 @@
                         @endphp
                     @else
                         <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                             <td>Nạp tự động</td>
 
                             <td>{{ $item->telecom_key }}</td>
@@ -135,7 +135,6 @@
 
         @if(isset($data))
             @if($data->total()>1)
-
                 <div class="row marinautooo justify-content-center">
                     <div class="col-auto">
                         <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">

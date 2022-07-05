@@ -166,6 +166,7 @@
             </div>
         </div>
     </section>
+
     <section class="media-mobile">
         <div class="row marginauto intermediary-ct" style="height: 20px;background: #EFEFEF">
 
@@ -248,7 +249,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}"">
+                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
                                                     <option value="" selected disabled>--Không chọn--</option>
                                                     @foreach($val->childs as $child)
                                                         <option value="{{ $child->id }}">{{ $child->title }}</option>

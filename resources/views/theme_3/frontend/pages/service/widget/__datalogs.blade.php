@@ -2,7 +2,7 @@
 
     <div class="col-md-12 left-right">
         <table class="table table-striped table-hover table-logs" id="table-default">
-            <thead><tr><th>Thời gian</th><th>ID</th><th>Mã GD SMS</th><th>Dịch vụ</th><th style="width: 30%">Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+            <thead><tr><th>Thời gian</th><th>ID</th><th>Mã GD SMS</th><th>Dịch vụ</th><th   >Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
             <tbody>
             @php
                 $prev = null;
@@ -17,7 +17,7 @@
                             <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
                         </tr>
                         <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
+                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                         <td>
                             @if(isset($item->id))
                                 #{{ $item->id }}
@@ -37,7 +37,7 @@
 {{--                        <td>--}}
 {{--                            Liên Quân--}}
 {{--                        </td>--}}
-                        <td class="text-right">
+                        <td>
                             {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>
                         <td>
@@ -55,9 +55,11 @@
                                 <span class="badge badge-danger">Đã hủy</span>
                             @endif
                         </td>
-                        <td class="text-right">
-                            <a href="/dich-vu-da-mua-{{$item->id}}" class="refund-default openHoanTien">Chi tiết</a>
-                            <a href="/inbox/send/{{$item->id}}" class="refund-default refund-default-tt openTTTraGop">Nhắn tin</a>
+                        <td>
+                            <div class="d-flex">
+                                <a href="/dich-vu-da-mua-{{$item->id}}" class="btn -secondary action-table openHoanTien">Chi tiết</a>
+                                <a href="/inbox/send/{{$item->id}}" class="btn -secondary action-table ml-2  openTTTraGop">Nhắn tin</a>
+                            </div>
                         </td>
                     </tr>
                         @php
@@ -65,7 +67,7 @@
                         @endphp
                     @else
                         <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                             <td>
                                 @if(isset($item->id))
                                     #{{ $item->id }}
@@ -85,7 +87,7 @@
                             {{--                        <td>--}}
                             {{--                            Liên Quân--}}
                             {{--                        </td>--}}
-                            <td class="text-right">
+                            <td>
                                 {{ str_replace(',','.',number_format($item->price)) }} đ
                             </td>
                             <td>
@@ -103,9 +105,13 @@
                                     <span class="badge badge-danger">Đã hủy</span>
                                 @endif
                             </td>
-                            <td class="text-right">
-                                <a href="/dich-vu-da-mua-{{$item->id}}" class="refund-default openHoanTien">Chi tiết</a>
-                                <a href="/inbox/send/{{$item->id}}" class="refund-default refund-default-tt openTTTraGop">Nhắn tin</a>
+                            <td>
+{{--                                <a href="/dich-vu-da-mua-{{$item->id}}" class="refund-default openHoanTien">Chi tiết</a>--}}
+{{--                                <a href="/inbox/send/{{$item->id}}" class="refund-default refund-default-tt openTTTraGop">Nhắn tin</a>--}}
+                                <div class="d-flex">
+                                    <a href="/dich-vu-da-mua-{{$item->id}}" class="btn -secondary action-table openHoanTien">Chi tiết</a>
+                                    <a href="/inbox/send/{{$item->id}}" class="btn -secondary action-table ml-2  openTTTraGop">Nhắn tin</a>
+                                </div>
                             </td>
                         </tr>
                     @endif

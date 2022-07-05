@@ -282,7 +282,7 @@ $(document).ready(function (e) {
             }
         });
         loadData();
-    })
+    });
 
     $('body').on('click','.close-modal-default',function(){
         $('#openFinter').modal('hide')
@@ -352,19 +352,19 @@ $(document).ready(function (e) {
             beforeSend: function (xhr) {
 
             },
-            success: (data) => {
+            success: (res) => {
                 $('.loading-data__timkiem').html('');
+                console.log(res)
                 $('#openFinter').modal('hide');
-                if (data.status == 1){
-                    $("#data_pay_card_history_ls").empty().html('');
-                    $("#data_pay_card_history_ls").empty().html(data.data);
-                }else if (data.status == 0) {
-                    var html = '';
+                if (res.status){
+                    $("#data_pay_card_history_ls").html(res.data);
+                }else {
+                    let html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nội dung</th><th>Nhà mạng</th><th>Mã thẻ/Serial</th><th>Mệnh giá</th><th>THực nhận</th><th>Trạng thái</th><th>Chi tiết</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Nội dung</th><th>Nhà mạng</th><th>Mã thẻ/Serial</th><th>Mệnh giá</th><th>Thực nhận</th><th>Trạng thái</th><th>Chi tiết</th></tr></thead>';
                     html += '<tbody>';
-                    html += '<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
+                    html += `<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>${res.message || ''}</span></td></tr>`;
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';

@@ -1091,7 +1091,7 @@
 
             </div>
             <div class="box-product">
-                <div class="swiper-container list-product" >
+                <div class="swiper-container list-minigame list-product" >
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" >
                             <a href="/minigame/slug">
@@ -1219,7 +1219,7 @@
 
             </div>
             <div class="box-product">
-                <div class="swiper-container list-product" >
+                <div class="swiper-container list-minigame list-product" >
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" >
                             <a href="/minigame/slug">
