@@ -1027,6 +1027,11 @@
     padding-right: 0;
     text-align: center;
 }
+.nick-detail-purchase-button {
+    padding-left: 0;
+    text-align: center;
+    padding-right: 0;
+}
 .modal-footer-success-row-not-ct{
     background: transparent;
     border: 1px solid #F67600;
@@ -1480,6 +1485,15 @@
     position: relative;
     cursor: pointer;
 }
+
+.default-overlay-ct.related-acc-category {
+    height: 177px;
+}
+
+.body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {
+    height: 100%;
+}
+
 .default-overlay-nick-ct{
     position: relative;
     cursor: pointer;
@@ -1730,10 +1744,25 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     border-color: #F67600;
     transition: all 1s;
 }
+.list-item-nick-hover:hover .default-overlay-nick-ct.related-acc-detail {
+    border-color: #F67600;
+    transition: all 0.2s;
+}
 .list-item-nick-hover img{
     border-top: 1px solid #DCDEE9;
     border-left: 1px solid #DCDEE9;
     border-right: 1px solid #DCDEE9;
+}
+.list-item-nick-hover .related-acc-detail {
+    border-top: 1px solid #DCDEE9;
+    border-left: 1px solid #DCDEE9;
+    border-right: 1px solid #DCDEE9;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+.list-item-nick-hover .related-acc-detail img{
+    height: 100%;
+    border: none;
 }
 .list-item-nick-hover .default-overlay-nick-ct::before{
     position: absolute;
@@ -2061,6 +2090,18 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     padding: 8px 16px;
 }
 
+.gallery-right-top-body-black.gallery-right-top-body-span:nth-child(odd) {
+    background: #FBFBFD;
+}
+
+.gallery-right-top-body-black.gallery-right-top-body-span:nth-child(even) {
+    background: #FFFFFF;
+}
+
+.gallery-right-top-body-black.gallery-right-top-body-span:empty {
+    height: 40px;
+}
+
 .gallery-right-top-body-white{
     background: #FFFFFF;
     padding: 8px 16px;
@@ -2097,7 +2138,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 }
 .gallery-footer-row{
     justify-content: center;
-    padding-top: 28px;
+    padding-top: 34px;
 }
 .gallery-footer-fisrt-li{
     font-family: 'Open Sans';
@@ -3956,6 +3997,10 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         width: 25%;
     }
 
+    .default-overlay-ct.related-acc-category {
+        height: 107px;
+    }
+
     .body-detail-nick-col-ct {
         width: 33.3333%;
     }
@@ -4236,6 +4281,11 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         border-bottom-left-radius: 0!important;
         border-bottom-right-radius: 0!important;
     }
+
+    .default-overlay-ct.related-acc-category {
+        height: 77px;
+    }
+
     .body-row-napgame-ct{
         border-radius: 0!important;
     }
@@ -4555,6 +4605,14 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
     .body-header-ct img {
         width: 24px !important;
+    }
+
+    .default-overlay-ct.related-acc-category {
+        height: 67px;
+    }
+    
+    .body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {
+        border-radius: 8px;
     }
 
     .body-row-ct {
@@ -6001,4 +6059,36 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         padding-bottom: 8px;
     }
 }
-
+.comment-item-own{
+    justify-content: flex-end;
+}
+.comment-info-own{
+    text-align: right;
+}
+.comment-detail-own{
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+.comment-info-own span::before{
+    display: none !important;
+}
+.comment-info-own span::after {
+    content: "";
+    height: 3px;
+    width: 3px;
+    background-color: #82869E;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-left: 8px;
+}
+.comment-interact-own{
+    text-align: right;
+}
+.comment-interact-own span{
+    margin-right: 0 !important;
+    margin-left: 2.5rem;
+}
+.comment-content-own{
+    text-align: right;
+}

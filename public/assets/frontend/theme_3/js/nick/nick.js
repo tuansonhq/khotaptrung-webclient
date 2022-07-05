@@ -198,7 +198,7 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 8,
+        slidesPerView: 4,
         speed: 800,
         spaceBetween: 8,
         touchMove: true,
@@ -208,7 +208,7 @@ $(document).ready(function (e) {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 6,
+                slidesPerView: 4,
             },
             768:{
                 slidesPerView: 4,
