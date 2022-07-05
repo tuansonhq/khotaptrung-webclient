@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="alert alert-info box-text hidetext" role="alert">
-                            @dd($data)
+
                             <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
                             @if($data->custom->seo_description)
                                 {!!  $data->custom->seo_description !!}
