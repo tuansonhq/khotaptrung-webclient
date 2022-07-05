@@ -85,6 +85,8 @@
         @if(isset(theme('')->theme_config->sys_top_charge) && theme('')->theme_config->sys_top_charge == 'top_charge_open')
             @include('frontend.widget.__top_nap_the_mobile')
         @endif
+{{--        Dịch vụ game--}}
+        @include('frontend.widget.__service_game')
 {{--             Minigame--}}
         @if(isset(theme('')->theme_config->sys_config_minigame) && theme('')->theme_config->sys_config_minigame == 'minigame_0')
               @include('frontend.widget.__content__home__minigame')
