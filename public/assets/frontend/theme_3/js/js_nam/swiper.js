@@ -295,40 +295,41 @@ var product_list = new Swiper('.swiper-product', {
 // });
 
 
-// var minigame = new Swiper('.list-minigame', {
-//     autoplay: false,
-//     navigation: {
-//         nextEl: '.minigame-button-swiper .swiper-button-next',
-//         prevEl: '.minigame-button-swiper .swiper-button-prev',
-//     },
-//
-//     updateOnImagesReady: true,
-//     watchSlidesVisibility: false,
-//     lazyLoadingInPrevNext: false,
-//     lazyLoadingOnTransitionStart: false,
-//     loop: false,
-//     centeredSlides: false,
-//     speed: 800,
-//     allowTouchMove: false,
-//     spaceBetween: 10,
-//     touchMove: false,
-//     freeModeSticky:true,
-//     grabCursor: true,
-//     observer: true,
-//     observeParents: true,
-//     keyboard: {
-//         enabled: true,
-//     },
-//     breakpoints: {
-//
-//         992: {
-//             slidesPerView: 3,
-//         },
-//
-//
-//         480: {
-//             slidesPerView: 1.5,
-//
-//         }
-//     }
-// });
+var minigame = new Swiper('.list-minigame', {
+    autoplay: false,
+    navigation: {
+        nextEl: '.minigame-button-swiper .swiper-button-next',
+        prevEl: '.minigame-button-swiper .swiper-button-prev',
+    },
+
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    loop: false,
+    centeredSlides: false,
+    speed: 800,
+    allowTouchMove: false,
+    spaceBetween: 10,
+    touchMove: false,
+    slidesPerView: 4,
+    freeModeSticky:true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    keyboard: {
+        enabled: true,
+    },
+    breakpoints: {
+
+        992: {
+            slidesPerView: 3,
+        },
+
+
+        480: {
+            slidesPerView: 1.5,
+
+        }
+    }
+});
