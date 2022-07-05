@@ -135,36 +135,56 @@
                                                         </div>
 
                                                         {{--                                                    bat dau vonh lap   --}}
+                                                        <?php
+                                                            $total = 0;
+                                                        ?>
                                                         @if(isset($data->groups))
                                                             <?php $att_values = $data->groups ?>
                                                             @foreach($att_values as $att_value)
                                                                 @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
                                                                     @if(isset($att_value->parent))
-                                                                        <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                            <div class="col-auto gallery-col-auto-left left-right">
-                                                                                <small>{{ $att_value->parent->title??null }}</small>
+                                                                        @if($total < 7)
+                                                                            <?php
+                                                                                $total = $total + 1;
+                                                                            ?>
+                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                <div class="col-auto gallery-col-auto-left left-right">
+                                                                                    <small>{{ $att_value->parent->title??null }}</small>
+                                                                                </div>
+                                                                                <div class="col-auto gallery-col-auto-right left-right">
+                                                                                    <span>{{ $att_value->title??null }}</span>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-auto gallery-col-auto-right left-right">
-                                                                                <span>{{ $att_value->title??null }}</span>
-                                                                            </div>
-                                                                        </div>
+                                                                        @endif
                                                                     @endif
                                                                 @endif
                                                             @endforeach
                                                         @endif
-                                                        @if(isset($data->params) && isset($data->params->ext_info))
-                                                            <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
-                                                            @foreach ($params as $key => $param)
-                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                <div class="col-auto gallery-col-auto-left left-right">
-                                                                    <small>{{ $key }}</small>
-                                                                </div>
-                                                                <div class="col-auto gallery-col-auto-right left-right">
-                                                                    <span>{{ $param }}</span>
-                                                                </div>
-                                                            </div>
-                                                            @endforeach
+                                                        @if($total < 7)
+                                                            @if(isset($data->params) && isset($data->params->ext_info))
+                                                                <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
+                                                                @foreach ($params as $key => $param)
+                                                                    <?php
+                                                                        $total = $total + 1;
+                                                                    ?>
+                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                            <small>{{ $key }}</small>
+                                                                        </div>
+                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                            <span>{{ $param }}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            @endif
                                                         @endif
+
+                                                        @if ($total < 7)
+                                                            @for ($i = 0; $i < 7 - $total; $i++)
+                                                                <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span"></div>
+                                                            @endfor
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +200,7 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
-                                            <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
+                                            <div class="col-md-12 col-12 nick-detail-purchase-button">
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
                                                         @if (App\Library\AuthCustom::check())
@@ -423,7 +443,7 @@
                                                     </div>
                                                 </div>
                                             </div> --}}
-                                            <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
+                                            <div class="col-md-12 col-12 modal-footer-success-col-right-ct" style="padding: 0 !important">
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 left-right">
                                                         @if (App\Library\AuthCustom::check())
@@ -444,11 +464,7 @@
                                                             <a href="/" class="button-not-bg-ct">
                                                                 <ul>
                                                                     <li><small>Thẻ cào</small></li>
-                                                                    @if(formatPrice($card_percent*$data->price/100) == '')
-                                                                        <li><span>{{ str_replace(',','.',number_format(round($card_percent*$data->price/100))) }} CARD</span></li>
-                                                                    @else
-                                                                        <li><span>{{ formatPrice($card_percent*$data->price/100) }} CARD</span></li>
-                                                                    @endif
+                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
                                                                 </ul>
                                                             </a>
                                                         </div>
