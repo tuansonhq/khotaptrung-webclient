@@ -286,6 +286,20 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
     return $view->with('data', $data);
 });
 
+
+View::composer('frontend.widget.__service_game', function ($view) {
+
+    $data = \Cache::rememberForever('__service_game', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
+    return $view->with('data', $data);
+});
+
 View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 

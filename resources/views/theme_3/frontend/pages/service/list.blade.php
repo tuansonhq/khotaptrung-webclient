@@ -80,14 +80,14 @@
                         </div>
 
                         <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST">
+                            <form action="" method="POST" id="service-form">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
                                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
-                                        <button type="button" class="timkiem-button-ct">Tìm kiếm</button>
+                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
                                     </div>
                                 </div>
                             </form>

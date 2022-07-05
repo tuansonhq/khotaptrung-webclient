@@ -1,4 +1,5 @@
-$('.timkiem-button-ct').on('click', function () {
+$('#service-form').on('submit', function (e) {
+    e.preventDefault();
     let keyword = convertToSlug($('#keyword--search').val());
     $('.js-service').each(function (i,elm) {
         let slug_service = $(elm).find('img').attr('alt');
