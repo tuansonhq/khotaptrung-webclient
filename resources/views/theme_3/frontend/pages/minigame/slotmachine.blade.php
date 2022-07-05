@@ -566,7 +566,7 @@
 
                 </div>
                 <div class="box-product">
-                    <div class="swiper-container list-product" >
+                    <div class="swiper-container list-minigame" >
                         <div class="swiper-wrapper">
                             @foreach($groups_other as $key => $item)
                                 @if($key > 3)

@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/minigame.css">
 @endsection
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
 
 @include('frontend.widget.__slider__banner')
@@ -507,7 +510,6 @@
 @include('frontend.widget.modal.__success_charge_atm')
 @include('frontend.widget.modal.__success_wallet_card')
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge_home.js?v={{time()}}"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buy-card-index.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/input.js?v={{time()}}"></script>
 @endsection

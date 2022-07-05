@@ -43,7 +43,7 @@
 }
 
 #content-store-card {
-    --color-primary: #F67600;
+    --primary-color: #F67600;
 }
 
 #content-store-card .card {
@@ -52,7 +52,7 @@
 }
 
 .card.--custom {
-    --color-primary: #F67600;
+    --primary-color: #F67600;
     border-radius: 12px;
     border: none;
     font-family: 'Open Sans';
@@ -198,7 +198,7 @@
 }
 
 #content-store-card .cards__item input[type="radio"]:checked + label {
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary-color);
 }
 
 
@@ -229,8 +229,8 @@
 
 #content-store-card .nav-tabs .nav-item .nav-link.active {
     font-weight: 700;
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 /* Chọn mệnh giá */
@@ -278,11 +278,11 @@
 }
 
 #content-store-card .deno__item input[type="radio"]:checked + label {
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary-color);
 }
 
 #content-store-card .deno__item input[type="radio"]:checked + label span {
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 #content-store-card .card--amount,
@@ -348,7 +348,7 @@
     font-weight: 700;
     font-size: 18px;
     line-height: 1.5;
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 /*Mô tả thẻ*/
@@ -630,7 +630,7 @@
     font-size: 14px;
     line-height: 150%;
     text-align: center;
-    color: var(--color-primary);
+    color: var(--primary-color);
 }
 
 .card__detail .card--attr__value .icon--coppy {
@@ -682,10 +682,18 @@
 }
 
 /* Style for Button*/
-
+.btn {
+    max-height: 48px;
+}
+.btn.is_load {
+    background: #EBEBEB;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: none;
+}
 .btn.-primary {
     align-items: center;
-    background: var(--color-primary);
+    background: var(--primary-color);
     border-radius: 8px;
     color: #FFFFFF;
     font-weight: 600;
@@ -698,29 +706,42 @@
 .btn.-secondary {
     align-items: center;
     border-radius: 8px;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary-color);
     background: #FFFFFF;
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-weight: 600;
     font-size: 14px;
     line-height: 1.5;
     outline: none;
     box-shadow: none;
 }
-
+.btn.-secondary:hover{
+    background-color: var(--primary-color);
+}
 .btn.-primary:hover {
     background-color: #DD6A00;
 }
 
-.btn.-primary:focus {
+.btn.-primary:focus,
+.btn.-secondary:focus
+{
     background-color: #C55E00;
 }
-
+.btn.-secondary:focus,
+.btn.-secondary:hover
+{
+    color: #FFFFFF;
+}
 .btn.btn-big {
     width: 100%;
     padding: 12.5px 0;
 }
-
+.btn.-secondary.action-table {
+    font-weight: 400;
+    padding: 4px 6px;
+    max-height: 32px;
+    white-space: nowrap;
+}
 #btn-confirm {
     margin-top: 16px;
 }
@@ -736,7 +757,7 @@
 
 /*style for order detail*/
 .order--detail {
-    --color-primary: #F67600;
+    --primary-color: #F67600;
     padding: 0 0 0 10px;
 }
 
@@ -873,7 +894,7 @@
 
 .order--timelines .order--status:after {
     border-radius: 50%;
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     content: '';
     display: block;
     position: absolute;
@@ -908,7 +929,7 @@
 }
 
 .text--primary {
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-size: 16px;
 }
 
@@ -938,7 +959,7 @@
 
 .textarea--content:focus {
     background-color: #FFFFFF;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--primary-color);
     color: #434657;
 }
 
@@ -958,7 +979,7 @@
     border: 1px solid #F67600;
     border-radius: 4px;
     background-color: #FFFFFF;
-    color: var(--color-primary);
+    color: var(--primary-color);
     margin-right: 1rem;
     line-height: 1.5;
     padding: 1px 21px;
@@ -1003,7 +1024,7 @@
 }
 
 .input--checkbox input:checked ~ .checkmark {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     border: none;
     text-align: center;
 }
@@ -1086,7 +1107,7 @@
 .swiper-pagination.--custom .swiper-pagination-bullet-active {
     width: 24px;
     border-radius: 100px;
-    background: var(--color-primary);
+    background: var(--primary-color);
     transition: all ease .3s;
 }
 
@@ -1228,7 +1249,7 @@
 }
 
 a:hover .__icon.--path__custom:after {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
 }
 
 .__icon.--link {
@@ -1246,7 +1267,7 @@ a:hover .__icon.--path__custom:after {
 
 .article:hover .article--title__link,
 #new-article-update .article:hover .article--title__link {
-    color: var(--color-primary);
+    color: var(--primary-color);
     transition: all ease .2s;
 }
 
@@ -1262,7 +1283,7 @@ a:hover .__icon.--path__custom:after {
 }
 
 #list-article .article:hover .article--thumbnail a:after {
-    background-color: var(--color-primary);
+    background-color: var(--primary-color);
     transition: all ease .2s;
 }
 
@@ -1447,6 +1468,39 @@ a:hover .__icon.--path__custom:after {
 .message-error:empty {
     margin-top: 0;
 }
+.loading-table {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 111;
+}
+.loading-table .loading{
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--primary-color);
+    border-top-color: #FFF8F2;
+}
+#table-default tbody {
+    position: relative;
+}
+#table-default tbody.is_load:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    opacity: .5;
+}
+
+.is_load .loading {
+    margin-top: 0;
+}
+.getCopypass img {
+    height: 24px;
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {
@@ -1574,7 +1628,7 @@ a:hover .__icon.--path__custom:after {
     }
 
     .step--content .card--attr .card--attr__value.-primary {
-        color: var(--color-primary);
+        color: var(--primary-color);
     }
 
     .step--content .card--gray .card--attr {
@@ -1729,8 +1783,8 @@ a:hover .__icon.--path__custom:after {
     }
 
     #nav--article__mobile .nav-item a.active {
-        border: 1px solid var(--color-primary);
-        color: var(--color-primary);
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
     }
 
     #nav--article__mobile .nav {

@@ -105,6 +105,7 @@
                                                     <div class="row marginauto">
 
                                                         <div class="col-md-12 text-left left-right mb-fix-12">
+
                                                             <div class="row marginauto ">
                                                                 <div
                                                                     class="col-md-12 left-right body-title-detail-span-ct">
@@ -149,8 +150,7 @@
                                                                     <select class="wide" name="selected">
                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                             @if(!!$name)
-                                                                                <option
-                                                                                    value="{{ $k_name }}">{{ $name }}</option>
+                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
                                                                             @endif
                                                                         @empty
                                                                         @endforelse

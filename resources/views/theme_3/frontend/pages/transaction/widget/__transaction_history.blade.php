@@ -1,6 +1,6 @@
 @if(empty($data->data))
 
-    <table class="table table-striped table-hover table-logs">
+    <table class="table table-striped table-hover table-logs" id="table-default">
         <thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản</th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>
         <tbody>
         @php
@@ -17,7 +17,7 @@
                         <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
                     </tr>
                     <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
+                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                         <td>#{{$item->id}}</td>
 
                         <td>{{ $item->user->username }}</td>
@@ -61,7 +61,7 @@
                     @endphp
                 @else
                     <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
+                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                         <td>#{{$item->id}}</td>
 
                         <td>{{ $item->user->username }}</td>

@@ -1,6 +1,5 @@
 @if(empty($data->data))
 
-
 <div class="col-md-12 left-right">
     <table class="table table-striped table-hover table-logs" id="table-default">
         <thead><tr><th>Thời gian</th><th>Nội dung</th><th>Nhà mạng</th><th>Mã thẻ/Serial</th><th>Mệnh giá</th><th>Thực nhận</th><th>Trạng thái</th><th>Chi tiết</th></tr></thead>
@@ -18,7 +17,7 @@
                         <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
                     </tr>
                     <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
+                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                         <td>{{ $item->content }}</td>
 
                         <td>
@@ -33,8 +32,8 @@
                         <td>
                             @if(isset($item->card))
                                 @foreach($item->card as $val)
-                                    <p>MT: {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}</p>
-                                    <p>SR: {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}</p>
+                                    <p class="text-left">MT: {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}</p>
+                                    <p class="text-left">SR: {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}</p>
                                 @endforeach
                             @endif
 
@@ -62,7 +61,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="/the-cao-da-mua-{{ $item->id }}" class="refund-default openHoanTien show_chitiet">Chi tiết</a>
+                            <a href="/the-cao-da-mua-{{ $item->id }}" class="btn -secondary action-table show_chitiet" data-id="{{ $item->id }}">Chi tiết</a>
                         </td>
                     </tr>
                     @php
@@ -70,7 +69,7 @@
                     @endphp
                 @else
                     <tr>
-                        <td>{{ formatDateTime($item->created_at) }}</td>
+                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
                         <td>{{ $item->content }}</td>
 
                         <td>
@@ -85,8 +84,8 @@
                         <td>
                             @if(isset($item->card))
                                 @foreach($item->card as $val)
-                                    <p>MT: {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}</p>
-                                    <p>SR: {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}</p>
+                                    <p class="text-left">MT: {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}</p>
+                                    <p class="text-left">SR: {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}</p>
                                 @endforeach
                             @endif
 
@@ -120,7 +119,6 @@
                 @endif
             @endforeach
         @endif
-
         </tbody>
     </table>
 </div>

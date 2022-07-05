@@ -5,44 +5,111 @@
 @endsection
 
 @section('content')
-    <div class="banner-home " style=" background: url(/assets/frontend/{{theme('')->theme_key}}/image/banner.png) no-repeat center center / cover;">
-        <div class="container container-fix">
-            <div class="d-flex justify-content-between">
-                <div class="box-list-service d-g-lg-none">
-                    <p>Dịch vụ</p>
-                    @include('frontend.widget.__list_service')
 
-                </div>
-                <div class="box-list-top top-list d-g-lg-none">
-                    <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</p>
-                    @include('frontend.widget.__top_nap_the')
+    <div class="banner-home " >
+
+
+        @if(theme('')->theme_config->sys_config_banner =='banner_single')
+            <div class="banner-image">
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
+            </div>
+        @elseif(theme('')->theme_config->sys_config_banner =='banner_slide')
+            <div class="banner-slide swiper-container container container-fix " >
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/assets/frontend/theme_3/image/minigame3.gif" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="//backend.dev.tichhop.pro/storage/upload/images/RANDOM-FF-VIP-2.gif" alt="">
+                    </div>
                 </div>
             </div>
+        @endif
+        <div class="banner-content">
+            <div class="container @if(theme('')->theme_config->sys_config_banner == 'banner_single') container-fix @endif" >
+                <div class="d-flex justify-content-between">
+                    @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+                        <div class="box-list-service d-g-lg-none">
+                            <p>Dịch vụ</p>
 
+                            @include('frontend.widget.__list_service')
+                        </div>
+                    @endif
+
+                    @if(setting('sys_marquee'))
+                    <div class="rotation-notify text-slider" @if(theme('')->theme_config->sys_menu_service == 'menu_service_1' && theme('')->theme_config->sys_top_charge == 'top_charge_open') style="margin: 20px 12px 0 12px;" @endif>
+
+                        <marquee class="rotation-marquee marquee-move">
+                            <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
+                            <div class="rotation-marquee-item marquee-item">
+                                {!! setting('sys_marquee') !!}
+                            </div>
+                        </marquee>
+                    </div>
+                        @endif
+                    @if(isset(theme('')->theme_config->sys_top_charge) && theme('')->theme_config->sys_top_charge == 'top_charge_open')
+                        <div class="box-list-top top-list d-g-lg-none">
+                            <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</p>
+
+                            @include('frontend.widget.__top_nap_the')
+
+
+                        </div>
+                    @endif
+                </div>
+
+            </div>
         </div>
+
 
     </div>
     <div class="container container-fix">
 
-        @include('frontend.widget.__list_serve_remark_mobile')
+{{--        Dịch vụ nổi bật mobile--}}
+        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+            @include('frontend.widget.__list_serve_remark_mobile')
+        @endif
 
-        @include('frontend.widget.__hotsale')
+{{--            Hot sale--}}
+        @if(isset(theme('')->theme_config->sys_config_hotsale) && theme('')->theme_config->sys_config_hotsale == 'hot_sale_1')
+             @include('frontend.widget.__hotsale')
+        @endif
+{{--            Chơi gần đây--}}
+        @if(isset(theme('')->theme_config->sys_config_category_acc) && theme('')->theme_config->sys_config_category_acc == 'category_acc_1')
+             @include('frontend.widget.__play__recently__home')
+        @endif
+{{--            Top nạp thẻ mobile--}}
+        @if(isset(theme('')->theme_config->sys_top_charge) && theme('')->theme_config->sys_top_charge == 'top_charge_open')
+            @include('frontend.widget.__top_nap_the_mobile')
+        @endif
+{{--        Dịch vụ game--}}
+        @include('frontend.widget.__service_game')
+{{--             Minigame--}}
+        @if(isset(theme('')->theme_config->sys_config_minigame) && theme('')->theme_config->sys_config_minigame == 'minigame_0')
+              @include('frontend.widget.__content__home__minigame')
+        @endif
 
-        @include('frontend.widget.__play__recently__home')
-
-        @include('frontend.widget.__top_nap_the_mobile')
-
-
-        @include('frontend.widget.__content__home__minigame')
-
-        @include('frontend.widget.__list_serve_remark')
-
-        @include('frontend.widget.__nap_the')
-
-        @include('frontend.widget.__card_purchase')
-
-        @include('frontend.widget.__content__home__game')
-        <div class="block-other-nick mt-fix-20">
+{{--             Dịch vụ nổi bật--}}
+        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+            @include('frontend.widget.__list_serve_remark')
+        @endif
+{{--                Nạp thẻ--}}
+        @if(isset(theme('')->theme_config->sys_charge_card) && theme('')->theme_config->sys_charge_card == 'charge_card_1')
+            @include('frontend.widget.__nap_the')
+        @endif
+{{--                Mua thẻ--}}
+        @if(isset(theme('')->theme_config->sys_store_card) && theme('')->theme_config->sys_store_card == 'store_card_1')
+            @include('frontend.widget.__card_purchase')
+        @endif
+{{--                Danh mục mua acc--}}
+        @if(isset(theme('')->theme_config->sys_config_buy_acc) && theme('')->theme_config->sys_config_buy_acc == 'buy_acc_1')
+             @include('frontend.widget.__content__home__game')
+        @endif
+        @if(isset(theme('')->theme_config->sys_config_nick) && theme('')->theme_config->sys_config_nick == 'nick_acc_1')
+            <div class="block-other-nick mt-fix-20">
             <div class="row mr-fix-10 ml-fix-10">
                 <div class="col-12 col-md-6 col-lg-3 pr-fix-10 pl-fix-10 ">
                     <div class="block-product mb-md-fix-12">
@@ -1237,7 +1304,11 @@
                 </div>
             </div>
         </div>
-        @include('frontend.widget.__tin__tuc')
+        @endif
+{{--                 Tin tức--}}
+        @if(isset(theme('')->theme_config->sys_config_news) &&  theme('')->theme_config->sys_config_news == 'news_1')
+            @include('frontend.widget.__tin__tuc')
+        @endif
 
         <div class="block-product mt-fix-20">
 

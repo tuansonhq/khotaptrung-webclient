@@ -255,9 +255,9 @@
 
 </header>
 <div class="header ">
-
-    @include('frontend.widget.__head__dich__vu__noi__bat')
-
+    @if(isset(theme('')->theme_config->sys_config_menu) && theme('')->theme_config->sys_config_menu == 'menu_1')
+         @include('frontend.widget.__head__dich__vu__noi__bat')
+    @endif
     <div class="menu-profile-mobile">
         <div class="row marginauto">
             {{--Bắt đầu vòng lặp --}}

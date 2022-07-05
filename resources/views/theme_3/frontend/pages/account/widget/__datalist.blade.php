@@ -1,5 +1,4 @@
-@if(empty($data->data))
-
+@if(empty($data->data)))
     <div class="col-md-12 left-right">
         <div class="row marginauto body-detail-ct">
             @if(isset($items) && count($items) > 0)
@@ -15,7 +14,7 @@
                                     <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
-                                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                                <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
                                                     @else
@@ -23,6 +22,7 @@
                                                         @if(isset($item->image))
                                                             <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                         @else
+                                                            <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
                                                     @endif
                                                 </div>
@@ -33,7 +33,7 @@
                                                         </div>
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -76,16 +76,16 @@
                                                         <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                                     </div>
                                                 </div>
-                            
+
                                             </div>
-                            
+
                                             <div class="modal-body modal-body-order-ct">
                                                 <div class="row marginauto">
-                            
+
                                                     <div class="col-md-12 left-right title-order-ct">
                                                         <span>Thông tin acc</span>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right" id="order-errors">
                                                         <div class="row marginauto order-errors">
                                                             <div class="col-md-12 left-right">
@@ -116,8 +116,8 @@
                                                             </div>
                                                         </div>
                                                     @endif
-                            
-                            
+
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -129,7 +129,7 @@
                                                                         <small>{{ $item->groups[0]->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Tên game</span>
@@ -138,7 +138,7 @@
                                                                         <small>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</small>
                                                                     </div>
                                                                 </div>
-                            
+
                                                                 <div class="row marginauto background-order-body-row-ct">
                                                                     <div class="col-auto left-right background-order-col-left-ct">
                                                                         <span>Giá tiền</span>
@@ -154,10 +154,10 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -200,17 +200,17 @@
                                                                                         @endforeach
                                                                                     @endforeach
                                                                                 @endif
-        
+
                                                                             @endif
                                                                         @endforeach
                                                                     @endif
                                                                 @endif
-                            
+
                                                             </div>
-                            
+
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right background-order-ct">
@@ -231,7 +231,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                            
+
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
@@ -281,12 +281,11 @@
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
                                             <div class="row marginauto">
-                                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                                <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
-
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                     @else
-                                                        {{--                                            <img class="item_buy_list_img-main" src="https://shopas.net/storage/images/CGuYto7yjj_1645585924.jpg" alt="{{ $item->title }}">--}}
+                                                        <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
@@ -357,9 +356,15 @@
                                                             @endif
                                                         @endif
 
+                                                        @if ($total < 4)
+                                                            @for ($i = 0; $i < 4 - $total; $i++)
+                                                                <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
+                                                            @endfor
+                                                        @endif
+
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
-                                                                @if(isset($data->params) && isset($data->params->price))                                                                    
+                                                                @if(isset($data->params) && isset($data->params->price))
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($data->params->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($data->params->price_old??$data->params->price)) }}đ</li>
                                                                     @php
@@ -405,7 +410,7 @@
             <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
-        
+
                         <div class="row marinautooo justify-content-center">
                             <div class="col-auto">
                                 <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
