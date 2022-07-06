@@ -4610,7 +4610,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .default-overlay-ct.related-acc-category {
         height: 67px;
     }
-    
+
     .body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {
         border-radius: 8px;
     }
@@ -4811,11 +4811,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .body-detail-nick-slider-ct {
         width: 50%;
         padding: 6px 6px 6px 6px !important;
-    }
-
-    .body-detail-account-col-ct {
-        width: 50%;
-        padding: 8px 8px 16px 8px !important;
     }
 
     .body-detail-account-small-span-ct .fist-li-account {
@@ -6057,6 +6052,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .footer-default-body-col{
         padding-bottom: 8px;
+    }
+}
+@media screen and (max-width: 1199px) {
+    .body-detail-account-col-ct {
+        width: 50%;
+        padding: 8px 8px 16px 8px !important;
     }
 }
 .comment-item-own{
