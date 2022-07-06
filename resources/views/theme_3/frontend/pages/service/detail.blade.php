@@ -269,41 +269,43 @@
                                                 </div>
                                                 @break
                                                 @case('7')
-                                                <div class="row marginauto mb-fix-12">
-                                                    <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                        <span>Nhập số tiền cần mua:</span>
-                                                    </div>
-                                                    <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                        <input autocomplete="off" class="input-defautf-ct mb-2"
-                                                               id="input_pack"
-                                                               value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
-                                                               name="selected"
-                                                               type="text"
-                                                               placeholder="Số tiền"
-                                                               numberic
-                                                               currency
-                                                               required>
-                                                        <span id="text-pack">
+                                                <div class="col-md-12 left-right">
+                                                    <div class="row marginauto mb-fix-12">
+                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                            <span>Nhập số tiền cần mua:</span>
+                                                        </div>
+                                                        <div class="col-md-12 left-right body-title-detail-select-ct">
+                                                            <input autocomplete="off" class="input-defautf-ct mb-2"
+                                                                   id="input_pack"
+                                                                   value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
+                                                                   name="selected"
+                                                                   type="text"
+                                                                   placeholder="Số tiền"
+                                                                   numberic
+                                                                   currency
+                                                                   required>
+                                                            <span id="text-pack">
                                                             Số tiền thanh toán phải từ
                                                             <b style="font-weight:bold;">{{number_format($data_params['input_pack_min'])}}đ</b>
                                                             đến
                                                             <b style="font-weight:bold;">{{number_format($data_params['input_pack_max'])}}đ</b>
                                                         </span>
-                                                    </div>
-                                                    <div class="col-m-12 server-error">
+                                                        </div>
+                                                        <div class="col-m-12 server-error">
 
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row marginauto">
-                                                    <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                        <span>Hệ số:</span>
-                                                    </div>
-                                                    <div
-                                                        class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                                        <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
-                                                    </div>
-                                                    <div class="col-m-12 server-error">
+                                                    <div class="row marginauto">
+                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                            <span>Hệ số:</span>
+                                                        </div>
+                                                        <div
+                                                            class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                                            <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
+                                                        </div>
+                                                        <div class="col-m-12 server-error">
 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 @break
@@ -355,7 +357,7 @@
                                                                 @case('1')
                                                                 @case('2')
                                                                 @case('3')
-                                                                <div class="col-auto detail-service-col text-left body-title-detail-col-ct mb-fix-12">
+                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                                     <div class="row marginauto">
                                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                                             <span>{{$send_name_text}}</span>
@@ -371,8 +373,7 @@
                                                                 </div>
                                                                 @break
                                                                 @case('5')
-                                                                <div
-                                                                    class="col-auto detail-service-col text-left body-title-detail-col-ct mb-fix-12">
+                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                                     <div class="row marginauto password-mobile">
                                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                                             <span>{{$send_name_text}}</span>
@@ -505,7 +506,7 @@
                             </div>
 
                             {{--                block 3           --}}
-                            <div class="row body-detail-right-ct mt-fix-20 mx-lg-auto">
+                            <div class="body-detail-right-ct mt-fix-20 mx-lg-auto">
 
                                         {{-- BOT --}}
                                 <div class="col-md-12 left-right px-3 px-lg-0" id="table-bot">

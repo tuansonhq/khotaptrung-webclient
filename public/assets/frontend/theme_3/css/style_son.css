@@ -371,7 +371,7 @@
 .body-detail-ctng-col-ct img{
     width: 100%;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 .body-detail-nick-col-ct .nick-item-cover-overlay img {
@@ -4814,11 +4814,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         padding-right: 16px !important;
     }
 
-    .body-detail-nick-col-ct {
-        width: 50%;
-        padding: 6px 6px 6px 6px !important;
-    }
-
     .body-detail-nick-col-ct img.img-list-nick-category{
         height: 100px;
     }
@@ -6072,6 +6067,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .footer-default-body-col{
         padding-bottom: 8px;
+    }
+}
+
+@media only screen and (max-width: 1199px){
+    .body-detail-nick-col-ct {
+        width: 50%;
+        padding: 6px 6px 6px 6px !important;
     }
 }
 .comment-item-own{

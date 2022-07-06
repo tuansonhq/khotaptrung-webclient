@@ -15,25 +15,18 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 8,
+        slidesPerView: 4,
         speed: 800,
-        spaceBetween: 8,
+        spaceBetween: 16,
         touchMove: true,
         freeModeSticky:true,
         grabCursor: true,
         observer: true,
         observeParents: true,
         breakpoints: {
-            992: {
-                slidesPerView: 6,
+            1199: {
+                slidesPerView: 2.5,
             },
-            768:{
-                slidesPerView: 4,
-            },
-            480: {
-                slidesPerView: 3.2,
-
-            }
         }
     });
 
