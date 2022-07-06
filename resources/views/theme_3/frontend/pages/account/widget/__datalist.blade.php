@@ -10,17 +10,15 @@
 
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
-
                                     <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
+                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
                                                     @else
-
                                                         @if(isset($item->image))
-                                                            <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                            <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                         @else
                                                             <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
@@ -31,6 +29,7 @@
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>
+
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
                                                                 @if(isset($data->params) && isset($data->params->price))
@@ -65,7 +64,6 @@
                                             </div>
                                         </a>
                                     </div>
-
                                     <div class="formDonhangAccount{{ $item->randId }}" style="display: none">
                                         <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
                                             {{ csrf_field() }}
@@ -242,24 +240,16 @@
                                                                     @else
                                                                         <div class="row marginauto justify-content-center gallery-right-footer">
                                                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                                <div class="row marginauto nick-detail-button">
+                                                                                <div class="row marginauto">
                                                                                     <div class="col-md-12 left-right">
-                                                                                        <a href="/nap-the" class="button-not-bg-ct">
-                                                                                            <ul>
-                                                                                                <li><small>Thẻ cào</small></li>
-                                                                                            </ul>
-                                                                                        </a>
+                                                                                        <a href="/nap-the" class="btn -secondary btn-big">Thẻ cào</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                                                <div class="row marginauto nick-detail-button">
+                                                                                <div class="row marginauto">
                                                                                     <div class="col-md-12 left-right">
-                                                                                        <a href="/recharge-atm" class="button-not-bg-ct">
-                                                                                            <ul>
-                                                                                                <li><small>ATM, Momo</small></li>
-                                                                                            </ul>
-                                                                                        </a>
+                                                                                        <a href="/recharge-atm" class="btn -secondary btn-big">ATM, Momo</a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -275,24 +265,22 @@
                                             </div>
                                         </form>
                                     </div>
-
                                 @else
-
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
                                                         <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
-                                                        <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                                        {{--<div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
                                                             <span>{{ $item->title }}</span>
-                                                        </div>
+                                                        </div>--}}
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <small>ID: {{ $item->randId }}</small>
                                                         </div>

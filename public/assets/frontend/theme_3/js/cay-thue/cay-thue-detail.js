@@ -41,35 +41,13 @@ $(document).ready(function (e) {
     $('.show-btn-password').on('click', function(){
 
         // Get the password field
-        var passwordField = $('#password');
-
-        // Get the current type of the password field will be password or text
-        var passwordFieldType = passwordField.attr('type');
-
-        // Check to see if the type is a password field
-        if(passwordFieldType == 'password')
-        {
-            // Change the password field to text
-            passwordField.attr('type', 'text');
-
-            var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/theme_3/image/images_1/eye-show.svg" alt="">';
-            $('.show-btn-password').html('');
-            $('.show-btn-password').html(htmlpass);
-
-            // Change the Text on the show password button to Hide
-            $(this).val('Hide');
+        let passwordField = $('#password');
+        if (passwordField.attr('type') === "password") {
+            passwordField.attr('type','text');
+            $(this).find('img').attr('src','/assets/frontend/theme_3/image/images_1/eye-hide.svg')
         } else {
-            var htmlpass = '';
-            htmlpass += '<img class="lazy" src="/assets/theme_3/image/images_1/eye-hide.svg" alt="">';
-            $('.show-btn-password').html('');
-            $('.show-btn-password').html(htmlpass);
-
-            // If the password field type is not a password field then set it to password
-            passwordField.attr('type', 'password');
-
-            // Change the value of the show password button to Show
-            $(this).val('Show');
+            passwordField.attr('type','password')
+            $(this).find('img').attr('src','/assets/frontend/theme_3/image/images_1/eye-show.svg')
         }
     });
 
@@ -282,7 +260,7 @@ $(document).ready(function (e) {
             }
         }
         let confirm_rules = $('.confirm-rules');
-        // nếu không có nút confirm nào checked 
+        // nếu không có nút confirm nào checked
         if (!confirm_rules.length){
             if (confirm_rules.is(':checked')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;

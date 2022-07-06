@@ -43,6 +43,7 @@ $(document).ready(function () {
     $(document).on('click','.close-modal-default',function(){
         $('#openFinter').modal('hide');
         $('#showPassword').modal('hide');
+        $('#openOrder').modal('hide');
     });
     $(document).on('click', '.paginate__v1 .pagination a',function(e){
         e.preventDefault();

@@ -200,7 +200,7 @@ $(document).ready(function (e) {
         centeredSlides: false,
         slidesPerView: 4,
         speed: 800,
-        spaceBetween: 8,
+        spaceBetween: 16,
         touchMove: true,
         freeModeSticky:true,
         grabCursor: true,

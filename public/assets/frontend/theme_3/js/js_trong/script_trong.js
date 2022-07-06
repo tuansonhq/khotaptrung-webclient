@@ -57,11 +57,13 @@ if ($(window).width() < 1200) {
 function handleToggleContent(){
     $('.js-toggle-content .view-less').toggle();
     $('.js-toggle-content .view-more').toggle();
-    $('.card--desc__content').toggleClass('content-video-in-add');
+    let card_desc = $('.card--desc__content');
+    card_desc.toggleClass('content-video-in-add');
     if ($('.view-less').is(":visible")) {
-        $('#content-store-card .card--desc__content').css('max-height', 'initial')
+        let initialHeight = card_desc.css('max-height', 'initial').height();
+        card_desc.animate({maxHeight: initialHeight + 16},250)
     } else {
-        $('#content-store-card .card--desc__content').css('max-height', '')
+        card_desc.animate({maxHeight: 280},250)
     }
 }
 

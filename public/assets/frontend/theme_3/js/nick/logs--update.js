@@ -51,9 +51,10 @@ $(document).ready(function (e) {
         $('.data-password').html(html_password);
         $('.data-button').html(html_button);
         // attribute
-        let input_attr = $(`.js_attr_category[data-id=${id}]`);
-        if (input_attr.length){
-            let attrs = JSON.parse(input_attr.val());
+        let input_attr_cate = $(`.js_attr_category[data-id=${id}]`);
+        // let input_attr_value = $('.js_attr_value[data-id=${id}]');
+        if (input_attr_cate.length){
+            let attrs = JSON.parse(input_attr_cate.val());
             let params = JSON.parse($(`.js_params_item[data-id=${id}]`).val());
             attrs.forEach(function (attr) {
                 if (attr.position === 'text' && attr.childs.length){
@@ -73,8 +74,22 @@ $(document).ready(function (e) {
                     });
                 }
             });
-            $('.data-child').html(html_attr);
         }
+        let input_attr_label = $(`.js_attr_label[data-id=${id}]`);
+        if (input_attr_label.length){
+            Array.from(input_attr_label).forEach(function (elm) {
+                let group_id = $(elm).data('gr');
+                let label = $(elm).val();
+                let value = $(`.js_attr_value[data-id=${id}][data-gr=${group_id}]`).val();
+                html_attr += '<div class="row marginauto add-child">';
+                html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${label}</span></div>`;
+                html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+                html_attr += `<input readonly autocomplete="off" placeholder="${value}" class="input-defautf-ct" type="text" value="${value}">`;
+                html_attr += '</div>';
+                html_attr += '</div>';
+            });
+        }
+        $('.data-child').html(html_attr);
         /* thong tin bo sung */
                let input_other = $(`.js_idkey_item[data-id=${id}]`);
         if (input_other.length){
@@ -91,7 +106,10 @@ $(document).ready(function (e) {
     // GET FIRST PASSWORD
     $(document).on('click','.get-first-pass',function (e) {
         let html = '';
-        html += `<div class="loading"></div>`;
+        html += `<div class="loading m-auto">`;
+        html += `<div class="loading-child">`;
+        html+= `</div>`;
+        html+= `</div>`;
         $(this).html(html);
         $(this).removeClass('-primary get-first-pass');
         $(this).addClass('is_load');

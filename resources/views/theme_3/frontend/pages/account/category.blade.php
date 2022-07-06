@@ -112,7 +112,8 @@
 
     @include('frontend.pages.account.widget.__category__content')
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
 @endsection
 
 

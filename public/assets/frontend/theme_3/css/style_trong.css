@@ -1492,7 +1492,6 @@ a:hover .__icon.--path__custom:after {
     background-color: #fff;
     opacity: .5;
 }
-
 .is_load .loading {
     margin-top: 0;
 }
@@ -1505,6 +1504,15 @@ a:hover .__icon.--path__custom:after {
 }
 #table-default .th-value {
     padding: 12px 2rem;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 /* Small Screen */
 @media screen and (max-width: 1200px) {
