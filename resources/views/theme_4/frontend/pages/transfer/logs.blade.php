@@ -1,7 +1,5 @@
 @extends('frontend.layouts.master')
-@section('meta_robots')
-    <meta name="robots" content="index,follow" />
-@endsection
+
 @section('content')
 
     {{--  Menu  --}}
@@ -12,7 +10,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-atm-tu-dong">Lịch sử nạp ATM tự động</a></li>
+                <li class="menu-container-li-ct"><a href="">Lịch sử nạp ATM tự động</a></li>
             </ul>
         </div>
     </section>
@@ -21,7 +19,7 @@
         <div class="container container-fix banner-mobile-container-ct">
 
             <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%">
+                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
                     <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
@@ -41,7 +39,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('frontend.widget.__navbar__profile')
+                @include('theme_3.frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">
@@ -135,7 +133,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form class="form-charge_ls account_content_transaction_history__v2">
+                    <form class="form-charge_ls account_content_transaction_history__v2" id="data_sort">
                     <div class="row marginauto">
 
 {{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
@@ -161,7 +159,7 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                         <select class="wide status" name="status">
-                                            <option>Chọn</option>
+                                            <option value="">Chọn</option>
                                             <option value="1">Thành công(Đúng số tiền)</option>
                                             <option value="0">Thất bại</option>
                                             <option value="2">Chờ xử lý</option>
@@ -194,7 +192,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
@@ -236,14 +234,14 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
 
     </div>
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/logs--update.js"></script>
 @endsection
 
 

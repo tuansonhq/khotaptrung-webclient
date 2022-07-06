@@ -1,7 +1,5 @@
 @extends('frontend.layouts.master')
-@section('meta_robots')
-    <meta name="robots" content="index,follow" />
-@endsection
+
 @section('content')
 
     {{--  Menu  --}}
@@ -13,7 +11,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>
+                <li class="menu-container-li-ct"><a href="">Lịch sử nạp thẻ</a></li>
             </ul>
         </div>
     </section>
@@ -42,7 +40,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('frontend.widget.__navbar__profile')
+                @include('theme_3.frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">
@@ -61,7 +59,7 @@
                                     <form class="search-txns">
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
-                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
+                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập mã Serial">
                                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
@@ -129,7 +127,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form class="form-charge_ls account_content_transaction_history__v2">
+                    <form class="form-charge_ls account_content_transaction_history__v2" id="data_sort">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -138,7 +136,7 @@
                                         <span>Thẻ cào</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="serial" placeholder="Nhập mã Serial">
                                     </div>
                                 </div>
                             </div>
@@ -149,15 +147,16 @@
                                         <span>Loại thẻ</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                        <select class="wide transaction" name="transaction">
-                                            <option>Chọn</option>
-                                            <option value="1">VIETTEL</option>
-                                            <option value="2">MOBILE</option>
+                                        <select class="wide transaction" name="telecom">
+                                            <option value="">Chọn</option>
+                                            @forelse($data_category['telecoms'] as $key => $telecom)
+                                                <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
+                                            @empty
+                                            @endforelse
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-12 left-right modal-nick-padding">
                                 <div class="row marginauto">
                                     <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
@@ -165,9 +164,11 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                         <select class="wide status" name="status">
-                                            <option>Chọn</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
+                                            <option value="">Chọn</option>
+                                            @forelse($data_category['status'] as $key => $status)
+                                                <option value="{{ @$key }}">{{ @$status }}</option>
+                                            @empty
+                                            @endforelse
                                         </select>
                                     </div>
                                 </div>
@@ -196,7 +197,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +260,8 @@
     <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js"></script>
 @endsection
 
 
