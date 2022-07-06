@@ -100,7 +100,7 @@
                                         <span class="pulser"></span>
                                     </div>
                                 </div>
-                                @include('frontend.pages.storeCard.widget.__datalogs')
+                                @include('frontend.pages.storecard.widget.__datalogs')
                             </div>
                         </div>
 

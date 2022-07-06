@@ -27,8 +27,8 @@ $(document).ready(function (e) {
     //Manage filter
     var filterCount = 0;
     var formData = {};
-    
-    $('#accountFilter').submit(function (e) { 
+
+    $('#accountFilter').submit(function (e) {
         e.preventDefault();
         //Filter item html
         filterCount = 0;
@@ -102,7 +102,7 @@ $(document).ready(function (e) {
         //Empty current than add new html
         $('.nick-findter-data').empty();
         $('.nick-findter-data').append(html);
-        
+
         //Check filter count and update count text
         $('.overlay-find').text(filterCount);
         if (filterCount > 0) {
@@ -200,7 +200,7 @@ $(document).ready(function (e) {
         centeredSlides: false,
         slidesPerView: 4,
         speed: 800,
-        spaceBetween: 8,
+        spaceBetween: 16,
         touchMove: true,
         freeModeSticky:true,
         grabCursor: true,
@@ -232,7 +232,7 @@ $(document).ready(function (e) {
     });
 
     // Function when user search
-    $('.media-form-search').submit(function (e) { 
+    $('.media-form-search').submit(function (e) {
         e.preventDefault();
         let searchValue = $(this).find('input.input-search-ct').val().toLowerCase();
         $('.body-detail-nick-col-ct').css('display', 'block');

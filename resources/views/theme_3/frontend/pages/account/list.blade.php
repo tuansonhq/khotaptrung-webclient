@@ -133,7 +133,7 @@
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-32" class="sort" type="radio" name="sort" value="price_end" hidden>
+                                            <input checked id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
                                             <label for="sort-3" class="item-sort-nick-label">
                                                 <span>Giá tăng dần</span>
                                             </label>
@@ -157,7 +157,7 @@
                         </div>
 
                         <div id="account_data" style="width: 100%;">
-                            
+
                         </div>
 
                         <div id="listLoader" style="width: 100%;">
@@ -222,7 +222,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form id="accountFilter" action="">
+                    <form id="data_sort" action="">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -231,7 +231,7 @@
                                         <small>Mã số</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="id_data" placeholder="Nhập mã số">
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +280,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}"">
+                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
                                                         <option value="" selected disabled>--Không chọn--</option>
                                                         @foreach($val->childs as $child)
                                                             <option value="{{ $child->id }}">{{ $child->title }}</option>
@@ -306,7 +306,7 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="submit">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick btn-ap-dung" type="button">Áp dụng</button>
                                             </div>
                                         </div>
                                     </div>
@@ -439,7 +439,8 @@
 
     <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
 @endsection
 
 

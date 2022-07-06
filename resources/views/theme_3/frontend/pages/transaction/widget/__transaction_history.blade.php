@@ -31,9 +31,9 @@
 
                         <td>
                             @if($item->is_add==1)
-                                <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                                <span class="c-font-bold text-info" style="white-space: nowrap">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                             @elseif($item->is_add==0)
-                                <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                                <span class="c-font-bold text-danger" style="white-space: nowrap">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                             @endif
                         </td>
                         <td>
@@ -75,9 +75,9 @@
 
                         <td>
                             @if($item->is_add==1)
-                                <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                                <span class="c-font-bold text-info" style="white-space: nowrap">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                             @elseif($item->is_add==0)
-                                <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                                <span class="c-font-bold text-danger" style="white-space: nowrap">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                             @endif
                         </td>
                         <td>

@@ -22,12 +22,12 @@ $(document).ready(function (e) {
 
         let html_password = '';
         let html_time = '';
+        let html_attr = '';
         let html_other = '';
         let html_button = '';
 
         // name account
         $('.data-tai-khoan input').val(title);
-
         // password,time
         let password = $(`.js_password_item[data-id=${id}]`);
         let time = $(`.js_time_item[data-id=${id}]`).val();
@@ -50,8 +50,48 @@ $(document).ready(function (e) {
         $('.data-time').html(html_time);
         $('.data-password').html(html_password);
         $('.data-button').html(html_button);
+        // attribute
+        let input_attr_cate = $(`.js_attr_category[data-id=${id}]`);
+        // let input_attr_value = $('.js_attr_value[data-id=${id}]');
+        if (input_attr_cate.length){
+            let attrs = JSON.parse(input_attr_cate.val());
+            let params = JSON.parse($(`.js_params_item[data-id=${id}]`).val());
+            attrs.forEach(function (attr) {
+                if (attr.position === 'text' && attr.childs.length){
+                    attr.childs.forEach(function (child) {
+                        if (Object.keys(params).length){
+                            Object.keys(params.ext_info).forEach(function(key_info) {
+                                if (key_info == child.id){
+                                    html_attr += '<div class="row marginauto add-child">';
+                                    html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${child.title}</span></div>`;
+                                    html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+                                    html_attr += `<input readonly autocomplete="off" placeholder="${params.ext_info[key_info]}" class="input-defautf-ct" type="text" value="${params.ext_info[key_info]}">`;
+                                    html_attr += '</div>';
+                                    html_attr += '</div>';
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+        let input_attr_label = $(`.js_attr_label[data-id=${id}]`);
+        if (input_attr_label.length){
+            Array.from(input_attr_label).forEach(function (elm) {
+                let group_id = $(elm).data('gr');
+                let label = $(elm).val();
+                let value = $(`.js_attr_value[data-id=${id}][data-gr=${group_id}]`).val();
+                html_attr += '<div class="row marginauto add-child">';
+                html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${label}</span></div>`;
+                html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+                html_attr += `<input readonly autocomplete="off" placeholder="${value}" class="input-defautf-ct" type="text" value="${value}">`;
+                html_attr += '</div>';
+                html_attr += '</div>';
+            });
+        }
+        $('.data-child').html(html_attr);
         /* thong tin bo sung */
-        let input_other = $(`.js_idkey_item[data-id=${id}]`);
+               let input_other = $(`.js_idkey_item[data-id=${id}]`);
         if (input_other.length){
             html_other += '<div class="row marginauto add-child">';
             html_other += '<div class="col-md-12 left-right body-title-detail-span-ct"><span>T.tin bổ sung:</span></div>';
@@ -66,7 +106,10 @@ $(document).ready(function (e) {
     // GET FIRST PASSWORD
     $(document).on('click','.get-first-pass',function (e) {
         let html = '';
-        html += `<div class="loading"></div>`;
+        html += `<div class="loading m-auto">`;
+        html += `<div class="loading-child">`;
+        html+= `</div>`;
+        html+= `</div>`;
         $(this).html(html);
         $(this).removeClass('-primary get-first-pass');
         $(this).addClass('is_load');
@@ -130,7 +173,7 @@ $(document).ready(function (e) {
         })
     });
 })
-function loadDataTable(query = {page:1, serial:'', key:'', price:'', status:'', started_at:'', ended_at:'', sort_by_data:'', id_data:''}) {
+function loadDataTable(query = {page:1}) {
     let url = window.location.href;
     let table = $('#data_pay_account_history');
 
@@ -146,7 +189,7 @@ function loadDataTable(query = {page:1, serial:'', key:'', price:'', status:'', 
         html_loading += `</div>`;
         tbody.prepend(html_loading);
     }
-    ++count_load;
+    //Load old data on url
     if (hasQueryParams(url)){
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
@@ -188,4 +231,5 @@ function loadDataTable(query = {page:1, serial:'', key:'', price:'', status:'', 
 
         }
     });
+    ++count_load;
 }

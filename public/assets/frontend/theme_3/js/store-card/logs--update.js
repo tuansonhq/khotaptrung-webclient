@@ -1,5 +1,5 @@
 
-function loadDataTable(query ={ page:1, serial:'', telecom:'', status:'', started_at:'', ended_at:'',}) {
+function loadDataTable(query ={ page:1}) {
     let url = window.location.href;
     let table = $('#data_pay_card_history_ls');
 

@@ -26,7 +26,9 @@ function loadDataTable(query = {
     if (count_load){
         let html_loading = '';
         html_loading += `<div class="loading-table">`;
-        html_loading += `<div class="loading"></div>`;
+        html_loading += `<div class="loading">`;
+        html_loading += `<div class="loading-child"></div>`;
+        html_loading += `</div>`;
         html_loading += `</div>`;
         tbody.prepend(html_loading);
     }
