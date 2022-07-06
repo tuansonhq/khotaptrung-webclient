@@ -3,7 +3,7 @@
 
 <div class="col-md-12 left-right">
     <table class="table table-striped table-hover table-logs" id="table-default">
-        <thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>THực nhận</th><th>Trạng thái</th></tr></thead>
+        <thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>
         <tbody>
         @if(isset($data) && count($data) > 0)
             @php
@@ -95,7 +95,6 @@
 
     @if(isset($data) )
         @if($data->total()>1)
-
             <div class="row marinautooo justify-content-center">
                 <div class="col-auto">
                     <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
