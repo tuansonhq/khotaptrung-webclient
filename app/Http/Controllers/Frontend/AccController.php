@@ -761,10 +761,8 @@ class AccController extends Controller
 
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
                 $response_data = $result_Api->response_data??null;
+                $data = $response_data->data;
                 if($response_data->status){
-
-                    $data = $response_data->data;
-
                     if (!!$data->total) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
@@ -793,7 +791,7 @@ class AccController extends Controller
                 else{
                     return response()->json([
                         'status' => 0,
-                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu",
                     ]);
                 }
             }

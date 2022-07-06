@@ -1,7 +1,7 @@
 @if(empty($data->data))
 <div class="col-md-12 left-right">
     <table class="table table-striped table-hover table-logs" id="table-default">
-        <thead><tr><th>Thời gian</th><th>ID</th><th style="width: 30%">Game</th><th>Tài Khoản</th><th style="width: 20%">Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+        <thead><tr><th>Thời gian</th><th>ID</th><th class="th-game">Game</th><th>Tài Khoản</th><th class="th-value">Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
         <tbody>
         @php
             $prev = null;
@@ -29,7 +29,7 @@
                         {{ $item->title }}
                     </td>
 
-                    <td class="text-right">
+                    <td>
                         {{ str_replace(',','.',number_format($item->price)) }} đ
                     </td>
                     <td>
@@ -54,7 +54,10 @@
                 </tr>
 
 
-                <input type="hidden" class="js_title_item" data-id="{{ $item->id }}" value="{{ $item->title }}">
+                <input type="hidden" class="js_title_item" data-id="{{ $item->id }}" value="{{ @$item->title }}">
+                @if(isset($item->params))
+                    <input type="hidden" class="js_params_item" data-id="{{ $item->id }}" value="{{ json_encode($item->params) }}">
+                @endif
                 @if(isset($item->params->show_password) && isset($item->params->show_password->time))
                     <input type="hidden" class="js_time_item" data-id="{{ $item->id }}" value="{{ $item->params->show_password->time }}">
                     <input type="hidden" class="js_password_item" data-id="{{ $item->id }}" value="{{ \App\Library\Helpers::Decrypt($item->slug,config('module.acc.encrypt_key')) }}">
@@ -62,6 +65,16 @@
                 @if($item->idkey)
                     <input type="hidden" class="js_idkey_item" data-id="{{ $item->id }}" value="{{ $item->idkey }}">
                 @endif
+                @forelse($item->groups as $group)
+                    @if($group->module == 'acc_category')
+                        <input type="hidden" class="js_attr_category" data-id="{{ $item->id }}" value="{{ json_encode($group->childs) }}">
+                    @endif
+                    @if($group->module == 'acc_label')
+                        <input type="hidden" class="js_attr_label" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->parent->title }}">
+                        <input type="hidden" class="js_attr_value" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->title }}">
+                    @endif
+                @empty
+                @endforelse
             @endforeach
         @endif
 

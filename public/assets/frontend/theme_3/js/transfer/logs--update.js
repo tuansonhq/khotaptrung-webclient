@@ -1,15 +1,4 @@
-$(document).ready(function (e) {
-    $(document).on('submit', '.search-txns', function(e){
-        e.preventDefault();
-        let keyword = $('.search-txns input[name=search]').val();
-        let query = {
-            page:1,
-            serial:keyword,
-        }
-        loadDataTable(query)
-    });
-})
-function loadDataTable(query = { page:1}) {
+function loadDataTable(query ={ page:1}) {
     let url = window.location.href;
     let table = $('#data_pay_card_history_ls');
 
@@ -38,7 +27,7 @@ function loadDataTable(query = { page:1}) {
     }
     $.ajax({
         type: 'GET',
-        url: '/lich-su-nap-the',
+        url: '/transfer/data',
         data: query,
         beforeSend: function (xhr) {
 
@@ -53,12 +42,12 @@ function loadDataTable(query = { page:1}) {
             }else {
                 table.find('.loading-table').remove();
                 let html = '';
-                html += `<tr style="width: 100%" id="table-notdata"><td colspan="8"><span>${res.message}</span></td></tr>`;
+                html += `<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>${res.message}</span></td></tr>`;
                 $('table#table-default tbody').html(html);
-                $('#data_pay_card_history_ls .default-paginate').empty();
+                $('#data_pay_card_history_ls .default-paginate').html('');
             }
             // $('#data_pay_account_history .table-logs').toggleClass('table-responsive',!!res.status)
-            $(document).find('.default-paginate').removeClass('default-paginate-addpadding');
+            $('#data_pay_card_history_ls .default-paginate').removeClass('default-paginate-addpadding');
         },
         error: function (data) {
 

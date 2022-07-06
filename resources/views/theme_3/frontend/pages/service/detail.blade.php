@@ -715,7 +715,7 @@
                                 <div class="col-md-12 left-right padding-order-footer-ct">
                                     <div class="row marginauto">
                                         <div class="col-md-12 left-right">
-                                            <button class="button-default-nick-ct submit-form" type="button">Xác nhận</button>
+                                            <button class="btn -primary btn-big submit-form" type="button">Xác nhận</button>
                                         </div>
                                     </div>
                                 </div>

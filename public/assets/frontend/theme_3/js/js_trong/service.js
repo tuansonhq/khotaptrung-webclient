@@ -46,6 +46,11 @@ $('input[numberic]').on('keypress', function (e) {
 });
 let input_params_hide =$('#data_params');
 let data_params;
+let purchase_name;
+let input_pack = $('#input_pack');
+let txt_price = $('#txt-price');
+let server = -1;
+server = parseInt($('select[name=server] option').filter(':selected').val());
 
 if (input_params_hide.length){
     data_params = JSON.parse(input_params_hide.val());
@@ -243,14 +248,6 @@ if (input_params_hide.length){
     }
 
 }
-let purchase_name;
-
-let input_pack = $('#input_pack');
-let txt_price = $('#txt-price');
-let server = -1;
-server = parseInt($('select[name=server] option').filter(':selected').val());
-
-
 
 function checkboxRequired(selector) {
     let checkboxs = $(`${selector}:checked`);
@@ -264,6 +261,9 @@ $('.submit-form').on('click', function () {
     }, {});
     let url = $('#formDataService').attr('action');
     data_form.selected = data_form.selected.replace(/\./g, "");
+
+    //loading btn;
+    $(this).html('Đang xử lý...');
     $.ajax({
         type: "POST",
         url: url,
@@ -280,8 +280,12 @@ $('.submit-form').on('click', function () {
             else {
                 $('.modal__error__message small').text(res.message)
             }
+        },
+        complete:function () {
+           $('.submit-form').html('Xác nhận');
         }
-    })
+    });
+
 })
 
     // BOT
@@ -297,9 +301,6 @@ $('.submit-form').on('click', function () {
                 table_bot.html('');
                 table_bot.html(response.data);
             }
-        },
-        error: function (data) {
-
         },
     })
 
