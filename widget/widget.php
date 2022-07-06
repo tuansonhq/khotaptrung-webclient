@@ -311,7 +311,7 @@ View::composer('frontend.widget.__service_game', function ($view) {
         $url = '/service';
         $method = "GET";
         $dataSend = array();
-        $dataSend['limit'] = 8;
+//        $dataSend['limit'] = 8;
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
     });

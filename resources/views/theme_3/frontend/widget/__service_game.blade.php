@@ -35,7 +35,7 @@
                     <div class="item-nick-name">{{$service->title}}</div>
                 </a>
             </div>
-            @endforeach
+          @endforeach
         </div>
     </div>
 </div>

@@ -85,7 +85,7 @@
                                             <div class="col-md-12 left-right">
                                                 <div class="row marginauto banner-container-ct">
                                                     <div class="col-md-12 text-left left-right">
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image_banner)}}" alt="Banner">
+                                                        <img class="lazy" src="https://st.quantrimang.com/photos/image/2022/01/21/Anh-tuong-Lien-Quan-Mobile-25.jpg" alt="Banner">
                                                     </div>
                                                 </div>
                                             </div>
@@ -484,7 +484,7 @@
                             {{--                            </div>--}}
 
                             {{--                block 2           --}}
-                            <div class="row marginauto body-detail-right-ct">
+                            <div class="marginauto body-detail-right-ct">
 
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto">
@@ -523,20 +523,10 @@
                                 <div class="col-md-12 left-right card--desc px-3 px-lg-0">
                                     <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
                                         <div
-                                            class="col-md-12 text-left left-right content-video-in double-click content-video-in content-video-in-add">
+                                            class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
                                             {!! @$data->content !!}
                                         </div>
                                         <div class="col-md-12 left-right text-center js-toggle-content">
-                                            <div class="view-more">
-                                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i
-                                                        class="__icon__default --sm__default --link__default ml-1"
-                                                        style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
-                                            </div>
-                                            <div class="view-less">
-                                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i
-                                                        class="__icon__default --sm__default --link__default ml-1"
-                                                        style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
