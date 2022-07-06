@@ -612,7 +612,7 @@ class UserController extends Controller
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
                     }
-                    $html = view('frontend.pages.storeCard.widget.__datalogs')
+                    $html = view('frontend.pages.storecard.widget.__datalogs')
                         ->with('data',$data)
                         ->with('total',$total)
                         ->with('per_page',$per_page)
