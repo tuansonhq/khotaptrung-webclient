@@ -49,7 +49,6 @@ class MinigameController extends Controller
                 if ($result_out->status == 1) {
                     $result = $result_out->data;
 
-                    //tạo dữ liệu seeding
                     //Tạo random đang chơi:
                     if($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to){
                         $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
@@ -60,15 +59,19 @@ class MinigameController extends Controller
                     //top quay thuong
                     $firstname = ['James','Robert','John','Michael','William','David','Richard','Joseph','Thomas','Charles','Christopher','Daniel','Matthew','Anthony','Mark','Donald','Steven','Paul','Andrew','Joshua','Kenneth','Kevin','Brian','George','Edward','Ronald','Timothy','Jason','Jeffrey','Ryan','Jacob','Gary','Nicholas','Eric','Jonathan','Stephen','Larry','Justin','Scott','Brandon','Benjamin','Samuel','Gregory','Frank','Alexander','Raymond','Patrick','Jack','Dennis','Jerry','Tyler','Aaron','Jose','Adam','Henry','Nathan','Douglas','Zachary','Peter','Kyle','Walter','Ethan','Jeremy','Harold','Keith','Christian','Roger','Noah','Gerald','Carl','Terry','Sean','Austin','Arthur','Lawrence','Jesse','Dylan','Bryan','Joe','Jordan','Billy','Bruce','Albert','Willie','Gabriel','Logan','Alan','Juan','Wayne','Roy','Ralph','Randy','Eugene','Vincent','Russell','Elijah','Louis','Bobby','Philip','Johnny','Mary','Patricia','Jennifer','Linda','Elizabeth','Barbara','Susan','Jessica','Sarah','Karen','Nancy','Lisa','Betty','Margaret','Sandra','Ashley','Kimberly','Emily','Donna','Michelle','Dorothy','Carol','Amanda','Melissa','Deborah','Stephanie','Rebecca','Sharon','Laura','Cynthia'];
                     $lastname = ['Johnathon','Anthony','Erasmo','Raleigh','Nancie','Tama','Camellia','Augustine','Christeen','Luz','Diego','Lyndia','Thomas','Georgianna','Leigha','Alejandro','Marquis','Joan','Stephania','Elroy','Zonia','Buffy','Sharie','Blythe','Gaylene','Elida','Randy','Margarete','Margarett','Dion','Tomi','Arden','Clora','Laine','Becki','Margherita','Bong','Jeanice','Qiana','Lawanda','Rebecka','Maribel','Tami','Yuri','Michele','Rubi','Larisa','Lloyd','Tyisha','Samatha','Mischke','Serna','Pingree','Mcnaught','Pepper','Schildgen','Mongold','Wrona','Geddes','Lanz','Fetzer','Schroeder','Block','Mayoral','Fleishman','Roberie','Latson','Lupo','Motsinger','Drews','Coby','Redner','Culton','Howe','Stoval','Michaud','Mote','Menjivar','Wiers','Paris','Grisby','Noren','Damron','Kazmierczak','Haslett','Guillemette','Buresh','Center','Kucera','Catt','Badon','Grumbles','Antes','Byron','Volkman','Klemp','Pekar','Pecora','Schewe','Ramage'];
-                    $numTop = 30;
+                    $numTop = 10;
                     if($group->params->acc_show_num > 0){
                         $numTop = $group->params->acc_show_num;
+                    }
+
+                    if ($numTop > 10){
+                        $numTop = 10;
                     }
 
                     $topDayList = Cache::get('topDayList'.$group->id);
                     if($topDayList==null){
                         $topDayList = array();
-                        for($i=0;$i<=$numTop;$i++){
+                        for($i=0;$i<$numTop;$i++){
                             $fname = $firstname[rand(0,count($firstname)-1)];
                             $lname = $lastname[rand(0 ,count($lastname)-1)];
                             $name = substr($fname, 0,rand(2,3));
