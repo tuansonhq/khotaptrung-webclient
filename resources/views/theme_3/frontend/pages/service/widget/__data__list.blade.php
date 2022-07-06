@@ -1,3 +1,4 @@
+@if(isset($data))
 <div class="col-md-12 left-right">
     <div class="row marginauto body-detail-ct">
         <div class="col-md-12 text-left left-right">
@@ -21,5 +22,5 @@
         </div>
     </div>
 </div>
-
+@endif
 

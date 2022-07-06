@@ -25,7 +25,7 @@
                         </a>
                         <h4>Mua thẻ</h4>
                     </div>
-                    <div class="card --custom mb-lg-3">
+                    <div class="card --custom mb-lg-3 h-100">
                         <div class="card--header">
                             <div class="card--header__title">
                                 <div class="title__icon"><img
@@ -85,25 +85,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card --custom mt-lg-1 card--desc hidden-mobile">
-                        <div class="card--body">
-                            <div class="card--desc__title">Mô tả dịch vụ</div>
-                            <div class="card--desc__content content-video-in-add">
-                                {!! setting('sys_store_card_content') !!}
-                            </div>
-                            <div class="col-md-12 left-right text-center js-toggle-content">
-                                <div class="view-more">
-                                    <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
-                                </div>
-                                <div class="view-less">
-                                    <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 mb_1 section--amount__card d-none">
-                    <div class="card --custom">
+                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card d-none">
+                    <div class="card --custom h-100">
                         <div class="card--body" id="amountWidget">
                             <div class="loader position-relative" style="margin: 2rem 0">
                                 <div class="loading-spokes">
@@ -160,7 +144,7 @@
                                         Chiết khấu
                                     </span>
                                     <span class="discount--value">
-                                        
+
                                     </span>
                                 </div>
                                 <div class="price--total">
@@ -168,7 +152,7 @@
                                         Thành tiền
                                     </span>
                                     <span class="price--total__value">
-                                        
+
                                     </span>
                                 </div>
                                 @if (App\Library\AuthCustom::check())
@@ -180,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 section--description__card">
+                <div class="col-12 col-md-12 mt-fix-20">
                     <div class="card --custom">
                         <div class="card--body">
                             <div class="card--desc__title">Mô tả dịch vụ</div>
@@ -317,7 +301,7 @@
                                         Giá niêm yết
                                     </div>
                                     <div class="card--attr__value" id="confirmPrice">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -325,7 +309,7 @@
                                         Số lượng
                                     </div>
                                     <div class="card--attr__value" id="confirmQuantity">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -333,7 +317,7 @@
                                         Chiết khấu
                                     </div>
                                     <div class="card--attr__value" id="confirmDiscount">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -341,7 +325,7 @@
                                         Thành tiền
                                     </div>
                                     <div class="card--attr__value" id="confirmTotal">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -369,7 +353,7 @@
                                         Tổng thanh toán
                                     </div>
                                     <div class="card--attr__value" id="totalBill">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -388,7 +372,7 @@
                 <div class="step--content">
                     <div class="card--gray card__notify">
                         <div class="card__message">
-                            
+
                         </div>
                         <div class="card--success__icon">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/success.png" alt="">
@@ -420,7 +404,7 @@
                         <div class="dialog--content">
                             <div class="card--gray card__notify">
                                 <div class="card__message">
-                                    
+
                                 </div>
                                 <div class="card--success__icon">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/success.png" alt="">
@@ -446,7 +430,7 @@
                                         Giá niêm yết
                                     </div>
                                     <div class="card--attr__value" id="successPrice">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="card--attr">
@@ -454,7 +438,7 @@
                                         Số lượng
                                     </div>
                                     <div class="card--attr__value" id="successQuantity">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -468,10 +452,10 @@
                                                 </div>
                                                 <div class="card--info">
                                                     <div class="card--info__name">
-                                                        
+
                                                     </div>
                                                     <div class="card--info__value">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -483,7 +467,7 @@
                                                 </div>
                                                 <div class="card--attr__value">
                                                     <div class="card__info">
-                                                        
+
                                                     </div>
                                                     <div class="icon--coppy js-copy-text">
                                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
@@ -496,7 +480,7 @@
                                                 </div>
                                                 <div class="card--attr__value">
                                                     <div class="card__info">
-                                                        
+
                                                     </div>
                                                     <div class="icon--coppy js-copy-text">
                                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
