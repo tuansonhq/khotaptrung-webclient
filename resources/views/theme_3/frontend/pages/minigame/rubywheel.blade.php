@@ -24,8 +24,8 @@
             <h3>{{$result->group->title}}</h3>
         </section>
         <section class="rotation-content">
-            <div class="row">
-                <div class="col-12 col-lg-7 rotation-content-sm">
+            <div class="row rotation-content-section">
+                <div class="col-12 col-lg-7 rotation-col-left">
                     <div class="rotation-detail">
                         <div class="rotation-header">
                             <h3>{{$result->group->title}}</h3>
@@ -141,20 +141,28 @@
                             </div>
                         </div>
                     </div>
-                    @if(isset($result->group->description))
-                        <div class="service-detail">
-                            <h6>Chi tiết dịch vụ</h6>
-                            <div class="service-detail-content">
+                </div>
+
+                <div class="col-12 col-lg-5 rotation-col-right">
+                    <div class="service-detail d-lg-none d-xl-none">
+                        <h6>Chi tiết dịch vụ</h6>
+                        <div class="service-detail-content">
+                            @if(isset($result->group->description))
                                 {!! $result->group->description !!}
+                            @endif
+                        </div>
+                    </div>
+                    <div class="rotation-leaderboard">
+                        <div class="leaderboard-buttons row d-none d-lg-flex d-xl-flex">
+                            <div class="col-6">
+                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">
+                                    Lịch sử quay
+                                </a>
                             </div>
-                            <div class="see-more">
-                                <span id="seeMore">Xem thêm</span>
-                                <span id="seeLess" style="display: none;">Rút gọn</span>
+                            <div class="col-6">
+                                <button class="button-primary">Rút quà</button>
                             </div>
                         </div>
-                    @endif
-
-                    <div class="rotation-leaderboard leaderboard-md">
                         <div class="leaderboard-header">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
                             <h5>Top quay thưởng</h5>
@@ -178,93 +186,127 @@
                             <div class="date-listing"></div>
                         </div>
                         <div class="leaderboard-table">
-
-                            <div class="leaderboard-table-container content-video-in">
-
-                                <div class="leaderboard-head row no-gutters">
-                                    <div class="leaderboard-head-item col-3">
-                                        <p>Tài khoản</p>
-                                    </div>
-                                    <div class="leaderboard-head-item col-5">
-                                        {{--                                        <p>Giải thưởng</p>--}}
-                                    </div>
-                                    <div class="leaderboard-head-item col-4">
-                                        <p>Lượt quay</p>
-                                    </div>
+                            <div class="leaderboard-head row no-gutters">
+                                <div class="leaderboard-head-item col-4">
+                                    <p>Tài khoản</p>
                                 </div>
-
-                                <div class="leaderboard-content leaderboard-1 content-video-in">
-
-
-                                    @if(isset($topDayList))
-                                        @foreach($topDayList as $item)
+                                <div class="leaderboard-head-item col-4">
+                                    {{--                                    <p>Giải thưởng</p>--}}
+                                </div>
+                                <div class="leaderboard-head-item col-4">
+                                    <p>Lượt quay</p>
+                                </div>
+                            </div>
+                            <div class="leaderboard-content leaderboard-1">
+                                @if(isset($topDayList))
+                                    @foreach($topDayList as $key => $item)
+                                        @if($key < 3)
                                             <div class="leaderboard-item row no-gutters">
-                                                <div class="col-3 leaderboard-item-name">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                                     <p>{{$item['name']}}</p>
                                                 </div>
-                                                <div class="col-5">
-                                                    {{--                                            +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-
-                                </div>
-                                <div class="leaderboard-content leaderboard-2" style="display: none;">
-                                    @if(isset($top7DayList))
-                                        @foreach($top7DayList as $item)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-3 leaderboard-item-name">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-5">
+                                                <div class="col-4 leaderboard-item-ar">
                                                     {{--                                                    +100.000 kim cương--}}
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-4 leaderboard-item-ar">
                                                     {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-                                <div class="leaderboard-content leaderboard-3" style="display: none;">
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <span>{{ $key + 1 }}</span>
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
 
+                            </div>
+                            <div class="leaderboard-content leaderboard-2" style="display: none;">
+                                @if(isset($top7DayList))
+                                    @foreach($top7DayList as $key => $item)
+                                        @if($key < 3)
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-4 leaderboard-item-name">
+                                                    <span>{{ $key + 1 }}</span>
+                                                    <p>{{$item['name']}}</p>
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{--                                                    +100.000 kim cương--}}
+                                                </div>
+                                                <div class="col-4 leaderboard-item-ar">
+                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+
+                            </div>
+                            <div class="leaderboard-content leaderboard-3" style="display: none;">
+                                @if(isset($result->group->params->phanthuong))
                                     <div class="leaderboard-item row no-gutters">
                                         <div class="col-12 leaderboard-item-name">
                                             {!!$result->group->params->phanthuong!!}
                                         </div>
                                     </div>
-
-                                </div>
-
-
+                                @else
+                                    <div class="leaderboard-item row no-gutters">
+                                        <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                            Không có dữ liệu
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-
-                        <div class="col-md-12 left-right text-center js-toggle-content media-web pb-3">
-                            <div class="view-more">
-                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
-                            </div>
-                            <div class="view-less">
-                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
-
-                            </div>
+                        <div class="leaderboard-seemore">
+                            <p>Xem thêm</p>
                         </div>
-                        <div class="leaderboard-buttons row">
+                        <div class="leaderboard-buttons row d-lg-none d-xl-none">
                             <div class="col-6">
-                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-secondary history-spin-button">
-                                    Lịch sử quay
-                                </a>
+                                <button class="button-secondary history-spin-button">Lịch sử quay</button>
                             </div>
                             <div class="col-6">
                                 <button class="button-primary">Rút quà</button>
                             </div>
                         </div>
                     </div>
-
+                </div>
+            </div>
+            <div class="row rotation-content-section">
+                <div class="col-12 col-lg-5 d-none d-lg-block d-xl-block rotation-col-left">
+                    <div class="service-detail">
+                        <h6>Chi tiết dịch vụ</h6>
+                        <div class="service-detail-content">
+                            @if(isset($result->group->description))
+                                {!! $result->group->description !!}
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7 rotation-col-right">
                     <div class="rotation-comment chat-history">
                         <h6>Bình luận</h6>
                         <ul class="comment-block list-unstyled chat-scroll">
@@ -671,151 +713,6 @@
                             <button type="button" class="button-primary btn-send-message pill-button">Bình luận</button>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-12 col-lg-5 rotation-content-sm">
-                    <div class="rotation-leaderboard leaderboard-lg">
-                        <div class="leaderboard-buttons row">
-                            <div class="col-6">
-                                <a href="{{route('getLog',[$result->group->id])}}" class="the-a-lich-su button-not-bg-ct button-secondary history-spin-button">
-                                    Lịch sử quay
-                                </a>
-                            </div>
-                            <div class="col-6">
-                                <button class="button-primary">Rút quà</button>
-                            </div>
-                        </div>
-                        <div class="leaderboard-header">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
-                            <h5>Top quay thưởng</h5>
-                        </div>
-                        <div class="leaderboard-type row no-gutters">
-                            <div class="col-4">
-                                <div class="listed-date">
-                                    Hôm nay
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="listed-date">
-                                    7 ngày
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="listed-date">
-                                    Quà đua top
-                                </div>
-                            </div>
-                            <div class="date-listing"></div>
-                        </div>
-                        <div class="leaderboard-table">
-                            <div class="leaderboard-head row no-gutters">
-                                <div class="leaderboard-head-item col-4">
-                                    <p>Tài khoản</p>
-                                </div>
-                                <div class="leaderboard-head-item col-4">
-                                    {{--                                    <p>Giải thưởng</p>--}}
-                                </div>
-                                <div class="leaderboard-head-item col-4">
-                                    <p>Lượt quay</p>
-                                </div>
-                            </div>
-                            <div class="leaderboard-content leaderboard-1 minigame-scroll">
-                                @if(isset($topDayList))
-                                    @foreach($topDayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
-
-                            </div>
-                            <div class="leaderboard-content leaderboard-2 minigame-scroll" style="display: none;">
-                                @if(isset($top7DayList))
-                                    @foreach($top7DayList as $key => $item)
-                                        @if($key < 3)
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>{{ $key + 1 }}</span>
-                                                    <p>{{$item['name']}}</p>
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{ str_replace(',','.',number_format($item['numwheel'])) }} lượt
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                @endif
-
-                            </div>
-                            <div class="leaderboard-content leaderboard-3" style="display: none;">
-                                @if(isset($result->group->params->phanthuong))
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-12 leaderboard-item-name">
-                                            {!!$result->group->params->phanthuong!!}
-                                        </div>
-                                    </div>
-                                @else
-                                    <div class="leaderboard-item row no-gutters">
-                                        <div class="col-12 leaderboard-item-name text-center justify-content-center">
-                                            Không có dữ liệu
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    @if($groups_other!=null)
-                        @foreach($groups_other as $key => $item)
-                            @if($key < 4)
-                                <div class="rotation-advertise">
-                                    <a href="{{route('getIndex',[$item->slug])}}" target="_blank">
-                                        <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
-                                    </a>
-                                </div>
-                            @endif
-                        @endforeach
-                    @endif
                 </div>
             </div>
         </section>

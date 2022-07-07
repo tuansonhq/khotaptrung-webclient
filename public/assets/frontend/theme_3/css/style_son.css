@@ -54,7 +54,6 @@
 .marginauto{
     margin: 0 auto;
     width: 100%;
-    flex-basis: 45%;
 }
 .body-container-row-ct{
     padding-top: 16px;

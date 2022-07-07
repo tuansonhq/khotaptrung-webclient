@@ -2,11 +2,23 @@
     margin-bottom: 1.25rem;
 }
 
+.rotation-content-section {
+    margin-bottom: 1.25rem;
+}
+
+.rotation-col-left {
+    padding-right: 10px;
+}
+
+.rotation-col-right {
+    padding-left: 10px;
+}
+
 .rotation-detail {
     background-color: #FFFFFF;
     border-radius: 12px;
     padding: 1.25rem;
-    margin-bottom: 1.25rem;
+    height: 100%;
 }
 
 .rotation-header {
@@ -332,78 +344,43 @@
 .service-detail {
     background-color: #FFFFFF;
     border-radius: 8px;
-    margin-bottom: 2rem;
-    padding: 1rem 1rem 0 1rem;
+    padding: 1rem 1rem 0.75rem 1rem;
+    height: 100%;
 }
 
 .service-detail h6 {
     font-weight: 700;
-    font-size: 16px;
-    color: #434657;
+    font-size: 24px;
+    color: #1B1D29;
     margin-bottom: 1.5rem;
 }
 
 .service-detail-content {
     position: relative;
-    max-height: 250px;
-    overflow: hidden;
-    margin-bottom: 0.75rem;
+    height: 460px;
+    overflow-y: scroll;
+    padding-right: 0.5rem;
 }
 
-.service-detail-content::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient( rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) );
+.service-detail-content::-webkit-scrollbar {
+    width: 8px;
 }
 
-.service-detail-content.show-content::after {
-    display: none;
+.service-detail-content::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+    border: none;
 }
 
-.service-detail-content.show-content {
-    max-height: initial;
-}
-
-.see-more {
-    text-align: center;
-    padding: 1rem 0;
-    font-weight: 600;
-    font-size: 12px;
-    color: #1990FF;
-}
-
-.see-more span {
-    cursor: pointer;
-}
-
-#seeMore::after {
-    display: inline-block;
-    position: relative;
-    top: -1px;
-    padding-left: 8px;
-    content: "\00bb";
-    transform: rotate(90deg);
-    font-size: 20px;
-}
-
-#seeLess::after {
-    display: inline-block;
-    position: relative;
-    top: -1px;
-    padding-right: 8px;
-    content: "\00bb";
-    transform: rotate(-90deg);
-    font-size: 20px;
+.service-detail-content::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .rotation-comment {
     background-color: #FFFFFF;
     border-radius: 8px;
-    padding: 1rem 0.5rem 1.5rem 1rem;
+    padding: 1rem 0.5rem 0.75rem 1rem;
+    height: 100%;
 }
 
 .rotation-comment h6 {
@@ -414,7 +391,7 @@
 }
 
 .comment-block {
-    max-height: 350px;
+    height: 350px;
     overflow-y: scroll;
     padding-right: 0.5rem;
 }
@@ -424,7 +401,7 @@
 }
 
 .comment-block::-webkit-scrollbar-thumb {
-    background: rgba(27, 29, 41, 0.5);
+    background: #E4E5F0;
     border-radius: 100px;
     border: none;
 }
@@ -526,18 +503,14 @@
     background: #F67600;
     border-radius: 8px;
     border: none;
-    padding: 0.5rem 0.75rem;
-}
-
-.rotation-leaderboard.leaderboard-md {
-    display: none;
+    padding: 0.5rem 1.75rem;
 }
 
 .rotation-leaderboard {
     padding: 1.25rem;
     background: #FFFFFF;
     border-radius: 12px;
-    margin-bottom: 1.25rem;
+    height: 100%;
 }
 
 .leaderboard-buttons {
@@ -631,15 +604,22 @@
 .leaderboard-content {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    padding: 1rem;
 }
 
 .leaderboard-item {
-    padding: 0.5rem 0;
+    padding: 0.95rem 1rem;
     align-items: center;
     font-weight: 400;
     font-size: 14px;
     color: #414141;
+}
+
+.leaderboard-item:nth-child(odd) {
+    background-color: #FBFDFD;
+}
+
+.leaderboard-item:nth-child(even) {
+    background-color: #FFFFFF;
 }
 
 .leaderboard-item-name {
@@ -671,8 +651,8 @@
     text-align: right;
 }
 
-.leaderboard-item+.leaderboard-item {
-    margin-top: 0.5rem;
+.leaderboard-seemore {
+    display: none;
 }
 
 .rotation-advertise {
@@ -827,12 +807,20 @@
 }
 
 @media (max-width: 992px) {
-    .rotation-leaderboard.leaderboard-lg {
-        display: none;
+    .rotation-col-left {
+        padding-right: 15px;
+    }
+    
+    .rotation-col-right {
+        padding-left: 15px;
+    }
+    
+    .service-detail, .rotation-leaderboard, .rotation-detail, .rotation-comment {
+        height: unset;
     }
 
-    .rotation-leaderboard.leaderboard-md {
-        display: block;
+    .service-detail {
+        margin: 1.25rem 0;
     }
 
     .rotation-advertise {
@@ -852,7 +840,10 @@
     .rotation-detail {
         border-radius: 0;
         padding: 1rem;
-        margin-bottom: 0.75rem;
+    }
+
+    .rotation-content-section {
+        margin-bottom: 0;
     }
 
     .rotation-header h3 {
@@ -937,11 +928,18 @@
 
     .service-detail {
         border-radius: 0;
-        margin-bottom: 0.75rem;
+        margin: 0.75rem 0;
+        height: unset;
+    }
+
+    .service-detail h6 {
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 1rem;
     }
 
     .service-detail-content {
-        max-height: 180px;
+        height: 360px;
     }
 
     .see-more span {
@@ -949,13 +947,14 @@
         font-weight: 400;
     }
 
-    .rotation-leaderboard.leaderboard-md {
+    .rotation-leaderboard {
         border-radius: 0;
         padding: 0;
         margin-bottom: 0.75rem;
+        height: unset;
     }
 
-    .leaderboard-md .leaderboard-header {
+    .leaderboard-header {
         margin-bottom: 0;
         padding: 1rem;
     }
@@ -994,23 +993,16 @@
 
     .leaderboard-head-item {
         border-top: 1px solid #E4E5F0;
-        text-align: left;
     }
 
     .leaderboard-content {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        padding: 0;
     }
 
     .leaderboard-item {
-        padding: 0;
-        height: 66px;
+        padding: 1.25rem 1rem;
         border-bottom: 1px solid #E4E5F0;
-    }
-
-    .leaderboard-item+.leaderboard-item {
-        margin-top: 0;
     }
 
     .leaderboard-item-name p {
@@ -1023,15 +1015,16 @@
         border-bottom: none;
     }
 
-    .leaderboard-md .leaderboard-content .leaderboard-item:nth-last-child(-n+6) {
+    .leaderboard-content .leaderboard-item:nth-last-child(-n+6) {
         display: none;
     }
 
-    .leaderboard-md .leaderboard-content.leaderboard-content-showmore .leaderboard-item:nth-last-child(-n+6) {
+    .leaderboard-content.leaderboard-content-showmore .leaderboard-item:nth-last-child(-n+6) {
         display: flex;
     }
 
     .leaderboard-seemore {
+        display: block;
         text-align: center;
         padding: 1rem;
     }
