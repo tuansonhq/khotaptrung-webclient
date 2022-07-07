@@ -7,7 +7,7 @@
                     <div class="col-auto body-detail-nick-col-ct">
                         <a href="/dich-vu/{{ @$service->slug }}" class="list-item-nick-hover">
                             <div class="row marginauto">
-                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                <div class="col-md-12 left-right default-overlay-nick-ct --fix-responsive">
                                     <img class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{ @$service->slug }}">
                                 </div>
                                 <div class="col-md-12 left-right text-center body-detail-col-span-ct">
