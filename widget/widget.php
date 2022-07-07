@@ -56,7 +56,6 @@ View::composer('frontend.widget.__menu__taget', function ($view) {
 
 });
 
-
 //theme3
 View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 
@@ -73,6 +72,7 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+
 View::composer('frontend.widget.__list_service', function ($view) {
 
     $data = \Cache::rememberForever('__list_service', function() {
@@ -198,6 +198,24 @@ View::composer('frontend.widget.__tin__tuc', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__random__account', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__random__account', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list_random';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
 
 View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
@@ -286,6 +304,20 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
     return $view->with('data', $data);
 });
 
+
+View::composer('frontend.widget.__service_game', function ($view) {
+
+    $data = \Cache::rememberForever('__service_game', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+//        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
+    return $view->with('data', $data);
+});
+
 View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 
@@ -319,6 +351,7 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 
 });
+
 View::composer('frontend.widget.__menu_category', function ($view) {
 
     try{
@@ -337,6 +370,7 @@ View::composer('frontend.widget.__menu_category', function ($view) {
     return $view->with('data_menu_category', $data_menu_category);
 
 });
+
 View::composer('frontend.widget.__menu_category_theme2', function ($view) {
 
     $url_menu_category = '/menu-category';
@@ -364,6 +398,7 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
     return $view->with('data',$data);
 
 });
+
 View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
     $data = \Cache::rememberForever('__menu_profile_desktop', function() {
         $url = '/menu-profile';
@@ -378,7 +413,6 @@ View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
     return $view->with('data',$data);
 
 });
-
 
 View::composer('frontend.widget.__menu_transaction', function ($view) {
 
@@ -424,6 +458,7 @@ View::composer('frontend.widget.__top_nap_the', function ($view) {
 
 
 });
+
 View::composer('frontend.widget.__top_nap_the_mobile', function ($view) {
 
 

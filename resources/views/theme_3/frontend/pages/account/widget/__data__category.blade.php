@@ -3,7 +3,7 @@
 
         <div class="col-md-12 text-left left-right">
             <div class="row body-detail-row-ct">
-                @if (isset($data))  
+                @if (isset($data))
                     @foreach ($data as $item)
                         <div class="col-auto body-detail-nick-col-ct" data-title="{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}">
                             <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-nick-hover">

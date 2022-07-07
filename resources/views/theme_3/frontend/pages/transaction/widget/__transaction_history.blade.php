@@ -3,104 +3,51 @@
     <table class="table table-striped table-hover table-logs" id="table-default">
         <thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản</th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>
         <tbody>
-        @php
+        {{--@php
             $prev = null;
-        @endphp
+        @endphp--}}
         @if(isset($data) && count($data) > 0)
             @foreach ($data as $item)
+                <tr>
+                    <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i',strtotime($item->created_at)) }}</td>
+                    <td>#{{$item->id}}</td>
 
-                @php
-                    $curr = \App\Library\Helpers::formatDate($item->created_at);
-                @endphp
-                @if($curr != $prev)
-                    <tr>
-                        <td colspan="8" class="text-left"><b>Ngày {{$curr}}</b></td>
-                    </tr>
-                    <tr>
-                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
-                        <td>#{{$item->id}}</td>
-
-                        <td>{{ $item->user->username }}</td>
-                        <td>
-                            @foreach($config as $ils => $valls)
-                                @if($ils == $item->trade_type)
-                                    {{ $valls }}
-                                @endif
-                            @endforeach
-                        </td>
-
-                        <td>
-                            @if($item->is_add==1)
-                                <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
-                            @elseif($item->is_add==0)
-                                <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                    <td>{{ $item->user->username }}</td>
+                    <td>
+                        @foreach($config as $ils => $valls)
+                            @if($ils == $item->trade_type)
+                                {{ $valls }}
                             @endif
-                        </td>
-                        <td>
-                            {{ str_replace(',','.',number_format($item->last_balance)) }}đ
-                        </td>
-                        <td>
-                            {{ $item->description }}
-                        </td>
-                        <td>
-                            @foreach($status as $istls => $valstls)
-                                @if($istls == $item->status)
-                                    @if($item->status == 1)
-                                        <span class="badge badge-success">{{ $valstls }}</span>
-                                    @elseif($item->status == 0)
-                                        <span class="badge badge-danger">{{ $valstls }}</span>
-                                    @elseif($item->status == 2)
-                                        <span class="badge badge-warning">{{ $valstls }}</span>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </td>
-                    </tr>
-                    @php
-                        $prev = $curr;
-                    @endphp
-                @else
-                    <tr>
-                        <td>{{ date('H:i',strtotime($item->created_at)) }}</td>
-                        <td>#{{$item->id}}</td>
+                        @endforeach
+                    </td>
 
-                        <td>{{ $item->user->username }}</td>
-                        <td>
-                            @foreach($config as $ils => $valls)
-                                @if($ils == $item->trade_type)
-                                    {{ $valls }}
+                    <td>
+                        @if($item->is_add==1)
+                            <span class="c-font-bold text-info" style="white-space: nowrap">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                        @elseif($item->is_add==0)
+                            <span class="c-font-bold text-danger" style="white-space: nowrap">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
+                        @endif
+                    </td>
+                    <td>
+                        {{ str_replace(',','.',number_format($item->last_balance)) }}đ
+                    </td>
+                    <td>
+                        {{ $item->description }}
+                    </td>
+                    <td>
+                        @foreach($status as $istls => $valstls)
+                            @if($istls == $item->status)
+                                @if($item->status == 1)
+                                    <span class="badge badge-success">{{ $valstls }}</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-danger">{{ $valstls }}</span>
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">{{ $valstls }}</span>
                                 @endif
-                            @endforeach
-                        </td>
-
-                        <td>
-                            @if($item->is_add==1)
-                                <span class="c-font-bold text-info">+{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
-                            @elseif($item->is_add==0)
-                                <span class="c-font-bold text-danger">-{{ str_replace(',','.',number_format($item->amount)) }} đ</span>
                             @endif
-                        </td>
-                        <td>
-                            {{ str_replace(',','.',number_format($item->last_balance)) }}đ
-                        </td>
-                        <td>
-                            {{ $item->description }}
-                        </td>
-                        <td>
-                            @foreach($status as $istls => $valstls)
-                                @if($istls == $item->status)
-                                    @if($item->status == 1)
-                                        <span class="badge badge-success">{{ $valstls }}</span>
-                                    @elseif($item->status == 0)
-                                        <span class="badge badge-danger">{{ $valstls }}</span>
-                                    @elseif($item->status == 2)
-                                        <span class="badge badge-warning">{{ $valstls }}</span>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </td>
-                    </tr>
-                @endif
+                        @endforeach
+                    </td>
+                </tr>
             @endforeach
         @else
 

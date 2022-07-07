@@ -54,6 +54,7 @@
 .marginauto{
     margin: 0 auto;
     width: 100%;
+    flex-basis: 45%;
 }
 .body-container-row-ct{
     padding-top: 16px;
@@ -370,7 +371,7 @@
 .body-detail-ctng-col-ct img{
     width: 100%;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 .body-detail-nick-col-ct .nick-item-cover-overlay img {
@@ -518,6 +519,8 @@
     /*width: 55%;*/
     padding-right: 0;
     padding-left: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /*    chitiet      */
@@ -900,6 +903,8 @@
     padding-right: 16px;
     padding-top: 16px;
     padding-bottom: 16px;
+    width: 100%;
+    flex: 1;
     /*margin-top: 20px;*/
 }
 .body-detail-right-ng-ct{
@@ -1138,9 +1143,19 @@
     overflow: hidden;
 }
 .show-detail-caythue-ct-fix .content-video-in{
-    max-height: 172px;
-    overflow: hidden;
+    max-height: 350px;
+    overflow-y: scroll;
+    padding-right: 0.5rem;
 }
+.show-detail-caythue-ct-fix .content-video-in::-webkit-scrollbar{
+    width: 10px;
+}
+.show-detail-caythue-ct-fix .content-video-in::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 10px;
+}
+
+
 .show-detail-caythue-ct .view-more,.show-detail-caythue-ct .view-less{
     font-family: 'Open Sans';
     font-style: normal;
@@ -4610,7 +4625,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .default-overlay-ct.related-acc-category {
         height: 67px;
     }
-    
+
     .body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {
         border-radius: 8px;
     }
@@ -4797,11 +4812,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .modal-body-success-ct {
         padding-left: 16px !important;
         padding-right: 16px !important;
-    }
-
-    .body-detail-nick-col-ct {
-        width: 50%;
-        padding: 6px 6px 6px 6px !important;
     }
 
     .body-detail-nick-col-ct img.img-list-nick-category{
@@ -6057,6 +6067,13 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     }
     .footer-default-body-col{
         padding-bottom: 8px;
+    }
+}
+
+@media only screen and (max-width: 1199px){
+    .body-detail-nick-col-ct {
+        width: 50%;
+        padding: 6px 6px 6px 6px !important;
     }
 }
 .comment-item-own{

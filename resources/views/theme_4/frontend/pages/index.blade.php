@@ -446,7 +446,7 @@
     </div>
     @include('frontend.widget.__nap_the')
     @include('frontend.widget.__dichvu__lienquan')
-    @include('frontend.widget.__tin__tuc')
+{{--    @include('frontend.widget.__tin__tuc')--}}
 
     <div class="block-product mt-fix-20 service-mobile">
 

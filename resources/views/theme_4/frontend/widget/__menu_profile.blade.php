@@ -43,25 +43,37 @@
                 {{--                                    Vong lap thang con--}}
                 @foreach ($data as $key_child => $child_item)
                     @if ($item->id == $child_item->parent_id)
-                <div class="row marginauto nav-bar-nick nav-bar-child add-active_{{ $child_item->slug }} {{ '/'.request()->path() == $child_item->url ? 'active' : ''}}">
-                    <div class="col-12 left-right">
-                        <a href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="">
-                            <div class="row marginauto">
-                                <div class="col-auto left-right global__link__profile">
-                                    <i class="__icon__profile --sm__profile --link__profile" style="--path : url({{@$child_item->image_icon}})"></i>
-                                </div>
-                                <div class="col-10 nav-bar-log-top-body-col">
-                                    <span>{{@$child_item->title}}</span>
-                                </div>
+                        <div class="row marginauto nav-bar-nick nav-bar-child add-active_{{ $child_item->slug }} {{ '/'.request()->path() == $child_item->url ? 'active' : ''}}">
+                            <div class="col-12 left-right">
+                                <a href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="">
+                                    <div class="row marginauto">
+                                        <div class="col-auto left-right global__link__profile">
+                                            <i class="__icon__profile --sm__profile --link__profile" style="--path : url({{ $child_item->image_icon??'' }})"></i>
+                                        </div>
+                                        <div class="col-10 nav-bar-log-top-body-col">
+                                            <span>{{$child_item->title}}</span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                </div>
+                        </div>
                     @endif
                 @endforeach
                 {{--                                    Vong lap thang con--}}
 
+
             </div>
         @endif
     @endforeach
+    <div class="row marginauto nav-bar-nick nav-bar-child d-block d-lg-none" style="margin-top: -20px">
+        <div class="col-md-12 left-right">
+            <li id="login_menu" style="list-style: none">
+                {{--                <a href="">--}}
+                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
+                {{--                    <span>Đăng nhập/ Đăng ký</span>--}}
+                {{--                </a>--}}
+            </li>
+        </div>
+
+    </div>
 @endif
