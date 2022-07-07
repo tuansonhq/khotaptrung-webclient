@@ -17,7 +17,7 @@
                     @forelse($data as $k_service => $service)
                     <div  class="swiper-slide">
                         <a href="dich-vu/{{ @$service->slug }}">
-                            <div class="item-product__box-img item-news-img item-service-image">
+                            <div class="item-service-image">
                                 <img src="{{ @$service->image }}" alt="{{ @$service->slug }}">
                             </div>
                             <div class="item-product__box-content item-news-content">

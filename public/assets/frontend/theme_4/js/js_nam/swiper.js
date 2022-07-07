@@ -73,16 +73,15 @@ var intro_list = new Swiper('.list-intro', {
 });
 var news_list = new Swiper('.list-article', {
     autoplay: false,
-
     updateOnImagesReady: true,
     watchSlidesVisibility: false,
     lazyLoadingInPrevNext: false,
     lazyLoadingOnTransitionStart: false,
     loop: false,
     centeredSlides: false,
-    slidesPerView: 6,
+    slidesPerView: 5,
     speed: 800,
-    spaceBetween: 20,
+    spaceBetween: 18,
     freeMode: true,
     touchMove: true,
     freeModeSticky:true,
@@ -94,15 +93,11 @@ var news_list = new Swiper('.list-article', {
     },
     breakpoints: {
 
-        992: {
+        1199: {
             slidesPerView: 3,
         },
-        768: {
-            slidesPerView: 3,
-        },
-
         480: {
-            slidesPerView: 1.8,
+            slidesPerView: 2.5,
             spaceBetween: 6,
         }
     }

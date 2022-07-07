@@ -9,7 +9,6 @@ var news_service = new Swiper('.list-service', {
     slidesPerView: 5,
     speed: 800,
     spaceBetween: 16,
-
     touchMove: true,
     freeModeSticky:true,
     grabCursor: true,
@@ -19,16 +18,8 @@ var news_service = new Swiper('.list-service', {
         enabled: true,
     },
     breakpoints: {
-
-        992: {
-            slidesPerView: 3,
-        },
-        768: {
-            slidesPerView: 3,
-        },
-
-        480: {
-            slidesPerView: 1.8,
+        1199: {
+            slidesPerView: 1.5,
             spaceBetween: 6,
         }
     }
