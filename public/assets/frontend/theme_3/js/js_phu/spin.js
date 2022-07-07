@@ -1,6 +1,5 @@
 $(document).ready(function () {
     setActiveTable();
-    setActiveTableMobile();
     var started_at = $('.started_at').val();
 
     $('#numrolllop').niceSelect();
@@ -38,23 +37,9 @@ $(document).ready(function () {
     }, 1000);
 
     //See more see less button functions
-    $('#seeMore').click(function (e) {
-        e.preventDefault();
-        $('.service-detail-content').addClass('show-content');
-        $(this).css('display','none');
-        $('#seeLess').css('display', 'block');
-    });
-
-    $('#seeLess').click(function (e) {
-        e.preventDefault();
-        $('.service-detail-content').removeClass('show-content');
-        $(this).css('display','none');
-        $('#seeMore').css('display', 'block');
-    });
-
     $('.leaderboard-seemore').click(function (e) {
         e.preventDefault();
-        $('.leaderboard-md .leaderboard-content').addClass('leaderboard-content-showmore');
+        $('.leaderboard-content').addClass('leaderboard-content-showmore');
         $(this).css('display','none');
     });
 
@@ -74,56 +59,30 @@ $(document).ready(function () {
     });
 
     //Change leaderboard table
-    $('.leaderboard-lg .listed-date').click( function (e) {
-        var index = $('.leaderboard-lg .listed-date').index(this);
-        $('.leaderboard-lg .leaderboard-content').css('display', 'none');
+    $('.rotation-leaderboard .listed-date').click( function (e) {
+        var index = $('.rotation-leaderboard .listed-date').index(this);
+        $('.rotation-leaderboard .leaderboard-content').css('display', 'none');
         if ( index == 0 ) {
-            $('.leaderboard-lg .leaderboard-1').css('display', 'block');
+            $('.rotation-leaderboard .leaderboard-1').css('display', 'block');
         }
         if ( index == 1 ) {
-            $('.leaderboard-lg .leaderboard-2').css('display', 'block');
+            $('.rotation-leaderboard .leaderboard-2').css('display', 'block');
         }
         if ( index == 2 ) {
-            $('.leaderboard-lg .leaderboard-3').css('display', 'block');
+            $('.rotation-leaderboard .leaderboard-3').css('display', 'block');
         }
-        $('.leaderboard-lg .listed-date').removeClass('listed-table-active');
+        $('.rotation-leaderboard .listed-date').removeClass('listed-table-active');
         $(this).addClass('listed-table-active');
-        $('.leaderboard-lg .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
-        $('.leaderboard-lg .date-listing').css('width', `${$(this).parent().width()}px` );
-    });
-
-    //Change leaderboard table mobile
-    $('.leaderboard-md .listed-date').click( function (e) {
-        var index = $('.leaderboard-md .listed-date').index(this);
-        $('.leaderboard-md .leaderboard-content').css('display', 'none');
-        if ( index == 0 ) {
-            $('.leaderboard-md .leaderboard-1').css('display', 'block');
-        }
-        if ( index == 1 ) {
-            $('.leaderboard-md .leaderboard-2').css('display', 'block');
-        }
-        if ( index == 2 ) {
-            $('.leaderboard-md .leaderboard-3').css('display', 'block');
-        }
-        $('.leaderboard-md .listed-date').removeClass('listed-table-active');
-        $(this).addClass('listed-table-active');
-        $('.leaderboard-md .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
-        $('.leaderboard-md .date-listing').css('width', `${$(this).parent().width()}px` );
+        $('.rotation-leaderboard .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
+        $('.rotation-leaderboard .date-listing').css('width', `${$(this).parent().width()}px` );
     });
 
     //Set active leaderboard date tabs
     function setActiveTable() {
-        let width = $('.leaderboard-lg .listed-date').first().parent().width();
-        $('.leaderboard-lg .listed-date').first().addClass('listed-table-active');
-        $('.leaderboard-lg .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
-        $('.leaderboard-lg .date-listing').css('width', `${width}px` );
-    }
-
-    function setActiveTableMobile() {
-        let width = $('.leaderboard-md .listed-date').first().parent().width();
-        $('.leaderboard-md .listed-date').first().addClass('listed-table-active');
-        $('.leaderboard-md .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
-        $('.leaderboard-md .date-listing').css('width', `${width}px` );
+        let width = $('.rotation-leaderboard .listed-date').first().parent().width();
+        $('.rotation-leaderboard .listed-date').first().addClass('listed-table-active');
+        $('.rotation-leaderboard .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
+        $('.rotation-leaderboard .date-listing').css('width', `${width}px` );
     }
 
 
