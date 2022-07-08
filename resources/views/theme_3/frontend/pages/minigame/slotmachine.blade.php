@@ -732,36 +732,34 @@
                     <div class="swiper-container list-minigame" >
                         <div class="swiper-wrapper">
                             @foreach($groups_other as $key => $item)
-                                @if($key > 3)
-                                    <div class="swiper-slide" >
-                                        <a href="{{route('getIndex',[$item->slug])}}">
-                                            <div class="item-product__box-img">
+                                <div class="swiper-slide" >
+                                    <a href="{{route('getIndex',[$item->slug])}}">
+                                        <div class="item-product__box-img">
 
-                                                <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
+                                            <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
 
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                {{$item->title}}
                                             </div>
-                                            <div class="item-product__box-content">
-
-
-                                                <div class="item-product__box-name">
-                                                    {{$item->title}}
-                                                </div>
-                                                <div class="item-product__box-sale">
-                                                    Đã bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
-                                                </div>
-                                                <div class="item-product__box-price">
-
-                                                    <div class="special-price">{{number_format($item->price)}} đ</div>
-                                                    <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
-                                                    <div class="item-product__sticker-percent">
-                                                        -50%
-                                                    </div>
-                                                </div>
-
+                                            <div class="item-product__box-sale">
+                                                Đã bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
                                             </div>
-                                        </a>
-                                    </div>
-                                @endif
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">{{number_format($item->price)}} đ</div>
+                                                <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>

@@ -850,10 +850,9 @@ header nav.heading .header-container{
     text-align: center;
 }
 .block-product{
-
     background-color: white;
     border-radius: var(--primary-border);
-    padding: 18px 21px;
+    padding: 18px 16px;
     /*border: 1px solid #DCDEE9;*/
 }
 .block-mini-game{

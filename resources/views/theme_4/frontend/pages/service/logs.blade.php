@@ -9,7 +9,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="">Dịch vụ đã mua</a></li>
+                <li class="menu-container-li-ct"><a href="/dich-vu-da-mua">Dịch vụ đã mua</a></li>
             </ul>
         </div>
     </section>

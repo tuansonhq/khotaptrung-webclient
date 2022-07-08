@@ -2064,7 +2064,10 @@ footer{
 
 .box-text{
     margin-bottom: 5px;
-    background-color: #e0ebf9!important;
+    background-color: #000000!important;
+}
+.box-text p,.box-text span,.box-text li,.box-text a{
+    color: #000000;
 }
 .showtext {
     max-height:initial;
