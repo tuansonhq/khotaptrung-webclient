@@ -139,6 +139,7 @@
                             </div>
                             <div class="progress-wrapper" >
                                 <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
+                                <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}</span>
                             </div>
                         </div>
                         @endif
