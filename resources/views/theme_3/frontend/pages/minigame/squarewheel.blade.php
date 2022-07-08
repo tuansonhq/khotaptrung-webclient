@@ -139,7 +139,7 @@
                             </div>
                             <div class="progress-wrapper" >
                                 <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                                <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}</span>
+                                <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}/100</span>
                             </div>
                         </div>
                         @endif
@@ -744,6 +744,9 @@
                         </ul>
 
                         <div class="commment-input">
+                            <div class="comment-user-avatar">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
+                            </div>
                             <input name="message-to-send" type="text" class="input-primary" id="message-to-send">
                         </div>
                         <div class="comment-button">

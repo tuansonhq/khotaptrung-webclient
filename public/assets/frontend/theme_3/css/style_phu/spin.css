@@ -309,7 +309,7 @@
 
 .progress-tooltip {
     position: absolute;
-    width: 150px;
+    width: 200px;
     text-align: center;
     top: -42px;
     left: 0px;
@@ -502,10 +502,16 @@
 
 .commment-input {
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.comment-user-avatar {
+    margin-right: 0.5rem;
 }
 
 .commment-input input {
-    width: 95%;
+    width: 100%;
     background: #FBFBFD;
     border: 1px solid #BCBFD6;
     border-radius: 8px;
@@ -519,7 +525,6 @@
 
 .comment-button {
     text-align: right;
-    width: 95%;
 }
 
 .comment-button button {
