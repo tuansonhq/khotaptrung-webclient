@@ -559,7 +559,7 @@
         function UpdatePrice() {
             var price = 0;
             var itemselect = '';
-            console.log(data)
+
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
             }
