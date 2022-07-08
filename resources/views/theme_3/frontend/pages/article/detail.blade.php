@@ -51,13 +51,13 @@
             <a href="/tin-tuc" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
-            <h4>Chi tiết tin tức</h4>
+            <p>Chi tiết tin tức</p>
         </div>
         <div class="card --custom p-3 mb-3">
             <article id="article--detail">
-                <h3 class="article--title">
+                <h1 class="article--title">
                     {{$data -> title}}
-                </h3>
+                </h1>
                 <div class="article--info">
                     {{ formatDateTime($data->created_at) }}
                 </div>

@@ -24,6 +24,7 @@
             </form>
         </div>
     </div>
+
     <div class="box-product">
         <div class=" list-product d-flex flex-wrap" >
          @foreach($data as $service)
