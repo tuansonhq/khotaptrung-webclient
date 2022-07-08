@@ -65,7 +65,9 @@
     max-width: 100%;
 }
 
-
+.detail-ser-content{
+    flex-basis: 45%;
+}
 @media (max-width: 767px) {
     .gaming-recharge-search-form button{
         display: none;
