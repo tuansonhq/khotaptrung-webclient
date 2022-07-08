@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="progress-wrapper">
+                            <div class="progress-wrapper" >
                                 <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                             </div>
                         </div>
@@ -767,36 +767,34 @@
                     <div class="swiper-container list-minigame list-product" >
                         <div class="swiper-wrapper">
                             @foreach($groups_other as $key => $item)
-                                @if($key > 3)
-                                    <div class="swiper-slide" >
-                                        <a href="{{route('getIndex',[$item->slug])}}">
-                                            <div class="item-product__box-img">
+                                <div class="swiper-slide" >
+                                    <a href="{{route('getIndex',[$item->slug])}}">
+                                        <div class="item-product__box-img">
 
-                                                <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
+                                            <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
 
+                                        </div>
+                                        <div class="item-product__box-content">
+
+
+                                            <div class="item-product__box-name">
+                                                {{$item->title}}
                                             </div>
-                                            <div class="item-product__box-content">
-
-
-                                                <div class="item-product__box-name">
-                                                    {{$item->title}}
-                                                </div>
-                                                <div class="item-product__box-sale">
-                                                    Đã bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
-                                                </div>
-                                                <div class="item-product__box-price">
-
-                                                    <div class="special-price">{{number_format($item->price)}} đ</div>
-                                                    <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
-                                                    <div class="item-product__sticker-percent">
-                                                        -50%
-                                                    </div>
-                                                </div>
-
+                                            <div class="item-product__box-sale">
+                                                Đã bán: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}
                                             </div>
-                                        </a>
-                                    </div>
-                                @endif
+                                            <div class="item-product__box-price">
+
+                                                <div class="special-price">{{number_format($item->price)}} đ</div>
+                                                <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
+                                                <div class="item-product__sticker-percent">
+                                                    -50%
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -1094,7 +1092,8 @@
 
                             userpoint = data.userpoint;
                             if(userpoint<100){
-                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                                $(".item_spin_progress_bubble").css("width", data.userpoint + "%");
+
                             }else{
                                 $(".item_spin_progress_bubble").css("width", "100%");
                                 $(".item_spin_progress_bubble").addClass('clickgif');
@@ -1306,7 +1305,9 @@
         .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
     </style>
     <script type="text/javascript">
+
         $( document ).ready(function() {
+
             $(document).on('scroll',function(){
                 if($(window).width() > 1024){
                     if ($(this).scrollTop() > 100) {
