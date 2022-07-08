@@ -26,7 +26,7 @@ class ServiceController extends Controller
         $method = "GET";
 
         $dataSend = array();
-        $dataSend['order'] = "desc";
+
         if ($request->ajax()){
 
             $page = $request->page;
@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
             $dataSend = array();
             $dataSend['page'] = $page;
-            $dataSend['order'] = "desc";
+
             if (isset($request->title) || $request->title != '' || $request->title != null) {
                 $dataSend['search'] = $request->title;
             }
