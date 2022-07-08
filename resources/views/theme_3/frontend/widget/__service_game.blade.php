@@ -24,11 +24,12 @@
             </form>
         </div>
     </div>
+
     <div class="box-product">
         <div class=" list-product d-flex flex-wrap" >
          @foreach($data as $service)
                 <div class="col-auto body-detail-nick-col-ct js-service">
-                    <a href="/mua-acc/{{ @$service->slug }}" class="list-item-nick-hover">
+                    <a href="/dich-vu/{{ @$service->slug }}" class="list-item-nick-hover">
                         <div class="row marginauto">
                             <div class="col-md-12 left-right default-overlay-nick-ct --fix-responsive">
                                 <img class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{ @$service->slug }}">

@@ -1533,6 +1533,7 @@ a:hover .__icon.--path__custom:after {
     position: absolute;
     width: 100%;
     height: 100%;
+    border-radius: 8px;
 }
 /* Small Screen */
 @media screen and (max-width: 1200px) {
