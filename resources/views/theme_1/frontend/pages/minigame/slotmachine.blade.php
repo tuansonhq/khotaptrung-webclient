@@ -8,7 +8,6 @@
             <div class="item_play_title">
                 <h1>{{$result->group->title}}</h1>
                 <div class="item_play_line"></div>
-
             </div>
             <div class="item_play_online_out">
                 <div class="item_play_online"></div>

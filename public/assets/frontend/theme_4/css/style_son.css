@@ -3740,9 +3740,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     width: 100%;
 }
 
-
-
-
 @media screen and (min-width: 1200px){
     .item_slot {
         background-size: 100% auto !important;
@@ -3922,7 +3919,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         display: flex;
     }
 }
-
 /*  Ipat  */
 @media (min-width: 768px) and (max-width: 992px) {
     .body-detail-col-ct {

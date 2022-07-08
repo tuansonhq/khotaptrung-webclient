@@ -52,7 +52,7 @@ class MinigameController extends Controller
                     //Tạo random đang chơi:
                     if($group->params->user_num_from > 0 && $group->params->user_num_to > 0 && $group->params->user_num_from < $group->params->user_num_to){
                         $numPlay = rand($group->params->user_num_from, $group->params->user_num_to);
-                    }else{
+                    } else {
                         $numPlay = rand(1,1000);
                     }
 
@@ -169,7 +169,28 @@ class MinigameController extends Controller
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }
                     }
-
+//                    $data_view = [
+//                        'result'=>$result,
+//                        'groups_other'=>$groups_other,
+//                        'numPlay'=>$numPlay,
+//                        'topDayList'=>$topDayList,
+//                        'top7DayList'=>$top7DayList,
+//                        'currentPlayList'=>$currentPlayList,
+//                        'position'=>$result->group->position,
+//                    ];
+//                    switch ($result->group->position) {
+//                        case 'rubywheel':
+//                        case 'flip':
+//                        case 'slotmachine':
+//                        case 'slotmachine5':
+//                        case 'squarewheel':
+//                        case 'smashwheel':
+//                        case 'rungcay':
+//                        case 'gieoque':
+//                            return view('frontend.pages.minigame.detail',$data_view);
+//                        default:
+//                            return redirect()->back()->withErrors($result_out->message);
+//                    }
                     switch ($result->group->position) {
                         case 'rubywheel':
                             return view('frontend.pages.minigame.rubywheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
@@ -190,6 +211,7 @@ class MinigameController extends Controller
                         default:
                             return redirect()->back()->withErrors($result_out->message);
                     }
+
                 } else {
                     logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
