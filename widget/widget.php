@@ -264,6 +264,7 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
         $method = "GET";
         $dataSend = array();
         $dataSend['limit'] = 8;
+        $dataSend['order'] = "desc";
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
     });
@@ -298,6 +299,7 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
         $method = "GET";
         $dataSend = array();
         $dataSend['limit'] = 8;
+        $dataSend['order'] = "desc";
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
     });
@@ -311,6 +313,7 @@ View::composer('frontend.widget.__service_game', function ($view) {
         $url = '/service';
         $method = "GET";
         $dataSend = array();
+        $dataSend['order'] = "desc";
 //        $dataSend['limit'] = 8;
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
