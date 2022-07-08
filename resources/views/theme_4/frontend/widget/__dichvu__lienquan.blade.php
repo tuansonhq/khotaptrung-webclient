@@ -2,9 +2,9 @@
 <div class=" block-product mt-fix-20 mt-md-fix-8 service-mobile">
     <div class="d-flex product-header-item product-header">
                     <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
+                        <img src="/assets/frontend/theme_3/image/nick_title.png" alt="">
                     </span>
-        <p class="text-title text-content-service">Các dịch vụ liên quan</p>
+        <p class="text-title ">Các dịch vụ liên quan</p>
         <div class="product-catecory"></div>
         <div class="text-view-more">
             <a href="/dich-vu" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
@@ -12,7 +12,7 @@
     </div>
     <div class="box-product-content tab-content">
         <div class="box-product tab-pane fade active show" role="tabpanel" >
-            <div class="swiper-container list-service">
+            <div class="swiper-container list-service-home">
                 <div class="swiper-wrapper">
                     @forelse($data as $k_service => $service)
                     <div  class="swiper-slide">

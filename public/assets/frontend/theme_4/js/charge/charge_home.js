@@ -34,7 +34,7 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             success: function (data) {
-                console.log(data)
+
                 if(data.status == 1){
                     let html = '';
                     if(data.data.length > 0){
@@ -89,7 +89,6 @@ $(document).ready(function(){
                     $('.amount-loading').remove();
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
-                    console.log(data.data)
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
                             html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
@@ -107,8 +106,14 @@ $(document).ready(function(){
                         });
                     }
 
+                    if($(window).width() > 992){
+                        $('#amount').html(html);
+                    }else {
+                        $('#amount_mobile').html(html);
+                    }
+                    //
 
-                    $('#amount').html(html);
+
 
                     amount_checked =  $('input[name=amount]:checked');
                     updatePriceCharge()
@@ -225,8 +230,10 @@ $(document).ready(function(){
             complete: function (data) {
                 $('#reload_1').trigger('click');
                 formSubmit.trigger("reset");
-                btnSubmit.text('Nạp thẻ');
+                btnSubmit.text('Nạp ngay');
                 btnSubmit.prop('disabled', false);
+                $('.btn-confirm-charge').text('Xác nhận');
+                $('.btn-confirm-charge').prop('disabled', false);
             }
         });
     }
@@ -240,26 +247,16 @@ $(document).ready(function(){
 
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
+        $('.btn-confirm-charge').text('Đang xử lý...');
+        $('.btn-confirm-charge').prop('disabled', true);
         postCharge()
         return false;
 
     });
     function updatePriceCharge() {
 
-        $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
-        $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
-        $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
-        $('input[name=amount]').change(function(){
-            $('.charge_amount').html(' <small>'+ formatNumber($(this).val()) +'</small>')
-            $('.charge_price').html(' <span>'+ formatNumber($(this).val()) +'</span>')
-            $('.charge_ratito').html(' <small>'+ formatNumber($(this).attr("data-ratito")) +'</small>')
-
-        });
-
-
         var amount=amount_checked.val();
         var ratio=amount_checked.attr("data-ratito");
-
         if(ratio<=0 || ratio=="" || ratio==null){
             ratio=100;
         }
@@ -274,8 +271,32 @@ $(document).ready(function(){
             $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
 
         }
-    }
+        $('input[name=amount]').change(function(){
 
+            var amount=$(this).val();
+            var ratio=$(this).attr("data-ratito");
+
+            if(ratio<=0 || ratio=="" || ratio==null){
+                ratio=100;
+            }
+            var sale=amount-(amount*ratio/100);
+            var total=amount-sale;
+            // var total=sale*quantity;
+            var totalnotsale = amount
+            if(sale != 0){
+                $('.charge_total').html('<span>' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+            }else {
+                $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
+
+            }
+        });
+
+
+
+
+
+    }
 
 
 });
