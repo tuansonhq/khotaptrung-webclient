@@ -66,7 +66,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="row m-0 pagination--layout">
+                <div class="row m-0 pagination--layout _h-lg-0">
                     <div class="col -12 col-lg-8 px-3">
                     </div>
                     <div class="col-12 col-lg-4 p-0 pb-3 pr-lg-3">

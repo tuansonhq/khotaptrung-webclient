@@ -20,7 +20,7 @@
                 @endphp--}}
                 @foreach ($data as $key => $item)
                         <tr>
-                            <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i',strtotime($item->created_at)) }}</td>
+                            <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i:s',strtotime($item->created_at)) }}</td>
                             <td>Nạp tự động</td>
 
                             <td>{{ $item->telecom_key }}</td>

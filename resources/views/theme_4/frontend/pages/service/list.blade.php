@@ -1,20 +1,14 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-    @include('frontend.widget.__seo_head')
-@endsection
-@section('meta_robots')
-    <meta name="robots" content="index,follow" />
-@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
 @endsection
 @section('content')
 
     {{--  Header mobile  --}}
-    <section class="media-mobile">
+    <section class="media-mobile ">
         <div class="container container-fix banner-mobile-container-ct">
             <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%">
+                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                 </div>
 
@@ -38,7 +32,7 @@
             <ul>
                 <li><a href="/">Trang chủ</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/dich-vu">Dịch vụ</a></li>
+                <li class="menu-container-li-ct"><a href="/dich-vu">Cày thuê</a></li>
             </ul>
         </div>
     </section>
@@ -86,14 +80,14 @@
                         </div>
 
                         <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST">
+                            <form action="" method="POST" id="service-form">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
                                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
-                                        <button type="button" class="timkiem-button-ct">Tìm kiếm</button>
+                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
                                     </div>
                                 </div>
                             </form>
@@ -114,7 +108,6 @@
                         @include('frontend.pages.service.widget.__data__list')
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

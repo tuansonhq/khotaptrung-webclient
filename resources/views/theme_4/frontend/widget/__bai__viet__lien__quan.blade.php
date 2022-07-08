@@ -21,14 +21,14 @@
                                 @endif
                             </a>
                         </div>
-                        <div class="article--title my-3">
+                        <div class="article--title my-1 my-lg-3">
                             <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
                                 {{$item->title}}
                             </a>
                         </div>
                         <div class="article--date">
                             <i class="__icon calendar mr-2"></i>
-                            {{formatDateTime($item->created_at)}}
+                            {{ date('d/m/Y',strtotime($item->created_at)) }}
                         </div>
                     </div>
                 </div>

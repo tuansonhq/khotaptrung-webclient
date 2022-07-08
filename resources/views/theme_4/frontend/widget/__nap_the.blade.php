@@ -182,7 +182,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-7 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
+        <div class="col-lg-7 col-md-12 px-0 d-none d-lg-block" style="min-height: 100%">
             <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
         </div>
     </div>
