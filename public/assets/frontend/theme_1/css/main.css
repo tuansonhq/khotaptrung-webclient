@@ -2063,6 +2063,7 @@ footer{
 }
 
 .box-text{
+    color: #000000!important;
     margin-bottom: 5px;
     /*background-color: #000000!important;*/
 }
