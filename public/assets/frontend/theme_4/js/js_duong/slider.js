@@ -1,4 +1,4 @@
-var news_service = new Swiper('.list-service', {
+var news_service = new Swiper('.list-service-home', {
     autoplay: false,
     updateOnImagesReady: true,
     watchSlidesVisibility: false,
