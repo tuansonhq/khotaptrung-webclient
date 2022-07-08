@@ -315,7 +315,7 @@
 
 .body-detail-col-ct{
     padding: 16px 8px 16px 8px;
-    width: 12.5%;
+    width: 25%;
 }
 
 .body-detail-account-col-ct{
@@ -6058,6 +6058,10 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .body-detail-account-col-ct {
         width: 50%;
         padding: 8px 8px 16px 8px !important;
+    }
+    .body-detail-col-span-ct span{
+        font-size: 14px;
+        font-weight: 400    ;
     }
 }
 .comment-item-own{

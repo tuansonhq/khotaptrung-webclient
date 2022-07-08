@@ -4,7 +4,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/news.png" alt="">
                     </span>
-        <p class="text-title">Tin tức</p>
+        <p class="text-title pl-2">Tin tức</p>
         <div class="navbar-spacer"></div>
 
 
@@ -22,11 +22,11 @@
                     @forelse($data[0]->items as $k_article => $article)
                         <div class="swiper-slide">
                             <a href="/tin-tuc/{{@$article->slug}}">
-                                <div class="item-product__box-img item-news-img">
+                                <div class="news--article__thumb">
                                     <img src="{{ @$article->image }}" alt="{{ @$article->title }}">
                                 </div>
                                 <div class="item-product__box-content item-news-content">
-                                    <div class="item-product__box-name">
+                                    <div class="item-product__box-name _fw-600 _fw-lg-400 ">
                                         {{ @$article->title }}
                                     </div>
                                     <div class="item-product__box-date">

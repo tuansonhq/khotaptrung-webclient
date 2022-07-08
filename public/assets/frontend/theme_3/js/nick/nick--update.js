@@ -19,15 +19,8 @@ $(document).ready(function () {
         observer: true,
         observeParents: true,
         breakpoints: {
-            992: {
-                slidesPerView: 4,
-            },
-            768:{
-                slidesPerView: 4,
-            },
-            480: {
-                slidesPerView: 3.5,
-
+            1199: {
+                slidesPerView: 2.5,
             }
         }
     });

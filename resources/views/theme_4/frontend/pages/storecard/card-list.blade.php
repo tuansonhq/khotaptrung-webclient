@@ -540,7 +540,7 @@
         </div>
     </div>
     <!-- Thanh Toán Không Thành Công Mobile-->
-    <div class="mobile--fail__payment step">
+    <div class="mobile--fail__payment step" style="display: none">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step2">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">

@@ -1253,7 +1253,8 @@ a:hover .__icon.--path__custom:after {
 }
 
 .__icon.--link {
-    -webkit-mask: var(--path) center/contain;
+    -webkit-mask: var(--path) center/cover;
+    -webkit-mask-repeat: no-repeat;
     background-color: #1990FF;
 }
 

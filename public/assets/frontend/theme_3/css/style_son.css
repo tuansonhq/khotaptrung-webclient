@@ -1501,19 +1501,25 @@
 }
 
 .default-overlay-ct.related-acc-category {
-    height: 177px;
+    position: relative;
+    padding-bottom: 60%;
 }
-
-.body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {
+.default-overlay-ct.related-acc-category img {
+    position: absolute;
     height: 100%;
+    width: 100%;
 }
 
 .default-overlay-nick-ct{
     position: relative;
     cursor: pointer;
-    height: 171px;
+    padding-bottom: 60%;
 }
-
+.default-overlay-nick-ct img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 .default-overlay-nick-ct.nick-item-cover-overlay {
     border-top: 1px solid #DCDEE9;
     border-left: 1px solid #DCDEE9;
@@ -4011,10 +4017,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         width: 25%;
     }
 
-    .default-overlay-ct.related-acc-category {
-        height: 107px;
-    }
-
     .body-detail-nick-col-ct {
         width: 33.3333%;
     }
@@ -4294,10 +4296,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .body-row-nick-ct{
         border-bottom-left-radius: 0!important;
         border-bottom-right-radius: 0!important;
-    }
-
-    .default-overlay-ct.related-acc-category {
-        height: 77px;
     }
 
     .body-row-napgame-ct{
@@ -4619,10 +4617,6 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
     .body-header-ct img {
         width: 24px !important;
-    }
-
-    .default-overlay-ct.related-acc-category {
-        height: 67px;
     }
 
     .body-detail-ctng-col-ct .default-overlay-ct.related-acc-category img {

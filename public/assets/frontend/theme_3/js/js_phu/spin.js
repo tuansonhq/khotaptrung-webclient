@@ -58,6 +58,11 @@ $(document).ready(function () {
         $('#rotationHistory').modal('show');
     });
 
+    //Moving point tooltip
+    $('.progress-wrapper').mousemove(function (e) {
+        $('.progress-tooltip', this).css({left: e.pageX - 300});
+    });
+
     //Change leaderboard table
     $('.rotation-leaderboard .listed-date').click( function (e) {
         var index = $('.rotation-leaderboard .listed-date').index(this);
