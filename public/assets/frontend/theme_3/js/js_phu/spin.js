@@ -58,6 +58,13 @@ $(document).ready(function () {
         $('#rotationHistory').modal('show');
     });
 
+    //Moving point tooltip
+    $('.progress-wrapper').mousemove(function (e) {
+        var offset = $(this).offset();
+        var mouseX = e.pageX - offset.left - 100;
+        $('.progress-tooltip').css({left: mouseX});
+    });
+
     //Change leaderboard table
     $('.rotation-leaderboard .listed-date').click( function (e) {
         var index = $('.rotation-leaderboard .listed-date').index(this);

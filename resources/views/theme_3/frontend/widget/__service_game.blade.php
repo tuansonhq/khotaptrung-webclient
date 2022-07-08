@@ -27,14 +27,18 @@
     <div class="box-product">
         <div class=" list-product d-flex flex-wrap" >
          @foreach($data as $service)
-            <div class="item-product item-nick js-service">
-                <a href="/mua-acc/{{$service->slug}}">
-                    <div class="item-nick-img">
-                        <img src="{{\App\Library\MediaHelpers::media($service->image)}}" alt="{{$service->title}}">
-                    </div>
-                    <div class="item-nick-name">{{$service->title}}</div>
-                </a>
-            </div>
+                <div class="col-auto body-detail-nick-col-ct js-service">
+                    <a href="/dich-vu/{{ @$service->slug }}" class="list-item-nick-hover">
+                        <div class="row marginauto">
+                            <div class="col-md-12 left-right default-overlay-nick-ct --fix-responsive">
+                                <img class="lazy" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{ @$service->slug }}">
+                            </div>
+                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
+                                <span>{{ @$service->title }}</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
           @endforeach
         </div>
     </div>
