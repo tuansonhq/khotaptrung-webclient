@@ -76,7 +76,7 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 View::composer('frontend.widget.__list_service', function ($view) {
 
     $data = \Cache::rememberForever('__list_service', function() {
-        $url = '/menu-transaction';
+        $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
@@ -210,7 +210,6 @@ View::composer('frontend.widget.__random__account', function ($view) {
         $dataSend['data'] = 'category_list_random';
         $dataSend['module'] = 'acc_category';
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
         return $data = $result_Api->response_data->data??null;
     });
 
