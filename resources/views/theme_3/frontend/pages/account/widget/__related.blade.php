@@ -30,10 +30,7 @@
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
                                                         <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
-                                                            <span>{{ $item->title }}</span>
-                                                        </div>
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>ID: {{ $item->randId }}</small>
+                                                            <span>ID: {{ $item->randId }}</span>
                                                         </div>
                                                         <?php
                                                             $index = 0;

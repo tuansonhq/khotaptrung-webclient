@@ -60,7 +60,9 @@ $(document).ready(function () {
 
     //Moving point tooltip
     $('.progress-wrapper').mousemove(function (e) {
-        $('.progress-tooltip', this).css({left: e.pageX - 300});
+        var offset = $(this).offset();
+        var mouseX = e.pageX - offset.left - 100;
+        $('.progress-tooltip').css({left: mouseX});
     });
 
     //Change leaderboard table

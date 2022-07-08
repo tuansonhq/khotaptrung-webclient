@@ -2063,8 +2063,9 @@ footer{
 }
 
 .box-text{
+    color: #000000!important;
     margin-bottom: 5px;
-    background-color: #000000!important;
+    /*background-color: #000000!important;*/
 }
 .box-text p,.box-text span,.box-text li,.box-text a{
     color: #000000;
