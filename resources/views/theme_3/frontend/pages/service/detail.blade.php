@@ -485,7 +485,7 @@
                             {{--                            </div>--}}
 
                             {{--                block 2           --}}
-                            <div class="marginauto body-detail-right-ct">
+                            <div class="marginauto body-detail-right-ct detail-ser-content">
 
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto">
