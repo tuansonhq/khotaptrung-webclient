@@ -1253,7 +1253,8 @@ a:hover .__icon.--path__custom:after {
 }
 
 .__icon.--link {
-    -webkit-mask: var(--path) center/contain;
+    -webkit-mask: var(--path) center/cover;
+    -webkit-mask-repeat: no-repeat;
     background-color: #1990FF;
 }
 
@@ -1333,11 +1334,15 @@ a:hover .__icon.--path__custom:after {
 
 /*Dịch vụ */
 .service--thumbnail {
-    height: 128px;
+    position: relative;
+    padding-bottom: 60%;
 }
 
 .service--thumbnail img {
     height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
 }
 
 .label--checkbox {
@@ -1478,8 +1483,6 @@ a:hover .__icon.--path__custom:after {
 .loading-table .loading{
     width: 40px;
     height: 40px;
-    border: 4px solid var(--primary-color);
-    border-top-color: #FFF8F2;
 }
 #table-default tbody {
     position: relative;
@@ -1494,12 +1497,43 @@ a:hover .__icon.--path__custom:after {
     background-color: #fff;
     opacity: .5;
 }
-
 .is_load .loading {
     margin-top: 0;
 }
 .getCopypass img {
     height: 24px;
+}
+
+
+#table-default .th-game {
+    padding: 12px 4rem;
+}
+#table-default .th-value {
+    padding: 12px 2rem;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.logs-table .table tr td,
+.logs-table .table th
+{
+    text-align: left;
+}
+.default-overlay-nick-ct.--fix-responsive {
+    position: relative;
+    padding-bottom: 60%;
+    height: auto;
+}
+.default-overlay-nick-ct.--fix-responsive img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 /* Small Screen */
 @media screen and (max-width: 1200px) {
@@ -1861,9 +1895,10 @@ a:hover .__icon.--path__custom:after {
         transform: none;
     }
 
-    .service--thumbnail {
-        height: 104px;
+    .body-detail-ctng-col-ct img {
+        border-radius: 4px;
     }
+
 }
 
 @media (max-width: 767px) {

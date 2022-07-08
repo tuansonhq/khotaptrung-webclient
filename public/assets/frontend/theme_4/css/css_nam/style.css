@@ -500,7 +500,7 @@ header nav.heading .header-container{
     margin-right: 4px;
 }
 .box-deposit{
-    margin-left: 23px;
+    margin-left: 12px;
 }
 .box-deposit a{
     background-color: var(--primary-color);
@@ -720,10 +720,15 @@ header nav.heading .header-container{
 /*banner*/
 .banner-home{
 
-    min-height: 540px;
-
+    /*min-height: 540px;*/
+    position: relative;
 }
-
+.banner-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
 .box-list-service,.box-list-top{
     margin-top: 20px;
 
@@ -845,10 +850,9 @@ header nav.heading .header-container{
     text-align: center;
 }
 .block-product{
-
     background-color: white;
     border-radius: var(--primary-border);
-    padding: 18px 21px;
+    padding: 18px 16px;
     /*border: 1px solid #DCDEE9;*/
 }
 .block-mini-game{
@@ -1468,6 +1472,13 @@ header nav.heading .header-container{
     }
 }
 @media (max-width: 992px ) {
+    .box-logo img {
+        width: 70px;
+    }
+    .box-logo {
+        margin-left: 12px;
+        margin-bottom: 4px;
+    }
     /*header*/
     header nav.heading .header-container{
         height: 56px;
@@ -1677,20 +1688,23 @@ header nav.heading .header-container{
     display: none;
 }
 .loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    /*margin: 12px 30px -5px;*/
-    margin-top: 6px;
-    border: 3px solid var(--primary-color);
-    border-radius: 50%;
-    border-top-color: #FFF8F2;
+    width: 26px;
+    height: 26px;
+    background-image: linear-gradient(to right, transparent, var(--primary-color));
+    padding: 3px;
+    border-radius: 100%;
     animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1.2s linear infinite;
+}
+.loading-child {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: inherit;
 }
 .btn-loading{
     padding:6px 46px;
-    background: #EBEBEB;
+    /*background: #EBEBEB;*/
     border-radius: 8px;
     margin-left: 20px;
 }
@@ -1820,3 +1834,43 @@ header nav.heading .header-container{
     display: none;
 }
 
+.banner-slide {
+    border-radius: 12px;
+    z-index: 0;
+    margin-top: 20px;
+}
+.banner-slide .swiper-slide, .banner-image {
+    height: 480px;
+}
+.banner-slide .swiper-slide img, .banner-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.rotation-notify {
+    /*max-width: 820px;*/
+    text-align: center;
+}
+.marquee-move {
+    display: block;
+    padding: 8px 0;
+    background: #FBFBFD;
+    border-radius: 8px;
+}
+.marquee-item {
+    display: inline-block;
+    width: 820px;
+    margin-bottom: -14px;
+}
+.text-slider{
+    flex: 1;
+    margin-top: 20px;
+}
+@media (max-width: 768px){
+    .banner-slide .swiper-slide, .banner-image {
+        height: 176px;
+    }
+    .banner-slide {
+        border-radius: 0;
+    }
+}

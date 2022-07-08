@@ -59,6 +59,13 @@
     margin-left: 0.75rem;
 }
 
+.content-video-in iframe,
+.content-video-in img
+{
+    max-width: 100%;
+}
+
+
 @media (max-width: 767px) {
     .gaming-recharge-search-form button{
         display: none;

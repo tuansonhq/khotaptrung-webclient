@@ -19,14 +19,14 @@
 }
 
 .text-slider{
-    margin-bottom: 1.25rem;
-    background: #F3F3F7;
-    border-radius: 8px;
-    position: absolute;
-    top: 20px;
-    z-index: 99;
-    margin-top: 12px;
-    left: 177px;
+    /*margin-bottom: 1.25rem;*/
+    /*background: #F3F3F7;*/
+    /*border-radius: 8px;*/
+    /*position: absolute;*/
+    /*top: 20px;*/
+    /*z-index: 99;*/
+    /*margin-top: 12px;*/
+    /*left: 177px;*/
 }
 @media (max-width: 767px) {
     .text-slider{
@@ -34,19 +34,19 @@
         left: 36px;
     }
 }
-.img-text-slider{
-    position: absolute;
-    top: 25%;
-    left: 2%;
-}
-.text-item{
-    display: inline-block;
-    margin-bottom: 0;
-    margin-right: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #F67600;
-}
+/*.img-text-slider{*/
+/*    position: absolute;*/
+/*    top: 25%;*/
+/*    left: 2%;*/
+/*}*/
+/*.text-item{*/
+/*    display: inline-block;*/
+/*    margin-bottom: 0;*/
+/*    margin-right: 8px;*/
+/*    font-weight: 600;*/
+/*    font-size: 14px;*/
+/*    color: #F67600;*/
+/*}*/
 .content-text{
     display: inline-block;
     margin-bottom: 0;
@@ -54,16 +54,16 @@
     font-size: 14px;
     color: #434657;
 }
-.marquee-item{
-    display: inline-block;
-    width: 820px;
-    margin-bottom: -14px
-}
-.marquee-move{
-    display: block;
-    padding: 8px 0;
-    margin-left: 3.2rem;
-}
+/*.marquee-item{*/
+/*    display: inline-block;*/
+/*    width: 820px;*/
+/*    margin-bottom: -14px*/
+/*}*/
+/*.marquee-move{*/
+/*    display: block;*/
+/*    padding: 8px 0;*/
+/*    margin-left: 3.2rem;*/
+/*}*/
 /*@media (max-width: 767px) {*/
 /*    .text-buy-card{*/
 /*        padding-right: 332px !important;*/
@@ -108,13 +108,6 @@
     }
 }
 
-#content-store-card .deno__list .deno__item .card-item-value{
-    height: 56px;
-}
-
-#content-store-card .cards__list .cards__item label{
-    height: 83px;
-}
 #content-store-card #screen--first .card .card--header{
     border-bottom: none;
 }
@@ -133,18 +126,16 @@
 }
 
 .item-service-image img {
-    height: 129px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
     border-radius: 8px;
 }
 .item-product__box-content .item-service__box-name{
     text-align:center ;
 }
 .item-service-image{
-    height: 132px;
-}
-@media (max-width: 767px) {
-    .item-service-image{
-        height: 102px;
-        border-radius: 8px;
-    }
+    position: relative;
+    padding-bottom: 56%;
 }

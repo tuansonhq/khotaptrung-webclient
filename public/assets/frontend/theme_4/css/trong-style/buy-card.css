@@ -101,7 +101,7 @@ ul.card-list {
     display: inline-block;
     width: 100%;
     position: relative;
-    height: 114px;
+    padding-bottom: 54%;
     border: 1px solid #DCDEE9;
     border-radius: 8px;
     overflow: hidden;
@@ -118,7 +118,7 @@ ul.card-list {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 40px;
+    height: 35%;
     color: #FFFFFF;
     font-weight: 700;
     font-size: 20px;
@@ -128,16 +128,16 @@ ul.card-list {
 .scratch-card .card--thumb {
     text-align: center;
     width: 100%;
-    height: calc(100% - 40px);
-    position: relative;
+    height: 65%;
+    position: absolute;
 }
 .scratch-card .card--thumb .card--thumb__image {
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 80%;
+    max-height: 90%;
     object-fit: cover;
 }
 .service--thumb {
@@ -260,18 +260,15 @@ ul.card-list {
         border-radius: 0;
     }
     .scratch-card {
-        height: 56px;
         border-radius: 4px;
     }
     .js--card__swipe .scratch-card,
     #card--other .scratch-card,
     .card--single.scratch-card
     {
-        height: 114px;
         border-radius: 8px;
     }
     .scratch-card .card--name {
-        height: 20px;
         font-size: 12px;
         font-weight: 600;
     }
@@ -279,17 +276,7 @@ ul.card-list {
     #card--other .scratch-card .card--name,
     .scratch-card.card--single .card--name
     {
-        height: 40px;
         font-size: 20px;
-    }
-    .scratch-card .card--thumb {
-        height: calc(100% - 20px);
-    }
-    .js--card__swipe .scratch-card .card--thumb,
-    #card--other .scratch-card .card--thumb,
-    .scratch-card.card--single .card--thumb
-    {
-        height: calc(100% - 40px);
     }
     .page--card__content .card--head .card--title {
         color: #434657;

@@ -1,7 +1,5 @@
 @extends('frontend.layouts.master')
-@section('meta_robots')
-    <meta name="robots" content="noindex,nofollow" />
-@endsection
+
 @section('content')
 
     {{--  Menu  --}}
@@ -41,7 +39,7 @@
     <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('frontend.widget.__navbar__profile')
+                @include('theme_3.frontend.widget.__navbar__profile')
 
                 <div class="col-lg-9 col-12 body-container-detail-right-ct">
                     <div class="row marginauto logs-content">
@@ -135,7 +133,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form class="form-charge_ls account_content_transaction_history__v2">
+                    <form class="form-charge_ls account_content_transaction_history__v2" id="data_sort">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -144,7 +142,7 @@
                                         <span>Thẻ cào</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" name="serial" class="input-defautf-ct serial" type="text" placeholder="Nhập mã số">
+                                        <input autocomplete="off" name="serial" class="input-defautf-ct serial" type="text" placeholder="Nhập mã Serial">
                                     </div>
                                 </div>
                             </div>
@@ -157,8 +155,8 @@
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
 
-                                            <select class="wide transaction" name="transaction">
-                                                <option>Chọn</option>
+                                            <select class="wide transaction" name="key">
+                                                <option value="">Chọn</option>
                                                 @foreach($data_telecome as $val)
                                                 <option value="{{ $val->key }}">{{ $val->title }}</option>
                                                 @endforeach
@@ -203,7 +201,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +264,8 @@
     <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs--update.js"></script>
 @endsection
 
 

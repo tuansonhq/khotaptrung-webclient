@@ -100,7 +100,7 @@
                                         <span class="pulser"></span>
                                     </div>
                                 </div>
-                                @include('frontend.pages.storeCard.widget.__datalogs')
+                                @include('frontend.pages.storecard.widget.__datalogs')
                             </div>
                         </div>
 
@@ -261,7 +261,7 @@
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js?v={{ time() }}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js"></script>
 @endsection
 
 

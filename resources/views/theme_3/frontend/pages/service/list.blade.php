@@ -5,7 +5,7 @@
 @section('content')
 
     {{--  Header mobile  --}}
-    <section class="media-mobile">
+    <section class="media-mobile ">
         <div class="container container-fix banner-mobile-container-ct">
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">

@@ -91,7 +91,7 @@
                         <div class="col-md-12 left-right media-mobile">
                             <form class="media-form-search" method="POST">
                                 <div class="row marginauto body-form-search-ct">
-                                    <div class="col-12 left-right">
+                                    <div class="col-12 left-right" type="">
                                         <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
                                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
@@ -112,7 +112,8 @@
 
     @include('frontend.pages.account.widget.__category__content')
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
 @endsection
 
 

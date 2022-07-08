@@ -15,14 +15,14 @@
     <div class="container-fix container">
         <div class="content__wrap" id="content-store-card">
             <div class="row" id="screen--first">
-                <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card buy-card">
+                <div class="col-12 col-lg-12 col-xl-8 px-lg-3 px-md-0 section--type__card buy-card ">
                     <div class="card--mobile__title">
                         <span class="card--back box-account-mobile_open">
                             <img  src="/assets/frontend/{{theme('')->theme_key}}/image/icons/credit_card.png" alt="">
                         </span>
                         <h4 class="text-buy-card">Mua thẻ nhanh</h4>
                     </div>
-                    <div class="card --custom ">
+                    <div class="card --custom _h-lg-100 _h-auto">
                         <div class="card--header">
                             <div class="card--header__title">
                                 <div class="title__icon"><img
@@ -82,8 +82,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card">
-                    <div class="card --custom">
+                <div class="col-12 col-lg-12 col-xl-4 px-lg-1 px-md-0 section--amount__card choose-card">
+                    <div class="card --custom _h-lg-100 _h-auto">
                         <div class="card--body">
                             <div class="denos--wrap">
                                 <div class="denos--title">
@@ -153,7 +153,7 @@
                                 @if(App\Library\AuthCustom::check())
                                     <button type="button" class="btn -primary btn-big" id="btn-confirm">Chọn mua</button>
                                 @else
-                                    <button type="button" class="btn -primary btn-big mt-3" onclick="openLoginModal();">Chọn mua</button>
+                                    <button type="button" class="btn -primary btn-big" onclick="openLoginModal();">Chọn mua</button>
                                 @endif
                             </div>
                         </div>
