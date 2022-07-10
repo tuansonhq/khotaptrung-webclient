@@ -73,6 +73,57 @@ function openMenuProfile(){
         $('.menu-profile-mobile').toggleClass('menu-profile-mobile_show');
     }, 0);
 }
+$('#menu_service').click(function () {
+    // handleToggleContent1();
+    let menu_service = $('.box-list-service');
+    // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
+    animateTime = 10;
+    if(menu_service.height() >= 55 && menu_service.height() <= 56){
+
+        autoHeightAnimate(menu_service, animateTime);
+    } else {
+        menu_service.stop().animate({ height: '56px' }, animateTime);
+    }
+});
+$('#menu_top_list').click(function () {
+    // handleToggleContent1();
+    let menu_top_list = $('.box-list-top');
+
+    // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
+    animateTime = 10;
+    if(menu_top_list.height() >= 55 && menu_top_list.height() <= 56){
+
+        autoHeightAnimate(menu_top_list, animateTime);
+    } else {
+
+        menu_top_list.stop().animate({ height: '56px' }, animateTime);
+    }
+});
+function autoHeightAnimate(element, time){
+    var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
+    element.height(curHeight); // Reset to Default Height
+    element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
+}
+function autoHeightAnimate2(element, time){
+    var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
+    element.height(curHeight); // Reset to Default Height
+    element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
+}
+function handleToggleContent1(){
+    // $('.js-toggle-content .view-less').toggle();
+    // $('.js-toggle-content .view-more').toggle();
+    let card_desc1 = $('.box-list-service');
+
+    card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
+    // if ($('.view-less').is(":visible")) {
+    //     let initialHeight = card_desc.css('max-height', 'initial').height();
+    //     card_desc.animate({maxHeight: initialHeight + 16},250)
+    // } else {
+    //     card_desc.animate({maxHeight: 280},250)
+    // }
+}
 var user = function() {
     $('.box-account-logined').click(function(e) {
         // e.preventDefault(); // stops link from making page jump to the top
@@ -319,11 +370,22 @@ $(document).ready(function (e) {
     });
 
     $(document).on('scroll',function(){
-        if ($(this).scrollTop() > 20) {
+        if ($(this).scrollTop() > 200) {
 
             $('#heading').addClass("header-fix");
         } else {
             $('#heading').removeClass("header-fix");
+        }
+
+
+    });
+
+    $(document).on('scroll',function(){
+        if ($(this).scrollTop() > 200) {
+
+            $('#menu-service').addClass("hehe");
+        } else {
+            $('#menu-service').removeClass("hehe");
         }
 
 

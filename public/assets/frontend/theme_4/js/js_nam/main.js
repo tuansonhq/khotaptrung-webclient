@@ -1,8 +1,3 @@
-//Toggle hamburger bar
-// $('.item-search-mobile').click( function(){
-//     $('.layout').addClass('search-active');
-//     $('.input-search').focus();
-// });
 
 // side bar
 var openHamburgerBar = false;
@@ -43,36 +38,45 @@ $('.icon-search-close').click(function (e) {
         searchBar = false;
     }
 });
-// menu profile side
-// var menu_profile = false;
-// $('.box-account-mobile_open').click(function (e) {
-//
-//     if (!menu_profile) {
-//
-//         e.preventDefault();
-//         $('.menu-profile-mobile').addClass('menu-profile-mobile_show');
-//         $('.box-account-mobile_open').css('display', 'none');
-//         $('.box-account-mobile_close').css('display', 'block');
-//         menu_profile = true;
-//
-//     }
-// });
-//
-// $('.box-account-mobile_close').click(function (e) {
-//     if (menu_profile) {
-//         e.preventDefault();
-//         $('.menu-profile-mobile').removeClass('menu-profile-mobile_show');
-//         $('.box-account-mobile_close').css('display', 'none');
-//         $('.box-account-mobile_open').css('display', 'block');
-//         menu_profile = false;
-//     }
-// });
 function openMenuProfile(){
     // let width = $(window).width();
     setTimeout(function(){
         $('.menu-profile-mobile').toggleClass('menu-profile-mobile_show');
     }, 0);
 }
+$('#menu_service').click(function () {
+    // handleToggleContent1();
+    let menu_service = $('.box-list-service');
+    // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
+    animateTime = 10;
+    if(menu_service.height() >= 55 && menu_service.height() <= 56){
+
+        autoHeightAnimate(menu_service, animateTime);
+    } else {
+        menu_service.stop().animate({ height: '56px' }, animateTime);
+    }
+});
+$('#menu_top_list').click(function () {
+    // handleToggleContent1();
+    let menu_top_list = $('.box-list-top');
+
+    // card_desc1.toggleClass('box-list-service-show', 1000, "easeOutSine" );
+    animateTime = 10;
+    if(menu_top_list.height() >= 55 && menu_top_list.height() <= 56){
+
+        autoHeightAnimate(menu_top_list, animateTime);
+    } else {
+
+        menu_top_list.stop().animate({ height: '56px' }, animateTime);
+    }
+});
+function autoHeightAnimate(element, time){
+    var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
+    element.height(curHeight); // Reset to Default Height
+    element.stop().animate({ height: autoHeight }, time); // Animate to Auto Height
+}
+
 var user = function() {
     $('.box-account-logined').click(function(e) {
         // e.preventDefault(); // stops link from making page jump to the top
@@ -228,41 +232,6 @@ $(document).ready(function (e) {
         });
     });
 
-
-    // $('body').on('click','.button-next-step-two',function(){
-    //
-    //     if(animating) return false;
-    //     animating = true;
-    //
-    //     current_fs = $('#fieldset-two');
-    //     previous_fs = $('#fieldset-one');
-    //
-    //     //show the previous fieldset
-    //     previous_fs.show();
-    //     //hide the current fieldset with style
-    //     current_fs.animate({opacity: 0}, {
-    //         step: function(now, mx) {
-    //             //1. scale previous_fs from 80% to 100%
-    //             scale = 0.8 + (1 - now) * 0.2;
-    //             //2. take current_fs to the right(50%) - from 0%
-    //             left = ((1-now) * 50)+"%";
-    //             //3. increase opacity of previous_fs to 1 as it moves in
-    //             opacity = 1 - now;
-    //             current_fs.css({'left': left});
-    //             previous_fs.css({'opacity': opacity});
-    //         },
-    //         // duration: 200,
-    //         complete: function(){
-    //             current_fs.hide();
-    //             animating = false;
-    //         },
-    //         //this comes from the custom easing plugin
-    //         easing: 'easeInOutBack'
-    //     });
-    //
-    //     $('#successModal').modal('show');
-    // });
-
     $('.view-more-top').click(function(){
         $('.view-less-top').css("display","block");
         $('.view-more-top').css("display","none");
@@ -319,11 +288,22 @@ $(document).ready(function (e) {
     });
 
     $(document).on('scroll',function(){
-        if ($(this).scrollTop() > 20) {
+        if ($(this).scrollTop() > 200) {
 
             $('#heading').addClass("header-fix");
         } else {
             $('#heading').removeClass("header-fix");
+        }
+
+
+    });
+
+    $(document).on('scroll',function(){
+        if ($(this).scrollTop() > 200) {
+
+            $('#menu-service').addClass("hehe");
+        } else {
+            $('#menu-service').removeClass("hehe");
         }
 
 
@@ -338,27 +318,28 @@ $(document).ready(function (e) {
         $('#successChargeModal').modal('show');
     })
 
-    // $('body').on('click','.openChargeSuccess',function(e){
-    //     e.preventDefault();
-    //     $('#openCharge').modal('hide');
-    //     $('#rejectChargeModal').modal('show');
-    // })
+    Fancybox.bind('[data-fancybox="gallerycoverDetail"]', {
+        dragToClose: true,
+        animated: true,
+        closeButton: "top",
+        openSpeed: 300,
+        Image: {
+            zoom: false,
+            // zoom: 200
+        },
 
-    // $('body').on('click','.btn-data-charge_atm',function(e){
-    //     e.preventDefault();
-    //
-    //     $('#successChargeAtmModal').modal('show');
-    // })
-    // $('body').on('click','.btn-data-charge_atm',function(e){
-    //     e.preventDefault();
-    //
-    //     $('#successChargeAtmModal').modal('show');
-    // })
-    // $('body').on('click','.btn-data-wallet_card',function(e){
-    //     e.preventDefault();
-    //
-    //     $('#successWalletCardModal').modal('show');
-    // })
+        slideshow: true,
+        Toolbar: {
+            display: [
+                { id: "prev", position: "center" },
+                { id: "counter", position: "center" },
+                { id: "next", position: "center" },
+                "close",
+            ],
+
+        },
+
+    });
 
 
 })

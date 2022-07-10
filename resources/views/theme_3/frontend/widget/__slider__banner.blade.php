@@ -8,9 +8,9 @@
     <div class="banner-slide swiper-container container container-fix " >
         <div class="swiper-wrapper">
             @foreach($data as $item)
-                <div class="swiper-slide">
-                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
-                </div>
+            <div class="swiper-slide">
+                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+            </div>
 
             @endforeach
         </div>
