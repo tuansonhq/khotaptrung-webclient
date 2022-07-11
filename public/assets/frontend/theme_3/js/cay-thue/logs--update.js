@@ -52,6 +52,10 @@ function loadDataTable(query = {
         },
         success: (res) => {
             if(res.status){
+                last_page = res.last_page;
+                if (checkLastPage()){
+                    return;
+                }
                 table.html(res.data);
             }else {
                 table.find('.loading-table').remove();
