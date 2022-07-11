@@ -20,7 +20,7 @@
             <a href="/" style="display: block">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
-            <h3>Rút tiền ATM - Ví điện tử</h3>
+            <h1>Rút tiền ATM - Ví điện tử</h1>
         </section>
         <div class="row">
             {{--navbar--}}

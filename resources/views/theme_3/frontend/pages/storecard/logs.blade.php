@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Lịch sử mua thẻ</h3>
+                    <h1>Lịch sử mua thẻ</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>

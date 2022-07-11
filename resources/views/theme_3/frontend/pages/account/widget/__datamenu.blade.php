@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Chi tiết Nick</h3>
+                    <h1>Chi tiết Nick</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
