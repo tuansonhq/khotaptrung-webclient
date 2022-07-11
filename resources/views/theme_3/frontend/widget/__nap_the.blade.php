@@ -7,7 +7,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
                     </span>
-                    <p class="text-title" >Nạp tiền</p>
+                    <h2 class="text-title" >Nạp tiền</h2>
                     <div class="navbar-spacer"></div>
                 </div>
                 <div class="box-product " >
