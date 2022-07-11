@@ -5,7 +5,7 @@
             <div class=" block-product "  style="min-height: 532px">
                 <div class="product-header d-flex d-md-flex">
                     <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/naptienindex.svg" alt="">
                     </span>
                     <p class="text-title" >Nạp tiền</p>
                     <div class="navbar-spacer"></div>

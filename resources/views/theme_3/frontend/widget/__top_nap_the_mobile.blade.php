@@ -45,10 +45,10 @@
                 <div class="footer-row-ct d-lg-none d-block">
                     <div  class="col-md-12 left-right text-center js-toggle-content">
                         <div class="view-more-top ">
-                            Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png" alt="">
+                            Xem thêm <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg" alt="">
                         </div>
                         <div class="view-less-top ">
-                            Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png" alt="">
+                            Rút gọn <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/rutgon.svg" alt="">
                         </div>
                     </div>
 
