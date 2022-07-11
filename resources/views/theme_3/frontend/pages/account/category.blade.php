@@ -8,7 +8,7 @@
             <div class="row marginauto banner-mobile-row-ct" style="position: relative">
                 <img class="lazy back-position-ct" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                 <div class="col-12 left-right banner-mobile-span text-center">
-                    <h3>Nạp tài khoản game</h3>
+                    <h1>Nạp tài khoản game</h1>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h3>Danh sách mục Shop Account</h3>
+                                    <h1>Danh sách mục Shop Account</h1>
                                 </div>
                             </div>
                         </div>

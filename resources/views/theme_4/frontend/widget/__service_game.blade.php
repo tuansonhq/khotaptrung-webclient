@@ -27,7 +27,7 @@
 
     <div class="box-product">
         <div class=" list-product d-flex flex-wrap" >
-         @foreach($data as $service)
+            @foreach($data as $service)
                 <div class="col-auto body-detail-nick-col-ct js-service">
                     <a href="/dich-vu/{{ @$service->slug }}" class="list-item-nick-hover">
                         <div class="row marginauto">
@@ -40,7 +40,7 @@
                         </div>
                     </a>
                 </div>
-          @endforeach
+            @endforeach
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@
 
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
-                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
+                                    <div class="col-auto body-detail-nick-col-ct">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
@@ -59,6 +59,8 @@
                                                                 @endif
                                                             </ul>
                                                         </div>
+
+                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>

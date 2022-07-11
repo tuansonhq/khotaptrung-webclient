@@ -254,7 +254,7 @@
     </nav>
 
 </header>
-<div class="header ">
+<div class="header " id="menu-service"  style="  ;">
     @if(isset(theme('')->theme_config->sys_config_menu) && theme('')->theme_config->sys_config_menu == 'menu_1')
          @include('frontend.widget.__head__dich__vu__noi__bat')
     @endif

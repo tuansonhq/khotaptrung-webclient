@@ -1567,7 +1567,7 @@ a:hover .__icon.--path__custom:after {
         align-items: center;
     }
 
-    .card--mobile__title h4,
+    .card--mobile__title p,
     .step .step--header .step--header__title {
         font-family: 'Open Sans';
         font-style: normal;

@@ -14,25 +14,45 @@
 
         </div>
     </div>
+
     <div class="box-product">
-        <div class=" list-product d-flex flex-wrap" >
+        <div class="swiper-container list-product swiper-service" >
+            <div class="swiper-wrapper">
+                @foreach($data as $key => $item)
+                <div class="swiper-slide" >
+                    <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                        <div class="item-product__box-img">
 
-            @foreach($data as $key => $item)
-{{--            @if($key < 8)--}}
-                <div class="item-product item-nick ">
-                <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
-                    <div class="item-nick-img">
-                        <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
-                    </div>
+                            <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
 
-                    <div class="item-nick-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
-                </a>
+                        </div>
+                        <div class="item-nick-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                    </a>
+                </div>
 
+                @endforeach
             </div>
-{{--            @endif--}}
-            @endforeach
         </div>
     </div>
+{{--    <div class="box-product">--}}
+{{--        <div class=" list-product d-flex flex-wrap" >--}}
+
+{{--            @foreach($data as $key => $item)--}}
+{{--            @if($key < 8)--}}
+{{--                <div class="item-product item-nick ">--}}
+{{--                <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">--}}
+{{--                    <div class="item-nick-img">--}}
+{{--                        <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">--}}
+{{--                    </div>--}}
+
+{{--                    <div class="item-nick-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>--}}
+{{--                </a>--}}
+
+{{--            </div>--}}
+{{--            @endif--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
 
 {{--<div class="block-other-nick mt-fix-20">--}}
