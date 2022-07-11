@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Tài khoản đã mua</h3>
+                    <h1>Tài khoản đã mua</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>

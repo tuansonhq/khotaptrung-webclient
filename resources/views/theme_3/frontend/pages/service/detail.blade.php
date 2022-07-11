@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h3>Cày Thuê</h3>
+                            <h1>Cày Thuê</h1>
                         </div>
                         <div class="col-auto left-right" style="width: 10%">
                         </div>

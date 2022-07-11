@@ -21,7 +21,7 @@
             <a href="/" style="display: block">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
-            <h3>Rút vật phẩm</h3>
+            <h1>Rút vật phẩm</h1>
         </section>
         <div class="row">
             {{--navbar--}}
