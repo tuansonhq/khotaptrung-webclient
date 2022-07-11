@@ -383,8 +383,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
     border-top: 1px solid #DCDEE9;
     border-right: 1px solid #DCDEE9;
     border-left: 1px solid #DCDEE9;
@@ -393,8 +392,7 @@
 .body-detail-nick-slider-ct img{
     width: 100%;
     object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-radius: 8px;
 }
 
 .body-detail-col-span-ct{

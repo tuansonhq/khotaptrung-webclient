@@ -169,49 +169,28 @@ class MinigameController extends Controller
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }
                     }
-//                    $data_view = [
-//                        'result'=>$result,
-//                        'groups_other'=>$groups_other,
-//                        'numPlay'=>$numPlay,
-//                        'topDayList'=>$topDayList,
-//                        'top7DayList'=>$top7DayList,
-//                        'currentPlayList'=>$currentPlayList,
-//                        'position'=>$result->group->position,
-//                    ];
-//                    switch ($result->group->position) {
-//                        case 'rubywheel':
-//                        case 'flip':
-//                        case 'slotmachine':
-//                        case 'slotmachine5':
-//                        case 'squarewheel':
-//                        case 'smashwheel':
-//                        case 'rungcay':
-//                        case 'gieoque':
-//                            return view('frontend.pages.minigame.detail',$data_view);
-//                        default:
-//                            return redirect()->back()->withErrors($result_out->message);
-//                    }
+                    $data_view = [
+                        'result'=>$result,
+                        'groups_other'=>$groups_other,
+                        'numPlay'=>$numPlay,
+                        'topDayList'=>$topDayList,
+                        'top7DayList'=>$top7DayList,
+                        'currentPlayList'=>$currentPlayList,
+                        'position'=>$result->group->position,
+                    ];
                     switch ($result->group->position) {
                         case 'rubywheel':
-                            return view('frontend.pages.minigame.rubywheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'flip':
-                            return view('frontend.pages.minigame.flip', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'slotmachine':
-                            return view('frontend.pages.minigame.slotmachine', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'slotmachine5':
-                            return view('frontend.pages.minigame.slotmachine5', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'squarewheel':
-                            return view('frontend.pages.minigame.squarewheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'smashwheel':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'rungcay':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
                         case 'gieoque':
-                            return view('frontend.pages.minigame.smashwheel', compact('result','groups_other','numPlay','topDayList','top7DayList','currentPlayList'));
+                            return view('frontend.pages.minigame.detail',$data_view);
                         default:
                             return redirect()->back()->withErrors($result_out->message);
                     }
-
                 } else {
                     logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
