@@ -250,14 +250,12 @@ class ServiceController extends Controller
                         ]);
                     }
 
-                    $html = view('frontend.pages.service.widget.__datalogs')
-                        ->with('data', $data)->render();
-
-
+                    $html = view('frontend.pages.service.widget.__datalogs')->with('data', $data)->render();
                     return response()->json([
                         "success"=> true,
                         "data" => $html,
                         "status" => 1,
+                        "last_page"=>$data->lastPage(),
                     ], 200);
 
                 }

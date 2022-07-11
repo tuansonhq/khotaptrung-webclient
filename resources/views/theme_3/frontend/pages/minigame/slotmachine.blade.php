@@ -900,7 +900,7 @@
                     datatype: 'json',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr('content'),
-                        id: '{{$result->group->id}}',
+                        id: $('#group_id').val(),
                         numrolllop: numrolllop,
                         numrollbyorder: numrollbyorder,
                         typeRoll: typeRoll,
@@ -1375,8 +1375,6 @@
             $('.item_spin_list_less').css("display","none");
             $(".item_spin_list_more").css("display","block");
         });
-
-
     });
 </script>
 <script>
@@ -1518,7 +1516,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
 <script id="rendered-js">
     (function () {
-
         var chat = {
             messageToSend: '',
             messageResponses: [
@@ -1612,7 +1609,6 @@
                     }
                     $('#tblHistory').html(html);
                 }, 60000);
-
                 setInterval(function () {
                     // responses
                     var templateResponse = Handlebars.compile($("#message-response-template").html());
@@ -1645,9 +1641,7 @@
                 return arr[Math.floor(Math.random() * arr.length)];
             }
         };
-
         chat.init();
-
     })();
     //# sourceURL=pen.js
 </script>

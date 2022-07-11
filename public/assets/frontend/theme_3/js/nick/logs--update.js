@@ -173,7 +173,7 @@ $(document).ready(function (e) {
         })
     });
 })
-function loadDataTable(query = {page:1}) {
+function loadDataTable(query = {page:1,serial:'',key:'',price:'',status:'',started_at:'',ended_at:'',sort_by_data:'',id_data:''}) {
     let url = window.location.href;
     let table = $('#data_pay_account_history');
 

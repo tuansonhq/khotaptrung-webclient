@@ -381,7 +381,7 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
+    <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 
     <script>
         function animate(options) {
@@ -1061,7 +1061,6 @@
             location.reload();
         })
     </script>
-
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).on('scroll',function(){

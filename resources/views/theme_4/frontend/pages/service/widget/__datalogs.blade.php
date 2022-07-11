@@ -16,7 +16,6 @@
                                 #{{ $item->id }}
                             @endif
                         </td>
-
                         <td>
                             @if(isset($item->tranid))
                                 {{$item->tranid}}
@@ -30,7 +29,7 @@
                         {{--                        <td>--}}
                         {{--                            Liên Quân--}}
                         {{--                        </td>--}}
-                        <td class="text-right">
+                        <td class="text-right text-nowrap">
                             {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>
                         <td>
@@ -51,7 +50,7 @@
                         <td>
                             <div class="d-flex">
                                 <a href="/dich-vu-da-mua-{{$item->id}}" class="btn -secondary action-table openHoanTien m-auto">Chi tiết</a>
-                                <a href="/inbox/send/{{$item->id}}" class="btn -secondary action-table ml-2  openTTTraGop m-auto">Nhắn tin</a>
+                                <a href="/inbox/send/{{$item->id}}" class="btn -secondary action-table ml-2  openTTTraGop">Nhắn tin</a>
                             </div>
                         </td>
                     </tr>

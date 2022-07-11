@@ -878,7 +878,7 @@
                         datatype: 'json',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),
-                            id: '{{$result->group->id}}',
+                            id: $('#group_id').val(),
                             numrolllop: numrolllop,
                             numrollbyorder: numrollbyorder,
                             typeRoll: $('#type_play').val(),
@@ -1008,7 +1008,7 @@
                         $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                     } else if (gift_detail.gift_type == 1) {
                         $("#btnWithdraw").html("Kiểm tra nick trúng");
-                        $("#btnWithdraw").attr('href', '/minigame-logacc-' + '{{$result->group->id}}');
+                        $("#btnWithdraw").attr('href', '/minigame-logacc-' + $('#group_id').val());
                         // } else if (gift_detail.gift_type == 'nrocoin') {
                         //     $("#btnWithdraw").html("Rút vàng");
                         //     $("#btnWithdraw").attr('href', '/withdrawservice?id=' + $("#ID_NROCOIN").val());

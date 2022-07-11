@@ -8,7 +8,7 @@
                         <span>
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/vongquayindex.svg" alt="">
                         </span>
-                    <p class="text-title" >Vòng quay may mắn</p>
+                    <h2 class="text-title" >Vòng quay may mắn</h2>
                     <div class="navbar-spacer"></div>
 
                     <div class="text-view-more">
