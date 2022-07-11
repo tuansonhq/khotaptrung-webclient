@@ -1,5 +1,4 @@
-
-function loadDataTable(query ={ page:1}) {
+function loadDataTable(query ={ page:1,serial:'',key:'',status:'',started_at:'',ended_at:'' }) {
     let url = window.location.href;
     let table = $('#data_pay_card_history_ls');
 

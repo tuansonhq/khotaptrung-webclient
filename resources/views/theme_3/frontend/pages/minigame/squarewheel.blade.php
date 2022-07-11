@@ -83,6 +83,7 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- thay cho rotation -->
                         <div class="item_square" style="display: flex; flex-wrap: wrap;" >
                             <table id="squaredesktop" class="square">
                                 <tr>
@@ -935,7 +936,7 @@
                         datatype: 'json',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),
-                            id: '{{$result->group->id}}',
+                            id: '',
                             numrolllop: numrolllop,
                             numrollbyorder: numrollbyorder,
                             typeRoll: typeRoll,

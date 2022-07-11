@@ -2,10 +2,12 @@
 @if(isset($data) && count($data) > 0)
 <div class="block-product mt-fix-20">
     <div class="product-header d-flex">
+
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/nickindex.svg" alt="">
         </span>
         <p class="text-title" >Nick ngon giá rẻ</p>
+
         <div class="navbar-spacer"></div>
 
         <div class="text-view-more">

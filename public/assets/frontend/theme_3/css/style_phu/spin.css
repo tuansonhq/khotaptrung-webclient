@@ -27,12 +27,12 @@
     margin-bottom: 0.5rem;
 }
 
-.rotation-header h3 {
+.rotation-header h1 {
     color: #1B1D29;
     font-weight: 700;
     font-size: 24px;
     margin-bottom: 0;
-    margin-right: 0.5rem;
+    margin-right: .5rem;
 }
 
 .rotation-header button {
@@ -185,7 +185,7 @@
 }
 
 .rotation-sale-content p span {
-    margin-right: 0.5rem;    
+    margin-right: 0.5rem;
 }
 
 #rotationFirstPrice {
@@ -374,7 +374,7 @@
     height: 100%;
 }
 
-.service-detail h6 {
+.service-detail h2 {
     font-weight: 700;
     font-size: 24px;
     color: #1B1D29;
@@ -409,7 +409,7 @@
     height: 100%;
 }
 
-.rotation-comment h6 {
+.rotation-comment h2 {
     font-weight: 700;
     font-size: 24px;
     color: #1B1D29;
@@ -450,7 +450,7 @@
     margin-left: 0.5rem;
 }
 
-.comment-info h6 {
+.comment-info p {
     font-weight: 600;
     font-size: 16px;
     color: #434657;
@@ -563,7 +563,7 @@
     margin-bottom: 1.25rem;
 }
 
-.leaderboard-header h5 {
+.leaderboard-header p {
     margin-left: 0.5rem;
     margin-bottom: 0;
     font-weight: 700;
@@ -846,11 +846,11 @@
     .rotation-col-left {
         padding-right: 15px;
     }
-    
+
     .rotation-col-right {
         padding-left: 15px;
     }
-    
+
     .service-detail, .rotation-leaderboard, .rotation-detail, .rotation-comment {
         height: unset;
     }
@@ -869,7 +869,7 @@
 }
 
 @media (max-width: 768px) {
-    
+
 }
 
 @media (max-width: 480px){

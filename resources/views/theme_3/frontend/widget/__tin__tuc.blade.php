@@ -4,7 +4,7 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/tintucindex.svg" alt="">
         </span>
-        <p class="text-title">Tin tức</p>
+        <h2 class="text-title">Tin tức</h2>
 {{--        <div class="product-catecory " >--}}
 {{--            <ul class="nav d-g-md-none" role="tablist" >--}}
 {{--                @foreach($data as $item)--}}

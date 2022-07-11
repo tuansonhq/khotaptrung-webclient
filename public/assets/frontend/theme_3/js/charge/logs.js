@@ -362,7 +362,6 @@ $(document).ready(function (e) {
         if (page == null || page == '' || page == undefined){
             page = 1;
         }
-
         request = $.ajax({
             type: 'GET',
             url: '/lich-su-nap-the',
