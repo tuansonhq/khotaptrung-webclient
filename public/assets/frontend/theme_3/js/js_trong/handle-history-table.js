@@ -74,7 +74,7 @@ $(document).ready(function () {
     });
     loadDataTable();
     loadData();
-})
+});
 function loadData(){
     let overlay_find = $('.overlay-find');
     let root_elm = $('.nick-findter-data');
