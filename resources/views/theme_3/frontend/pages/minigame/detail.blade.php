@@ -5,6 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/spin.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/layout_page.css">
 @endsection
 @section('scripts')
@@ -254,7 +255,7 @@
                                 </div>
                             @endif
                             <div class="col-6">
-                                <button id="start-played" class="button-primary button-play">Quay ngay</button>
+                                <button id="start-played" class="button-primary button-play play">Quay ngay</button>
                             </div>
                         </div>
                     </div>
@@ -950,9 +951,9 @@
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-    <input type="hidden" id="position_input" value="{{ $position }}">
-    <input type="hidden" id="group_id" value="{{$result->group->id}}">
-    <input type="hidden" id="image_static" value="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+    <input type="hidden" id="position_input" value="{{ @$position }}">
+    <input type="hidden" id="group_id" value="{{ @$result->group->id}}">
+    <input type="hidden" id="image_static" value="{{ @\App\Library\MediaHelpers::media($result->group->params->image_static) }}">
     <input type="hidden" id="count_item" value="{{count($result->group->items)}}">
     <!-- script -->
     <script id="history-template" type="text/x-handlebars-template">
@@ -1017,7 +1018,22 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js"></script>
         @break
     @case('flip')
+    <style type="text/css">
+        .boxflip .active {
+            animation: rotation 100ms infinite linear;
+        }
+        .boxflip .tran {
+            opacity: 0!important;
+        }
+
+        @keyframes rotation {
+            100%{ transform:rotatey(360deg); }
+        }
+    </style>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js"></script>
+    @foreach($result->group->items as $item)
+        <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+    @endforeach
         @break
     @case('slotmachine')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js"></script>
@@ -1029,7 +1045,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
         @endforeach
 #slot1,#slot2,#slot3{
             display: inline-block;
@@ -1089,7 +1105,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
         @endforeach
 #slot1,#slot2,#slot3,#slot4,#slot5{
             display: inline-block;
