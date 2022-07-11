@@ -3,7 +3,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
-        <p class="text-title">Dành cho bạn</p>
+        <h2 class="text-title">Dành cho bạn</h2>
         <div class="product-catecory" >
             <ul class="nav d-g-md-none" role="tablist" >
                 <li class="nav-item" role="presentation">

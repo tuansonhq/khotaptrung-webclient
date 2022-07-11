@@ -5,7 +5,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_title.png" alt="">
                     </span>
-        <p class="text-title" >Nick ngon giá rẻ</p>
+        <h2 class="text-title" >Nick ngon giá rẻ</h2>
         <div class="navbar-spacer"></div>
 
         <div class="text-view-more">
