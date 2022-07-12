@@ -288,6 +288,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ]);
                 });
 
+
 //                Route::get('/updategit', function ()
 //                {
 //                    \Artisan::call('cache:clear');
@@ -310,6 +311,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                        'message-git2' => $sw
 //                    ]);
 //                });
+                
             });
 
             //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
