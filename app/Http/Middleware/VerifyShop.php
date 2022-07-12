@@ -74,7 +74,7 @@ class VerifyShop extends Middleware
 
         }
 
-        return response('Shop không có quyền truy cập!');
+        return response('Shop không có quyền truy cập!',403);
 
 
     }
