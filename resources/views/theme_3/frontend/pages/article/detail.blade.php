@@ -11,7 +11,6 @@
 @section('content')
     @if($data == null)
         <div class="item_buy">
-
             <div class="container pt-3">
                 <div class="row pb-3 pt-3">
                     <div class="col-md-12 text-center">
@@ -24,12 +23,9 @@
                             </span>
                     </div>
                 </div>
-
             </div>
-
         </div>
     @else
-
         @if(isset($data->params) && isset($data->params->article_type))
             {!! $data->params->article_type !!}
         @endif
