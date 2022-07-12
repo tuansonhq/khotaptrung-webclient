@@ -296,6 +296,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     \Artisan::call('route:clear');
                     Cache::flush();
 
+                    $swich = 'cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html';
+                    $sw = shell_exec($swich);
                     $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
                     $output = shell_exec($command);
@@ -304,7 +306,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     return response()->json([
                         'status' => 1,
                         'message' => 'Thành công!',
-                        'message-git' => $output
+                        'message-git' => $output,
+                        'message-git2' => $sw
                     ]);
                 });
             });
