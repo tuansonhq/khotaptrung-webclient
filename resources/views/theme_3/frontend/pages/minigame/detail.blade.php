@@ -5,7 +5,9 @@
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/spin.css">
+    @if($position  != 'slotmachine')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css">
+    @endif
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/layout_page.css">
 @endsection
 @section('scripts')
@@ -1041,7 +1043,7 @@
         @php
     $count = 0;
 @endphp
-@foreach($result->group->items as $gift)
+@foreach($result->group->items as   $gift)
     @php
         $count++;
     @endphp

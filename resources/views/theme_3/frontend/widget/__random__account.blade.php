@@ -15,12 +15,14 @@
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick_dif.png" alt="">
                         @endif
                     </span>
-                    <p class="text-title" >{{ $items->title }}</p>
+                    <p class="text-title" >{{ $items->title??'' }}</p>
                     <div class="navbar-spacer"></div>
-                    @if(!is_null($items->childs) && count($items->childs)>0)
-                    <?php
-                    $dataAttribute = $items->childs;
-                    ?>
+                    @if(isset($items->childs))
+                        @if(!is_null($items->childs) && count($items->childs)>0)
+                            <?php
+                            $dataAttribute = $items->childs;
+                            ?>
+                        @endif
                     @endif
 
 
@@ -71,7 +73,7 @@
                                                         @endif
                                                     @endforeach
                                                 @endif
-
+                                                    @if(isset($items->childs))
                                                     @if(isset($item->params) && isset($item->params->ext_info))
                                                         <?php
                                                         $params = json_decode(json_encode($item->params->ext_info),true);
@@ -109,7 +111,7 @@
                                                             @endif
                                                         @endif
                                                     @endif
-
+                                                    @endif
                                             </div>
                                             <div class="item-product__box-price">
 
