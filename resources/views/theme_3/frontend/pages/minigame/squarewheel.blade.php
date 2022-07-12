@@ -1177,7 +1177,7 @@
                         if (gift_detail.gift_type == 0) {
                             // $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
                             $("#btnWithdraw").html("Rút Quà");
-                            $("#btnWithdraw").attr('href', '/withdrawitem?game_type=' + gift_detail.game_type);
+                            $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                         } else if (gift_detail.gift_type == 1) {
                             $("#btnWithdraw").html("Kiểm tra nick trúng");
                             $("#btnWithdraw").attr('href', '/logaccgame?id=' + '{{$result->group->id}}');

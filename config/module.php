@@ -151,8 +151,8 @@ return [
             '1' => 'Thành công',
             '2' => 'Đang chờ',
             '3' => 'Đã hủy', // trường hợp này sau sẽ dùng cho thanh toán cổng thẻ
-            '4' => 'Lỗi gọi nhà cung cấp',
-            '5' => 'Lỗi hệ thống'
+            '4' => 'Đang chờ',
+            '5' => 'Đang chờ'
         ],
     ],
 ];

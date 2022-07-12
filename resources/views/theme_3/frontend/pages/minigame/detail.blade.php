@@ -5,7 +5,7 @@
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/spin.css">
-    @if($position  != 'slotmachine')
+    @if($position  != 'slotmachine' && $position != 'squarewheel')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/spin.css">
     @endif
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/layout_page.css">
@@ -204,10 +204,13 @@
                                 <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
                                 <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                             </div>
-                            <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
                              @break
                         @endswitch
-                        @if($result->checkPoint==1)
+                        <div class="pyro">
+                            <div class="before"></div>
+                            <div class="after"></div>
+                        </div>
+                    @if($result->checkPoint==1)
                             <div class="rotation-points">
                                 <div class="rotation-points-title">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/mdi_police-badge.svg" alt="">
@@ -1019,7 +1022,7 @@
                     </div>
                     <div class="rotation-modal-btn row no-gutters">
                         <div class="col-6">
-                            <button id="btnWithdraw" class="button-secondary">Rút quà</button>
+                            <a id="btnWithdraw" class="btn button-secondary">Rút quà</a>
                         </div>
                         <div class="col-6" style="text-align: right;">
                             <button class="button-primary" data-dismiss="modal">Chơi tiếp</button>

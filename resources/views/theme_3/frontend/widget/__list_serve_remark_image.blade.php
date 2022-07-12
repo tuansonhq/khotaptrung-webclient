@@ -6,29 +6,31 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/nickindex.svg" alt="">
         </span>
-            <p class="text-title" >Nick ngon giá rẻ</p>
+            <p class="text-title" >Các dịch vụ liên quan</p>
 
             <div class="navbar-spacer"></div>
 
-            <div class="text-view-more">
+{{--            <div class="text-view-more">--}}
 
-                <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
+{{--                <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>--}}
 
-            </div>
+{{--            </div>--}}
         </div>
 
         <div class="box-product">
             <div class="swiper-container list-product swiper-service" >
                 <div class="swiper-wrapper">
+
                     @foreach($data as $key => $item)
+
                         <div class="swiper-slide" >
-                            <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <a href="{{ isset($item->url) ? $item->url :  '' }}">
                                 <div class="item-product__box-img">
 
-                                    <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                    <img src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="">
 
                                 </div>
-                                <div class="item-nick-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                                <div class="item-nick-name">{{ isset($item->title) ? $item->title :  '' }}</div>
                             </a>
                         </div>
 

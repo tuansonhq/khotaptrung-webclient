@@ -1,9 +1,13 @@
 <div class="block-product gaming-recharge mt-fix-20">
     <div class="gaming-recharge-header d-flex">
-            <span>
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/gaming_icon.png" alt="">
-            </span>
-        <p>Chọn Game nạp giá rẻ</p>
+
+        <div class="product-header d-flex d-md-flex">
+                    <span>
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt="">
+                    </span>
+            <h2 class="text-title" >Chọn Game nạp giá rẻ</h2>
+            <div class="navbar-spacer"></div>
+        </div>
     </div>
     <div class="gaming-recharge-search">
         <div class="gaming-recharge-search-header">
