@@ -57,7 +57,7 @@ class VerifyShop extends Middleware
         $data = Cache::rememberForever('verify_shop', function()  {
             $url = '/very-shop';
             $method = "POST";
-            $data = DirectAPI::_makeRequest($url,[],$method);
+            $data = DirectAPI::_makeRequest($url,[],$method,true);
 
 
             return $data;
@@ -74,7 +74,7 @@ class VerifyShop extends Middleware
 
         }
 
-        return response('Shop không có quyền truy cập!',403);
+        return response('Shop không có quyền truy cập!'.\Request::server ("HTTP_HOST"),403);
 
 
     }
