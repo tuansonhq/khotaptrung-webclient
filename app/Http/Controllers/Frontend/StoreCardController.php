@@ -24,6 +24,7 @@ class StoreCardController extends Controller
             }else{
                 return view('frontend.pages.storecard.index');
             }
+
         }
 
     }
@@ -133,10 +134,10 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard-v2.card-list');
+        return view('frontend.pages.storecard.card-list');
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard-v2.card-single');
+        return view('frontend.pages.storecard.card-single');
     }
 }
