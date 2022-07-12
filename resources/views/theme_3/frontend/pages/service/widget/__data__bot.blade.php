@@ -19,19 +19,17 @@
                 </thead>
                 <tbody>
                 @foreach($data_bot as $key=> $bot)
+                    @if($bot->active == 'on')
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>{{ $bot->uname }}</td>
 
                         <td>{{ $bot->zone }}</td>
                         <td>
-                            @if($bot->active == 'on')
-                                <div class="tag__status --online">Online</div>
-                            @else
-                                <div class="tag__status --offline">Offline</div>
-                            @endif
+                            <div class="tag__status --online">Online</div>
                         </td>
                     </tr>
+                    @endif
                 @endforeach
 
                 </tbody>
