@@ -6,14 +6,14 @@
             <div class=" block-product ">
                 <div class="product-header d-flex">
                         <span>
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/minigame_title.png" alt="">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/vongquayindex.svg" alt="">
                         </span>
-                    <p class="text-title" >Vòng quay may mắn</p>
+                    <h2 class="text-title" >Vòng quay may mắn</h2>
                     <div class="navbar-spacer"></div>
 
                     <div class="text-view-more">
 
-                        <a href="/minigame" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
+                        <a href="/minigame" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
 
                     </div>
                 </div>

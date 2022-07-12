@@ -1577,6 +1577,9 @@ a:hover .__icon.--path__custom:after {
 ._fw-lg-700 {
     font-weight: 700 !important;
 }
+.mobile--fail__payment {
+    display: none;
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {
@@ -1644,6 +1647,9 @@ a:hover .__icon.--path__custom:after {
     /*}*/
     .step .step--back {
         position: absolute;
+        top:50%;
+        left: 1rem;
+        transform: translateY(-50%);
     }
 
     .step .step--content {
