@@ -18,7 +18,7 @@
     background-color: #FFFFFF;
     border-radius: 12px;
     padding: 1.25rem;
-    height: 100%;
+    margin-bottom: 1.25rem;
 }
 
 .rotation-header {
@@ -371,7 +371,7 @@
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 1rem 1rem 0.75rem 1rem;
-    height: 100%;
+    margin-bottom: 1.25rem;
 }
 
 .service-detail h2 {
@@ -406,7 +406,6 @@
     background-color: #FFFFFF;
     border-radius: 8px;
     padding: 1rem 0.5rem 0.75rem 1rem;
-    height: 100%;
 }
 
 .rotation-comment h2 {
@@ -538,16 +537,17 @@
 }
 
 .rotation-leaderboard {
-    padding: 1.25rem;
+    position: sticky;
+    padding: 1rem 1.25rem 1.25rem 1.25rem;
     background: #FFFFFF;
     border-radius: 12px;
-    height: 100%;
+    transition: top 0.2s;
 }
 
 .leaderboard-buttons {
-    padding-bottom: 1.25rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid #E4E5F0;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .leaderboard-buttons button {
@@ -560,7 +560,7 @@
 .leaderboard-header {
     display: flex;
     align-items: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .leaderboard-header p {
@@ -573,7 +573,7 @@
 
 .leaderboard-type {
     position: relative;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .listed-date {
@@ -638,7 +638,7 @@
 }
 
 .leaderboard-item {
-    padding: 0.95rem 1rem;
+    padding: 0.55rem 1rem;
     align-items: center;
     font-weight: 400;
     font-size: 14px;
@@ -843,6 +843,10 @@
 }
 
 @media (max-width: 992px) {
+    .rotation-content {
+        margin-bottom: -0.5rem;
+    }
+
     .rotation-col-left {
         padding-right: 15px;
     }
@@ -851,12 +855,17 @@
         padding-left: 15px;
     }
 
-    .service-detail, .rotation-leaderboard, .rotation-detail, .rotation-comment {
-        height: unset;
+    .rotation-detail {
+        margin-bottom: 0.75rem;
     }
 
     .service-detail {
-        margin: 1.25rem 0;
+        margin-bottom: 0.75rem;
+    }
+
+    .rotation-leaderboard {
+        position: unset;
+        margin-bottom: 0.75rem;
     }
 
     .rotation-advertise {
@@ -987,7 +996,6 @@
         border-radius: 0;
         padding: 0;
         margin-bottom: 0.75rem;
-        height: unset;
     }
 
     .leaderboard-header {
