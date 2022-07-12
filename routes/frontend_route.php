@@ -296,7 +296,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     \Artisan::call('route:clear');
                     Cache::flush();
 
-                    $swich = 'cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html';
+                    $swich = 'cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html 2>&1';
                     $sw = shell_exec($swich);
                     $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
