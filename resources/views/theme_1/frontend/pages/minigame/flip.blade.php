@@ -466,6 +466,7 @@ $(document).ready(function(e){
     var angles = 0;
     var free_wheel = 0;
     var arrDiscount = '';
+    var showwithdrawbtn = true;
     //Click nút lật
     $('body').delegate('.img_remove', 'click', function(){
         $('.boxflip .flip-box-front').removeClass('img_remove');
@@ -525,6 +526,7 @@ $(document).ready(function(e){
                         // }
                         return;
                     }
+                    showwithdrawbtn = data.showwithdrawbtn;
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;
                     free_wheel = data.free_wheel;
                     //arrDiscount = data.arrDiscount;
@@ -677,7 +679,7 @@ $(document).ready(function(e){
                             }
                         }
                     }
-                    if (!gift_detail.showwithdrawbtn) {
+                    if (!showwithdrawbtn) {
                         $("#btnWithdraw").hide();
                     }
 
