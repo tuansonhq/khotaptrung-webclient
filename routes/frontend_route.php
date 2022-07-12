@@ -61,27 +61,7 @@ Route::get('/test111', function ()
     return 1111;
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
-Route::get('/updategit', function ()
-{
 
-    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
-
-    $output = shell_exec($command);
-//    Lam sao day em oi
-
-    dd($command, $output);
-    \Artisan::call('cache:clear');
-    \Artisan::call('config:cache');
-    \Artisan::call('view:clear');
-    \Artisan::call('route:clear');
-    Cache::flush();
-
-    return response()->json([
-        'status' => 1,
-        'message' => 'Thành công!',
-        'message-git' => $output
-    ]);
-});
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
 
@@ -103,39 +83,28 @@ Route::group(array('middleware' => ['theme']) , function (){
         {
             return view('index');
         });
-        Route::get('/clear', function ()
-        {
-            \Artisan::call('cache:clear');
-            \Artisan::call('config:cache');
-            \Artisan::call('view:clear');
-            \Artisan::call('route:clear');
-            Cache::flush();
-            return response()->json([
-                'status' => 1,
-                'message' => 'Thành công!'
-            ]);
-        });
+
 
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::group(['middleware' => ['cacheResponse: 604800']], function (){
             Route::get('/', [HomeController::class , "index"]);
-            Route::get('/ip', function (\Illuminate\Http\Request $request)
-            {
-                return $request->getClientIp();
-                foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
-                    if (array_key_exists($key, $_SERVER) === true){
-                        foreach (explode(',', $_SERVER[$key]) as $ip){
-                            $ip = trim($ip); // just to be safe
-                            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
-                                return $ip;
-                            }
-                        }
-                    }
-                }
-                return request()->ip(); // it will return server ip when no client ip found
-
-            });
+//            Route::get('/ip', function (\Illuminate\Http\Request $request)
+//            {
+//                return $request->getClientIp();
+//                foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
+//                    if (array_key_exists($key, $_SERVER) === true){
+//                        foreach (explode(',', $_SERVER[$key]) as $ip){
+//                            $ip = trim($ip); // just to be safe
+//                            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
+//                                return $ip;
+//                            }
+//                        }
+//                    }
+//                }
+//                return request()->ip(); // it will return server ip when no client ip found
+//
+//            });
 
             Route::get('/tin-tuc', [ArticleController::class , "getList"]);
 
@@ -306,6 +275,43 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/contact-form', [ChargeController::class, 'index']);
                 Route::post('/captcha-validation', [ChargeController::class, 'capthcaFormValidate']);
 
+                Route::get('/clear', function ()
+                {
+                    \Artisan::call('cache:clear');
+                    \Artisan::call('config:cache');
+                    \Artisan::call('view:clear');
+                    \Artisan::call('route:clear');
+                    Cache::flush();
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!'
+                    ]);
+                });
+
+
+//                Route::get('/updategit', function ()
+//                {
+//                    \Artisan::call('cache:clear');
+//                    \Artisan::call('config:cache');
+//                    \Artisan::call('view:clear');
+//                    \Artisan::call('route:clear');
+//                    Cache::flush();
+//
+//                    $swich = 'cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html 2>&1';
+//                    $sw = shell_exec($swich);
+//                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+//
+//                    $output = shell_exec($command);
+//                //    Lam sao day em oi
+//
+//                    return response()->json([
+//                        'status' => 1,
+//                        'message' => 'Thành công!',
+//                        'message-git' => $output,
+//                        'message-git2' => $sw
+//                    ]);
+//                });
+                
             });
 
             //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);

@@ -1053,8 +1053,7 @@
     text-transform: uppercase;
     font-weight: 700;
     color: #354052;
-    margin: auto 0 auto 60px;
-    padding-left: 80px;
+    margin: auto;
 }
 .rank-modal-tab ul.nav-tabs {
     border-bottom: none;

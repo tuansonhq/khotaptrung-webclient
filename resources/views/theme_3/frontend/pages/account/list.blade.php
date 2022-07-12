@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Danh sách Nick</h3>
+                    <h1>Danh sách Nick</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -58,7 +58,7 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h3>{{ $data->custom->title ? $data->custom->title : $data->title }}</h3>
+                                    <h1>{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -205,6 +205,8 @@
     </section>
 
     @include('frontend.pages.account.widget.__related__category')
+
+    @include('frontend.pages.account.widget.__category__content')
 
     <div class="modal fade login show order-modal" id="openFinter" aria-modal="true">
 

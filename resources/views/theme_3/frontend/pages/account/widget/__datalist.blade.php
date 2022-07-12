@@ -10,7 +10,7 @@
 
                             @if($item->status == 1)
                                 @if($data->display_type == 2)
-                                    <div class="col-auto body-detail-nick-col-ct buy-random-acc" data-id="{{ $item->randId }}">
+                                    <div class="col-auto body-detail-nick-col-ct">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
                                             <div class="row marginauto">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
@@ -26,8 +26,8 @@
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>ID: {{ $item->randId }}</small>
+                                                        <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                                            <span>ID: {{ $item->randId }}</span>
                                                         </div>
 
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
@@ -59,6 +59,8 @@
                                                                 @endif
                                                             </ul>
                                                         </div>
+
+                                                        <button class="button-secondary list-item-nick-button buy-random-acc" data-id="{{ $item->randId }}">Mua ngay</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -281,8 +283,8 @@
                                                         {{--<div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
                                                             <span>{{ $item->title }}</span>
                                                         </div>--}}
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>ID: {{ $item->randId }}</small>
+                                                        <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                                            <span>ID: {{ $item->randId }}</span>
                                                         </div>
                                                         <?php
                                                             $total = 0;
@@ -395,7 +397,7 @@
             @else
             @endif
 
-            <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
+            <div class="col-md-12 left-right justify-content-end default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
 

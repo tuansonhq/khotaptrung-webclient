@@ -1,9 +1,9 @@
 <div class=" block-product mt-fix-20">
     <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
+                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/saleindex.svg" alt="">
                     </span>
-        <p class="text-title">Dành cho bạn</p>
+        <h2 class="text-title">Dành cho bạn</h2>
         <div class="product-catecory" >
             <ul class="nav d-g-md-none" role="tablist" >
                 <li class="nav-item" role="presentation">
@@ -20,7 +20,7 @@
 
         <div class="text-view-more">
 
-            <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
+            <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
 
         </div>
     </div>

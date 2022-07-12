@@ -49,7 +49,6 @@ class AccController extends Controller
     }
 
     public function getList(Request $request,$slug){
-
         $url = '/acc';
         $method = "GET";
         $dataSendCate = array();
@@ -60,7 +59,6 @@ class AccController extends Controller
 
         if ($request->ajax()){
             $page = $request->page;
-
             if(isset($response_cate_data) && $response_cate_data->status == 1){
                 $data = $response_cate_data->data;
                 $dataAttribute = $data->childs;
@@ -144,8 +142,7 @@ class AccController extends Controller
                     if (AuthCustom::check()){
                         $balance = AuthCustom::user()->balance;
                     }
-
-                    $html =  view('frontend.pages.account.widget.__datalist')
+                    $html = view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
                         ->with('balance',$balance)
                         ->with('dataAttribute',$dataAttribute)
@@ -157,11 +154,11 @@ class AccController extends Controller
                             'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
                         ]);
                     }
-
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
                         'message' => 'Load du lieu thanh cong.',
+                        'last_page'=>$items->lastPage()
                     ]);
                 }
                 else{
@@ -178,7 +175,6 @@ class AccController extends Controller
                 ]);
             }
         }
-
         if(isset($response_cate_data) && $response_cate_data->status == 1){
 
             $data = $response_cate_data->data;
@@ -191,7 +187,7 @@ class AccController extends Controller
                     'message' => 'Không lấy được dữ liệu childs.',
                 ]);
             }
-//                return $data;
+
             if (!isset($data->title)){
 
                 $data = null;
@@ -204,7 +200,6 @@ class AccController extends Controller
 
 
             Session::get('auth_custom');
-
 
             return view('frontend.pages.account.list')
                 ->with('data',$data)
@@ -231,7 +226,7 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
-        if(isset($response_data) && $response_data->status == 1){
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
             $slug_category = $data->category->slug;
             return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug)->with('slug_category',$slug_category);

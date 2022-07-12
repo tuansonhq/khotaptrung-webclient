@@ -121,7 +121,7 @@ $(document).ready(function () {
         handleToggleContent('.content-video-in');
     });
 });
-function loadDataTable(query = {page:1}) {
+function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',status_data:'',select_data:'',sort_by_data:''}) {
     let url = window.location.href;
     let slug = $('.slug').val();
     let url_ajax = '/mua-acc/' + slug;
@@ -136,6 +136,7 @@ function loadDataTable(query = {page:1}) {
         });
         $('#data_sort select').niceSelect('update');
     }
+
     $.ajax({
         type: 'GET',
         url: url_ajax,
@@ -147,6 +148,10 @@ function loadDataTable(query = {page:1}) {
         success: (res) => {
             $('.loading').css('display','none');
             if (res.status){
+                last_page = res.last_page;
+                if (checkLastPage()){
+                    return;
+                }
                 $("#account_data").html(res.data);
             }else {
                 let html = '';
@@ -162,7 +167,6 @@ function loadDataTable(query = {page:1}) {
         }
     });
 }
-
 
 function handleToggleContent(selector){
     $('.js-toggle-content .view-less').toggle();

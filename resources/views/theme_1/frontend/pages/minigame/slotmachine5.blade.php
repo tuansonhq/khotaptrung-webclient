@@ -381,7 +381,7 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
+    <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 
     <script>
         function animate(options) {
@@ -439,6 +439,7 @@
             var slot3_fake;
             var slot4_fake;
             var slot5_fake;
+            var showwithdrawbtn = true;
             //Click nút quay
             $('body').delegate('#start-played', 'click', function() {
 
@@ -474,6 +475,7 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
+                            showwithdrawbtn = data.showwithdrawbtn;
                             roll_check = true;
                             gift_detail = data.gift_detail;
                             var num1=0;
@@ -1038,6 +1040,9 @@
                         }
                     }
                 }
+                if (!showwithdrawbtn) {
+                    $("#btnWithdraw").hide();
+                }
 
                 $('#noticeModal .content-popup').html($html);
 
@@ -1061,7 +1066,6 @@
             location.reload();
         })
     </script>
-
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).on('scroll',function(){

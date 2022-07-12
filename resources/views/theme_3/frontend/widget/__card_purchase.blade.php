@@ -4,7 +4,7 @@
             <div class="card --custom" style="min-height: 100%">
                 <div class="card--header">
                     <div class="card--header__title">
-                        <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/credit_card.png" alt=""></div>
+                        <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
                         <h4>Mua thẻ nhanh</h4>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="tab-pane fade" id="card-phone" role="tabpanel" aria-labelledby="card-phone-tab">
                             <ul class="cards__list row" id="cardPhoneList">
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             Chọn mệnh giá
                         </div>
                         <ul class="deno__list row" id="cardAmountList">
-                            
+
                         </ul>
                         <div class="card--amount">
                             <span class="card--amount__title">
@@ -117,7 +117,7 @@
                                 Chiết khấu
                             </span>
                             <span class="discount--value">
-                                
+
                             </span>
                         </div>
                         <div class="price--total">
@@ -125,7 +125,7 @@
                                 Thành tiền
                             </span>
                             <span class="price--total__value">
-                                
+
                             </span>
                         </div>
                         @if (App\Library\AuthCustom::check())
@@ -179,7 +179,7 @@
                                 Số lượng
                             </div>
                             <div class="card--attr__value" id="confirmQuantity">
-                                
+
                             </div>
                         </div>
                         <div class="card--attr">
@@ -187,7 +187,7 @@
                                 Chiết khấu
                             </div>
                             <div class="card--attr__value" id="confirmDiscount">
-                                
+
                             </div>
                         </div>
                         <div class="card--attr">
@@ -223,7 +223,7 @@
                                 Tổng thanh toán
                             </div>
                             <div class="card--attr__value" id="totalBill">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -295,7 +295,7 @@
                                         </div>
                                         <div class="card--info">
                                             <div class="card--info__name">
-                                                
+
                                             </div>
                                             <div class="card--info__value">
                                                 đ
@@ -310,7 +310,7 @@
                                         </div>
                                         <div class="card--attr__value">
                                             <div class="card__info">
-                                                
+
                                             </div>
                                             <div class="icon--coppy js-copy-text">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
@@ -323,7 +323,7 @@
                                         </div>
                                         <div class="card--attr__value">
                                             <div class="card__info">
-                                                
+
                                             </div>
                                             <div class="icon--coppy js-copy-text">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">

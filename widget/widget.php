@@ -72,11 +72,26 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+// dịch vụ nổi bật ảnh
+View::composer('frontend.widget.__list_serve_remark_image', function ($view) {
 
+    $data = \Cache::rememberForever('__list_serve_remark_image', function() {
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 View::composer('frontend.widget.__list_service', function ($view) {
 
     $data = \Cache::rememberForever('__list_service', function() {
-        $url = '/menu-transaction';
+        $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
@@ -198,7 +213,7 @@ View::composer('frontend.widget.__tin__tuc', function ($view) {
     return $view->with('data', $data);
 });
 
-View::composer('frontend.widget.__random__account', function ($view) {
+View::composer('frontend.widget.__randomrandom__account', function ($view) {
 
 //    Acc
 
@@ -210,7 +225,6 @@ View::composer('frontend.widget.__random__account', function ($view) {
         $dataSend['data'] = 'category_list_random';
         $dataSend['module'] = 'acc_category';
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
         return $data = $result_Api->response_data->data??null;
     });
 

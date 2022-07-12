@@ -83,6 +83,7 @@
                                 </p>
                             </div>
                         </div>
+                        <!-- thay cho rotation -->
                         <div class="item_square" style="display: flex; flex-wrap: wrap;" >
                             <table id="squaredesktop" class="square">
                                 <tr>
@@ -139,7 +140,7 @@
                             </div>
                             <div class="progress-wrapper" >
                                 <div class="progress-bar" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
-                                <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}</span>
+                                <span class="progress-tooltip">Điểm của bạn: {{$result->pointuser<100?$result->pointuser:'100'}}/100</span>
                             </div>
                         </div>
                         @endif
@@ -744,6 +745,9 @@
                         </ul>
 
                         <div class="commment-input">
+                            <div class="comment-user-avatar">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
+                            </div>
                             <input name="message-to-send" type="text" class="input-primary" id="message-to-send">
                         </div>
                         <div class="comment-button">
@@ -932,7 +936,7 @@
                         datatype: 'json',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),
-                            id: '{{$result->group->id}}',
+                            id: '',
                             numrolllop: numrolllop,
                             numrollbyorder: numrollbyorder,
                             typeRoll: typeRoll,
@@ -1173,7 +1177,7 @@
                         if (gift_detail.gift_type == 0) {
                             // $("#btnWithdraw").html("Rút " + $("#withdrawruby_" + gift_detail.game_type).val());
                             $("#btnWithdraw").html("Rút Quà");
-                            $("#btnWithdraw").attr('href', '/withdrawitem?game_type=' + gift_detail.game_type);
+                            $("#btnWithdraw").attr('href', '/withdrawitem-' + gift_detail.game_type);
                         } else if (gift_detail.gift_type == 1) {
                             $("#btnWithdraw").html("Kiểm tra nick trúng");
                             $("#btnWithdraw").attr('href', '/logaccgame?id=' + '{{$result->group->id}}');

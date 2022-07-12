@@ -26,7 +26,7 @@
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h3>Nạp tài khoản game</h3>
+                            <h1>Nạp tài khoản game</h1>
                         </div>
                         <div class="col-auto left-right" style="width: 10%">
                         </div>
