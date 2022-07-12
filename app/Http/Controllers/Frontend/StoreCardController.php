@@ -12,11 +12,19 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
+
         $data_host =\Request::server ("HTTP_HOST");
+
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
-            return view('frontend.pages.storecard.index');
+
+            if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
+                    return view('frontend.pages.storecard.index');
+            }else{
+                return view('frontend.pages.storecard.index');
+            }
+
         }
 
     }
