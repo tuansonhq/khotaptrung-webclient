@@ -1975,6 +1975,9 @@ header nav.heading .header-container{
     border-radius: 8px;
     margin: 20px 12px 0 12px;
 }
+.rotation-notify-home-fix{
+    margin: 20px auto 0 auto;
+}
 .rotation-notify-home img{
     position: absolute;
     left: 14px;
