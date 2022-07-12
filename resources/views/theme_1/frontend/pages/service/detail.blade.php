@@ -11,7 +11,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
     <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+{{--    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">--}}
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
     <style type="text/css">
         @media only screen and (max-width: 640px) {
