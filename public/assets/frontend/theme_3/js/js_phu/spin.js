@@ -1,5 +1,7 @@
 $(document).ready(function () {
     setActiveTable();
+    setActiveTableMobile();
+
     var started_at = $('.started_at').val();
 
     $('#numrolllop').niceSelect();
@@ -66,30 +68,56 @@ $(document).ready(function () {
     });
 
     //Change leaderboard table
-    $('.rotation-leaderboard .listed-date').click( function (e) {
-        var index = $('.rotation-leaderboard .listed-date').index(this);
-        $('.rotation-leaderboard .leaderboard-content').css('display', 'none');
+    $('.leaderboard-lg .listed-date').click( function (e) {
+        var index = $('.leaderboard-lg .listed-date').index(this);
+        $('.leaderboard-lg .leaderboard-content').css('display', 'none');
         if ( index == 0 ) {
-            $('.rotation-leaderboard .leaderboard-1').css('display', 'block');
+            $('.leaderboard-lg .leaderboard-1').css('display', 'block');
         }
         if ( index == 1 ) {
-            $('.rotation-leaderboard .leaderboard-2').css('display', 'block');
+            $('.leaderboard-lg .leaderboard-2').css('display', 'block');
         }
         if ( index == 2 ) {
-            $('.rotation-leaderboard .leaderboard-3').css('display', 'block');
+            $('.leaderboard-lg .leaderboard-3').css('display', 'block');
         }
-        $('.rotation-leaderboard .listed-date').removeClass('listed-table-active');
+        $('.leaderboard-lg .listed-date').removeClass('listed-table-active');
         $(this).addClass('listed-table-active');
-        $('.rotation-leaderboard .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
-        $('.rotation-leaderboard .date-listing').css('width', `${$(this).parent().width()}px` );
+        $('.leaderboard-lg .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
+        $('.leaderboard-lg .date-listing').css('width', `${$(this).parent().width()}px` );
+    });
+
+    //Change leaderboard table mobile
+    $('.leaderboard-md .listed-date').click( function (e) {
+        var index = $('.leaderboard-md .listed-date').index(this);
+        $('.leaderboard-md .leaderboard-content').css('display', 'none');
+        if ( index == 0 ) {
+            $('.leaderboard-md .leaderboard-1').css('display', 'block');
+        }
+        if ( index == 1 ) {
+            $('.leaderboard-md .leaderboard-2').css('display', 'block');
+        }
+        if ( index == 2 ) {
+            $('.leaderboard-md .leaderboard-3').css('display', 'block');
+        }
+        $('.leaderboard-md .listed-date').removeClass('listed-table-active');
+        $(this).addClass('listed-table-active');
+        $('.leaderboard-md .date-listing').css('transform', `translate3d(${index * 100}%, 0px, 0px)` );
+        $('.leaderboard-md .date-listing').css('width', `${$(this).parent().width()}px` );
     });
 
     //Set active leaderboard date tabs
     function setActiveTable() {
-        let width = $('.rotation-leaderboard .listed-date').first().parent().width();
-        $('.rotation-leaderboard .listed-date').first().addClass('listed-table-active');
-        $('.rotation-leaderboard .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
-        $('.rotation-leaderboard .date-listing').css('width', `${width}px` );
+        let width = $('.leaderboard-lg .listed-date').first().parent().width();
+        $('.leaderboard-lg .listed-date').first().addClass('listed-table-active');
+        $('.leaderboard-lg .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
+        $('.leaderboard-lg .date-listing').css('width', `${width}px` );
+    }
+
+    function setActiveTableMobile() {
+        let width = $('.leaderboard-md .listed-date').first().parent().width();
+        $('.leaderboard-md .listed-date').first().addClass('listed-table-active');
+        $('.leaderboard-md .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
+        $('.leaderboard-md .date-listing').css('width', `${width}px` );
     }
 
 
@@ -108,6 +136,15 @@ $(document).ready(function () {
 
     $('.js-toggle-content').click(function () {
         handleToggleContent();
+    });
+
+    $(document).on('scroll',function(){
+        if ($(this).scrollTop() > 200) {
+            $('.rotation-leaderboard').css("top", "140px");
+        } else {
+            $('.rotation-leaderboard').css("top", "80px");
+        }
+
     });
 
 
