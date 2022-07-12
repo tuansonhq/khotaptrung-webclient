@@ -291,7 +291,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/updategit', function ()
                 {
 
-                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev';
+                    $command='cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html && git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev';
 
                     $output = shell_exec($command);
                 //    Lam sao day em oi
