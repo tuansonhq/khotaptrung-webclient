@@ -439,6 +439,7 @@
             var slot3_fake;
             var slot4_fake;
             var slot5_fake;
+            var showwithdrawbtn = true;
             //Click nút quay
             $('body').delegate('#start-played', 'click', function() {
 
@@ -474,6 +475,7 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
+                            showwithdrawbtn = data.showwithdrawbtn;
                             roll_check = true;
                             gift_detail = data.gift_detail;
                             var num1=0;
@@ -1038,7 +1040,7 @@
                         }
                     }
                 }
-                if (!gift_detail.showwithdrawbtn) {
+                if (!showwithdrawbtn) {
                     $("#btnWithdraw").hide();
                 }
 

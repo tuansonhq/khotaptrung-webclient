@@ -397,7 +397,7 @@
             @else
             @endif
 
-            <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
+            <div class="col-md-12 left-right justify-content-end default-paginate">
                 @if(isset($items))
                     @if($items->total()>1)
 
