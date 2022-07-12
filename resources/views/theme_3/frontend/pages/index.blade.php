@@ -27,7 +27,7 @@
                     @endif
 
                     @if(setting('sys_marquee'))
-                    <div class="rotation-notify-home text-slider" @if(theme('')->theme_config->sys_menu_service == 'menu_service_1' && theme('')->theme_config->sys_top_charge == 'top_charge_open') @endif>
+                    <div class="rotation-notify-home text-slider  @if(theme('')->theme_config->sys_menu_service != 'menu_service_1' || !theme('')->theme_config->sys_top_charge != 'top_charge_open') rotation-notify-home-fix @endif">
                         <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                         <marquee class="rotation-marquee marquee-move">
 
@@ -56,7 +56,7 @@
     <div class="container container-fix">
 
 {{--        Dịch vụ nổi bật mobile--}}
-        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+        @if(isset(theme('')->theme_config->sys_config_service_page) && theme('')->theme_config->sys_config_service_page == 'service_icon')
             @include('frontend.widget.__list_serve_remark_mobile')
         @endif
 
@@ -73,23 +73,26 @@
             @include('frontend.widget.__top_nap_the_mobile')
         @endif
 {{--        Dịch vụ game--}}
-        @include('frontend.widget.__service_game')
+        @if(isset(theme('')->theme_config->sys_config_service_game) && theme('')->theme_config->sys_config_service_game == 'service_game_1')
+             @include('frontend.widget.__service_game')
+        @endif
 {{--             Minigame--}}
         @if(isset(theme('')->theme_config->sys_config_minigame) && theme('')->theme_config->sys_config_minigame == 'minigame_0')
               @include('frontend.widget.__content__home__minigame')
         @endif
 
-{{--             Dịch vụ nổi bật--}}
-        @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
+
+        @if(isset(theme('')->theme_config->sys_config_service_page) && theme('')->theme_config->sys_config_service_page == 'service_icon')
             @include('frontend.widget.__list_serve_remark')
-        @endif
-{{--                Nạp thẻ--}}
-        @if(isset(theme('')->theme_config->sys_charge_card) && theme('')->theme_config->sys_charge_card == 'charge_card_1')
-            @include('frontend.widget.__nap_the')
         @endif
 {{--                Mua thẻ--}}
         @if(isset(theme('')->theme_config->sys_store_card) && theme('')->theme_config->sys_store_card == 'store_card_1')
             @include('frontend.widget.__card_purchase')
+        @endif
+
+        {{--                Nạp thẻ--}}
+        @if(isset(theme('')->theme_config->sys_charge_card) && theme('')->theme_config->sys_charge_card == 'charge_card_1')
+            @include('frontend.widget.__nap_the')
         @endif
 {{--                Danh mục mua acc--}}
         @if(isset(theme('')->theme_config->sys_config_buy_acc) && theme('')->theme_config->sys_config_buy_acc == 'buy_acc_1')
@@ -97,6 +100,13 @@
         @endif
         @if(isset(theme('')->theme_config->sys_config_nick) && theme('')->theme_config->sys_config_nick == 'nick_acc_1')
             @include('frontend.widget.__random__account')
+        @endif
+
+        {{--             Dịch vụ nổi bật--}}
+
+
+        @if(isset(theme('')->theme_config->sys_config_service_page) && theme('')->theme_config->sys_config_service_page == 'service_image')
+            @include('frontend.widget.__list_serve_remark_image')
         @endif
 {{--                 Tin tức--}}
         @if(isset(theme('')->theme_config->sys_config_news) &&  theme('')->theme_config->sys_config_news == 'news_1')
