@@ -16,7 +16,7 @@ class StoreCardController extends Controller
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
-            return view('frontend.pages.storecard-v2.index');
+            return view('frontend.pages.storecard.index');
         }
 
     }
@@ -126,10 +126,10 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard-v2.card-list');
+        return view('frontend.pages.storecard.card-list');
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard-v2.card-single');
+        return view('frontend.pages.storecard.card-single');
     }
 }
