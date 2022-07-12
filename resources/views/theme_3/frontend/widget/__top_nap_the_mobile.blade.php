@@ -1,6 +1,6 @@
 <div class="top-list row d-md-none d-block mt-fix-20">
     <div class=" col-md-12" >
-        <h2 class="text-center"><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</h2>
+        <p class="text-center"><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top nạp T{{Carbon\Carbon::now()->month}}</p>
 {{--        <div class="top-days default-tab">--}}
 {{--            <ul class="nav justify-content-between row pr-fix-16 pl-fix-16" role="tablist" >--}}
 {{--                <li class="nav-item col-md-12 p-md-0" role="presentation">--}}
