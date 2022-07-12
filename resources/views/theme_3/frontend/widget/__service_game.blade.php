@@ -3,7 +3,7 @@
             <span>
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/gaming_icon.png" alt="">
             </span>
-        <h2>Chọn Game nạp giá rẻ</h2>
+        <p>Chọn Game nạp giá rẻ</p>
     </div>
     <div class="gaming-recharge-search">
         <div class="gaming-recharge-search-header">
