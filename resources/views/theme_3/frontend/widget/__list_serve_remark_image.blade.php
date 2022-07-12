@@ -20,12 +20,14 @@
         <div class="box-product">
             <div class="swiper-container list-product swiper-service" >
                 <div class="swiper-wrapper">
+
                     @foreach($data as $key => $item)
+
                         <div class="swiper-slide" >
                             <a href="{{ isset($item->url) ? $item->url :  '' }}">
                                 <div class="item-product__box-img">
 
-                                    <img src="{{ isset($item->image_banner) ? \App\Library\MediaHelpers::media($item->image_banner) : '' }}" alt="">
+                                    <img src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="">
 
                                 </div>
                                 <div class="item-nick-name">{{ isset($item->title) ? $item->title :  '' }}</div>
