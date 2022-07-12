@@ -27,7 +27,7 @@
                     @endif
 
                     @if(setting('sys_marquee'))
-                    <div class="rotation-notify-home text-slider  @if(theme('')->theme_config->sys_menu_service != 'menu_service_1' || !theme('')->theme_config->sys_top_charge != 'top_charge_open') rotation-notify-home-fix @endif">
+                    <div class="rotation-notify-home text-slider  @if(theme('')->theme_config->sys_menu_service !== 'menu_service_1' || theme('')->theme_config->sys_top_charge !== 'top_charge_open') rotation-notify-home-fix @endif">
                         <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                         <marquee class="rotation-marquee marquee-move">
 
