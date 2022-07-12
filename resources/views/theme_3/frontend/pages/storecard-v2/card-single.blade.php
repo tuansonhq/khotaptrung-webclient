@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buy-card.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/input.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
@@ -90,9 +90,9 @@
                         <a href="/mua-the-garena" class="card--back d-lg-none d-block">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
-                        <h4 class="card--title">
+                        <div class="card--title">
                             Thẻ
-                        </h4>
+                        </div>
                     </div>
                     <div class="card--body p-lg-2 p-3">
                         <div class="row mx-lg-0" id="card--wrap__single">

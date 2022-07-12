@@ -98,14 +98,17 @@ $(document).ready(function(e) {
                     loop();
 
                     userpoint = data.userpoint;
-                    console.log(userpoint)
                     if(userpoint<100){
-                        $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                        $(".progress-bar").css("width", userpoint + "%");
                     }else{
-                        $(".item_spin_progress_bubble").css("width", "100%");
-                        $(".item_spin_progress_bubble").addClass('clickgif');
+                        $(".pyro").show();
+                        setTimeout(function(){
+                            $(".pyro").hide();
+                        },6000)
+                        $(".progress-bar").css("width", "100%");
+                        $(".progress-bar").addClass('clickgif');
                     }
-                    $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                    $('.progress-tooltip').text(`Điểm của bạn: ${userpoint}/100`);
                     $("#saleoffpass").val("");
                 },
                 error: function() {
@@ -212,7 +215,6 @@ $(document).ready(function(e) {
                     loop();
 
                     userpoint = data.userpoint;
-                    console.log(userpoint);
                     if(userpoint<100){
                         $(".item_spin_progress_bubble").css("width", data.userpoint + "%");
 

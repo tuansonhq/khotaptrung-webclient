@@ -183,7 +183,7 @@ $(document).ready(function () {
 
                         let grid_card = $('#card--desktop__value');
                         if (data.length){
-                            $('#card--value h4.card--title').text(data_telecom.title.toLowerCase())
+                            $('#card--value .card--title').text(data_telecom.title.toLowerCase())
                             data.forEach(function (card) {
                                 if (width > 1199){
                                     // Desktop
@@ -292,7 +292,7 @@ $(document).ready(function () {
                         breadcrum.append(cat_bc);
                         breadcrum.append(value_bc);
                         // Card Title
-                        $('#card--value h4.card--title').css('text-transform', 'capitalize').text('Thẻ ' + card_is.toLowerCase() + ` ${value_is}`);
+                        $('#card--value .card--title').css('text-transform', 'capitalize').text('Thẻ ' + card_is.toLowerCase() + ` ${value_is}`);
 
 
                         let card_same = $('#card--same__wrapper')

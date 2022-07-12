@@ -206,7 +206,10 @@
                             </div>
                              @break
                         @endswitch
-                        <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
+                        <div class="pyro">
+                            <div class="before"></div>
+                            <div class="after"></div>
+                        </div>
                     @if($result->checkPoint==1)
                             <div class="rotation-points">
                                 <div class="rotation-points-title">
