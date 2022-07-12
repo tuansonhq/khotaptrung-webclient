@@ -296,7 +296,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     \Artisan::call('route:clear');
                     Cache::flush();
 
-                    $command='cd /home/frontenra1d/frontend.dev.tichhop.pro/public_html && git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 
                     $output = shell_exec($command);
                 //    Lam sao day em oi
