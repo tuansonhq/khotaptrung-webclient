@@ -206,6 +206,8 @@
 
     @include('frontend.pages.account.widget.__related__category')
 
+    @include('frontend.pages.account.widget.__category__content')
+
     <div class="modal fade login show order-modal" id="openFinter" aria-modal="true">
 
         <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">

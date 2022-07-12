@@ -1,5 +1,5 @@
 @if(isset($data) && count($data) > 0)
-    <section class="bottom-container-ct">
+    <section>
         <div class="container container-fix body-container-ct">
             <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
                 <div class="col-md-12 left-right">

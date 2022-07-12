@@ -433,6 +433,7 @@
         var slot1_fake;
         var slot2_fake;
         var slot3_fake;
+        var showwithdrawbtn = true;
         //Click nút quay
         $('body').delegate('#start-played', 'click', function() {
 
@@ -490,7 +491,7 @@
                         }
 
 
-
+                        showwithdrawbtn = data.showwithdrawbtn;
                         gift_revice = data.arr_gift;
                         numrollbyorder = parseInt(data.numrollbyorder) + 1;
                         arrxgt = data.xgt;
@@ -859,7 +860,9 @@
                     }
                 }
             }
-
+            if (!showwithdrawbtn) {
+                $("#btnWithdraw").hide();
+            }
             $('#noticeModal .content-popup').html($html);
 
             if (userpoint > 99) {
