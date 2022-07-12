@@ -67,17 +67,17 @@
                             <div class="col-auto footer-default-three-col-image footer-default-three-col-image-left">
                                 <div class="row marginauto">
                                     <div class="col-md-12 left-right ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/appstore.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/appstore.svg" alt="">
                                     </div>
                                     <div class="col-md-12 left-right footer-default-google">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/googleplay.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/googleplay.svg" alt="">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-auto footer-default-three-col-image footer-default-three-col-image-right">
                                 <div class="row marginauto">
                                     <div class="col-md-12 left-right">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/qrcode.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/qrcode.svg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -94,33 +94,33 @@
                         <ul>
                             <li>
                                 <a href="javascript:void(0)" class="global__link__footer">
-                                    <i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>
+                                    <i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerphone.svg)"></i>
                                     Hỗ trợ bán hàng: 1900 1111
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Chăm sóc khách hàng: 1900 2222</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerphone.svg)"></i>Chăm sóc khách hàng: 1900 2222</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Hợp tác phát triển: 1900 3333</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerphone.svg)"></i>Hợp tác phát triển: 1900 3333</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/zalono.png)"></i>Zalo: 021345678</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerzalo.svg)"></i>Zalo: 021345678</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/telegramno.png)"></i>Telegram: 1234567 2323</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/telegram.svg)"></i>Telegram: 1234567 2323</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/facebookno.png)"></i>Facebook fanpage</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerfacebook.svg)"></i>Facebook fanpage</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/facebookno.png)"></i>Facebook Group</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footerfacebook.svg)"></i>Facebook Group</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/youtubeno.png)"></i>Youtube</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/footeryoutube.svg)"></i>Youtube</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/tiktokno.png)"></i>Tiktok</a>
+                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/iconoir_tiktok.svg)"></i>Tiktok</a>
                             </li>
                         </ul>
                     </div>

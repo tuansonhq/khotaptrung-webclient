@@ -677,6 +677,9 @@ $(document).ready(function(e){
                             }
                         }
                     }
+                    if (!gift_detail.showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
+                    }
 
                     $('#noticeModal .content-popup').html($html);
                     if (userpoint > 99) {

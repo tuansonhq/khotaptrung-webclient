@@ -648,6 +648,9 @@
                         }
                     }
                 }
+                if (!gift_detail.showwithdrawbtn) {
+                    $("#btnWithdraw").hide();
+                }
 
                 $('#noticeModal .content-popup').html($html);
 

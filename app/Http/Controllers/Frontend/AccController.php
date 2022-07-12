@@ -226,7 +226,7 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
-        if(isset($response_data) && $response_data->status == 1){
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
             $slug_category = $data->category->slug;
             return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug)->with('slug_category',$slug_category);
