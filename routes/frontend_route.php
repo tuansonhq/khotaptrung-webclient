@@ -311,7 +311,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 //                        'message-git2' => $sw
 //                    ]);
 //                });
-                
+
             });
 
             //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
