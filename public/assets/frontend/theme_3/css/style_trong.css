@@ -1541,6 +1541,19 @@ a:hover .__icon.--path__custom:after {
 .bread-word {
     word-break:break-word;
 }
+
+.card--mobile__title h4 {
+    margin: auto;
+}
+.h-0 {
+    height: 0 !important;
+}
+.rotation-modal-btn .btn {
+    width: 96%;
+    padding: 0.75rem 0;
+    font-weight: 600;
+    font-size: 16px;
+}
 /* Small Screen */
 @media screen and (max-width: 1200px) {
     .hidden-mobile {
