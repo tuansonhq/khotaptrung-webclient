@@ -10,13 +10,13 @@
 
 
 
-            @include('frontend.widget.__slider__banner')
+        @include('frontend.widget.__slider__banner')
 {{--            <div class="banner-image">--}}
 {{--                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt="">--}}
 {{--            </div>--}}
 
         <div class="banner-content">
-            <div class="container @if(theme('')->theme_config->sys_config_banner == 'banner_single') container-fix @endif" >
+            <div class="container @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_config_banner == 'banner_single') container-fix @endif" >
                 <div class="d-flex justify-content-between">
                     @if(isset(theme('')->theme_config->sys_menu_service) && theme('')->theme_config->sys_menu_service == 'menu_service_1')
                         <div class="box-list-service d-g-lg-none">
