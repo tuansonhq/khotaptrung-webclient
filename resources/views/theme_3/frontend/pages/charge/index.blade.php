@@ -29,10 +29,10 @@
                 <section class="media-web mb-fix-16">
                     <div class=" menu-container-ct">
                         <ul class="d-flex" style="float: inherit">
-                            <li><a href="">Trang chủ</a></li>
+                            <li><a href="/">Trang chủ</a></li>
                             <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                            <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>
-                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+{{--                            <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>--}}
+{{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
                             <li class="menu-container-li-ct"><a href="" id="charge_title">@if(Request::is('nap-the')) Nạp thẻ cào @elseif(Request::is('recharge-atm'))  ATM tự động @endif</a></li>
                         </ul>
                     </div>
