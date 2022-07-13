@@ -1479,7 +1479,9 @@ header nav.heading .header-container{
     line-height: 150%;
     margin-top: 8px;
 }
-
+.item-product-service img{
+    width: 60px;
+}
 @media (max-width: 1200px ) {
     .item-minigame-name {
         font-size: 14px;
