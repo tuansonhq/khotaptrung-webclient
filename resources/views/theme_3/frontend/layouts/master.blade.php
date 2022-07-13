@@ -55,6 +55,33 @@
 
 
     @yield('seo_head')
+
+    @if(Request::is('/'))
+        <script>
+            $(document).on('scroll',function(){
+                if ($(this).scrollTop() > 180) {
+
+                    $('#menu-service').addClass("menu-fix");
+                } else {
+                    $('#menu-service').removeClass("menu-fix");
+                }
+            });
+        </script>
+    @else
+        <script>
+            $(document).ready(function () {
+                $('#menu-service .menu-category').css("height","48px");
+            });
+            $(document).on('scroll',function(){
+                if ($(this).scrollTop() > 180) {
+
+                    $('#menu-service').addClass("menu-fix");
+                } else {
+                    $('#menu-service').removeClass("menu-fix");
+                }
+            });
+        </script>
+    @endif
 </head>
 <body>
 

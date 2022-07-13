@@ -2018,23 +2018,20 @@ header nav.heading .header-container{
     }
 }
 #menu-service .menu-category{
-    position: fixed;
+    /*position: fixed;*/
     top: 80px;
     left: 0;
     right: 0;
-        z-index: 999;
-    transition: .2s;
+    z-index: 999;
     box-shadow: 0px 1px 4px 0px #00000033;
-
-}
-#menu-service .menu-category{
     height: 0;
     overflow: hidden;
-    transition: .2s;
 }
-.hehe .menu-category{
+
+.menu-fix .menu-category{
     height: 48px !important;
     transition: .2s;
+    position: fixed;
 }
 .swiper-service .item-product__box-img img{
     border-radius: var(--primary-border);

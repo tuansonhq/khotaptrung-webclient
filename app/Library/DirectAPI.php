@@ -8,8 +8,18 @@ use Illuminate\Support\Facades\Log;
 
 class DirectAPI{
     public static function _makeRequest($url, array $data, $method,$log = false){
-        $data ['domain'] = \Request::server ("HTTP_HOST");
-        $data ['client'] =\Request::server ("HTTP_HOST");
+
+        $http_url = \Request::server ("HTTP_HOST");
+        if (config('api.client') !== 'local'){
+
+            $data ['domain'] = config('api.client');
+            $data ['client'] =  config('api.client');
+        }else{
+            $data ['domain'] = str_replace('www.','',$http_url);
+            $data ['client'] =  str_replace('www.','',$http_url);
+        }
+
+
         $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
             $dataPost = http_build_query($data);
