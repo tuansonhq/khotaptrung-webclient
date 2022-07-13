@@ -52,16 +52,16 @@
                         <div class="alert alert-info box-text hidetext" role="alert">
 
                             <h1 class="alert-heading h1_category" style="color:#000">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
-                            @if($data->custom->seo_description)
-                                {!!  $data->custom->seo_description !!}
-                            @else
-                                @if(isset($data->seo_description))
-                                    {!!  $data->seo_description !!}
-                                @else
+{{--                            @if($data->custom->seo_description)--}}
+{{--                                {!!  $data->custom->seo_description !!}--}}
+{{--                            @else--}}
+{{--                                @if(isset($data->seo_description))--}}
+{{--                                    {!!  $data->seo_description !!}--}}
+{{--                                @else--}}
 
-                                @endif
-                            @endif
-                            <br>
+{{--                                @endif--}}
+{{--                            @endif--}}
+{{--                            <br>--}}
                             @if($data->custom->content)
                                 {!!  $data->custom->content !!}
                             @else
