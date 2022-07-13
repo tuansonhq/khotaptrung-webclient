@@ -43,7 +43,7 @@
     @endif
 
 @else
-    <div class="banner-slide swiper-container container container-fix " >
+    <div class="banner-slide swiper-container container " >
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt=""  class="">
