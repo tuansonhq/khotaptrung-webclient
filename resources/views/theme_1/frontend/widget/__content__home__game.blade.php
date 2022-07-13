@@ -52,7 +52,7 @@
                                 @endif
 
                             @else
-                                <p>Số tài khoản: 9999 </p>
+                                <p>Số tài khoản: 0 </p>
                             @endif
                             {{--                            <span class="game-list-description-old-price"></span>--}}
                             {{--                            <span class="game-list-description-new-price"></span>--}}
