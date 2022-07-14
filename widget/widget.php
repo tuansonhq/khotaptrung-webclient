@@ -367,6 +367,22 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 
 });
+View::composer('frontend.widget.__menu__side', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+
+});
 
 View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 

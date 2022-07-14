@@ -66,14 +66,14 @@
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
                 @include('frontend.widget.__list_serve_remark_mobile')
              @endif
-            {{--            Hot sale--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-                 @include('frontend.widget.__hotsale')
-            @endif
-           {{--            Chơi gần đây--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                @include('frontend.widget.__play__recently__home')
-            @endif
+{{--            --}}{{--            Hot sale--}}
+{{--            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')--}}
+{{--                 @include('frontend.widget.__hotsale')--}}
+{{--            @endif--}}
+{{--           --}}{{--            Chơi gần đây--}}
+{{--            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')--}}
+{{--                @include('frontend.widget.__play__recently__home')--}}
+{{--            @endif--}}
            {{--            Top nạp thẻ mobile--}}
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
                  @include('frontend.widget.__top_nap_the_mobile')
