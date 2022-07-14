@@ -99,7 +99,7 @@
             </div>
             <div class="box-search">
                 <form action="">
-                    <div class="group-input">
+                    <div class="group-input  ">
                         <input type="text" placeholder="Tìm kiếm" class="form-control">
                         <div class="input-group-btn">
                             <button type="submit" class="btn px-3 border-0 shadow-none outline-none text-dark">
@@ -130,6 +130,45 @@
                         </a>
                     </li>
                 </ul>
+
+{{--                <ul class="nav header-main-nav d-none d-lg-flex">--}}
+{{--                    <li class="nav-item item-about active">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                <div class="item-about-title">Nạp game</div>--}}
+{{--                            </div>--}}
+
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item item-about">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                <div class="item-about-title">Mua thẻ</div>--}}
+{{--                            </div>--}}
+
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item item-about">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                <div class="item-about-title">Nạp tiền</div>--}}
+{{--                            </div>--}}
+
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item item-about">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="d-flex">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                <div class="item-about-title">Tin tức</div>--}}
+{{--                            </div>--}}
+
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
             </div>
             <div class="navbar-spacer"></div>
             <div class="box-about-mobile">
@@ -256,7 +295,9 @@
 
 </header>
 <div class="header " id="menu-service"  style="  ;">
+    @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
          @include('frontend.widget.__head__dich__vu__noi__bat')
+    @endif
     <div class="menu-profile-mobile">
         <div class="row marginauto">
             {{--Bắt đầu vòng lặp --}}
