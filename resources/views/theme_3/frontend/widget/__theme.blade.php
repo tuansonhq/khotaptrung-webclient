@@ -68,17 +68,7 @@
         Session::pull('check_login');
     @endphp
 @endif
-@if(Request::is('/'))
-    <style>
-        @media (max-width: 992px){
-            .content{
-                padding-bottom: 1rem;
-            }
-        }
-    </style>
-    @include('frontend.layouts.includes.footer')
 
-@endif
 @if (!Auth::check())
     @include('frontend.widget.modal.__login')
 @endif
