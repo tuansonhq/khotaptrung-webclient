@@ -295,7 +295,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
 //                    $command='ls -a';
-
+//                    Tessssssssssssss
                     $output = shell_exec($command);
                 //    Lam sao day em oi
 
