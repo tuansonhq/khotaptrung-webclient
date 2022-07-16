@@ -7,16 +7,30 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class DirectAPI{
-    public static function _makeRequest($url, array $data, $method){
-        $data ['domain'] = \Request::server ("HTTP_HOST");
-        $data ['client'] =\Request::server ("HTTP_HOST");
-//        $data ['domain'] = config('api.client');
-//        $data ['client'] = config('api.client');
+    public static function _makeRequest($url, array $data, $method,$log = false){
+
+        $http_url = \Request::server ("HTTP_HOST");
+        if (config('api.app_env') !== 'local'){
+
+            $data ['domain'] = config('api.client');
+            $data ['client'] =  config('api.client');
+        }else{
+            $data ['domain'] = str_replace('www.','',$http_url);
+            $data ['client'] =  str_replace('www.','',$http_url);
+        }
+
+
         $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
             $dataPost = http_build_query($data);
         }else{
             $dataPost = $data;
+        }
+        if($log == true){
+            $myfile = fopen(storage_path() ."/logs/CACHE1-".Carbon::now()->format('Y-m-d').".txt", "a") or die("Unable to open file!");
+            $txt = Carbon::now()." : [DATA: ".json_encode($data,JSON_UNESCAPED_UNICODE)."]";
+            fwrite($myfile, $txt ."\n");
+            fclose($myfile);
         }
         $url = config('api.host').$url;
         if($method == "GET"){

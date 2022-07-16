@@ -55,29 +55,10 @@
 
 
     @yield('seo_head')
+
 </head>
 <body>
 
-@if(Session::has('check_login'))
-    <script>
-        $(document).ready(function () {
-            let width = $(window).width();
-            setTimeout(function(){
-                if ( width > 1200 ) {
-                    $('#loginModal').modal('show');
-                    setTimeout(() => {
-                        $('#loginModal #modal-login-container').removeClass('right-panel-active');
-                    }, 200);
-                } else {
-                    $('.mobile-auth').toggleClass('mobile-auth-show');
-                }
-            }, 0);
-        });
-    </script>
-    @php
-        Session::pull('check_login');
-    @endphp
-@endif
 <div class="modal-loader-container">
     <div class="modal-loader-content">
         <span class="modal-loader-spin"></span>
@@ -104,10 +85,7 @@
 @include('frontend.layouts.includes.footer')
 
 @endif
-@if (!Auth::check())
-    @include('theme_3.frontend.widget.modal.__login')
-@endif
-
+@include('frontend.widget.__theme')
 <!-- Messenger Plugin chat Code -->
 @if (!Auth::check())
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>

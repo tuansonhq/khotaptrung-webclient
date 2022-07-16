@@ -366,28 +366,19 @@ $(document).ready(function (e) {
         content: "Đã coppy !",
         placement: 'right',
     });
-
-    $(document).on('scroll',function(){
-        if ($(this).scrollTop() > 200) {
-
-            $('#heading').addClass("header-fix");
-        } else {
-            $('#heading').removeClass("header-fix");
-        }
-
-
-    });
-
-    $(document).on('scroll',function(){
-        if ($(this).scrollTop() > 200) {
-
-            $('#menu-service').addClass("hehe");
-        } else {
-            $('#menu-service').removeClass("hehe");
-        }
+    //
+    // $(document).on('scroll',function(){
+    //     if ($(this).scrollTop() > 200) {
+    //
+    //         $('#heading').addClass("header-fix");
+    //     } else {
+    //         $('#heading').removeClass("header-fix");
+    //     }
+    //
+    //
+    // });
 
 
-    });
     $('body').on('click','.btn-charge-data',function(e){
         e.preventDefault();
         $('#openCharge').modal('show');

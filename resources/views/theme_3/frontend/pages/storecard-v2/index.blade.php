@@ -20,18 +20,18 @@
             <div class="swiper js--swiper__banner mb-n4">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                 </div>
