@@ -22,4 +22,6 @@ Route::post('/clear-cache', [App\Http\Controllers\Api\CacheController::class, 'c
 
 Route::get('/ip', [App\Http\Controllers\Api\IPController::class, 'getIp']);
 
+Route::get('/git-pull', [App\Http\Controllers\Api\GitPullController::class, 'getGitPull']);
+
 
