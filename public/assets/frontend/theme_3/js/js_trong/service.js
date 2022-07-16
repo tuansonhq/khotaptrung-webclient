@@ -1,11 +1,20 @@
 $('#service-form').on('submit', function (e) {
     e.preventDefault();
     let keyword = convertToSlug($('#keyword--search').val());
+    let is_empty = true;
+    let text_empty = $('#text-empty');
+    text_empty.hide();
     $('.js-service').each(function (i,elm) {
         let slug_service = $(elm).find('img').attr('alt');
         slug_service = convertToSlug(slug_service);
-        $(this).toggle(slug_service.indexOf(keyword) > -1)
-    })
+        $(this).toggle(slug_service.indexOf(keyword) > -1);
+        if (slug_service.indexOf(keyword) > -1){
+            is_empty  = false;
+        }
+    });
+    if (is_empty){
+        text_empty.show();
+    }
 });
 
 function convertToSlug(title) {
