@@ -174,6 +174,25 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
 
     return $view->with('data', $data);
 });
+View::composer('frontend.widget.__buy__acc__home', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__buy__acc__home', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
 
 View::composer('frontend.pages.account.widget.__related__category', function ($view) {
 
@@ -336,6 +355,22 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 
     $data = \Cache::rememberForever('__menu_category_desktop', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+
+});
+View::composer('frontend.widget.__menu__side', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
         $url = '/menu-category';
         $method = "POST";
         $dataSend = array();

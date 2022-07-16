@@ -18,7 +18,7 @@ class StoreCardController extends Controller
         }else{
 
             if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
-                    return view('frontend.pages.storecard.index');
+                    return view('frontend.pages.storecard-v2.index');
             }else{
                 return view('frontend.pages.storecard.index');
             }
@@ -132,10 +132,10 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard.card-list');
+        return view('frontend.pages.storecard-v2.card-list');
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard.card-single');
+        return view('frontend.pages.storecard-v2.card-single');
     }
 }

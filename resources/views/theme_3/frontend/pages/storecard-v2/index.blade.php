@@ -20,18 +20,18 @@
             <div class="swiper js--swiper__banner mb-n4">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                        <a href="#" class="banner__link">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                 </div>
@@ -186,111 +186,7 @@
 
                 {{--            SERVICE RELATED--}}
                 <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
-                    <div class="card--header _m-125 _m-sm-0 _pb-125">
-                        <div class="card--header__title">
-                            <img width="24" height="24" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/icon-title-service-related-buy-card.png"
-                                 class="mr-2 d-block d-lg-none" alt="icon">
-                            <h4>Các dịch vụ liên quan</h4>
-                        </div>
-                        <div class="card--header__tools">
-                            <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
-                                                                                    style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
-                        </div>
-                    </div>
-                    <div class="card--body px-lg-3">
-                        <div class="swiper js-swipe-service overflow-hidden mb-lg-3">
-                            <div class="swiper-wrapper service--wrap">
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-3 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('frontend.widget.__list_serve_remark_image')
                 </div>
                 {{--            END SERVICE RELATED--}}
 
