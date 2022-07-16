@@ -289,29 +289,29 @@ Route::group(array('middleware' => ['theme']) , function (){
                 });
 
 
-                Route::get('/updategit', function ()
-                {
+//                Route::get('/updategit', function ()
+//                {
+////
 //
-
-                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
-//                    $command='ls -a';
-
-                    $output = shell_exec($command);
-                //    Lam sao day em oi
-
-
-                    \Artisan::call('cache:clear');
-//                    \Artisan::call('config:cache');
-//                    \Artisan::call('view:clear');
-//                    \Artisan::call('route:clear');
-//                    Cache::flush();
-
-                    return response()->json([
-                        'status' => 1,
-                        'message' => 'Thành công!',
-                        'message-git' => $output,
-                    ]);
-                });
+//                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+////                    $command='ls -a';
+//
+//                    $output = shell_exec($command);
+//                //    Lam sao day em oi
+//
+//
+//                    \Artisan::call('cache:clear');
+////                    \Artisan::call('config:cache');
+////                    \Artisan::call('view:clear');
+////                    \Artisan::call('route:clear');
+////                    Cache::flush();
+//
+//                    return response()->json([
+//                        'status' => 1,
+//                        'message' => 'Thành công!',
+//                        'message-git' => $output,
+//                    ]);
+//                });
 
             });
 
