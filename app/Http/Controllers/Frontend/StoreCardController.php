@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
-
         $data_host =\Request::server ("HTTP_HOST");
-
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
