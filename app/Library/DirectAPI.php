@@ -10,15 +10,8 @@ class DirectAPI{
     public static function _makeRequest($url, array $data, $method,$log = false){
 
         $http_url = \Request::server ("HTTP_HOST");
-        if (config('api.app_env') !== 'local'){
-
-            $data ['domain'] = config('api.client');
-            $data ['client'] =  config('api.client');
-        }else{
-            $data ['domain'] = str_replace('www.','',$http_url);
-            $data ['client'] =  str_replace('www.','',$http_url);
-        }
-
+        $data ['domain'] = str_replace('www.','',$http_url);
+        $data ['client'] =  str_replace('www.','',$http_url);
 
         $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
