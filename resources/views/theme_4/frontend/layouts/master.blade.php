@@ -492,7 +492,7 @@
                     if (response.success) {
                         formSubmit.find('.notify-error').text(response.message);
                         setTimeout(location.reload.bind(location), 1000);
-                        
+
                     }
                 },
                 error: function (response) {
