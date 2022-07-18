@@ -7,13 +7,13 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="/mua-acc" class="previous-step-one" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h1>Danh sách Nick</h1>
+                    <p>Mua Acc</p>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>

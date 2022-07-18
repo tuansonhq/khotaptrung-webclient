@@ -32,7 +32,7 @@
                     <a href="/dich-vu-da-mua" class="card--back">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                     </a>
-                    <h4>Chi tiết đơn hàng</h4>
+                    <h4>Dịch vụ đã mua</h4>
                 </div>
                 <div class="card --custom">
                     <div class="card--header pr-2">
