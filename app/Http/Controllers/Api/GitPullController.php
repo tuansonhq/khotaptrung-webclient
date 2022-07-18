@@ -31,7 +31,7 @@ class GitPullController extends Controller
                 ], 200);
             }
 
-            $command='git pull https://'.$token.'@github.com/tannm2611/khotaptrung-webclient.git '.$brand.' 2>&1';
+            $command ='git pull https://'.$token.'@github.com/tannm2611/khotaptrung-webclient.git '.$brand.' 2>&1';
 
             $output = shell_exec($command);
 
@@ -45,6 +45,7 @@ class GitPullController extends Controller
                 'status' => 1,
                 'message' => 'Thành công!',
                 'data' => $output,
+                'command' => $command,
             ]);
         }
         catch (\Exception $e) {
