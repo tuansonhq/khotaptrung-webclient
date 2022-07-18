@@ -709,7 +709,7 @@
                                 <div class="col-md-12 left-right">
                                     @if(App\Library\AuthCustom::check())
 
-                                        @if(App\Library\AuthCustom::user()->balance > $data->price)
+                                        @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                             <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
                                         @else
                                             <div class="row marginauto justify-content-center gallery-right-footer">
@@ -905,7 +905,7 @@
                         <div class="col-md-12 left-right">
                             @if(App\Library\AuthCustom::check())
 
-                                @if(App\Library\AuthCustom::user()->balance > $data->price)
+                                @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                     <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                 @else
                                     <div class="row marginauto justify-content-center gallery-right-footer">
