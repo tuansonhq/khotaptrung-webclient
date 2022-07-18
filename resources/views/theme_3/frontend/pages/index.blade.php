@@ -91,13 +91,16 @@
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
                   @include('frontend.widget.__list_serve_remark')
             @endif
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
+                @include('frontend.widget.__nap_the')
+            @endif
              {{--                Mua thẻ--}}
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
                  @include('frontend.widget.__card_purchase')
             @endif
 
             {{--                 Nạp thẻ--}}
-            @if(theme('')->theme_config->sys_theme_ver !== 'sys_theme_ver3.3' )
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
                  @include('frontend.widget.__nap_the')
             @endif
             {{--                Danh mục mua acc shop idol--}}
