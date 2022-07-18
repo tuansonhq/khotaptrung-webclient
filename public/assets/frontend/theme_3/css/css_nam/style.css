@@ -2139,3 +2139,41 @@ header nav.heading .header-container{
 .go-top{
     display: none;
 }
+
+.charge-content-img{
+    flex: 1 0 auto;
+    background: url(/assets/frontend/theme_3/image/charge_card.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    border-radius: 12px;
+}
+.charge-content{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; min-height: 100%
+}
+.charge-content-detail{
+    background: white;
+    padding: 8px;
+    margin-top: 10px;
+    height: 260px;
+    overflow-y: hidden;
+    border-radius: 12px;
+}
+.charge-content-detail>div{
+    overflow-y: scroll;
+    padding: 8px;
+    height: 100%;
+}
+.charge-content-detail>div::-webkit-scrollbar {
+    width: 8px;
+}
+.charge-content-detail>div::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+    border: none;
+}
+.charge-content-detail>div::-webkit-scrollbar-track {
+    background: transparent;
+}
