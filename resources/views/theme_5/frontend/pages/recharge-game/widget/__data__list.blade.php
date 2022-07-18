@@ -8,7 +8,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lienquan.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/lienquan.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -23,7 +23,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -40,7 +40,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -55,7 +55,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -70,7 +70,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -85,7 +85,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -101,7 +101,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -116,7 +116,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -131,7 +131,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/csgo.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/csgo.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -146,7 +146,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/freefire.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -161,7 +161,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/bubg.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -176,7 +176,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/lmht.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -193,7 +193,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/tocchien.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -208,7 +208,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/autochest.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -225,7 +225,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/bangbang.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">
@@ -242,7 +242,7 @@
                         <div class="row marginauto hover-overlay-ct">
                             <div class="col-md-12 left-right default-overlay-ct">
 
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/cyber.png" alt="">
 
                             </div>
                             <div class="col-md-12 left-right text-center body-detail-col-span-ct">

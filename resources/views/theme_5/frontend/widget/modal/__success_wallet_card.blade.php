@@ -7,7 +7,7 @@
                     <div class="col-md-12 text-center">
                         <span>Tạo lệnh nạp Ví điện tử thành công</span>
                         <div class="close" data-dismiss="modal" aria-label="Close">
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
 
                         </div>
                     </div>
@@ -17,7 +17,7 @@
             <div class="modal-body modal-body-success-ct">
                 <div class="row marginauto justify-content-center">
                     <div class="col-auto">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
+                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                     </div>
                 </div>
                 <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -45,7 +45,7 @@
     {{--                    <div class="container container-fix banner-mobile-container-ct">--}}
     {{--                        <div class="row marginauto banner-mobile-row-ct">--}}
     {{--                            <div class="col-auto left-right" style="width: 10%">--}}
-    {{--                                <img id="recharge_atm_prev" class="lazy previous-step-one" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >--}}
+    {{--                                <img id="recharge_atm_prev" class="lazy previous-step-one" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >--}}
     {{--                            </div>--}}
 
     {{--                            <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">--}}
@@ -96,7 +96,7 @@
     {{--                                            <span>Ngân hàng Kỹ thương Việt Nam(Techcombank)</span>--}}
     {{--                                        </div>--}}
     {{--                                        <div class="col-auto left-right background-order-col-right-ct">--}}
-    {{--                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">--}}
+    {{--                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">--}}
     {{--                                        </div>--}}
     {{--                                    </div>--}}
 

@@ -34,11 +34,11 @@
 
                     <div class="col-md-12 left-right text-center js-toggle-content">
                         <div class="view-more">
-                            <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-down.png)"></i></a>
+                            <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
 
                         </div>
                         <div class="view-less">
-                            <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/iconright.png)"></i></a>
+                            <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
                         </div>
                     </div>
 

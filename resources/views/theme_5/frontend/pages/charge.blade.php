@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/minigame.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/lib_bootstrap.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/minigame.css">
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                     <div class=" banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
                             <div class="col-auto left-right box-account-mobile_open" style="width: 10%" >
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                             </div>
 
                             <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -30,9 +30,9 @@
                     <div class=" menu-container-ct">
                         <ul class="d-flex" style="float: inherit">
                             <li><a href="">Trang chủ</a></li>
-                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                             <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>
-{{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
+{{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
 {{--                            <li class="menu-container-li-ct"><a href="">Cày xếp hạng ELO/ Liên Minh</a></li>--}}
                         </ul>
                     </div>
@@ -42,7 +42,7 @@
                         <div class=" block-product "  style="min-height: 780px">
                             <div class="product-header d-none d-md-flex">
                                 <span>
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/charge_card_icon.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
                                 </span>
                                 <p class="text-title" >Nạp tiền</p>
                                 <div class="navbar-spacer"></div>
@@ -143,12 +143,12 @@
                                                         <div class="captcha">
                                                             <div>
                                                                     <span>
-                                                                          <img src="/assets/{{env('THEME_VERSION')}}/image/capcha_example.png" alt="">
+                                                                          <img src="/assets/{{theme('')->theme_key}}/image/capcha_example.png" alt="">
                                                                     </span>
                                                             </div>
                                                         </div>
                                                         <button class="refresh-captcha">
-                                                            <img src="/assets/{{env('THEME_VERSION')}}/image/captcha_refresh.png" alt="">
+                                                            <img src="/assets/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
                                                         </button>
 
                                                     </div>
@@ -251,7 +251,7 @@
                                                                 <label for="walet_card_1">
                                                                     <div class="wallet-card d-flex justify-content-between">
                                                                         <div class="wallet-card-img">
-                                                                            <img src="/assets/{{env('THEME_VERSION')}}/image/wallet_logo.png" alt="">
+                                                                            <img src="/assets/{{theme('')->theme_key}}/image/wallet_logo.png" alt="">
                                                                         </div>
                                                                         <div class="wallet-card-content">
                                                                             <div class="wallet-card-name">
@@ -266,7 +266,7 @@
 
                                                                         </div>
                                                                         <div class="wallet-card-qr">
-                                                                            <img src="/assets/{{env('THEME_VERSION')}}/image/wallet_qr.png" alt="">
+                                                                            <img src="/assets/{{theme('')->theme_key}}/image/wallet_qr.png" alt="">
                                                                         </div>
                                                                     </div>
                                                                 </label>
@@ -276,7 +276,7 @@
                                                                 <label for="walet_card_2">
                                                                     <div class="wallet-card d-flex justify-content-between">
                                                                         <div class="wallet-card-img">
-                                                                            <img src="/assets/{{env('THEME_VERSION')}}/image/wallet_logo.png" alt="">
+                                                                            <img src="/assets/{{theme('')->theme_key}}/image/wallet_logo.png" alt="">
                                                                         </div>
                                                                         <div class="wallet-card-content">
                                                                             <div class="wallet-card-name">
@@ -291,7 +291,7 @@
 
                                                                         </div>
                                                                         <div class="wallet-card-qr">
-                                                                            <img src="/assets/{{env('THEME_VERSION')}}/image/wallet_qr.png" alt="">
+                                                                            <img src="/assets/{{theme('')->theme_key}}/image/wallet_qr.png" alt="">
                                                                         </div>
                                                                     </div>
                                                                 </label>
@@ -318,7 +318,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
-                        <img class="w-100" src="/assets/{{env('THEME_VERSION')}}/image/charge_card.png" alt="" style="min-height: 100%">
+                        <img class="w-100" src="/assets/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
                     </div>
                 </div>
             </fieldset>
@@ -327,7 +327,7 @@
                     <div class="container container-fix banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
                             <div class="col-auto left-right" style="width: 10%">
-                                <img id="charge_prev" class="lazy previous-step-one" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                                <img id="charge_prev" class="lazy previous-step-one" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                             </div>
 
                             <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -364,7 +364,7 @@
                                             <span>Game</span>
                                         </div>
                                         <div class="col-auto left-right background-order-col-right-ct">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
+                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
                                         </div>
                                     </div>
 

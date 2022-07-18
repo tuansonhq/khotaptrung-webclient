@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/trong-style/distance.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/trong-style/buy-card.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/trong-style/distance.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/buy-card.js"></script>
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/input.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/buy-card.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/input.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
@@ -17,13 +17,13 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/buy-card/Rectangle 4.png"
+                            <img src="/assets/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
                                  alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/buy-card/Rectangle 4.png"
+                            <img src="/assets/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
                                  alt="POSTER BANNER">
                         </a>
                     </div>
@@ -62,14 +62,14 @@
                                 THẺ GAME
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrows/arrow-down.png)"></i>
+                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--game__nav">
                             <li class="card-item active">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/garena.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -80,7 +80,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/gate.png" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/gate.png" alt="">
                                     </div>
                                     <span class="card-item_name">
                                         Thẻ Gate
@@ -90,7 +90,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/zing.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/zing.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -101,7 +101,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/vcoin.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/vcoin.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -112,7 +112,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/bit.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/bit.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -123,7 +123,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/ongame.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/ongame.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -140,14 +140,14 @@
                             </span>
                             <span class="d-flex align-items-center">
                                 <i class="__icon --arrow --path__custom"
-                                   style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrows/arrow-down.png)"></i>
+                                   style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--phone__nav">
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/viettel.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/viettel.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -158,7 +158,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/mobifone.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/mobifone.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -178,7 +178,7 @@
                 <div class="card --custom _mb-125" id="card--value">
                     <div class="card--head card--mobile__title px-lg-3 _py-075">
                         <a href="/mua-the-garena" class="card--back d-lg-none d-block">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
                         <h4 class="card--title">
                             Thẻ Garena 20K
@@ -189,7 +189,7 @@
                             <div class="col-12 col-lg-3 px-lg-2 mb-lg-4">
                                 <span class="scratch-card col-8 col-lg-12 card--single">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png" class="card--thumb__image" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png" class="card--thumb__image" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
                                         20.000 VND
@@ -207,11 +207,11 @@
                                     </span>
                                     <div class="card--amount__group">
                                         <button class="btn--amount -minus js-amount" data-action="minus">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/minus.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/icons/minus.png" alt="">
                                         </button>
                                         <input type="text" name="card-amount" class="input--amount" value="1" numberic="">
                                         <button class="btn--amount -add js-amount" data-action="add">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/add.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/icons/add.png" alt="">
                                         </button>
                                     </div>
                                 </div>
@@ -266,10 +266,10 @@
                     </div>
                     <div class="col-md-12 left-right text-center js-toggle-content">
                         <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-down.png)"></i></span>
+                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
                         </div>
                         <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/iconright.png)"></i></span>
+                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
                         </div>
                     </div>
                 </div>
@@ -288,7 +288,7 @@
                             <div class="col-4 col-lg-3 px-lg-2 _mb-075">
                                 <a href="/mua-the-garena-20k" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                              class="card--thumb__image" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
@@ -299,7 +299,7 @@
                             <div class="col-4 col-lg-3 px-lg-2 _mb-075">
                                 <a href="/mua-the-garena-20k" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                              class="card--thumb__image" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
@@ -310,7 +310,7 @@
                             <div class="col-4 col-lg-3 px-lg-2 _mb-075">
                                 <a href="/mua-the-garena-20k" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                              class="card--thumb__image" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
@@ -321,7 +321,7 @@
                             <div class="col-4 col-lg-3 px-lg-2 _mb-075">
                                 <a href="/mua-the-garena-20k" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                              class="card--thumb__image" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
@@ -340,7 +340,7 @@
                                 <div class="swiper-slide">
                                     <a href="/mua-the-garena-20k" class="scratch-card">
                                         <div class="card--thumb">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                                  class="card--thumb__image" alt="">
                                         </div>
                                         <div class="card--name" style="--bg-color: #CC2829;">
@@ -351,7 +351,7 @@
                                 <div class="swiper-slide">
                                     <a href="/mua-the-garena-20k" class="scratch-card">
                                         <div class="card--thumb">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                                  class="card--thumb__image" alt="">
                                         </div>
                                         <div class="card--name" style="--bg-color: #CC2829;">
@@ -375,7 +375,7 @@
     <div class="mobile--confirm__payment step">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step1">
-                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
+                <img src="/assets/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
             <div class="step--header__title">
                 Xác nhận thanh toán
@@ -389,7 +389,7 @@
                     </div>
                     <div class="card--attr__value">
                         <div class="card--logo">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -467,7 +467,7 @@
                         Xác nhận thanh toán
                     </div>
                     <button type="button" class="close dialog__close" data-dismiss="modal">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/icons/close.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/icons/close.png" alt="">
                     </button>
                 </div>
                 <div class="dialog--content">
@@ -481,7 +481,7 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png"
+                                    <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png"
                                          alt="">
                                 </div>
                             </div>
@@ -556,7 +556,7 @@
     <div class="mobile--success__payment step">
         <div class="step--header">
             <a href="" class="step--back js_step" data-go_to="step2">
-                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
+                <img src="/assets/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
             <div class="step--header__title">
                 Mua thẻ thành công
@@ -568,7 +568,7 @@
                     Chúc mừng bạn đã giao dịch thành công
                 </div>
                 <div class="card--success__icon">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/success.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/icons/success.png" alt="">
                 </div>
             </div>
             <div class="step--content__title">
@@ -579,7 +579,7 @@
                     <div class="card--header__detail">
                         <div class="card--info__wrap">
                             <div class="card--logo">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                                <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                             </div>
                             <div class="card--info">
                                 <div class="card--info__name">
@@ -601,7 +601,7 @@
                                     48563415693486456
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -614,7 +614,7 @@
                                     12121212121
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
 
@@ -625,7 +625,7 @@
                     <div class="card--header__detail">
                         <div class="card--info__wrap">
                             <div class="card--logo">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                                <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                             </div>
                             <div class="card--info">
                                 <div class="card--info__name">
@@ -647,7 +647,7 @@
                                     48563415693486456
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -660,7 +660,7 @@
                                     12121212121
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
 
@@ -671,7 +671,7 @@
                     <div class="card--header__detail">
                         <div class="card--info__wrap">
                             <div class="card--logo">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                                <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                             </div>
                             <div class="card--info">
                                 <div class="card--info__name">
@@ -693,7 +693,7 @@
                                     48563415693486456
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -706,7 +706,7 @@
                                     12121212121
                                 </div>
                                 <div class="icon--coppy js-copy-text">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                 </div>
                             </div>
 
@@ -729,7 +729,7 @@
                         Mua thẻ thành công
                     </div>
                     <button type="button" class="close dialog__close" data-dismiss="modal">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/icons/close.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/icons/close.png" alt="">
                     </button>
                 </div>
                 <div class="dialog--content">
@@ -738,7 +738,7 @@
                             Chúc mừng bạn đã giao dịch thành công
                         </div>
                         <div class="card--success__icon">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/success.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/icons/success.png" alt="">
                         </div>
                     </div>
                     <div class="dialog--content__title">
@@ -751,7 +751,7 @@
                             </div>
                             <div class="card--attr__value">
                                 <div class="card--logo">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png"
+                                    <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png"
                                          alt="">
                                 </div>
                             </div>
@@ -779,7 +779,7 @@
                                 <div class="card--header__detail">
                                     <div class="card--info__wrap">
                                         <div class="card--logo">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                                         </div>
                                         <div class="card--info">
                                             <div class="card--info__name">
@@ -801,7 +801,7 @@
                                                 48563415693486456
                                             </div>
                                             <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                                <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -814,7 +814,7 @@
                                                 12121212121
                                             </div>
                                             <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                                <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                             </div>
                                         </div>
 
@@ -825,7 +825,7 @@
                                 <div class="card--header__detail">
                                     <div class="card--info__wrap">
                                         <div class="card--logo">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
                                         </div>
                                         <div class="card--info">
                                             <div class="card--info__name">
@@ -847,7 +847,7 @@
                                                 48563415693486456
                                             </div>
                                             <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                                <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -860,7 +860,7 @@
                                                 12121212121
                                             </div>
                                             <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/icons/coppy.png" alt="">
+                                                <img src="/assets/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
                                             </div>
                                         </div>
 

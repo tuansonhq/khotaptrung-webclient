@@ -1,11 +1,11 @@
 @extends('theme_3.frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/breadcrumb.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/withdraw_money.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/layout_page.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/withdraw_money.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/layout_page.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_phu/withdraw_money.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_phu/withdraw_money.js"></script>
 @endsection
 @section('content')
     <div class="container_page container">
@@ -18,7 +18,7 @@
         </section>
         <section class="breadcrumb-mobile">
             <a href="javascript:void(0);" class="box-account-mobile_open" style="display: block">
-                <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/back.svg" alt="">
+                <img src="/assets/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
             <h3>Rút tiền ATM - Ví điện tử</h3>
         </section>
@@ -79,7 +79,7 @@
                                     <textarea class="textarea-primary" name="" id="" rows="2" placeholder="Nhập nội dung nếu cần thiết"></textarea>
                                 </div>
                                 <div class="input-block input-block-password">
-                                    
+
                                 </div>
                                 <div class="input-block capcha-block">
                                     <h6>Mã bảo vệ</h6>
@@ -87,11 +87,11 @@
                                         <input type="text" name="" class="withdraw-inputs input-primary" placeholder="Nhập mã bảo vệ ">
                                         <div class="withdraw-capcha">
                                             <div>
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/capcha_example.png" alt="">
+                                                <img src="/assets/{{theme('')->theme_key}}/image/capcha_example.png" alt="">
                                             </div>
                                         </div>
                                         <button class="withdraw-refresh-capcha">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/captcha_refresh.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
                                         </button>
                                     </div>
                                 </div>
@@ -111,13 +111,13 @@
                                     <h6>Tìm kiếm</h6>
                                     <form class="search-form">
                                         <input type="text" class="input-primary" placeholder="Nhập từ khóa" name="">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                         <button class="button-primary">Tìm kiếm</button>
                                     </form>
                                 </div>
                                 <div class="history-filter">
                                     <p>Bộ lọc</p>
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/nick/filter.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                     <span class="filter-count" style="display: none">0</span>
                                 </div>
                             </div>
@@ -242,7 +242,7 @@
                                 <ul class="history-pagination">
                                     <li class="pagination-item disabled">
                                         <a href="#" class="pagination-link">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/arrows/pg-back.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/icons/arrows/pg-back.png" alt="">
                                         </a>
                                     </li>
                                     <li class="pagination-item active">
@@ -272,7 +272,7 @@
                                     </li>
                                     <li class="pagination-item">
                                         <a href="#" class="pagination-link">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/icons/arrows/pg-next.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/icons/arrows/pg-next.png" alt="">
                                         </a>
                                     </li>
                                 </ul>
@@ -290,7 +290,7 @@
                 <div class="modal-header rotation-modal-header">
                     <h5 class="modal-title">Bộ lọc</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -316,14 +316,14 @@
                                 <h5>Từ ngày</h5>
                                 <input class="input-primary" id="filterStartDate" type="text" name="start_date" id="" placeholder="Chọn" autocomplete="off" onkeydown="return false">
                                 <label for="filterStartDate" class="filter-block-img-left">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/calendar.svg" alt="">
-                                </label> 
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/calendar.svg" alt="">
+                                </label>
                             </div>
                             <div class="col-6 input-date-right" style="text-align: right; position: relative">
                                 <h5>Đến ngày</h5>
                                 <input class="input-primary" id="filterEndDate" type="text" name="end_date" id="" placeholder="Chọn" autocomplete="off" onkeydown="return false">
                                 <label for="filterEndDate" class="filter-block-img-right">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/calendar.svg" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/calendar.svg" alt="">
                                 </label>
                             </div>
                         </div>
@@ -346,7 +346,7 @@
                 <div class="modal-header rotation-modal-header">
                     <h5 class="modal-title">Thêm tài khoản</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -427,12 +427,12 @@
                 <div class="modal-header rotation-modal-header">
                     <h5 class="modal-title">Gửi yêu cầu rút tiền thành công</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img src="assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                        <img src="assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="rotation-prize-img">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/verify 1.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/verify 1.png" alt="">
                     </div>
                     <div class="rotation-prize-detail">
                         <p>Yêu cầu rút tiền đã được gửi đến hệ thống</p>

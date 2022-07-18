@@ -10,9 +10,9 @@
                 <div class="container container-fix menu-container-ct">
                     <ul>
                         <li><a href="/">Trang chủ</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                         <li class="menu-container-li-ct"><a href="/recharge-game">Nạp tài khoản game</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                         <li class="menu-container-li-ct"><a href="/recharge-game/slug">Liên minh huyền thoại</a></li>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@
                 <div class="container banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right " style="width: 10%">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -47,7 +47,7 @@
                                     <div class="col-md-12 left-right">
                                         <div class="row marginauto body-header-ct">
                                             <div class="col-auto left-right">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/napgameicon.png" alt="">
+                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/napgameicon.png" alt="">
                                             </div>
                                             <div class="col-md-10 col-10 body-header-col-ct">
                                                 <h3>Cày Xếp hạng ELO/ Liên Minh</h3>
@@ -58,7 +58,7 @@
                                     <div class="col-md-12 left-right">
                                         <div class="row marginauto banner-container-ct">
                                             <div class="col-md-12 text-left left-right">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/ctnapgame-bg.png" alt="">
+                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/ctnapgame-bg.png" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@
                                                     <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
                                                         <input autocomplete="off" id="password" name="password" class="input-defautf-ct password" type="password" placeholder="Nhập mật khẩu tài khoản Garena">
                                                         <div class="show-btn-password">
-                                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/eyehide.png" alt="">
+                                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12 left-right pw-error">
@@ -144,7 +144,7 @@
                                             <div class="col-auto text-left body-title-detail-col-center-ng-ct">
                                                 <div class="row marginauto capcha-image-bg">
                                                     <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/capcha.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,7 +152,7 @@
                                             <div class="col-auto text-left body-title-detail-col-right-ng-ct">
                                                 <div class="row marginauto capcha-image-bg">
                                                     <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/rf-capcha.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,7 +205,7 @@
                                 <div class="col-md-12 left-right">
                                     <div class="row banner-detail-ct">
                                         <div class="col-md-12 text-left left-right">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/magianpgame.png" alt="">
+                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/magianpgame.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -251,11 +251,11 @@
                                         </div>
                                         <div class="col-md-12 left-right text-center js-toggle-content">
                                             <div class="view-more">
-                                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-down.png)"></i></a>
+                                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></a>
 
                                             </div>
                                             <div class="view-less">
-                                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/iconright.png)"></i></a>
+                                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@
                             <div class="row marginauto modal-header-order-ct">
                                 <div class="col-12 span__donhang text-center" style="position: relative">
                                     <span>XÁC NHẬN THANH TOÁN</span>
-                                    <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                                    <img class="lazy img-close-ct close-modal-default" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                 </div>
                             </div>
 
@@ -320,7 +320,7 @@
                                                     <span>Game</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
+                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
                                                 </div>
                                             </div>
 
@@ -419,7 +419,7 @@
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right" style="width: 10%">
-                            <img class="lazy previous-step-one" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                            <img class="lazy previous-step-one" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -470,7 +470,7 @@
                                         <span>Game</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
+                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
                                     </div>
                                 </div>
 
@@ -570,7 +570,7 @@
                     <div class="row marginauto modal-header-success-row-ct text-center">
                         <div class="col-md-12 text-center" style="position: relative">
                             <span>Nạp game thành công</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -578,7 +578,7 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
+                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -621,7 +621,7 @@
                     <div class="row marginauto modal-header-success-row-ct text-center">
                         <div class="col-md-12 text-center" style="position: relative">
                             <span>Thông báo</span>
-                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -629,7 +629,7 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/reject.png" alt="">
+                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -663,7 +663,7 @@
 
 
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/nap-game/nap-game-detail.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/nap-game/nap-game-detail.js"></script>
 @endsection
 
 
