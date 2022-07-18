@@ -6,7 +6,7 @@
         <div class="container container-fix banner-mobile-container-ct">
 
             <div class="row marginauto banner-mobile-row-ct" style="position: relative">
-                <img class="lazy back-position-ct" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                <img class="lazy back-position-ct" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                 <div class="col-12 left-right banner-mobile-span text-center">
                     <h3>Nạp tài khoản game</h3>
                 </div>
@@ -17,7 +17,7 @@
     {{--    Banner--}}
     <section class="media-web">
         <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
+            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
         </div>
     </section>
     {{--  Menu  --}}
@@ -25,7 +25,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="">Danh mục Shop Account</a></li>
             </ul>
         </div>
@@ -41,7 +41,7 @@
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-header-ct">
                                 <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
+                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
                                     <h3>Danh sách mục Shop Account</h3>
@@ -52,7 +52,7 @@
                         <div class="col-md-12 left-right media-mobile">
                             <div class="row marginauto banner-container-ct">
                                 <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
+                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
                                         <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
                                         <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -93,7 +93,7 @@
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
                                         <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                 </div>
                             </form>
@@ -109,7 +109,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lienquan.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lienquan.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -139,7 +139,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/freefire.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/freefire.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -169,7 +169,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/tocchien.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/tocchien.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -199,7 +199,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lmht.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lmht.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -229,7 +229,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lienquan.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lienquan.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -259,7 +259,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/freefire.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/freefire.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -289,7 +289,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/tocchien.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/tocchien.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -319,7 +319,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lmht.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lmht.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -349,7 +349,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lienquan.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lienquan.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -379,7 +379,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/freefire.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/freefire.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -409,7 +409,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/tocchien.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/tocchien.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -439,7 +439,7 @@
                                             <a href="" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick">
                                                     <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/account/lmht.png" alt="">
+                                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/account/lmht.png" alt="">
                                                     </div>
                                                     <div class="col-md-12 left-right">
                                                         <div class="row marginauto list-item-nick-body">
@@ -512,10 +512,10 @@
 
                         <div class="col-md-12 left-right text-center">
                             <div class="view-more">
-                                Xem thêm <img src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/jump-down.png" alt="">
+                                Xem thêm <img src="/assets/{{theme('')->theme_key}}/image/cay-thue/jump-down.png" alt="">
                             </div>
                             <div class="view-less">
-                                Thu gọn <img src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/jump-down-down.png" alt="">
+                                Thu gọn <img src="/assets/{{theme('')->theme_key}}/image/cay-thue/jump-down-down.png" alt="">
                             </div>
                         </div>
 
@@ -526,7 +526,7 @@
         </div>
     </section>
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/nick/nick.js?v={{time()}}"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
 @endsection
 
 

@@ -427,7 +427,7 @@
                 <div class="modal-header rotation-modal-header">
                     <h5 class="modal-title">Gửi yêu cầu rút tiền thành công</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img src="assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                        <img src="assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                     </button>
                 </div>
                 <div class="modal-body">

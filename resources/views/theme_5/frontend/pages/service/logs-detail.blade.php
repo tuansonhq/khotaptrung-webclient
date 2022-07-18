@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container">
@@ -29,7 +29,7 @@
             <div class="col-12 col-lg-9 p-0 order--detail">
                 <div class="card--mobile__title">
                     <a href="/lich-su-dich-vu" class="card--back">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                     </a>
                     <h4>Chi tiết đơn hàng</h4>
                 </div>

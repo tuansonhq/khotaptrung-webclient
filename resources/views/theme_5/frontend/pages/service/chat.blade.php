@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container">
@@ -29,7 +29,7 @@
             <div class="col-12 col-lg-9 order--detail">
                 <div class="card--mobile__title">
                     <a href="/lich-su-dich-vu" class="card--back">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                     </a>
                     <h4>Gửi tin nhắn</h4>
                 </div>
@@ -92,10 +92,10 @@
                                 <div class="mt-2 mb-4 d-flex align-items-center captcha--code__group">
                                     <input type="text" name="captcha-code" id="" class="input--text input-defautf-ct" placeholder="Nhập mã bảo vệ">
                                     <div class="captcha--code ml-3 mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/captcha-code-demo.png" alt="" class="captcha--code__image">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/captcha-code-demo.png" alt="" class="captcha--code__image">
                                     </div>
                                     <a href="" class="captcha--refresh">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/captcha-refresh.png" alt="" class="captcha--refresh__image">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/captcha-refresh.png" alt="" class="captcha--refresh__image">
                                     </a>
                                 </div>
                                 <button class="btn -primary btn-big">Gửi tin nhắn</button>

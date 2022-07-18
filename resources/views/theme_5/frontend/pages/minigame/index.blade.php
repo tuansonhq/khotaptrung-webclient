@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/minigame.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/lib_bootstrap.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/minigame.css">
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="row marginauto banner-mobile-row-ct">
                     <div class="col-auto left-right" style="width: 10%">
                         <a href="#" class="box-account-mobile_open">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </a>
 
                     </div>
@@ -28,9 +28,9 @@
             <div class=" menu-container-ct">
                 <ul class="d-flex" style="float: inherit">
                     <li><a href="/">Trang chủ</a></li>
-                    <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                    <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                     <li class="menu-container-li-ct"><a href="">Danh mục vòng quay</a></li>
-                    {{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
+                    {{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
                     {{--                            <li class="menu-container-li-ct"><a href="">Cày xếp hạng ELO/ Liên Minh</a></li>--}}
                 </ul>
             </div>
@@ -41,7 +41,7 @@
                     <div class=" block-product ">
                         <div class="product-header d-flex">
                         <span>
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_title_detail.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/minigame_title_detail.png" alt="">
                         </span>
                             <p class="text-title" >Top vòng quay</p>
                             <div class="navbar-spacer"></div>
@@ -58,7 +58,7 @@
                                 <div class="list-minigame_box-left col-md-8 px-2">
                                     <div class="item-minigame_first ">
                                         <a href="/minigame/slug">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame.png" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/minigame.png" alt="">
                                             <div class="item-minigame-content">
                                                 <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                 <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>
                                             <div class="item-minigame-top">
-                                                <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 1</div>
+                                                <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 1</div>
 
                                             </div>
                                         </a>
@@ -85,7 +85,7 @@
                                         <div class="col-md-12 pr-fix-8 pl-fix-8 ">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -99,7 +99,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="item-minigame-top">
-                                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 1</div>
+                                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 1</div>
 
                                                     </div>
                                                 </a>
@@ -110,7 +110,7 @@
                                         <div class="col-md-12 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -125,7 +125,7 @@
                                                     </div>
 
                                                     <div class="item-minigame-top">
-                                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 3</div>
+                                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 3</div>
 
                                                     </div>
                                                 </a>
@@ -141,7 +141,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8 ">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -155,7 +155,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="item-minigame-top">
-                                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 1</div>
+                                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 1</div>
 
                                                     </div>
                                                 </a>
@@ -166,7 +166,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame6.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -180,7 +180,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="item-minigame-top">
-                                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 4</div>
+                                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 4</div>
 
                                                     </div>
                                                 </a>
@@ -191,7 +191,7 @@
                                         <div class="col-md-4 pr-fix-8 pl-fix-8">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -205,7 +205,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="item-minigame-top">
-                                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame_top.png" alt=""> <div>Top 5</div>
+                                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame_top.png" alt=""> <div>Top 5</div>
 
                                                     </div>
                                                 </a>
@@ -222,7 +222,7 @@
                                 <div class="list-minigame_box-left w-100">
                                     <div class="item-minigame_first">
                                         <a href="/minigame/slug">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                            <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
                                             <div class="item-minigame-content">
                                                 <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                 <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -245,7 +245,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -265,7 +265,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -285,7 +285,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -305,7 +305,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -325,7 +325,7 @@
                                         <div class="swiper-slide">
                                             <div class="item-minigame_second">
                                                 <a href="/minigame/slug">
-                                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
                                                     <div class="item-minigame-content">
                                                         <div class="item-minigame-name">Vòng quay tiệc bể bơi</div>
                                                         <div class="item-minigame-user">Đã chơi: 40K</div>
@@ -354,7 +354,7 @@
         </div>
         <div class="top-list row d-md-none d-block mt-fix-20">
             <div class=" col-md-12" >
-                <p class="text-center"><img src="/assets/{{env('THEME_VERSION')}}/image/star_top.png" alt=""> Top lượt quay</p>
+                <p class="text-center"><img src="/assets/{{theme('')->theme_key}}/image/star_top.png" alt=""> Top lượt quay</p>
                 <div class="top-days default-tab">
                     <ul class="nav justify-content-between row pr-fix-16 pl-fix-16" role="tablist" >
                         <li class="nav-item col-4 col-md-4 p-0  p-md-0" role="presentation">
@@ -373,17 +373,17 @@
                         <div class="item-top-content">
                             <ul class="nav flex-column">
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài hai dòng </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
                                 <li class="d-flex">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/top_star.png" alt=""></span>
+                                    <span><img src="/assets/{{theme('')->theme_key}}/image/top_star.png" alt=""></span>
                                     <span class="top-name">Tên dài </span>
                                     <span class="float-right top-amount">100.000.000đ</span>
                                 </li>
@@ -431,7 +431,7 @@
         <div class="flash-sales block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Giảm sốc <span class="d-g-md-none"> trong ngày</span></p>
                 <div class="timer" id="timer">
@@ -451,7 +451,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -479,7 +479,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -507,7 +507,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -535,7 +535,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -563,7 +563,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame6.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -591,7 +591,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -622,7 +622,7 @@
         <div class=" block-product mt-fix-20">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Dành cho bạn</p>
                 <div class="product-catecory" >
@@ -660,7 +660,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -688,7 +688,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -716,7 +716,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame5.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame5.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -744,7 +744,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -772,7 +772,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -800,7 +800,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -835,7 +835,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame5.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame5.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -863,7 +863,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -891,7 +891,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -919,7 +919,7 @@
                                 <a href="/minigame/slug">
                                     <div class="item-product__box-img">
 
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                                     </div>
                                     <div class="item-product__box-content">
@@ -954,7 +954,7 @@
         <div class=" block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Vòng quay Game Freefire</span></p>
                 <div class="product-catecory"></div>
@@ -970,7 +970,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -998,7 +998,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1026,7 +1026,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1054,7 +1054,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">

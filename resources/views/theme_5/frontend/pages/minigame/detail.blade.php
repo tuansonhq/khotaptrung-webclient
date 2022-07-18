@@ -1,11 +1,11 @@
 @extends('theme_3.frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/breadcrumb.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/spin.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_phu/layout_page.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/spin.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_phu/layout_page.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_phu/spin.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
 @endsection
 @section('content')
     <div class="container_page container">
@@ -19,7 +19,7 @@
         </section>
         <section class="breadcrumb-mobile">
             <a href="javascript:void(0);" class="box-account-mobile_open" style="display: block">
-                <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/back.svg" alt="">
+                <img src="/assets/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
             <h3>Chi tiết vòng quay</h3>
         </section>
@@ -32,11 +32,11 @@
                             <button class="button-secondary" id="gamRuleButton">Thể lệ</button>
                         </div>
                         <div class="rotation-player">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/security-user 1.svg" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/security-user 1.svg" alt="">
                             <p><span id="userCount">1235</span> người đang chơi</p>
                         </div>
                         <div class="rotation-notify">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/sound.svg" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                             <marquee class="rotation-marquee">
                                 <div class="rotation-marquee-item">
                                     <h6>Lê Bống</h6> <p>Đã trúng <span id="prize">1000 kim cương</span> <span id="prizeTime" style="color: #82869E;">1h trước</span></p>
@@ -48,9 +48,9 @@
                         </div>
                         <div class="rotation-sale">
                             <div class="rotation-sale-header">
-                                <p><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/flash_img.png" alt=""> Flash sale</p>
+                                <p><img src="/assets/{{theme('')->theme_key}}/image/images_1/flash_img.png" alt=""> Flash sale</p>
                                 <div class="rotation-sale-time">
-                                    <span><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/clock.svg" alt=""> Kết thúc trong</span>
+                                    <span><img src="/assets/{{theme('')->theme_key}}/image/images_1/clock.svg" alt=""> Kết thúc trong</span>
                                     <ul>
                                         <li><span id="hourRemain"></span></li>
                                         <li><span id="minuteRemain"></span></li>
@@ -68,16 +68,16 @@
                         </div>
                         <div class="rotation">
                             <div class="rotation-button" id="startRotate">
-                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/images_1/rotation-button.png" alt="">
+                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/images_1/rotation-button.png" alt="">
                             </div>
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rotation-img.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/rotation-img.png" alt="">
                         </div>
                         <div class="rotation-points">
                             <div class="rotation-points-title">
-                                <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/mdi_police-badge.svg" alt="">
+                                <img src="/assets/{{theme('')->theme_key}}/image/images_1/mdi_police-badge.svg" alt="">
                                 <p>Hũ điểm</p>
                                 <div class="info-rotation">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/info.svg" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/info.svg" alt="">
                                     <div class="rotation-tooltip">
                                         <p>Mỗi lượt quay sẽ được cộng 10 point.</p>
                                         <p>Tích luỹ đủ số point để nhận thêm lượt quay</p>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="rotation-leaderboard leaderboard-md">
                         <div class="leaderboard-header">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/top-leaderboard.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
                             <h5>Top quay thưởng</h5>
                         </div>
                         <div class="leaderboard-type row no-gutters">
@@ -515,7 +515,7 @@
                         <div class="comment-block">
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -526,14 +526,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -544,14 +544,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -562,14 +562,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -580,14 +580,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -598,14 +598,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -616,14 +616,14 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment-item">
                                 <div class="comment-avatar">
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/user_avatar.png" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
                                 </div>
                                 <div class="comment-detail">
                                     <div class="comment-info">
@@ -634,8 +634,8 @@
                                         Bị lừa nhiều rồi, giờ mới tìm được web uy tín, thanks ad
                                     </div>
                                     <div class="comment-interact">
-                                        <span id="likeComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                                        <span id="replyComment"><img src="/assets/{{env('THEME_VERSION')}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                                        <span id="likeComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                                        <span id="replyComment"><img src="/assets/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
                                     </div>
                                 </div>
                             </div>
@@ -661,7 +661,7 @@
                             </div>
                         </div>
                         <div class="leaderboard-header">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/top-leaderboard.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
                             <h5>Top quay thưởng</h5>
                         </div>
                         <div class="leaderboard-type row no-gutters">
@@ -697,7 +697,7 @@
                             <div class="leaderboard-content leaderboard-1">
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -709,7 +709,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -721,7 +721,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -819,7 +819,7 @@
                             <div class="leaderboard-content leaderboard-2" style="display: none;">
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -831,7 +831,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -843,7 +843,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -941,7 +941,7 @@
                             <div class="leaderboard-content leaderboard-3" style="display: none;">
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -953,7 +953,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -965,7 +965,7 @@
                                 </div>
                                 <div class="leaderboard-item row no-gutters">
                                     <div class="col-4 leaderboard-item-name">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rating.svg" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/images_1/rating.svg" alt="">
                                         <p>Shinn Shinn</p>
                                     </div>
                                     <div class="col-4 leaderboard-item-ar">
@@ -1064,17 +1064,17 @@
                     </div>
                     <div class="rotation-advertise">
                         <a href="#" target="_blank">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/sexy-mage.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
                         </a>
                     </div>
                     <div class="rotation-advertise">
                         <a href="#" target="_blank">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/sexy-mage.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
                         </a>
                     </div>
                     <div class="rotation-advertise">
                         <a href="#" target="_blank">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/sexy-mage.png" alt="">
+                            <img src="/assets/{{theme('')->theme_key}}/image/images_1/sexy-mage.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -1084,7 +1084,7 @@
         <div class=" block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Mini game liên quan</span></p>
                 <div class="product-catecory"></div>
@@ -1097,7 +1097,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame1.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame1.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1125,7 +1125,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1153,7 +1153,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1181,7 +1181,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame2.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame2.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1212,7 +1212,7 @@
         <div class=" block-product mt-fix-20 ">
             <div class="product-header d-flex">
                     <span>
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/flash_sales.png" alt="">
+                        <img src="/assets/{{theme('')->theme_key}}/image/flash_sales.png" alt="">
                     </span>
                 <p class="text-title">Mini game đã chơi gần đây</span></p>
                 <div class="product-catecory"></div>
@@ -1225,7 +1225,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame4.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame4.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1253,7 +1253,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame6.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame6.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1281,7 +1281,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame5.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame5.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
@@ -1309,7 +1309,7 @@
                             <a href="/minigame/slug">
                                 <div class="item-product__box-img">
 
-                                    <img src="/assets/{{env('THEME_VERSION')}}/image/minigame3.gif" alt="">
+                                    <img src="/assets/{{theme('')->theme_key}}/image/minigame3.gif" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">

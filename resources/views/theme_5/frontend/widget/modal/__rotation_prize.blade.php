@@ -4,12 +4,12 @@
             <div class="modal-header rotation-modal-header">
                 <h5 class="modal-title">Chúc mừng bạn đã quay trúng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                 </button>
             </div>
             <div class="modal-body rotation-prize-body">
                 <div class="rotation-prize-img">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/verify 1.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/verify 1.png" alt="">
                 </div>
                 <div class="rotation-prize-detail">
                     <p>Giải thưởng: <span id="rotationValue" style="font-weight: 600; color: #000000;">100.000 Kim cương</span></p>

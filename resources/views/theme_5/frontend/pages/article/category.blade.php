@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container">

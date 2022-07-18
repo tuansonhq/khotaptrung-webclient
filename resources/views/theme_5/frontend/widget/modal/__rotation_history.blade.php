@@ -2,10 +2,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header rotation-modal-header">
-                <img class="rotation-header-img" src="/assets/{{env('THEME_VERSION')}}/image/images_1/gift.png" alt="">
+                <img class="rotation-header-img" src="/assets/{{theme('')->theme_key}}/image/images_1/gift.png" alt="">
                 <h5 class="modal-title">Lịch sử quay thưởng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                 </button>
             </div>
             <div class="modal-body">
