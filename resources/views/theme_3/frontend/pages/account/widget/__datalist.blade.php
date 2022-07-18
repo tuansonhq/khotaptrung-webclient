@@ -90,7 +90,7 @@
                                                         <div class="row marginauto order-errors">
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
-                                                                    @if(App\Library\AuthCustom::user()->balance < $item->price)
+                                                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
                                                                         <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
                                                                     @endif
                                                                 @else
@@ -237,7 +237,7 @@
                                                             <div class="col-md-12 left-right">
                                                                 @if(App\Library\AuthCustom::check())
 
-                                                                    @if(App\Library\AuthCustom::user()->balance > $item->price)
+                                                                    @if(App\Library\AuthCustom::user()->balance >= $data->params->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
                                                                         <div class="row marginauto justify-content-center gallery-right-footer">
