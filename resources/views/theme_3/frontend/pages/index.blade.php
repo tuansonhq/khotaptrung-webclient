@@ -83,7 +83,7 @@
                  @include('frontend.widget.__service_game')
               @endif
             {{--             Minigame--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
                  @include('frontend.widget.__content__home__minigame')
             @endif
 
