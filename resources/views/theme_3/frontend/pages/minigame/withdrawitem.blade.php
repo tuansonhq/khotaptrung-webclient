@@ -18,10 +18,10 @@
             </ul>
         </section>
         <section class="breadcrumb-mobile">
-            <a href="/" style="display: block">
+            <a href="javascript:void(0)" style="display: block" onclick="openMenuProfile()">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
-            <h1>Rút vật phẩm</h1>
+            <h1 class="mobile-rutvatpham">Rút vật phẩm</h1>
         </section>
         <div class="row">
             {{--navbar--}}
@@ -336,7 +336,7 @@
     </div>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <div class="modal fade login show order-modal" id="proccessModal" aria-modal="true">
 
         <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">

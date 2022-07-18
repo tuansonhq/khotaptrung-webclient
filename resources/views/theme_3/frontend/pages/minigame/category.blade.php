@@ -10,14 +10,14 @@
             <div class=" banner-mobile-container-ct">
                 <div class="row marginauto banner-mobile-row-ct">
                     <div class="col-auto left-right" style="width: 10%">
-                        <a href="#" class="box-account-mobile_open">
+                        <a href="/" class="box-account-mobile_open">
                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </a>
 
                     </div>
 
                     <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                        <h3>Danh mục vòng quay</h3>
+                        <p>Trang chủ</p>
                     </div>
                     <div class="col-auto left-right" style="width: 10%">
                     </div>

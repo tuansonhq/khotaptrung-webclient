@@ -13,7 +13,7 @@
                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                             </div>
                             <div class="col-md-10 col-10 body-header-col-ct">
-                                <h3>Chi tiết Nick</h3>
+                                <h3>Chi tiết #{{ $data->randId }}</h3>
                             </div>
                         </div>
                     </div>
@@ -285,7 +285,7 @@
                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                             </div>
                             <div class="col-md-10 col-10 body-header-col-ct">
-                                <h3>Chi tiết Nick</h3>
+                                <h1>Chi tiết #{{ $data->randId }}</h1>
                             </div>
                         </div>
                     </div>
