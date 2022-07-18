@@ -492,10 +492,7 @@
                     if (response.success) {
                         formSubmit.find('.notify-error').text(response.message);
                         setTimeout(location.reload.bind(location), 1000);
-
-                        // formSubmit[0].reset();
-                        // $('.panel-register').hide();
-                        // $('.panel-register-success').show();
+                        
                     }
                 },
                 error: function (response) {
