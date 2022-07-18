@@ -1,5 +1,6 @@
 @extends('frontend.theme_1.layouts.master')
 @section('content')
+    {{--    aaaaaaaaaaaa--}}
     <div class="news">
         <div class="news_breadcrumbs">
             <div class="container">
