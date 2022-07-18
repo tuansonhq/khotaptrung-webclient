@@ -1,6 +1,4 @@
-{{--@extends('errors::minimal')--}}
 
-{{--@section('title', __('Not Found'))--}}
 @extends('.theme_1.frontend.layouts.master')
 
 @section('content')
@@ -18,5 +16,4 @@
         </div>
     </section>
 @endsection
-{{--@section('code', '404')--}}
-{{--@section('message', __('Not Found'))--}}
+
