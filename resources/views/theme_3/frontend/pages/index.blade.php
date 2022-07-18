@@ -100,7 +100,7 @@
             @endif
 
             {{--                 Nạp thẻ--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' )
                  @include('frontend.widget.__nap_the')
             @endif
             {{--                Danh mục mua acc shop idol--}}
