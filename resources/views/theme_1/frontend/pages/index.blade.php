@@ -7,7 +7,7 @@
 @push('js')
 
 @endpush
-{{--@section('content')--}}
+
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
