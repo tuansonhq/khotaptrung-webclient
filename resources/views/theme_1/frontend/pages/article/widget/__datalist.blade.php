@@ -4,9 +4,16 @@
         <div class="news_content_list">
             <div class="news_content_list_item">
                 <div class="news_content_list_image">
-                    <a href="/tin-tuc/{{ $item->slug }}">
-                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="lazy" alt="">
-                    </a>
+                    @if(isset($item->url_redirect_301))
+                        <a target="_blank" href="{{ $item->url_redirect_301 }}">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="lazy" alt="">
+                        </a>
+                    @else
+                        <a href="/tin-tuc/{{ $item->slug }}">
+                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" class="lazy" alt="">
+                        </a>
+                    @endif
+
                 </div>
 
                 <div class="news_content_list_info">
