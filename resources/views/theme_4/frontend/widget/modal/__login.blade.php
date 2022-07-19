@@ -56,8 +56,10 @@
 
                     <div class="modal-bottom" style="margin-top: 15px">
                         <p class="text-center">
-                            <a href="http://fb.nhapnick.com/napgamegiare_net"class="btn  btn-social btn-facebook btn-flat d-inline-block" style="margin-bottom:5px"><img
-                                    src="/assets/frontend/{{theme('')->theme_key}}/image/facebook-icon.png" alt="" width="32px" height="32px"></a>
+
+                            <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="btn  btn-social btn-facebook btn-flat d-inline-block" style="margin-bottom:5px"><img
+                                    src="/assets/frontend/{{theme('')->theme_key}}/image/facebook-icon.png" alt="" width="32px" height="32px">
+                            </a>
                         </p>
                         <p class="text-center">
                             Bạn chưa có tài khoản. <a class="btn-a-register" href="#" data-dismiss="modal"
