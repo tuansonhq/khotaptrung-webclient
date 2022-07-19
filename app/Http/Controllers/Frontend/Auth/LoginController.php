@@ -41,9 +41,6 @@ class LoginController extends Controller
             Session::put('check_login', 33);
             return view('frontend.pages.index');
         }
-
-
-
     }
     public function postLogin(Request $request){
 
