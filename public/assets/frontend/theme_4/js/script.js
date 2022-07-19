@@ -141,75 +141,110 @@ $(document).ready(function () {
     });
 
 
-
-
     $('#txtSearch').donetyping(function() {
-        var find=$(this).val()
 
-        if(find == null || find == "" || find == undefined){
-            $('.entries').css('display','block');
-            $('.entries-search').css('display','none');
-            return false
-        }
-        else{
-            $('.entries').css('display','none');
-            $('.entries-search').css('display','block');
-        }
+        let keyword = convertToSlug($(this).val());
 
-        $.ajax({
-            type: "GET",
-            url: '/search',
-            data: {
-                find:find
-            }, // serializes the form's elements.
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-                $('.entries-search .fix-border').html("");
-                $('.entries-search .fix-border').html(data);
-            },
-            error: function (data) {
-                alert("Không kết nối được với máy chủ");
-            },
-            complete: function (data) {
+        let index = 0;
+        $('.entries_item_service').each(function (i,elm) {
+            // $('.body-modal__nick__text-error').css('display','none');
+            let slug_item = $(elm).find('img').attr('alt');
+            slug_item = convertToSlug(slug_item);
+            $(this).toggle(slug_item.indexOf(keyword) > -1);
+            if (slug_item.indexOf(keyword) > -1){
+                index = index + 1
+            }else {}
+            console.log(index)
+            if (index > 8){
+                $('.item-page-2').css('display','none');
+                $('.item-page-3').css('display','none');
+                $('.item-page-4').css('display','none');
             }
-        });
+
+        })
 
         //$(this).val() // get the current value of the input field.
     }, 400);
 
+
+    $('#txtSearchNick').donetyping(function() {
+
+        let keyword = convertToSlug($(this).val());
+
+        let index = 0;
+        $('.entries_item_nick').each(function (i,elm) {
+            // $('.body-modal__nick__text-error').css('display','none');
+            let slug_item = $(elm).find('img').attr('alt');
+            slug_item = convertToSlug(slug_item);
+            $(this).toggle(slug_item.indexOf(keyword) > -1);
+            if (slug_item.indexOf(keyword) > -1){
+                index = index + 1
+            }else {}
+            console.log(index)
+            if (index > 8){
+                $('.item-page-nick-2').css('display','none');
+                $('.item-page-nick-3').css('display','none');
+                $('.item-page-nick-4').css('display','none');
+            }
+
+        })
+
+        //$(this).val() // get the current value of the input field.
+    }, 400);
 
     $('#txtSearchMobile').donetyping(function() {
-        var find=$(this).val()
+        let keyword = convertToSlug($(this).val());
 
-        if(find == null || find == "" || find == undefined){
-
-            return false
-        }
-        $.ajax({
-            type: "GET",
-            url: '/search',
-            data: {
-                find:find,
-                device:"mobile"
-            }, // serializes the form's elements.
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-                $('#result-search-mobile').html("");
-                $('#result-search-mobile').html(data);
-            },
-            error: function (data) {
-                alert("Không kết nối được với máy chủ");
-            },
-            complete: function (data) {
+        let index = 0;
+        $('.entries_item').each(function (i,elm) {
+            // $('.body-modal__nick__text-error').css('display','none');
+            let slug_item = $(elm).find('img').attr('alt');
+            slug_item = convertToSlug(slug_item);
+            $(this).toggle(slug_item.indexOf(keyword) > -1);
+            if (slug_item.indexOf(keyword) > -1){
+                index = index + 1
+            }else {}
+            console.log(index)
+            if (index > 8){
+                $('.item-page-2').css('display','none');
+                $('.item-page-3').css('display','none');
+                $('.item-page-4').css('display','none');
             }
-        });
+
+        })
+
 
         //$(this).val() // get the current value of the input field.
     }, 400);
 
-
+    function convertToSlug(title) {
+        var slug;
+        //Đổi chữ hoa thành chữ thường
+        slug = title.toLowerCase();
+        //Đổi ký tự có dấu thành không dấu
+        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+        slug = slug.replace(/đ/gi, 'd');
+        //Xóa các ký tự đặt biệt
+        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\<|\'|\"|\:|\;|_/gi, '');
+        //Đổi khoảng trắng thành ký tự gạch ngang
+        slug = slug.replace(/ /gi, "-");
+        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+        slug = slug.replace(/\-\-\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-\-/gi, '-');
+        slug = slug.replace(/\-\-/gi, '-');
+        //Xóa các ký tự gạch ngang ở đầu và cuối
+        slug = '@' + slug + '@';
+        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+        // trả về kết quả
+        return slug;
+    }
 
 
 

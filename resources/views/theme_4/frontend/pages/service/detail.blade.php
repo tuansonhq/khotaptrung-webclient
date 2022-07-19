@@ -2,6 +2,34 @@
 @section('content')
 
 <section>
+
+    <link href="/assets/frontend/{{theme('')->theme_key}}/css/service.css" rel="stylesheet" type="text/css"/>
+
+    <style type="text/css">
+        @media only screen and (max-width: 640px) {
+            .float_mb {
+                float: left;
+            }
+        }
+        .pay{
+            display: block;
+            background: #fb236a;
+            border-radius: 17px;
+            text-align: center;
+            max-width: 118px;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(".pay").click(function(){
+            $("#btnPurchase").click();
+        })
+    </script>
+
+    <input type="hidden" name="slug_category" class="slug_category" value="{{ $data->slug }}">
     <div class="container">
 
         <nav aria-label="breadcrumb" style="margin-top: 10px;">
@@ -9,7 +37,7 @@
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                 <li class="breadcrumb-item"><a href="/dich-vu">Dịch vụ</a></li>
 
-                <li class="breadcrumb-item active" aria-current="page">Nạp RP - LOL ( Liên Minh )</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $data->title }}</li>
             </ol>
         </nav>
 
@@ -17,67 +45,180 @@
             <div class="notify">
 
             </div>
-            <div class="text-center" style="margin-bottom: 30px;margin-top: 50px;">
-                <h1 style="font-size: 1.5rem;font-weight: bold;text-transform: uppercase">Nạp RP - LOL ( Liên Minh )</h1>
-
-
-
-
+            <div class="text-center" style="margin-bottom: 24px;margin-top: 0px;">
+                <h1 style="font-size: 1.5rem;font-weight: bold;text-transform: uppercase">{{ $data->title }}</h1>
             </div>
-            <form method="POST" action="https://napgamegiare.net/dich-vu/1805/purchase" accept-charset="UTF-8" class="" enctype="multipart/form-data"><input name="_token" type="hidden" value="1d1UtKProIOHCYvd7GjOQ1mwzvuWei6FP3awwoKP">
+            <form method="POST" action="/dich-vu/{{ $data->id }}/purchase" accept-charset="UTF-8" class="purchaseForm" enctype="multipart/form-data">
+                @csrf
                 <div class="detail-service">
-
-
                     <div class="row">
-
                         <div class="col-md-3">
-                            <div class="news_image text-center">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/TCrPs5rSRz_1625567525.jpg" alt="Nạp RP - LOL ( Liên Minh )">
+                            <div class="text-center">
+                                <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->title }}" alt="{{ $data->title }}">
                             </div>
                         </div>
                         <div class="col-md-5" style="margin-bottom:20px;">
 
                             <div class="config">
-
+                                {{--                                    Kiểm tra máy chủ     --}}
+                                @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+                                    @php
+                                        $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+                                        $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+                                    @endphp
                                 <div class="form-group">
-                                    <label>RP LMHT:</label>
+                                    <label style="font-weight: 700">Chọn máy chủ:</label>
 
-                                    <select name="selected" class="s-filter form-control t14" style="">
-                                        <option value="0">Gói 1 : 16 RP</option>
-                                        <option value="1">Gói 2 : 32 RP</option>
-                                        <option value="2">Gói 3 : 80 RP</option>
-                                        <option value="3">Gói 4 : 168 RP</option>
-                                        <option value="4">Gói 5 : 340 RP</option>
-                                        <option value="5">Gói 6: 856 RP</option>
-                                    </select>
+                                    @if(!empty($server_data))
+                                        <select name="server[]" class="server-filter form-control t14" style="">
+                                            @for($i = 0; $i < count($server_data); $i++)
+                                                @if((strpos($server_data[$i], '[DELETE]') === false))
+                                                    <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    @endif
                                 </div>
 
+                                @endif
+
+                                {{--                                dich vu may chu khac    --}}
+                                @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
+                                @php
+                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                @endphp
+                                    @if(!empty($name))
+                                    <div class="form-group">
+                                        <label style="font-weight: 700">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</label>
+
+                                        <select name="selected" class="s-filter form-control t14" style="">
+                                            @for ($i = 0; $i < count($name); $i++)
+                                                @if($name[$i]!=null)
+                                                    <option value="{{$i}}">{{$name[$i]}}</option>
+                                                @endif
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    @endif
+
+                                @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
                                 <div class="form-group">
-                                    <label>Tài khoản Garena:</label>
+                                    <div class="row" style="width: 100%;margin: 0 auto">
+                                        <div class="col-auto" style="width: 80%;padding-right: 8px;padding-left: 0">
+                                            <label style="font-weight: 700">Nhập số tiền cần mua:</label>
+                                            <input style="margin-bottom: 8px" autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                                        </div>
 
-                                    <input type="text" class="form-control" required name="customer_data0"
-                                           placeholder="Tài khoản Garena" value="">
-
+                                        <div class="col-auto" style="width: 20%;padding-left: 8px;padding-right: 0">
+                                            <label style="font-weight: 700">Hệ số:</label>
+                                            <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
+                                        </div>
+                                    </div>
 
                                 </div>
-
-
-
+                                @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                                 <div class="form-group">
-                                    <label>Mật khẩu Garena:</label>
+                                    <label>{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</label>
+                                    <div class="simple-checkbox s-filter" style="border: 1px solid #ced4da;border-radius: 8px;padding: 8px 0px 8px 8px;">
+                                        <div class="row" style="width: 100%;margin: 0 auto">
+                                            <div class="col-md-12 left-right" id="chonnhieu">
+                                                @php
+                                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                                @endphp
+                                                @if(!empty($name))
+                                                    @for ($i = 0; $i < count($name); $i++)
+                                                        @if($name[$i]!=null)
+                                                            <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
+                                                                <label style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
+                                                            </p>
+                                                        @endif
 
-
-
-                                    <input type="password" required class="form-control" name="customer_data1"
-                                           placeholder="Mật khẩu Garena">
+                                                    @endfor
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
+
+                                @endif
+{{-- Thông tin tài khoản  --}}
+                                @php
+                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
+                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+                                    $index = 0;
+                                @endphp
+                                @if(!empty($send_name)&& count($send_name)>0)
+
+                                    @for ($i = 0; $i < count($send_name); $i++)
+                                        @if($send_name[$i]!=null)
+                                            @if($i == 0 && \App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5")
+                                            <div class="form-group" style="padding-top: 16px">
+                                            @else
+                                            <div class="form-group">
+                                            @endif
+                                                @if($send_type[$i] !=7)
+                                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5")
+                                                    <label style="font-weight: 700" class="form-group-tt">{{$send_name[$i]}}:</label>
+                                                    @else
+                                                        <label style="font-weight: 700">{{$send_name[$i]}}:</label>
+                                                    @endif
+                                                @endif
+                                                @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
+                                                    @php
+                                                        $index = $index + 1;
+                                                    @endphp
+                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                @elseif($send_type[$i]==4)
+                                                    @php
+                                                        $index = $index + 1;
+                                                    @endphp
+                                                    <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                @elseif($send_type[$i]==5)
+                                                    @php
+                                                        $index = $index + 1;
+                                                    @endphp
+                                                    <input type="password" required class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                @elseif($send_type[$i]==6)
+                                                    @php
+                                                        $index = $index + 1;
+                                                    @endphp
+                                                    @php
+                                                        $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                    @endphp
+                                                    <select name="customer_data{{$i}}" required class="mb-15 control-label bb">
+                                                        @if(!empty($send_data))
+                                                            @for ($sn = 0; $sn < count($send_data); $sn++)
+                                                                <option value="{{$sn}}">{{$send_data[$sn]}}</option>
+                                                            @endfor
+                                                        @endif
+                                                    </select>
+                                                @elseif($send_type[$i]==7)
+                                                    @php
+                                                        $index = $index + 1;
+                                                    @endphp
+                                                    @php
+                                                        $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                    @endphp
+                                                    <div class="d-flex"><input name="customer_data{{$i}}" type="checkbox" id="customer_data{{$i}}">
+                                                        <label style="margin-left: 8px;cursor: pointer" for="customer_data{{$i}}">{{$send_name[$i]}}</label>
+                                                    </div>
+
+                                                @endif
 
 
 
-
+                                            </div>
+                                        @endif
+                                    @endfor
+                                @endif
 
                             </div>
                         </div>
+
                         <div class="col-md-4">
 
                             <div class="">
@@ -90,699 +231,206 @@
                                 </button>
                             </div>
 
-                            <div class="row"
-                                 style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">
-                                <p><span style="font-size:16px"><strong>Hệ thống b&aacute;n RP Li&ecirc;n Minh Huyền Thoại&nbsp;gi&aacute; rẻ, uy t&iacute;n, chiết khấu cao</strong>.</span></p>
+{{--                            <div class="row"--}}
+{{--                                 style="color: #505050;padding:20px;line-height: 2;margin-top: 30px">--}}
+{{--                                <p><span style="font-size:16px"><strong>Hệ thống b&aacute;n RP Li&ecirc;n Minh Huyền Thoại&nbsp;gi&aacute; rẻ, uy t&iacute;n, chiết khấu cao</strong>.</span></p>--}}
 
-                                <p><span style="font-size:16px"><strong>Đảm bảo RP sạch 100%.</strong>&nbsp;</span><span style="font-size:16px"><strong>Mọi giao dịch đều c&oacute; ảnh&nbsp;h&oacute;a đơn của GARENA&nbsp;gửi cho qu&yacute; kh&aacute;ch</strong>.</span></p>
+{{--                                <p><span style="font-size:16px"><strong>Đảm bảo RP sạch 100%.</strong>&nbsp;</span><span style="font-size:16px"><strong>Mọi giao dịch đều c&oacute; ảnh&nbsp;h&oacute;a đơn của GARENA&nbsp;gửi cho qu&yacute; kh&aacute;ch</strong>.</span></p>--}}
 
-                                <p><span style="font-size:16px">Ngo&agrave;i c&aacute;ch nạp RP - LOL ( Li&ecirc;n Minh )&nbsp;trực tiếp, c&aacute;c bạn c&oacute; thể <strong><a href="https://napgamegiare.net/mua-the">mua thẻ Garena</a></strong>&nbsp;gi&aacute; rẻ với chiết khấu l&ecirc;n đến 5% <strong><a href="https://napgamegiare.net/mua-the">tại đ&acirc;y</a></strong></span></p>
-                            </div>
+{{--                                <p><span style="font-size:16px">Ngo&agrave;i c&aacute;ch nạp RP - LOL ( Li&ecirc;n Minh )&nbsp;trực tiếp, c&aacute;c bạn c&oacute; thể <strong><a href="https://napgamegiare.net/mua-the">mua thẻ Garena</a></strong>&nbsp;gi&aacute; rẻ với chiết khấu l&ecirc;n đến 5% <strong><a href="https://napgamegiare.net/mua-the">tại đ&acirc;y</a></strong></span></p>--}}
+{{--                            </div>--}}
 
                         </div>
                     </div>
                 </div>
+                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
+                    <div class="row" style="margin: 0 auto; width: 100%;padding-top: 24px">
+                        <div class="col-md-12 left-right float_mb">
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
+                            <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
+                            <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
+                            <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
+                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
 
-                <!-- Modal -->
-                <div class="modal fade" id="homealert" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-
-
-                            <div class="modal-header">
-                                <div class="col-1"></div>
-                                <div class="col-10 text-center"><h6 class="modal-title">Xác nhận thanh toán</h6></div>
-                                <div class="col-1 ">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                            <div class="range_slider" style="">
+                                <div class="nstSlider" data-range_min="0" data-cur_min="0">
+                                    <div class="bar" ></div>
+                                    <div class="leftGrip"></div>
+                                    <div class="rightGrip"></div>
+                                </div>
+                            </div>
+                            @php
+                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                            @endphp
+                            <div class="row service-choice">
+                                <div class="col-sm-6">
+                                    <h5>Từ</h5>
+                                    <div class="dropdown-field from-field" style="padding-top: 8px">
+                                        <select class="from-chosen" name="rank_from">
+                                            @if(!empty($name))
+                                                @for ($i = 0; $i < count($name)-1; $i++)
+                                                    @if($name[$i]!=null)
+                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="clear-fix"></div>
+                                    <h5>đến</h5>
+                                    <div class="dropdown-field to-field" style="padding-top: 8px">
+                                        <select class="to-chosen" name="rank_to">
+                                            @if(!empty($name))
+                                                @for ($i = 1; $i < count($name); $i++)
+                                                    @if($name[$i]!=null)
+                                                        <option value="{{ $i }}">{{$name[$i]}}</option>
+                                                    @endif
+                                                @endfor
+                                            @endif
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="modal-body">
-                                <p> Bạn thực sự muốn thanh toán?</p>
+                            <h2>Bảng giá</h2>
+                            <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded">
+                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                    <thead class="m-datatable__head">
+                                    <tr class="m-datatable__row">
+                                        <th style="width:30px;" class="m-datatable__cell">
+                                            #
+                                        </th>
+                                        <th class="m-datatable__cell">
+                                            Tên
+                                        </th>
+                                        <th style="width:150px;" class="m-datatable__cell">
+                                            Tiền công
+                                        </th>
+                                        <th style="width:150px;" class="m-datatable__cell">
+                                            Thanh toán
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="m-datatable__body">
+                                    @if(!empty($name))
+                                        @for ($i = 0; $i < count($name)-1; $i++)
+                                            @if($name[$i]!=null)
+                                                <tr class="m-datatable__row m-datatable__row--even">
+                                                    <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
+                                                    <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
+                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
+                                                    <td class="m-datatable__cell">
+                                                        @if(\App\Library\AuthCustom::check())
+                                                            <span class="pay">Thanh toán</span>
+                                                        @else
+                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
+                                                        @endif
 
+                                                    </td>
+                                                </tr>
+                                            @endif
+
+                                        @endfor
+                                    @endif
+                                    </tbody>
+                                </table>
+                                <style type="text/css">
+                                    @media only screen and (max-width: 640px) {
+                                        .float_mb {
+                                            float: left;
+                                        }
+                                    }
+                                    .pay{
+                                        display: block;
+                                        background: #fb236a;
+                                        border-radius: 17px;
+                                        text-align: center;
+                                        max-width: 118px;
+                                        height: 30px;
+                                        line-height: 30px;
+                                        color: #fff;
+                                        cursor: pointer;
+                                    }
+                                </style>
+                                <script type="text/javascript">
+                                    $(".pay").click(function(){
+                                        $("#btnPurchase").click();
+                                    })
+                                </script>
                             </div>
-                            <div class="modal-footer">
-
-
-                                <button type="submit"
-                                        class="btn btn-success c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3"
-                                        style="">Xác nhận thanh toán
-                                </button>
-
-
-
-                                <button type="button"
-                                        class="btn btn-danger c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
-                                        data-dismiss="modal">Đóng
-                                </button>
-
-                            </div>
-
                         </div>
+                        <input type="hidden" id="json_rank" name="custId" value="{{ json_encode($data) }}">
                     </div>
-                </div>
-
-
-
+                    @endif
 
             </form>
 
-            <div class="job-wide-devider">
-
-                <div class="description">
-                    <h2 style="margin-bottom: 23px;font-size: 20px;text-transform: uppercase;">
-                        Mô tả</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 column">
-                        <div class="job-details">
-
-                            <div class="article-content content_post ">
-                                <div class="special-text">
-                                    <table align="center" border="1" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
-                                        <tbody>
-                                        <tr>
-                                            <td><span style="font-size:16px">✅ Nạp&nbsp;RP uy t&iacute;n</span></td>
-                                            <td><span style="font-size:16px"><span style="color:#f1c40f"><strong>⭐</strong></span>RP sạch 100% c&oacute; x&aacute;c nhận từ NPH Garena gửi về thư</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span style="font-size:16px">✅ Nạp RP gi&aacute; rẻ</span></td>
-                                            <td><span style="font-size:16px"><span style="color:#f1c40f"><strong>⭐</strong></span>Gi&aacute; rẻ nhất thị trường, nạp 150k l&atilde;i 20k so với nạp bằng thẻ Garena</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span style="font-size:16px">✅ Nạp RP nhanh</span></td>
-                                            <td><span style="font-size:16px"><span style="color:#f1c40f"><strong>⭐</strong></span>Chỉ 30s sau khi thanh to&aacute;n l&agrave; RP đ&atilde; c&oacute; trong t&agrave;i khoản Li&ecirc;n Minh</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span style="font-size:16px">✅ Nạp RP an to&agrave;n</span></td>
-                                            <td><span style="font-size:16px"><span style="color:#f1c40f"><strong>⭐</strong></span>C&aacute;c giao dịch được m&atilde; h&oacute;a 100%, đảm bảo về bảo mật t&agrave;i khoản kh&aacute;ch h&agrave;ng</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <p><span style="font-size:16px"><strong>RP</strong> l&agrave; đơn vị tiền tệ quan trọng nhất trong game <strong>Li&ecirc;n Minh Huyền Thoại</strong>. RP&nbsp;c&oacute; thể nạp topup&nbsp;trực tiếp, nạp&nbsp;bằng thẻ Garena, card&nbsp;điện thoại, ATM, v&iacute; điện tử,...&nbsp;</span><span style="font-size:16px"> RP c&oacute; thể d&ugrave;ng để tham gia v&agrave;o c&aacute;c event trong game hoặc&nbsp;mua hầu hết c&aacute;c vật phẩm, bao gồm thẻ đổi t&ecirc;n, tướng&nbsp;c&ugrave;ng c&aacute;c g&oacute;i tăng điểm, trang phục, linh th&uacute;, s&agrave;n đấu,...</span></p>
-
-                                    <p><span style="font-size:16px">Hiện c&oacute; rất nhiều c&aacute;ch <strong>nạp RP</strong> như: mua bằng thẻ ng&acirc;n h&agrave;ng, mua bằng tiền mặt, đổi rp bằng thẻ garena, s&ograve; garena, nạp RP bằng thẻ c&agrave;o điện thoại hoặc&nbsp;nạp RP trực tiếp v&agrave;o game qua c&aacute;c website,....</span></p>
-
-                                    <p><span style="font-size:16px">Mỗi c&aacute;ch nạp RP đều c&oacute; những ưu nhược điểm ri&ecirc;ng. Tuy nhi&ecirc;n, c&aacute;ch nạp RP game LMHT gi&aacute; rẻ, c&oacute; nhiều ưu đ&atilde;i, được c&aacute;c game thủ ưa chuộng ch&iacute;nh l&agrave; nạp RP trực tiếp v&agrave;o game th&ocirc;ng qua c&aacute;c website. Một trong những địa chỉ nạp RP LMHT gi&aacute; rẻ, uy t&iacute;n, chiết khấu cao&nbsp;l&agrave;&nbsp;website&nbsp;<strong><a href="https://napgamegiare.net/">napgamegiare.net</a></strong>.</span></p>
-
-                                    <p><span style="font-size:16px"><strong><a href="https://napgamegiare.net/">Napgamegiare.net</a></strong>&nbsp;ng&agrave;y c&agrave;ng thu h&uacute;t được sự quan t&acirc;m của rất nhiều người chơi game bởi mỗi ng&agrave;y tại website thực hiện hơn 10.000+ giao dịch nạp RP game gi&aacute; rẻ.&nbsp;<strong><a href="https://napgamegiare.net/">Napgamegiare.net</a>&nbsp;</strong>c&oacute; giao diện hiện đại, đơn giản, bạn sẽ dễ d&agrave;ng sử dụng tr&ecirc;n c&aacute;c thiết bị c&oacute; kết nối internet như: smartphone, tablet, laptop,... Bạn chỉ cần chọn g&oacute;i RP m&igrave;nh cần nạp, đặt h&agrave;ng v&agrave; thanh to&aacute;n online l&agrave; bạn đ&atilde; c&oacute; ngay RP trong game Li&ecirc;n Minh - LOL. Thời gian giao dịch v&agrave;&nbsp;<strong>nhận RP</strong>&nbsp;trong game&nbsp;chưa đến&nbsp;<strong>30 gi&acirc;y</strong>.&nbsp;</span></p>
-
-                                    <p><span style="font-size:16px">Bạn c&oacute; thể chọn c&aacute;c g&oacute;i nạp RP&nbsp;từ 16RP đến 340RP v&agrave; với mức <strong>gi&aacute; chỉ từ 7.700</strong> đồng đến 150k v&agrave; ch&uacute;ng t&ocirc;i <strong>b&aacute;n RP Li&ecirc;n Minh</strong> kh&ocirc;ng giới hạn số lượng. Đ&acirc;y l&agrave; g&oacute;i nạp RP v&ocirc; c&ugrave;ng rẻ so với c&aacute;ch nạp bằng thẻ Garena th&ocirc;ng thường, mua c&agrave;ng nhiều gi&aacute; c&agrave;ng rẻ, tiết kiệm c&agrave;ng nhiều. Bạn ho&agrave;n to&agrave;n c&oacute; thể y&ecirc;n t&acirc;m về số RP n&agrave;y&nbsp;v&agrave; ch&uacute;ng t&ocirc;i xin&nbsp;<strong>đảm bảo RP</strong>&nbsp;được b&aacute;n ra bởi&nbsp;<em><u><strong>shop nạp RP LMHT</strong></u></em>&nbsp;l&agrave; ho&agrave;n to&agrave;n&nbsp;<strong>sạch</strong>&nbsp;v&agrave;&nbsp;<strong>an to&agrave;n 100%</strong>&nbsp;v&igrave; ch&uacute;ng t&ocirc;i l&agrave;&nbsp;<strong>đại l&yacute; nạp RP&nbsp;được ủy quyền ch&iacute;nh thức bởi NPH Garena</strong>.</span></p>
-
-                                    <table align="center" border="1" cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
-                                        <tbody>
-                                        <tr>
-                                            <td colspan="2" style="text-align:center"><span style="font-size:16px"><strong>Nạp RP bằng thẻ Garena</strong></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px"><strong>Mệnh gi&aacute;</strong></span></td>
-                                            <td style="text-align:center"><span style="font-size:16px"><strong>RP nhận được</strong></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">20.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">40 RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">50.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">100 RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">100.000 VND&nbsp;</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">210 RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">200.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">425 RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">500.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">1070 RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" style="text-align:center"><span style="font-size:16px"><strong>Nạp RP qua shop NAPGAMEGIARE</strong></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px"><strong>Mệnh gi&aacute;</strong></span></td>
-                                            <td style="text-align:center"><span style="font-size:16px"><strong>RP nhận được</strong></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">7.700 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">16&nbsp;RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">15.400 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">32&nbsp;RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">38.500 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">80&nbsp;RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">77.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">168&nbsp;RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">154.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">340&nbsp;RP</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align:center"><span style="font-size:16px">385.000 VND</span></td>
-                                            <td style="text-align:center"><span style="font-size:16px">856&nbsp;RP</span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <p><span style="font-size:16px">Từ hai bảng tr&ecirc;n, ta c&oacute; thể thấy, việc nạp RP LOL th&ocirc;ng qua Shop NAPGAMEGIARE bạn nhận được nhiều RP cũng như tiết kiệm được kh&aacute; nhiều chi ph&iacute; hơn so với nạp bằng thẻ Garena. C&oacute; thể thấy khi bạn nạp RP Li&ecirc;n Minh g&oacute;i 154k l&agrave; bạn đ&atilde; l&atilde;i 30 RP so với việc nạp bằng thẻ Garena th&ocirc;ng thường.</span></p>
-
-                                    <p><span style="font-size:16px">Ch&uacute;ng t&ocirc;i lu&ocirc;n bảo vệ th&ocirc;ng tin kh&aacute;ch h&agrave;ng bằng những biện ph&aacute;p bảo mật tối ưu nhất. Đội ngũ nh&acirc;n vi&ecirc;n lu&ocirc;n trực 24/7/365 sẵn s&agrave;ng để phục vụ kh&aacute;ch h&agrave;ng mọi l&uacute;c, mọi nơi. Cam kết đảm bảo quyền lợi của kh&aacute;ch h&agrave;ng khi nạp&nbsp;game tại&nbsp;<strong><a href="https://napgamegiare.net/">Napgamegiare.net</a></strong>.</span></p>
-
-                                    <p><span style="font-size:16px">Tại&nbsp;<strong><a href="https://napgamegiare.net/">Napgamegiare.net</a></strong>, bạn c&oacute; thể thực hiện mua RP Li&ecirc;n Minh&nbsp;với những h&igrave;nh thức thanh to&aacute;n đa dạng như:&nbsp;<strong>nạp RP Li&ecirc;n Minh</strong><strong>&nbsp;bằng thẻ c&agrave;o điện thoại hoặc thẻ game kh&aacute;c,&nbsp;mua RP Li&ecirc;n Minh&nbsp;bằng v&iacute; điện tử - ATM,&hellip;&nbsp;</strong></span></p>
-
-                                    <p><span style="font-size:16px">Với những ưu điểm nổi bật tr&ecirc;n, chắc hẳn ai ai trong ch&uacute;ng ta cũng sẽ lựa chọn giao dịch mua <strong>RP Li&ecirc;n Minh</strong>&nbsp;tại s<strong>hop nạp RP LMHT&nbsp;-</strong>&nbsp;<strong><a href="https://napgamegiare.net/">Napgamegiare.net</a></strong>&nbsp;phải kh&ocirc;ng?</span></p>
-                                </div>
-                                <button class="expand-button">
-                                    Xem thêm nội dung
-                                </button>
-
-                            </div>
-
-                            <style type="text/css">
-
-                                @media        only screen and (max-width: 580px) {
-                                    .hidetext {
-                                        max-height: 220px;
-                                        overflow: hidden;
-                                    }
-                                    .intro-text iframe{
-                                        width: 100%;
-                                        height: 220px;
-                                    }
-                                    .intro-text img {
-                                        height: auto !important;
-                                    }
-                                }
-                                @media        only screen and (min-width: 580px) {
-                                    .hidetext {
-                                        max-height: 220px;
-                                        overflow: hidden;
-                                    }
-                                    .intro-text iframe{
-                                        width: 100%;
-                                        height: 641px;
-                                    }
-                                }
-                                .showtext {
-                                    max-height:initial;
-                                }
-                                .viewless,.viewmore{
-                                    cursor: pointer;
-                                    color: #f1c40f;
-                                    padding-top: 10px;
-                                    font-size: 18px;
-                                }
-
-                                .intro-text img {
-                                    max-width: 90%;
-                                }
-                            </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                    </div>
-                </div>
+            <div class="job-wide-devider data-bot">
 
             </div>
+
+            @include('frontend.pages.service.widget.__description')
 
             <div class="tab-vertical tutorial_area">
                 <div class="panel-group" id="accordion">
 
-
-
                 </div>
             </div>
 
-            @include('frontend.pages.widget.__dichvu__lienquan')
+            @include('frontend.widget.__dichvu__lienquan')
 
 
-            <div class="main-title" style="margin-top: 30px">
-                <h2 style="font-size: 20px;text-transform: uppercase;">Bình luận</h2>
-            </div>
+            @include('frontend.pages.service.widget.__binhluan')
 
-            <div class="entries" style="margin-bottom: 50px">
-
-                <div class="chat comments box-border">
-                    <div class="chat-history">
-                        <ul class="list-unstyled chat-scroll">
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp thành công
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Web nạp ngon thế này mà giờ mới biết
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vừa chạy ra quán mua 500k thẻ nạp ăn luôn, ngon quá admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Kim cương sạch, thanks admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:30 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    1 vote uy tín cho web nhé, quá ngon luôn
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Web được đấy anh em
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Anh em nào chưa nạp thì vào nạp ngay đi đang có khuyến mại
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Uy tín không anh em.
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Nạp thử 200k nhận luôn gấp đôi trong 10s
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    40k kim cương đã về tài khỏa, thanks admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Có anh em nào vừa từ youtube qua đây nạp k
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Web ngon vl
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vừa nạp 100k xong
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Anh em không phải sợ đâu, tôi nạp nhiều web này rồi
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Web được đấy anh em
-                                </div>
-                            </li>
-
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp ở đây 20tr tiền thẻ, vote uy tín nhé
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vãi vừa ấn nạp xong vào game có quà ngay, ngon:v
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp thành công
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vote 10000k sao nhé, quá uy tín
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vừa nạp xong, quá ngon
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Ngon vcl, +1 sao cho admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Cứ tưởng không được, nạp thử 200k nhận luôn kim cương trong 10s
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Web được đấy anh em
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vãi vừa ấn nạp xong vào game có quà ngay, AK47 LV3 vĩnh viễn :v
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vote 10000k sao nhé, quá uy tín
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Uy tín nhé anh em
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Có anh em nào vừa từ youtube qua đây nạp k
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Không scam, web nạp xong ngon đấy !
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nhận AK47 rồng xanh lv5 thanks admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Nghe anh em review ngon quá, tôi ra làm cái thẻ 500k nạp đây
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vote 10000k sao nhé, quá uy tín
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:31 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp ,dịch vụ ok. nạp thêm phát nữa
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp thành công
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã đã về tài khỏa, thanks admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Đã nạp và thấy ngon ngọt nhé ae
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Vote 10000k sao nhé, quá uy tín
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Ngon vcl, +5 sao cho admin
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Có anh em nào vừa từ youtube qua đây nạp k
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="message-data">
-                                    <span class="message-data-name"><i class="fa fa-circle online"></i> Khách</span>
-                                    <span class="message-data-time">4:32 PM, Vừa xong</span>
-                                </div>
-                                <div class="message my-message">
-                                    Nhập nhầm mã thẻ với serial báo admin xử lý trong vòng 1 nốt nhạc, uy tín quá admin ơi
-                                </div>
-                            </li>
-                        </ul>
-
-                        <div class="chat-message clearfix">
-                            <textarea name="message-to-send text-right" id="message-to-send" placeholder="Nhập bình luận..." rows="2"></textarea>
-                            <button type="button" class="btn-send-message
-                                        pill-button">Gửi bình luận</button>
-                        </div> <!-- end chat-message -->
-                    </div> <!-- end chat -->
-                </div>
-            </div>
         </div>
 
     </div><!-- /.container -->
 </section>
+
+<style type="text/css">
+
+    @media        only screen and (max-width: 580px) {
+        .hidetext {
+            max-height: 220px;
+            overflow: hidden;
+        }
+        .intro-text iframe{
+            width: 100%;
+            height: 220px;
+        }
+        .intro-text img {
+            height: auto !important;
+        }
+    }
+    @media        only screen and (min-width: 580px) {
+        .hidetext {
+            max-height: 220px;
+            overflow: hidden;
+        }
+        .intro-text iframe{
+            width: 100%;
+            height: 641px;
+        }
+    }
+    .showtext {
+        max-height:initial;
+    }
+    .viewless,.viewmore{
+        cursor: pointer;
+        color: #f1c40f;
+        padding-top: 10px;
+        font-size: 18px;
+    }
+
+    .intro-text img {
+        max-width: 90%;
+    }
+</style>
 
 <script>
 
@@ -985,6 +633,41 @@
     //# sourceURL=pen.js
 </script>
 
+<input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
+<link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/service.css">
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
+
+<script>
+
+    function Confirm(index, serverid) {
+        $('[name="server"]').val(serverid);
+        $('[name="selected"]').val(index);
+        $('#btnPurchase').click();
+    }
+
+    var data = jQuery.parseJSON('{!! $data->params !!}');
+
+        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+    var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
+        @else
+    var purchase_name = 'VNĐ';
+        @endif
+
+    var server = -1;
+
+    $(".server-filter").change(function (elm, select) {
+        server = parseInt($(".server-filter").val());
+        $('[name="server"]').val(server);
+        UpdatePrice();
+    });
+    server = parseInt($(".server-filter").val());
+    $('[name="server"]').val(server);
+
+</script>
+
+@if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
+
+@elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
 <script>
     var itemselect = -1;
     $(document).ready(function () {
@@ -1006,24 +689,23 @@
 
             var s_price = data["price" + server];
             price = parseInt(s_price[itemselect]);
-        } else {
+        }
+        else {
             var s_price = data["price"];
             price = parseInt(s_price[itemselect]);
         }
-
-
-        $('#txtPrice').html('Tổng: ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ');
+        $('[name="value"]').val('');
+        $('[name="value"]').val(price);
+        price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        price = price.split('').reverse().join('').replace(/^[\.]/,'');
+        $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
         $('[name="selected"]').val($(".s-filter").val());
 
-        $('#txtPrice').removeClass('bounceIn').addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-            $(this).removeClass('bounceIn');
+        $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $(this).removeClass();
         });
         $('tbody tr.selected').removeClass('selected');
         $('tbody tr').eq(itemselect).addClass('selected');
-
-//                    $('tbody tr a').each((idx, elm) => {
-//                        $(elm).attr('href', '/service/purchase/33.html?selected=' + idx + '&server=' + server);
-//                    });
     }
 
     function ConfirmBuy(value) {
@@ -1032,20 +714,253 @@
     }
 </script>
 
+@elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
 <script>
-    $(document).ready(function () {
-        $('.load-modal').each(function (index, elem) {
-            $(elem).unbind().click(function (e) {
-                e.preventDefault();
-                e.preventDefault();
-                var curModal = $('#LoadModal');
-                curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
-                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
-            });
-        });
+    $('.s-filter input[type="checkbox"]').change(function () {
+        UpdatePrice();
     });
+
+    function UpdatePrice() {
+        var price = 0;
+        var itemselect = '';
+
+        if (data.server_mode == 1 && data.server_price == 1) {
+            var s_price = data["price" + server];
+        }
+        else {
+            var s_price = data["price"];
+        }
+
+        if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
+            $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
+                price += parseInt(s_price[$(elm).val()]);
+                if (itemselect != '') {
+                    itemselect += '|';
+                }
+
+                itemselect += $(elm).val();
+
+                $('[name="value"]').val('');
+                $('[name="value"]').val(price);
+
+                $('[name="selected"]').val(itemselect);
+
+                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+            });
+            $('#btnPurchase').prop('disabled', false);
+        }
+        else {
+            $('#txtPrice').html('Tổng: 0 VNĐ');
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('#btnPurchase').prop('disabled', true);
+
+        }
+        price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        price = price.split('').reverse().join('').replace(/^[\.]/,'');
+        $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
+    }
+</script>
+@elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
+<script>
+    var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
+    var data = json.price;
+    $('.nstSlider').attr('data-range_max', data.length - 1);
+    $('.nstSlider').attr('data-cur_max', data.length - 1);
+    $('.nstSlider').nstSlider({
+        "crossable_handles": false,
+        "left_grip_selector": ".leftGrip",
+        "right_grip_selector": ".rightGrip",
+        "value_bar_selector": ".bar",
+        "value_changed_callback": function (cause, leftValue, rightValue) {
+            from = leftValue;
+            to = rightValue;
+            $(".from-chosen").val(from);
+            $(".to-chosen").val(to);
+            $(".to-chosen").trigger("chosen:updated");
+            $(".from-chosen").trigger("chosen:updated");
+            UpdatePrice1();
+        }
+    });
+
+    var from = 0, to = 1;
+    $(document).ready(() => {
+        $(".from-chosen").chosen({disable_search_threshold: 10});
+        $(".from-chosen").change((elm, select) => {
+            from = parseInt($(".from-chosen").val());
+            if (to <= from) {
+                to = from + 1;
+                $(".to-chosen").val(to);
+                //$(".to-chosen").chosen('update');
+                $(".to-chosen").trigger("chosen:updated");
+            }
+            $('.nstSlider').nstSlider('set_position', from, to);
+            UpdatePrice1();
+        });
+
+        $(".to-chosen").chosen({disable_search_threshold: 10});
+        $(".to-chosen").change((elm, select) => {
+            to = parseInt($(".to-chosen").val());
+            if (to <= from) {
+                from = to - 1;
+                $(".from-chosen").val(from);
+                $(".from-chosen").trigger("chosen:updated");
+            }
+            $('.nstSlider').nstSlider('set_position', from, to);
+            UpdatePrice1();
+        });
+        UpdatePrice1();
+    });
+
+    function UpdatePrice1() {
+        var price = 0;
+        var data =json.price;
+        $('tbody tr.selected').removeClass('selected');
+        for (var i = from + 1; i <= to; i++) {
+            price += parseInt(data[i]-data[i-1]);
+            $('tbody tr').eq(i - 1).addClass('selected');
+        }
+        $('[name="value"]').val('');
+        $('[name="value"]').val(price);
+        price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        price = price.split('').reverse().join('').replace(/^[\.]/,'');
+        $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
+        $('[name="selected"]').val(from + '|' + to);
+        $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $(this).removeClass();
+        });
+        $('.nstSlider').nstSlider('set_position', from, to);
+        $(".from-chosen").val(from);
+        $(".to-chosen").val(to);
+        $(".to-chosen").trigger("chosen:updated");
+        $(".from-chosen").trigger("chosen:updated");
+    }
 </script>
 
+@elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
+<script>
+    var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
+    var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
+    $('#txtPrice').html('');
+    $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+
+    function UpdatePrice() {
+
+        var container = $('.m-datatable__body').html('');
+
+
+        if (data.server_mode == 1 && data.server_price == 1) {
+
+            var s_price = data["price" + server];
+            var s_discount = data["discount" + server];
+        }
+        else {
+            var s_price = data["price"];
+        }
+
+
+        for (var i = 0; i < data.name.length; i++) {
+
+            var price = s_price[i];
+            var discount = s_price[i];
+
+
+            if (s_price != null && s_discount != null) {
+                var ptemp = '';
+
+                if (data.length == 1) {
+                    ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
+                } else {
+                    ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
+                }
+                var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
+                    '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
+                    '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
+                    '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
+                    '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
+                    '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
+
+                $(temp).appendTo(container);
+            }
+        }
+        UpdateTotal();
+    }
+
+    function UpdateTotal() {
+        var price = parseInt($('#input_pack').val().replace(/,/g, ''));
+
+        if (typeof price != 'number' || price < min || price > max) {
+            $('button[type="submit"]').addClass('not-allow');
+
+            $('#txtPrice').html('Tiền nhập không đúng');
+            return;
+        } else {
+            $('button[type="submit"]').removeClass('not-allow');
+        }
+        var total = 0;
+        var index = 0;
+        var current = 0;
+        var discount = 0;
+
+
+        if (data.server_mode == 1 && data.server_price == 1) {
+            var s_price = data["price" + server];
+            var s_discount = data["discount" + server];
+
+            for (var i = 0; i < s_price.length; i++) {
+
+                if (price >= s_price[i] && s_price[i] != null) {
+                    current = s_price[i];
+                    index = i;
+                    discount = s_discount[i];
+                    total = price * s_discount[i];
+
+                }
+            }
+        }
+        else {
+            var s_price = data["price"];
+            var s_discount = data["discount"];
+
+            discount = s_discount[server];
+            total = price * discount;
+        }
+
+        $('[name="value"]').val('');
+        $('[name="value"]').val(price);
+        total = parseInt(total / 1000 * data.input_pack_rate);
+
+        $('#txtDiscount').val(discount);
+        total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        total = total.split('').reverse().join('').replace(/^[\.]/,'');
+        $('#txtPrice').html('');
+        $('#txtPrice').html('Tổng: ' + total + " " + purchase_name);
+        $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $(this).removeClass();
+        });
+        $('[name="selected"]').val(price);
+        $('.m-datatable__body tbody tr.selected').removeClass('selected');
+        $('.m-datatable__body tbody tr').eq(index).addClass('selected');
+    }
+
+    $('#input_pack').bind('focus keyup', function () {
+        UpdateTotal();
+    });
+    $(document).ready(function () {
+        UpdatePrice();
+    });
+
+    function ConfirmBuy(value) {
+        var index = $('.server-filter').val();
+        Confirm(value, index);
+    }
+</script>
+
+
+@endif
 <script type="text/javascript">
     $(document).ready(function () {
         $('.xt').click(function () {
@@ -1070,5 +985,4 @@
 
 
 </script>
-
 @endsection

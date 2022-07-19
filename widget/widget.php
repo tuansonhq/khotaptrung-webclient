@@ -232,7 +232,7 @@ View::composer('frontend.widget.__tin__tuc', function ($view) {
     return $view->with('data', $data);
 });
 
-View::composer('frontend.widget.__randomrandom__account', function ($view) {
+View::composer('frontend.widget.__random__account', function ($view) {
 
 //    Acc
 
@@ -296,7 +296,7 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
         $url = '/service';
         $method = "GET";
         $dataSend = array();
-        $dataSend['limit'] = 8;
+        $dataSend['limit'] = 118;
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
     });
@@ -304,6 +304,8 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
     return $view->with('data', $data);
 
 });
+
+
 
 
 View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {

@@ -1,4 +1,6 @@
+
 @if(isset($data))
+
 <div class="block-other-nick mt-fix-20">
 
     <div class="row mr-fix-10 ml-fix-10">

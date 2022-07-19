@@ -4,18 +4,6 @@
         <div class="container">
 
             <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
-
-            <nav aria-label="breadcrumb" style="margin-top: 10px;">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-
-                    <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
-                </ol>
-            </nav>
-
-            <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
-            <!-- BEGIN: PAGE CONTENT -->
-            <!-- BEGIN: BLOG LISTING -->
             @if($data == null)
                 <div class="item_buy">
 
@@ -32,6 +20,18 @@
 
                 </div>
             @else
+            <nav aria-label="breadcrumb" style="margin-top: 10px;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+
+                    <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+                </ol>
+            </nav>
+
+            <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+            <!-- BEGIN: PAGE CONTENT -->
+            <!-- BEGIN: BLOG LISTING -->
+
             <div class="c-content-box c-size-md">
                 <div class="container">
                     <div class="row">
