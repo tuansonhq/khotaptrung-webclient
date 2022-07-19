@@ -201,6 +201,25 @@ ul.card-list {
     align-items: center;
     border: 1px solid #DCDEE9;
     width: 32px;
+    position: relative;
+}
+.card--amount__group .btn--amount:after {
+    position: absolute;
+    content: '';
+    display: inline-block;
+    width: 24px;height: 24px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.card--amount__group .btn--amount.-minus:after {
+    background-image: url(/assets/frontend/theme_3/image/icons/minus.png);
+}
+.card--amount__group .btn--amount.-add:after {
+    background-image: url(/assets/frontend/theme_3/image/icons/add.png);
 }
 .btn--amount.-minus {
     border-radius: 4px 0 0 4px;

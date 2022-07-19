@@ -90,9 +90,9 @@
                         <a href="/mua-the-garena" class="card--back d-lg-none d-block">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
-                        <div class="card--title">
+                        <h1 class="card--title">
                             Thẻ
-                        </div>
+                        </h1>
                     </div>
                     <div class="card--body p-lg-2 p-3">
                         <div class="row mx-lg-0" id="card--wrap__single">
@@ -131,9 +131,9 @@
                 {{--                CARD SINGLE--}}
                 {{--                SERVICE DESC--}}
                 <div class="card --custom p-3 p-lg-3 _mb-125">
-                    <div class="card--desc__title mb-4">
+                    <h2 class="card--desc__title mb-4">
                         Mô tả dịch vụ
-                    </div>
+                    </h2>
                     <div class="card--desc__content content-video-in-add p-0">
                         {!! setting('sys_store_card_content') !!}
                     </div>
@@ -151,9 +151,9 @@
                 {{--                SAME KIND--}}
                 <div class="card --custom _mb-125 _mb-sm-075" id="card--same">
                     <div class="card--head px-3 px-lg-3 _py-075">
-                        <div class="card--title">
+                        <h2 class="card--title">
                             Sản phẩm cùng loại
-                        </div>
+                        </h2>
                     </div>
                     <div class="card--body px-3 py-3 py-lg-2 px-lg-3">
                         <div class="swiper card--other__swipe">

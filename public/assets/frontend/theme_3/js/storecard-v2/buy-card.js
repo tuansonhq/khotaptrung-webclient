@@ -210,11 +210,11 @@ $(document).ready(function () {
                                     html_desktop_value += `        </span>`;
                                     html_desktop_value += `        <div class="card--amount__group">`;
                                     html_desktop_value += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                    html_desktop_value += `                <img src="/assets/frontend/theme_4/image/icons/minus.png" alt="">`;
+                                    html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
                                     html_desktop_value += `            </button>`;
                                     html_desktop_value += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
                                     html_desktop_value += `            <button class="btn--amount -add js-amount" data-action="add">`;
-                                    html_desktop_value += `                <img src="/assets/frontend/theme_4/image/icons/add.png" alt="">`;
+                                    html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
                                     html_desktop_value += `            </button>`;
                                     html_desktop_value += `        </div>`;
                                     html_desktop_value += `    </div>`;
@@ -252,11 +252,11 @@ $(document).ready(function () {
                                     html_mobile_value += `            </span>`;
                                     html_mobile_value += `            <div class="card--amount__group">`;
                                     html_mobile_value += `                 <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                    html_mobile_value += `                     <img src="/assets/frontend/theme_4/image/icons/minus.png" alt="">`;
+                                    html_mobile_value += `                     <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
                                     html_mobile_value += `                 </button>`;
                                     html_mobile_value += `                 <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
                                     html_mobile_value += `                   <button class="btn--amount -add js-amount" data-action="add">`;
-                                    html_mobile_value += `                       <img src="/assets/frontend/theme_4/image/icons/add.png" alt="">`;
+                                    html_mobile_value += `                       <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
                                     html_mobile_value += `                  </button>`;
                                     html_mobile_value += `            </div>`;
                                     html_mobile_value += `        </div>`;
@@ -321,11 +321,11 @@ $(document).ready(function () {
                                 html_current += `        </span>`;
                                 html_current += `        <div class="card--amount__group">`;
                                 html_current += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                html_current += `                <img src="/assets/frontend/theme_4/image/icons/minus.png" alt="">`;
+                                // html_current += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
                                 html_current += `            </button>`;
                                 html_current += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
                                 html_current += `            <button class="btn--amount -add js-amount" data-action="add">`;
-                                html_current += `                <img src="/assets/frontend/theme_4/image/icons/add.png" alt="">`;
+                                html_current += `<!--                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">-->`;
                                 html_current += `            </button>`;
                                 html_current += `        </div>`;
                                 html_current += `    </div>`;
@@ -445,7 +445,7 @@ $(document).ready(function () {
                                 html_card += `                  ${card.pin}`;
                                 html_card += `               </div>`;
                                 html_card += `               <div class="icon--coppy js-copy-text">`;
-                                html_card += `                    <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                                html_card += `                    <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                                 html_card += `                </div>`;
                                 html_card += `            </div>`;
                                 html_card += `        </div>`;
@@ -458,7 +458,7 @@ $(document).ready(function () {
                                 html_card += `                      ${card.serial}`;
                                 html_card += `                   </div>`;
                                 html_card += `                   <div class="icon--coppy js-copy-text">`;
-                                html_card += `                      <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                                html_card += `                      <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                                 html_card += `                   </div>`;
                                 html_card += `               </div>`;
                                 html_card += `         </div>`;
@@ -574,7 +574,7 @@ $(document).ready(function () {
                            html_card += `                  ${card.pin}`;
                            html_card += `                </div>`;
                            html_card += `                <div class="icon--coppy js-copy-text">`;
-                           html_card += `                   <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="">`;
+                           html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
                            html_card += `                 </div>`;
                            html_card += `              </div>`;
                            html_card += `        </div>`;
@@ -587,7 +587,7 @@ $(document).ready(function () {
                            html_card += `                  ${card.serial}`;
                            html_card += `                </div>`;
                            html_card += `                <div class="icon--coppy js-copy-text">`;
-                           html_card += `                   <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="">`;
+                           html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
                            html_card += `                 </div>`;
                            html_card += `              </div>`;
                            html_card += `        </div>`;

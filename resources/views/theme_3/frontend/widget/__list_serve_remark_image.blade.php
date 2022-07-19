@@ -6,7 +6,7 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/nickindex.svg" alt="">
         </span>
-            <p class="text-title" >Các dịch vụ liên quan</p>
+            <h2 class="text-title" >Các dịch vụ liên quan</h2>
 
             <div class="navbar-spacer"></div>
 
