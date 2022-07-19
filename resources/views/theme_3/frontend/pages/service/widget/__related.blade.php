@@ -7,7 +7,7 @@
                     <div class="col-md-12 left-right napgamekhac">
                         <div class="row marginauto">
                             <div class="col-md-12 text-left left-right">
-                                <span>Các dịch vụ cày thuê game khác</span>
+                                <span>Các dịch vụ khác</span>
                             </div>
                         </div>
                     </div>

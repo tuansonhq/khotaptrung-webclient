@@ -41,7 +41,7 @@
             </ol>
         </nav>
 
-        <div class="c-content-box c-size-lg c-overflow-hide c-bg-white font-roboto">
+        <div class="c-content-box c-overflow-hide c-bg-white font-roboto" style="padding-top: 16px">
             <div class="notify">
 
             </div>
@@ -132,7 +132,7 @@
                                                     @for ($i = 0; $i < count($name); $i++)
                                                         @if($name[$i]!=null)
                                                             <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
-                                                                <label style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
+                                                                <label style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".str_replace(',','.',number_format($price[$i])). " VNĐ":""}}</label>
                                                             </p>
                                                         @endif
 
@@ -226,9 +226,13 @@
                                 <input type="hidden" name="server">
                                 <a id="txtPrice" style="font-size: 20px;font-weight: bold;display: block;margin-bottom: 15px"
                                    class="btn btn-success">Tổng: 0 Xu</a>
-                                <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth" ><i class="fa fa-credit-card"
-                                                                                                                                                                                         aria-hidden="true"></i> Thanh toán
+                                @if(Auth::check())
+                                <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth" >
+                                    <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán
                                 </button>
+                                @else
+                                    <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>
+                                @endif
                             </div>
 
 {{--                            <div class="row"--}}
@@ -323,12 +327,14 @@
                                                 <tr class="m-datatable__row m-datatable__row--even">
                                                     <td style="width:30px;" class="m-datatable__cell">{{$i+1}}</td>
                                                     <td class="m-datatable__cell">{{$name[$i]}} -> {{$name[$i+1]}}</td>
-                                                    <td style="width:150px;" class="m-datatable__cell">{{number_format(intval($price[$i+1])- intval($price[$i])). " VNĐ"}}</td>
+                                                    <td style="width:150px;" class="m-datatable__cell">{{ str_replace(',','.',number_format(intval($price[$i+1])- intval($price[$i]))). " VNĐ"}}</td>
                                                     <td class="m-datatable__cell">
                                                         @if(\App\Library\AuthCustom::check())
                                                             <span class="pay">Thanh toán</span>
                                                         @else
-                                                            <a style="font-size: 20px;" class="followus pay" href="/login" title=""><i aria-hidden="true"></i> Đăng nhập</a>
+{{--                                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer"><i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</a>--}}
+
+                                                            <a href="#" data-toggle="modal" data-target="#modal-login" style="font-size: 16px;" class="followus c-pay"><i aria-hidden="true"></i> Đăng nhập</a>
                                                         @endif
 
                                                     </td>
@@ -345,9 +351,9 @@
                                             float: left;
                                         }
                                     }
-                                    .pay{
+                                    .c-pay{
                                         display: block;
-                                        background: #fb236a;
+                                        background: rgb(238, 70, 35);
                                         border-radius: 17px;
                                         text-align: center;
                                         max-width: 118px;
@@ -355,6 +361,11 @@
                                         line-height: 30px;
                                         color: #fff;
                                         cursor: pointer;
+                                        font-size: 16px;
+                                    }
+
+                                    .c-pay:hover{
+                                        color: #fff!important;
                                     }
                                 </style>
                                 <script type="text/javascript">

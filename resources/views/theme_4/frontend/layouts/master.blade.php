@@ -354,5 +354,24 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btn-expand-serivce').on('click', function(e) {
+            var pageCurrrent=$(this).data('page-current');
+            var pageMax=$(this).data('page-max');
+            pageCurrrent=pageCurrrent+1;
+            $('.item-page-'+pageCurrrent).fadeIn( "fast", function() {
+                // Animation complete
+            });
+
+            $(this).data('page-current',pageCurrrent);
+            if(pageCurrrent==pageMax){
+                $(this).remove();
+            }
+        });
+    });
+
+</script>
 </body>
 </html>
