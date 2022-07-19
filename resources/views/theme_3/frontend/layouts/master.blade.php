@@ -87,7 +87,7 @@
 @endif
 @include('frontend.widget.__theme')
 <!-- Messenger Plugin chat Code -->
-@if (!Auth::check())
+@if (!\App\Library\AuthCustom::check())
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>
 @endif
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>

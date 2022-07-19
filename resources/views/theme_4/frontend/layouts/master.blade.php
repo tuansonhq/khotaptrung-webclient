@@ -105,7 +105,23 @@
     </div>
 </div>
 
+@if(Session::has('check_login'))
+    <script>
+        $(document).ready(function () {
+            $('#modal-login').modal('show');
+            setTimeout(() => {
+                $('#loginModal #modal-login-container').removeClass('right-panel-active');
+            }, 200);
 
+        });
+    </script>
+    @php
+        Session::pull('check_login');
+    @endphp
+@endif
+@if (!\App\Library\AuthCustom::check())
+    @include('frontend.widget.modal.__login')
+@endif
 @include('frontend.layouts.includes.header')
 
 @yield('content')
@@ -156,23 +172,7 @@
 </style>
 
 
-@if(Session::has('check_login'))
-    <script>
-        $(document).ready(function () {
-            $('#modal-login').modal('show');
-            setTimeout(() => {
-                $('#loginModal #modal-login-container').removeClass('right-panel-active');
-            }, 200);
 
-        });
-    </script>
-    @php
-        Session::pull('check_login');
-    @endphp
-@endif
-@if (!Auth::check())
-    @include('frontend.widget.modal.__login')
-@endif
 <!-- Modal -->
 <div class="modal fade" id="modal-atm" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog" role="document">
