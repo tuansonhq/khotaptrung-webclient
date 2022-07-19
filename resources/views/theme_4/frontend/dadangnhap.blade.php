@@ -155,44 +155,11 @@
             </form>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <ul  class="navbar-nav ml-auto mr-2">
                     <li class="nav-item "><a  rel=""  href="/" class="c-link nav-link">Trang chủ</a></li><li class="nav-item "><a  rel=""  href="#modalLogin" class="c-link nav-link">Nạp Tiền<span class="c-arrow c-toggler1"></span></a>
                         <ul id="children-of-1265" class=" dropdown-menu c-menu-type-classic c-pull-left " >
                             <li class="nav-item "><a  rel="" href="/nap-the" class="">Nạp Thẻ C&agrave;o</a></li><li class="nav-item "><a  rel="" href="/recharge" class="">Nạp ATM / V&iacute; Tự Động</a></li><li class="nav-item "><a target='_blank' rel="" href="/tin-tuc/huong-dan-nap-tien-vao-website-napgamegiarenet" class="">Hướng Dẫn Nạp ATM Tự Động</a></li></ul>
                     </li><li class="nav-item "><a  rel=""  href="/mua-the" class="c-link nav-link">Mua thẻ</a></li><li class="nav-item "><a  rel=""  href="/tin-tuc/napgamegiarenet-dia-chi-nap-game-gia-re-uy-tin-an-toan-va-chiet-khau-cao" class="c-link nav-link">UY T&Iacute;N SHOP</a></li><li class="nav-item "><a  rel=""  href="/tin-tuc" class="c-link nav-link">Tin tức</a></li>  </ul>
-
-
-
-
-
-
-
-
 
                 <div class="btn-group d-none d-lg-block">
 

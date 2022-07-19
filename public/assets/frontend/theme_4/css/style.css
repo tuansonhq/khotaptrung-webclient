@@ -422,6 +422,14 @@ a.nav-link {
     margin-right: 18px;
 
 }
+.navbar .span-search a{
+    margin-right: 0;
+
+}
+.navbar .span-search a i{
+    font-size: 17px;
+
+}
 
 .navbar .span-account a i{
     font-size: 17px;
