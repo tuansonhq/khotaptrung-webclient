@@ -893,8 +893,8 @@ input[type="checkbox"]:checked + label::after, input[type=radio]:checked + label
     top: 0;
     left: 0;
     display: block;
-    width: 25px !important;
-    height: 25px !important;
+    width: 20px !important;
+    height: 20px !important;
 }
 
 
@@ -1679,3 +1679,41 @@ select:focus{
 }
 
 
+#chonnhieu{
+    max-height: 232px;
+    overflow: auto;
+    padding-right: 8px;
+}
+
+#chonnhieu:hover::-webkit-scrollbar-thumb{
+    background-color: #DCDEE9;
+}
+
+#chonnhieu::-webkit-scrollbar-track
+{
+    position: absolute;
+    top: 100px;
+    left: -60px;
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    background-color:  #ffffff;
+    border: none;
+}
+
+#chonnhieu::-webkit-scrollbar
+{
+    width: 8px;
+    border: none;
+}
+
+#chonnhieu::-webkit-scrollbar-thumb
+{
+    /*Màu thanh sroll*/
+    background: #BCBFD6;
+    border-radius: 100px;
+    border: none;
+    margin-left: 20px;
+    height: 20px;
+}
+.form-group-tt:first-child{
+    padding-top: 16px;
+}
