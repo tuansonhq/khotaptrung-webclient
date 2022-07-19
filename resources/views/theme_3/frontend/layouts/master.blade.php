@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
-    @if (!Auth::check())
+    @if (!\App\Library\AuthCustom::check())
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
     @endif
 

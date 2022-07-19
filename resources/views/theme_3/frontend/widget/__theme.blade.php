@@ -47,7 +47,6 @@
     </script>
 @endif
 
-
 @if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
@@ -69,6 +68,6 @@
     @endphp
 @endif
 
-@if (!Auth::check())
+@if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif
