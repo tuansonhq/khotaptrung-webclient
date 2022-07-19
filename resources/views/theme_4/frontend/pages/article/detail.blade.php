@@ -3,8 +3,6 @@
 <section>
     <div class="container">
 
-
-
         <nav aria-label="breadcrumb" style="margin-top: 10px;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
@@ -13,7 +11,6 @@
                 <li class="breadcrumb-item active">Quy đổi RP Liên Minh tặng 60 - 80% từ 22/10 đến 28/10</li>
             </ol>
         </nav>
-
 
         <div class="c-content-box c-size-md">
             <div class="row">
