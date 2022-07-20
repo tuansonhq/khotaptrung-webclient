@@ -56,7 +56,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="form-row mb-3 col-md-4">
 
                                     <div class="col-12">
@@ -92,6 +91,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="row mb-4">
@@ -110,8 +110,8 @@
                                     </a>
                                 </div>
                             </div>
-                        </form>
 
+                        </form>
 
                         <div id="data_service_history" style="position: relative">
                             <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
@@ -121,8 +121,6 @@
                             </div>
                             @include('frontend.pages.service.widget.__datalogs')
                         </div>
-
-
 
                     </div>
                 </div>
