@@ -235,7 +235,7 @@
     padding-top: 24px;
 }
 .account_sidebar_menu_nav_active{
-    color: #32c5d2;
+    color: rgb(238, 70, 35);
 }
 .recharge_atm p{
     text-align: center;
@@ -263,7 +263,7 @@
 .special_service_line{
     width: 80px;
     height: 3px;
-    background-color: #32c5d2;
+    background-color: rgb(238, 70, 35);
     margin: 0 auto 20px auto;
 }
 .special_service_content_slide_detail_in img{
@@ -354,10 +354,10 @@ button:focus{
     justify-content: space-between;
 }
 .menu_active{
-    color: #32c5d2 !important;
+    color: rgb(238, 70, 35) !important;
 }
 .copy_acc:hover{
-    color: #32c5d2 !important;
+    color: rgb(238, 70, 35) !important;
 }
 
 .theashow:hover{
@@ -479,7 +479,7 @@ button:focus{
 }
 .c-content-tab-4.c-opt-3 > .nav > li > a.active {
     color: #ffffff;
-    background-color: #5bc2ce!important;
+    background-color: rgb(238, 70, 35)!important;
 }
 .c-content-tab-4 ul{
     padding-left: 0!important;

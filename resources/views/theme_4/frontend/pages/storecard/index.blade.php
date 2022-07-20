@@ -673,7 +673,9 @@
                     </div>
                 </div>
 
-                @include('frontend.pages.widget.__dichvu__lienquan')
+                @include('frontend.widget.__dichvu__lienquan')
+
+                @include('frontend.widget.__tai__khoan__lien__quan')
 
             </div>
 

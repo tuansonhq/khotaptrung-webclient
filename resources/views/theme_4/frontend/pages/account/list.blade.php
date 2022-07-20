@@ -4,12 +4,31 @@
         <div class="container">
 
             <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+            @if($data == null)
+                <div class="item_buy">
 
+                    <div class="container pt-3">
+                        <div class="row pb-3 pt-3">
+                            <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            @else
             <nav aria-label="breadcrumb" style="margin-top: 10px;">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
                     <li class="breadcrumb-item"><a href="/mua-acc">Mua acc</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Liên quân</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</li>
                 </ol>
             </nav>
 
@@ -18,202 +37,68 @@
             <!-- BEGIN: BLOG LISTING -->
 
             <div class="c-content-box c-size-md">
+                <div class="container pl-0 pr-0">
+                    <div class="article-content content_post">
+                        <h1>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h1>
+                        <div class="special-text-nick">
+                            @if($data->custom->content)
+                                {!!  $data->custom->content !!}
+                            @else
+                                @if(isset($data->content))
+                                    {!!  $data->content !!}
+                                @else
+
+                                @endif
+                            @endif
+                        </div>
+                        <button id="btn-expand-content-nick" class="expand-button">
+                            Xem thêm nội dung
+                        </button>
+
+                    </div>
+                </div>
+                <div class="booking_detail"></div>
+                <div class="container pl-0 pr-0">
+                    <form class="form-charge form-charge__accountlist">
+
+                        <div class="row" style="width: 100%;margin: 0 auto" id="load_attribute">
+
+                            @include('frontend.pages.account.widget.account_load_attribute_to_filter')
+
+                        </div>
+
+                        <div class="row mb-4" style="padding-top: 16px">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success btn-timkiem " style="position: relative">
+                                    Tìm kiếm
+                                    <div class="row justify-content-center loading-data__timkiem"></div>
+                                </button>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-all" style="position: relative">
+                                    Tất cả
+                                    <div class="row justify-content-center loading-data__timkiem"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <div class="container">
+
                     <div class="row">
                         <div class="col-md-12 col-xs-12 left-right">
                             <div class="row" style="width: 100%;margin: 0 auto">
                                 <div class="art-list" style="width: 100%">
-                                    <div class="entries">
-                                        <div class="row fix-border">
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
+                                    <div class="entries" id="account_data">
+                                        <div class="body-box-loadding result-amount-loadding">
+                                            <div class="d-flex justify-content-center">
+                                                <span class="pulser"></span>
                                             </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
-                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
-                                                <a href="/dich-vu/slug">
-                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
-                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
-                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
-                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
-                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
-                                                </a>
-                                            </div>
-
                                         </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row d-flex justify-content-center" style="margin-top: 20px;">
-
-                                <div class="">
-                                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                        <ul class="pagination pagination-sm">
-
-                                            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
-
-
-
-                                            <li class="page-item active"><span class="page-link">1</span></li>
-                                            <li class="page-item" ><a class="page-link" href="https://napgamegiare.net/tin-tuc?page=2">2</a></li>
-                                            <li class="page-item" ><a class="page-link" href="https://napgamegiare.net/tin-tuc?page=3">3</a></li>
-
-                                            <li class="page-item disabled hidden-xs"><span class="page-link">...</span></li>
-
-                                            <li class="page-item hidden-xs"><a class="page-link" href="https://napgamegiare.net/tin-tuc?page=10">10</a></li>
-
-
-                                            <li class="page-item"><a class="page-link" href="https://napgamegiare.net/tin-tuc?page=2" rel="next">&raquo;</a></li>
-                                        </ul>
+                                        @include('frontend.pages.account.widget.__datalist')
 
                                     </div>
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -223,10 +108,53 @@
 
             <!-- END: PAGE CONTENT -->
 
-
+            @endif
 
 
         </div><!-- /.container -->
     </section>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn-expand-content-nick').on('click', function(e) {
+
+                $('.special-text-nick').toggleClass('-expanded');
+
+                if ($('.special-text-nick').hasClass('-expanded')) {
+                    $(this).html('Thu gọn nội dung');
+                } else {
+                    $(this).html('Xem thêm nội dung');
+                }
+            });
+
+            $('body').on('click','.nick-checkdangnhap',function(){
+
+                $('#modal-login').modal('show');
+
+            })
+
+        });
+
+    </script>
+    <input type="hidden" name="hidden_page" id="hidden_page_service" value="1" />
+    <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
+    {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}
+    <input type="hidden" name="id_data" class="id_data" value="">
+    <input type="hidden" name="title_data" class="title_data" value="">
+    <input type="hidden" name="price_data" class="price_data" value="">
+    <input type="hidden" name="select_data" class="select_data" value="">
+    <input type="hidden" name="status_data" class="status_data" value="">
+    <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
+
+    <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog__account" role="document">
+            <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+            <div class="modal-content modal-content_accountlist data__form__random">
+
+            </div>
+        </div>
+    </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/account-list.js?v={{time()}}"></script>
 @endsection
 
