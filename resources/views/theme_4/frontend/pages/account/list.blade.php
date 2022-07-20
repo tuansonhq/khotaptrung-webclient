@@ -20,369 +20,170 @@
             <div class="c-content-box c-size-md">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12 col-xs-12">
-                            <div class="row">
-                                <div class="art-list">
-                                    <div class="listing-account c-mb-16">
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
+                        <div class="col-md-12 col-xs-12 left-right">
+                            <div class="row" style="width: 100%;margin: 0 auto">
+                                <div class="art-list" style="width: 100%">
+                                    <div class="entries">
+                                        <div class="row fix-border">
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
                                                 </a>
                                             </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
+                                                <a href="/dich-vu/slug">
+                                                    <img src="https://backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif"
+                                                         alt="Nạp Kim Cương - Free Fire" class="entries_item-img">
+                                                    <h2 class="text-title text-left  fw-bold" style="color: #434657;">#123456</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px;margin-top: 8px">Rạnk: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 4px">Tướng: 45.000 lượt</p>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 8px">Trang phục: 45.000 lượt</p>
+                                                    <h2 class="text-left" style="color: rgb(238, 70, 35);font-size: 16px;margin-bottom: 0">200.000.000đ</h2>
+                                                    <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">200.000.000đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">20%</span></p>
+                                                </a>
+                                            </div>
+
                                         </div>
 
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="item-account">
-                                            <div class="card">
-                                                <a href="" class="card-body scale-thumb">
-                                                    <div class="account-thumb c-mb-8">
-                                                        <img src="/assets/frontend/theme_5/image/trong/frame199968.png" alt=""
-                                                             class="account-thumb-image">
-                                                    </div>
-                                                    <div class="account-title">
-                                                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                                                    </div>
-                                                    <div class="account-info c-mb-8">
-                                                        <div class="info-attr">
-                                                            Đã bán: 45.000
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            ID: #451234
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Rạnk: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Tướng: 45.000 lượt
-                                                        </div>
-                                                        <div class="info-attr">
-                                                            Trang phục: 45.000 lượt
-                                                        </div>
-                                                    </div>
-                                                    <div class="price">
-                                                        <div class="price-current w-100">250.000đ</div>
-                                                        <div class="price-old c-mr-8">250.000đ</div>
-                                                        <div class="discount">10%</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
