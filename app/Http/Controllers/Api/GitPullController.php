@@ -45,7 +45,6 @@ class GitPullController extends Controller
                 'status' => 1,
                 'message' => 'Thành công!',
                 'data' => $output,
-                'command' => $command,
             ]);
         }
         catch (\Exception $e) {
