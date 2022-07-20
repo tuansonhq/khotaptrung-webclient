@@ -12,7 +12,7 @@
 
         <div class="item image">
             <a href="/dich-vu/{{ $item->slug}}">
-                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
+                <img style="width: 100%;height: 160px;border-radius: 8px" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title   }}" width="120px">
                 <h3 class="text-title">{{ $item->title   }}</h3>
             </a>
         </div>

@@ -49,7 +49,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="text-center">
-                                <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->title }}" alt="{{ $data->title }}">
+                                <img style="width: 100%" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->title }}" alt="{{ $data->title }}">
                             </div>
                         </div>
                         <div class="col-md-5">
