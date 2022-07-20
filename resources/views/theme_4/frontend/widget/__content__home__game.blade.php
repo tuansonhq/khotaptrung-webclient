@@ -12,10 +12,18 @@
         </div>
     </div>
     <div class="entries">
-        <div class="row fix-border">
-
+        <div class="row fix-border fix-border-nick">
+            <div class="col-md-12 left-right data-nick-search">
+                <span style="color: rgb(238, 70, 35);">Dịch vụ cần tìm không tồn tại.</span>
+            </div>
+            @php
+                $index = 0;
+            @endphp
             @foreach($data as $key => $item)
                 @if($key < 8)
+                    @php
+                        $index = 1;
+                    @endphp
                     <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_nick item-page-nick-1" style="display: block">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
@@ -24,6 +32,9 @@
                         </a>
                     </div>
                 @elseif($key < 16)
+                    @php
+                        $index = 2;
+                    @endphp
                     <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_nick item-page-nick-2" style="display: none">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
@@ -32,7 +43,32 @@
                         </a>
                     </div>
                 @elseif($key < 24)
+                    @php
+                        $index = 3;
+                    @endphp
                     <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_nick item-page-nick-3" style="display: none">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
+                                 alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
+                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                        </a>
+                    </div>
+                @elseif($key < 32)
+                    @php
+                        $index = 4;
+                    @endphp
+                    <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_nick item-page-nick-4" style="display: none">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
+                                 alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
+                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                        </a>
+                    </div>
+                @elseif($key < 40)
+                    @php
+                        $index = 5;
+                    @endphp
+                    <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_nick item-page-nick-5" style="display: none">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
@@ -43,7 +79,7 @@
             @endforeach
 
 
-            <button id="btn-expand-serivce-nick" class="expand-button" data-page-current="1" data-page-max="8">
+            <button id="btn-expand-serivce-nick" class="expand-button" data-page-current="1" data-page-max="{{ $index }}">
                 Xem thêm dịch vụ
             </button>
 

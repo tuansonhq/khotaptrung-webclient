@@ -35,9 +35,18 @@
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/js/slick.js"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/slick-theme.css"/>
-
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/sw2.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css"/>
+
+
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/sw2.js"></script>
+
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/moment.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
+
 
     <style>
         #txtPrice {
@@ -353,25 +362,6 @@
         js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#btn-expand-serivce').on('click', function(e) {
-            var pageCurrrent=$(this).data('page-current');
-            var pageMax=$(this).data('page-max');
-            pageCurrrent=pageCurrrent+1;
-            $('.item-page-'+pageCurrrent).fadeIn( "fast", function() {
-                // Animation complete
-            });
-
-            $(this).data('page-current',pageCurrrent);
-            if(pageCurrrent==pageMax){
-                $(this).remove();
-            }
-        });
-    });
-
 </script>
 </body>
 </html>

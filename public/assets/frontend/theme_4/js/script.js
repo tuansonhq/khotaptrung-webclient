@@ -39,6 +39,37 @@
 
 $(document).ready(function () {
 
+    $('.started_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+
+    });
+
+    $('.ended_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+        maxDate: moment()
+    });
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > 150) {
@@ -143,54 +174,182 @@ $(document).ready(function () {
 
     $('#txtSearch').donetyping(function() {
 
+
         let keyword = convertToSlug($(this).val());
 
         let index = 0;
+        let value = 0;
+
         $('.entries_item_service').each(function (i,elm) {
-            // $('.body-modal__nick__text-error').css('display','none');
+            $(this).removeClass('dis-block-service');
+        })
+
+        $('.entries_item_service').each(function (i,elm) {
+
             let slug_item = $(elm).find('img').attr('alt');
             slug_item = convertToSlug(slug_item);
             $(this).toggle(slug_item.indexOf(keyword) > -1);
             if (slug_item.indexOf(keyword) > -1){
-                index = index + 1
+                ++index;
+                $(this).addClass('dis-block-service');
             }else {}
-            console.log(index)
-            if (index > 8){
-                $('.item-page-2').css('display','none');
-                $('.item-page-3').css('display','none');
-                $('.item-page-4').css('display','none');
-            }
 
+            $('#btn-expand-serivce').remove();
+            $('#btn-expand-serivce-search').remove();
         })
+
+        $('.dis-block-service').each(function (i,elm) {
+            if (i>=8){
+                $(this).css('display','none');
+            }
+        })
+
+
+        if (index <= 8){
+            value = 1;
+        }else if (index <= 16){
+            value = 2;
+        }else if (index <= 24){
+            value = 3;
+        }else if (index <= 32){
+            value = 4;
+        }else if (index <= 40){
+            value = 5;
+        }
+
+        if (value > 1){
+
+            let htmlservice = '<button id="btn-expand-serivce-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm dịch vụ</button>';
+            $('.fix-border-dich-vu').append(htmlservice);
+        }
+
+        if (index == 0){
+            $('.data-service-search').css('display','block');
+        }else {
+            $('.data-service-search').css('display','none');
+        }
 
         //$(this).val() // get the current value of the input field.
     }, 400);
 
+    $('body').on('click','#btn-expand-serivce-search',function(){
+
+        var pageCurrrent=$(this).data('page-current');
+        var pageMax=$(this).data('page-max');
+        pageCurrrent=pageCurrrent+1;
+        $('.dis-block-service').each(function (i,elm) {
+            if (pageCurrrent == 2){
+                if (i < 16){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 3){
+                if (i < 24){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 4){
+                if (i < 32){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 5){
+                if (i < 40){
+                    $(this).css('display','block');
+                }
+            }
+        });
+
+        $(this).data('page-current',pageCurrrent);
+        if(pageCurrrent==pageMax){
+            $(this).remove();
+        }
+    });
 
     $('#txtSearchNick').donetyping(function() {
 
         let keyword = convertToSlug($(this).val());
 
         let index = 0;
+        let value = 0;
+        $('.entries_item_nick').each(function (i,elm) {
+            $(this).removeClass('dis-block');
+        })
+
         $('.entries_item_nick').each(function (i,elm) {
             // $('.body-modal__nick__text-error').css('display','none');
             let slug_item = $(elm).find('img').attr('alt');
             slug_item = convertToSlug(slug_item);
             $(this).toggle(slug_item.indexOf(keyword) > -1);
             if (slug_item.indexOf(keyword) > -1){
-                index = index + 1
-            }else {}
-            console.log(index)
-            if (index > 8){
-                $('.item-page-nick-2').css('display','none');
-                $('.item-page-nick-3').css('display','none');
-                $('.item-page-nick-4').css('display','none');
-            }
+                ++index;
+                $(this).addClass('dis-block');
+            }else {
 
+            }
+            $('#btn-expand-serivce-nick').remove();
+            $('#btn-expand-serivce-nick-search').remove();
         })
 
+
+        $('.dis-block').each(function (i,elm) {
+            if (i>=8){
+                $(this).css('display','none');
+            }
+        })
+        if (index <= 8){
+            value = 1;
+        }else if (index <= 16){
+            value = 2;
+        }else if (index <= 24){
+            value = 3;
+        }else if (index <= 32){
+            value = 4;
+        }else if (index <= 40){
+            value = 5;
+        }
+
+        if (value > 1){
+
+            let htmlnick = '<button id="btn-expand-serivce-nick-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm dịch vụ</button>';
+            $('.fix-border-nick').append(htmlnick);
+        }
+
+        if (index == 0){
+            $('.data-nick-search').css('display','block');
+        }else {
+            $('.data-nick-search').css('display','none');
+        }
         //$(this).val() // get the current value of the input field.
     }, 400);
+
+    $('body').on('click','#btn-expand-serivce-nick-search',function(){
+
+        var pageCurrrent=$(this).data('page-current');
+        var pageMax=$(this).data('page-max');
+        pageCurrrent=pageCurrrent+1;
+        $('.dis-block').each(function (i,elm) {
+            if (pageCurrrent == 2){
+                if (i < 16){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 3){
+                if (i < 24){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 4){
+                if (i < 32){
+                    $(this).css('display','block');
+                }
+            }else if (pageCurrrent == 5){
+                if (i < 40){
+                    $(this).css('display','block');
+                }
+            }
+        });
+
+        $(this).data('page-current',pageCurrrent);
+        if(pageCurrrent==pageMax){
+            $(this).remove();
+        }
+    });
 
     $('#txtSearchMobile').donetyping(function() {
         let keyword = convertToSlug($(this).val());
@@ -245,8 +404,6 @@ $(document).ready(function () {
         // trả về kết quả
         return slug;
     }
-
-
 
     $('#btn-search').click( function(){
         $('body').addClass('search-active');

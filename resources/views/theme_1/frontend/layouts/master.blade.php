@@ -58,6 +58,7 @@
             padding-bottom: 40px;
         }
     </style>
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
@@ -83,7 +84,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/script.js?v={{time()}}"></script>
     <script>
         $(document).ready(function () {
             @if(Request::is('thong-tin'))
