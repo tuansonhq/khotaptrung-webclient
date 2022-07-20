@@ -39,7 +39,7 @@
             @if($item->slug == 'tin-tuc-moi')
             @if(isset($item->items))
 {{--                <div class="box-product tab-pane fade show active" id="news_game-{{ $item->slug }}" role="tabpanel" >--}}
-            <div class="box-product " id="news_game-{{ $item->slug }}" role="tabpanel" >
+            <div class="box-product news-home" id="news_game-{{ $item->slug }}" role="tabpanel" >
                 <div class="swiper-container  list-news" >
                     <div class="swiper-wrapper">
                         @foreach($item->items as $val)
@@ -68,7 +68,12 @@
                     </div>
 
                 </div>
-
+                <div class="swiper-button-prev">
+                    <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                </div>
+                <div class="swiper-button-next">
+                    <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                </div>
             </div>
 
 

@@ -781,7 +781,7 @@ header nav.heading .header-container{
 
 .box-list-service>p,.top-list p,.top-list p span{
     color: var(--text-black-color);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 .box-list-service{
@@ -2176,4 +2176,38 @@ header nav.heading .header-container{
 }
 .charge-content-detail>div::-webkit-scrollbar-track {
     background: transparent;
+}
+.box-product{
+    position: relative;
+}
+.box-product .swiper-button-prev,.box-product .swiper-button-next{
+    background-color: #FBFBFD;
+    width: 32px;
+    height: 32px;
+    background-image: none;
+    opacity: 1;
+    border-radius: 4px;
+    display: flex;
+    padding: 4px;
+    /*background-image: url(./assets/frontend/theme_3/image/swiper-prev.svg) !important;*/
+    cursor: pointer;
+}
+.box-product .swiper-button-prev{
+    left: -10px;
+}
+.box-product .swiper-button-next{
+    right: -10px;
+}
+.box-product .swiper-button-next.swiper-button-disabled,.box-product .swiper-button-prev.swiper-button-disabled{
+    opacity: 0.8;
+    pointer-events: initial;
+}
+
+@media (max-width: 992px) {
+    .box-product .swiper-button-prev,.box-product .swiper-button-next{
+        display: none;
+    }
+    .menu-side{
+        display: none;
+    }
 }
