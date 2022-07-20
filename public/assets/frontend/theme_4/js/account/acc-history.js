@@ -279,7 +279,7 @@ $(document).ready(function(){
                             html += '</div>';
                         }
 
-                        html += '<p class="c-font-bold c-font-blue data__timeshowpass" style="font-size: 14px;font-weight: bold;color: #32c5d2;">';
+                        html += '<p class="c-font-bold c-font-blue data__timeshowpass" style="font-size: 14px;font-weight: bold;color: rgb(238, 70, 35);">';
                         if (data.time == null || data.time == '' || data.time == undefined){
 
                         }else {
