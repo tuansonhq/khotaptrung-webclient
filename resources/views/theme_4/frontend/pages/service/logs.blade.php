@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="row user-manager">
-            @include('frontend.pages.widget.__menu_profile')
+            @include('frontend.widget.__menu_profile')
 
             <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
 
@@ -13,35 +13,46 @@
                     <div class="title">
                         <h3>Dịch vụ đã mua</h3>
                     </div>
+                    <div class="booking_detail"></div>
                     <div class="wapper-grid profile">
 
-                        <form class="form-horizontal form-find m-b-20" role="form" method="get">
+                        <form class="form-charge account_content_transaction_history__v2 account_service_history__v2">
 
                             <div class="row">
 
                                 <div class="form-row mb-3 col-md-4">
 
                                     <div class="col-12">
-                                        <input type="text" class="form-control c-square c-theme" name="id"
+                                        <input type="text" class="form-control c-square c-theme id" name="id"
                                                value=""
                                                placeholder="Mã ID">
                                     </div>
                                 </div>
-
+                                @if(isset($datacate) && count($datacate) > 0)
                                 <div class="form-row mb-3 col-md-4">
 
                                     <div class="col-12">
-                                        <select id="group_id" name="group_id" class="form-control c-square c-theme">
+                                        <select id="group_id" name="key" class="form-control c-square c-theme key">
                                             <option value="">-- Tất cả các dich vụ --</option>
-                                            <option value='731'> Dịch Vụ Ngọc Rồng</option><option value='734'> Dịch Vụ Teamobi</option><option value='1186'> Nạp Game Gi&aacute; Rẻ</option><option value='730'> L&agrave;ng l&aacute;</option><option value='732'> Li&ecirc;n qu&acirc;n</option><option value='735'> Li&ecirc;n Minh</option><option value='1150'> CF Mobile</option><option value='1142'> zingspeed mobile</option><option value='736'> Army 2</option><option value='737'> Hiệp Sĩ Online</option><option value='760'> VTC Mobile - Scoin</option><option value='738'> Avatar 2d</option><option value='739'> Hải tặc t&iacute; hon</option><option value='740'> Đột K&iacute;ch</option><option value='741'> Ngũ Long Tranh B&aacute;</option><option value='742'> Fifa Online 4</option><option value='743'> DDTank</option><option value='744'> Free Fire</option><option value='745'> Blade and Soul</option><option value='746'> &Acirc;m Dương Sư - Onmyoji</option><option value='763'> VTC Game - Vcoin</option><option value='783'> Bangifcode - Toup(carot)</option><option value='1054'> pubg mobile</option><option value='1301'> SMS 9029 - Nạp Game Gi&aacute; Rẻ</option><option value='1327'> Gosu</option><option value='1329'> NPH VGP</option><option value='1330'> Kh&aacute;c</option><option value='1331'> Garena</option>
+                                            @foreach($datacate as $val)
+                                                <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
-
+                                @endif
                                 <div class="form-row mb-3 col-md-4">
 
                                     <div class="col-12">
-                                        <select class="form-control c-square c-theme" name="status"><option value="" selected="selected">-- Tất cả trạng thái --</option><option value="0">Đã hủy</option><option value="1">Đang chờ</option><option value="2">Đang thực hiện</option><option value="3">Từ chối</option><option value="4">Hoàn tất</option><option value="5">Thất bại</option><option value="6">Mất item</option><option value="7">Lỗi call nhà cung cấp</option></select>
+                                        <select class="form-control c-square c-theme status" name="status">
+                                            <option value="">Chọn trạng thái</option>
+                                            <option value="0">Đã hủy</option>
+                                            <option value="1">Đang chờ xử lý</option>
+                                            <option value="2">Đang thực hiện</option>
+                                            <option value="3">Từ chối</option>
+                                            <option value="4">Hoàn tất</option>
+                                            <option value="5">Thất bại</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -56,7 +67,7 @@
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme" name="started_at"
+                                                <input type="text" class="form-control c-square c-theme started_at" name="started_at"
                                                        autocomplete="off" placeholder="Từ ngày"
                                                        value="">
                                             </div>
@@ -74,7 +85,7 @@
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme" name="ended_at"
+                                                <input type="text" class="form-control c-square c-theme ended_at" name="ended_at"
                                                        autocomplete="off" placeholder="Đến ngày"
                                                        value="">
                                             </div>
@@ -85,38 +96,33 @@
 
                             <div class="row mb-4">
                                 <div class="col-md-4">
-                                    <input type="submit" class="btn btn-success c-theme-btn c-btn-square m-b-10"
-                                           value="Tìm kiếm">
-                                    <a class="btn c-btn-square m-b-10 btn-danger" href="https://napgamegiare.net/dich-vu/log">Tất cả</a>
+                                    <button type="submit" class="btn btn-success btn-timkiem " style="position: relative">
+                                        Tìm kiếm
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </button>
+                                    <a href="javascript:void(0)" class="btn btn-danger btn-all" style="position: relative">
+                                        Tất cả
+                                        <div class="row justify-content-center loading-data__timkiem">
+
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </form>
 
 
-                        <table class="table table-hover table-custom-res">
-                            <thead>
-                            <tr>
-                                <th class="hidden-xs">Thời gian</th>
-                                <th>ID</th>
-                                <th>MGD SMS</th>
-                                <th>Dịch vụ</th>
-                                <th>Danh mục</th>
-                                <th>Trị giá</th>
-                                <th>Trạng thái</th>
-                                <th>Thao tác</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tbody>
-                            </tbody>
-
-                        </table>
-                        <!-- END: PAGE CONTENT -->
-
-                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-
+                        <div id="data_service_history" style="position: relative">
+                            <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
+                            @include('frontend.pages.service.widget.__datalogs')
                         </div>
+
+
 
                     </div>
                 </div>
@@ -127,4 +133,18 @@
     </div><!-- /.container -->
 </section>
 
+<input type="hidden" class="started_at_day_dv" name="started_at_day_dv" value="{{ \Carbon\Carbon::now()->startOfDay() }}">
+<input type="hidden" class="end_at_day_dv" name="end_at_day_dv" value="{{ \Carbon\Carbon::now()->endOfDay() }}">
+<input type="hidden" class="started_at_yes_dv" name="started_at_yes_dv" value="{{ \Carbon\Carbon::yesterday()->startOfDay() }}">
+<input type="hidden" class="end_at_yes_dv" name="end_at_yes_dv" value="{{ \Carbon\Carbon::yesterday()->endOfDay()}}">
+<input type="hidden" class="started_at_month_dv" name="started_at_month_dv" value="{{ \Carbon\Carbon::now()->startOfMonth() }}">
+<input type="hidden" class="end_at_month_dv" name="end_at_month_dv" value="{{ \Carbon\Carbon::now()->endOfMonth() }}">
+
+<input type="hidden" name="id_data" class="id_data">
+<input type="hidden" name="key_data" class="key_data">
+<input type="hidden" name="status_data" class="status_data">
+<input type="hidden" name="started_at_data" class="started_at_data">
+<input type="hidden" name="ended_at_data" class="ended_at_data">
+<input type="hidden" name="hidden_page" id="hidden_page" value="1" />
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history.js"></script>
 @endsection

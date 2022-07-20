@@ -5,7 +5,7 @@
         <div class="container">
 
             <div class="row user-manager">
-                @include('frontend.pages.widget.__menu_profile')
+                @include('frontend.widget.__menu_profile')
 
                 <div class="col-12 col-md-8 col-lg-9 site-form" style="min-height: 212.568px;background: #ffffff;border-radius: 8px">
                     <div class="account_sidebar_content" style="padding: 16px 8px">
@@ -17,14 +17,55 @@
 
                         <div style="float: left;width: 100%;padding-top: 24px">
                             <h2 style="text-align: center;font-size: 25px;color: #3f444a;margin-bottom: 0">
-                                Trao đổi dịch vụ <a href="/dich-vu-da-mua-id" style="color: rgb(238, 70, 35);">#6733</a>
+                                Trao đổi dịch vụ <a href="/dich-vu-da-mua-{{$item->id}}" style="color: rgb(238, 70, 35);">#{{$item->id}}</a>
                             </h2>
                             <div class="error-chat">
 
                             </div>
                             <div class="edu-history-sec" id="experience">
 
-                                <div style="padding:16px 0;font-weight: 400;color: #3f444a;">Chưa có nội dung trao đổi</div>
+                                @forelse($inbox  ?: [] as $aInbox)
+
+                                    <div id="msg{{$aInbox->id}}" class="edu-history style2">
+                                        <i></i>
+                                        <div class="edu-hisinfo">
+                                            @if($conversation->type==1)
+
+                                                @if($aInbox->user->id == $conversation->author_id)
+                                                    <h3>Người yêu cầu(order)</h3>
+                                                @elseif($aInbox->user->id == $conversation->buyer_id)
+                                                    <h3>Người thực hiện</h3>
+                                                @else
+                                                    <h3>Người hỗ trợ</h3>
+                                                @endif
+
+                                            @else
+
+                                                @if($aInbox->user->user_id==$conversation->author_id)
+                                                    <h3>Người bán</h3>
+                                                @elseif($aInbox->user->user_id==$conversation->buyer_id)
+                                                    <h3>Người mua</h3>
+                                                @else
+                                                    <h3>Người hỗ trợ</h3>
+                                                @endif
+
+                                            @endif
+
+                                            <p><span>{{\App\Library\Helpers::ConvertToAgoTime($aInbox->created_at)}}</span>: {{$aInbox->message}}</p>
+
+                                            @if(isset($aInbox) && $aInbox->image != "")
+                                                <div class="mess-gallery m-t-20">
+                                                    @foreach(explode('|', $aInbox->image) as $img)
+                                                        <a href="{{$img}}" target="_blank"><img src="{{\App\Library\Files::media($img)}}" style="max-height: 200px; max-width: 100%;">
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div style="padding:20px 0;font-weight: 400;color: #3f444a;">Chưa có nội dung trao đổi</div>
+                                @endforelse
 
                             </div>
 
@@ -32,8 +73,8 @@
 
                         <div style="float: left;width: 100%">
 
-                            <form method="POST" id="chatFrom" enctype="multipart/form-data" action="/inbox/send/6733" accept-charset="UTF-8" class="form-horizontal form-charge">
-                                <input type="hidden" name="_token" value="n91mv5NgwoE3gfdXb5KbIMmTiaqs42rM3Vs2bdge">
+                            <form method="POST" id="chatFrom" enctype="multipart/form-data" action="/inbox/send/{{$item->id}}" accept-charset="UTF-8" class="form-horizontal form-charge">
+                                {{csrf_field()}}
 
                                 <div class="left-right col-sm-offset-1 col-sm-9">
                                     <div class="form-group">

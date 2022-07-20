@@ -9,7 +9,7 @@
 
                 @include('frontend.widget.__content__home__dichvu')
 
-{{--                @include('frontend.widget.__content__home__game')--}}
+                @include('frontend.widget.__content__home__game')
 
             <div class="article-content content_post ">
                 <div class="special-text">

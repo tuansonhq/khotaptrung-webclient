@@ -13,7 +13,7 @@
         }
         .pay{
             display: block;
-            background: #fb236a;
+            background: rgb(238, 70, 35) !important;
             border-radius: 17px;
             text-align: center;
             max-width: 118px;
@@ -23,11 +23,6 @@
             cursor: pointer;
         }
     </style>
-    <script type="text/javascript">
-        $(".pay").click(function(){
-            $("#btnPurchase").click();
-        })
-    </script>
 
     <input type="hidden" name="slug_category" class="slug_category" value="{{ $data->slug }}">
     <div class="container">
@@ -57,7 +52,7 @@
                                 <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="{{ $data->title }}" alt="{{ $data->title }}">
                             </div>
                         </div>
-                        <div class="col-md-5" style="margin-bottom:20px;">
+                        <div class="col-md-5">
 
                             <div class="config">
                                 {{--                                    Kiểm tra máy chủ     --}}
@@ -121,6 +116,7 @@
                                 @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                                 <div class="form-group">
                                     <label>{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</label>
+                                    <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
                                     <div class="simple-checkbox s-filter" style="border: 1px solid #ced4da;border-radius: 8px;padding: 8px 0px 8px 8px;">
                                         <div class="row" style="width: 100%;margin: 0 auto">
                                             <div class="col-md-12 left-right" id="chonnhieu">
@@ -131,7 +127,7 @@
                                                 @if(!empty($name))
                                                     @for ($i = 0; $i < count($name); $i++)
                                                         @if($name[$i]!=null)
-                                                            <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
+                                                            <p><input class="allgame" value="{{$i}}" type="checkbox" id="{{$i}}">
                                                                 <label style="font-family: Roboto, Helvetica Neue, Helvetica, Arial;font-size: 14px" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".str_replace(',','.',number_format($price[$i])). " VNĐ":""}}</label>
                                                             </p>
                                                         @endif
@@ -139,9 +135,12 @@
                                                     @endfor
                                                 @endif
                                             </div>
+
                                         </div>
                                     </div>
+
                                 </div>
+
                                 @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 
                                 @endif
@@ -161,7 +160,7 @@
                                             <div class="form-group">
                                             @endif
                                                 @if($send_type[$i] !=7)
-                                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5")
+                                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5" && $i == 0)
                                                     <label style="font-weight: 700" class="form-group-tt">{{$send_name[$i]}}:</label>
                                                     @else
                                                         <label style="font-weight: 700">{{$send_name[$i]}}:</label>
@@ -171,7 +170,8 @@
                                                     @php
                                                         $index = $index + 1;
                                                     @endphp
-                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                    <input type="text" required name="customer_data{{$i}}" class="form-control t14 invalid" placeholder="{{$send_name[$i]}}" value="">
+                                                    <div class="error-message-text"></div>
                                                 @elseif($send_type[$i]==4)
                                                     @php
                                                         $index = $index + 1;
@@ -181,7 +181,8 @@
                                                     @php
                                                         $index = $index + 1;
                                                     @endphp
-                                                    <input type="password" required class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                    <input type="password" required class="form-control invalid" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                    <div class="error-message-text"></div>
                                                 @elseif($send_type[$i]==6)
                                                     @php
                                                         $index = $index + 1;
@@ -203,10 +204,12 @@
                                                     @php
                                                         $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                     @endphp
-                                                    <div class="d-flex"><input name="customer_data{{$i}}" type="checkbox" id="customer_data{{$i}}">
+                                                    <div class="d-flex">
+                                                        <input class="confirm-rules" name="customer_data{{$i}}" type="checkbox" id="customer_data{{$i}}">
                                                         <label style="margin-left: 8px;cursor: pointer" for="customer_data{{$i}}">{{$send_name[$i]}}</label>
-                                                    </div>
 
+                                                    </div>
+                                                    <div class="error-message-checkbox"></div>
                                                 @endif
 
 
@@ -222,11 +225,12 @@
                         <div class="col-md-4">
 
                             <div class="">
+                                <input type="hidden" name="value" value="">
                                 <input type="hidden" name="selected" value="">
                                 <input type="hidden" name="server">
                                 <a id="txtPrice" style="font-size: 20px;font-weight: bold;display: block;margin-bottom: 15px"
                                    class="btn btn-success">Tổng: 0 Xu</a>
-                                @if(Auth::check())
+                                @if(App\Library\AuthCustom::check())
                                 <button id="btnPurchase" type="button" style="font-size: 18px;font-weight: bold;display: block;margin-bottom: 15px;cursor: pointer" class="btn-auth" >
                                     <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán
                                 </button>
@@ -247,6 +251,7 @@
                         </div>
                     </div>
                 </div>
+
                     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
                     <div class="row" style="margin: 0 auto; width: 100%;padding-top: 24px">
                         <div class="col-md-12 left-right float_mb">
@@ -370,7 +375,7 @@
                                 </style>
                                 <script type="text/javascript">
                                     $(".pay").click(function(){
-                                        $("#btnPurchase").click();
+                                        $('#homealert').modal('show');
                                     })
                                 </script>
                             </div>
@@ -379,6 +384,52 @@
                     </div>
                     @endif
 
+                <!-- Modal -->
+                    <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <div class="col-1"></div>
+                                    <div class="col-10 text-center"><h6 class="modal-title">Xác nhận thanh toán</h6></div>
+                                    <div class="col-1 ">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div >
+                                    <div class="row error__service">
+
+                                    </div>
+                                </div>
+                                <div class="modal-body">
+                                    <p> Bạn thực sự muốn thanh toán?</p>
+
+                                </div>
+                                <div class="modal-footer">
+
+                                    <input type="hidden" name="index" value="{{ $index }}">
+                                    <button type="submit"
+                                            class="btn btn-success c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3"
+                                            style="">Xác nhận thanh toán
+                                    </button>
+
+
+
+                                    <button type="button"
+                                            class="btn btn-danger c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase"
+                                            data-dismiss="modal">Đóng
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </form>
 
             <div class="job-wide-devider data-bot">
@@ -445,11 +496,63 @@
 
 <script>
 
-    $(document).ready(function () {
-        $('#btnPurchase').click(function () {
 
-            $('#homealert').modal('show');
+
+    $(document).ready(function () {
+
+        $('body').on('click','#btnPurchase',function(){
+            let is_ok = true;
+            let html = '';
+
+            let required = $('input[required]');
+            if (required.length){
+                required.each(function () {
+                    $(this).toggleClass('invalid',!$(this).val().trim());
+                    if (!$(this).val().trim()){
+                        is_ok = false;
+                        let text = $(this).parent().prev().text().trim().toLowerCase();
+                        html = `<div class="row marginauto order-errors" style="padding-top:8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vong lòng nhập thông tin.</small></div></div>`
+                        $(this).next().html(html)
+                    }else {
+                        $(this).next().text('')
+                    }
+                });
+            }
+
+            if ($('.allgame[type=checkbox]').length){
+                if (checkboxRequired('input.allgame[type=checkbox]')){
+                    html = `<div class="row marginauto order-errors" style="padding-bottom: 8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
+                    is_ok = false;
+                    $('#error-mes-checkbox').html(html)
+                }else {
+                    $('#error-mes-checkbox').html('');
+                }
+            }
+            let html2 = '';
+            let confirm_rules = $('.confirm-rules');
+
+            // nếu không có nút confirm nào checked
+            if (confirm_rules.length){
+                if (!confirm_rules.is(':checked')){
+                    console.log("đúng")
+                    html2 = `<div class="row marginauto order-errors" style="width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vui lòng xác nhận thông tin trên</small></div></div>`;
+                    is_ok = false;
+                    $('.error-message-checkbox').html(html2)
+                }else {
+                    $('.error-message-checkbox').html('')
+                }
+            }
+
+            if (is_ok){
+                $('#homealert').modal('show');
+            }
+
         });
+
+        function checkboxRequired(selector) {
+            let checkboxs = $(`${selector}:checked`);
+            return !checkboxs.length;
+        }
     });
 
 
