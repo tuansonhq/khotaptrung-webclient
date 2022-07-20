@@ -446,6 +446,8 @@
 
             @include('frontend.widget.__dichvu__lienquan')
 
+            @include('frontend.widget.__tai__khoan__lien__quan')
+
 
             @include('frontend.pages.service.widget.__binhluan')
 

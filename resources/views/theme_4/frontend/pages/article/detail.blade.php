@@ -60,6 +60,12 @@
                     @include('frontend.widget.__dichvu__lienquan')
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @include('frontend.widget.__tai__khoan__lien__quan')
+                </div>
+            </div>
         </div>
         <!-- END: BLOG LISTING  -->
 

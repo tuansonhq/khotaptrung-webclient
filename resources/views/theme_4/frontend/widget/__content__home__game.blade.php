@@ -1,16 +1,5 @@
 @if(isset($data) && count($data) > 0)
 
-    <div class="d-flex justify-content-between" style="padding-top: 24px">
-        <div class="main-title">
-            <h1>Danh mục game</h1>
-        </div>
-        <div class="service-search d-none d-lg-block">
-            <div class="input-group p-box">
-                <input type="text" id="txtSearchNick" placeholder="Tìm game" value="" class="" width="200px">
-                <span class="icon-search"><i class="fas fa-search"></i></span>
-            </div>
-        </div>
-    </div>
     <div class="entries">
         <div class="row fix-border fix-border-nick">
             <div class="col-md-12 left-right data-nick-search">
@@ -28,7 +17,18 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
-                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                            <h2 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
+                            @else
+                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 16)
@@ -39,7 +39,18 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
-                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                            <h2 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
+                            @else
+                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 24)
@@ -50,7 +61,18 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
-                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                            <h2 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
+                            @else
+                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 32)
@@ -61,7 +83,18 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
-                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                            <h2 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
+                            @else
+                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                            @endif
                         </a>
                     </div>
                 @elseif($key < 40)
@@ -72,7 +105,18 @@
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}"
                                  alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="entries_item-img">
-                            <h2 class="text-title">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+                            <h2 class="text-title text-left">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</h2>
+
+                            @if(isset($item->items_count))
+                                @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </p>
+                                @else
+                                    <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: {{ $item->items_count }} </p>
+                                @endif
+
+                            @else
+                                <p class="text-left" style="margin-bottom: 0;margin-top: 4px">Số tài khoản: 0 </p>
+                            @endif
                         </a>
                     </div>
                 @endif
@@ -80,7 +124,7 @@
 
 
             <button id="btn-expand-serivce-nick" class="expand-button" data-page-current="1" data-page-max="{{ $index }}">
-                Xem thêm dịch vụ
+                Xem thêm danh mục
             </button>
 
 

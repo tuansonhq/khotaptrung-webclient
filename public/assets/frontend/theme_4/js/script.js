@@ -92,7 +92,7 @@ $(document).ready(function () {
     });
 
     $('.slick-slider').slick({
-        autoplay:true,
+        autoplay:false,
         autoplaySpeed:3000,
         dots: false,
         infinite: true,
@@ -130,7 +130,7 @@ $(document).ready(function () {
     });
 
     $('.slider-banner').slick({
-        autoplay:true,
+        autoplay:false,
         autoplaySpeed:3000,
         dots: false,
         infinite: true,
@@ -304,7 +304,7 @@ $(document).ready(function () {
 
         if (value > 1){
 
-            let htmlnick = '<button id="btn-expand-serivce-nick-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm dịch vụ</button>';
+            let htmlnick = '<button id="btn-expand-serivce-nick-search" class="expand-button" data-page-current="1" data-page-max="' + value + '">Xem thêm danh mục</button>';
             $('.fix-border-nick').append(htmlnick);
         }
 
