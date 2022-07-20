@@ -251,12 +251,15 @@ $(document).ready(function (e) {
             }
         }
         let confirm_rules = $('.confirm-rules');
-        // nếu không có nút confirm nào checked
-        if (!confirm_rules.length){
-            if (confirm_rules.is(':checked')){
+        /*nếu có nút confirm thì kiểm tra xem được check chưa*/
+        if (confirm_rules.length){
+            if (!confirm_rules.is(':checked')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
                 is_ok = 0;
-                $('.confirm-rules').parent().next().html(html)
+                confirm_rules.parent().next().html(html)
+            }
+            else {
+                confirm_rules.parent().next().html('')
             }
         }
         if (is_ok){
