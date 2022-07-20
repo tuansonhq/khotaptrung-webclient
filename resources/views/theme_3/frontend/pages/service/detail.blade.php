@@ -442,8 +442,8 @@
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 text-left left-right">
                                                         @if(App\Library\AuthCustom::check())
-                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thuê ngay</button>
-                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thuê ngay</button>
+                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thanh toán</button>
+                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thanh toán</button>
                                                             <div class="button-next-step-one d-none"></div>
                                                         @else
                                                             <button class="button-default-ct media-web open-modal" type="button" onclick="openLoginModal();">Thuê ngay</button>
