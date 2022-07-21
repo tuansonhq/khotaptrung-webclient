@@ -85,11 +85,27 @@
 </div>
 
 <div class="mobile-auth">
+
+    <section class="media-mobile">
+        <div class=" banner-mobile-container-ct">
+            <div class="row marginauto banner-mobile-row-ct">
+                <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openLoginModal()" >
+                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                </div>
+
+                <div class="col-auto left-right banner-mobile-span text-center text-login" style="width: 80%">
+                    <h3>Đăng nhập</h3>
+                </div>
+                <div class="col-auto left-right" style="width: 10%">
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="mobile-auth-nav">
-        <div class="auth-nav-option auth-nav-option-active">
+        <div class="auth-nav-option auth-nav-option-active auth-nav-login">
             Đăng nhập
         </div>
-        <div class="auth-nav-option">
+        <div class="auth-nav-option auth-nav-regist" >
             Đăng ký
         </div>
     </div>
