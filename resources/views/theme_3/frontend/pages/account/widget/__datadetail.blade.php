@@ -253,12 +253,8 @@
                                                         <a href="/recharge-atm" class="button-not-bg-ct">
                                                             <ul>
                                                                 <li><small>ATM, Momo</small></li>
-                                                                @if(isset($atm_percent))
-                                                                    <li><span>{{ str_replace(',','.',number_format(round($atm_percent*$data->price_atm/100))) }} ATM</span></li>
-                                                                @else
-                                                                    @if(isset($data->price_atm))
-                                                                        <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
-                                                                    @endif
+                                                                @if(isset($data->price_atm))
+                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
                                                                 @endif
 
                                                             </ul>
