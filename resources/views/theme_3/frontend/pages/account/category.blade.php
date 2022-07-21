@@ -18,7 +18,7 @@
             <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </span>
-        <p>Trang chủ</p>
+        <p>Danh mục game</p>
     </div>
     {{--    Banner--}}
     <section class="media-web">
