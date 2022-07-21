@@ -21,19 +21,23 @@
                             <div class="row">
 
                                 <div class="form-row mb-3 col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                        <p class="input-group-btn-p">Giao dịch:</p>
+                                        </span>
 
-                                    <div class="col-12">
-                                        <input type="text" class="form-control c-square c-theme id" name="id"
-                                               value=""
-                                               placeholder="Mã ID">
+                                        <input type="text" class="form-control c-square c-theme id" name="id" placeholder="Mã ID">
                                     </div>
                                 </div>
                                 @if(isset($datacate) && count($datacate) > 0)
                                 <div class="form-row mb-3 col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                        <p class="input-group-btn-p">Dịch vụ:</p>
+                                        </span>
 
-                                    <div class="col-12">
-                                        <select id="group_id" name="key" class="form-control c-square c-theme key">
-                                            <option value="">-- Tất cả các dich vụ --</option>
+                                        <select id="group_id" name="key" class="form-control c-square c-theme key" style="height: 40px">
+                                            <option value="">-- Chọn --</option>
                                             @foreach($datacate as $val)
                                                 <option value="{{ $val->slug }}">{{ $val->title }}</option>
                                             @endforeach
@@ -42,9 +46,12 @@
                                 </div>
                                 @endif
                                 <div class="form-row mb-3 col-md-4">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                        <p class="input-group-btn-p">Dịch vụ:</p>
+                                        </span>
 
-                                    <div class="col-12">
-                                        <select class="form-control c-square c-theme status" name="status">
+                                        <select class="form-control c-square c-theme status" name="status" style="height: 40px">
                                             <option value="">Chọn trạng thái</option>
                                             <option value="0">Đã hủy</option>
                                             <option value="1">Đang chờ xử lý</option>
@@ -58,36 +65,32 @@
 
                                 <div class="form-row mb-3 col-md-4">
 
-                                    <div class="col-12">
-                                        <div class="input-group m-b-10 c-square">
-                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
-                                                 data-rtl="false">
+                                    <div class="input-group m-b-10 c-square">
+                                        <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
+                                             data-rtl="false">
                                             <span class="input-group-btn">
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme started_at" name="started_at"
-                                                       autocomplete="off" placeholder="Từ ngày"
-                                                       value="">
-                                            </div>
+                                            <input type="text" class="form-control c-square c-theme started_at" name="started_at"
+                                                   autocomplete="off" placeholder="Từ ngày"
+                                                   value="">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-row mb-3 col-md-4">
 
-                                    <div class="col-12">
-                                        <div class="input-group m-b-10 c-square">
-                                            <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
-                                                 data-rtl="false">
+                                    <div class="input-group m-b-10 c-square">
+                                        <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
+                                             data-rtl="false">
                                             <span class="input-group-btn">
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme ended_at" name="ended_at"
-                                                       autocomplete="off" placeholder="Đến ngày"
-                                                       value="">
-                                            </div>
+                                            <input type="text" class="form-control c-square c-theme ended_at" name="ended_at"
+                                                   autocomplete="off" placeholder="Đến ngày"
+                                                   value="">
                                         </div>
                                     </div>
                                 </div>
