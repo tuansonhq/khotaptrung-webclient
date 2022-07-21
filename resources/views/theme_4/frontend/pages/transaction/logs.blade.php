@@ -22,11 +22,12 @@
 
                                 @if(isset($config))
                                 <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Giao dịch:</label>
-                                    </div>
-                                    <div class="col-12">
-                                        <select name="config" class="form-control c-square c-theme config">
+                                    <div class="input-group date date-picker">
+                                        <span class="input-group-btn">
+                                        <p class="input-group-btn-p">Giao dịch:</p>
+                                        </span>
+
+                                        <select name="config" class="form-control c-square c-theme config" style="height: 40px">
                                             <option value="">-- Tất cả --</option>
                                             @foreach($config as $i => $val)
                                                 <option value="{{ $i }}">{{ $val }}</option>
@@ -35,11 +36,8 @@
                                     </div>
                                 </div>
                                 @endif
-                                <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Từ:</label>
-                                    </div>
-                                    <div class="col-12">
+                                    <div class="form-row mb-3 col-md-4">
+
                                         <div class="input-group m-b-10 c-square">
                                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
                                                  data-rtl="false">
@@ -53,20 +51,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Đến:</label>
-                                    </div>
-                                    <div class="col-12">
+                                    <div class="form-row mb-3 col-md-4">
                                         <div class="input-group m-b-10 c-square">
                                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
                                                  data-rtl="false">
                                             <span class="input-group-btn">
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
-                                                    class="fa fa-calendar"></i>
-                                            </button>
+                                                    class="fa fa-calendar"></i></button>
                                             </span>
                                                 <input type="text" class="form-control c-square c-theme ended_at" name="ended_at"
                                                        autocomplete="off" placeholder="Đến ngày"
@@ -74,7 +66,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
 
                             </div>
