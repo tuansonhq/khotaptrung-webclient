@@ -19,7 +19,7 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" onclick="openMenuProfile()">
+            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </span>
             <h4>Tin tức</h4>

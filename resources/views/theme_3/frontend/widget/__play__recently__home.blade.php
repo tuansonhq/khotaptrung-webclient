@@ -37,9 +37,9 @@
             </li>
         </ul>
     </div>
-    <div class="box-product-content tab-content">
-        <div class="box-product tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
-            <div class="swiper-container list-product swiper-product" >
+    <div class="box-product-content tab-content  ">
+        <div class="box-product tab-pane fade active show play-recently" id="account" role="tabpanel" aria-labelledby="account-tab">
+            <div class="swiper-container list-product swiper-play-recently" >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide " >
                         <a href="/acc/id">
@@ -218,9 +218,15 @@
 
                 </div>
             </div>
+            <div class="swiper-button-prev">
+                <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+            </div>
+            <div class="swiper-button-next">
+                <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
+            </div>
         </div>
-        <div class="box-product tab-pane fade" id="favourite_game" role="tabpanel" aria-labelledby="favourite_game-tab">
-            <div class="swiper-container list-product swiper-product" >
+        <div class="box-product tab-pane fade play-recently" id="favourite_game" role="tabpanel" aria-labelledby="favourite_game-tab">
+            <div class="swiper-container list-product swiper-play-recently" >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide " >
                         <a href="/acc/id">
@@ -369,9 +375,15 @@
                     </div>
                 </div>
             </div>
+            <div class="swiper-button-prev">
+                <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+            </div>
+            <div class="swiper-button-next">
+                <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
+            </div>
         </div>
-        <div class="box-product tab-pane fade" id="suggestions" role="tabpanel" aria-labelledby="suggestions-tab">
-            <div class="swiper-container list-product swiper-product" >
+        <div class="box-product tab-pane fade play-recently" id="suggestions" role="tabpanel" aria-labelledby="suggestions-tab">
+            <div class="swiper-container list-product swiper-play-recently" >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide " >
                         <a href="/acc/id">
@@ -548,6 +560,12 @@
 
                     </div>
                 </div>
+            </div>
+            <div class="swiper-button-prev">
+                <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+            </div>
+            <div class="swiper-button-next">
+                <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
             </div>
         </div>
     </div>

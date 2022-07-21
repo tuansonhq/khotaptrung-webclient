@@ -10,8 +10,8 @@
             <a href="/mua-acc" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
         </div>
     </div>
-    <div class="box-product">
-        <div class="swiper-container list-product swiper-product" >
+    <div class="box-product swiper-coin-home">
+        <div class="swiper-container list-product swiper-coin" >
             <div class="swiper-wrapper">
                 <div class="swiper-slide" >
                     <a href="/minigame/slug">
@@ -182,6 +182,12 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="swiper-button-prev">
+            <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+        </div>
+        <div class="swiper-button-next">
+            <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
         </div>
     </div>
 </div>
