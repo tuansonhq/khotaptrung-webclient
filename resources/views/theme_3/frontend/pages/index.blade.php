@@ -117,8 +117,8 @@
                  @include('frontend.widget.__content__home__game')
             @endif
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-{{--                 @include('frontend.widget.__random__account')--}}
-             @endif00000
+                 @include('frontend.widget.__random__account')
+             @endif
 
           {{--            Dịch vụ nổi bật--}}
             @if(theme('')->theme_config->sys_theme_ver !== 'sys_theme_ver3.0' )
