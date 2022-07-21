@@ -6,6 +6,10 @@ $(document).ready(function (e) {
 
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
+        navigation: {
+            nextEl: '.swiper-nap-game .swiper-button-next',
+            prevEl: '.swiper-nap-game .swiper-button-prev',
+        },
         // preloadImages: false,
         updateOnImagesReady: true,
         // lazyLoading: false,
@@ -16,17 +20,26 @@ $(document).ready(function (e) {
         loop: false,
         centeredSlides: false,
         slidesPerView: 4,
+        slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
         touchMove: true,
+        freeMode:true,
         freeModeSticky:true,
         grabCursor: true,
         observer: true,
         observeParents: true,
         breakpoints: {
-            1199: {
-                slidesPerView: 2.5,
+            992: {
+                slidesPerView: 4,
             },
+            768:{
+                slidesPerView: 4,
+            },
+            480: {
+                slidesPerView: 3.5,
+
+            }
         }
     });
 

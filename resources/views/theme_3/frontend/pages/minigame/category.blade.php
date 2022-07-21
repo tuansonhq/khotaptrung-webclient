@@ -10,14 +10,14 @@
             <div class=" banner-mobile-container-ct">
                 <div class="row marginauto banner-mobile-row-ct">
                     <div class="col-auto left-right" style="width: 10%">
-                        <a href="/" class="box-account-mobile_open">
+                        <a href="javascript:void(0)" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()" @endif class="box-account-mobile_open">
                             <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                         </a>
 
                     </div>
 
                     <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                        <p>Trang chủ</p>
+                        <p>Mini Game</p>
                     </div>
                     <div class="col-auto left-right" style="width: 10%">
                     </div>
@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </section>
-        <div class="block-mini-game ">
+        <div class="block-mini-game mb-fix-8">
             <div class="row">
                 <div class="col-lg-12 col-md-12 " >
                     <div class=" block-product ">
