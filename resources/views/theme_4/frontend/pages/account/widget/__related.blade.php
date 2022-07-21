@@ -1,7 +1,7 @@
 @if(isset($data) && count($data))
 
     @foreach($data as $item)
-
+        @if($item->status == 1)
         <div class="col-md-3 col-sm-6 col-6 entries_item" style="display: block">
             <a href="/acc/{{ $item->randId }}">
                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
@@ -71,7 +71,7 @@
                 <p class="text-left" style="color: #82869E;margin-bottom: 0;font-size: 14px;text-decoration: line-through;">{{ str_replace(',','.',number_format($item->price_old)) }}đ <span class="badge badge-success" style="margin-left: 4px;padding-top: 4px;background: rgb(238, 70, 35);">{{ $sale_percent }}%</span></p>
             </a>
         </div>
-
+        @endif
     @endforeach
 
 @endif

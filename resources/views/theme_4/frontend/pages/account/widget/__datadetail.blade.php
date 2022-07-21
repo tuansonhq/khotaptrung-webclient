@@ -1,5 +1,5 @@
 @if(isset($data))
-
+    @if($data->status == 1)
     <div class="entries">
         <div class="row marginauto">
             <div class="col-lg-6 col-md-12 shop_product_detailS__col">
@@ -395,6 +395,23 @@
             <button id="btn-expand-content-nick" class="expand-button">
                 Xem thêm nội dung
             </button>
+
+        </div>
+    @endif
+
+    @else
+        <div class="container pt-3">
+            <div class="row pb-3 pt-3">
+                <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                </div>
+            </div>
 
         </div>
     @endif
