@@ -20,7 +20,7 @@
             <div class="row" id="screen--first">
                 <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card">
                     <div class="card--mobile__title">
-                        <a href="" class="card--back">
+                        <a class="card--back"  @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
                         <h4>Mua thẻ</h4>

@@ -755,7 +755,7 @@ header nav.heading .header-container{
     margin-top: 20px;
 
     width: 272px;
-    height: 56px;
+    /*height: 56px;*/
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -785,7 +785,7 @@ header nav.heading .header-container{
     font-weight: 700;
 }
 .box-list-service{
-    height:56px;
+    /*height:56px;*/
 
     overflow: hidden;
     transition:all .2s linear 0s;
@@ -1657,6 +1657,9 @@ header nav.heading .header-container{
     .text-title {
         font-size: 16px;
     }
+    .block-other-nick .text-title {
+        font-size: 16px;
+    }
     .flash-sales .product-header .timer {
         padding-top: 0;
     }
@@ -1741,8 +1744,8 @@ header nav.heading .header-container{
 
 .menu-profile-mobile {
     position: fixed;
-    z-index: 11;
-    top: 56px;
+    z-index: 999;
+    top: 0;
     bottom: 0;
     left: 100vw;
     /*left: 0;*/

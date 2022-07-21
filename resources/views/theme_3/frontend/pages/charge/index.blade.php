@@ -47,7 +47,7 @@
                                 <p class="text-title" >Nạp tiền</p>
                                 <div class="navbar-spacer"></div>
                             </div>
-                            <div class="box-product " >
+                            <div class="box-product position-static" >
                                 <div class="default-tab pr-fix-16 pl-fix-16">
                                 <ul class="nav justify-content-between row" role="tablist" >
                                     <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">

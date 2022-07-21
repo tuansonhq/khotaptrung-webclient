@@ -1544,6 +1544,10 @@ a:hover .__icon.--path__custom:after {
 
 .card--mobile__title h4 {
     margin: auto;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    line-height: 150% !important;
+    color: #1B1D29;
 }
 .h-0 {
     height: 0 !important;
@@ -1924,4 +1928,10 @@ a:hover .__icon.--path__custom:after {
     #content-store-card .cards__item.card__item-tag {
         width: 33.333%;
     }
+    #article--detail .article--title {
+
+        font-size: 18px;
+
+    }
+
 }

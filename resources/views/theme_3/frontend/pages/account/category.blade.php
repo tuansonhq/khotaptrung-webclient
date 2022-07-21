@@ -2,18 +2,24 @@
 
 @section('content')
     {{--  Header mobile  --}}
-    <section class="media-mobile">
-        <div class="container container-fix banner-mobile-container-ct">
+{{--    <section class="media-mobile">--}}
+{{--        <div class="container container-fix banner-mobile-container-ct">--}}
 
-            <div class="row marginauto banner-mobile-row-ct" style="position: relative">
-                <a href="/"><img class="lazy back-position-ct" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" ></a>
-                <div class="col-12 left-right banner-mobile-span text-center">
-                    <p>Trang chủ</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+{{--            <div class="row marginauto banner-mobile-row-ct" style="position: relative">--}}
+{{--                    <span class="card--back box-account-mobile_open" onclick="Redirect()">--}}
+{{--                        <img src="/assets/frontend/theme_3/image/icons/back.png" alt="">--}}
+{{--                    </span>                <div class="col-12 left-right banner-mobile-span text-center">--}}
+{{--                    <p>Trang chủ</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <div class="card--mobile__title">
+            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            </span>
+        <p>Trang chủ</p>
+    </div>
     {{--    Banner--}}
     <section class="media-web">
         <div class="container container-fix banner-container-ct">

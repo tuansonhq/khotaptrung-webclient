@@ -35,7 +35,7 @@
         </section>
         <div class="block-mini-game ">
             <div class="row">
-                <div class="col-lg-12 col-md-12 pr-md-0" >
+                <div class="col-lg-12 col-md-12 " >
                     <div class=" block-product ">
                         <div class="product-header d-flex">
                         <span>

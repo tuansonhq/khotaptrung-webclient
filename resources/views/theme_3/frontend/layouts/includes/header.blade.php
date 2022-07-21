@@ -1,21 +1,45 @@
+<div class="nav-overlay"></div>
 <div class="header ">
     <div class="search-active" >
         <div class="search-input_out">
             <div class="search-input_out_nav">
                 <div class=" search-input_in">
                     <span class="hide" id='messageMobile'></span>
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/search-back.svg" class="icon-search-close" alt="">
                     <form action="/idol-list" class="formSearchHeader">
                         <div class='search-input'>
                             <input class='input-search' id="searchFormMobile" name="q" placeholder='Tìm kiếm' type='text'  autocomplete="off">
                         </div>
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/icon_search.png" class="icon-search-close" alt="">
+                        <button class="icon-search">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/search-normal.svg"  alt="">
+                        </button>
 
                     </form>
                 </div>
             </div>
             <div class="search-input_in_content ">
                 <div class="" id="result-search-mobile">
+                    <div class="search-item">
+                        <a href="" class="d-flex justify-content-between">
+                            <div class="search-name">Vòng quay bãi biển</div>
+                            <div class="search-show-more">Chi tiết   <img src="/assets/frontend/{{theme('')->theme_key}}/image/search-right.svg" alt=""></div>
+                        </a>
 
+                    </div>
+                    <div class="search-item">
+                        <a href="" class="d-flex justify-content-between">
+                            <div class="search-name">Vòng quay bãi biển</div>
+                            <div class="search-show-more">Chi tiết   <img src="/assets/frontend/{{theme('')->theme_key}}/image/search-right.svg" alt=""></div>
+                        </a>
+
+                    </div>
+                    <div class="search-item">
+                        <a href="" class="d-flex justify-content-between">
+                            <div class="search-name">Vòng quay bãi biển</div>
+                            <div class="search-show-more">Chi tiết   <img src="/assets/frontend/{{theme('')->theme_key}}/image/search-right.svg" alt=""></div>
+                        </a>
+
+                    </div>
                 </div>
 
             </div>
@@ -179,14 +203,14 @@
                         </a>
 
                     </div>
-                    <div class="nav-item-mobile item-notification-mobile">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications_mobile.svg" alt="">
-                        </a>
-                        <div class="item-notification-badges">
-                            3
-                        </div>
-                    </div>
+{{--                    <div class="nav-item-mobile item-notification-mobile">--}}
+{{--                        <a href="">--}}
+{{--                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications_mobile.svg" alt="">--}}
+{{--                        </a>--}}
+{{--                        <div class="item-notification-badges">--}}
+{{--                            3--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
@@ -300,8 +324,24 @@
     @endif
     <div class="menu-profile-mobile">
         <div class="row marginauto">
+
             {{--Bắt đầu vòng lặp --}}
             <div class="col-md-12 left-right nav-bar-hr">
+                <section class="media-mobile">
+                    <div class=" banner-mobile-container-ct">
+                        <div class="row marginauto banner-mobile-row-ct">
+                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
+                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            </div>
+
+                            <div class="col-auto left-right banner-mobile-span text-center text-login" style="width: 80%">
+                                <h3>Tài khoản</h3>
+                            </div>
+                            <div class="col-auto left-right" style="width: 10%">
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 {{--                                    Vong lap thang bố--}}
                 <div class="acount-logined_mobile d-flex m-3">
                     <div class="acount-logined_img">
@@ -328,13 +368,13 @@
 
     <div class="menu-category-mobile">
         <ul class=" ">
-            <li>
-                <a href="/">
-                    <img src="./assets/frontend/{{theme('')->theme_key}}/image/svg/home-2.svg" alt="">
-                    <span>Trang chủ</span>
+{{--            <li>--}}
+{{--                <a href="/">--}}
+{{--                        <img src="./assets/frontend/{{theme('')->theme_key}}/image/svg/home-2.svg" alt="">--}}
+{{--                    <span>Trang chủ</span>--}}
 
-                </a>
-            </li>
+{{--                </a>--}}
+{{--            </li>--}}
             <li>
                 <a href="">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/km_mobile.svg" alt="">
