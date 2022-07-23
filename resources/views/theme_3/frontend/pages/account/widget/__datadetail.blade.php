@@ -248,20 +248,21 @@
                                                     </div>
                                                     @endif
 
-                                                    @if(isset($data->price_atm))
-                                                    <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                        <div class="row marginauto nick-detail-button">
-                                                            <div class="col-md-12 left-right">
-                                                                <a href="/recharge-atm" class="button-not-bg-ct">
-                                                                    <ul>
-                                                                        <li><small>ATM, Momo</small></li>
-                                                                        @if(isset($data->price_atm))
-                                                                            <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
-                                                                        @endif
-                                                                    </ul>
-                                                                </a>
-                                                            </div>
-                                                        </div>
+
+                                            @if(isset($data->price_atm))
+                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                                <div class="row marginauto nick-detail-button">
+                                                    <div class="col-md-12 left-right">
+                                                        <a href="/recharge-atm" class="button-not-bg-ct">
+                                                            <ul>
+                                                                <li><small>ATM, Momo</small></li>
+                                                                @if(isset($data->price_atm))
+                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
+                                                                @endif
+
+                                                            </ul>
+                                                        </a>
+
                                                     </div>
                                                     @endif
                                                 </div>
