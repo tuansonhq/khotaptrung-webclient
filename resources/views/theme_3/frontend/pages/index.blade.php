@@ -233,7 +233,7 @@
                 @include('frontend.widget.__nap_the')
             {{--                Danh mục mua acc--}}
                 @include('frontend.widget.__content__home__game')
-                @include('frontend.widget.__random__account')
+{{--                @include('frontend.widget.__random__account')--}}
             {{--                     Dịch vụ nổi bật--}}
                 @include('frontend.widget.__tin__tuc')
 
