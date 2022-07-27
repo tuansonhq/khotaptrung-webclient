@@ -1,8 +1,7 @@
 
 @if(isset(theme('')->theme_config->sys_theme_ver))
     @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-
-            @if(isset($data->image_banner))
+            @if(isset($data[0]->image_banner))
                 <div class="banner-image">
                    <img src="{{\App\Library\MediaHelpers::media($data[0]->image_banner)}}" alt=""  class="">
                 </div>

@@ -49,12 +49,15 @@ $(document).ready(function(){
                     $('.select-form').niceSelect('update');
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
-                    getAmount(telecom);
+                    if (telecom.length > 0){
+                        getAmount(telecom);
+                    }else {
+                        $('.amount-loading').remove();
+                    }
+
+
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-
                     $('.loading-data').remove();
-
-
                     $('#form-charge2').removeClass('hide_charge');
                 }
             },
