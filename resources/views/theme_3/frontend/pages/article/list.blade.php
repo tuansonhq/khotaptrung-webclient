@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection

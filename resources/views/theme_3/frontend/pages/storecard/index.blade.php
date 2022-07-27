@@ -3,6 +3,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buycard.js"></script>
 @endsection
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
     <div class="container-fix container">
         <ul class="breadcrum--list">

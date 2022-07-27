@@ -1,5 +1,8 @@
 @extends('theme_3.frontend.layouts.master')
 @section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
 @section('styles')
