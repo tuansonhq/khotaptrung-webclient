@@ -13,7 +13,7 @@
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right" style="width: 10%">
                             <a href="" class="previous-step-one" style="line-height: 28px">
-                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
                             </a>
                         </div>
 
@@ -34,11 +34,11 @@
                 <div class="container container-fix menu-container-ct">
                     <ul>
                         <li><a href="">Trang chủ</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
                         <li class="menu-container-li-ct"><a href="">Danh mục Shop Account</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
                         <li class="menu-container-li-ct"><a href="">Liên quân mobile</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
+                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
                         <li class="menu-container-li-ct"><a href="">Chi tiết Nick</a></li>
                     </ul>
                 </div>
@@ -57,7 +57,7 @@
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto body-header-nick-detail-ct">
                                         <div class="col-auto left-right">
-                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
                                         </div>
                                         <div class="col-md-10 col-10 body-header-col-ct">
                                             <h3>Chi tiết Nick</h3>
@@ -116,10 +116,10 @@
                                                             </div>
 
                                                             <div class="swiper-button-prev">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/back-detail.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/back-detail.png" alt="">
                                                             </div>
                                                             <div class="swiper-button-next">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/pew-detail.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/pew-detail.png" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -420,7 +420,7 @@
                                 <div class="col-md-12 left-right">
                                     <div class="row marginauto body-header-nick-detail-title-mobile body-header-nick-detail-ct">
                                         <div class="col-auto left-right">
-                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
+                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
                                         </div>
                                         <div class="col-md-10 col-10 body-header-col-ct">
                                             <h3>Chi tiết Nick</h3>
@@ -812,10 +812,10 @@
 
                                 <div class="col-md-12 left-right text-center">
                                     <div class="view-more">
-                                        Xem thêm <img src="/assets/{{theme('')->theme_key}}/image/cay-thue/jump-down.png" alt="">
+                                        Xem thêm <img src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/jump-down.png" alt="">
                                     </div>
                                     <div class="view-less">
-                                        Thu gọn <img src="/assets/{{theme('')->theme_key}}/image/cay-thue/jump-down-down.png" alt="">
+                                        Thu gọn <img src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/jump-down-down.png" alt="">
                                     </div>
                                 </div>
 
@@ -855,7 +855,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -891,7 +891,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -927,7 +927,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -963,7 +963,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -999,7 +999,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1035,7 +1035,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1071,7 +1071,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1107,7 +1107,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1143,7 +1143,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1179,7 +1179,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1215,7 +1215,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1251,7 +1251,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1287,7 +1287,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1323,7 +1323,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1394,7 +1394,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1430,7 +1430,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1466,7 +1466,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1502,7 +1502,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1538,7 +1538,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1574,7 +1574,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1610,7 +1610,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1646,7 +1646,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1682,7 +1682,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1718,7 +1718,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1754,7 +1754,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1790,7 +1790,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1826,7 +1826,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1862,7 +1862,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1933,7 +1933,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -1969,7 +1969,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2005,7 +2005,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2041,7 +2041,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2077,7 +2077,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2113,7 +2113,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2149,7 +2149,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2185,7 +2185,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2221,7 +2221,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2257,7 +2257,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2293,7 +2293,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2329,7 +2329,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2365,7 +2365,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2401,7 +2401,7 @@
                                                     <a href="" class="list-item-nick-hover">
                                                         <div class="row marginauto list-item-nick">
                                                             <div class="col-md-12 left-right default-overlay-nick-ct">
-                                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/image-nick.png" alt="">
+                                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/image-nick.png" alt="">
                                                             </div>
                                                             <div class="col-md-12 left-right">
                                                                 <div class="row marginauto list-item-nick-body">
@@ -2452,7 +2452,7 @@
                             <div class="row marginauto modal-header-order-ct">
                                 <div class="col-12 span__donhang text-center" style="position: relative">
                                     <span>Xác nhận thanh toán</span>
-                                    <img class="lazy img-close-ct" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                    <img class="lazy img-close-ct" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
                                 </div>
                             </div>
 
@@ -2496,7 +2496,7 @@
                                                     <span>Game</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
+                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
                                                 </div>
                                             </div>
 
@@ -2606,7 +2606,7 @@
                             <div class="row marginauto modal-header-order-ct">
                                 <div class="col-12 span__donhang text-center" style="position: relative">
                                     <span>Xác nhận thanh toán</span>
-                                    <img class="lazy img-close-ct" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                    <img class="lazy img-close-ct" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
                                 </div>
                             </div>
 
@@ -2635,7 +2635,7 @@
                                                     <span>Nhà phát hành</span>
                                                 </div>
                                                 <div class="col-auto left-right background-order-col-right-ct">
-                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/zing.png" alt="">
+                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/zing.png" alt="">
                                                 </div>
                                             </div>
 
@@ -2724,7 +2724,7 @@
                                         <div class="col-auto text-left body-title-detail-col-center-ng-ct">
                                             <div class="row marginauto password-mobile capcha-image-bg">
                                                 <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
+                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/capcha.png" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -2732,7 +2732,7 @@
                                         <div class="col-auto text-left body-title-detail-col-right-ng-ct">
                                             <div class="row marginauto password-mobile capcha-image-bg">
                                                 <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
+                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/rf-capcha.png" alt="">
                                                 </div>
                                             </div>
                                         </div>
@@ -2788,7 +2788,7 @@
                             <div class="row marginauto modal-header-order-ct">
                                 <div class="col-12 span__donhang text-center" style="position: relative">
                                     <span>Mua tài khoản thành công</span>
-                                    <img class="lazy img-close-ct" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                    <img class="lazy img-close-ct" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
                                 </div>
                             </div>
 
@@ -2800,7 +2800,7 @@
                                 <div class="col-md-12 left-right image-success">
                                     <div class="row marginauto justify-content-center">
                                         <div class="col-auto">
-                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
+                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -2814,7 +2814,7 @@
                                                 </div>
                                                 <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">
                                                     <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">
-                                                    <img class="lazy " src="/assets/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopyemail">
+                                                    <img class="lazy " src="/assets/{{env('THEME_VERSION')}}/image/nick/copy.png" alt="" id="getCopyemail">
                                                 </div>
                                                 <div class="row marginauto title-tra-gop-success-row">
                                                     <div class="col-md-12 left-right body-title-detail-span-ct">
@@ -2822,9 +2822,9 @@
                                                     </div>
                                                     <div class="col-md-12 left-right body-title-detail-select-ct taikhoan-success-nick">
                                                         <input id="password" readonly autocomplete="off" class="input-defautf-ct" type="password" value="123456" placeholder="******">
-                                                        <img class="lazy img-copy" src="/assets/{{theme('')->theme_key}}/image/nick/copy.png" alt="" id="getCopypass">
+                                                        <img class="lazy img-copy" src="/assets/{{env('THEME_VERSION')}}/image/nick/copy.png" alt="" id="getCopypass">
                                                         <div class="getCopypass">
-                                                            <img class="lazy img-show-password" src="/assets/{{theme('')->theme_key}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
+                                                            <img class="lazy img-show-password" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/eyehide.png" alt="" id="getShowpass">
                                                         </div>
 
 
@@ -2921,7 +2921,7 @@
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right" style="width: 10%">
-                            <img class="lazy previous-step-one" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            <img class="lazy previous-step-one" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -2972,7 +2972,7 @@
                                         <span>Game</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/mobilegame.png" alt="">
+                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
                                     </div>
                                 </div>
 
@@ -3078,7 +3078,7 @@
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
                         <div class="col-auto left-right" style="width: 10%">
-                            <img class="lazy previous-step-one-tra-gop" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            <img class="lazy previous-step-one-tra-gop" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
@@ -3114,7 +3114,7 @@
                                         <span>Nhà phát hành</span>
                                     </div>
                                     <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/zing.png" alt="">
+                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/zing.png" alt="">
                                     </div>
                                 </div>
 
@@ -3199,7 +3199,7 @@
                             <div class="col-auto text-left body-title-detail-col-center-ng-ct">
                                 <div class="row marginauto password-mobile capcha-image-bg">
                                     <div class="col-md-12 left-right body-title-detail-select-ct">
-                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/capcha.png" alt="">
+                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/capcha.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -3207,7 +3207,7 @@
                             <div class="col-auto text-left body-title-detail-col-right-ng-ct">
                                 <div class="row marginauto password-mobile capcha-image-bg">
                                     <div class="col-md-12 left-right body-title-detail-select-ct">
-                                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/rf-capcha.png" alt="">
+                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/rf-capcha.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -3223,7 +3223,7 @@
                                         <span>Quy định trả góp</span>
                                     </div>
                                     <div class="col-auto left-right data-scroll-mobile">
-                                        <div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/up.png" alt=""></div></div>
+                                        <div class="row marginauto up-scroll-mobile"><div class="col-auto left-right"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/up.png" alt=""></div></div>
                                     </div>
                                 </div>
                                 <div class="row marginauto tragop-order-body-row-ct">
@@ -3259,7 +3259,7 @@
 
     </form>
 
-    <script src="/assets/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>
+    <script src="/assets/{{env('THEME_VERSION')}}/js/nick/nick-detail.js?v={{time()}}"></script>
 @endsection
 
 

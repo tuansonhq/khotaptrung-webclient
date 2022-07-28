@@ -1,121 +1,212 @@
 @extends('frontend.layouts.master')
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
-@endsection
+
 @section('content')
+    <div class="container c-container" id="account-category">
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="/" class="breadcrumb-link">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/dich-vu" class="breadcrumb-link">Dịch vụ</a>
+            </li>
+        </ul>
 
-    {{--  Header mobile  --}}
-    <section class="media-mobile">
-        <div class="container container-fix banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
-                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                </div>
+        {{--            Slider baner    --}}
+        @include('frontend.widget.__slider__banner')
+        {{--            Top hôm nay    --}}
+        @include('frontend.pages.service.widget.__top__today')
 
-                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Dịch vụ</h3>
-                </div>
-                <div class="col-auto left-right" style="width: 10%">
-                </div>
+        <section class="listing-service c-mb-16">
+            <div class="section-header justify-content-between c-pb-20 c-pb-lg-16">
+                <h2 class="section-title fw-700 fz-20 lh-28 ">Danh sách dịch vụ</h2>
+                <form action="" class="form-search">
+                    <input type="search" placeholder="Chọn dịch vụ" class="has-submit media-web">
+                    <input type="search" placeholder="Chọn dịch vụ" class="search media-mobile">
+                    <button class="media-web" type="submit"></button>
+                </form>
             </div>
-        </div>
-    </section>
-    {{--    Banner--}}
-    <section class="media-web">
-        <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-        </div>
-    </section>
-    {{--  Menu  --}}
-    <section class="media-web">
-        <div class="container container-fix menu-container-ct">
-            <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/dich-vu">Cày thuê</a></li>
-            </ul>
-        </div>
-    </section>
+            <hr>
+            <div class="text-title fw-700 c-py-16 c-py-lg-8 c-mb-lg-8">
+                Chọn dịch vụ
+            </div>
 
-    {{--   Bopđyy --}}
-    <section>
-        <div class="container container-fix body-container-ct">
-            <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                <div class="col-md-12 left-right">
-                    <div class="row marginauto body-row-ct">
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-header-ct">
-                                <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
-                                </div>
-                                <div class="col-md-10 col-8 body-header-col-ct">
-                                    <h3>Dịch vụ</h3>
+            <div class="list-service">
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-12 left-right media-mobile">
-                            <div class="row marginauto banner-container-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-title-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Chọn dịch vụ game</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-search-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Tìm kiếm</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-auto left-right">
-                                        <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                    </div>
-                                    <div class="col-4 body-form-search-button-ct">
-                                        <button type="button" class="timkiem-button-ct">Tìm kiếm</button>
-                                    </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
-                            </form>
-
-                        </div>
-
-                        <div class="col-md-12 left-right media-mobile">
-                            <form action="" method="POST">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-12 left-right">
-                                        <input type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                    </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
                                 </div>
-                            </form>
-                        </div>
-
-                        @include('frontend.pages.service.widget.__data__list')
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item-service">
+                    <div class="card">
+                        <a href="/dich-vu/slug" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame19996s8.png" alt="" class="account-thumb-image">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">Liên quân Mobile</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    Giao dịch: 45.000
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-        @include('frontend.pages.service.widget.__category__content')
+        {{--            Dịch vụ khác   --}}
+        @include('frontend.widget.__services__other')
+    </div>
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue.js?v={{time()}}"></script>
 @endsection
-
-
 
