@@ -5,7 +5,7 @@
         <div class="container">
 
             @include('frontend.widget.__slider__banner')
-            <div class="main-content">
+            <div class="main-content" style="margin-top: 24px">
                 <div class="d-flex justify-content-between">
                     <div class="main-title">
                         <h1>Dịch vụ game</h1>

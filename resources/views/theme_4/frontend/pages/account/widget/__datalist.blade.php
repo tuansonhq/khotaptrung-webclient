@@ -14,7 +14,7 @@
                                     <img class="entries_item-img lazy item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" class="entries_item-img">
                                 @endif
 
-                                <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px">#{{ $item->randId }}</h2>
+                                <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
 
                                 <?php
                                 $total = 0;
@@ -264,7 +264,7 @@
                             <a href="/acc/{{ $item->randId }}">
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                      alt="{{ $item->title }}" class="entries_item-img">
-                                <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px">#{{ $item->randId }}</h2>
+                                <h2 class="text-title text-left  fw-bold" style="color: #434657;margin-bottom: 8px;font-weight: 700">#{{ $item->randId }}</h2>
                                 <?php
                                 $total = 0;
                                 ?>
