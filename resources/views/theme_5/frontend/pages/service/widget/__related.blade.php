@@ -1,42 +1,109 @@
-<section class="bottom-container-ct-fix">
-    <div class="container container-fix body-container-ct">
-        <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-            <div class="col-md-12 left-right">
-                <div class="row marginauto body-row-ct media-ctbg-ct">
-                    <div class="col-md-12 left-right napgamekhac">
-                        <div class="row marginauto">
-                            <div class="col-md-12 text-left left-right">
-                                <span>Các dịch vụ cày thuê game khác</span>
+<section class="section-related-service related-service">
+    <div class="section-header c-mb-16 c-mb-lg-8 justify-content-between">
+        <h2 class="section-title fz-15 fz-lg-20 lh-lg-24">
+            Dịch vụ liên quan
+        </h2>
+        <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
+    </div>
+    <div class="swiper swiper-related-service">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/id">
+                            <div class="card-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame1996s8.png" alt="" class="card-thumb-image">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto body-detail-ct">
-                            <div class="swiper-container list-nap-game col-md-12 text-left left-right">
-                                <div class="swiper-wrapper">
-                                    @forelse($datacate as $k_cat => $service)
-                                        <div class="swiper-slide body-detail-ctng-col-ct">
-                                            <a href="/dich-vu/{{$service->slug}}">
-                                                <div class="row marginauto hover-overlay-ct">
-                                                    <div class="col-md-12 left-right default-overlay-ct service--thumbnail">
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($service->image)}}" alt="" style="position: relative">
-                                                    </div>
-                                                    <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                        <span>{{ $service->title }}</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @empty
-                                    @endforelse
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    PUBG Mobile
+                                </div>
+                                <div class="info-attr">
+                                    Đã bán: 45.000
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
-
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/id">
+                            <div class="card-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame1996s8.png" alt="" class="card-thumb-image">
+                            </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    PUBG Mobile
+                                </div>
+                                <div class="info-attr">
+                                    Đã bán: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/id">
+                            <div class="card-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame1996s8.png" alt="" class="card-thumb-image">
+                            </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    PUBG Mobile
+                                </div>
+                                <div class="info-attr">
+                                    Đã bán: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/id">
+                            <div class="card-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame1996s8.png" alt="" class="card-thumb-image">
+                            </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    PUBG Mobile
+                                </div>
+                                <div class="info-attr">
+                                    Đã bán: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/id">
+                            <div class="card-thumb c-mb-8">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame1996s8.png" alt="" class="card-thumb-image">
+                            </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    PUBG Mobile
+                                </div>
+                                <div class="info-attr">
+                                    Đã bán: 45.000
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="navigation slider-next"></div>
+        <div class="navigation slider-prev"></div>
     </div>
 </section>
