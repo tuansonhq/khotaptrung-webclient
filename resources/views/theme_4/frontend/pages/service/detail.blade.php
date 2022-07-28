@@ -456,131 +456,7 @@
     </div><!-- /.container -->
 </section>
 
-<style type="text/css">
 
-    @media        only screen and (max-width: 580px) {
-        .hidetext {
-            max-height: 220px;
-            overflow: hidden;
-        }
-        .intro-text iframe{
-            width: 100%;
-            height: 220px;
-        }
-        .intro-text img {
-            height: auto !important;
-        }
-    }
-    @media        only screen and (min-width: 580px) {
-        .hidetext {
-            max-height: 220px;
-            overflow: hidden;
-        }
-        .intro-text iframe{
-            width: 100%;
-            height: 641px;
-        }
-    }
-    .showtext {
-        max-height:initial;
-    }
-    .viewless,.viewmore{
-        cursor: pointer;
-        color: #f1c40f;
-        padding-top: 10px;
-        font-size: 18px;
-    }
-
-    .intro-text img {
-        max-width: 90%;
-    }
-</style>
-
-<script>
-
-
-
-    $(document).ready(function () {
-
-        $('body').on('click','#btnPurchase',function(){
-            let is_ok = true;
-            let html = '';
-
-            let required = $('input[required]');
-            if (required.length){
-                required.each(function () {
-                    $(this).toggleClass('invalid',!$(this).val().trim());
-                    if (!$(this).val().trim()){
-                        is_ok = false;
-                        let text = $(this).parent().prev().text().trim().toLowerCase();
-                        html = `<div class="row marginauto order-errors" style="padding-top:8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vong lòng nhập thông tin.</small></div></div>`
-                        $(this).next().html(html)
-                    }else {
-                        $(this).next().text('')
-                    }
-                });
-            }
-
-            if ($('.allgame[type=checkbox]').length){
-                if (checkboxRequired('input.allgame[type=checkbox]')){
-                    html = `<div class="row marginauto order-errors" style="padding-bottom: 8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
-                    is_ok = false;
-                    $('#error-mes-checkbox').html(html)
-                }else {
-                    $('#error-mes-checkbox').html('');
-                }
-            }
-            let html2 = '';
-            let confirm_rules = $('.confirm-rules');
-
-            // nếu không có nút confirm nào checked
-            if (confirm_rules.length){
-                if (!confirm_rules.is(':checked')){
-                    console.log("đúng")
-                    html2 = `<div class="row marginauto order-errors" style="width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vui lòng xác nhận thông tin trên</small></div></div>`;
-                    is_ok = false;
-                    $('.error-message-checkbox').html(html2)
-                }else {
-                    $('.error-message-checkbox').html('')
-                }
-            }
-
-            if (is_ok){
-                $('#homealert').modal('show');
-            }
-
-        });
-
-        function checkboxRequired(selector) {
-            let checkboxs = $(`${selector}:checked`);
-            return !checkboxs.length;
-        }
-    });
-
-
-    function Confirm(index, serverid) {
-        $('[name="server"]').val(serverid);
-        $('[name="selected"]').val(index);
-        $('#btnPurchase').click();
-    }
-
-    var data = jQuery.parseJSON('{"input_auto":"1","idkey":"lienminh","image_oldest":"1","seo_description":"Hệ thống bán RP Liên Minh Huyền Thoại giá rẻ, uy tín, chiết khấu cao.  Đảm bảo RP sạch 100%. Nhận RP sau 30s thanh toán. Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Mỗi ngày chúng tôi thực hiện đến 50.000 giao dịch mua RP LOL thành công","server_mode":"0","server_price":"0","server_id":["0"],"server_data":[null],"server_data_minValue":[null],"server_data_maxValue":[null],"filter_name":"RP LMHT","filter_type":"4","input_pack_min":null,"input_pack_max":null,"input_pack_rate":null,"id":["7","7","7","7","7","7",null],"name":["Gói 1 : 16 RP","Gói 2 : 32 RP","Gói 3 : 80 RP","Gói 4 : 168 RP","Gói 5 : 340 RP","Gói 6: 856 RP",null],"price":["7700","15400","38500","77000","154000","385000",null],"discount":["1","0","0","0","0","0",null],"total":["NaN",null,null,null,null,"NaN",null],"day":["0","0","0","0","0","0",null],"punish_price":["0","0","0","0","0","0",null],"praise_day":["0","10","0","20","0","50",null],"praise_price":["10","20","50","100","200","500",null],"send_name":["Tài khoản Garena","Mật khẩu Garena"],"send_type":["1","5"],"send_id0":[null],"send_data0":[null],"send_id1":[null],"send_data1":[null],"input_send_desc":"Khi mua ngọc tại web các bạn lưu ý để trong nick 1 ngọc và đứng tại siêu thị để nhận ngọc nhanh nhé","captcha":null}');
-
-
-
-    var purchase_name = 'VNĐ';
-
-    var server = -1;
-
-    $(".server-filter").change(function (elm, select) {
-        server = parseInt($(".server-filter").val());
-        $('[name="server"]').val(server);
-        UpdatePrice();
-    });
-    server = parseInt($(".server-filter").val());
-    $('[name="server"]').val(server);
-
-</script>
 
 <script id="history-template" type="text/x-handlebars-template">
         <tr>
@@ -747,6 +623,133 @@
 
     })();
     //# sourceURL=pen.js
+</script>
+
+
+<style type="text/css">
+
+    @media        only screen and (max-width: 580px) {
+        .hidetext {
+            max-height: 220px;
+            overflow: hidden;
+        }
+        .intro-text iframe{
+            width: 100%;
+            height: 220px;
+        }
+        .intro-text img {
+            height: auto !important;
+        }
+    }
+    @media        only screen and (min-width: 580px) {
+        .hidetext {
+            max-height: 220px;
+            overflow: hidden;
+        }
+        .intro-text iframe{
+            width: 100%;
+            height: 641px;
+        }
+    }
+    .showtext {
+        max-height:initial;
+    }
+    .viewless,.viewmore{
+        cursor: pointer;
+        color: #f1c40f;
+        padding-top: 10px;
+        font-size: 18px;
+    }
+
+    .intro-text img {
+        max-width: 90%;
+    }
+</style>
+
+<script>
+
+
+
+    $(document).ready(function () {
+
+        $('body').on('click','#btnPurchase',function(){
+            let is_ok = true;
+            let html = '';
+
+            let required = $('input[required]');
+            if (required.length){
+                required.each(function () {
+                    $(this).toggleClass('invalid',!$(this).val().trim());
+                    if (!$(this).val().trim()){
+                        is_ok = false;
+                        let text = $(this).parent().prev().text().trim().toLowerCase();
+                        html = `<div class="row marginauto order-errors" style="padding-top:8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vong lòng nhập thông tin.</small></div></div>`
+                        $(this).next().html(html)
+                    }else {
+                        $(this).next().text('')
+                    }
+                });
+            }
+
+            if ($('.allgame[type=checkbox]').length){
+                if (checkboxRequired('input.allgame[type=checkbox]')){
+                    html = `<div class="row marginauto order-errors" style="padding-bottom: 8px;width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
+                    is_ok = false;
+                    $('#error-mes-checkbox').html(html)
+                }else {
+                    $('#error-mes-checkbox').html('');
+                }
+            }
+            let html2 = '';
+            let confirm_rules = $('.confirm-rules');
+
+            // nếu không có nút confirm nào checked
+            if (confirm_rules.length){
+                if (!confirm_rules.is(':checked')){
+                    console.log("đúng")
+                    html2 = `<div class="row marginauto order-errors" style="width: 100%;margin: 0 auto"><div class="col-md-12 left-right default-span"><small style="color: rgb(238, 70, 35)">Vui lòng xác nhận thông tin trên</small></div></div>`;
+                    is_ok = false;
+                    $('.error-message-checkbox').html(html2)
+                }else {
+                    $('.error-message-checkbox').html('')
+                }
+            }
+
+            if (is_ok){
+                $('#homealert').modal('show');
+            }
+
+        });
+
+        function checkboxRequired(selector) {
+            let checkboxs = $(`${selector}:checked`);
+            return !checkboxs.length;
+        }
+    });
+
+
+    function Confirm(index, serverid) {
+        $('[name="server"]').val(serverid);
+        $('[name="selected"]').val(index);
+        $('#btnPurchase').click();
+    }
+
+    var data = jQuery.parseJSON('{"input_auto":"1","idkey":"lienminh","image_oldest":"1","seo_description":"Hệ thống bán RP Liên Minh Huyền Thoại giá rẻ, uy tín, chiết khấu cao.  Đảm bảo RP sạch 100%. Nhận RP sau 30s thanh toán. Mọi giao dịch đều có ảnh hóa đơn của GARENA gửi cho quý khách. Mỗi ngày chúng tôi thực hiện đến 50.000 giao dịch mua RP LOL thành công","server_mode":"0","server_price":"0","server_id":["0"],"server_data":[null],"server_data_minValue":[null],"server_data_maxValue":[null],"filter_name":"RP LMHT","filter_type":"4","input_pack_min":null,"input_pack_max":null,"input_pack_rate":null,"id":["7","7","7","7","7","7",null],"name":["Gói 1 : 16 RP","Gói 2 : 32 RP","Gói 3 : 80 RP","Gói 4 : 168 RP","Gói 5 : 340 RP","Gói 6: 856 RP",null],"price":["7700","15400","38500","77000","154000","385000",null],"discount":["1","0","0","0","0","0",null],"total":["NaN",null,null,null,null,"NaN",null],"day":["0","0","0","0","0","0",null],"punish_price":["0","0","0","0","0","0",null],"praise_day":["0","10","0","20","0","50",null],"praise_price":["10","20","50","100","200","500",null],"send_name":["Tài khoản Garena","Mật khẩu Garena"],"send_type":["1","5"],"send_id0":[null],"send_data0":[null],"send_id1":[null],"send_data1":[null],"input_send_desc":"Khi mua ngọc tại web các bạn lưu ý để trong nick 1 ngọc và đứng tại siêu thị để nhận ngọc nhanh nhé","captcha":null}');
+
+
+
+    var purchase_name = 'VNĐ';
+
+    var server = -1;
+
+    $(".server-filter").change(function (elm, select) {
+        server = parseInt($(".server-filter").val());
+        $('[name="server"]').val(server);
+        UpdatePrice();
+    });
+    server = parseInt($(".server-filter").val());
+    $('[name="server"]').val(server);
+
 </script>
 
 <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
