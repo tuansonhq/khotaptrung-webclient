@@ -629,7 +629,35 @@ class MinigameController extends Controller
     }
 
     public function getCategory(Request $request){
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data??null;
 
-        return view('frontend.pages.minigame.category');
+
+        if(isset($response_data) && $response_data->status == 1){
+
+            $data = $response_data->data;
+
+
+            Session::get('auth_custom');
+
+            return view('frontend.pages.minigame.category')
+                ->with('data',$data);
+        }
+        else{
+
+            $data = null;
+            $message = $response_data->message??"Không thể lấy dữ liệu";
+
+            Session::get('auth_custom');
+
+            return view('frontend.pages.minigame.category')
+                ->with('message',$message)
+                ->with('data',$data);
+        }
+
+
     }
 }

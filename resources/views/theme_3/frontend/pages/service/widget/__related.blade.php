@@ -7,13 +7,13 @@
                     <div class="col-md-12 left-right napgamekhac">
                         <div class="row marginauto">
                             <div class="col-md-12 text-left left-right">
-                                <span>Các dịch vụ cày thuê game khác</span>
+                                <span>Các dịch vụ khác</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-12 left-right">
-                        <div class="row marginauto body-detail-ct">
+                        <div class="row marginauto body-detail-ct box-product swiper-nap-game ">
                             <div class="swiper-container list-nap-game col-md-12 text-left left-right">
                                 <div class="swiper-wrapper">
                                     @forelse($datacate as $k_cat => $service)
@@ -32,6 +32,12 @@
                                     @empty
                                     @endforelse
                                 </div>
+                            </div>
+                            <div class="swiper-button-prev">
+                                <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                            </div>
+                            <div class="swiper-button-next">
+                                <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
                             </div>
                         </div>
                     </div>

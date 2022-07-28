@@ -6,6 +6,10 @@ $(document).ready(function (e) {
 
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
+        navigation: {
+            nextEl: '.swiper-nap-game .swiper-button-next',
+            prevEl: '.swiper-nap-game .swiper-button-prev',
+        },
         // preloadImages: false,
         updateOnImagesReady: true,
         // lazyLoading: false,
@@ -16,17 +20,26 @@ $(document).ready(function (e) {
         loop: false,
         centeredSlides: false,
         slidesPerView: 4,
+        slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
         touchMove: true,
+        freeMode:true,
         freeModeSticky:true,
         grabCursor: true,
         observer: true,
         observeParents: true,
         breakpoints: {
-            1199: {
-                slidesPerView: 2.5,
+            992: {
+                slidesPerView: 4,
             },
+            768:{
+                slidesPerView: 4,
+            },
+            480: {
+                slidesPerView: 3.5,
+
+            }
         }
     });
 
@@ -251,12 +264,15 @@ $(document).ready(function (e) {
             }
         }
         let confirm_rules = $('.confirm-rules');
-        // nếu không có nút confirm nào checked
-        if (!confirm_rules.length){
-            if (confirm_rules.is(':checked')){
+        /*nếu có nút confirm thì kiểm tra xem được check chưa*/
+        if (confirm_rules.length){
+            if (!confirm_rules.is(':checked')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
                 is_ok = 0;
-                $('.confirm-rules').parent().next().html(html)
+                confirm_rules.parent().next().html(html)
+            }
+            else {
+                confirm_rules.parent().next().html('')
             }
         }
         if (is_ok){

@@ -1,81 +1,79 @@
 @extends('frontend.layouts.master')
-@section('styles')
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
-@endsection
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
-@endsection
-@section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
-@endsection
-@section('meta_robots')
-    <meta name="robots" content="index,follow" />
-@endsection
 @section('content')
-    @if($data == null)
-        <div class="item_buy">
+<section>
+    <div class="container">
 
-            <div class="container pt-3">
-                <div class="row pb-3 pt-3">
-                    <div class="col-md-12 text-center">
+        @if($data == null)
+            <div class="item_buy">
+                <div class="container pt-3">
+                    <div class="row pb-3 pt-3">
+                        <div class="col-md-12 text-center">
                             <span style="color: red;font-size: 16px;">
                                 @if(isset($message))
                                     {{ $message }}
                                 @else
-                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                                    Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
                                 @endif
                             </span>
+                        </div>
                     </div>
                 </div>
-
             </div>
+        @else
+            @if(isset($data->params) && isset($data->params->article_type))
+                {!! $data->params->article_type !!}
+            @endif
+        <nav aria-label="breadcrumb" style="margin-top: 10px;">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
 
-        </div>
-    @else
+                <li class="breadcrumb-item" aria-current="page"><a href="/tin-tuc" title="tin-tuc">Tin tức</a></li>
+                <li class="breadcrumb-item active">{{ $data->title }}</li>
+            </ol>
+        </nav>
 
-        @if(isset($data->params) && isset($data->params->article_type))
-            {!! $data->params->article_type !!}
-        @endif
-    <div class="container-fix container">
-        {{--breadcrum--}}
-        <ul class="breadcrum--list">
-            <li class="breadcrum--item">
-                <a href="/" class="breadcrum--link">Trang chủ</a>
-            </li>
-            <li class="breadcrum--item">
-                <a href="/tin-tuc" class="breadcrum--link">Tin tức</a>
-            </li>
-            <li class="breadcrum--item">
-                <a href="javascript:void(0)" class="breadcrum--link">{{$data -> title}}</a>
-            </li>
-        </ul>
-        {{--content--}}
-        <div class="card--mobile__title">
-            <a href="" class="card--back">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
-            </a>
-            <h4>Chi tiết tin tức</h4>
-        </div>
-        <div class="card --custom p-3 mb-3">
-            <article id="article--detail">
-                <h3 class="article--title">
-                    {{$data -> title}}
-                </h3>
-                <div class="article--info">
-                    {{ formatDateTime($data->created_at) }}
-                </div>
-                <div class="article--thumbnail py-4">
-                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
-                </div>
-                <div class="article--content pb-3">
-                    <div class="article--content__text pb-2">
+        <div class="c-content-box c-size-md">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="article-title title_custom"> {{ $data->title }}</h1>
+                    <div class="article_cat_date">
+                        <div style="display: inline-block;margin-right: 15px"><i class="far fa-clock" aria-hidden="true"></i> {{ formatDateTime($data->created_at) }}</div>
+                        @if(isset($data->groups[0]))
+                        <div style="display: inline-block"><i class="far fa-newspaper"
+                                                              aria-hidden="true"></i> <a
+                                href="/tin-tuc/{{ $data->groups[0]->slug }}"
+                                title="{{ $data->groups[0]->title }}">{{ $data->groups[0]->title }}</a>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="article-content">
                         {!! $data->content !!}
                     </div>
                 </div>
-            </article>
+
+                @include('frontend.widget.__menu__category__article')
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @include('frontend.widget.__dichvu__lienquan')
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    @include('frontend.widget.__tai__khoan__lien__quan')
+                </div>
+            </div>
         </div>
-{{--        Cùng chủ đề--}}
-      @include('frontend.widget.__bai__viet__lien__quan')
-    </div>
-    @endif
+        <!-- END: BLOG LISTING  -->
+
+        <!-- END: PAGE CONTENT -->
+        @endif
+
+
+
+    </div><!-- /.container -->
+</section>
 @endsection

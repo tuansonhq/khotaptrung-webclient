@@ -1,74 +1,121 @@
 @if(empty($data->data))
 
-    <div class="col-md-12 left-right">
-        <table class="table table-striped table-hover table-logs" id="table-default">
-            <thead><tr><th>Thời gian</th><th>ID</th><th>Mã GD SMS</th><th>Dịch vụ</th><th class="text-right">Trị giá</th><th>Trạng thái</th><th class="text-center">Thao tác</th></tr></thead>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-custom-res">
+            <thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>
             <tbody>
-            {{--@php
+            @php
                 $prev = null;
-            @endphp--}}
+            @endphp
             @if(isset($data) && count($data) > 0)
+                {{--                @dd($data)--}}
                 @foreach ($data as $item)
-                    <tr>
-                        <td>{{ date('d/m/Y',strtotime($item->created_at)) }}<br>{{ date('H:i:s',strtotime($item->created_at)) }}</td>
-                        <td>
-                            @if(isset($item->id))
-                                #{{ $item->id }}
-                            @endif
-                        </td>
-                        <td>
-                            @if(isset($item->tranid))
-                                {{$item->tranid}}
-                            @endif
-                        </td>
-                        <td>
-                            @if(isset($item->itemconfig_ref))
-                                {{ $item->itemconfig_ref->title }}
-                            @endif
-                        </td>
-                        {{--                        <td>--}}
-                        {{--                            Liên Quân--}}
-                        {{--                        </td>--}}
-                        <td class="text-right text-nowrap">
-                            {{ str_replace(',','.',number_format($item->price)) }} đ
-                        </td>
-                        <td>
-                            @if($item->status == 1)
-                                <span class="badge badge-warning">Đang chờ xử lý</span>
-                            @elseif($item->status == 2)
-                                <span class="badge badge-warning">Đang thực hiện</span>
-                            @elseif($item->status == 3)
-                                <span class="badge badge-danger">Từ chối</span>
-                            @elseif($item->status == 4)
-                                <span class="badge badge-success">Hoàn tất</span>
-                            @elseif($item->status == 5)
-                                <span class="badge badge-dark">Thất bại</span>
-                            @elseif($item->status == 0)
-                                <span class="badge badge-danger">Đã hủy</span>
-                            @endif
-                        </td>
-                        <td>
-                            <div class="d-flex">
-                                <a href="/dich-vu-da-mua-{{$item->id}}" class="btn -secondary action-table openHoanTien m-auto">Chi tiết</a>
-                                <a href="/inbox/send/{{$item->id}}" class="btn -secondary action-table ml-2  openTTTraGop">Nhắn tin</a>
-                            </div>
-                        </td>
-                    </tr>
+
+                    @php
+                        $curr = \App\Library\Helpers::formatDate($item->created_at);
+                    @endphp
+                    @if($curr != $prev)
+                        <tr>
+                            <td colspan="8"><b>Ngày {{$curr}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>
+                                @if(isset($item->id))
+                                    #{{ $item->id }}
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($item->tranid))
+                                    {{$item->tranid}}
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
+                                @endif
+                            </td>
+                            {{--                        <td>{{ $item->title }}</td>--}}
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
+                            <td>
+                                @if($item->status == 1)
+                                    <span class="badge badge-warning">Đang chờ xử lý</span>
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">Đang thực hiện</span>
+                                @elseif($item->status == 3)
+                                    <span class="badge badge-danger">Từ chối</span>
+                                @elseif($item->status == 4)
+                                    <span class="badge badge-success">Hoàn tất</span>
+                                @elseif($item->status == 5)
+                                    <span class="badge badge-dark">Thất bại</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-danger">Đã hủy</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/dich-vu-da-mua-{{$item->id}}" class="badge badge-info show_chitiet">Chi tiết</a>
+                            </td>
+                        </tr>
+                        @php
+                            $prev = $curr;
+                        @endphp
+                    @else
+                        <tr>
+                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>
+                                @if(isset($item->id))
+                                    #{{ $item->id }}
+                                @endif
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
+                                @endif
+                            </td>
+                            {{--                        <td>{{ $item->title }}</td>--}}
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
+                            <td>
+                                @if($item->status == 1)
+                                    <span class="badge badge-warning">Đang chờ xử lý</span>
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">Đang thực hiện</span>
+                                @elseif($item->status == 3)
+                                    <span class="badge badge-danger">Từ chối</span>
+                                @elseif($item->status == 4)
+                                    <span class="badge badge-success">Hoàn tất</span>
+                                @elseif($item->status == 5)
+                                    <span class="badge badge-dark">Thất bại</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-danger">Đã hủy</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/dich-vu-da-mua-{{$item->id}}" class="badge badge-info show_chitiet">Chi tiết</a>
+                            </td>
+                        </tr>
+                    @endif
+
                 @endforeach
+            @else
+
             @endif
+
             </tbody>
         </table>
     </div>
 
-
-    <div class="col-md-12 left-right justify-content-end default-paginate-addpadding default-paginate">
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
 
         @if(isset($data))
             @if($data->total()>1)
-                <div class="row marinautooo justify-content-center">
-                    <div class="col-auto">
-                        <div class="data_paginate paginate__v1 paging_bootstrap paginations_custom" style="text-align: center">
-                            {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                    <div class="col-auto paginate__category__col">
+                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>

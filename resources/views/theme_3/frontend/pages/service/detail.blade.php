@@ -28,13 +28,12 @@
             <section class="media-mobile">
                 <div class="container container-fix banner-mobile-container-ct">
                     <div class="row marginauto banner-mobile-row-ct">
-                        <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png"
-                                 alt="">
+                        <div class="col-auto left-right" style="width: 10%">
+                            <a href="/dich-vu"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt=""></a>
                         </div>
 
                         <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h1>Cày Thuê</h1>
+                            <p>Dịch vụ</p>
                         </div>
                         <div class="col-auto left-right" style="width: 10%">
                         </div>
@@ -77,7 +76,7 @@
                                                              alt="">
                                                     </div>
                                                     <div class="col-md-10 col-10 body-header-col-ct">
-                                                        <h3>{{ @$data->title }}</h3>
+                                                        <h1>{{ @$data->title }}</h1>
                                                     </div>
                                                 </div>
                                             </div>
@@ -443,8 +442,8 @@
                                                 <div class="row marginauto">
                                                     <div class="col-md-12 text-left left-right">
                                                         @if(App\Library\AuthCustom::check())
-                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thuê ngay</button>
-                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thuê ngay</button>
+                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thanh toán</button>
+                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thanh toán</button>
                                                             <div class="button-next-step-one d-none"></div>
                                                         @else
                                                             <button class="button-default-ct media-web open-modal" type="button" onclick="openLoginModal();">Thuê ngay</button>

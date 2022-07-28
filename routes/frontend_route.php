@@ -286,6 +286,22 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ]);
                 });
 
+                Route::get('/updategit', function ()
+                {
+
+                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+
+                    $output = shell_exec($command);
+
+                    \Artisan::call('cache:clear');
+
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!',
+                        'message-git' => $output,
+                    ]);
+                });
+
             });
 
             //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);

@@ -4,12 +4,12 @@
             <div class="modal-header rotation-modal-header">
                 <h5 class="modal-title">Thể lệ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/close.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/close.png" alt="">
                 </button>
             </div>
             <div class="modal-body rotation-rule-body">
                 <div class="rotation-rule-img">
-                    <img src="/assets/{{env('THEME_VERSION')}}/image/images_1/rotation-rule.png" alt="">
+                    <img src="/assets/{{theme('')->theme_key}}/image/images_1/rotation-rule.png" alt="">
                 </div>
                 <div class="rotation-rule-text">
                     Chỉ với 10.000 đ trong tài khoản bạn đã có ngay 1 lượt chơi <span style="color: #F67600;">Vòng Quay Giải Nhiệt Hè</span>, sẽ càng rẻ hơn nếu bạn chơi nhiều lượt cùng lúc

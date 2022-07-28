@@ -7,9 +7,9 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Biến động số dư</a></li>
             </ul>
         </div>
@@ -21,7 +21,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="" class="previous-step-one" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -59,7 +59,7 @@
                                         <div class="row marginauto body-form-search-ct">
                                             <div class="col-auto left-right">
                                                 <input autocomplete="off" type="text" name="search" class="input-search-log-ct" placeholder="Nhập từ khóa">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
+                                                <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                             </div>
                                             <div class="col-4 body-form-search-button-ct media-web">
                                                 <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
@@ -75,7 +75,7 @@
                                             <ul>
                                                 <li class="li-boloc">Bộ lọc</li>
                                                 <li class="margin-findter" style="position: relative">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/filter.png" alt="">
+                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                                     <span class="overlay-find" style="position: absolute;right: -4px;top: -4px;">
                                                         0
                                                     </span>
@@ -353,7 +353,7 @@
 
 {{--                                            <li class="page-item disabled">--}}
 {{--                                                        <span class="page-link">--}}
-{{--                                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/back.png" alt="">--}}
+{{--                                                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/back.png" alt="">--}}
 {{--                                                        </span>--}}
 {{--                                            </li>--}}
 
@@ -368,7 +368,7 @@
 
 {{--                                            <li class="page-item">--}}
 {{--                                                <a class="page-link" href="https://webnick.vn/mua-acc/nick-lien-quan?page=2" rel="next">--}}
-{{--                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/nick/forward.png" alt="">--}}
+{{--                                                    <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/nick/forward.png" alt="">--}}
 {{--                                                </a>--}}
 {{--                                            </li>--}}
 {{--                                        </ul>--}}
@@ -393,7 +393,7 @@
                     <div class="row marginauto modal-header-nick-ct">
                         <div class="col-12 left-right text-center" style="position: relative">
                             <span>Bộ lọc</span>
-                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
+                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
 
@@ -495,7 +495,7 @@
 
     </div>
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/txns/txns.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/txns/txns.js"></script>
 @endsection
 
 

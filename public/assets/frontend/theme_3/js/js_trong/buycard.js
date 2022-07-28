@@ -79,7 +79,7 @@ $(document).ready(function () {
                             html_card += `                  ${card.pin}`;
                             html_card += `               </div>`;
                             html_card += `               <div class="icon--coppy js-copy-text">`;
-                            html_card += `                    <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                            html_card += `                    <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                             html_card += `                </div>`;
                             html_card += `            </div>`;
                             html_card += `        </div>`;
@@ -92,7 +92,7 @@ $(document).ready(function () {
                             html_card += `                      ${card.serial}`;
                             html_card += `                   </div>`;
                             html_card += `                   <div class="icon--coppy js-copy-text">`;
-                            html_card += `                      <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                            html_card += `                      <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                             html_card += `                   </div>`;
                             html_card += `               </div>`;
                             html_card += `         </div>`;
@@ -202,7 +202,7 @@ $(document).ready(function () {
                             html_card_mobile += `</div>`;
                             html_card_mobile += `</div>`;
                             html_card_mobile += `</div>`;
-                            
+
                             $('#mobile--success__payment .card--list').append(html_card_mobile);
                         });
                     }
@@ -218,7 +218,7 @@ $(document).ready(function () {
             error: function (res) {
                 $('#message--error--buy').text('');
                 $('#modal--fail__payment').modal('show');
-            }, 
+            },
             complete: function () {
                 $('#confirmMobileButton').prop("disabled", false);
                 $('#confirmMobileButton').text("Xác nhận");
@@ -274,7 +274,7 @@ $(document).ready(function () {
                     getCardAmount($('input[name="card-type"]').val());
 
                     //Listen to onchange event in input card-type
-                    $('input[name="card-type"]').change(function (e) { 
+                    $('input[name="card-type"]').change(function (e) {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
@@ -349,7 +349,7 @@ $(document).ready(function () {
 
                     $('.denos--wrap').removeClass('d-none');
 
-                } 
+                }
             },
             complete: function () {
                 $('#amountWidget .loader').addClass('d-none');

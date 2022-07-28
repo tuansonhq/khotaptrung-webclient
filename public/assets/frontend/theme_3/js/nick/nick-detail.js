@@ -237,7 +237,7 @@ $(document).ready(function (e) {
             watchSlidesVisibility: false,
             lazyLoadingInPrevNext: false,
             lazyLoadingOnTransitionStart: false,
-
+            freeMode:true,
             loop: false,
             centeredSlides: false,
             slidesPerView: 4.5,

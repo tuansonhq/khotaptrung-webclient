@@ -1,38 +1,60 @@
-@if(isset($data) )
-<div class="row px-2">
-    @foreach($data as $item)
-    <div class="col-6 col-lg-3 px-2 mt-2 mb-3">
-        <div class="article mb-3">
-            <div class="article--thumbnail">
-                <a href="/tin-tuc/{{ $item->slug }}">
-                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                        alt="" class="article--thumbnail__image">
-                </a>
-            </div>
-            <div class="article--title my-3">
-                    <a href="/tin-tuc/{{ $item->slug }}"> {{ $item->title }} </a>
-            </div>
-            <div class="article--date">
-                <i class="__icon calendar mr-2"></i>
-                {{ formatDateTime($item->created_at) }}
-            </div>
+
+    <div class="row">
+        <div class="art-list">
+            @if(isset($data) )
+                @foreach($data as $item)
+                    <div class="a-item">
+                        <div class="thumbnail-image img-thumbnail">
+                            @if(isset($item->url_redirect_301))
+                                <a target="_blank" href="{{ $item->url_redirect_301 }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                            @else
+                                <a href="/tin-tuc/{{ $item->slug }}"><img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}"></a>
+                            @endif
+
+                        </div>
+                        <div class="info">
+                            <div class="article_title ">
+                                <h2>
+                                    @if(isset($item->url_redirect_301))
+                                        <a target="_blank" href="{{ $item->url_redirect_301 }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                    @else
+                                        <a href="/tin-tuc/{{ $item->slug }}" style="text-transform: initial;">{{ $item->title }}</a>
+                                    @endif
+
+                                </h2>
+                            </div>
+                            <div class="article_cat_date">
+                                <div style="display: inline-block;margin-right: 15px">
+                                    <i class="far fa-clock" aria-hidden="true"></i> {{ formatDateTime($item->created_at) }}
+                                </div>
+                                <div style="display: inline-block">
+                                    <i class="far fa-newspaper" aria-hidden="true"></i> <a href="/tin-tuc/{{ $item->groups[0]->slug }}" title="Hướng dẫn">{{ $item->groups[0]->title }}</a>
+                                </div>
+                            </div>
+                            <div class="article_description hidden-xs">{!! $item->seo_description !!}</div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+
         </div>
     </div>
-    @endforeach
-        @else
-            <div class="row pb-3 pt-3">
-                <div class="col-md-12 text-center">
-                    <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
+
+    <div class="row d-flex justify-content-center" style="margin-top: 20px;">
+
+        @if(isset($data))
+            @if($data->total()>1)
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                    <div class="col-auto paginate__category__col">
+                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endif
         @endif
-    <div class="col-md-12 left-right justify-content-end default-paginate">
-        <div class="row marinautooo justify-content-center">
-            <div class="col-auto">
-                <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                    {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
-                </div>
-            </div>
-        </div>
     </div>
-</div>
+
+
+
+

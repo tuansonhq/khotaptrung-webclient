@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/minigame.css">
@@ -117,7 +120,7 @@
                  @include('frontend.widget.__content__home__game')
             @endif
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                 @include('frontend.widget.__random__account')
+{{--                 @include('frontend.widget.__random__account')--}}
              @endif
 
           {{--            Dịch vụ nổi bật--}}
@@ -233,7 +236,7 @@
                 @include('frontend.widget.__nap_the')
             {{--                Danh mục mua acc--}}
                 @include('frontend.widget.__content__home__game')
-                @include('frontend.widget.__random__account')
+{{--                @include('frontend.widget.__random__account')--}}
             {{--                     Dịch vụ nổi bật--}}
                 @include('frontend.widget.__tin__tuc')
 

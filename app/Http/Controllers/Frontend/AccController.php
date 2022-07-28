@@ -262,7 +262,7 @@ class AccController extends Controller
 
                 $card_percent = (int)setting('sys_card_setting');
 
-                $atm_percent = setting('sys_atm_percent');
+//                $atm_percent = setting('sys_atm_percent');
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
 
@@ -270,8 +270,7 @@ class AccController extends Controller
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
                     ->with('data',$data)
-                    ->with('card_percent',$card_percent)
-                    ->with('atm_percent',$atm_percent)->render();
+                    ->with('card_percent',$card_percent)->render();
 
                 return response()->json([
                     'data' => $html,

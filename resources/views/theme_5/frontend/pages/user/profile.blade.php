@@ -7,7 +7,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="">Thông tin tài khoản</a></li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="#" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -111,5 +111,5 @@
         </div>
     </section>
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/txns/txns.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/txns/txns.js"></script>
 @endsection

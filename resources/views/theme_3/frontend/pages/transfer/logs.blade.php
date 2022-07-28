@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
 
     {{--  Menu  --}}
@@ -19,8 +21,8 @@
         <div class="container container-fix banner-mobile-container-ct">
 
             <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
-                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
+                <div class="col-auto left-right" style="width: 10%" >
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px" onclick="openMenuProfile()">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>

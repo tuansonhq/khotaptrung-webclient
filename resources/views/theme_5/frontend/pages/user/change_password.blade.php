@@ -7,7 +7,7 @@
         <div class="container container-fix menu-container-ct">
             <ul>
                 <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
+                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/profile">Đổi mật khẩu</a></li>
             </ul>
         </div>
@@ -19,7 +19,7 @@
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
                     <a href="#" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
-                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
+                        <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
@@ -130,7 +130,7 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
+                            <img class="lazy" src="/assets/{{theme('')->theme_key}}/image/cay-thue/group.png" alt="">
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
@@ -158,6 +158,6 @@
             </div>
         </div>
     </div>
-    <script src="/assets/{{env('THEME_VERSION')}}/js/user/change-password.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/user/change-password.js"></script>
 @endsection
 

@@ -1,25 +1,34 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
 @endsection
 @section('content')
 
     {{--  Header mobile  --}}
-    <section class="media-mobile ">
-        <div class="container container-fix banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
-                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                </div>
+{{--    <section class="media-mobile ">--}}
+{{--        <div class="container container-fix banner-mobile-container-ct">--}}
+{{--            <div class="row marginauto banner-mobile-row-ct">--}}
+{{--                <div class="col-auto left-right" style="width: 10%">--}}
+{{--                    <a href="/"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" ></a>--}}
+{{--                </div>--}}
 
-                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h1>Dịch vụ</h1>
-                </div>
-                <div class="col-auto left-right" style="width: 10%">
-                </div>
-            </div>
-        </div>
-    </section>
+{{--                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">--}}
+{{--                    <p>Trang chủ</p>--}}
+{{--                </div>--}}
+{{--                <div class="col-auto left-right" style="width: 10%">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+    <div class="card--mobile__title">
+            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            </span>
+        <p>Trang chủ</p>
+    </div>
     {{--    Banner--}}
     <section class="media-web">
         <div class="container container-fix banner-container-ct">
@@ -32,7 +41,7 @@
             <ul>
                 <li><a href="/">Trang chủ</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/dich-vu">Cày thuê</a></li>
+                <li class="menu-container-li-ct"><a href="/dich-vu">Dịch vụ</a></li>
             </ul>
         </div>
     </section>
@@ -50,7 +59,7 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-8 body-header-col-ct">
-                                    <h3>Dịch vụ</h3>
+                                    <h1>Dịch vụ</h1>
                                 </div>
                             </div>
                         </div>

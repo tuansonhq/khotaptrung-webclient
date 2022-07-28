@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/minigame.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/lib_bootstrap.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/minigame.css">
 @endsection
 @section('content')
 

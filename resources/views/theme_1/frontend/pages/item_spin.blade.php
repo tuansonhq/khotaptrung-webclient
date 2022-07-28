@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+    {{--    aaaaaaaaaaaa--}}
     <div class="item_play">
         <div class="container">
             <div class="item_play_title">

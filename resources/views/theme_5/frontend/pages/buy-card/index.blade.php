@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 @section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/trong-style/distance.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/trong-style/buy-card.css">
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/trong-style/distance.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
+    <link rel="stylesheet" href="/assets/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/buy-card.js"></script>
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/input.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/buy-card.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
+    <script src="/assets/{{theme('')->theme_key}}/js/js_trong/input.js"></script>
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
@@ -17,17 +17,17 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="" class="banner__link">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                            <img src="/assets/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="" class="banner__link">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                            <img src="/assets/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="" class="banner__link">
-                            <img src="/assets/{{env('THEME_VERSION')}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
+                            <img src="/assets/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
                         </a>
                     </div>
                 </div>
@@ -59,14 +59,14 @@
                                 THẺ GAME
                             </span>
                             <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrows/arrow-down.png)"></i>
+                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--game__nav">
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/garena.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -77,7 +77,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/gate.png" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/gate.png" alt="">
                                     </div>
                                     <span class="card-item_name">
                                         Thẻ Gate
@@ -87,7 +87,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/zing.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/zing.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -98,7 +98,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/vcoin.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/vcoin.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -109,7 +109,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/bit.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/bit.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -120,7 +120,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/ongame.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/ongame.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -137,14 +137,14 @@
                             </span>
                             <span class="d-flex align-items-center">
                                 <i class="__icon --arrow --path__custom"
-                                   style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrows/arrow-down.png)"></i>
+                                   style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--phone__nav">
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/viettel.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/viettel.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -155,7 +155,7 @@
                             <li class="card-item">
                                 <a href="/mua-the-garena" class="card-item_link">
                                     <div class="card-item_thumb mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo-sm/mobifone.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo-sm/mobifone.png"
                                              alt="">
                                     </div>
                                     <span class="card-item_name">
@@ -191,7 +191,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/garena.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/garena.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #CC2829;">
@@ -202,7 +202,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena"  class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/gate.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/gate.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #E02729;">
@@ -213,7 +213,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/zing.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/zing.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #009DDC;">
@@ -224,7 +224,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/vcoin.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/vcoin.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #F7941D;">
@@ -235,7 +235,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/bit.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/bit.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #071D59;">
@@ -246,7 +246,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/ongame.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/ongame.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #C64977;">
@@ -257,7 +257,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/scoin.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/scoin.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #616A78;">
@@ -268,7 +268,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/appota.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/appota.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #0095DA;">
@@ -279,7 +279,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/kulgame.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/kulgame.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #F16612;">
@@ -290,7 +290,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/funcard.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/funcard.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #F14308;">
@@ -301,7 +301,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/sohacoin.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/sohacoin.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #76AB09;">
@@ -312,7 +312,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/gosu.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/gosu.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #F07D4C;">
@@ -337,7 +337,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/viettel.png" class="card--thumb__image py-1 py-lg-0" alt="">
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/viettel.png" class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #EC2B2D;">
                                         Viettel
@@ -347,7 +347,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/mobifone.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/mobifone.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #0060AF;">
@@ -358,7 +358,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/gmobile.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/gmobile.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #EFB209;">
@@ -369,7 +369,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/vinaphone.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/vinaphone.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #00A1E4;">
@@ -380,7 +380,7 @@
                             <div class="col-4 col-lg-3 px-1 px-lg-2 mb-lg-2">
                                 <a href="/mua-the-garena" class="scratch-card">
                                     <div class="card--thumb">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/cards-logo/vietnammobile.png"
+                                        <img src="/assets/{{theme('')->theme_key}}/image/cards-logo/vietnammobile.png"
                                              class="card--thumb__image py-1 py-lg-0" alt="">
                                     </div>
                                     <div class="card--name" style="--bg-color: #F48132;">
@@ -397,13 +397,13 @@
                 <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
                     <div class="card--header _m-125 _m-sm-0 _pb-125">
                         <div class="card--header__title">
-                            <img width="24" height="24" src="/assets/{{env('THEME_VERSION')}}/image/icons/icon-title-service-related-buy-card.png"
+                            <img width="24" height="24" src="/assets/{{theme('')->theme_key}}/image/icons/icon-title-service-related-buy-card.png"
                                  class="mr-2 d-block d-lg-none" alt="icon">
                             <h4>Các dịch vụ liên quan</h4>
                         </div>
                         <div class="card--header__tools">
                             <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
-                                                                                    style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-right-blue.png)"></i></a>
+                                                                                    style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
                         </div>
                     </div>
                     <div class="card--body px-lg-3">
@@ -412,7 +412,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -423,7 +423,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -434,7 +434,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -445,7 +445,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -456,7 +456,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -467,7 +467,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -478,7 +478,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -489,7 +489,7 @@
                                 <div class="swiper-slide service--item">
                                     <div class="service--thumb">
                                         <a href="">
-                                            <img src="/assets/{{env('THEME_VERSION')}}/image/mua-the/frame-6105.png"
+                                            <img src="/assets/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
                                                  class="service--thumb__image" alt="">
                                         </a>
                                     </div>
@@ -548,10 +548,10 @@
                     </div>
                     <div class="col-md-12 left-right text-center js-toggle-content">
                         <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-down.png)"></i></span>
+                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
                         </div>
                         <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/iconright.png)"></i></span>
+                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
                         </div>
                     </div>
                 </div>

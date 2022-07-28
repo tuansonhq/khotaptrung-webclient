@@ -12,6 +12,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
         <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
@@ -96,9 +99,9 @@
                         <a href="/mua-the" class="card--back d-lg-none d-block">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
-                        <div class="card--title" style="text-transform: capitalize;">
+                        <h1 class="card--title" style="text-transform: capitalize;">
                             Thẻ
-                        </div>
+                        </h1>
                     </div>
 {{--                    DESKTOP--}}
                     <div class="card--body p-lg-2 d-none d-lg-block">
@@ -152,9 +155,9 @@
                 {{--                CARD OTHER--}}
                 <div class="card --custom _mb-125 _mb-sm-075" id="card--other">
                     <div class="card--head px-3 px-lg-3 _py-075">
-                        <div class="card--title">
+                        <h2 class="card--title">
                             Các loại thẻ khác
-                        </div>
+                        </h2>
                         <div class="swiper__paginate d-none d-lg-flex">
                             <div class="card-other-prev"></div>
                             <div class="mx-lg-1"></div>
@@ -200,9 +203,9 @@
                 {{--                END CARD OTHER--}}
                 {{--                SERVICE DESC--}}
                 <div class="card --custom p-3 p-lg-3">
-                    <div class="card--desc__title mb-4">
+                    <h2 class="card--desc__title mb-4">
                         Mô tả dịch vụ
-                    </div>
+                    </h2>
                     <div class="card--desc__content content-video-in-add p-0">
                         {!! setting('sys_store_card_content') !!}
                     </div>

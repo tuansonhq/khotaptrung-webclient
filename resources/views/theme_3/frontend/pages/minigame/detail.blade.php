@@ -1,5 +1,8 @@
 @extends('theme_3.frontend.layouts.master')
 @section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
 @section('styles')
@@ -954,7 +957,7 @@
                     <div class="product-catecory"></div>
 
                 </div>
-                <div class="box-product">
+                <div class="box-product minigame-detail_swiper">
                     <div class="swiper-container list-minigame list-product" >
                         <div class="swiper-wrapper">
                             @foreach($groups_other as $key => $item)
@@ -977,10 +980,16 @@
                                             <div class="item-product__box-price">
 
                                                 <div class="special-price">{{number_format($item->price)}} đ</div>
-                                                <div class="old-price">{{number_format($item->price*100/80)}} đ</div>
+
+                                                @if(isset($item->params->percent_sale))
+                                                    <div class="old-price">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
+                                                @else
+                                                @endif
+                                                @if(isset($item->params->percent_sale))
                                                 <div class="item-product__sticker-percent">
-                                                    -50%
+                                                    -{{number_format($item->params->percent_sale)}}%
                                                 </div>
+                                                @endif
                                             </div>
 
                                         </div>
@@ -988,6 +997,12 @@
                                 </div>
                             @endforeach
                         </div>
+                    </div>
+                    <div class="swiper-button-prev">
+                        <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                    </div>
+                    <div class="swiper-button-next">
+                        <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
                     </div>
                 </div>
             </div>

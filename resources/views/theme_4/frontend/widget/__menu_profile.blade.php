@@ -1,79 +1,56 @@
-{{--@foreach($data??[] as $item)--}}
-{{--    @if ($item->parent_id == 0)--}}
-{{--        <div class="col-6 col-sm-6 col-xl-6 col-lg-12 col-xl-12 ">--}}
-{{--            <div class="account_sidebar_menu_title">--}}
-{{--                <p>{{$item->title}}</p>--}}
-{{--            </div>--}}
-{{--            <div class="account_sidebar_menu_nav">--}}
-{{--                <ul>--}}
-{{--                    @foreach ($data as $key_child => $child_item)--}}
-{{--                        @if ($item->id == $child_item->parent_id)--}}
-{{--                            <li>--}}
-{{--                                <a   href="{{$child_item->url?$child_item->url:$child_item->slug}}"class="account_{{substr($child_item->url, 1)}}">{{$child_item->title}}</a>--}}
-{{--                            </li>--}}
-{{--                            <script>--}}
+<div class="col-12 col-md-4 col-lg-3  site-menu">
 
-{{--                            </script>--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-
-
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    @endif--}}
-{{--@endforeach--}}
-
-@if(isset($data))
-    @foreach($data??[] as $item)
-        @if ($item->parent_id == 0)
-            <div class="col-md-12 left-right nav-bar-hr">
-                {{--                                    Vong lap thang bố--}}
-                <div class="row marginauto nav-bar-nick nav-bar-parent">
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto nav-bar-parent-title">
-                            <div class="col-12 left-right">
-                                <span>{{$item->title}}</span>
-                            </div>
-                        </div>
-                    </div>
-
+    <div class="menu-link">
+        <div class="">
+            <a href="#" class="menu-control">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="root-left c-font-uppercase">Menu tài khoản</h3>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
 
-                {{--                                    Vong lap thang con--}}
-                @foreach ($data as $key_child => $child_item)
-                    @if ($item->id == $child_item->parent_id)
-                        <div class="row marginauto nav-bar-nick nav-bar-child add-active_{{ $child_item->slug }} {{ '/'.request()->path() == $child_item->url ? 'active' : ''}}">
-                            <div class="col-12 left-right">
-                                <a href="{{$child_item->url?$child_item->url:$child_item->slug}}" class="">
-                                    <div class="row marginauto">
-                                        <div class="col-auto left-right global__link__profile">
-                                            <i class="__icon__profile --sm__profile --link__profile" style="--path : url({{ $child_item->image_icon??'' }})"></i>
-                                        </div>
-                                        <div class="col-10 nav-bar-log-top-body-col">
-                                            <span>{{$child_item->title}}</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-                {{--                                    Vong lap thang con--}}
+            </a>
 
-
-            </div>
-        @endif
-    @endforeach
-    <div class="row marginauto nav-bar-nick nav-bar-child d-block d-lg-none" style="margin-top: -20px">
-        <div class="col-md-12 left-right">
-            <li id="login_menu" style="list-style: none">
-                {{--                <a href="">--}}
-                {{--                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/menu_category6.png" alt="">--}}
-                {{--                    <span>Đăng nhập/ Đăng ký</span>--}}
-                {{--                </a>--}}
-            </li>
         </div>
 
+        <ul class="nav list-menu-link">
+            @foreach($data??[] as $item)
+                <li class="nav-item {{ '/'.request()->path() == $item->url ? 'active' : ''}}"><a href="{{ $item->url }}" class="">
+                        @if($item->url == '/thong-tin')
+                            <i class="far fa-address-book"></i>
+                        @elseif($item->url == '/user/change-password')
+                            <i class="fas fa-cogs"></i>
+                        @elseif($item->url == '/lich-su-giao-dich')
+                            <i class="far fa-clock"></i>
+                        @elseif($item->url == '/lich-su-nap-the')
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        @elseif($item->url == '/dich-vu-da-mua')
+                            <i class="fas fa-shopping-bag"></i>
+                        @elseif($item->url == '/nap-the')
+                            <i class="fas fa-ticket-alt"></i>
+                        @elseif($item->url == '/recharge-atm')
+                            <i class="fas fa-ticket-alt"></i>
+                        @elseif($item->url == '/the-cao-da-mua')
+                            <i class="fas fa-history"></i>
+                        @elseif($item->url == '/lich-su-mua-account')
+                            <i class="fas fa-shopping-bag"></i>
+                        @endif
+
+                        {{ $item->title }}</a>
+                </li>
+            @endforeach
+{{--            <li class="nav-item "><a href="/user/profile" class=""><i class="far fa-address-book"></i> Thông tin hồ sơ</a></li>--}}
+{{--            <li class="nav-item "><a href="/user/change-password" class=""><i class="fas fa-cogs"></i> Đổi mật khẩu</a></li>--}}
+{{--            <li class="nav-item "><a href="/user/second-level-password" class=""><i class="fas fa-users-cog"></i> Mật khẩu cấp 2</a></li>--}}
+{{--            <li class="nav-item "><a href="/lich-su-giao-dich" class=""><i class="far fa-clock"></i> Biến động số dư</a></li>--}}
+{{--            <li class="nav-item "><a href="/lich-su-nap-the" class=""><i class="fas fa-file-invoice-dollar"></i> Lịch sử nạp thẻ</a></li>--}}
+{{--            <li class="nav-item "><a href="/dich-vu-da-mua" class=""><i class="fas fa-shopping-bag"></i> Dịch vụ đã mua</a></li>--}}
+{{--            <li class="nav-item"><a href="/nap-the" class="active"><i class="fas fa-ticket-alt"></i> Nạp thẻ</a></li>--}}
+{{--            <li class="nav-item"><a href="/recharge-atm" class=""><i class="fas fa-ticket-alt"></i> Nạp Ví / ATM</a></li>--}}
+{{--            <li class="nav-item"><a href="/the-cao-da-mua" class=""><i class="fas fa-history"></i> Lịch sử mua thẻ</a></li>--}}
+        </ul>
+
     </div>
-@endif
+
+</div>
+
+
