@@ -91,7 +91,7 @@ $(document).ready(function () {
                         if (card.key.toLowerCase() === card_is) {
                             data_telecom = card
                         }
-                        if (card.params.teltecom_type == 2) {
+                        if (!!card.params && card.params.teltecom_type == 2) {
                             card.title = 'Thẻ ' + card.title;
                         }
                         let html = '';
@@ -100,7 +100,7 @@ $(document).ready(function () {
                         html += `<div class="card--thumb">`;
                         html += `<img src="${card.image}" class="card--thumb__image py-1 py-lg-0" alt="${card.title}">`;
                         html += `</div>`;
-                        html += `<div class="card--name" style="--bg-color: ${card.params.color};text-transform: capitalize;">`;
+                        html += `<div class="card--name" style="--bg-color: ${card.params ? card.params.color : '' };text-transform: capitalize;">`;
                         html += `${card.title.toLowerCase()}`;
                         html += `</div>`;
                         html += `</a>`;
@@ -122,19 +122,18 @@ $(document).ready(function () {
                         // ________________
 
                         if (route_is === 'getStoreCard') {
-                            if (card.params.teltecom_type == 1) {
-                                grid_phone_card.append(html);
-                            }
-                            if (card.params.teltecom_type == 2) {
+
+                            if (!!card.params && card.params.teltecom_type == 2) {
                                 grid_game_card.append(html);
+                            } else  {
+                                grid_phone_card.append(html);
                             }
                         }
                         $('.loader').remove();
-                        if (card.params.teltecom_type == 1) {
-                            card_nav_phone.append(html_nav)
-                        }
-                        if (card.params.teltecom_type == 2) {
+                        if (!!card.params && card.params.teltecom_type == 2) {
                             card_nav_game.append(html_nav)
+                        }else {
+                            card_nav_phone.append(html_nav)
                         }
                     });
                     if (route_is === 'showListCard') {
