@@ -7,7 +7,7 @@
                         <span>Chi tiết dịch vụ</span>
                     </div>
                     <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add">
-                        @if($data->custom->content)
+                        @if(isset($data->custom->content))
                             {!!  $data->custom->content !!}
                         @else
                             @if(isset($data->content))

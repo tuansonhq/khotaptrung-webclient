@@ -119,6 +119,12 @@
     </div>
 </div>
 
+
+@include('frontend.layouts.includes.header')
+
+@yield('content')
+
+@include('frontend.layouts.includes.footer')
 @if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
@@ -136,12 +142,6 @@
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif
-@include('frontend.layouts.includes.header')
-
-@yield('content')
-
-@include('frontend.layouts.includes.footer')
-
 <style>
     .footer {
         border-top: 1px solid #eeeeee;
@@ -339,34 +339,6 @@
         });
     });
 
-</script>
-
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root"></div>
-
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
-
-<script>
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "101990968825701");
-    chatbox.setAttribute("attribution", "biz_inbox");
-
-    window.fbAsyncInit = function() {
-        FB.init({
-            xfbml            : true,
-            version          : 'v11.0'
-        });
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
 </script>
 </body>
 </html>

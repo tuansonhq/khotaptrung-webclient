@@ -44,4 +44,34 @@ Validator({
     onSubmit:function (data) {
         alert('Form đã được submit');
     }
-})
+});
+
+Validator({
+    form:'#formLoginMobile',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+    ],
+    onSubmit:function (data) {
+        alert('Form đã được submit');
+    }
+});
+
+Validator({
+    form:'#formRegisterMobile',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+        Validator.isRequired('[name=password_confirmation]','Bạn chưa nhập mật khẩu xác nhận'),
+        Validator.isConfirm('[name=password_confirmation]',function () {
+            return document.querySelector('#formRegisterMobile [name=password]').value
+        },'Mật khẩu xác nhận chưa chính xác'),
+    ],
+    onSubmit:function (data) {
+        alert('Form đã được submit');
+    }
+});
