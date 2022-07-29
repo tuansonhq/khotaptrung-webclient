@@ -1,0 +1,320 @@
+/* footer */
+.footer-default {
+    background: var(--w-ghost-focus-color);
+}
+
+.footer-default-body-row span {
+    font-weight: 700;
+}
+
+.footer-default-two {
+    background: #FFFFFF;
+    border-radius: 12px;
+    color: #0E3EDA;
+}
+
+.footer-default-two li a {
+    color: #434657;
+}
+
+.left-right {
+    padding-left: 0;
+}
+
+@media (max-width: 992px ) {
+    .footer-default-information {
+        width: 100%;
+    }
+
+    .mobile-default-footer {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .footer-default-col{
+        width: 100% !important;
+    }
+
+}
+
+.footer-default-information h4 {
+    font-weight: 700;
+}
+.link-footer {
+    background: #FFFFFF;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.global__link__footer {
+    color: #434657;
+}
+
+.footer-copyright {
+    background: black;
+    color: #ffff;
+    text-align: center;
+}
+
+.footer-copyright small {
+    font-size: 16px;
+    color: #F473B9;
+}
+.footer-default-col{
+    width: 25%;
+}
+.footer-default-col h4{
+    font-size: 16px;
+}
+/* end footer */
+
+
+
+/* about us */
+.block-product{
+    /*border-radius: var(--primary-border);*/
+    padding: 18px 21px;
+}
+.item-about-us{
+    background:#FFFFFF;
+    /*width: 25%;*/
+    border: 1px solid var(--border-default-color);
+    border-radius: 12px;
+    height: 212px;
+}
+.item-intro-img{
+    text-align: center;
+}
+.list-intro-title{
+    color: var(--primary-color);
+    line-height: 24px;
+    padding:  16px 16px 8px 16px;
+}
+.list-intro-content{
+    padding:  0 16px 16px 16px;
+    line-height: 20px;
+    color: var(--text-color);
+}
+@media (max-width: 992px) {
+    .item-about-us-mobile{
+        width: 220px;
+        margin-right: 16px !important;
+    }
+    .list-intro-title-mobile{
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 24px;
+        padding: 0;
+    }
+    .item-intro-img{
+        padding: 0 !important;
+    }
+    .list-intro-content{
+        padding: 0;
+    }
+}
+/* end about us*/
+
+/* danh sach tin tuc */
+
+.article{
+    /*background: #FFFFFF;*/
+    /*border: 1px solid #E4E5F0;*/
+    border-radius: 12px;
+    padding: 16px;
+
+}
+.article--thumbnail{
+    height: 150px;
+    margin-right: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+}
+
+
+.article--title a{
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    color: #434657;
+}
+.article--description{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    color: #434657;
+}
+.item-article{
+    border: 1px solid #E4E5F0;
+    border-radius: 12px;
+}
+#list-article.nav-tabs .nav-link.active{
+    border: 0;
+    border-bottom:2px solid var(--primary-color);
+
+}
+#list-article.nav-link span{
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--primary-color);
+}
+@media (max-width: 992px) {
+    .list-intro.item-about-us-mobile{
+        height: 208px;
+    }
+    .card--mobile__title h4{
+        font-size: 26px;
+    }
+}
+.new-all:active, .new-all.active, .new-all:hover{
+    width: 100%;
+}
+.new-all{
+    border-bottom: none;
+}
+
+.nav-item{
+    width: 25%;
+}
+.new-all.notify{
+    width: 100%;
+}
+
+.tab.new-all {
+    padding-left: 40px;
+    height: 40px;
+}
+
+.tab.new-all:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    -webkit-mask-image: url(../../image/duong/new-all-5.svg);
+    -webkit-mask-size: 24px 24px;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    background-color: var(--text-link-default-color);
+}
+.tab.new-all:hover:after,
+.tab.new-all.active:after {
+    background-color: var(--primary-color);
+}
+
+.tab.new-all-icon-2:after{
+    -webkit-mask-image: url(../../image/duong/new-all-2.svg);
+}
+.tab.new-all-icon-3:after{
+    -webkit-mask-image: url(../../image/duong/new-all-3.svg);
+}
+.tab.new-all-icon-4:after{
+    -webkit-mask-image: url(../../image/duong/new-all-4.svg);
+}
+/* end danh sach tin tuc */
+
+
+/* chi tiet tin tuc */
+.breadcrum--list {
+    display: flex;
+    list-style: none;
+    padding: 8px 0 8px 20px;
+    margin: 0;
+}
+.slider--card {
+    overflow: hidden;
+}
+.breadcrum--item {
+    display: flex;
+    padding: 8px 0;
+    align-items: center;
+}
+
+.breadcrum--item:after {
+    content: url(../image/icons/arrow-right.png);
+    line-height: 1;
+    height: 16px;
+    padding: 0 8px 0 10px;
+}
+
+.breadcrum--item:last-child:after {
+    display: none;
+}
+
+.breadcrum--item .breadcrum--link {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #82869E;
+    transition: all ease .2s;
+}
+.breadcrum--item:hover .breadcrum--link {
+    color: #434657;
+    transition: all ease .2s;
+}
+.--custom.content-detail {
+    border: 1px solid #E4E5F0;
+    margin-left: 102px;
+    margin-right: 102px;
+    border-radius: 12px;
+}
+.article--title a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+}
+.item-relate-new{
+    width: 234px;
+    border: 1px solid #E4E5F0;
+    background: #FFFFFF;
+    border-radius: 12px;
+}
+.list-relate .article--thumbnail{
+    margin-right: 0;
+}
+.article--title{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+    color: #434657;
+}
+@media (max-width: 992px) {
+    .article--thumbnail {
+        height: 0;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+        padding-bottom: 77%;
+    }
+    .article--thumbnail .article--thumbnail__image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .article-title-mobile{
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .article{
+        padding: 8px;
+    }
+    .--custom.content-detail {
+        border: none;
+        margin-left:0;
+        margin-right:0;
+        border-radius:0;
+    }
+}
+

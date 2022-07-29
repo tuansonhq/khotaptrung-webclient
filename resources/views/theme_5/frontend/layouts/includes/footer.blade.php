@@ -1,156 +1,90 @@
-<section class="footer-default">
-    <div class="container container-fix">
-        <div class="row footer-default-row">
-            <div class="col-auto media-footer-order-one footer-default-col left-right text-left">
-                <div class="row marginauto footer-default-body-row">
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <img class="lazy" src="https://cdn.upanh.info/storage/upload/images/LOGO-SHOPNGOCRONG-NET.png" alt="">
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <span>Giới thiệu</span>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <small>Website chuyên cung cấp account chuyên nghiệp lớn nhất Việt Nam. Ngoài ra chúng tôi còn cung cấp dịch vụ all game hiện có</small>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <span>Trụ Sở chính</span>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <small>37 Nguyễn Văn Huyên,Quân hoa,Cầu Giấy,Hà Nội</small>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <span>Văn phòng miền bắc</span>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-body-col">
-                        <small>37 Nguyễn Văn Huyên,Quân hoa,Cầu Giấy,Hà Nội</small>
-                    </div>
-{{--                    <div class="col-md-12 left-right footer-default-body-col">--}}
-{{--                        <div class="row footer-default-icon-row">--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/facebook.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/istgram.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/tictoc.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/twid.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-auto footer-default-icon-col">--}}
-{{--                                <a href=""><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/youtube.png" alt=""></a>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+<div class="footer-default media-web">
+    <div class="container c-container">
+        <div class="row mobile-default-footer c-pl-lg-0 c-pr-lg-0">
+            <div class="footer-default-body-row footer-default-col">
+                <div class="col-md-12 c-pb-24 c-pt-22">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/logo_footer.svg" alt="">
+                </div>
+                <div class="col-md-12 c-pb-4">
+                    <span>Trụ sở chính</span>
+                </div>
+                <div class="col-md-12 c-pb-8">
+                    <small class="fz-13">37 Nguyễn Văn Huyên, Quan Hoa, Cầu Giấy, Hà Nội</small>
+                </div>
+                <div class="col-md-12 c-pb-4">
+                    <span>VP Miền Nam</span>
+                </div>
+                <div class="col-md-12">
+                    <small class="fz-13">123 Đại Lộ Hà Nội, Quận 12, TP. Hồ Chí Minh</small>
                 </div>
             </div>
-            <div class="col-auto media-footer-order-two footer-default-col left-right text-left">
-                <div class="row marginauto footer-default-two-row">
-                    <div class="col-md-12 left-right footer-default-two-col">
-                        <h4>THÔNG TIN CHUNG</h4>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-two-col">
-                        <ul>
-                            <li><a href="">Về chúng tôi</a></li>
-                            <li><a href="">Quy định chung</a></li>
-                            <li><a href="">Chính sách bảo mật</a></li>
-                            <li><a href="">Điều khoản sử dụng</a></li>
-                            <li><a href="">Chính sách bán hàng</a></li>
-                            <li><a href="">Chính sách đổi trả</a></li>
-                            <li><a href="">Quy định giá cả và hình thức thanh toán</a></li>
-                        </ul>
-                    </div>
+            <div class="footer-default-information c-pl-16 c-pr-16 footer-default-col">
+                <div class="col-md-12 c-pb-16 left-right c-pt-22">
+                    <h4>THÔNG TIN CHUNG</h4>
+                </div>
+                <div class="col-md-12 footer-default-two left-right">
+                    <ul>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Về chúng tôi</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Quy định chung</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Chính sách bảo mật</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Điều khoản sử dụng</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Chính sách bán hàng</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Chính sách đổi trả</a></li>
+                        <li class="c-pb-8 c-pt-8"><a href="javascript:void(0)">Quy định giá cả và hình thức thanh toán</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-auto media-footer-order-three footer-default-col media-footer left-right text-left">
-                <div class="row marginauto footer-default-two-row">
-                    <div class="col-md-12 left-right footer-default-two-col">
-                        <h4>SẢN PHẨM</h4>
-                    </div>
-                    <div class="col-md-12 left-right">
-                        <ul class="row">
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Nạp tiền điện thoại</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Mua Mã thẻ điện thoại</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Nạp tài khoản game</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Mua mã thẻ game</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Nổ hũ trúng thưởng</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Bắn cá ăn tiền</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Vòng quay may mắn</a></li>
-                            <li class="media-footer-li col-6 col-sm-12"><a href="">Dịch vụ khác</a></li>
-                        </ul>
-                    </div>
+            <div class="footer-default-information c-pl-16 c-pr-16 footer-default-col">
+                <div class="col-md-12 c-pb-16 left-right c-pt-22">
+                    <h4>SẢN PHẨM</h4>
+                </div>
+                <div class="col-md-12 footer-default-two left-right">
+                    <ul>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Nạp tiền</a></li>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Shop acc game</a></li>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Dịch vụ game</a></li>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Nạp tài khoản game</a></li>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Mua mã thẻ game</a></li>
+                        <li class="c-pb-8  c-pt-8"><a href="javascript:void(0)">Vòng quay may mắn </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-default-information c-pl-16 footer-default-col">
+                <div class="col-md-12 c-pb-16 left-right c-pt-22">
+                    <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+                </div>
+                <div class="col-md-12  left-right">
+                    <ul style="list-style: none;padding-left: 0">
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/phone.svg"><span class="c-pl-8">Hỗ trợ bán hàng: 1900 1111</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/phone.svg"><span class="c-pl-8">Hợp tác phát triển: 1900 3333</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/zalo.svg"><span class="c-pl-8">Zalo: 021345678</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/telegram.svg"><span class="c-pl-8">Telegram: 1234567 2323</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/facebook.svg"><span class="c-pl-8">Facebook fanpage</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/tiktok.svg"><span class="c-pl-8"> Tiktok</span></a>
+                        </li>
+                        <li class="link-footer">
+                            <a href="javascript:void(0)" class="global__link__footer"><img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/youtube.svg"><span class="c-pl-8"> Youtube</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 footer-copyright c-pt-8 c-pb-8">
+        <span class="fz-md-12">© Copyright</span>
+        <small class="fz-md-12"> HQ Play </small>
+        <span class="fz-md-12">2021. All Right Reserved.</span>
+    </div>
+</div>
 
-                    <div class="col-md-12 left-right footer-default-three-col">
-                        <div class="row footer-default-three-row-image">
-                            <div class="col-auto footer-default-three-col-image footer-default-three-col-image-left">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 left-right ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/appstore.png" alt="">
-                                    </div>
-                                    <div class="col-md-12 left-right footer-default-google">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/googleplay.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto footer-default-three-col-image footer-default-three-col-image-right">
-                                <div class="row marginauto">
-                                    <div class="col-md-12 left-right">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/qrcode.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-auto media-footer-order-foor footer-default-col footer-default-foor left-right text-left">
-                <div class="row marginauto footer-default-foor-row">
-                    <div class="col-md-12 left-right media-footer-two footer-default-two-col">
-                        <h4>HỖ TRỢ KHÁCH HÀNG</h4>
-                    </div>
-                    <div class="col-md-12 left-right footer-default-ul-foor footer-default-two-col">
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Hỗ trợ bán hàng: 1900 1111</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Chăm sóc khách hàng: 1900 2222</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/phoneno.png)"></i>Hợp tác phát triển: 1900 3333</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/zalono.png)"></i>Zalo: 021345678</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/telegramno.png)"></i>Telegram: 1234567 2323</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/facebookno.png)"></i>Facebook fanpage</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/facebookno.png)"></i>Facebook Group</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/youtubeno.png)"></i>Youtube</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="global__link__footer"><i class="__icon__footer --sm__footer --link__footer" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/tiktokno.png)"></i>Tiktok</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="footer-copy">
-    <div class="container container-fix">
-        <div class="row marginauto">
-            <div class="col-md-12 left-right text-center">
-                <span>© Copyright</span><small> HQ GROUP </small><span>2021. All Right Reserved.</span>
-            </div>
-        </div>
-    </div>
-</section>

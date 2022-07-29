@@ -1,277 +1,225 @@
 @extends('frontend.layouts.master')
-@section('meta_robots')
-    <meta name="robots" content="noindex,nofollow" />
-@endsection
+
 @section('content')
-
-    {{--  Menu  --}}
-    <section class="media-web">
-        <div class="container container-fix menu-container-ct">
-            <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-nap-the">Lịch sử nạp thẻ</a></li>
+    <div class="background-history">
+        <div class="container c-container-side">
+            <ul class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="/" class="breadcrumb-link">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="/lich-su-mua-nick" class="breadcrumb-link">Tài khoản đã mua</a>
+                </li>
             </ul>
-        </div>
-    </section>
 
-    <section class="media-mobile">
-        <div class="container container-fix banner-mobile-container-ct">
+            <div class="head-mobile">
+                <a href="/profile-navbar" class="link-back"></a>
 
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%">
-                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
-                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                    </a>
-                </div>
+                <h1 class="head-title text-title">Lịch sử nạp thẻ</h1>
 
-                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Lịch sử nạp thẻ</h3>
-                </div>
-                <div class="col-auto left-right" style="width: 10%">
-                </div>
+                <a href="/" class="home"></a>
             </div>
-
-        </div>
-    </section>
-
-    {{--   Bopdy --}}
-    <section>
-        <div class="container container-fix body-container-ct">
-            <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                @include('frontend.widget.__navbar__profile')
-
-                <div class="col-lg-9 col-12 body-container-detail-right-ct">
-                    <div class="row marginauto logs-content">
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto logs-title">
-                                <div class="col-md-12 left-right">
-                                    <span>Lịch sử nạp thẻ</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 logs-search left-right">
-
-                            <div class="row marginauto">
-                                <div class="col-12 left-right">
-                                    <form class="search-txns">
-                                        <div class="row marginauto body-form-search-ct">
-                                            <div class="col-auto left-right">
-                                                <input autocomplete="off" type="text" name="search" class="input-search-log-ct search" placeholder="Nhập từ khóa">
-                                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                            </div>
-                                            <div class="col-4 body-form-search-button-ct media-web">
-                                                <button type="submit" class="timkiem-button-ct btn-timkiem" style="position: relative">
-                                                    <span class="span-timkiem">Tìm kiếm</span>
-                                                    <div class="row justify-content-center loading-data__timkiem">
-
-                                                    </div>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-auto ml-auto left-right">
-
-                                    <div class="row marginauto justify-content-end nick-findter-row">
-
-                                        <div class="col-auto nick-findter" style="position: relative">
-                                            <ul>
-                                                <li class="li-boloc">Bộ lọc</li>
-                                                <li class="margin-findter" style="position: relative">
-                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
-                                                    <span class="overlay-find" style="    position: absolute;right: -4px;top: -4px;">
-                                                        0
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="row marginauto nick-findter-data">
-
-                            </div>
-                        </div>
-
-{{--                        Co dữ liệu   --}}
-
-                        <div class="col-md-12 logs-table left-right">
-                            <div class="row default-table" id="data_pay_card_history_ls" style="position: relative">
-                                <div class="body-box-loadding result-amount-loadding" style="position: absolute;top: 50%;left: 50%">
-                                    <div class="d-flex justify-content-center">
-                                        <span class="pulser"></span>
-                                    </div>
-                                </div>
-                                @include('frontend.pages.charge.widget.__charge_history')
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="row">
+                <div class="c-history-left media-web">
+                    @include('frontend.widget.__menu_profile')
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-    <div class="modal fade login show small-log-Modal modal-logs-txns" id="openFinter" aria-modal="true">
-
-        <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
-            <!--        <div class="image-login"></div>-->
-            <div class="modal-content">
-                <div class="modal-header p-0" style="border-bottom: 0">
-                    <div class="row marginauto modal-header-nick-ct">
-                        <div class="col-12 left-right text-center" style="position: relative">
-                            <span>Bộ lọc</span>
-                            <img class="lazy img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                <div class="c-ml-16 c-ml-lg-0 c-history-right">
+                    <div class="c-history-right-body brs-12 brs-lg-0 c-p-16">
+                        <div class="c-history-title c-pb-16 c-pb-lg-12">
+                            <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử nạp thẻ</h3>
                         </div>
-                    </div>
-
-                </div>
-
-                <div class="modal-body modal-body-order-ct">
-                    <form class="form-charge_ls account_content_transaction_history__v2">
-                        <div class="row marginauto">
-
-                            <div class="col-md-12 left-right">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Thẻ cào</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct id-finter-nick">
-                                        <input autocomplete="off" name="serial" class="input-defautf-ct serial" type="text" placeholder="Nhập mã số">
-                                    </div>
-                                </div>
+                        <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
+                            <form action="" class="form-search history">
+                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <button type="submit"></button>
+                            </form>
+                            <div class="value-filter">
+                                <div class="show-modal-filter noselect" data-toggle="modal" data-target="#modal-filter">Bộ lọc</div>
                             </div>
+                        </div>
+                        <div class="tags d-none d-lg-flex justify-content-end c-mb-12" id="params-filter"></div>
+                        <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
+                            <form action="" class="form-search history">
+                                <input type="search" placeholder="Tìm kiếm" class="search">
+                                <button type="submit"></button>
+                            </form>
+                            <div class="value-filter c-ml-16">
+                                <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
+                            </div>
+                        </div>
+                        <div class="mr-n1 pb-3">
+                            <div class="history-content c-pt-16 mr-n2">
+                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
+                                <ul class="trans-list">
+                                    <li class="trans-item">
+                                        <a href="/lich-su-nap-the/chi-tiet">
+                                            <div class="text-left">
+                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
+                                                <span class="link-color">26/04/2021 - 16:05</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
+                                                <span class="success-color c-mb-0">Thành công</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="trans-item">
+                                        <a href="/lich-su-nap-the/chi-tiet">
+                                            <div class="text-left">
+                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
+                                                <span class="link-color">26/04/2021 - 16:05</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
+                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="trans-item">
+                                        <a href="/lich-su-nap-the/chi-tiet">
+                                            <div class="text-left">
+                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
+                                                <span class="link-color">26/04/2021 - 16:05</span>
+                                            </div>
+                                            <div class="text-right">
+                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
+                                                <span class="invalid-color c-mb-0">Thất bại</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-                            @if(isset($data_telecome) && count($data_telecome) > 0)
-                                <div class="col-md-12 left-right modal-nick-padding">
-                                    <div class="row marginauto">
-                                        <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                            <span>Loại thẻ</span>
-                                        </div>
-                                        <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-
-                                            <select class="wide transaction" name="transaction">
-                                                <option>Chọn</option>
-                                                @foreach($data_telecome as $val)
-                                                <option value="{{ $val->key }}">{{ $val->title }}</option>
-                                                @endforeach
+                        <!-- Sheet Filter Mobile -->
+                        <div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="60">
+                            <div class="layer"></div>
+                            <div class="content-bottom-sheet bar-slide">
+                                <form action="" class="form-filter">
+                                    <div class="sheet-header">
+                                        <h2 class="text-title center">
+                                            Bộ lọc
+                                        </h2>
+                                        <label class="close"></label>
+                                    </div>
+                                    <div class="sheet-body overflow-visible">
+                                        <!-- body -->
+                                        <div class="input-group">
+                                        <span class="form-label">
+                                            Loại giao dịch
+                                        </span>
+                                            <select name="type-trans" id="">
+                                                <option value="">Chọn</option>
                                             </select>
                                         </div>
-                                    </div>
-                                </div>
-                            @endif
 
-
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
-                                        <span>Trạng thái</span>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        {{Form::select('status',array(''=>'Chọn')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'wide status'))}}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12 left-right">
-                                <div class="row body-title-detail-ct">
-
-                                    <div class="col-md-6 text-left body-title-detail-col-ct">
-                                        <div class="row marginauto">
-                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                <span>Từ ngày</span>
-                                            </div>
-                                            <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                <input autocomplete="off" name="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
-                                            </div>
+                                        <div class="input-group">
+                                        <span class="form-label">
+                                            Trạng thái
+                                        </span>
+                                            <select name="status" id="">
+                                                <option value="">Chọn</option>
+                                                <option value="1">Đã bán</option>
+                                                <option value="2">Chưa bán</option>
+                                            </select>
                                         </div>
 
-
-                                    </div>
-
-                                    <div class="col-md-6 text-left body-title-detail-col-ct">
-                                        <div class="row marginauto password-mobile">
-                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                <span>Đến ngày</span>
-                                            </div>
-                                            <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 left-right padding-nicks-footer-ct">
-
-                                <div class="row marginauto justify-content-center">
-                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                        <div class="row marginauto modal-footer-success-row-not-ct">
-                                            <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct btn-reset reset-find">
-                                                    <span class="span-reset">
-                                                        Thiết lập lại
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="input-group">
+                                                    <span class="form-label">
+                                                        Từ ngày
                                                     </span>
-                                                    <div class="row justify-content-center loading-data__timkiem">
-
+                                                        <input type="text" name="started_at" class="date-right" placeholder="Chọn">
                                                     </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                        <div class="row marginauto">
-                                            <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess btn-ap-dung" type="submit">
-                                                    <span class="span-ap-dung">Áp dụng</span>
-                                                    <div class="row justify-content-center loading-data__timkiem">
-
+                                                </td>
+                                                <td class="c-px-6 d-block"></td>
+                                                <td>
+                                                    <div class="input-group">
+                                                    <span class="form-label">
+                                                        Đến ngày
+                                                    </span>
+                                                        <input type="text" name="ended_at" class="date-right" placeholder="Chọn">
                                                     </div>
-                                                </button>
-                                            </div>
-                                        </div>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                </div>
-
+                                    <div class="sheet-footer">
+                                        <button class="btn secondary js-reset-form">Thiết lập lại</button>
+                                        <button class="btn primary js-submit-form">Xem kết quả</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </form>
 
+                        <!-- Modal Filter -->
+                        <div class="modal fade" id="modal-filter">
+                            <div class="modal-dialog modal-dialog-centered c-px-sm-16">
+                                <form action="" class="form-filter">
+                                    <div class="modal-content">
+                                        <div class="modal-header justify-content-center p-0">
+                                            <h2 class="modal-title center">Bộ lọc</h2>
+                                            <button type="button" class="close" data-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body c-p-0">
+                                            <div class="input-group">
+                                                <span class="form-label title-color">Loại giao dịch</span>
+                                                <select name="type-trans" id="">
+                                                    <option value="">Chọn</option>
+                                                    <option value="atm">ATM</option>
+                                                    <option value="wallet">Ví điện tử</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="input-group">
+                                                <span class="form-label title-color">Trạng thái</span>
+                                                <select name="status" id="">
+                                                    <option value="">Chọn</option>
+                                                    <option value="1">Thành công</option>
+                                                    <option value="2">Thất bại</option>
+                                                </select>
+                                            </div>
+
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <div class="input-group">
+                                                    <span class="form-label title-color">
+                                                        Từ ngày
+                                                    </span>
+                                                            <input type="text" name="started_at" class="date-right" placeholder="Chọn">
+                                                        </div>
+                                                    </td>
+                                                    <td class="c-px-6 d-block"></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                    <span class="form-label title-color">
+                                                        Đến ngày
+                                                    </span>
+                                                            <input type="text" name="ended_at" class="date-right" placeholder="Chọn">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
+                                            <button type="button" class="btn secondary js-reset-form">Thiết lập lại</button>
+                                            <button type="button" class="btn primary js-submit-form">Xem kết quả</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="c-py-16 d-none d-lg-block">
+                @include('frontend/widget/__service__other__his')
+            </div>
         </div>
-
     </div>
-
-    <input type="hidden" class="started_at_day_ls" name="started_at_day_ls" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_day_ls" name="end_at_day_ls" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_yes_ls" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_yes_ls" name="end_at_yes_ls" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
-    <input type="hidden" class="started_at_month_ls" name="started_at_month_ls" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
-    <input type="hidden" class="end_at_month_ls" name="end_at_month_ls" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
-
-    <input type="hidden" name="serial_data_ls" class="serial_data_ls">
-    <input type="hidden" name="key_data_ls" class="key_data_ls">
-    <input type="hidden" name="status_data_ls" class="status_data_ls">
-    <input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
-    <input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
-    <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
-
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs.js"></script>
 @endsection
-
-
-
-
-
 
 
