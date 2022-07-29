@@ -167,6 +167,14 @@
     .card--mobile__title h4{
         font-size: 26px;
     }
+    .article-list{
+        flex-wrap: nowrap;
+        max-width: 100vw;
+        overflow-x: scroll;
+    }
+    .nav-item{
+        width: 100% !important;
+    }
 }
 .new-all:active, .new-all.active, .new-all:hover{
     width: 100%;

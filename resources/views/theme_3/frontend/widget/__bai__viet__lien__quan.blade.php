@@ -2,7 +2,7 @@
 <div class="card --custom mt-1 p-3">
     <div class="card--header">
         <div class="card--header__title">
-            <div class="title__icon mr-1"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/lightning.png" alt=""></div>
+            <div class="title__icon mr-1"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/lightning.svg" alt=""></div>
             <h4>Bài viết cùng chủ đề</h4>
         </div>
     </div>
