@@ -335,7 +335,7 @@
                             </div>
 
                             <div class="col-auto left-right banner-mobile-span text-center text-login" style="width: 80%">
-                                <h3>Tài khoản</h3>
+                                <p>Tài khoản</p>
                             </div>
                             <div class="col-auto left-right" style="width: 10%">
                             </div>
