@@ -34,7 +34,7 @@ class ChargeController extends Controller
 
     public function reloadCaptcha()
     {
-
+        Session::forget('intended');
         return response()->json(['captcha'=> captcha_img()]);
     }
     public function myCaptcha()

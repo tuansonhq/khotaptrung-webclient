@@ -1,4 +1,4 @@
-
+@if(!App\Library\AuthCustom::check())
 <!-- Modal -->
 <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="modal-body">
-                <form id="formLogin"  action="{{route('login')}}" method="POST">
+                <form id="formLogin"  class="formLogin" action="{{route('login')}}" method="POST">
                     @csrf
                     <div class=" text-center">
                         <div class="my-4 text-center">
@@ -155,7 +155,7 @@
         </div>
     </div>
 </div>
-
+@endif
 {{--Đăng nhập--}}
 <script>
     $('.formLogin').submit(function (e) {
