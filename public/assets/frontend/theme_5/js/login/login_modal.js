@@ -85,6 +85,20 @@ $(document).ready(function () {
         $('.mobile-auth').toggleClass('hidden');
     });
 
+    $('#handleLoginPopup').click(function (e) {
+        e.preventDefault();
+        $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+        $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+        $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+    });
+
+    $('#handleRegisterPopup').click(function (e) {
+        e.preventDefault();
+        $('.mobile-auth-form #formLoginMobile').css('display', 'none');
+        $('.mobile-auth-form #formRegisterMobile').css('display', 'flex');
+        $('.mobile-auth .head-mobile h1').text('Đăng ký');
+    });
+
     $('#changeFormLogin').click(function (e) {
         e.preventDefault();
         $('.mobile-auth-form #formLoginMobile').fadeIn(500);
