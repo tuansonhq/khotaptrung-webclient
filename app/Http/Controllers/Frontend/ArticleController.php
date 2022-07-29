@@ -37,11 +37,8 @@ class ArticleController extends Controller
                 if (isset($data->to)){
                     $per_page = $data->to;
                 }
-
                 $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page,$data->data);
-
                 $data->setPath($request->url());
-
 
                 return view('frontend.pages.article.list')
                     ->with('total',$total)
