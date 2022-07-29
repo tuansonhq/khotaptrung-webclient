@@ -13,8 +13,8 @@
                     Nick.vn xin chào!
                 </div>
                 <div class="fw-400 c-mt-4">Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</div>
-                <button class="handleLoginPopup btn primary w-100 c-mt-12">Đăng nhập</button>
-                <div class="c-mt-10">Bạn chưa có tài khoản? <a href="" class="text-primary-color fw-500 underline" style="text-decoration: underline">Đăng ký</a></div>
+                <button class="handleLoginPopup btn primary w-100 c-mt-12" id="handleLoginPopup">Đăng nhập</button>
+                <div class="c-mt-10">Bạn chưa có tài khoản? <a href="" class="handleLoginPopup text-primary-color fw-500 underline" id="handleRegisterPopup" style="text-decoration: underline">Đăng ký</a></div>
             </div>
         </div>
 
@@ -24,41 +24,60 @@
                 <h1 class="head-title text-title">Đăng nhập</h1>
             </div>
             <div class="mobile-auth-form c-px-16 c-pt-50">
-                <form action="" id="formRegisterMobile" class="d-flex flex-column justify-content-center aligin-items-center text-center" style="display: none !important;">
+                <form action="" id="formRegisterMobile" class="flex-column justify-content-center aligin-items-center text-center">
                     <div class="c-mt-40">
                         <img src="/assets/frontend/{{env('THEME_VERSION')}}/image/phu/logo.png" alt="">
                     </div>
-                    <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-40">Đăng ký để trải nghiệm tốt nhất<br> dịch vụ của chúng tôi!</p>
+                    <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-20">Đăng ký để trải nghiệm tốt nhất<br> dịch vụ của chúng tôi!</p>
 
-                    <input class="c-mb-16" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required="">
+                    <span class="loginError text-error c-mb-20"></span>
 
-                    <span class="input-group toggle-password w-100 c-mb-16">
-                        <input class="" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required="">
+                    <span class="input-group w-100 c-mb-16">
+                        <input class="" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
+                        <span class="text-error c-mt-4"></span>
                     </span>
 
-                    <span class="input-group toggle-password w-100 c-mb-24">
-                        <input class="" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required="">
+                    <span class="input-group w-100 c-mb-16">
+                        <span class="toggle-password w-100">
+                            <input class="" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off">
+                        </span>
+                        <span class="text-error c-mt-4"></span>
                     </span>
 
-                    <button class="btn primary">Đăng ký</button>
+                    <span class="input-group w-100 c-mb-16">
+                        <span class="toggle-password w-100">
+                            <input class="" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off">
+                        </span>
+                        <span class="text-error c-mt-4"></span>
+                    </span>
+
+                    <button type="submit" class="btn primary">Đăng ký</button>
                     <p id="changeFormLogin" class="mobile-auth-change-form fw-400 fz-12 lh-16 c-mt-24">Bạn đã có tài khoản? <span>Đăng nhập tại đây</span></p>
                 </form>
 
-                <form action="" id="formLoginMobile" class="d-flex flex-column justify-content-center aligin-items-center text-center">
+                <form action="" id="formLoginMobile" class="flex-column justify-content-center aligin-items-center text-center">
                     <div class="c-mt-40">
                         <img src="/assets/frontend/{{env('THEME_VERSION')}}/image/phu/logo.png" alt="">
                     </div>
-                    <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-40">Đăng nhập để tiến hành giao dịch! </p>
+                    <p class="fw-500 fz-15 lh-24 c-mt-24 c-mb-20">Đăng nhập để tiến hành giao dịch! </p>
 
-                    <input class="c-mb-16" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required="">
+                    <span class="registerError text-error c-mb-20"></span>
 
-                    <span class="input-group toggle-password w-100 c-mb-8">
-                        <input class="" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required="">
+                    <span class="input-group w-100 c-mb-16">
+                        <input class="" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off">
+                        <span class="text-error c-mt-4"></span>
+                    </span>
+
+                    <span class="input-group w-100 c-mb-16">
+                        <span class="toggle-password w-100">
+                            <input class="" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off">
+                        </span>
+                        <span class="text-error c-mt-4"></span>
                     </span>
 
                     <p class="forgot-text c-mb-24 fz-12 fw-400 lh-16">Quên mật khẩu?</p>
 
-                    <button class="btn primary">Đăng nhập</button>
+                    <button type="submit" class="btn primary">Đăng nhập</button>
 
                     <div class="login-line d-flex align-items-center c-mt-24 c-px-25">
                         <span class="d-block"></span>
