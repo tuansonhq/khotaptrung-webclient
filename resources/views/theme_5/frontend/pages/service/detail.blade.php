@@ -11,7 +11,7 @@
                 <a href="/dich-vu" class="breadcrumb-link">Dịch vụ game</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/dich-vu/slug" class="breadcrumb-link">Chi tiết dịch vụ</a>
+                <a href="/dich-vu/{{ @$data->slug}}" class="breadcrumb-link">{{@$data->title}}</a>
             </li>
         </ul>
         <div class="head-mobile">
@@ -39,46 +39,220 @@
             <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
                 Vui lòng chọn thông tin
             </div>
+            @if( isset($server_data) && isset($server_id))
             <div class="row">
                 <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
-                    <div class="card unset-lg">
-                        <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Chọn máy chủ
-                                </div>
-                                <select name="" id="">
-                                    <option value="">Trái đất</option>
-                                    <option value="">Sao hoả</option>
-                                </select>
-                            </div>
+                    @if( isset($server_data) && isset($server_id))
+                        <div class="col-md-12 left-right body-title-ct">
+                            <div class="row marginauto">
 
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Nhập số tiền cần mua
-                                </div>
-                                <input type="text" placeholder="Nhập số tiền...">
-                            </div>
+                                <div class="col-md-12 text-left left-right mb-fix-12">
 
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Hệ số
+                                    <div class="row marginauto ">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Chọn máy chủ</span>
+                                        </div>
+                                        <div class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                            <select class="wide" name="server">
+                                                @forelse($server_data as $k_server => $server)
+                                                    @if(!strpos($server_data[$k_server], '[DELETE]'))
+                                                        <option value="{{ $server_id[$k_server] }}">{{ $server_data[$k_server] }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                        <div class="col-m-12 server-error"></div>
+                                    </div>
                                 </div>
-                                <select name="" id="">
-                                    <option value="">SEA</option>
-                                    <option value="">Sao hoả</option>
-                                </select>
-                            </div>
 
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Tên nhân vật
-                                </div>
-                                <input type="text" placeholder="Tên nhân vật">
                             </div>
                         </div>
-                    </div>
+                    @endif
+                    @switch($data_params['filter_type'])
+                        {{--                                                3 Dạng tiền tệ   --}}
+                        {{--                                                4 Dạng chọn một --}}
+                        {{--                                                5 Dạng chọn nhiều   --}}
+                        {{--                                                6 Dạng chọn từ A->B (trong khoảng) --}}
+                        {{--                                                7 Dạng nhập tiền để thanh toán  --}}
+                        @case('3')
+                        @break
+                        @case('4')
+                        <div class="col-md-12 left-right body-title-ct">
+                            <div class="row marginauto form-group">
+                                <div class="col-md-12 text-left left-right">
+                                    <div class="row marginauto">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Chọn gói nạp:</span>
+                                        </div>
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                            <select class="wide" name="selected">
+                                                @forelse($data_params['name'] as $k_name => $name)
+                                                    @if(!!$name)
+                                                        <option value="{{ $k_name }}">{{ $name }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                        <div class="col-m-12 server-error">
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @break
+                        @case('5')
+                        <div class="col-md-12 left-right body-title-ct" id="select-multi">
+                            <div class="row marginauto">
+                                <div class="col-md-12 text-left left-right">
+                                    <div class="row marginauto form-group">
+                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>{{ $data_params['filter_name'] }}</span>
+                                        </div>
+                                        <div class="col-md-12 left-right">
+                                            <div class="row body-title-detail-checkbox-ct">
+                                                @if(!empty($data_params['name']))
+                                                    @forelse($data_params['name'] as $k_name => $name)
+                                                        @if(!!$name)
+                                                            <div class="col-auto body-title-detail-checkbox-col-ct">
+                                                                <label for="{{$name . $k_name}}" class="input-ratio-ct">
+                                                                                <span class="label--checkbox">
+                                                                                    <div class="label--checkbox__name">
+                                                                                        {{ $name }}
+                                                                                    </div>
+                                                                                    <span
+                                                                                        class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
+                                                                                        data-tippy-content="{{ $name }}">
+                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
+                                                                                    </span>
+                                                                                </span>
+                                                                    <input
+                                                                        id="{{$name . $k_name}}"
+                                                                        type="checkbox"
+                                                                        class="allgame"
+                                                                        value="{{ $k_name }}">
+                                                                    <span class="input-ratio-checkmark-ct --overwrite"></span>
+                                                                </label>
+                                                            </div>
+                                                        @endif
+                                                    @empty
+                                                    @endforelse
+                                                    <input type="hidden" name="selected">
+                                                @endif
+                                            </div>
+                                            <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @break
+                        @case('6')
+                        <div class="col-md-12 left-right">
+                            <div class="row body-title-detail-ct">
+                                <div
+                                    class="col-auto text-left detail-service-col body-title-detail-col-ct">
+                                    <div class="row marginauto">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Rank hiện tại</span>
+                                        </div>
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
+                                            <select class="wide js-selected" name="rank_from">
+                                                @forelse($data_params['name'] as $k_name => $name)
+                                                    @if(!!$name)
+                                                        <option value="{{ $k_name }}">{{ $name }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+
+                                        <div class="col-m-12 rank-start-error">
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div
+                                    class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
+                                    <div class="row marginauto">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Rank mong muốn</span>
+                                        </div>
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
+                                            <select class="wide js-selected" name="rank_to">
+                                                @forelse($data_params['name'] as $k_name => $name)
+                                                    @if(!!$name)
+                                                        <option value="{{ $k_name }}">{{ $name }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                        <div class="col-m-12 rank-end-error">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @break
+                        @case('7')
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto mb-fix-12">
+                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                    <span>Nhập số tiền cần mua:</span>
+                                </div>
+                                <div class="col-md-12 left-right body-title-detail-select-ct">
+                                    <input autocomplete="off" class="input-defautf-ct mb-2"
+                                           id="input_pack"
+                                           value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
+                                           name="selected"
+                                           type="text"
+                                           placeholder="Số tiền"
+                                           numberic
+                                           currency
+                                           required>
+                                    <span id="text-pack">
+                                                            Số tiền thanh toán phải từ
+                                                            <b style="font-weight:bold;">{{number_format($data_params['input_pack_min'])}}đ</b>
+                                                            đến
+                                                            <b style="font-weight:bold;">{{number_format($data_params['input_pack_max'])}}đ</b>
+                                                        </span>
+                                </div>
+                                <div class="col-m-12 server-error">
+
+                                </div>
+                            </div>
+                            <div class="row marginauto">
+                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                    <span>Hệ số:</span>
+                                </div>
+                                <div
+                                    class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                    <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
+                                </div>
+                                <div class="col-m-12 server-error">
+
+                                </div>
+                            </div>
+                        </div>
+                    @break
+                    @default
+                @endswitch
 
                     <!-- service select mobile -->
                     <h2 class="text-title fw-700 title-color-lg c-pt-lg-20 c-pb-lg-8 d-block d-lg-none">
@@ -186,7 +360,19 @@
                         <hr>
                     </div>
                     <div class="c-mb-16">
-                        @include('frontend.pages.components.description')
+{{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
+                        <div class="card overflow-hidden">
+                            <div class="card-body c-px-16">
+                                <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
+                                <div class="content-desc">
+                                    {!! @$data->description !!}
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <span class="see-more" data-content="Xem thêm nội dung"></span>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Data Bot -->
@@ -324,6 +510,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
