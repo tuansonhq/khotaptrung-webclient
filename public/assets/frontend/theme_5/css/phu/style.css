@@ -1155,6 +1155,14 @@ input[type=text].buy-card-amount-input {
     transform: translateX(100vw);
 }
 
+.mobile-auth-form form {
+    display: flex;
+}
+
+.mobile-auth-form .text-error:empty {
+    margin-top: 0 !important;
+}
+
 .mobile-auth-change-form span {
     color: var(--primary-color);
 }
