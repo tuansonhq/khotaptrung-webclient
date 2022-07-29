@@ -25,30 +25,33 @@
             <h4>Danh mục tin tức</h4>
         </div>
         <div class="row flex-column-reverse " id="card--body__news">
-            <div class=" px-0 mt-lg-0" id="list-article">
+            <div class=" px-0 mt-lg-0" id="list-article" style="max-width: 100%">
                 <div class=" --custom p-3" id="new-article-update">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item"  role="presentation">
-                            <a class="tab active new-all"  data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">
-                                <span>Tất cả tin tức</span>
-                            </a>
-                        </li>
-                        <li class="nav-item"  role="presentation">
-                            <a class="tab new-all new-all-icon-2"  data-toggle="tab" href="#tab-2" role="tab" aria-selected="false">
-                                <span>Tin game</span>
-                            </a>
-                        </li>
-                        <li class="nav-item"  role="presentation">
-                            <a class="tab new-all new-all-icon-3"  data-toggle="tab" href="#tab-3" role="tab" aria-selected="false">
-                                <span>Hướng dẫn</span>
-                            </a>
-                        </li>
-                        <li class="nav-item"  role="presentation">
-                            <a class="tab new-all new-all-icon-4"  data-toggle="tab" href="#tab-4" role="tab" aria-selected="false">
-                                <span>Về chúng tôi</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div>
+                        <ul class="nav nav-tabs article-list" role="tablist">
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab active new-all"  data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">
+                                    <span>Tất cả tin tức</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-2"  data-toggle="tab" href="#tab-2" role="tab" aria-selected="false">
+                                    <span>Tin game</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-3"  data-toggle="tab" href="#tab-3" role="tab" aria-selected="false">
+                                    <span>Hướng dẫn</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-4"  data-toggle="tab" href="#tab-4" role="tab" aria-selected="false">
+                                    <span>Về chúng tôi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
 
                     <div class="tab-content mt-4">
                         <div class="card--body tab-pane fade show active" id="tab-1">
@@ -64,7 +67,7 @@
                                         </div>
                                         <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
                                             <div class="article--title  mb-lg-0 article-title-mobile">
-                                                <a href="/tin-tuc/baiviet" class="article--title__link">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
                                                     Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
                                                     vẫn chê ‘không bằng Tốc Chiến’
                                                 </a>
@@ -98,7 +101,7 @@
                                         </div>
                                         <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
                                             <div class="article--title mb-lg-0 article-title-mobile">
-                                                <a href="/tin-tuc/baiviet" class="article--title__link">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
                                                     Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
                                                     vẫn chê ‘không bằng Tốc Chiến’
                                                 </a>
@@ -133,7 +136,7 @@
                                         </div>
                                         <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
                                             <div class="article--title  mb-lg-0 article-title-mobile">
-                                                <a href="/tin-tuc/baiviet" class="article--title__link">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
                                                     Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
                                                     vẫn chê ‘không bằng Tốc Chiến’
                                                 </a>
@@ -168,7 +171,7 @@
                                         </div>
                                         <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
                                             <div class="article--title mb-lg-0 article-title-mobile">
-                                                <a href="/tin-tuc/baiviet" class="article--title__link">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
                                                     Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
                                                     vẫn chê ‘không bằng Tốc Chiến’
                                                 </a>
