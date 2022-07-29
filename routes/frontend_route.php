@@ -1,8 +1,6 @@
 <?php
 use App\Http\Controllers\Frontend\AccController;
 use App\Http\Controllers\Frontend\ArticleController;
-use App\Http\Controllers\Frontend\CaptchaController;
-use App\Http\Controllers\Frontend\CaptchaServiceController;
 use App\Http\Controllers\Frontend\ChargeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserController;
@@ -61,27 +59,7 @@ Route::get('/test111', function ()
     return 1111;
 })->middleware('throttle:5,1');
 Route::get('/switch-theme/{id}', [\App\Library\Theme::class , 'getTheme'])->name('getTheme');
-Route::get('/updategit', function ()
-{
 
-//    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
-//
-//    $output = shell_exec($command);
-////    Lam sao day em oi
-//
-//    dd($command, $output);
-//    \Artisan::call('cache:clear');
-//    \Artisan::call('config:cache');
-//    \Artisan::call('view:clear');
-//    \Artisan::call('route:clear');
-//    Cache::flush();
-//
-//    return response()->json([
-//        'status' => 1,
-//        'message' => 'Thành công!',
-//        'message-git' => $output
-//    ]);
-});
 //if (isset(theme('')->theme_key)){
 //    if (theme('')->theme_key == 'theme_1'){
 
@@ -103,18 +81,7 @@ Route::group(array('middleware' => ['theme']) , function (){
         {
             return view('index');
         });
-        Route::get('/clear', function ()
-        {
-            \Artisan::call('cache:clear');
-            \Artisan::call('config:cache');
-            \Artisan::call('view:clear');
-            \Artisan::call('route:clear');
-            Cache::flush();
-            return response()->json([
-                'status' => 1,
-                'message' => 'Thành công!'
-            ]);
-        });
+
 
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
@@ -305,6 +272,35 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/contact-form', [ChargeController::class, 'index']);
                 Route::post('/captcha-validation', [ChargeController::class, 'capthcaFormValidate']);
+
+                Route::get('/clear', function ()
+                {
+                    \Artisan::call('cache:clear');
+                    \Artisan::call('config:cache');
+                    \Artisan::call('view:clear');
+                    \Artisan::call('route:clear');
+                    Cache::flush();
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!'
+                    ]);
+                });
+
+                Route::get('/updategit', function ()
+                {
+
+                    $command='git pull https://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@github.com/tannm2611/khotaptrung-webclient.git dev 2>&1';
+
+                    $output = shell_exec($command);
+
+                    \Artisan::call('cache:clear');
+
+                    return response()->json([
+                        'status' => 1,
+                        'message' => 'Thành công!',
+                        'message-git' => $output,
+                    ]);
+                });
 
             });
 

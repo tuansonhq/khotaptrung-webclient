@@ -331,6 +331,7 @@ header nav.heading .header-container{
     border: 1px solid var(--primary-color);
     width: 341px;
 }
+
 .box-search .input-group-btn{
     position: absolute;
     top: 48%;
@@ -353,6 +354,7 @@ header nav.heading .header-container{
 .box-about{
     margin-left: 38px;
 }
+
 .item-about{
     margin: 0 16px;
     text-align: center;
@@ -753,7 +755,7 @@ header nav.heading .header-container{
     margin-top: 20px;
 
     width: 272px;
-    height: 56px;
+    /*height: 56px;*/
     overflow: hidden;
     margin-bottom: 10px;
 }
@@ -779,11 +781,11 @@ header nav.heading .header-container{
 
 .box-list-service>p,.top-list p,.top-list p span{
     color: var(--text-black-color);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 .box-list-service{
-    height:56px;
+    /*height:56px;*/
 
     overflow: hidden;
     transition:all .2s linear 0s;
@@ -1479,7 +1481,9 @@ header nav.heading .header-container{
     line-height: 150%;
     margin-top: 8px;
 }
-
+.item-product-service img{
+    width: 60px;
+}
 @media (max-width: 1200px ) {
     .item-minigame-name {
         font-size: 14px;
@@ -1621,6 +1625,7 @@ header nav.heading .header-container{
     }
     .block-card-item .block-product{
         min-height: auto;
+        padding-bottom: 80px;
     }
 }
 @media (max-width: 768px) {
@@ -1651,6 +1656,9 @@ header nav.heading .header-container{
         width: 24px;
     }
     .text-title {
+        font-size: 16px;
+    }
+    .block-other-nick .text-title {
         font-size: 16px;
     }
     .flash-sales .product-header .timer {
@@ -1737,8 +1745,8 @@ header nav.heading .header-container{
 
 .menu-profile-mobile {
     position: fixed;
-    z-index: 11;
-    top: 56px;
+    z-index: 999;
+    top: 0;
     bottom: 0;
     left: 100vw;
     /*left: 0;*/
@@ -1975,6 +1983,9 @@ header nav.heading .header-container{
     border-radius: 8px;
     margin: 20px 12px 0 12px;
 }
+.rotation-notify-home-fix{
+    margin: 20px auto 0 auto;
+}
 .rotation-notify-home img{
     position: absolute;
     left: 14px;
@@ -2015,27 +2026,192 @@ header nav.heading .header-container{
     }
 }
 #menu-service .menu-category{
-    position: fixed;
+    /*position: fixed;*/
     top: 80px;
     left: 0;
     right: 0;
-        z-index: 999;
-    transition: .2s;
-    box-shadow: 0px 1px 4px 0px #00000033;
-
-}
-#menu-service .menu-category{
+    z-index: 998;
+    box-shadow: 0 5px 5px -5px #00000033;
     height: 0;
     overflow: hidden;
-    transition: .2s;
+
 }
-.hehe .menu-category{
+
+.menu-fix .menu-category{
     height: 48px !important;
     transition: .2s;
+    position: fixed;
 }
 .swiper-service .item-product__box-img img{
     border-radius: var(--primary-border);
 }
 .swiper-service.list-product .swiper-slide{
     border: none;
+}
+
+
+/*tool tip*/
+.menu-side{
+    width: 48px;
+    position: fixed;
+    right: 0;
+    /* height: 40px; */
+    top: 50%;
+    background: white;
+    padding: 0 8px;
+    border-radius: 8px 0 0 8px;
+    z-index: 9999;
+    transform: translateY(-50%);
+}
+
+.menu-side-item{
+    /*box-shadow: 0px 1px 4px 0px #00000033;*/
+    /*border-radius: 100%;*/
+    width: 32px;
+    height: 32px;
+    /*!* padding: 6px; *!*/
+    position: relative;
+    margin: 8px 0;
+
+}
+.menu-side-item a{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.menu-side-item img{
+    width: 32px;
+    height: 32px;
+    /* margin: auto; */
+    /* object-fit: cover; */
+
+}
+/* Tooltip coming soon */
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 120px;
+    background: #2A2A2A;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-50%) translateX(100%) ;
+}
+[data-tooltip]::after {
+    content: "";
+    position: absolute;
+    right: 80%;
+    top: 50%;
+    border-top: 10px solid transparent;
+    /* border-right: 15px solid transparent; */
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #2A2A2A;
+    opacity: 0;
+    transform: translateY(-50%) translateX(100%) ;
+}
+
+.coming-soon:hover:after {
+    transform: translateY(-50%) translateX(-28px) ;
+    opacity: 1;
+    visibility: visible;
+    /*transition: 0.1s;*/
+
+
+}
+.coming-soon:hover:before {
+    transform: translateY(-50%) translateX(-28px);
+    opacity: 1;
+    visibility: visible;
+    /*transition: 0.1s;*/
+
+}
+.go-top{
+    display: none;
+}
+
+.charge-content-img{
+    flex: 1 0 auto;
+    background: url(/assets/frontend/theme_3/image/charge_card.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    border-radius: 12px;
+}
+.charge-content{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column; min-height: 100%
+}
+.charge-content-detail{
+    background: white;
+    padding: 8px;
+    margin-top: 10px;
+    height: 260px;
+    overflow-y: hidden;
+    border-radius: 12px;
+}
+.charge-content-detail>div{
+    overflow-y: scroll;
+    padding: 8px;
+    height: 100%;
+}
+.charge-content-detail>div::-webkit-scrollbar {
+    width: 8px;
+}
+.charge-content-detail>div::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+    border: none;
+}
+.charge-content-detail>div::-webkit-scrollbar-track {
+    background: transparent;
+}
+.box-product{
+    position: relative;
+}
+.box-product .swiper-button-prev,.box-product .swiper-button-next{
+    background-color: #FBFBFD;
+    width: 32px;
+    height: 32px;
+    background-image: none;
+    opacity: 1;
+    border-radius: 4px;
+    display: flex;
+    padding: 4px;
+    /*background-image: url(./assets/frontend/theme_3/image/swiper-prev.svg) !important;*/
+    cursor: pointer;
+}
+.box-product .swiper-button-prev{
+    left: -10px;
+}
+.box-product .swiper-button-next{
+    right: -10px;
+}
+.box-product .swiper-button-next.swiper-button-disabled,.box-product .swiper-button-prev.swiper-button-disabled{
+    opacity: 0.8;
+    pointer-events: initial;
+}
+
+@media (max-width: 992px) {
+    .box-product .swiper-button-prev,.box-product .swiper-button-next{
+        display: none;
+    }
+    .menu-side{
+        display: none;
+    }
 }

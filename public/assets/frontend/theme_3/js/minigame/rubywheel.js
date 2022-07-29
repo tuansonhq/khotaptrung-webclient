@@ -63,7 +63,6 @@ $(document).ready(function(e) {
                     } else if (data.status == 3) {
                         roll_check = true;
                         $('#naptheModal').modal('show')
-                        return;
                     } else if (data.status == 0) {
                         roll_check = true;
                         $('#noticeModal .content-popup').text(data.msg);
@@ -92,12 +91,16 @@ $(document).ready(function(e) {
                     if($('#type_play').val()=='real'){
                         userpoint = data.userpoint;
                         if(userpoint<100){
-                            $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                            $(".progress-bar").css("width", userpoint + "%");
                         }else{
-                            $(".item_spin_progress_bubble").css("width", "100%");
-                            $(".item_spin_progress_bubble").addClass('clickgif');
+                            $(".pyro").show();
+                            setTimeout(function(){
+                                $(".pyro").hide();
+                            },6000)
+                            $(".progress-bar").css("width", "100%");
+                            $(".progress-bar").addClass('clickgif');
                         }
-                        $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                        $('.progress-tooltip').text(`Điểm của bạn: ${userpoint}/100`);
                         $("#saleoffpass").val("");
                         //saleoffmessage = data.saleMessage;
                     }

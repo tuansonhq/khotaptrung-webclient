@@ -90,7 +90,7 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
+                // alert('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý(account_info)!')
                 return;
             },
             complete: function (data) {

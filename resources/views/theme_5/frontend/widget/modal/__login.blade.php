@@ -1,257 +1,70 @@
-@if(!App\Library\AuthCustom::check())
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-lg modal-dialog-centered animated">
-            <div class="modal-content">
-                <div class="modal-login-container" id="modal-login-container">
-                    <div class="modal-login-form-container sign-up-container">
-                        <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
-                        <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
-                            @csrf
-                            <h1>Đăng ký</h1>
-                            <p class="modal-login-error text-center registError" id="registError"></p>
-                            {{-- <div class="social-container">
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                                </a>
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/google_icon.svg" alt="">
-                                </a>
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/discord_icon.svg" alt="">
-                                </a>
-                            </div>
-                            <span>Hoặc đăng ký bằng tài khoản</span> --}}
-                            <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog modal-lg modal-dialog-centered animated">
+        <div class="modal-content">
+            <div class="modal-login-container" id="modal-login-container">
+                <div class="modal-login-form-container sign-up-container">
+                    <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                    <form class="modal-login-form formRegister" id="formRegister" action="" method="POST">
+                        @csrf
+                        <p class="fw-700 fz-24 fz-lg-24 fz-md-18 fz-sm-16 color-pink">Đăng ký</p>
+                        {{--                            <small class="fz-13 fz-md-12 fz-sm-10 fw-400 c-mb-12">Vui lòng đăng ký để sử dụng dịch vụ của chúng tôi</small>--}}
+                        <input class="input-primary c-mt-16" type="text" name="username" placeholder="Nhập tên tài khoản" required>
+                        <div class="text-error c-mt-4 w-100 text-left">Help message here.</div>
+                        <div class="password-input-container c-mt-16">
+                            <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required>
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-show.svg" alt="" style="display: none">
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-hide.svg" alt="" >
+                        </div>
+                        {{--                            <div class="text-error c-mt-4 w-100 text-left">Help message here.</div>--}}
+                        <div class="password-input-container c-mt-16">
+                            <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required>
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-show.svg" alt="" style="display: none">
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-hide.svg" alt="" >
+                        </div>
+                        {{--                            <div class="text-error c-mt-4 w-100 text-left">Help message here.</div>--}}
 
-                            {{--                        <input class="input-primary" type="text" name="email" placeholder="Nhập email">--}}
-                            {{--                        <p class="modal-login-error" id="emailRegisterError"></p>--}}
-                            {{--                        <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">--}}
-                            {{--                        <p class="modal-login-error" id="phoneRegisterError"></p>--}}
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required>
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required>
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            {{--                        <p class="modal-login-error" id="passwordRegisterError"></p>--}}
-                            <button type="submit">Đăng ký</button>
-                        </form>
-                    </div>
-                    <div class="modal-login-form-container sign-in-container"   >
-                        <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
-                            @csrf
-                            <h1>Đăng nhập</h1>
-                            <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
-                            <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
-
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none" required>
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            {{--                        <p class="modal-login-error" id="passwordError"></p>--}}
-                            {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
-                            <button type="submit">Đăng nhập</button>
-                            <span>Hoặc đăng nhập qua</span>
-                            <div class="social-container">
-                                <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-login-overlay-container">
-                        <div class="modal-login-overlay">
-                            <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
-                                <h1>Bạn đã có tài khoản?</h1>
-                                <p>Đăng nhập tại đây</p>
-                                <button id="signIn">Đăng nhập</button>
-                            </div>
-                            <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
-                                <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close.svg" alt="">
-                                <h1>Bạn chưa có tài khoản?</h1>
-                                <p>Vui lòng đăng ký ngay tại đây</p>
-                                <button id="signUp">Đăng ký</button>
-                            </div>
+                        <button type="submit" class="btn pink btn-pink-default c-mt-32">Đăng ký</button>
+                    </form>
+                </div>
+                <div class="modal-login-form-container sign-in-container"   >
+                    <form class="modal-login-form formLogin" action="" id="formLogin"  method="POST">
+                        @csrf
+                        <p class="fw-700 fz-24 fz-lg-24 fz-md-18 fz-sm-16">Đăng nhập</p>
+                        <small class="fz-13 fz-md-12 fz-sm-10 fw-400 c-mb-12">Vui lòng đăng nhập để sử dụng dịch vụ của chúng tôi</small>
+                        <input class="input-primary c-mt-12" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
+                        {{--                            <div class="text-error c-mt-4 w-100 text-left">Help message here.</div>--}}
+                        <div class="password-input-container c-mt-16">
+                            <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
+                            <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-show.svg" alt="" style="display: none" required>
+                            <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/son/eye-hide.svg" alt="" >
+                        </div>
+                        {{--                            <div class="text-error c-mt-4 w-100 text-left">Help message here.</div>--}}
+                        <a href="" class="link blue w-100 text-left c-mt-4">Bạn quên mật khẩu?</a>
+                        <button type="submit" class="btn primary c-mt-18 c-mt-md-16 c-mt-sm-16 btn-primary-default">Đăng nhập</button>
+                        <span class="login-via fw-400 fz-13 fz-md-12 fz-sm-10 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8">Hoặc đăng nhập qua</span>
+                        <div class="social-container c-mt-24 c-mt-lg-20 c-mt-md-16">
+                            <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/facebook.svg" alt="">
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-login-overlay-container">
+                    <div class="modal-login-overlay">
+                        <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/son/bglogin.png')">
+                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0">Nick.vn xin chào</p>
+                            <p class="fw-400 fz-13 fz-md-12 fz-sm-10 c-mb-24 c-mb-lg-20 c-mb-md-16 c-md-sm-8">Bạn đã có tài khoản, vui lòng đăng nhập tại đây</p>
+                            <button class="btn primary btn-primary-default" id="signIn">Đăng nhập</button>
+                        </div>
+                        <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/son/bglogin.png')">
+                            <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                            <p class="modal-login-suggestion fw-700 fz-24 fz-lg-20 fz-md-18 fz-sm-16 c-mt-24 c-mt-lg-20 c-mt-md-16 c-mt-sm-8 mb-0">Nick.vn xin chào</p>
+                            <p class="fw-400 fz-13 fz-md-12 fz-sm-10 c-mb-32 c-mb-lg-20 c-mb-md-16 c-md-sm-8">Vui lòng đăng ký ngay tại đây</p>
+                            <button class="btn pink btn-pink-default" id="signUp">Đăng ký</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="mobile-auth">
-        <div class="mobile-auth-nav">
-            <div class="auth-nav-option auth-nav-option-active">
-                Đăng nhập
-            </div>
-            <div class="auth-nav-option">
-                Đăng ký
-            </div>
-        </div>
-        <div class="mobile-auth-form">
-            <form class="modal-login-form formLogin" id="formLoginMobile" action="{{route('login')}}" method="POST">
-                @csrf
-                <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
-                <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                {{--            <p class="modal-login-error" id="passwordError"></p>--}}
-                {{--            <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
-                <button type="submit">Đăng nhập</button>
-                <h1>Hoặc đăng nhập qua</h1>
-                <div class="social-container">
-                    <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                    </a>
-                </div>
-                <p id="changeFormRegister" class="mobile-auth-change-form">Bạn chưa có tài khoản? <span>Đăng ký tại đây</span></p>
-            </form>
-            <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{route('register')}}" method="POST" style="display: none">
-                @csrf
-                <p class="modal-login-error text-center registError" id="registError"></p>
-                <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>
-                {{--            <p class="modal-login-error" id="usernameRegisterErrorMobile"></p>--}}
-                {{--            <input class="input-primary" type="text" name="email" placeholder="Nhập email">--}}
-                {{--            <p class="modal-login-error" id="emailRegisterErrorMobile"></p>--}}
-                {{--            <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">--}}
-                {{--            <p class="modal-login-error" id="phoneRegisterErrorMobile"></p>--}}
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                {{--            <p class="modal-login-error" id="passwordRegisterError"></p>--}}
-                <button type="submit">Đăng ký</button>
-                <p id="changeFormLogin" class="mobile-auth-change-form">Bạn đã có tài khoản? <span>Đăng nhập tại đây</span></p>
-            </form>
-        </div>
-    </div>
-@endif
-<script>
-
-    $('.formLogin').submit(function (e) {
-
-        e.preventDefault();
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        let url2 = new URL(window.location.href);
-
-        var return_url = url2.searchParams.get('return_url');
-        $.ajax({
-            type: "POST",
-            url: url,
-            cache:false,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-
-            },
-            success: function (data) {
-
-                if(data.status == 1){
-                    if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
-                        window.location.reload();
-
-                    }else{
-                        window.location.href = data.return_url;
-                    }
-
-                }else{
-                    $('.LoginError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
-                }
-
-            },
-            error: function (data) {
-                alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
-                btnSubmit.text('Đăng nhập');
-            },
-            complete: function (data) {
-                $('#form-login').trigger("reset");
-            }
-        });
-    });
-    $('.formRegister').submit(function (e) {
-        e.preventDefault();
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        let url2 = new URL(window.location.href);
-
-        var return_url = url2.searchParams.get('return_url');
-        $.ajax({
-            type: "POST",
-            url: url,
-            cache:false,
-            data: formSubmit.serialize(), // serializes the form's elements.
-            beforeSend: function (xhr) {
-            },
-            success: function (data) {
-
-                if(data.status == 1){
-                    if (return_url == null || return_url == '' || return_url == undefined){
-
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            window.location.href = '/';
-                        }else {
-                            window.location.href = return_url;
-
-                        }
-
-                    }else {
-                        window.location.href = return_url;
-
-                    }
-
-                }else{
-                    $('.registError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
-                }
-
-                // if(data.status == 1){
-                //     alert(da);
-                // }
-                // else{
-                //     alert(data);
-                //     btnSubmit.text('Thanh toán');
-                //     btnSubmit.prop('disabled', false);
-                // }
-            },
-            error: function (data) {
-                alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
-                btnSubmit.text('Đăng ký');
-            },
-            complete: function (data) {
-                $('#reload').trigger('click');
-                $('#form-regist').trigger("reset");
-            }
-        });
-    });
-</script>
+</div>

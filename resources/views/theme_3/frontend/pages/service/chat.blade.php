@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
@@ -29,10 +32,10 @@
             {{--content--}}
             <div class="col-12 col-lg-9 order--detail">
                 <div class="card--mobile__title">
-                    <a href="/lich-su-dich-vu" class="card--back">
+                    <a href="/dich-vu-da-mua" class="card--back">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                     </a>
-                    <h4>Gửi tin nhắn</h4>
+                    <h4>Dịch vụ đã mua</h4>
                 </div>
                 <div class="card --custom">
                     <div class="card--header  hidden-mobile">

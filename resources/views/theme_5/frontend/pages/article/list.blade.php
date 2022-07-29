@@ -1,142 +1,238 @@
 @extends('frontend.layouts.master')
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
-@endsection
-@section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
 @endsection
 @section('content')
     <div class="container-fix container">
-        {{--breadcrum--}}
-        <ul class="breadcrum--list">
-            <li class="breadcrum--item">
-                <a href="/" class="breadcrum--link">Trang chủ</a>
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
-            <li class="breadcrum--item">
-                <a href="" class="breadcrum--link">Tin tức</a>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0)" class="breadcrumb-link">Tin tức</a>
             </li>
         </ul>
-        {{--content--}}
-        <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
-            </span>
-            <h4>Tin tức</h4>
+        <div class="head-mobile">
+            <a href="/" class="link-back"></a>
+
+            <h1 class="head-title text-title">Tin tức</h1>
+
+            <a href="/" class="home"></a>
         </div>
-        {{--       Article Slider  --}}
-        <div class="card --custom mb-lg-3">
-            <div class="swiper article--slider">
-                <div class="swiper-wrapper">
-                    @if(isset($data) )
-                        @foreach($data as $key => $slide)
-                            @if($key <= 3)
-                                <div class="article swiper-slide">
-                                    <div class="row py-3 m-0">
-                                        <div class="col -12 col-lg-8 px-3 mb-3 mb-lg-0">
+         @include('frontend.widget.__slide__news')
+        <div class="card--mobile__title c-pt-24">
+            <h4>Danh mục tin tức</h4>
+        </div>
+        <div class="row flex-column-reverse " id="card--body__news">
+            <div class=" px-0 mt-lg-0" id="list-article" style="max-width: 100%">
+                <div class=" --custom p-3" id="new-article-update">
+                    <div>
+                        <ul class="nav nav-tabs article-list" role="tablist">
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab active new-all"  data-toggle="tab" href="#tab-1" role="tab" aria-selected="true">
+                                    <span>Tất cả tin tức</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-2"  data-toggle="tab" href="#tab-2" role="tab" aria-selected="false">
+                                    <span>Tin game</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-3"  data-toggle="tab" href="#tab-3" role="tab" aria-selected="false">
+                                    <span>Hướng dẫn</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"  role="presentation">
+                                <a class="tab new-all new-all-icon-4"  data-toggle="tab" href="#tab-4" role="tab" aria-selected="false">
+                                    <span>Về chúng tôi</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="tab-content mt-4">
+                        <div class="card--body tab-pane fade show active" id="tab-1">
+                            <div class="item-article c-mt-16" >
+                                <div class="article px-3">
+                                    <div class="row">
+                                        <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
                                             <div class="article--thumbnail">
-                                                <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                                    <img src="{{\App\Library\MediaHelpers::media($slide->image)}}"
+                                                <a href="/tin-tuc/baiviet">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/article-thumbnail/leon-800x450.png" alt="" class="article--thumbnail__image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
+                                            <div class="article--title  mb-lg-0 article-title-mobile">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
+                                                    Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
+                                                    vẫn chê ‘không bằng Tốc Chiến’
+                                                </a>
+                                            </div>
+                                            <div class="article--description d-none d-lg-block c-pt-16">
+                                                Mỗi người một ý, đối với mình việc để cây xanh trong góc PC khá là thư giãn,
+                                                thoải mái và thả lỏng tâm trạng hiệu quả Góc PC là...
+                                            </div>
+                                            <div>
+                                                <div class="article--date c-pt-3">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
+                                                         class="c-mr-8"><span>21/01/2022</span>
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
+                                                         class="c-mr-8 c-ml-16"><span>An Nguyen</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-article c-mt-16">
+                                <div class="article px-3">
+                                    <div class="row">
+                                        <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
+                                            <div class="article--thumbnail">
+                                                <a href="/tin-tuc/baiviet">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/article-thumbnail/leon-800x450.png"
                                                          alt="" class="article--thumbnail__image">
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-12 col-lg-4 p-0 px-3 px-lg-0 pr-lg-3">
-                                            <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                                <h3 class="article--title mb-2 mb-lg-4 p-lg-2">
-                                                    {{ $slide->title }}
-                                                </h3>
-                                            </a>
-                                            <p class="article--description mb-3 mb-lg-0">
-                                                {!! $slide->description !!}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    @else
-                        <div class="row pb-3 pt-3">
-                            <div class="col-md-12 text-center">
-                                <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-                <div class="row m-0 pagination--layout">
-                    <div class="col -12 col-lg-8 px-3">
-                    </div>
-                    <div class="col-12 col-lg-4 p-0 pb-3 pr-lg-3">
-                        <div class="swiper-pagination --custom  py-3 py-lg-0"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--End--}}
-
-        <div class="row flex-column-reverse flex-lg-row mx-0" id="card--body__news">
-            <div class="col-lg-8 px-0 pr-lg-3 mt-1 mt-lg-0" id="list-article">
-                <div class="card --custom p-3" id="new-article-update">
-                    <div class="card--header">
-                        <div class="card--header__title">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/icon-news-title.png" class="mr-1" alt=""> Mới cập nhật
-                        </div>
-                    </div>
-                    <div class="card--body">
-                        @if(isset($data) )
-                            @foreach($data as $key=> $item)
-                                @if($key >= 4)
-                                    <div class="article px-3">
-                                        <div class="row">
-                                            <div class="col-4 col-lg-4 p-0">
-                                                <div class="article--thumbnail">
-                                                    <a href="/tin-tuc/{{ $item->slug }}">
-                                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
-                                                    </a>
-                                                </div>
+                                        <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
+                                            <div class="article--title mb-lg-0 article-title-mobile">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
+                                                    Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
+                                                    vẫn chê ‘không bằng Tốc Chiến’
+                                                </a>
                                             </div>
-                                            <div class="col-8 col-lg-8 article--info">
-                                                <div class="article--title mb-3 mb-lg-0">
-                                                    <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
-                                                        {{ $item->title }}
-                                                    </a>
+                                            <div class="article--description d-none d-lg-block c-pt-16">
+                                                Mỗi người một ý, đối với mình việc để cây xanh trong góc PC khá là thư giãn,
+                                                thoải mái và thả lỏng tâm trạng hiệu quả Góc PC là...
+                                            </div>
+                                            <div>
+                                                <div class="article--date c-pt-3">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
+                                                         class="c-mr-8"><span>21/01/2022</span>
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
+                                                         class="c-mr-8 c-ml-16"><span>An Nguyen</span>
                                                 </div>
-                                                <div class="article--description d-none d-lg-block">
-                                                    {!! $item->description !!}
-                                                </div>
-                                                <div class="article--date">
-                                                    <i class="__icon calendar mr-2"></i>
-                                                    {{ formatDateTime($item->created_at) }}
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                @endif
-                            @endforeach
-                        @else
-                            <div class="row pb-3 pt-3">
-                                <div class="col-md-12 text-center">
-                                    <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
                                 </div>
                             </div>
-                        @endif
-                    </div>
+                            <div class="item-article c-mt-16">
+                                <div class="article px-3">
+                                    <div class="row">
+                                        <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
+                                            <div class="article--thumbnail">
+                                                <a href="/tin-tuc/baiviet">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/article-thumbnail/leon-800x450.png"
+                                                         alt="" class="article--thumbnail__image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
+                                            <div class="article--title  mb-lg-0 article-title-mobile">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
+                                                    Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
+                                                    vẫn chê ‘không bằng Tốc Chiến’
+                                                </a>
+                                            </div>
+                                            <div class="article--description d-none d-lg-block c-pt-16">
+                                                Mỗi người một ý, đối với mình việc để cây xanh trong góc PC khá là thư giãn,
+                                                thoải mái và thả lỏng tâm trạng hiệu quả Góc PC là...
+                                            </div>
+                                            <div>
+                                                <div class="article--date c-pt-3">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
+                                                         class="c-mr-8"><span>21/01/2022</span>
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
+                                                         class="c-mr-8 c-ml-16"><span>An Nguyen</span>
+                                                </div>
 
-                    <div class="col-md-12 left-right justify-content-end default-paginate">
-                        @if(isset($data))
-                            @if($data->total()>1)
-                                <div class="row marinautooo justify-content-center">
-                                    <div class="col-auto">
-                                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                            {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="item-article c-mt-16">
+                                <div class="article px-3">
+                                    <div class="row">
+                                        <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
+                                            <div class="article--thumbnail">
+                                                <a href="/tin-tuc/baiviet">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/article-thumbnail/leon-800x450.png"
+                                                         alt="" class="article--thumbnail__image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
+                                            <div class="article--title mb-lg-0 article-title-mobile">
+                                                <a href="/tin-tuc/baiviet" class="article--title__link text-limit limit-2">
+                                                    Riot cho ra mắt phần mới của nhóm trang phục Vệ Binh Tinh Tú, cộng đồng
+                                                    vẫn chê ‘không bằng Tốc Chiến’
+                                                </a>
+                                            </div>
+                                            <div class="article--description d-none d-lg-block c-pt-16">
+                                                Mỗi người một ý, đối với mình việc để cây xanh trong góc PC khá là thư giãn,
+                                                thoải mái và thả lỏng tâm trạng hiệu quả Góc PC là...
+                                            </div>
+                                            <div>
+                                                <div class="article--date c-pt-3">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
+                                                         class="c-mr-8"><span>21/01/2022</span>
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
+                                                         class="c-mr-8 c-ml-16"><span>An Nguyen</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                        @endif
-                    @endif
+                        <div class="tab-pane fade" id="tab-2" role="tabpanel">tab 2</div>
+                        <div class="tab-pane fade" id="tab-3" role="tabpanel">tab 3</div>
+                        <div class="tab-pane fade" id="tab-4" role="tabpanel">tab 4</div>
+                    </div>
+                        <div class="default-paginate c-pt-32">
+                        <ul class="pagination pagination-custom">
+                            <li class="page-item disabled">
+                                <a href="" class="page-link"></a>
+                            </li>
+                            <li class="page-item">
+                                <a href="" class="page-link"></a>
+                            </li>
+                            <li class="page-item active">
+                                <span class="page-link">1</span>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="">3</a>
+                            </li>
+                            <li class="page-item disabled hidden-xs">
+                                <span class="page-link">...</span>
+                            </li>
+                            <li class="page-item hidden-xs">
+                                <a class="page-link" href="">14</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="" rel="next"></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="" rel="next"></a>
+                            </li>
+                        </ul>
+                    </div></div>
+                    </div>
                 </div>
             </div>
-            @include('frontend.widget.__menu__category__article')
-        </div>
-    </div>
 @endsection
+
+
+

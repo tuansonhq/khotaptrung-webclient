@@ -396,6 +396,7 @@
         var free_wheel = 0;
         var value_gif_bonus = '';
         var msg_random_bonus = '';
+        var showwithdrawbtn = true;
         //var arrDiscount = '';
 
         $('body').delegate('#start-played', 'click', function() {
@@ -439,6 +440,8 @@
                             $('#noticeModal').modal('show');
                             return;
                         }
+                        console.log(data);
+                        showwithdrawbtn = data.showwithdrawbtn;
                         numrollbyorder = parseInt(data.numrollbyorder) + 1;
                         gift_detail = data.gift_detail;
                         gift_revice = data.arr_gift;
@@ -647,6 +650,9 @@
                             $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                         }
                     }
+                }
+                if (!showwithdrawbtn) {
+                    $("#btnWithdraw").hide();
                 }
 
                 $('#noticeModal .content-popup').html($html);

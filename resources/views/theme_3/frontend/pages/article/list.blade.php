@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
@@ -19,13 +22,13 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" onclick="openMenuProfile()">
+            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </span>
             <h4>Tin tức</h4>
         </div>
         {{--       Article Slider  --}}
-        <div class="card --custom mb-lg-3">
+        <div class="card --custom mb-lg-3 px-3">
             <div class="swiper article--slider">
                 <div class="swiper-wrapper">
                     @if(isset($data) )
@@ -33,15 +36,14 @@
                             @if($key <= 3)
                     <div class="article swiper-slide">
                         <div class="row py-3 m-0">
-                            <div class="col -12 col-lg-8 px-3 mb-3 mb-lg-0">
+                            <div class="col-12 col-lg-8 pr-3 pl-0 mb-3 mb-lg-0">
                                 <div class="article--thumbnail">
                                     <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                        <img src="{{\App\Library\MediaHelpers::media($slide->image)}}"
-                                             alt="" class="article--thumbnail__image">
+                                        <img src="{{\App\Library\MediaHelpers::media($slide->image)}}" alt="" class="article--thumbnail__image">
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-12 col-lg-4 p-0 px-3 px-lg-0 pr-lg-3">
+                            <div class="col-12 col-lg-4 p-0 px-lg-0">
                                 <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
                                     <h3 class="article--title mb-2 mb-lg-4 p-lg-2">
                                         {{ $slide->title }}
@@ -63,7 +65,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="row m-0 pagination--layout">
+                <div class="row m-0 pagination--layout h-0">
                     <div class="col -12 col-lg-8 px-3">
                     </div>
                     <div class="col-12 col-lg-4 p-0 pb-3 pr-lg-3">

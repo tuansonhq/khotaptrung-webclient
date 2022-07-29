@@ -1,121 +1,155 @@
 @extends('frontend.layouts.master')
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js" type="text/javascript"></script>
-@endsection
 @section('content')
-
-    {{--  Header mobile  --}}
-    <section class="media-mobile ">
-        <div class="container container-fix banner-mobile-container-ct">
-            <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%" onclick="openMenuProfile()">
-                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
-                </div>
-
-                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Dịch vụ</h3>
-                </div>
-                <div class="col-auto left-right" style="width: 10%">
-                </div>
-            </div>
-        </div>
-    </section>
-    {{--    Banner--}}
-    <section class="media-web">
-        <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-        </div>
-    </section>
-    {{--  Menu  --}}
-    <section class="media-web">
-        <div class="container container-fix menu-container-ct">
-            <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/dich-vu">Cày thuê</a></li>
-            </ul>
-        </div>
-    </section>
-
-    {{--   Bopđyy --}}
     <section>
-        <div class="container container-fix body-container-ct">
-            <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                <div class="col-md-12 left-right">
-                    <div class="row marginauto body-row-ct">
+        <div class="container">
 
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-header-ct">
-                                <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
-                                </div>
-                                <div class="col-md-10 col-8 body-header-col-ct">
-                                    <h3>Dịch vụ</h3>
-                                </div>
-                            </div>
-                        </div>
+            <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
 
-                        <div class="col-md-12 left-right media-mobile">
-                            <div class="row marginauto banner-container-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-                                </div>
-                            </div>
-                        </div>
+            <nav aria-label="breadcrumb" style="margin-top: 10px;">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="/dich-vu">Dịch vụ</a></li>
+                </ol>
+            </nav>
 
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-title-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Chọn dịch vụ game</span>
-                                </div>
-                            </div>
-                        </div>
+            <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-1 -->
+            <!-- BEGIN: PAGE CONTENT -->
+            <!-- BEGIN: BLOG LISTING -->
 
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-search-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Tìm kiếm</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="c-content-box c-size-md">
 
-                        <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST" id="service-form">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-auto left-right">
-                                        <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
+                <div class="container" style="padding-bottom: 24px">
+
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 left-right">
+                            <div class="row" style="width: 100%;margin: 0 auto">
+                                <div class="art-list" style="width: 100%">
+                                    <div class="d-flex justify-content-between" style="padding-top: 8px;padding-bottom: 24px">
+                                        <div class="main-title">
+                                            {{--                                            <h1>Danh mục game</h1>--}}
+                                        </div>
+                                        <div class="service-search d-none d-lg-block">
+                                            <div class="input-group p-box">
+                                                <input type="text" id="txtSearch" placeholder="Tìm dịch vụ" value="" class="" width="200px">
+                                                <span class="icon-search"><i class="fas fa-search"></i></span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-4 body-form-search-button-ct">
-                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
-                                    </div>
+
+                                    @include('frontend.widget.__content__home__dichvu')
+
+{{--                                    <div class="entries">--}}
+{{--                                        <div class="row fix-border fix-border-dich-vu">--}}
+
+{{--                                            <div class="col-md-12 left-right data-service-search">--}}
+{{--                                                <span style="color: rgb(238, 70, 35);padding-bottom: 24px">Dịch vụ cần tìm không tồn tại.</span>--}}
+{{--                                            </div>--}}
+
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/cay-thue-lien-quan">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/napgamegiare/ZADEUfZ4zs_1627120716.jpg" alt="cay-thue-lien-quan" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Cày thuê liên quân.</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/ban-xu-ninja">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/ZaUpJaYZh2_1623164524.gif" alt="ban-xu-ninja" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Bán Xu Ninja</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/nap-kim-cuong-free-fire">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/ZwCbQxRd6b_1623164799.gif" alt="nap-kim-cuong-free-fire" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Nạp Kim Cương Free Fire</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/ban-hong-ngoc">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/WRZdijOT0U_1623164562.gif" alt="ban-hong-ngoc" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Bán Hồng Ngọc</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/ban-vang-tu-dong">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/nijYzYWqiq_1623164431.gif" alt="ban-vang-tu-dong" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Bán Vàng Tự Động NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/lam-de-san-de">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/pneRsSb1BU_1626075373.gif" alt="lam-de-san-de" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Làm Đệ - Săn Đệ NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/lam-nhiem-vu-nro">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/iIrZycTALV_1623294112.gif" alt="lam-nhiem-vu-nro" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Làm Nhiệm Vụ NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-1" style="display: block">--}}
+{{--                                                <a href="/dich-vu/up-suc-manh-de-tu-nro">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/bHhkJqAKlB_1623164417.gif" alt="up-suc-manh-de-tu-nro" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Úp Sức Mạnh Đệ Tử NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-2" style="display: none">--}}
+{{--                                                <a href="/dich-vu/up-bi-kip-cai-trang-yardrat">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/6JMeECUSjw_1623212937.gif" alt="up-bi-kip-cai-trang-yardrat" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Úp Bí Kíp - Cải Trang Yardrat NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-md-3 col-sm-6 col-6 entries_item entries_item_service item-page-2" style="display: none">--}}
+{{--                                                <a href="/dich-vu/up-suc-manh-su-phu-nro">--}}
+{{--                                                    <img src="//backend.dev.tichhop.pro/storage/upload/images/Avatar%20Gi%E1%BA%A3i%20th%C6%B0%E1%BB%9Fng%20-%20Gif/dich%20v%E1%BB%A5/7iOrQTsWpT_1623164498.gif" alt="up-suc-manh-su-phu-nro" class="entries_item-img">--}}
+{{--                                                    <h2 class="text-title">Úp Sức Mạnh Sư Phụ NRO</h2>--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+
+
+{{--                                            <button id="btn-expand-serivce" class="expand-button" data-page-current="1" data-page-max="2">Xem thêm dịch vụ</button>--}}
+
+{{--                                        </div>--}}
+
+
+{{--                                        <div class="entries-search">--}}
+{{--                                            <div class="row fix-border ">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                    </div>--}}
                                 </div>
-                            </form>
+                            </div>
 
                         </div>
-
-                        <div class="col-md-12 left-right media-mobile">
-                            <form action="" method="POST">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-12 left-right">
-                                        <input type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm dịch vụ">
-                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        @include('frontend.pages.service.widget.__data__list')
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- END: BLOG LISTING  -->
+
+            <!-- END: PAGE CONTENT -->
+
+        </div><!-- /.container -->
     </section>
 
-{{--    @include('frontend.pages.service.widget.__category__content')--}}
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue.js?v={{time()}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn-expand-serivce').on('click', function(e) {
+                var pageCurrrent=$(this).data('page-current');
+                var pageMax=$(this).data('page-max');
+                pageCurrrent=pageCurrrent+1;
+                $('.item-page-'+pageCurrrent).fadeIn( "fast", function() {
+                    // Animation complete
+                });
+                $(this).data('page-current',pageCurrrent);
+                if(pageCurrrent==pageMax){
+                    $(this).remove();
+                }
+            });
+        });
+
+    </script>
 @endsection
-
 
 

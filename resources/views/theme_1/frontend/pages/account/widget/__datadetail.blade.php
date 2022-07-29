@@ -1,5 +1,5 @@
 @if(isset($data))
-
+    @if($data->status == 1)
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
@@ -93,9 +93,11 @@
                                                     <span class="gallery__02__span__02">ATM</span>
                                                 </div>
                                                 <div class="col-md-12">
+
                                                     @if(isset($data->price_atm))
                                                         <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
                                                     @endif
+
                                                 </div>
                                             </div>
                                         </div>
@@ -357,11 +359,11 @@
 
                             @if(App\Library\AuthCustom::check())
 
-                                @if(App\Library\AuthCustom::user()->balance > $data->price)
-                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
-                                @else
+                                @if(App\Library\AuthCustom::user()->balance < $data->price)
                                     <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
                                     <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                @else
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                 @endif
                             @else
                                 <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>
@@ -763,6 +765,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    @endif
+    @else
+        <div class="container pt-3">
+            <div class="row pb-3 pt-3">
+                <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                </div>
+            </div>
+
         </div>
     @endif
 @endif

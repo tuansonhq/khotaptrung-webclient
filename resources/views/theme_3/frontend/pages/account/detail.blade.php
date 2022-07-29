@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
@@ -245,12 +247,12 @@
                                 <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                             </div>
                         </div>
-    
+
                     </div>
-    
+
                     <div class="modal-body modal-body-order-ct">
                         <div class="row marginauto">
-    
+
                             <div class="col-md-12 left-right image-success">
                                 <div class="row marginauto justify-content-center">
                                     <div class="col-auto">
@@ -258,7 +260,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             {{-- <div class="col-md-12 left-right title-tra-gop-success">
                                 <div class="row body-title-detail-ct">
                                     <div class="col-md-12 text-left body-title-detail-col-ct">
@@ -281,11 +283,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="col-md-12 left-right data-child">
-    
+
                                             </div>
-    
+
                                             <div class="col-md-12 left-right data-ttbxung">
 
                                             </div>
@@ -293,10 +295,10 @@
                                     </div>
                                 </div>
                             </div> --}}
-    
+
                             <div class="col-md-12 left-right title-tra-gop text-center data-time">
                             </div>
-    
+
                             {{-- <div class="col-md-12 left-right padding-order-16-ct">
                                 <div class="row marginauto">
                                     <div class="col-md-12 left-right background-order-ct">
@@ -309,10 +311,10 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </div>
                             </div> --}}
-    
+
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto justify-content-center gallery-right-footer">
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
@@ -331,7 +333,7 @@
                     </div>
                 </div>
             </div>
-    
+
         </div>
 
         <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>

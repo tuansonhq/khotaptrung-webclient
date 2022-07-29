@@ -18,10 +18,10 @@
             </ul>
         </section>
         <section class="breadcrumb-mobile">
-            <a href="/" style="display: block">
+            <a href="javascript:void(0)" style="display: block" onclick="openMenuProfile()">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/back.svg" alt="">
             </a>
-            <h1>Rút vật phẩm</h1>
+            <h1 class="mobile-rutvatpham">Rút vật phẩm</h1>
         </section>
         <div class="row">
             {{--navbar--}}
@@ -336,6 +336,42 @@
     </div>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <div class="modal fade login show order-modal" id="proccessModal" aria-modal="true">
+
+        <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header p-0" style="border-bottom: 0">
+                    <div class="row marginauto modal-header-order-ct">
+                        <div class="col-12 span__donhang text-center" style="position: relative">
+                            <span>Tiến độ</span>
+                            <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-body modal-body-order-ct">
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row marginauto">
+
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto justify-content-center gallery-right-footer">
+                                <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <script type="text/javascript">
 
         $("body").delegate(".proccess_toggle","click",function(){

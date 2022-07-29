@@ -120,7 +120,6 @@ if ($('.slider--card .swiper-wrapper').children().length > 1) {
 // option swiper article banner
 var swiper_article= new Swiper(".article--slider", {
     autoplay: {
-        disableOnInteraction: false,
         delay:3000
     },
     speed:500,

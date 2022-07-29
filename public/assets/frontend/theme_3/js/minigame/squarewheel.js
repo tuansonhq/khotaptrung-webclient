@@ -65,15 +65,12 @@ $(document).ready(function(e) {
                 },
                 type: 'POST',
                 success: function(data) {
-
                     if (data.status == 4) {
                         location.href='/login?return_url='+window.location.href;
-                        return;
                     } else if (data.status == 3) {
                         clearTimeout(runtime);
                         roll_check = true;
-                        $('#naptheModal').modal('show')
-                        return;
+                        $('#naptheModal').modal('show');
                     } else if (data.status == 0) {
                         clearTimeout(runtime);
                         roll_check = true;
@@ -102,12 +99,16 @@ $(document).ready(function(e) {
 
                     userpoint = data.userpoint;
                     if(userpoint<100){
-                        $(".item_spin_progress_bubble").css("width", data.userpoint + "%")
+                        $(".progress-bar").css("width", userpoint + "%");
                     }else{
-                        $(".item_spin_progress_bubble").css("width", "100%");
-                        $(".item_spin_progress_bubble").addClass('clickgif');
+                        $(".pyro").show();
+                        setTimeout(function(){
+                            $(".pyro").hide();
+                        },6000)
+                        $(".progress-bar").css("width", "100%");
+                        $(".progress-bar").addClass('clickgif');
                     }
-                    $(".item_spin_progress_percent").html(data.userpoint + "/100 point");
+                    $('.progress-tooltip').text(`Điểm của bạn: ${userpoint}/100`);
                     $("#saleoffpass").val("");
                 },
                 error: function() {
@@ -184,18 +185,15 @@ $(document).ready(function(e) {
 
                     if (data.status == 4) {
                         location.href='/login?return_url='+window.location.href;
-                        return;
                     } else if (data.status == 3) {
                         clearTimeout(runtime);
                         roll_check = true;
                         $('#naptheModal').modal('show')
-                        return;
                     } else if (data.status == 0) {
                         clearTimeout(runtime);
                         roll_check = true;
                         $('#noticeModal .content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
-                        return;
                     }
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;
                     gift_detail = data.gift_detail;

@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
 
     {{--  Menu  --}}
@@ -20,7 +22,7 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="javascript:void(0)" class="previous-step-one" style="line-height: 28px" onclick="openMenuProfile()">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>

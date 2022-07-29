@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-8 col-md-12"  style="min-height: 100%">
 
-            <div class=" block-product "  style="min-height: 532px">
+            <div class=" block-product " style="min-height: 532px">
                 <div class="product-header d-flex d-md-flex">
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/naptienindex.svg" alt="">
@@ -10,7 +10,7 @@
                     <h2 class="text-title" >Nạp tiền</h2>
                     <div class="navbar-spacer"></div>
                 </div>
-                <div class="box-product " >
+                <div class="box-product position-static" >
                     <div class="default-tab pr-fix-16 pl-fix-16">
                         <ul class="nav justify-content-between row" role="tablist" >
                             <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
@@ -231,7 +231,24 @@
             </div>
         </div>
         <div class="col-lg-4 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
-            <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
+            <div class="charge-content" style="">
+                <div class="charge-content-img" style="">
+                </div>
+                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
+                    <div class="charge-content-detail" style="  ">
+                        <div class="" role="alert">
+                            @if (setting('sys_charge_content') != "")
+
+                                {!! setting('sys_charge_content') !!}
+
+
+                            @endif
+                        </div>
+                    </div>
+                @endif
+
+            </div>
+
         </div>
     </div>
 </div>
