@@ -39,7 +39,6 @@
             <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
                 Vui lòng chọn thông tin
             </div>
-            @if( isset($server_data) && isset($server_id))
             <div class="row">
                 <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
                     @if( isset($server_data) && isset($server_id))
@@ -510,7 +509,6 @@
                     </div>
                 </div>
             </div>
-            @endif
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
