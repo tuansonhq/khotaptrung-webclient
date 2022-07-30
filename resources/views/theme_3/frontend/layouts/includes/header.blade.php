@@ -49,55 +49,53 @@
     <div class="top-navigation d-none d-lg-block">
         <div class="header-container container" style="padding: 0">
             <ul>
+{{--                <li>--}}
+{{--                    <a href="">--}}
+{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/uddd.svg" alt="">--}}
+{{--                        <span>--}}
+{{--                                Ứng dụng di động--}}
+{{--                            </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li>
-                    <a href="">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/uddd.svg" alt="">
-                        <span>
-                                Ứng dụng di động
-                            </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-
+                    <a href="/tin-tuc">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headertintuc.svg" alt="">
                         <span>
                                 Tin tức
-
-                            </span>
+                        </span>
                     </a>
                 </li>
+{{--                <li>--}}
+{{--                    <a href="">--}}
+{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerfacebook.svg" alt="">--}}
+{{--                        <span>--}}
+{{--                                Facebook Group--}}
+{{--                        </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li>
-                    <a href="">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerfacebook.svg" alt="">
-                        <span>
-                                Facebook Group
-                            </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
+                    <a href="{{setting('sys_fanpage')}}">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerfacebook.svg" alt="">
                         <span>
                                 Facebook fanpage
-                            </span>
+                        </span>
                     </a>
                 </li>
-                <li>
-                    <a href="">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerzalo.svg" alt="">
-                        <span>
-                                Zalo: 1234 5678
-                            </span>
-                    </a>
-                </li>
+{{--                <li>--}}
+{{--                    <a href="">--}}
+{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerzalo.svg" alt="">--}}
+{{--                        <span>--}}
+{{--                                Zalo: 1234 5678--}}
+{{--                        </span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
 
                 <li>
-                    <a href="">
+                    <a href="tel:+{{setting('sys_phone')}}">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headercskh.svg" alt="">
                         <span>
-                                CSKH: 1234 5678
-                            </span>
+                                CSKH: {{setting('sys_phone')}}
+                        </span>
                     </a>
                 </li>
 
@@ -123,9 +121,9 @@
             </div>
             <div class="box-search">
                 <form action="">
-                    <div class="group-input  ">
+                    <div class="group-input @if(isset(theme('')->theme_config->sys_theme_ver) && theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' ) search-theme @endif ">
                         <input type="text" placeholder="Tìm kiếm" class="form-control">
-                        <div class="input-group-btn">
+                        <div class="input-group-btn ">
                             <button type="submit" class="btn px-3 border-0 shadow-none outline-none text-dark">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/search.svg" alt="">
                             </button>
@@ -134,65 +132,62 @@
                 </form>
             </div>
             <div class="box-about">
-                <ul class="nav header-main-nav d-none d-lg-flex">
-                    <li class="nav-item item-about active">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                            <div class="item-about-title">Khuyến mãi</div>
-                        </a>
-                    </li>
-                    <li class="nav-item item-about">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
-                            <div class="item-about-title">Thông báo</div>
-                        </a>
-                    </li>
-                    <li class="nav-item item-about">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
-                            <div class="item-about-title">Sự kiện hot</div>
-                        </a>
-                    </li>
-                </ul>
+                @if(isset(theme('')->theme_config->sys_theme_ver) || theme('')->theme_config->sys_theme_ver != 'sys_theme_ver3.0' )
+                    <ul class="nav header-main-nav d-none d-lg-flex menu-fix-theme">
+                        <li class="nav-item item-about active">
+                            <a href="">
+                                <div class="d-flex">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                    <div class="item-about-title">Nạp game</div>
+                                </div>
 
-{{--                <ul class="nav header-main-nav d-none d-lg-flex">--}}
-{{--                    <li class="nav-item item-about active">--}}
-{{--                        <a href="">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                <div class="item-about-title">Nạp game</div>--}}
-{{--                            </div>--}}
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <div class="d-flex">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                    <div class="item-about-title">Mua thẻ</div>
+                                </div>
 
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item item-about">--}}
-{{--                        <a href="">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                <div class="item-about-title">Mua thẻ</div>--}}
-{{--                            </div>--}}
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <div class="d-flex">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                    <div class="item-about-title">Nạp tiền</div>
+                                </div>
 
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item item-about">--}}
-{{--                        <a href="">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                <div class="item-about-title">Nạp tiền</div>--}}
-{{--                            </div>--}}
+                            </a>
+                        </li>
 
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li class="nav-item item-about">--}}
-{{--                        <a href="">--}}
-{{--                            <div class="d-flex">--}}
-{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
-{{--                                <div class="item-about-title">Tin tức</div>--}}
-{{--                            </div>--}}
+                    </ul>
+                @else
 
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
+
+
+                    <ul class="nav header-main-nav d-none d-lg-flex ">
+                        <li class="nav-item item-about active">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
+                                <div class="item-about-title">Khuyến mãi</div>
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
+                                <div class="item-about-title">Thông báo</div>
+                            </a>
+                        </li>
+                        <li class="nav-item item-about">
+                            <a href="">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
+                                <div class="item-about-title">Sự kiện hot</div>
+                            </a>
+                        </li>
+                    </ul>
+                @endif
             </div>
             <div class="navbar-spacer"></div>
             <div class="box-about-mobile">

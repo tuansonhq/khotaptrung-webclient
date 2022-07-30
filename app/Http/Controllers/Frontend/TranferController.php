@@ -28,7 +28,7 @@ class TranferController extends Controller
     public function getIdCode(Request $request)
     {
 
-        Session::forget('_previous.url');
+        Session::push('url_return.id_return','1');
 
         try {
             $url = '/transfer/get-code';

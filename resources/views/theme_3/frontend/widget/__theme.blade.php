@@ -71,3 +71,10 @@
 @if (!\App\Library\AuthCustom::check())
     @include('frontend.widget.modal.__login')
 @endif
+@if(!Request::is('/'))
+    @if(Session::has('url_return.id_return'))
+        @php
+            Session::forget('url_return.id_return');
+        @endphp
+    @endif
+@endif
