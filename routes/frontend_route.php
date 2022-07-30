@@ -138,6 +138,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
+                Route::get('/profile', [UserController::class , "profileSidebar"]);
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                 Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
