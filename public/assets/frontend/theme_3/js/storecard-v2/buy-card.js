@@ -139,7 +139,7 @@ $(document).ready(function () {
                     if (route_is === 'showListCard') {
                         // Các loại thẻ khác
                         data.forEach(function (card) {
-                            if (card.params.teltecom_type == data_telecom.params.teltecom_type && card.key != data_telecom.key) {
+                            if (!!card.params && card.params.teltecom_type == data_telecom.params.teltecom_type && card.key != data_telecom.key) {
 
                                 let html_other = '';
                                 html_other += `<div class="swiper-slide">`;

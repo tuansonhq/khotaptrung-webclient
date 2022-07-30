@@ -114,22 +114,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             Route::get('/show-bot', [ServiceController::class , "showBot"]);
 
-            Route::get('/mua-acc', [AccController::class , "getCategory"]);
-
-            Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-
             Route::get('/lich-su-tra-gop',function(){
                 return view('frontend.pages.account.logs-installment');
             });
-
-            Route::get('/related-acc', [AccController::class , "getRelated"]);
-
-            Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
-
-            Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-
-            Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
-
 
             Route::group(['middleware' => ['auth_custom']], function (){
 
@@ -138,6 +125,17 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
+                Route::get('/mua-acc', [AccController::class , "getCategory"]);
+
+                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+
+                Route::get('/related-acc', [AccController::class , "getRelated"]);
+
+                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+
+                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
+
+                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
