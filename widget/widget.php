@@ -664,6 +664,24 @@ View::composer('frontend.widget.__menu__article', function ($view) {
 
 });
 
+//THeme 3.
+
+View::composer('frontend.widget.__slider__banner__account', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__account', function() {
+        $url = '/get-slider-banner-nick';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 
 
 //View::composer('frontend.widget.__charge', function ($view) {
