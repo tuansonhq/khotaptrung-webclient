@@ -218,3 +218,13 @@
     display: none;
     animation: fadeIn linear 0.3s;
 }
+.menu-fix-theme .item-about-title{
+    margin-left: 8px;
+}
+.menu-fix-theme .item-about {
+    margin: 0 10px;
+
+}
+.box-search .search-theme.group-input{
+    width: 341px;
+}
