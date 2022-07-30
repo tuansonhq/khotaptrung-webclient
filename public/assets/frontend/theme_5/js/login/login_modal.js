@@ -99,14 +99,14 @@ $(document).ready(function () {
         $('.mobile-auth .head-mobile h1').text('Đăng ký');
     });
 
-    $('#changeFormLogin').click(function (e) {
+    $('.changeFormLogin').click(function (e) {
         e.preventDefault();
         $('.mobile-auth-form #formLoginMobile').fadeIn(500);
         $('.mobile-auth-form #formRegisterMobile').attr('style', 'display: none !important');
         $('.mobile-auth .head-mobile h1').text('Đăng nhập');
     });
 
-    $('#changeFormRegister').click(function (e) {
+    $('.changeFormRegister1').click(function (e) {
         e.preventDefault();
         $('.mobile-auth-form #formLoginMobile').attr('style', 'display: none !important');
         $('.mobile-auth-form #formRegisterMobile').fadeIn(500);

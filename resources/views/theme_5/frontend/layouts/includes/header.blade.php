@@ -21,15 +21,15 @@
                                 <ul class="d-flex justify-content-between px-0">
                                     <li class="w-100 c-px-4">
                                         <a href="/mua-the"  >
-                                            <div class="c-p-8 brs-8 active d-flex">
+                                            <div class="c-p-8 brs-8 active d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/storecard.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Mua thẻ</span>
+                                                <span class="fw-500 fz-15 lh-24 ">Mua thẻ</span>
                                             </div>
                                         </a>
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/nap-the"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/charge.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Nạp tiền</span>
                                             </div>
@@ -37,7 +37,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/recharge-atm"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/recharge-atm.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Nạp ATM -ví</span>
                                             </div>
@@ -45,7 +45,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/minigame"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/vongquay.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Vòng quay</span>
                                             </div>
@@ -53,7 +53,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/mua-acc"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/mua-acc.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Shop Acc</span>
                                             </div>
@@ -61,7 +61,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/dich-vu"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/service-game.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Dịch vụ Game</span>
                                             </div>
@@ -69,7 +69,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/minigame"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/minigame.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Mini Game</span>
                                             </div>
@@ -77,7 +77,7 @@
                                     </li>
                                     <li class="w-100 c-px-4">
                                         <a href="/tin-tuc"  >
-                                            <div class="c-p-8 brs-8  d-flex">
+                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
                                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/news.svg" alt="" class="c-pr-4">
                                                 <span class="fw-500 fz-15 lh-24">Tin tức</span>
                                             </div>
@@ -117,19 +117,13 @@
 {{--                    </div>--}}
 {{--                </div>--}}
                 <div class="box-account c-ml-16 d-none d-md-block position-relative">
-{{--                    <div class="d-flex box-account-open">--}}
-{{--                        <div class="account-name">--}}
-{{--                            <div id="account-name" class="text-right title-color fw-500">namdo</div>--}}
-{{--                            <div class="account-balance fw-400">Số dư: 520.000</div>--}}
-{{--                        </div>--}}
-{{--                        <div class="account-avatar c-ml-12">--}}
+                    <div class="box-loading btn-loading">
+                        <div class="loading">
+                            <div class="loading-child"></div>
+                        </div>
+                    </div>
+                    <div class="account-logined box-account-open ">
 
-{{--                            <img src="/assets/frontend/theme_5/image/nam/avatar.png" alt="">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-                    <div class="box-icon brs-8 box-account-open " >
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/profile.svg" alt="" >
                     </div>
                     <div class="box-account-logined position-absolute brs-12">
 
@@ -137,7 +131,7 @@
                             <div class="fw-700 fz-20 lh-28 title-color">Tài khoản</div>
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/profile_close.svg" alt="" class="close-login-popup c-mr-12">
                         </div>
-                        <div class="c-pr-16 account-logined-content">
+                        <div class="c-pr-16 account-logined-content box-account_nologined">
                             <div class="login-popup brs-12 c-p-16 d-flex m-auto justify-content-between">
                                 <div class="m-auto ">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/login-robot.png" alt="">
@@ -153,12 +147,12 @@
                                 </div>
                             </div>
                         </div>
-{{--                        <div class="account-logined-content c-pr-4 ">--}}
+                        <div class="account-logined-content c-pr-4 box-account_logined">
 
-{{--                            @include('frontend.layouts.components.sidebar')--}}
+                            @include('frontend.widget.__menu_profile')
 
 
-{{--                        </div>--}}
+                        </div>
                     </div>
 
                 </div>
