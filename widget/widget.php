@@ -72,6 +72,21 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+
+View::composer('frontend.widget.__menu', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+});
 // dịch vụ nổi bật ảnh
 View::composer('frontend.widget.__list_serve_remark_image', function ($view) {
 
@@ -661,6 +676,24 @@ View::composer('frontend.widget.__menu__article', function ($view) {
     });
 
     return $view->with('data', $data);
+
+});
+
+//THeme 3.
+
+View::composer('frontend.widget.__slider__banner__account', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__account', function() {
+        $url = '/get-slider-banner-nick';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
 
 });
 

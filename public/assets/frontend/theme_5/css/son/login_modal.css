@@ -246,3 +246,41 @@
 }
 
 
+.modal-loader-container {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000080;
+    z-index: 4000;
+}
+.modal-loader-content {
+    border: none;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+.modal-loader-spin {
+    display: block;
+    border: 7px solid var(--primary-color);
+    border-left-color: #FFF;
+    border-radius: 100%;
+    width: 67px;
+    height: 67px;
+    margin: 25px auto;
+    animation: spin 1.25s linear infinite;
+}
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
