@@ -139,22 +139,25 @@ $(document).ready(function () {
                     if (route_is === 'showListCard') {
                         // Các loại thẻ khác
                         data.forEach(function (card) {
-                            if (!!card.params && card.params.teltecom_type == data_telecom.params.teltecom_type && card.key != data_telecom.key) {
+                            if (!!card.params && !!data_telecom.params){
+                                if ( card.params.teltecom_type == data_telecom.params.teltecom_type && card.key != data_telecom.key) {
 
-                                let html_other = '';
-                                html_other += `<div class="swiper-slide">`;
-                                html_other += `    <a href="/mua-the-${card.key.toLowerCase()}" class="scratch-card">`;
-                                html_other += `        <div class="card--thumb">`;
-                                html_other += `            <img src="${card.image}" class="card--thumb__image" alt="">`;
-                                html_other += `        </div>`;
-                                html_other += `        <div class="card--name" style="--bg-color: ${card.params.color};text-transform: capitalize">`;
-                                html_other += `             ${card.title.toLowerCase()}`;
-                                html_other += `        </div>`;
-                                html_other += `    </a>`;
-                                html_other += `</div>`;
-                                // _____________
-                                card_other.append(html_other);
+                                    let html_other = '';
+                                    html_other += `<div class="swiper-slide">`;
+                                    html_other += `    <a href="/mua-the-${card.key.toLowerCase()}" class="scratch-card">`;
+                                    html_other += `        <div class="card--thumb">`;
+                                    html_other += `            <img src="${card.image}" class="card--thumb__image" alt="">`;
+                                    html_other += `        </div>`;
+                                    html_other += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
+                                    html_other += `             ${card.title.toLowerCase()}`;
+                                    html_other += `        </div>`;
+                                    html_other += `    </a>`;
+                                    html_other += `</div>`;
+                                    // _____________
+                                    card_other.append(html_other);
+                                }
                             }
+
                         })
                         $('.swiper').css('overflow', 'hidden');
                     }
@@ -176,13 +179,13 @@ $(document).ready(function () {
                         // breadcrum
                         let new_bc = '';
                         new_bc += `<li class="breadcrum--item">`;
-                        new_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${data_telecom.title.toLowerCase()}</a>`;
+                        new_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${card_is.toLowerCase()}</a>`;
                         new_bc += `</li>`;
                         $('.breadcrum--list').append(new_bc)
 
                         let grid_card = $('#card--desktop__value');
                         if (data.length){
-                            $('#card--value .card--title').text(data_telecom.title.toLowerCase())
+                            $('#card--value .card--title').text(card_is.toLowerCase())
                             data.forEach(function (card) {
                                 if (width > 1199){
                                     // Desktop
@@ -192,7 +195,7 @@ $(document).ready(function () {
                                     html_desktop_value += `        <div class="card--thumb">`;
                                     html_desktop_value += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
                                     html_desktop_value += `        </div>`;
-                                    html_desktop_value += `        <div class="card--name" style="--bg-color: ${data_telecom.params.color};">`;
+                                    html_desktop_value += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
                                     html_desktop_value += `             ${number_format(card.amount)} VND`;
                                     html_desktop_value += `        </div>`;
                                     html_desktop_value += `    </a>`;
@@ -233,7 +236,7 @@ $(document).ready(function () {
                                     html_mobile_value += `            <div class="card--thumb">`;
                                     html_mobile_value += `                <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
                                     html_mobile_value += `            </div>`;
-                                    html_mobile_value += `            <div class="card--name" style="--bg-color: ${data_telecom.params.color};">`;
+                                    html_mobile_value += `            <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
                                     html_mobile_value += `                ${number_format(card.amount)} VND`;
                                     html_mobile_value += `            </div>`;
                                     html_mobile_value += `        </a>`;
@@ -303,7 +306,7 @@ $(document).ready(function () {
                                 html_current += `        <div class="card--thumb">`;
                                 html_current += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
                                 html_current += `        </div>`;
-                                html_current += `        <div class="card--name" style="--bg-color: ${data_telecom.params.color};">`;
+                                html_current += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
                                 html_current += `             ${number_format(card.amount)} VND`;
                                 html_current += `        </div>`;
                                 html_current += `    </div>`;
@@ -351,7 +354,7 @@ $(document).ready(function () {
                                 html_same += `        <div class="card--thumb">`;
                                 html_same += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
                                 html_same += `        </div>`;
-                                html_same += `        <div class="card--name" style="--bg-color: ${data_telecom.params.color};text-transform: capitalize">`;
+                                html_same += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
                                 html_same += `             ${number_format(card.amount)} VND`;
                                 html_same += `        </div>`;
                                 html_same += `    </a>`;
