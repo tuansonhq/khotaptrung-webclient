@@ -49,6 +49,7 @@ class AccController extends Controller
     }
 
     public function getList(Request $request,$slug){
+
         $url = '/acc';
         $method = "GET";
         $dataSendCate = array();
@@ -68,7 +69,10 @@ class AccController extends Controller
                 $dataSend['cat_slug'] = $slug;
                 $dataSend['page'] = $page;
                 $dataSend['status'] = 1;
-                $dataSend['limit'] = 12;
+                $dataSend['limit'] =  12;
+                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_3"){
+                    $dataSend['limit'] =  15;
+                }
 
                 if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
                     $dataSend['id'] = $request->id_data;

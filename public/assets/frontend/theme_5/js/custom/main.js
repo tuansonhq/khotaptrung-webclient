@@ -181,12 +181,13 @@ $(document).ready(function() {
 
     if (width < 992){
         /*Step Mobile*/
-        $(document).on('click','.js-step',function () {
+        $('body').on('click','.js-step',function () {
             let selector = $(this).data('target');
             let elm = $(selector);
             elm.css('transform','translateX(0)');
         })
-        $(document).on('click','.close-step',function (e) {
+
+        $('body').on('click','.close-step',function (e) {
             e.preventDefault();
             let elm = $(this).closest('.step');
             elm.css('transform','translateX(130%)')
