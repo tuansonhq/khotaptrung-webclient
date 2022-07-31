@@ -1,5 +1,10 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,noindex" />
+@endsection
 @section('content')
     <div class="container c-container" id="account-detail">
         @if($data == null)
