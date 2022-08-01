@@ -1,60 +1,40 @@
 @extends('frontend.layouts.master')
+@push('js')
+    <script src="/assets/frontend/theme_4/js/charge/charge.js?v={{time()}}"></script>
+@endpush
 @section('content')
 <section>
     <div class="container">
 
         <div class="row user-manager">
 
-            @include('frontend.pages.widget.__menu_profile')
+            @include('frontend.widget.__menu_profile')
 
             <div class="col-12 col-md-8 col-lg-9  site-form " style="min-height: 212.568px;">
                 <div class="menu-content">
                     <div class="title">
                         <h3>Nạp thẻ</h3>
                     </div>
+                    @if (setting('sys_charge_content') != "")
+                        <div class="alert alert-primary col-md-11  " role="alert" style="margin: 12px auto">
+                            {!! setting('sys_charge_content') !!}
+
+                        </div>
+                    @endif
+
                     <div class="wapper profile">
+                        <div id="charge-result">
 
-                        <p style="text-align: center;color: #fff">ID của bạn:
-                            <strong>74</strong></p>
-                        <p style="text-align: center;color: red">* Ưu tiên nạp thẻ VIETTEL & VINAPHONE</p>
+                        </div>
 
-
-                        <form method="POST" action="https://napgamegiare.net/nap-the" accept-charset="UTF-8" class="form-horizontal form-charge"><input name="_token" type="hidden" value="1d1UtKProIOHCYvd7GjOQ1mwzvuWei6FP3awwoKP">
-
-
-                            <div class="form-row mb-4">
-                                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <label class="mt-2">Tài khoản:</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <input class="form-control  c-square c-theme" type="text"
-                                           value="3993473817374905@facebook.com"
-                                           readonly>
-                                </div>
-                            </div>
-
+                        <form action="{{route('postTelecomDepositAuto')}}" method="POST"  class="form-horizontal form-charge" id="form-charge">
+                            @csrf
                             <div class="form-row mb-4">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-12">
                                     <label class="mt-2">Loại thẻ:</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <select class="form-control  c-square c-theme" name="type" id="type">
-                                        <option value="VIETTEL">VIETTEL</option>
-
-                                        <option value="GATE">GATE</option>
-
-                                        <option value="MOBIFONE">MOBIFONE</option>
-
-                                        <option value="VINAPHONE">VINAPHONE</option>
-
-                                        <option value="VIETNAMOBILE">VIETNAMOBILE</option>
-
-                                        <option value="ZING">ZING</option>
-
-                                        <option value="VCOIN">VCOIN</option>
-
-                                        <option value="GARENA">GARENA</option>
-
+                                    <select class="form-control  c-square c-theme" id="telecom" name="type">
                                     </select>
                                 </div>
                             </div>
@@ -100,9 +80,21 @@
                                         <input type="text" class="form-control m-input refresh" id="captcha" name="captcha"
                                                placeholder="Mã bảo vệ" maxlength="3" autocomplete="off" required="">
                                         <div class="input-group-append">
-                                    <span class="input-group-text" style="padding: 3px;background: none"><img
-                                            src="/captcha/flat?eb9AEN8C" height="30px" id="imgcaptcha"
-                                            onclick="document.getElementById('imgcaptcha').src ='captcha/flat?EhjAauu9'+Math.random();document.getElementById('captcha').focus();"></span>
+                                            <div style="    border: 1px solid #ced4da;display:flex">
+                                                <div class="captcha_1">
+                                                  <span class="reload">
+                {{--                                      <img src="{{captcha_src('flat')}}" onclick="document.getElementById('captchaCode').src = {{captcha_src('flat')}}+Math.random();document.getElementById('captcha').focus();" id="captchaCode" alt="" class="captcha">--}}
+
+                                                      {!! captcha_img('flat') !!}
+                                                  </span>
+
+                                                </div>
+
+                                            </div>
+
+                                            <button type="button" class="btn reload"  id="reload_1" style="border-radius: 4px;color: red;background-color: transparent" >
+                                                &#x21bb;
+                                            </button>
                                         </div>
                                     </div>
 
@@ -110,8 +102,7 @@
                             </div>
 
                             <div class="mb-4 text-center">
-                                <button class="btn-submit" type="submit"
-                                        data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Cập nhật
+                                <button class="btn-submit" type="submit" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing Order">Cập nhật
                                 </button>
                             </div>
 
@@ -124,6 +115,7 @@
 
     </div><!-- /.container -->
 </section>
+<script src="/assets/frontend/theme_4/js/charge/charge.js?v={{time()}}"></script>
 
 <script>
     $(".form-charge").submit(function () {
@@ -135,33 +127,33 @@
 </script>
 
 
-<script>
-    GetAmount();
-    $("#type").on('change', function () {
+{{--<script>--}}
+{{--    GetAmount();--}}
+{{--    $("#type").on('change', function () {--}}
 
-        GetAmount();
+{{--        GetAmount();--}}
 
-    });
+{{--    });--}}
 
-    function GetAmount() {
+{{--    function GetAmount() {--}}
 
-        var telecom_key = $("#type").val();
+{{--        var telecom_key = $("#type").val();--}}
 
 
-        var getamount = $.get("/nap-the/get-auto-amount?telecom_key=" + telecom_key, function (data, status) {
+{{--        var getamount = $.get("/nap-the/get-auto-amount?telecom_key=" + telecom_key, function (data, status) {--}}
 
-            $("#amount").find('option').remove();
-            $("#amount").html(data).val($("#amount option:first").val());
-            ;
+{{--            $("#amount").find('option').remove();--}}
+{{--            $("#amount").html(data).val($("#amount option:first").val());--}}
+{{--            ;--}}
 
-        }).done(function () {
+{{--        }).done(function () {--}}
 
-        }).fail(function () {
+{{--        }).fail(function () {--}}
 
-            alert("Không tìm thấy mệnh giá phù hợp");
-        })
-    }
-</script>
+{{--            alert("Không tìm thấy mệnh giá phù hợp");--}}
+{{--        })--}}
+{{--    }--}}
+{{--</script>--}}
 @endsection
 
 

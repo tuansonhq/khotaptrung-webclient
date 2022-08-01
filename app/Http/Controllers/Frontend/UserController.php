@@ -84,6 +84,12 @@ class UserController extends Controller
             ]);
         }
     }
+    public function profileSidebar(Request $request)
+    {
+        return view('frontend.pages.profile.sidebar');
+
+    }
+
 
     public function info(Request $request)
     {

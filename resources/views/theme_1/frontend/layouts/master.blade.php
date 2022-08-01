@@ -210,6 +210,13 @@
 
 
 @include('frontend.layouts.includes.footer')
+@if(!Request::is('/'))
+    @if(Session::has('url_return.id_return'))
+        @php
+            Session::forget('url_return.id_return');
+        @endphp
+    @endif
+@endif
 <script>
     @if(\App\Library\AuthCustom::check())
     $( document ).ready(function() {
@@ -229,6 +236,7 @@
 
 
 </script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 
