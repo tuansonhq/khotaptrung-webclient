@@ -98,15 +98,15 @@
 
                                 <div class="row mb-4">
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn btn-success btn-timkiem " style="position: relative">
+                                        <button type="submit" class="btn btn-success btn-search " style="position: relative">
                                             Tìm kiếm
-                                            <div class="row justify-content-center loading-data__timkiem">
+                                            <div class="loading-data__timkiem justify-content-center">
 
                                             </div>
                                         </button>
-                                        <a href="javascript:void(0)" class="btn btn-danger btn-all" style="position: relative">
+                                        <a href="javascript:void(0)" class="btn btn-danger btn-all position-relative" >
                                             Tất cả
-                                            <div class="row justify-content-center loading-data__timkiem">
+                                            <div class="loading-data__timkiem justify-content-center">
 
                                             </div>
                                         </a>

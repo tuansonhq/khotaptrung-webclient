@@ -164,11 +164,6 @@ $(document).ready(function(){
 
 
                 if(data.status == 1){
-                    // swal({
-                    //     title: "Thành công !",
-                    //     text: data.message,
-                    //     icon: "success",
-                    // })
 
                     let html = '';
                     html += '<div class="alert alert-success alert-dismissible" role="alert">';
@@ -181,15 +176,6 @@ $(document).ready(function(){
                     window.location.href = '/login?return_url='+window.location.href;
                 }
                 else if(data.status == 0){
-                    // swal({
-                    //     title: "Nạp thẻ thất bại !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
-
                     let html = '';
                     html += '<div class="alert alert-danger alert-dismissible" role="alert">';
                     html += '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'+ data.message;
