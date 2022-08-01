@@ -23,6 +23,9 @@ use \Illuminate\Support\Facades\Session;
 |
 */
 
+
+
+
 Route::get('/clear-cache', function ()
 {
     \Artisan::call('cache:clear');
