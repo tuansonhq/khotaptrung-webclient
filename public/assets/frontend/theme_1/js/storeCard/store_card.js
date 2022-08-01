@@ -211,9 +211,9 @@ $(document).ready(function(){
                         })
                         $('#success_storecard').modal("show");
                         let html = '';
-                        if(data.data.length > 0){
-                            $.each(data.data,function(key,value){
-                                console.log(data.data)
+                        if(data.data.data_card.length > 0){
+                            $.each(data.data.data_card,function(key,value){
+                                console.log(data.data.data_card)
                                 html+='<div class="col-md-4 p-2">'
                                 html+='<div class="alert alert-info">'
                                 html+='<p>Mã thẻ'+key+' </p>'
