@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                         </div>
-                                @endif
+                            @endif
                             @endforeach
                         @else
                             <div class="row pb-3 pt-3">
