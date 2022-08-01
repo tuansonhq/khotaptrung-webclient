@@ -58,7 +58,7 @@ $(document).ready(function(){
                         html += '<table class="table table-hover table-custom-res">';
                             html += '<thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Thạng thái</th><th>Thao tác</th></tr></thead>';
                             html += '<tbody>';
-                            html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                            html += '<tr class="account_content_transaction_history"><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                             html += '</tbody>';
                         html += '</table>';
                     html += '</div>';
@@ -72,7 +72,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-
+                $('.user-manager .menu-content ').css('min-height','auto')
             }
         });
     }
@@ -80,10 +80,10 @@ $(document).ready(function(){
     $(document).on('submit', '.account_service_history__v2', function(e){
         e.preventDefault();
 
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
         $('.btn-timkiem .loading-data__timkiem').html('');
-        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+        $('.btn-timkiem .loading-data__timkiem').html(htmloading);
 
         var id = $('.id').val();
         var key = $('.key').val();
@@ -136,10 +136,10 @@ $(document).ready(function(){
     $('body').on('click','.btn-all',function(e){
         e.preventDefault();
 
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
         $('.btn-all .loading-data__timkiem').html('');
-        $('.btn-all .loading-data__timkiem').html(htmlloading);
+        $('.btn-all .loading-data__timkiem').html(htmloading);
 
         $('.id_data').val('');
         $('.key_data').val('');

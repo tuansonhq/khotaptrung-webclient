@@ -15,14 +15,15 @@
                     <div class="title">
                         <h3>Nạp thẻ</h3>
                     </div>
-                    @if (setting('sys_charge_content') != "")
-                        <div class="alert alert-primary col-md-11  " role="alert" style="margin: 12px auto">
-                            {!! setting('sys_charge_content') !!}
 
-                        </div>
-                    @endif
 
                     <div class="wapper profile">
+                        @if (setting('sys_charge_content') != "")
+                            <div class="alert alert-info " role="alert" style="margin-bottom: 40px">
+                                {!! setting('sys_charge_content') !!}
+
+                            </div>
+                        @endif
                         <div id="charge-result">
 
                         </div>

@@ -38,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/account.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/sw2.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.css"/>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
+
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/css/style_nam.css"/>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.css">
@@ -306,7 +308,18 @@
         </div>
     </div>
 </div>
-
+<div id="copy"></div>
+<script>
+    $('body').on('click','i.fa-copy',function(e){
+        data = $(this).data('id');
+        let temp = $("<input>");
+        $("body #copy").html(temp);
+        temp.val($.trim(data)).select();
+        document.execCommand("copy");
+        temp.remove();
+        toastr.success('Sao chép thành công!');
+    });
+</script>
 <script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/slick.min.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -314,6 +327,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
+
 <script type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/script.js"></script>
 <script  type="text/javascript" src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 

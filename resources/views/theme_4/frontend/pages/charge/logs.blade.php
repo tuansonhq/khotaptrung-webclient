@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="row user-manager">
-            @include('frontend.pages.widget.__menu_profile')
+            @include('frontend.widget.__menu_profile')
 
             <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
 
@@ -13,157 +13,78 @@
                     <div class="title">
                         <h3>Lịch sử nạp thẻ</h3>
                     </div>
-                    <div class="wapper-grid profile">
+                    <div class="wapper-grid profile mt-3 mt-lg-0">
 
-                        <form class="form-horizontal form-find m-b-20" role="form" method="get">
+                        <form class="form-charge form-horizontal form-find form-charge_ls account_content_transaction_history__v2" role="form" method="get">
 
                             <div class="row">
-
-
                                 <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Thẻ cào</label>
-                                    </div>
-                                    <div class="col-12">
+                                    <div class="input-group">
+                                     <span class="input-group-btn">
+                                         <p class="input-group-btn-p">Thẻ cào</p>
+                                    </span>
                                         <input type="text" class="form-control c-square c-theme" name="find"
                                                value=""
                                                autofocus placeholder="Mã thẻ,Serial...">
                                     </div>
                                 </div>
 
-
+                                @if(isset($data_telecome) && count($data_telecome) > 0)
                                 <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Loại thẻ</label>
-                                    </div>
-                                    <div class="col-12">
-                                        <select name="key" class="form-control c-square c-theme">.
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">Loại thẻ</p>
+                                        </span>
+                                        <select  name="key" class="form-control c-square c-theme key">.
                                             <option value=""> Tất cả loại thẻ</option>
-                                            <option
-                                                value="GARENA" >
-                                                GARENA
-                                            </option>
-                                            <option
-                                                value="GATE" >
-                                                GATE
-                                            </option>
-                                            <option
-                                                value="MOBIFONE" >
-                                                MOBIFONE
-                                            </option>
-                                            <option
-                                                value="SCOIN" >
-                                                SCOIN
-                                            </option>
-                                            <option
-                                                value="VCOIN" >
-                                                VCOIN
-                                            </option>
-                                            <option
-                                                value="VIETNAMOBILE" >
-                                                VIETNAMOBILE
-                                            </option>
-                                            <option
-                                                value="VIETTEL" >
-                                                VIETTEL
-                                            </option>
-                                            <option
-                                                value="VINAPHONE" >
-                                                VINAPHONE
-                                            </option>
-                                            <option
-                                                value="ZING" >
-                                                ZING
-                                            </option>
+                                            @foreach($data_telecome as $val)
+                                                <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                            @endforeach
 
                                         </select>
                                     </div>
                                 </div>
-
-
+                                @endif
                                 <div class="form-row mb-3 col-md-4">
-                                    <div class="col-12">
-                                        <label class="mt-2">Trạng thái</label>
-                                    </div>
-                                    <div class="col-12">
-                                        <select name="status" id="status" class="form-control c-square c-theme">.
-                                            <option class="stt_all" value=""> Tất cả</option>
-
-
-                                            <option class="stt_0"
-                                                    value="1" >
-                                                Thẻ đúng
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="0" >
-                                                Thẻ sai
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="2" >
-                                                Chờ xử lý
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="3" >
-                                                Sai mệnh giá
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="999" >
-                                                Lỗi nạp thẻ
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="-999" >
-                                                Lỗi nạp thẻ
-                                            </option>
-
-                                            <option class="stt_0"
-                                                    value="-1" >
-                                                Phát sinh lỗi nạp thẻ
-                                            </option>
-                                        </select>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <p class="input-group-btn-p">Trạng thái</p>
+                                        </span>
+                                        {{Form::select('status',array(''=>'-- Chọn trạng thái --')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'form-control status'))}}
                                     </div>
                                 </div>
-
 
                                 <div class="form-row mb-3 col-md-4">
                                     <div class="col-12">
                                         <label class="mt-2">Từ:</label>
                                     </div>
                                     <div class="col-12">
-                                        <div class="input-group m-b-10 c-square">
+                                        <div class="input-group m-b-10 c-square date date-picker">
                                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
                                                  data-rtl="false">
                                             <span class="input-group-btn">
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme" name="started_at"
-                                                       autocomplete="off" placeholder="Từ ngày"
-                                                       value="">
+                                                <input type="text" class="form-control c-square c-theme started_at" name="started_at" autocomplete="off" placeholder="Từ ngày" value="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-row mb-3 col-md-4">
+                                <div class="form-row mb-3 col-md-4 ">
                                     <div class="col-12">
                                         <label class="mt-2">Đến:</label>
                                     </div>
                                     <div class="col-12">
-                                        <div class="input-group m-b-10 c-square">
+                                        <div class="input-group m-b-10 c-square date date-picker">
                                             <div class="input-group date date-picker" data-date-format="dd/mm/yyyy"
                                                  data-rtl="false">
                                             <span class="input-group-btn">
                                             <button class="btn default c-btn-square p-l-10 p-r-10" type="button"><i
                                                     class="fa fa-calendar"></i></button>
                                             </span>
-                                                <input type="text" class="form-control c-square c-theme" name="ended_at"
-                                                       autocomplete="off" placeholder="Đến ngày"
-                                                       value="">
+                                                <input type="text" class="form-control c-square c-theme ended_at" name="ended_at" autocomplete="off" placeholder="Đến ngày" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -174,67 +95,42 @@
 
                             <div class="row mb-4">
                                 <div class="col-md-4">
-                                    <input type="submit" class="btn btn-success c-theme-btn c-btn-square m-b-10"
-                                           value="Tìm kiếm">
-                                    <a class="btn c-btn-square m-b-10 btn-danger" href="https://napgamegiare.net/lich-su-nap-the">Tất cả</a>
+                                    <button  class="btn btn-success c-theme-btn c-btn-square m-b-10 btn-search position-relative" type="submit">
+                                        Tìm kiếm
+                                        <div class="loading-data__timkiem justify-content-center">
+                                        </div>
+                                    </button>
+
+                                    <a class="btn btn-danger btn-all position-relative" href="javascript:void(0)">
+                                        Tất cả
+                                        <div class="loading-data__timkiem justify-content-center">
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
 
-                            <div class="row mb-4">
-                                <div class="col-md-12">
-                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10" style="margin-left: 0px"
-                                       href="https://napgamegiare.net/lich-su-nap-the?started_at=18/07/2022&amp;ended_at=18/07/2022"><i
-                                            class="glyphicon glyphicon-calendar"></i> Hôm nay</a>
-                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10" style="margin-left: 0px"
-                                       href="https://napgamegiare.net/lich-su-nap-the?started_at=17/07/2022&amp;ended_at=17/07/2022"><i
-                                            class="glyphicon glyphicon-calendar"></i> Hôm qua</a>
-                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10" style="margin-left: 0px"
-                                       href="https://napgamegiare.net/lich-su-nap-the?started_at=01/07/2022&amp;ended_at=31/07/2022"><i
-                                            class="glyphicon glyphicon-calendar"></i> Tháng này</a>
-                                </div>
-                            </div>
+{{--                            <div class="row mb-4">--}}
+{{--                                <div class="col-md-12">--}}
+{{--                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10 btn-hom-nay" style="margin-left: 0px" href="javascript:void(0)"><i--}}
+{{--                                            class="glyphicon glyphicon-calendar"></i> Hôm nay</a>--}}
+{{--                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10 btn-hom-qua" style="margin-left: 0px" href="javascript:void(0)"><i--}}
+{{--                                            class="glyphicon glyphicon-calendar"></i> Hôm qua</a>--}}
+{{--                                    <a class="btn btn-info c-theme-btn c-btn-square m-b-10 btn-thang-nay" style="margin-left: 0px" href="javascript:void(0)"><i--}}
+{{--                                            class="glyphicon glyphicon-calendar"></i> Tháng này</a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                         </form>
 
-
-                        <div style="overflow: auto;width: 100%">
-                            <table class="table table-hover table-custom-res">
-                                <thead>
-                                <tr role="row">
-                                    <th>Thời gian</th>
-
-                                    <th>Kiểu nạp</th>
-                                    <th>Nhà mạng</th>
-                                    <th>Mã thẻ/Serial</th>
-                                    <th>Mệnh giá</th>
-                                    <th>Trạng thái</th>
-                                    <th>Thực nhận</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <tr class="" style="background-color: #abe7ed;">
-                                    <td colspan="2" class="row-date"><b>Tổng cộng các trang:</b></td>
-                                    <td class="row-date-sub"></td>
-                                    <td><b> 0 thẻ </b></td>
-                                    <td class="row-date-sub">
-                                        <b> 0 </b>
-                                    </td>
-                                    <td class="row-date-sub">
-                                        <b> 0 </b>
-                                    </td>
-                                    <td class="row-date-sub">
-                                        <b> 0 </b>
-                                    </td>
-
-                                </tr>
-
-
-
-                                </tbody>
-                            </table>
-
+                        <div id="data_pay_card_history_ls" style="position: relative">
+                            <div class="body-box-loading result-amount-loadding" style="position: absolute;top: 100%;left: 50%">
+                                <div class="d-flex justify-content-center">
+                                    <span class="pulser"></span>
+                                </div>
+                            </div>
+                            @include('frontend.pages.charge.widget.__charge_history')
                         </div>
+
 
                         <!-- END: PAGE CONTENT -->
 
@@ -255,42 +151,22 @@
 
             }
         </style>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-            $(document).ready(function () {
-
-                $('.load-modal').on('click', function (e) {
-                    e.preventDefault();
-                    var curModal = $('#LoadModal');
-                    curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
-                    curModal.modal('show').find('.modal-content').load($(this).attr('rel'));
-                });
-            });
-
-            function get_list_status() {
-
-
-                //for safari
-                $("#status option").detach();
-                var type_charge = $("#type_charge").val();
-
-
-                var myOpts = $(".stt_" + type_charge).clone();
-                var myOptsAll = $(".stt_all").clone();
-                myOptsAll.appendTo("#status");
-                myOpts.appendTo("#status");
-
-                // $("#amount").append(myOpts);
-            }
-
-            get_list_status();
-
-
-        </script>
-
-
 
 
     </div><!-- /.container -->
 </section>
+<input type="hidden" class="started_at_day_ls" name="started_at_day_ls" value="{{ \Carbon\Carbon::now()->startOfDay()->format('d/m/Y H:i:s') }}">
+<input type="hidden" class="end_at_day_ls" name="end_at_day_ls" value="{{ \Carbon\Carbon::now()->endOfDay()->format('d/m/Y H:i:s')}}">
+<input type="hidden" class="started_at_yes_ls" name="started_at_yes" value="{{ \Carbon\Carbon::yesterday()->startOfDay()->format('d/m/Y H:i:s') }}">
+<input type="hidden" class="end_at_yes_ls" name="end_at_yes_ls" value="{{ \Carbon\Carbon::yesterday()->endOfDay()->format('d/m/Y H:i:s')}}">
+<input type="hidden" class="started_at_month_ls" name="started_at_month_ls" value="{{ \Carbon\Carbon::now()->startOfMonth()->format('d/m/Y H:i:s') }}">
+<input type="hidden" class="end_at_month_ls" name="end_at_month_ls" value="{{ \Carbon\Carbon::now()->endOfMonth()->format('d/m/Y H:i:s') }}">
 
+<input type="hidden" name="serial_data_ls" class="serial_data_ls">
+<input type="hidden" name="key_data_ls" class="key_data_ls">
+<input type="hidden" name="status_data_ls" class="status_data_ls">
+<input type="hidden" name="started_at_data_ls" class="started_at_data_ls">
+<input type="hidden" name="ended_at_data_ls" class="ended_at_data_ls">
+<input type="hidden" name="hidden_page_ls" id="hidden_page_service_ls" class="hidden_page_service" value="1" />
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge-history.js"></script>
 @endsection

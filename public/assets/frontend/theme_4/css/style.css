@@ -1775,6 +1775,7 @@ select:focus{
     position: absolute;
     top: 8px;
     left: 50%;
+    transform: translateX(-50%);
 }
 .input-group-btn-p{
     border-bottom-left-radius: 4px!important;
