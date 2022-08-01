@@ -1,7 +1,4 @@
 $(document).ready(function(){
-
-    // get profile
-
     // get tele
     function getIdCode(){
         var url = '/transfer-code';
@@ -36,7 +33,6 @@ $(document).ready(function(){
     // let page = $('#hidden_page_atm').val();
 
     $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
-        console.log(22222)
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
