@@ -118,21 +118,23 @@
                         </div>
                         @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                         <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                        <div class="simple-checkbox s-filter">
-                            @php
-                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                            @endphp
-                            @if(!empty($name))
-                                @for ($i = 0; $i < count($name); $i++)
-                                    @if($name[$i]!=null)
-                                        <p><input value="{{$i}}" type="checkbox" id="{{$i}}">
-                                            <label for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
-                                        </p>
-                                    @endif
-
-                                @endfor
-                            @endif
+                        <div class="card service-select c-py-12 c-pr-8">
+                            <div class="card-body py-0">
+                                @php
+                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                @endphp
+                                @if(!empty($name))
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
+                                            <label class="input-checkbox">
+                                                <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                <span class="checkmark"></span>
+                                                <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
+                                        @endif
+                                    @endfor
+                                @endif
+                            </div>
                         </div>
                     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 

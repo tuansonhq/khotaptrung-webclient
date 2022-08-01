@@ -123,6 +123,7 @@
     border-radius: 12px;
     padding: 16px;
 
+
 }
 .article--thumbnail{
     height: 150px;
@@ -131,7 +132,10 @@
     border-radius: 8px;
     position: relative;
 }
-
+.article--thumbnail img{
+    object-fit: cover;
+    width: 100%;
+}
 
 .article--title a{
     font-weight: 700;
