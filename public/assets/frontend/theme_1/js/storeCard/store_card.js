@@ -121,7 +121,7 @@ $(document).ready(function(){
     });
     getTelecom();
     $("#telecom_storecard").on('change', function () {
-        GetAmount();
+        getAmount();
 
     });
 
