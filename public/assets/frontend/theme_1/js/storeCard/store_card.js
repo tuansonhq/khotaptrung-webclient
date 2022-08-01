@@ -120,10 +120,10 @@ $(document).ready(function(){
         getAmount(telecom)
     });
     getTelecom();
-    $("#telecom_storecard").on('change', function () {
-        getAmount();
-
-    });
+    // $("#telecom_storecard").on('change', function () {
+    //     getAmount();
+    //
+    // });
 
     $("#amount_storecard").on('change', function () {
         UpdatePrice();
