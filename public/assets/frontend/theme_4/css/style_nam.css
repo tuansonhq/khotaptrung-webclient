@@ -28,7 +28,9 @@
     text-align: center;
     margin: auto;
 }
-
+#formStoreCard,#StoreCardTotal,#StoreCardPay{
+    display: none;
+}
 @keyframes rotate {
     100% {
         transform: rotate(360deg);

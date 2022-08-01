@@ -39,9 +39,9 @@ $(document).ready(function(){
                     $('#loading-data').remove();
                     $('#loading-data-total').remove();
                     $('#loading-data-pay').remove();
-                    $('#formStoreCard').removeClass('hide');
-                    $('#StoreCardTotal').removeClass('hide');
-                    $('#StoreCardPay').removeClass('hide');
+                    $('#formStoreCard').show();
+                    $('#StoreCardTotal').show();
+                    $('#StoreCardPay').show();
                 }
                 else{
                     swal({
@@ -89,16 +89,16 @@ $(document).ready(function(){
                     $('#amount_storecard').html(html);
                     UpdatePrice();
                 }
-                else{
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
-                }
+                // else{
+                //     swal({
+                //         title: "Có lỗi xảy ra !",
+                //         text: data.message,
+                //         icon: "error",
+                //         buttons: {
+                //             cancel: "Đóng",
+                //         },
+                //     })
+                // }
             },
             error: function (data) {
                 swal({
@@ -181,102 +181,103 @@ $(document).ready(function(){
         $temp.remove();
         toastr.success('Đã sao chép: '+ data);
     })
+    var formSubmit = $('#form-storeCard');
+    var url = formSubmit.attr('action');
+    var btnSubmit = formSubmit.find(':submit');
 
-    $('#form-storeCard').submit(function (e) {
+    formSubmit.submit(function (e) {
         e.preventDefault();
-        $('#homealert').modal("show");
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        // btnSubmit.text('Đang xử lý...');
+        e.stopPropagation();
+        // $('#openConfirmStorecard').modal('show');
+        $('#success_storecard').modal('show');
+    });
 
-        $('#ok').off().on('click', function (m) {
-            $.ajax({
-                type: "POST",
-                url: url,
-                cache:false,
-                data: formSubmit.serialize(), // serializes the form's elements.
-                beforeSend: function (xhr) {
-
-                },
-                success: function (data) {
-                    if(data.status == 1){
-                        btnSubmit.prop('disabled', true);
-                        swal({
-                            title: "Thành công !",
-                            text: data.message,
-                            icon: "success",
-                        })
-                        $('#success_storecard').modal("show");
-                        let html = '';
-                        if(data.data.data_card.length > 0){
-                            $.each(data.data.data_card,function(key,value){
-
-                                html+='<div class="col-12 col-md-4 p-2">'
-                                html+='<div class="alert alert-info">'
-                                html+='<p>Mã thẻ '+key+' </p>'
-                                html+='<div class="success_storecard_pin">'
-                                html+='<p>Mã thẻ <br>'
-                                html+='<span>'+value.pin+'</span>'
-                                html+='</p>'
-                                html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
-                                html+='</div>'
-                                html+='<div class="success_storecard_serial">'
-                                html+='<p>Serial  <br>'
-                                html+='<span>'+value.serial+'</span>'
-                                html+='</p>'
-                                html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
-                                html+='</div>'
-                                html+='</div>'
-                                html+='</div>'
-
-                            });
-                        }
-                        $('.success_storecard').html(html);
-                    }
-                    else if(data.status == 401){
-                        window.location.href = '/login?return_url='+window.location.href;
-                    }
-                    else if(data.status == 0){
-                        swal({
-                            title: "Mua thẻ thất bại !",
-                            text: data.message,
-                            icon: "error",
-                            buttons: {
-                                cancel: "Đóng",
-                            },
-                        })
-                    }
-                    else{
-                        swal({
-                            title: "Có lỗi xảy ra !",
-                            text: data.message,
-                            icon: "error",
-                            buttons: {
-                                cancel: "Đóng",
-                            },
-                        })
-                    }
-                },
-                error: function (data) {
+    $('.btn-confirm-charge').on('click', function (m) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache:false,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
+                $('#openConfirmStorecard').modal("hide");
+            },
+            success: function (data) {
+                if(data.status == 1){
+                    btnSubmit.prop('disabled', true);
                     swal({
-                        title: "Có lỗi xảy ra !",
-                        text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                        title: "Thành công !",
+                        text: data.message,
+                        icon: "success",
+                    })
+                    $('#success_storecard').modal("show");
+                    let html = '';
+                    if(data.data.data_card.length > 0){
+                        $.each(data.data.data_card,function(key,value){
+
+                            html+='<div class="col-12 col-md-4 p-2">'
+                            html+='<div class="alert alert-info">'
+                            html+='<p>Mã thẻ '+key+' </p>'
+                            html+='<div class="success_storecard_pin">'
+                            html+='<p>Mã thẻ <br>'
+                            html+='<span>'+value.pin+'</span>'
+                            html+='</p>'
+                            html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
+                            html+='</div>'
+                            html+='<div class="success_storecard_serial">'
+                            html+='<p>Serial  <br>'
+                            html+='<span>'+value.serial+'</span>'
+                            html+='</p>'
+                            html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
+                            html+='</div>'
+                            html+='</div>'
+                            html+='</div>'
+
+                        });
+                    }
+                    $('.success_storecard').html(html);
+                }
+                else if(data.status == 401){
+                    window.location.href = '/login?return_url='+window.location.href;
+                }
+                else if(data.status == 0){
+                    swal({
+                        title: "Mua thẻ thất bại !",
+                        text: data.message,
                         icon: "error",
                         buttons: {
                             cancel: "Đóng",
                         },
                     })
-                },
-                complete: function (data) {
-                    $('span#reload').trigger('click');
-                    formSubmit.trigger("reset");
-                    // btnSubmit.text('Nạp thẻ');
-                    btnSubmit.prop('disabled', false);
                 }
-            });
+                else{
+                    swal({
+                        title: "Có lỗi xảy ra !",
+                        text: data.message,
+                        icon: "error",
+                        buttons: {
+                            cancel: "Đóng",
+                        },
+                    })
+                }
+            },
+            error: function (data) {
+                swal({
+                    title: "Có lỗi xảy ra !",
+                    text: "Có lỗi phát sinh vui lòng liên hệ QTV để kịp thời xử lý.",
+                    icon: "error",
+                    buttons: {
+                        cancel: "Đóng",
+                    },
+                })
+            },
+            complete: function (data) {
+                $('span#reload').trigger('click');
+                formSubmit.trigger("reset");
+                // btnSubmit.text('Nạp thẻ');
+                btnSubmit.prop('disabled', false);
+            }
         });
-
     });
+
 
 });
