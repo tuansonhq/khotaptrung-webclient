@@ -713,6 +713,19 @@ View::composer('frontend.widget.__services__other', function ($view) {
 
 });
 
+/*theme_5*/
+View::composer('frontend.widget.__slide__news', function ($view) {
 
+    $data = \Cache::rememberForever('__slide__news', function() {
+        $url = '/article';
+        $method = "GET";
+        $val = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        return $data = $result_Api->response_data->data??null;
+    });
+    $data = new LengthAwarePaginator($data->data, $data->total , $data->per_page, $data->current_page,$data->data);
+    return $view->with('data', $data);
+});
 
 

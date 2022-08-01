@@ -116,8 +116,6 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/login/login_modal.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/js/rSlider.min.js"></script>
-<script src="/assets/frontend//{{theme('')->theme_key}}/js/config/rSlider-conf.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>

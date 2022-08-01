@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+    @dd($data)
     <div class="container container-fix" style="max-width: 1232px">
         {{--breadcrum--}}
         <ul class="breadcrumb-list">
@@ -10,7 +11,7 @@
                 <a href="/tin-tuc" class="breadcrumb-link">Tin tức</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/tin-tuc/slug" class="breadcrumb-link">Chi tiết tin tức</a>
+                <a href="" class="breadcrumb-link">Chi tiết tin tức</a>
             </li>
         </ul>
         <div class="head-mobile">
