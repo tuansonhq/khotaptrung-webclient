@@ -72,6 +72,21 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+
+View::composer('frontend.widget.__menu', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+});
 // dịch vụ nổi bật ảnh
 View::composer('frontend.widget.__list_serve_remark_image', function ($view) {
 
@@ -664,48 +679,39 @@ View::composer('frontend.widget.__menu__article', function ($view) {
 
 });
 
+//THeme 3.
 
+View::composer('frontend.widget.__slider__banner__account', function ($view) {
 
-//View::composer('frontend.widget.__charge', function ($view) {
-////    if($request->hasCookie('jwt')){
-////    dd($request->cookie('jwt'));
-////        try{
-//            dd(111);
-//            $url = '/deposit-auto/get-telecom';
-//            $method = "GET";
-//            $item = array();
-//            $item['token'] = 'dsdsd';
-//            $item['secret_key'] = config('api.secret_key');
-//            $item['domain'] = 'youtube.com';
-//
-//            $result_Api = DirectAPI::_makeRequest($url,$item,$method);
-//
-//            if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-//                $result = $result_Api->data;
-//
-//                if ($result->status == 1) {
-//                    return view('frontend.pages.index', compact('result'));
-//                }
-//                else {
-//                    return redirect()->back()->withErrors($result->message);
-//
-//                }
-//            } else {
-//                return 'sai';
-//            }
-//
-//        }
-//        catch(\Exception $e){
-//
-//            Log::error($e);
-//            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//        }
-//
-////    }
-////    else{
-////        return redirect('login');
-////    }
-//});
+    $data = \Cache::rememberForever('__slider__banner__account', function() {
+        $url = '/get-slider-banner-nick';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__services__other', function ($view) {
+
+    $data = \Cache::rememberForever('__services__other', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 
 

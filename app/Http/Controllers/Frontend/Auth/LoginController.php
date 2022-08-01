@@ -78,6 +78,7 @@ class LoginController extends Controller
                     'data' => $result_Api->response_data,
                 ]);
 
+
             }
             else{
                 return response()->json([
@@ -114,8 +115,14 @@ class LoginController extends Controller
             Session::put('exp_token',$response_data->exp_token);
             Session::put('time_exp_token',$time_exp_token);
             $return_url = Session::get('url.intended');
-            if ($return_url != null){
+            $previous = Session::get('url_return.id_return');
+
+
+            if (isset($previous) && $previous != null){
+                return redirect('/');
+            }elseif(isset($return_url) && $return_url != null){
                 return redirect()->intended();
+
             }else{
                 return redirect()->back();
             }

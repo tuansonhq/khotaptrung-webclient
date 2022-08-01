@@ -12,6 +12,8 @@ class DirectAPI{
         $http_url = \Request::server ("HTTP_HOST");
         $data ['domain'] = str_replace('www.','',$http_url);
         $data ['client'] =  str_replace('www.','',$http_url);
+//        $data ['domain'] = config('api.client');
+//        $data ['client'] =config('api.client');
 
         $data['secret_key'] = config('api.secret_key');
         if(is_array($data)){
