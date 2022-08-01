@@ -197,10 +197,12 @@ $(document).ready(function(){
                 cache:false,
                 data: formSubmit.serialize(), // serializes the form's elements.
                 beforeSend: function (xhr) {
-
+                    console.log(1111)
                 },
                 success: function (data) {
                     if(data.status == 1){
+                        console.log(22222)
+                        console.log(data)
                         btnSubmit.prop('disabled', true);
                         swal({
                             title: "Thành công !",
@@ -211,6 +213,7 @@ $(document).ready(function(){
                         let html = '';
                         if(data.data.length > 0){
                             $.each(data.data,function(key,value){
+                                console.log(data.data)
                                 html+='<div class="col-md-4 p-2">'
                                 html+='<div class="alert alert-info">'
                                 html+='<p>Mã thẻ'+key+' </p>'
