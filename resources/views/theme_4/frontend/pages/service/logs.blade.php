@@ -101,13 +101,13 @@
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-success btn-timkiem " style="position: relative">
                                         Tìm kiếm
-                                        <div class="row justify-content-center loading-data__timkiem">
+                                        <div class=" justify-content-center loading-data__timkiem">
 
                                         </div>
                                     </button>
                                     <a href="javascript:void(0)" class="btn btn-danger btn-all" style="position: relative">
                                         Tất cả
-                                        <div class="row justify-content-center loading-data__timkiem">
+                                        <div class=" justify-content-center loading-data__timkiem">
 
                                         </div>
                                     </a>
