@@ -12,7 +12,7 @@
 
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
 
@@ -26,7 +26,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
                                     </div>
@@ -532,12 +532,12 @@
                                     <div class="c-ml-8 c-mr-8">
                                         <div>
                                             <span>
-                                                  <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/macacha.png" alt="">
+                                                  <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/son/macacha.png" alt="">
                                             </span>
                                         </div>
                                     </div>
                                     <button class="refresh-captcha">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/refresh.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/son/refresh.png" alt="">
                                     </button>
 
                                 </div>
