@@ -65,9 +65,9 @@
                         Chọn game muốn mua account
                     </div>
                     <div class="value-filter">
-                        <div class="tag">Mã số</div>
-                        <div class="tag">Trạng thái</div>
-                        <div class="tag">Rank</div>
+                        <div class="nick-findter-data" id="params-filter">
+
+                        </div>
                         <div class="show-modal-filter noselect" data-toggle="modal" data-target="#modal-filter">Bộ lọc</div>
                     </div>
                 </div>
@@ -96,38 +96,13 @@
                     </label>
                 </div>
                 <!-- End Mobile -->
-                <div id="listLoader" style="width: 100%;">
-                    <div class="loader position-relative" style="padding: 1rem">
-                        <div class="loading-spokes">
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
+
+                <div class="listing-account c-mb-16" id="account_data">
+                    <div class="box-loading btn-loading c-my-24" style="margin: 0 auto">
+                        <div class="loading">
+                            <div class="loading-child"></div>
                         </div>
                     </div>
-                </div>
-                <div class="listing-account c-mb-16" id="account_data">
-
                     @include('frontend.pages.account.widget.__datalist')
                 </div>
             </section>
@@ -146,7 +121,7 @@
                                     <label class="form-label">
                                         Mã số
                                     </label>
-                                    <input type="text" class="input-defautf-ct id" id="" name="id_data" placeholder="Nhập mã số nick">
+                                    <input type="text" class="input-defautf-ct id" name="id_data" placeholder="Nhập mã số nick">
                                 </div>
 
                                 <div class="input-group">
@@ -185,7 +160,7 @@
                                                 <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
                                                     <option value="" selected disabled>--Không chọn--</option>
                                                     @foreach($val->childs as $child)
-                                                        <option value="">Tinh anh</option>
+                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -204,7 +179,7 @@
                             </div>
                             <div class="modal-footer c-mt-24 c-mt-lg-16">
                                 <a href="javascript:void(0)" class="btn ghost js-reset-form button-not-bg-ct reset-find">Xoá bộ lọc</a>
-                                <a href="javascript:void(0)" class="btn primary js-submit-form">Xem kết quả</a>
+                                <button type="button" class="btn primary js-submit-form btn-ap-dung">Xem kết quả</button>
                             </div>
                         </form>
                     </div>
@@ -350,6 +325,7 @@
 
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+
         @endif
     </div>
 
