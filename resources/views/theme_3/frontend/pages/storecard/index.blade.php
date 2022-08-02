@@ -158,7 +158,7 @@
 
                                     </span>
                                 </div>
-                                @if (App\Library\AuthCustom::check())
+                                @if (\App\Library\AuthCustom::check())
                                     <button type="button" class="btn -primary btn-big js_step" data-go_to="step2" data-toggle="modal" data-target="#modal--confirm__payment" id="btn-confirm">Chọn mua</button>
                                 @else
                                     <button type="button" class="btn -primary btn-big js_step" onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua</button>
