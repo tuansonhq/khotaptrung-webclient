@@ -51,14 +51,11 @@
 
                                     @if(App\Library\AuthCustom::user()->balance < $data->params->price)
                                         <div class="price c-p-12 c-p-lg-8">
-                                            <div class="modal-footer">
-                                                <button class="btn ghost">Nạp thẻ cào</button>
-                                                <button class="btn primary">Nạp từ ATM - Ví điện tử</button>
-                                            </div>
+                                            <a href="javascript:void(0)" class="btn secondary w-100 the-cao-atm">Mua ngay</a>
                                         </div>
                                     @else
                                         <div class="price c-p-12 c-p-lg-8">
-                                            <a href="javascript:void(0)" class="btn secondary w-100 buyacc" >Mua ngay</a>
+                                            <a href="javascript:void(0)" class="btn secondary w-100 buyacc" data-id="{{ $item->randId }}">Mua ngay</a>
                                         </div>
                                     @endif
                                 @else

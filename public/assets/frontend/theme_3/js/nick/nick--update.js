@@ -52,6 +52,7 @@ $(document).ready(function () {
         }
         loadDataTable(query);
     });
+
     $(document).on('click', '.buy-random-acc',function (e){
         e.preventDefault();
 
@@ -63,6 +64,7 @@ $(document).ready(function () {
 
         $('#openOrder').modal('show');
     });
+
     $(document).on('submit', '#openOrder .formDonhangAccount', function(e){
         e.preventDefault();
 
@@ -147,6 +149,7 @@ $(document).ready(function () {
         });
     });
 });
+
 function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',status_data:'',select_data:'',sort_by_data:''}) {
     let url = window.location.href;
     let slug = $('.slug').val();
