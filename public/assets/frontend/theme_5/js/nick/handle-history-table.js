@@ -1,4 +1,81 @@
-function loadData(elm_form){
+let count_load = 0;
+let last_page = 0;
+$(document).ready(function () {
+    $('.started_at,.ended_at').datetimepicker({
+        format: 'DD-MM-YYYY LT',
+        useCurrent: false,
+        locale:'vi',
+        maxDate: moment(),
+        icons:
+            { time: 'fas fa-clock',
+                date: 'fas fa-calendar',
+                up: 'fas fa-arrow-up',
+                down: 'fas fa-arrow-down',
+                previous: 'fas fa-arrow-circle-left',
+                next: 'fas fa-arrow-circle-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'fas fa-trash',
+                close: 'far fa-times' },
+    });
+
+    // $(document).on('click','.nick-findter',function(){
+    //     $('#openFinter').modal('show');
+    // });
+    $(document).on('click','.prepend-nick',function () {
+        let target_name = $(this).data('close');
+        if (target_name === 'started_at'){
+            $('[name=started_at],[name=ended_at]').val('');
+        }
+        let target = $(`[name=${target_name}]`);
+        target.val('');
+        loadDataNick();
+        loadDataTableNick();
+        $('#modal-filter').modal('hide');
+        $('#data_sort select').niceSelect('update');
+    });
+    $(document).on('click','.reset-find',function(){
+        $('#data_sort')[0].reset();
+        $('#data_sort select').niceSelect('update');
+        loadDataNick();
+        loadDataTableNick();
+        $('#modal-filter').modal('hide');
+    });
+    $(document).on('click','.close-modal-default',function(){
+        $('#modal-filter').modal('hide');
+        $('#showPassword').modal('hide');
+        $('#openOrder').modal('hide');
+    });
+    $(document).on('click', '.paginate__v1 .pagination a',function(e){
+        e.preventDefault();
+        $('.pagination li').removeClass('active');
+        $(this).parent().addClass('active');
+        let url = window.location.href;
+        let page = $(this).attr('href').split('page=')[1];
+        let new_url = updateQueryStringParameter(url,'page',page);
+        window.history.pushState({}, null, new_url);
+        loadDataTableNick();
+    });
+    $(document).on('click','.btn-ap-dung',function (e) {
+        e.preventDefault();
+        loadDataNick();
+        loadDataTableNick();
+        $('#openFinter').modal('hide');
+    });
+    $(document).on('click','.js-show-pass',function (e) {
+        e.preventDefault();
+        let input_password = $('#password');
+        if (input_password.attr('type') === "password") {
+            input_password.attr('type','text');
+            $(this).attr('src','/assets/frontend/theme_3/image/cay-thue/eyehide.png')
+        } else {
+            input_password.attr('type','password')
+            $(this).attr('src','/assets/frontend/theme_3/image/cay-thue/eyeshow.png')
+        }
+    });
+    loadDataTableNick();
+    loadDataNick();
+});
+function loadDataNick(elm_form){
     let overlay_find = $('.filter-history');
     let root_elm = $('#params-filter');
     root_elm.html('');
@@ -29,7 +106,6 @@ function loadData(elm_form){
         html_append += `<div class="tag" data-close="${sort_data[i][0]}">`;
         if (count_params === 2){
             if (sort_data[i][0] === 'started_at' || sort_data[i][0] === 'ended_at'){
-                console.log(123)
                 let start = $(elm_form).find('input[name=started_at]');
                 let end = $(elm_form).find('input[name=ended_at]');
                 if (!!start.val().trim() && !!end.val().trim()){
@@ -43,7 +119,6 @@ function loadData(elm_form){
                 }
             }
             else {
-                console.log(321)
                 html_append += `${sort_data[i][1]}`;
             }
         }
@@ -96,25 +171,26 @@ $(document).ready(function () {
     if (form_filter.length) {
         form_filter.on('submit',function (e) {
             e.preventDefault();
-            loadData($(this));
-            setParamsUrlToQuery();
-            loadDataApi(query);
-            page_history = 1;
+            loadDataNick($(this));
             if (width > 992) {
                 $(this).closest('.modal').modal('hide');
             } else {
                 closeSheet();
             }
         });
-        form_filter.on('reset',function () {
-            $('.form-filter select').niceSelect('update');
-        })
-        let url = window.location.href;
 
-        loadData(form_filter);
-        /*chỗ này là vừa vào đã load luôn*/
-        setParamsUrlToQuery();
-        loadDataApi(query);
+        let url = window.location.href;
+        //Load old data on url
+        if (hasQueryParams(url)){
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlSearchParams.entries());
+            Object.keys(params).forEach(key => {
+                let input = $(`.form-filter [name=${key}]`);
+                input.val(params[key]);
+            });
+            $(form_filter).find('select').niceSelect('update');
+            loadDataNick(form_filter);
+        }
     }
 
     $(document).on('click','#params-filter .tag',function () {
@@ -124,52 +200,20 @@ $(document).ready(function () {
         }
         let target = $(`.form-filter [name=${target_name}]`);
         target.val('');
-        loadData(form_filter);
-        setParamsUrlToQuery();
-        loadDataApi(query);
-        page_history = 1;
+        loadDataNick(form_filter);
         $('.form-filter select').niceSelect('update');
     });
 
-    /*get params on url*/
-    function setParamsUrlToQuery() {
-        let url = window.location.href;
-        if (hasQueryParams(url)){
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
-            Object.keys(params).forEach(key => {
-                query[key] = params[key];
-                $(form_filter).find('select').niceSelect('update');
-                let input = $(form_filter).find(`[name=${key}]`);
-                input.val(params[key]);
-            });
-
-            /*nếu như mà trên url không có page thì phải gán lại cho nó là 1*/
-            !params.page ? query.page = 1 : '';
-        }
-        else {
-            for (const key in query) {
-                query[key] = '';
-            }
-            query.page = 1;
-        }
-    }
-    /*Load More*/
-
-    /*Page mặc định vừa vào là 1*/
-    let page_history = 1;
-
-    content_history.on('scroll',function () {
-       let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
-       /*nếu như lăn tới cuối cùng của bảng*/
-       if (parseInt($(this).scrollTop()) >= end){
-           page_history++;
-           query.page = page_history;
-           history_see_more = true;
-           /*nếu không phải là trang cuối thì mới load*/
-           if (!is_last_page){
-               loadDataApi(query);
-           }
-       }
-    });
 });
+function checkLastPage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const page = urlParams.get('page');
+    if (!!page && page > last_page){
+        let url = window.location.href;
+        let new_url = updateQueryStringParameter(url,'page',1);
+        window.history.pushState({}, null, new_url);
+        loadDataTableNick();
+        return true;
+    }
+    return false;
+}
