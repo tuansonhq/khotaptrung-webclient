@@ -74,10 +74,10 @@
                                 $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
                                 $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
                             @endphp
-                            <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                            <span class=" mb-15 control-label bb">Chọn máy chủ:</span>
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
-                                <div class="mb-15">
+                                <div class="mb-15 c-pt-16">
                                     <select name="server[]" class="server-filter form-control t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
@@ -115,26 +115,6 @@
                         <span class="mb-15 control-label bb">Hệ số:</span>
                         <div class="mb-15">
                             <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
-                        </div>
-                        @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                        <div class="card service-select c-py-12 c-pr-8">
-                            <div class="card-body py-0">
-                                @php
-                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                                @endphp
-                                @if(!empty($name))
-                                    @for ($i = 0; $i < count($name); $i++)
-                                        @if($name[$i]!=null)
-                                            <label class="input-checkbox">
-                                                <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
-                                                <span class="checkmark"></span>
-                                                <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
-                                        @endif
-                                    @endfor
-                                @endif
-                            </div>
                         </div>
                     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 
@@ -316,8 +296,11 @@
                             <div class="card-body c-p-16">
                                 <div class="text-title-bold d-inline-block">Báo giá:</div>
                                 <br>
-                                <div id="txtPrice" class="text-title secondary d-inline-block">100.000đ</div>
-                                <a href="" class="btn primary">Thanh toán</a>
+                                <input class="text-title secondary" type="hidden" name="value" value="">
+                                <input class="text-title" type="hidden" name="selected" value="">
+                                <input class="text-title" type="hidden" name="server">
+                                <div id="txtPrice" class="text-title secondary d-inline-block">0 VNĐ</div>
+                                <button id="btnPurchase" class="btn primary" data-toggle="modal" data-target="#orderModal">Thanh toán</button>
                             </div>
                         </div>
                         <h2 class="text-title fw-700 title-color-lg c-my-16">
@@ -325,8 +308,8 @@
                         </h2>
                         @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                         <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                        <div class="card service-select c-py-12 c-pr-8">
-                            <div class="card-body py-0">
+                        <div class="card service-select c-py-12 c-pr-8 ">
+                            <div class="card-body py-0 s-filter">
                                 @php
                                     $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
                                     $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
@@ -373,34 +356,45 @@
                 </div>
                 <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
                     <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
-                        Thông tin mua thẻ
+                        Thông tin dịch vụ thuê
                     </div>
+
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Tài khoản
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">Garena</a></div>
+                        </div>
+                    </div>
+
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
-                                Loại thẻ
+                                Game
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">10.000đ</div>
+                            <div class="card--attr__value fz-13 fw-500">Liên Quân Mobile</div>
                         </div>
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
-                                Mệnh giá
+                                Gói
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">10.000đ</div>
-                        </div>
-                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                            <div class="card--attr__name fw-400 fz-13 text-center">
-                                Số lượng
-                            </div>
-                            <div class="card--attr__value fz-13 fw-500">01</div>
+                            <div class="card--attr__value fz-13 fw-500">Vàng - Kim cương</div>
                         </div>
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Chiết khấu
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">1%</div>
+                            <div class="card--attr__value fz-13 fw-500">3%</div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Thành tiền
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">20.000đ</div>
                         </div>
                     </div>
+
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fz-13 fw-400 text-center">
@@ -410,6 +404,7 @@
                                 Tài khoản Shopbrand
                             </div>
                         </div>
+
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Phí thanh toán
@@ -419,18 +414,18 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tổng thanh toán
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">20.000đ</a></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn primary">Xác nhận</button>
-
                 </div>
             </div>
         </div>
@@ -535,7 +530,33 @@
         </div>
     </div>
 
+    <script>
 
+        function Confirm(index, serverid) {
+            $('[name="server"]').val(serverid);
+            $('[name="selected"]').val(index);
+            $('#btnPurchase').click();
+        }
+
+        var data = jQuery.parseJSON('{!! $data->params !!}');
+
+            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+        var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
+            @else
+        var purchase_name = 'VNĐ';
+            @endif
+
+        var server = -1;
+
+        $(".server-filter").change(function (elm, select) {
+            server = parseInt($(".server-filter").val());
+            $('[name="server"]').val(server);
+            UpdatePrice();
+        });
+        server = parseInt($(".server-filter").val());
+        $('[name="server"]').val(server);
+
+    </script>
     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
 
     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
@@ -569,7 +590,7 @@
             $('[name="value"]').val(price);
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
+            $('#txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val($(".s-filter").val());
 
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -623,7 +644,7 @@
                 $('#btnPurchase').prop('disabled', false);
             }
             else {
-                $('#txtPrice').html('Tổng: 0 VNĐ');
+                $('#txtPrice').html('0 VNĐ');
                 $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass();
                 });
@@ -632,7 +653,7 @@
             }
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
+            $('#txtPrice').html(price + ' VNĐ');
         }
     </script>
     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
@@ -698,7 +719,7 @@
             $('[name="value"]').val(price);
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
+            $('#txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val(from + '|' + to);
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
@@ -808,7 +829,7 @@
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/,'');
             $('#txtPrice').html('');
-            $('#txtPrice').html('Tổng: ' + total + " " + purchase_name);
+            $('#txtPrice').html( total + " " + purchase_name);
             $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
