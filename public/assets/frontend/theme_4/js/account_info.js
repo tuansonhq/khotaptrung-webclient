@@ -41,7 +41,6 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-                console.log(data)
                 if(data.status === "LOGIN"){
                     if($(window).width() > 992){
 

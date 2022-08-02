@@ -1,3 +1,6 @@
+.user-manager .menu-content{
+    min-height: 420px;
+}
 .account_sidebar_menu{
     /*float: left;*/
     width: 270px;
@@ -124,7 +127,20 @@
     /*border: 1px solid #ccc;*/
     /*border-radius: 4px;*/
 }
-
+.form-charge span{
+    /*padding: 6px 12px;*/
+    font-size: 14px;
+    font-weight: 400;
+    /*line-height: 1;*/
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
+}
+.form-charge .input-group select{
+    height: auto !important;
+}
 .max-heardss{
     height: 40px!important;
 }

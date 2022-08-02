@@ -39,7 +39,6 @@
             <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
                 Vui lòng chọn thông tin
             </div>
-            @if( isset($server_data) && isset($server_id))
             <div class="row">
                 <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
                     @if( isset($server_data) && isset($server_id))
@@ -70,190 +69,76 @@
                             </div>
                         </div>
                     @endif
-                    @switch($data_params['filter_type'])
-                        {{--                                                3 Dạng tiền tệ   --}}
-                        {{--                                                4 Dạng chọn một --}}
-                        {{--                                                5 Dạng chọn nhiều   --}}
-                        {{--                                                6 Dạng chọn từ A->B (trong khoảng) --}}
-                        {{--                                                7 Dạng nhập tiền để thanh toán  --}}
-                        @case('3')
-                        @break
-                        @case('4')
-                        <div class="col-md-12 left-right body-title-ct">
-                            <div class="row marginauto form-group">
-                                <div class="col-md-12 text-left left-right">
-                                    <div class="row marginauto">
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-span-ct">
-                                            <span>Chọn gói nạp:</span>
-                                        </div>
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                            <select class="wide" name="selected">
-                                                @forelse($data_params['name'] as $k_name => $name)
-                                                    @if(!!$name)
-                                                        <option value="{{ $k_name }}">{{ $name }}</option>
-                                                    @endif
-                                                @empty
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                        <div class="col-m-12 server-error">
-
-                                        </div>
-                                    </div>
+                        @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+                            @php
+                                $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+                                $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+                            @endphp
+                            <span class="mb-15 control-label bb">Chọn máy chủ:</span>
+                            @if(!empty($server_data))
+                                {{--                                        @dd($server_data)--}}
+                                <div class="mb-15">
+                                    <select name="server[]" class="server-filter form-control t14" style="">
+                                        @for($i = 0; $i < count($server_data); $i++)
+                                            @if((strpos($server_data[$i], '[DELETE]') === false))
+                                                <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                            @endif
+                                        @endfor
+                                    </select>
                                 </div>
+                            @endif
+                        @endif
+                        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
+                        @php
+                            $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                            $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                        @endphp
+                        @if(!empty($name))
+                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                            <div class="mb-15">
+                                <select name="selected" class="s-filter form-control t14" style="">
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
+                                            <option value="{{$i}}">{{$name[$i]}}</option>
+                                        @endif
+                                    @endfor
+                                </select>
+                            </div>
+                        @endif
+
+                        @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
+                        <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
+                        <div class="mb-15">
+                            <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                        </div>
+                        <span class="mb-15 control-label bb">Hệ số:</span>
+                        <div class="mb-15">
+                            <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
+                        </div>
+                        @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                        <div class="card service-select c-py-12 c-pr-8">
+                            <div class="card-body py-0">
+                                @php
+                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                @endphp
+                                @if(!empty($name))
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
+                                            <label class="input-checkbox">
+                                                <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                <span class="checkmark"></span>
+                                                <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
+                                        @endif
+                                    @endfor
+                                @endif
                             </div>
                         </div>
-                        @break
-                        @case('5')
-                        <div class="col-md-12 left-right body-title-ct" id="select-multi">
-                            <div class="row marginauto">
-                                <div class="col-md-12 text-left left-right">
-                                    <div class="row marginauto form-group">
-                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                            <span>{{ $data_params['filter_name'] }}</span>
-                                        </div>
-                                        <div class="col-md-12 left-right">
-                                            <div class="row body-title-detail-checkbox-ct">
-                                                @if(!empty($data_params['name']))
-                                                    @forelse($data_params['name'] as $k_name => $name)
-                                                        @if(!!$name)
-                                                            <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                <label for="{{$name . $k_name}}" class="input-ratio-ct">
-                                                                                <span class="label--checkbox">
-                                                                                    <div class="label--checkbox__name">
-                                                                                        {{ $name }}
-                                                                                    </div>
-                                                                                    <span
-                                                                                        class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
-                                                                                        data-tippy-content="{{ $name }}">
-                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
-                                                                                    </span>
-                                                                                </span>
-                                                                    <input
-                                                                        id="{{$name . $k_name}}"
-                                                                        type="checkbox"
-                                                                        class="allgame"
-                                                                        value="{{ $k_name }}">
-                                                                    <span class="input-ratio-checkmark-ct --overwrite"></span>
-                                                                </label>
-                                                            </div>
-                                                        @endif
-                                                    @empty
-                                                    @endforelse
-                                                    <input type="hidden" name="selected">
-                                                @endif
-                                            </div>
-                                            <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @break
-                        @case('6')
-                        <div class="col-md-12 left-right">
-                            <div class="row body-title-detail-ct">
-                                <div
-                                    class="col-auto text-left detail-service-col body-title-detail-col-ct">
-                                    <div class="row marginauto">
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-span-ct">
-                                            <span>Rank hiện tại</span>
-                                        </div>
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
-                                            <select class="wide js-selected" name="rank_from">
-                                                @forelse($data_params['name'] as $k_name => $name)
-                                                    @if(!!$name)
-                                                        <option value="{{ $k_name }}">{{ $name }}</option>
-                                                    @endif
-                                                @empty
-                                                @endforelse
-                                            </select>
-                                        </div>
+                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 
-                                        <div class="col-m-12 rank-start-error">
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-                                <div
-                                    class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
-                                    <div class="row marginauto">
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-span-ct">
-                                            <span>Rank mong muốn</span>
-                                        </div>
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
-                                            <select class="wide js-selected" name="rank_to">
-                                                @forelse($data_params['name'] as $k_name => $name)
-                                                    @if(!!$name)
-                                                        <option value="{{ $k_name }}">{{ $name }}</option>
-                                                    @endif
-                                                @empty
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                        <div class="col-m-12 rank-end-error">
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        @break
-                        @case('7')
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto mb-fix-12">
-                                <div class="col-md-12 left-right body-title-detail-span-ct">
-                                    <span>Nhập số tiền cần mua:</span>
-                                </div>
-                                <div class="col-md-12 left-right body-title-detail-select-ct">
-                                    <input autocomplete="off" class="input-defautf-ct mb-2"
-                                           id="input_pack"
-                                           value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
-                                           name="selected"
-                                           type="text"
-                                           placeholder="Số tiền"
-                                           numberic
-                                           currency
-                                           required>
-                                    <span id="text-pack">
-                                                            Số tiền thanh toán phải từ
-                                                            <b style="font-weight:bold;">{{number_format($data_params['input_pack_min'])}}đ</b>
-                                                            đến
-                                                            <b style="font-weight:bold;">{{number_format($data_params['input_pack_max'])}}đ</b>
-                                                        </span>
-                                </div>
-                                <div class="col-m-12 server-error">
-
-                                </div>
-                            </div>
-                            <div class="row marginauto">
-                                <div class="col-md-12 left-right body-title-detail-span-ct">
-                                    <span>Hệ số:</span>
-                                </div>
-                                <div
-                                    class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                    <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
-                                </div>
-                                <div class="col-m-12 server-error">
-
-                                </div>
-                            </div>
-                        </div>
-                    @break
-                    @default
-                @endswitch
-
+                    @endif
                     <!-- service select mobile -->
                     <h2 class="text-title fw-700 title-color-lg c-pt-lg-20 c-pb-lg-8 d-block d-lg-none">
                         <div class="open-sheet" data-target="#service-select">
@@ -431,90 +316,43 @@
                             <div class="card-body c-p-16">
                                 <div class="text-title-bold d-inline-block">Báo giá:</div>
                                 <br>
-                                <div class="text-title secondary d-inline-block">100.000đ</div>
+                                <div id="txtPrice" class="text-title secondary d-inline-block">100.000đ</div>
                                 <a href="" class="btn primary">Thanh toán</a>
                             </div>
                         </div>
                         <h2 class="text-title fw-700 title-color-lg c-my-16">
                             Tuỳ chọn tướng (với Game Moba)
                         </h2>
+                        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                         <div class="card service-select c-py-12 c-pr-8">
                             <div class="card-body py-0">
+                                @php
+                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                @endphp
+                                @if(!empty($name))
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
                                 <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
+                                    <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
                                     <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
+                                    <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
+                                        @endif
+                                    @endfor
+                                @endif
                             </div>
                         </div>
+                        @endif
+
+
                     </div>
                 </div>
             </div>
-            @endif
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
-                <div class="text-title-bold secondary d-inline-block">100.000đ</div>
+                <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
                 <button type="button" class="btn primary js-step" data-target="#step2">Giao dịch ngay</button>
             </div>
         </section>
@@ -697,6 +535,301 @@
         </div>
     </div>
 
+
+    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
+    <script>
+        var itemselect = -1;
+        $(document).ready(function () {
+            $(".s-filter").change(function (elm, select) {
+                itemselect = parseInt($(".s-filter").val());
+                UpdatePrice();
+            });
+            itemselect = parseInt($(".s-filter").val());
+            UpdatePrice();
+        });
+
+        function UpdatePrice() {
+            var price = 0;
+            if (itemselect == -1) {
+                return;
+            }
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+
+                var s_price = data["price" + server];
+                price = parseInt(s_price[itemselect]);
+            }
+            else {
+                var s_price = data["price"];
+                price = parseInt(s_price[itemselect]);
+            }
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
+            $('[name="selected"]').val($(".s-filter").val());
+
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('tbody tr.selected').removeClass('selected');
+            $('tbody tr').eq(itemselect).addClass('selected');
+        }
+
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
+    <script>
+        $('.s-filter input[type="checkbox"]').change(function () {
+            UpdatePrice();
+        });
+
+        function UpdatePrice() {
+            var price = 0;
+            var itemselect = '';
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+                var s_price = data["price" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
+
+            if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
+                $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
+                    price += parseInt(s_price[$(elm).val()]);
+                    if (itemselect != '') {
+                        itemselect += '|';
+                    }
+
+                    itemselect += $(elm).val();
+
+                    $('[name="value"]').val('');
+                    $('[name="value"]').val(price);
+
+                    $('[name="selected"]').val(itemselect);
+
+                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass();
+                    });
+                });
+                $('#btnPurchase').prop('disabled', false);
+            }
+            else {
+                $('#txtPrice').html('Tổng: 0 VNĐ');
+                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+                $('#btnPurchase').prop('disabled', true);
+
+            }
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html('Tổng: ' + price + ' VNĐ');
+        }
+    </script>
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
+    <script>
+        var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
+        var data = json.price;
+        $('.nstSlider').attr('data-range_max', data.length - 1);
+        $('.nstSlider').attr('data-cur_max', data.length - 1);
+        $('.nstSlider').nstSlider({
+            "crossable_handles": false,
+            "left_grip_selector": ".leftGrip",
+            "right_grip_selector": ".rightGrip",
+            "value_bar_selector": ".bar",
+            "value_changed_callback": function (cause, leftValue, rightValue) {
+                from = leftValue;
+                to = rightValue;
+                $(".from-chosen").val(from);
+                $(".to-chosen").val(to);
+                $(".to-chosen").trigger("chosen:updated");
+                $(".from-chosen").trigger("chosen:updated");
+                UpdatePrice1();
+            }
+        });
+
+        var from = 0, to = 1;
+        $(document).ready(() => {
+            $(".from-chosen").chosen({disable_search_threshold: 10});
+            $(".from-chosen").change((elm, select) => {
+                from = parseInt($(".from-chosen").val());
+                if (to <= from) {
+                    to = from + 1;
+                    $(".to-chosen").val(to);
+                    //$(".to-chosen").chosen('update');
+                    $(".to-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+
+            $(".to-chosen").chosen({disable_search_threshold: 10});
+            $(".to-chosen").change((elm, select) => {
+                to = parseInt($(".to-chosen").val());
+                if (to <= from) {
+                    from = to - 1;
+                    $(".from-chosen").val(from);
+                    $(".from-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+            UpdatePrice1();
+        });
+
+        function UpdatePrice1() {
+            var price = 0;
+            var data =json.price;
+            $('tbody tr.selected').removeClass('selected');
+            for (var i = from + 1; i <= to; i++) {
+                price += parseInt(data[i]-data[i-1]);
+                $('tbody tr').eq(i - 1).addClass('selected');
+            }
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html('Tổng: ' + (price) + ' VNĐ');
+            $('[name="selected"]').val(from + '|' + to);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('.nstSlider').nstSlider('set_position', from, to);
+            $(".from-chosen").val(from);
+            $(".to-chosen").val(to);
+            $(".to-chosen").trigger("chosen:updated");
+            $(".from-chosen").trigger("chosen:updated");
+        }
+    </script>
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
+    <script>
+        var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
+        var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
+        $('#txtPrice').html('');
+        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+
+        function UpdatePrice() {
+
+            var container = $('.m-datatable__body').html('');
+
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
+
+
+            for (var i = 0; i < data.name.length; i++) {
+
+                var price = s_price[i];
+                var discount = s_price[i];
+
+
+                if (s_price != null && s_discount != null) {
+                    var ptemp = '';
+
+                    if (data.length == 1) {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
+                    } else {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
+                    }
+                    var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
+                        '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
+                        '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
+                        '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
+                        '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
+                        '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
+
+                    $(temp).appendTo(container);
+                }
+            }
+            UpdateTotal();
+        }
+
+        function UpdateTotal() {
+            var price = parseInt($('#input_pack').val().replace(/,/g, ''));
+
+            if (typeof price != 'number' || price < min || price > max) {
+                $('button[type="submit"]').addClass('not-allow');
+
+                $('#txtPrice').html('Tiền nhập không đúng');
+                return;
+            } else {
+                $('button[type="submit"]').removeClass('not-allow');
+            }
+            var total = 0;
+            var index = 0;
+            var current = 0;
+            var discount = 0;
+
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+
+                    }
+                }
+            }
+            else {
+                var s_price = data["price"];
+                var s_discount = data["discount"];
+
+                discount = s_discount[server];
+                total = price * discount;
+            }
+
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            total = parseInt(total / 1000 * data.input_pack_rate);
+
+            $('#txtDiscount').val(discount);
+            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            total = total.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html('');
+            $('#txtPrice').html('Tổng: ' + total + " " + purchase_name);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('[name="selected"]').val(price);
+            $('.m-datatable__body tbody tr.selected').removeClass('selected');
+            $('.m-datatable__body tbody tr').eq(index).addClass('selected');
+        }
+
+        $('#input_pack').bind('focus keyup', function () {
+            UpdateTotal();
+        });
+        $(document).ready(function () {
+            UpdatePrice();
+        });
+
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
+    @endif
 @endsection
 
 @section('scripts')

@@ -13,6 +13,27 @@
     background-color: white;
     border-radius: inherit;
 }
+.loading-table {
+    width: 22px;
+    height: 22px;
+
+    justify-content: center;
+    border: 3px solid rgb(26 108 97 / 56%);
+
+    border-top-color: #fff;
+
+    border-radius: 50%;
+    animation: rotate 1s infinite linear;
+
+    text-align: center;
+    margin: auto;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
 @keyframes spin {
     to {
         -webkit-transform: rotate(360deg);

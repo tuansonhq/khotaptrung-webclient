@@ -145,7 +145,13 @@
     </div>
 </div>
 
-
+@if(!Request::is('/'))
+    @if(Session::has('url_return.id_return'))
+        @php
+            Session::forget('url_return.id_return');
+        @endphp
+    @endif
+@endif
 <!-- Optional JavaScript; choose one of the two! -->
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/jquery/dist/jquery.min.js"></script>

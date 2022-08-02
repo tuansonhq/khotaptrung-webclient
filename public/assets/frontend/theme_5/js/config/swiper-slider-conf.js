@@ -174,36 +174,38 @@ let swiper_config_related_service = new Swiper('.swiper-related-service',{
     },
 });
 
-if ($('.gallery-top').length) {
-    let galleryTop = new Swiper('.gallery-top', {
-        centeredSlides: true,
-        spaceBetween: 16,
-        touchRatio: 0.2,
-        slidesPerView: "auto",
-        slideToClickedSlide: true,
-        loop: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-        direction: "vertical",
-        observer: true,
-        observeParents: true,
-    });
-    let galleryThumbs = new Swiper('.gallery-thumbs', {
-        loop: true,
-        clickable: true,
-        slideToClickedSlide: true,
-        slidesPerView: "auto",
-        navigation: {
-            nextEl: ".acc-detail .navigation.slider-next",
-            prevEl: ".acc-detail .navigation.slider-prev",
-        },
-        pagination: {
-            el: ".tab-show-acc.count-thumb",
-            type: "fraction",
-        },
-        observer: true,
-        observeParents: true,
-    });
-    galleryTop.controller.control = galleryThumbs;
-    galleryThumbs.controller.control = galleryTop;
+function initSwiperGallery() {
+    if ($('.gallery-top').length) {
+        let galleryTop = new Swiper('.gallery-top', {
+            centeredSlides: true,
+            spaceBetween: 16,
+            touchRatio: 0.2,
+            slidesPerView: "auto",
+            slideToClickedSlide: true,
+            loop: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            direction: "vertical",
+            observer: true,
+            observeParents: true,
+        });
+        let galleryThumbs = new Swiper('.gallery-thumbs', {
+            loop: true,
+            clickable: true,
+            slideToClickedSlide: true,
+            slidesPerView: "auto",
+            navigation: {
+                nextEl: ".acc-detail .navigation.slider-next",
+                prevEl: ".acc-detail .navigation.slider-prev",
+            },
+            pagination: {
+                el: ".tab-show-acc.count-thumb",
+                type: "fraction",
+            },
+            observer: true,
+            observeParents: true,
+        });
+        galleryTop.controller.control = galleryThumbs;
+        galleryThumbs.controller.control = galleryTop;
+    }
 }

@@ -29,11 +29,11 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accountls', function(e){
         e.preventDefault();
 
-        var htmlloading = '';
+        var htmloading = '';
 
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__timkiem').html('');
-        $('.loading-data__timkiem').html(htmlloading);
+        htmloading += '<div class="loading-table"></div>';
+        $('.btn-search .loading-data__timkiem').html('');
+        $('.btn-search .loading-data__timkiem').html(htmloading);
 
         var serial = $('.serial').val();
         var key = $('.key').val();
@@ -96,11 +96,11 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-all',function(e){
         e.preventDefault();
-        var htmlloading = '';
+        var htmloading = '';
 
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__all').html('');
-        $('.loading-data__all').html(htmlloading);
+        htmloading += '<div class="loading-table"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmloading);
 
         $('.serial_data').val('');
         $('.key_data').val('');
@@ -312,7 +312,7 @@ $(document).ready(function(){
                         html += '<table class="table table-hover table-custom-res">';
                             html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>';
                             html += '<tbody>';
-                                html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                                html += '<tr class="account_content_transaction_history"><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                             html += '</tbody>';
                         html += '</table>';
                     html += '</div>';
@@ -468,6 +468,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
+                $('.user-manager .menu-content ').css('min-height','auto')
 
             }
         });

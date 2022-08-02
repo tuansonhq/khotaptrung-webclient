@@ -24,10 +24,10 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accounttxns', function(e){
         e.preventDefault();
 
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
         $('.btn-timkiem .loading-data__timkiem').html('');
-        $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+        $('.btn-timkiem .loading-data__timkiem').html(htmloading);
 
         var config = $('.config').val();
         var started_at = $('.started_at').val();
@@ -73,10 +73,10 @@ $(document).ready(function(){
 
     $('body').on('click','.btn-all',function(e){
 
-        var htmlloading = '';
-        htmlloading += '<div class="loading"></div>';
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
         $('.btn-all .loading-data__timkiem').html('');
-        $('.btn-all .loading-data__timkiem').html(htmlloading);
+        $('.btn-all .loading-data__timkiem').html(htmloading);
 
         $('.config_data').val('');
         $('.status_data').val('');
@@ -148,7 +148,7 @@ $(document).ready(function(){
                     html += '<table class="table table-hover table-custom-res">';
                     html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '<tr class="account_content_transaction_history"><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';
@@ -163,7 +163,7 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-
+                $('.user-manager .menu-content ').css('min-height','auto')
             }
         });
     }

@@ -1,556 +1,301 @@
-<section class="list-account">
-    <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
-        <h2 class="section-title">Danh sách nick Liên Quân Mobile</h2>
-        <form action="" class="form-search position-relative">
-            <input type="search" placeholder="Tìm kiếm" class="has-submit">
-            <button type="submit"></button>
-        </form>
-    </div>
-    <div class="filter-account c-my-16 d-none d-lg-flex">
-        <div class="filter-title text-title fw-700">
-            Chọn game muốn mua account
-        </div>
-        <div class="value-filter">
-            <div class="tag">Mã số</div>
-            <div class="tag">Trạng thái</div>
-            <div class="tag">Rank</div>
-            <div class="show-modal-filter noselect" data-toggle="modal" data-target="#modal-filter">Bộ lọc</div>
-        </div>
-    </div>
-    <div class="sort-account c-mb-16 d-none d-lg-flex">
-        <div class="text-title fw-700">
-            Sắp xếp theo:
-        </div>
-        <div class="value-sort">
-            <a href="#" class="selection active md">Mới nhất</a>
-            <a href="#" class="selection md">Cũ nhất</a>
-            <a href="#" class="selection md">Giá cao nhất</a>
-        </div>
-    </div>
+@if(empty($data->data))
 
-    <!-- Mobile -->
-    <form action="" class="form-search c-mb-24 d-lg-none">
-        <input type="search" placeholder="Tìm kiếm" class="search">
-    </form>
-    <div class="text-title fw-700 c-mb-8 d-lg-none">Nick Freefire cực phẩm</div>
-    <div class="mobile-tools c-mb-8 d-lg-none">
-        <label class="tool-filter c-mr-12 open-sheet" data-target="#sheet-filter">
-            Bộ lọc
-        </label>
-        <label class="tool-sort open-sheet" data-target="#sheet-sort">
-            Giá thấp nhất
-        </label>
-    </div>
-    <!-- End Mobile -->
+    @if(isset($items) && count($items) > 0)
+        @foreach ($items as $item)
 
-    <div class="listing-account c-mb-16">
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+            {{--                Nick random   --}}
+            @if($item->status == 1)
+                @if($data->display_type == 2)
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                    <div class="item-account">
+                        <div class="card">
+                            <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
+                                <div class="account-thumb c-mb-8">
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{\App\Library\MediaHelpers::media($item->title)}}"
+                                         class="account-thumb-image lazy">
+                                </div>
+                                <div class="account-title">
+                                    <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
+                                </div>
+                                <div class="account-info c-mb-8">
+                                    <div class="info-attr">
+                                        @if(isset($data->items_count))
+                                            @if((isset($data->account_fake) && $data->account_fake > 1) || (isset($data->custom->account_fake) && $data->custom->account_fake > 1))
+                                                Đã bán: {{ str_replace(',','.',number_format(round(isset($data->custom->account_fake) ? $data->items_count*$data->custom->account_fake : $data->items_count*$data->account_fake))) }}
+                                            @else
+                                                Đã bán: {{ $data->items_count }}
+                                            @endif
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                                        @else
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                                        @endif
+                                    </div>
+                                    <div class="info-attr c-mb-8">
+                                        ID: #{{ $item->randId }}
+                                    </div>
+                                </div>
+                                @php
+                                    if (isset($item->price_old)) {
+                                        $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                        $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                    } else {
+                                        $sale_percent = 0;
+                                    }
+                                @endphp
+                                <div class="price">
+                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                    <div class="discount">{{$sale_percent}}%</div>
+                                </div>
+                                @if(App\Library\AuthCustom::check())
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                        <div class="price c-p-12 c-p-lg-8">
+                                            <a href="javascript:void(0)" class="btn secondary w-100 the-cao-atm">Mua ngay</a>
+                                        </div>
+                                    @else
+                                        <div class="price c-p-12 c-p-lg-8">
+                                            <a href="javascript:void(0)" class="btn secondary w-100 buyacc" data-id="{{ $item->randId }}">Mua ngay</a>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="price c-p-12 c-p-lg-8">
+                                        <a href="javascript:void(0)" class="btn secondary w-100" onclick="openLoginModal()">Mua ngay</a>
+                                    </div>
+                                @endif
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
+                            </a>
                         </div>
                     </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+{{--                    Form thanh toán nick random  formThanhToanNickRandom --}}
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+                    <div class="formDonhangAccount{{ $item->randId }} formThanhToanNickRandom">
+                        <form class="formDonhangAccount" action="/acc/{{ $item->randId }}/databuy" method="POST">
+                            {{ csrf_field() }}
+                            <div class="modal-header">
+                                <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                                <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
+                                    Thông tin mua Acc
+                                </div>
+                                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                            Game
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
+                                    </div>
+                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                            Giá tiền
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                    </div>
+                                </div>
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
 
-        <div class="item-account">
-            <div class="card">
-                <a href="/acc/id" class="card-body scale-thumb">
-                    <div class="account-thumb c-mb-8">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/frame199968.png" alt=""
-                             class="account-thumb-image">
-                    </div>
-                    <div class="account-title">
-                        <div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div>
-                    </div>
-                    <div class="account-info c-mb-8">
-                        <div class="info-attr">
-                            Đã bán: 45.000
-                        </div>
-                        <div class="info-attr c-mb-8">
-                            ID: #451234
-                        </div>
-                        <div class="info-attr">
-                            Rạnk: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Tướng: 45.000 lượt
-                        </div>
-                        <div class="info-attr">
-                            Trang phục: 45.000 lượt
-                        </div>
-                    </div>
-                    <div class="price">
-                        <div class="price-current w-100">250.000đ</div>
-                        <div class="price-old c-mr-8">250.000đ</div>
-                        <div class="discount">10%</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
+                                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                                    @if(isset($item->groups))
+                                        <?php $att_values = $item->groups ?>
+                                        @foreach($att_values as $att_value)
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                @if(isset($att_value->parent))
+                                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                                            {{ $att_value->parent->title??null }}
+                                                        </div>
+                                                        <div class="card--attr__value fz-13 fw-500">{{ $att_value->title??null }}</div>
+                                                    </div>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                        @if(isset($item->params) && isset($item->params->ext_info))
+                                            <?php $params = json_decode(json_encode($item->params->ext_info),true) ?>
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id)
 
-    @include('frontend.widget.__default__paginate')
+                                                                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                                                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                                                                {{ $child->title??null }}
+                                                                            </div>
+                                                                            <div class="card--attr__value fz-13 fw-500">{{ $param }}</div>
+                                                                        </div>
 
-</section>
-<!-- Modal Filter -->
-<div class="modal fade" id="modal-filter">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="" class="form-filter">
-                <div class="modal-header">
-                    <h2 class="modal-title center">Bộ lọc</h2>
-                    <button type="button" class="close" data-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="input-group">
-                        <label class="form-label">
-                            Mã số
-                        </label>
-                        <input type="text" id="" name="id" placeholder="Nhập mã số nick">
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+
+                                </div>
+
+                                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fz-13 fw-400 text-center">
+                                            Phương thức thanh toán
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500">
+                                            Tài khoản Shopbrand
+                                        </div>
+                                    </div>
+                                    <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                            Phí thanh toán
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500">
+                                            Miễn phí
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                                    <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
+                                        <div class="card--attr__name fw-400 fz-13 text-center">
+                                            Tổng thanh toán
+                                        </div>
+                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn primary">Xác nhận</button>
+
+                            </div>
+                        </form>
                     </div>
-                    <div class="input-group">
-                        <label class="form-label">
-                            Trạng thái
-                        </label>
-                        <select name="status" id="">
-                            <option value="">Chưa bán</option>
-                            <option value="">Đã bán</option>
-                        </select>
+                @else
+
+                    <div class="item-account">
+                        <div class="card">
+                            <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb">
+                                <div class="account-thumb c-mb-8">
+                                    <img  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title??'' }}"
+                                         class="account-thumb-image lazy">
+                                </div>
+                                <div class="account-title">
+                                    <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
+                                </div>
+                                <div class="account-info c-mb-8">
+                                    <div class="info-attr">
+                                        @if(isset($data->items_count))
+                                            @if((isset($data->account_fake) && $data->account_fake > 1) || (isset($data->custom->account_fake) && $data->custom->account_fake > 1))
+                                                Đã bán: {{ str_replace(',','.',number_format(round(isset($data->custom->account_fake) ? $data->items_count*$data->custom->account_fake : $data->items_count*$data->account_fake))) }}
+                                            @else
+                                                Đã bán: {{ $data->items_count }}
+                                            @endif
+
+                                        @else
+
+                                        @endif
+                                    </div>
+                                    <div class="info-attr c-mb-8">
+                                        ID: #{{ $item->randId }}
+                                    </div>
+
+                                    <?php
+                                    $total = 0;
+                                    ?>
+                                    @if(isset($item->groups))
+                                        <?php
+                                        $att_values = $item->groups;
+                                        ?>
+
+                                        {{--                                            @dd($att_values)--}}
+                                        @foreach($att_values as $att_value)
+                                            {{--            @dd($att_value)--}}
+                                            @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
+                                                @if(isset($att_value->parent))
+                                                    @if($total < 4)
+                                                        <?php
+                                                        $total = $total + 1;
+                                                        ?>
+                                                            <div class="info-attr">
+                                                                {{ $att_value->parent->title??null }}: {{ isset($att_value->title)? \Str::limit($att_value->title,16) : null }}
+                                                            </div>
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @endif
+
+                                    @if(isset($item->params) && isset($item->params->ext_info))
+                                        <?php
+                                        $params = json_decode(json_encode($item->params->ext_info),true);
+                                        ?>
+
+                                        @if($total < 4)
+                                            @if(!is_null($dataAttribute) && count($dataAttribute)>0)
+                                                @foreach($dataAttribute as $index=>$att)
+                                                    @if($att->position == 'text')
+                                                        @if(isset($att->childs))
+                                                            @foreach($att->childs as $child)
+                                                                @foreach($params as $key => $param)
+                                                                    @if($key == $child->id && $child->is_slug_override == null)
+
+                                                                        @if($total < 4)
+                                                                            <?php
+                                                                            $total = $total + 1;
+                                                                            ?>
+                                                                                <div class="info-attr">
+                                                                                    {{ $child->title??null }}: {{ isset($param) ? \Str::limit($param,16) : null }}
+                                                                                </div>
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            @endforeach
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endif
+                                </div>
+                                @php
+                                    if (isset($item->price_old)) {
+                                        $sale_percent = (($item->price_old - $item->price) / $item->price_old) * 100;
+                                        $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                    } else {
+                                        $sale_percent = 0;
+                                    }
+                                @endphp
+                                <div class="price">
+                                    <div class="price-current w-100">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
+                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                    <div class="discount">{{$sale_percent}}%</div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label class="form-label">
-                            Rank
-                        </label>
-                        <select name="rank" id="">
-                            <option value="">Tinh anh</option>
-                            <option value="">Cao thủ</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label class="form-label">
-                            Giá tiền
-                        </label>
-                    </div>
-                    <div class="c-pt-36">
-                        <input type="text" name="price" class="rSlider-input sort-by-price d-none" id="sort-by-price">
+
+                @endif
+            @endif
+        @endforeach
+
+    @endif
+@endif
+<div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+    @if(isset($items))
+        @if($items->total()>1)
+            <div class="row marinautooo paginate__history paginate__history__fix justify-content-center">
+                <div class="col-auto paginate__category__col">
+                    <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                        {{ $items->appends(request()->query())->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <a class="btn ghost js-reset-form">Xoá bộ lọc</a>
-                    <a class="btn primary js-submit-form">Xem kết quả</a>
-                </div>
-            </form>
-        </div>
-    </div>
+            </div>
+        @endif
+    @endif
 </div>
 
-<!-- Sheet filter -->
-<div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="60">
-    <div class="layer"></div>
-    <div class="content-bottom-sheet bar-slide">
-        <form action="" class="form-filter">
-            <div class="sheet-header">
-                <h2 class="text-title center">
-                    Bộ lọc
-                </h2>
-                <label class="close"></label>
-            </div>
-            <div class="sheet-body">
-                <!-- body -->
-                <div class="input-group">
-                        <span class="form-label">
-                            Mã số
-                        </span>
-                    <input type="text" name="id" placeholder="Nhập mã số nick">
-                </div>
-
-                <div class="input-group">
-                        <span class="form-label">
-                            Trạng thái
-                        </span>
-                    <select name="status" id="">
-                        <option value="">Chưa bán</option>
-                        <option value="">Đã bán</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                        <span class="form-label">
-                            Rank
-                        </span>
-                    <select name="rank" id="">
-                        <option value="">Tinh anh</option>
-                        <option value="">Cao thủ</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                        <span class="form-label">
-                            Giá tiền
-                        </span>
-                </div>
-                <div class="c-px-16 c-mt-45">
-                    <input type="text" class="rSlider-input d-none" name="price" id="sort-by-price-mobile">
-                </div>
-            </div>
-            <div class="sheet-footer">
-                <button class="btn ghost js-reset-form">Xoá bộ lọc</button>
-                <button class="btn primary js-submit-form">Xem kết quả</button>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- Bottom sheet sort -->
-<div class="bottom-sheet" id="sheet-sort" aria-hidden="true" data-height="25">
-    <div class="layer"></div>
-    <div class="content-bottom-sheet bar-slide">
-        <form action="" id="form-sort">
-            <div class="sheet-header">
-                <h2 class="text-title center">
-                    Sắp xếp theo
-                </h2>
-                <label class="close"></label>
-            </div>
-            <div class="sheet-body">
-                <!-- body -->
-                <div class="c-mb-8">
-                    <label for="lowest_price" class="input-radio">
-                        <input type="radio" name="sort" id="lowest_price" checked>
-                        <span class="checkmark"></span>
-                        <span class="text-label">Giá thấp nhất</span>
-                    </label>
-                </div>
-                <div class="c-mb-8">
-                    <label for="highest_price" class="input-radio">
-                        <input type="radio" name="sort" id="highest_price">
-                        <span class="checkmark"></span>
-                        <span class="text-label">Giá cao nhất</span>
-                    </label>
-                </div>
-                <div class="c-mb-8">
-                    <label for="selling_well" class="input-radio">
-                        <input type="radio" name="sort" id="selling_well">
-                        <span class="checkmark"></span>
-                        <span class="text-label">Đang bán chạy</span>
-                    </label>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>

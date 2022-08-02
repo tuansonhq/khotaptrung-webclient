@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.css">
+
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/login_modal.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
@@ -45,7 +47,8 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
 
-
+{{--js--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
 
 {{--    import css --}}
     @yield('styles')
@@ -63,10 +66,47 @@
 @include('frontend.layouts.includes.footer')
 
 @include('frontend.layouts.includes.menu-bottom')
+<div class="modal-loader-container">
+    <div class="modal-loader-content">
+        <span class="modal-loader-spin"></span>
+    </div>
+</div>
 @include('frontend.widget.modal.__login')
 <!-- Messenger Plugin chat Code -->
+@if(Session::has('check_login'))
+    <script>
+        $(document).ready(function () {
+            let width = $(window).width();
+            setTimeout(function(){
+                if ( width > 1200 ) {
+                    $('#loginModal').modal('show');
+                    setTimeout(() => {
+                        $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                    }, 200);
+                } else {
+                    $('.mobile-auth').toggleClass('hidden');
+                    $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+                    $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+                    $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+                }
+            }, 0);
+        });
+    </script>
+    @php
+        Session::pull('check_login');
+    @endphp
+@endif
 
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
+@if (!\App\Library\AuthCustom::check())
+    @include('frontend.widget.modal.__login')
+@endif
+@if(!Request::is('/'))
+    @if(Session::has('url_return.id_return'))
+        @php
+            Session::forget('url_return.id_return');
+        @endphp
+    @endif
+@endif
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
@@ -78,15 +118,13 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/login/login_modal.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/js/rSlider.min.js"></script>
-<script src="/assets/frontend//{{theme('')->theme_key}}/js/config/rSlider-conf.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.min.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/validate-form/validate.js"></script>
@@ -98,6 +136,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/login.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js" defer></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 {{--impport script--}}
 @yield('scripts')
 </body>

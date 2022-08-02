@@ -89,30 +89,7 @@
                                                 @endforeach
                                             @endif
                                         @endif
-{{--                                    @if(isset($datav2->params) && isset($datav2->params->ext_info))--}}
-{{--                                            <?php--}}
-{{--                                            $params = json_decode(json_encode($datav2->params->ext_info),true);--}}
-{{--                                            ?>--}}
-{{--                                            @if($index < 5)--}}
 
-{{--                                                @foreach($params as $key => $param)--}}
-{{--                                                    <?php--}}
-{{--                                                    $index++;--}}
-{{--                                                    ?>--}}
-{{--                                                @if($index < 5)--}}
-{{--                                                    <div class="row" style="margin: 0 auto;width: 100%">--}}
-{{--                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
-{{--                                                            {{ $key }} :--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
-{{--                                                            {{ $param??null }}--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-
-{{--                                                @endif--}}
-{{--                                                @endforeach--}}
-{{--                                            @endif--}}
-{{--                                        @endif--}}
                                 </div>
                             </div>
                             <div class="item_buy_list_more">

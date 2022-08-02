@@ -59,6 +59,8 @@ Validator({
     }
 });
 
+
+
 Validator({
     form:'#formRegisterMobile',
     formGroupSelector:'.input-group',
@@ -73,5 +75,30 @@ Validator({
     ],
     onSubmit:function (data) {
         alert('Form đã được submit');
+    }
+});
+Validator({
+    form:'#formLogin',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+    ],
+    onSubmit:function (data) {
+        // alert('Form đã được submit');
+    }
+});
+Validator({
+    form:'#formRegister',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=username]','Bạn chưa nhập tên tài khoản'),
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+        Validator.isRequired('[name=password_confirmation]','Bạn chưa nhập mật khẩu xác nhận'),
+    ],
+    onSubmit:function (data) {
+        // alert('Form đã được submit');
     }
 });

@@ -120,10 +120,10 @@ $(document).ready(function(){
         getAmount(telecom)
     });
     getTelecom();
-    $("#telecom_storecard").on('change', function () {
-        GetAmount();
-
-    });
+    // $("#telecom_storecard").on('change', function () {
+    //     getAmount();
+    //
+    // });
 
     $("#amount_storecard").on('change', function () {
         UpdatePrice();
@@ -197,7 +197,7 @@ $(document).ready(function(){
                 cache:false,
                 data: formSubmit.serialize(), // serializes the form's elements.
                 beforeSend: function (xhr) {
-
+                    console.log(1111)
                 },
                 success: function (data) {
                     if(data.status == 1){
@@ -209,22 +209,23 @@ $(document).ready(function(){
                         })
                         $('#success_storecard').modal("show");
                         let html = '';
-                        if(data.data.length > 0){
-                            $.each(data.data,function(key,value){
-                                html+='<div class="col-md-4 p-2">'
+                        if(data.data.data_card.length > 0){
+                            $.each(data.data.data_card,function(key,value){
+
+                                html+='<div class="col-12 col-md-4 p-2">'
                                 html+='<div class="alert alert-info">'
-                                html+='<p>Mã thẻ'+key+' </p>'
+                                html+='<p>Mã thẻ '+key+' </p>'
                                 html+='<div class="success_storecard_pin">'
                                 html+='<p>Mã thẻ <br>'
                                 html+='<span>'+value.pin+'</span>'
                                 html+='</p>'
-                                html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
+                                html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
                                 html+='</div>'
                                 html+='<div class="success_storecard_serial">'
                                 html+='<p>Serial  <br>'
                                 html+='<span>'+value.serial+'</span>'
                                 html+='</p>'
-                                html+='<b><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
+                                html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
                                 html+='</div>'
                                 html+='</div>'
                                 html+='</div>'

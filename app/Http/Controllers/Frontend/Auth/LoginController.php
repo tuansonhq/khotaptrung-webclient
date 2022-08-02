@@ -70,17 +70,14 @@ class LoginController extends Controller
                 Session::put('time_exp_token',$time_exp_token);
                 Session::put('auth_custom',$response_data->user);
                 $return_url = Session::get('url.intended');
-                $previous = Session::get('url_return.id_return');
 
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Thành công',
+                    'return_url' => $return_url,
+                    'data' => $result_Api->response_data,
+                ]);
 
-                if (isset($previous) && $previous != null){
-                    return redirect('/');
-                }elseif(isset($return_url) && $return_url != null){
-                    return redirect()->intended();
-
-                }else{
-                    return redirect()->back();
-                }
 
             }
             else{
@@ -118,14 +115,17 @@ class LoginController extends Controller
             Session::put('exp_token',$response_data->exp_token);
             Session::put('time_exp_token',$time_exp_token);
             $return_url = Session::get('url.intended');
+            $previous = Session::get('url_return.id_return');
 
-//            if ($return_url != null){
 
+            if (isset($previous) && $previous != null){
+                return redirect('/');
+            }elseif(isset($return_url) && $return_url != null){
                 return redirect()->intended();
-//            }else{
-//                return redirect('/');
-//                return redirect()->back();
-//            }
+
+            }else{
+                return redirect()->back();
+            }
 
             return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
 
