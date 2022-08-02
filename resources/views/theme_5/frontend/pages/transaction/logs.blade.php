@@ -28,6 +28,8 @@
                         <div class="c-history-title c-pb-16 c-pb-lg-12 media-web">
                             <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Biến động số dư</h3>
                         </div>
+                        <div class="slider-input" data-min="20" data-max="50" data-option="10,100" data-start="50,60"></div>
+
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
                                 <input type="search" placeholder="Tìm kiếm" class=" has-submit">
@@ -52,7 +54,7 @@
                             </div>
                         </div>
                         <div class="mr-n1 pb-3">
-                            <div class="history-content c-pt-16 mr-n2">
+                            <div class="history-content c-pt-16 mr-n2 is-load">
                                 <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
                                 <ul class="trans-list">
                                     <li class="trans-item">

@@ -305,11 +305,13 @@ section.outstanding-service {
     font-size: 18px;
     line-height: 24px;
     color: var(--text-color);
+    min-height: 48px;
 }
 
 .related-posts .article-info {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*Danh sách nick*/
@@ -918,6 +920,20 @@ section.outstanding-service {
 }
 .list-category .item-category {
     width: 20%;
+}
+
+/*loading history*/
+.history-content.is-load {
+    position: relative;
+}
+.history-content.is-load:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right:0;
+    height: 100%;
+    background-color: rgba(255,255,255,.75);
 }
 @media screen and (max-width: 992px) {
     .flash-sale {
