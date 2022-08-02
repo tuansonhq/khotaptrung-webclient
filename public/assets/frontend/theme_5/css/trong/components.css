@@ -660,8 +660,11 @@ section.outstanding-service {
     display: flex;
     justify-content: space-between;
 }
+.trans-list .trans-item a .text-left {
+    max-width: 70%;
+}
 .trans-list .trans-item:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .history-content .trans-list + .text-title-bold {
@@ -923,17 +926,29 @@ section.outstanding-service {
 }
 
 /*loading history*/
-.history-content.is-load {
+.is-load {
     position: relative;
+    min-height: 100px;
 }
-.history-content.is-load:before {
+.is-load:before{
     content: '';
     position: absolute;
+    width: 100%;
     top: 0;
-    left: 0;
-    right:0;
-    height: 100%;
+    bottom: 0;
     background-color: rgba(255,255,255,.75);
+}
+.is-load .loading-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.is-load .modal-loader-spin {
+    width: 50px;height: 50px;
+}
+.bread-word {
+    word-break:break-word;
 }
 @media screen and (max-width: 992px) {
     .flash-sale {
@@ -1173,5 +1188,10 @@ section.outstanding-service {
     .text-title {
         font-size: 13px;
         line-height: 20px;
+    }
+    .service-select .card-body,
+    .history-content {
+        overflow-y: scroll;
+        padding-right: 4px;
     }
 }

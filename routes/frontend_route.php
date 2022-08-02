@@ -241,6 +241,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                         ->name('changePasswordApi');
                 });
                 // ROUTE cần auth load dữ liệu không cache
+                // ROUTE cần auth load dữ liệu không cache
 
                 Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
                 Route::get('/get-tele-card/data', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAutoData']);
