@@ -148,12 +148,29 @@
                                     </label>
                                     <input type="text" class="input-defautf-ct id" id="" name="id_data" placeholder="Nhập mã số nick">
                                 </div>
+
+                                <div class="input-group">
+                                    <label class="form-label">
+                                        Giá tiền
+                                    </label>
+                                    <select name="price" class="price" id="">
+                                        <option value="" selected disabled>Chọn giá tiền</option>
+                                        <option value="0-50000">Dưới 50K</option>
+                                        <option value="50000-200000">Từ 50K - 200K</option>
+                                        <option value="200000-500000">Từ 200K - 500K</option>
+                                        <option value="500000-1000000">Từ 500K - 1 Triệu</option>
+                                        <option value="1000000-5000000">Trên 1 Triệu</option>
+                                        <option value="5000000-10000000">Trên 5 Triệu</option>
+                                        <option value="10000000">Trên 10 Triệu</option>
+                                    </select>
+                                </div>
+
                                 <div class="input-group">
                                     <label class="form-label">
                                         Trạng thái
                                     </label>
                                     <select name="status" class="status" id="">
-                                        <option value="">Chọn trạng thái</option>
+                                        <option value="" selected disabled>Chọn trạng thái</option>
                                         <option value="1">Chưa bán</option>
                                         <option value="2">Đã bán</option>
                                     </select>
@@ -166,7 +183,7 @@
                                                     {{ $val->title }}
                                                 </label>
                                                 <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
-                                                    <option value="">--Không chọn--</option>
+                                                    <option value="" selected disabled>--Không chọn--</option>
                                                     @foreach($val->childs as $child)
                                                         <option value="">Tinh anh</option>
                                                     @endforeach
@@ -176,18 +193,18 @@
                                     @endforeach
                                 @endif
 
-                                <div class="input-group">
-                                    <label class="form-label">
-                                        Giá tiền
-                                    </label>
-                                </div>
-                                <div class="c-pt-36">
-                                    <div class="slider-input" data-min="20" data-max="50" data-option="10,100" data-start="50,60"></div>
-                                </div>
+{{--                                <div class="input-group">--}}
+{{--                                    <label class="form-label">--}}
+{{--                                        Giá tiền--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="c-pt-36">--}}
+{{--                                    <div class="slider-input" data-min="20" data-max="50" data-option="10,100" data-start="50,60"></div>--}}
+{{--                                </div>--}}
                             </div>
-                            <div class="modal-footer">
-                                <a class="btn ghost js-reset-form">Xoá bộ lọc</a>
-                                <a class="btn primary js-submit-form">Xem kết quả</a>
+                            <div class="modal-footer c-mt-24 c-mt-lg-16">
+                                <a href="javascript:void(0)" class="btn ghost js-reset-form button-not-bg-ct reset-find">Xoá bộ lọc</a>
+                                <a href="javascript:void(0)" class="btn primary js-submit-form">Xem kết quả</a>
                             </div>
                         </form>
                     </div>
