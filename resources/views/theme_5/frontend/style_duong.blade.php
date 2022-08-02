@@ -17,29 +17,29 @@
 
 
 <h1>Status</h1>
-<div class="status white">Tag content</div>
-<div class="status success">Tag content</div>
-<div class="status danger">Tag content</div>
-<div class="status yellow">Tag content</div>
-<div class="status red">Tag content</div>
-<div class="status blue">Tag content</div>
-<div class="status gray">Tag content</div>
+<div class="status-tag white">Tag content</div>
+<div class="status-tag success">Tag content</div>
+<div class="status-tag danger">Tag content</div>
+<div class="status-tag yellow">Tag content</div>
+<div class="status-tag red">Tag content</div>
+<div class="status-tag blue">Tag content</div>
+<div class="status-tag gray">Tag content</div>
 <br>
-<div class="status sd-white">Tag content</div>
-<div class="status sd-success">Tag content</div>
-<div class="status sd-danger">Tag content</div>
-<div class="status sd-yellow">Tag content</div>
-<div class="status sd-red">Tag content</div>
-<div class="status sd-blue">Tag content</div>
-<div class="status gray">Tag content</div>
+<div class="status-tag sd-white">Tag content</div>
+<div class="status-tag sd-success">Tag content</div>
+<div class="status-tag sd-danger">Tag content</div>
+<div class="status-tag sd-yellow">Tag content</div>
+<div class="status-tag sd-red">Tag content</div>
+<div class="status-tag sd-blue">Tag content</div>
+<div class="status-tag gray">Tag content</div>
 <br>
-<div class="status outline-white">Tag content</div>
-<div class="status outline-success">Tag content</div>
-<div class="status outline-danger">Tag content</div>
-<div class="status outline-yellow">Tag content</div>
-<div class="status outline-red">Tag content</div>
-<div class="status outline-blue">Tag content</div>
-<div class="status outline-gray">Tag content</div>
+<div class="status-tag outline-white">Tag content</div>
+<div class="status-tag outline-success">Tag content</div>
+<div class="status-tag outline-danger">Tag content</div>
+<div class="status-tag outline-yellow">Tag content</div>
+<div class="status-tag outline-red">Tag content</div>
+<div class="status-tag outline-blue">Tag content</div>
+<div class="status-tag outline-gray">Tag content</div>
 
 <h1>Avatar</h1>
     <img class="avatar" src="{{asset('assets/frontend/theme_5/image/duong/avt.svg')}}" alt="">

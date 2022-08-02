@@ -1,5 +1,5 @@
 /*Status */
-.status {
+.status-tag {
     display: inline-block;
     padding: 0 .25rem;
     font-weight: 500;
@@ -8,89 +8,89 @@
     line-height: 1.6;
 }
 
-.status.white{
+.status-tag.white{
     color: #434657;
 }
 
-.status.success {
+.status-tag.success {
     background: var(--status-success-color);
     color: #fff;
 }
-.status.danger{
+.status-tag.danger{
     background: var(--invalid-color);
     color: #fff;
 }
-.status.yellow{
+.status-tag.yellow{
     background: var(--status-yellow-color);
     color: #fff;
 }
-.status.red{
+.status-tag.red{
     background: var(--status-red-color);
     color: #fff;
 }
-.status.blue{
+.status-tag.blue{
     background: var(--focus-color);
     color: #fff;
 }
-.status.gray{
+.status-tag.gray{
     background: var(--button-disable-color);
     color: #fff;
 }
-.status.sd-white{
+.status-tag.sd-white{
     background: var(--input-disable-color);
     color: #434657;
 }
-.status.sd-success{
+.status-tag.sd-success{
     background: var(--status-sd-success-color);
     color: #2BB956;
 }
-.status.sd-danger{
+.status-tag.sd-danger{
     background: var(--status-sd-danger-color);
     color: #C43C3C;
 }
-.status.sd-yellow{
+.status-tag.sd-yellow{
     background: var(--status-sd-yellow-color);
     color: #E6983A;
 }
-.status.sd-red{
+.status-tag.sd-red{
     background: var(--status-sd-red-color);
     color: #DF2C3B;
 }
-.status.sd-blue{
+.status-tag.sd-blue{
     background: var(--status-sd-blue-color);
     color: #1990FF;
 }
-.status.outline-white{
+.status-tag.outline-white{
     background-color: #fff;
     color: var(--text-color);
     border:0.5px solid var(--text-color) ;
 }
-.status.outline-success {
+.status-tag.outline-success {
     background-color: #fff;
     color: var(--status-success-color);
     border:0.5px solid var(--status-success-color)
 }
-.status.outline-danger{
+.status-tag.outline-danger{
     background-color: #fff;
     color: var(--invalid-color);
     border:0.5px solid var(--invalid-color);
 }
-.status.outline-yellow{
+.status-tag.outline-yellow{
     background-color: #fff;
     color: var(--status-yellow-color);
     border:0.5px solid var(--status-yellow-color);
 }
-.status.outline-red{
+.status-tag.outline-red{
     background-color: #fff;
     color: var(--status-outline-red-color);
     border:0.5px solid var(--status-outline-red-color);
 }
-.status.outline-blue{
+.status-tag.outline-blue{
     background-color: #fff;
     color: var(--focus-color);
     border:0.5px solid var(--focus-color) ;
 }
-.status.outline-gray{
+.status-tag.outline-gray{
     background-color: #fff;
     color: var(--button-disable-color);
     border:0.5px solid var(--button-disable-color) ;
