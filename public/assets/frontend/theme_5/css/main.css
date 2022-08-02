@@ -633,11 +633,11 @@ a.tab {
     height: 40px;
 }
 
-.tab.icon-custom {
+.tab .icon-custom {
     padding-left: 48px;
-    width: 100%;
+    position: relative;
 }
-.tab.icon-custom:after {
+.tab .icon-custom:after {
     content: '';
     display: block;
     width: 24px;height: 24px;
@@ -647,9 +647,9 @@ a.tab {
     top: 50%;
     transform: translateY(-50%);
 }
-.tab.icon-custom:hover:after,
-.tab.icon-custom:active:after,
-.tab.icon-custom.active:after
+.tab .icon-custom:hover:after,
+.tab .icon-custom:active:after,
+.tab .icon-custom.active:after
 {
     filter: var(--filter-primary-color);
 }
@@ -2171,5 +2171,8 @@ i.title-info:after {
         font-size: 12px;
         line-height: 16px;
         width: 54px;
+    }
+    .tab .icon-custom:after {
+        display: none;
     }
 }
