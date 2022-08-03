@@ -20,7 +20,7 @@
                     </li>
                 @endif
 
-                @if($paginator->currentPage() > 3)
+                @if($paginator->currentPage() > 3 && $paginator->lastPage() >= 7)
                     <li class="page-item hidden-xs"><a class="page-link" href="{{ $paginator->url(1) }}">1</a></li>
                 @endif
 
