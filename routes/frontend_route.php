@@ -225,6 +225,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-mua-the-tich-hop', [\App\Http\Controllers\Frontend\UserController::class , 'getStoreHistory']);
 
                     Route::get('/lich-su-giao-dich', [\App\Http\Controllers\Frontend\UserController::class , 'getTran']);
+
+                    Route::get('/lich-su-giao-dich-{id}',[\App\Http\Controllers\Frontend\UserController::class , 'getTranDetail']);
                     //Nạp thẻ Atm
 
                     Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);

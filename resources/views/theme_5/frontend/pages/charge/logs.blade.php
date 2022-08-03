@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
@@ -8,7 +10,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/lich-su-mua-nick" class="breadcrumb-link">Tài khoản đã mua</a>
+                    <a href="/lich-su-nap-the" class="breadcrumb-link">Tài khoản đã mua</a>
                 </li>
             </ul>
 
@@ -24,70 +26,40 @@
                     @include('frontend.widget.__menu_profile')
                 </div>
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
+
                     <div class="c-history-right-body brs-12 brs-lg-0 c-p-16">
-                        <div class="c-history-title c-pb-16 c-pb-lg-12">
+                        <div class="c-history-title c-pb-16 c-pb-lg-12 media-web">
                             <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử nạp thẻ</h3>
                         </div>
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <input type="search" placeholder="Tìm kiếm" name="serial" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
                                 <div class="show-modal-filter noselect" data-toggle="modal" data-target="#modal-filter">Bộ lọc</div>
                             </div>
                         </div>
-                        <div class="tags d-none d-lg-flex justify-content-end c-mb-12" id="params-filter"></div>
+                        <div class="tags d-none d-lg-flex justify-content-end" id="params-filter">
+                            {{--                        <div class="tag">Mã số</div>--}}
+                            {{--                        <div class="tag">Trạng thái</div>--}}
+                            {{--                        <div class="tag">Rank</div>--}}
+                        </div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class="search">
+                                <input type="search" placeholder="Tìm kiếm" name="serial" class="search">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter c-ml-16">
                                 <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
                             </div>
                         </div>
-                        <div class="mr-n1 pb-3">
+                        <div class="mr-n1 pb-3 is-load">
+                            <div class="loading-wrap">
+                                <span class="modal-loader-spin"></span>
+                            </div>
                             <div class="history-content c-pt-16 mr-n2">
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/lich-su-nap-the/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/lich-su-nap-the/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/lich-su-nap-the/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="invalid-color c-mb-0">Thất bại</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </div>
                         </div>
 
@@ -108,8 +80,11 @@
                                         <span class="form-label">
                                             Loại giao dịch
                                         </span>
-                                            <select name="type-trans" id="">
-                                                <option value="">Chọn</option>
+                                            <select name="key" id="">
+                                                <option value="">Chọn loại giao dịch</option>
+                                                @foreach($data_telecome as $val)
+                                                    <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
 
@@ -117,11 +92,8 @@
                                         <span class="form-label">
                                             Trạng thái
                                         </span>
-                                            <select name="status" id="">
-                                                <option value="">Chọn</option>
-                                                <option value="1">Đã bán</option>
-                                                <option value="2">Chưa bán</option>
-                                            </select>
+                                            {{Form::select('status',array(''=>'Chọn')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'status'))}}
+
                                         </div>
 
                                         <table>
@@ -147,8 +119,8 @@
                                         </table>
                                     </div>
                                     <div class="sheet-footer">
-                                        <button class="btn secondary js-reset-form">Thiết lập lại</button>
-                                        <button class="btn primary js-submit-form">Xem kết quả</button>
+                                        <button type="button" class="btn secondary js-reset-form">Thiết lập lại</button>
+                                        <button type="button" class="btn primary js-submit-form">Xem kết quả</button>
                                     </div>
                                 </form>
                             </div>
@@ -166,20 +138,17 @@
                                         <div class="modal-body c-p-0">
                                             <div class="input-group">
                                                 <span class="form-label title-color">Loại giao dịch</span>
-                                                <select name="type-trans" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="atm">ATM</option>
-                                                    <option value="wallet">Ví điện tử</option>
+                                                <select name="key" id="">
+                                                    <option value="">Chọn loại giao dịch</option>
+                                                    @foreach($data_telecome as $val)
+                                                        <option value="{{ $val->key }}">{{ $val->title }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="form-label title-color">Trạng thái</span>
-                                                <select name="status" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="1">Thành công</option>
-                                                    <option value="2">Thất bại</option>
-                                                </select>
+                                                {{Form::select('status',array(''=>'Chọn')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'status'))}}
                                             </div>
 
                                             <table>
@@ -213,6 +182,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="c-py-16 d-none d-lg-block">
@@ -220,6 +190,10 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/logs.js"></script>
 @endsection
 
 

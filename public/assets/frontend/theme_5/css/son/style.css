@@ -18,6 +18,14 @@
     font-weight: 700;
     font-size: 24px;
 }
+#history__service .menu-category-item{
+    background: #ffffff;
+}
+
+#history__service .menu-category-item:hover {
+    transition: .2s;
+    background-color: var(--disable-switch-color);
+}
 
 .card .card--header .card--header__title {
     display: flex;
@@ -179,6 +187,10 @@
 
 #account-list .history-content{
     overflow-y: visible!important;
+}
+
+.history-detail-attr:last-child{
+    margin-bottom: 0!important;
 }
 
 @media only screen and (max-width: 992px) {

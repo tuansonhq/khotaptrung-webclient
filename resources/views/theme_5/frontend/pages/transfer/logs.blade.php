@@ -3,18 +3,18 @@
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
-        <ul class="breadcrumb-list">
+            <ul class="breadcrumb-list">
                 <li class="breadcrumb-item">
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/the-cao-da-mua" class="breadcrumb-link">Thẻ cào đã mua</a>
+                    <a href="/lich-su-atm-tu-dong" class="breadcrumb-link">Lịch sử nạp ATM</a>
                 </li>
             </ul>
             <div class="head-mobile">
                 <a href="/profile-navbar" class="link-back close-step"></a>
 
-                <h1 class="head-title text-title">Thẻ cào đã mua</h1>
+                <h1 class="head-title text-title">Lịch sử nạp ATM</h1>
 
                 <a href="/" class="home"></a>
             </div>
@@ -25,11 +25,11 @@
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
                     <div class="c-history-right-body brs-12 brs-lg-0 c-p-16">
                         <div class="c-history-title c-pb-16 c-pb-lg-12">
-                            <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Thẻ cào đã mua</h3>
+                            <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử nạp ATM</h3>
                         </div>
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" name="serial" placeholder="Tìm kiếm" class=" has-submit">
+                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
@@ -39,7 +39,7 @@
                         <div class="tags d-none d-lg-flex justify-content-end c-mb-12" id="params-filter"></div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
                             <form action="" class="form-search history">
-                                <input type="search" name="serial" placeholder="Tìm kiếm" class="search">
+                                <input type="search" placeholder="Tìm kiếm" class="search">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter c-ml-16">
@@ -70,14 +70,12 @@
                                         <!-- body -->
                                         <div class="input-group">
                                         <span class="form-label">
-                                            Loại thẻ
+                                            Loại giao dịch
                                         </span>
-                                            <select name="telecom" id="">
-                                                <option value="">Chọn loại thẻ</option>
-                                                @forelse($data_category['telecoms'] as $key => $telecom)
-                                                    <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
-                                                @empty
-                                                @endforelse
+                                            <select name="type-trans" id="">
+                                                <option value="">Chọn</option>
+                                                <option value="atm">ATM</option>
+                                                <option value="wallet">Ví điện tử</option>
                                             </select>
                                         </div>
 
@@ -86,11 +84,11 @@
                                             Trạng thái
                                         </span>
                                             <select name="status" id="">
-                                                <option value="">Chọn trạng thái</option>
-                                                @forelse($data_category['status'] as $key => $status)
-                                                    <option value="{{ @$key }}">{{ @$status }}</option>
-                                                @empty
-                                                @endforelse
+                                                <option value="">Chọn</option>
+                                                <option value="1">Thành công(Đúng số tiền)</option>
+                                                <option value="0">Thất bại</option>
+                                                <option value="2">Chờ xử lý</option>
+                                                <option value="3">Thành công(Sai số tiền)</option>
                                             </select>
                                         </div>
 
@@ -135,24 +133,22 @@
                                         </div>
                                         <div class="modal-body c-p-0">
                                             <div class="input-group">
-                                                <span class="form-label title-color">Loại thẻ</span>
+                                                <span class="form-label title-color">Loại giao dịch</span>
                                                 <select name="type-trans" id="">
-                                                    <option value="">Chọn loại thẻ</option>
-                                                    @forelse($data_category['telecoms'] as $key => $telecom)
-                                                        <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
-                                                    @empty
-                                                    @endforelse
+                                                    <option value="">Chọn</option>
+                                                    <option value="atm">ATM</option>
+                                                    <option value="wallet">Ví điện tử</option>
                                                 </select>
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="form-label title-color">Trạng thái</span>
                                                 <select name="status" id="">
-                                                    <option value="">Chọn trạng thái</option>
-                                                    @forelse($data_category['status'] as $key => $status)
-                                                        <option value="{{ @$key }}">{{ @$status }}</option>
-                                                    @empty
-                                                    @endforelse
+                                                    <option value="">Chọn</option>
+                                                    <option value="1">Thành công(Đúng số tiền)</option>
+                                                    <option value="0">Thất bại</option>
+                                                    <option value="2">Chờ xử lý</option>
+                                                    <option value="3">Thành công(Sai số tiền)</option>
                                                 </select>
                                             </div>
 
@@ -198,5 +194,6 @@
 @endsection
 
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/logs--update.js"></script>
 @endsection
+
