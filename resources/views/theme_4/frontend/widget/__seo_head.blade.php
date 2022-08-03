@@ -17,7 +17,7 @@
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-        <title>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title??'' }} mã số {{ $data->randId??'' }}</title>
+    <title>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title??'' }} mã số {{ $data->randId??'' }}</title>
     @endif
 @elseif(isset($title->title))
     <title>{{$title->title }}</title>
@@ -43,7 +43,7 @@
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-        <meta name="description" content="{{ $data->description??'' }}">
+    <meta name="description" content="{{ $data->description??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
@@ -57,7 +57,7 @@
 
 @if(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-        <meta property="og:title" content="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} mã số {{ $data->randId }}">
+    <meta property="og:title" content="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} mã số {{ $data->randId }}">
     @endif
 @elseif(Request::is('mua-acc'))
     <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
@@ -97,7 +97,7 @@
 
 @if(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-        <script type="application/ld+json">
+    <script type="application/ld+json">
         {
           "@context": "https://schema.org/",
           "@type": "BreadcrumbList",
@@ -115,7 +115,7 @@
         }
     </script>
 
-        <script type="application/ld+json">
+    <script type="application/ld+json">
     {
           "@graph":
       [

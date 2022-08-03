@@ -28,8 +28,17 @@
     text-align: center;
     margin: auto;
 }
-#formStoreCard,#StoreCardTotal,#StoreCardPay{
+#formStoreCard,#StoreCardTotal,#StoreCardPay,#form-storeCard{
     display: none;
+}
+#loading-data{
+    height: 120px;
+    margin: auto;
+}
+#loading-data .loading{
+    width: 60px;
+    height: 60px;
+    padding: 6px;
 }
 @keyframes rotate {
     100% {

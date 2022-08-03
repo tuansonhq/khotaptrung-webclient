@@ -3,7 +3,28 @@ $(document).ready(function(){
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
+    $('.expand-button').on('click', function() {
 
+        $('.special-text').toggleClass('-expanded');
+
+        if ($('.special-text').hasClass('-expanded')) {
+            $('.expand-button').html('Thu gọn nội dung');
+        } else {
+            $('.expand-button').html('Xem thêm nội dung');
+        }
+    });
+    /*option swiper card*/
+    let slider_count = 1;
+    if ($('.slider--card .swiper-wrapper').children().length > 1) {
+        slider_count = 1.4;
+    }
+    var swiper_card = new Swiper(".slider--card", {
+        slidesPerView: slider_count,
+        spaceBetween: 16,
+        freeMode: true,
+        observer: true,
+        observeParents: true,
+    });
     function getTelecom (){
         const url = '/store-card/get-telecom';
         $.ajax({
@@ -16,13 +37,17 @@ $(document).ready(function(){
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.key+'</option>';
+                            html += '<option value="'+value.key+'" data-img="'+value.image+'">'+value.key+'</option>';
                         });
                     }
                     $('select#telecom_storecard').html(html)
                     ele = $('select#telecom_storecard option').first();
-
                     var telecom = ele.val();
+                    var telecom_img = ele.data('img');
+                    $('.store-card_telecom').text(telecom)
+                    $('input[name=store_telecom]').val(telecom)
+                    $('input[name=store_telecom_img]').val(telecom_img)
+
                     getAmount(telecom);
                     $("#buy_telecom_key").on('change', function () {
                         getAmount(telecom);
@@ -42,6 +67,7 @@ $(document).ready(function(){
                     $('#formStoreCard').show();
                     $('#StoreCardTotal').show();
                     $('#StoreCardPay').show();
+                    $('#form-storeCard').show();
                 }
                 else{
                     swal({
@@ -117,6 +143,16 @@ $(document).ready(function(){
     }
     $('body').on('change','#telecom_storecard',function(){
         var telecom = $(this).val();
+
+
+        $("#telecom_storecard option:selected").each(function(){
+            var telecom_img = $(this).data('img');
+            $('input[name=store_telecom_img]').val(telecom_img);
+
+        });
+        $('.store-card_telecom').text(telecom);
+        $('input[name=store_telecom]').val(telecom);
+
         getAmount(telecom)
     });
     getTelecom();
@@ -127,6 +163,7 @@ $(document).ready(function(){
 
     $("#amount_storecard").on('change', function () {
         UpdatePrice();
+
     });
 
     $("#quantity").on('change', function () {
@@ -137,6 +174,13 @@ $(document).ready(function(){
         var amount=$("#amount_storecard").val();
         var ratio=$('#amount_storecard option:selected').attr('rel-ratio');
         var quantity=$("#quantity").val();
+
+        $('.store-card_amount').text(formatNumber(amount))
+        $('.store-card_quantity').text(quantity)
+        $('.store-card_ratito').text(ratio)
+        // $('.card--info__value_amount').text(amount)
+        $('input[name=store_amount]').val(amount)
+
 
         if(amount=='' ||amount==null || ratio=='' ||ratio==null   || quantity=='' ||quantity==null){
 
@@ -172,15 +216,7 @@ $(document).ready(function(){
             $('#success_storecard').modal('show');
         });
     });
-    $('body').on('click','.copyData',function(){
-        data = $(this).data('copy');
-        var $temp = $("<input>");
-        $("body").append($temp);
-        $temp.val($.trim(data)).select();
-        document.execCommand("copy");
-        $temp.remove();
-        toastr.success('Đã sao chép: '+ data);
-    })
+
     var formSubmit = $('#form-storeCard');
     var url = formSubmit.attr('action');
     var btnSubmit = formSubmit.find(':submit');
@@ -188,8 +224,8 @@ $(document).ready(function(){
     formSubmit.submit(function (e) {
         e.preventDefault();
         e.stopPropagation();
-        // $('#openConfirmStorecard').modal('show');
-        $('#success_storecard').modal('show');
+        $('#openConfirmStorecard').modal('show');
+        // $('#success_storecard1').modal('show');
     });
 
     $('.btn-confirm-charge').on('click', function (m) {
@@ -200,6 +236,8 @@ $(document).ready(function(){
             data: formSubmit.serialize(), // serializes the form's elements.
             beforeSend: function (xhr) {
                 $('#openConfirmStorecard').modal("hide");
+                $('#success_storecard1 .swiper-wrapper').empty();
+                swiper_card.update();
             },
             success: function (data) {
                 if(data.status == 1){
@@ -209,32 +247,55 @@ $(document).ready(function(){
                         text: data.message,
                         icon: "success",
                     })
-                    $('#success_storecard').modal("show");
-                    let html = '';
+                    amount_card =  $('input[name=store_amount]').val();
+                    telecom_card =  $('input[name=store_telecom]').val();
+                    telecom_card_img =  $('input[name=store_telecom_img]').val();
+                    $('#success_storecard1').modal("show");
+                    let html_card = '';
                     if(data.data.data_card.length > 0){
                         $.each(data.data.data_card,function(key,value){
-
-                            html+='<div class="col-12 col-md-4 p-2">'
-                            html+='<div class="alert alert-info">'
-                            html+='<p>Mã thẻ '+key+' </p>'
-                            html+='<div class="success_storecard_pin">'
-                            html+='<p>Mã thẻ <br>'
-                            html+='<span>'+value.pin+'</span>'
-                            html+='</p>'
-                            html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>'
-                            html+='</div>'
-                            html+='<div class="success_storecard_serial">'
-                            html+='<p>Serial  <br>'
-                            html+='<span>'+value.serial+'</span>'
-                            html+='</p>'
-                            html+='<b class="mt-4"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>'
-                            html+='</div>'
-                            html+='</div>'
-                            html+='</div>'
+                            html_card += ' <div class="swiper-slide card__detail  swiper-slide-active ">'
+                            html_card += ' <div class="card--header__detail p-3">'
+                            html_card += ' <div class="card--info__wrap">'
+                            html_card += '<div class="card--info__wrap d-flex">'
+                            html_card += ' <div class="card--logo d-flex">'
+                            html_card += ' <img src="'+telecom_card_img+'" alt="">'
+                            html_card += ' </div>'
+                            html_card += ' <div class="card--info">'
+                            html_card += '<div class="card--info__name " >'+telecom_card+'</div>'
+                            html_card += '<div class="card--info__value ">'
+                            html_card += ' <a href="javascript:void(0)" class="text-primary" >'+formatNumber(amount_card)+' đ</a>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += '  <div class="card--gray p-2 m-2" style="background-color: #F8F8FC;border-radius: 4px">'
+                            html_card += ' <div class="card--attr justify-content-between d-flex text-center">'
+                            html_card += ' <div class="card--attr__name fw-400 fz-13 text-center">Mã thẻ</div>'
+                            html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
+                            html_card += ' <div class="card__info c-mr-8">'+value.pin+'</div>'
+                            html_card += ' <div class="icon--coppy js-copy-text">'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.pin+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += '  <div class="card--attr justify-content-between pt-0 d-flex text-center">'
+                            html_card += ' <div class="card--attr justify-content-between pt-0 d-flex text-center"> Seri</div>'
+                            html_card += ' <div class="card--attr__value fz-13 fw-500 d-flex">'
+                            html_card += ' <div class="card__info c-mr-8">'+value.serial+'</div>'
+                            html_card += ' <div class="icon--coppy js-copy-text">'
+                            html_card += ' <b class="ml-2"><i style="cursor: pointer" class="fa fa-copy copyData" data-copy="'+value.serial+'" aria-hidden="true"></i></b>\n'
+                            html_card += ' </div>'
+                            html_card += '</div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            html_card += ' </div>'
+                            $('.success_storecard1 .swiper-wrapper').append(html_card);
 
                         });
                     }
-                    $('.success_storecard').html(html);
+
                 }
                 else if(data.status == 401){
                     window.location.href = '/login?return_url='+window.location.href;
@@ -248,6 +309,7 @@ $(document).ready(function(){
                             cancel: "Đóng",
                         },
                     })
+
                 }
                 else{
                     swal({
