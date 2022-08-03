@@ -1,6 +1,6 @@
 
 
-@foreach($data??[] as $item)
+@foreach($data_menu_category??[] as $item)
     @if ($item->parent_id == 0)
         <li class="menu-item">
             <a href="{{$item->url}}" @if($item->target==1) target="_blank" @endif>{{$item->title}}</a>

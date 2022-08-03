@@ -14,7 +14,8 @@
 
         <ul class="nav list-menu-link">
             @foreach($data??[] as $item)
-                <li class="nav-item {{ '/'.request()->path() == $item->url ? 'active' : ''}}"><a href="{{ $item->url }}" class="">
+                <li class="nav-item {{ '/'.request()->path() == $item->url ? 'active' : ''}}">
+                    <a href="{{ $item->url }}" class="">
                         @if($item->url == '/thong-tin')
                             <i class="far fa-address-book"></i>
                         @elseif($item->url == '/user/change-password')
@@ -35,7 +36,8 @@
                             <i class="fas fa-shopping-bag"></i>
                         @endif
 
-                        {{ $item->title }}</a>
+                        {{ $item->title }}
+                    </a>
                 </li>
             @endforeach
 {{--            <li class="nav-item "><a href="/user/profile" class=""><i class="far fa-address-book"></i> Thông tin hồ sơ</a></li>--}}

@@ -152,9 +152,7 @@
                                                         @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params)))
 
                                                             @if($send_type[$index]==4)
-                                                                <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}" target="_blank">
-    {{--                                                                <img src="{{\App\Library\Files::media(\App\Library\Helpers::DecodeJson('customer_data'.$index,$data->params))}}" alt="" style="max-width: 100px;max-height: 100px;">--}}
-                                                                </a>
+                                                                <a href="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,json_encode($data->params))}}" target="_blank"></a>
                                                             @elseif($send_type[$index]==5)
                                                                 ******
                                                             @else
