@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/minigame.js"></script>
     <script>
@@ -11,23 +14,20 @@
         $('body').on('click','.logsHisMinigame',function(e){
             $('#minigameLogs').modal('show');
         })
-
-
-
-
     </script>
 @endsection
 @section('content')
+
     <div class="container c-container" id="minigame-detail">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/minigame" class="breadcrumb-link">Vòng quay</a>
+                <a href="minigame" class="breadcrumb-link">Vòng quay</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="/minigame-slug" class="breadcrumb-link">Chi tiết vòng quay</a>
+                <a href="javascript:void(0)" class="breadcrumb-link">{{$result->group->title}}</a>
             </li>
         </ul>
         <div class="head-mobile">
@@ -45,26 +45,35 @@
                     <div class="c-px-lg-16 d-block d-lg-none  c-mb-12">
                         <div class="rotation-header-mobile d-flex justify-content-between">
                             <div class="rotation-header c-pb-8">
-                                <h3 class="fw-700 fz-18 lh-24">Vòng quay giải nhiệt hè</h3>
-                                <p class="fw-400 fz-13 mb-0"><span id="userCount">1235</span> người đang chơi</p>
+                                <h3 class="fw-700 fz-18 lh-24">{{$result->group->title}}</h3>
+                                @if(isset($result->group->params->fake_num_play))
+                                    <p class="fw-400 fz-13 mb-0">
+                                        <span id="userCount">{{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi
+                                    </p>
+                                @endif
+
                             </div>
-                            <div class="rotation-player">
-                                <button class="btn secondary open-sheet" data-target="#sheet-filter">Thể lệ</button>
-                            </div>
+                            @if(isset($result->group->params->thele))
+                                <div class="rotation-player">
+                                    <button class="btn secondary open-sheet" data-target="#sheet-filter">Thể lệ</button>
+                                </div>
+                            @endif
+
                         </div>
                     </div>
-
+                    @if(isset($currentPlayList) && $currentPlayList != '')
                     <div class="d-block d-lg-none c-mb-16 c-px-lg-16">
                         <div class="rotation-notify w-100 ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sound_mobile.svg" alt="">
                             <marquee class="rotation-marquee">
                                 <div class="rotation-marquee-item">
-                                    Danh sách trúng thưởng: &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+                                    {!! $currentPlayList !!}
+{{--                                    Danh sách trúng thưởng: &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;--}}
                                 </div>
                             </marquee>
                         </div>
                     </div>
-
+                    @endif
                     <div class="d-block d-lg-none c-mb-16 c-px-lg-16">
                         <div class="rotation-top-mobile brs-12 d-block d-lg-none">
                             <div class="rotation-header-sale c-py-4 c-px-12 d-flex align-items-center justify-content-between">
@@ -86,9 +95,15 @@
                             </div>
                             <div class="rotation-sale-content brs-8 c-py-12 d-flex flex-column align-items-center">
                                 <p class="d-flex align-items-center c-mb-0">
-                                    <span id="rotationFirstPrice" class="fw-400 fz-12 lh-16 c-mr-8">240.00đ</span>
-                                    <span id="rotationSalePrice" class="fw-700 fz-20 lh-28 c-mr-8">160.000đ</span>
-                                    <span id="rotationSaleRatio" class="brs-24 fw-400 fz-12 c-py-2 c-px-8 lh-16">Giảm 66%</span>
+                                    <span id="rotationFirstPrice" class="fw-400 fz-12 lh-16 c-mr-8">
+                                         @if(isset($result->group->params->percent_sale))
+                                            {{ str_replace(',','.',number_format(($result->group->params->percent_sale*$result->group->price)/100 + $result->group->price)) }} đ
+                                        @endif
+                                    </span>
+                                    <span id="rotationSalePrice" class="fw-700 fz-20 lh-28 c-mr-8">{{ str_replace(',','.',number_format($result->group->price)) }}đ</span>
+                                    @if(isset($result->group->params->percent_sale))
+                                        <span id="rotationSaleRatio" class="brs-24 fw-400 fz-12 c-py-2 c-px-8 lh-16">Giảm {{ $result->group->params->percent_sale }}%</span>
+                                    @endif
                                 </p>
                                 <p class="c-mb-0 fw-400 fz-13">Rẻ vô đối, giá tốt nhất thị trường</p>
                             </div>
@@ -99,13 +114,18 @@
                         <div class="rotation-top c-p-16 d-none d-lg-flex justify-content-between">
                             <div>
                                 <div class="rotation-header d-flex align-items-center c-mb-8">
-                                    <h3 class="fw-700 fz-24 lh-32 c-mr-8">Vòng quay giải nhiệt hè</h3>
+                                    <h3 class="fw-700 fz-24 lh-32 c-mr-8">{{$result->group->title}}</h3>
+                                    @if(isset($result->group->params->thele))
+
                                     <p class="fw-400 fz-13 mb-0 c_thele">Thể lệ <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/minigame_info.svg" alt=""></p>
+                                    @endif
                                 </div>
+                                @if(isset($currentPlayList) && $currentPlayList != '')
                                 <div class="rotation-player d-flex align-items-center">
                                     <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/security-user1.svg" alt="">
-                                    <p class="fw-400 fz-13 mb-0"><span id="userCount">1235</span> người đang chơi</p>
+                                    <p class="fw-400 fz-13 mb-0"><span id="userCount">{{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi</p>
                                 </div>
+                                @endif
                             </div>
                             <div class="rotation-header-sale d-flex align-items-start">
                                 <div class="d-inline-flex align-items-center c-mr-10">
@@ -126,13 +146,14 @@
                             </div>
                         </div>
 
-
+                        @if(isset($currentPlayList) && $currentPlayList != '')
                         <div class="rotation c-p-16" style="background-image: url(/assets/frontend/{{theme('')->theme_key}}/image/phu/rotation_bg.png)">
                             <div class="rotation-notify d-none d-lg-flex w-100 c-mb-16">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sound.svg" alt="">
                                 <marquee class="rotation-marquee">
                                     <div class="rotation-marquee-item">
-                                        Danh sách trúng thưởng: &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {!! $currentPlayList !!}
+{{--                                        Danh sách trúng thưởng: &nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;--}}
                                     </div>
                                 </marquee>
                             </div>
@@ -143,6 +164,7 @@
                                 <img style="width: 70%" class="lazy" src="/assets/theme_3/image/images_1/rotation-img.png" alt="" id="rotate-play">
                             </div>
                         </div>
+                        @endif
 
                         <div class="row no-gutters">
                             <div class="col-12 col-lg-6 c-p-16 c-py-lg-8">
@@ -163,10 +185,16 @@
                                     </div>
                                 </div>
                                 <div class="rotation-sale-content brs-8 c-py-8 d-none d-lg-flex justify-content-center">
-                                    <p class="d-flex align-items-center c-mb-0">
-                                        <span id="rotationFirstPrice" class="fw-400 fz-14 c-mr-8">240.00đ</span>
-                                        <span id="rotationSalePrice" class="fw-700 fz-24 lh-32 c-mr-8">160.000đ</span>
-                                        <span id="rotationSaleRatio" class="brs-24 fw-500 fz-12 c-py-2 c-px-8">Giảm 66%</span>
+                                    <p class="d-flex align-items-center c-mb-0">0
+                                        <span id="rotationFirstPrice" class="fw-400 fz-14 c-mr-8">
+                                            @if(isset($result->group->params->percent_sale))
+                                                {{ str_replace(',','.',number_format(($result->group->params->percent_sale*$result->group->price)/100 + $result->group->price)) }} đ
+                                            @endif
+                                        </span>
+                                        <span id="rotationSalePrice" class="fw-700 fz-24 lh-32 c-mr-8">{{ str_replace(',','.',number_format($result->group->price)) }}đ</span>
+                                        @if(isset($result->group->params->percent_sale))
+                                            <span id="rotationSaleRatio" class="brs-24 fw-400 fz-12 c-py-2 c-px-8 lh-16">Giảm {{ $result->group->params->percent_sale }}%</span>
+                                        @endif
                                     </p>
                                 </div>
                             </div>
@@ -211,9 +239,9 @@
 
 
                     <div class="c-mb-16 c-pl-lg-16 c-pr-lg-16">
-                        @include('frontend.pages.components.description')
+{{--                        @include('frontend.pages.components.description')--}}
                     </div>
-
+{{--                    top quay thưởng--}}
                     <div class="d-block d-lg-none c-mb-16">
                         <div class="rotation-leaderboard c-p-lg-0">
                             <div class="leaderboard-header d-flex align-items-center c-pl-16 c-mb-16">
@@ -223,13 +251,13 @@
                             <div class="leaderboard-type c-mb-16 brs-8 brs-lg-0 row no-gutters">
                                 <ul class="nav justify-content-between row no-gutters w-100 c-p-4 c-p-lg-0" role="tablist">
                                     <li class="nav-item col-4 p-0" role="presentation">
-                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0 active" data-toggle="tab" href="#leaderboard_m-1" role="tab" aria-selected="true">7 ngày</p>
+                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0 active" data-toggle="tab" href="#leaderboard_m-1" role="tab" aria-selected="true">Hôm nay</p>
                                     </li>
                                     <li class="nav-item col-4 p-0" role="presentation">
-                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0" data-toggle="tab" href="#leaderboard_m-2" role="tab" aria-selected="false">30 ngày</p>
+                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0" data-toggle="tab" href="#leaderboard_m-2" role="tab" aria-selected="false">7 ngày</p>
                                     </li>
                                     <li class="nav-item col-4 p-0" role="presentation">
-                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0" data-toggle="tab" href="#leaderboard_m-3" role="tab" aria-selected="false">60 ngày</p>
+                                        <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 brs-lg-0" data-toggle="tab" href="#leaderboard_m-3" role="tab" aria-selected="false">Quà đua top</p>
                                     </li>
                                 </ul>
                             </div>
@@ -237,131 +265,62 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade active show" id="leaderboard_m-1" role="tabpanel">
                                         <div class="leaderboard-content c-px-16">
+
+                                            @if(isset($topDayList))
+                                                @foreach($topDayList as $key => $item)
                                             <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
+                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">{{ $key + 1 }}</div>
                                                 <div class="leaderboard-item-avt brs-100">
                                                     <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
                                                 </div>
                                                 <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
+                                                    <p class="fw-500 fz-13 c-mb-0">{{$item['name']}}</p>
+                                                    <span class="fw-400 fz-12">{{ str_replace(',','.',number_format($item['numwheel'])) }} lượt</span>
                                                 </div>
                                             </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">5</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">6</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">7</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">8</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">9</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
-                                            <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                                <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">10</div>
-                                                <div class="leaderboard-item-avt brs-100">
-                                                    <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                                </div>
-                                                <div class="leaderboard-item-content">
-                                                    <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                    <span class="fw-400 fz-12">1000 lượt</span>
-                                                </div>
-                                            </div>
+                                                @endforeach
+                                            @endif
+
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="leaderboard_m-2" role="tabpanel">
                                         <div class="leaderboard-content">
-                                            <div class="leaderboard-item row no-gutters">
-                                                <div class="col-4 leaderboard-item-name">
-                                                    <span>1</span>
-                                                    <p>Tiến Phú</p>
+                                            @if(isset($top7DayList))
+                                                @foreach($top7DayList as $key => $item)
+                                                    <div class="leaderboard-item c-p-8 d-flex align-items-center">
+                                                        <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">{{ $key + 1 }}</div>
+                                                        <div class="leaderboard-item-avt brs-100">
+                                                            <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
+                                                        </div>
+                                                        <div class="leaderboard-item-content">
+                                                            <p class="fw-500 fz-13 c-mb-0">{{$item['name']}}</p>
+                                                            <span class="fw-400 fz-12">{{ str_replace(',','.',number_format($item['numwheel'])) }} lượt</span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <div class="leaderboard-item row no-gutters">
+                                                    <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                                        Không có dữ liệu
+                                                    </div>
                                                 </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    {{--                                                    +100.000 kim cương--}}
-                                                </div>
-                                                <div class="col-4 leaderboard-item-ar">
-                                                    1000 lượt
-                                                </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="leaderboard_m-3" role="tabpanel">
                                         <div class="leaderboard-content" >
+                                            @if(isset($result->group->params->phanthuong))
                                             <div class="leaderboard-item row no-gutters">
-                                                <div class="col-12 leaderboard-item-name text-center justify-content-center">
-                                                    Không có dữ liệu
-                                                </div>
+                                                {!!$result->group->params->phanthuong!!}
+
                                             </div>
+                                            @else
+                                                <div class="leaderboard-item row no-gutters">
+                                                    <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                                        Không có dữ liệu
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -381,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-
+                    {{--                    top quay thưởng--}}
 
                     <div class="rotation-comment-block c-px-lg-16">
                         <h6 class="d-block d-lg-none fw-700 fz-18 lh-24 c-py-16">Bình luận</h6>
@@ -717,13 +676,13 @@
                         <div class="leaderboard-type c-mb-16 brs-8 row no-gutters">
                             <ul class="nav justify-content-between row no-gutters w-100 c-p-4" role="tablist">
                                 <li class="nav-item col-4 p-0" role="presentation">
-                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 active" data-toggle="tab" href="#leaderboard-1" role="tab" aria-selected="true">7 ngày</p>
+                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8 active" data-toggle="tab" href="#leaderboard-1" role="tab" aria-selected="true">Hôm nay</p>
                                 </li>
                                 <li class="nav-item col-4 p-0" role="presentation">
-                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8" data-toggle="tab" href="#leaderboard-2" role="tab" aria-selected="false">30 ngày</p>
+                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8" data-toggle="tab" href="#leaderboard-2" role="tab" aria-selected="false">7 ngày</p>
                                 </li>
                                 <li class="nav-item col-4 p-0" role="presentation">
-                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8" data-toggle="tab" href="#leaderboard-3" role="tab" aria-selected="false">60 ngày</p>
+                                    <p class="nav-link text-center mb-0 fw-400 fz-13 brs-8" data-toggle="tab" href="#leaderboard-3" role="tab" aria-selected="false">Quà đua top</p>
                                 </li>
                             </ul>
                         </div>
@@ -731,131 +690,69 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="leaderboard-1" role="tabpanel">
                                     <div class="leaderboard-content" >
+
+                                        @if(isset($topDayList))
+                                            @foreach($topDayList as $key => $item)
                                         <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
+                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">{{ $key + 1 }}</div>
                                             <div class="leaderboard-item-avt brs-100">
                                                 <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
                                             </div>
                                             <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
+                                                <p class="fw-500 fz-13 c-mb-0">{{$item['name']}}</p>
+                                                <span class="fw-400 fz-12">{{ str_replace(',','.',number_format($item['numwheel'])) }} lượt</span>
                                             </div>
                                         </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
+                                            @endforeach
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                                    Không có dữ liệu
+                                                </div>
                                             </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">1</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">5</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">6</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">7</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">8</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">9</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
-                                        <div class="leaderboard-item c-p-8 d-flex align-items-center">
-                                            <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">10</div>
-                                            <div class="leaderboard-item-avt brs-100">
-                                                <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                            </div>
-                                            <div class="leaderboard-item-content">
-                                                <p class="fw-500 fz-13 c-mb-0">Hoàng Phi Hồng</p>
-                                                <span class="fw-400 fz-12">1000 lượt</span>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="leaderboard-2" role="tabpanel">
                                     <div class="leaderboard-content">
-                                        <div class="leaderboard-item row no-gutters">
-                                            <div class="col-4 leaderboard-item-name">
-                                                <span>1</span>
-                                                <p>Tiến Phú</p>
+                                        @if(isset($top7DayList))
+                                            @foreach($top7DayList as $key => $item)
+                                                <div class="leaderboard-item c-p-8 d-flex align-items-center">
+                                                    <div class="leaderboard-item-serial lh-24 fw-600 fz-12 c-mr-12">{{ $key + 1 }}</div>
+                                                    <div class="leaderboard-item-avt brs-100">
+                                                        <img class="brs-100 w-100 c-pr-12" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
+                                                    </div>
+                                                    <div class="leaderboard-item-content">
+                                                        <p class="fw-500 fz-13 c-mb-0">{{$item['name']}}</p>
+                                                        <span class="fw-400 fz-12">{{ str_replace(',','.',number_format($item['numwheel'])) }} lượt</span>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                                    Không có dữ liệu
+                                                </div>
                                             </div>
-                                            <div class="col-4 leaderboard-item-ar">
-                                                {{--                                                    +100.000 kim cương--}}
-                                            </div>
-                                            <div class="col-4 leaderboard-item-ar">
-                                                1000 lượt
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="leaderboard-3" role="tabpanel">
                                     <div class="leaderboard-content" >
-                                        <div class="leaderboard-item row no-gutters">
-                                            <div class="col-12 leaderboard-item-name text-center justify-content-center">
-                                                Không có dữ liệu
+                                        @if(isset($result->group->params->phanthuong))
+                                                <div class="leaderboard-item c-p-8 d-flex align-items-center">
+
+                                                    {!!$result->group->params->phanthuong!!}
+
+                                                </div>
+                                        @else
+                                            <div class="leaderboard-item row no-gutters">
+                                                <div class="col-12 leaderboard-item-name text-center justify-content-center">
+                                                    Không có dữ liệu
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
                                     </div>
                                 </div>
                             </div>
