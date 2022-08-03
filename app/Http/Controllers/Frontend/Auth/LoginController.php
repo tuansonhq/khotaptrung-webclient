@@ -155,10 +155,10 @@ class LoginController extends Controller
                 $result = $result_Api->response_data;
                 if($result->status == 1){
                     Session::flush();
-                    return redirect()->to('/');
+                    return redirect()->back();
                 }
             }
-            return redirect()->to('/');
+//            return redirect()->to('/');
         }
         catch(\Exception $e){
             Log::error($e);

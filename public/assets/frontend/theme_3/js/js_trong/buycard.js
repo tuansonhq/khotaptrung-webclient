@@ -266,7 +266,7 @@ $(document).ready(function () {
                             }
 
                         } else {
-                            $('#cardGameList').append(html);
+                            $('#cardPhoneList').append(html);
                         }
                     });
 

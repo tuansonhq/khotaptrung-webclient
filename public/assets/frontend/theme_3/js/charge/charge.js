@@ -53,13 +53,8 @@ $(document).ready(function(){
                     }else {
                         $('.amount-loading').remove();
                     }
-
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-
-
                     $('.loading-data').remove();
-
-
                     $('#form-charge2').removeClass('hide_charge');
                 }
             },

@@ -364,6 +364,10 @@ header nav.heading .header-container{
     font-size: 14px;
     color: var(--primary-text);
     font-weight: 600;
+    margin: auto 4px;
+}
+.item-about img{
+    width: 24px;
 }
 
 .box-account{
@@ -1991,11 +1995,11 @@ header nav.heading .header-container{
     top: 50%;
     transform: translateY(-50%);
 }
-.banner-slide .swiper-slide,.banner-image{
+.banner-slide .swiper-slide,.banner-image,.js--swiper__banner .swiper-slide{
     height: 480px;
 }
 
-.banner-slide .swiper-slide img,.banner-image img{
+.banner-slide .swiper-slide img,.banner-image img,.js--swiper__banner .swiper-slide img{
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -2009,7 +2013,7 @@ header nav.heading .header-container{
         margin: 16px auto 0 auto;
         flex: 1;
     }
-    .banner-slide .swiper-slide,.banner-image{
+    .banner-slide .swiper-slide,.banner-image,.js--swiper__banner .swiper-slide{
         height: 176px;
     }
     .rotation-notify-home{

@@ -83,9 +83,6 @@
                                 <div class="loading"></div>
                             </div>
                             <span class="hide" id="StoreCardPay">  <i class="fa fa-credit-card" aria-hidden="true"></i> Thanh toán</span>
-
-
-
                         </button>
                      </div>
                   </div>
