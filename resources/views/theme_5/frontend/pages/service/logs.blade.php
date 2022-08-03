@@ -51,7 +51,10 @@
                                 <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
                             </div>
                         </div>
-                        <div class="mr-n1 pb-3">
+                        <div class="mr-n1 pb-3 is-load">
+                            <div class="loading-wrap">
+                                <span class="modal-loader-spin"></span>
+                            </div>
                             <div class="history-content c-pt-16 mr-n2">
 
                             </div>

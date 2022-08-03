@@ -743,6 +743,22 @@ View::composer('frontend.widget.__services__other', function ($view) {
 
 });
 
+View::composer('frontend.widget.__service__other__his', function ($view) {
+
+    $data = \Cache::rememberForever('__service__other__his', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 /*theme_5*/
 View::composer('frontend.widget.__slide__news', function ($view) {
 

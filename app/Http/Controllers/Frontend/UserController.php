@@ -627,6 +627,20 @@ class UserController extends Controller
                         ->with('arrpin',$arrpin)
                         ->with('arrserial',$arrserial)->render();
 
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
                     return response()->json([
                         'status' => 1,
                         'data' => $html,

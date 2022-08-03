@@ -37,10 +37,8 @@
             </div>
 
             <div id="showslideracc">
-                <div class="box-loading btn-loading c-my-24" style="margin: 0 auto">
-                    <div class="loading">
-                        <div class="loading-child"></div>
-                    </div>
+                <div class="loading-wrap c-my-24">
+                    <span class="modal-loader-spin"></span>
                 </div>
                 {{--  TK đồng giá   --}}
 {{--                @include('frontend.pages.account.widget.__same__price')--}}
