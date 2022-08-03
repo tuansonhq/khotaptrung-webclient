@@ -1,6 +1,6 @@
 
 /* Biến query này có thể gọi ở mọi chỗ (để sửa tham số để lọc)*/
-let query = {  page:1, key:'',status:'',started_at:'',ended_at:'',price:''};
+let query = {  page:1, key:'',status:'',started_at:'',ended_at:'',price:'',serial:''};
 /* Biến history_see_more là cờ đánh dấu load bình thường và load more*/
 let history_see_more = false;
 /*__________________________*/
@@ -23,7 +23,7 @@ function loadDataApi(query) {
             }
         },
         success: (res) => {
-            console.log(res)
+
             if (res.status === 1) {
                 let html = res.html;
                 console.log(html)
