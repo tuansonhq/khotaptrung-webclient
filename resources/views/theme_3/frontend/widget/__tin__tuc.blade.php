@@ -36,6 +36,7 @@
     <div class="box-product-content ">
 
         @foreach($data as $key => $item)
+            @if($key == 0)
             @if(isset($item->items))
 {{--                <div class="box-product tab-pane fade show active" id="news_game-{{ $item->slug }}" role="tabpanel" >--}}
             <div class="box-product news-home" id="news_game-{{ $item->slug }}" role="tabpanel" >
@@ -75,7 +76,7 @@
                 </div>
             </div>
 
-
+                @endif
             @endif
 {{--            @if($key == 0)--}}
 {{--                <script>--}}
