@@ -120,60 +120,64 @@
 
                     @endif
                     <!-- service select mobile -->
-                    <h2 class="text-title fw-700 title-color-lg c-pt-lg-20 c-pb-lg-8 d-block d-lg-none">
-                        <div class="open-sheet" data-target="#service-select">
-                            Tuỳ chọn mở rộng
-                            <i class="title-info"></i>
+                        <div class="d-block d-lg-none">
+                            <div class="t-sub-1 title-color c-mb-8">
+                                Tùy chọn mở rộng
+                            </div>
+                            <div class="card c-py-16 c-pr-4" id="select-service">
+                                <div class="card-body scrollbar" style="--mh:400px">
+                                    <!-- body -->
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+
+                                    <label class="input-checkbox c-mb-8">
+                                        <input type="checkbox" name="select">
+                                        <span class="checkmark"></span>
+                                        <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                    </h2>
-                    <div class="bottom-sheet" id="service-select" data-height="100" aria-hidden="true">
-                        <div class="layer"></div>
-                        <div class="content-bottom-sheet bar-slide">
-                            <div class="sheet-header">
-                                <h2 class="text-title center">
-                                    Tuỳ chọn mở rộng
-                                </h2>
-                                <div class="close"></div>
-                            </div>
-                            <div class="sheet-body">
-                                <!-- body -->
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                            </div>
-                            <div class="sheet-footer v2">
-                                <label for="select-service" class="btn primary">Xác nhận</label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end -->
+                        <!-- end -->
                     <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
                         Tuỳ chọn tướng (với Game Moba)
                     </h2>
@@ -364,7 +368,7 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tài khoản
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">Garena</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
                         </div>
                     </div>
 
