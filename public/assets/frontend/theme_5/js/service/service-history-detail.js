@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    if ($(document).width() > 992) {
+
+    }
+
     $('body').on('click','#btnDestroy',function(e){
         e.preventDefault();
         var id = $(this).data('id');
