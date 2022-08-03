@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-    @include('frontend.widget.__seo_head')
+.@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
