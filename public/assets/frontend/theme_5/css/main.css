@@ -1817,8 +1817,8 @@ i.title-info:after {
     }
     /*scrollbar*/
     .scrollbar {
-        overflow-y: unset;
-        padding-right: unset;
+        overflow-y: scroll !important;
+        padding-right: 4px !important;
     }
     /*card*/
     .card {
@@ -2175,4 +2175,5 @@ i.title-info:after {
     .tab .icon-custom:after {
         display: none;
     }
+
 }

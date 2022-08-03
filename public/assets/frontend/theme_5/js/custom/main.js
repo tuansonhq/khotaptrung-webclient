@@ -316,4 +316,12 @@ $(document).ready(function() {
             })
         }
     }
+
+    /*scroll add box shadown*/
+    let card_service_select = $('#select-service').find('.card-body');
+    if (card_service_select.length){
+        card_service_select.on('scroll',function () {
+            $(this).parent().toggleClass('card-service-select',!!$(this).scrollTop())
+        })
+    }
 });
