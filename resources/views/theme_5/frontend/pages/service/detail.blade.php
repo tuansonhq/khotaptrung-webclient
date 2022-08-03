@@ -1,7 +1,19 @@
 @extends('frontend.layouts.master')
-
 @section('content')
-
+    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+        @php
+            $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+            $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+        @endphp
+    @endif
+    @php
+        $data_params = json_decode($data->params,true);
+        $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
+        $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+    @endphp
+    {{--    @dd($data_params)--}}
+    <input type="hidden" id="data_params" value="{{ $data->params }}">
+    <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -23,52 +35,21 @@
         </div>
 
         <section class="service-detail">
+            {{--            Slider baner    --}}
+            @include('frontend.widget.__slider__banner')
             <div class="section-header d-none d-lg-block">
                 <h1 class="section-title">
-                    Bán vàng tự động
+                    {{ @$data->title }}
                 </h1>
             </div>
-{{--            <div class="head-mobile">--}}
-{{--                <a href="#" class="link-back"></a>--}}
-
-{{--                <h1 class="head-title text-title">Bán vàng tự động</h1>--}}
-
-{{--                <a href="#" class="notify" data-notify="2"></a>--}}
-{{--            </div>--}}
             <hr>
             <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
                 Vui lòng chọn thông tin
             </div>
+            <form action="/dich-vu/{{ $data->id }}/purchase" method="POST" id="formDataService">
+                @csrf
             <div class="row">
                 <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
-                    @if( isset($server_data) && isset($server_id))
-                        <div class="col-md-12 left-right body-title-ct">
-                            <div class="row marginauto">
-
-                                <div class="col-md-12 text-left left-right mb-fix-12">
-
-                                    <div class="row marginauto ">
-                                        <div
-                                            class="col-md-12 left-right body-title-detail-span-ct">
-                                            <span>Chọn máy chủ</span>
-                                        </div>
-                                        <div class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                            <select class="wide" name="server">
-                                                @forelse($server_data as $k_server => $server)
-                                                    @if(!strpos($server_data[$k_server], '[DELETE]'))
-                                                        <option value="{{ $server_id[$k_server] }}">{{ $server_data[$k_server] }}</option>
-                                                    @endif
-                                                @empty
-                                                @endforelse
-                                            </select>
-                                        </div>
-                                        <div class="col-m-12 server-error"></div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    @endif
                         @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
                             @php
                                 $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
@@ -120,60 +101,39 @@
 
                     @endif
                     <!-- service select mobile -->
-                    <h2 class="text-title fw-700 title-color-lg c-pt-lg-20 c-pb-lg-8 d-block d-lg-none">
-                        <div class="open-sheet" data-target="#service-select">
-                            Tuỳ chọn mở rộng
-                            <i class="title-info"></i>
-                        </div>
-                    </h2>
-                    <div class="bottom-sheet" id="service-select" data-height="100" aria-hidden="true">
-                        <div class="layer"></div>
-                        <div class="content-bottom-sheet bar-slide">
-                            <div class="sheet-header">
-                                <h2 class="text-title center">
-                                    Tuỳ chọn mở rộng
-                                </h2>
-                                <div class="close"></div>
+                        <div class="d-block d-lg-none">
+                            <div class="t-sub-1 title-color c-mb-8">
+                                Tùy chọn mở rộng
                             </div>
-                            <div class="sheet-body">
-                                <!-- body -->
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                                <label class="input-checkbox">
-                                    <input type="checkbox" name="select">
-                                    <span class="checkmark"></span>
-                                    <span class="text-label text">Ss - 1tr5 (chuẩn bị 120 ngọc) vào được thêm vào tài kho kho kho kho kho kho kho kho kho kho kho kho kho kho </span>
-                                </label>
-
-                            </div>
-                            <div class="sheet-footer v2">
-                                <label for="select-service" class="btn primary">Xác nhận</label>
+                            <div class="card c-py-16 c-pr-4" id="select-service">
+                                <div class="card-body scrollbar" style="--mh:400px">
+                                    <!-- body -->
+                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                    <div class="card service-select c-py-12 c-pr-8" id="select-multi">
+                                        <div class="card-body py-0 s-filter">
+                                            @php
+                                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                            @endphp
+                                            @if(!empty($name))
+                                                @for ($i = 0; $i < count($name); $i++)
+                                                    @if($name[$i]!=null)
+                                                        <label class="input-checkbox c-mb-8">
+                                                            <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                            <span class="checkmark"></span>
+                                                            <span class="text-label text" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</span>
+                                                        </label>
+                                                    @endif
+                                                @endfor
+                                            @endif
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- end -->
+                        <!-- end -->
                     <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
                         Tuỳ chọn tướng (với Game Moba)
                     </h2>
@@ -299,16 +259,16 @@
                                 <input class="text-title secondary" type="hidden" name="value" value="">
                                 <input class="text-title" type="hidden" name="selected" value="">
                                 <input class="text-title" type="hidden" name="server">
-                                <div id="txtPrice" class="text-title secondary d-inline-block">0 VNĐ</div>
+                                <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0 VNĐ</div>
                                 <button id="btnPurchase" class="btn primary" data-toggle="modal" data-target="#orderModal">Thanh toán</button>
                             </div>
                         </div>
                         <h2 class="text-title fw-700 title-color-lg c-my-16">
-                            Tuỳ chọn tướng (với Game Moba)
+                            Tùy chọn mở rộng (đối với Game Ngọc Rồng)
                         </h2>
                         @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
                         <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                        <div class="card service-select c-py-12 c-pr-8 ">
+                        <div class="card service-select c-py-12 c-pr-8" id="select-multi">
                             <div class="card-body py-0 s-filter">
                                 @php
                                     $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
@@ -327,11 +287,10 @@
                             </div>
                         </div>
                         @endif
-
-
                     </div>
                 </div>
             </div>
+            </form>
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
@@ -364,34 +323,28 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tài khoản
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">Garena</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
                         </div>
                     </div>
 
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
-                                Game
+                                Dịch vụ
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">Liên Quân Mobile</div>
+                            <div class="card--attr__value fz-13 fw-500">{{@$data->title}}</div>
                         </div>
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Gói
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">Vàng - Kim cương</div>
-                        </div>
-                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
-                            <div class="card--attr__name fw-400 fz-13 text-center">
-                                Chiết khấu
-                            </div>
-                            <div class="card--attr__value fz-13 fw-500">3%</div>
+                            <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
                         </div>
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Thành tiền
                             </div>
-                            <div class="card--attr__value fz-13 fw-500">20.000đ</div>
+                            <div class="card--attr__value fz-13 fw-500 total--price">0 đ</div>
                         </div>
                     </div>
 
@@ -420,16 +373,17 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tổng thanh toán
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">20.000đ</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn primary">Xác nhận</button>
+                    <button class="btn primary submit-form">Xác nhận</button>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     {{-- Thanh toans thanhf coong  --}}
@@ -465,32 +419,35 @@
         <div class="body-mobile">
             <div class="body-mobile-content c-p-16">
                 <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
-                    Thông tin mua thẻ
+                    Thông tin dịch vụ thuê
                 </div>
-                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
-                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
+                    <div class="card--attr__total justify-content-between d-flex text-center">
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                            Loại thẻ
+                            Tài khoản
                         </div>
-                        <div class="card--attr__value fz-13 fw-500">10.000đ</div>
+                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
                     </div>
+                </div>
+                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content c-mt-lg-16">
+
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
-                            Mệnh giá
+                            Dịch vụ
                         </div>
-                        <div class="card--attr__value fz-13 fw-500">10.000đ</div>
+                        <div class="card--attr__value fz-13 fw-500">{{@$data->title}}</div>
                     </div>
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-cente text-order">
                         <div class="card--attr__name fw-400 fz-13 text-center">
-                            Số lượng
+                            Gói
                         </div>
-                        <div class="card--attr__value fz-13 fw-500">01</div>
+                        <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
                     </div>
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center text-order">
                         <div class="card--attr__name fw-400 fz-13 text-center">
-                            Chiết khấu
+                            Thành tiền
                         </div>
-                        <div class="card--attr__value fz-13 fw-500">1%</div>
+                        <div class="card--attr__value fz-13 fw-500 total--price">0 đ</div>
                     </div>
                 </div>
                 <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
@@ -516,7 +473,7 @@
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
                             Tổng thanh toán
                         </div>
-                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
                     </div>
                 </div>
             </div>
@@ -529,7 +486,7 @@
             </div>
         </div>
     </div>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/service_detail.js?v={{time()}}"></script>
     <script>
 
         function Confirm(index, serverid) {
