@@ -8,7 +8,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="" class="breadcrumb-link">Dịch vụ đã mua</a>
+                    <a href="/dich-vu-da-mua" class="breadcrumb-link">Dịch vụ đã mua</a>
                 </li>
             </ul>
 
@@ -23,15 +23,23 @@
                 <div class="c-history-left media-web">
                     @include('frontend.widget.__menu_profile')
                 </div>
+                @if(isset($data->itemconfig_ref->params))
+                @php
+                    $input_auto = \App\Library\HelpersDecode::DecodeJson('input_auto', $data->itemconfig_ref->params);
+                @endphp
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
                     <div
                         class="history-detail-title c-p-16 c-mb-16 brs-12 d-none d-sm-flex justify-content-between align-items-center">
                         <h1 class="fw-700 fz-20 lh-28 c-my-0">Chi tiết dịch vụ đã mua</h1>
                         <div class="d-none d-sm-block">
+                            @if($data->status==1)
                             <button class="btn ghost c-mr-10" data-toggle="modal" data-target="#modal-cancel-service">Hủy
                                 dịch vụ
                             </button>
+                            @endif
+
                             <button class="btn primary" data-toggle="modal" data-target="#modal-update-info">Chỉnh sửa thông tin</button>
+
                         </div>
                     </div>
                     <div class="history-detail-content brs-12">
@@ -141,6 +149,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             <!-- Modal -->
             <!-- modal cancel -->
