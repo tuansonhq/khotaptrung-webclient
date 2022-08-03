@@ -52,6 +52,7 @@
 
 {{--    import css --}}
     @yield('styles')
+
 </head>
 <body>
 
