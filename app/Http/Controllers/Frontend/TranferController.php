@@ -98,7 +98,14 @@ class TranferController extends Controller
                 if (count($data) == 0 && $page == 1){
                     return response()->json([
                         'status' => 0,
-                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                        'message' => 'Hiện tại không có giao dịch nào !',
+                    ]);
+                }
+
+                if ($page > $data->lastPage()) {
+                    return response()->json([
+                        'status' => 404,
+                        'message'=>'Trang này không tồn tại',
                     ]);
                 }
 
