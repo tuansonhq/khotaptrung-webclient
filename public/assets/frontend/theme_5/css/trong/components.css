@@ -1194,4 +1194,22 @@ section.outstanding-service {
         overflow-y: scroll;
         padding-right: 4px;
     }
+
+    .card-service-select:before,
+    .card-service-select:after
+    {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: 16px;
+    }
+    .card-service-select:before {
+        box-shadow: var(--box-shadow-default);
+        top: 0;
+    }
+    .card-service-select:after {
+        box-shadow: 0 -2px 4px #E8E8E8;
+        bottom: 0;
+    }
 }
