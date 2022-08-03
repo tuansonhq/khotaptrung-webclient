@@ -16,7 +16,7 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
-        if (theme('')->theme_key == 'theme_1'){
+        if (theme('')->theme_key == 'theme_1' || theme('')->theme_key == 'theme_4'){
             return view('frontend.pages.transfer.index');
         }else{
             return view('frontend.pages.charge.index');
@@ -131,45 +131,7 @@ class TranferController extends Controller
             ]);
         }
     }
-//    public function getBankData(Request $request)
-//    {
-//        if ($request->ajax() && AuthCustom::check()) {
-//            try{
-//                $page = $request->page;
-//                $urlhistory = '/transfer/history';
-//
-//                $method = "GET";
-//                $val = array();
-//                $jwt = Session::get('jwt');
-//                if(empty($jwt)){
-//                    return response()->json([
-//                        'status' => "LOGIN"
-//                    ]);
-//                }
-//                $val['token'] =$jwt;
-//                $val['page'] = $page;
-//
-//                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
-//
-//                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
-//
-//                    $data = $result_ApiHistory->data;
-//
-//                    if (isEmpty($data->data)){
-//                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
-//                    }
-//
-//                    return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
-//                } else {
-//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//                }
-//            }
-//            catch(\Exception $e){
-//                Log::error($e);
-//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//            }
-//        }
-//    }
+
 
 
 }

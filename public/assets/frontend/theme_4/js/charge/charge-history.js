@@ -40,9 +40,11 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
 
+
             },
             success: (data) => {
 
+                $('.loading-data__timkiem').html('');
                 if (data.status == 1){
                     $("#data_pay_card_history_ls").empty().html('');
                     $("#data_pay_card_history_ls").empty().html(data.data);
@@ -52,7 +54,7 @@ $(document).ready(function(){
                     html += '<table class="table table-hover table-custom-res">';
                     html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '<tr class="account_content_transaction_history"><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';
@@ -66,14 +68,17 @@ $(document).ready(function(){
 
             },
             complete: function (data) {
-
+                $('.user-manager .menu-content ').css('min-height','auto')
             }
         });
     }
 
     $(document).on('submit', '.form-charge_ls', function(e){
         e.preventDefault();
-
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
+        $('.btn-search .loading-data__timkiem').html('');
+        $('.btn-search .loading-data__timkiem').html(htmloading);
         var serial_data = $('.serial').val();
 
         if (serial_data == null || serial_data == undefined || serial_data == ''){
@@ -203,7 +208,10 @@ $(document).ready(function(){
     });
 
     $('body').on('click','.btn-all',function(e){
-
+        var htmloading = '';
+        htmloading += '<div class="loading-table"></div>';
+        $('.btn-all .loading-data__timkiem').html('');
+        $('.btn-all .loading-data__timkiem').html(htmloading);
         $('.serial').val('');
         $('.key').val('');
         $('.status').val('');

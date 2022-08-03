@@ -1,5 +1,5 @@
 
-@if(empty($data->data))
+
 
 <div class="table-responsive">
     <table class="table table-hover table-custom-res">
@@ -78,6 +78,6 @@
         @endif
     @endif
 </div>
-@endif
+
 
 

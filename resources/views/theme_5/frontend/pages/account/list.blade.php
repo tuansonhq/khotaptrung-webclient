@@ -51,7 +51,7 @@
         @include('frontend.widget.__slider__banner__account')
             <div class="booking_detail"></div>
 {{--        Danh sách acount    --}}
-{{--        @include('frontend.pages.account.widget.__datalist')--}}
+
             <section class="list-account">
                 <div class="section-header justify-content-between  d-none d-lg-flex c-py-16">
                     <h2 class="section-title">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</h2>
@@ -65,9 +65,9 @@
                         Chọn game muốn mua account
                     </div>
                     <div class="value-filter">
-                        <div class="tag">Mã số</div>
-                        <div class="tag">Trạng thái</div>
-                        <div class="tag">Rank</div>
+                        <div class="nick-findter-data" id="params-filter">
+
+                        </div>
                         <div class="show-modal-filter noselect" data-toggle="modal" data-target="#modal-filter">Bộ lọc</div>
                     </div>
                 </div>
@@ -96,46 +96,25 @@
                     </label>
                 </div>
                 <!-- End Mobile -->
-                <div id="listLoader" style="width: 100%;">
-                    <div class="loader position-relative" style="padding: 1rem">
-                        <div class="loading-spokes">
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                            <div class="spoke-container">
-                                <div class="spoke"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="listing-account c-mb-16" id="account_data">
 
-                    @include('frontend.pages.account.widget.__datalist')
-                </div>
+                <div class="is-load">
+                    <div class="loading-wrap">
+                        <span class="modal-loader-spin"></span>
+                    </div>
+                    <div class="listing-account c-mb-16 list-content">
+
+                        {{--                        @include('frontend.pages.account.widget.__datalist')--}}
+
+                    </div>
+                </div >
+
             </section>
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <form action="" class="form-filter">
+                        <form id="data_sort" action="" class="form-filter">
+
                             <div class="modal-header">
                                 <h2 class="modal-title center">Bộ lọc</h2>
                                 <button type="button" class="close" data-dismiss="modal"></button>
@@ -145,38 +124,65 @@
                                     <label class="form-label">
                                         Mã số
                                     </label>
-                                    <input type="text" id="" name="id" placeholder="Nhập mã số nick">
+                                    <input type="text" class="input-defautf-ct id" name="id_data" placeholder="Nhập mã số nick">
                                 </div>
-                                <div class="input-group">
-                                    <label class="form-label">
-                                        Trạng thái
-                                    </label>
-                                    <select name="status" id="">
-                                        <option value="">Chưa bán</option>
-                                        <option value="">Đã bán</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <label class="form-label">
-                                        Rank
-                                    </label>
-                                    <select name="rank" id="">
-                                        <option value="">Tinh anh</option>
-                                        <option value="">Cao thủ</option>
-                                    </select>
-                                </div>
+
                                 <div class="input-group">
                                     <label class="form-label">
                                         Giá tiền
                                     </label>
+                                    <select name="price" class="price" id="">
+                                        <option value="" selected disabled>Chọn giá tiền</option>
+                                        <option value="0-50000">Dưới 50K</option>
+                                        <option value="50000-200000">Từ 50K - 200K</option>
+                                        <option value="200000-500000">Từ 200K - 500K</option>
+                                        <option value="500000-1000000">Từ 500K - 1 Triệu</option>
+                                        <option value="1000000-5000000">Trên 1 Triệu</option>
+                                        <option value="5000000-10000000">Trên 5 Triệu</option>
+                                        <option value="10000000">Trên 10 Triệu</option>
+                                    </select>
                                 </div>
-                                <div class="c-pt-36">
-                                    <input type="text" name="price" class="rSlider-input sort-by-price d-none" id="sort-by-price">
+
+                                <div class="input-group">
+                                    <label class="form-label">
+                                        Trạng thái
+                                    </label>
+                                    <select name="status" class="status" id="">
+                                        <option value="" selected disabled>Chọn trạng thái</option>
+                                        <option value="1">Chưa bán</option>
+                                        <option value="2">Đã bán</option>
+                                    </select>
                                 </div>
+                                @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                    @foreach($dataAttribute as $val)
+                                        @if($val->position == 'select')
+                                            <div class="input-group">
+                                                <label class="form-label">
+                                                    {{ $val->title }}
+                                                </label>
+                                                <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
+                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                    @foreach($val->childs as $child)
+                                                        <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
+
+{{--                                <div class="input-group">--}}
+{{--                                    <label class="form-label">--}}
+{{--                                        Giá tiền--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="c-pt-36">--}}
+{{--                                    <div class="slider-input" data-min="20" data-max="50" data-option="10,100" data-start="50,60"></div>--}}
+{{--                                </div>--}}
                             </div>
-                            <div class="modal-footer">
-                                <a class="btn ghost js-reset-form">Xoá bộ lọc</a>
-                                <a class="btn primary js-submit-form">Xem kết quả</a>
+                            <div class="modal-footer c-mt-24 c-mt-lg-16">
+                                <a href="javascript:void(0)" class="btn ghost js-reset-form button-not-bg-ct reset-find">Xoá bộ lọc</a>
+                                <button type="button" class="btn primary js-submit-form btn-ap-dung">Xem kết quả</button>
                             </div>
                         </form>
                     </div>
@@ -301,13 +307,35 @@
                 </div>
             </div>
 
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+            <!-- Modal 04 -->
+            <div class="modal fade modal-small" id="notBuy">
+                <div class="modal-dialog modal-dialog-centered modal-custom">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center p-0">
+                            <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                        </div>
+                        <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                            <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
+                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                        </div>
+                        <div class="modal-footer c-p-24">
+                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
+                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         @endif
     </div>
 
 
 @endsection
 
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+@endsection
 

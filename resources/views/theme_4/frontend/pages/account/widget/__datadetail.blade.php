@@ -189,28 +189,45 @@
                             @endif
                         @endforeach
                     @endif
+
                     @if(isset($data->params) && isset($data->params->ext_info))
                         <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                        @foreach($params as $key => $param)
-                            <div class="col-md-12">
-                                <div class="row gallery__03">
-                                    <div class="col-md-12 gallery__01__row">
-                                        <div class="row">
-                                            <div class="col-auto span__dangky__auto">
-                                                <i class="fas fa-angle-right"></i>
-                                            </div>
-                                            <div class="col-md-4 col-4 pl-0">
-                                                <span class="span__dangky">{{ $key }}</span>
-                                            </div>
-                                            <div class="col-md-6 col-6 pl-0">
-                                                <span class="span__dangky">{{ $param }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
+                        @if(isset($dataAttribute))
+                            @foreach($dataAttribute as $index=>$att)
+                                @if($att->position == 'text')
+                                    @if(isset($att->childs))
+                                        @foreach($att->childs as $child)
+                                            @foreach($params as $key => $param)
+                                                @if($key == $child->id && $child->is_slug_override == null)
+
+                                                    <div class="col-md-12">
+                                                        <div class="row gallery__03">
+                                                            <div class="col-md-12 gallery__01__row">
+                                                                <div class="row">
+                                                                    <div class="col-auto span__dangky__auto">
+                                                                        <i class="fas fa-angle-right"></i>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-4 pl-0">
+                                                                        <span class="span__dangky">{{ $child->title??'' }}</span>
+                                                                    </div>
+                                                                    <div class="col-md-6 col-6 pl-0">
+                                                                        <span class="span__dangky">{{ $param }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @endif
+                                @endif
+                            @endforeach
+                        @endif
                     @endif
+
+
                     <div class="col-md-12 gallery__bottom">
                         <div class="row text-center">
                             <div class="col-md-12 gallery__01__row">

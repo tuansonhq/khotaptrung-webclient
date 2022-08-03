@@ -12,7 +12,7 @@
 
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                    <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
 
@@ -26,7 +26,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
                                     </div>
@@ -138,25 +138,39 @@
                                 @endif
                             @endforeach
                         @endif
+
                         @if(isset($data->params) && isset($data->params->ext_info))
                             <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                            @foreach($params as $key => $param)
-                                <tr>
-                                    <td>
-                                            <span class="link-color">
-                                                {{ $key }}
-                                            </span>
-                                    </td>
-                                    <td>
-                                            <span>
-                                                {{ $param }}
-                                            </span>
-                                    </td>
-                                    {{--                                                    <td>--}}
-                                    {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                    {{--                                                    </td>--}}
-                                </tr>
-                            @endforeach
+                            @if(isset($dataAttribute))
+                                @foreach($dataAttribute as $index=>$att)
+                                    @if($att->position == 'text')
+                                        @if(isset($att->childs))
+                                            @foreach($att->childs as $child)
+                                                @foreach($params as $key => $param)
+                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                        <tr>
+                                                            <td>
+                                                                <span class="link-color">
+                                                                    {{ $child->title??'' }}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <span>
+                                                                    {{ $param }}
+                                                                </span>
+                                                            </td>
+                                                            {{--                                                    <td>--}}
+                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                            {{--                                                    </td>--}}
+                                                        </tr>
+
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
                         @endif
 
                     </table>
@@ -201,26 +215,41 @@
                                     @endif
                                 @endforeach
                             @endif
+
                             @if(isset($data->params) && isset($data->params->ext_info))
                                 <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                                @foreach($params as $key => $param)
-                                    <tr>
-                                        <td>
-                                            <span class="link-color">
-                                                {{ $key }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {{ $param }}
-                                            </span>
-                                        </td>
-                                        {{--                                                    <td>--}}
-                                        {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                        {{--                                                    </td>--}}
-                                    </tr>
-                                @endforeach
+                                @if(isset($dataAttribute))
+                                    @foreach($dataAttribute as $index=>$att)
+                                        @if($att->position == 'text')
+                                            @if(isset($att->childs))
+                                                @foreach($att->childs as $child)
+                                                    @foreach($params as $key => $param)
+                                                        @if($key == $child->id && $child->is_slug_override == null)
+                                                            <tr>
+                                                                <td>
+                                                            <span class="link-color">
+                                                                {{ $child->title??'' }}
+                                                            </span>
+                                                                </td>
+                                                                <td>
+                                                            <span>
+                                                                {{ $param }}
+                                                            </span>
+                                                                </td>
+                                                                {{--                                                    <td>--}}
+                                                                {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                                {{--                                                    </td>--}}
+                                                            </tr>
+
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
+
                         </table>
                         @php
                             if (isset($data->price_old)) {
@@ -252,10 +281,10 @@
                             <hr>
                         </div>
                         <div class="group-btn c-mb-16 d-none d-lg-flex " style="--data-between: 12px">
-                            <button class="btn secondary btn-tragop">Trả góp</button>
+                            <button class="btn secondary tinhnang">Trả góp</button>
                             @if(App\Library\AuthCustom::check())
                                 @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                    <button type="button" class="btn primary btn-muangay-not">Mua ngay</button>
+                                    <button type="button" class="btn primary the-cao-atm">Mua ngay</button>
                                 @else
                                     <button type="button" class="btn primary btn-muangay">Mua ngay</button>
                                 @endif
@@ -323,8 +352,17 @@
             </div>
             <div class="footer-mobile">
                 <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
-                    <button class="btn secondary js-step" data-target="#step3">Mua trả góp</button>
-                    <button class="btn primary js-step" data-target="#step2">Mua Ngay</button>
+                    <button class="btn secondary tinhnang">Mua trả góp</button>
+                    @if(App\Library\AuthCustom::check())
+                        @if(App\Library\AuthCustom::user()->balance < $data->price)
+                            <button class="btn primary the-cao-atm">Mua Ngay</button>
+                        @else
+                            <button class="btn primary js-step" data-target="#step2">Mua Ngay</button>
+                        @endif
+                    @else
+                        <button class="btn primary" onclick="openLoginModal()">Mua Ngay</button>
+                    @endif
+
                 </div>
             </div>
 
@@ -523,12 +561,12 @@
                                     <div class="c-ml-8 c-mr-8">
                                         <div>
                                             <span>
-                                                  <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/macacha.png" alt="">
+                                                  <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/son/macacha.png" alt="">
                                             </span>
                                         </div>
                                     </div>
                                     <button class="refresh-captcha">
-                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/son/refresh.png" alt="">
+                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/son/refresh.png" alt="">
                                     </button>
 
                                 </div>

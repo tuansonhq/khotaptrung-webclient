@@ -68,7 +68,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit"><i class="fas fa-search"></i> Tìm kiếm</button>
+                                    <button class="btn c-theme-btn c-btn-square m-b-10" type="submit">
+                                        <i class="fas fa-search"></i> Tìm kiếm
+                                    </button>
                                 </div>
                             </div>
                             <div class="row">

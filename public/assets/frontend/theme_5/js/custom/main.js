@@ -7,35 +7,32 @@ $(document).ready(function() {
     /*Quantity*/
     let js_quantity = $('.js-quantity');
     if (js_quantity.length){
-        let input = js_quantity.find('.js-quantity-input');
         js_quantity.on('click','.js-quantity-minus',function (event) {
             event.preventDefault();
+            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
             input.val(parseInt(input.val()) - 1);
-            if(input.val() < 1 ){
+            if(input.val() < 1 || isNaN(input.val())){
                 input.val(1);
             }
         });
         js_quantity.on('click','.js-quantity-add',function (event) {
             event.preventDefault();
+            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
             input.val(parseInt(input.val()) + 1);
-            if(input.val() > 20 ){
+            if(input.val() > 20 || isNaN(input.val())){
                 input.val(20);
             }
         });
         js_quantity.on('input','.js-quantity-input',function () {
-            if (input.val() > 20){
-                input.val(20);
+            if ($(this).val() > 20 || isNaN($(this).val())){
+                $(this).val(20);
             }
-            if (input.val() < 1){
-                input.val(1);
-            }
-            if (isNaN(input.val())) {
-                input.val(1);
+            if ($(this).val() < 1 || isNaN($(this).val())){
+                $(this).val(1);
             }
         });
     }
     /*End quantity*/
-
     /*Input chỉ được nhập số*/
     $(document).on('keypress','input[numberic]', function (e) {
         if (isNaN(this.value + String.fromCharCode(e.keyCode))) return false;
@@ -127,7 +124,7 @@ $(document).ready(function() {
         $('label[for=bottom-sheet-sort]').trigger('click');
         $('label.tool-sort').text($(this).parent().text().trim());
     });
-/*Modal chi tiết nick liên minh*/
+    /*Modal chi tiết nick liên minh*/
 
     $('body').on('click','.submit--search',function(e){
         e.preventDefault();
@@ -181,13 +178,12 @@ $(document).ready(function() {
 
     if (width < 992){
         /*Step Mobile*/
-        $('body').on('click','.js-step',function () {
+        $(document).on('click','.js-step',function () {
             let selector = $(this).data('target');
             let elm = $(selector);
             elm.css('transform','translateX(0)');
         })
-
-        $('body').on('click','.close-step',function (e) {
+        $(document).on('click','.close-step',function (e) {
             e.preventDefault();
             let elm = $(this).closest('.step');
             elm.css('transform','translateX(130%)')
@@ -220,8 +216,8 @@ $(document).ready(function() {
             start = width < 992 ? $(this).outerWidth() - 75 : $(this).outerWidth() - 60;
             end =  $(this).outerWidth() - 40;
         } else {
-             start = width < 992 ? $(this).outerWidth() - 54 : $(this).outerWidth() - 32;
-             end =  $(this).outerWidth() - 12;
+            start = width < 992 ? $(this).outerWidth() - 54 : $(this).outerWidth() - 32;
+            end =  $(this).outerWidth() - 12;
         }
         if (e.offsetX >= start && e.offsetX <= end) {
             let value = $(this).find('input').val();
@@ -280,51 +276,32 @@ $(document).ready(function() {
         }
     }
 
-    /*Auto config rSlider JS*/
-    let rSlider_input = $('.slider-input');
-    if (rSlider_input.length) {
-        Array.from(rSlider_input).forEach(function (elm) {
-            /*Nếu mà nằm trong modal thì không khởi tạo được nên bỏ qua xử lí sau*/
-            let inside_modal = $(elm).closest('.modal');
-            if (inside_modal.length) {
-                return;
+    /*Auto config noUiSlider JS*/
+    let slider_input = $('.slider-input');
+    if(slider_input.length){
+        Array.from(slider_input).forEach(function (elm) {
+            let option = $(elm).data('option').split(',');
+            let arr_start = $(elm).data('start').split(',');
+            let range = {
+                'min': parseInt(option[0]),
+                'max': parseInt(option[1]),
             }
-            setRSlider(elm);
-        });
-    }
-    /*handle rSlider on show Modal*/
-    $('.modal').on('show.bs.modal',function () {
-      let rSlider_input = $(this).find('.slider-input');
-      let has_slider = !!$(this).find('.rs-container').length;
-      if (rSlider_input.length && !has_slider){
-          setTimeout(function () {
-              Array.from(rSlider_input).forEach(function (elm) {
-                  setRSlider(elm);
-              });
-          },200);
-      }
-    });
-    function setRSlider(elm) {
-        let arr_values = $(elm).data('values').split(',');
-        let arr_default = $(elm).data('default').split(',');
-        let values = {
-            min:parseInt(arr_values[0]),
-            max:parseInt(arr_values[1]),
-        };
-        let step = parseInt(arr_values[2]);
-        let target = '#' + $(elm).attr('id');
-        let data_set = [parseInt(arr_default[0]),parseInt(arr_default[1])];
-        new rSlider({
-            target: target,
-            values: values,
-            step:step,
-            range: true,
-            tooltip: true,
-            scale: false,
-            labels: false,
-            disabled:false,
-            set:data_set,
-        });
+            let step= option[2] ? parseInt(option[2]) : 0;
+            let start = [parseInt(arr_start[0]),parseInt(arr_start[1])];
+            noUiSlider.create(elm, {
+                start: start,
+                step:step,
+                connect: true,
+                range: range,
+            });
+            elm.noUiSlider.on('update', function (values, handle) {
+                $(elm).attr('data-min',Math.round(values[0]));
+                $(elm).attr('data-max',Math.round(values[1]));
+            });
+            elm.noUiSlider.on('slide', function (values, handle) {
+                $(elm).addClass('changed');
+            })
+        })
     }
 
     if (width > 992) {
@@ -338,5 +315,13 @@ $(document).ready(function() {
                 }
             })
         }
+    }
+
+    /*scroll add box shadown*/
+    let card_service_select = $('#select-service').find('.card-body');
+    if (card_service_select.length){
+        card_service_select.on('scroll',function () {
+            $(this).parent().toggleClass('card-service-select',!!$(this).scrollTop())
+        })
     }
 });

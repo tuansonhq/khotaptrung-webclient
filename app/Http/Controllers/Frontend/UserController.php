@@ -230,20 +230,21 @@ class UserController extends Controller
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
-
                     $data = $response_data->data;
-
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
-
-
                     $html =  view('frontend.pages.transaction.widget.__transaction_history')
                         ->with('data', $data)->with('config', $config)->with('status', $status)->render();
-
                     if (count($data) == 0 && $page == 1){
                         return response()->json([
                             'status' => 0,
                             'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
                         ]);
                     }
                     return response()->json([
@@ -270,7 +271,7 @@ class UserController extends Controller
         catch(\Exception $e){
             Log::error($e);
             return response()->json([
-                'status' => "ERROR"
+                'status' => $e->getMessage()
             ]);
         }
     }

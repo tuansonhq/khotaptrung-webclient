@@ -2,86 +2,66 @@
 @section('content')
 <section>
     <div class="container">
-
         <div class="row user-manager">
-            @include('frontend.pages.widget.__menu_profile')
-
+            @include('frontend.widget.__menu_profile')
             <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
                 <div class="menu-content">
+
                     <div class="title">
-                        <h3>Thông tin hồ sơ</h3>
+                        <h3>Đổi mật khẩu</h3>
                     </div>
                     <div class="wapper profile">
+                        <div id="change-password-result">
 
-                        <form action="/profile" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="1d1UtKProIOHCYvd7GjOQ1mwzvuWei6FP3awwoKP">
-
+                        </div>
+                        <form method="POST" action="{{route('changePasswordApi')}}" id="form-changePassword" accept-charset="UTF-8" class="form-horizontal form-charge"><input name="_token" type="hidden" value="1d1UtKProIOHCYvd7GjOQ1mwzvuWei6FP3awwoKP">
+                            @csrf
                             <div class="form-row mb-4">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <label class="mt-2">ID</label>
+                                    <label class="mt-2">Mật khẩu cũ:</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <input type="text" class="form-control" placeholder="ID" name="id" value="74" readonly="">
-                                </div>
-                            </div>
-
-                            <div class="form-row mb-4">
-                                <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <label class="mt-2">Tên tài khoản</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <input type="text" class="form-control" placeholder="Tên tài khoản" name="username" value="3993473817374905@facebook.com" readonly>
+                                    <input class="form-control c-square c-theme " name="old_password" type="password"
+                                           maxlength="32"
+                                           required placeholder="Mật khẩu hiện tại">
                                 </div>
                             </div>
                             <div class="form-row mb-4">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <label class="mt-2">Email</label>
+                                    <label class="mt-2">Mật khẩu mới:</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <input type="text" class="form-control" readonly="" placeholder="Email" name="email" value="">
+                                    <input class="form-control c-square c-theme " name="password" type="password" maxlength="32"
+                                           required placeholder="Mật khẩu mới">
                                 </div>
                             </div>
                             <div class="form-row mb-4">
                                 <div class="col-lg-3 col-md-3 col-sm-12 col-12">
-                                    <label class="mt-2">Số điện thoại</label>
+                                    <label class="mt-2">Xác nhận mật khẩu:</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-12 col-12">
-                                    <input type="text" class="form-control" readonly="" placeholder="Số điện thoại" name="phone" value="">
+                                    <input class="form-control c-square c-theme " name="password_confirmation" type="password"
+                                           maxlength="32"
+                                           required placeholder="Xác nhận mật khẩu mới">
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="mb-4 text-center">
                                 <button class="btn-submit" type="submit">Cập nhật</button>
                             </div>
                         </form>
+
 
                     </div>
                 </div>
             </div>
         </div>
 
+
     </div><!-- /.container -->
 </section>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js?v={{time()}}"></script>
+<script>
+
+
+</script>
 @endsection

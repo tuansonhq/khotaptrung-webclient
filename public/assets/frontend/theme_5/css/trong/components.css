@@ -305,11 +305,13 @@ section.outstanding-service {
     font-size: 18px;
     line-height: 24px;
     color: var(--text-color);
+    min-height: 48px;
 }
 
 .related-posts .article-info {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /*Danh sách nick*/
@@ -658,8 +660,11 @@ section.outstanding-service {
     display: flex;
     justify-content: space-between;
 }
+.trans-list .trans-item a .text-left {
+    max-width: 70%;
+}
 .trans-list .trans-item:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .history-content .trans-list + .text-title-bold {
@@ -919,6 +924,32 @@ section.outstanding-service {
 .list-category .item-category {
     width: 20%;
 }
+
+/*loading history*/
+.is-load {
+    position: relative;
+    min-height: 100px;
+}
+.is-load:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.75);
+}
+.is-load .loading-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.is-load .modal-loader-spin {
+    width: 50px;height: 50px;
+}
+.bread-word {
+    word-break:break-word;
+}
 @media screen and (max-width: 992px) {
     .flash-sale {
         border-radius: 0;
@@ -1157,5 +1188,28 @@ section.outstanding-service {
     .text-title {
         font-size: 13px;
         line-height: 20px;
+    }
+    .service-select .card-body,
+    .history-content {
+        overflow-y: scroll;
+        padding-right: 4px;
+    }
+
+    .card-service-select:before,
+    .card-service-select:after
+    {
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        height: 16px;
+    }
+    .card-service-select:before {
+        box-shadow: var(--box-shadow-default);
+        top: 0;
+    }
+    .card-service-select:after {
+        box-shadow: 0 -2px 4px #E8E8E8;
+        bottom: 0;
     }
 }

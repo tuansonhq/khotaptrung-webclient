@@ -23,6 +23,9 @@ use \Illuminate\Support\Facades\Session;
 |
 */
 
+
+
+
 Route::get('/clear-cache', function ()
 {
     \Artisan::call('cache:clear');
@@ -237,6 +240,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
                         ->name('changePasswordApi');
                 });
+                // ROUTE cần auth load dữ liệu không cache
                 // ROUTE cần auth load dữ liệu không cache
 
                 Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
