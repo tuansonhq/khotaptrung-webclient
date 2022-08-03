@@ -31,7 +31,7 @@
                         <div
                             class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <input type="search" placeholder="Tìm kiếm" name="id" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
