@@ -19,7 +19,12 @@
                 <a href="/chi-tiet-lich-su-giao-dich">
                     <div class="text-left">
                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                       {{ @$item->description }}
+{{--                       {{ @$item->description }}--}}
+                        @foreach($config as $ils => $valls)
+                            @if($ils == $item->trade_type)
+                                {{ $valls }} (#{{ $item->id }})
+                            @endif
+                        @endforeach
                     </span>
                         <span class="t-body-1 link-color">
                         {{date('d/m/Y - H:i', strtotime($item->created_at))}}
