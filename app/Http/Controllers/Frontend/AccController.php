@@ -652,6 +652,7 @@ class AccController extends Controller
                         ]);
                     }
 
+
                     return response()->json([
                         "success"=> true,
                         "html" => $html,
@@ -779,6 +780,14 @@ class AccController extends Controller
                             'message' => 'Không có dữ liệu !',
                         ]);
                     }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
                     return response()->json([
                         "html" => $html,
                         "status" => 1,
