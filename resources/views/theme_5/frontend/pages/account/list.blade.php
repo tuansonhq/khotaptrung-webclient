@@ -97,14 +97,17 @@
                 </div>
                 <!-- End Mobile -->
 
-                <div class="listing-account c-mb-16" id="account_data">
-                    <div class="box-loading btn-loading c-my-24" style="margin: 0 auto">
-                        <div class="loading">
-                            <div class="loading-child"></div>
-                        </div>
+                <div class="is-load">
+                    <div class="loading-wrap">
+                        <span class="modal-loader-spin"></span>
                     </div>
-                    @include('frontend.pages.account.widget.__datalist')
-                </div>
+                    <div class="listing-account c-mb-16 list-content">
+
+                        {{--                        @include('frontend.pages.account.widget.__datalist')--}}
+
+                    </div>
+                </div >
+
             </section>
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
@@ -323,8 +326,7 @@
                 </div>
             </div>
 
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+
 
         @endif
     </div>
@@ -332,5 +334,8 @@
 
 @endsection
 
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+@endsection
 

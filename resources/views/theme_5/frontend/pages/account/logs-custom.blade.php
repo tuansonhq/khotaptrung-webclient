@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
 
     <div class="background-history">
@@ -31,7 +33,7 @@
                         </div>
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <input type="search" placeholder="Tìm kiếm" name="serial" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
@@ -45,7 +47,7 @@
                         </div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class="search">
+                                <input type="search" placeholder="Tìm kiếm" name="serial" class="search">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter c-ml-16">
