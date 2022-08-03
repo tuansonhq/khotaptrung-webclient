@@ -76,9 +76,11 @@
                         Sắp xếp theo:
                     </div>
                     <div class="value-sort">
-                        <a href="#" class="selection active md">Mới nhất</a>
-                        <a href="#" class="selection md">Cũ nhất</a>
-                        <a href="#" class="selection md">Giá cao nhất</a>
+                        <a href="#" class="selection active md" data-sort="random">Ngẫu nhiên</a>
+                        <a href="#" class="selection md" data-sort="price_start">Giá từ cao đến thấp</a>
+                        <a href="#" class="selection md" data-sort="price_end">Giá từ thấp đến cao</a>
+                        <a href="#" class="selection md" data-sort="created_at_start">Mới nhất</a>
+                        <a href="#" class="selection md" data-sort="created_at_end">Cũ nhất</a>
                     </div>
                 </div>
 
@@ -132,7 +134,7 @@
                                         Giá tiền
                                     </label>
                                     <select name="price" class="price" id="">
-                                        <option value="" selected disabled>Chọn giá tiền</option>
+                                        <option value="" selected>Chọn giá tiền</option>
                                         <option value="0-50000">Dưới 50K</option>
                                         <option value="50000-200000">Từ 50K - 200K</option>
                                         <option value="200000-500000">Từ 200K - 500K</option>
@@ -147,7 +149,7 @@
                                     <label class="form-label">
                                         Trạng thái
                                     </label>
-                                    <select name="status" class="status" id="">
+                                    <select name="status_data" class="status" id="">
                                         <option value="" selected disabled>Chọn trạng thái</option>
                                         <option value="1">Chưa bán</option>
                                         <option value="2">Đã bán</option>
@@ -160,8 +162,8 @@
                                                 <label class="form-label">
                                                     {{ $val->title }}
                                                 </label>
-                                                <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
-                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                <select class="account-filter-field" name="select_data"  data-title="{{ $val->title }}">
+                                                    <option value="" selected>--Không chọn--</option>
                                                     @foreach($val->childs as $child)
                                                         <option value="{{ $child->id }}">{{ $child->title }}</option>
                                                     @endforeach
