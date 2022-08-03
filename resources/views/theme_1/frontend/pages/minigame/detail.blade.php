@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -127,7 +127,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -281,7 +281,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
@@ -346,7 +346,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -485,7 +485,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -640,7 +640,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -827,7 +827,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -988,7 +988,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
@@ -1138,7 +1138,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -1660,7 +1660,7 @@
         @case('flip')
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift"
-                   value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+                   value="{{ \App\Library\MediaHelpers::media($item->children[0]->image) }}">
         @endforeach
         <style type="text/css">
             .boxflip .active {
@@ -2631,7 +2631,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->children[0]->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3{
                 display: inline-block;
@@ -3398,7 +3398,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->children[0]->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3,#slot4,#slot5{
                 display: inline-block;
@@ -3420,7 +3420,7 @@
                 @if(isset($result->group->items) && count($result->group->items)>0)
                 @foreach($result->group->items as $index=>$item)
                 $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->children[0]->image)}}');
                 @endforeach
                 @endif
                 $(".thele").on("click", function(){
