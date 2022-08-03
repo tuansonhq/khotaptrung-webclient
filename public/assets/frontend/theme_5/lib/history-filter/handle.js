@@ -173,4 +173,17 @@ $(document).ready(function () {
             }
         });
     }
+
+    /*Tìm kiếm*/
+    let form_search_history = $('.form-search');
+    if (form_search_history.length) {
+        form_search_history.on('submit',function (e) {
+            e.preventDefault();
+            setParamsUrlToQuery();
+           let input = $(this).find('input[type=search]');
+           let query_key = input.attr('name');
+           query[query_key] = input.val();
+           loadDataApi(query);
+        })
+    }
 });
