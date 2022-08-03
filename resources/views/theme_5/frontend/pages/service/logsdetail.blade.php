@@ -33,12 +33,180 @@
                         <h1 class="fw-700 fz-20 lh-28 c-my-0">Chi tiết dịch vụ đã mua</h1>
                         <div class="d-none d-sm-block">
                             @if($data->status==1)
-                            <button class="btn ghost c-mr-10" data-toggle="modal" data-target="#modal-cancel-service">Hủy
-                                dịch vụ
-                            </button>
+                                @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' || $data->itemconfig_ref->idkey!=null ))
+                                @else
+                                    @if($data->gate_id == 1)
+
+                                    @else
+                                        <button class="btn ghost c-mr-10" id="btnDestroy" data-id="{{ $data->id }}">Hủy
+                                            dịch vụ
+                                        </button>
+                                    @endif
+                                @endif
+
+                                <!-- modal cancel -->
+                                    <div class="modal fade" id="destroyModal" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content c-p-24">
+                                                {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/destroy/','class'=>'m-form destroyForm','method'=>'post'))}}
+
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title center">Hủy bỏ yêu cầu dịch vụ</h2>
+                                                    <button type="button" class="close" data-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body pl-0 pr-0 c-pt-40 c-pb-40">
+                                                    <div class="c-mt-8">
+                                                        <label class="c-mb-4 fw-500 fz-13 lh-20">Lỗi thuộc về</label>
+                                                        <div class="col-md-12 p-0">
+                                                            <select name="mistake_by" class="mistake_by" id="">
+                                                                <option value="" selected disabled>-- Không chọn --</option>
+                                                                <option value="1">Khách</option>
+                                                                <option value="0">QTV</option>
+                                                                <option value="2">Game</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="c-mt-8">
+                                                        <label class="c-mb-4 fw-500 fz-13 lh-20">Nội dung</label>
+                                                        <div class="col-md-12 p-0">
+                                                            <textarea name="note" id="" cols="9" rows="3"
+                                                              placeholder="Nội dung hủy bỏ phải có ít nhất 10 ký tự"
+                                                              style="height: 84px;">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit"  class="btn primary">Xác nhận</button>
+                                                </div>
+                                                {{Form::close()}}
+                                            </div>
+                                        </div>
+                                    </div>
                             @endif
 
-                            <button class="btn primary" data-toggle="modal" data-target="#modal-update-info">Chỉnh sửa thông tin</button>
+                            @if($data->status==1)
+
+                                @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
+                                @else
+
+                                    @if($data->itemconfig_ref->idkey =='nrogem')
+                                    @else
+                                        <button class="btn primary btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
+                                    @endif
+                                @endif
+
+                                <!-- modal update info -->
+                                    <div class="modal fade " id="edit_info" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-custom">
+                                            <div class="modal-content c-p-24">
+                                                {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/edit/','class'=>'m-form editForm','method'=>'post'))}}
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title center">Chỉnh sửa thông tin</h2>
+                                                    <button type="button" class="close" data-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body pl-0 pr-0 c-pt-12 c-pb-40">
+                                                    @php
+                                                        $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->itemconfig_ref->params);
+                                                        $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->itemconfig_ref->params);
+                                                        $index = 0;
+                                                    @endphp
+                                                    @if(!empty($send_name)&& count($send_name)>0)
+                                                        @for ($i = 0; $i < count($send_name); $i++)
+                                                            @if($send_name[$i]!=null)
+                                                                @php
+                                                                    $index = $index + 1;
+                                                                @endphp
+                                                                <div class="c-mt-12">
+                                                                    <label class="c-mb-4 fw-500 fz-13 lh-20">{{$send_name[$i]}}</label>
+                                                                    <div class="col-md-12 p-0">
+
+                                                                        @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                                <input required type="text" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                                            @else
+                                                                                <input required type="text" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                                            @endif
+                                                                        @elseif($send_type[$i]==4)
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                                <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" placeholder="{{$send_name[$i]}}">
+                                                                            @else
+                                                                                <input type="file" required accept="image/*" class="form-control" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
+                                                                            @endif
+                                                                        @elseif($send_type[$i]==5)
+                                                                            @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                                <input class="input-primary" type="password" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" placeholder="{{$send_name[$i]}}">
+                                                                            @else
+                                                                                <input class="input-primary" type="password" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" placeholder="{{$send_name[$i]}}">
+                                                                            @endif
+                                                                        @elseif($send_type[$i]==6)
+                                                                            @php
+                                                                                if (\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params))){
+                                                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params));
+                                                                                }else{
+                                                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                                                }
+                                                                            @endphp
+                                                                            <select name="customer_data{{$i}}" id="">
+                                                                                @if(!empty($send_data))
+                                                                                    @for ($sn = 0; $sn < count($send_data); $sn++)
+                                                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                                                            <option value="{{$sn}}" {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))==$sn?"selected":""}}>{{$send_data[$sn]}}</option>
+                                                                                        @else
+                                                                                            <option value="{{$sn}}" {{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)==$sn?"selected":""}}>{{$send_data[$sn]}}</option>
+                                                                                        @endif
+                                                                                    @endfor
+                                                                                @endif
+                                                                            </select>
+                                                                        @endif
+
+                                                                    </div>
+                                                                </div>
+
+                                                            @endif
+                                                        @endfor
+                                                    @endif
+
+{{--                                                    <div class="c-mt-12">--}}
+{{--                                                        <label class="c-mb-4 fw-500 fz-13 lh-20">Tài khoản</label>--}}
+{{--                                                        <div class="col-md-12 p-0">--}}
+{{--                                                            <input type="text" name="" id="" placeholder="placeholder">--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="c-mt-12">--}}
+{{--                                                        <label class="c-mb-4 fw-500 fz-13 lh-20">Mật khẩu</label>--}}
+{{--                                                        <div class="toggle-password">--}}
+{{--                                                            <input class="input-primary" type="password" name="" id="" placeholder="placeholder">--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="c-mt-12">--}}
+{{--                                                        <label class="c-mb-4 fw-500 fz-13 lh-20">Nhiệm vụ hiện tại</label>--}}
+{{--                                                        <select name="" id="">--}}
+{{--                                                            <option value="">Nhiệm vụ bán vàng</option>--}}
+{{--                                                            <option value="">Nhiệm vụ bán ngọc</option>--}}
+{{--                                                        </select>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="c-mt-12">--}}
+{{--                                                        <div class="col-md-12 p-0 position-relative">--}}
+{{--                                                            <label for="checkbox2" class="input-checkbox">--}}
+{{--                                                                <input type="checkbox" checked="" name="select" id="checkbox2">--}}
+{{--                                                                <span class="checkmark"></span>--}}
+{{--                                                                <span class="text-label c-cursor">Bạn Đã Đọc Kĩ Quy Định Và Chuẩn Bị Đầy Đủ Vật Phẩm, Phụ Kiện Theo Yêu Cầu Của Shop Chưa?</span>--}}
+{{--                                                            </label>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+                                                    <input type="hidden" name="index" class="index" value="{{ $index }}">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn primary">Xem kết quả</button>
+                                                </div>
+                                                {{Form::close()}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end modal -->
+                            @endif
+
 
                         </div>
                     </div>
@@ -152,49 +320,7 @@
                 @endif
             </div>
             <!-- Modal -->
-            <!-- modal cancel -->
-            <div class="modal fade" id="modal-cancel-service" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content c-p-24">
-                        <div class="modal-header">
-                            <h2 class="modal-title center">Hủy bỏ yêu cầu dịch vụ</h2>
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body pl-0 pr-0 c-pt-40 c-pb-40">
-                            <div class="c-mt-8">
-                                <label class="c-mb-4 fw-500 fz-13 lh-20">Lỗi thuộc về</label>
-                                <div class="col-md-12 p-0">
-                                    <select class="default-select brs-8 fz-13" name="" id="" style="display: none;">
-                                        <option value="">--- Chọn---</option>
-                                        <option value="">Is Text Demo</option>
-                                        <option value="">Is Text Demo</option>
-                                        <option value="">Is Text Demo</option>
-                                    </select>
-                                    <div class="nice-select default-select brs-8 fz-13" tabindex="0"><span class="current">--- Chọn---</span>
-                                        <ul class="list">
-                                            <li data-value="" class="option selected">--- Chọn---</li>
-                                            <li data-value="" class="option">Is Text Demo</li>
-                                            <li data-value="" class="option">Is Text Demo</li>
-                                            <li data-value="" class="option">Is Text Demo</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="c-mt-8">
-                                <label class="c-mb-4 fw-500 fz-13 lh-20">Nội dung</label>
-                                <div class="col-md-12 p-0">
-                                <textarea name="" id="" cols="9" rows="3"
-                                          placeholder="Nội dung hủy bỏ phải có ít nhất 10 ký tự"
-                                          style="height: 84px;"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn primary">Xác nhận</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- modal send message -->
             <div class="modal fade" id="modal-send-message" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
@@ -252,56 +378,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none" style="--data-between: 12px">
                 <button class="btn ghost open-sheet" data-target="#sheet-cancel-service">Huỷ dịch vụ</button>
                 <button class="btn primary open-sheet" data-target="#sheet-update-info">Chỉnh sửa thông tin</button>
             </div>
 
-            <!-- modal update info -->
-            <div class="modal fade" id="modal-update-info" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-custom">
-                    <div class="modal-content c-p-24">
-                        <div class="modal-header">
-                            <h2 class="modal-title center">Chỉnh sửa thông tin</h2>
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body pl-0 pr-0 c-pt-12 c-pb-40">
-                            <div class="c-mt-12">
-                                <label class="c-mb-4 fw-500 fz-13 lh-20">Tài khoản</label>
-                                <div class="col-md-12 p-0">
-                                    <input type="text" name="" id="" placeholder="placeholder">
-                                </div>
-                            </div>
-                            <div class="c-mt-12">
-                                <label class="c-mb-4 fw-500 fz-13 lh-20">Mật khẩu</label>
-                                <div class="toggle-password">
-                                    <input class="input-primary" type="password" name="" id="" placeholder="placeholder">
-                                </div>
-                            </div>
-                            <div class="c-mt-12">
-                                <label class="c-mb-4 fw-500 fz-13 lh-20">Nhiệm vụ hiện tại</label>
-                                <select name="" id="">
-                                    <option value="">Nhiệm vụ bán vàng</option>
-                                    <option value="">Nhiệm vụ bán ngọc</option>
-                                </select>
-                            </div>
-                            <div class="c-mt-12">
-                                <div class="col-md-12 p-0 position-relative">
-                                    <label for="checkbox2" class="input-checkbox">
-                                        <input type="checkbox" checked="" name="select" id="checkbox2">
-                                        <span class="checkmark"></span>
-                                        <span class="text-label c-cursor">Bạn Đã Đọc Kĩ Quy Định Và Chuẩn Bị Đầy Đủ Vật Phẩm, Phụ Kiện Theo Yêu Cầu Của Shop Chưa?</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn primary">Xem kết quả</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end modal -->
             <!-- Sheet -->
             <!-- sheet cancel -->
             <div class="bottom-sheet" id="sheet-cancel-service" aria-hidden="true" data-height="50">
@@ -449,6 +531,15 @@
             @include('frontend.widget.__service__other__his')
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history-detail.js">
+
+    </script>
+    <script>
+        $('#btnDestroy').modal('show')
+    </script>
 @endsection
 
 
