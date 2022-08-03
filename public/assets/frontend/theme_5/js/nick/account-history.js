@@ -26,7 +26,7 @@ function loadDataApi(query) {
 
             if (res.status === 1) {
                 let html = res.html;
-                console.log(html)
+
                 history_see_more ? content_history.append(html) : content_history.html(html);
 
                 /*Đặt lại giá trị false sau khi load more*/

@@ -163,22 +163,38 @@
                                                                     @endforeach
                                                                 @endif
                                                                 @if($total < 7)
+
                                                                     @if(isset($data->params) && isset($data->params->ext_info))
-                                                                        <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
-                                                                        @foreach ($params as $key => $param)
-                                                                            <?php
-                                                                                $total = $total + 1;
-                                                                            ?>
-                                                                            <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                                <div class="col-auto gallery-col-auto-left left-right">
-                                                                                    <small>{{ $key }}</small>
-                                                                                </div>
-                                                                                <div class="col-auto gallery-col-auto-right left-right">
-                                                                                    <span>{{ $param }}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        @endforeach
+                                                                        <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                                                        @if(isset($dataAttribute))
+                                                                            @foreach($dataAttribute as $index=>$att)
+                                                                                @if($att->position == 'text')
+                                                                                    @if(isset($att->childs))
+                                                                                        @foreach($att->childs as $child)
+                                                                                            @foreach($params as $key => $param)
+                                                                                                <?php
+                                                                                                    $total = $total + 1;
+                                                                                                ?>
+                                                                                                @if($key == $child->id && $child->is_slug_override == null)
+
+                                                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                        <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                            <small>{{ $child->title??'' }}</small>
+                                                                                                        </div>
+                                                                                                        <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                            <span>{{ $param }}</span>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                @endif
+                                                                                            @endforeach
+                                                                                        @endforeach
+                                                                                    @endif
+                                                                                @endif
+                                                                            @endforeach
+                                                                        @endif
                                                                     @endif
+
                                                                 @endif
 
                                                                 @if ($total < 7)
@@ -417,19 +433,35 @@
                                                                         @endif
                                                                     @endforeach
                                                                 @endif
+
                                                                 @if(isset($data->params) && isset($data->params->ext_info))
-                                                                    <?php $params = json_decode(json_encode($data->params->ext_info),true); ?>
-                                                                    @foreach ($params as $key => $param)
-                                                                    <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
-                                                                        <div class="col-auto gallery-col-auto-left left-right">
-                                                                            <small>{{ $key }}</small>
-                                                                        </div>
-                                                                        <div class="col-auto gallery-col-auto-right left-right">
-                                                                            <span>{{ $param }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    @endforeach
+                                                                    <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
+                                                                    @if(isset($dataAttribute))
+                                                                        @foreach($dataAttribute as $index=>$att)
+                                                                            @if($att->position == 'text')
+                                                                                @if(isset($att->childs))
+                                                                                    @foreach($att->childs as $child)
+                                                                                        @foreach($params as $key => $param)
+                                                                                            @if($key == $child->id && $child->is_slug_override == null)
+
+                                                                                                <div class="row marginauto gallery-right-top-body-black gallery-right-top-body-span">
+                                                                                                    <div class="col-auto gallery-col-auto-left left-right">
+                                                                                                        <small>{{ $child->title??'' }}</small>
+                                                                                                    </div>
+                                                                                                    <div class="col-auto gallery-col-auto-right left-right">
+                                                                                                        <span>{{ $param }}</span>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @endforeach
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
                                                                 @endif
+
                                                             </div>
                                                         </div>
 

@@ -138,25 +138,39 @@
                                 @endif
                             @endforeach
                         @endif
+
                         @if(isset($data->params) && isset($data->params->ext_info))
                             <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                            @foreach($params as $key => $param)
-                                <tr>
-                                    <td>
-                                            <span class="link-color">
-                                                {{ $key }}
-                                            </span>
-                                    </td>
-                                    <td>
-                                            <span>
-                                                {{ $param }}
-                                            </span>
-                                    </td>
-                                    {{--                                                    <td>--}}
-                                    {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                    {{--                                                    </td>--}}
-                                </tr>
-                            @endforeach
+                            @if(isset($dataAttribute))
+                                @foreach($dataAttribute as $index=>$att)
+                                    @if($att->position == 'text')
+                                        @if(isset($att->childs))
+                                            @foreach($att->childs as $child)
+                                                @foreach($params as $key => $param)
+                                                    @if($key == $child->id && $child->is_slug_override == null)
+                                                        <tr>
+                                                            <td>
+                                                                <span class="link-color">
+                                                                    {{ $child->title??'' }}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <span>
+                                                                    {{ $param }}
+                                                                </span>
+                                                            </td>
+                                                            {{--                                                    <td>--}}
+                                                            {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                            {{--                                                    </td>--}}
+                                                        </tr>
+
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
                         @endif
 
                     </table>
@@ -201,26 +215,41 @@
                                     @endif
                                 @endforeach
                             @endif
+
                             @if(isset($data->params) && isset($data->params->ext_info))
                                 <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                                @foreach($params as $key => $param)
-                                    <tr>
-                                        <td>
-                                            <span class="link-color">
-                                                {{ $key }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                {{ $param }}
-                                            </span>
-                                        </td>
-                                        {{--                                                    <td>--}}
-                                        {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
-                                        {{--                                                    </td>--}}
-                                    </tr>
-                                @endforeach
+                                @if(isset($dataAttribute))
+                                    @foreach($dataAttribute as $index=>$att)
+                                        @if($att->position == 'text')
+                                            @if(isset($att->childs))
+                                                @foreach($att->childs as $child)
+                                                    @foreach($params as $key => $param)
+                                                        @if($key == $child->id && $child->is_slug_override == null)
+                                                            <tr>
+                                                                <td>
+                                                            <span class="link-color">
+                                                                {{ $child->title??'' }}
+                                                            </span>
+                                                                </td>
+                                                                <td>
+                                                            <span>
+                                                                {{ $param }}
+                                                            </span>
+                                                                </td>
+                                                                {{--                                                    <td>--}}
+                                                                {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
+                                                                {{--                                                    </td>--}}
+                                                            </tr>
+
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endif
+
                         </table>
                         @php
                             if (isset($data->price_old)) {
