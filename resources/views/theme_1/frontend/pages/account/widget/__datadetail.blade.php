@@ -216,6 +216,7 @@
                         @endforeach
                     @endif
                 @endif
+
                 <div class="col-md-12 gallery__bottom">
                     <div class="row text-center">
                         <div class="col-md-12 gallery__01__row">
