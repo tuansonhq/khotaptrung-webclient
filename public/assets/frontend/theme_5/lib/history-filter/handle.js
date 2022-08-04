@@ -123,19 +123,18 @@ $(document).ready(function () {
 
     $(document).on('click','#params-filter .tag',function () {
         let target_name = $(this).data('close');
-        if (target_name === 'started_at'){
-            $('.form-filter [name=started_at],.form-filter [name=ended_at]').val('');
-        }
-
-
         let target_simple = $(`.form-filter [name=${target_name}]`);
         let target = [];
-        Array.from(target_simple).forEach(function (elm) {
-            if (!!$(elm).val()){
-                target.push(elm);
-            }
-        });
-        target[$(this).index()].value = '';
+        if (target_name === 'started_at'){
+            $('.form-filter [name=started_at],.form-filter [name=ended_at]').val('');
+        }else {
+            Array.from(target_simple).forEach(function (elm) {
+                if (!!$(elm).val()){
+                    target.push(elm);
+                }
+            });
+            target[$(this).index()].value = '';
+        }
         loadData(form_filter);
         setParamsUrlToQuery();
         loadDataApi(query);
