@@ -124,6 +124,11 @@ class TranferController extends Controller
         }
     }
 
+    public function logsDetail(Request $request){
+
+        return view('frontend.pages.transfer.logsdetail');
+    }
+
     public function logs(Request $request)
     {
         try {
