@@ -40,7 +40,7 @@ $(document).ready(function () {
         e.preventDefault();
         let type = $(this).closest('#gameCard').length ? 'card_game' : 'card_phone';
         let quantity = $(this).parent().find('input').val();
-        
+
     });
     function updatePrice(discount,amount,quantity,type) {
         !discount ? discount = 0 : '';
