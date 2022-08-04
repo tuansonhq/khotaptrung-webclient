@@ -89,12 +89,9 @@
                                             <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
                                         </div>
                                     </div>
-                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
+                                    <button class="btn primary w-100 d-none d-lg-block" type="button" data-toggle="modal" data-target="#modal-confirm">
                                         Mua ngay
                                     </button>
-                                    <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
-                                        <button class="btn primary" type="submit">Mua ngay</button>
-                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -127,14 +124,10 @@
                                     <div class="buy-card-info c-p-16 c-mb-20 brs-12">
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
                                             <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
-                                            <div class="buy-card-amount d-flex">
-                                                <button class="buy-card-amount-button d-flex button-minus">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
-                                                </button>
-                                                <input type="text" name="card-amount" class="buy-card-amount-input" value="1" numberic>
-                                                <button class="buy-card-amount-button d-flex button-add">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
-                                                </button>
+                                            <div class="js-quantity">
+                                                <button class="js-quantity-minus" type="button"></button>
+                                                <input type="text" name="card-amount" class="js-quantity-input" value="1" numberic>
+                                                <button class="js-quantity-add" type="button"></button>
                                             </div>
                                         </div>
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
@@ -147,7 +140,7 @@
                                             <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
                                         </div>
                                     </div>
-                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
+                                    <button class="btn primary w-100 d-none d-lg-block" type="button" data-toggle="modal" data-target="#modal-confirm">
                                         Mua ngay
                                     </button>
                                 </div>
@@ -187,7 +180,137 @@
         <div class="c-my-32 d-none d-lg-block">
             @include('frontend/widget/__services__other')
         </div>
+    </div>
 
+    <!-- Button Mobile -->
+    <div class="footer-mobile group-btn">
+        <button class="btn primary js-step" data-target="#step-confirm" type="button">Mua ngay</button>
+    </div>
+    <!-- Modal Xác nhận-->
+    <div class="modal fade" id="modal-confirm">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content c-p-24">
+                <div class="modal-header">
+                    <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                    <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
+                        Thông tin mua thẻ
+                    </div>
+                    <div class="card card-dark c-px-12 c-py-4 c-mb-16">
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Loại thẻ</div>
+                            <div class="t-body-2 t-type-card">Zing</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Số lượng</div>
+                            <div class="t-body-2 t-quantity-card">01</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Chiết khấu</div>
+                            <div class="t-body-2 t-discount-card">03 %</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Mệnh giá</div>
+                            <div class="t-body-2 t-amount-card">0 đ</div>
+                        </div>
+                    </div>
+                    <div class="card card-dark c-px-12 c-py-4 c-mb-16">
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Phương thức thanh toán</div>
+                            <div class="t-body-2">Tài khoản Shopbrand</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Phí thanh toán</div>
+                            <div class="t-body-2">Miễn phí</div>
+                        </div>
+                    </div>
+                    <div class="card card-dark c-px-12 c-py-4">
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Số tiền thanh toán</div>
+                            <div class="t-body-2 text-primary-color t-total-card">0đ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Mua thất bại -->
+    <div class="modal fade modal-328" id="modal-failed">
+        <div class="modal-dialog modal-dialog-centered c-px-sm-16">
+            <div class="modal-content">
+                <div class="modal-body text-center c-p-0">
+                    <div class="banner">
+                        <img width="143" height="114" class="" src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
+                    </div>
+                    <p class="t-sub-1 title-color">Mua thẻ thất bại</p>
+                    <span class="t-body-1 res-message">
+
+                    </span>
+                </div>
+                <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
+                    <button type="button" class="btn ghost" data-dismiss="modal">Đóng</button>
+                    <a href="/nap-tien" class="btn primary">Nạp tiền</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step Mobile -->
+    <div class="step" id="step-confirm">
+        <div class="head-mobile">
+            <a href="" class="link-back close-step"></a>
+
+            <div class="head-title text-title">Xác nhận thanh toán</div>
+
+            <a href="#" class="home"></a>
+        </div>
+        <div class="body-mobile c-px-16">
+            <div class="t-sub-2 title-color c-mt-16 c-mb-12">
+                Thông tin mua thẻ
+            </div>
+            <div class="card c-px-12 c-py-4 c-mb-16">
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Loại thẻ</div>
+                    <div class="t-body-2 t-type-card">Zing</div>
+                </div>
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Số lượng</div>
+                    <div class="t-body-2 t-quantity-card">01</div>
+                </div>
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Chiết khấu</div>
+                    <div class="t-body-2 t-discount-card">03 %</div>
+                </div>
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Mệnh giá</div>
+                    <div class="t-body-2 t-amount-card">0 đ</div>
+                </div>
+            </div>
+            <div class="card c-px-12 c-py-4 c-mb-16">
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Phương thức thanh toán</div>
+                    <div class="t-body-2">Tài khoản Shopbrand</div>
+                </div>
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Phí thanh toán</div>
+                    <div class="t-body-2">Miễn phí</div>
+                </div>
+            </div>
+            <div class="card c-px-12 c-py-4">
+                <div class="d-flex justify-content-between c-py-4">
+                    <div class="t-body-1 link-color">Số tiền thanh toán</div>
+                    <div class="t-body-2 text-primary-color t-total-card">0đ</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-mobile group-btn">
+            <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
+        </div>
     </div>
 @endsection
 @section('scripts')

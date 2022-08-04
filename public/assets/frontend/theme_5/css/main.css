@@ -1690,6 +1690,7 @@ i.title-info:after {
     margin-left: 4px;
     background-image: url(../image/svg/copy.svg);
     filter: var(--filter-link-default-color);
+    cursor: pointer;
 }
 .history-detail-attr .card-attr {
     display: flex;
