@@ -16,7 +16,7 @@
     <ul class="trans-list">
         @forelse($group as $item)
             <li class="trans-item">
-                <a href="/chi-tiet-lich-su-giao-dich">
+                <a href="/lich-su-mua-nick-{{ $item->randId }}">
                     <div class="text-left">
                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
                         @if(isset($item->groups))
