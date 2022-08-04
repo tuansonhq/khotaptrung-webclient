@@ -146,8 +146,9 @@
                             </div>
                         </div>
 
-                        @if(isset($currentPlayList) && $currentPlayList != '')
+
                         <div class="rotation c-p-16" style="background-image: url(/assets/frontend/{{theme('')->theme_key}}/image/phu/rotation_bg.png)">
+                            @if(isset($currentPlayList) && $currentPlayList != '')
                             <div class="rotation-notify d-none d-lg-flex w-100 c-mb-16">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/sound.svg" alt="">
                                 <marquee class="rotation-marquee">
@@ -157,14 +158,48 @@
                                     </div>
                                 </marquee>
                             </div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <div class="rotation-button">
-                                    <img class="lazy" src="/assets/theme_3/image/images_1/rotation-button.png" alt="">
-                                </div>
-                                <img style="width: 70%" class="lazy" src="/assets/theme_3/image/images_1/rotation-img.png" alt="" id="rotate-play">
-                            </div>
+                            @endif
+
+                            @switch($position)
+                                @case('rubywheel')
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="rotation-button">
+                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                        </div>
+                                        <img style="width: 70%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                                    </div>
+                                    @break
+                                @case('flip')
+                                    @dd(222)
+                                    @break
+                                @case('slotmachine')
+                                    @dd(333)
+                                    @break
+                                @case('slotmachine5')
+                                    @dd(4444)
+                                    @break
+                                @case('squarewheel')
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="rotation-button">
+                                            <img class="lazy" src="/assets/theme_3/image/images_1/rotation-button.png" alt="">
+                                        </div>
+                                        <img style="width: 70%" class="lazy" src="/assets/theme_3/image/images_1/rotation-img.png" alt="" id="rotate-play">
+                                    </div>
+                                    @break
+                                @case('smashwheel')
+                                    @dd(6666)
+                                    @break
+                                @case('rungcay')
+                                    @dd(7777)
+                                    @break
+                                @case('gieoque')
+                                    @dd(888)
+                                    @break
+
+
+                            @endswitch
                         </div>
-                        @endif
+
 
                         <div class="row no-gutters">
                             <div class="col-12 col-lg-6 c-p-16 c-py-lg-8">
