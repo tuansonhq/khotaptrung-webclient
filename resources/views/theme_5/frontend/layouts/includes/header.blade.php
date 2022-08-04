@@ -162,3 +162,6 @@
         </div>
     </nav>
 </header>
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
