@@ -1,5 +1,11 @@
 /*Lấy chiều dài để responsive*/
 let width = $(document).width();
+
+/*format tiền*/
+let money_format = wNumb({
+    thousand: '.',
+    suffix: ' đ'
+});
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
