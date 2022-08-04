@@ -537,7 +537,6 @@
             </section>
 
             @include('frontend.pages.service.widget.__related')
-
             <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
                 <div class="modal-dialog modal-md modal-dialog-centered login animated">
                     <!--        <div class="image-login"></div>-->
