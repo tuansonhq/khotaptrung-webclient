@@ -840,6 +840,7 @@ class AccController extends Controller
             $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
             $response_data = $result_Api->response_data??null;
 
+
             if(isset($response_data) && $response_data->status == 1){
                 if (isset($response_data->data)){
                     $data = $response_data->data;
@@ -992,7 +993,7 @@ class AccController extends Controller
                     }else{
                         return response()->json([
                             'status' => 0,
-                            'message' => 'Đã lấy mật khẩu trước đó',
+                            'message' => $data->message,
                         ]);
                     }
                 }
