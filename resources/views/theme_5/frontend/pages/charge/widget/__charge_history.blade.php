@@ -16,31 +16,38 @@
     <ul class="trans-list">
         @forelse($group as $item)
             <li class="trans-item">
-                <a href="/lich-su-giao-dich-{{ $item->id }}">
+                <a href="/chi-tiet-lich-su-giao-dich">
                     <div class="text-left">
                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-{{--                       {{ @$item->description }}--}}
-                        @foreach($config as $ils => $valls)
-                            @if($ils == $item->trade_type)
-                                {{ $valls }} (#{{ $item->id }})
-                            @endif
-                        @endforeach
+                        {{ $item->telecom_key }} (#{{ $item->id }})
                     </span>
                         <span class="t-body-1 link-color">
                         {{date('d/m/Y - H:i', strtotime($item->created_at))}}
                     </span>
                     </div>
                     <div class="text-right">
-                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->amount, 0, ',', '.') }}đ</span>
+                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_amount, 0, ',', '.') }}đ</span>
                         @switch($item->status)
                             @case(1)
-                            <span class="success-color c-mb-0">Thành công</span>
+                                <span class="success-color c-mb-0">{{config('module.charge.status.1')}}</span>
                             @break
                             @case(0)
-                            <span class="invalid-color c-mb-0">Thất bại</span>
+                            <span class="invalid-color c-mb-0">{{config('module.charge.status.0')}}</span>
+                            @break
+                            @case(3)
+                            <span class="invalid-color c-mb-0">{{config('module.charge.status.3')}}</span>
                             @break
                             @case(2)
-                            <span class="warning-color c-mb-0">Đang xử lý</span>
+                            <span class="warning-color c-mb-0">{{config('module.charge.status.2')}}</span>
+                            @break
+                            @case(999)
+                            <span class="invalid-color c-mb-0">{{config('module.charge.status.999')}}</span>
+                            @break
+                            @case(-999)
+                            <span class="invalid-color c-mb-0">{{config('module.charge.status.-999')}}</span>
+                            @break
+                            @case(-1)
+                            <span class="invalid-color c-mb-0">{{config('module.charge.status.-1')}}</span>
                             @break
                         @endswitch
                     </div>
@@ -51,3 +58,4 @@
     </ul>
 @empty
 @endforelse
+
