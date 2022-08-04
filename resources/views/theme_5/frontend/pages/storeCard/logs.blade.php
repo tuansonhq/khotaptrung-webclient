@@ -8,11 +8,11 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="" class="breadcrumb-link">Thẻ cào đã mua</a>
+                    <a href="/the-cao-da-mua" class="breadcrumb-link">Thẻ cào đã mua</a>
                 </li>
             </ul>
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back close-step"></a>
+                <a href="/profile" class="link-back close-step"></a>
 
                 <h1 class="head-title text-title">Thẻ cào đã mua</h1>
 
@@ -29,7 +29,7 @@
                         </div>
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <input type="search" name="serial" placeholder="Tìm kiếm" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
@@ -39,172 +39,19 @@
                         <div class="tags d-none d-lg-flex justify-content-end c-mb-12" id="params-filter"></div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class="search">
+                                <input type="search" name="serial" placeholder="Tìm kiếm" class="search">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter c-ml-16">
                                 <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
                             </div>
                         </div>
-                        <div class="mr-n1 pb-3">
+                        <div class="mr-n1 pb-3 is-load">
+                            <div class="loading-wrap">
+                                <span class="modal-loader-spin"></span>
+                            </div>
                             <div class="history-content c-pt-16 mr-n2">
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="invalid-color c-mb-0">Thất bại</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
 
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="invalid-color c-mb-0">Thất bại</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="invalid-color c-mb-0">Thất bại</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="warning-color c-mb-0">Đang chờ xử lí</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/the-cao-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                                <span class="fw-500 title-color d-block c-mb-0">Rút tiền về TK ngân hàng</span>
-                                                <span class="link-color">26/04/2021 - 16:05</span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="invalid-color c-mb-0">Thất bại</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -223,10 +70,14 @@
                                         <!-- body -->
                                         <div class="input-group">
                                         <span class="form-label">
-                                            Loại giao dịch
+                                            Loại thẻ
                                         </span>
-                                            <select name="type-trans" id="">
-                                                <option value="">Chọn</option>
+                                            <select name="telecom" id="">
+                                                <option value="">Chọn loại thẻ</option>
+                                                @forelse($data_category['telecoms'] as $key => $telecom)
+                                                    <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
+                                                @empty
+                                                @endforelse
                                             </select>
                                         </div>
 
@@ -235,9 +86,11 @@
                                             Trạng thái
                                         </span>
                                             <select name="status" id="">
-                                                <option value="">Chọn</option>
-                                                <option value="1">Đã bán</option>
-                                                <option value="2">Chưa bán</option>
+                                                <option value="">Chọn trạng thái</option>
+                                                @forelse($data_category['status'] as $key => $status)
+                                                    <option value="{{ @$key }}">{{ @$status }}</option>
+                                                @empty
+                                                @endforelse
                                             </select>
                                         </div>
 
@@ -264,8 +117,8 @@
                                         </table>
                                     </div>
                                     <div class="sheet-footer">
-                                        <button class="btn secondary js-reset-form">Thiết lập lại</button>
-                                        <button class="btn primary js-submit-form">Xem kết quả</button>
+                                        <button type="button" class="btn secondary js-reset-form">Thiết lập lại</button>
+                                        <button type="button" class="btn primary js-submit-form">Xem kết quả</button>
                                     </div>
                                 </form>
                             </div>
@@ -282,20 +135,24 @@
                                         </div>
                                         <div class="modal-body c-p-0">
                                             <div class="input-group">
-                                                <span class="form-label title-color">Loại giao dịch</span>
+                                                <span class="form-label title-color">Loại thẻ</span>
                                                 <select name="type-trans" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="atm">ATM</option>
-                                                    <option value="wallet">Ví điện tử</option>
+                                                    <option value="">Chọn loại thẻ</option>
+                                                    @forelse($data_category['telecoms'] as $key => $telecom)
+                                                        <option value="{{ @$telecom->title }}">{{ @$telecom->title }}</option>
+                                                    @empty
+                                                    @endforelse
                                                 </select>
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="form-label title-color">Trạng thái</span>
                                                 <select name="status" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="1">Thành công</option>
-                                                    <option value="2">Thất bại</option>
+                                                    <option value="">Chọn trạng thái</option>
+                                                    @forelse($data_category['status'] as $key => $status)
+                                                        <option value="{{ @$key }}">{{ @$status }}</option>
+                                                    @empty
+                                                    @endforelse
                                                 </select>
                                             </div>
 
@@ -340,4 +197,6 @@
     </div>
 @endsection
 
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/logs--update.js"></script>
+@endsection

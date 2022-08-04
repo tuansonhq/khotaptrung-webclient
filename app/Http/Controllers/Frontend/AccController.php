@@ -262,8 +262,9 @@ class AccController extends Controller
 
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
-                $data_category = $data->category;
 
+                $data_category = $data->category;
+                $dataAttribute = $data_category->childs;
                 $card_percent = (int)setting('sys_card_setting');
 
 //                $atm_percent = setting('sys_atm_percent');
@@ -273,6 +274,7 @@ class AccController extends Controller
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
+                    ->with('dataAttribute',$dataAttribute)
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)->render();
 
@@ -306,7 +308,6 @@ class AccController extends Controller
             $dataSend['limit'] = 12;
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
@@ -652,6 +653,7 @@ class AccController extends Controller
                         ]);
                     }
 
+
                     return response()->json([
                         "success"=> true,
                         "html" => $html,
@@ -760,7 +762,9 @@ class AccController extends Controller
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
                 $response_data = $result_Api->response_data??null;
                 $data = $response_data->data;
+
                 if($response_data->status){
+
                     if (!!$data->total) {
                         $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                         $data->setPath($request->url());
@@ -779,6 +783,14 @@ class AccController extends Controller
                             'message' => 'Không có dữ liệu !',
                         ]);
                     }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
                     return response()->json([
                         "html" => $html,
                         "status" => 1,
@@ -813,6 +825,97 @@ class AccController extends Controller
         }else{
             return redirect('/login');
         }
+    }
+
+    public function getLogsCustomDetails(Request $request,$id){
+
+        if (AuthCustom::check()) {
+            $url = '/acc';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['data'] = 'list_acc';
+            $dataSend['user_id'] = AuthCustom::user()->id;
+            $dataSend['id'] = $id;
+
+            $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+            $response_data = $result_Api->response_data??null;
+
+
+            if(isset($response_data) && $response_data->status == 1){
+                if (isset($response_data->data)){
+                    $data = $response_data->data;
+                    if (isset($data->data) && count($data->data) > 0){
+                        $item = $data->data[0];
+
+                        $dataSendCategory = array();
+                        $dataSendCategory['data'] = 'category_detail';
+                        $dataSendCategory['id'] = $item->groups[1]->id;
+
+                        $result_category_Api = DirectAPI::_makeRequest($url,$dataSendCategory,$method);
+                        $response_category_data = $result_category_Api->response_data??null;
+
+                        if(isset($response_category_data) && $response_category_data->status == 1){
+
+                            $data_category = $response_category_data->data;
+
+                            if (!isset($data_category->childs)){
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Không có dữ liệu childs.',
+                                ]);
+                            }
+
+                            $dataAttribute = $data_category->childs;
+
+                            if (isset($dataAttribute)){
+                                $count = count($dataAttribute);
+                            }
+
+                            $checkpass = false;
+                            $time = null;
+                            if (isset($item->params)){
+                                if (isset($item->params->show_password)){
+                                    $checkpass = true;
+                                    foreach($item->params->show_password as $keys => $param){
+                                        if ($keys == 'time'){
+                                            $time = $param;
+                                        }
+                                    }
+                                }
+                            }
+
+                            return view('frontend.pages.account.logsdetail')->with('item',$item)->with('dataAttribute',$dataAttribute)->with('checkpass',$checkpass)->with('time',$time);
+                        }
+                        else{
+                            return response()->json([
+                                'status' => 0,
+                                'message'=>$response_category_data->message??"Không thể lấy dữ liệu"
+                            ]);
+                        }
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message'=>$response_data->message??"Không thể lấy dữ liệu",
+                        ]);
+                    }
+                }else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu",
+                    ]);
+                }
+
+            }else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_data->message??"Không thể lấy dữ liệu",
+                ]);
+            }
+
+        }else{
+            return redirect('/login');
+        }
+
     }
 
     public function getShowpass(Request $request){
@@ -863,6 +966,48 @@ class AccController extends Controller
         }else{
             return redirect('/login');
         }
+    }
+
+    public function getShowpassNick(Request $request,$id){
+        if (AuthCustom::check()) {
+            if ($request->ajax()) {
+                $url = '/acc';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['id'] = $id;
+                $dataSend['data'] = 'show_password';
+                $dataSend['user_id'] = AuthCustom::user()->id;
+
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
+
+                if(isset($response_data) && $response_data->status == 1){
+
+                    $data = $response_data->data;
+
+                    if ($data->success == 1){
+                        return response()->json([
+                            'status' => 1,
+                            'message' => 'Lấy mật khẩu thành công',
+                        ]);
+                    }else{
+                        return response()->json([
+                            'status' => 0,
+                            'message' => $data->message,
+                        ]);
+                    }
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu"
+                    ]);
+                }
+            }
+        }else {
+            return redirect('/login');
+        }
+
     }
 
     public function getFirstPass(Request $request)

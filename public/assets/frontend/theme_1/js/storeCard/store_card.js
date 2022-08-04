@@ -90,14 +90,14 @@ $(document).ready(function(){
                     UpdatePrice();
                 }
                 else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
             },
             error: function (data) {
@@ -197,7 +197,7 @@ $(document).ready(function(){
                 cache:false,
                 data: formSubmit.serialize(), // serializes the form's elements.
                 beforeSend: function (xhr) {
-                    console.log(1111)
+
                 },
                 success: function (data) {
                     if(data.status == 1){

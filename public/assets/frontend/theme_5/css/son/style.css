@@ -18,10 +18,22 @@
     font-weight: 700;
     font-size: 24px;
 }
+#history__service .menu-category-item{
+    background: #ffffff;
+}
+
+#history__service .menu-category-item:hover {
+    transition: .2s;
+    background-color: var(--disable-switch-color);
+}
 
 .card .card--header .card--header__title {
     display: flex;
     align-items: center;
+}
+
+.text_border{
+    color: var(--ghost-border-hover-color);
 }
 
 .card .card--header .card--header__tools {
@@ -175,6 +187,24 @@
 
 .formThanhToanNickRandom{
     display: none;
+}
+
+#account-list .history-content{
+    overflow-y: visible!important;
+}
+
+.history-detail-attr:last-child{
+    margin-bottom: 0!important;
+}
+
+.his_nick-detail-noti{
+    background: #F3F3F7;
+    border-radius: 8px;
+    padding: 16px 12px;
+}
+
+.text__main{
+    color: var(--text-color);
 }
 
 @media only screen and (max-width: 992px) {

@@ -21,6 +21,22 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
     return $view->with('data',$data);
 
 });
+//theme3
+View::composer('frontend.widget.__banner__storecard', function ($view) {
+
+    $data = \Cache::rememberForever('__banner__storecard', function() {
+        $url = '/get-slider-banner';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 //theme1
 View::composer('frontend.widget.__dich__vu__noi__bat', function ($view) {
@@ -77,6 +93,20 @@ View::composer('frontend.widget.__menu', function ($view) {
 
 
     $data = \Cache::rememberForever('__menu__side', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+});
+View::composer('frontend.widget.__menu_header', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu_header', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();
@@ -451,11 +481,11 @@ View::composer('frontend.widget.__menu_category', function ($view) {
             $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
             return $result_Api_menu_category->data;
         });
+
     }
     catch(\Exception $e){
         $data_menu_category = null;
     }
-
     return $view->with('data_menu_category', $data_menu_category);
 
 });
@@ -700,6 +730,22 @@ View::composer('frontend.widget.__slider__banner__account', function ($view) {
 View::composer('frontend.widget.__services__other', function ($view) {
 
     $data = \Cache::rememberForever('__services__other', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__service__other__his', function ($view) {
+
+    $data = \Cache::rememberForever('__service__other__his', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();

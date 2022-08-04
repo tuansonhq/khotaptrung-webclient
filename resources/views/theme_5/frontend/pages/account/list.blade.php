@@ -76,9 +76,11 @@
                         Sắp xếp theo:
                     </div>
                     <div class="value-sort">
-                        <a href="#" class="selection active md">Mới nhất</a>
-                        <a href="#" class="selection md">Cũ nhất</a>
-                        <a href="#" class="selection md">Giá cao nhất</a>
+                        <a href="#" class="selection active md" data-sort="random">Ngẫu nhiên</a>
+                        <a href="#" class="selection md" data-sort="price_start">Giá từ cao đến thấp</a>
+                        <a href="#" class="selection md" data-sort="price_end">Giá từ thấp đến cao</a>
+                        <a href="#" class="selection md" data-sort="created_at_start">Mới nhất</a>
+                        <a href="#" class="selection md" data-sort="created_at_end">Cũ nhất</a>
                     </div>
                 </div>
 
@@ -97,20 +99,23 @@
                 </div>
                 <!-- End Mobile -->
 
-                <div class="listing-account c-mb-16" id="account_data">
-                    <div class="box-loading btn-loading c-my-24" style="margin: 0 auto">
-                        <div class="loading">
-                            <div class="loading-child"></div>
-                        </div>
+                <div class="is-load">
+                    <div class="loading-wrap">
+                        <span class="modal-loader-spin"></span>
                     </div>
-                    @include('frontend.pages.account.widget.__datalist')
-                </div>
+                    <div class="listing-account c-mb-16 list-content">
+
+                        {{--                        @include('frontend.pages.account.widget.__datalist')--}}
+
+                    </div>
+                </div >
+
             </section>
             <!-- Modal Filter -->
             <div class="modal fade" id="modal-filter">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <form id="data_sort" action="" class="form-filter">
+                        <form action="" class="form-filter">
 
                             <div class="modal-header">
                                 <h2 class="modal-title center">Bộ lọc</h2>
@@ -129,7 +134,7 @@
                                         Giá tiền
                                     </label>
                                     <select name="price" class="price" id="">
-                                        <option value="" selected disabled>Chọn giá tiền</option>
+                                        <option value="" selected>Chọn giá tiền</option>
                                         <option value="0-50000">Dưới 50K</option>
                                         <option value="50000-200000">Từ 50K - 200K</option>
                                         <option value="200000-500000">Từ 200K - 500K</option>
@@ -144,7 +149,7 @@
                                     <label class="form-label">
                                         Trạng thái
                                     </label>
-                                    <select name="status" class="status" id="">
+                                    <select name="status_data" class="status" id="">
                                         <option value="" selected disabled>Chọn trạng thái</option>
                                         <option value="1">Chưa bán</option>
                                         <option value="2">Đã bán</option>
@@ -157,8 +162,8 @@
                                                 <label class="form-label">
                                                     {{ $val->title }}
                                                 </label>
-                                                <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
-                                                    <option value="" selected disabled>--Không chọn--</option>
+                                                <select class="account-filter-field" name="select_data"  data-title="{{ $val->title }}">
+                                                    <option value="" selected>--Không chọn--</option>
                                                     @foreach($val->childs as $child)
                                                         <option value="{{ $child->id }}">{{ $child->title }}</option>
                                                     @endforeach
@@ -178,8 +183,8 @@
 {{--                                </div>--}}
                             </div>
                             <div class="modal-footer c-mt-24 c-mt-lg-16">
-                                <a href="javascript:void(0)" class="btn ghost js-reset-form button-not-bg-ct reset-find">Xoá bộ lọc</a>
-                                <button type="button" class="btn primary js-submit-form btn-ap-dung">Xem kết quả</button>
+                                <a href="javascript:void(0)" class="btn ghost js-reset-form">Xoá bộ lọc</a>
+                                <button type="button" class="btn primary js-submit-form">Xem kết quả</button>
                             </div>
                         </form>
                     </div>
@@ -200,44 +205,60 @@
                         <div class="sheet-body">
                             <!-- body -->
                             <div class="input-group">
-                        <span class="form-label">
-                            Mã số
-                        </span>
-                                <input type="text" name="id" placeholder="Nhập mã số nick">
+                                <span class="form-label">
+                                    Mã số
+                                </span>
+                                <input type="text" class="id"  name="id_data" placeholder="Nhập mã số nick">
                             </div>
 
                             <div class="input-group">
-                        <span class="form-label">
-                            Trạng thái
-                        </span>
-                                <select name="status" id="">
+                                <span class="form-label">
+                                    Trạng thái
+                                </span>
+                                <select name="status" class="status">
+                                    <option value="" selected disabled>Chọn trạng thái</option>
                                     <option value="">Chưa bán</option>
                                     <option value="">Đã bán</option>
                                 </select>
                             </div>
 
                             <div class="input-group">
-                        <span class="form-label">
-                            Rank
-                        </span>
-                                <select name="rank" id="">
-                                    <option value="">Tinh anh</option>
-                                    <option value="">Cao thủ</option>
+                                <label class="form-label">
+                                    Giá tiền
+                                </label>
+                                <select name="price" class="price" id="">
+                                    <option value="" selected disabled>Chọn giá tiền</option>
+                                    <option value="0-50000">Dưới 50K</option>
+                                    <option value="50000-200000">Từ 50K - 200K</option>
+                                    <option value="200000-500000">Từ 200K - 500K</option>
+                                    <option value="500000-1000000">Từ 500K - 1 Triệu</option>
+                                    <option value="1000000-5000000">Trên 1 Triệu</option>
+                                    <option value="5000000-10000000">Trên 5 Triệu</option>
+                                    <option value="10000000">Trên 10 Triệu</option>
                                 </select>
                             </div>
 
-                            <div class="input-group">
-                        <span class="form-label">
-                            Giá tiền
-                        </span>
-                            </div>
-                            <div class="c-px-16 c-mt-45">
-                                <input type="text" class="rSlider-input d-none" name="price" id="sort-by-price-mobile">
-                            </div>
+                            @if(isset($dataAttribute) && count($dataAttribute) > 0)
+                                @foreach($dataAttribute as $val)
+                                    @if($val->position == 'select')
+                                        <div class="input-group">
+                                            <label class="form-label">
+                                                {{ $val->title }}
+                                            </label>
+                                            <select class="account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}" id="">
+                                                <option value="" selected disabled>--Không chọn--</option>
+                                                @foreach($val->childs as $child)
+                                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                         <div class="sheet-footer">
-                            <button class="btn ghost js-reset-form">Xoá bộ lọc</button>
-                            <button class="btn primary js-submit-form">Xem kết quả</button>
+                            <button type="button" class="btn ghost js-reset-form">Xoá bộ lọc</button>
+                            <button type="button" class="btn primary js-submit-form">Xem kết quả</button>
                         </div>
                     </form>
                 </div>
@@ -323,8 +344,7 @@
                 </div>
             </div>
 
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
-            <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+
 
         @endif
     </div>
@@ -332,5 +352,8 @@
 
 @endsection
 
-
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
+@endsection
 

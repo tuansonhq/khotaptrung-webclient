@@ -56,7 +56,7 @@ $(document).ready(function () {
                     })
                         .then((result) => {
                             if (result.value) {
-                                window.location = '/lich-su-mua-account';
+                                window.location = '/lich-su-mua-nick';
                             } else if (result.dismiss === "Đóng") {
                                 location.reload();
                             }else {

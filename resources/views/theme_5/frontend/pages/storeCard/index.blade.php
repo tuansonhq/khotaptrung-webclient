@@ -4,6 +4,13 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
 @endsection
 
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="container c-container">
         <ul class="breadcrumb-list">
@@ -43,6 +50,7 @@
                 <a href="/" class="home"></a>
             </div>
             <div class="col-12 col-lg-9 c-pl-12 c-p-sm-0">
+<<<<<<< HEAD
                 <div class="row">
                     <div class=" tab-content col-12 col-lg-6 c-pr-12 c-pl-12 c-px-sm-24">
                         <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
@@ -76,10 +84,24 @@
                                                 <div class="spoke-container">
                                                     <div class="spoke"></div>
                                                 </div>
+=======
+                <div class="tab-content c-px-sm-16">
+                    <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-12 col-md-6 c-pr-12 c-pl-12">
+                                    <div class="buy-card-section c-mb-16 c-mb-sm-0">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                        <div class="col-md-12 p-0 is-load type-card">
+                                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                                            <div class="row m-0">
+                                                <!-- JS Paste HTML vào đây -->
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                             </div>
                         </div>
                         <div class="tab-pane fade" id="mobileCard" role="tabpanel" >
@@ -88,11 +110,48 @@
                                 <div class="col-md-12 p-0">
                                     <div class="row m-0" id="cardPhoneList">
                                         
+=======
+                                <div class="col-12 col-md-6 c-pl-12 c-pr-sm-12">
+                                    <div class="buy-card-section c-mb-16">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
+                                        <div class="col-md-12 p-0 is-load amount-card">
+                                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                                            <div class="row m-0">
+                                                <!-- JS Paste HTML vào đây -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="buy-card-info c-p-16 c-mb-20 brs-12">
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
+                                            <div class="js-quantity">
+                                                <button class="js-quantity-minus" type="button"></button>
+                                                <input type="text" name="card-amount" class="js-quantity-input" value="1" numberic>
+                                                <button class="js-quantity-add" type="button"></button>
+                                            </div>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <input name="card-discount" type="hidden" value="">
+                                            <span class="buy-card-info-title fw-500 fz-13">Chiết khấu</span>
+                                            <span class="buy-card-discount fw-400 fz-13 js-text-discount">0%</span>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center">
+                                            <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
+                                            <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
+                                        Mua ngay
+                                    </button>
+                                    <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                        <button class="btn primary" type="submit">Mua ngay</button>
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div id="cardPriceInfo" class="col-12 col-lg-6 c-pl-12 c-px-sm-24">
 
                         <div class="loader position-relative d-none" style="margin: 2rem 0">
@@ -140,6 +199,55 @@
                                         <div class="js-quantity-minus"></div>
                                         <input type="text" name="card-amount" value="1" class="js-quantity-input">
                                         <div class="js-quantity-add"></div>
+=======
+
+                    <div class="tab-pane fade" id="mobileCard" role="tabpanel" >
+                        <form action="">
+                            <div class="row">
+                                <div class="col-12 col-md-6 c-pr-12 c-pl-12">
+                                    <div class="buy-card-section c-mb-16 c-mb-sm-0">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                        <div class="col-md-12 p-0 type-card is-load">
+                                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                                            <div class="row m-0">
+                                                <!-- JS Paste HTML vào đây -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 c-pl-12 c-pr-sm-12">
+                                    <div class="buy-card-section c-mb-16">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
+                                        <div class="col-md-12 p-0 is-load amount-card">
+                                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                                            <div class="row m-0">
+                                                <!-- JS Paste HTML vào đây -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="buy-card-info c-p-16 c-mb-20 brs-12">
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
+                                            <div class="buy-card-amount d-flex">
+                                                <button class="buy-card-amount-button d-flex button-minus">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
+                                                </button>
+                                                <input type="text" name="card-amount" class="buy-card-amount-input" value="1" numberic>
+                                                <button class="buy-card-amount-button d-flex button-add">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <input name="card-discount" type="hidden" value="">
+                                            <span class="buy-card-info-title fw-500 fz-13">Chiết khấu</span>
+                                            <span class="buy-card-discount fw-400 fz-13 js-text-discount">0%</span>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center">
+                                            <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
+                                            <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
+                                        </div>
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
                                     </div>
                                 </div>
                                 <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
@@ -432,4 +540,7 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/buy-card.js?v={{time()}}"></script>
 @endsection

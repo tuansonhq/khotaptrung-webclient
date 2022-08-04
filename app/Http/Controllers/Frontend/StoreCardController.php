@@ -16,7 +16,6 @@ class StoreCardController extends Controller
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
-
             if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
                     return view('frontend.pages.storecard-v2.index');
             }else{

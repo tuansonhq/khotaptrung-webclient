@@ -8,14 +8,15 @@
             </div>
             <div class="d-none d-md-flex ">
                 <div class="box-menu c-mr-16">
-                    <div class="box-menu-bar @if(!Request::is('/')) d-none @endif     ">
+                    <div class="box-menu-bar  ">
                         <div class="box-icon brs-8 c-mr-8" >
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/menu.svg" alt="" >
                         </div>
                         <span class="lh-40 box-icon-text fw-700">Danh mục</span>
                     </div>
+{{--                    @if(!Request::is('/')) menu-category-height  @endif--}}
 
-                    <div class="menu-list @if(!Request::is('/')) menu-category-height  @endif">
+                    <div class="menu-list ">
                         <div class="menu-category ">
                             <div class="container c-container">
                                 <ul class="d-flex justify-content-between px-0">
@@ -161,3 +162,6 @@
         </div>
     </nav>
 </header>
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+    @csrf
+</form>

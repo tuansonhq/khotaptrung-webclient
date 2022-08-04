@@ -1,5 +1,11 @@
 /*Lấy chiều dài để responsive*/
 let width = $(document).width();
+
+/*format tiền*/
+let money_format = wNumb({
+    thousand: '.',
+    suffix: ' đ'
+});
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
@@ -315,5 +321,13 @@ $(document).ready(function() {
                 }
             })
         }
+    }
+
+    /*scroll add box shadown*/
+    let card_service_select = $('#select-service').find('.card-body');
+    if (card_service_select.length){
+        card_service_select.on('scroll',function () {
+            $(this).parent().toggleClass('card-service-select',!!$(this).scrollTop())
+        })
     }
 });

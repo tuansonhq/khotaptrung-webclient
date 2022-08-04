@@ -59,10 +59,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card d-none">
+        <div class="col-12 col-lg-12 col-xl-4  pl-lg-1 section--amount__card choose-card d-none" >
             <div class="card --custom">
                 <div class="card--body" id="amountWidget">
-                    <div class="loader position-relative" style="margin: 2rem 0">
+                    <div class="loader position-absolute" >
                         <div class="loading-spokes">
                             <div class="spoke-container">
                                 <div class="spoke"></div>

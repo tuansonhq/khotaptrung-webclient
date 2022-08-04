@@ -48,7 +48,8 @@
 
 #content-store-card .card {
     padding: 16px 12px 24px;
-    min-height: 4rem;
+    /*min-height: 4rem;*/
+    min-height: 100%;
 }
 
 .card.--custom {
@@ -1217,7 +1218,9 @@
 #article--detail .article--content .article--content__text {
     width: 820px;
 }
-
+#article--detail .article--content .article--content__text img{
+    width: 90%;
+}
 /*icons */
 .__icon:after {
     content: '';

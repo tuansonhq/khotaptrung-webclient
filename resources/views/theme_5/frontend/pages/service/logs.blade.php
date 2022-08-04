@@ -13,7 +13,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Dịch vụ đã mua</h1>
 
@@ -30,7 +30,7 @@
                         </div>
                         <div class="justify-content-between align-items-center c-pt-16 c-pb-16 c-mb-12 d-none d-lg-flex">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class=" has-submit">
+                                <input name="id" type="search" placeholder="Tìm kiếm" class=" has-submit">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter">
@@ -44,361 +44,19 @@
                         </div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
                             <form action="" class="form-search history">
-                                <input type="search" placeholder="Tìm kiếm" class="search">
+                                <input name="id" type="search" placeholder="Tìm kiếm" class="search">
                                 <button type="submit"></button>
                             </form>
                             <div class="value-filter c-ml-16">
                                 <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
                             </div>
                         </div>
-                        <div class="mr-n1 pb-3">
+                        <div class="mr-n1 pb-3 is-load">
+                            <div class="loading-wrap">
+                                <span class="modal-loader-spin"></span>
+                            </div>
                             <div class="history-content c-pt-16 mr-n2">
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
 
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                <ul class="trans-list">
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="trans-item">
-                                        <a href="/dich-vu-da-mua/chi-tiet">
-                                            <div class="text-left">
-                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                Rút tiền về TK ngân hàng
-                                            </span>
-                                                <span class="link-color">
-                                                26/04/2021 - 16:05
-                                            </span>
-                                            </div>
-                                            <div class="text-right">
-                                                <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                <span class="success-color c-mb-0">Thành công</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
 
@@ -416,22 +74,29 @@
                                     <div class="sheet-body overflow-visible">
                                         <!-- body -->
                                         <div class="input-group">
-                        <span class="form-label">
-                            Loại giao dịch
-                        </span>
-                                            <select name="service" id="">
-                                                <option value="">Chọn</option>
+                                            <span class="form-label">
+                                                Loại dịch vụ
+                                            </span>
+                                            <select name="slug_category" class="slug_category">
+                                                <option value="">Chọn dịch vụ</option>
+                                                @foreach($datacate as $val)
+                                                    <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
 
                                         <div class="input-group">
-                        <span class="form-label">
-                            Trạng thái
-                        </span>
-                                            <select name="status" id="">
-                                                <option value="">Chọn</option>
-                                                <option value="1">Đã bán</option>
-                                                <option value="0">Hủy</option>
+                                            <span class="form-label">
+                                                Trạng thái
+                                            </span>
+                                            <select name="status" class="status">
+                                                <option value="">Chọn trạng thái</option>
+                                                <option value="0">Đã hủy</option>
+                                                <option value="1">Đang chờ xử lý</option>
+                                                <option value="2">Đang thực hiện</option>
+                                                <option value="3">Từ chối</option>
+                                                <option value="4">Hoàn tất</option>
+                                                <option value="5">Thất bại</option>
                                             </select>
                                         </div>
 
@@ -439,19 +104,19 @@
                                             <tr>
                                                 <td>
                                                     <div class="input-group">
-                                <span class="form-label">
-                                    Từ ngày
-                                </span>
-                                                        <input type="text" class="date-right" placeholder="Chọn">
+                                                        <span class="form-label">
+                                                            Từ ngày
+                                                        </span>
+                                                        <input type="text" name="started_at" class="date-right started_at" placeholder="Chọn">
                                                     </div>
                                                 </td>
                                                 <td class="c-px-6 d-block"></td>
                                                 <td>
                                                     <div class="input-group">
-                                <span class="form-label">
-                                    Đến ngày
-                                </span>
-                                                        <input type="text" class="date-right" placeholder="Chọn">
+                                                        <span class="form-label">
+                                                            Đến ngày
+                                                        </span>
+                                                        <input type="text" name="ended_at" class="date-right ended_at" placeholder="Chọn">
                                                     </div>
                                                 </td>
                                             </tr>
@@ -476,20 +141,27 @@
                                         </div>
                                         <div class="modal-body c-p-0">
                                             <div class="input-group">
-                                                <span class="form-label title-color">Loại giao dịch</span>
-                                                <select name="id" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="ngoc-rong">Ngoc rong</option>
-                                                    <option value="cf-online">CF Online</option>
+                                                <span class="form-label">
+                                                    Loại dịch vụ
+                                                </span>
+                                                <select name="slug_category" class="slug_category">
+                                                    <option value="">Chọn dịch vụ</option>
+                                                    @foreach($datacate as $val)
+                                                        <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
 
                                             <div class="input-group">
                                                 <span class="form-label title-color">Trạng thái</span>
-                                                <select name="status" id="">
-                                                    <option value="">Chọn</option>
-                                                    <option value="1">Huy</option>
-                                                    <option value="0">Thanh cong</option>
+                                                <select name="status" class="status">
+                                                    <option value="">Chọn trạng thái</option>
+                                                    <option value="0">Đã hủy</option>
+                                                    <option value="1">Đang chờ xử lý</option>
+                                                    <option value="2">Đang thực hiện</option>
+                                                    <option value="3">Từ chối</option>
+                                                    <option value="4">Hoàn tất</option>
+                                                    <option value="5">Thất bại</option>
                                                 </select>
                                             </div>
 
@@ -500,7 +172,7 @@
                                                     <span class="form-label title-color">
                                                         Từ ngày
                                                     </span>
-                                                            <input type="text" name="startat" class="date-right" placeholder="Chọn">
+                                                            <input type="text" name="started_at" class="date-right started_at" placeholder="Chọn">
                                                         </div>
                                                     </td>
                                                     <td class="c-px-6 d-block"></td>
@@ -509,7 +181,7 @@
                                                     <span class="form-label title-color">
                                                         Đến ngày
                                                     </span>
-                                                            <input type="text" name="endat" class="date-right" placeholder="Chọn">
+                                                            <input type="text" name="ended_at" class="date-right ended_at" placeholder="Chọn">
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -535,7 +207,7 @@
 @endsection
 
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-history.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/logs.js"></script>
 @endsection
 
 

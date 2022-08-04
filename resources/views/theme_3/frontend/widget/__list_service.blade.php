@@ -1,7 +1,7 @@
 @if(isset($data))
-
     <ul class="list-service">
         @foreach($data as $item)
+
         <li class="item-service">
             <a   @if($item->target == 1) target="_blank" href="{{ $item->url }}"  @elseif($item->target == 3) @if(!App\Library\AuthCustom::check()) onclick="openLoginModal();" href="#" @else href="{{ $item->url }}"   @endif @else href="{{ $item->url }}"   @endif>
                 @if($item->image_icon)

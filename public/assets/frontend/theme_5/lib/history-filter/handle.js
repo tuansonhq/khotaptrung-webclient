@@ -7,16 +7,17 @@ function loadData(elm_form){
     let sort_data = [];
     let sort_data_el = elm_form.find('[name]');
     Array.from(sort_data_el).forEach(function (elm) {
-        if ($(elm)[0].tagName === 'INPUT' && !!$(elm).val().trim()){
+        if ($(elm).prop("tagName") === 'INPUT' && !!$(elm).val().trim()){
             let key = $(elm).attr('name');
             let value = $(elm).val();
             sort_data.push([key,value])
             ++length;
         }
-        if ($(elm)[0].tagName === 'SELECT' && !! $(elm).find(':selected').length && $(elm).find(':selected').val()){
+        if ($(elm).prop("tagName") === 'SELECT' && !! $(elm).find(':selected').length && $(elm).find(':selected').val()){
             let key = $(elm).attr('name');
             let text = $(elm).find(':selected').text();
             let value = $(elm).find(':selected').val();
+
             sort_data.push([key,value,text]);
             ++length;
         }
@@ -50,12 +51,18 @@ function loadData(elm_form){
         }
         html_append += `</div>`;
         root_elm.append(html_append);
-
-        //    add params to url
+        /* add params to url*/
         if (!i) {
             url_return = url +`?${sort_data[i][0]}=${sort_data[i][1]}`;
         } else {
-            url_return += `&${sort_data[i][0]}=${sort_data[i][1]}`;
+
+            /*Nếu mà nó trùng name nhau thì giá trị sẽ ngăn cách nhau bằng | chứ không thêm key mới vào url*/
+            if (sort_data[i][0] === sort_data[i - 1][0]) {
+                url_return += `|${sort_data[i][1]}`;
+            }
+            else {
+                url_return += `&${sort_data[i][0]}=${sort_data[i][1]}`;
+            }
         }
     }
     const urlParams = new URLSearchParams(window.location.search);
@@ -66,7 +73,7 @@ function loadData(elm_form){
     }
     if (length){
         window.history.pushState({}, null, url_return);
-    }else {
+    } else {
         window.history.pushState({}, null, url);
     }
 
@@ -79,6 +86,7 @@ function loadData(elm_form){
 function hasQueryParams(url) {
     return url.includes('?');
 }
+
 function updateQueryStringParameter(uri, key, value) {
     var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
     var separator = uri.indexOf('?') !== -1 ? "&" : "?";
@@ -95,36 +103,128 @@ $(document).ready(function () {
         form_filter.on('submit',function (e) {
             e.preventDefault();
             loadData($(this));
+            setParamsUrlToQuery();
+            loadDataApi(query);
+            page_history = 1;
             if (width > 992) {
                 $(this).closest('.modal').modal('hide');
             } else {
                 closeSheet();
             }
         });
-
-        let url = window.location.href;
-        //Load old data on url
-        if (hasQueryParams(url)){
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
-            Object.keys(params).forEach(key => {
-                let input = $(`.form-filter [name=${key}]`);
-                input.val(params[key]);
-            });
-            $(form_filter).find('select').niceSelect('update');
-            loadData(form_filter);
-        }
+        form_filter.on('reset',function () {
+            $('.form-filter select').niceSelect('update');
+        })
+        /*chỗ này là vừa vào đã load luôn*/
+        setParamsUrlToQuery();
+        loadData(form_filter);
+        loadDataApi(query);
     }
 
     $(document).on('click','#params-filter .tag',function () {
         let target_name = $(this).data('close');
+        let target_simple = $(`.form-filter [name=${target_name}]`);
+        let target = [];
         if (target_name === 'started_at'){
             $('.form-filter [name=started_at],.form-filter [name=ended_at]').val('');
+        }else {
+            Array.from(target_simple).forEach(function (elm) {
+                if (!!$(elm).val()){
+                    target.push(elm);
+                }
+            });
+            target[$(this).index()].value = '';
         }
-        let target = $(`.form-filter [name=${target_name}]`);
-        target.val('');
         loadData(form_filter);
-        $('.form-filter select').niceSelect('update');
+        setParamsUrlToQuery();
+        loadDataApi(query);
+        $(form_filter).find('select').niceSelect('update');
+        page_history = 1;
     });
+    /*get params on url*/
+    function setParamsUrlToQuery() {
+        let url = window.location.href;
+        if (hasQueryParams(url)){
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlSearchParams.entries());
+            Object.keys(params).forEach(key => {
+                query[key] = params[key];
+                if (parseInt(params[key].indexOf('|')) > -1) {
+                    let arr_params = params[key].split('|');
+                    let inputs = $(form_filter).find(`[name=${key}]`);
+                    Array.from(inputs).forEach(function (elm,index) {
+                        $(elm).val(arr_params[index]);
+                    });
+                } else {
+                    let input = $(form_filter).find(`[name=${key}]`);
+                    input.val(params[key]);
+                }
+                $(form_filter).find('select').niceSelect('update');
 
+            });
+
+            /*nếu như mà trên url không có page thì phải gán lại cho nó là 1*/
+            !params.page ? query.page = 1 : '';
+        }
+        else {
+            for (const key in query) {
+                query[key] = '';
+            }
+            query.page = 1;
+        }
+    }
+    /*Load More*/
+
+    /*Page mặc định vừa vào là 1*/
+    let page_history = 1;
+    if (typeof content_history !== 'undefined'){
+        content_history.on('scroll',function () {
+            let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
+            /*nếu như lăn tới cuối cùng của bảng*/
+            if (parseInt($(this).scrollTop()) >= end){
+                page_history++;
+                query.page = page_history;
+                history_see_more = true;
+                /*nếu không phải là trang cuối thì mới load*/
+                if (!is_last_page){
+                    loadDataApi(query);
+                }
+            }
+        });
+        /*Pagination Ajax*/
+        content_history.on('click','.page-link',function (e) {
+            e.preventDefault();
+            let url = new URL($(this).attr('href'));
+            let url_current = window.location.href;
+            query.page = url.searchParams.get("page");
+            let new_url = updateQueryStringParameter(url_current, 'page', url.searchParams.get("page"));
+            window.history.pushState({}, null, new_url);
+            loadDataApi(query);
+        });
+    }
+
+    /*Tìm kiếm*/
+    let form_search_history = $('.form-search');
+    if (form_search_history.length) {
+        form_search_history.on('submit',function (e) {
+            e.preventDefault();
+            setParamsUrlToQuery();
+           let input = $(this).find('input[type=search]');
+           let query_key = input.attr('name');
+           query[query_key] = input.val();
+           loadDataApi(query);
+        });
+    }
+
+    /*Sắp xếp theo ...*/
+    $('.value-sort').on('click','.selection',function (e) {
+        e.preventDefault();
+        query.sort_by_data = $(this).data('sort');
+        query.page = 1;
+        /*làm mới url*/
+        let url_current = window.location.href;
+        let new_url = updateQueryStringParameter(url_current, 'page',1);
+        window.history.pushState({}, null, new_url);
+        loadDataApi(query);
+    })
 });

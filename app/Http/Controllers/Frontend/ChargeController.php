@@ -332,6 +332,13 @@ class ChargeController extends Controller
                         ]);
                     }
 
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
                     $html =  view('frontend.pages.charge.widget.__charge_history')
                         ->with('data',$data)->with('arrpin',$arrpin)->with('arrserial',$arrserial)->render();
 

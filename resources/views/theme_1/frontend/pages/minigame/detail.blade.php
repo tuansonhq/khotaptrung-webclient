@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -127,7 +127,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -165,7 +165,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -281,7 +281,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
@@ -346,7 +346,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach
@@ -383,7 +383,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -485,7 +485,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -534,7 +534,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -640,7 +640,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -689,7 +689,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -827,7 +827,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -880,7 +880,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -988,7 +988,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
@@ -1035,7 +1035,7 @@
                                                     </div>
                                                     <div class="item_play_dif_slide_description">
                                                         <div class="countime"> </div>
-                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}}</p>
+                                                        <p>Đã chơi: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+count($item->order_gate)):count($item->order_gate)}}</p>
                                                         <span class="item_play_dif_slide_description-old-price">{{number_format($item->price*100/80)}}đ</span>
                                                         <span class="item_play_dif_slide_description-new-price">{{number_format($item->price)}}đ</span>
                                                     </div>
@@ -1138,7 +1138,7 @@
                                     @endphp
                                     <tr>
                                         <td>{{substr($item->author->username,0,3)."***".substr($item->author->username,-2)}}</td>
-                                        <td>{{$item->item_ref->parrent->title??""}}</td>
+                                        <td>{{$item->item_ref->children[0]->title??""}}</td>
                                         <td>{{\Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i')}}</td>
                                     </tr>
                                 @endforeach

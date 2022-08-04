@@ -49,14 +49,6 @@
     <div class="top-navigation d-none d-lg-block">
         <div class="header-container container" style="padding: 0">
             <ul>
-{{--                <li>--}}
-{{--                    <a href="">--}}
-{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/uddd.svg" alt="">--}}
-{{--                        <span>--}}
-{{--                                Ứng dụng di động--}}
-{{--                            </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 <li>
                     <a href="/tin-tuc">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headertintuc.svg" alt="">
@@ -65,14 +57,7 @@
                         </span>
                     </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="">--}}
-{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerfacebook.svg" alt="">--}}
-{{--                        <span>--}}
-{{--                                Facebook Group--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+
                 <li>
                     <a href="{{setting('sys_fanpage')}}">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerfacebook.svg" alt="">
@@ -81,15 +66,6 @@
                         </span>
                     </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="">--}}
-{{--                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headerzalo.svg" alt="">--}}
-{{--                        <span>--}}
-{{--                                Zalo: 1234 5678--}}
-{{--                        </span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-
                 <li>
                     <a href="tel:+{{setting('sys_phone')}}">
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/headercskh.svg" alt="">
@@ -132,41 +108,32 @@
                 </form>
             </div>
             <div class="box-about">
-                @if(isset(theme('')->theme_config->sys_theme_ver) || theme('')->theme_config->sys_theme_ver != 'sys_theme_ver3.0' )
-                    <ul class="nav header-main-nav d-none d-lg-flex menu-fix-theme">
-                        <li class="nav-item item-about active">
-                            <a href="">
-                                <div class="d-flex">
+                @if(isset(theme('')->theme_config->sys_theme_ver))
+                    @if(theme('')->theme_config->sys_theme_ver != 'sys_theme_ver3.0' )
+                         @include('frontend.widget.__menu_header')
+                    @else
+                        <ul class="nav header-main-nav d-none d-lg-flex ">
+                            <li class="nav-item item-about active">
+                                <a href="">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                                    <div class="item-about-title">Nạp game</div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="nav-item item-about">
-                            <a href="">
-                                <div class="d-flex">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                                    <div class="item-about-title">Mua thẻ</div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="nav-item item-about">
-                            <a href="">
-                                <div class="d-flex">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                                    <div class="item-about-title">Nạp tiền</div>
-                                </div>
-
-                            </a>
-                        </li>
-
-                    </ul>
+                                    <div class="item-about-title">Khuyến mãi</div>
+                                </a>
+                            </li>
+                            <li class="nav-item item-about">
+                                <a href="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
+                                    <div class="item-about-title">Thông báo</div>
+                                </a>
+                            </li>
+                            <li class="nav-item item-about">
+                                <a href="">
+                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
+                                    <div class="item-about-title">Sự kiện hot</div>
+                                </a>
+                            </li>
+                        </ul>
+                    @endif
                 @else
-
-
-
                     <ul class="nav header-main-nav d-none d-lg-flex ">
                         <li class="nav-item item-about active">
                             <a href="">
@@ -247,9 +214,6 @@
                                     <div id="account-balance">
 
                                     </div>
-                                    {{--                                    <div class="">--}}
-                                    {{--                                        <span class="">Xu khóa: </span>0 xu--}}
-                                    {{--                                    </div>--}}
                                 </div>
 
                             </div>

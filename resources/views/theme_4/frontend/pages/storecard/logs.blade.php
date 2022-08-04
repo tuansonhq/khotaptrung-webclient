@@ -1,9 +1,12 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
 <section>
     <div class="container">
         <div class="row user-manager">
-            @include('frontend.pages.widget.__menu_profile')
+            @include('frontend.widget.__menu_profile')
 
             <div class="col-12 col-md-8 col-lg-9 site-form " style="min-height: 212.568px;">
 
@@ -119,5 +122,7 @@
 
 
     </div><!-- /.container -->
+
+
 </section>
 @endsection

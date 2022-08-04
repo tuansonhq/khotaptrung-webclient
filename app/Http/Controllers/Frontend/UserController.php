@@ -84,6 +84,7 @@ class UserController extends Controller
             ]);
         }
     }
+
     public function profileSidebar(Request $request)
     {
         return view('frontend.pages.profile.sidebar');
@@ -230,20 +231,21 @@ class UserController extends Controller
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
-
                     $data = $response_data->data;
-
                     $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
                     $data->setPath($request->url());
-
-
                     $html =  view('frontend.pages.transaction.widget.__transaction_history')
                         ->with('data', $data)->with('config', $config)->with('status', $status)->render();
-
                     if (count($data) == 0 && $page == 1){
                         return response()->json([
                             'status' => 0,
                             'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
                         ]);
                     }
                     return response()->json([
@@ -270,7 +272,7 @@ class UserController extends Controller
         catch(\Exception $e){
             Log::error($e);
             return response()->json([
-                'status' => "ERROR"
+                'status' => $e->getMessage()
             ]);
         }
     }
@@ -625,6 +627,20 @@ class UserController extends Controller
                         ->with('arrpin',$arrpin)
                         ->with('arrserial',$arrserial)->render();
 
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
@@ -790,6 +806,51 @@ class UserController extends Controller
             Log::error($e);
             return response()->json([
                 'status' => "ERROR"
+            ]);
+        }
+    }
+
+    public function getTranDetail(Request $request,$id)
+    {
+        try{
+            $jwt = Session::get('jwt');
+            if(empty($jwt)){
+                return response()->json([
+                    'status' => "LOGIN",
+                ]);
+            }
+            $config = config('module.txns.trade_type_api');
+
+            $id_user = AuthCustom::user()->id;
+            $url = '/get-txns';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['token'] = $jwt;
+            $dataSend['user_id'] = $id_user;
+            $dataSend['id'] = $id;
+            $dataSend['page'] = 1;
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            if ($response_data->status == 1){
+                $data = $response_data->data->data[0];
+                $data_view = [
+                    'status'=>1,
+                    'config'=>$config,
+                    'data'=>$data,
+                ];
+            } else {
+                $data_view = [
+                    'status'=>0,
+                    'message'=>'Không lấy được dữ liệu.',
+                ];
+            }
+            return view('frontend.pages.transaction.logdetail',$data_view);
+        }
+        catch(\Exception $e){
+            Log::error($e);
+            return response()->json([
+                'status' => $e->getMessage()
             ]);
         }
     }
