@@ -1660,7 +1660,7 @@
         @case('flip')
         @foreach($result->group->items as $item)
             <input type="hidden" class="image_gift"
-                   value="{{ \App\Library\MediaHelpers::media($item->children[0]->image) }}">
+                   value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
         @endforeach
         <style type="text/css">
             .boxflip .active {
@@ -2631,7 +2631,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->children[0]->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3{
                 display: inline-block;
@@ -3398,7 +3398,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->children[0]->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3,#slot4,#slot5{
                 display: inline-block;
@@ -3420,7 +3420,7 @@
                 @if(isset($result->group->items) && count($result->group->items)>0)
                 @foreach($result->group->items as $index=>$item)
                 $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->children[0]->image)}}');
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
                 @endforeach
                 @endif
                 $(".thele").on("click", function(){
