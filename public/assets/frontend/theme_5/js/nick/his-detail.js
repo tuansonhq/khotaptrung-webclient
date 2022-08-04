@@ -1,27 +1,7 @@
 $(document).ready(function () {
 
-    $(document).on('click', '.buyacc',function(e){
+    $(document).on('submit', '.formPassword', function(e){
         e.preventDefault();
-        var htmlloading = '';
-
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__buyacc').html('');
-        $('.loading-data__buyacc').html(htmlloading);
-
-        // var id = $(this).data("id");
-
-        $('.loadModal__acount').modal('toggle');
-        $('.loading-data__buyacc').html('');
-        // getBuyAcc(id)
-    });
-
-    $(document).on('submit', '.formDonhangAccount', function(e){
-        e.preventDefault();
-        var htmlloading = '';
-
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__muangay').html('');
-        $('.loading-data__muangay').html(htmlloading);
 
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
@@ -39,29 +19,26 @@ $(document).ready(function () {
             success: function (response) {
 
                 if(response.status == 1){
-                    $('.loadModal__acount').modal('hide');
+
                     swal({
-                        title: "Mua tài khoản thành công",
-                        text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
+                        title: "Lấy mật khẩu thành công",
+                        text: "Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!",
                         type: "success",
-                        confirmButtonText: "Lịch sử đơn hàng",
+                        confirmButtonText: "Lấy mật khẩu",
                         showCancelButton: true,
                         cancelButtonText: "Đóng",
                     })
                         .then((result) => {
-                            var slug_category = $('.slug_category').val();
-                            console.log(slug_category)
                             if (result.value) {
-                                window.location = '/lich-su-mua-nick';
+                                window.location.reload();
                             } else if (result.dismiss === "Đóng") {
-                                window.location = '/mua-acc/'+ slug_category;
+                                window.location.reload();
                             }else {
-                                window.location = '/mua-acc/'+ slug_category;
+                                window.location.reload();
                             }
                         })
                 }
                 else if (response.status == 2){
-                    $('.loadModal__acount').modal('hide');
 
                     swal(
                         'Thông báo!',
@@ -70,7 +47,6 @@ $(document).ready(function () {
                     )
                     $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }else {
-                    $('.loadModal__acount').modal('hide');
                     swal(
                         'Lỗi!',
                         response.message,
@@ -90,7 +66,7 @@ $(document).ready(function () {
                         return false; // breaks
                     });
                 }else if(response.status === 0){
-                    alert(response.message);
+
                     $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
                 }
                 else {
@@ -104,13 +80,5 @@ $(document).ready(function () {
 
 
     })
-
-    $(document).on('click', '.tinhnang',function(e){
-        $('#notInbox').modal('show');
-    });
-
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
-    });
 
 });

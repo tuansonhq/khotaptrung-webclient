@@ -16,7 +16,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Tài khoản đã mua</h1>
 

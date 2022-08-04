@@ -181,6 +181,10 @@
     color: var(--text-color);
 }
 
+.atm-recharge-error {
+    color: var(--status-red-color);
+}
+
 .wallet-recharge-title {
     color: var(--text-color);
 }
@@ -267,6 +271,7 @@
 }
 
 .card-type-form label {
+    cursor: pointer;
     width: 100%;
     height: 64px;
     text-align: center;
@@ -289,6 +294,7 @@
 }
 
 .card-price-form label {
+    cursor: pointer;
     width: 100%;
     text-align: center;
     border: 1px solid var(--border-default-color);
@@ -350,6 +356,21 @@ input[type=text].buy-card-amount-input {
     text-align: center;
     outline: none;
     border: 1px solid var(--border-default-color);
+}
+
+/* Animation spin */
+@-moz-keyframes spinImg { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spinImg { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spinImg { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.spinImg {
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+
+.spinImg.paused {
+    animation-play-state: paused;
 }
 
 
@@ -1189,3 +1210,70 @@ input[type=text].buy-card-amount-input {
 }
 
 /* End Login Mobile Component */
+
+/* Loading Effect */
+.loading-spokes {
+    position: relative;
+    margin: auto;
+    height: 45px;
+}
+.loader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.loading-spokes .spoke-container {
+    position: absolute;
+    top: 100%;
+    left: calc(50% - 10px*1.5);
+    transform-origin: 50% -100%;
+}
+.loading-spokes .spoke-container .spoke {
+    background: var(--primary-color);
+    width: 6px;
+    height: 12px;
+    animation: spoke 1s infinite;
+    animation-delay: inherit;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+1) {
+    transform: translateX(100%) rotate(-90deg);
+    animation-delay: -0.875s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+2) {
+    transform: translateX(100%) rotate(-45deg);
+    animation-delay: -0.75s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+3) {
+    transform: translateX(100%);
+    animation-delay: -0.625s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+4) {
+    transform: translateX(100%) rotate(45deg);
+    animation-delay: -0.5s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+5) {
+    transform: translateX(100%) rotate(90deg);
+    animation-delay: -0.375s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+6) {
+    transform: translateX(100%) rotate(135deg);
+    animation-delay: -0.25s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+7) {
+    transform: translateX(100%) rotate(180deg);
+    animation-delay: -0.125s;
+}
+.loading-spokes .spoke-container:nth-of-type(0n+8) {
+    transform: translateX(100%) rotate(225deg);
+    animation-delay: 0;
+}
+@keyframes spoke {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+/* End Loading Effect */
