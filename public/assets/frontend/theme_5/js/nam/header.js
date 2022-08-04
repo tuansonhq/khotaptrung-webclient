@@ -11,11 +11,6 @@ $(document).ready(function () {
             $('.box-menu-bar').fadeIn(200);
         }
     });
-    $('.refresh-captcha').click(function () {
-        $('.refresh-captcha img').toggleClass("down");
-
-
-    });
     var user = function() {
         $('.box-account-open').click(function(e) {
             // e.preventDefault(); // stops link from making page jump to the top

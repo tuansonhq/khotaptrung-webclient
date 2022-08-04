@@ -181,6 +181,10 @@
     color: var(--text-color);
 }
 
+.atm-recharge-error {
+    color: var(--status-red-color);
+}
+
 .wallet-recharge-title {
     color: var(--text-color);
 }
@@ -352,6 +356,21 @@ input[type=text].buy-card-amount-input {
     text-align: center;
     outline: none;
     border: 1px solid var(--border-default-color);
+}
+
+/* Animation spin */
+@-moz-keyframes spinImg { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spinImg { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spinImg { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+.spinImg {
+    -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+
+.spinImg.paused {
+    animation-play-state: paused;
 }
 
 
