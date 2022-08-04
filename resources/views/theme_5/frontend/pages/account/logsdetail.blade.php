@@ -58,16 +58,20 @@
                                             @if (count($value->childs) > 0)
                                                 @foreach($value->childs as $valuechild)
                                                     @if(isset($item->params))
-                                                        @foreach($item->params->ext_info as $keyparam => $valueparam)
-                                                            @if ($keyparam == $valuechild->id && $valuechild->is_slug_override == 1)
-                                                                <div class="c-mt-0 c-mb-12">
-                                                                    <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">{{ $valuechild->title }}</label>
-                                                                    <div class="copy-input">
-                                                                        <input type="text" readonly value="{{ $valueparam }}" autocomplete="off" placeholder="{{ $valueparam }}">
+
+                                                        @if(isset($item->params->ext_info))
+                                                            @foreach($item->params->ext_info as $keyparam => $valueparam)
+                                                                @if ($keyparam == $valuechild->id && $valuechild->is_slug_override == 1)
+                                                                    <div class="c-mt-0 c-mb-12">
+                                                                        <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">{{ $valuechild->title }}</label>
+                                                                        <div class="copy-input">
+                                                                            <input type="text" readonly value="{{ $valueparam }}" autocomplete="off" placeholder="{{ $valueparam }}">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+
                                                     @endif
                                                 @endforeach
                                             @endif
