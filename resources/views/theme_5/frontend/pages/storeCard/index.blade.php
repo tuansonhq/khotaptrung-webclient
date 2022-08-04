@@ -1,4 +1,11 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="container c-container">
         <ul class="breadcrumb-list">
@@ -45,21 +52,21 @@
                                 <div class="col-12 col-md-6 c-pr-12 c-pl-12">
                                     <div class="buy-card-section c-mb-16 c-mb-sm-0">
                                         <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
-                                        <div class="col-md-12 p-0">
+                                        <div class="col-md-12 p-0" id="type-card-desktop">
                                             <div class="row m-0">
-                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                <div class="col-4 c-px-4 card-type-form">
                                                     <input name="amount" id="recharge_amount_0" type="radio" hidden="" checked="">
                                                     <label for="recharge_amount_0" class="brs-8 c-mb-8">
                                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
                                                     </label>
                                                 </div>
-                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                <div class="col-4 c-px-4 card-type-form">
                                                     <input name="amount" id="recharge_amount_1" type="radio" hidden="">
                                                     <label for="recharge_amount_1" class="brs-8 c-mb-8">
                                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
                                                     </label>
                                                 </div>
-                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                <div class="col-4 c-px-4 card-type-form">
                                                     <input name="amount" id="recharge_amount_2" type="radio" hidden="">
                                                     <label for="recharge_amount_2" class="brs-8 c-mb-8">
                                                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
@@ -158,14 +165,10 @@
                                     <div class="buy-card-info c-p-16 c-mb-20 brs-12">
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
                                             <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
-                                            <div class="buy-card-amount d-flex js-quantity">
-                                                <button class="buy-card-amount-button d-flex button-minus js-quantity-minus" type="button">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
-                                                </button>
-                                                <input type="text" name="card-amount" class="buy-card-amount-input js-quantity-input" value="1" numberic>
-                                                <button class="buy-card-amount-button d-flex button-add js-quantity-add" type="button">
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
-                                                </button>
+                                            <div class="js-quantity">
+                                                <button class="js-quantity-minus" type="button"></button>
+                                                <input type="text" name="card-amount" class="js-quantity-input" value="1" numberic>
+                                                <button class="js-quantity-add" type="button"></button>
                                             </div>
                                         </div>
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
@@ -369,4 +372,7 @@
         </div>
 
     </div>
+@endsection
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/buy-card.js?v={{time()}}"></script>
 @endsection
