@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+
     <div class="background-history">
         <div class="container c-container-side">
             <ul class="breadcrumb-list">
@@ -7,14 +8,14 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="" class="breadcrumb-link">Chi tiết tài khoản đã mua</a>
+                    <a href="javascript:void(0)" class="breadcrumb-link">Chi tiết tài khoản đã mua</a>
                 </li>
             </ul>
 
             <div class="head-mobile">
                 <a href="/lich-su-mua-nick" class="link-back"></a>
 
-                <h1 class="head-title text-title">Chi tiết nạp thẻ</h1>
+                <h1 class="head-title text-title">Tài khoản đã mua</h1>
 
                 <a href="/" class="home"></a>
             </div>
@@ -24,12 +25,13 @@
                 </div>
 
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
+                    @if(isset($item))
                     <div class="history-detail-title c-p-16 c-mb-16 brs-12 d-none d-sm-block">
                         <h1 class="fw-700 fz-20 lh-28 c-my-0">Chi tiết tài khoản đã mua</h1>
                     </div>
                     <div class="history-detail-content brs-12">
                         <div class="history-detail-subtitle lh-24 c-pt-16 c-pb-12 c-px-16 fw-500 fz-15 d-none d-sm-block">
-                            Nick ngọc rồng tầm trung
+                            {{ $item->category->title }}
                         </div>
                         <div class="c-px-16 c-pb-24">
                             <div class="history-detail-label c-py-12 fw-500 fz-13 fz-sm-15">
@@ -38,40 +40,117 @@
                             <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">ID</p>
-                                    <div class="fw-500 fz-13">#123445</div>
+                                    <div class="fw-500 fz-13">#{{ $item->randId }}</div>
                                 </div>
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Game</p>
-                                    <div class="fw-500 fz-13">Ngọc rồng Online</div>
+                                    <div class="fw-500 fz-13">{{ $item->category->title }}</div>
                                 </div>
-                                <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Tài khoản</p>
-                                    <div class="fw-500 fz-13">***abc@abc.com</div>
-                                </div>
-                                <div class="history-detail-attr d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Kiểu nạp</p>
-                                    <div class="fw-500 fz-13">Nạp tự động</div>
-                                </div>
+
                             </div>
+
+                            @if($item->status == 0)
+
+                            <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
+                                @if($checkpass && isset($time))
+                                    @foreach($dataAttribute as $value)
+                                        @if($value->position == 'text')
+                                            @if (count($value->childs) > 0)
+                                                @foreach($value->childs as $valuechild)
+                                                    @if(isset($item->params))
+                                                        @foreach($item->params->ext_info as $keyparam => $valueparam)
+                                                            @if ($keyparam == $valuechild->id && $valuechild->is_slug_override == 1)
+                                                                <div class="c-mt-0 c-mb-12">
+                                                                    <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">{{ $valuechild->title }}</label>
+                                                                    <div class="copy-input">
+                                                                        <input type="text" readonly value="{{ $valueparam }}" autocomplete="off" placeholder="{{ $valueparam }}">
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                        @endif
+
+                                    @endforeach
+                                @endif
+                                <div class="c-mt-0">
+                                    <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">Tài khoản</label>
+                                    <div class="copy-input">
+                                        @if($checkpass && isset($time))
+                                            <input type="text" required value="{{ $item->title }}" readonly autocomplete="off" placeholder="{{ $item->title }}">
+
+                                        @else
+                                            <input type="text" readonly value="******" autocomplete="off" placeholder="******">
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="c-mt-12">
+                                    <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">Mật khẩu</label>
+                                    <div class="copy-input toggle-password">
+                                        @if($checkpass && isset($time))
+                                            <input type="password" readonly value="123445" autocomplete="off" placeholder="123445">
+
+                                        @else
+                                            <input type="password" value="******" readonly autocomplete="off" placeholder="******">
+                                        @endif
+                                    </div>
+                                </div>
+                                @if($checkpass && isset($time))
+                                <div class="c-mt-4 w-100 text-left focus-color">Đã lấy mật khẩu lúc: {{ $time }}</div>
+                                <div class="c-mt-12">
+                                    <div class="row marginauto his_nick-detail-noti">
+                                        <div class="col-md-12 left-right">
+                                            <label class="c-mb-4 fw-400 fz-13 lh-20 text-center text__main">Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+
+                            </div>
+
+                            @endif
                             <div class="history-detail-info-block brs-12 c-p-16 c-mb-24">
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trị giá</p>
-                                    <div class="fw-500 fz-13">100.000đ</div>
+                                    <div class="fw-500 fz-13">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
                                 </div>
+
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Ngày giao dịch</p>
-                                    <div class="fw-500 fz-13">26/04/2021 - 16:05</div>
+                                    <div class="fw-500 fz-13">{{ formatDateTime($item->published_at) }}</div>
                                 </div>
+
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trạng thái</p>
-                                    <div class="detail-success fw-500 fz-13">Thành công</div>
+
+                                    @if($item->status == 1)
+                                    @elseif($item->status == 2)
+                                        <div class="detail-pending fw-500 fz-13">Chờ xử lý</div>
+                                    @elseif($item->status == 3)
+                                        <div class="detail-pending fw-500 fz-13">Đang check thông tin</div>
+                                    @elseif($item->status == 4)
+                                        <div class="detail-failed fw-500 fz-13">Sai thông tin</div>
+                                    @elseif($item->status == 5)
+                                        <div class="detail-failed fw-500 fz-13">Đã xoá</div>
+                                    @elseif($item->status == 0)
+                                        <div class="detail-success fw-500 fz-13">Thành công</div>
+                                    @endif
+
                                 </div>
                             </div>
+                            @if(!$checkpass && $item->status == 0 && !isset($time))
                             <div class="d-flex flex-row-reverse">
-                                <button class="btn primary c-px-50" data-toggle="modal" data-target="#modal-get-nick">Xem tài khoản</button>
+                                <form action="/lich-su-mua-nick-{{ $item->randId }}/showpass" class="formPassword" method="post">
+                                @csrf
+                                <button type="submit" data-id="{{ $item->randId }}" class="btn primary c-px-50 his__detail__button">Lấy mật khẩu</button>
+                                </form>
                             </div>
+                            @endif
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -86,7 +165,7 @@
             <div class="modal-content">
                 <div class="modal-body c-p-0">
                     <div class="banner">
-                        <img class="" src="/assets/frontend/{{env('THEME_VERSION')}}/image/son/success.png" alt="">
+                        <img class="" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
                     </div>
                     <div class="c-mt-12">
                         <label class="c-mb-4 fw-500 fz-13 lh-20">Tài khoản</label>
@@ -112,3 +191,8 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/his-detail.js?v={{time()}}"></script>
+@endsection
+

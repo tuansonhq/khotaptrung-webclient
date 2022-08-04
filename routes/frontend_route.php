@@ -140,6 +140,9 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
+                Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])
+                    ->name('getShowpassNick');
+
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
                 Route::get('/profile', [UserController::class , "profileSidebar"]);
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -186,12 +189,17 @@ Route::group(array('middleware' => ['theme']) , function (){
                     /*Theme_3*/
                     Route::get('/lich-su-mua-nick', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustom'])
                         ->name('nick-buyed');
+
+                    Route::get('/lich-su-mua-nick-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])
+                        ->name('getLogsCustomDetails');
+
                     Route::get('/lich-su-mua-account/get-first-pass', [\App\Http\Controllers\Frontend\AccController::class , 'getFirstPass'])
                         ->name('get-first-pass');
 
 
                     Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
                         ->name('getShowpass');
+
                     //dịch vụ
                     Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogs'])
                         ->name('getBuyServiceHistory');
