@@ -26,7 +26,9 @@
                         <div class="swiper-slide" >
                             <a href="/tin-tuc/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
+                                    @if(isset($val->image))
                                     <img src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    @endif
                                 </div>
                                 <div class="item-product__box-content item-news-content">
 
