@@ -16,7 +16,7 @@
     <ul class="trans-list">
         @forelse($group as $item)
             <li class="trans-item">
-                <a href="/chi-tiet-lich-su-giao-dich">
+                <a href="/lich-su-nap-the-{{ $item->id }}">
                     <div class="text-left">
                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
                         {{ $item->telecom_key }} (#{{ $item->id }})
@@ -26,7 +26,7 @@
                     </span>
                     </div>
                     <div class="text-right">
-                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_amount, 0, ',', '.') }}đ</span>
+                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_amount, 0, ',', '.') }} đ</span>
                         @switch($item->status)
                             @case(1)
                                 <span class="success-color c-mb-0">{{config('module.charge.status.1')}}</span>

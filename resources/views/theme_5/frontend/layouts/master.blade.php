@@ -73,7 +73,6 @@
         <span class="modal-loader-spin"></span>
     </div>
 </div>
-@include('frontend.widget.modal.__login')
 <!-- Messenger Plugin chat Code -->
 @if(Session::has('check_login'))
     <script>

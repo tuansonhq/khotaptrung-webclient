@@ -11,28 +11,30 @@
         @include('frontend.widget.__dich__vu__noi__bat')
 
 {{--        Giá sốc  --}}
-        @include('frontend.widget.__gia__soc')
+{{--        @include('frontend.widget.__gia__soc')--}}
 
 {{--        Dành cho bạn  --}}
-        @include('frontend.widget.__danh__cho__ban')
+{{--        @include('frontend.widget.__danh__cho__ban')--}}
+        {{--        Dịch vụ  --}}
+        @include('frontend.widget.__content__home__dichvu')
 
 {{--        Vòng quay  --}}
-        @include('frontend.widget.__vong__quay')
+        @include('frontend.widget.__content__home__minigame')
 
         {{--        Nạp thẻ  --}}
         @include('frontend.widget.__napthe')
 
 {{--        nick ngon giá re  --}}
-        @include('frontend.widget.__nick__ngon__gia__re')
+        @include('frontend.widget.__content__home__game')
 
 {{--        Free fire  --}}
-        @include('frontend.widget.__free__fire')
+{{--        @include('frontend.widget.__free__fire')--}}
 
 {{--        Liên quân  --}}
-        @include('frontend.widget.__lien__quan')
+{{--        @include('frontend.widget.__lien__quan')--}}
 
         {{--        Ngoc rong online  --}}
-        @include('frontend.widget.__ngoc__rong__online')
+{{--        @include('frontend.widget.__ngoc__rong__online')--}}
 
         {{--        Tin tức  --}}
         @include('frontend.widget.__tin__tuc')

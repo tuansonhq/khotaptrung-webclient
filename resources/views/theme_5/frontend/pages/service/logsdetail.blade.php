@@ -88,13 +88,20 @@
 
                             @if($data->status==1)
 
-                                @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
-                                @else
+                                @if($input_auto == 1 && ($data->itemconfig_ref->idkey!='' || $data->itemconfig_ref->idkey!=null ))
 
-                                    @if($data->itemconfig_ref->idkey =='nrogem')
+                                @else
+                                    @if($data->gate_id == 1)
+
                                     @else
                                         <button class="btn primary btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
                                     @endif
+
+{{--                                    @if($data->itemconfig_ref->idkey =='nrogem')--}}
+{{--                                        --}}
+{{--                                    @else--}}
+{{--                                        --}}
+{{--                                    @endif--}}
                                 @endif
 
                                 <!-- modal update info -->
