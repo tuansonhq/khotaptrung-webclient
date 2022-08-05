@@ -3,7 +3,7 @@
 
 <div class="col-md-12 left-right">
     <table class="table table-striped table-hover table-logs" id="table-default">
-        <thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>
+        <thead><tr><th>Thời gian</th><th>Tiền</th><th>Thực nhận</th><th>Trạng thái</th></tr></thead>
         <tbody>
         @if(isset($data) && count($data) > 0)
             @php
@@ -19,13 +19,6 @@
                     </tr>
                     <tr>
                         <td>{{ formatDateTime($item->created_at) }}</td>
-                        <td>HOANG NGOC KY</td>
-
-                        <td>Techcombank</td>
-                        <td>
-                            19032218296688
-                        </td>
-
                         <td>
                             {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>
@@ -54,13 +47,6 @@
                 @else
                     <tr>
                         <td>{{ formatDateTime($item->created_at) }}</td>
-                        <td>HOANG NGOC KY</td>
-
-                        <td>Techcombank</td>
-                        <td>
-                            19032218296688
-                        </td>
-
                         <td>
                             {{ str_replace(',','.',number_format($item->price)) }} đ
                         </td>

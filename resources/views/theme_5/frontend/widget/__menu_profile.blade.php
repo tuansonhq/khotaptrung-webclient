@@ -1,14 +1,13 @@
 <div class="sidebar">
-    <div class="sidebar-section d-flex brs-12 c-mb-16">
-        <div class="sidebar-section-avt brs-100 c-mr-12">
-            <img class="brs-100" src="http://sacus.vn/wp-content/uploads/2019/06/no-image.jpg" alt="">
-        </div>
-        <div class="sidebar-section-info">
-            <p class="sidebar-section-title c-mb-4 fz-15 fw-500">Nobita yêu Xuka</p>
-            <p class="sidebar-section-info-text c-mb-4 fz-13 fw-500">Số dư: <span>100.000đ</span></p>
-            <p class="sidebar-section-info-text c-mb-4 fz-13 fw-500">Xu khóa: <span>100.000 xu</span></p>
-            <p class="sidebar-section-info-text mb-0 fz-13 fw-500">ID: <span>123456</span></p>
-        </div>
+    <div class="sidebar-section d-flex brs-12 c-mb-16 sidebar-user-profile">
+{{--        <div class="sidebar-section-avt brs-100 c-mr-12">--}}
+{{--            <img class="brs-100" src="http://sacus.vn/wp-content/uploads/2019/06/no-image.jpg" alt="">--}}
+{{--        </div>--}}
+{{--        <div class="sidebar-section-info">--}}
+{{--            <p class="sidebar-section-title c-mb-4 fz-15 fw-500 sidebar-user-name">Nobita yêu Xuka</p>--}}
+{{--            <p class="sidebar-section-info-text c-mb-4 fz-13 fw-500 sidebar-user-balance">Số dư: <span>100.000đ</span></p>--}}
+{{--            <p class="sidebar-section-info-text mb-0 fz-13 fw-500 sidebar-user-id">ID: <span>123456</span></p>--}}
+{{--        </div>--}}
     </div>
 @if(isset($data))
     <!-- Nhóm vào với các item vào với nhau theo parent -->
@@ -66,12 +65,12 @@
         @endforelse
     @endif
     <div class="sidebar-section brs-12 c-mb-16">
-        <div class="sidebar-item">
-            <a href="javascript:void(0);" class="d-block align-items-center d-flex">
-                <div class="icon-sidebar"
-                     style="--path:url(/assets/frontend/theme_5/image/svg/sidebar-the-cao-da-mua.svg)"></div>
-                <p class="sidebar-item-text fw-400 fz-12 mb-0">Đăng xuất</p>
-            </a>
+        <div class="sidebar-item log-out-button">
+{{--            <a href="javascript:void(0);" class="d-block align-items-center d-flex">--}}
+{{--                <div class="icon-sidebar"--}}
+{{--                     style="--path:url(/assets/frontend/theme_5/image/svg/sidebar-the-cao-da-mua.svg)"></div>--}}
+{{--                <p class="sidebar-item-text fw-400 fz-12 mb-0">Đăng xuất</p>--}}
+{{--            </a>--}}
         </div>
     </div>
 </div>

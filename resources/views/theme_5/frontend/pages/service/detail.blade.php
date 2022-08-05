@@ -1,4 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
         @php
@@ -11,6 +17,7 @@
         $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
         $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
     @endphp
+
     {{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
@@ -59,7 +66,7 @@
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
                                 <div class="mb-15 c-pt-16">
-                                    <select name="server[]" class="server-filter form-control t14" style="">
+                                    <select name="server" class="server-filter form-control t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
                                                 <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
@@ -379,11 +386,56 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn primary submit-form">Xác nhận</button>
+                    <div class="button-next-step-two d-none"></div>
+                    <div class="openSuccess d-none"></div>
                 </div>
             </div>
         </div>
     </div>
+    {{-- Modal thuê dịch vụ thành công --}}
+    <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content">
+                <div class="modal-header modal-header-success-ct">
+                    <div class="row marginauto modal-header-success-row-ct justify-content-center">
+                        <div class="col-md-12 text-center">
+                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="modal-body modal-body-success-ct">
+                    <div class="row marginauto justify-content-center">
+                        <div class="col-auto">
+                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image-success-service.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                        <div class="col-md-12 text-center js-message-res">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="row marginauto justify-content-center modal-footer-success-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                            <div class="row marginauto modal-footer-success-row-not-ct">
+                                <div class="col-md-12 left-right">
+                                    <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                            <div class="row marginauto modal-footer-success-row-ct">
+                                <div class="col-md-12 left-right">
+                                    <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     {{-- Thanh toans thanhf coong  --}}
@@ -407,7 +459,6 @@
     </div>
 
     {{--  sử lý step  --}}
-
     <div class="step" id="step2">
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>

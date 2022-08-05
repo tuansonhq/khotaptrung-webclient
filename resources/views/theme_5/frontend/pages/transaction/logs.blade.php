@@ -13,7 +13,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-info" class="link-back"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Biến động số dư</h1>
 

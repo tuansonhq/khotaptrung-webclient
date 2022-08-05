@@ -10,14 +10,14 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/minigame-log-{{$group->id}}" class="breadcrumb-link">Lịch sử chơi {{$group->title}} trúng vật phẩm</a>
+                    <a href="/minigame-log-{{$group->id}}" class="breadcrumb-link">Lịch sử chơi {{$group->title}} trúng nick</a>
                 </li>
             </ul>
 
             <div class="head-mobile">
                 <a href="/profile" class="link-back close-step"></a>
 
-                <h1 class="head-title text-title">Lịch sử chơi {{$group->title}} trúng vật phẩm</h1>
+                <h1 class="head-title text-title">Lịch sử chơi {{$group->title}} trúng nick</h1>
 
                 <a href="/" class="home"></a>
             </div>
@@ -28,19 +28,14 @@
                 <div class="c-ml-16 c-ml-lg-0 c-history-right">
                     <div class="c-history-right-body brs-12 brs-lg-0 c-p-16">
                         <div class="c-history-title c-pb-16 c-pb-lg-12 media-web">
-                            <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử chơi {{$group->title}} trúng vật phẩm</h3>
+                            <h3 class="fw-700 fz-20 fz-lg-16 lh-28 lh-lg-20 mb-0">Lịch sử chơi {{$group->title}} trúng nick</h3>
                         </div>
 
                         <div class="tags d-none d-lg-flex justify-content-end" id="params-filter">
-                            {{--                        <div class="tag">Mã số</div>--}}
-                            {{--                        <div class="tag">Trạng thái</div>--}}
-                            {{--                        <div class="tag">Rank</div>--}}
+
                         </div>
                         <div class="justify-content-between align-items-center c-pt-lg-16 c-pb-16 c-mb-16 d-flex d-lg-none">
-{{--                            <form action="" class="form-search history">--}}
-{{--                                <input type="search" placeholder="Tìm kiếm" class="search">--}}
-{{--                                <button type="submit"></button>--}}
-{{--                            </form>--}}
+
                             <div class="value-filter c-ml-16">
                                 <button type="button" class="filter-history open-sheet" data-target="#sheet-filter" data-notify="0"></button>
                             </div>
@@ -53,8 +48,8 @@
                                         <div class="row marginauto">
                                             <div class="col-12 left-right c-pr-4 background-nick-col-bottom-ct status-finter-nick">
                                                 <select class="wide" name="type" id="type">
-                                                    <option selected>Log trúng vật phẩm</option>
-                                                    <option value="1">Log trúng acc</option>
+                                                    <option value="1">Log trúng vật phẩm</option>
+                                                    <option selected>Log trúng acc</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -86,8 +81,7 @@
                                             window.location.href = $( "select#id" ).val();
                                         });
                                         $("#type").change(function(){
-                                            var link = $( "select#id" ).val().replace('log','logacc')
-                                            window.location.href = link;
+                                            window.location.href = $( "select#id" ).val().replace('logacc','log');
                                         });
                                     </script>
                                 </div>
@@ -116,14 +110,14 @@
                                                 <a href="javascript:void(0)">
                                                     <div class="text-left">
                                                     <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                                                        {{$item->item_ref->parrent->title??""}}
+                                                        {{$item->item_acc->title}} (#{{$item->item_acc->position}})
                                                     </span>
                                                         <span class="t-body-1 link-color">
                                                         {{date('d/m/Y - H:i', strtotime($item->created_at))}}
                                                     </span>
                                                     </div>
                                                     <div class="text-right">
-                                                        <span class="fw-500 d-block c-mb-0">{{$item->item_ref->parrent->params->value??""}}</span>
+                                                        <span class="fw-500 d-block c-mb-0">{{$item->item_ref->parrent->title??""}}</span>
                                                     </div>
                                                 </a>
                                             </li>

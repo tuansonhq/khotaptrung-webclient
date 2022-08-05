@@ -37,7 +37,6 @@ if (input_params_hide.length){
             if (itemselect_value == -1) {
                 return;
             }
-
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
                 let s_price = data_params["price" + server];
                 price = parseInt(s_price[itemselect_value]);
@@ -141,9 +140,7 @@ if (input_params_hide.length){
             break;
         // điền số tiền
         case '7':
-
         function UpdateTotal() {
-
             var price = parseInt(input_pack.val().replace(/\./g, ''));
             if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
                 // $('button[type="submit"]').addClass('not-allow');
@@ -158,6 +155,7 @@ if (input_params_hide.length){
             let price_show = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price_show = price_show.split('').reverse().join('').replace(/^[\.]/, '');
             if (!!price) {
+
                 if (data_params.server_mode == 1 && data_params.server_price == 1) {
                     var s_price = data_params["price" + server_id];
                     var s_discount = data_params["discount" + server_id];
@@ -176,6 +174,7 @@ if (input_params_hide.length){
                     discount = s_discount[server_id];
                     total = price * discount;
                 }
+
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
                 $('#txt-discount').val(discount);
                 total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
@@ -247,3 +246,4 @@ $('.submit-form').on('click', function () {
     });
 
 })
+

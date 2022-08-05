@@ -12,7 +12,7 @@
                 </li>
             </ul>
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back close-step"></a>
+                <a href="/profile" class="link-back close-step"></a>
 
                 <h1 class="head-title text-title">Thẻ cào đã mua</h1>
 

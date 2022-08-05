@@ -1,4 +1,9 @@
 @extends('frontend.layouts.master')
+
+@section('scripts')
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
+@endsection
+
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
@@ -45,6 +50,41 @@
                 <a href="/" class="home"></a>
             </div>
             <div class="col-12 col-lg-9 c-pl-12 c-p-sm-0">
+<<<<<<< HEAD
+                <div class="row">
+                    <div class=" tab-content col-12 col-lg-6 c-pr-12 c-pl-12 c-px-sm-24">
+                        <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
+                            <div class="buy-card-section c-mb-8 c-mb-sm-0">
+                                <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                <div class="col-md-12 p-0">
+                                    <div class="row m-0" id="cardGameList">
+                                        <div class="loader position-relative" style="margin: 2rem 0">
+                                            <div class="loading-spokes">
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+                                                <div class="spoke-container">
+                                                    <div class="spoke"></div>
+                                                </div>
+=======
                 <div class="tab-content c-px-sm-16">
                     <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
                         <form action="">
@@ -56,10 +96,21 @@
                                             <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                                             <div class="row m-0">
                                                 <!-- JS Paste HTML vào đây -->
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="mobileCard" role="tabpanel" >
+                            <div class="buy-card-section c-mb-8 c-mb-sm-0">
+                                <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                <div class="col-md-12 p-0">
+                                    <div class="row m-0" id="cardPhoneList">
+
+=======
                                 <div class="col-12 col-md-6 c-pl-12 c-pr-sm-12">
                                     <div class="buy-card-section c-mb-16">
                                         <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
@@ -89,13 +140,66 @@
                                             <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
                                         </div>
                                     </div>
-                                    <button class="btn primary w-100 d-none d-lg-block" type="button" data-toggle="modal" data-target="#modal-confirm">
+                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
                                         Mua ngay
                                     </button>
+                                    <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                        <button class="btn primary" type="submit">Mua ngay</button>
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
+<<<<<<< HEAD
+                    <div id="cardPriceInfo" class="col-12 col-lg-6 c-pl-12 c-px-sm-24">
+
+                        <div class="loader position-relative d-none" style="margin: 2rem 0">
+                            <div class="loading-spokes">
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                                <div class="spoke-container">
+                                    <div class="spoke"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="cardPriceContent" class="d-none">
+                            <div class="buy-card-section c-mb-8">
+                                <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
+                                <div class="col-md-12 p-0">
+                                    <div class="row m-0" id="cardAmountList">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="buy-card-info c-p-16 c-mb-20 brs-12">
+                                <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                    <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
+                                    <div class="js-quantity">
+                                        <div class="js-quantity-minus"></div>
+                                        <input type="text" name="card-amount" value="1" class="js-quantity-input">
+                                        <div class="js-quantity-add"></div>
+=======
 
                     <div class="tab-pane fade" id="mobileCard" role="tabpanel" >
                         <form action="">
@@ -124,10 +228,14 @@
                                     <div class="buy-card-info c-p-16 c-mb-20 brs-12">
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
                                             <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
-                                            <div class="js-quantity">
-                                                <button class="js-quantity-minus" type="button"></button>
-                                                <input type="text" name="card-amount" class="js-quantity-input" value="1" numberic>
-                                                <button class="js-quantity-add" type="button"></button>
+                                            <div class="buy-card-amount d-flex">
+                                                <button class="buy-card-amount-button d-flex button-minus">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
+                                                </button>
+                                                <input type="text" name="card-amount" class="buy-card-amount-input" value="1" numberic>
+                                                <button class="buy-card-amount-button d-flex button-add">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
@@ -139,15 +247,30 @@
                                             <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
                                             <span class="buy-card-total fw-500 fz-15 js-text-total">0đ</span>
                                         </div>
+>>>>>>> 0897c58f21d033132bac4e8d24f2b70024f7858a
                                     </div>
-                                    <button class="btn primary w-100 d-none d-lg-block" type="button" data-toggle="modal" data-target="#modal-confirm">
-                                        Mua ngay
-                                    </button>
+                                </div>
+                                <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                    <input name="card-discount" type="hidden" value="">
+                                    <span class="buy-card-info-title fw-500 fz-13">Chiết khấu</span>
+                                    <span class="buy-card-discount fw-400 fz-13"></span>
+                                </div>
+                                <div class="buy-card-info-block d-flex justify-content-between align-items-center">
+                                    <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
+                                    <span class="buy-card-total fw-500 fz-15"></span>
                                 </div>
                             </div>
-                        </form>
+                            <button class="btn primary w-100 d-none d-lg-block" id="btn-confirm" data-toggle="modal" data-target="#modalConfirmPayment" type="button">
+                                Mua ngay
+                            </button>
+                            <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                <button id="btn-confirm-mobile" class="btn primary js-step" data-target="#step2" type="button">Mua ngay</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -180,14 +303,103 @@
         <div class="c-my-32 d-none d-lg-block">
             @include('frontend/widget/__services__other')
         </div>
+
     </div>
 
-    <!-- Button Mobile -->
-    <div class="footer-mobile group-btn">
-        <button class="btn primary js-step" data-target="#step-confirm" type="button">Mua ngay</button>
+    <div class="step" id="step2">
+        <div class="head-mobile">
+            <a href="#" class="link-back close-step"></a>
+
+            <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+
+            <a href="#" class="notify" data-notify="2"></a>
+        </div>
+        <div class="body-mobile">
+            <div class="c-px-16">
+                <div class="history-detail-label c-py-12 fw-500 fz-13 fz-sm-15">
+                    Thông tin mua thẻ
+                </div>
+                <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Loại thẻ</p>
+                        <div class="fw-500 fz-13" id="confirmMobileCard"></div>
+                    </div>
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Mệnh giá</p>
+                        <div class="fw-500 fz-13" id="confirmMobilePrice"></div>
+                    </div>
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Số lượng</p>
+                        <div class="fw-500 fz-13" id="confirmMobileQuantity"></div>
+                    </div>
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Chiết khấu</p>
+                        <div class="fw-500 fz-13" id="confirmMobileDiscount"></div>
+                    </div>
+                    <div class="history-detail-attr d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Thành tiền</p>
+                        <div class="fw-500 fz-13" id="confirmMobileTotal"></div>
+                    </div>
+                </div>
+                <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Phương thức thanh toán</p>
+                        <div class="fw-500 fz-13">Tài khoản Shopbrand</div>
+                    </div>
+                    <div class="history-detail-attr d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Phí thanh toán</p>
+                        <div class="fw-500 fz-13">Miễn phí</div>
+                    </div>
+                </div>
+                <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
+                    <div class="history-detail-attr d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Số tiền thanh toán</p>
+                        <div class="fw-500 fz-13 detail-primary" id="totalMobileBill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-mobile group-btn c-px-16 c-pt-16">
+            <button class="btn primary js-step" id="confirmMobileButton" type="button">Xác nhận</button>
+        </div>
     </div>
-    <!-- Modal Xác nhận-->
-    <div class="modal fade" id="modal-confirm">
+
+    <div class="step" id="step3">
+        <div class="head-mobile">
+            <a href="#" class="link-back close-step"></a>
+
+            <div class="head-title text-title">Mua thẻ thành công</div>
+
+            <a href="#" class="notify" data-notify="2"></a>
+        </div>
+        <div class="body-mobile">
+            <div class="c-px-16">
+                <div class="history-detail-label c-py-12 fw-500 fz-13 fz-sm-15">
+                    Thông tin mua thẻ
+                </div>
+                <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Loại thẻ</p>
+                        <div class="fw-500 fz-13" id="successMobileCard"></div>
+                    </div>
+                    <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Mệnh giá</p>
+                        <div class="fw-500 fz-13" id="successMobilePrice"></div>
+                    </div>
+                    <div class="history-detail-attr d-flex justify-content-between align-items-center">
+                        <p class="fz-13 fw-400 mb-0">Số lượng</p>
+                        <div class="fw-500 fz-13" id="successMobileQuantity"></div>
+                    </div>
+                </div>
+                <div id="cardList">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-big" id="modalConfirmPayment">
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content c-p-24">
                 <div class="modal-header">
@@ -198,118 +410,134 @@
                     <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                         Thông tin mua thẻ
                     </div>
-                    <div class="card card-dark c-px-12 c-py-4 c-mb-16">
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Loại thẻ</div>
-                            <div class="t-body-2 t-type-card">Zing</div>
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Loại thẻ
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmTitle"></div>
                         </div>
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Số lượng</div>
-                            <div class="t-body-2 t-quantity-card">01</div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Mệnh giá
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmPrice"></div>
                         </div>
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Chiết khấu</div>
-                            <div class="t-body-2 t-discount-card">03 %</div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Số lượng
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmQuantity"></div>
                         </div>
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Mệnh giá</div>
-                            <div class="t-body-2 t-amount-card">0 đ</div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Chiết khấu
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmDiscount"></div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Thành tiền
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="confirmTotal"></div>
                         </div>
                     </div>
-                    <div class="card card-dark c-px-12 c-py-4 c-mb-16">
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Phương thức thanh toán</div>
-                            <div class="t-body-2">Tài khoản Shopbrand</div>
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fz-13 fw-400 text-center">
+                                Phương thức thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">
+                                Tài khoản Shopbrand
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Phí thanh toán</div>
-                            <div class="t-body-2">Miễn phí</div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Phí thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">
+                                Miễn phí
+                            </div>
                         </div>
                     </div>
-                    <div class="card card-dark c-px-12 c-py-4">
-                        <div class="d-flex justify-content-between c-py-4">
-                            <div class="t-body-1 link-color">Số tiền thanh toán</div>
-                            <div class="t-body-2 text-primary-color t-total-card">0đ</div>
+                    <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Tổng thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary" id="totalBill"></a></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
+                    <button class="btn primary" id="confirmSubmitButton">Xác nhận</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal Mua thất bại -->
-    <div class="modal fade modal-328" id="modal-failed">
-        <div class="modal-dialog modal-dialog-centered c-px-sm-16">
-            <div class="modal-content">
-                <div class="modal-body text-center c-p-0">
-                    <div class="banner">
-                        <img width="143" height="114" class="" src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
+
+    <div class="modal fade modal-big" id="modal--success__payment">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content c-p-24">
+                <div class="modal-header">
+                    <h2 class="modal-title center">Mua thẻ thành công</h2>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                    <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
+                        Thông tin thẻ đã mua
                     </div>
-                    <p class="t-sub-1 title-color">Mua thẻ thất bại</p>
-                    <span class="t-body-1 res-message">
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Loại thẻ
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="successCard"></div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Mệnh giá
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="successPrice"></div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Số lượng
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500" id="successQuantity"></div>
+                        </div>
+                    </div>
 
-                    </span>
+                    <div class="swiper slider--card swiper-container-horizontal swiper-container-free-mode">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+
                 </div>
-                <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
-                    <button type="button" class="btn ghost" data-dismiss="modal">Đóng</button>
-                    <a href="/nap-tien" class="btn primary">Nạp tiền</a>
+                <div class="modal-footer">
+                    <button class="btn ghost">Xoá bộ lọc</button>
+                    {{--                    <a class="btn secondary" data-dismiss="modal">Về trang chủ</a>--}}
+                    {{--                    <button class="btn primary">Xem kết quả</button>--}}
+                    <button class="btn primary">Xem kết quả</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Step Mobile -->
-    <div class="step" id="step-confirm">
-        <div class="head-mobile">
-            <a href="" class="link-back close-step"></a>
-
-            <div class="head-title text-title">Xác nhận thanh toán</div>
-
-            <a href="#" class="home"></a>
-        </div>
-        <div class="body-mobile c-px-16">
-            <div class="t-sub-2 title-color c-mt-16 c-mb-12">
-                Thông tin mua thẻ
-            </div>
-            <div class="card c-px-12 c-py-4 c-mb-16">
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Loại thẻ</div>
-                    <div class="t-body-2 t-type-card">Zing</div>
+    <div class="modal fade modal-small" id="modal--fail__payment">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center p-0">
+                    <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
                 </div>
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Số lượng</div>
-                    <div class="t-body-2 t-quantity-card">01</div>
+                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ thất bại</p>
+                    <p class="fw-400 fz-13 c-mt-10 mb-0" id="message--error--buy"></p>
                 </div>
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Chiết khấu</div>
-                    <div class="t-body-2 t-discount-card">03 %</div>
-                </div>
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Mệnh giá</div>
-                    <div class="t-body-2 t-amount-card">0 đ</div>
+                <div class="modal-footer c-p-24">
+                    <button class="btn ghost" data-dismiss="modal">Thoát</button>
                 </div>
             </div>
-            <div class="card c-px-12 c-py-4 c-mb-16">
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Phương thức thanh toán</div>
-                    <div class="t-body-2">Tài khoản Shopbrand</div>
-                </div>
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Phí thanh toán</div>
-                    <div class="t-body-2">Miễn phí</div>
-                </div>
-            </div>
-            <div class="card c-px-12 c-py-4">
-                <div class="d-flex justify-content-between c-py-4">
-                    <div class="t-body-1 link-color">Số tiền thanh toán</div>
-                    <div class="t-body-2 text-primary-color t-total-card">0đ</div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-mobile group-btn">
-            <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
         </div>
     </div>
 @endsection

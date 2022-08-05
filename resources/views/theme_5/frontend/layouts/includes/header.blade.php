@@ -150,8 +150,7 @@
                         </div>
                         <div class="account-logined-content c-pr-4 box-account_logined">
 
-                            @include('frontend.widget.__menu_profile')
-
+{{--                            @include('frontend.widget.__menu_profile')--}}
 
                         </div>
                     </div>
@@ -162,3 +161,6 @@
         </div>
     </nav>
 </header>
+<form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+    @csrf
+</form>
