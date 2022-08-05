@@ -128,21 +128,21 @@
                                 @endif
                             </div>
                             <div class="rotation-header-sale d-flex align-items-start">
-                                <div class="d-inline-flex align-items-center c-mr-10">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/flash_img.png" alt="">
-                                    <p class="fw-700 fz-20 lh-28 mb-0">Flash sale</p>
-                                </div>
-                                <div class="d-inline-flex align-items-center">
-                                    <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/clock.svg" alt="">
-                                    <p class="fz-13 fw-400 mb-0 c-mr-8">Kết thúc trong</p>
-                                    <div class="rotation-sale-time">
-                                        <ul class="mb-0 p-0">
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="hourRemain">10</span></li>
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="minuteRemain">2</span></li>
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="secondRemain">4</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
+{{--                                <div class="d-inline-flex align-items-center c-mr-10">--}}
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/flash_img.png" alt="">--}}
+{{--                                    <p class="fw-700 fz-20 lh-28 mb-0">Flash sale</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="d-inline-flex align-items-center">--}}
+{{--                                    <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/clock.svg" alt="">--}}
+{{--                                    <p class="fz-13 fw-400 mb-0 c-mr-8">Kết thúc trong</p>--}}
+{{--                                    <div class="rotation-sale-time">--}}
+{{--                                        <ul class="mb-0 p-0">--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="hourRemain">10</span></li>--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="minuteRemain">2</span></li>--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span id="secondRemain">4</span></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
 
@@ -162,9 +162,10 @@
 
                             @switch($position)
                                 @case('rubywheel')
+
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <div class="rotation-button">
-                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                        <div class="rotation-button" id="start-played" style="z-index: 2">
+                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}" >
                                         </div>
                                         <img style="width: 70%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
                                     </div>
@@ -203,6 +204,7 @@
 
                         <div class="row no-gutters">
                             <div class="col-12 col-lg-6 c-p-16 c-py-lg-8">
+                                @if($result->checkPoint==1)
                                 <div class="rotation-points c-mb-16 c-mb-lg-0">
                                     <div class="rotation-points-title c-mb-8 d-flex align-items-center fw-600 fz-16">
                                         <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/mdi_police-badge.svg" alt="">
@@ -215,12 +217,15 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="progress-wrapper brs-24">
-                                        <div class="progress-bar brs-24" style="width: 50%"></div>
+                                        <div class="progress-bar brs-24" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
                                     </div>
+
                                 </div>
+                                @endif
                                 <div class="rotation-sale-content brs-8 c-py-8 d-none d-lg-flex justify-content-center">
-                                    <p class="d-flex align-items-center c-mb-0">0
+                                    <p class="d-flex align-items-center c-mb-0">
                                         <span id="rotationFirstPrice" class="fw-400 fz-14 c-mr-8">
                                             @if(isset($result->group->params->percent_sale))
                                                 {{ str_replace(',','.',number_format(($result->group->params->percent_sale*$result->group->price)/100 + $result->group->price)) }} đ
@@ -239,31 +244,44 @@
                                         <input class="" type="text" placeholder="Nhập mã giảm giá">
                                     </div>
                                     <div class="col-6 c-pl-6">
-                                        <select class="rotation-inputs-select" name="type">
-                                            <option value="1">Mua X1/10k 1 lần quay</option>
-                                            <option value="1">Mua X1/10k 1 lần quay</option>
-                                            <option value="1">Mua X1/10k 1 lần quay</option>
-                                            <option value="1">Mua X1/10k 1 lần quay</option>
-                                            <option value="1">Mua X1/10k 1 lần quay</option>
+                                        <select class="rotation-inputs-select" name="type" id="numrolllop">
+                                            <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
+                                            @if($result->group->params->price_sticky_3 > 0))
+                                            <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                            @endif
+                                            @if($result->group->params->price_sticky_5 > 0))
+                                            <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                            @endif
+                                            @if($result->group->params->price_sticky_7 > 0))
+                                            <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                            @endif
+                                            @if($result->group->params->price_sticky_10 > 0))
+                                            <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row no-gutters d-none d-lg-flex">
+                                    @if($result->group->params->is_try == 1)
+
                                     <div class="col-12 col-md-6 c-pr-6">
-                                        <button class="btn secondary w-100">Chơi thử</button>
+                                        <button id="playerDemo" class="btn secondary w-100 num-play-try">Chơi thử</button>
                                     </div>
+                                    @endif
                                     <div class="col-12 col-md-6 c-pl-6">
-                                        <button class="btn primary w-100">Quay ngay</button>
+                                        <button id="start-played" class="btn primary w-100 ">Quay ngay</button>
                                     </div>
                                 </div>
                                 <div class="footer-mobile c-p-16">
 
                                     <div class="row marginauto">
+                                        @if($result->group->params->is_try == 1)
                                         <div class="col-6 pl-0 c-pr-8">
                                             <button class="btn secondary w-100">Chơi thử</button>
                                         </div>
+                                        @endif
                                         <div class="col-6 pr-0 c-pl-8">
-                                            <button class="btn primary w-100">Quay ngay</button>
+                                            <button id="start-played" class="btn primary w-100 ">Quay ngay</button>
                                         </div>
                                     </div>
 
@@ -1043,5 +1061,287 @@
             </div>
         </div>
     </div>
+
+    <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
+    <input type="hidden" id="type_play" value="real">
+
+
+
+    <!-- Modal quay thành công -->
+    <div class="modal fade modal-small" id="noticeModal">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center p-0">
+                    {{--                    Ảnh Thành công    --}}
+                    <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
+                    <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                    {{--                    Content 3  --}}
+                    <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Chúc mừng bạn đã quay trúng</p>
+                    <div class="rotation-prize-detail content-popup fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-10 mb-0">
+                    </div>
+                </div>
+                <div class="modal-footer c-p-24">
+                    <a class="btn secondary" href="/withdrawitem-1">Rút quà</a>
+                    <button class="btn primary"  data-dismiss="modal">Chơi tiếp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center p-0">
+                        {{--                    Ảnh Thành công    --}}
+                        <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                        <button type="button" class="close close_modal" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                        {{--                    Content 3  --}}
+                        <div class="rotation-prize-detail content-popup fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">
+                        </div>
+                    </div>
+                    <div class="modal-footer c-p-24">
+                        <a class="btn secondary" href="/nap-the">Nạp thẻ</a>
+                        <button class="btn primary"  data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    @foreach(config('constants.'.'game_type') as $item => $key)
+        <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
+    @endforeach
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <input type="hidden" id="position_input" value="{{ @$position }}">
+    <input type="hidden" id="group_id" value="{{ @$result->group->id}}">
+    <input type="hidden" id="image_static" value="{{ @\App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+    <input type="hidden" id="count_item" value="{{count($result->group->items)}}">
+    <!-- script -->
+    <script id="history-template" type="text/x-handlebars-template">
+        <tr>
+            <td class="text-danger"><b>@{{idCustomer}}</b></td>
+            <td class="base-color"><b>@{{txtHistory}}</b></td>
+        </tr>
+    </script>
+    <script id="message-template" type="text/x-handlebars-template">
+        <li>
+
+            <div class="comment-item comment-item-own">
+
+                <div class="comment-detail comment-detail-own">
+                    <div class="comment-info comment-info-own">
+
+                        <span>@{{time}} , Vừa xong</span>
+                        <p>Bạn</p>
+                    </div>
+                    <div class="comment-content comment-content-own">
+                        @{{messageOutput}}
+                    </div>
+                    <div class="comment-interact comment-interact-own">
+                        <span id="likeComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                        <span id="replyComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                    </div>
+                </div>
+                <div class="comment-avatar">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
+                </div>
+            </div>
+
+        </li>
+
+    </script>
+    <script id="message-response-template" type="text/x-handlebars-template">
+        <li>
+            <div class="comment-item">
+                <div class="comment-avatar">
+                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
+                </div>
+                <div class="comment-detail">
+                    <div class="comment-info">
+                        <p>Khách</p>
+                        <span>@{{time}}, Vừa xong</span>
+                    </div>
+                    <div class="comment-content">
+                        @{{response}}
+                    </div>
+                    <div class="comment-interact">
+                        <span id="likeComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
+                        <span id="replyComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </script>
+
+    @switch($position)
+        @case('rubywheel')
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/rubywheel.js"></script>
+        @break
+        @case('flip')
+        <style type="text/css">
+            .boxflip .active {
+                animation: rotation 100ms infinite linear;
+            }
+            .boxflip .tran {
+                opacity: 0!important;
+            }
+
+            @keyframes rotation {
+                100%{ transform:rotatey(360deg); }
+            }
+        </style>
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/flip.js"></script>
+        @foreach($result->group->items as $item)
+            <input type="hidden" class="image_gift" value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+        @endforeach
+        @break
+        @case('slotmachine')
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine.js"></script>
+        <style>
+            @php
+    $count = 0;
+@endphp
+@foreach($result->group->items as   $gift)
+    @php
+        $count++;
+    @endphp
+    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+            @endforeach
+#slot1,#slot2,#slot3{
+                display: inline-block;
+                margin-top: 2px;
+                margin-left: 1px;
+                margin-right: 45px;
+                margin: 0 25px;
+                background-size: 100px 79px;
+                width: 100px;
+                height: 79px;
+                padding: 0 28px;
+                background-repeat: no-repeat;
+            }
+            /*  Lap top  */
+            @media only screen and (min-width: 992px) and (max-width: 1200px) {
+                #slot1,#slot2,#slot3 {
+                    background-size: 60px 48px!important;
+                    width: 60px!important;
+                    margin: 0 28px!important;
+                    height: 48px;
+                }
+            }
+            @media only screen and (min-width: 573px) and (max-width: 768px) {
+                #slot1,#slot2,#slot3 {
+                    background-size: 64px 48px!important;
+                    width: 64px!important;
+                    margin: 0 22px!important;
+                    height: 50px!important;
+                }
+            }
+            @media only screen and (min-width: 376px) and (max-width: 573px) {
+                #slot1,#slot2,#slot3 {
+                    background-size: 56px 40px!important;
+                    width: 48px!important;
+                    margin: 0px 9px!important;
+                    height: 48px!important;
+                }
+
+            }
+            @media only screen and (max-width: 376px) {
+                #slot1,#slot2,#slot3 {
+                    background-size: 56px 40px!important;
+                    width: 48px!important;
+                    margin: 0px 9px!important;
+                    height: 48px!important;
+                }
+            }
+        </style>
+        @break
+        @case('slotmachine5')
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/slotmachine5.js"></script>
+        <style>
+            @php
+    $count = 0;
+@endphp
+@foreach($result->group->items as $gift)
+    @php
+        $count++;
+    @endphp
+    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+            @endforeach
+#slot1,#slot2,#slot3,#slot4,#slot5{
+                display: inline-block;
+                margin-top: 2px;
+                margin-left: 1px;
+                margin-right: 45px;
+                margin: 0 6px;
+                background-size: 100px 93px;
+                width: 100px;
+                height: 93px;
+                background-repeat: no-repeat;
+            }
+
+            @media only screen and (min-width: 992px) and (max-width: 1200px) {
+                #slot1,#slot2,#slot3,#slot4,#slot5{
+                    background-size: 80px 80px!important;
+                    width: 80px!important;
+                    height: 80px!important;
+                    margin: 0 5px!important;
+                }
+            }
+            @media only screen and (min-width: 573px) and (max-width: 768px) {
+                #slot1,#slot2,#slot3,#slot4,#slot5{
+                    background-size: 74px 74px!important;
+                    width: 74px!important;
+                    height: 74px!important;
+                    margin: 0 5.5px!important;
+                }
+            }
+            @media only screen and (min-width: 376px) and (max-width: 573px) {
+                #slot1,#slot2,#slot3,#slot4,#slot5{
+                    background-size: 54px 52px!important;
+                    width: 54px!important;
+                    height: 54px!important;
+                    margin: 0 4.3px!important;
+                }
+
+            }
+
+            @media only screen and (max-width: 376px) {
+                #slot1,#slot2,#slot3,#slot4,#slot5{
+                    background-size: 54px 52px!important;
+                    width: 54px!important;
+                    height: 54px!important;
+                    margin: 0 4.3px!important;
+                }
+            }
+        </style>
+        @break
+        @case('squarewheel')
+        @if(isset($result->group->items) && count($result->group->items)>0)
+            <script>
+                @foreach($result->group->items as $index=>$item)
+                $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                @endforeach
+            </script>
+        @endif
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/squarewheel.js"></script>
+        <style>
+            .box img.active{box-shadow:0 0 1px #fff, 0 0 2px #fff, 0 0 45px #f00, 0 0 30px #ff0013, 0 0 25px #f10303}
+        </style>
+        @break
+        @case('smashwheel')
+        @case('rungcay')
+        @case('gieoque')
+        <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
+        @break
+    @endswitch
 @endsection
 
