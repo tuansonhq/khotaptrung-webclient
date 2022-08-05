@@ -6,6 +6,10 @@ let money_format = wNumb({
     thousand: '.',
     suffix: ' đ'
 });
+/*convert 1 -> 01 , 2->02 ...*/
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
@@ -20,6 +24,7 @@ $(document).ready(function() {
             if(input.val() < 1 || isNaN(input.val())){
                 input.val(1);
             }
+            input.trigger('input')
         });
         js_quantity.on('click','.js-quantity-add',function (event) {
             event.preventDefault();
@@ -28,6 +33,7 @@ $(document).ready(function() {
             if(input.val() > 20 || isNaN(input.val())){
                 input.val(20);
             }
+            input.trigger('input');
         });
         js_quantity.on('input','.js-quantity-input',function () {
             if ($(this).val() > 20 || isNaN($(this).val())){
