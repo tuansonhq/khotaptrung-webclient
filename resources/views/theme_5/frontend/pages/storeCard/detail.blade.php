@@ -63,28 +63,28 @@
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Ngày giao dịch</p>
-                                    <div class="fw-500 fz-13">{{date('d/m/Y - H:i', strtotime($item->created_at))}}</div>
+                                    <div class="fw-500 fz-13">{{date('d/m/Y - H:i', strtotime($data->created_at))}}</div>
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trạng thái</p>
-                                    @switch($item->status)
+                                    @switch($data->status)
                                         @case(1)
                                         <div class="detail-success fw-500 fz-13">Thành công</div>
                                         @break
                                         @case(0)
-                                        <div class="detail-invalid fw-500 fz-13">Thất bại</div>
+                                        <div class="detail-failed fw-500 fz-13">Thất bại</div>
                                         @break
                                         @case(3)
-                                        <div class="detail-invalid fw-500 fz-13">Đã hủy</div>
+                                        <div class="detail-failed fw-500 fz-13">Đã hủy</div>
                                         @break
                                         @case(2)
-                                        <div class="detail-warning fw-500 fz-13">Đang chờ xử lý</div>
+                                        <div class="detail-pending fw-500 fz-13">Đang chờ xử lý</div>
                                         @break
                                         @case(4)
-                                        <div class="detail-invalid fw-500 fz-13">Lỗi gọi nhà cung cấp</div>
+                                        <div class="detail-failed fw-500 fz-13">Lỗi gọi nhà cung cấp</div>
                                         @break
                                         @case(5)
-                                        <div class="detail-invalid fw-500 fz-13">Lỗi hệ thống</div>
+                                        <div class="detail-failed fw-500 fz-13">Lỗi hệ thống</div>
                                         @break
                                     @endswitch
 

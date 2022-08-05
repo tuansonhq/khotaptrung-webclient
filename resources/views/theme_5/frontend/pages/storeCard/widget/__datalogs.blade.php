@@ -27,7 +27,9 @@
                         @endif
                     </span>
                         <span class="t-body-1 link-color">
-                        {{date('d/m/Y - H:i', strtotime($item->created_at))}}
+                            @if($item->created_at)
+                                {{date('d/m/Y - H:i', strtotime($item->created_at))}}
+                            @endif
                     </span>
                     </div>
                     <div class="text-right">
