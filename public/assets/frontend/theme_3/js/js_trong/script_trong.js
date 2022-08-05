@@ -31,8 +31,8 @@ $('.js-toggle-content').click(function () {
     handleToggleContent();
 });
 
-$('.card--body .card--desc__content').on('dblclick',function () {
-    handleToggleContent()
+$('.card--body .card--desc__content').dblclick(function(){
+    handleToggleContent();
 });
 // ondblclick on mobile
 if ($(window).width() < 1200) {
