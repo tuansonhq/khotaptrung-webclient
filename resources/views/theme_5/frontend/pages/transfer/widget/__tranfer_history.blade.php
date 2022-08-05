@@ -26,7 +26,7 @@
                     </span>
                     </div>
                     <div class="text-right">
-                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_amount, 0, ',', '.') }}đ</span>
+                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_price, 0, ',', '.') }}đ</span>
                         @switch($item->status)
                             @case(1)
                             <span class="success-color c-mb-0">{{config('module.tranfer.status.1')}}</span>

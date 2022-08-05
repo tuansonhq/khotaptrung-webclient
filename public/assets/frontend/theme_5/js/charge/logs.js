@@ -35,7 +35,17 @@ function loadDataApi(query) {
                 history_see_more ? history_see_more = false : '';
             }
             if (res.status === 0) {
-                let html = `<div class="invalid-color text-center">${res.message}</div>`
+                let html = `<ul class="trans-list">
+                                <li class="trans-item" style="height: auto">
+                                    <a href="javascript:void(0)">
+                                        <div class="text-left">
+                                            <span class="t-body-2 text-center fw-600 c-mb-0 text-limit limit-1 bread-word" style="color: #DA4343">
+                                                ${res.message}
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>`;
                 content_history.html(html);
             }
             if (res.status === 404){
