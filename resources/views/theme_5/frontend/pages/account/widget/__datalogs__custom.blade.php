@@ -59,4 +59,15 @@
         @endforelse
     </ul>
 @empty
+    <ul class="trans-list">
+        <li class="trans-item" style="height: auto">
+            <a href="javascript:void(0)">
+                <div class="text-left">
+                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                        Không có dữ liệu
+                    </span>
+                </div>
+            </a>
+        </li>
+    </ul>
 @endforelse
