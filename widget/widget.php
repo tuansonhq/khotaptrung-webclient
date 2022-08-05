@@ -810,4 +810,35 @@ View::composer('frontend.widget.__slide__news', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__top__today', function ($view) {
+
+//    Minigame
+    $data = \Cache::rememberForever('__top__today', function() {
+
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+    return $view->with('data', $data);
+
+});
+View::composer('frontend.widget.__minigame__list', function ($view) {
+
+//    Minigame
+    $data = \Cache::rememberForever('__minigame__list', function() {
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+    return $view->with('data', $data);
+
+});
 
