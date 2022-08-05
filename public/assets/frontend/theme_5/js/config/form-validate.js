@@ -108,9 +108,12 @@ Validator({
     formGroupSelector:'.input-group',
     errorSelector:'.text-error',
     rules:[
-        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+        Validator.isRequired('[name=old_password]','Bạn chưa nhập mật khẩu'),
         Validator.isRequired('[name=password-new]','Bạn chưa nhập mật khẩu mới'),
         Validator.isRequired('[name=password_confirmation]','Bạn chưa nhập mật khẩu xác nhận'),
+        Validator.isConfirm('[name=password_confirmation]',function () {
+            return document.querySelector('#form-changePassword [name=password-new]').value
+        },'Mật khẩu xác nhận chưa chính xác'),
     ],
     onSubmit:function (data) {
         var formSubmit = $('#form-changePassword');

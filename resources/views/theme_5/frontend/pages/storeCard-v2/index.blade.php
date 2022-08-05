@@ -58,66 +58,7 @@
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--game__nav">
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="t-body-1">
-                                        Thẻ Garena
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Gate
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Zing
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Vcoin
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ BIT
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png" alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Ongame
-                                    </span>
-                                </a>
-                            </li>
+                            <!-- JS PASTE HTML HERE -->
                         </ul>
 
                         <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button" aria-expanded="true">
@@ -129,36 +70,15 @@
                             </span>
                         </a>
                         <ul class="collapse card-list show" id="card--phone__nav">
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Viettel
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="card-item">
-                                <a href="mua-the-garena-v2" class="card-item_link">
-                                    <div class="card-item_thumb mr-2">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             alt="">
-                                    </div>
-                                    <span class="card-item_name">
-                                        Thẻ Mobifone
-                                    </span>
-                                </a>
-                            </li>
+                            <!-- JS PASTE HTML HERE -->
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- End nav danh mục -->
-            {{--            PAGE CONTENT--}}
+            <!-- content -->
             <div class="page--card__content c-ml-16 c-ml-lg-0">
-                {{--            CARD GAME --}}
+                <!-- card game -->
                 <div class="card c-mb-16 d-none d-lg-block" id="card-game">
                     <div class="card--head c-px-16 c-py-12">
                         <div class="t-title-2">
@@ -169,99 +89,12 @@
                         <hr>
                     </div>
                     <div class="card-body c-px-16 c-pt-16 c-pb-0">
-                        <div class="row c-mx-n8">
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2"  class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #E02729;">
-                                        Thẻ Gate
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="row c-mx-n8 card-wrap">
+                            <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                 </div>
-                {{--            END CARD GAME--}}
+                <!-- end card game -->
 
             <!-- Thẻ điẹn thoại -->
                 <div class="card c-mb-16 d-none d-lg-block" id="card-phone">
@@ -274,260 +107,21 @@
                         <hr>
                     </div>
                     <div class="card-body c-px-16 c-pt-16 c-pb-0">
-                        <div class="row c-mx-n8">
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2"  class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #E02729;">
-                                        Thẻ Gate
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 col-lg-3 c-px-8 c-mb-16">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #009DDC;">
-                                        Thẻ Zing
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="row c-mx-n8 card-wrap">
+                            <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                 </div>
 
                 <div class="tab-content d-block d-lg-none">
                     <div class="tab-pane fade active show" id="tab-card-game" role="tabpanel">
-                        <div class="row c-mx-lg-n6">
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="row c-mx-lg-n6 card-wrap">
+                            <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-card-phone" role="tabpanel">
-                        <div class="row c-mx-lg-n6">
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-6 c-px-lg-6 c-mb-lg-12">
-                                <a href="mua-the-garena-v2" class="scratch-card">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-sub-2" style="--bg-color: #CC2829;">
-                                        Thẻ Garena
-                                    </div>
-                                </a>
-                            </div>
+                        <div class="row c-mx-lg-n6 card-wrap">
+                            <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                 </div>
@@ -562,8 +156,10 @@
                 </div>
 
             </div>
-            {{--            END PAGE CONTENT--}}
+            <!-- end -->
         </div>
+
+        <input type="hidden" value="index" id="is_view">
     </div>
 @endsection
 @section('scripts')

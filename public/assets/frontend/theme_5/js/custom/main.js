@@ -10,6 +10,9 @@ let money_format = wNumb({
 function pad(d) {
     return (d < 10) ? '0' + d.toString() : d.toString();
 }
+function kFormatter(num) {
+    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
+}
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();

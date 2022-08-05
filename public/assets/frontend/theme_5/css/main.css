@@ -159,7 +159,10 @@ textarea {
 .toggle-password.copy-input input{
     padding-right: 66px;
 }
-
+/*Text*/
+.t-capitalize {
+    text-transform:capitalize;
+}
 /*hover*/
 input[type=text]:hover,
 input[type=password]:hover,
