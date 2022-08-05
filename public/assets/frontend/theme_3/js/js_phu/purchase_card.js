@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     //JS mua the module
     getListCard();
 
@@ -197,7 +197,7 @@ $(document).ready(function () {
                             }
 
                         } else {
-                            $('#cardGameList').append(html);
+                            $('#cardPhoneList').append(html);
                         }
                     });
 
@@ -205,11 +205,11 @@ $(document).ready(function () {
                     getCardAmount($('input[name="card-type"]').val());
 
                     //Listen to onchange event in input card-type
-                    $('input[name="card-type"]').change(function (e) { 
+                    $('input[name="card-type"]').change(function (e) {
                         e.preventDefault();
                         getCardAmount($(this).val());
                     });
-                    
+
                     $('.section--amount__card').removeClass('d-none');
                 }
             },
@@ -280,7 +280,7 @@ $(document).ready(function () {
 
                     $('.denos--wrap').removeClass('d-none');
 
-                } 
+                }
             },
             complete: function () {
                 $('#amountWidget .loader').addClass('d-none');
@@ -355,5 +355,5 @@ $(document).ready(function () {
         dataSend.quantity = quantity;
     }
 
-    //JS mua the module end 
+    //JS mua the module end
 });

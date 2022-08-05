@@ -288,13 +288,17 @@ View::composer('frontend.widget.__tin__tuc', function ($view) {
 
     $data = \Cache::rememberForever('__tin__tuc', function() {
 
-        $url = '/show-category-article';
+        $url = '/article';
         $method = "GET";
         $dataSend = array();
+        $dataSend['page'] = 1;
+        $dataSend['querry'] = '';
+
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        return $data = $result_Api->response_data->datacategory??null;
+      return $data = $result_Api->response_data->data->data??null;
+
     });
 
     return $view->with('data', $data);
