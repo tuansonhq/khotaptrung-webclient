@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-.@section('seo_head')
+@section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('styles')
@@ -8,9 +8,7 @@
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
-@section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
-@endsection
+
 @section('content')
     @if($data == null)
         <div class="item_buy">

@@ -159,7 +159,10 @@ textarea {
 .toggle-password.copy-input input{
     padding-right: 66px;
 }
-
+/*Text*/
+.t-capitalize {
+    text-transform:capitalize;
+}
 /*hover*/
 input[type=text]:hover,
 input[type=password]:hover,
@@ -1690,6 +1693,7 @@ i.title-info:after {
     margin-left: 4px;
     background-image: url(../image/svg/copy.svg);
     filter: var(--filter-link-default-color);
+    cursor: pointer;
 }
 .history-detail-attr .card-attr {
     display: flex;

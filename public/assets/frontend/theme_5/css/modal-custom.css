@@ -465,6 +465,10 @@
     display: none;
 }
 
+.modal-header .close_modal{
+    top: 24px !important;
+    right: 12px !important;
+}
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
     .body-modal__nick-lmht{

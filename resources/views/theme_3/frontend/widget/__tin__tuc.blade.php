@@ -5,15 +5,6 @@
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/tintucindex.svg" alt="">
         </span>
         <h2 class="text-title">Tin tức</h2>
-{{--        <div class="product-catecory " >--}}
-{{--            <ul class="nav d-g-md-none" role="tablist" >--}}
-{{--                @foreach($data as $item)--}}
-{{--                <li class="nav-item" role="presentation">--}}
-{{--                    <a  class="nav-link onclick-news-game news_game_li-{{ $item->slug }}" data-slug="{{ $item->slug }}"  data-toggle="tab" href="#news_game-{{ $item->slug }}" role="tab" aria-selected="true">{{ $item->title }}</a>--}}
-{{--                </li >--}}
-{{--                @endforeach--}}
-{{--            </ul>--}}
-{{--        </div>--}}
 
         <div class="navbar-spacer"></div>
         <div class="text-view-more">
@@ -22,32 +13,22 @@
 
         </div>
     </div>
-
-{{--    <div class="product-catecory d-none d-g-lg-block pt-fix-16 pr-fix-16 pl-fix-16" >--}}
-{{--        <ul class="nav justify-content-between row" role="tablist" >--}}
-{{--            @foreach($data as $item)--}}
-{{--                <li class="nav-item col-3 p-0 col-md-4 p-md-0" role="presentation">--}}
-{{--                    <a  class="pb-fix-8 d-flex onclick-news-game-mobile justify-content-center news_game_li-mobile-{{ $item->slug }}" data-slug="{{ $item->slug }}"  data-toggle="tab" href="#news_game-mobile-{{ $item->slug }}" role="tab" aria-selected="true">{{ $item->title }}</a>--}}
-{{--                </li >--}}
-{{--            @endforeach--}}
-{{--        </ul>--}}
-{{--    </div>--}}
 {{--    <div class="box-product-content tab-content">--}}
     <div class="box-product-content ">
 
-        @foreach($data as $key => $item)
-            @if($key == 0)
-            @if(isset($item->items))
+
 {{--                <div class="box-product tab-pane fade show active" id="news_game-{{ $item->slug }}" role="tabpanel" >--}}
-            <div class="box-product news-home" id="news_game-{{ $item->slug }}" role="tabpanel" >
+            <div class="box-product news-home" role="tabpanel" >
                 <div class="swiper-container  list-news" >
                     <div class="swiper-wrapper">
-                        @foreach($item->items as $val)
+                        @foreach($data as $val)
 
                         <div class="swiper-slide" >
                             <a href="/tin-tuc/{{ $val->slug }}">
                                 <div class="item-product__box-img item-news-img">
+                                    @if(isset($val->image))
                                     <img src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    @endif
                                 </div>
                                 <div class="item-product__box-content item-news-content">
 
@@ -66,44 +47,17 @@
 
                         @endforeach
                     </div>
+                    <div class="swiper-button-prev">
+                        <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                    </div>
+                    <div class="swiper-button-next">
+                        <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                    </div>
 
                 </div>
-                <div class="swiper-button-prev">
-                    <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
-                </div>
-                <div class="swiper-button-next">
-                    <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
-                </div>
+
             </div>
 
-                @endif
-            @endif
-{{--            @if($key == 0)--}}
-{{--                <script>--}}
-{{--                    $(document).ready(function(){--}}
-{{--                        $('#news_game-{{ $item->slug }}').addClass('active');--}}
-{{--                        $('#news_game-{{ $item->slug }}').addClass('show');--}}
-{{--                        $('.news_game_li-{{ $item->slug }}').addClass('active');--}}
-{{--                        $('.news_game_li-mobile-{{ $item->slug }}').addClass('active');--}}
-
-{{--                        $(document).on('click', '.onclick-article-game',function(e){--}}
-{{--                            var slug = $(this).data('slug');--}}
-{{--                            $('#news_game-' + slug + '').addClass('active');--}}
-{{--                            $('#news_game-' + slug + '').addClass('show');--}}
-{{--                            $('.news_game_li-' + slug + '').addClass('active');--}}
-{{--                        });--}}
-
-{{--                        $(document).on('click', '.onclick-article-game-mobile',function(e){--}}
-{{--                            var slug = $(this).data('slug');--}}
-{{--                            $('#news_game-' + slug + '').addClass('active');--}}
-{{--                            $('#news_game-' + slug + '').addClass('show');--}}
-{{--                            $('.news_game_li-' + slug + '').addClass('active');--}}
-{{--                            $('.news_game_li-mobile-' + slug + '').addClass('active');--}}
-{{--                        });--}}
-{{--                    })--}}
-{{--                </script>--}}
-{{--            @endif--}}
-        @endforeach
 
     </div>
 

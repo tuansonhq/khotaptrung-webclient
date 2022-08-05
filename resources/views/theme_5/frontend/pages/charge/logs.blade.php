@@ -10,7 +10,7 @@
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/lich-su-nap-the" class="breadcrumb-link">Tài khoản đã mua</a>
+                    <a href="/lich-su-nap-the" class="breadcrumb-link">Lịch sử nạp thẻ</a>
                 </li>
             </ul>
 
@@ -93,7 +93,6 @@
                                             Trạng thái
                                         </span>
                                             {{Form::select('status',array(''=>'Chọn')+config('module.charge.status'),old('status', isset($data['status']) ? $data['status'] : null),array('class'=>'status'))}}
-
                                         </div>
 
                                         <table>

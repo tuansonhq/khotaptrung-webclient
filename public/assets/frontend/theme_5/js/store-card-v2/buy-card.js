@@ -1,7 +1,6 @@
 $(document).ready(function () {
     let type_card = $('.type-card');
     let amount_card = $('.amount-card');
-
     /* Ajax lấy loại thẻ*/
     $.ajax({
         url: '/store-card/get-telecom',
@@ -13,13 +12,14 @@ $(document).ready(function () {
     });
     /* Ajax lấy mệnh giá thẻ*/
     type_card.on('change','input[name=type]',function () {
-        let key =$(this).data('key');
+        /*Update Modal,Step*/
+        let telecom =$(this).data('key');
         let type = $(this).closest('#gameCard').length ? 'card_game' : 'card_phone';
         $.ajax({
             url: '/store-card/get-amount',
             type: 'GET',
             data:{
-                telecom: key
+                telecom: telecom,
             },
             beforeSend: addLoading(amount_card),
             success: function (res) {
@@ -27,29 +27,95 @@ $(document).ready(function () {
             },
         });
     });
+    /*Ajax xác nhận mua thẻ*/
+    let button_submit = width < 992 ? $('#step-confirm .submit-buy-card') : $('#modal-confirm .submit-buy-card');
+    button_submit.on('click',function (e) {
+        e.preventDefault();
+        let wrap = width < 992 ? $(this).closest('#step-confirm') :  $(this).closest('#modal-confirm');
 
+        let data_send = {};
+        data_send.amount = wrap.find('.t-amount-card').data('amount');
+        data_send.telecom =wrap.find('.t-type-card').text().trim();
+        data_send.quantity = parseInt(wrap.find('.t-quantity-card').text().trim());
+        data_send._token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            url:'/mua-the',
+            type:'POST',
+            data:data_send,
+            beforeSend:function () {
+                $(button_submit).text('Đang xử lý...');
+            },
+            success:function (res) {
+                if (res.status === 1){
+
+                }
+                if (res.status === 0){
+                    $('#modal-failed .res-message').text(res.message);
+                      width > 992 ? $('#modal-confirm').modal('hide') : '';
+                    $('#modal-failed').modal('show');
+                }
+                if(res.status === 401){
+                    window.location.href = '/login?return_url='+window.location.href;
+                }
+
+                $(button_submit).text('Xác nhận');
+            },
+        });
+    })
     /*Update Price*/
     amount_card.on('change','input[name=amount]',function () {
         let type = $(this).closest('#gameCard').length ? 'card_game' : 'card_phone';
         let discount = $(this).data('discount');
         let amount = $(this).data('amount');
-        updatePrice(discount,amount,1,type);
+        let quantity = type === 'card_game' ? $('#gameCard .js-quantity .js-quantity-input').val() * 1 : $('#mobileCard .js-quantity .js-quantity-input').val() * 1;
+        updatePrice(discount,amount,quantity,type);
+        updateConfirm({key:'discount',value:discount + ' %'});
+        updateConfirm({key:'amount',value:amount});
     });
 
-    $('.js-quantity').on('click','.js-quantity-minus,.js-quantity-add',function (e) {
+    $('.js-quantity').on('input','.js-quantity-input',function (e) {
         e.preventDefault();
         let type = $(this).closest('#gameCard').length ? 'card_game' : 'card_phone';
-        let quantity = $(this).parent().find('input').val();
-
+        let quantity = $(this).val();
+        let input_checked = type === 'card_game' ? $('#gameCard .amount-card input:checked') : $('#mobileCard .amount-card input:checked');
+        let discount = input_checked.data('discount') * 1;
+        let amount = input_checked.data('amount') * 1;
+        updatePrice(discount,amount,quantity,type);
+        updateConfirm({key:'quantity',value:pad(quantity)});
     });
+
+    function updateConfirm(data){
+        let value = data.value;
+        let wrap = width < 992 ? $('#step-confirm')  : $('#modal-confirm');
+        switch (data.key) {
+            case 'type':
+                wrap.find('.t-type-card').text(value)
+                break;
+            case 'quantity':
+                wrap.find('.t-quantity-card').text(value)
+                break;
+            case 'discount':
+                wrap.find('.t-discount-card').text(value)
+                break;
+            case 'amount':
+                wrap.find('.t-amount-card').text(money_format.to(value))
+                wrap.find('.t-amount-card').attr('data-amount',value)
+                break;
+            case 'total':
+                wrap.find('.t-total-card').text(value)
+                break;
+        }
+    }
     function updatePrice(discount,amount,quantity,type) {
         !discount ? discount = 0 : '';
         !amount ? amount = 0 : '';
 
-        let total = (amount * quantity) - (amount * discount / 100);
+        let total = (amount * quantity) - (amount * quantity * discount / 100);
 
         type === 'card_game' ? $('#gameCard .js-text-discount').text(discount + ' %') : $('#mobileCard .js-text-discount').text(discount + ' %');
         type === 'card_game' ? $('#gameCard .js-text-total').text(money_format.to(total)) : $('#mobileCard .js-text-total').text(money_format.to(total));
+
+        updateConfirm({key:'total',value:money_format.to(total)});
     }
     function handleDataCard(res) {
         if (res.status === 1) {
@@ -72,6 +138,9 @@ $(document).ready(function () {
             removeLoading(type_card);
             wrap_game.find('input').first().trigger('change');
             wrap_phone.find('input').first().trigger('change');
+            /*Set confirm data*/
+           let telecom = wrap_game.find('input:checked').data('key');
+            updateConfirm({key:'type',value:telecom});
         }
     }
 
@@ -104,7 +173,6 @@ $(document).ready(function () {
             removeLoading(amount_card);
         }
     }
-
     function addLoading(elm) {
         if (!elm.hasClass('is-load')) {
             elm.addClass('is-load');
