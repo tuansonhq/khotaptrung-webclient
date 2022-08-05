@@ -24,7 +24,7 @@
 
         {{--            Slider banner    --}}
         <div class="d-none d-lg-block">
-            @include('frontend.widget.__slider__banner')
+            @include('frontend.widget.__slider__banner__napthe')
         </div>
 
         <h2 class="section-title c-mt-24  c-mb-lg-8 d-none d-lg-flex">
@@ -124,7 +124,7 @@
                                         </div>
                                         <div class="col-md-12 p-0">
                                             <div class="row m-0" id="cardAmountMobile">
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                         </div>
                                         <div class="col-md-12 p-0">
                                             <div class="row m-0" id="cardAmount">
-                                                
+
                                             </div>
                                         </div>
                                     </div>

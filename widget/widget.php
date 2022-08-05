@@ -727,6 +727,22 @@ View::composer('frontend.widget.__slider__banner__account', function ($view) {
 
 });
 
+View::composer('frontend.widget.__slider__banner__napthe', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__napthe', function() {
+        $url = '/get-slider-banner-change';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 View::composer('frontend.widget.__services__other', function ($view) {
 
     $data = \Cache::rememberForever('__services__other', function() {
