@@ -6,6 +6,13 @@ let money_format = wNumb({
     thousand: '.',
     suffix: ' đ'
 });
+let percent_format = wNumb({
+    suffix: ' %'
+});
+let money_format_vnd = wNumb({
+    thousand: '.',
+    suffix: ' vnd'
+});
 /*convert 1 -> 01 , 2->02 ...*/
 function pad(d) {
     return (d < 10) ? '0' + d.toString() : d.toString();
@@ -18,35 +25,32 @@ $(document).ready(function() {
     $('select').niceSelect();
 
     /*Quantity*/
-    let js_quantity = $('.js-quantity');
-    if (js_quantity.length){
-        js_quantity.on('click','.js-quantity-minus',function (event) {
-            event.preventDefault();
-            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-            input.val(parseInt(input.val()) - 1);
-            if(input.val() < 1 || isNaN(input.val())){
-                input.val(1);
-            }
-            input.trigger('input')
-        });
-        js_quantity.on('click','.js-quantity-add',function (event) {
-            event.preventDefault();
-            let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-            input.val(parseInt(input.val()) + 1);
-            if(input.val() > 20 || isNaN(input.val())){
-                input.val(20);
-            }
-            input.trigger('input');
-        });
-        js_quantity.on('input','.js-quantity-input',function () {
-            if ($(this).val() > 20 || isNaN($(this).val())){
-                $(this).val(20);
-            }
-            if ($(this).val() < 1 || isNaN($(this).val())){
-                $(this).val(1);
-            }
-        });
-    }
+    $(document).on('click','.js-quantity-minus',function (event) {
+        event.preventDefault();
+        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
+        input.val(parseInt(input.val()) - 1);
+        if(input.val() < 1 || isNaN(input.val())){
+            input.val(1);
+        }
+        input.trigger('input')
+    });
+    $(document).on('click','.js-quantity-add',function (event) {
+        event.preventDefault();
+        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
+        input.val(parseInt(input.val()) + 1);
+        if(input.val() > 20 || isNaN(input.val())){
+            input.val(20);
+        }
+        input.trigger('input');
+    });
+    $(document).on('input','.js-quantity-input',function () {
+        if ($(this).val() > 20 || isNaN($(this).val())){
+            $(this).val(20);
+        }
+        if ($(this).val() < 1 || isNaN($(this).val())){
+            $(this).val(1);
+        }
+    });
     /*End quantity*/
     /*Input chỉ được nhập số*/
     $(document).on('keypress','input[numberic]', function (e) {

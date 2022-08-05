@@ -57,7 +57,8 @@
                                 <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show" id="card--game__nav">
+                        <ul class="collapse card-list show is-load" id="card--game__nav">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </ul>
 
@@ -69,7 +70,8 @@
                                 <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show" id="card--phone__nav">
+                        <ul class="collapse card-list show is-load" id="card--phone__nav">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </ul>
                     </div>
@@ -89,7 +91,8 @@
                         <hr>
                     </div>
                     <div class="card-body c-px-16 c-pt-16 c-pb-0">
-                        <div class="row c-mx-n8 card-wrap">
+                        <div class="row c-mx-n8 card-wrap is-load">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
@@ -100,14 +103,15 @@
                 <div class="card c-mb-16 d-none d-lg-block" id="card-phone">
                     <div class="card--head c-px-16 c-py-12">
                         <div class="t-title-2">
-                            Thẻ điện thoại
+                            Thẻ Điện Thoại
                         </div>
                     </div>
                     <div class="c-px-16">
                         <hr>
                     </div>
                     <div class="card-body c-px-16 c-pt-16 c-pb-0">
-                        <div class="row c-mx-n8 card-wrap">
+                        <div class="row c-mx-n8 card-wrap is-load">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
@@ -115,12 +119,15 @@
 
                 <div class="tab-content d-block d-lg-none">
                     <div class="tab-pane fade active show" id="tab-card-game" role="tabpanel">
-                        <div class="row c-mx-lg-n6 card-wrap">
+                        <div class="row c-mx-lg-n6 card-wrap is-load">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-card-phone" role="tabpanel">
-                        <div class="row c-mx-lg-n6 card-wrap">
+                        <div class="row c-mx-lg-n6 card-wrap is-load">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+
                             <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>

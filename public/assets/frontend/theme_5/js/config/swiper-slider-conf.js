@@ -174,6 +174,35 @@ let swiper_config_related_service = new Swiper('.swiper-related-service',{
     },
 });
 
+let swiper_card_other = new Swiper('.swiper-card',{
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    slidesPerView: 4,
+    speed: 300,
+    spaceBetween: 16,
+    touchMove: true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        992: {
+            freeMode: true,
+            slidesPerView: 3,
+        },
+        768: {
+            freeMode: true,
+            slidesPerView: 1.5,
+        }
+    },
+    navigation: {
+        nextEl: ".card-other .navigation.slider-next",
+        prevEl: ".card-other .navigation.slider-prev",
+    },
+});
+
 function initSwiperGallery() {
     if ($('.gallery-top').length) {
         let galleryTop = new Swiper('.gallery-top', {

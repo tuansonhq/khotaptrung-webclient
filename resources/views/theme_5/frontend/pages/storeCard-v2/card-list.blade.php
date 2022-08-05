@@ -6,10 +6,10 @@
     <div class="c-container container">
         <!-- head mobile -->
         <div class="head-mobile">
-            <a href="/" class="link-back"></a>
+            <a href="/mua-the" class="link-back"></a>
 
-            <h1 class="head-title t-sub-2">
-                Thẻ Garena
+            <h1 class="head-title t-sub-2 card-name text-capitalize">
+                Thẻ {{ @$key }}
             </h1>
 
             <a href="/" class="home"></a>
@@ -28,8 +28,8 @@
     @include('frontend.widget.__slider__banner')
     <!-- End -->
         <div class="c-mt-32 d-block d-lg-none">
-            <p class="t-title-1 c-mb-0 c-pb-8">
-                Thẻ Garena
+            <p class="t-title-1 c-mb-0 c-pb-8 card-name text-capitalize">
+                Thẻ {{ @$key }}
             </p>
             <hr class="c-mx-n16">
         </div>
@@ -49,7 +49,8 @@
                                 <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show" id="card--game__nav">
+                        <ul class="collapse card-list show is-load" id="card--game__nav">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </ul>
 
@@ -61,7 +62,8 @@
                                 <i class="icon-default size-20" style="--path : url(/assets/frontend/theme_5/image/svg/arrow-down.svg)"></i>
                             </span>
                         </a>
-                        <ul class="collapse card-list show" id="card--phone__nav">
+                        <ul class="collapse card-list show is-load" id="card--phone__nav">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
                             <!-- JS PASTE HTML HERE -->
                         </ul>
                     </div>
@@ -72,232 +74,20 @@
             <div class="page--card__content">
                 <!-- Các mệnh giá thẻ -->
                 <div class="c-py-12 d-none d-lg-block">
-                    <h2 class="t-title-2 title-color">
-                        Thẻ Garena
+                    <h2 class="t-title-2 title-color card-name text-capitalize">
+                        Thẻ {{ @$key }}
                     </h2>
                 </div>
-                <div class="row c-mx-n8 list-card d-none d-lg-flex" id="wrap-desktop">
-                    <div class="col-lg-3 c-px-8 c-mb-16">
-                        <div class="card">
-                            <div class="card-body c-p-16">
-                                <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                    <div class="card--thumb">
-                                        <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                             class="card--thumb__image py-1 py-lg-0" alt="">
-                                    </div>
-                                    <div class="card--name t-title-2 deno-card-color">
-                                        20.000 VND
-                                    </div>
-                                </a>
-                                <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                <div class="t-body-1 link-color">
-                                    Đơn giá: 20.000 đ
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                    <div class="js-quantity sm">
-                                        <div class="js-quantity-minus"></div>
-                                        <input type="text" class="js-quantity-input" value="1">
-                                        <div class="js-quantity-add"></div>
-                                    </div>
-                                </div>
-                                <div class="group-btn c-mt-16">
-                                    <a href="" class="btn secondary">
-                                        Chọn mua
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row c-mx-n8 list-card d-none d-lg-flex is-load" id="wrap-desktop">
+                    <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                    <!-- JS PASTE HTML HERE -->
                 </div>
 
                 <div class="d-block d-lg-none">
                     <div class="swiper swiper-card c-my-16">
-                        <div class="swiper-wrapper" id="wrap-mobile">
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <div class="card-body c-p-16">
-                                        <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                            <div class="card--thumb">
-                                                <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                                     class="card--thumb__image py-1 py-lg-0" alt="">
-                                            </div>
-                                            <div class="card--name t-title-2 deno-card-color">
-                                                20.000 VND
-                                            </div>
-                                        </a>
-                                        <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                        <div class="t-body-1 link-color">
-                                            Đơn giá: 20.000 đ
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                            <div class="js-quantity sm">
-                                                <div class="js-quantity-minus"></div>
-                                                <input type="text" class="js-quantity-input" value="1">
-                                                <div class="js-quantity-add"></div>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-16">
-                                            <a href="" class="btn secondary">
-                                                Chọn mua
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <div class="card-body c-p-16">
-                                        <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                            <div class="card--thumb">
-                                                <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                                     class="card--thumb__image py-1 py-lg-0" alt="">
-                                            </div>
-                                            <div class="card--name t-title-2 deno-card-color">
-                                                20.000 VND
-                                            </div>
-                                        </a>
-                                        <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                        <div class="t-body-1 link-color">
-                                            Đơn giá: 20.000 đ
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                            <div class="js-quantity sm">
-                                                <div class="js-quantity-minus"></div>
-                                                <input type="text" class="js-quantity-input" value="1">
-                                                <div class="js-quantity-add"></div>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-16">
-                                            <a href="" class="btn secondary">
-                                                Chọn mua
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <div class="card-body c-p-16">
-                                        <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                            <div class="card--thumb">
-                                                <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                                     class="card--thumb__image py-1 py-lg-0" alt="">
-                                            </div>
-                                            <div class="card--name t-title-2 deno-card-color">
-                                                20.000 VND
-                                            </div>
-                                        </a>
-                                        <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                        <div class="t-body-1 link-color">
-                                            Đơn giá: 20.000 đ
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                            <div class="js-quantity sm">
-                                                <div class="js-quantity-minus"></div>
-                                                <input type="text" class="js-quantity-input" value="1">
-                                                <div class="js-quantity-add"></div>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-16">
-                                            <a href="" class="btn secondary">
-                                                Chọn mua
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <div class="card-body c-p-16">
-                                        <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                            <div class="card--thumb">
-                                                <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                                     class="card--thumb__image py-1 py-lg-0" alt="">
-                                            </div>
-                                            <div class="card--name t-title-2 deno-card-color">
-                                                20.000 VND
-                                            </div>
-                                        </a>
-                                        <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                        <div class="t-body-1 link-color">
-                                            Đơn giá: 20.000 đ
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                            <div class="js-quantity sm">
-                                                <div class="js-quantity-minus"></div>
-                                                <input type="text" class="js-quantity-input" value="1">
-                                                <div class="js-quantity-add"></div>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-16">
-                                            <a href="" class="btn secondary">
-                                                Chọn mua
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card">
-                                    <div class="card-body c-p-16">
-                                        <a href="/mua-the-garena-10k-v2" class="scratch-card c-mb-12">
-                                            <div class="card--thumb">
-                                                <img src="/assets/frontend/theme_5/image/trong/garena.png"
-                                                     class="card--thumb__image py-1 py-lg-0" alt="">
-                                            </div>
-                                            <div class="card--name t-title-2 deno-card-color">
-                                                20.000 VND
-                                            </div>
-                                        </a>
-                                        <span class="t-sub-2">
-                                    Thẻ Garena 50K
-                                </span>
-                                        <div class="t-body-1 link-color">
-                                            Đơn giá: 20.000 đ
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center c-mt-12">
-                                    <span class="t-body-2">
-                                        Số lượng
-                                    </span>
-                                            <div class="js-quantity sm">
-                                                <div class="js-quantity-minus"></div>
-                                                <input type="text" class="js-quantity-input" value="1">
-                                                <div class="js-quantity-add"></div>
-                                            </div>
-                                        </div>
-                                        <div class="group-btn c-mt-16">
-                                            <a href="" class="btn secondary">
-                                                Chọn mua
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="swiper-wrapper is-load" id="wrap-mobile">
+                            <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                            <!-- JS PASTE HTML HERE -->
                         </div>
                     </div>
                 </div>
@@ -309,47 +99,9 @@
                         </h2>
                         <hr>
                         <div class="swiper swiper-card c-my-12">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="mua-the-garena-v2" class="scratch-card">
-                                        <div class="card--thumb">
-                                            <img src="/assets/frontend/theme_5/image/trong/garena.png" class="card--thumb__image py-1 py-lg-0" alt="">
-                                        </div>
-                                        <div class="card--name t-sub-2">
-                                            Thẻ Garena
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="mua-the-garena-v2" class="scratch-card">
-                                        <div class="card--thumb">
-                                            <img src="/assets/frontend/theme_5/image/trong/garena.png" class="card--thumb__image py-1 py-lg-0" alt="">
-                                        </div>
-                                        <div class="card--name t-sub-2">
-                                            Thẻ Garena
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="mua-the-garena-v2" class="scratch-card">
-                                        <div class="card--thumb">
-                                            <img src="/assets/frontend/theme_5/image/trong/garena.png" class="card--thumb__image py-1 py-lg-0" alt="">
-                                        </div>
-                                        <div class="card--name t-sub-2">
-                                            Thẻ Garena
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="mua-the-garena-v2" class="scratch-card">
-                                        <div class="card--thumb">
-                                            <img src="/assets/frontend/theme_5/image/trong/garena.png" class="card--thumb__image py-1 py-lg-0" alt="">
-                                        </div>
-                                        <div class="card--name t-sub-2">
-                                            Thẻ Garena
-                                        </div>
-                                    </a>
-                                </div>
+                            <div class="swiper-wrapper is-load" id="card-other">
+                                <div class="loading-wrap"><span class="modal-loader-spin"></span></div>
+                                <!-- JS PASTE HTML HERE -->
                             </div>
                         </div>
                         <div class="navigation slider-prev"></div>
@@ -359,6 +111,163 @@
         </div>
     </div>
         <input type="hidden" value="amount" data-key="{{ @$key }}" id="is_view">
+
+        <!-- Modal-confirm -->
+        <div class="modal fade modal-big" id="modal-confirm">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content c-p-24">
+                    <div class="modal-header">
+                        <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body c-px-0 c-py-24">
+                        <div class="t-body-2 title-color c-mb-12">
+                            Thông tin mua thẻ
+                        </div>
+                        <div class="card card-dark c-mb-16">
+                            <div class="card-body c-py-4">
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Loại thẻ
+                                    </div>
+                                    <div class="t-body-2 text-capitalize t-type-card">
+                                        {{ @$key }}
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Số lượng
+                                    </div>
+                                    <div class="t-body-2 t-quantity-card">
+                                        01
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Chiết khấu
+                                    </div>
+                                    <div class="t-body-2 t-discount-card">
+
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Mệnh giá
+                                    </div>
+                                    <div class="t-body-2 t-amount-card">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-dark c-mb-16">
+                            <div class="card-body c-py-4">
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Phương thức thanh toán
+                                    </div>
+                                    <div class="t-body-2">
+                                        Tài khoản Shopbrand
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Phí thanh toán
+                                    </div>
+                                    <div class="t-body-2">
+                                        Miễn phí
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-dark">
+                            <div class="card-body c-py-4">
+                                <div class="d-flex justify-content-between c-py-4">
+                                    <div class="t-body-1 link-color">
+                                        Số tiền thanh toán
+                                    </div>
+                                    <div class="t-body-2 text-primary-color t-total-card">
+                                       0đ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn primary submit-payment">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Step confirm -->
+        <div class="step" id="step-confirm">
+            <div class="head-mobile">
+                <a href="" class="link-back close-step"></a>
+
+                <div class="head-title text-title">Xác nhận thanh toán</div>
+
+                <a href="#" class="home"></a>
+            </div>
+            <div class="body-mobile c-px-16">
+                <div class="t-sub-2 title-color c-mt-16 c-mb-12">
+                    Thông tin mua thẻ
+                </div>
+                <div class="card c-px-12 c-py-4 c-mb-16">
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Loại thẻ</div>
+                        <div class="t-body-2 t-type-card">Zing</div>
+                    </div>
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Số lượng</div>
+                        <div class="t-body-2 t-quantity-card">01</div>
+                    </div>
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Chiết khấu</div>
+                        <div class="t-body-2 t-discount-card">03 %</div>
+                    </div>
+                </div>
+                <div class="card c-px-12 c-py-4 c-mb-16">
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Phương thức thanh toán</div>
+                        <div class="t-body-2">Tài khoản Shopbrand</div>
+                    </div>
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Phí thanh toán</div>
+                        <div class="t-body-2">Miễn phí</div>
+                    </div>
+                </div>
+                <div class="card c-px-12 c-py-4">
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Số tiền thanh toán</div>
+                        <div class="t-body-2 text-primary-color t-total-card">0đ</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-mobile group-btn">
+                <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
+            </div>
+        </div>
+        <!-- Modal Mua thất bại -->
+        <div class="modal fade modal-328" id="modal-failed">
+            <div class="modal-dialog modal-dialog-centered c-px-sm-16">
+                <div class="modal-content">
+                    <div class="modal-body text-center c-p-0">
+                        <div class="banner">
+                            <img width="143" height="114" class="" src="/assets/frontend/{{theme('')->theme_key}}/image/trong/modal-failed.png" alt="">
+                        </div>
+                        <p class="t-sub-1 title-color">Mua thẻ thất bại</p>
+                        <span class="t-body-1 res-message">
+
+                    </span>
+                    </div>
+                    <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
+                        <button type="button" class="btn ghost" data-dismiss="modal">Đóng</button>
+                        <a href="/nap-tien" class="btn primary">Nạp tiền</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endsection
 @section('scripts')
             <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card-v2/main.js"></script>
