@@ -15,6 +15,8 @@
             $('#minigameLogs').modal('show');
         })
     </script>
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/minigame.css">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
 @endsection
 @section('content')
 
@@ -76,23 +78,23 @@
                     @endif
                     <div class="d-block d-lg-none c-mb-16 c-px-lg-16">
                         <div class="rotation-top-mobile brs-12 d-block d-lg-none">
-                            <div class="rotation-header-sale c-py-4 c-px-12 d-flex align-items-center justify-content-between">
-                                <div class="d-inline-flex align-items-center c-mr-10">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/flash_img.png" alt="">
-                                    <p class="fw-500 fz-13 lh-20 mb-0">Flash sale</p>
-                                </div>
-                                <div class="d-inline-flex align-items-center">
-                                    <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/clock.svg" alt="">
-                                    <p class="fz-12 fw-400 mb-0 c-mr-8">Kết thúc trong</p>
-                                    <div class="rotation-sale-time">
-                                        <ul class="mb-0 p-0">
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="hourRemain">10</span></li>
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="minuteRemain">2</span></li>
-                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="secondRemain">4</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="rotation-header-sale c-py-4 c-px-12 d-flex align-items-center justify-content-between">--}}
+{{--                                <div class="d-inline-flex align-items-center c-mr-10">--}}
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/flash_img.png" alt="">--}}
+{{--                                    <p class="fw-500 fz-13 lh-20 mb-0">Flash sale</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="d-inline-flex align-items-center">--}}
+{{--                                    <img class="c-mr-4" src="/assets/frontend/{{theme('')->theme_key}}/image/svg/clock.svg" alt="">--}}
+{{--                                    <p class="fz-12 fw-400 mb-0 c-mr-8">Kết thúc trong</p>--}}
+{{--                                    <div class="rotation-sale-time">--}}
+{{--                                        <ul class="mb-0 p-0">--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="hourRemain">10</span></li>--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="minuteRemain">2</span></li>--}}
+{{--                                            <li class="d-inline-flex align-items-center justify-content-center brs-4"><span class="fw-600 fz-12" id="secondRemain">4</span></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="rotation-sale-content brs-8 c-py-12 d-flex flex-column align-items-center">
                                 <p class="d-flex align-items-center c-mb-0">
                                     <span id="rotationFirstPrice" class="fw-400 fz-12 lh-16 c-mr-8">
@@ -171,36 +173,115 @@
                                     </div>
                                     @break
                                 @case('flip')
-                                    @dd(222)
+{{--                                    <div class="d-flex align-items-center justify-content-center flex-wrap">--}}
+                                        <div class="rotation">
+                                            <div class="row boxflip">
+                                                @for ($i = 0; $i < count($result->group->items); $i++)
+                                                    <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
+                                                        <div data-inner=" inner{{$i}}" class="item_flip_inner">
+                                                            <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                            <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                        </div>
+                                                    </div>
+                                                @endfor
+                                            </div>
+                                            <div class="row" id="boxfliphide" style="display: none;">
+                                                @for ($i = 0; $i < count($result->group->items); $i++)
+                                                    <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
+                                                        <div data-inner=" inner{{$i}}" class="item_flip_inner">
+                                                            <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                            <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                        </div>
+                                                    </div>
+                                                @endfor
+                                            </div>
+                                        </div>
+{{--                                    </div>--}}
                                     @break
                                 @case('slotmachine')
-                                    @dd(333)
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="item_slot item_slot-ba-qua" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}});background-repeat: no-repeat" >
+                                            <div class="item_slot_inner">
+                                                <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
+                                                <div id="slot2" class="item_slot_inner_img a1" style=""></div>
+                                                <div id="slot3" class="item_slot_inner_img a1" style=""></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @break
                                 @case('slotmachine5')
-                                    @dd(4444)
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="rotation">
+                                            <div class="item_play_spin_five_record" style="background-image: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
+                                                <div class="item_five_record_inner">
+                                                    <div id="slot1"  class="item_five_record_inner_img a1" style=""></div>
+                                                    <div id="slot2" class="item_five_record_inner_img a1" style=""></div>
+                                                    <div id="slot3" class="item_five_record_inner_img a1" style=""></div>
+                                                    <div id="slot4" class="item_five_record_inner_img a1" style=""></div>
+                                                    <div id="slot5" class="item_five_record_inner_img a1" style=""></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @break
                                 @case('squarewheel')
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="rotation-button">
-                                            <img class="lazy" src="/assets/theme_3/image/images_1/rotation-button.png" alt="">
-                                        </div>
-                                        <img style="width: 70%" class="lazy" src="/assets/theme_3/image/images_1/rotation-img.png" alt="" id="rotate-play">
+
+                                    <div class="d-flex align-items-center justify-content-center flex-wrap">
+                                        <table id="squaredesktop" class="square">
+                                            <tr>
+                                                <td></td>
+                                                <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td><div  data-num="2" class="gift2 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td><div  data-num="3" class="gift3 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div  data-num="12" class="gift12 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td colspan="3"></td>
+                                                <td><div  data-num="4" class="gift4 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div data-num="11" class="gift11 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td colspan="3">
+                                                    <div class="outer-btn text-center">
+                                                        <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="" id="start-played">
+                                                            <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><div  data-num="5" class="gift5 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td><div  data-num="10" class="gift10 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td colspan="3"></td>
+                                                <td><div  data-num="6" class="gift6 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td><div  data-num="9" class="gift9 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td><div  data-num="8" class="gift8 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td><div  data-num="7" class="gift7 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                     @break
                                 @case('smashwheel')
-                                    @dd(6666)
-                                    @break
                                 @case('rungcay')
-                                    @dd(7777)
-                                    @break
                                 @case('gieoque')
-                                    @dd(888)
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="rotation-button rotation-button-quanhuy" id="start-played" style="z-index: 2">
+                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}" >
+                                        </div>
+                                        <img style="width: 70%;;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="lac_lixi">
+                                        <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
+                                        <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
+                                    </div>
                                     @break
 
 
                             @endswitch
                         </div>
-
 
                         <div class="row no-gutters">
                             <div class="col-12 col-lg-6 c-p-16 c-py-lg-8">
@@ -269,7 +350,7 @@
                                     </div>
                                     @endif
                                     <div class="col-12 col-md-6 c-pl-6">
-                                        <button id="start-played" class="btn primary w-100 ">Quay ngay</button>
+                                        <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
                                     </div>
                                 </div>
                                 <div class="footer-mobile c-p-16">
@@ -281,7 +362,7 @@
                                         </div>
                                         @endif
                                         <div class="col-6 pr-0 c-pl-8">
-                                            <button id="start-played" class="btn primary w-100 ">Quay ngay</button>
+                                            <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
                                         </div>
                                     </div>
 
@@ -400,27 +481,6 @@
                         <div class="rotation-comment chat-history brs-12 c-p-16">
                             <h6 class="fw-700 fz-20 lh-28 c-mb-20  d-none d-lg-block">Bình luận</h6>
                             <ul class="comment-block list-unstyled chat-scroll c-pr-8">
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
 
                                 <li>
                                     <div class="comment-item d-flex align-items-start c-mb-16">
@@ -496,7 +556,7 @@
                                                 <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
                                             </div>
                                             <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
+                                                Hàng sạch, thanks admin
                                             </div>
                                             <div class="comment-interact c-mt-12">
                                                 <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
@@ -514,7 +574,28 @@
                                         <div class="comment-detail">
                                             <div class="comment-info c-mb-4">
                                                 <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
+                                                <span class="c-ml-8 fw-400 fz-12">5:30 PM, Vừa xong</span>
+                                            </div>
+                                            <div class="comment-content fw-400 fz-13">
+                                                Nhanh gọn uy tín, thanks admin
+                                            </div>
+                                            <div class="comment-interact c-mt-12">
+                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
+                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="comment-item d-flex align-items-start c-mb-16">
+                                        <div class="comment-avatar c-mr-8">
+                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <div class="comment-info c-mb-4">
+                                                <h6 class="d-inline-block">Khách</h6>
+                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM</span>
                                             </div>
                                             <div class="comment-content fw-400 fz-13">
                                                 Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
@@ -535,10 +616,10 @@
                                         <div class="comment-detail">
                                             <div class="comment-info c-mb-4">
                                                 <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
+                                                <span class="c-ml-8 fw-400 fz-12">6:30 PM</span>
                                             </div>
                                             <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
+                                                Anh em không phải sợ đâu, tôi nạp nhiều web này rồi
                                             </div>
                                             <div class="comment-interact c-mt-12">
                                                 <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
@@ -548,153 +629,8 @@
                                     </div>
 
                                 </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                <li>
-                                    <div class="comment-item d-flex align-items-start c-mb-16">
-                                        <div class="comment-avatar c-mr-8">
-                                            <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
-                                        </div>
-                                        <div class="comment-detail">
-                                            <div class="comment-info c-mb-4">
-                                                <h6 class="d-inline-block">Khách</h6>
-                                                <span class="c-ml-8 fw-400 fz-12">4:30 PM, Vừa xong</span>
-                                            </div>
-                                            <div class="comment-content fw-400 fz-13">
-                                                Cứ tưởng lừa đảo, nạp thử 200k nhận luôn kim cương trong 10s
-                                            </div>
-                                            <div class="comment-interact c-mt-12">
-                                                <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
-                                                <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </li>
                             </ul>
 
                             <div class="commment-input d-flex align-items-center c-mb-20">
@@ -793,11 +729,9 @@
                                 <div class="tab-pane fade" id="leaderboard-3" role="tabpanel">
                                     <div class="leaderboard-content" >
                                         @if(isset($result->group->params->phanthuong))
-                                                <div class="leaderboard-item c-p-8 d-flex align-items-center">
-
-                                                    {!!$result->group->params->phanthuong!!}
-
-                                                </div>
+                                            <div class="leaderboard-item c-p-8 align-items-center">
+                                                {!!$result->group->params->phanthuong!!}
+                                            </div>
                                         @else
                                             <div class="leaderboard-item row no-gutters">
                                                 <div class="col-12 leaderboard-item-name text-center justify-content-center">
@@ -837,21 +771,13 @@
                     </div>
                     <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
                         <div class="card--gray c-p-16">
-                            <div class="card--attr justify-content-between d-flex c-mb-16">
-                                <p class="fz-13 fw-400 text-theme lh-20 mb-0">
-                                    Chỉ với 10 trong tài khoản bạn đã có ngay 1 lượt chơi <a href="#">Vòng Quay Giải Nhiệt Hè</a>, sẽ càng rẻ hơn nếu bạn chơi nhiều lượt cùng lúc
-
-                                    Cách chơi rất đơn giản khi bạn quay kim quay dừng ở vị trí nào bạn sẽ nhận được phần thưởng tương ứng ở vị trí đó
-
-                                    Rất nhiều phần quà hấp dẫn đang chờ đợi bạn.
-
-                                    Chúc bạn chơi game vui vẻ và may mắn !!
-                                </p>
+                            <div class="card--attr justify-content-between  c-mb-16">
+                                {!! $result->group->params->thele !!}
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn primary">Chơi thử</button>
+                        <button class="btn primary" >Chơi thử</button>
                     </div>
                 </div>
             </div>
@@ -956,15 +882,7 @@
                     </div>
                     <div class="sheet-body overflow-visible">
                         <!-- body -->
-                        <p class="fz-13 fw-400 text-theme lh-20 mb-0 c-mt-8 c-ml-8 c-mr-8">
-                            Chỉ với 10 trong tài khoản bạn đã có ngay 1 lượt chơi <a href="#" class="c_text-pink">Vòng Quay Giải Nhiệt Hè</a>, sẽ càng rẻ hơn nếu bạn chơi nhiều lượt cùng lúc
-
-                            Cách chơi rất đơn giản khi bạn quay kim quay dừng ở vị trí nào bạn sẽ nhận được phần thưởng tương ứng ở vị trí đó
-
-                            Rất nhiều phần quà hấp dẫn đang chờ đợi bạn.
-
-                            Chúc bạn chơi game vui vẻ và may mắn !!
-                        </p>
+                        {!! $result->group->params->thele !!}
                     </div>
                     <div class="sheet-footer">
                         <button class="btn secondary js-reset-form">Thiết lập lại</button>
@@ -1132,52 +1050,48 @@
     </script>
     <script id="message-template" type="text/x-handlebars-template">
         <li>
-
-            <div class="comment-item comment-item-own">
-
-                <div class="comment-detail comment-detail-own">
-                    <div class="comment-info comment-info-own">
-
-                        <span>@{{time}} , Vừa xong</span>
-                        <p>Bạn</p>
+            <div class="comment-item d-flex align-items-start c-mb-16">
+                <div class="comment-avatar c-mr-8">
+                    <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
+                </div>
+                <div class="comment-detail">
+                    <div class="comment-info c-mb-4">
+                        <h6 class="d-inline-block text-primary-color" >Bạn </h6>
+                        <span class="c-ml-8 fw-400 fz-12">@{{time}}, Vừa xong</span>
                     </div>
-                    <div class="comment-content comment-content-own">
+                    <div class="comment-content fw-400 fz-13">
                         @{{messageOutput}}
                     </div>
-                    <div class="comment-interact comment-interact-own">
-                        <span id="likeComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                        <span id="replyComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                    <div class="comment-interact c-mt-12">
+                        <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
+                        <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
                     </div>
                 </div>
-                <div class="comment-avatar">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
-                </div>
             </div>
-
         </li>
+
 
     </script>
     <script id="message-response-template" type="text/x-handlebars-template">
         <li>
-            <div class="comment-item">
-                <div class="comment-avatar">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/user_avatar.png" alt="">
+            <div class="comment-item d-flex align-items-start c-mb-16">
+                <div class="comment-avatar c-mr-8">
+                    <img class="brs-100" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/user_avatar.png" alt="">
                 </div>
                 <div class="comment-detail">
-                    <div class="comment-info">
-                        <p>Khách</p>
-                        <span>@{{time}}, Vừa xong</span>
+                    <div class="comment-info c-mb-4">
+                        <h6 class="d-inline-block">Khách </h6>
+                        <span class="c-ml-8 fw-400 fz-12">@{{time}}, Vừa xong</span>
                     </div>
-                    <div class="comment-content">
+                    <div class="comment-content fw-400 fz-13">
                         @{{response}}
                     </div>
-                    <div class="comment-interact">
-                        <span id="likeComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/hearts-suit 1.svg" alt=""> Thích</span>
-                        <span id="replyComment"><img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/comment 1.svg" alt=""> Trả lời</span>
+                    <div class="comment-interact c-mt-12">
+                        <span id="likeComment" class="d-inline-flex align-items-center fw-400 fz-12 c-mr-40"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/hearts-suit_1.svg" alt=""> Thích</span>
+                        <span id="replyComment" class="d-inline-flex align-items-center fw-400 fz-12"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/comment_1.svg" alt=""> Trả lời</span>
                     </div>
                 </div>
             </div>
-
         </li>
     </script>
 
@@ -1343,5 +1257,8 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
         @break
     @endswitch
+
+
+
 @endsection
 
