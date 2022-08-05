@@ -102,3 +102,52 @@ Validator({
         // alert('Form đã được submit');
     }
 });
+
+Validator({
+    form:'#form-changePassword',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
+        Validator.isRequired('[name=password-new]','Bạn chưa nhập mật khẩu mới'),
+        Validator.isRequired('[name=password_confirmation]','Bạn chưa nhập mật khẩu xác nhận'),
+    ],
+    onSubmit:function (data) {
+        var formSubmit = $('#form-changePassword');
+        var url = formSubmit.attr('action');
+        var btnSubmit = formSubmit.find(':submit');
+        console.log(data)
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache:false,
+            data: formSubmit.serialize(), // serializes the form's elements.
+            beforeSend: function (xhr) {
+            },
+            success: function (res) {
+                if (res.status == 'LOGIN'){
+                    openLoginModal();
+                }
+
+                if (res.status == 1){
+
+                    $('.modal_message').text(res.message)
+                    $('#successModal').modal('show');
+                    $('.password-error').html('')
+                }else {
+                    $('.password-error').html(res.message)
+
+                }
+            },
+            error: function (data) {
+                alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
+                btnSubmit.text('Đăng nhập');
+            },
+            complete: function (data) {
+
+
+                formSubmit.trigger("reset");
+            }
+        });
+    }
+});
