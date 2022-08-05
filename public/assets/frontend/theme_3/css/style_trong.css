@@ -1220,6 +1220,7 @@
 }
 #article--detail .article--content .article--content__text img{
     width: 90%;
+    height: auto;
 }
 /*icons */
 .__icon:after {
