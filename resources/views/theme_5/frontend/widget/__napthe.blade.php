@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                             <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
-                                <button id="btnConfirmMobile" class="btn primary js-step" data-target="#step2" type="button">Nạp ngay</button>
+                                <button id="btnConfirmMobile" class="btn primary js-step" data-target="#step2NT" type="button">Nạp ngay</button>
                             </div>
                         </div>
                         <div class="col-lg-6 c-pl-8 d-none d-lg-flex flex-column justify-content-between">

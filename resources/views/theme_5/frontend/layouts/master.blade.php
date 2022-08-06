@@ -51,6 +51,7 @@
 {{--js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
 {{--    import css --}}
     @yield('styles')
     @if(setting('sys_google_tag_manager_head') != '')
