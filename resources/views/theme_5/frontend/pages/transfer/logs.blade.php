@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">

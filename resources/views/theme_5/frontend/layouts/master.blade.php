@@ -53,9 +53,23 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
 {{--    import css --}}
     @yield('styles')
-
+    @if(setting('sys_google_tag_manager_head') != '')
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
+        <!-- End Google Tag Manager -->
+    @endif
 </head>
 <body>
+@if(setting('sys_google_tag_manager_body') != '')
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+@endif
 
 @include('frontend.layouts.includes.header')
 <div class="layout" >
@@ -64,6 +78,36 @@
     </div>
 </div>
 
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root" style="    z-index: 666;"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "{{setting('sys_id_chat_message') }}");
+
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v13.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 @include('frontend.layouts.includes.footer')
 

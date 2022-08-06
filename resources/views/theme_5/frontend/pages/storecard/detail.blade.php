@@ -1,4 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
