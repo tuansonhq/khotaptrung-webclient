@@ -1,4 +1,6 @@
 @if(isset($data))
+
+
 <section class="news">
     <div class="section-header c-mb-24 c-mb-lg-24 justify-content-between">
         <h2 class="section-title">
@@ -11,30 +13,24 @@
     <div class="swiper js-swiper-news d-none d-lg-block">
         <div class="swiper-wrapper">
             @foreach($data as $key => $item)
-                @if($key == 0)
-                    @if(isset($item->items))
-                        @foreach($item->items as $val)
-                        <div class="swiper-slide">
-                            <div class="card news">
-                                <a href="/tin-tuc/{{ $val->slug }}" class="news-link scale-thumb">
-                                    <div class="card-body">
-                                        <div class="news-thumb">
-                                            <img src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="" class="news-thumb-image">
-                                        </div>
-                                        <div>
-                                            <div class="news-title c-mt-12 c-mb-4 text-limit limit-2">{{ $val->title }} </div>
-                                            <div class="datetime">
-                                                {{ formatDateTime($val->created_at) }}
-                                            </div>
-                                        </div>
-
+                <div class="swiper-slide">
+                    <div class="card news">
+                        <a href="/tin-tuc/{{ $item->slug }}" class="news-link scale-thumb">
+                            <div class="card-body">
+                                <div class="news-thumb">
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
+                                </div>
+                                <div>
+                                    <div class="news-title c-mt-12 c-mb-4 text-limit limit-2">{{ $item->title }} </div>
+                                    <div class="datetime">
+                                        {{ formatDateTime($item->created_at) }}
                                     </div>
-                                </a>
+                                </div>
+
                             </div>
-                        </div>
-                        @endforeach
-                    @endif
-                @endif
+                        </a>
+                    </div>
+                </div>
             @endforeach
 
         </div>
