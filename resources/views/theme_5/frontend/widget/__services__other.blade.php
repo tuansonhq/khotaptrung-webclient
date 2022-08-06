@@ -1,11 +1,12 @@
 @if(isset($data))
 
-<div class="section-header c-mb-16 media-web services-other-title">
+<div class="section-header c-mb-16 c-mt-32 media-web services-other-title">
     <div class="section-title fz-lg-20 lh-lg-24">
         Dịch vụ khác
     </div>
 </div>
-<div class="menu-category media-web services-other">
+
+<div class="menu-category media-web c-mb-32 services-other">
     <ul class="d-flex justify-content-between px-0 menu-category_fixm ">
         @foreach($data as $item)
         <li class="w-100 c-px-8">
