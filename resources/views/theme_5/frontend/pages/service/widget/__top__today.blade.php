@@ -1,7 +1,7 @@
 <section class="flash-sale top-today">
     <div class="section-header c-mb-16">
         <div class="section-title fz-lg-20 lh-lg-24">
-            Dịch vụ nổi bật
+            Dịch vụ nạp game nổi bật
         </div>
     </div>
     <div class="swiper js-flash-sale-swiper">
