@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,noindex" />
+@endsection
 @section('content')
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">

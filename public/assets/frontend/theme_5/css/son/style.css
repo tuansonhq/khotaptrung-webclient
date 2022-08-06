@@ -18,6 +18,14 @@
     font-weight: 700;
     font-size: 24px;
 }
+
+.p_recharge_amount{
+    cursor: pointer;
+}
+
+.c_max-header-tin-tuc{
+    height: 48px;
+}
 #history__service .menu-category-item{
     background: #ffffff;
 }

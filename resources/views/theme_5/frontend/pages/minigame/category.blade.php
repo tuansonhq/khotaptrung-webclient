@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
+@endsection
 @section('content')
     <div class="container c-container" id="minigame-category">
         <ul class="breadcrumb-list">
@@ -21,17 +23,21 @@
         @include('frontend.widget.__slider__banner')
         {{--            Top hôm nay    --}}
         @include('frontend.pages.minigame.widget.__top__today')
-        {{--        Giam gia soc    --}}
-        @include('frontend.pages.minigame.widget.__flash__sale')
-        {{--            Dành cho bạn   --}}
-        @include('frontend.pages.minigame.widget.__for__you')
+{{--        --}}{{--        Giam gia soc    --}}
+{{--        @include('frontend.pages.minigame.widget.__flash__sale')--}}
+{{--        --}}{{--            Dành cho bạn   --}}
+{{--        @include('frontend.pages.minigame.widget.__for__you')--}}
 
-        {{--            Vòng quayy free fire   --}}
+{{--        --}}{{--            Vòng quayy free fire   --}}
 
-        @include('frontend.pages.minigame.widget.__minigame__free__fire')
-        {{--            Vòng quayy liên quân   --}}
-        @include('frontend.pages.minigame.widget.__minigame__lien__quan')
+{{--        @include('frontend.pages.minigame.widget.__minigame__free__fire')--}}
+{{--        --}}{{--            Vòng quayy liên quân   --}}
+{{--        @include('frontend.pages.minigame.widget.__minigame__lien__quan')--}}
 
+
+        {{--     Danh mục minigame  --}}
+
+        @include('frontend.pages.minigame.widget.__minigame__list')
         {{--            Dịch vụ khác   --}}
         @include('frontend.widget.__services__other')
 

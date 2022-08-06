@@ -968,6 +968,11 @@ header nav.heading .header-container{
     transition: .2s;
     z-index: 99;
 }
+.list-news .swiper-button-prev,.list-news .swiper-button-next{
+    top: 40%;
+    transform: translateY(-40%);
+
+}
 .list-product .item-other-nick:hover,.list-product .item-other-nick:hover{
     border: 1px solid var(--primary-color);
     /*transform: translateY(-0.1rem);*/

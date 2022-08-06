@@ -140,6 +140,7 @@ if (input_params_hide.length){
             break;
         // điền số tiền
         case '7':
+
         function UpdateTotal() {
             var price = parseInt(input_pack.val().replace(/\./g, ''));
             if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
@@ -218,6 +219,7 @@ $('.submit-form').on('click', function () {
         obj[item.name] = item.value;
         return obj;
     }, {});
+    console.log(data_form)
     let url = $('#formDataService').attr('action');
     data_form.selected = data_form.selected.replace(/\./g, "");
 
