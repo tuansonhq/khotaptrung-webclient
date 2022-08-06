@@ -609,6 +609,7 @@ button:focus {
 }
 .nav-tabs.size-auto {
     display: table;
+    table-layout: fixed;
 }
 .nav-tabs.size-auto .nav-item {
     display: table-cell;
