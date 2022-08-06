@@ -203,6 +203,14 @@ let swiper_card_other = new Swiper('.swiper-card',{
     },
 });
 
+let swiper_card_bought = new Swiper(".slider--card", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    freeMode: true,
+    observer: true,
+    observeParents: true,
+});
+
 function initSwiperGallery() {
     if ($('.gallery-top').length) {
         let galleryTop = new Swiper('.gallery-top', {

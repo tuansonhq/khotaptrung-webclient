@@ -155,6 +155,9 @@ ul.card-list {
 .card-other .navigation.slider-next {
     right: 0;
 }
+.nav-buy-card .card {
+    overflow:hidden;
+}
 /* Màn hình nhỏ laptop và mobile */
 @media only screen and (max-width: 992px) {
     .scratch-card .card--name {

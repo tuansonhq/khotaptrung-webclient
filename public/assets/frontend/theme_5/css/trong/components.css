@@ -952,6 +952,33 @@ section.outstanding-service {
 .bread-word {
     word-break:break-word;
 }
+.card-bought .card-detail {
+    padding: 12px;
+    position: relative;
+    height: 68px;
+    background-color: var(--disable-switch-color);
+}
+.card-bought .card-info {
+    background-color: var(--w-ghost-focus-color);
+    border-radius: 4px;
+    padding: 12px;
+}
+.card-bought .card-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left:12px;
+    background-color: #fff;
+    width: 40px;height: 40px;
+    border-radius: 50%;
+}
+.card-bought .card-logo img {
+    position: absolute;
+    max-width: 75%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 @media screen and (max-width: 992px) {
     .flash-sale {
         border-radius: 0;

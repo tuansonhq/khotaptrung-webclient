@@ -33,6 +33,7 @@
             </p>
             <hr class="c-mx-n16">
         </div>
+
         <div class="content-wrap c-mt-24 c-mt-lg-0">
             <!-- Nav danh mục -->
             <div class="nav-buy-card d-none d-lg-block">
@@ -224,7 +225,11 @@
                     </div>
                     <div class="d-flex justify-content-between c-py-4">
                         <div class="t-body-1 link-color">Chiết khấu</div>
-                        <div class="t-body-2 t-discount-card">03 %</div>
+                        <div class="t-body-2 t-discount-card">0 %</div>
+                    </div>
+                    <div class="d-flex justify-content-between c-py-4">
+                        <div class="t-body-1 link-color">Mệnh giá</div>
+                        <div class="t-body-2 t-amount-card">0đ</div>
                     </div>
                 </div>
                 <div class="card c-px-12 c-py-4 c-mb-16">
@@ -245,7 +250,7 @@
                 </div>
             </div>
             <div class="footer-mobile group-btn">
-                <button class="btn primary submit-buy-card" type="button">Xác nhận</button>
+                <button class="btn primary submit-payment" type="button">Xác nhận</button>
             </div>
         </div>
         <!-- Modal Mua thất bại -->
@@ -266,6 +271,95 @@
                         <a href="/nap-tien" class="btn primary">Nạp tiền</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Modal thành công -->
+        <div class="modal fade modal-big" id="modal-success">
+            <div class="modal-dialog modal-dialog-centered modal-custom">
+                <div class="modal-content c-p-24">
+                    <div class="modal-header">
+                        <h2 class="modal-title center">Mua thẻ thành công</h2>
+                        <button type="button" class="close" data-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                        <div class="t-body-2 title-color c-mb-12">
+                            Thông tin thẻ đã mua
+                        </div>
+                        <div class="card card-dark c-mb-16">
+                            <div class="card-body c-py-4">
+                                <div class="justify-content-between d-flex c-py-4">
+                                    <div class="link-color t-body-1">
+                                        Loại thẻ
+                                    </div>
+                                    <div class="t-body-2 text-capitalize">{{ @$key }}</div>
+                                </div>
+                                <div class="justify-content-between d-flex c-py-4">
+                                    <div class="link-color t-body-1">
+                                        Mệnh giá
+                                    </div>
+                                    <div class="t-body-2 t-amount-card">0đ</div>
+                                </div>
+                                <div class="justify-content-between d-flex c-py-4">
+                                    <div class="link-color t-body-1">
+                                        Số lượng
+                                    </div>
+                                    <div class="t-body-2 t-quantity-card">01</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper slider--card">
+                            <div class="swiper-wrapper wrap-card-bought-desktop">
+                                <!-- JS PASTE HTML HERE -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="/" class="btn secondary">Trang chủ</a>
+                        <a href="/mua-the" class="btn primary">Mua thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Step Thành công -->
+        <span class="d-none js-step" data-target="#step-success"></span>
+        <div class="step" id="step-success">
+            <div class="head-mobile">
+                <a href="" class="link-back close-step"></a>
+
+                <div class="head-title text-title">Mua thẻ thành công</div>
+
+                <a href="/" class="home"></a>
+            </div>
+            <div class="body-mobile c-px-16">
+                <div class="t-sub-2 title-color c-my-16">
+                    Thông tin thẻ đã mua
+                </div>
+                <div class="card c-mb-16">
+                    <div class="card-body c-px-12 c-py-4">
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Loại thẻ</div>
+                            <div class="t-body-2 text-capitalize">{{ @$key }}</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Mệnh giá</div>
+                            <div class="t-body-2 t-amount-card">0 đ</div>
+                        </div>
+                        <div class="d-flex justify-content-between c-py-4">
+                            <div class="t-body-1 link-color">Số lượng</div>
+                            <div class="t-body-2 t-quantity-card">01</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-card-bought-mobile">
+                    <!-- JS PASTE HTML HERE -->
+
+                </div>
+            </div>
+            <div class="footer-mobile group-btn">
+                <a href="/" class="btn secondary" type="button">Trang chủ</a>
+                <a href="/mua-the" class="btn primary" type="button">Mua thêm</a>
             </div>
         </div>
         @endsection

@@ -20,37 +20,13 @@ function pad(d) {
 function kFormatter(num) {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num);
 }
+/*Xử lý ảnh bị lỗi*/
+function imgError(element){
+    $(element).attr('src','/assets/frontend/theme_5/image/trong/placeholder.jpg')
+}
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
     $('select').niceSelect();
-
-    /*Quantity*/
-    $(document).on('click','.js-quantity-minus',function (event) {
-        event.preventDefault();
-        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-        input.val(parseInt(input.val()) - 1);
-        if(input.val() < 1 || isNaN(input.val())){
-            input.val(1);
-        }
-        input.trigger('input')
-    });
-    $(document).on('click','.js-quantity-add',function (event) {
-        event.preventDefault();
-        let input = $(this).closest('.js-quantity').find('.js-quantity-input');
-        input.val(parseInt(input.val()) + 1);
-        if(input.val() > 20 || isNaN(input.val())){
-            input.val(20);
-        }
-        input.trigger('input');
-    });
-    $(document).on('input','.js-quantity-input',function () {
-        if ($(this).val() > 20 || isNaN($(this).val())){
-            $(this).val(20);
-        }
-        if ($(this).val() < 1 || isNaN($(this).val())){
-            $(this).val(1);
-        }
-    });
     /*End quantity*/
     /*Input chỉ được nhập số*/
     $(document).on('keypress','input[numberic]', function (e) {
@@ -83,18 +59,6 @@ $(document).ready(function() {
             }
         });
     }
-    /*option swiper card*/
-    let slider_count = 1;
-    if ($('.slider--card .swiper-wrapper').children().length > 1) {
-        slider_count = 1.25;
-    }
-    var swiper_card = new Swiper(".slider--card", {
-        slidesPerView: slider_count,
-        spaceBetween: 16,
-        freeMode: true,
-        observer: true,
-        observeParents: true,
-    });
 
     /*Mua thẻ thành công*/
     tippy('.js-copy-text', {
