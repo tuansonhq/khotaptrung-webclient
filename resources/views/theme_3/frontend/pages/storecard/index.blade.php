@@ -6,6 +6,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="container-fix container">
         <ul class="breadcrum--list">

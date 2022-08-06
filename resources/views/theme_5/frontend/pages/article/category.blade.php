@@ -1,7 +1,10 @@
 @extends('frontend.layouts.master')
-{{--@section('seo_head')--}}
-{{--    @include('frontend.widget.__seo_head',with(['data'=>$data]))--}}
-{{--@endsection--}}
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/article.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/article/main.js"></script>
