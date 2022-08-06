@@ -60,7 +60,7 @@ $(document).ready(function () {
             data_telecoms.forEach(function (card,index) {
                 let html_card = `<div class="${width < 992 ? 'col-6 c-px-lg-6 c-mb-lg-12' : 'col-lg-3 c-px-8 c-mb-16'}">`;
                 html_card += `<a href="/mua-the-${card.key.toLowerCase()}" class="scratch-card">`;
-                html_card += `<div class="card--thumb"><img src="${card.image}" class="card--thumb__image py-1 py-lg-0" alt="" onerror="imgError(this)"></div>`;
+                html_card += `<div class="card--thumb"><img src="${card.image}" class="card--thumb__image py-1 py-lg-0" alt="" ></div>`;
                 html_card += `<div class="card--name t-sub-2 t-capitalize">Thẻ ${card.key.toLowerCase()}</div>`;
                 html_card += '</a></div>';
                 width > 992

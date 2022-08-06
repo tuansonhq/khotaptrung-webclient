@@ -109,6 +109,7 @@
     text-align: left;
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
+    user-select: none;
 }
 .nice-select .option:hover,
 .nice-select .option.focus,
@@ -137,9 +138,25 @@
 .nice-select .option.disabled {
     background-color: transparent;
     color: #999;
-    cursor: default; }
+    cursor: default;
+}
 
 .nice-select .list {
-    display: none; }
+    display: none;
+}
+.nice-select .list::-webkit-scrollbar {
+    width: 8px;
+}
+.nice-select .list::-webkit-scrollbar-thumb:active {
+    background: rgba(188, 191, 214, 1);
+}
+.nice-select .list::-webkit-scrollbar-thumb {
+    background: rgba(188, 191, 214, 0.5);
+    border-radius: 14px;
+}
 .nice-select.open .list {
-    display: block; }
+    display: block;
+    max-height: 450px;
+    overflow-y: scroll;
+    padding-right: 4px;
+}
