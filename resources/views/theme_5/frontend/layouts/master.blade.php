@@ -50,7 +50,7 @@
 
 {{--js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
 {{--    import css --}}
     @yield('styles')
 
