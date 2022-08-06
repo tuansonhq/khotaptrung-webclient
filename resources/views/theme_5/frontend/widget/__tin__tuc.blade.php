@@ -21,7 +21,7 @@
                                     <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
                                 </div>
                                 <div>
-                                    <div class="news-title c-mt-12 c-mb-4 text-limit limit-2">{{ $item->title }} </div>
+                                    <div class="news-title c-mt-12 c-mb-4 text-limit limit-2 c_max-header-tin-tuc">{{ $item->title }} </div>
                                     <div class="datetime">
                                         {{ formatDateTime($item->created_at) }}
                                     </div>
