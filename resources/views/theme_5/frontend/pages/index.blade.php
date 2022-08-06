@@ -1,52 +1,147 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-
+    @if(isset(theme('')->theme_config->sys_theme_ver))
     <div class="container c-container">
 
-{{--        Slider banner  --}}
+{{--        Slider banner All theme  --}}
         @include('frontend.widget.__slider__banner__home')
 
-{{--        Dịch vụ nổi bật  --}}
-        @include('frontend.widget.__dich__vu__noi__bat')
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Dịch vụ nổi bật 3.0  --}}
+                @include('frontend.widget.__dich__vu__noi__bat')
+            @endif
+        @endif
 
-{{--        Giá sốc  --}}
-{{--        @include('frontend.widget.__gia__soc')--}}
 
-{{--        Dành cho bạn  --}}
-{{--        @include('frontend.widget.__danh__cho__ban')--}}
 
-        {{--        Dịch vụ  --}}
-        @include('frontend.widget.__content__home__dichvu')
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
+                {{--        Giá sốc 3.0 3.2 3.3  --}}
+                @include('frontend.widget.__gia__soc')
+            @endif
+        @endif
 
-{{--        Vòng quay  --}}
-        @include('frontend.widget.__content__home__minigame')
+        @include('frontend.widget.__mua__the')
 
-        {{--        Nạp thẻ  --}}
-        @include('frontend.widget.__napthe')
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Dành cho bạn  --}}
+                @include('frontend.widget.__danh__cho__ban')
+            @endif
+        @endif
 
-{{--        nick ngon giá re  --}}
-        @include('frontend.widget.__content__home__game')
 
-{{--        Free fire  --}}
-{{--        @include('frontend.widget.__free__fire')--}}
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Dịch vụ  --}}
+                @include('frontend.widget.__content__home__dichvu')
+            @endif
+        @endif
 
-{{--        Liên quân  --}}
-{{--        @include('frontend.widget.__lien__quan')--}}
 
-        {{--        Ngoc rong online  --}}
-{{--        @include('frontend.widget.__ngoc__rong__online')--}}
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Vòng quay  --}}
+                @include('frontend.widget.__content__home__minigame')
+            @endif
+        @endif
 
-        {{--        Tin tức  --}}
-        @include('frontend.widget.__tin__tuc')
+
+
+
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Nạp thẻ  --}}
+                @include('frontend.widget.__napthe')
+            @endif
+        @endif
+
+
+
+
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        nick ngon giá re  --}}
+                @include('frontend.widget.__content__home__game')
+            @endif
+        @endif
+
+
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Free fire  --}}
+                @include('frontend.widget.__free__fire')
+
+                {{--        Liên quân  --}}
+                @include('frontend.widget.__lien__quan')
+
+                {{--        Ngoc rong online  --}}
+                @include('frontend.widget.__ngoc__rong__online')
+            @endif
+        @endif
+
+        @if(isset(theme('')->theme_config->sys_theme_ver))
+            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
+                {{--        Tin tức  --}}
+                @include('frontend.widget.__tin__tuc')
+            @endif
+        @endif
+
 
 {{--    Giới thiệu web       --}}
         @include('frontend.widget.__abount__us')
 
     </div>
+    @else
+        <div class="container c-container">
 
+            {{--        Slider banner  --}}
+            @include('frontend.widget.__slider__banner__home')
+
+            {{--        Dịch vụ nổi bật  --}}
+            @include('frontend.widget.__dich__vu__noi__bat')
+
+
+            {{--        Giá sốc  --}}
+            @include('frontend.widget.__gia__soc')
+
+            {{--        Dành cho bạn  --}}
+            @include('frontend.widget.__danh__cho__ban')
+
+            {{--        Dịch vụ  --}}
+            @include('frontend.widget.__content__home__dichvu')
+
+            {{--        Vòng quay  --}}
+            @include('frontend.widget.__content__home__minigame')
+
+
+            {{--        Nạp thẻ  --}}
+            @include('frontend.widget.__napthe')
+
+            {{--        nick ngon giá re  --}}
+            @include('frontend.widget.__content__home__game')
+
+            {{--        Free fire  --}}
+            {{--        @include('frontend.widget.__free__fire')--}}
+
+            {{--        Liên quân  --}}
+            {{--        @include('frontend.widget.__lien__quan')--}}
+
+            {{--        Ngoc rong online  --}}
+            {{--        @include('frontend.widget.__ngoc__rong__online')--}}
+
+            {{--        Tin tức  --}}
+            @include('frontend.widget.__tin__tuc')
+
+            {{--    Giới thiệu web       --}}
+            @include('frontend.widget.__abount__us')
+
+        </div>
+    @endif
     {{--  sử lý step thanh toán --}}
-    <div class="step" id="step2">
+    <div class="step" id="step2NT">
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>
 

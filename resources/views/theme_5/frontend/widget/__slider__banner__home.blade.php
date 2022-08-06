@@ -46,6 +46,7 @@
         <div class="banner-slide swiper-general c-mt-16 c-mb-24 c-mb-lg-20">
             <div class=" swiper swiper-banner brs-12">
                 <div class="swiper-wrapper">
+
                     @foreach($data as $item)
                         @if(isset($item->image))
                             <div class="swiper-slide">
@@ -53,6 +54,7 @@
                             </div>
                         @endif
                     @endforeach
+
                 </div>
 
                 <div class="navigation slider-next "></div>
