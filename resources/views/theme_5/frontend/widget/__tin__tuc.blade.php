@@ -23,7 +23,7 @@
                         <a href="/tin-tuc/{{ $item->slug }}" class="news-link scale-thumb">
                             <div class="card-body">
                                 <div class="news-thumb">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
+                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
                                 </div>
                                 <div>
                                     <div class="news-title c-mt-12 c-mb-4 text-limit limit-2 c_max-header-tin-tuc">{{ $item->title }} </div>
@@ -52,7 +52,7 @@
                     <div class="news-article">
                         <div class="article-thumb-wrap">
                             <div class="news-thumb">
-                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
+                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
                             </div>
                         </div>
                         <div class="news-info">
