@@ -19,7 +19,7 @@
 
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <div class="card-thumb c-mb-8">
-                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
+                                <img onerror="imgError(this)" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
                             </div>
                             <div class="card-attr">
                                 <div class="text-title fw-700 text-limit limit-1">
@@ -67,7 +67,7 @@
                 <div class="card-body c-p-16 c-p-lg-12 scale-thumb">
                     <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                         <div class="card-thumb c-mb-8">
-                            <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
+                            <img onerror="imgError(this)" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
                         </div>
                         <div class="card-attr">
                             <div class="text-title fw-700">
