@@ -231,7 +231,7 @@ $('.submit-form').on('click', function () {
         data: data_form,
         success: function (res) {
             if (res.status) {
-                $('.js-message-res span').text(res.message)
+                    $('.js-message-res span').text(res.message)
                 if ($(document).width() > 1200){
                     $('.openSuccess').trigger('click')
                 } else {
@@ -249,3 +249,7 @@ $('.submit-form').on('click', function () {
 
 })
 
+$('.openSuccess').on('click', function(){
+    $('#successModal').modal('show');
+    $('#orderModal').modal('hide');
+})
