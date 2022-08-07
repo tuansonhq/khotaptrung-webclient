@@ -109,7 +109,7 @@ ul.card-list {
     top: 50%;
     left: 50%;
     position: absolute;
-    max-width: 150px;
+    max-height: 60px;
     transform: translate(-50%, -50%);
     object-fit: cover;
 }
@@ -154,6 +154,9 @@ ul.card-list {
 }
 .card-other .navigation.slider-next {
     right: 0;
+}
+.nav-buy-card .card {
+    overflow:hidden;
 }
 /* Màn hình nhỏ laptop và mobile */
 @media only screen and (max-width: 992px) {

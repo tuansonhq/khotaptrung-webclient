@@ -4,10 +4,6 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
-@endsection
-
 @section('content')
     <div class="container c-container">
         <ul class="breadcrumb-list">
@@ -32,7 +28,8 @@
             Nạp tiền
         </h2>
 
-{{--        nạp thẻ--}}
+        {{--        nạp thẻ--}}
+
         <div class="row c-mt-16 c-mb-24 c-mt-lg-50 c-mt-md-0" id="charge-detail">
 
             <div class="col-12 col-lg-8 c-pr-8 c-px-sm-0 ">
@@ -159,7 +156,7 @@
                                         </div>
                                     </div>
                                     <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
-                                        <button id="btnConfirmMobile" class="btn primary js-step" data-target="#step2" type="button">Nạp ngay</button>
+                                        <button id="btnConfirmMobile" class="btn primary js-step" data-target="#step2NT" type="button">Nạp ngay</button>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 c-pl-8 d-none d-lg-flex flex-column justify-content-between">

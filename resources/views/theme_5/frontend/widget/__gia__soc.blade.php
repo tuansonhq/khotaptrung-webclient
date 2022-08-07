@@ -1,13 +1,21 @@
 <section class="flash-sale c-mb-24 c-mb-lg-8">
     <div class="section-header c-mb-16">
-        <div class="section-title fz-lg-20 lh-lg-24">
-            Giá sốc <span class="today" style="color: #ffffff"></span>
-        </div>
-        <div class="countdown noselect c-ml-16">
-            <div class="hour">00</div>
-            <div class="minute">00</div>
-            <div class="second">00</div>
-        </div>
+        @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
+            <div class="section-title fz-lg-20 lh-lg-24">
+                Giá sốc <span class="today" style="color: #ffffff"></span>
+            </div>
+            <div class="countdown noselect c-ml-16">
+                <div class="hour">00</div>
+                <div class="minute">00</div>
+                <div class="second">00</div>
+            </div>
+        @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
+
+            <div class="section-title fz-lg-20 lh-lg-24">
+                Dịch vụ nạp game nổi bật
+            </div>
+        @endif
+
     </div>
     <div class="swiper js-flash-sale-swiper">
         <div class="swiper-wrapper">
