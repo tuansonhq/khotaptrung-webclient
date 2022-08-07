@@ -85,7 +85,7 @@
                         @endphp
                         @if(!empty($name))
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                            <div class="mb-15">
+                            <div class="mb-15 c-pt-8">
                                 <select name="selected" class="s-filter form-control t14" style="">
                                     @for ($i = 0; $i < count($name); $i++)
                                         @if($name[$i]!=null)
@@ -476,7 +476,13 @@
                     <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                         Thông tin dịch vụ thuê
                     </div>
-
+                    <div class="col-md-12 left-right modal__error__message">
+                        <div class="row marginauto order-errors">
+                            <div class="col-md-12 left-right" style="color:#DA4343">
+                                <small></small>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
@@ -656,6 +662,13 @@ color: #434657;
             <div class="body-mobile-content c-p-16">
                 <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
                     Thông tin dịch vụ thuê
+                </div>
+                <div class="col-md-12 left-right modal__error__message">
+                    <div class="row marginauto order-errors">
+                        <div class="col-md-12 left-right" style="color:#DA4343">
+                            <small></small>
+                        </div>
+                    </div>
                 </div>
                 <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
                     <div class="card--attr__total justify-content-between d-flex text-center">
