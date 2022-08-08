@@ -1,5 +1,5 @@
 @if(isset($data) && count($data) > 0)
-    <section class="acc-game-v2 c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
+    <section class="acc-game-v2 c-pt-12 c-pt-lg-6">
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>

@@ -1,5 +1,5 @@
 @if($data)
-<div class="banner-slide swiper-general c-mb-16 c-mb-lg-16">
+<div class="banner-slide swiper-general c-mt-24 c-mt-lg-16 c-mb-16 c-mb-lg-28">
     <div class=" swiper swiper-banner brs-12">
         <div class="swiper-wrapper">
 
