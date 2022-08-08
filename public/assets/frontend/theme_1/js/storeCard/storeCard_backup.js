@@ -169,7 +169,7 @@ $(document).ready(function () {
 // console.log(data);
 
 //
-$('#form-storeCard').submit(function (e) {
+$('#form-storecard').submit(function (e) {
     e.preventDefault();
     // var formSubmit = $(this).closest('form')
     // url = $(this).data('key');
