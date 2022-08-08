@@ -66,7 +66,7 @@
                             <span class=" mb-15 control-label bb">Chọn máy chủ:</span>
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
-                                <div class="mb-15 c-pt-16">
+                                <div class="mb-15 c-pt-16 c-pb-8">
                                     <select name="server" class="server-filter form-control t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
@@ -85,7 +85,7 @@
                         @endphp
                         @if(!empty($name))
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                            <div class="mb-15">
+                            <div class="mb-15 c-pt-8">
                                 <select name="selected" class="s-filter form-control t14" style="">
                                     @for ($i = 0; $i < count($name); $i++)
                                         @if($name[$i]!=null)
@@ -98,7 +98,7 @@
 
                         @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
                         <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
-                        <div class="mb-15">
+                        <div class="mb-15 c-pt-8 c-pb-8">
                             <input autofocus=""
                                    value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}"
                                    class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
@@ -106,7 +106,7 @@
                                     style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                         </div>
                         <span class="mb-15 control-label bb">Hệ số:</span>
-                        <div class="mb-15">
+                        <div class="mb-15 c-pt-8 c-pb-8">
                             <input type="text" id="txt-discount" class="form-control t14" placeholder="" value=""
                                    readonly="">
                         </div>
@@ -177,16 +177,15 @@
                                     @foreach($send_name as $k_send_name => $send_name_text)
                                         @if($send_type[$k_send_name])
                                             @if($send_type[$k_send_name] == '3')
-                                                @elseif($send_type[$k_send_name] =='2')
-                                                @elseif($send_type[$k_send_name] =='1')
+                                            @elseif($send_type[$k_send_name] =='2')
+                                            @elseif($send_type[$k_send_name] =='1')
                                                 <div
                                                     class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                     <div class="row marginauto">
                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                             <span>{{$send_name_text}}</span>
                                                         </div>
-                                                        <div
-                                                            class="col-md-12 left-right body-title-detail-select-ct">
+                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
                                                             <input autocomplete="off" class="input-defautf-ct username"
                                                                    name="customer_data{{$k_send_name}}" type="text"
                                                                    placeholder="{{$send_name_text}}" required>
@@ -200,12 +199,11 @@
                                                 <div
                                                     class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                     <div class="row marginauto password-mobile">
-                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                        <div class="col-md-12 left-right body-title-detail-span-ct c-pt-8">
                                                             <span>{{$send_name_text}}</span>
                                                         </div>
-                                                        <div
-                                                            class="col-md-12 left-right body-title-detail-select-ct"
-                                                            style="position: relative">
+                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8"
+                                                             style="position: relative">
                                                             <input autocomplete="off" id="password"
                                                                    name="customer_data{{$k_send_name}}"
                                                                    class="input-defautf-ct password"
@@ -478,7 +476,13 @@
                     <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                         Thông tin dịch vụ thuê
                     </div>
-
+                    <div class="col-md-12 left-right modal__error__message">
+                        <div class="row marginauto order-errors">
+                            <div class="col-md-12 left-right" style="color:#DA4343">
+                                <small></small>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
@@ -543,7 +547,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn primary submit-form">Xác nhận</button>
+                    <button style="width: 100%" type="button" class="btn primary submit-form">Xác nhận</button>
                     <div class="button-next-step-two d-none"></div>
                     <div class="openSuccess d-none"></div>
                 </div>
@@ -558,7 +562,7 @@
                 <div class="modal-header modal-header-success-ct">
                     <div class="row marginauto modal-header-success-row-ct justify-content-center">
                         <div class="col-md-12 text-center">
-                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>
+{{--                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>--}}
                         </div>
                     </div>
                 </div>
@@ -572,22 +576,48 @@
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
-                        <div class="col-md-12 text-center js-message-res">
+                        <div class="col-md-12 text-center js-message-res" style="
+    padding-top: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 24px;">
                             <span></span>
+                        </div>
+                        <div style="font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 20px;
+text-align: center;
+color: #434657;
+">
+                            <p>Yêu cầu thuê đã được gửi đến Shop Cày Thuê Bạn vui lòng kiểm tra Email để xác nhận nha!</p>
                         </div>
                     </div>
                     <div class="row marginauto justify-content-center modal-footer-success-ct">
-                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct c-pl-8 c-pr-8">
                             <div class="row marginauto modal-footer-success-row-not-ct">
-                                <div class="col-md-12 left-right">
-                                    <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
+                                <div class="col-md-12 left-right " style="width: 134px;
+    text-align: center;
+    padding: 9px;
+    border: 1px solid;
+    border-radius: 7px;
+    color: #0E3EDA;">
+                                    <a href="/" class="button-not-bg-ct"><span style="color: #0E3EDA;">Yêu cầu hỗ trợ</span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct c-pl-8 c-pr-8">
                             <div class="row marginauto modal-footer-success-row-ct">
-                                <div class="col-md-12 left-right">
-                                    <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
+                                <div class="col-md-12 left-right" style="width: 134px;
+    text-align: center;
+    padding: 9px;
+    border: 1px solid;
+    border-radius: 7px;
+   background-color: #0E3EDA;">
+                                    <a href="/" class="button-bg-ct"><span style="color: #FFFFFF;">Trang chủ</span></a>
                                 </div>
                             </div>
                         </div>
@@ -632,6 +662,13 @@
             <div class="body-mobile-content c-p-16">
                 <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
                     Thông tin dịch vụ thuê
+                </div>
+                <div class="col-md-12 left-right modal__error__message">
+                    <div class="row marginauto order-errors">
+                        <div class="col-md-12 left-right" style="color:#DA4343">
+                            <small></small>
+                        </div>
+                    </div>
                 </div>
                 <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
                     <div class="card--attr__total justify-content-between d-flex text-center">
@@ -712,11 +749,11 @@
 
         var data = jQuery.parseJSON('{!! $data->params !!}');
 
-            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
         var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
-            @else
+        @else
         var purchase_name = 'VNĐ';
-            @endif
+        @endif
 
         var server = -1;
 

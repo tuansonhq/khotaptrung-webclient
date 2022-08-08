@@ -54,6 +54,7 @@
 
     <!-- js chứa các hàm cần load trước tiên -->
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
 {{--    import css --}}
     @yield('styles')
     @if(setting('sys_google_tag_manager_head') != '')

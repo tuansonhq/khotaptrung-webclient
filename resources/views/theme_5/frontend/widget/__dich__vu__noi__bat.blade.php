@@ -9,7 +9,7 @@
                 <div class="service-item scale-thumb">
                     <div class="service-thumb">
                         <a target="_blank" href="{{ $item->url }}">
-                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
                         </a>
                     </div>
                     <div class="service-name">
@@ -24,7 +24,7 @@
                 <div class="service-item scale-thumb">
                     <div class="service-thumb">
                         <a href="{{ $item->url }}">
-                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
+                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="service-thumb-image">
                         </a>
                     </div>
                     <div class="service-name">

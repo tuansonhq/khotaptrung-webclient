@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body c-p-16 c-p-lg-8">
                             <div class="article-thumb c-mb-16 c-mb-lg-0">
-                                <img src="{{ @\App\Library\MediaHelpers::media($article->image)}}" class="article-thumb-image" alt="">
+                                <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($article->image)}}" class="article-thumb-image" alt="">
                             </div>
                             <div class="article-body">
                                 <div class="article-title text-limit limit-2 limit-lg-3 fz-lg-13 lh-lg-20">
