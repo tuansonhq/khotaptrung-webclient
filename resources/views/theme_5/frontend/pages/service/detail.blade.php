@@ -43,7 +43,7 @@
 
         <section class="service-detail">
             {{--            Slider baner    --}}
-            @include('frontend.widget.__slider__banner')
+            @include('frontend.widget.__slider__banner__service')
             <div class="section-header d-none d-lg-block">
                 <h1 class="section-title">
                     {{ @$data->title }}
@@ -187,13 +187,12 @@
                                                             <span>{{$send_name_text}}</span>
                                                         </div>
                                                         <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
-                                                            <input autocomplete="off" class="input-defautf-ct username figure"
+                                                            <input autocomplete="off" class="input-defautf-ct username"
                                                                    name="customer_data{{$k_send_name}}" type="text"
                                                                    placeholder="{{$send_name_text}}">
                                                             <span class="text-error"></span>
                                                         </div>
                                                         <div class="col-md-12 left-right message-error">
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,7 +206,7 @@
                                                              style="position: relative">
                                                             <input autocomplete="off" id="password"
                                                                    name="customer_data{{$k_send_name}}"
-                                                                   class="input-defautf-ct password figure"
+                                                                   class="input-defautf-ct password"
                                                                    type="password"
                                                                    placeholder="{{$send_name_text}}">
                                                             <span class="text-error"></span>
@@ -233,7 +232,7 @@
                                                                                     </div>
                                                                                 </span>
                                                                 <input id="customer_data{{$k_send_name}}"
-                                                                       type="checkbox" class="confirm-rules figure"
+                                                                       type="checkbox" class="confirm-rules"
                                                                        name="customer_data{{$k_send_name}}">
                                                                 <span class="text-error"></span>
                                                                 <span class="input-ratio-checkmark-ct --overwrite"></span>
@@ -560,7 +559,7 @@
     <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
         <div class="modal-dialog modal-md modal-dialog-centered login animated">
             <!--        <div class="image-login"></div>-->
-            <div class="modal-content">
+            <div class="modal-content c-mr-lg-12 c-ml-lg-12">
                 <div class="modal-header modal-header-success-ct">
                     <div class="row marginauto modal-header-success-row-ct justify-content-center">
                         <div class="col-md-12 text-center">
@@ -568,7 +567,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
@@ -631,25 +629,25 @@ color: #434657;
 
 
     {{-- Thanh toans thanhf coong  --}}
-    <div class="modal fade modal-small" id="orderSuccses">
-        <div class="modal-dialog modal-dialog-centered modal-custom">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center p-0">
-                    <img onerror="imgError(this)" class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png"
-                         alt="">
-                </div>
-                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>
-                    <p class="fw-400 fz-13 c-mt-10 mb-0">
-                        Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!
-                    </p>
-                </div>
-                <div class="modal-footer c-p-24">
-                    <a class="btn primary" data-dismiss="modal">Lịch sử</a>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="modal fade modal-small" id="orderSuccses">--}}
+{{--        <div class="modal-dialog modal-dialog-centered modal-custom">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header justify-content-center p-0">--}}
+{{--                    <img onerror="imgError(this)" class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png"--}}
+{{--                         alt="">--}}
+{{--                </div>--}}
+{{--                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">--}}
+{{--                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>--}}
+{{--                    <p class="fw-400 fz-13 c-mt-10 mb-0">--}}
+{{--                        Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!--}}
+{{--                    </p>--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer c-p-24">--}}
+{{--                    <a class="btn primary" data-dismiss="modal">Lịch sử</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 
     {{--  sử lý step  --}}
     <div class="step" id="step2">
@@ -736,7 +734,7 @@ color: #434657;
 
         <div class="footer-mobile">
             <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
-                <button class="btn primary btn-success-mobile">Xác nhận</button>
+                <button class="btn primary btn-success-mobile submit-form">Xác nhận</button>
             </div>
         </div>
     </div>
