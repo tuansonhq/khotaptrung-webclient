@@ -87,11 +87,6 @@ if (input_params_hide.length){
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
             txt_price.text(total + ' VNĐ');
             //    modal
-            let service_pack = $('.service_pack');
-            service_pack.forEach(function (elm) {
-                console.log(elm)
-                $(elm).html(`<div>${itemselect}</div>`)
-            });
             $('.total--price').text(total + ' VNĐ');
         }
 
@@ -100,7 +95,8 @@ if (input_params_hide.length){
             if (checked.length) {
                 $('.service_pack').html('');
                 checked.each(function (elm) {
-                    let text = $(this).parent().find('label').text().trim();
+                    let text = $(this).parent().find('.text-label').text().trim();
+                    console.log(text)
                     let html = '';
                     html += `<div>`;
                     html += `${text}`;

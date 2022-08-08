@@ -438,7 +438,7 @@
                                                 <label class="input-checkbox">
                                                     <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
                                                     <span class="checkmark"></span>
-                                                    <label class="c-ml-30"
+                                                    <label class="c-ml-30 text-label"
                                                            for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
                                                 </label>
                                             @endif
@@ -693,7 +693,7 @@ color: #434657;
                         <div class="card--attr__name fw-400 fz-13 text-center">
                             Gói
                         </div>
-                        <div class="card--attr__value fz-13 fw-500 service_pack"></div>
+                        <div class="card--attr__value fz-13 fw-500 service_pack c-ml-lg-20"></div>
                     </div>
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center text-order">
                         <div class="card--attr__name fw-400 fz-13 text-center">
