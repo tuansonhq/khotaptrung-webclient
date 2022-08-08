@@ -129,10 +129,6 @@ class StoreCardController extends Controller
         }
     }
 
-    public function indexCardV2()
-    {
-        return view('frontend.pages.storecard-v2.index');
-    }
     public function showListCard($name)
     {
         return view('frontend.pages.storecard-v2.card-list',['key'=>$name]);

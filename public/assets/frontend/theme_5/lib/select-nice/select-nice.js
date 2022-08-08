@@ -182,9 +182,7 @@
         if (style.pointerEvents !== 'auto') {
             $('html').addClass('no-csspointerevents');
         }
-
         return this;
-
     };
 
 }(jQuery));

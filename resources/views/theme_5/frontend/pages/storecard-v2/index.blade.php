@@ -25,7 +25,7 @@
         </ul>
         <!-- end breadcrum -->
         <!-- Banner -->
-        @include('frontend.widget.__slider__banner')
+        @include('frontend.widget.__slider__banner__napthe')
     <!-- End -->
         <div class="c-mt-32 d-block d-lg-none">
             <p class="t-title-1 c-mb-0 c-pb-8">

@@ -22,10 +22,16 @@
             <li class="breadcrumb-item">
                 <a href="/mua-the" class="breadcrumb-link">Mua thẻ</a>
             </li>
+            <li class="breadcrumb-item">
+                <a href="/mua-the-{{ @$key }}" class="breadcrumb-link text-capitalize">Thẻ {{ @$key }}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="" class="breadcrumb-link text-capitalize">Thẻ {{ @$key }} {{ @$value }}</a>
+            </li>
         </ul>
         <!-- end breadcrum -->
         <!-- Banner -->
-    @include('frontend.widget.__slider__banner')
+    @include('frontend.widget.__slider__banner__napthe')
     <!-- End -->
         <div class="c-mt-32 d-block d-lg-none">
             <p class="t-title-1 c-mb-0 c-pb-8 text-capitalize">
@@ -35,7 +41,7 @@
         </div>
         <div class="content-wrap c-mt-24">
             <!-- Nav danh mục -->
-            <div class="nav-buy-card d-none d-lg-block">
+            <div class="nav-buy-card c-mb-16 d-none d-lg-block">
                 <div class="card">
                     <div class="c-px-16 c-py-12">
                         <div class="t-title-1 title-color">Danh mục thẻ</div>

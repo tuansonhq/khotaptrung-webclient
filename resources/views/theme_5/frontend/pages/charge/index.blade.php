@@ -155,7 +155,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                    <div class="group-btn c-mt-24 d-flex d-lg-none">
                                         <button id="btnConfirmMobile" class="btn primary js-step" data-target="#step2NT" type="button">Nạp ngay</button>
                                     </div>
                                 </div>

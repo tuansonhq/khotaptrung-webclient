@@ -311,7 +311,6 @@ section.outstanding-service {
 .related-posts .article-info {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 /*Danh sách nick*/
@@ -409,6 +408,7 @@ section.outstanding-service {
     height: 100%;
     top: 0;
     left: 0;
+    object-fit: cover;
 }
 
 .info-attr {
@@ -1037,6 +1037,7 @@ section.outstanding-service {
         background: #FFFFFF;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         border-radius: 12px;
+        border: 1px solid var(--border-default-color);
     }
 
     .news-item:not(:last-child) {
