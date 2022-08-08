@@ -18,7 +18,7 @@
         </ul>
 
         {{--            Slider baner    --}}
-        @include('frontend.widget.__slider__banner')
+        @include('frontend.widget.__slider__banner__service')
         {{--            Top hôm nay    --}}
         @include('frontend.pages.service.widget.__top__today')
 

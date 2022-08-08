@@ -67,6 +67,12 @@
 .footer-default-col h4{
     font-size: 16px;
 }
+.link-footer span:hover{
+    color:#0E3EDA;
+}
+.footer-default-two li a:hover{
+    color:#0E3EDA;
+}
 /* end footer */
 
 
