@@ -1658,9 +1658,21 @@ footer{
         text-transform: uppercase;
         text-align: center;
     }
+    .oldPrice{
+        padding: 5px 8px!important;
+    }
+    .newPrice{
+        padding: 5px 8px!important;
+    }
 }
 
 @media only screen and (max-width: 376px) {
+    .oldPrice{
+        padding: 5px 8px!important;
+    }
+    .newPrice{
+        padding: 5px 8px!important;
+    }
     .item_play_title h1{
         font-size: 16px;
         font-weight: bold;
