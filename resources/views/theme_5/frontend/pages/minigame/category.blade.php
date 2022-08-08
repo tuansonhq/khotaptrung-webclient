@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
+{{--    @include('frontend.widget.__seo_head',with(['data'=>$result->group]))--}}
 @endsection
 @section('content')
     <div class="container c-container" id="minigame-category">
@@ -20,10 +20,12 @@
 {{--            <a href="/" class="home"></a>--}}
 {{--        </div>--}}
         {{--            Slider baner    --}}
-        @include('frontend.widget.__slider__banner')
+        @include('frontend.widget.__slider__banner__minigame')
         {{--            Top hôm nay    --}}
         @include('frontend.pages.minigame.widget.__top__today')
-{{--        --}}{{--        Giam gia soc    --}}
+
+
+        {{--        --}}{{--        Giam gia soc    --}}
 {{--        @include('frontend.pages.minigame.widget.__flash__sale')--}}
 {{--        --}}{{--            Dành cho bạn   --}}
 {{--        @include('frontend.pages.minigame.widget.__for__you')--}}
@@ -33,7 +35,6 @@
 {{--        @include('frontend.pages.minigame.widget.__minigame__free__fire')--}}
 {{--        --}}{{--            Vòng quayy liên quân   --}}
 {{--        @include('frontend.pages.minigame.widget.__minigame__lien__quan')--}}
-
 
         {{--     Danh mục minigame  --}}
 

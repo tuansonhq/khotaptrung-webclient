@@ -22,11 +22,11 @@ class MinigameController extends Controller
 
             // $group_api = Cache::get('minigame_list');
             // if(!isset($group_api)){
-                $url = '/minigame/get-list-minigame';
-                $group_api = DirectAPI::_makeRequest($url,$data,$method);
-                if (isset($group_api) && $group_api->response_code == 200 ) {
-                    $group_api = $group_api->response_data->data;
-                }
+            $url = '/minigame/get-list-minigame';
+            $group_api = DirectAPI::_makeRequest($url,$data,$method);
+            if (isset($group_api) && $group_api->response_code == 200 ) {
+                $group_api = $group_api->response_data->data;
+            }
 
             $groups = array_filter($group_api, function ($value) use ($request){
                 return $value->slug== $request->slug;
@@ -168,28 +168,64 @@ class MinigameController extends Controller
                             Cache::put('currentPlayList'.$group->id, $currentPlayList, $expiresAt);
                         }
                     }
-                    $data_view = [
-                        'result'=>$result,
-                        'groups_other'=>$groups_other,
-                        'numPlay'=>$numPlay,
-                        'topDayList'=>$topDayList,
-                        'top7DayList'=>$top7DayList,
-                        'currentPlayList'=>$currentPlayList,
-                        'position'=>$result->group->position,
-                    ];
-                    switch ($result->group->position) {
-                        case 'rubywheel':
-                        case 'flip':
-                        case 'slotmachine':
-                        case 'slotmachine5':
-                        case 'squarewheel':
-                        case 'smashwheel':
-                        case 'rungcay':
-                        case 'gieoque':
-                            return view('frontend.pages.minigame.detail',$data_view);
-                        default:
-                            return redirect()->back()->withErrors($result_out->message);
+
+//                    lich su trung thuong
+                    $url_logs = '/minigame/get-log';
+                    $data['id'] = $group->id;
+                    $data['module'] = explode('-', $group->module)[0];
+                    $data['page'] = 1;
+                    $result_Api_logs = DirectAPI::_makeRequest($url_logs,$data,$method);
+
+                    if (isset($result_Api_logs) && $result_Api_logs->response_code == 200 ) {
+                        $data_view = [
+                            'result'=>$result,
+                            'groups_other'=>$groups_other,
+                            'numPlay'=>$numPlay,
+                            'topDayList'=>$topDayList,
+                            'top7DayList'=>$top7DayList,
+                            'currentPlayList'=>$currentPlayList,
+                            'position'=>$result->group->position,
+                            'logs'=>$result_Api->response_data->data,
+                        ];
+                        switch ($result->group->position) {
+                            case 'rubywheel':
+                            case 'flip':
+                            case 'slotmachine':
+                            case 'slotmachine5':
+                            case 'squarewheel':
+                            case 'smashwheel':
+                            case 'rungcay':
+                            case 'gieoque':
+                                return view('frontend.pages.minigame.detail',$data_view);
+                            default:
+                                return redirect()->back()->withErrors($result_out->message);
+                        }
+                    } else {
+                        $data_view = [
+                            'result'=>$result,
+                            'groups_other'=>$groups_other,
+                            'numPlay'=>$numPlay,
+                            'topDayList'=>$topDayList,
+                            'top7DayList'=>$top7DayList,
+                            'currentPlayList'=>$currentPlayList,
+                            'position'=>$result->group->position,
+                        ];
+                        switch ($result->group->position) {
+                            case 'rubywheel':
+                            case 'flip':
+                            case 'slotmachine':
+                            case 'slotmachine5':
+                            case 'squarewheel':
+                            case 'smashwheel':
+                            case 'rungcay':
+                            case 'gieoque':
+                                return view('frontend.pages.minigame.detail',$data_view);
+                            default:
+                                return redirect()->back()->withErrors($result_out->message);
+                        }
                     }
+
+
                 } else {
                     logger('minigame: '.$result_Api->response_data->msg);
                     return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
@@ -400,7 +436,7 @@ class MinigameController extends Controller
                         $total = $result->total??0;
                         $paginatedItems = new LengthAwarePaginator("" , $total, $perPage);
                         $paginatedItems->setPath($request->url());
-                        return view('frontend.pages.minigame.log', compact('paginatedItems','result','group','group_api'));
+                        return view('frontend.pages.minigame.log',  compact('paginatedItems','result','group','group_api'));
                     }
                 } else {
                     logger('minigame: '.$result_Api->response_data->msg);

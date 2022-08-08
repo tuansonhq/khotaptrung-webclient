@@ -49,33 +49,28 @@ $(document).ready(function () {
         var previousScroll = 0;
 
         $(window).scroll(function(){
-
             var currentScroll = $(this).scrollTop();
             if (currentScroll > 80 && currentScroll < $(document).height() - $(window).height()){
-
                 if (currentScroll >= previousScroll){
                     window.setTimeout(hideNav, 100);
-
                 } else {
-
                     window.setTimeout(showNav, 100);
                 }
-
                 previousScroll = currentScroll;
             }else{
                 window.setTimeout(hideNav, 100);
-
             }
-
         });
-
         function hideNav() {
             $('.box-menu').removeClass("menu-fix");
             $('.box-menu-bar').fadeIn(200);
+            $('.rotation-leaderboard').css('top', '80px');
         }
         function showNav() {
             $('.box-menu').addClass("menu-fix");
             $('.box-menu-bar').fadeOut(200);
+            $('.rotation-leaderboard').css('top', '140px');
+
         }
 
     });

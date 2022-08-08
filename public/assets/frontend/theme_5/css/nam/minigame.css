@@ -109,7 +109,7 @@
 }
 .item_slot_inner{
     position: absolute;
-    bottom: 94px;
+    bottom: 72px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -123,24 +123,7 @@
 
 }
 @media screen and (max-width: 580px){
-    .item_slot {
 
-        background-size: 320px 230px !important;
-        width: 320px;
-        height: 230px;
-        margin: auto;
-    }
-    .item_slot_inner {
-        bottom: 40px;
-
-    }
-    .item_slot_inner img {
-        width: 46px;
-        height: auto;
-    }
-    .item_slot_inner_img {
-        padding: 0 16px;
-    }
 }
 /*modal*/
 .rank-list{
@@ -583,89 +566,271 @@
         padding: 0!important
     }
 }
+
+td{
+    width: 146px;
+}
+td{
+    width: 146px;
+}
+
+
+
+
+/*fix minigame*/
+#smashwheel #start-played{
+    z-index: 2;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+#smashwheel #start-played img{
+    width: 60%;
+}
+
+#smashwheel .minigame-image{
+    width: 60%;
+    max-width: 100%;
+    opacity: 1;
+}
+/*squaredesktop*/
 #squaredesktop .box {
     min-width: 40px;
     min-height: 40px;
-    /* background-color: #ccc; */
+    width: 80%;
     padding: 10px;
 }
 
 #squaredesktop img {
     width: 100%;
-    /*min-height: 40px;*/
-    /*!* background-color: #ccc; *!*/
-    /*padding: 10px;*/
-}
 
-td{
-    width: 146px;
 }
-td{
-    width: 146px;
+#squaredesktop #start-played img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80% ;
 }
-.square .play{
+#squaredesktop .play{
     display: block;
     margin: 0 auto;
     width: 80%;
-    position: relative;z-index: 1;
+    position: relative;
+    z-index: 1;
 }
-.square .play img{
-    position: absolute;
-    top: -57px;
-    left: 20%;
-    width:70% !important;
+
+/*slot machine*/
+#slotmachine #slot1,#slotmachine #slot2,#slotmachine #slot3{
+    display: inline-block;
+    margin: 0 24px;
+    background-size: 120px 120px;
+    width: 120px;
+    height: 120px;
+    background-repeat: no-repeat;
 }
-@media (max-width: 580px) {
-    .square .play img{
-        position: absolute;
-        top: -20px;
-        left: 20%;
-        width: 70%;
+@media (max-width: 992px) {
+    #slotmachine .item_slot_inner {
+        bottom: 60px;
+    }
+    #slotmachine .item_slot {
+        background-size: 600px 428px !important;
+        width: 600px;
+        height: 428px;
+        margin: auto;
+    }
+    #slotmachine #slot1,#slotmachine  #slot2, #slotmachine #slot3 {
+        background-size: 100px;
+        width: 100px;
+        margin: 0px 20px!important;
+        height: 100px;
+    }
+
+}
+@media only screen and (max-width: 768px) {
+    #slotmachine .item_slot_inner {
+        bottom: 56px;
+    }
+    #slotmachine #slot1,#slotmachine  #slot2,#slotmachine  #slot3 {
+        background-size: 80px 80px !important;
+        width: 80px;
+        height: 80px;
+        margin: 0px 18px !important;
+    }
+    #slotmachine .item_slot {
+        width: 500px;
+        height: 358px;
+        margin: auto;
+        background-size: 500px 358px !important;
+    }
+
+    #slotmachine .item_slot_inner img {
+        width: 46px;
+        height: auto;
+    }
+    #slotmachine .item_slot_inner_img {
+        padding: 0 16px;
     }
 }
-.item_play_spin_five_record{
-    /*width: 100%;*/
+
+
+@media only screen and (max-width: 573px) {
+    #slotmachine .item_slot_inner {
+        bottom: 32px;
+    }
+    #slotmachine #slot1,#slotmachine #slot2,#slotmachine #slot3 {
+        background-size: 56px 56px!important;
+        width: 56px!important;
+        margin: 0px 9px!important;
+        height: 56px!important;
+    }
+    #slotmachine .item_slot {
+
+        background-size: 320px 230px !important;
+        width: 320px;
+        height: 230px;
+        margin: auto;
+    }
+
+    #slotmachine .item_slot_inner img {
+        width: 46px;
+        height: auto;
+    }
+    #slotmachine .item_slot_inner_img {
+        padding: 0 16px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    #smashwheel .minigame-image{
+        width: 80%;
+
+    }
+    #smashwheel #start-played{
+
+        bottom: 24px;
+
+    }
+
+    #squaredesktop .box {
+        width: 100%;
+    }
+
+
+}
+
+/*slotmachine5*/
+#slotmachine5 .item_play_spin_five_record {
+
     width: 720px;
-    height: 630px;
+    height: 400px;
     background-size: 720px 400px;
     position: relative;
     background-repeat: no-repeat;
     background-position: center;
 }
-.item_five_record_inner img{
+#slotmachine5 #slot1,#slotmachine5 #slot2,#slotmachine5 #slot3,#slotmachine5 #slot4,#slotmachine5 #slot5{
+    display: inline-block;
+    background-size: 100px 93px;
+    width: 100px;
+    height: 93px;
+    margin: 0 8px;
+
+    background-repeat: no-repeat;
+}
+#slotmachine5 .item_five_record_inner img{
     width: 118px;
     height: 80px;
 }
-.item_five_record_inner{
+#slotmachine5 .item_five_record_inner{
     position: absolute;
-    bottom: 158px;
+    bottom: 44px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
 }
-.item_five_record_inner_img{
+#slotmachine5 .item_five_record_inner_img{
     padding: 0 28px;
 }
-.item_five_record_inner_img{
+#slotmachine5 .item_five_record_inner_img{
     display: inline-block;
-    /* margin-top: 2px; */
-    /* margin-left: 1px; */
-    /* margin-right: 45px; */
-    margin: 0 6px;
+
+    margin: 0 8px;
     background-size: 100px 93px;
     width: 100px;
     height: 93px;
     background-repeat: no-repeat;
 }
-@media (max-width: 580px) {
-    .item_play_spin_five_record {
-        width: 100%;
-        height: 200px;
-        background-size: 340px 200px;
-        position: relative;
-        background-repeat: no-repeat;
-        background-position: center;
+
+@media (max-width: 992px) {
+    #slotmachine5 .item_play_spin_five_record {
+
+        width: 600px;
+        height: 320px;
+        background-size: 600px 320px;
+
     }
+    #slotmachine5 #slot1,#slotmachine5 #slot2,#slotmachine5 #slot3,#slotmachine5 #slot4,#slotmachine5 #slot5{
+        background-size: 80px 80px!important;
+        width: 80px!important;
+        height: 80px!important;
+        margin: 0 8px!important;
+    }
+    #slotmachine5 .item_five_record_inner{
+        bottom: 32px;
+    }
+}
+@media (max-width: 768px) {
+    #slotmachine5 .item_play_spin_five_record {
+
+        width: 500px;
+        height: 270px;
+        background-size: 500px 270px;
+
+    }
+    #slotmachine5 #slot1,#slotmachine5 #slot2,#slotmachine5 #slot3,#slotmachine5 #slot4,#slotmachine5 #slot5{
+        background-size: 60px 60px !important;
+        width: 60px!important;
+        height: 60px!important;
+        margin: 0 10px!important;
+    }
+}
+@media only screen and (max-width: 573px) {
+    #slotmachine5 .item_play_spin_five_record {
+
+        width: 320px;
+        height: 172px;
+        background-size: 320px 172px;
+
+    }
+    #slotmachine5 .item_five_record_inner {
+        bottom: 18px;
+    }
+    #slotmachine5 #slot1,#slotmachine5 #slot2,#slotmachine5 #slot3,#slotmachine5 #slot4,#slotmachine5 #slot5{
+        background-size: 42px 42px !important;
+        width: 42px !important;
+        height: 42px!important;
+        margin: 0 4px !important;
+        padding: 0 !important;
+    }
+
+}
+
+@media only screen and (max-width: 376px) {
+    #slot1,#slot2,#slot3,#slot4,#slot5{
+        background-size: 54px 52px!important;
+        width: 54px!important;
+        height: 54px!important;
+        margin: 0 4.3px!important;
+    }
+}
+
+
+@media (max-width: 580px) {
+
     .item_five_record_inner_img {
         display: inline-block;
         margin-left: 0px!important;
@@ -685,4 +850,13 @@ td{
     .item_play_spin_five_record .item_play_spin_progress, .item_play_spin_five_record .item_play_spin_sale-off{
         bottom: 0;
     }
+}
+#flip .item_flip_inner{
+    width: 70%;
+    margin: auto;
+
+}#flip.boxflip{
+    width: 90%;
+    margin: auto;
+
 }
