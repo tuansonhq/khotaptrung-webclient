@@ -150,7 +150,7 @@
                         </div>
                         <div class="account-logined-content c-pr-4 box-account_logined">
 
-{{--                            @include('frontend.widget.__menu_profile')--}}
+                            @include('frontend.widget.__menu_profile')
 
                         </div>
                     </div>

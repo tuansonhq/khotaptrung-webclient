@@ -795,6 +795,23 @@ View::composer('frontend.widget.__service__other__his', function ($view) {
 
 });
 
+
+View::composer('frontend.widget.__slider__banner__minigame', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__minigame', function() {
+        $url = '/get-slider-banner-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 /*theme_5*/
 View::composer('frontend.widget.__slide__news', function ($view) {
 
@@ -841,4 +858,21 @@ View::composer('frontend.widget.__minigame__list', function ($view) {
     return $view->with('data', $data);
 
 });
+
+View::composer('frontend.pages.minigame.widget.__related__minigame', function ($view) {
+
+//    Minigame
+    $data = \Cache::rememberForever('__related__minigame', function() {
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+    return $view->with('data', $data);
+
+});
+//lịch sử trúng thưởng
 
