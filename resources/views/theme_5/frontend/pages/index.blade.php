@@ -465,6 +465,4 @@
     @endif
 
 @endsection
-@section('scripts')
-    <script src="/assets/frontend/theme_5/js/js_duong/style.js"></script>
-@endsection
+
