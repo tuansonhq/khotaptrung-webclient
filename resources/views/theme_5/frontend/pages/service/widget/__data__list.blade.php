@@ -1,11 +1,11 @@
-@if(isset($data))
+ @if(isset($data))
     <div class="list-service">
         @forelse($data as $service)
             <div class="item-service js-service">
                 <div class="card">
                     <a href="/dich-vu/{{@$service->slug}}" class="card-body scale-thumb c-p-16">
                         <div class="account-thumb c-mb-8">
-                            <img src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{@$service->slug}}"
+                            <img onerror="imgError(this)" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="{{@$service->slug}}"
                                  class="account-thumb-image">
                         </div>
                         <div class="account-title">
