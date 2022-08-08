@@ -33,13 +33,6 @@
                                 Rút vật phẩm
                             </h1>
                         </div>
-                        <div class="head-mobile">
-                            <a href="#" class="link-back"></a>
-
-                            <h1 class="head-title text-title">Rút vật phẩm</h1>
-
-                            <a href="#" class="notify" data-notify="2"></a>
-                        </div>
                         <div class="card-body c-px-16 c-py-0">
                             <ul class="nav nav-tabs size-auto c-pb-16" role="tablist">
                                 <li class="nav-item" role="presentation">
