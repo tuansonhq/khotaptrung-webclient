@@ -1,6 +1,6 @@
 
 @if(isset($data) && count($data) > 0)
-<section class="outstanding-service c-pt-lg-20 c-mb-16 c-mb-lg-8">
+<section class="outstanding-service c-pb-12 c-pb-lg-6 c-pb-12 c-pb-lg-6">
     <h2 class="section-title c-mb-24 c-mb-lg-8 fz-lg-20 lh-lg-24">Dịch vụ nổi bật</h2>
     <div class="row mx-n2">
         @foreach($data as $item)

@@ -1,6 +1,6 @@
 @if(isset($data))
 
-<section class="news">
+<section class="news c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
 
     <div class="section-header c-mb-24 c-mb-lg-24 justify-content-between">
         <h2 class="section-title">

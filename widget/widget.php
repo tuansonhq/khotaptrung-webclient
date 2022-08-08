@@ -393,7 +393,20 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
 });
 
+View::composer('frontend.widget.__content__home__dichvu__v2', function ($view) {
 
+    $data = \Cache::rememberForever('__content__home__dichvu__v2', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['limit'] = 118;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
+
+    return $view->with('data', $data);
+
+});
 
 
 View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {
