@@ -51,6 +51,9 @@
 {{--js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+
+    <!-- js chứa các hàm cần load trước tiên -->
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
 {{--    import css --}}
     @yield('styles')
     @if(setting('sys_google_tag_manager_head') != '')
@@ -183,7 +186,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/header.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/login.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js" defer></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 {{--impport script--}}

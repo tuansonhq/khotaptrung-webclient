@@ -44,8 +44,7 @@
                                             <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
                                                 <div class="article--thumbnail">
                                                     <a href="/tin-tuc/{{ $item->slug }}">
-                                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}"
-                                                             alt="" class="article--thumbnail__image">
+                                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image" >
                                                     </a>
                                                 </div>
                                             </div>

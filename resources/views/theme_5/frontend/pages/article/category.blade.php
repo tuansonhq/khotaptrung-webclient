@@ -81,7 +81,7 @@
                     </div>
                     <div class="c-pt-32">
                         @if(isset($data) && count($data))
-                            {{ $data->appends(request()->query())->links('pagination::bootstrap-default-4') }}
+                            {{ $data->appends(request()->query())->links('pagination::pagination_3_0') }}
                         @endif
                     </div>
                 </div>

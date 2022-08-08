@@ -18,10 +18,10 @@
                         <a href="/tin-tuc/{{ $item->slug }}" class="news-link scale-thumb">
                             <div class="card-body">
                                 <div class="news-thumb">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image">
+                                    <img src="{{@\App\Library\MediaHelpers::media($item->image)}}" alt="" class="news-thumb-image" onerror="imgError(this)">
                                 </div>
                                 <div>
-                                    <div class="news-title c-mt-12 c-mb-4 text-limit limit-2 c_max-header-tin-tuc">{{ $item->title }} </div>
+                                    <div class="news-title c-mt-12 c-mb-4 text-limit limit-2 c_max-header-tin-tuc">{{ @$item->title }} </div>
                                     <div class="datetime">
                                         {{ formatDateTime($item->created_at) }}
                                     </div>
@@ -50,11 +50,11 @@
                             <div class="news-article">
                                 <div class="article-thumb-wrap">
                                     <div class="news-thumb">
-                                        <img src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="" class="news-thumb-image">
+                                        <img src="{{@\App\Library\MediaHelpers::media($val->image)}}" alt="" class="news-thumb-image" onerror="imgError(this)">
                                     </div>
                                 </div>
                                 <div class="news-info">
-                                    <div class="news-title text-limit limit-3 fz-lg-13 lh-lg-20 c-mb-4">{{ $val->title }}</div>
+                                    <div class="news-title text-limit limit-3 fz-lg-13 lh-lg-20 c-mb-4">{{ @$val->title }}</div>
                                     <div class="datetime">{{ formatDateTime($val->created_at) }}</div>
                                 </div>
                             </div>

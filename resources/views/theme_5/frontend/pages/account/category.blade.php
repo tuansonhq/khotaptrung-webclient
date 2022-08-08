@@ -63,7 +63,7 @@
                     <div class="card">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16">
                             <div class="account-thumb c-mb-8">
-                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy">
+                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy" onerror="imgError(this)">
                             </div>
                             <div class="account-title">
                                 <div class="text-title fw-700 text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>

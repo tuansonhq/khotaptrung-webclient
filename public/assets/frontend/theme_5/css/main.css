@@ -103,7 +103,9 @@ hr {
 /*default*/
 input[type=text],
 input[type=password],
-textarea {
+textarea,
+select
+{
     display: block;
     width: 100%;
     font-weight: 400;
@@ -118,7 +120,13 @@ textarea {
     height: 40px;
     transition: border-color ease .15s;
 }
-
+/*Xoá mũi tên mặc định của select*/
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
 .toggle-password,
 .copy-input {
     position: relative;
@@ -1684,7 +1692,6 @@ i.title-info:after {
 .scrollbar:hover::-webkit-scrollbar-thumb:active {
     background: rgba(188, 191, 214, 1);
 }
-
 
 /*copy text*/
 
