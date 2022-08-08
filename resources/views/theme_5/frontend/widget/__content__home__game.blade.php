@@ -70,7 +70,7 @@
                             <img onerror="imgError(this)" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
                         </div>
                         <div class="card-attr">
-                            <div class="text-title fw-700">
+                            <div class="t-body-2 text-limit limit-1">
                                 {{ isset($item->custom->title) ? $item->custom->title :  $item->title }}
                             </div>
                             <div class="info-attr">

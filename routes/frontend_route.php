@@ -344,13 +344,14 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('postWithdrawItem');
                 Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])
                     ->name('postWithdrawItemAjax');
-                Route::get('/buy-card-v2',[\App\Http\Controllers\Frontend\StoreCardController::class , 'indexCardV2']);
             });
 
 
         });
         Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
 
+
+        Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
     });
 });
 

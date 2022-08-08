@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="card-body c-p-16 c-p-lg-8">
                             <div class="article-thumb c-mb-16 c-mb-lg-0">
-                                <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($article->image)}}" class="article-thumb-image" alt="">
+                                <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($article->image)}}" class="article-thumb-image" alt="article-thumbnail">
                             </div>
                             <div class="article-body">
                                 <div class="article-title text-limit limit-2 limit-lg-3 fz-lg-13 lh-lg-20">
@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="article-info c-mt-16 c-mt-lg-4">
                                     <div class="datetime">{{ date('d/m/Y',strtotime($article->created_at)) }}</div>
-                                    <div class="author">{{ @$article->author->username }}</div>
+                                    <div class="author c-ml-4 bread-word text-limit limit-1">{{ @$article->author->username }}</div>
                                 </div>
                             </div>
                         </div>
