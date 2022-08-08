@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-    <div class="background-history">
+    <div class="background-history" id="withdrawitem">
         <div class="container c-container-side c-mb-24 c-mb-lg-0">
             <ul class="breadcrumb-list">
                 <li class="breadcrumb-item">
@@ -104,7 +104,7 @@
                                         <span class="form-label">
                                             Gói muốn rút
                                         </span>
-                                        <select name="" id="">
+                                        <select id="package" name="package">
                                             @if($result->package)
                                                 @foreach($result->package as $item)
                                                     <option value="{{$item->id}}">{{$item->title}}</option>
@@ -130,10 +130,10 @@
                                     <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 w-100 c-px-lg-16 c-pt-lg-16"
                                         style="--data-between:12px">
 
-                                        <button type="submit" id="btn-confirm" class="btn primary">Giao dịch</button>
+                                        <button type="submit" id="btn-confirm-w" class="btn primary">Giao dịch</button>
                                         <script>
                                             $(".form-withdraw").submit(function(){
-                                                $("#btn-confirm").prop( "disabled", true);
+                                                $("#btn-confirm-w").prop( "disabled", true);
                                             });
                                         </script>
                                     </div>
