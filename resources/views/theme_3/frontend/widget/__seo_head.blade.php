@@ -23,6 +23,10 @@
     <title>{{$title->title }}</title>
 @elseif(isset($data->title))
     <title>{{$data->title }}</title>
+@elseif(Request::is('mua-the'))
+    <title>  {{setting('sys_store_card_title') }}</title>
+
+
 @else
     <title>  {{setting('sys_title') }}</title>
 @endif
@@ -39,6 +43,8 @@
         <meta name="description" content="{{ $data->description??'' }}">
     @elseif(Request::is('tin-tuc/'.$data->slug .''))
         <meta name="description" content="{{ $data->seo_description??'' }}">
+    @elseif(Request::is('mua-the'))
+        <meta name="description" content="{{ setting('sys_store_card_seo') }}">
 
     @endif
 @elseif(isset($data->randId))

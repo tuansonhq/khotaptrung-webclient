@@ -1,8 +1,8 @@
-@if(isset($data))
+@if(isset($data) && count($data) > 0)
 
-<div class="section-header c-mb-16 c-mt-32 media-web services-other-title">
+<div class="section-header c-mb-16 c-pt-12 c-pt-lg-8 media-web services-other-title">
     <div class="section-title fz-lg-20 lh-lg-24">
-        Dịch vụ khác
+        {{ $title??'' }}
     </div>
 </div>
 

@@ -54,9 +54,26 @@
                             @else
                                 <p>Số tài khoản: 0 </p>
                             @endif
-                            {{--                            <span class="game-list-description-old-price"></span>--}}
-                            {{--                            <span class="game-list-description-new-price"></span>--}}
                         </div>
+                        @if($item->display_type == 2)
+
+                            @if(isset($item->params) && isset($item->params->price))
+                            <div class="row marginauto price-minigame">
+                                <div class="col-md-12 left-right">
+                                    <span class="oldPrice">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }} đ</span>
+                                    <span class="newPrice">{{ str_replace(',','.',number_format($item->params->price)) }} đ</span>
+                                </div>
+
+                            </div>
+                            @endif
+                        @else
+                            <div class="row marginauto price-minigame">
+                                <div class="col-md-12 left-right">
+                                    <span class="oldPrice" style="color: transparent"></span>
+                                    <span class="newPrice" style="border: none"></span>
+                                </div>
+                            </div>
+                        @endif
                         <div class="game-list-more">
                             <div class="game-list-more-view" >
                                 <a class="account_category" href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
