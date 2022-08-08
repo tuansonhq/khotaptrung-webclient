@@ -87,6 +87,11 @@ if (input_params_hide.length){
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
             txt_price.text(total + ' VNĐ');
             //    modal
+            let service_pack = $('.service_pack');
+            service_pack.forEach(function (elm) {
+                console.log(elm)
+                $(elm).html(`<div>${itemselect}</div>`)
+            });
             $('.total--price').text(total + ' VNĐ');
         }
 

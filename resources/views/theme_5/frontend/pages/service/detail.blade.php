@@ -102,8 +102,10 @@
                             <input autofocus=""
                                    value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}"
                                    class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b
-                                    style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                            <div class="c-pt-4">
+                                <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b
+                                        style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                            </div>
                         </div>
                         <span class="mb-15 control-label bb">Hệ số:</span>
                         <div class="mb-15 c-pt-8 c-pb-8">
@@ -179,8 +181,7 @@
                                             @if($send_type[$k_send_name] == '3')
                                             @elseif($send_type[$k_send_name] =='2')
                                             @elseif($send_type[$k_send_name] =='1')
-                                                <div
-                                                    class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                     <div class="row marginauto">
                                                         <div class="col-md-12 left-right body-title-detail-span-ct">
                                                             <span>{{$send_name_text}}</span>
@@ -210,7 +211,7 @@
                                                                    type="password"
                                                                    placeholder="{{$send_name_text}}" required>
                                                             <div class="show-btn-password">
-                                                                <img class="lazy"
+                                                                <img onerror="imgError(this)" class="lazy"
                                                                      src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
                                                                      alt="">
                                                             </div>
@@ -570,7 +571,7 @@
                 <div class="modal-body modal-body-success-ct">
                     <div class="row marginauto justify-content-center">
                         <div class="col-auto">
-                            <img class="lazy"
+                            <img onerror="imgError(this)" class="lazy"
                                  src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image-success-service.png"
                                  alt="">
                         </div>
@@ -633,7 +634,7 @@ color: #434657;
         <div class="modal-dialog modal-dialog-centered modal-custom">
             <div class="modal-content">
                 <div class="modal-header justify-content-center p-0">
-                    <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png"
+                    <img onerror="imgError(this)" class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png"
                          alt="">
                 </div>
                 <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
@@ -675,8 +676,8 @@ color: #434657;
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
                             Tài khoản
                         </div>
-                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
-                                                                       class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                        <div class="card--attr__value fz-13 fw-500">
+                            <a href="javascript:void(0)"class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
                         </div>
                     </div>
                 </div>
