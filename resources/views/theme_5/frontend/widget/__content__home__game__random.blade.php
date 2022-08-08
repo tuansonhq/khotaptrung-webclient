@@ -1,4 +1,4 @@
-<section class="acc-game c-mb-24 c-mb-lg-28">
+<section class="acc-game c-pt-12 c-pb-12 c-pt-lg-6 c-pb-lg-6">
     <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
         <h2 class="section-title fz-lg-15 lh-lg-24">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/freefire.svg)"></i>
@@ -180,7 +180,7 @@
     </div>
 </section>
 
-<section class="acc-game c-mb-24 c-mb-lg-28">
+<section class="acc-game c-pt-12 c-pb-12 c-pt-lg-6 c-pb-lg-6">
     <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
         <h2 class="section-title fz-lg-15 lh-lg-24">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/aov-icon.svg)"></i>
@@ -362,7 +362,7 @@
     </div>
 </section>
 
-<section class="acc-game c-mb-24 c-mb-lg-32">
+<section class="acc-game c-pt-12 c-pb-12 c-pt-lg-6 c-pb-lg-6">
     <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
         <h2 class="section-title fz-lg-15 lh-lg-24">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/ngocrong.svg)"></i>

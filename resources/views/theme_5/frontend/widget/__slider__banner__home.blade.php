@@ -1,4 +1,4 @@
-<div class="ads-banner row c-mt-16 c-pb-12 c-pb-lg-8">
+<div class="ads-banner row c-mt-16 c-pb-12 c-pb-lg-28">
     <div class="banner-slide col-lg-9 col-md-12  c-pr-8 c-pr-lg-16 swiper-general">
         <div class=" swiper swiper-banner brs-12">
             <div class="swiper-wrapper">
