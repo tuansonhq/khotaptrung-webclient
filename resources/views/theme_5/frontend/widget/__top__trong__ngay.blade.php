@@ -1,4 +1,4 @@
-<section class="flash-sale top-today c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
+<section class="flash-sale top-today c-mt-24 c-mt-lg-16 c-mb-12 c-mb-lg-6">
     <div class="section-header c-mb-16">
         <div class="section-title fz-lg-20 lh-lg-24">
             {{ $title??'' }}

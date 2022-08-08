@@ -6,6 +6,16 @@
     min-height: 1rem;
 }
 
+#withdrawitem .alert-dismissible{
+    margin-bottom: 0;
+}
+
+#withdrawitem .alert-dismissible .close{
+    top: 50%!important;
+    transform: translateY(-50%)!important;
+    line-height: 20px;
+}
+
 .card .card--header {
     display: flex;
     position: relative;
