@@ -174,7 +174,7 @@
                                     @break
                                 @case('flip')
 {{--                                    <div class="d-flex align-items-center justify-content-center flex-wrap">--}}
-                                        <div class="rotation">
+                                        <div class="rotation" id="flip">
                                             <div class="row boxflip">
                                                 @for ($i = 0; $i < count($result->group->items); $i++)
                                                     <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
@@ -199,7 +199,7 @@
 {{--                                    </div>--}}
                                     @break
                                 @case('slotmachine')
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-center" id="slotmachine">
                                         <div class="item_slot item_slot-ba-qua" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}});background-repeat: no-repeat" >
                                             <div class="item_slot_inner">
                                                 <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
@@ -210,7 +210,7 @@
                                     </div>
                                     @break
                                 @case('slotmachine5')
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-center " id="slotmachine5">
                                         <div class="rotation">
                                             <div class="item_play_spin_five_record" style="background-image: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
                                                 <div class="item_five_record_inner">
@@ -269,11 +269,11 @@
                                 @case('smashwheel')
                                 @case('rungcay')
                                 @case('gieoque')
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <div class="rotation-button rotation-button-quanhuy" id="start-played" style="z-index: 2">
+                                    <div class="d-flex align-items-center justify-content-center" id="smashwheel">
+                                        <div class="rotation-button rotation-button-quanhuy" id="start-played" >
                                             <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}" >
                                         </div>
-                                        <img style="width: 70%;;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="lac_lixi">
+                                        <img style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" class="lazy minigame-image" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="lac_lixi">
                                         <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
                                         <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                                     </div>
@@ -358,7 +358,7 @@
                                     <div class="row marginauto">
                                         @if($result->group->params->is_try == 1)
                                         <div class="col-6 pl-0 c-pr-8">
-                                            <button class="btn secondary w-100">Chơi thử</button>
+                                            <button class="btn secondary w-100 num-play-try">Chơi thử</button>
                                         </div>
                                         @endif
                                         <div class="col-6 pr-0 c-pl-8">
@@ -469,7 +469,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6 c-pl-5">
-                                    <a class="btn primary w-100" href="/withdrawitem-slug">Rút quà</a>
+                                    <a class="btn primary w-100" href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
                                 </div>
                             </div>
                         </div>
@@ -655,7 +655,7 @@
                                 </a>
                             </div>
                             <div class="col-6 c-pl-5">
-                                <a href="/withdrawitem-slug" class="btn primary w-100">Rút quà</a>
+                                <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary w-100">Rút quà</a>
                             </div>
                         </div>
                         <div class="leaderboard-header d-flex align-items-center c-mb-16">
@@ -756,13 +756,13 @@
 
         {{--            Vòng quayy free fire   --}}
 
-        @include('frontend.pages.minigame.widget.__play__recently')
+{{--        @include('frontend.pages.minigame.widget.__play__recently')--}}
         {{--            Vòng quay liên quân   --}}
         @include('frontend.pages.minigame.widget.__related__minigame')
 
 {{--        Modal thể lệ    --}}
 
-        <div class="modal fade modal-big" id="theleModal">
+    <div class="modal fade modal-big" id="theleModal">
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content c-p-24">
                     <div class="modal-header">
@@ -777,7 +777,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn primary" >Chơi thử</button>
+                    <div class="modal-footer">
+                        <button class="btn primary"  data-dismiss="modal">Chơi thử</button>
                     </div>
                 </div>
             </div>
@@ -785,6 +786,7 @@
 
 {{--        Modal lịch sử   --}}
 
+        @if(isset($logs))
         <div class="modal fade modal-big modal-logs-minigame" id="minigameLogs">
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content c-p-24">
@@ -798,77 +800,33 @@
                                 <table class="table table-responsive-lg table-striped table-hover table-logs">
                                     <thead>
                                     <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-left col-auto">Thời gian</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Kiểu nạp</th>
+                                        <th class="fw-500 fz-13 lh-20 text-title text-center col-auto">Giải thưởng</th>
+                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                        <tbody>
+                                      @foreach($logs->log as $item)
+                                        <tr class="row marginauto">
+                                            <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
+                                            <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
+                                        </tr>
+                                      @endforeach
 
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-                                    </tbody>
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn ghost">Xoá bộ lọc</button>
-                        {{--                    <a class="btn secondary" data-dismiss="modal">Về trang chủ</a>--}}
-                        {{--                    <button class="btn primary">Xem kết quả</button>--}}
-                        <button class="btn primary">Xem kết quả</button>
+                        <a class="btn primary"  href="/withdrawitem-{{$result->group->params->game_type}}">Rút quà</a>
+
+
 
                     </div>
                 </div>
             </div>
         </div>
-
+         @endif
         <!-- Sheet Thể lệ  -->
         <div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="36">
             <div class="layer"></div>
@@ -895,6 +853,7 @@
 {{--     bottom-sheet lịch sử   --}}
 
     <!-- Sheet Filter Mobile -->
+        @if(isset($logs))
         <div class="bottom-sheet" id="sheet-filter-02" aria-hidden="true" data-height="50">
             <div class="layer"></div>
             <div class="content-bottom-sheet bar-slide">
@@ -912,79 +871,35 @@
                                 <table class="table table-striped table-hover table-logs">
                                     <thead>
                                     <tr class="row marginauto">
-                                        <th class="fw-500 fz-13 lh-20 text-title text-left col-auto">Thời gian</th>
-                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Kiểu nạp</th>
+                                        <th class="fw-500 fz-13 lh-20 text-title text-left col-auto">Giải thưởng</th>
+                                        <th class="fw-500 fz-13 lh-20 text-title text-right col-auto ml-auto">Thời gian</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($logs->log as $item)
+                                        <tr class="row marginauto">
+                                            <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
+                                            <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
+                                        </tr>
+                                    @endforeach
 
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
 
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
-
-                                    <tr class="row marginauto">
-                                        <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">+100.000 kim cương</td>
-                                        <td class="col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">2022-04-08, 20:30</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="sheet-footer">
-                        <a href="/withdrawitem-slug" class="btn primary js-submit-form">Rút quà</a>
+                        <a  href="/withdrawitem-{{$result->group->params->game_type}}" class="btn primary js-submit-form">Rút quà</a>
                     </div>
                 </form>
             </div>
         </div>
+        @endif
     </div>
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">
     <input type="hidden" id="type_play" value="real">
-
-
-
     <!-- Modal quay thành công -->
     <div class="modal fade modal-small" id="noticeModal">
         <div class="modal-dialog modal-dialog-centered modal-custom">
@@ -1002,13 +917,12 @@
                     </div>
                 </div>
                 <div class="modal-footer c-p-24">
-                    <a class="btn secondary" href="/withdrawitem-1">Rút quà</a>
+                    <a class="btn secondary" href="/withdrawitem-{{$result->group->params->game_type}}" >Rút quà</a>
                     <button class="btn primary"  data-dismiss="modal">Chơi tiếp</button>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered modal-custom">
@@ -1127,54 +1041,8 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+        .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
             @endforeach
-#slot1,#slot2,#slot3{
-                display: inline-block;
-                margin-top: 2px;
-                margin-left: 1px;
-                margin-right: 45px;
-                margin: 0 25px;
-                background-size: 100px 79px;
-                width: 100px;
-                height: 79px;
-                padding: 0 28px;
-                background-repeat: no-repeat;
-            }
-            /*  Lap top  */
-            @media only screen and (min-width: 992px) and (max-width: 1200px) {
-                #slot1,#slot2,#slot3 {
-                    background-size: 60px 48px!important;
-                    width: 60px!important;
-                    margin: 0 28px!important;
-                    height: 48px;
-                }
-            }
-            @media only screen and (min-width: 573px) and (max-width: 768px) {
-                #slot1,#slot2,#slot3 {
-                    background-size: 64px 48px!important;
-                    width: 64px!important;
-                    margin: 0 22px!important;
-                    height: 50px!important;
-                }
-            }
-            @media only screen and (min-width: 376px) and (max-width: 573px) {
-                #slot1,#slot2,#slot3 {
-                    background-size: 56px 40px!important;
-                    width: 48px!important;
-                    margin: 0px 9px!important;
-                    height: 48px!important;
-                }
-
-            }
-            @media only screen and (max-width: 376px) {
-                #slot1,#slot2,#slot3 {
-                    background-size: 56px 40px!important;
-                    width: 48px!important;
-                    margin: 0px 9px!important;
-                    height: 48px!important;
-                }
-            }
         </style>
         @break
         @case('slotmachine5')
@@ -1189,52 +1057,7 @@
     @endphp
     .a{{$count}}{background-image: url("{{@\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
             @endforeach
-#slot1,#slot2,#slot3,#slot4,#slot5{
-                display: inline-block;
-                margin-top: 2px;
-                margin-left: 1px;
-                margin-right: 45px;
-                margin: 0 6px;
-                background-size: 100px 93px;
-                width: 100px;
-                height: 93px;
-                background-repeat: no-repeat;
-            }
 
-            @media only screen and (min-width: 992px) and (max-width: 1200px) {
-                #slot1,#slot2,#slot3,#slot4,#slot5{
-                    background-size: 80px 80px!important;
-                    width: 80px!important;
-                    height: 80px!important;
-                    margin: 0 5px!important;
-                }
-            }
-            @media only screen and (min-width: 573px) and (max-width: 768px) {
-                #slot1,#slot2,#slot3,#slot4,#slot5{
-                    background-size: 74px 74px!important;
-                    width: 74px!important;
-                    height: 74px!important;
-                    margin: 0 5.5px!important;
-                }
-            }
-            @media only screen and (min-width: 376px) and (max-width: 573px) {
-                #slot1,#slot2,#slot3,#slot4,#slot5{
-                    background-size: 54px 52px!important;
-                    width: 54px!important;
-                    height: 54px!important;
-                    margin: 0 4.3px!important;
-                }
-
-            }
-
-            @media only screen and (max-width: 376px) {
-                #slot1,#slot2,#slot3,#slot4,#slot5{
-                    background-size: 54px 52px!important;
-                    width: 54px!important;
-                    height: 54px!important;
-                    margin: 0 4.3px!important;
-                }
-            }
         </style>
         @break
         @case('squarewheel')
@@ -1256,6 +1079,7 @@
         @case('gieoque')
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/smashwheel.js"></script>
         @break
+
     @endswitch
 
 
