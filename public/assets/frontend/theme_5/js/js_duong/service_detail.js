@@ -254,3 +254,48 @@ $('.openSuccess').on('click', function(){
     $('#successModal').modal('show');
     $('#orderModal').modal('hide');
 })
+
+Validator({
+    div:'#section-data-send',
+    formGroupSelector:'.body-title-detail-select-ct',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('.figure','Bạn chưa nhập tên nhân vật'),
+        // Validator.isRequired('.username','Chưa nhập tên tài khoản'),
+        // Validator.isRequired('.confirm-rules','Bạn chưa đồng ý với điều khoản'),
+        // Validator.isRequired('[name=gender]'),
+        // Validator.isRequired('.service-select','Cần chọn ít nhất 1 dịch vụ'),
+        // Validator.isRequired('.password'),
+        // Validator.isRequired('.confirm_password'),
+        // Validator.isRequired('.files'),
+        // Validator.isEmail('.email'),
+        // Validator.minLength('.password',4),
+        // Validator.maxLength('.password',6),
+        // Validator.isConfirm('.confirm_password',function () {
+        //     return document.querySelector('#form-validate-demo .password').value
+        // },'Mật khẩu xác nhận chưa chính xác'),
+    ],
+    onSubmit:function (data) {
+        alert('Form đã được submit');
+    }
+})
+
+function Validator(options) {
+
+    function getParent(element, selector) {
+        while (element.parentElement) {
+            if (element.parentElement.matches(selector)) {
+                return element.parentElement;
+            }
+            element = element.parentElement;
+        }
+    }
+}
+Validator.isRequired = function (selector, getConfirmValue, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
+        }
+    }
+}

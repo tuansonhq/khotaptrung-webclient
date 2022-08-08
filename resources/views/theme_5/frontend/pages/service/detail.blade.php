@@ -187,9 +187,10 @@
                                                             <span>{{$send_name_text}}</span>
                                                         </div>
                                                         <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
-                                                            <input autocomplete="off" class="input-defautf-ct username"
+                                                            <input autocomplete="off" class="input-defautf-ct username figure"
                                                                    name="customer_data{{$k_send_name}}" type="text"
-                                                                   placeholder="{{$send_name_text}}" required>
+                                                                   placeholder="{{$send_name_text}}">
+                                                            <span class="text-error"></span>
                                                         </div>
                                                         <div class="col-md-12 left-right message-error">
 
@@ -197,8 +198,7 @@
                                                     </div>
                                                 </div>
                                             @elseif('5')
-                                                <div
-                                                    class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
                                                     <div class="row marginauto password-mobile">
                                                         <div class="col-md-12 left-right body-title-detail-span-ct c-pt-8">
                                                             <span>{{$send_name_text}}</span>
@@ -207,9 +207,10 @@
                                                              style="position: relative">
                                                             <input autocomplete="off" id="password"
                                                                    name="customer_data{{$k_send_name}}"
-                                                                   class="input-defautf-ct password"
+                                                                   class="input-defautf-ct password figure"
                                                                    type="password"
-                                                                   placeholder="{{$send_name_text}}" required>
+                                                                   placeholder="{{$send_name_text}}">
+                                                            <span class="text-error"></span>
                                                             <div class="show-btn-password">
                                                                 <img onerror="imgError(this)" class="lazy"
                                                                      src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
@@ -232,10 +233,10 @@
                                                                                     </div>
                                                                                 </span>
                                                                 <input id="customer_data{{$k_send_name}}"
-                                                                       type="checkbox" class="confirm-rules"
+                                                                       type="checkbox" class="confirm-rules figure"
                                                                        name="customer_data{{$k_send_name}}">
-                                                                <span
-                                                                    class="input-ratio-checkmark-ct --overwrite"></span>
+                                                                <span class="text-error"></span>
+                                                                <span class="input-ratio-checkmark-ct --overwrite"></span>
                                                             </label>
                                                             <div class="error-message"></div>
                                                         </div>
