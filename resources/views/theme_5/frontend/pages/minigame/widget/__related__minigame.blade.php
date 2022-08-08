@@ -13,9 +13,9 @@
     <div class="swiper class-config-demo">
         <div class="swiper-wrapper">
             @foreach($data as $key => $item)
-            <div class="swiper-slide">
-                <div class="item-category">
-                    <div class="card">
+            <div class="swiper-slide h-auto">
+                <div class="item-category h-100">
+                    <div class="card h-100">
                         <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16">
                             <div class="account-thumb c-mb-8">
                                 @if(isset($item->image))
