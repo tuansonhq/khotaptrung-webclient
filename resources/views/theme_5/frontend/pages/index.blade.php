@@ -19,7 +19,7 @@
 
         <div class="container c-container">
             @foreach($data_widget as $key => $value)
-                @include('frontend.widget.'.$value.'')
+                @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
         </div>
 

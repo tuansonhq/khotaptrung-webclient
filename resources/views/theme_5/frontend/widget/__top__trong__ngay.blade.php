@@ -1,7 +1,7 @@
 <section class="flash-sale top-today c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
     <div class="section-header c-mb-16">
         <div class="section-title fz-lg-20 lh-lg-24">
-            Dịch vụ nạp game nổi bật
+            {{ $title??'' }}
         </div>
     </div>
     <div class="swiper js-flash-sale-swiper">

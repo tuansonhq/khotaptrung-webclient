@@ -4,7 +4,7 @@
         <div class="section-header c-mb-8 c-mb-lg-16 justify-content-between">
             <h2 class="section-title fz-lg-15 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
-                Nick ngon giá rẻ
+                {{ $title??'' }}
             </h2>
             <a href="/mua-acc" class="link arr-right">Xem tất cả</a>
         </div>
@@ -55,7 +55,7 @@
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
-                Nick ngon giá rẻ
+                {{ $title??'' }}
             </h2>
             <a href="/muac-acc" class="link arr-right">Xem tất cả</a>
         </div>
@@ -69,7 +69,7 @@
                                     <img onerror="imgError(this)" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="" class="card-thumb-image">
                                 </div>
                                 <div class="card-attr">
-                                    <div class="text-title fw-700">
+                                    <div class="text-title fw-700 text-limit limit-1">
                                         {{ isset($item->custom->title) ? $item->custom->title :  $item->title }}
                                     </div>
                                     <div class="info-attr">
