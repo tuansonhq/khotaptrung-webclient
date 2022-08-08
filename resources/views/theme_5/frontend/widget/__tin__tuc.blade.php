@@ -1,15 +1,11 @@
 @if(isset($data))
 
-<section class="news">
+<section class="news c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
 
     <div class="section-header c-mb-24 c-mb-lg-24 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/speaker.svg)"></i>
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                Tin tức
-            @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1')
-                Tin tức nổi bật
-            @endif
+            {{ $title??'' }}
 
         </h2>
         <a href="/tin-tuc" class="link arr-right">Xem thêm</a>

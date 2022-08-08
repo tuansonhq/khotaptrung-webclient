@@ -14,7 +14,6 @@ $(document).ready(function () {
         if (response.status === 1){
             data_telecoms = response.data;
         }
-        setDataCardNav();
         switch (is_view.val()) {
             case 'index':
                 setTypeCard();
@@ -25,13 +24,14 @@ $(document).ready(function () {
                 setAmountCard(key);
                 break;
         }
+        setDataCardNav();
     }
     function setDataCardNav() {
         let nav_game = $('#card--game__nav');
         let nav_phone = $('#card--phone__nav');
         if (data_telecoms.length){
             data_telecoms.forEach(function (card,index) {
-                let html_nav = '<li class="card-item">';
+                let html_nav = `<li class="card-item ${card_current && card.key === card_current.key ? 'active' : ''}">`;
                 html_nav += `<a href="/mua-the-${card.key.toLowerCase()}" class="card-item_link">`;
                 html_nav += `<div class="card-item_thumb mr-2">`;
                 html_nav += `<img src="${card.image}" alt="">`;

@@ -1,105 +1,28 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    @if(isset(theme('')->theme_config->sys_theme_ver))
-    <div class="container c-container">
-        {{--        Slider banner All theme  --}}
-
-        @include('frontend.widget.__slider__banner__home')
-
-{{--     Theme 1            --}}
-
-        @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-
-            {{--        Dịch vụ nổi bật  --}}
-            @include('frontend.widget.__dich__vu__noi__bat')
-
-            {{--        Giá sốc  --}}
-            @include('frontend.widget.__gia__soc')
-
-            {{--        Dành cho bạn  --}}
-            @include('frontend.widget.__danh__cho__ban')
-
-            {{--        Dịch vụ  --}}
-            @include('frontend.widget.__content__home__dichvu')
-
-            {{--        Vòng quay  --}}
-            @include('frontend.widget.__content__home__minigame')
 
 
-            {{--        Nạp thẻ  --}}
-            @include('frontend.widget.__napthe')
+    @if(setting('sys_theme_ver_page_build'))
+        @php
+            $data = explode(',',setting('sys_theme_ver_page_build'));
+            $data_title = null;
+            $data_widget = null;
+            foreach($data as $key => $item){
+                if ($key == 0){
+                    $data_title = explode('|',$item);
+                }else{
+                    $data_widget = explode('|',$item);
+                }
+            }
+        @endphp
 
-            {{--        nick ngon giá re  --}}
-            @include('frontend.widget.__content__home__game')
+        <div class="container c-container">
+            @foreach($data_widget as $key => $value)
+                @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
+            @endforeach
+        </div>
 
-            {{--        Free fire  --}}
-            @include('frontend.widget.__free__fire')
-
-            {{--        Liên quân  --}}
-            @include('frontend.widget.__lien__quan')
-
-            {{--        Ngoc rong online  --}}
-            @include('frontend.widget.__ngoc__rong__online')
-
-            {{--        Tin tức  --}}
-            @include('frontend.widget.__tin__tuc')
-
-            {{--    Giới thiệu web       --}}
-            @include('frontend.widget.__abount__us')
-
-        @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1')
-            {{--        Mua thẻ  --}}
-            @include('frontend.widget.__mua__the')
-
-            {{--        Nạp thẻ  --}}
-            @include('frontend.widget.__napthe')
-
-            {{--        Tin tức  --}}
-            @include('frontend.widget.__tin__tuc')
-
-            {{--        Dịch vụ khác   --}}
-            @include('frontend.widget.__services__other')
-        @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-            {{--        Giá sốc  --}}
-            @include('frontend.widget.__gia__soc')
-
-            {{--        Dịch vụ  --}}
-            @include('frontend.widget.__content__home__dichvu')
-
-            {{--        Mua thẻ  --}}
-            @include('frontend.widget.__mua__the')
-
-            {{--        Nạp thẻ  --}}
-            @include('frontend.widget.__napthe')
-
-            {{--        Tin tức  --}}
-            @include('frontend.widget.__tin__tuc')
-
-            {{--        Dịch vụ khác   --}}
-            @include('frontend.widget.__services__other')
-
-        @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-            {{--        Giá sốc  --}}
-            @include('frontend.widget.__gia__soc')
-
-            {{--        Vòng quay  --}}
-            @include('frontend.widget.__content__home__minigame')
-
-            {{--        nick ngon giá re  --}}
-            @include('frontend.widget.__content__home__game')
-
-            {{--        Dành cho bạn  --}}
-            @include('frontend.widget.__danh__cho__ban')
-
-            {{--        Tin tức  --}}
-            @include('frontend.widget.__tin__tuc')
-
-            {{--        Dịch vụ khác   --}}
-            @include('frontend.widget.__services__other')
-        @endif
-
-    </div>
     @else
         <div class="container c-container">
 
@@ -119,9 +42,14 @@
             {{--        Dịch vụ  --}}
             @include('frontend.widget.__content__home__dichvu')
 
+            {{--        Dịch vụ  --}}
+            @include('frontend.widget.__content__home__dichvu__v2')
+
             {{--        Vòng quay  --}}
             @include('frontend.widget.__content__home__minigame')
 
+            {{--        Nạp thẻ  --}}
+            @include('frontend.widget.__mua__the')
 
             {{--        Nạp thẻ  --}}
             @include('frontend.widget.__napthe')
@@ -130,13 +58,7 @@
             @include('frontend.widget.__content__home__game')
 
             {{--        Free fire  --}}
-                    @include('frontend.widget.__free__fire')
-
-            {{--        Liên quân  --}}
-                    @include('frontend.widget.__lien__quan')
-
-            {{--        Ngoc rong online  --}}
-                    @include('frontend.widget.__ngoc__rong__online')
+            @include('frontend.widget.__content__home__game__random')
 
             {{--        Tin tức  --}}
             @include('frontend.widget.__tin__tuc')
@@ -146,6 +68,7 @@
 
         </div>
     @endif
+
     {{--  sử lý step thanh toán --}}
     <div class="step" id="step2NT">
         <div class="head-mobile">

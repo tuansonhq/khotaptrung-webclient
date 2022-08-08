@@ -2,7 +2,7 @@
 
 <div class="section-header c-mb-16 c-mt-32 media-web services-other-title">
     <div class="section-title fz-lg-20 lh-lg-24">
-        Dịch vụ khác
+        {{ $title??'' }}
     </div>
 </div>
 

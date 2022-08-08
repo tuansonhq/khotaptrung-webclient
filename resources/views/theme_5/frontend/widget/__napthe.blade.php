@@ -1,15 +1,11 @@
-<h2 class="section-title c-mt-24  c-mb-lg-8 d-none d-lg-flex">
+<h2 class="section-title c-pt-12 c-pt-lg-6  c-mb-lg-8 d-none d-lg-flex">
     <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
-    @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-    Nạp tiền
-    @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-        Nạp tiền nhanh
-    @endif
+    {{ $title??'' }}
 </h2>
 
 {{--        nạp thẻ--}}
 
-<div class="row c-mt-16 c-mb-24 c-mt-lg-50 c-mt-md-0" id="charge-detail">
+<div class="row c-mt-16 c-pb-12 c-pb-6 c-mt-lg-50 c-mt-md-8" id="charge-detail">
 
     <div class="col-12 col-lg-8 c-pr-8 c-px-sm-0 ">
         <div class="recharge-money-container brs-12 brs-sm-0 c-pt-lg-4">
@@ -25,7 +21,7 @@
             </div>
 
             <div class="tab-content">
-                <div class="tab-pane fade active show c-p-16" id="charge_card" role="tabpanel">
+                <div class="tab-pane fade active show c-p-16 c-pb-lg-0" id="charge_card" role="tabpanel">
                     <div class="row text-center loader-container">
                         <div class="col-12">
                             <div class="loader position-relative" style="margin: 2rem 0">
