@@ -48,7 +48,7 @@
             {{--        Vòng quay  --}}
             @include('frontend.widget.__content__home__minigame')
 
-            {{--        Nạp thẻ  --}}
+            {{--        Mua thẻ  --}}
             @include('frontend.widget.__mua__the')
 
             {{--        Nạp thẻ  --}}
