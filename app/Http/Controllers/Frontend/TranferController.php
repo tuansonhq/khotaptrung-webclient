@@ -124,9 +124,36 @@ class TranferController extends Controller
         }
     }
 
-    public function logsDetail(Request $request){
+    public function logsDetail(Request $request,$id){
 
-        return view('frontend.pages.transfer.logsdetail');
+        $url = '/transfer/history/'.$id;
+
+        $method = "GET";
+        $val = array();
+//        $jwt = Session::get('jwt');
+//        if (empty($jwt)) {
+//            return response()->json([
+//                'status' => "LOGIN"
+//            ]);
+//        }
+
+        $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1) {
+
+            $data = $response_data->data;
+
+            return view('frontend.pages.transfer.logsdetail')->with('data', $data);
+
+        }else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
+
+
     }
 
     public function logs(Request $request)

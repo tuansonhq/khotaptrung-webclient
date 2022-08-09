@@ -38,37 +38,40 @@
                             <div class="history-detail-info-block brs-12 c-p-16 c-mb-16">
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">ID</p>
-                                    <div class="fw-500 fz-13">#123445</div>
-                                </div>
-                                <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Chủ tài khoản</p>
-                                    <div class="fw-500 fz-13">Nguyen Ngoc An</div>
-                                </div>
-                                <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Nhà mạng</p>
-                                    <div class="fw-500 fz-13">Viettel</div>
-                                </div>
-                                <div class="history-detail-attr d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Kiểu nạp</p>
-                                    <div class="fw-500 fz-13">Nạp tự động</div>
+                                    <div class="fw-500 fz-13">#{{ $data->id }}</div>
                                 </div>
                             </div>
                             <div class="history-detail-info-block brs-12 c-p-16">
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
-                                    <p class="fz-13 fw-400 mb-0">Mênh giá thẻ</p>
-                                    <div class="fw-500 fz-13">100.000đ</div>
+                                    <p class="fz-13 fw-400 mb-0">Số tiền</p>
+                                    <div class="fw-500 fz-13">{{ str_replace(',','.',number_format($data->price)) }} đ</div>
                                 </div>
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Thực nhận</p>
-                                    <div class="fw-500 fz-13">97.000đ</div>
+                                    <div class="fw-500 fz-13">
+                                        @if(isset($data->real_received_price))
+                                            {{ str_replace(',','.',number_format($data->real_received_price)) }} đ
+                                        @else
+                                            0
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Ngày giao dịch</p>
-                                    <div class="fw-500 fz-13">26/04/2021 - 16:05</div>
+                                    <div class="fw-500 fz-13">{{ formatDateTime($data->created_at) }}</div>
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trạng thái</p>
-                                    <div class="detail-success fw-500 fz-13">Thành công</div>
+                                    @if($data->status == 2 )
+                                        <div class="detail-warning fw-500 fz-13">{{config('module.tranfer.status.2')}}</div>
+                                    @elseif($data->status == 1)
+                                        <div class="detail-success fw-500 fz-13">{{config('module.tranfer.status.1')}}</div>
+                                    @elseif($data->status == 0)
+                                        <div class="detail-warning fw-500 fz-13">{{config('module.tranfer.status.0')}}</div>
+                                    @elseif($data->status == 3)
+                                        <div class="detail-invalid fw-500 fz-13">{{config('module.tranfer.status.3')}}</div>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>
