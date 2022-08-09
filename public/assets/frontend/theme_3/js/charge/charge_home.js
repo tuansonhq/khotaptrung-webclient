@@ -131,7 +131,7 @@ $(document).ready(function(){
                     });
 
 
-                    reload_captcha()
+                    // reload_captcha()
                 }
                 // else{
                 //     swal({
