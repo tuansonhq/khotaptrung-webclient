@@ -251,6 +251,45 @@ $('.submit-form').on('click', function () {
 
 })
 
+
+$('body').on('click','.btnPay',function(){
+    let is_ok = 1;
+    let html = '';
+    let required = $('input[required]');
+    if (required.length){
+        required.each(function () {
+            $(this).toggleClass('invalid',!$(this).val().trim());
+            if (!$(this).val().trim()){
+                is_ok = 0;
+                let text = $(this).parent().prev().text().trim().toLowerCase();
+                $(this).parent().next().html(html)
+            }else {
+                $(this).parent().next().text('')
+            }
+        });
+    }
+    let confirm_rules = $('.confirm-rules');
+    /*nếu có nút confirm thì kiểm tra xem được check chưa*/
+    if (confirm_rules.length){
+        if (!confirm_rules.is(':checked')){
+            html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Vui lòng xác nhận thông tin trên</small></div></div>`;
+            is_ok = 0;
+            confirm_rules.parent().next().html(html)
+        }
+        else {
+            confirm_rules.parent().next().html('')
+        }
+    }
+    if (is_ok){
+        if ($(document).width() > 1200) {
+            $('#orderModal').modal('show');
+        }else {
+            $('.button-next-step-one').trigger('click')
+        }
+    }
+});
+
+
 $('.openSuccess').on('click', function(){
     $('#successModal').modal('show');
     $('#orderModal').modal('hide');
