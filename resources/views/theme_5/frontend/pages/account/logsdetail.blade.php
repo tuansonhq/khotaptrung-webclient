@@ -148,12 +148,22 @@
                                 </div>
                             </div>
                             @if(!$checkpass && $item->status == 0 && !isset($time))
-                            <div class="d-flex flex-row-reverse">
+{{--                            <div class="d-flex flex-row-reverse footer-mobile v2">--}}
+{{--                                <form action="/lich-su-mua-nick-{{ $item->randId }}/showpass" class="formPassword" method="post">--}}
+{{--                                @csrf--}}
+{{--                                <button type="submit" data-id="{{ $item->randId }}" class="btn primary c-px-50 his__detail__button">Lấy mật khẩu</button>--}}
+{{--                                </form>--}}
+{{--                            </div>--}}
                                 <form action="/lich-su-mua-nick-{{ $item->randId }}/showpass" class="formPassword" method="post">
-                                @csrf
-                                <button type="submit" data-id="{{ $item->randId }}" class="btn primary c-px-50 his__detail__button">Lấy mật khẩu</button>
+                                    @csrf
+                                <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 c-px-lg-16 c-pt-lg-16 button-password" style="--data-between:12px">
+
+                                    <button class="btn primary his__detail__button btn-data" data-id="{{ $item->randId }}" type="submit" style="position: relative">
+                                        Lấy mật khẩu
+                                    </button>
+
+                                </div>
                                 </form>
-                            </div>
                             @endif
                         </div>
                     </div>
