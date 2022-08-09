@@ -55,7 +55,7 @@ Validator({
         Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
     ],
     onSubmit:function (data) {
-        alert('Form đã được submit');
+
     }
 });
 
@@ -74,7 +74,7 @@ Validator({
         },'Mật khẩu xác nhận chưa chính xác'),
     ],
     onSubmit:function (data) {
-        alert('Form đã được submit');
+
     }
 });
 Validator({
@@ -118,5 +118,19 @@ Validator({
     onSubmit:function (data) {
         changePassword(data)
 
+    }
+});
+
+Validator({
+    form:'#chargeCardForm',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=pin]','Bạn chưa nhập mã pin'),
+        Validator.isRequired('[name=serial]','Bạn chưa nhập số sê-ri'),
+        Validator.isRequired('[name=captcha]','Bạn chưa nhập mã captcha'),
+    ],
+    onSubmit:function () {
+        showConfirmContent();
     }
 });
