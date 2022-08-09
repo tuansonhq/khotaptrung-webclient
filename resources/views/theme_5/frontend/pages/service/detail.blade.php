@@ -190,7 +190,7 @@
                                                             <input autocomplete="off" class="input-defautf-ct username"
                                                                    id="username"
                                                                    name="customer_data{{$k_send_name}}" type="text"
-                                                                   placeholder="{{$send_name_text}}">
+                                                                   placeholder="{{$send_name_text}}" required>
                                                             <div class="error"></div>
                                                         </div>
                                                         <div class="col-md-12 left-right message-error">
@@ -210,7 +210,7 @@
                                                                    name="customer_data{{$k_send_name}}"
                                                                    class="input-defautf-ct password"
                                                                    type="password"
-                                                                   placeholder="{{$send_name_text}}">
+                                                                   placeholder="{{$send_name_text}}" required>
                                                             <div class="error"></div>
                                                             <div class="show-btn-password">
                                                                 <img onerror="imgError(this)" class="lazy"
@@ -235,7 +235,7 @@
                                                                                 </span>
                                                                 <input id="customer_data{{$k_send_name}}"
                                                                        type="checkbox" class="confirm-rules"
-                                                                       name="customer_data{{$k_send_name}}">
+                                                                       name="customer_data{{$k_send_name}}" required>
                                                                 <div class="error"></div>
                                                                 <span class="input-ratio-checkmark-ct --overwrite"></span>
                                                             </label>
