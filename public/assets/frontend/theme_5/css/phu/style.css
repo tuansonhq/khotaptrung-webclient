@@ -88,6 +88,10 @@
     min-height: 360px;
 }
 
+#chargeCardForm .input-group .text-error:empty {
+    margin-top: 0 !important;
+}
+
 .recharge-money-tab p {
     color: var(--text-link-default-color);
     cursor: pointer;
@@ -126,7 +130,6 @@
     -webkit-transform:rotate(360deg);
     transform:rotate(360deg);
 }
-
 
 .money-radio-form label {
     width: 100%;

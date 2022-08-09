@@ -1,16 +1,96 @@
+var dataSend = {
+    type: null,
+    pin: null,
+    serial: null,
+    captcha: null,
+    amount: null,
+    _token: $('meta[name="csrf-token"]').attr('content'),
+}
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}
+
+//append new data into confirm modal
+function prepareConfirmData() {
+    let cardChecked = $('input[name="amount"]:checked');
+    let confirmTitle = $('#telecom').val();
+    let confirmDiscount = $(cardChecked).data('ratio');
+    let confirmPrice = $(cardChecked).val();
+
+    if ( !confirmDiscount || confirmDiscount < 0 ) {
+        confirmDiscount = 100;
+    }
+
+    let saleAmount = confirmPrice - (confirmPrice * confirmDiscount / 100);
+    let totalAmount = confirmPrice - saleAmount;
+
+    if ( saleAmount > 0  && totalAmount > 0 ) {
+        $('#totalBill').text(`${ formatNumber(totalAmount)}`);
+        $('#totalBillMobile').text(`${ formatNumber(totalAmount)}`);
+    } else {
+        $('#totalBill').text(`${ formatNumber(confirmPrice)}`);
+        $('#totalBillMobile').text(`${ formatNumber(confirmPrice)}`);
+    }
+
+    $('#confirmTitle').text(confirmTitle);
+    $('#confirmTitleMobile').text(confirmTitle);
+    $('#confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
+    $('#confirmPriceMobile').text(`${formatNumber( confirmPrice )} đ`);
+    $('#confirmDiscount').text(`${confirmDiscount}%`);
+    $('#confirmDiscountMobile').text(`${confirmDiscount}%`);
+}
+
+//Append new data to submit to backend
+function prepareDataSend() {
+    let cardChecked = $('input[name="amount"]:checked');
+    let pin = $('input[name="pin"]').val().trim();
+    let serial = $('input[name="serial"]').val().trim();
+    let captcha = $('input[name="captcha"]').val().trim();
+    let type = $('#telecom').val();
+    let amount = $(cardChecked).val();
+
+    dataSend.type = type;
+    dataSend.pin = pin;
+    dataSend.serial = serial;
+    dataSend.captcha = captcha;
+    dataSend.amount = amount;
+}
+
+function showConfirmContent () {
+    prepareConfirmData();
+    prepareDataSend();
+    if ( $(window).width() >= 992 ) { 
+        $('#orderCharge').modal('show');
+    } else {
+        $('#step2').css('transform', 'translateX(0)');
+    }
+}
+
+function showHomeConfirmContent () {
+    prepareConfirmData();
+    prepareDataSend();
+    if ( $(window).width() >= 992 ) { 
+        $('#orderCharge').modal('show');
+    } else {
+        $('#step2NT').css('transform', 'translateX(0)');
+    }
+}
+
 $(document).ready(function () {
 
     getTelecom();
 
 
-    var dataSend = {
-        type: null,
-        pin: null,
-        serial: null,
-        captcha: null,
-        amount: null,
-        _token: $('meta[name="csrf-token"]').attr('content'),
-    }
+    //Change web url when switch tab
+    $('#chargeNavTab').click(function () {
+        let base_url = `${window.location.origin}/nap-the`;
+        window.history.pushState("charge_card","", base_url);
+    });
+    $('#atmNavTab').click(function () {
+        let base_url = `${window.location.origin}/recharge-atm`;
+        window.history.pushState("charge_card","", base_url);
+    });
 
     $('#telecom').on('change', function () {
         let telecom = $(this).val();
@@ -34,11 +114,6 @@ $(document).ready(function () {
                 }, 1000);
             }
         });
-    });
-
-    $('#btnConfirm, #btnConfirmMobile').on('click', function (e) {
-        prepareConfirmData();
-        prepareDataSend();
     });
 
     $(document).on('click', '#confirmSubmitButton', function(e) {
@@ -130,10 +205,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-    }
 
     function reload_captcha() {
         $.ajax({
@@ -275,51 +346,5 @@ $(document).ready(function () {
         });
     }
 
-
-    //append new data into confirm modal
-    function prepareConfirmData() {
-        let cardChecked = $('input[name="amount"]:checked');
-        let confirmTitle = $('#telecom').val();
-        let confirmDiscount = $(cardChecked).data('ratio');
-        let confirmPrice = $(cardChecked).val();
-
-        if ( !confirmDiscount || confirmDiscount < 0 ) {
-            confirmDiscount = 100;
-        }
-
-        let saleAmount = confirmPrice - (confirmPrice * confirmDiscount / 100);
-        let totalAmount = confirmPrice - saleAmount;
-
-        if ( saleAmount > 0  && totalAmount > 0 ) {
-            $('#totalBill').text(`${ formatNumber(totalAmount)}`);
-            $('#totalBillMobile').text(`${ formatNumber(totalAmount)}`);
-        } else {
-            $('#totalBill').text(`${ formatNumber(confirmPrice)}`);
-            $('#totalBillMobile').text(`${ formatNumber(confirmPrice)}`);
-        }
-
-        $('#confirmTitle').text(confirmTitle);
-        $('#confirmTitleMobile').text(confirmTitle);
-        $('#confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
-        $('#confirmPriceMobile').text(`${formatNumber( confirmPrice )} đ`);
-        $('#confirmDiscount').text(`${confirmDiscount}%`);
-        $('#confirmDiscountMobile').text(`${confirmDiscount}%`);
-    }
-
-    //Append new data to submit to backend
-    function prepareDataSend() {
-        let cardChecked = $('input[name="amount"]:checked');
-        let pin = $('input[name="pin"]').val().trim();
-        let serial = $('input[name="serial"]').val().trim();
-        let captcha = $('input[name="captcha"]').val().trim();
-        let type = $('#telecom').val();
-        let amount = $(cardChecked).val();
-
-        dataSend.type = type;
-        dataSend.pin = pin;
-        dataSend.serial = serial;
-        dataSend.captcha = captcha;
-        dataSend.amount = amount;
-    }
 
 });

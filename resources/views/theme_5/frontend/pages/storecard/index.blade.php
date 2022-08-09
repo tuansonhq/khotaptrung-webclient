@@ -21,7 +21,17 @@
             </li>
         </ul>
 
-        @include('frontend.widget.__slider__banner__napthe')
+        <div class="head-mobile">
+            <a href="javascript:void(0) " class="link-back close-step"></a>
+
+            <h1 class="head-title text-title">Mua thẻ</h1>
+
+            <a href="/" class="home"></a>
+        </div>
+
+        <div class="d-none d-lg-block">
+            @include('frontend.widget.__slider__banner__napthe')
+        </div>
 
         <div class="row c-mt-16">
             <div class="col-12 col-lg-3 c-pr-12 c-p-sm-0">
