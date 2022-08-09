@@ -8,11 +8,13 @@ function openLoginModal(){
                 $('#loginModal #modal-login-container').removeClass('right-panel-active');
             }, 200);
         } else {
-            $('.mobile-auth').toggleClass('mobile-auth-show');
+            $('.mobile-auth').toggleClass('hidden');
+            $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+            $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+            $('.mobile-auth .head-mobile h1').text('Đăng nhập');
         }
     }, 0);
 }
-
 function openRegisterModal(){
     setTimeout(function(){
         $('#loginModal').modal('show');
@@ -21,6 +23,7 @@ function openRegisterModal(){
         }, 200);
     }, 0);
 }
+
 
 $(document).ready(function () {
 
