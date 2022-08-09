@@ -66,7 +66,7 @@
                             <span class=" mb-15 control-label bb">Chọn máy chủ:</span>
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
-                                <div class="mb-15 c-pt-16 c-pb-8">
+                                <div class="mb-15 c-pt-8 c-pb-8">
                                     <select name="server" class="server-filter form-control t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
@@ -188,9 +188,10 @@
                                                         </div>
                                                         <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
                                                             <input autocomplete="off" class="input-defautf-ct username"
+                                                                   id="username"
                                                                    name="customer_data{{$k_send_name}}" type="text"
                                                                    placeholder="{{$send_name_text}}">
-                                                            <span class="text-error"></span>
+                                                            <div class="error"></div>
                                                         </div>
                                                         <div class="col-md-12 left-right message-error">
                                                         </div>
@@ -204,12 +205,13 @@
                                                         </div>
                                                         <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8"
                                                              style="position: relative">
-                                                            <input autocomplete="off" id="password"
+                                                            <input autocomplete="off"
+                                                                   id="password"
                                                                    name="customer_data{{$k_send_name}}"
                                                                    class="input-defautf-ct password"
                                                                    type="password"
                                                                    placeholder="{{$send_name_text}}">
-                                                            <span class="text-error"></span>
+                                                            <div class="error"></div>
                                                             <div class="show-btn-password">
                                                                 <img onerror="imgError(this)" class="lazy"
                                                                      src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
@@ -234,7 +236,7 @@
                                                                 <input id="customer_data{{$k_send_name}}"
                                                                        type="checkbox" class="confirm-rules"
                                                                        name="customer_data{{$k_send_name}}">
-                                                                <span class="text-error"></span>
+                                                                <div class="error"></div>
                                                                 <span class="input-ratio-checkmark-ct --overwrite"></span>
                                                             </label>
                                                             <div class="error-message"></div>
@@ -250,6 +252,46 @@
                             </div>
                         </div>
 
+                            <style>
+                                form div input {
+                                    outline: none;
+                                    border: 2px solid #c4c4c4;
+                                    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+                                }
+                                label {
+                                    display: block;
+                                    margin-bottom: 5px;
+                                }
+                                input:focus {
+                                    border: 2px solid #f2796e;
+                                }
+
+                                form div i {
+                                    position: absolute;
+                                }
+                                .error {
+                                    color: red;
+                                }
+
+                                .error {
+                                    font-size: 14.5px;
+                                    margin-top: 5px;
+                                }
+                                button {
+                                    background-color: #f2796e;
+                                    border: 2px solid #f2796e;
+                                    border-radius: 8px;
+                                    color: #fff;
+                                    font-size: 20px;
+                                    cursor: pointer;
+                                    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+                                    transition: all 0.1s ease;
+                                }
+                                button:hover {
+                                    opacity: 0.8;
+                                }
+
+                            </style>
 
                         <!-- service select mobile -->
                         <div class="d-block d-lg-none">
@@ -416,7 +458,7 @@
                                     <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0
                                         VNĐ
                                     </div>
-                                    <button type="button" id="btnPurchase" class="btn primary" data-toggle="modal"
+                                    <button type="button" id="btnPurchase" class="btn primary btnPay" data-toggle="modal"
                                             data-target="#orderModal">Thanh toán
                                     </button>
                                 </div>
@@ -455,7 +497,7 @@
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
                 <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
-                <button type="button" class="btn primary js-step" data-target="#step2">Giao dịch ngay</button>
+                <button type="button" class="btn primary js-step btnPay" data-target="#step2">Giao dịch ngay</button>
             </div>
         </section>
 

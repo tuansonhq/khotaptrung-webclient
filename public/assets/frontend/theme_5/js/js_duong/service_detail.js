@@ -238,6 +238,7 @@ $('.submit-form').on('click', function () {
                 } else {
                     $('.button-next-step-two').trigger('click');
                 }
+                $('#successModal').modal('show');
             }
             else {
                 $('.modal__error__message small').text(res.message)
@@ -255,7 +256,35 @@ $('.openSuccess').on('click', function(){
     $('#orderModal').modal('hide');
 })
 
-$('.btn-success-mobile').on('click', function(){
-    $('#successModal').modal('show');
-})
+/* js validate form service */
+let id = (id) => document.getElementById(id);
+
+let classes = (classes) => document.getElementsByClassName(classes);
+
+let username = id("username"),
+    password = id("password"),
+    email = id("email"),
+    form = id("form"),
+    errorMsg = classes("error");
+// Adding the submit event Listener
+
+$('.btnPay').on('click', function(e){
+    e.preventDefault();
+    engine(username, 0, "Vui lòng điền thông tin yêu cầu !");
+    engine(password, 1, "Vui lòng nhập password !");
+    engine(email, 2, "Email cannot be blank");
+});
+
+// engine function which will do all the works
+
+let engine = (id, serial, message) => {
+    if (id.value.trim() === "") {
+        errorMsg[serial].innerHTML = message;
+        id.style.border = "1px solid red";
+    } else {
+        errorMsg[serial].innerHTML = "";
+        id.style.border = "1px solid green";
+
+    }
+};
 
