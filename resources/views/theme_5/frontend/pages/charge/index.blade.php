@@ -268,6 +268,9 @@
                                             <p class="fz-13 fw-400">Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</p>
                                         </div>
                                         <div class="atm-recharge-content c-p-sm-12 brs-sm-8">
+                                            @if (setting('sys_tranfer_content') != "")
+                                                {!! setting('sys_tranfer_content') !!}
+                                            @endif
                                             <div class="atm-recharge-attr d-flex justify-content-between align-items-center">
                                                 <p class="fz-13 fw-400 mb-0">Nội dung chuyển khoản</p>
                                                 <div class="fz-13 fw-500" id="transactionContent"></div>
