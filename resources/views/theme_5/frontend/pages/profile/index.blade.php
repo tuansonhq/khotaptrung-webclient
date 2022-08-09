@@ -165,7 +165,7 @@
         </div>
 
     </div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns.js"></script>
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns.js"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/profile.js?v={{time()}}"></script>
 @endsection
 
