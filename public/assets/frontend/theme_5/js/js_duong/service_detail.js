@@ -255,7 +255,9 @@ $('.openSuccess').on('click', function(){
     $('#orderModal').modal('hide');
 })
 
-$('.btn-success-mobile').on('click', function(){
-    $('#successModal').modal('show');
-})
+    $('.btn-success-mobile').on('click', function(){
+        $('#successModal').modal('show');
+    })
+
+
 
