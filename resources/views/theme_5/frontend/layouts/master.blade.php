@@ -51,7 +51,7 @@
 {{--js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
     <!-- js chứa các hàm cần load trước tiên -->
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
@@ -192,6 +192,10 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+@if(\App\Library\AuthFrontendCustom::check())
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+@endif
 {{--impport script--}}
 @yield('scripts')
 </body>
