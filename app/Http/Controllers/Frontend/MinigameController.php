@@ -269,6 +269,7 @@ class MinigameController extends Controller
 
                 if (isset($result_Api) && $result_Api->response_code == 200 ) {
                     $result = $result_Api->response_data;
+                    dd($result);
                     if ($result->status == 1) {
                         return response()->json([
                             'free_wheel'=> $result->free_wheel,
