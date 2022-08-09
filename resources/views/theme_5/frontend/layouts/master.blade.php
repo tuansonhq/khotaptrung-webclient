@@ -192,6 +192,10 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+
+@if(\App\Library\AuthFrontendCustom::check())
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+@endif
 {{--impport script--}}
 @yield('scripts')
 </body>
