@@ -60,11 +60,20 @@ function prepareDataSend() {
 function showConfirmContent () {
     prepareConfirmData();
     prepareDataSend();
-    console.log(dataSend);
     if ( $(window).width() >= 992 ) { 
         $('#orderCharge').modal('show');
     } else {
         $('#step2').css('transform', 'translateX(0)');
+    }
+}
+
+function showHomeConfirmContent () {
+    prepareConfirmData();
+    prepareDataSend();
+    if ( $(window).width() >= 992 ) { 
+        $('#orderCharge').modal('show');
+    } else {
+        $('#step2NT').css('transform', 'translateX(0)');
     }
 }
 
@@ -106,10 +115,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    // $('#btnConfirm, #btnConfirmMobile').on('click', function (e) {
-        
-    // });
 
     $(document).on('click', '#confirmSubmitButton', function(e) {
         e.preventDefault();

@@ -158,7 +158,7 @@
                                                         </span>
                                                         </div>
                                                     </div>
-                                                    <button class="refresh-captcha brs-8" id="reload_1">
+                                                    <button class="refresh-captcha brs-8" type="button" id="reload_1">
                                                         <img class="spinImg paused" src="/assets/frontend/{{theme('')->theme_key}}/image/phu/captcha_refresh.png" alt="">
                                                     </button>
                                                 </div>
