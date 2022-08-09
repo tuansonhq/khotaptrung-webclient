@@ -64,7 +64,7 @@
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Thực nhận</p>
                                     <div class="fw-500 fz-13">
-                                        @if(isset($item->real_received_amount))
+                                        @if(isset($data->real_received_amount))
                                             {{ str_replace(',','.',number_format($data->real_received_amount)) }} đ
                                         @else
                                             0
@@ -73,13 +73,12 @@
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Ngày giao dịch</p>
-                                    <div class="fw-500 fz-13">{{ date('d/m/Y',strtotime($item->created_at)) }} - {{ date('H:i',strtotime($item->created_at)) }}</div>
+                                    <div class="fw-500 fz-13">{{ date('d/m/Y',strtotime($data->created_at)) }} - {{ date('H:i',strtotime($data->created_at)) }}</div>
                                 </div>
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trạng thái</p>
 
-                                    <div class="detail-success fw-500 fz-13">Thành công</div>
-                                    @switch($item->status)
+                                    @switch($data->status)
                                         @case(1)
                                         <div class="detail-success fw-500 fz-13">{{config('module.charge.status.1')}}</div>
                                         @break
@@ -110,7 +109,7 @@
                                     <div class="fz-12 lh-16 fw-400 mb-0">Mã thẻ:</div>
                                     <div class="card-attr">
                                         <div class="card__info fz-12 lh-16">
-                                            {{ $key }}
+                                            {{  App\Library\Helpers::Decrypt($data->pin,config('module.charge.key_encrypt')) }}
                                         </div>
                                         <div class="js-copy-text"></div>
                                     </div>
@@ -119,7 +118,7 @@
                                     <div class="fz-12 lh-16 fw-400 mb-0">Số sê-ri:</div>
                                     <div class="card-attr">
                                         <div class="card__info fz-12 lh-16">
-                                            {{ $serial }}
+                                            {{  App\Library\Helpers::Decrypt($data->serial,config('module.charge.key_encrypt')) }}
                                         </div>
                                         <div class="js-copy-text"></div>
                                     </div>
