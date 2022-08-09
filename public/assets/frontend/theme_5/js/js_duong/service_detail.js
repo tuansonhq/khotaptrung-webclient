@@ -95,7 +95,8 @@ if (input_params_hide.length){
             if (checked.length) {
                 $('.service_pack').html('');
                 checked.each(function (elm) {
-                    let text = $(this).parent().find('label').text().trim();
+                    let text = $(this).parent().find('.text-label').text().trim();
+                    console.log(text)
                     let html = '';
                     html += `<div>`;
                     html += `${text}`;
@@ -253,3 +254,8 @@ $('.openSuccess').on('click', function(){
     $('#successModal').modal('show');
     $('#orderModal').modal('hide');
 })
+
+$('.btn-success-mobile').on('click', function(){
+    $('#successModal').modal('show');
+})
+

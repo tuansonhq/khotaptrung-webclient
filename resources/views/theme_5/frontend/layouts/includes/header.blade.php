@@ -17,78 +17,9 @@
 {{--                    @if(!Request::is('/')) menu-category-height  @endif--}}
 
                     <div class="menu-list ">
-                        <div class="menu-category ">
-                            <div class="container c-container">
-                                <ul class="d-flex justify-content-between px-0">
-                                    <li class="w-100 c-px-4">
-                                        <a href="/mua-the"  >
-                                            <div class="c-p-8 brs-8 active d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/storecard.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24 ">Mua thẻ</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/nap-the"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/charge.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Nạp tiền</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/recharge-atm"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/recharge-atm.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Nạp ATM -ví</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/minigame"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/vongquay.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Vòng quay</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/mua-acc"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/mua-acc.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Shop Acc</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/dich-vu"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/service-game.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Dịch vụ Game</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/minigame"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/minigame.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Mini Game</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="w-100 c-px-4">
-                                        <a href="/tin-tuc"  >
-                                            <div class="c-p-8 brs-8  d-flex justify-content-center">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/news.svg" alt="" class="c-pr-4">
-                                                <span class="fw-500 fz-15 lh-24">Tin tức</span>
-                                            </div>
-                                        </a>
-                                    </li>
 
+                        @include('frontend.widget.__menu_category_desktop')
 
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="box-sale d-flex">
@@ -150,7 +81,7 @@
                         </div>
                         <div class="account-logined-content c-pr-4 box-account_logined">
 
-                            @include('frontend.widget.__menu_profile')
+{{--                            @include('frontend.widget.__menu_profile')--}}
 
                         </div>
                     </div>

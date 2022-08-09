@@ -33,7 +33,7 @@
             </li>
         </ul>
         <div class="head-mobile">
-            <a href="/minigame" class="link-back close-step"></a>
+            <a href="/minigame" class="link-back "></a>
 
             <h1 class="head-title text-title">Danh sách minigame</h1>
 
@@ -353,7 +353,7 @@
                                         <button id="start-played" class="btn primary w-100  play">Quay ngay</button>
                                     </div>
                                 </div>
-                                <div class="footer-mobile c-p-16">
+                                <div class="footer-mobile">
 
                                     <div class="row marginauto">
                                         @if($result->group->params->is_try == 1)

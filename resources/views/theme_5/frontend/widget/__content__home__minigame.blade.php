@@ -15,9 +15,9 @@
         <div class="swiper-wrapper">
 
             @foreach($data as $item)
-            <div class="swiper-slide">
-                <div class="item-category">
-                    <div class="card">
+            <div class="swiper-slide h-auto">
+                <div class="item-category h-100">
+                    <div class="card h-100">
                         <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
                                 <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="account-thumb-image">
@@ -35,9 +35,7 @@
                                 @if(isset($item->params->percent_sale))
                                 <div class="price-old c-mr-8">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
                                 <div class="discount">{{ $item->params->percent_sale }}%</div>
-                                @else
-                                    <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
-                                    <div class="discount">0%</div>
+
                                 @endif
                             </div>
                         </a>

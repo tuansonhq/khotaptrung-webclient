@@ -69,7 +69,12 @@ header nav.heading .header-container {
     overflow: hidden;
     box-shadow: 0 5px 5px -5px #00000033;
 }
-
+.menu-list .menu-category img{
+    width: 24px;
+}
+.menu-category-item img{
+    width: 32px;
+}
 .box-menu{
     cursor: pointer;
 }
