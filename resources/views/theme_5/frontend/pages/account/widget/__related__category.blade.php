@@ -18,7 +18,7 @@
                                 <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-thumb-image">
                             </div>
                             <div class="card-attr">
-                                <div class="text-title fw-700">
+                                <div class="text-title fw-700 text-limit limit-1">
                                     {{ isset($item->custom->title) ? $item->custom->title :  $item->title }}
                                 </div>
                                 <div class="info-attr">

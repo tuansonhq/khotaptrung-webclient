@@ -103,7 +103,7 @@
                     <div class="loading-wrap">
                         <span class="modal-loader-spin"></span>
                     </div>
-                    <div class="listing-account c-mb-16 list-content">
+                    <div class="listing-account list-content">
 
                         {{--                        @include('frontend.pages.account.widget.__datalist')--}}
 
