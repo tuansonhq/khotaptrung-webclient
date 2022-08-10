@@ -34,7 +34,7 @@
                 <div class=" --custom p-3" id="new-article-update">
                     @include('frontend.widget.__menu__category__article')
 
-                    <div class="tab-content mt-4">
+                    <div class="tab-content-title mt-4">
                         <div class="card--body">
                             @if(isset($data) && count($data))
                             @forelse($data as $key=> $item)
