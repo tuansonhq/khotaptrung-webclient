@@ -9,7 +9,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <h1>{{$result->group->title}}</h1>
+                    <h1>{{$result->group->customs[0]->title}}</h1>
                     <div class="item_play_line"></div>
                 </div>
                 <div class="item_play_online_out">
@@ -23,9 +23,11 @@
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
                         <div class="item_spin">
                             <a class="ani-zoom" id="start-played">
-                                <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                <img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->image_icon)}}" alt="{{  $result->group->customs[0]->title}}">
+
                             </a>
-                            <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                            <img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+
                         </div>
 
                         @if($result->checkVoucher==1)
@@ -44,17 +46,17 @@
                         <div class="item_spin_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần quay</option>
                                 @endif
                             </select>
                         </div>
@@ -63,7 +65,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -77,7 +79,7 @@
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top quay thưởng
                             </a>
-                            <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
+                            <a href="{{route('getWithdrawItem',[$result->group->customs[0]->params->game_type])}}" class="btn btn-success">
                                 Rút Vip
                             </a>
                             <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
@@ -103,8 +105,8 @@
                                 @php
                                     $count = 0;
                                     $countname = 0;
-                                    $listname = explode(",",$result->group->params->user_wheel);
-                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                    $listname = explode(",",$result->group->customs[0]->params->user_wheel);
+                                    $listprice = explode(",",$result->group->customs[0]->params->user_wheel_order);
                                 @endphp
                                 @foreach($result->log as $item)
                                     @php
@@ -200,7 +202,7 @@
                 @endif
                 <div class="item_play_intro ">
                     <div class="item_play_intro_content">
-                        {!!$result->group->content!!}
+                        {!!$result->group->customs[0]->content!!}
                     </div>
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
@@ -213,7 +215,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <p>{{$result->group->title}}</p>
+                    <p>{{$result->group->customs[0]->title}}</p>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -230,8 +232,8 @@
                             @for ($i = 0; $i < count($result->group->items); $i++)
                                 <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                     <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                        <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                        <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                        <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}">
+                                        <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static) }}">
                                     </div>
                                 </div>
                             @endfor
@@ -240,8 +242,8 @@
                             @for ($i = 0; $i < count($result->group->items); $i++)
                                 <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                     <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                        <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                        <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                        <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}">
+                                        <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static) }}">
                                     </div>
                                 </div>
                             @endfor
@@ -262,17 +264,17 @@
                         <div class="item_spin_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần lật</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần lật</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần lật</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần lật</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần lật</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần lật</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần lật</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần lật</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần lật</option>
                                 @endif
                             </select>
                         </div>
@@ -281,7 +283,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
@@ -296,7 +298,7 @@
                             <a href="#" class="btn btn-success" data-toggle="modal" data-target="#topquaythuongModal">
                                 Top lật thưởng
                             </a>
-                            <a href="{{route('getWithdrawItem',[$result->group->params->game_type])}}" class="btn btn-success">
+                            <a href="{{route('getWithdrawItem',[$result->group->customs[0]->params->game_type])}}" class="btn btn-success">
                                 Rút Vip
                             </a>
                             <a href="{{route('getLog',[$result->group->id])}}" class="btn btn-success">
@@ -322,8 +324,8 @@
                                 @php
                                     $count = 0;
                                     $countname = 0;
-                                    $listname = explode(",",$result->group->params->user_wheel);
-                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                    $listname = explode(",",$result->group->customs[0]->params->user_wheel);
+                                    $listprice = explode(",",$result->group->customs[0]->params->user_wheel_order);
                                 @endphp
                                 @foreach($result->log as $item)
                                     @php
@@ -418,7 +420,7 @@
                 @endif
                 <div class="item_play_intro ">
                     <div class="item_play_intro_content">
-                        {!!$result->group->content!!}
+                        {!!$result->group->customs[0]->content!!}
                     </div>
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
@@ -431,7 +433,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <h1>{{$result->group->title}}</h1>
+                    <h1>{{$result->group->customs[0]->title}}</h1>
                     <div class="item_play_line"></div>
                 </div>
                 <div class="item_play_online_out">
@@ -443,7 +445,7 @@
                 <div class="row d-flex justify-content-between">
                     <div class="col-lg-9 col-md-12">
                         <marquee style="padding: 10px 0">{!!$currentPlayList!!}</marquee>
-                        <div class="item_slot" style="background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}})" >
+                        <div class="item_slot" style="background: url({{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_background)}})" >
                             <div class="item_slot_inner">
                                 <div id="slot1"  class="item_slot_inner_img a1" style=""></div>
                                 <div id="slot2" class="item_slot_inner_img a1" style=""></div>
@@ -466,17 +468,17 @@
                         <div class="item_spin_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần quay</option>
                                 @endif
                             </select>
                         </div>
@@ -485,7 +487,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -569,7 +571,7 @@
                 @endif
                 <div class="item_play_intro ">
                     <div class="item_play_intro_content">
-                        {!!$result->group->content!!}
+                        {!!$result->group->customs[0]->content!!}
                     </div>
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
@@ -582,7 +584,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <h1>{{$result->group->title}}</h1>
+                    <h1>{{$result->group->customs[0]->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -621,17 +623,17 @@
                         <div class="item_play_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần quay</option>
                                 @endif
                             </select>
                         </div>
@@ -640,7 +642,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -724,7 +726,7 @@
                 @endif
                 <div class="item_play_intro ">
                     <div class="item_play_intro_content">
-                        {!!$result->group->content!!}
+                        {!!$result->group->customs[0]->content!!}
                     </div>
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
@@ -737,7 +739,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <h1>{{$result->group->title}}</h1>
+                    <h1>{{$result->group->customs[0]->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -754,37 +756,37 @@
                             <table id="squaredesktop" class="square">
                                 <tr>
                                     <td></td>
-                                    <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                    <td><div  data-num="2" class="gift2 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                    <td><div  data-num="3" class="gift3 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="2" class="gift2 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="3" class="gift3 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><div  data-num="12" class="gift12 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="12" class="gift12 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                     <td colspan="3"></td>
-                                    <td><div  data-num="4" class="gift4 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="4" class="gift4 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                 </tr>
                                 <tr>
-                                    <td><div data-num="11" class="gift11 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div data-num="11" class="gift11 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                     <td colspan="3">
                                         <div class="outer-btn">
                                             <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="" id="start-played">
-                                                <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
+                                                <img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->image_icon)}}" alt="" style="">
                                             </div>
                                         </div>
                                     </td>
-                                    <td><div  data-num="5" class="gift5 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="5" class="gift5 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                 </tr>
                                 <tr>
-                                    <td><div  data-num="10" class="gift10 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="10" class="gift10 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                     <td colspan="3"></td>
-                                    <td><div  data-num="6" class="gift6 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="6" class="gift6 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><div  data-num="9" class="gift9 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                    <td><div  data-num="8" class="gift8 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                    <td><div  data-num="7" class="gift7 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="9" class="gift9 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="8" class="gift8 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
+                                    <td><div  data-num="7" class="gift7 box"><img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}"/></div></td>
                                     <td></td>
                                 </tr>
                             </table>
@@ -808,17 +810,17 @@
                         <div class="item_spin_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần quay</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần quay</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần quay</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần quay</option>
                                 @endif
                             </select>
                         </div>
@@ -827,7 +829,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -915,7 +917,7 @@
                 @endif
                 <div class="item_play_intro ">
                     <div class="item_play_intro_content">
-                        {!!$result->group->content!!}
+                        {!!$result->group->customs[0]->content!!}
                     </div>
                     <span class="item_play_intro_viewmore">Xem tất cả »</span>
                     <span class="item_play_intro_viewless">Thu gọn »</span>
@@ -930,7 +932,7 @@
         <div class="item_play">
             <div class="container">
                 <div class="item_play_title">
-                    <h1>{{$result->group->title}}</h1>
+                    <h1>{{$result->group->customs[0]->title}}</h1>
                     <div class="item_play_line"></div>
 
                 </div>
@@ -951,7 +953,7 @@
                             @endif
 
                             <div id="start-played" class="item_play_spin_shake">
-                                <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
+                                <img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->image_icon)}}">
                             </div>
 
                             @if($result->checkPoint==1)
@@ -961,25 +963,25 @@
                                 </div>
                             @endif
 
-                            <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">
-                            <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
-                            <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
+                            <img src="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">
+                            <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static)}}" id="hdImageLD">
+                            <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->customs[0]->params->image_animation)}}" id="hdImageDapLu">
                         </div>
                         <div class="pyro" style="position: absolute;top: 0;left: 0;width: 182px;height: 37px;display:none"><div class="before"></div><div class="after"></div></div>
                         <div class="item_spin_dropdown">
                             <select name="" id="numrolllop">
                                 <option value="1">Mua X1/{{$result->group->price/1000}}k 1 lần chơi</option>
-                                @if($result->group->params->price_sticky_3 > 0))
-                                <option value="3">Mua X3/{{$result->group->params->price_sticky_3/1000}}k 1 lần chơi</option>
+                                @if($result->group->customs[0]->params->price_sticky_3 > 0))
+                                <option value="3">Mua X3/{{$result->group->customs[0]->params->price_sticky_3/1000}}k 1 lần chơi</option>
                                 @endif
-                                @if($result->group->params->price_sticky_5 > 0))
-                                <option value="5">Mua X5/{{$result->group->params->price_sticky_5/1000}}k 1 lần chơi</option>
+                                @if($result->group->customs[0]->params->price_sticky_5 > 0))
+                                <option value="5">Mua X5/{{$result->group->customs[0]->params->price_sticky_5/1000}}k 1 lần chơi</option>
                                 @endif
-                                @if($result->group->params->price_sticky_7 > 0))
-                                <option value="7">Mua X7/{{$result->group->params->price_sticky_7/1000}}k 1 lần chơi</option>
+                                @if($result->group->customs[0]->params->price_sticky_7 > 0))
+                                <option value="7">Mua X7/{{$result->group->customs[0]->params->price_sticky_7/1000}}k 1 lần chơi</option>
                                 @endif
-                                @if($result->group->params->price_sticky_10 > 0))
-                                <option value="10">Mua X10/{{$result->group->params->price_sticky_10/1000}}k 1 lần chơi</option>
+                                @if($result->group->customs[0]->params->price_sticky_10 > 0))
+                                <option value="10">Mua X10/{{$result->group->customs[0]->params->price_sticky_10/1000}}k 1 lần chơi</option>
                                 @endif
                             </select>
                         </div>
@@ -988,7 +990,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if(isset($result->group->params->is_try) &&  $result->group->params->is_try== 1)
+                            @if(isset($result->group->customs[0]->params->is_try) &&  $result->group->customs[0]->params->is_try== 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
@@ -1114,8 +1116,8 @@
                                 @php
                                     $count = 0;
                                     $countname = 0;
-                                    $listname = explode(",",$result->group->params->user_wheel);
-                                    $listprice = explode(",",$result->group->params->user_wheel_order);
+                                    $listname = explode(",",$result->group->customs[0]->params->user_wheel);
+                                    $listprice = explode(",",$result->group->customs[0]->params->user_wheel_order);
                                 @endphp
                                 @foreach($result->log as $item)
                                     @php
@@ -1168,7 +1170,7 @@
                 </div>
 
                 <div class="modal-body" style="font-family: helvetica, arial, sans-serif;">
-                    {!! $result->group->params->thele !!}
+                    {!! $result->group->customs[0]->params->thele !!}
                 </div>
                 <div class="modal-footer">
                     <button type="button"
@@ -1340,7 +1342,7 @@
                             <div id="tap1-pane-3" aria-labelledby="tap1-tab-3" role="tabpanel" aria-hidden="true"
                                  class="tab-pane">
                                 <div class="content-qdt">
-                                    {!!$result->group->params->phanthuong!!}
+                                    {!!$result->group->customs[0]->params->phanthuong!!}
                                 </div>
                             </div>
                         </div>
@@ -1659,8 +1661,9 @@
 
         @case('flip')
         @foreach($result->group->items as $item)
+
             <input type="hidden" class="image_gift"
-                   value="{{ \App\Library\MediaHelpers::media($item->parrent->image) }}">
+                   value="{{ \App\Library\MediaHelpers::media($item->image) }}">
         @endforeach
         <style type="text/css">
             .boxflip .active {
@@ -1693,7 +1696,7 @@
                 $('.play').click(function(){
                     roll_check = true;
                     $('.boxflip img.flip-box-front').each(function(){
-                        $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
+                        $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static) }}');
                     })
                     $('.boxflip .flip-box-front').css({'transform': 'rotateY(0deg)'});
                     $('.boxflip .flip-box-front').parent().css({'transform': 'rotateY(0deg)'});
@@ -1707,7 +1710,7 @@
                 $('.num-play-try').click(function(){
                     roll_check = true;
                     $('.boxflip img.flip-box-front').each(function(){
-                        $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}');
+                        $(this).attr('src','{{ \App\Library\MediaHelpers::media($result->group->customs[0]->params->image_static) }}');
                     })
                     $('.boxflip .flip-box-front').css({'transform': 'rotateY(0deg)'});
                     $('.boxflip .flip-box-front').parent().css({'transform': 'rotateY(0deg)'});
@@ -1768,6 +1771,7 @@
                             },
                             type: 'post',
                             success: function (data) {
+
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){
@@ -2631,7 +2635,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3{
                 display: inline-block;
@@ -3398,7 +3402,7 @@
     @php
         $count++;
     @endphp
-    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->parrent->image)}}") !important;}
+    .a{{$count}}{background-image: url("{{\App\Library\MediaHelpers::media($gift->image)}}") !important;}
             @endforeach
 #slot1,#slot2,#slot3,#slot4,#slot5{
                 display: inline-block;
@@ -3420,7 +3424,7 @@
                 @if(isset($result->group->items) && count($result->group->items)>0)
                 @foreach($result->group->items as $index=>$item)
                 $('.gift'+({{$index}}+1)).attr('id',"id"+{{$item->item_id}});
-                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->parrent->image)}}');
+                $('.gift'+({{$index}}+1)+' img').attr('src','{{\App\Library\MediaHelpers::media($item->image)}}');
                 @endforeach
                 @endif
                 $(".thele").on("click", function(){
@@ -3987,7 +3991,7 @@
                                 }
                                 numrollbyorder = parseInt(data.numrollbyorder) + 1;
                                 gift_detail = data.gift_detail;
-                                console.log(gift_detail);
+
                                 if(gift_detail.image.length > 0)
                                 {
                                     $('#lac_lixi').attr('src',gift_detail.image);

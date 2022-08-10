@@ -39,38 +39,27 @@
                             @if(isset($data) && count($data))
                             @forelse($data as $key=> $item)
                                 <div class="item-article c-mt-16">
-                                    <div class="article px-3">
-                                        <div class="row">
-                                            <div class="col-3 col-lg-3 c-pr-0 c-pl-8">
-                                                <div class="article--thumbnail">
-                                                    <a href="/tin-tuc/{{ $item->slug }}">
-                                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image" >
-                                                    </a>
+                                    <a href="/tin-tuc/{{ $item->slug }}">
+                                        <div class="card">
+                                            <div class="card-body c-p-16 c-p-lg-8">
+                                                <div class="article-thumb c-mb-16 c-mb-lg-0">
+                                                    <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($item->image)}}" class="article-thumb-image" alt="article-thumbnail">
                                                 </div>
-                                            </div>
-                                            <div class="col-9 col-lg-9 article--info c-pr-0 c-pl-0">
-                                                <div class="article--title  mb-lg-0 article-title-mobile">
-                                                    <a href="/tin-tuc/{{ $item->slug }}"
-                                                       class="article--title__link text-limit limit-2">
-                                                        {{ $item->title }}
-                                                    </a>
-                                                </div>
-                                                <div class="article--description d-none d-lg-block c-pt-16">
-                                                    {!! $item->description !!}
-                                                </div>
-                                                <div>
-                                                    <div class="article--date c-pt-3">
-                                                        <img
-                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/duong/time.svg"
-                                                            class="c-mr-8"><span>{{ formatDateTime($item->created_at) }}</span>
-                                                        <img
-                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/duong/group.svg"
-                                                            class="c-mr-8 c-ml-16"><span>{{ @$item->author->username }}</span>
+                                                <div class="article-body">
+                                                    <div class="article-title text-limit limit-2 limit-lg-3 fz-lg-13 lh-lg-20 c-ml-12">
+                                                        {{ @$item->title }}
+                                                    </div>
+                                                    <div class="article--description d-none d-lg-block c-pt-16 c-ml-12 c-pb-48">
+                                                        {!! $item->description !!}
+                                                    </div>
+                                                    <div class="article-info c-mt-16 c-mt-lg-6 c-ml-12">
+                                                        <div class="datetime">{{ date('d/m/Y',strtotime($item->created_at)) }}</div>
+                                                        <div class="author c-ml-4 bread-word text-limit limit-1">{{ @$item->author->username }}</div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @empty
                                     <div class="t-body-2 link-color text-center c-pt-16 c-pb-24">
