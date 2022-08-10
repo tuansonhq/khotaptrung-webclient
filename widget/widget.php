@@ -889,3 +889,19 @@ View::composer('frontend.pages.minigame.widget.__related__minigame', function ($
 });
 //lịch sử trúng thưởng
 
+// theme 5
+View::composer('frontend.widget.__slider__banner__service', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__service', function() {
+        $url = '/get-slider-banner-service';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
