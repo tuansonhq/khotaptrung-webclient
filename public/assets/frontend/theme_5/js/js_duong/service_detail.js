@@ -238,6 +238,7 @@ $('.submit-form').on('click', function () {
                 } else {
                     $('.button-next-step-two').trigger('click');
                 }
+                $('#successModal').modal('show');
             }
             else {
                 $('.modal__error__message small').text(res.message)
@@ -250,12 +251,68 @@ $('.submit-form').on('click', function () {
 
 })
 
+
+$('body').on('click','.btnPay',function(){
+    let is_ok = 1;
+    let required = $('input[required_service]');
+    let html = '';
+    if (required.length){
+        required.each(function () {
+            $(this).toggleClass('invalid',!$(this).val().trim());
+            if (!$(this).val().trim()){
+                is_ok = 0;
+                let text = $(this).parent().prev().text().trim().toLowerCase();
+                $(this).parent().next().html(html)
+            }else {
+                $(this).parent().next().text('')
+            }
+        });
+    }
+    if (is_ok){
+        if ($(document).width() > 1200) {
+            $('#orderModal').modal('show');
+        }else {
+            console.log(123)
+            $('#step2').trigger('click')
+        }
+    }
+});
+
+
 $('.openSuccess').on('click', function(){
     $('#successModal').modal('show');
     $('#orderModal').modal('hide');
 })
 
-$('.btn-success-mobile').on('click', function(){
-    $('#successModal').modal('show');
-})
+/* js validate form service */
+let id = (id) => document.getElementById(id);
+
+let classes = (classes) => document.getElementsByClassName(classes);
+
+let username = id("username"),
+    password = id("password"),
+    email = id("email"),
+    form = id("form"),
+    errorMsg = classes("error");
+// Adding the submit event Listener
+
+$('.btnPay').on('click', function(e){
+    e.preventDefault();
+    engine(username, 0, "Vui lòng điền thông tin yêu cầu !");
+    engine(password, 1, "Vui lòng nhập password !");
+    engine(email, 2, "Email cannot be blank");
+});
+
+// engine function which will do all the works
+
+let engine = (id, serial, message) => {
+    if (id.value.trim() === "") {
+        errorMsg[serial].innerHTML = message;
+        id.style.border = "1px solid red";
+    } else {
+        errorMsg[serial].innerHTML = "";
+        id.style.border = "1px solid green";
+
+    }
+};
 

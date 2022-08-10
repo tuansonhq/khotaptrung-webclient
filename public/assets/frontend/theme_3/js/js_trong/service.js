@@ -71,7 +71,7 @@ if (input_params_hide.length){
         // chọn một
         case '4':
             $("select[name=selected]").change(function (elm, select) {
-                itemselect = itemselect_value = parseInt($('select[name=selected] option').filter(':selected').val());
+                itemselect= itemselect_value = parseInt($('select[name=selected] option').filter(':selected').val());
                 UpdatePrice4();
             });
             $("select[name=server]").change(function (elm, select) {
