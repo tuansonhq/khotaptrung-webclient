@@ -20,8 +20,6 @@ class MinigameController extends Controller
             $data['secret_key'] = config('api.secret_key');
             $data['domain'] = \Request::server("HTTP_HOST");
 
-            // $group_api = Cache::get('minigame_list');
-            // if(!isset($group_api)){
             $url = '/minigame/get-list-minigame';
             $group_api = DirectAPI::_makeRequest($url,$data,$method);
             if (isset($group_api) && $group_api->response_code == 200 ) {
@@ -38,6 +36,7 @@ class MinigameController extends Controller
             foreach ($groups as $dataar) {
                 $group = $dataar;
             }
+
             $url = '/minigame/get-minigame-info';
             $data['id'] = $group->id;
             $data['module'] = explode('-', $group->module)[0];
