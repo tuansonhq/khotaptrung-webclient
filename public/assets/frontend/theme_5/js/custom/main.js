@@ -275,6 +275,52 @@ $(document).ready(function() {
         }
     }
 
+    /*Seemore nick*/
+    let content_desc_nick = $('.content-desc-nick');
+    if (content_desc_nick.length){
+        let max_height_desc_nick = content_desc_nick.outerHeight();
+        $(document).on('click','.see-more',function () {
+            handleToggle($(this));
+        });
+        content_desc.dblclick(function () {
+            handleToggle('.see-more');
+        })
+        /*set max-height for content*/
+        content_desc_nick.toggleClass('hide',true);
+        /*handle toggle*/
+        function handleToggle(selector) {
+            $(selector).toggleClass('hide');
+            content_desc_nick.toggleClass('hide');
+            if ($(selector).hasClass('hide')){
+                $(selector).attr('data-content','Ẩn bớt nội dung');
+                content_desc_nick.css('max-height',max_height_desc);
+            }else {
+                $(selector).attr('data-content','Xem thêm nội dung');
+                content_desc_nick.css('max-height','');
+            }
+        }
+        // dblclick on mobile
+        if (width < 1200) {
+            let touchtime = 0;
+            content_desc.on("click", function() {
+                if (!touchtime) {
+                    // set first click
+                    touchtime = new Date().getTime();
+                } else {
+                    // compare first click to this click and see if they occurred within double click threshold
+                    if (((new Date().getTime()) - touchtime) < 500) {
+                        // double click occurred
+                        handleToggle('.see-more');
+                        touchtime = 0;
+                    } else {
+                        // not a double click so set as a new first click
+                        touchtime = new Date().getTime();
+                    }
+                }
+            });
+        }
+    }
+
     /*Auto config noUiSlider JS*/
     let slider_input = $('.slider-input');
     if(slider_input.length){

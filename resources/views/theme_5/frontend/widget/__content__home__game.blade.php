@@ -59,7 +59,7 @@
             </h2>
             <a href="/muac-acc" class="link arr-right">Xem tất cả</a>
         </div>
-        <div class="list-category">
+        <div class="list-category content-desc-nick">
             @foreach($data as $item)
                 <div class="item-category c-px-8 c-mb-12 c-px-lg-6">
                     <div class="card">
@@ -90,7 +90,9 @@
                     </div>
                 </div>
             @endforeach
-
+        </div>
+        <div class="card-footer-nick text-center">
+            <span class="see-more" data-content="Xem thêm nội dung"></span>
         </div>
     </section>
 @endif
