@@ -1166,17 +1166,6 @@ input[type=text].buy-card-amount-input {
 .mobile-auth {
     position: fixed;
     background-color: #FFFFFF;
-    transform: translateX(0);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: all .2s ease-in-out;
-    z-index: 999;
-}
-
-.mobile-auth.hidden {
-    transform: translateX(100vw);
 }
 
 .mobile-auth-form form {

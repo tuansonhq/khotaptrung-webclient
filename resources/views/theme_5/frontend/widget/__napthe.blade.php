@@ -1,7 +1,9 @@
-<h2 class="section-title c-pt-12 c-pt-lg-6  c-mb-lg-8 d-none d-lg-flex">
-    <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
-    {{ $title??'' }}
-</h2>
+<div class="section-header c-pt-12 c-pt-lg-6 c-mb-24 c-mb-lg-20 justify-content-between">
+    <h2 class="section-title">
+        <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/son/naptien.svg)"></i>
+        {{ $title??'' }}
+    </h2>
+</div>
 
 {{--        nạp thẻ--}}
 
