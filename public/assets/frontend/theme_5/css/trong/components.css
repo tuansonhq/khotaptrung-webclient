@@ -656,6 +656,9 @@ section.outstanding-service {
     height: 64px;
     cursor: pointer;
 }
+.trans-list .trans-item:hover {
+    border-color: var(--primary-color);
+}
 .trans-list .trans-item a {
     display: flex;
     justify-content: space-between;
@@ -983,8 +986,8 @@ section.outstanding-service {
     .flash-sale {
         border-radius: 0;
         width: auto;
-        margin-right: -15px;
-        margin-left: -15px;
+        margin-right: -16px;
+        margin-left: -16px;
     }
 
     .flash-sale .section-header {

@@ -15,9 +15,9 @@
         </li>
     </ul>
     <div class="head-mobile">
-        <a href="{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug }}" class="link-back"></a>
+        <a href="/mua-acc/{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug }}" class="link-back"></a>
 
-        <h1 class="head-title text-title">Danh sách {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</h1>
+        <h1 class="head-title text-title text-limit limit-1">Danh sách {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</h1>
 
         <a href="/" class="home"></a>
     </div>
