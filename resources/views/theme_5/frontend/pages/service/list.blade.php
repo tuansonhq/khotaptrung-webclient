@@ -16,7 +16,13 @@
                 <a href="/dich-vu" class="breadcrumb-link">Dịch vụ</a>
             </li>
         </ul>
+        <div class="head-mobile">
+            <a href="/profile" class="link-back"></a>
 
+            <h1 class="head-title text-title">Dịch vụ</h1>
+
+            <a href="/" class="home"></a>
+        </div>
         {{--            Slider baner    --}}
         @include('frontend.widget.__slider__banner__service')
         {{--            Top hôm nay    --}}

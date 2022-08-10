@@ -22,7 +22,7 @@
         </ul>
 
         <div class="head-mobile">
-            <a href="javascript:void(0) " class="link-back close-step"></a>
+            <a href="/profile" class="link-back"></a>
 
             <h1 class="head-title text-title">Mua thẻ</h1>
 
