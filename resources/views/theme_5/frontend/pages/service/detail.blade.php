@@ -252,47 +252,6 @@
                             </div>
                         </div>
 
-                            <style>
-                                form div input {
-                                    outline: none;
-                                    border: 2px solid #c4c4c4;
-                                    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-                                }
-                                label {
-                                    display: block;
-                                    margin-bottom: 5px;
-                                }
-                                input:focus {
-                                    border: 2px solid #f2796e;
-                                }
-
-                                form div i {
-                                    position: absolute;
-                                }
-                                .error {
-                                    color: red;
-                                }
-
-                                .error {
-                                    font-size: 14.5px;
-                                    margin-top: 5px;
-                                }
-                                button {
-                                    background-color: #f2796e;
-                                    border: 2px solid #f2796e;
-                                    border-radius: 8px;
-                                    color: #fff;
-                                    font-size: 20px;
-                                    cursor: pointer;
-                                    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-                                    transition: all 0.1s ease;
-                                }
-                                button:hover {
-                                    opacity: 0.8;
-                                }
-
-                            </style>
-
                         <!-- service select mobile -->
                         <div class="d-block d-lg-none">
                             <div class="t-sub-1 title-color c-mb-8">
@@ -455,7 +414,7 @@
                                     <input class="text-title secondary" type="hidden" name="value" value="">
                                     <input class="text-title" type="hidden" name="selected" value="">
                                     <input class="text-title" type="hidden" name="server">
-                                    <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0
+                                    <div  style="color: #f473b9;font-weight: 500" class="txtPrice d-inline-block">0
                                         VNĐ
                                     </div>
                                     <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
@@ -494,7 +453,10 @@
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
-                <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
+                <input class="text-title secondary" type="hidden" name="value" value="">
+                <input class="text-title" type="hidden" name="selected" value="">
+                <input class="text-title" type="hidden" name="server">
+                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
                 <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
@@ -616,47 +578,24 @@
                         </div>
                     </div>
                     <div class="row marginauto modal-body-span-success-ct justify-content-center">
-                        <div class="col-md-12 text-center js-message-res" style="
-    padding-top: 12px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 24px;">
+                        <div class="col-md-12 text-center js-message-res successful-service-title">
                             <span></span>
                         </div>
-                        <div style="font-family: 'Roboto';
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 20px;
-text-align: center;
-color: #434657;
-">
+                        <div class="successful-service">
                             <p>Yêu cầu thuê đã được gửi đến Shop Cày Thuê Bạn vui lòng kiểm tra Email để xác nhận nha!</p>
                         </div>
                     </div>
                     <div class="row marginauto justify-content-center modal-footer-success-ct">
                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct c-pl-8 c-pr-8">
                             <div class="row marginauto modal-footer-success-row-not-ct">
-                                <div class="col-md-12 left-right " style="width: 134px;
-    text-align: center;
-    padding: 9px;
-    border: 1px solid;
-    border-radius: 7px;
-    color: #0E3EDA;">
+                                <div class="col-md-12 left-right successful-service-tag">
                                     <a href="/" class="button-not-bg-ct"><span style="color: #0E3EDA;">Yêu cầu hỗ trợ</span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct c-pl-8 c-pr-8">
                             <div class="row marginauto modal-footer-success-row-ct">
-                                <div class="col-md-12 left-right" style="width: 134px;
-    text-align: center;
-    padding: 9px;
-    border: 1px solid;
-    border-radius: 7px;
-   background-color: #0E3EDA;">
+                                <div class="col-md-12 left-right successful-service-tag1">
                                     <a href="/" class="button-bg-ct"><span style="color: #FFFFFF;">Trang chủ</span></a>
                                 </div>
                             </div>
@@ -667,30 +606,9 @@ color: #434657;
         </div>
     </div>
 
-
-    {{-- Thanh toans thanhf coong  --}}
-{{--    <div class="modal fade modal-small" id="orderSuccses">--}}
-{{--        <div class="modal-dialog modal-dialog-centered modal-custom">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header justify-content-center p-0">--}}
-{{--                    <img onerror="imgError(this)" class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png"--}}
-{{--                         alt="">--}}
-{{--                </div>--}}
-{{--                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">--}}
-{{--                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>--}}
-{{--                    <p class="fw-400 fz-13 c-mt-10 mb-0">--}}
-{{--                        Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-{{--                <div class="modal-footer c-p-24">--}}
-{{--                    <a class="btn primary" data-dismiss="modal">Lịch sử</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     {{--  sử lý step  --}}
-    <div class="step" id="step2">
+    <span class="d-none js-step stepService" data-target="#stepService"></span>
+    <div class="step " id="stepService">
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>
 
@@ -716,7 +634,7 @@ color: #434657;
                             Tài khoản
                         </div>
                         <div class="card--attr__value fz-13 fw-500">
-                            <a href="javascript:void(0)"class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                            <a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
                         </div>
                     </div>
                 </div>
@@ -838,10 +756,10 @@ color: #434657;
             $('[name="value"]').val(price);
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
-            $('#txtPrice').html(price + ' VNĐ');
+            $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val($(".s-filter").val());
 
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('tbody tr.selected').removeClass('selected');
@@ -884,14 +802,14 @@ color: #434657;
 
                     $('[name="selected"]').val(itemselect);
 
-                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass();
                     });
                 });
                 $('#btnPurchase').prop('disabled', false);
             } else {
-                $('#txtPrice').html('0 VNĐ');
-                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $('.txtPrice').html('0 VNĐ');
+                $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass();
                 });
                 $('#btnPurchase').prop('disabled', true);
@@ -899,7 +817,7 @@ color: #434657;
             }
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
-            $('#txtPrice').html(price + ' VNĐ');
+            $('.txtPrice').html(price + ' VNĐ');
         }
     </script>
     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
@@ -965,9 +883,9 @@ color: #434657;
             $('[name="value"]').val(price);
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
-            $('#txtPrice').html(price + ' VNĐ');
+            $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val(from + '|' + to);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('.nstSlider').nstSlider('set_position', from, to);
@@ -982,8 +900,8 @@ color: #434657;
     <script>
         var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
         var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
-        $('#txtPrice').html('');
-        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+        $('.txtPrice').html('');
+        $('.txtPrice').html('Tổng: 0 ' + purchase_name);
 
         function UpdatePrice() {
 
@@ -1032,7 +950,7 @@ color: #434657;
             if (typeof price != 'number' || price < min || price > max) {
                 $('button[type="submit"]').addClass('not-allow');
 
-                $('#txtPrice').html('Tiền nhập không đúng');
+                $('.txtPrice').html('Tiền nhập không đúng');
                 return;
             } else {
                 $('button[type="submit"]').removeClass('not-allow');
@@ -1072,9 +990,9 @@ color: #434657;
             $('#txtDiscount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
-            $('#txtPrice').html('');
-            $('#txtPrice').html(total + " " + purchase_name);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('.txtPrice').html('');
+            $('.txtPrice').html(total + " " + purchase_name);
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('[name="selected"]').val(price);

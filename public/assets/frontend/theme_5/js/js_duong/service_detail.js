@@ -268,12 +268,12 @@ $('body').on('click','.btnPay',function(){
             }
         });
     }
+
     if (is_ok){
         if ($(document).width() > 1200) {
             $('#orderModal').modal('show');
         }else {
-            console.log(123)
-            $('#step2').trigger('click')
+            $('.stepService').trigger('click')
         }
     }
 });
