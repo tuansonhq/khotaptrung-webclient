@@ -12,7 +12,6 @@
         })
 
         $('body').on('click','.logsHisMinigame',function(e){
-            console.log(2323232)
             $('.modal-logs-minigame').modal('show');
         })
     </script>
