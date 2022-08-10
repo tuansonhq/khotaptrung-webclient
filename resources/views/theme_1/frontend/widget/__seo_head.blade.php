@@ -25,26 +25,36 @@
 
 @if(Request::is('tin-tuc'))
     <meta name="description" content="Tin tức">
+    <meta property="og:description" content="Tin tức"/>
 @elseif(Request::is('mua-acc'))
+
     <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
+    <meta property="og:description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước."/>
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <meta name="description" content="{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}">
+        <meta property="og:description" content="{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}"/>
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <meta name="description" content="{{ $data->description??'' }}">
+        <meta property="og:description" content="{{ $data->description??'' }}"/>
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
     <meta name="description" content="{{ $data->description??'' }}">
+    <meta property="og:description" content="{{ $data->description??'' }}"/>
     @endif
 @elseif(Request::is('dich-vu'))
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
+    <meta property="og:description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ..."/>
 @elseif(isset($title->description))
     <meta name="description" content="{{ $title->description??'' }}">
+    <meta property="og:description" content="{{ $title->description??'' }}"/>
 @elseif(isset($data->description))
     <meta name="description" content="{{ $data->description??'' }}">
+    <meta property="og:description" content="{{ $data->description??'' }}"/>
 @else
     <meta name="description" content="{{ setting('sys_description') }}">
+    <meta property="og:description" content="{{ setting('sys_description') }}"/>
 @endif
 
 @if(isset($data->randId))
