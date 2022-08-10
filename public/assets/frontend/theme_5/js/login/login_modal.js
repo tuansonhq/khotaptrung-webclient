@@ -8,10 +8,10 @@ function openLoginModal(){
                 $('#loginModal #modal-login-container').removeClass('right-panel-active');
             }, 200);
         } else {
-            $('.mobile-auth').toggleClass('hidden');
             $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
             $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
             $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+            $('.mobile-auth').css('transform', 'translateX(0)');
         }
     }, 0);
 }
