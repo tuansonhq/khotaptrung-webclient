@@ -22,7 +22,9 @@
         </ul>
 
         <div class="head-mobile">
-            <a href="/profile" class="link-back"></a>
+
+            <a href="/service-mobile" class="link-back"></a>
+
 
             <h1 class="head-title text-title">Mua thẻ</h1>
 
@@ -33,7 +35,7 @@
             @include('frontend.widget.__slider__banner__napthe')
         </div>
 
-        <div class="row c-mt-16">
+        <div class="row c-mt-16 c-mt-lg-0">
             <div class="col-12 col-lg-3 c-pr-12 c-p-sm-0">
                 <h1 class="buy-card-title fw-700 fz-20 lh-28 c-mt-0 c-mb-8 c-py-8 d-none d-lg-block">Mua thẻ</h1>
                 <div class="buy-card-container brs-12 brs-lg-0">
@@ -166,12 +168,21 @@
                                     <span class="buy-card-total fw-500 fz-15"></span>
                                 </div>
                             </div>
+                            @if (\App\Library\AuthCustom::check())
                             <button class="btn primary w-100 d-none d-lg-block" id="btn-confirm" data-toggle="modal" data-target="#modalConfirmPayment" type="button">
                                 Mua ngay
                             </button>
                             <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
                                 <button id="btn-confirm-mobile" class="btn primary js-step" data-target="#step2" type="button">Mua ngay</button>
                             </div>
+                            @else
+                                <button class="btn primary w-100 d-none d-lg-block" onclick="openLoginModal();" type="button">
+                                    Mua ngay
+                                </button>
+                                <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                    <button class="btn primary js-step" onclick="openLoginModal();" type="button">Mua ngay</button>
+                                </div>
+                            @endif
                         </div>
 
                     </div>

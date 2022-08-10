@@ -21,14 +21,18 @@
                     </a>
 
                 </div>
+                <form action="" id="formProfile">
+                    @csrf
+                    <input type="hidden" name="user_id" id="user_id" value="">
+                </form>
                 <ul class="nav">
-
 
                     <li class="nav-log-in">
                         <a href="#" id="info">
                             <div class="loading"></div>
                         </a>
                     </li>
+
                     <li class="nav-log-in">
                         <a href="#" id="logout">
                             <div class="loading"></div>
