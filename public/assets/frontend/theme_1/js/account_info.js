@@ -143,10 +143,11 @@ $(document).ready(function(){
 
                     $('#logout-form').attr('href','/logout')
 
-
-
                     $('#logout').attr('onclick','event.preventDefault();\ndocument.getElementById(\'logout-form\').submit();')
-                    $('#info').html('<i class="fas fa-user"></i> '+ fn(data.info.username, 6)  +' - $' +formatNumber(data.info.balance))
+                    $('#info').html('<i class="fas fa-user"></i> '+ fn(data.info.username, 6)  +' - $' +formatNumber(data.info.balance));
+
+                    $('#formProfile #user_id').val(data.info.id);
+
                     $('#logout').html('<i class="fas fa-user"></i> Đăng xuất')
 
 

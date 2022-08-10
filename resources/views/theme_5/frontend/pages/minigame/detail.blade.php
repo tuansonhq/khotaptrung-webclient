@@ -12,7 +12,7 @@
         })
 
         $('body').on('click','.logsHisMinigame',function(e){
-            $('#minigameLogs').modal('show');
+            $('.modal-logs-minigame').modal('show');
         })
     </script>
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/minigame.css">
@@ -783,10 +783,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
 {{--        Modal lịch sử   --}}
 
-        @if(isset($logs))
         <div class="modal fade modal-big modal-logs-minigame" id="minigameLogs">
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content c-p-24">
@@ -805,12 +805,14 @@
                                     </tr>
                                     </thead>
                                         <tbody>
+                                        @if(isset($logs))
                                       @foreach($logs->log as $item)
                                         <tr class="row marginauto">
                                             <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
                                             <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
                                         </tr>
                                       @endforeach
+                                        @endif
 
                                         </tbody>
                                 </table>
@@ -826,7 +828,7 @@
                 </div>
             </div>
         </div>
-         @endif
+{{--         @endif--}}
         <!-- Sheet Thể lệ  -->
         <div class="bottom-sheet" id="sheet-filter" aria-hidden="true" data-height="36">
             <div class="layer"></div>
@@ -853,7 +855,7 @@
 {{--     bottom-sheet lịch sử   --}}
 
     <!-- Sheet Filter Mobile -->
-        @if(isset($logs))
+
         <div class="bottom-sheet" id="sheet-filter-02" aria-hidden="true" data-height="50">
             <div class="layer"></div>
             <div class="content-bottom-sheet bar-slide">
@@ -876,13 +878,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @if(isset($logs))
                                     @foreach($logs->log as $item)
                                         <tr class="row marginauto">
                                             <td class="text-left col-auto fw-400 fz-13 lh-20 c-pl-16 c-pt-8 c-pb-8 pr-0">{{$item->item_ref->title}}</td>
                                             <td class="text-right col-auto ml-auto fw-400 fz-13 lh-20 pl-0 c-pt-8 c-pb-8 c-pr-16">{{$item->created_at}}</td>
                                         </tr>
                                     @endforeach
-
+                                    @endif
 
                                     </tbody>
                                 </table>
@@ -895,7 +898,7 @@
                 </form>
             </div>
         </div>
-        @endif
+
     </div>
 
     <input type="hidden" class="started_at" name="started_at" value="{{ $result->group->started_at??0 }}">

@@ -190,7 +190,7 @@
                                                             <input autocomplete="off" class="input-defautf-ct username"
                                                                    id="username"
                                                                    name="customer_data{{$k_send_name}}" type="text"
-                                                                   placeholder="{{$send_name_text}}" required>
+                                                                   placeholder="{{$send_name_text}}" required_service>
                                                             <div class="error"></div>
                                                         </div>
                                                         <div class="col-md-12 left-right message-error">
@@ -210,7 +210,7 @@
                                                                    name="customer_data{{$k_send_name}}"
                                                                    class="input-defautf-ct password"
                                                                    type="password"
-                                                                   placeholder="{{$send_name_text}}" required>
+                                                                   placeholder="{{$send_name_text}}" required_service>
                                                             <div class="error"></div>
                                                             <div class="show-btn-password">
                                                                 <img onerror="imgError(this)" class="lazy"
@@ -235,7 +235,7 @@
                                                                                 </span>
                                                                 <input id="customer_data{{$k_send_name}}"
                                                                        type="checkbox" class="confirm-rules"
-                                                                       name="customer_data{{$k_send_name}}" required>
+                                                                       name="customer_data{{$k_send_name}}" required_service>
                                                                 <div class="error"></div>
                                                                 <span class="input-ratio-checkmark-ct --overwrite"></span>
                                                             </label>
@@ -458,9 +458,7 @@
                                     <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0
                                         VNĐ
                                     </div>
-                                    <button type="button" id="btnPurchase" class="btn primary btnPay" data-toggle="modal"
-                                            data-target="#orderModal">Thanh toán
-                                    </button>
+                                    <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
                                 </div>
                             </div>
                             <h2 class="text-title fw-700 title-color-lg c-my-16">
@@ -497,7 +495,7 @@
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
                 <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
-                <button type="button" class="btn primary js-step btnPay" data-target="#step2">Giao dịch ngay</button>
+                <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
 
