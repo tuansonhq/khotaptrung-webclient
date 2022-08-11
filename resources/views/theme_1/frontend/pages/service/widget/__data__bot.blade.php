@@ -42,12 +42,13 @@
                                     <span style="color:#DA4343;font-weight: bold">[OFFLINE]</span>
                                 @endif
                             </td>
-                        </tr>
-                    @endif
-                @endforeach
+                         </tr>
+                      @endif
+                  @endforeach
 
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
