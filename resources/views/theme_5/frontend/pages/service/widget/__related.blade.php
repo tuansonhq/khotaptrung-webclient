@@ -12,7 +12,7 @@
             <div class="swiper-slide">
                 <div class="card">
                     <div class="card-body c-p-16 scale-thumb">
-                        <a href="/dich-vu/{{$service->id}}">
+                        <a href="/dich-vu/{{$service->slug}}">
                             <div class="card-thumb c-mb-8">
                                 <img onerror="imgError(this)" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="" class="card-thumb-image">
                             </div>
