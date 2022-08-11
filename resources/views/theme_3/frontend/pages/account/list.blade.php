@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
 @section('content')
     {{--  Header mobile  --}}
     <section class="media-mobile">
@@ -7,13 +9,13 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="" class="previous-step-one" style="line-height: 28px">
+                    <a href="/mua-acc" class="previous-step-one" style="line-height: 28px">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Danh sách Nick</h3>
+                    <p>Mua Acc</p>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -58,7 +60,7 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h3>{{ $data->custom->title ? $data->custom->title : $data->title }}</h3>
+                                    <h1>{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +135,7 @@
                                             </label>
                                         </div>
                                         <div class="col-auto left-right item-sort-nick">
-                                            <input checked id="sort-32" class="sort" type="radio" name="sort" value="price_end" hidden>
+                                            <input checked id="sort-3" class="sort" type="radio" name="sort" value="price_end" hidden>
                                             <label for="sort-3" class="item-sort-nick-label">
                                                 <span>Giá tăng dần</span>
                                             </label>
@@ -157,6 +159,38 @@
                         </div>
 
                         <div id="account_data" style="width: 100%;">
+
+                        </div>
+
+                        <div id="listLoader" style="width: 100%;">
+                            <div class="loader position-relative" style="padding: 1rem">
+                                <div class="loading-spokes">
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                    <div class="spoke-container">
+                                        <div class="spoke"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 
@@ -174,6 +208,8 @@
 
     @include('frontend.pages.account.widget.__related__category')
 
+    @include('frontend.pages.account.widget.__category__content')
+
     <div class="modal fade login show order-modal" id="openFinter" aria-modal="true">
 
         <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
@@ -190,7 +226,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form id="accountFilter" action="">
+                    <form id="data_sort" action="">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -199,7 +235,7 @@
                                         <small>Mã số</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="id_data" placeholder="Nhập mã số">
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +284,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}"">
+                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
                                                         <option value="" selected disabled>--Không chọn--</option>
                                                         @foreach($val->childs as $child)
                                                             <option value="{{ $child->id }}">{{ $child->title }}</option>
@@ -274,7 +310,7 @@
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
-                                                <button class="button-default-modal-ct button-modal-nick openSuccess" type="submit">Áp dụng</button>
+                                                <button class="button-default-modal-ct button-modal-nick btn-ap-dung" type="button">Áp dụng</button>
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +351,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right title-tra-gop-success">
+                        {{-- <div class="col-md-12 left-right title-tra-gop-success">
                             <div class="row body-title-detail-ct">
                                 <div class="col-md-12 text-left body-title-detail-col-ct">
                                     <div class="row marginauto">
@@ -339,21 +375,11 @@
                                         </div>
 
                                         <div class="col-md-12 left-right data-child">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+
                                         </div>
 
                                         <div class="col-md-12 left-right data-ttbxung">
-{{--                                            <div class="row marginauto add-child">--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-{{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
-{{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+
                                         </div>
                                     </div>
                                 </div>
@@ -377,21 +403,22 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto justify-content-center gallery-right-footer">
                                 <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                     <div class="row marginauto modal-footer-success-row-not-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="javascript:void(0)" class="button-not-bg-ct close-modal-success"><span>Đóng</span></a>
+                                            {{-- <a href="javascript:void(0)" class="button-not-bg-ct close-modal-default"><span>Đóng</span></a> --}}
+                                            <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/change-password" class="button-bg-ct"><span>Đổi mật khẩu</span></a>
+                                            <a href="/lich-su-mua-account" class="button-bg-ct"><span>Lịch sử mua Acc</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -416,7 +443,8 @@
 
     <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>
 @endsection
 
 

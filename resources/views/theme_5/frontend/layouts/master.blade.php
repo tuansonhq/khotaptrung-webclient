@@ -9,11 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="path" content=""/>
     <meta name="jwt" content="jwt"/>
+    @yield('meta_robots')
     {{--    <meta name="google-site-verification" content="{{setting('sys_google_search_console')}}" />--}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">
     <!--    swiper-->
@@ -26,95 +26,121 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.css">
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/style.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
-    @if (!Auth::check())
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
-    @endif
+
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/login_modal.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/normalize.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/phu/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/header.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-category.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-bottom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/slide-banner.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/change-password.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/range-slider-master/css/rSlider.min.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
+
+{{--js--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
 
 {{--    import css --}}
     @yield('styles')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
 </head>
 <body>
+
+@include('frontend.layouts.includes.header')
+<div class="layout" >
+    <div class="content" style="">
+        @yield('content')
+    </div>
+</div>
+
+
+@include('frontend.layouts.includes.footer')
+
+@include('frontend.layouts.includes.menu-bottom')
+<div class="modal-loader-container">
+    <div class="modal-loader-content">
+        <span class="modal-loader-spin"></span>
+    </div>
+</div>
+@include('frontend.widget.modal.__login')
+<!-- Messenger Plugin chat Code -->
 @if(Session::has('check_login'))
     <script>
         $(document).ready(function () {
-            $('#loginModal').modal('show');
+            let width = $(window).width();
+            setTimeout(function(){
+                if ( width > 1200 ) {
+                    $('#loginModal').modal('show');
+                    setTimeout(() => {
+                        $('#loginModal #modal-login-container').removeClass('right-panel-active');
+                    }, 200);
+                } else {
+                    $('.mobile-auth').toggleClass('hidden');
+                    $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+                    $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+                    $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+                }
+            }, 0);
         });
     </script>
     @php
         Session::pull('check_login');
     @endphp
 @endif
-<script>
-    $(document).ready(function () {
-        @if(Request::is('nap-the'))
 
-        $('#nav-charge').addClass('nav-profile-active')
-        @elseif(Request::is('mua-the'))
-        $('#nav-store').addClass('nav-profile-active')
-        @elseif(Request::is('mua-acc'))
-        $('#nav-buy__acc').addClass('nav-profile-active')
-        @elseif(Request::is('dich-vu'))
-        $('#nav-service').addClass('nav-profile-active')
-        @elseif(Request::is('recharge-game'))
-        $('#nav-recharge_game').addClass('nav-profile-active')
-        @elseif(Request::is('minigame'))
-        $('#nav-minigame').addClass('nav-profile-active')
-        @endif
-    })
-</script>
-@include('frontend.layouts.includes.header')
-<div class="layout">
-
-
-    <div class="content" style="">
-        @yield('content')
-    </div>
-
-
-</div>
-@if(Request::is('/'))
-@include('frontend.layouts.includes.footer')
-
+@if (!\App\Library\AuthCustom::check())
+    @include('frontend.widget.modal.__login')
 @endif
-@if (!Auth::check())
-    @include('theme_3.frontend.widget.modal.__login')
+@if(!Request::is('/'))
+    @if(Session::has('url_return.id_return'))
+        @php
+            Session::forget('url_return.id_return');
+        @endphp
+    @endif
 @endif
 
-<!-- Messenger Plugin chat Code -->
-@if (!Auth::check())
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>
-@endif
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/login/login_modal.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/nouislider/nouislider.min.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/fancybox.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/fancybox/jquery.fancybox.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/slider.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
-
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/validate-form/validate.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/config/form-validate.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/header.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/swiper-banner.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/login.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js" defer></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
 {{--impport script--}}
 @yield('scripts')
 </body>

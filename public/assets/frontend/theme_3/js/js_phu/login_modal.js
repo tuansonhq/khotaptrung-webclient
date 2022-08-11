@@ -9,6 +9,7 @@ function openLoginModal(){
             }, 200);
         } else {
             $('.mobile-auth').toggleClass('mobile-auth-show');
+            $('.menu-category-mobile').removeClass('menu-category-mobile_show');
         }
     }, 0);
 }

@@ -1,108 +1,272 @@
 @extends('frontend.layouts.master')
-@section('styles')
-    <link rel="stylesheet" href="/assets/{{env('THEME_VERSION')}}/css/style_trong.css">
-@endsection
-@section('scripts')
-    <script src="/assets/{{env('THEME_VERSION')}}/js/js_trong/script_trong.js"></script>
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
 @endsection
 @section('content')
-    <div class="container-fix container">
-        {{--breadcrum--}}
-        <ul class="breadcrum--list">
-            <li class="breadcrum--item">
-                <a href="/" class="breadcrum--link">Trang chủ</a>
-            </li>
-            <li class="breadcrum--item">
-                <a href="/lich-su-giao-dich" class="breadcrum--link">Lịch sử giao dịch</a>
-            </li>
-            <li class="breadcrum--item">
-                <a href="/lich-su-dich-vu" class="breadcrum--link">Dịch vụ đã mua</a>
-            </li>
-            <li class="breadcrum--item">
-                <a href="/nhan-tin" class="breadcrum--link">Nhắn tin</a>
-            </li>
-        </ul>
-        <div class="row m-0">
-            {{--navbar--}}
-            @include('theme_3.frontend.widget.__navbar__profile')
-            {{--content--}}
-            <div class="col-12 col-lg-9 order--detail">
-                <div class="card--mobile__title">
-                    <a href="/lich-su-dich-vu" class="card--back">
-                        <img src="/assets/{{env('THEME_VERSION')}}/image/icons/back.png" alt="">
-                    </a>
-                    <h4>Gửi tin nhắn</h4>
-                </div>
-                <div class="card --custom">
-                    <div class="card--header  hidden-mobile">
-                        <h4 class="card--header__title">
-                            Gửi tin nhắn
-                        </h4>
-                    </div>
-                    <div class="card--body">
-                        <div class="row">
-                            <div class="col-12 col-lg-6 px-3 px-lg-3">
-                                <div class="pt-0 pt-lg-3 pb-1 mb-2">
-                                    <span class="text--sm__title">Thông tin tài khoản</span>
-                                </div>
-                                <div class="card--rise --gray m-0">
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Mã số acc:<span class="card__info">##539084</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Tài khoản:<span class="card__info">Test</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order__attr">
-                                        <div class="card__attr">
-                                            <div class="card--value__attr">
-                                                Thời gian mua:<span class="card__info">01/01/2021 - 4:12</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pt-3 pb-1 mb-2">
-                                    <span class="text--sm__title">Trao đổi dịch vụ: <span class="text--primary">#539084</span></span>
-                                </div>
-                                <div class="mb-2">
-                                    <span class="text--sm__title">Nội dung</span>
-                                </div>
-                                <textarea name="content" class="textarea--content" id="" placeholder="Nhập nội dung nếu cần thiết"></textarea>
-                                <div class="pt-2 mb-2">
-                                    <span class="text--sm__title">Hình ảnh</span>
-                                </div>
-                                <input type="file" name="image" class="input--file" accept="image/png,image/jpeg">
-                                <div class="pt-2 mt-1 d-flex align-items-center">
-                                    <label class="input--checkbox mr-2">
-                                        <input type="checkbox" name="complain" id="complain" hidden>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="label--checkbox__input ml-1" for="complain">Khiếu nại</label>
-                                </div>
-                                <div class="pt-3">
-                                    <span class="text--sm__title">Mã bảo vệ</span>
-                                </div>
-                                <div class="mt-2 mb-4 d-flex align-items-center captcha--code__group">
-                                    <input type="text" name="captcha-code" id="" class="input--text input-defautf-ct" placeholder="Nhập mã bảo vệ">
-                                    <div class="captcha--code ml-3 mr-2">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/captcha-code-demo.png" alt="" class="captcha--code__image">
-                                    </div>
-                                    <a href="" class="captcha--refresh">
-                                        <img src="/assets/{{env('THEME_VERSION')}}/image/captcha-refresh.png" alt="" class="captcha--refresh__image">
-                                    </a>
-                                </div>
-                                <button class="btn -primary btn-big">Gửi tin nhắn</button>
-                            </div>
+
+    <section>
+        <div class="container">
+
+            <div class="row user-manager">
+                @include('frontend.widget.__menu_profile')
+
+                <div class="col-12 col-md-8 col-lg-9 site-form" style="min-height: 212.568px;background: #ffffff;border-radius: 8px">
+                    <div class="account_sidebar_content" style="padding: 16px 8px">
+
+                        <div class="c-content-title-1 pt-3" style="border-bottom: 1px solid #3f444a;">
+                            <h3 class="c-font-uppercase c-font-bold" style="font-size: 30px;font-weight: bold;text-transform: uppercase;">Gửi tin nhắn</h3>
+                            <div class="c-line-left"></div>
                         </div>
+
+                        <div style="float: left;width: 100%;padding-top: 24px">
+                            <h2 style="text-align: center;font-size: 25px;color: #3f444a;margin-bottom: 0">
+                                Trao đổi dịch vụ <a href="/dich-vu-da-mua-{{$item->id}}" style="color: rgb(238, 70, 35);">#{{$item->id}}</a>
+                            </h2>
+                            <div class="error-chat">
+
+                            </div>
+                            <div class="edu-history-sec" id="experience">
+
+                                @forelse($inbox  ?: [] as $aInbox)
+
+                                    <div id="msg{{$aInbox->id}}" class="edu-history style2">
+                                        <i></i>
+                                        <div class="edu-hisinfo">
+                                            @if($conversation->type==1)
+
+                                                @if($aInbox->user->id == $conversation->author_id)
+                                                    <h3>Người yêu cầu(order)</h3>
+                                                @elseif($aInbox->user->id == $conversation->buyer_id)
+                                                    <h3>Người thực hiện</h3>
+                                                @else
+                                                    <h3>Người hỗ trợ</h3>
+                                                @endif
+
+                                            @else
+
+                                                @if($aInbox->user->user_id==$conversation->author_id)
+                                                    <h3>Người bán</h3>
+                                                @elseif($aInbox->user->user_id==$conversation->buyer_id)
+                                                    <h3>Người mua</h3>
+                                                @else
+                                                    <h3>Người hỗ trợ</h3>
+                                                @endif
+
+                                            @endif
+
+                                            <p><span>{{\App\Library\Helpers::ConvertToAgoTime($aInbox->created_at)}}</span>: {{$aInbox->message}}</p>
+
+                                            @if(isset($aInbox) && $aInbox->image != "")
+                                                <div class="mess-gallery m-t-20">
+                                                    @foreach(explode('|', $aInbox->image) as $img)
+                                                        <a href="{{$img}}" target="_blank"><img src="{{\App\Library\Files::media($img)}}" style="max-height: 200px; max-width: 100%;">
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div style="padding:20px 0;font-weight: 400;color: #3f444a;">Chưa có nội dung trao đổi</div>
+                                @endforelse
+
+                            </div>
+
+                        </div>
+
+                        <div style="float: left;width: 100%">
+
+                            <form method="POST" id="chatFrom" enctype="multipart/form-data" action="/inbox/send/{{$item->id}}" accept-charset="UTF-8" class="form-horizontal form-charge">
+                                {{csrf_field()}}
+
+                                <div class="left-right col-sm-offset-1 col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 left-right control-label" style="color: #000000;font-weight: bold">Nội dung:</label>
+                                        <div class="col-sm-12 left-right">
+                                            <textarea type="email" rows="4" class="form-control c-square" name="message"></textarea>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-12 left-right control-label" style="color: #000000;font-weight: bold">Hình ảnh:</label>
+                                        <div class="col-sm-12 left-right">
+
+                                            <input type="file" name="image" accept="image/*" multiple="">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 left-right">
+                                            <div class="checkbox">
+                                                <input id="complain" type="checkbox" value="1" name="complain" style="width: 16px;height: 16px">
+                                                <label for="complain" style="padding-left: 0px;cursor: pointer;margin-left: 8px;font-weight: 400;color: #3f444a;">
+                                                    Khiếu nại
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 left-right control-label" style="color: #000000;font-weight: bold">Mã bảo vệ:</label>
+                                        <div class="col-sm-12 left-right">
+                                            <div class="input-group col-sm-6 left-right">
+
+                                                <input type="text" class="form-control c-square" id="captcha" name="captcha" placeholder="Mã bảo vệ" maxlength="3" autocomplete="off" required="">
+                                                <span class="input-group-addon" style="padding: 1px;">
+                                            <img style="margin-left: 16px;border: 1px solid #3f444a;padding: 4px 16px;border-radius: 4px;" src="https://frontend.dev.tichhop.pro/captcha/flat?fZKKlIWM" height="38px" id="imgcaptcha" onclick="document.getElementById('imgcaptcha').src ='https://frontend.dev.tichhop.pro/captcha/flat?xuoVLxFi'+Math.random();document.getElementById('captcha').focus();">
+                                        </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group text-right">
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="background: rgb(238, 70, 35);border: 2px solid rgb(238, 70, 35);color: #ffffff">Gửi tin nhắn</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+
                     </div>
+
                 </div>
+
             </div>
-        </div>
+
+        </div><!-- /.container -->
+    </section>
+    <!-- END: PAGE CONTENT -->
+    <style>
+        .checkbox label:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .checkbox .cr {
+            position: relative;
+            display: inline-block;
+            border: 1px solid #a9a9a9;
+            border-radius: .25em;
+            width: 1.3em;
+            height: 1.3em;
+            float: left;
+            margin-right: .5em;
+        }
+
+        .checkbox .cr .cr-icon {
+            position: absolute;
+            font-size: .8em;
+            line-height: 0;
+            top: 50%;
+            left: 15%;
+        }
+
+        .checkbox label input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox label input[type="checkbox"]+.cr>.cr-icon {
+            opacity: 0;
+        }
+
+        .checkbox label input[type="checkbox"]:checked+.cr>.cr-icon {
+            opacity: 1;
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#chatFrom').submit(function (e) {
+                e.preventDefault();
+                var formSubmit = $(this);
+                var url = formSubmit.attr('action');
+                var btnSubmit = formSubmit.find(':submit');
+                btnSubmit.prop('disabled', true);
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: formSubmit.serialize(), // serializes the form's elements.
+                    beforeSend: function (xhr) {
+
+                    },
+                    success: function (response) {
+
+                        if(response.status == 1){
+
+                            swal({
+                                title: "Gửi tin nhắn thành công",
+                                type: "success",
+                                confirmButtonText: "Về dịch vụ đã mua",
+                                showCancelButton: true,
+                                cancelButtonText: "Đóng",
+                            })
+                                .then((result) => {
+                                    if (result.value) {
+                                        window.location = '/dich-vu-da-mua';
+                                    } else if (result.dismiss === "Đóng") {
+                                        location.reload();
+                                    }else {
+                                        location.reload();
+                                    }
+                                })
+                        }
+                        else if (response.status == 2){
+                            $('.loadModal__acount').modal('hide');
+
+                            swal(
+                                'Thông báo!',
+                                response.message,
+                                'warning'
+                            )
+                            $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                        }else {
+                            $('.loadModal__acount').modal('hide');
+                            swal(
+                                'Lỗi!',
+                                response.message,
+                                'error'
+                            )
+                            $('.loginBox__layma__button__displayabs').prop('disabled', false);
+                        }
+                        $('.loading-data__muangay').html('');
+                    },
+                    error: function (response) {
+                        if(response.status === 422 || response.status === 429) {
+                            let errors = response.responseJSON.errors;
+
+                            jQuery.each(errors, function(index, itemData) {
+
+                                formSubmit.find('.notify-error').text(itemData[0]);
+                                return false; // breaks
+                            });
+                        }else if(response.status === 0){
+                            alert(response.message);
+                            $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+response.message+'</span>');
+                        }
+                        else {
+                            $('#text__errors').html('<span class="text-danger pb-2" style="font-size: 14px">'+'Kết nối với hệ thống thất bại.Xin vui lòng thử lại'+'</span>');
+                        }
+                    },
+                    complete: function (data) {
+                        btnSubmit.prop('disabled', false);
+                    }
+                })
+
+
+            })
+        })
+
+    </script>
+{{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/historydetail.css">--}}
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/service-history-detail.js"></script>
 @endsection
+
+

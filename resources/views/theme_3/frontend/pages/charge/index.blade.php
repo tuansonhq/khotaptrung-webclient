@@ -1,4 +1,7 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/lib_bootstrap.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/minigame.css">
@@ -14,7 +17,7 @@
                 <section class="media-mobile">
                     <div class=" banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
-                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" >
+                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
                                 <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                             </div>
 
@@ -29,17 +32,17 @@
                 <section class="media-web mb-fix-16">
                     <div class=" menu-container-ct">
                         <ul class="d-flex" style="float: inherit">
-                            <li><a href="">Trang chủ</a></li>
+                            <li><a href="/">Trang chủ</a></li>
                             <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                            <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>
-                            {{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
-                            {{--                            <li class="menu-container-li-ct"><a href="">Cày xếp hạng ELO/ Liên Minh</a></li>--}}
+{{--                            <li class="menu-container-li-ct"><a href="">Nạp tiền</a></li>--}}
+{{--                            <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>--}}
+                            <li class="menu-container-li-ct"><a href="" id="charge_title">@if(Request::is('nap-the')) Nạp thẻ cào @elseif(Request::is('recharge-atm'))  ATM tự động @endif</a></li>
                         </ul>
                     </div>
                 </section>
                 <div class="row">
-                    <div class="col-lg-5 col-md-12"  style="min-height: 100%">
-                        <div class=" block-product "  style="min-height: 780px">
+                    <div class="col-lg-8 col-md-12"  style="min-height: 100%">
+                        <div class=" block-product "  style="min-height: 532px">
                             <div class="product-header d-none d-md-flex">
                                 <span>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
@@ -47,14 +50,14 @@
                                 <p class="text-title" >Nạp tiền</p>
                                 <div class="navbar-spacer"></div>
                             </div>
-                            <div class="box-product " >
+                            <div class="box-product position-static" >
                                 <div class="default-tab pr-fix-16 pl-fix-16">
                                 <ul class="nav justify-content-between row" role="tablist" >
                                     <li class="nav-item col-6 col-md-6 p-0  p-md-0" role="presentation">
-                                        <a  class="nav-link active text-center " data-toggle="tab" href="#charge_card" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
+                                        <a  class="nav-link @if(Request::is('nap-the')) active @endif  text-center " data-toggle="tab" href="#charge_card" id="nav_charge" role="tab" aria-selected="true">Nạp thẻ <span class="d-g-none">cào</span> </a>
                                     </li >
                                     <li class="nav-item col-6 col-md-6 p-0 p-md-0" role="presentation">
-                                        <a  class="nav-link text-center "  data-toggle="tab" href="#atm_card" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
+                                        <a  class="nav-link @if(Request::is('recharge-atm')) active @endif text-center "  data-toggle="tab" href="#atm_card" id="nav_charge_atm" role="tab" aria-selected="false"> ATM <span class="d-g-none">tự động</span> </a>
                                     </li>
 {{--                                    <li class="nav-item col-6col-md-6 p-0 p-md-0" role="presentation">--}}
 {{--                                        <a  class="nav-link text-center " data-toggle="tab" href="#wallet_card" role="tab" aria-selected="false">Ví điện tử</a>--}}
@@ -62,7 +65,7 @@
                                 </ul>
                             </div>
                                 <div class=" tab-content">
-                                <div class="tab-pane fade active show  mt-3" id="charge_card" role="tabpanel" >
+                                <div class="tab-pane @if(Request::is('nap-the')) active show @endif fade   mt-3" id="charge_card" role="tabpanel" >
                                     <div class="loading-data">
                                         <div class="loader">
                                             <div class="loading-spokes">
@@ -95,90 +98,161 @@
                                     </div>
                                     <form action="{{route('postTelecomDepositAuto')}}" method="POST" class="form-charge hide_charge" id="form-charge2">
                                         @csrf
-                                        <div class="box-charge-card">
-                                            <div class="default-form-group mb-fix-20">
-                                                <label class="text-form">Nhà cung cấp</label>
-                                                <div class="col-md-12 p-0" >
-                                                    <select class="select-form w-100" name="type" id="telecom">
+                                        <div class="box-charge-card row">
+                                            <div class="col-md-6">
+                                                <div class="default-form-group mb-fix-20">
+                                                    <label class="text-form">Nhà cung cấp</label>
+                                                    <div class="col-md-12 p-0" >
+                                                        <select class="select-form w-100" name="type" id="telecom">
 
 
-                                                    </select>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="default-form-group mb-fix-20">
-                                                <label class="text-form">Chọn mệnh giá</label>
-                                                <div class="col-md-12 p-0" >
-                                                    <div class="row m-0" id="amount">
-                                                        <div class="amount-loading">
-                                                            <div class="loader">
-                                                                <div class="loading-spokes">
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
-                                                                    </div>
-                                                                    <div class="spoke-container">
-                                                                        <div class="spoke"></div>
+                                                <div class="default-form-group mb-fix-20  d-block d-lg-none">
+                                                    <label class="text-form" >Chọn mệnh giá</label>
+                                                    <div class="col-md-12 p-0" >
+                                                        <div class="row m-0" id="amount_mobile">
+                                                            <div class="amount-loading">
+                                                                <div class="loader">
+                                                                    <div class="loading-spokes">
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="default-form-group mb-fix-20">
+                                                    <label class="text-form">Mã số thẻ</label>
+                                                    <div class="col-md-12 p-0">
+                                                        <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" required>
 
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="default-form-group mb-fix-20">
-                                                <label class="text-form">Mã số thẻ</label>
-                                                <div class="col-md-12 p-0">
-                                                    <input class="input-form w-100" type="text" name="pin" placeholder="Nhập mã số thẻ" required>
+                                                <div class="default-form-group mb-fix-20">
+                                                    <label class="text-form">Số Seri</label>
+                                                    <div class="col-md-12 p-0">
+                                                        <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" required>
 
-                                                </div>
-                                            </div>
-                                            <div class="default-form-group mb-fix-20">
-                                                <label class="text-form">Số Seri</label>
-                                                <div class="col-md-12 p-0">
-                                                    <input class="input-form w-100" type="text" name="serial" placeholder="Nhập số seri thẻ" required>
-
-                                                </div>
-                                            </div>
-                                            <div class="default-form-group mb-fix-20">
-                                                <label class="text-form">Mã bảo vệ</label>
-                                                <div class="col-md-12 p-0 d-flex">
-                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
-                                                    <div class="captcha captcha_1" >
-                                                        <span class="reload">
-                                                             {!! captcha_img('flat') !!}
-                                                        </span>
                                                     </div>
-                                                    <button class="refresh-captcha" id="reload_1" type="button">
-                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
-                                                    </button>
+                                                </div>
+                                                <div class="default-form-group mb-fix-20">
+                                                    <label class="text-form">Mã bảo vệ</label>
+                                                    <div class="row p-0">
+                                                        <div class="col-md-12 d-flex ">
+                                                            <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
+                                                            <div class="captcha captcha_1" >
+                                                            <span class="reload">
+                                                                 {!! captcha_img('flat') !!}
+                                                            </span>
+                                                            </div>
+                                                            <button class="refresh-captcha" id="reload_1" type="button">
+                                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
+                                                            </button>
+
+                                                        </div>
+{{--                                                        <div class="col-md-5 mt-md-fix-20 d-none d-md-block">--}}
+{{--                                                            <button  class=" primary-button button-default-ct w-75 w-md-100"  type="submit" style="float: right">--}}
+{{--                                                                Nạp ngay--}}
+{{--                                                            </button>--}}
+{{--                                                        </div>--}}
+                                                    </div>
 
                                                 </div>
                                             </div>
-                                            <div class="default-form-group mb-fix-20 d-none d-md-block ">
-{{--                                                btn-charge-data--}}
-                                                <button  class="w-100 primary-button button-default-ct " type="submit">
+                                            <div class="col-md-6  d-none d-lg-flex" style="    justify-content: space-between;flex-direction: column;">
+                                                <div class="default-form-group mb-fix-20">
+                                                    <label class="text-form">Chọn mệnh giá</label>
+                                                    <div class="col-md-12 p-0" >
+                                                        <div class="row m-0 amount_charge" id="amount">
+                                                            <div class="amount-loading">
+                                                                <div class="loader">
+                                                                    <div class="loading-spokes">
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                        <div class="spoke-container">
+                                                                            <div class="spoke"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
                                                     Nạp ngay
                                                 </button>
+
                                             </div>
-                                            <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none">
+
+
+{{--                                            <div class="default-form-group mb-fix-20">--}}
+{{--                                                <label class="text-form">Mã bảo vệ</label>--}}
+{{--                                                <div class="col-md-12 p-0 d-flex">--}}
+{{--                                                    <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>--}}
+{{--                                                    <div class="captcha captcha_1" >--}}
+{{--                                                        <span class="reload">--}}
+{{--                                                             {!! captcha_img('flat') !!}--}}
+{{--                                                        </span>--}}
+{{--                                                    </div>--}}
+{{--                                                    <button class="refresh-captcha" id="reload_1" type="button">--}}
+{{--                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">--}}
+{{--                                                    </button>--}}
+
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="default-form-group mb-fix-20 d-none d-md-block ">--}}
+{{--                                                btn-charge-data--}}
+{{--                                                <button  class="w-100 primary-button button-default-ct " type="submit">--}}
+{{--                                                    Nạp ngay--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+                                            <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile d-block d-md-none" style="padding-top: 0">
                                                 <div class="row marginauto" style="padding: 12px 16px">
                                                     <div class="col-md-12 left-right">
                                                         <button id="charge_next" class="button-default-ct button-next-step-one" type="submit">Nạp ngay</button>
@@ -189,7 +263,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade  mt-3 " id="atm_card" role="tabpanel" >
+                                <div class="tab-pane  @if(Request::is('recharge-atm')) active show @endif fade  mt-3 " id="atm_card" role="tabpanel" >
                                     <form action="">
                                         <div class="box-charge-card">
 {{--                                            <div class="atm-card-title mb-fix-20">--}}
@@ -200,7 +274,7 @@
                                                     @if (setting('sys_tranfer_content') != "")
                                                         {!! setting('sys_tranfer_content') !!}
                                                     @endif
-                                                    <div class="card--attr">
+                                                    <div class="card--attr transfer-title">
                                                         <div class="card--attr__name">
                                                             Nội dung chuyển tiền
                                                         </div>
@@ -222,7 +296,7 @@
                             </div>
                          </div>
                     </div>
-                    <div class="col-lg-7 col-md-12 pl-0 d-g-md-none " style="min-height: 100%">
+                    <div class="col-lg-4 col-md-12 pl-0 d-g-md-none  " style="min-height: 100%">
                         <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
                     </div>
                  </div>
@@ -311,8 +385,8 @@
                                         <div class="col-auto left-right background-order-col-left-ct">
                                             <span>Số tiền thực nhận</span>
                                         </div>
-                                        <div class="col-auto left-right background-order-col-right-ct">
-                                            <span>97.000 đ</span>
+                                        <div class="col-auto left-right background-order-col-right-ct charge_total">
+
                                         </div>
                                     </div>
                                 </div>
@@ -342,6 +416,7 @@
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
+
     <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
 
 @endsection

@@ -1,317 +1,372 @@
 @extends('frontend.layouts.master')
-@section('styles')
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/distance.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
-@endsection
-@section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/buy-card.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/input.js"></script>
-@endsection
 @section('content')
-    <div class="container-fix container" id="buy-card">
-        <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
-        {{--        BANNER --}}
-        <div class="poster__banner _mt-125 _mt-sm-0">
-            <div class="swiper js--swiper__banner mb-n4">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="banner__link">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" class="banner__image" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination --custom"></div>
-            </div>
-        </div>
-        {{--        END BANNER--}}
-        {{--breadcrum--}}
-        <ul class="breadcrum--list">
-            <li class="breadcrum--item">
-                <a href="/" class="breadcrum--link">Trang chủ</a>
+    <div class="container c-container">
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="" class="breadcrumb-link">Trang chủ</a>
             </li>
-            <li class="breadcrum--item">
-                <a href="/mua-the" class="breadcrum--link">Mua thẻ</a>
+            <li class="breadcrumb-item">
+                <a href="" class="breadcrumb-link">Mua thẻ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="" class="breadcrumb-link">Thẻ game</a>
             </li>
         </ul>
-        {{-- end breadcrum--}}
-        <div class="row mx-0">
-            {{--            NAV CATEGORY--}}
-            <div class="col-lg-3 d-none d-lg-block pl-0 _pr-125">
-                <div class="card --custom card__nav">
-                    <div class="card--head _py-075 pl-3">
-                        <div class="card--title">Danh mục thẻ</div>
-                    </div>
-                    <div class="card--body">
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--game__nav" role="button"
-                           aria-expanded="true">
-                            <span class="section--card__title">
-                                THẺ GAME
-                            </span>
-                            <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
-                            </span>
-                        </a>
-                        <ul class="collapse card-list show" id="card--game__nav">
-                            {{-- CARD LINK HERE--}}
-                        </ul>
 
-                        <a class="section--card p-lg-3" data-toggle="collapse" href="#card--phone__nav" role="button"
-                           aria-expanded="true">
-                            <span class="section--card__title">
-                                THẺ ĐIỆN THOẠI
-                            </span>
-                            <span class="d-flex align-items-center">
-                                <i class="__icon --arrow --path__custom"
-                                   style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrows/arrow-down.png)"></i>
-                            </span>
-                        </a>
-                        <ul class="collapse card-list show" id="card--phone__nav">
-                            {{-- CARD LINK HERE--}}
+        @include('frontend.widget.__slider__banner')
+        <div class="row c-mt-16">
+            <div class="col-12 col-lg-3 c-pr-12 c-p-sm-0">
+                <h1 class="buy-card-title fw-700 fz-20 lh-28 c-mt-0 c-mb-8 c-py-8 d-none d-lg-block">Mua thẻ</h1>
+                <div class="buy-card-container brs-12 brs-lg-0">
+                    <div class="buy-card-tab brs-12 brs-lg-0 c-px-15">
+                        <ul class="nav justify-content-between row" role="tablist" >
+                            <li class="nav-item col-6 col-lg-12 p-0" role="presentation">
+                                <p class="nav-link active mb-0 c-py-10 fw-500 fz-15" data-toggle="tab" href="#gameCard" role="tab" aria-selected="true">Thẻ Game</p>
+                            </li >
+                            <li class="nav-item col-6 col-lg-12 p-0" role="presentation">
+                                <p class="nav-link mb-0 c-py-10 fw-500 fz-15" data-toggle="tab" href="#mobileCard" role="tab" aria-selected="false">Thẻ điện thoại</p>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            {{--            END NAV CATEGORY--}}
+            <div class="head-mobile">
+                <a href="#" class="link-back close-step"></a>
 
-{{--            PAGE TITLE MOBILE--}}
-            <div class="card --custom col-12 d-block d-lg-none">
-                <div class="page--mobile__title">
-                    Danh mục thẻ
+                <h1 class="head-title text-title">Mua thẻ</h1>
+
+                <a href="/" class="home"></a>
+            </div>
+            <div class="col-12 col-lg-9 c-pl-12 c-p-sm-0">
+                <div class="tab-content c-px-sm-16">
+                    <div class="tab-pane fade active show" id="gameCard" role="tabpanel">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-12 col-md-6 c-pr-12 c-pl-12">
+                                    <div class="buy-card-section c-mb-16 c-mb-sm-0">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                        <div class="col-md-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_0" type="radio" hidden="" checked="">
+                                                    <label for="recharge_amount_0" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_1" type="radio" hidden="">
+                                                    <label for="recharge_amount_1" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_2" type="radio" hidden="">
+                                                    <label for="recharge_amount_2" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_3" type="radio" hidden="">
+                                                    <label for="recharge_amount_3" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_4" type="radio" hidden="">
+                                                    <label for="recharge_amount_4" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_5" type="radio" hidden="">
+                                                    <label for="recharge_amount_5" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_6" type="radio" hidden="">
+                                                    <label for="recharge_amount_6" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_7" type="radio" hidden="">
+                                                    <label for="recharge_amount_7" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 c-pl-12 c-pr-sm-12">
+                                    <div class="buy-card-section c-mb-16">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
+                                        <div class="col-md-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_0" type="radio" hidden="" checked="">
+                                                    <label for="recharge_amount_0" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_1" type="radio" hidden="">
+                                                    <label for="recharge_amount_1" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_2" type="radio" hidden="">
+                                                    <label for="recharge_amount_2" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_3" type="radio" hidden="">
+                                                    <label for="recharge_amount_3" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_4" type="radio" hidden="">
+                                                    <label for="recharge_amount_4" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_5" type="radio" hidden="">
+                                                    <label for="recharge_amount_5" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_6" type="radio" hidden="">
+                                                    <label for="recharge_amount_6" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_7" type="radio" hidden="">
+                                                    <label for="recharge_amount_7" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="buy-card-info c-p-16 c-mb-20 brs-12">
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
+                                            <div class="buy-card-amount d-flex js-quantity">
+                                                <button class="buy-card-amount-button d-flex button-minus js-quantity-minus" type="button">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
+                                                </button>
+                                                <input type="text" name="card-amount" class="buy-card-amount-input js-quantity-input" value="1" numberic>
+                                                <button class="buy-card-amount-button d-flex button-add js-quantity-add" type="button">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <input name="card-discount" type="hidden" value="">
+                                            <span class="buy-card-info-title fw-500 fz-13">Chiết khấu</span>
+                                            <span class="buy-card-discount fw-400 fz-13">1%</span>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center">
+                                            <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
+                                            <span class="buy-card-total fw-500 fz-15">18.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
+                                        Mua ngay
+                                    </button>
+                                    <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                        <button class="btn primary" type="submit">Mua ngay</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="mobileCard" role="tabpanel" >
+                        <form action="">
+                            <div class="row">
+                                <div class="col-12 col-md-6 c-pr-12 c-pl-12">
+                                    <div class="buy-card-section c-mb-16 c-mb-sm-0">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
+                                        <div class="col-md-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_0" type="radio" hidden="" checked="">
+                                                    <label for="recharge_amount_0" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_1" type="radio" hidden="">
+                                                    <label for="recharge_amount_1" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 c-py-0 card-type-form">
+                                                    <input name="amount" id="recharge_amount_2" type="radio" hidden="">
+                                                    <label for="recharge_amount_2" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_3" type="radio" hidden="">
+                                                    <label for="recharge_amount_3" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_4" type="radio" hidden="">
+                                                    <label for="recharge_amount_4" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_5" type="radio" hidden="">
+                                                    <label for="recharge_amount_5" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_6" type="radio" hidden="">
+                                                    <label for="recharge_amount_6" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-type-form">
+                                                    <input name="amount" id="recharge_amount_7" type="radio" hidden="">
+                                                    <label for="recharge_amount_7" class="brs-8 c-mb-8">
+                                                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/zing.png" alt="">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 c-pl-12 c-pr-sm-12">
+                                    <div class="buy-card-section c-mb-16">
+                                        <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
+                                        <div class="col-md-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_0" type="radio" hidden="" checked="">
+                                                    <label for="recharge_amount_0" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_1" type="radio" hidden="">
+                                                    <label for="recharge_amount_1" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_2" type="radio" hidden="">
+                                                    <label for="recharge_amount_2" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_3" type="radio" hidden="">
+                                                    <label for="recharge_amount_3" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_4" type="radio" hidden="">
+                                                    <label for="recharge_amount_4" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_5" type="radio" hidden="">
+                                                    <label for="recharge_amount_5" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_6" type="radio" hidden="">
+                                                    <label for="recharge_amount_6" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                                <div class="col-4 c-px-4 card-price-form">
+                                                    <input name="amount" id="recharge_amount_7" type="radio" hidden="">
+                                                    <label for="recharge_amount_7" class="c-py-21 c-px-8 c-mb-8 brs-8">
+                                                        <p class="fw-500 fs-15 mb-0">10.000đ</p>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="buy-card-info c-p-16 c-mb-20 brs-12">
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <span class="buy-card-info-title fw-500 fz-13">Số lượng thẻ</span>
+                                            <div class="buy-card-amount d-flex">
+                                                <button class="buy-card-amount-button d-flex button-minus">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/minus.png" alt="">
+                                                </button>
+                                                <input type="text" name="card-amount" class="buy-card-amount-input" value="1" numberic>
+                                                <button class="buy-card-amount-button d-flex button-add">
+                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/phu/add.png" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center c-mb-12">
+                                            <input name="card-discount" type="hidden" value="">
+                                            <span class="buy-card-info-title fw-500 fz-13">Chiết khấu</span>
+                                            <span class="buy-card-discount fw-400 fz-13">1%</span>
+                                        </div>
+                                        <div class="buy-card-info-block d-flex justify-content-between align-items-center">
+                                            <span class="buy-card-info-title fw-500 fz-13">Thành tiền</span>
+                                            <span class="buy-card-total fw-500 fz-15">18.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn primary w-100 d-none d-lg-block" type="submit">
+                                        Mua ngay
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-{{--            END PAGE TITLE MOBILE--}}
-
-            {{--            PAGE CONTENT--}}
-            <div class="col-12 col-lg-9 p-0 page--card__content">
-                {{--            CARD GAME --}}
-                <div class="card --custom _mb-125 _mb-sm-075 px-3 px-lg-0" id="card-game">
-                    <div class="card--head px-lg-3 _py-075">
-                        <div class="card--title">
-                            Thẻ Game
-                        </div>
-                    </div>
-                    <div class="card--body p-lg-2">
-                        <div class="row mx-lg-0 _px-sm-075 _pb-sm-075" id="grid--game__card">
-                                {{-- SHOW CARD HERE--}}
-                            <div class="loader position-relative">
-                                <div class="loading-spokes">
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{--            END CARD GAME--}}
-
-                {{--            CARD PHONE--}}
-                <div class="card --custom _mb-125 _mb-sm-075 px-3 px-lg-0" id="card-phone">
-                    <div class="card--head px-lg-3 _py-075">
-                        <div class="card--title">
-                            Thẻ Điện Thoại
-                        </div>
-                    </div>
-                    <div class="card--body p-lg-2">
-                        <div class="row mx-lg-0 _px-sm-075 _pb-sm-075"  id="grid--phone__card">
-                            {{-- SHOW CARD HERE--}}
-                            <div class="loader position-relative">
-                                <div class="loading-spokes">
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                    <div class="spoke-container">
-                                        <div class="spoke"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{--            END CARD PHONE--}}
-
-                {{--            SERVICE RELATED--}}
-                <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
-                    <div class="card--header _m-125 _m-sm-0 _pb-125">
-                        <div class="card--header__title">
-                            <img width="24" height="24" src="/assets/frontend/{{theme('')->theme_key}}/image/icons/icon-title-service-related-buy-card.png"
-                                 class="mr-2 d-block d-lg-none" alt="icon">
-                            <h4>Các dịch vụ liên quan</h4>
-                        </div>
-                        <div class="card--header__tools">
-                            <a href="/tin-tuc/slug" class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
-                                                                                    style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-right-blue.png)"></i></a>
-                        </div>
-                    </div>
-                    <div class="card--body px-lg-3">
-                        <div class="swiper js-swipe-service overflow-hidden mb-lg-3">
-                            <div class="swiper-wrapper service--wrap">
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-3 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                                <div class="swiper-slide service--item">
-                                    <div class="service--thumb">
-                                        <a href="">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/mua-the/frame-6105.png"
-                                                 class="service--thumb__image" alt="">
-                                        </a>
-                                    </div>
-                                    <a href="" class="service--name p-lg-2 mt-lg-2">
-                                        Vòng quay may mắn
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{--            END SERVICE RELATED--}}
-
-                {{--                SERVICE DESC--}}
-                <div class="card --custom p-3 p-lg-3">
-                    <div class="card--desc__title mb-4">
-                        Mô tả dịch vụ
-                    </div>
-                    <div class="card--desc__content content-video-in-add p-0">
-                        {!! setting('sys_store_card_content') !!}
-                    </div>
-                    <div class="col-md-12 left-right text-center js-toggle-content">
-                        <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
-                        </div>
-                        <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
-                        </div>
-                    </div>
-                </div>
-                {{--                END SERVICE DESC--}}
-
-            </div>
-            {{--            END PAGE CONTENT--}}
         </div>
+
+        <h2 class="text-title-bold fz-20 lh-28 d-none d-lg-block c-mb-8">Mô tả dịch vụ</h2>
+        <div class="card overflow-hidden d-none d-lg-block">
+            <div class="card-body c-px-16">
+                <div class="content-desc">
+                    Garena Liên Quân Mobile có nguồn gốc từ trò chơi Vương Giả Vinh Diệu (Honor of Kings) của Tencent Games phát triển và phát hành tại Trung Quốc. Vì trò chơi Vương Giả Vinh Diệu có những nhân vật trong lịch sử Trung Quốc nên không phát hành ở nước ngoài. Vì vậy Tencent Games đã thay đổi, cải thiện hình ảnh các nhân vật lên quốc tế hóa và phân phối cho Garena phát hành tại thị trường Đài Loan với tên Truyền Thuyết Đối Quyết (tiếng Trung: 傳說對決) vào ngày 14/10/2016. Về sau trò chơi được Garena phát hành ở các nước Đông Nam Á còn lại và do chính Tencent Games phát hành ở Châu Âu, Châu Mỹ và Ấn Độ.
+                    <br>
+                    <br>
+                    Vào tháng 4 năm 2017, nhà phát triển Tencent Games mua lại bản quyền hình ảnh các nhân vật siêu anh hùng đến từ công ty DC Comics, cho ra mắt ở máy chủ thử nghiệm với các vị tướng độc quyền DC như Batman, Superman, Joker, Wonder Woman, The Flash rồi phát hành rộng rãi lên các máy chủ chính thức.
+                    <br>
+                    <br>
+                    Ngày 29 tháng 7 năm 2018 được đánh dấu như là ngày kỷ niệm sinh nhật Liên Quân đầu tiên trên toàn thế giới, đồng thời đây cũng là ngày trận chung kết AWC 2018 diễn ra tại Los Angeles, Hoa Kỳ.
+                    <br>
+                    Garena Liên Quân Mobile có nguồn gốc từ trò chơi Vương Giả Vinh Diệu (Honor of Kings) của Tencent Games phát triển và phát hành tại Trung Quốc. Vì trò chơi Vương Giả Vinh Diệu có những nhân vật trong lịch sử Trung Quốc nên không phát hành ở nước ngoài. Vì vậy Tencent Games đã thay đổi, cải thiện hình ảnh các nhân vật lên quốc tế hóa và phân phối cho Garena phát hành tại thị trường Đài Loan với tên Truyền Thuyết Đối Quyết (tiếng Trung: 傳說對決) vào ngày 14/10/2016. Về sau trò chơi được Garena phát hành ở các nước Đông Nam Á còn lại và do chính Tencent Games phát hành ở Châu Âu, Châu Mỹ và Ấn Độ.
+                    <br>
+                    <br>
+                    Vào tháng 4 năm 2017, nhà phát triển Tencent Games mua lại bản quyền hình ảnh các nhân vật siêu anh hùng đến từ công ty DC Comics, cho ra mắt ở máy chủ thử nghiệm với các vị tướng độc quyền DC như Batman, Superman, Joker, Wonder Woman, The Flash rồi phát hành rộng rãi lên các máy chủ chính thức.
+                    <br>
+                    <br>
+                    Ngày 29 tháng 7 năm 2018 được đánh dấu như là ngày kỷ niệm sinh nhật Liên Quân đầu tiên trên toàn thế giới, đồng thời đây cũng là ngày trận chung kết AWC 2018 diễn ra tại Los Angeles, Hoa Kỳ.
+                    <br>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <span class="see-more" data-content="Xem thêm nội dung"></span>
+            </div>
+        </div>
+        <div class="c-my-32 d-none d-lg-block">
+            @include('frontend/widget/__services__other')
+        </div>
+
     </div>
 @endsection

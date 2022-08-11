@@ -1,5 +1,5 @@
 @if(isset($data))
-
+    @if($data->status == 1)
     <div class="row marginauto">
         <div class="col-lg-6 col-md-12 shop_product_detailS__col">
             <div class="gallery" style="overflow: hidden">
@@ -66,35 +66,90 @@
                     <div class="row gallery__02">
                         <div class="col-md-12 gallery__01__row">
                             <div class="row">
-                                <div class="col-md-5 col-sm-5 col-5">
-                                    <div class="row text-left">
-                                        <div class="col-md-12">
-                                            <span class="gallery__02__span__02">THẺ CÀO</span>
+                                @if(isset($card_percent))
+                                    @if($card_percent == 0)
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-left">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">THẺ CÀO</span>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+                                        <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
+                                            <div class="row text-center">
+                                                <div class="col-md-12">
+                                                    <span class="hoac">Hoặc</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-right">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">ATM</span>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    @if(isset($data->price_atm))
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
+                                                    @endif
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-5 col-sm-5 col-5">
+                                            <div class="row text-left">
+                                                <div class="col-md-12">
+                                                    <span class="gallery__02__span__02">ATM</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    @if(isset($data->price_atm))
+                                                        <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="col-md-5 col-sm-5 col-5">
+                                        <div class="row text-left">
+                                            <div class="col-md-12">
+                                                <span class="gallery__02__span__02">THẺ CÀO</span>
+                                            </div>
+                                            <div class="col-md-12">
+
+                                                <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
-                                    <div class="row text-center">
-                                        <div class="col-md-12">
-                                            <span class="hoac">Hoặc</span>
+                                    <div class="col-md-2 col-sm-2 col-2 gallery__01__span__02md">
+                                        <div class="row text-center">
+                                            <div class="col-md-12">
+                                                <span class="hoac">Hoặc</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-5 col-sm-5 col-5">
-                                    <div class="row text-right">
-                                        <div class="col-md-12">
-                                            <span class="gallery__02__span__02">ATM chỉ cần</span>
-                                        </div>
-                                        <div class="col-md-12">
-                                            @if(isset($data->price_atm))
-                                                <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
-                                            @endif
+                                    <div class="col-md-5 col-sm-5 col-5">
+                                        <div class="row text-right">
+                                            <div class="col-md-12">
+                                                <span class="gallery__02__span__02">ATM</span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                @if(isset($data->price_atm))
+                                                    <span class="gallery__01__span__02">{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
+
+
                             </div>
                         </div>
                     </div>
@@ -126,28 +181,42 @@
                         @endif
                     @endforeach
                 @endif
+
                 @if(isset($data->params) && isset($data->params->ext_info))
                     <?php $params = json_decode(json_encode($data->params->ext_info),true) ?>
-                    @foreach($params as $key => $param)
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">{{ $key }}</span>
-                                        </div>
-                                        <div class="col-md-6 col-6 pl-0">
-                                            <span class="span__dangky">{{ $param }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                    @if(isset($dataAttribute))
+                        @foreach($dataAttribute as $index=>$att)
+                            @if($att->position == 'text')
+                                @if(isset($att->childs))
+                                    @foreach($att->childs as $child)
+                                        @foreach($params as $key => $param)
+                                            @if($key == $child->id && $child->is_slug_override == null)
+                                                <div class="col-md-12">
+                                                    <div class="row gallery__03">
+                                                        <div class="col-md-12 gallery__01__row">
+                                                            <div class="row">
+                                                                <div class="col-auto span__dangky__auto">
+                                                                    <i class="fas fa-angle-right"></i>
+                                                                </div>
+                                                                <div class="col-md-4 col-4 pl-0">
+                                                                    <span class="span__dangky">{{ $child->title??'' }}</span>
+                                                                </div>
+                                                                <div class="col-md-6 col-6 pl-0">
+                                                                    <span class="span__dangky">{{ $param }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endforeach
+                                @endif
+                            @endif
+                        @endforeach
+                    @endif
                 @endif
+
                 <div class="col-md-12 gallery__bottom">
                     <div class="row text-center">
                         <div class="col-md-12 gallery__01__row">
@@ -183,6 +252,7 @@
                 </div>
             </div>
         </div>
+
         <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog__account" role="document">
                 <div class="loader" style="text-align: center"><img src="/assets/frontend/{{theme('')->theme_key}}/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
@@ -304,11 +374,11 @@
 
                             @if(App\Library\AuthCustom::check())
 
-                                @if(App\Library\AuthCustom::user()->balance > $data->price)
-                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
-                                @else
+                                @if(App\Library\AuthCustom::user()->balance < $data->price)
                                     <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
                                     <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                @else
+                                    <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                 @endif
                             @else
                                 <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/acc/{{ $data->randId }}">Đăng nhập</a>
@@ -710,6 +780,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    @endif
+    @else
+        <div class="container pt-3">
+            <div class="row pb-3 pt-3">
+                <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                </div>
+            </div>
+
         </div>
     @endif
 @endif

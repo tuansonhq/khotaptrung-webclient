@@ -37,14 +37,8 @@ class ArticleController extends Controller
                 if (isset($data->to)){
                     $per_page = $data->to;
                 }
-
-                $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page,$data->data);
-
+                $data = new LengthAwarePaginator($data->data, $data->total , $data->per_page, $data->current_page,$data->data);
                 $data->setPath($request->url());
-
-                Session::forget('return_url');
-                Session::put('return_url', $_SERVER['REQUEST_URI']);
-
                 return view('frontend.pages.article.list')
                     ->with('total',$total)
                     ->with('per_page',$per_page)
@@ -93,7 +87,7 @@ class ArticleController extends Controller
                     ->with('slug',$slug)
                     ->with('data',$data);
 
-            }else{
+            }else {
 
                 $data = $response_data->data;
                 $title = $response_data->categoryarticle;
@@ -108,7 +102,7 @@ class ArticleController extends Controller
                     ->with('slug',$slug);
             }
         }
-        else{
+        else {
             $data = null;
             $message = $response_data->message??"Không thể lấy dữ liệu";
 

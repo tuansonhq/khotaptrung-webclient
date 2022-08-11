@@ -1,17 +1,17 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
-@section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
-@endsection
+
 @section('content')
     @if($data == null)
         <div class="item_buy">
-
             <div class="container pt-3">
                 <div class="row pb-3 pt-3">
                     <div class="col-md-12 text-center">
@@ -24,12 +24,9 @@
                             </span>
                     </div>
                 </div>
-
             </div>
-
         </div>
     @else
-
         @if(isset($data->params) && isset($data->params->article_type))
             {!! $data->params->article_type !!}
         @endif
@@ -48,16 +45,16 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <a href="" class="card--back">
+            <a href="/tin-tuc" class="card--back">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
             </a>
-            <h4>Chi tiết tin tức</h4>
+            <p>Chi tiết tin tức</p>
         </div>
         <div class="card --custom p-3 mb-3">
             <article id="article--detail">
-                <h3 class="article--title">
+                <h1 class="article--title">
                     {{$data -> title}}
-                </h3>
+                </h1>
                 <div class="article--info">
                     {{ formatDateTime($data->created_at) }}
                 </div>

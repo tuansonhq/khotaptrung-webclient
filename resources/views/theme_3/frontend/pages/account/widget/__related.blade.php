@@ -20,20 +20,17 @@
                                     <div class="swiper-slide body-detail-nick-slider-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
                                             <div class="row marginauto ">
-                                                <div class="col-md-12 left-right default-overlay-nick-ct">
+                                                <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail">
                                                     @if(isset($item->image))
                                                         <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                                     @else
-                                                        <img class="" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
+                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
                                                     <div class="row marginauto list-item-nick-body">
                                                         <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
-                                                            <span>{{ $item->title }}</span>
-                                                        </div>
-                                                        <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
-                                                            <small>ID: {{ $item->randId }}</small>
+                                                            <span>ID: {{ $item->randId }}</span>
                                                         </div>
                                                         <?php
                                                             $index = 0;
@@ -46,11 +43,12 @@
                                                             @foreach($att_values as $att_value)
                     
                                                                 @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                    <?php
-                                                                    $index++;
-                                                                    ?>
-                                                                    @if($index < 5)
+                                                                    
+                                                                    @if($index < 4)
                                                                         @if(isset($att_value->parent))
+                                                                            <?php
+                                                                                $index++;
+                                                                            ?>
                                                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                                                 <small>{{ $att_value->parent->title??null }}: {{ isset($att_value->title) ? \Str::limit($att_value->title,16) : null }}</small>
                                                                             </div>
@@ -59,6 +57,13 @@
                                                                 @endif
                                                             @endforeach
                                                         @endif
+
+                                                        @if ($index < 4)
+                                                            @for ($i = 0; $i < 4 - $index; $i++)
+                                                            <div class="col-md-12 left-right text-left body-detail-account-small-span-ct"></div>
+                                                            @endfor
+                                                        @endif
+
                                                         <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
                                                             <ul>
                                                                 @if(isset($item->price))

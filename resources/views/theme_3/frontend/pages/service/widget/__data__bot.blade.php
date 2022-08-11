@@ -2,7 +2,7 @@
     <div class="col-md-12 left-right px-3 px-lg-0">
         <div class="row marginauto">
             <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                <small>Vị trí (Mặc định ở vách núi KAKAROT Khu 39)</small>
+                <small>Vị trí (Mặc định ở vách núi KAKAROT)</small>
             </div>
         </div>
     </div>
@@ -19,19 +19,17 @@
                 </thead>
                 <tbody>
                 @foreach($data_bot as $key=> $bot)
+                    @if($bot->active == 'on')
                     <tr>
                         <td>{{ ++$key }}</td>
                         <td>{{ $bot->uname }}</td>
 
                         <td>{{ $bot->zone }}</td>
                         <td>
-                            @if($bot->active == 'on')
-                                <div class="tag__status --online">Online</div>
-                            @else
-                                <div class="tag__status --offline">Offline</div>
-                            @endif
+                            <div class="tag__status --online">Online</div>
                         </td>
                     </tr>
+                    @endif
                 @endforeach
 
                 </tbody>

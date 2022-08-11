@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
 @section('content')
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
@@ -7,6 +9,37 @@
         </div>
 
         {{--   Bopđyy --}}
+        <section id="detailLoader">
+            <div class="loader position-relative" style="margin: 4rem 0">
+                <div class="loading-spokes">
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="spoke-container">
+                        <div class="spoke"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="showdetailacc">
             {{-- @include('frontend.pages.account.widget.__datadetail') --}}
         </section>
@@ -214,12 +247,12 @@
                                 <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                             </div>
                         </div>
-    
+
                     </div>
-    
+
                     <div class="modal-body modal-body-order-ct">
                         <div class="row marginauto">
-    
+
                             <div class="col-md-12 left-right image-success">
                                 <div class="row marginauto justify-content-center">
                                     <div class="col-auto">
@@ -227,8 +260,8 @@
                                     </div>
                                 </div>
                             </div>
-    
-                            <div class="col-md-12 left-right title-tra-gop-success">
+
+                            {{-- <div class="col-md-12 left-right title-tra-gop-success">
                                 <div class="row body-title-detail-ct">
                                     <div class="col-md-12 text-left body-title-detail-col-ct">
                                         <div class="row marginauto">
@@ -250,33 +283,23 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="col-md-12 left-right data-child">
-    {{--                                            <div class="row marginauto add-child">--}}
-    {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-    {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">--}}
-    {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-    {{--                                                </div>--}}
-    {{--                                            </div>--}}
+
                                             </div>
-    
+
                                             <div class="col-md-12 left-right data-ttbxung">
-    {{--                                            <div class="row marginauto add-child">--}}
-    {{--                                                <div class="col-md-12 left-right body-title-detail-span-ct"><span>Tài khoản</span></div>--}}
-    {{--                                                <div class="col-md-12 left-right body-title-detail-select-ct email-success-nick  data-child">--}}
-    {{--                                                    <input readonly autocomplete="off" class="input-defautf-ct" id="email" type="text" value="namok@gmail.com">--}}
-    {{--                                                </div>--}}
-    {{--                                            </div>--}}
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-    
+                            </div> --}}
+
                             <div class="col-md-12 left-right title-tra-gop text-center data-time">
                             </div>
-    
-                            <div class="col-md-12 left-right padding-order-16-ct">
+
+                            {{-- <div class="col-md-12 left-right padding-order-16-ct">
                                 <div class="row marginauto">
                                     <div class="col-md-12 left-right background-order-ct">
                                         <div class="row marginauto title-success-thanh-cong">
@@ -288,25 +311,21 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
                                 </div>
-                            </div>
-    
+                            </div> --}}
+
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto justify-content-center gallery-right-footer">
                                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                        <div class="row marginauto modal-footer-success-row-not-ct">
-                                            <div class="col-md-12 left-right">
-                                                <a href="javascript:void(0)" class="button-not-bg-ct close-modal-default"><span>Đóng</span></a>
-                                            </div>
-                                        </div>
+                                        <button type="button" class="button-success-secondary">
+                                            <a href="/" style="display: block">Về trang chủ</a>
+                                        </button>
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                        <div class="row marginauto modal-footer-success-row-ct">
-                                            <div class="col-md-12 left-right">
-                                                <a href="/change-password" class="button-bg-ct"><span>Đổi mật khẩu</span></a>
-                                            </div>
-                                        </div>
+                                        <button type="button" class="button-success-primary">
+                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử mua Acc</a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -314,7 +333,7 @@
                     </div>
                 </div>
             </div>
-    
+
         </div>
 
         <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
@@ -510,6 +529,8 @@
     </fieldset> --}}
 
     <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
+    <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-detail.js?v={{time()}}"></script>
 @endsection
 

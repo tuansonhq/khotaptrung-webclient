@@ -84,8 +84,7 @@ class ServiceController extends Controller
             $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $data->current_page, $data->data);
             $data->setPath($request->url());
 
-            Session::forget('return_url');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             Session::put('path', $_SERVER['REQUEST_URI']);
 
             return view('frontend.pages.service.list')->with('data', $data);
@@ -188,6 +187,7 @@ class ServiceController extends Controller
             }
         }
     }
+
     public function getLogs(Request $request)
     {
         if (AuthCustom::check()) {
@@ -208,16 +208,15 @@ class ServiceController extends Controller
 
                 $dataSend['page'] = $page;
 
-                if (isset($request->id) || $request->id != '' || $request->id != null) {
-
+                if ($request->filled('id')) {
                     $dataSend['id'] = $request->id;
                 }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
-                    $dataSend['slug_category'] = $request->key;
+                if ($request->filled('slug_category')) {
+                    $dataSend['slug_category'] = $request->slug_category;
                 }
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                if ($request->filled('status')) {
                     $dataSend['status'] = $request->status;
                 }
 
@@ -251,14 +250,12 @@ class ServiceController extends Controller
                         ]);
                     }
 
-                    $html = view('frontend.pages.service.widget.__datalogs')
-                        ->with('data', $data)->render();
-
-
+                    $html = view('frontend.pages.service.widget.__datalogs')->with('data', $data)->render();
                     return response()->json([
                         "success"=> true,
                         "data" => $html,
                         "status" => 1,
+                        "last_page"=>$data->lastPage(),
                     ], 200);
 
                 }

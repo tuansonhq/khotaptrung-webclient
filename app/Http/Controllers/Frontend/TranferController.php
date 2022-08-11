@@ -16,15 +16,19 @@ class TranferController extends Controller
 {
     public function index(Request $request)
     {
+        if (theme('')->theme_key == 'theme_1' || theme('')->theme_key == 'theme_4'){
+            return view('frontend.pages.transfer.index');
+        }else{
+            return view('frontend.pages.charge.index');
+        }
 
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
-        return view('frontend.pages.transfer.index');
 
     }
 
     public function getIdCode(Request $request)
     {
+
+        Session::push('url_return.id_return','1');
 
         try {
             $url = '/transfer/get-code';
@@ -94,7 +98,14 @@ class TranferController extends Controller
                 if (count($data) == 0 && $page == 1){
                     return response()->json([
                         'status' => 0,
-                        'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
+                        'message' => 'Hiện tại không có giao dịch nào !',
+                    ]);
+                }
+
+                if ($page > $data->lastPage()) {
+                    return response()->json([
+                        'status' => 404,
+                        'message'=>'Trang này không tồn tại',
                     ]);
                 }
 
@@ -115,10 +126,8 @@ class TranferController extends Controller
 
     public function logs(Request $request)
     {
-
         try {
-            Session::forget('return_url');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.transfer.logs');
 
         }   catch(\Exception $e){
@@ -129,45 +138,7 @@ class TranferController extends Controller
             ]);
         }
     }
-//    public function getBankData(Request $request)
-//    {
-//        if ($request->ajax() && AuthCustom::check()) {
-//            try{
-//                $page = $request->page;
-//                $urlhistory = '/transfer/history';
-//
-//                $method = "GET";
-//                $val = array();
-//                $jwt = Session::get('jwt');
-//                if(empty($jwt)){
-//                    return response()->json([
-//                        'status' => "LOGIN"
-//                    ]);
-//                }
-//                $val['token'] =$jwt;
-//                $val['page'] = $page;
-//
-//                $result_ApiHistory = DirectAPI::_makeRequest($urlhistory,$val,$method);
-//
-//                if (isset($result_ApiHistory)== 200 && $result_ApiHistory->httpcode == 200) {
-//
-//                    $data = $result_ApiHistory->data;
-//
-//                    if (isEmpty($data->data)){
-//                        $data = new LengthAwarePaginator($data->data,$data->total,$data->per_page,$page,$data->data);
-//                    }
-//
-//                    return view('frontend.pages.account.user.function.__pay_atm', compact('data'));
-//                } else {
-//                    return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//                }
-//            }
-//            catch(\Exception $e){
-//                Log::error($e);
-//                return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//            }
-//        }
-//    }
+
 
 
 }

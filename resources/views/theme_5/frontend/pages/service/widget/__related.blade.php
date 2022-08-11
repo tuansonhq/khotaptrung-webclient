@@ -1,248 +1,60 @@
-<section class="bottom-container-ct-fix">
-    <div class="container container-fix body-container-ct">
-
-        <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-            <div class="col-md-12 left-right">
-                <div class="row marginauto body-row-ct media-ctbg-ct">
-
-                    <div class="col-md-12 left-right napgamekhac">
-                        <div class="row marginauto">
-                            <div class="col-md-12 text-left left-right">
-                                <span>Các dịch vụ cày thuê game khác</span>
+@if(isset($datacate))
+<section class="section-related-service related-service">
+    <div class="section-header c-mb-16 c-mb-lg-8 justify-content-between">
+        <h2 class="section-title fz-15 fz-lg-20 lh-lg-24">
+            Dịch vụ liên quan
+        </h2>
+        <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
+    </div>
+    <div class="swiper swiper-related-service">
+        <div class="swiper-wrapper">
+            @foreach($datacate as $k_cat => $service)
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/dich-vu/{{$service->id}}">
+                            <div class="card-thumb c-mb-8">
+                                <img src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="" class="card-thumb-image">
                             </div>
-                        </div>
-                    </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    {{$service->title}}
+                                </div>
+                                <div class="info-attr">
+                                    @if(isset($service->total_order))
+                                        @if($service->params_plus)
+                                            @foreach($service->params_plus as $key => $val)
+                                                @if($key == 'fk_buy')
+                                                    <p>Giao dịch: {{ str_replace(',','.',number_format($service->total_order + $val)) }}</p>
+                                                @endif
+                                            @endforeach
 
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto body-detail-ct">
-                            <div class="swiper-container list-nap-game col-md-12 text-left left-right">
-                                <div class="swiper-wrapper">
+                                        @else
+                                            <p>Giao dịch: {{ str_replace(',','.',number_format($service->total_order)) }}</p>
+                                        @endif
 
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lienquan.png" alt="" style="position: relative">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên quân Mobile</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                    @else
+                                        @if($service->params_plus)
+                                            @foreach($service->params_plus as $key => $val)
+                                                @if($key == 'fk_buy')
+                                                    <p>Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            <p>Giao dịch: 0</p>
+                                        @endif
 
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên quân Mobile</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>PUBG Mobile</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên Minh Huyền Thoại</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Cyber Punk 2077</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/csgo.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>CSGO</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Garena freefire</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>PUBG Mobile</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên Minh Huyền Thoại</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
-                                                </div>
-
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/dich-vu/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Cyber Punk 2077</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
+                                    @endif
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
+        <div class="navigation slider-next"></div>
+        <div class="navigation slider-prev"></div>
     </div>
 </section>
+@endif

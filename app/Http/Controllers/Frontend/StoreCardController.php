@@ -12,13 +12,16 @@ use Illuminate\Support\Facades\Log;
 class StoreCardController extends Controller
 {
     public function getStoreCard(){
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
         $data_host =\Request::server ("HTTP_HOST");
         if ($data_host =='shopngocrong.net'){
             return redirect('/');
         }else{
-            return view('frontend.pages.storecard.index');
+            if (isset(theme('')->theme_config->sys_store_card_vers) && theme('')->theme_config->sys_store_card_vers == 'sys_store_card_vers_2'){
+                    return view('frontend.pages.storecard-v2.index');
+            }else{
+                return view('frontend.pages.storecard.index');
+            }
+
         }
 
     }
@@ -128,10 +131,10 @@ class StoreCardController extends Controller
 
     public function showListCard($name)
     {
-        return view('frontend.pages.storecard.card-list');
+        return view('frontend.pages.storecard-v2.card-list');
     }
     public function showDetailCard($name,$value)
     {
-        return view('frontend.pages.storecard.card-single');
+        return view('frontend.pages.storecard-v2.card-single');
     }
 }

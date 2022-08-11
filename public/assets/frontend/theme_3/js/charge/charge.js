@@ -34,12 +34,11 @@ $(document).ready(function(){
             type: "GET",
             url: url,
             success: function (data) {
-                console.log(data)
                 if(data.status == 1){
                     let html = '';
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
-                            html += '<option value="'+value.key+'">'+value.key+'</option>';
+                            html += '<option value="'+value.key+'">'+value.title+'</option>';
                         });
                     }
                     else{
@@ -49,13 +48,13 @@ $(document).ready(function(){
                     $('.select-form').niceSelect('update');
                     ele = $('select#telecom option').first();
                     var telecom = ele.val();
-                    getAmount(telecom);
+                    if (telecom.length > 0){
+                        getAmount(telecom);
+                    }else {
+                        $('.amount-loading').remove();
+                    }
                     $('.charge_name').html(' <small>'+telecom+'</small>')
-                    paycartDataChargeHistory();
-
                     $('.loading-data').remove();
-
-
                     $('#form-charge2').removeClass('hide_charge');
                 }
             },
@@ -90,7 +89,6 @@ $(document).ready(function(){
                     $('.amount-loading').remove();
                     let html = '';
                     // html += '<option value="">-- Vui lòng chọn mệnh giá, sai mất thẻ --</option>';
-                    console.log(data.data)
                     if(data.data.length > 0){
                         $.each(data.data,function(key,value){
                             html += '<div class=" col-4 col-md-4 pl-fix-4 pr-fix-4 check-radio-form charge-card-form">'
@@ -109,10 +107,14 @@ $(document).ready(function(){
                     }
 
 
-                    $('#amount').html(html);
+                    if($(window).width() > 992){
+                        $('#amount').html(html);
+                    }else {
+                        $('#amount_mobile').html(html);
+                    }
 
                     amount_checked =  $('input[name=amount]:checked');
-
+                    updatePriceCharge()
                     $('.charge_amount').html(' <small>'+  formatNumber(amount_checked.val())+'</small>')
                     $('.charge_price').html(' <span>'+  formatNumber(amount_checked.val())+'</span>')
                     $('.charge_ratito').html(' <small>'+  formatNumber(amount_checked.attr("data-ratito"))+'</small>')
@@ -228,6 +230,8 @@ $(document).ready(function(){
                 formSubmit.trigger("reset");
                 btnSubmit.text('Nạp thẻ');
                 btnSubmit.prop('disabled', false);
+                $('.btn-confirm-charge').text('Xác nhận');
+                $('.btn-confirm-charge').prop('disabled', false);
             }
         });
     }
@@ -266,7 +270,8 @@ $(document).ready(function(){
 
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
-
+        $('.btn-confirm-charge').text('Đang xử lý...');
+        $('.btn-confirm-charge').prop('disabled', true);
         if (width < 992){
             postCharge()
 
@@ -281,57 +286,60 @@ $(document).ready(function(){
 
     });
 
-    $(document).on('click', '.paginate__v1__nt .pagination a',function(event){
-        event.preventDefault();
+    function updatePriceCharge() {
 
-        var page = $(this).attr('href').split('page=')[1];
+        var amount=amount_checked.val();
+        var ratio=amount_checked.attr("data-ratito");
+        if(ratio<=0 || ratio=="" || ratio==null){
+            ratio=100;
+        }
+        var sale=amount-(amount*ratio/100);
+        var total=amount-sale;
+        // var total=sale*quantity;
+        var totalnotsale = amount
+        if(sale != 0){
+            $('.charge_total').html('<span>' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
 
-        $('#hidden_page_service_nt').val(page);
+        }else {
+            $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
 
-        $('li').removeClass('active');
-        $(this).parent().addClass('active');
+        }
+        $('input[name=amount]').change(function(){
 
+            var amount=$(this).val();
+            var ratio=$(this).attr("data-ratito");
 
-        paycartDataChargeHistory(page);
-    });
+            if(ratio<=0 || ratio=="" || ratio==null){
+                ratio=100;
+            }
+            var sale=amount-(amount*ratio/100);
+            var total=amount-sale;
+            // var total=sale*quantity;
+            var totalnotsale = amount
+            if(sale != 0){
+                $('.charge_total').html('<span>' + total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
 
-    function paycartDataChargeHistory(page) {
-
-        request = $.ajax({
-            type: 'GET',
-            url: '/get-tele-card/data',
-            data: {
-                page:page,
-            },
-            beforeSend: function (xhr) {
-
-            },
-            success: (data) => {
-                if (data.status == 1){
-                    $(".paycartdata").empty().html('');
-                    $(".paycartdata").empty().html(data.data);
-                }else if (data.status == 0){
-                    var html = '';
-                    html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
-                    html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
-                    html += '</tbody>';
-                    html += '</table>';
-                    html += '</div>';
-
-                    $(".paycartdata").empty().html('');
-                    $(".paycartdata").empty().html(html);
-                }
-
-            },
-            error: function (data) {
-
-            },
-            complete: function (data) {
+            }else {
+                $('.charge_total').html('<span>' + totalnotsale.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + 'đ</span>');
 
             }
         });
+
+
+
+
+
     }
+
+
+    $('#nav_charge').click(function () {
+        let base_url = `${window.location.origin}/nap-the`;
+        window.history.pushState("charge_card","", base_url);
+        $('#charge_title').text('Nạp thẻ cào')
+    });
+    $('#nav_charge_atm').click(function () {
+        let base_url = `${window.location.origin}/recharge-atm`;
+        window.history.pushState("charge_card","", base_url);
+        $('#charge_title').text('ATM tự động')
+    });
 });

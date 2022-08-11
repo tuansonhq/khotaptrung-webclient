@@ -6,19 +6,27 @@
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <title>{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</title>
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
+    @elseif(Request::is('dich-vu/'.$data->slug .''))
+        <title>{{ $data->title??'' }}</title>
+    @elseif(Request::is('tin-tuc/'.$data->slug .''))
+        <title>{{ $data->seo_title??'' }}</title>
+    @else
         <title>{{ $data->title??'' }}</title>
     @endif
 @elseif(Request::is('dich-vu'))
     <title>Shop dịch vụ all game giá rẻ, uy tín, tự động.</title>
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-    <title>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title??'' }} mã số {{ $data->randId??'' }}</title>
+        <title>{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title??'' }} mã số {{ $data->randId??'' }}</title>
     @endif
 @elseif(isset($title->title))
     <title>{{$title->title }}</title>
 @elseif(isset($data->title))
     <title>{{$data->title }}</title>
+@elseif(Request::is('mua-the'))
+    <title>  {{setting('sys_store_card_title') }}</title>
+
+
 @else
     <title>  {{setting('sys_title') }}</title>
 @endif
@@ -27,15 +35,21 @@
     <meta name="description" content="Tin tức">
 @elseif(Request::is('mua-acc'))
     <meta name="description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước.">
-@elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
+@elseif(isset($data)  && (isset($data->custom->slug) || isset($data->slug)))
+
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
         <meta name="description" content="{{ isset($data->custom->description) ? $data->custom->description :  $data->description }}">
-    @elseif(Request::is('dich-vu/'. $data->slug .''))
+    @elseif(Request::is('dich-vu/'.$data->slug .''))
         <meta name="description" content="{{ $data->description??'' }}">
+    @elseif(Request::is('tin-tuc/'.$data->slug .''))
+        <meta name="description" content="{{ $data->seo_description??'' }}">
+    @elseif(Request::is('mua-the'))
+        <meta name="description" content="{{ setting('sys_store_card_seo') }}">
+
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-    <meta name="description" content="{{ $data->description??'' }}">
+        <meta name="description" content="{{ $data->description??'' }}">
     @endif
 @elseif(Request::is('dich-vu'))
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
@@ -49,7 +63,7 @@
 
 @if(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-    <meta property="og:title" content="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} mã số {{ $data->randId }}">
+        <meta property="og:title" content="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} mã số {{ $data->randId }}">
     @endif
 @elseif(Request::is('mua-acc'))
     <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
@@ -89,14 +103,14 @@
 
 @if(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
-    <script type="application/ld+json">
+        <script type="application/ld+json">
         {
           "@context": "https://schema.org/",
           "@type": "BreadcrumbList",
           "itemListElement": [{
             "@type": "ListItem",
             "position": 1,
-            "name": "Mua Acc Game Giá Rẻ",
+            "name": "{{\Request::server ("HTTP_HOST")}}",
             "item": "https://{{\Request::server ("HTTP_HOST")}}/mua-acc"
           },{
             "@type": "ListItem",
@@ -107,7 +121,7 @@
         }
     </script>
 
-    <script type="application/ld+json">
+        <script type="application/ld+json">
     {
           "@graph":
       [
@@ -169,12 +183,12 @@
     @elseif(Request::is('dich-vu/'. $data->slug .''))
         <script type="application/ld+json">
             {
-              "@context": ""https://schema.org/",
+              "@context": "https://schema.org/",
               "@type": "BreadcrumbList",
               "itemListElement": [{
-                "@type"": ""ListItem",
+                "@type": "ListItem",
                 "position": 1,
-                "name": "Dịch Vụ All Game",
+                "name": "{{\Request::server ("HTTP_HOST")}}",
                 "item": "https://{{\Request::server ("HTTP_HOST")}}/dich-vu/"
               },{
                 "@type": "ListItem",

@@ -718,11 +718,6 @@ header nav.heading .header-container{
 /*content*/
 
 /*banner*/
-.banner-home{
-
-    min-height: 540px;
-
-}
 
 .box-list-service,.box-list-top{
     margin-top: 20px;
@@ -826,9 +821,7 @@ header nav.heading .header-container{
 .product-header span{
     margin: auto;
 }
-.product-header>span>img{
-    margin-right: 8px;
-}
+
 .timer{
     margin-left: 8px;
 
@@ -851,6 +844,7 @@ header nav.heading .header-container{
     padding: 18px 21px;
     /*border: 1px solid #DCDEE9;*/
 }
+
 .block-mini-game{
     margin-top: 20px;
 }
@@ -916,10 +910,16 @@ header nav.heading .header-container{
     transition: .2s;
 }
 
-
-
 .item-product__box-content{
     padding: 1rem;
+}
+
+.item-news-content .item-product__box-name {
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
 }
 
 .item-product__box-name{
@@ -1292,10 +1292,12 @@ header nav.heading .header-container{
     color: var(--primary-color);
 }
 /*nick*/
+/* CSS theme_6 index page */
 .item-nick{
     width: calc((100% - 8px) / 8);
-    padding: 8px 8px 0 8px;
+    padding: 8px 8px 16px 8px;
 }
+/* CSS theme_6 index page end*/
 .item-nick-img{
     width: 100%;
     height: 128px;
@@ -1450,6 +1452,11 @@ header nav.heading .header-container{
     }
 }
 @media (max-width: 1200px ) and (min-width: 992px) {
+    /* CSS theme_6 index page */
+    .banner-marquee-container {
+        left: 18%;
+    }
+    /* CSS theme_6 index page end */
     .item-minigame_first {
         height: 333px;
     }
@@ -1462,6 +1469,11 @@ header nav.heading .header-container{
     }
 }
 @media (max-width: 992px ) {
+    /* CSS theme_6 index page */
+    .banner-marquee-container {
+        left: 5%;
+    }
+    /* CSS theme_6 index page end */
     /*header*/
     header nav.heading .header-container{
         height: 56px;
@@ -1536,6 +1548,12 @@ header nav.heading .header-container{
     }
 }
 @media (max-width: 768px) {
+    /* CSS theme_6 index page */
+    .banner-marquee-container {
+        width: 420px;
+        left: 12%;
+    }
+    /* CSS theme_6 index page end */
     .block-mini-game .block-product {
         min-height: auto;
     }
@@ -1549,9 +1567,11 @@ header nav.heading .header-container{
         margin-right: 4px;
     }
 
+    /* CSS theme_6 index page */
     .banner-home{
-        min-height: 176px;
+        min-height: 230px;
     }
+    /* CSS theme_6 index page end*/
     .block-mini-game{
         margin-top: 0;
     }
@@ -1631,6 +1651,28 @@ header nav.heading .header-container{
 }
 
 @media (max-width: 486px) {
+    /* CSS theme_6 index page */
+    .banner-marquee-container {
+        width: 300px;
+        left: 8%;
+    }
+
+    .banner-home-slider .swiper-button-prev, .banner-home-slider .swiper-button-next {
+        display: none;
+    }
+
+    .banner-home-slide-img img {
+        border-radius: 0;
+    }
+
+    .gaming-recharge-form-detail input {
+        width: 100%;
+    }
+
+    .gaming-recharge-form-detail button {
+        display: none;
+    }
+    /* CSS theme_6 index page end*/
 
     .item-nick{
         width: calc((100% - 4px) / 4);
@@ -1810,3 +1852,294 @@ header nav.heading .header-container{
     width: 4px;
     height: 8px;
 }
+
+/* CSS theme_6 index page */
+.banner-home{
+    position: relative;
+    min-height: 480px;
+    border-radius: 12px;
+    margin-top: 1.25rem;
+}
+
+.banner-marquee-container {
+    background: #F3F3F7;
+    border-radius: 8px;
+    position: absolute;
+    top: 1rem;
+    left: 28%;
+    z-index: 2;
+    width: 620px;
+}
+
+.banner-marquee-container img {
+    position: absolute;
+    top: 20%;
+    left: 2%;
+}
+
+.banner-marquee {
+    display: block;
+    background: #F3F3F7;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 10px 0;
+    margin-left: 2.5rem;
+}
+
+.banner-marquee p {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #434657;
+}
+
+.banner-home-slide-img {
+    height: 100%;
+}
+
+.banner-home-slide-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.banner-home-slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    width: 24px;
+    height: 8px;
+    background: #F67600;
+    border-radius: 100px;
+}
+
+.banner-home-slider .swiper-pagination-bullet {
+    background: #DBDBDB;
+    opacity: 1;
+}
+
+.banner-home-slider .swiper-button-prev, .banner-home-slider .swiper-button-next  {
+    background-image: none;
+    height: 40px;
+    width: 40px;
+    background: rgba(220, 222, 233, 0.8);
+    border-radius: 8px;
+    z-index: 10;
+    top: 50%;
+}
+
+.banner-home-slider .swiper-button-prev img, .banner-home-slider .swiper-button-next img {
+    position: absolute;
+    top: 12%;
+    right: 12%;
+}
+
+.banner-home-slider .swiper-button-prev {
+    left: 16px;
+}
+
+.banner-home-slider .swiper-button-next {
+    right: 16px;
+}
+
+.banner-home-slider .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    pointer-events: all;
+}
+/*.gaming-recharge-header {*/
+/*    border-bottom: 1px solid #DCDEE9;*/
+/*    padding-bottom: 18px;*/
+/*}*/
+
+/*.gaming-recharge-header p {*/
+/*    margin-left: 0.5rem;*/
+/*    font-size: 24px;*/
+/*    font-weight: 700;*/
+/*    color: #1B1D29;*/
+/*    margin-bottom: 0;*/
+/*}*/
+
+/*.gaming-recharge-search {*/
+
+/*}*/
+
+/*.gaming-recharge-search-header {*/
+/*    padding: 0.75rem 0;*/
+/*}*/
+
+/*.gaming-recharge-search-header p {*/
+/*    font-weight: 600;*/
+/*    font-size: 16px;*/
+/*    color: #434657;*/
+/*    margin-bottom: 0;*/
+/*}*/
+
+/*.gaming-recharge-search-form {*/
+/*    padding: 0.75rem 0;*/
+/*}*/
+
+/*.gaming-recharge-search-form h6 {*/
+/*    font-weight: 600;*/
+/*    font-size: 16px;*/
+/*    color: #1B1D29;*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
+
+/*.gaming-recharge-form-detail {*/
+/*    position: relative;*/
+/*}*/
+
+/*.gaming-recharge-form-detail input {*/
+/*    height: 40px;*/
+/*    padding-left: 2.75rem;*/
+/*    width: 340px;*/
+/*}*/
+
+/*.gaming-recharge-form-detail img {*/
+/*    position: absolute;*/
+/*    left: 12px;*/
+/*    top: 18%;*/
+/*}*/
+
+/*.gaming-recharge-form-detail button {*/
+/*    height: 40px;*/
+/*    width: 120px;*/
+/*    font-weight: 600;*/
+/*    font-size: 14px;*/
+/*    margin-left: 0.75rem;*/
+/*}*/
+
+.product-header>span>img{
+    margin-right: 8px;
+}
+
+.product-header>span>img{
+    width: 40px;
+}
+
+.product-header.related-service {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #BCBFD6;
+}
+
+/*.block-product.gaming-recharge {*/
+/*    padding: 18px 21px 2px 21px;*/
+/*}*/
+
+.game-recharge-promotion {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.game-recharge-promotion img {
+    border-radius: 12px;
+    width: 100%;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.block-promotion {
+    background: #FFFFFF;
+    border-radius: 12px;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    align-self: flex-start;
+}
+
+.block-promotion-header {
+    font-weight: 700;
+    font-size: 20px;
+    color: #434657;
+    margin-bottom: 1.5rem;
+}
+
+.block-promotion-content p {
+    font-weight: 400;
+    font-size: 14px;
+    color: #434657;
+}
+
+@media (max-width: 767px) {
+    .text-buy-card{
+        padding-right: 332px !important;
+    }
+}
+
+.buy-card{
+    padding-top: 20px;
+}
+.choose-card{
+    padding-top: 20px;
+}
+.select-tag-type{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.tag-card-item{
+    width: 20%;
+}
+@media (max-width: 767px) {
+    .tag-card-item-mobile{
+        width: 33.333%;
+    }
+}
+
+#content-store-card .deno__list .deno__item .card-item-value{
+    height: 56px;
+}
+
+#content-store-card .cards__list .cards__item label{
+    height: 83px;
+}
+#content-store-card #screen--first .card .card--header{
+    border-bottom: none;
+}
+.item-related-service-img {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.item-related-service-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+}
+
+.item-related-service-img img {
+    border-radius: 8px;
+    width: 100%;
+}
+
+.item-related-service-content {
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.item-related-service-content p {
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 16px;
+    color: #434657;
+}
+
+.item-related-service-content p:hover {
+    color: inherit;
+}
+
+.list-related-service .swiper-slide:hover .item-related-service-img::after {
+    background: var(--primary-color);
+    opacity: .2;
+    transition: .2s;
+    z-index: 99;
+}
+
+.list-related-service .swiper-slide:hover .item-related-service-content p {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* CSS theme_6 index page end*/
+
