@@ -23,22 +23,28 @@
                         </tr>
                         </thead>
                         <tbody class="m-datatable__body-bot">
+
                         @foreach($data_bot as $key=> $bot)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $bot->uname }}</td>
+                            @if($bot->active == "on")
+                                @php
+                                    $index = $index + 1;
+                                @endphp
+                                <tr>
+                                    <td>{{ $index }}</td>
+                                    <td>{{ $bot->uname }}</td>
 
-                                <td>{{ $bot->zone }}</td>
-                                <td>
-                                    @if($bot->active == 'on')
-                                        <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
-                                    @else
-                                        <span style="color:#DA4343;font-weight: bold">[OFFLINE]</span>
-                                    @endif
-                                </td>
-                            </tr>
+                                    <td>{{ $bot->zone }}</td>
+                                    <td>
+                                        @if($bot->active == 'on')
+                                            <span style="color:#2fa70f;font-weight: bold">[ONLINE]</span>
+                                        @else
+                                            <span style="color:#DA4343;font-weight: bold">[OFFLINE]</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
-
+                        
                         </tbody>
                     </table>
                 </div>
