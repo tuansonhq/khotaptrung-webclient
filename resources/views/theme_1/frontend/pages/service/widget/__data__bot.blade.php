@@ -27,7 +27,7 @@
                         @foreach($data_bot as $key=> $bot)
                             @if($bot->active == "on")
                                 @php
-                                    $index = $index + 1;
+                                    $index = $key + 1;
                                 @endphp
                                 <tr>
                                     <td>{{ $index }}</td>
@@ -44,7 +44,7 @@
                                 </tr>
                             @endif
                         @endforeach
-                        
+
                         </tbody>
                     </table>
                 </div>
