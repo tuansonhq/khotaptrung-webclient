@@ -25,10 +25,11 @@
                 </tr>
                 </thead>
                 <tbody class="m-datatable__body-bot">
+
                 @foreach($data_bot as $key=> $bot)
                     @if($bot->active == "on")
                         @php
-                            $index = $index + 1;
+                            $index = $key + 1;
                         @endphp
                         <tr>
                             <td>{{ $index }}</td>
@@ -48,6 +49,7 @@
 
                 </tbody>
             </table>
+
         </div>
     </div>
 </div>
