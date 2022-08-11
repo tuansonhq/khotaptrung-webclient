@@ -8,11 +8,13 @@ function openLoginModal(){
                 $('#loginModal #modal-login-container').removeClass('right-panel-active');
             }, 200);
         } else {
-            $('.mobile-auth').toggleClass('mobile-auth-show');
+            $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
+            $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
+            $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+            $('.mobile-auth').css('transform', 'translateX(0)');
         }
     }, 0);
 }
-
 function openRegisterModal(){
     setTimeout(function(){
         $('#loginModal').modal('show');
@@ -21,6 +23,7 @@ function openRegisterModal(){
         }, 200);
     }, 0);
 }
+
 
 $(document).ready(function () {
 
@@ -80,16 +83,12 @@ $(document).ready(function () {
 
     //Click in mobile auth nav action
 
-    $('.handleLoginPopup').click(function (e) {
-        e.preventDefault();
-        $('.mobile-auth').toggleClass('hidden');
-    });
-
     $('#handleLoginPopup').click(function (e) {
         e.preventDefault();
         $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
         $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
         $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+        $('.mobile-auth').css('transform', 'translateX(0)');
     });
 
     $('#handleRegisterPopup').click(function (e) {
@@ -97,6 +96,7 @@ $(document).ready(function () {
         $('.mobile-auth-form #formLoginMobile').css('display', 'none');
         $('.mobile-auth-form #formRegisterMobile').css('display', 'flex');
         $('.mobile-auth .head-mobile h1').text('Đăng ký');
+        $('.mobile-auth').css('transform', 'translateX(0)');
     });
 
     $('.changeFormLogin').click(function (e) {
@@ -106,7 +106,7 @@ $(document).ready(function () {
         $('.mobile-auth .head-mobile h1').text('Đăng nhập');
     });
 
-    $('.changeFormRegister1').click(function (e) {
+    $('.changeFormRegister').click(function (e) {
         e.preventDefault();
         $('.mobile-auth-form #formLoginMobile').attr('style', 'display: none !important');
         $('.mobile-auth-form #formRegisterMobile').fadeIn(500);

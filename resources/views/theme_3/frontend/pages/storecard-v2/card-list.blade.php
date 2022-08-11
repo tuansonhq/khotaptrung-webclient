@@ -1,7 +1,4 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-{{--    @include('frontend.widget.__seo_head',with(['data'=>$data]))--}}
-@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/distance.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
@@ -14,6 +11,9 @@
 @endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
@@ -32,8 +32,7 @@
                     </div>
                     <div class="swiper-slide">
                         <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
+                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" alt="POSTER BANNER">
                         </a>
                     </div>
                 </div>
@@ -202,22 +201,22 @@
                 </div>
                 {{--                END CARD OTHER--}}
                 {{--                SERVICE DESC--}}
-                <div class="card --custom p-3 p-lg-3">
-                    <h2 class="card--desc__title mb-4">
-                        Mô tả dịch vụ
-                    </h2>
-                    <div class="card--desc__content content-video-in-add p-0">
-                        {!! setting('sys_store_card_content') !!}
-                    </div>
-                    <div class="col-md-12 left-right text-center js-toggle-content">
-                        <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
-                        </div>
-                        <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="card --custom p-3 p-lg-3">--}}
+{{--                    <h2 class="card--desc__title mb-4">--}}
+{{--                        Mô tả dịch vụ--}}
+{{--                    </h2>--}}
+{{--                    <div class="card--desc__content content-video-in-add p-0">--}}
+{{--                        {!! setting('sys_store_card_content') !!}--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 left-right text-center js-toggle-content">--}}
+{{--                        <div class="view-more">--}}
+{{--                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                        <div class="view-less" style="display: none;">--}}
+{{--                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 {{--                END SERVICE DESC--}}
             </div>
             {{--            END PAGE CONTENT--}}

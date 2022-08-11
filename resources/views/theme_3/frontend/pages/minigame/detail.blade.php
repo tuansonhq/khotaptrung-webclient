@@ -1,8 +1,5 @@
 @extends('theme_3.frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
-@endsection
-@section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$result->group]))
 @endsection
 @section('styles')
@@ -213,7 +210,7 @@
                             <div class="before"></div>
                             <div class="after"></div>
                         </div>
-                    @if($result->checkPoint==1)
+                          @if($result->checkPoint==1)
                             <div class="rotation-points">
                                 <div class="rotation-points-title">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/mdi_police-badge.svg" alt="">

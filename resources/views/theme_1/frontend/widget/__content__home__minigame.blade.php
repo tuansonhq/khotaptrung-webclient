@@ -34,7 +34,7 @@
                         </div>
                         <div class="game-list-description">
                             <div class="countime"></div>
-                            <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+$item->order_gate_count):$item->order_gate_count}} </p>
+                            <p>Đã quay: {{isset($item->params->fake_num_play)?($item->params->fake_num_play+ count($item->order_gate)):count($item->order_gate)}} </p>
 
                             <div class="row marginauto price-minigame">
                                 <div class="col-md-12 left-right">

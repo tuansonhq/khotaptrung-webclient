@@ -85,6 +85,35 @@ let swiper_config_category = new Swiper('.section-category .class-config-demo',{
     },
 });
 
+let c_swiper_config_category = new Swiper('.c_section-category .class-config-demo',{
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    slidesPerView: 5,
+    speed: 300,
+    spaceBetween: 16,
+    touchMove: true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        992: {
+            freeMode: true,
+            slidesPerView: 3,
+        },
+        768: {
+            freeMode: true,
+            slidesPerView: 2.3,
+        }
+    },
+    navigation: {
+        nextEl: ".class-config-demo .navigation.slider-next",
+        prevEl: ".class-config-demo .navigation.slider-prev",
+    },
+});
+
 let swiper_config_category_tab = new Swiper('.section-category-tab .class-config-demo',{
     autoplay: false,
     updateOnImagesReady: true,
@@ -174,6 +203,43 @@ let swiper_config_related_service = new Swiper('.swiper-related-service',{
     },
 });
 
+let swiper_card_other = new Swiper('.swiper-card',{
+    autoplay: false,
+    updateOnImagesReady: true,
+    watchSlidesVisibility: false,
+    lazyLoadingInPrevNext: false,
+    lazyLoadingOnTransitionStart: false,
+    slidesPerView: 4,
+    speed: 300,
+    spaceBetween: 16,
+    touchMove: true,
+    grabCursor: true,
+    observer: true,
+    observeParents: true,
+    breakpoints: {
+        992: {
+            freeMode: true,
+            slidesPerView: 3,
+        },
+        768: {
+            freeMode: true,
+            slidesPerView: 1.5,
+        }
+    },
+    navigation: {
+        nextEl: ".card-other .navigation.slider-next",
+        prevEl: ".card-other .navigation.slider-prev",
+    },
+});
+
+let swiper_card_bought = new Swiper(".slider--card", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    freeMode: true,
+    observer: true,
+    observeParents: true,
+});
+
 function initSwiperGallery() {
     if ($('.gallery-top').length) {
         let galleryTop = new Swiper('.gallery-top', {
@@ -207,5 +273,38 @@ function initSwiperGallery() {
         });
         galleryTop.controller.control = galleryThumbs;
         galleryThumbs.controller.control = galleryTop;
+    }
+}
+
+function initSwiperNick() {
+    if ($('.class-config-demo').length) {
+        let swiper_config_category_c = new Swiper('.section-category_c .class-config-demo',{
+            autoplay: false,
+            updateOnImagesReady: true,
+            watchSlidesVisibility: false,
+            lazyLoadingInPrevNext: false,
+            lazyLoadingOnTransitionStart: false,
+            slidesPerView: 5,
+            speed: 300,
+            spaceBetween: 16,
+            touchMove: true,
+            grabCursor: true,
+            observer: true,
+            observeParents: true,
+            breakpoints: {
+                992: {
+                    freeMode: true,
+                    slidesPerView: 3,
+                },
+                768: {
+                    freeMode: true,
+                    slidesPerView: 1.8,
+                }
+            },
+            navigation: {
+                nextEl: ".class-config-demo .navigation.slider-next",
+                prevEl: ".class-config-demo .navigation.slider-prev",
+            },
+        });
     }
 }

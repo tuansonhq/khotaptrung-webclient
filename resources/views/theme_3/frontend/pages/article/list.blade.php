@@ -2,11 +2,11 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head')
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
-@endsection
-@section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
 @section('content')
 {{--    @dd($data)--}}

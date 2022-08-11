@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('seo_head')
-    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+    @include('frontend.widget.__seo_head')
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
@@ -103,7 +103,7 @@
                     <div class="loading-wrap">
                         <span class="modal-loader-spin"></span>
                     </div>
-                    <div class="listing-account c-mb-16 list-content">
+                    <div class="listing-account list-content">
 
                         {{--                        @include('frontend.pages.account.widget.__datalist')--}}
 

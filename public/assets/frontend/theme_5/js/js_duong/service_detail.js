@@ -37,7 +37,6 @@ if (input_params_hide.length){
             if (itemselect_value == -1) {
                 return;
             }
-
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
                 let s_price = data_params["price" + server];
                 price = parseInt(s_price[itemselect_value]);
@@ -96,7 +95,8 @@ if (input_params_hide.length){
             if (checked.length) {
                 $('.service_pack').html('');
                 checked.each(function (elm) {
-                    let text = $(this).parent().find('label').text().trim();
+                    let text = $(this).parent().find('.text-label').text().trim();
+                    console.log(text)
                     let html = '';
                     html += `<div>`;
                     html += `${text}`;
@@ -143,7 +143,6 @@ if (input_params_hide.length){
         case '7':
 
         function UpdateTotal() {
-
             var price = parseInt(input_pack.val().replace(/\./g, ''));
             if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
                 // $('button[type="submit"]').addClass('not-allow');
@@ -158,6 +157,7 @@ if (input_params_hide.length){
             let price_show = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price_show = price_show.split('').reverse().join('').replace(/^[\.]/, '');
             if (!!price) {
+
                 if (data_params.server_mode == 1 && data_params.server_price == 1) {
                     var s_price = data_params["price" + server_id];
                     var s_discount = data_params["discount" + server_id];
@@ -176,6 +176,7 @@ if (input_params_hide.length){
                     discount = s_discount[server_id];
                     total = price * discount;
                 }
+
                 total = parseInt(total / 1000 * data_params.input_pack_rate);
                 $('#txt-discount').val(discount);
                 total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
@@ -219,6 +220,7 @@ $('.submit-form').on('click', function () {
         obj[item.name] = item.value;
         return obj;
     }, {});
+    console.log(data_form)
     let url = $('#formDataService').attr('action');
     data_form.selected = data_form.selected.replace(/\./g, "");
 
@@ -230,12 +232,13 @@ $('.submit-form').on('click', function () {
         data: data_form,
         success: function (res) {
             if (res.status) {
-                $('.js-message-res span').text(res.message)
+                    $('.js-message-res span').text(res.message)
                 if ($(document).width() > 1200){
                     $('.openSuccess').trigger('click')
                 } else {
                     $('.button-next-step-two').trigger('click');
                 }
+                $('#successModal').modal('show');
             }
             else {
                 $('.modal__error__message small').text(res.message)
@@ -247,3 +250,69 @@ $('.submit-form').on('click', function () {
     });
 
 })
+
+
+$('body').on('click','.btnPay',function(){
+    let is_ok = 1;
+    let required = $('input[required_service]');
+    let html = '';
+    if (required.length){
+        required.each(function () {
+            $(this).toggleClass('invalid',!$(this).val().trim());
+            if (!$(this).val().trim()){
+                is_ok = 0;
+                let text = $(this).parent().prev().text().trim().toLowerCase();
+                $(this).parent().next().html(html)
+            }else {
+                $(this).parent().next().text('')
+            }
+        });
+    }
+
+    if (is_ok){
+        if ($(document).width() > 1200) {
+            $('#orderModal').modal('show');
+        }else {
+            $('.stepService').trigger('click')
+        }
+    }
+});
+
+
+$('.openSuccess').on('click', function(){
+    $('#successModal').modal('show');
+    $('#orderModal').modal('hide');
+})
+
+/* js validate form service */
+let id = (id) => document.getElementById(id);
+
+let classes = (classes) => document.getElementsByClassName(classes);
+
+let username = id("username"),
+    password = id("password"),
+    email = id("email"),
+    form = id("form"),
+    errorMsg = classes("error");
+// Adding the submit event Listener
+
+$('.btnPay').on('click', function(e){
+    e.preventDefault();
+    engine(username, 0, "Vui lòng điền thông tin yêu cầu !");
+    engine(password, 1, "Vui lòng nhập password !");
+    engine(email, 2, "Email cannot be blank");
+});
+
+// engine function which will do all the works
+
+let engine = (id, serial, message) => {
+    if (id.value.trim() === "") {
+        errorMsg[serial].innerHTML = message;
+        id.style.border = "1px solid red";
+    } else {
+        errorMsg[serial].innerHTML = "";
+        id.style.border = "1px solid green";
+
+    }
+};
+

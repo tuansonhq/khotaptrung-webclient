@@ -724,4 +724,28 @@ class ServiceController extends Controller
         }
 //        return $response_data;
     }
+
+    public function getListMobile(Request $request)
+    {
+        $url = '/service';
+        $method = "GET";
+
+        $dataSend = array();
+
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        $response_data = $result_Api->response_data->data??null;
+        if($response_data){
+            return view('frontend.pages.service.list-mobile')->with('data', $response_data);
+
+        }
+        else{
+            $data =null;
+            $message = "Không thể lấy dữ liệu";
+            return view('frontend.pages.service.list-mobile')->with('data', $data)->with('message', $message);
+        }
+    }
 }

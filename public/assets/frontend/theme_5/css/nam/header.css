@@ -3,6 +3,7 @@
     width: 40px;
     height: 40px;
     position: relative;
+    cursor: pointer;
 }
 .box-icon img{
     position: absolute;
@@ -69,7 +70,12 @@ header nav.heading .header-container {
     overflow: hidden;
     box-shadow: 0 5px 5px -5px #00000033;
 }
-
+.menu-list .menu-category img{
+    width: 24px;
+}
+.menu-category-item img{
+    width: 32px;
+}
 .box-menu{
     cursor: pointer;
 }
@@ -172,6 +178,29 @@ header nav.heading .header-container {
     /*background: #EBEBEB;*/
     border-radius: 8px;
 }
+
+
+.c-header-theme{
+    left: 50%;
+    transform: translateX(-50%);
+}
+.c-header-theme ul li{
+    width: auto !important;
+}
+.c-header-theme a>div{
+    text-align: center;
+    box-shadow: 0 2px rgb(0 0 0 / 5%);
+    border: 1px solid #E4E5F0;
+    padding: 8px 16px !important;
+}
+.box-search-mobile{
+    display: none;
+}
+
+.c-header-theme a img{
+    width: 24px;
+
+}
 @keyframes spin {
     to {
         -webkit-transform: rotate(360deg);
@@ -183,6 +212,31 @@ header nav.heading .header-container {
         -webkit-transform: rotate(360deg);
     }
 }
+
+@media (max-width: 1400px) {
+    .c-header-theme .box-search{
+        display: none;
+    }
+    .c-header-theme .box-menu-theme{
+        margin: auto;
+    }
+
+
+    .box-search-mobile_detail{
+        top: 40px;
+        right: 0;
+    }
+    .box-search-mobile_detail input{
+        width: 200px;
+    }
+    .box-search-mobile_detail{
+        display: none;
+    }
+    .box-search-mobile{
+        display: flex;
+    }
+
+}
 @media (max-width: 992px) {
     .box-icon {
         background-color: transparent;
@@ -190,9 +244,13 @@ header nav.heading .header-container {
     header nav.heading .header-container{
         height: 56px;
     }
-}
+    .c-header-theme .box-menu-theme{
+        margin: auto;
+    }
+    .box-search-mobile{
+        display: none;
+    }
 
-@media (max-width: 992px) {
     .box-icon {
         background-color: transparent;
     }
@@ -203,3 +261,5 @@ header nav.heading .header-container {
         margin-bottom: 96px;
     }
 }
+
+box-icon

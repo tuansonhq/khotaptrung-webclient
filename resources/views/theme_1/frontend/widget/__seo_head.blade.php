@@ -32,6 +32,7 @@
     <meta property="og:description" content="Shop bán acc all game: Free Fire, Liên Quân, Liên Minh, PUBG Mobile, Tốc Chiến, Ngọc Rồng, Ninja,.. uy tín, giá rẻ. Giao dịch nick tự động 24/7. Tài khoản lỗi hoàn tiền 100%. Website phục vụ 100.000 giao dịch thành công mỗi ngày cho khách hàng cả nước."/>
 @elseif(isset($data) && (isset($data->custom->slug) || isset($data->slug)))
     @if(Request::is('mua-acc/'. (!isset($data->custom->slug) || $data->custom->slug == "" ? $data->slug :  $data->custom->slug) .''))
+
         <meta name="description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}">
         <meta property="og:description" content="{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}"/>
     @elseif(Request::is('dich-vu/'. $data->slug .''))
@@ -42,16 +43,19 @@
     @if(Request::is('acc/'. $data->randId .''))
     <meta name="description" content="{{ $data->seo_description??'' }}">
     <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+
     @endif
 @elseif(Request::is('dich-vu'))
     <meta name="description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ...">
     <meta property="og:description" content="Website cung cấp các dịch vụ như: nạp game ( kim cương, quân huy, RP, UC, vàng, ngọc, xu... ), cày thuê ( liên quân, liên minh, free fire, ... ), làm nhiệm vụ thuê, ..."/>
+
 @elseif(isset($title->seo_description))
     <meta name="description" content="{{ $title->seo_description??'' }}">
     <meta property="og:description" content="{{ $title->seo_description??'' }}"/>
 @elseif(isset($data->seo_description))
     <meta name="description" content="{{ $data->seo_description??'' }}">
     <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+
 @else
     <meta name="description" content="{{ setting('sys_description') }}">
     <meta property="og:description" content="{{ setting('sys_description') }}"/>

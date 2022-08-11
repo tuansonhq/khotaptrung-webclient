@@ -1,4 +1,10 @@
 @extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow"/>
+@endsection
 @section('content')
     @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
         @php
@@ -11,9 +17,10 @@
         $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
         $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
     @endphp
+
     {{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
-    <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
+    <input type="hidden" name="slug" id="slug" value="{{ $slug }}"/>
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">
             <li class="breadcrumb-item">
@@ -36,7 +43,7 @@
 
         <section class="service-detail">
             {{--            Slider baner    --}}
-            @include('frontend.widget.__slider__banner')
+            @include('frontend.widget.__slider__banner__service')
             <div class="section-header d-none d-lg-block">
                 <h1 class="section-title">
                     {{ @$data->title }}
@@ -48,8 +55,9 @@
             </div>
             <form action="/dich-vu/{{ $data->id }}/purchase" method="POST" id="formDataService">
                 @csrf
-            <div class="row">
-                <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
+                <input type="hidden" name="index" value="{{ count($send_name)}}">
+                <div class="row">
+                    <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
                         @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
                             @php
                                 $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
@@ -58,8 +66,8 @@
                             <span class=" mb-15 control-label bb">Chọn máy chủ:</span>
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
-                                <div class="mb-15 c-pt-16">
-                                    <select name="server[]" class="server-filter form-control t14" style="">
+                                <div class="mb-15 c-pt-8 c-pb-8">
+                                    <select name="server" class="server-filter form-control t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
                                                 <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
@@ -69,6 +77,7 @@
                                 </div>
                             @endif
                         @endif
+
                         @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
                         @php
                             $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
@@ -76,7 +85,7 @@
                         @endphp
                         @if(!empty($name))
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                            <div class="mb-15">
+                            <div class="mb-15 c-pt-8">
                                 <select name="selected" class="s-filter form-control t14" style="">
                                     @for ($i = 0; $i < count($name); $i++)
                                         @if($name[$i]!=null)
@@ -89,18 +98,161 @@
 
                         @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
                         <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
-                        <div class="mb-15">
-                            <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                        <div class="mb-15 c-pt-8 c-pb-8">
+                            <input autofocus=""
+                                   value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}"
+                                   class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                            <div class="c-pt-4">
+                                <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b
+                                        style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
+                            </div>
                         </div>
                         <span class="mb-15 control-label bb">Hệ số:</span>
-                        <div class="mb-15">
-                            <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
+                        <div class="mb-15 c-pt-8 c-pb-8">
+                            <input type="text" id="txt-discount" class="form-control t14" placeholder="" value=""
+                                   readonly="">
                         </div>
-                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 
-                    @endif
-                    <!-- service select mobile -->
+                        @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
+                        <div class="col-md-12 left-right">
+                            <div class="row body-title-detail-ct">
+                                <div
+                                    class="col-auto text-left detail-service-col body-title-detail-col-ct">
+                                    <div class="row marginauto">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Rank hiện tại</span>
+                                        </div>
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
+                                            <select class="wide js-selected" name="rank_from">
+                                                @forelse($data_params['name'] as $k_name => $name)
+                                                    @if(!!$name)
+                                                        <option value="{{ $k_name }}">{{ $name }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+
+                                        <div class="col-m-12 rank-start-error">
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div
+                                    class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
+                                    <div class="row marginauto">
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-span-ct">
+                                            <span>Rank mong muốn</span>
+                                        </div>
+                                        <div
+                                            class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
+                                            <select class="wide js-selected" name="rank_to">
+                                                @forelse($data_params['name'] as $k_name => $name)
+                                                    @if(!!$name)
+                                                        <option value="{{ $k_name }}">{{ $name }}</option>
+                                                    @endif
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                        </div>
+                                        <div class="col-m-12 rank-end-error">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endif
+
+
+                        <div class="col-md-12 left-right">
+                            <div class="row body-title-detail-ct" id="section-data-send">
+                                @if(!empty($send_name) && !empty($send_type))
+                                    @foreach($send_name as $k_send_name => $send_name_text)
+                                        @if($send_type[$k_send_name])
+                                            @if($send_type[$k_send_name] == '3')
+                                            @elseif($send_type[$k_send_name] =='2')
+                                            @elseif($send_type[$k_send_name] =='1')
+                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                    <div class="row marginauto">
+                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                            <span>{{$send_name_text}}</span>
+                                                        </div>
+                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
+                                                            <input autocomplete="off" class="input-defautf-ct username"
+                                                                   id="username"
+                                                                   name="customer_data{{$k_send_name}}" type="text"
+                                                                   placeholder="{{$send_name_text}}" required_service>
+                                                            <div class="error"></div>
+                                                        </div>
+                                                        <div class="col-md-12 left-right message-error">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @elseif('5')
+                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                    <div class="row marginauto password-mobile">
+                                                        <div class="col-md-12 left-right body-title-detail-span-ct c-pt-8">
+                                                            <span>{{$send_name_text}}</span>
+                                                        </div>
+                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8"
+                                                             style="position: relative">
+                                                            <input autocomplete="off"
+                                                                   id="password"
+                                                                   name="customer_data{{$k_send_name}}"
+                                                                   class="input-defautf-ct password"
+                                                                   type="password"
+                                                                   placeholder="{{$send_name_text}}" required_service>
+                                                            <div class="error"></div>
+                                                            <div class="show-btn-password">
+                                                                <img onerror="imgError(this)" class="lazy"
+                                                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
+                                                                     alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="col-md-12 left-right pw-error"></div>
+                                                    </div>
+                                                </div>
+                                            @elseif('7')
+                                                <div class="col-md-12 left-right " id="confirm-rules">
+                                                    <div class="row body-title-detail-checkbox-ct m-0 p-0">
+                                                        <div class="col-auto body-title-detail-checkbox-col-ct">
+                                                            <label for="customer_data{{$k_send_name}}"
+                                                                   class="input-ratio-ct">
+                                                                                <span class="label--checkbox">
+                                                                                    <div class="label--checkbox__name">
+                                                                                        {{ $send_name_text }}
+                                                                                    </div>
+                                                                                </span>
+                                                                <input id="customer_data{{$k_send_name}}"
+                                                                       type="checkbox" class="confirm-rules"
+                                                                       name="customer_data{{$k_send_name}}" required_service>
+                                                                <div class="error"></div>
+                                                                <span class="input-ratio-checkmark-ct --overwrite"></span>
+                                                            </label>
+                                                            <div class="error-message"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{--                                                @default--}}
+                                            @endif
+                                        @endif
+                                        {{--                                        @empty--}}
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- service select mobile -->
                         <div class="d-block d-lg-none">
                             <div class="t-sub-1 title-color c-mb-8">
                                 Tùy chọn mở rộng
@@ -120,9 +272,11 @@
                                                 @for ($i = 0; $i < count($name); $i++)
                                                     @if($name[$i]!=null)
                                                         <label class="input-checkbox c-mb-8">
-                                                            <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                            <input value="{{$i}}" type="checkbox" name="select"
+                                                                   id="{{$i}}">
                                                             <span class="checkmark"></span>
-                                                            <span class="text-label text" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</span>
+                                                            <span class="text-label text"
+                                                                  for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</span>
                                                         </label>
                                                     @endif
                                                 @endfor
@@ -134,168 +288,176 @@
                             </div>
                         </div>
                         <!-- end -->
-                    <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
-                        Tuỳ chọn tướng (với Game Moba)
-                    </h2>
-                    <div class="card unset-lg">
-                        <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Tài khoản cần làm nhiệm vụ
-                                </div>
-                                <select name="" id="">
-                                    <option value="">Trái đất</option>
-                                    <option value="">Sao hoả</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Mật khẩu
-                                </div>
-                                <div class="toggle-password">
-                                    <input type="password" placeholder="Mật khẩu...">
-                                </div>
-                            </div>
-
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Tuỳ chọn tướng
-                                </div>
-                                <select name="" id="">
-                                    <option value="">Vanhein</option>
-                                    <option value="">Batman</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group c-px-8">
-                                <div class="form-label">
-                                    Tên nhân vật
-                                </div>
-                                <input type="text" placeholder="Tên nhân vật">
-                            </div>
-                        </div>
-                    </div>
-                    <label class="input-checkbox c-my-16 c-mb-lg-28">
-                        <input type="checkbox" name="select">
-                        <span class="checkmark"></span>
-                        <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
-                    </label>
-                    <div class="d-none d-lg-block c-pb-22 c-pt-2">
-                        <hr>
-                    </div>
-                    <div class="c-mb-16">
-{{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
-                        <div class="card overflow-hidden">
-                            <div class="card-body c-px-16">
-                                <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
-                                <div class="content-desc">
-                                    {!! @$data->description !!}
-                                </div>
-                            </div>
-                            <div class="card-footer text-center">
-                                <span class="see-more" data-content="Xem thêm nội dung"></span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Data Bot -->
-                    <h2 class="text-title-bold d-block d-lg-none c-mb-8">Vị trí đối với Game Ngọc Rồng</h2>
-                    <div class="card c-mb-lg-16">
-                        <div class="card-body">
-                            <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi KAKAROT Khu 39)</h2>
-
-                            <table class="table-data-bot">
-                                <tr>
-                                    <th>Server</th>
-                                    <th>Nhân vật</th>
-                                    <th>Khu vực</th>
-                                    <th>Trạng thái</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>dubaish1</td>
-                                    <td>39</td>
-                                    <td>
-                                        <div class="status success">Online</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>dubaish1</td>
-                                    <td>39</td>
-                                    <td>
-                                        <div class="status danger">Offline</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>dubaish1</td>
-                                    <td>39</td>
-                                    <td>
-                                        <div class="status danger">Offline</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>dubaish1</td>
-                                    <td>39</td>
-                                    <td>
-                                        <div class="status danger">Offline</div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- end data bot -->
-                </div>
-                <div class="col-lg-4 c-pl-8 d-none d-lg-block">
-                    <div class="js_sticky"  data-top="140">
-                        <div class="card section-pay">
-                            <div class="card-body c-p-16">
-                                <div class="text-title-bold d-inline-block">Báo giá:</div>
-                                <br>
-                                <input class="text-title secondary" type="hidden" name="value" value="">
-                                <input class="text-title" type="hidden" name="selected" value="">
-                                <input class="text-title" type="hidden" name="server">
-                                <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0 VNĐ</div>
-                                <button id="btnPurchase" class="btn primary" data-toggle="modal" data-target="#orderModal">Thanh toán</button>
-                            </div>
-                        </div>
-                        <h2 class="text-title fw-700 title-color-lg c-my-16">
-                            Tùy chọn mở rộng (đối với Game Ngọc Rồng)
+                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
+                            Tuỳ chọn tướng (với Game Moba)
                         </h2>
-                        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                        <div class="card service-select c-py-12 c-pr-8" id="select-multi">
-                            <div class="card-body py-0 s-filter">
-                                @php
-                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
-                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
-                                @endphp
-                                @if(!empty($name))
-                                    @for ($i = 0; $i < count($name); $i++)
-                                        @if($name[$i]!=null)
-                                <label class="input-checkbox">
-                                    <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
-                                    <span class="checkmark"></span>
-                                    <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
-                                        @endif
-                                    @endfor
-                                @endif
+                        <div class="card unset-lg">
+                            <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
+                                <div class="input-group c-px-8">
+                                    <div class="form-label">
+                                        Tài khoản cần làm nhiệm vụ
+                                    </div>
+                                    <select name="" id="">
+                                        <option value="">Trái đất</option>
+                                        <option value="">Sao hoả</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group c-px-8">
+                                    <div class="form-label">
+                                        Mật khẩu
+                                    </div>
+                                    <div class="toggle-password">
+                                        <input type="password" placeholder="Mật khẩu...">
+                                    </div>
+                                </div>
+
+                                <div class="input-group c-px-8">
+                                    <div class="form-label">
+                                        Tuỳ chọn tướng
+                                    </div>
+                                    <select name="" id="">
+                                        <option value="">Vanhein</option>
+                                        <option value="">Batman</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group c-px-8">
+                                    <div class="form-label">
+                                        Tên nhân vật
+                                    </div>
+                                    <input type="text" placeholder="Tên nhân vật">
+                                </div>
                             </div>
                         </div>
-                        @endif
+                        <label class="input-checkbox c-my-16 c-mb-lg-28">
+                            <input type="checkbox" name="select">
+                            <span class="checkmark"></span>
+                            <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
+                        </label>
+                        <div class="d-none d-lg-block c-pb-22 c-pt-2">
+                            <hr>
+                        </div>
+                        <div class="c-mb-16">
+                            {{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
+                            <div class="card overflow-hidden">
+                                <div class="card-body c-px-16">
+                                    <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
+                                    <div class="content-desc">
+                                        {!! @$data->description !!}
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <span class="see-more" data-content="Xem thêm nội dung"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Data Bot -->
+                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Vị trí đối với Game Ngọc Rồng</h2>
+                        <div class="card c-mb-lg-16">
+                            <div class="card-body">
+                                <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi
+                                    KAKAROT Khu 39)</h2>
+
+                                <table class="table-data-bot">
+                                    <tr>
+                                        <th>Server</th>
+                                        <th>Nhân vật</th>
+                                        <th>Khu vực</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>dubaish1</td>
+                                        <td>39</td>
+                                        <td>
+                                            <div class="status success">Online</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>dubaish1</td>
+                                        <td>39</td>
+                                        <td>
+                                            <div class="status danger">Offline</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>dubaish1</td>
+                                        <td>39</td>
+                                        <td>
+                                            <div class="status danger">Offline</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>dubaish1</td>
+                                        <td>39</td>
+                                        <td>
+                                            <div class="status danger">Offline</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end data bot -->
+                    </div>
+                    <div class="col-lg-4 c-pl-8 d-none d-lg-block">
+                        <div class="js_sticky" data-top="140">
+                            <div class="card section-pay">
+                                <div class="card-body c-p-16">
+                                    <div class="text-title-bold d-inline-block">Báo giá:</div>
+                                    <br>
+                                    <input class="text-title secondary" type="hidden" name="value" value="">
+                                    <input class="text-title" type="hidden" name="selected" value="">
+                                    <input class="text-title" type="hidden" name="server">
+                                    <div  style="color: #f473b9;font-weight: 500" class="txtPrice d-inline-block">0
+                                        VNĐ
+                                    </div>
+                                    <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
+                                </div>
+                            </div>
+                            <h2 class="text-title fw-700 title-color-lg c-my-16">
+                                Tùy chọn mở rộng (đối với Game Ngọc Rồng)
+                            </h2>
+                            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                            <div class="card service-select c-py-12 c-pr-8" id="select-multi">
+                                <div class="card-body py-0 s-filter">
+                                    @php
+                                        $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                        $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                    @endphp
+                                    @if(!empty($name))
+                                        @for ($i = 0; $i < count($name); $i++)
+                                            @if($name[$i]!=null)
+                                                <label class="input-checkbox">
+                                                    <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                    <span class="checkmark"></span>
+                                                    <label class="c-ml-30 text-label"
+                                                           for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>
+                                                </label>
+                                            @endif
+                                        @endfor
+                                    @endif
+                                </div>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
             </form>
             <div class="footer-mobile c-p-16">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
-                <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
-                <button type="button" class="btn primary js-step" data-target="#step2">Giao dịch ngay</button>
+                <input class="text-title secondary" type="hidden" name="value" value="">
+                <input class="text-title" type="hidden" name="selected" value="">
+                <input class="text-title" type="hidden" name="server">
+                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
+                <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
 
@@ -317,13 +479,21 @@
                     <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                         Thông tin dịch vụ thuê
                     </div>
-
+                    <div class="col-md-12 left-right modal__error__message">
+                        <div class="row marginauto order-errors">
+                            <div class="col-md-12 left-right" style="color:#DA4343">
+                                <small></small>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
                         <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tài khoản
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
+                                                                           class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                            </div>
                         </div>
                     </div>
 
@@ -338,7 +508,7 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Gói
                             </div>
-                            <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
+                            <div class="card--attr__value fz-13 fw-500 service_pack"></div>
                         </div>
                         <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
                             <div class="card--attr__name fw-400 fz-13 text-center">
@@ -373,42 +543,72 @@
                             <div class="card--attr__name fw-400 fz-13 text-center">
                                 Tổng thanh toán
                             </div>
-                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
+                                                                           class="c-text-primary total--price">0 đ</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn primary submit-form">Xác nhận</button>
+                    <button style="width: 100%" type="button" class="btn primary submit-form">Xác nhận</button>
+                    <div class="button-next-step-two d-none"></div>
+                    <div class="openSuccess d-none"></div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    {{-- Thanh toans thanhf coong  --}}
-    <div class="modal fade modal-small" id="orderSuccses">
-        <div class="modal-dialog modal-dialog-centered modal-custom">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center p-0">
-                    <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
+    {{-- Modal thuê dịch vụ thành công --}}
+    <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
+            <div class="modal-content c-mr-lg-12 c-ml-lg-12">
+                <div class="modal-header modal-header-success-ct">
+                    <div class="row marginauto modal-header-success-row-ct justify-content-center">
+                        <div class="col-md-12 text-center">
+{{--                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>--}}
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>
-                    <p class="fw-400 fz-13 c-mt-10 mb-0">
-                        Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!
-                    </p>
-                </div>
-                <div class="modal-footer c-p-24">
-                    <a class="btn primary" data-dismiss="modal">Lịch sử</a>
+                <div class="modal-body modal-body-success-ct">
+                    <div class="row marginauto justify-content-center">
+                        <div class="col-auto">
+                            <img onerror="imgError(this)" class="lazy"
+                                 src="/assets/frontend/{{theme('')->theme_key}}/image/duong/image-success-service.png"
+                                 alt="">
+                        </div>
+                    </div>
+                    <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                        <div class="col-md-12 text-center js-message-res successful-service-title">
+                            <span></span>
+                        </div>
+                        <div class="successful-service">
+                            <p>Yêu cầu thuê đã được gửi đến Shop Cày Thuê Bạn vui lòng kiểm tra Email để xác nhận nha!</p>
+                        </div>
+                    </div>
+                    <div class="row marginauto justify-content-center modal-footer-success-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct c-pl-8 c-pr-8">
+                            <div class="row marginauto modal-footer-success-row-not-ct">
+                                <div class="col-md-12 left-right successful-service-tag">
+                                    <a href="/" class="button-not-bg-ct"><span style="color: #0E3EDA;">Yêu cầu hỗ trợ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct c-pl-8 c-pr-8">
+                            <div class="row marginauto modal-footer-success-row-ct">
+                                <div class="col-md-12 left-right successful-service-tag1">
+                                    <a href="/" class="button-bg-ct"><span style="color: #FFFFFF;">Trang chủ</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     {{--  sử lý step  --}}
-
-    <div class="step" id="step2">
+    <span class="d-none js-step stepService" data-target="#stepService"></span>
+    <div class="step " id="stepService">
         <div class="head-mobile">
             <a href="javascript:void(0) " class="link-back close-step"></a>
 
@@ -421,12 +621,21 @@
                 <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
                     Thông tin dịch vụ thuê
                 </div>
+                <div class="col-md-12 left-right modal__error__message">
+                    <div class="row marginauto order-errors">
+                        <div class="col-md-12 left-right" style="color:#DA4343">
+                            <small></small>
+                        </div>
+                    </div>
+                </div>
                 <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
                     <div class="card--attr__total justify-content-between d-flex text-center">
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
                             Tài khoản
                         </div>
-                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
+                        <div class="card--attr__value fz-13 fw-500">
+                            <a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content c-mt-lg-16">
@@ -441,7 +650,7 @@
                         <div class="card--attr__name fw-400 fz-13 text-center">
                             Gói
                         </div>
-                        <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
+                        <div class="card--attr__value fz-13 fw-500 service_pack c-ml-lg-20"></div>
                     </div>
                     <div class="card--attr justify-content-between d-flex c-mb-8 text-center text-order">
                         <div class="card--attr__name fw-400 fz-13 text-center">
@@ -473,7 +682,8 @@
                         <div class="card--attr__name fw-400 fz-13 text-center text-order">
                             Tổng thanh toán
                         </div>
-                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
+                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)"
+                                                                       class="c-text-primary total--price">0 đ</a></div>
                     </div>
                 </div>
             </div>
@@ -482,7 +692,7 @@
 
         <div class="footer-mobile">
             <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
-                <button class="btn primary btn-success-mobile">Xác nhận</button>
+                <button class="btn primary btn-success-mobile submit-form">Xác nhận</button>
             </div>
         </div>
     </div>
@@ -497,11 +707,11 @@
 
         var data = jQuery.parseJSON('{!! $data->params !!}');
 
-            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
         var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
-            @else
+        @else
         var purchase_name = 'VNĐ';
-            @endif
+        @endif
 
         var server = -1;
 
@@ -538,19 +748,18 @@
 
                 var s_price = data["price" + server];
                 price = parseInt(s_price[itemselect]);
-            }
-            else {
+            } else {
                 var s_price = data["price"];
                 price = parseInt(s_price[itemselect]);
             }
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html(price + ' VNĐ');
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/, '');
+            $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val($(".s-filter").val());
 
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('tbody tr.selected').removeClass('selected');
@@ -575,8 +784,7 @@
 
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
-            }
-            else {
+            } else {
                 var s_price = data["price"];
             }
 
@@ -594,23 +802,22 @@
 
                     $('[name="selected"]').val(itemselect);
 
-                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass();
                     });
                 });
                 $('#btnPurchase').prop('disabled', false);
-            }
-            else {
-                $('#txtPrice').html('0 VNĐ');
-                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            } else {
+                $('.txtPrice').html('0 VNĐ');
+                $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                     $(this).removeClass();
                 });
                 $('#btnPurchase').prop('disabled', true);
 
             }
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html(price + ' VNĐ');
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/, '');
+            $('.txtPrice').html(price + ' VNĐ');
         }
     </script>
     @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
@@ -666,19 +873,19 @@
 
         function UpdatePrice1() {
             var price = 0;
-            var data =json.price;
+            var data = json.price;
             $('tbody tr.selected').removeClass('selected');
             for (var i = from + 1; i <= to; i++) {
-                price += parseInt(data[i]-data[i-1]);
+                price += parseInt(data[i] - data[i - 1]);
                 $('tbody tr').eq(i - 1).addClass('selected');
             }
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
-            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            price = price.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html(price + ' VNĐ');
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/, '');
+            $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val(from + '|' + to);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('.nstSlider').nstSlider('set_position', from, to);
@@ -693,8 +900,8 @@
     <script>
         var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
         var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
-        $('#txtPrice').html('');
-        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+        $('.txtPrice').html('');
+        $('.txtPrice').html('Tổng: 0 ' + purchase_name);
 
         function UpdatePrice() {
 
@@ -705,8 +912,7 @@
 
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
-            }
-            else {
+            } else {
                 var s_price = data["price"];
             }
 
@@ -744,7 +950,7 @@
             if (typeof price != 'number' || price < min || price > max) {
                 $('button[type="submit"]').addClass('not-allow');
 
-                $('#txtPrice').html('Tiền nhập không đúng');
+                $('.txtPrice').html('Tiền nhập không đúng');
                 return;
             } else {
                 $('button[type="submit"]').removeClass('not-allow');
@@ -769,8 +975,7 @@
 
                     }
                 }
-            }
-            else {
+            } else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
 
@@ -783,11 +988,11 @@
             total = parseInt(total / 1000 * data.input_pack_rate);
 
             $('#txtDiscount').val(discount);
-            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-            total = total.split('').reverse().join('').replace(/^[\.]/,'');
-            $('#txtPrice').html('');
-            $('#txtPrice').html( total + " " + purchase_name);
-            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
+            total = total.split('').reverse().join('').replace(/^[\.]/, '');
+            $('.txtPrice').html('');
+            $('.txtPrice').html(total + " " + purchase_name);
+            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('[name="selected"]').val(price);
@@ -813,12 +1018,12 @@
 @section('scripts')
     <script>
 
-        $('body').on('click','#service-detail .btn-success-service',function(e){
+        $('body').on('click', '#service-detail .btn-success-service', function (e) {
             e.preventDefault();
             $('#orderModal').modal('show');
         })
 
-        $('body').on('click','.btn-success-mobile',function(e){
+        $('body').on('click', '.btn-success-mobile', function (e) {
             e.preventDefault();
             $('#orderSuccses').modal('show');
         })

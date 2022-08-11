@@ -14,10 +14,10 @@
                     <div class="card-body c-p-16 scale-thumb">
                         <a href="/dich-vu/{{$service->id}}">
                             <div class="card-thumb c-mb-8">
-                                <img src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="" class="card-thumb-image">
+                                <img onerror="imgError(this)" src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="" class="card-thumb-image">
                             </div>
                             <div class="card-attr">
-                                <div class="text-title fw-700">
+                                <div class="text-title fw-700 text-limit limit-1">
                                     {{$service->title}}
                                 </div>
                                 <div class="info-attr">
