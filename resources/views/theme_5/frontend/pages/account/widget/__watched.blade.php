@@ -1,4 +1,4 @@
-<section class="section-category watched">
+<section class="c_section-category watched">
     <div class="section-header c-mb-24 c-mb-lg-16">
         <h2 class="section-title fz-lg-15">
             {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
@@ -15,7 +15,7 @@
             <div class="swiper-slide">
                 <div class="item-category">
                     <div class="card">
-                        <a href="/acc/id" class="card-body scale-thumb c-p-16">
+                        <a href="/acc/id" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
                                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="account-thumb-image">
                             </div>

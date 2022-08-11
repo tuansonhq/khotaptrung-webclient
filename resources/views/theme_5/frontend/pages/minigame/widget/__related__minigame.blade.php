@@ -1,4 +1,4 @@
-<section class="section-category lien-quan">
+<section class="c_section-category lien-quan">
     <div class="section-header c-mb-24 c-mb-lg-16">
         <h2 class="section-title">
             {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
@@ -16,7 +16,7 @@
             <div class="swiper-slide h-auto">
                 <div class="item-category h-100">
                     <div class="card h-100">
-                        <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16">
+                        <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
                                 @if(isset($item->image))
                                     <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}" class="account-thumb-image lazy">

@@ -12,7 +12,7 @@
 
             <div class="swiper-slide">
                 <div class="card">
-                    <div class="card-body c-p-16 scale-thumb">
+                    <div class="card-body c-p-16 c-p-lg-8 scale-thumb">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                             <div class="card-thumb c-mb-8">
                                 <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-thumb-image">
