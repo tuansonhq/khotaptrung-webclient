@@ -361,46 +361,9 @@
                                 <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi
                                     KAKAROT Khu 39)</h2>
 
-                                <table class="table-data-bot">
-                                    <tr>
-                                        <th>Server</th>
-                                        <th>Nhân vật</th>
-                                        <th>Khu vực</th>
-                                        <th>Trạng thái</th>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>dubaish1</td>
-                                        <td>39</td>
-                                        <td>
-                                            <div class="status success">Online</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>dubaish1</td>
-                                        <td>39</td>
-                                        <td>
-                                            <div class="status danger">Offline</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>dubaish1</td>
-                                        <td>39</td>
-                                        <td>
-                                            <div class="status danger">Offline</div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>dubaish1</td>
-                                        <td>39</td>
-                                        <td>
-                                            <div class="status danger">Offline</div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div id="table-bot">
+
+                                </div>
                             </div>
                         </div>
                         <!-- end data bot -->

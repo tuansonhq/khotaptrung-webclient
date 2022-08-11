@@ -96,7 +96,6 @@ if (input_params_hide.length){
                 $('.service_pack').html('');
                 checked.each(function (elm) {
                     let text = $(this).parent().find('.text-label').text().trim();
-                    console.log(text)
                     let html = '';
                     html += `<div>`;
                     html += `${text}`;
@@ -214,6 +213,7 @@ function checkboxRequired(selector) {
     let checkboxs = $(`${selector}:checked`);
     return !checkboxs.length;
 }
+/* js submit form */
 
 $('.submit-form').on('click', function () {
     let data_form = $('#formDataService').serializeArray().reduce(function (obj, item) {
@@ -251,7 +251,24 @@ $('.submit-form').on('click', function () {
 
 })
 
+// BOT
+let table_bot = $('#table-bot');
+$.ajax({
+    type: 'GET',
+    url: '/show-bot',
+    data: {
+        slug: $('#slug').val(),
+    },
+    success: (response) => {
+        if (response.status){
+            table_bot.html('');
+            table_bot.html(response.data);
+        }
+    },
+})
 
+
+/* check dk show modal vs step*/
 $('body').on('click','.btnPay',function(){
     let is_ok = 1;
     let required = $('input[required_service]');
@@ -268,6 +285,23 @@ $('body').on('click','.btnPay',function(){
             }
         });
     }
+
+    /* show bot*/
+    let table_bot = $('#table-bot');
+    $.ajax({
+        type: 'GET',
+        url: '/show-bot',
+        data: {
+            slug: $('#slug').val(),
+        },
+        success: (response) => {
+            if (response.status){
+                table_bot.html('');
+                table_bot.html(response.data);
+            }
+        },
+    })
+
 
     if (is_ok){
         if ($(document).width() > 1200) {
