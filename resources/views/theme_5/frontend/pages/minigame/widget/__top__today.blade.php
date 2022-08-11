@@ -13,7 +13,7 @@
             @foreach($data as $key => $item)
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top {{ $key + 1 }}">
                         <a href="/minigame-{{ $item->slug }}">
                             @if(isset($item->image))
                                 <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}" class="block-thumb-image lazy">

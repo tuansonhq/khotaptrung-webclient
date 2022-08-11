@@ -493,6 +493,35 @@ section.outstanding-service {
     right: 0;
 }
 
+.content-desc-nick {
+    overflow: hidden;
+    -webkit-transition: max-height .15s ease-out;
+    transition: max-height .15s ease-out;
+}
+
+.content-desc-nick.hide {
+    max-height: 510px;
+    position: relative;
+    -webkit-transition: max-height .25s ease-in;
+    transition: max-height .25s ease-in;
+}
+
+.content-desc-nick.hide:before {
+    content: '';
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.75%, #FFFFFF 102.7%);
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.card-footer-nick{
+    padding-top: 16px;
+    background-color: #ffffff;
+}
+
+
 .section-pay {
     position: relative;
 }
