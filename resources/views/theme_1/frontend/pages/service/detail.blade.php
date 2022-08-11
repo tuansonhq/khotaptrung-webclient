@@ -11,7 +11,6 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
     <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="/assets/frontend/{{theme('')->theme_key}}/rank/css/chosen.css">
     <style type="text/css">
         @media only screen and (max-width: 640px) {
@@ -138,7 +137,7 @@
                                     <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
                                     <div class="mb-15">
                                         <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
-                                        <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}đ</b>  đến <b style="font-weight:bold;">{{number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))}}đ</b> </span>
+                                        <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                                     </div>
                                     <span class="mb-15 control-label bb">Hệ số:</span>
                                     <div class="mb-15">
@@ -400,7 +399,7 @@
                             <input type="hidden" name="index" value="{{ $index }}">
                             <div class="modal-footer modal-footer__data">
                                 <div>
-                                    @if(Auth::check())
+                                    @if(\App\Library\AuthCustom::check())
                                         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
@@ -466,14 +465,6 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/service/showdetailservice.js?v={{time()}}"></script>
 
     <script>
-
-        // $(document).ready(function () {
-        //     $('#btnPurchase').click(function () {
-        //
-        //         $('#homealert').modal('show');
-        //     });
-        // });
-
 
         function Confirm(index, serverid) {
             $('[name="server"]').val(serverid);
@@ -559,7 +550,7 @@
         function UpdatePrice() {
             var price = 0;
             var itemselect = '';
-            console.log(data)
+
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
             }

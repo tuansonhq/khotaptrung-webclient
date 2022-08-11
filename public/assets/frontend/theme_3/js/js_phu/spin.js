@@ -2,10 +2,12 @@ $(document).ready(function () {
     setActiveTable();
     setActiveTableMobile();
 
-    $('#rotationSelectBlock').niceSelect();
+    var started_at = $('.started_at').val();
+
+    $('#numrolllop').niceSelect();
 
     // Set the date we're counting down to
-    var countDownDate = new Date("June 30, 2022 18:00:00").getTime();
+    var countDownDate = new Date(started_at).getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -25,9 +27,9 @@ $(document).ready(function () {
         $('#hourRemain').text(hours);
         $('#minuteRemain').text(minutes);
         $('#secondRemain').text(seconds);
-        
 
-        // If the count down is finished, write some text 
+
+        // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
             $('#hourRemain').text('0');
@@ -37,23 +39,9 @@ $(document).ready(function () {
     }, 1000);
 
     //See more see less button functions
-    $('#seeMore').click(function (e) { 
+    $('.leaderboard-seemore').click(function (e) {
         e.preventDefault();
-        $('.service-detail-content').addClass('show-content');
-        $(this).css('display','none');
-        $('#seeLess').css('display', 'block');
-    });
-
-    $('#seeLess').click(function (e) { 
-        e.preventDefault();
-        $('.service-detail-content').removeClass('show-content');
-        $(this).css('display','none');
-        $('#seeMore').css('display', 'block');
-    });
-
-    $('.leaderboard-seemore').click(function (e) { 
-        e.preventDefault();
-        $('.leaderboard-md .leaderboard-content').addClass('leaderboard-content-showmore');
+        $('.leaderboard-content').addClass('leaderboard-content-showmore');
         $(this).css('display','none');
     });
 
@@ -70,6 +58,13 @@ $(document).ready(function () {
     //History Spin modal show up
     $('.history-spin-button').click(function() {
         $('#rotationHistory').modal('show');
+    });
+
+    //Moving point tooltip
+    $('.progress-wrapper').mousemove(function (e) {
+        var offset = $(this).offset();
+        var mouseX = e.pageX - offset.left - 100;
+        $('.progress-tooltip').css({left: mouseX});
     });
 
     //Change leaderboard table
@@ -124,5 +119,33 @@ $(document).ready(function () {
         $('.leaderboard-md .date-listing').css('transform', `translate3d(0%, 0px, 0px)` );
         $('.leaderboard-md .date-listing').css('width', `${width}px` );
     }
+
+
+    function handleToggleContent(){
+        $('.js-toggle-content .view-less').toggle();
+        $('.js-toggle-content .view-more').toggle();
+        if ($('.view-less').is(":visible")) {
+
+            $('.content-video-in').css('max-height', 'initial')
+
+        } else {
+
+            $('.content-video-in').css('max-height', '')
+        }
+    }
+
+    $('.js-toggle-content').click(function () {
+        handleToggleContent();
+    });
+
+    $(document).on('scroll',function(){
+        if ($(this).scrollTop() > 200) {
+            $('.rotation-leaderboard').css("top", "140px");
+        } else {
+            $('.rotation-leaderboard').css("top", "80px");
+        }
+
+    });
+
 
 });

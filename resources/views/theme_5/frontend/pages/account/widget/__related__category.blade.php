@@ -1,268 +1,48 @@
-<section >
-    <div class="container container-fix body-container-ct">
-        <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-            <div class="col-md-12 left-right">
-                <div class="row marginauto body-row-ct media-ctbg-ct">
+@if(isset($data))
+<section class="section-related-service related-category">
+    <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
+        <h2 class="section-title fz-lg-15 lh-lg-24">
+            Mua tài khoản game khác
+        </h2>
+        <a href="" class="link arr-right">Xem tất cả</a>
+    </div>
+    <div class="swiper swiper-related-service">
+        <div class="swiper-wrapper">
+            @foreach($data as $item)
 
-                    <div class="col-md-12 left-right napgamekhac">
-                        <div class="row marginauto">
-                            <div class="col-md-12 text-left left-right">
-                                <span>Mua tài khoản game khác</span>
+            <div class="swiper-slide">
+                <div class="card">
+                    <div class="card-body c-p-16 scale-thumb">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
+                            <div class="card-thumb c-mb-8">
+                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-thumb-image">
                             </div>
-                        </div>
-                    </div>
+                            <div class="card-attr">
+                                <div class="text-title fw-700">
+                                    {{ isset($item->custom->title) ? $item->custom->title :  $item->title }}
+                                </div>
+                                <div class="info-attr">
+                                    @if(isset($item->items_count))
+                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                            Đã bán: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }}
+                                        @else
+                                            Đã bán: {{ $item->items_count }}
+                                        @endif
 
-                    <div class="col-md-12 left-right">
-                        <div class="row marginauto body-detail-ct">
-                            <div class="swiper-container list-nap-game col-md-12 text-left left-right">
-                                <div class="swiper-wrapper">
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                        <div class="row marginauto hover-overlay-ct">
-                                            <div class="col-md-12 left-right default-overlay-ct">
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lienquan.png" alt="">
-                                            </div>
-                                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên quân Mobile</span>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                        <div class="row marginauto hover-overlay-ct">
-                                            <div class="col-md-12 left-right default-overlay-ct">
-
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
-
-                                            </div>
-                                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                <span>Garena freefire</span>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                        <div class="row marginauto hover-overlay-ct">
-                                            <div class="col-md-12 left-right default-overlay-ct">
-
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
-
-                                            </div>
-                                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                <span>PUBG Mobile</span>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Liên Minh Huyền Thoại</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Cyber Punk 2077</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/csgo.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>CSGO</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/freefire.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Garena freefire</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <div class="row marginauto hover-overlay-ct">
-                                            <a href="/mua-acc/slug">
-                                            <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bubg.png" alt="">
-
-                                            </div>
-                                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>PUBG Mobile</span>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/lmht.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <a href="/mua-acc/slug">
-                                                        <span>Liên Minh Huyền Thoại</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/tocchien.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Tốc chiến</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/autochest.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Auto Chess</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                            <div class="row marginauto hover-overlay-ct">
-                                                <div class="col-md-12 left-right default-overlay-ct">
-
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/bangbang.png" alt="">
-
-                                                </div>
-                                                <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                    <span>Bang Bang</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-
-                                    <div class="swiper-slide body-detail-ctng-col-ct">
-                                        <a href="/mua-acc/slug">
-                                        <div class="row marginauto hover-overlay-ct">
-                                            <div class="col-md-12 left-right default-overlay-ct">
-
-                                                <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/cyber.png" alt="">
-
-                                            </div>
-                                            <div class="col-md-12 left-right text-center body-detail-col-span-ct">
-                                                <span>Cyber Punk 2077</span>
-                                            </div>
-                                        </div>
-                                        </a>
-                                    </div>
+                                    @else
+                                        Đã bán: 9999
+                                    @endif
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
 
+            @endforeach
         </div>
+        <div class="navigation slider-next"></div>
+        <div class="navigation slider-prev"></div>
     </div>
 </section>
+@endif

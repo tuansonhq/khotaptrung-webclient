@@ -7,7 +7,7 @@
                     <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
                     <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
                         @csrf
-                        <h1>Đăng ký</h1>
+                        <p>Đăng ký</p>
                         <p class="modal-login-error text-center registError" id="registError"></p>
                         {{-- <div class="social-container">
                             <a href="" class="social">
@@ -44,7 +44,7 @@
                 <div class="modal-login-form-container sign-in-container"   >
                     <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
                         @csrf
-                        <h1>Đăng nhập</h1>
+                        <p>Đăng nhập</p>
                         <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
                         <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
 
@@ -67,13 +67,13 @@
                 <div class="modal-login-overlay-container">
                     <div class="modal-login-overlay">
                         <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
-                            <h1>Bạn đã có tài khoản?</h1>
+                            <p class="modal-login-suggestion">Bạn đã có tài khoản?</p>
                             <p>Đăng nhập tại đây</p>
                             <button id="signIn">Đăng nhập</button>
                         </div>
                         <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
                             <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close.svg" alt="">
-                            <h1>Bạn chưa có tài khoản?</h1>
+                            <p class="modal-login-suggestion">Bạn chưa có tài khoản?</p>
                             <p>Vui lòng đăng ký ngay tại đây</p>
                             <button id="signUp">Đăng ký</button>
                         </div>
@@ -85,11 +85,27 @@
 </div>
 
 <div class="mobile-auth">
+
+    <section class="media-mobile">
+        <div class=" banner-mobile-container-ct">
+            <div class="row marginauto banner-mobile-row-ct">
+                <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openLoginModal()" >
+                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                </div>
+
+                <div class="col-auto left-right banner-mobile-span text-center text-login" style="width: 80%">
+                    <h3>Đăng nhập</h3>
+                </div>
+                <div class="col-auto left-right" style="width: 10%">
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="mobile-auth-nav">
-        <div class="auth-nav-option auth-nav-option-active">
+        <div class="auth-nav-option auth-nav-option-active auth-nav-login">
             Đăng nhập
         </div>
-        <div class="auth-nav-option">
+        <div class="auth-nav-option auth-nav-regist" >
             Đăng ký
         </div>
     </div>
@@ -106,7 +122,7 @@
 {{--            <p class="modal-login-error" id="passwordError"></p>--}}
 {{--            <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
             <button type="submit">Đăng nhập</button>
-            <h1>Hoặc đăng nhập qua</h1>
+            <p>Hoặc đăng nhập qua</p>
             <div class="social-container">
                 <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
@@ -149,7 +165,7 @@
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         let url2 = new URL(window.location.href);
-
+        $('.modal-loader-container').css('display','flex')
         var return_url = url2.searchParams.get('return_url');
         $.ajax({
             type: "POST",
@@ -163,34 +179,20 @@
 
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
+                        if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                            window.location.reload();
 
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
-                                window.location.href = '/';
-                            }else{
-                                window.location.href = data.return_url;
-                            }
-
-
-                        }else {
-                            window.location.href = return_url;
-
+                        }else{
+                            window.location.href = data.return_url;
                         }
-
                     }else {
                         window.location.href = return_url;
 
                     }
+
                 }else{
                     $('.LoginError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
+
                 }
 
             },
@@ -200,6 +202,7 @@
             },
             complete: function (data) {
                 $('#form-login').trigger("reset");
+                $('.modal-loader-container').css('display','none')
             }
         });
     });
@@ -209,7 +212,7 @@
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         let url2 = new URL(window.location.href);
-
+        $('.modal-loader-container').css('display','flex')
         var return_url = url2.searchParams.get('return_url');
         $.ajax({
             type: "POST",
@@ -217,19 +220,18 @@
             cache:false,
             data: formSubmit.serialize(), // serializes the form's elements.
             beforeSend: function (xhr) {
+
             },
             success: function (data) {
 
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
+                        if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                            window.location.reload();
 
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            window.location.href = '/';
-                        }else {
-                            window.location.href = return_url;
-
+                        }else{
+                            window.location.href = data.return_url;
                         }
-
                     }else {
                         window.location.href = return_url;
 
@@ -237,24 +239,9 @@
 
                 }else{
                     $('.registError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
+
                 }
 
-                // if(data.status == 1){
-                //     alert(da);
-                // }
-                // else{
-                //     alert(data);
-                //     btnSubmit.text('Thanh toán');
-                //     btnSubmit.prop('disabled', false);
-                // }
             },
             error: function (data) {
                 alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
@@ -263,6 +250,7 @@
             complete: function (data) {
                 $('#reload').trigger('click');
                 $('#form-regist').trigger("reset");
+                $('.modal-loader-container').css('display','none')
             }
         });
     });

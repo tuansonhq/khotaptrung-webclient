@@ -35,6 +35,7 @@ class ChargeController extends Controller
     public function reloadCaptcha()
     {
 
+        Session::push('url_return.id_return','1');
         return response()->json(['captcha'=> captcha_img()]);
     }
     public function myCaptcha()
@@ -47,8 +48,7 @@ class ChargeController extends Controller
     }
     public function getDepositAuto(Request $request)
     {
-        Session::forget('return_url');
-        Session::put('return_url', $_SERVER['REQUEST_URI']);
+
         return view('frontend.pages.charge.index');
 
     }
@@ -257,8 +257,6 @@ class ChargeController extends Controller
 
     public function getChargeDepositHistory(Request $request)
     {
-
-
         if (AuthCustom::check()) {
 
             $method = "GET";
@@ -279,28 +277,27 @@ class ChargeController extends Controller
                 $val['token'] = $jwt;
                 $val['page'] = $page;
 
-                if (isset($request->serial) || $request->serial != '' || $request->serial != null) {
+                if ($request->filled('serial')) {
                     $val['serial'] = $request->serial;
                 }
 
-                if (isset($request->key) || $request->key != '' || $request->key != null) {
+                if ($request->filled('key')) {
                     $val['key'] = $request->key;
                 }
 
-                if (isset($request->status) || $request->status != '' || $request->status != null) {
+                if ($request->filled('key')) {
                     $val['status'] = $request->status;
                 }
 
-                if (isset($request->started_at) || $request->started_at != '' || $request->started_at != null) {
+                if ($request->filled('started_at')) {
                     $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
                     $val['started_at'] = $started_at;
                 }
 
-                if (isset($request->ended_at) || $request->ended_at != '' || $request->ended_at != null) {
+                if ($request->filled('ended_at')) {
                     $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
                     $val['ended_at'] = $ended_at;
                 }
-
                 $result_Api = DirectAPI::_makeRequest($url, $val, $method);
                 $response_data = $result_Api->response_data??null;
 
@@ -332,6 +329,13 @@ class ChargeController extends Controller
                         return response()->json([
                             'status' => 0,
                             'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
                         ]);
                     }
 
@@ -373,10 +377,7 @@ class ChargeController extends Controller
                     'message'=>$response_data->message??"Không thể lấy dữ liệu"
                 ]);
             }
-
-
         }
-
     }
 
 //    public function getDepositHistory(Request $request)

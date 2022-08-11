@@ -22,6 +22,8 @@ $('.js-amount').on('click', function () {
     if (input.val() > 20) {
         input.val(20)
     }
+
+    $('input[name=card-amount]').trigger('input');
 });
 
 // see more desc service
@@ -29,8 +31,8 @@ $('.js-toggle-content').click(function () {
     handleToggleContent();
 });
 
-$('.card--body .card--desc__content').on('dblclick',function () {
-    handleToggleContent()
+$('.card--body .card--desc__content').dblclick(function(){
+    handleToggleContent();
 });
 // ondblclick on mobile
 if ($(window).width() < 1200) {
@@ -55,11 +57,13 @@ if ($(window).width() < 1200) {
 function handleToggleContent(){
     $('.js-toggle-content .view-less').toggle();
     $('.js-toggle-content .view-more').toggle();
-    $('.card--desc__content').toggleClass('content-video-in-add');
+    let card_desc = $('.card--desc__content');
+    card_desc.toggleClass('content-video-in-add');
     if ($('.view-less').is(":visible")) {
-        $('#content-store-card .card--desc__content').css('max-height', 'initial')
+        let initialHeight = card_desc.css('max-height', 'initial').height();
+        card_desc.animate({maxHeight: initialHeight + 16},250)
     } else {
-        $('#content-store-card .card--desc__content').css('max-height', '')
+        card_desc.animate({maxHeight: 280},250)
     }
 }
 
@@ -112,18 +116,10 @@ let slider_count = 1;
 if ($('.slider--card .swiper-wrapper').children().length > 1) {
     slider_count = 1.25;
 }
-var swiper_card = new Swiper(".slider--card", {
-    slidesPerView: slider_count,
-    spaceBetween: 16,
-    freeMode: true,
-    observer: true,
-    observeParents: true,
-});
 
 // option swiper article banner
 var swiper_article= new Swiper(".article--slider", {
     autoplay: {
-        disableOnInteraction: false,
         delay:3000
     },
     speed:500,

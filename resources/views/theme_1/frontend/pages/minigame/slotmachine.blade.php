@@ -8,7 +8,6 @@
             <div class="item_play_title">
                 <h1>{{$result->group->title}}</h1>
                 <div class="item_play_line"></div>
-
             </div>
             <div class="item_play_online_out">
                 <div class="item_play_online"></div>
@@ -318,7 +317,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -347,7 +346,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -434,6 +433,7 @@
         var slot1_fake;
         var slot2_fake;
         var slot3_fake;
+        var showwithdrawbtn = true;
         //Click nút quay
         $('body').delegate('#start-played', 'click', function() {
 
@@ -491,7 +491,7 @@
                         }
 
 
-
+                        showwithdrawbtn = data.showwithdrawbtn;
                         gift_revice = data.arr_gift;
                         numrollbyorder = parseInt(data.numrollbyorder) + 1;
                         arrxgt = data.xgt;
@@ -860,7 +860,9 @@
                     }
                 }
             }
-
+            if (!showwithdrawbtn) {
+                $("#btnWithdraw").hide();
+            }
             $('#noticeModal .content-popup').html($html);
 
             if (userpoint > 99) {

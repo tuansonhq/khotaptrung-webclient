@@ -83,8 +83,7 @@
                 beforeSend: function (xhr) {
                 },
                 success: function (data) {
-                    console.log(data)
-                    // alert(data)
+
                     if(data.status == 1){
                         swal({
                             title: "Thành công !",

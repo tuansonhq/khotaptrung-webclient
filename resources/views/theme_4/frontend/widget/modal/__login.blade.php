@@ -1,147 +1,163 @@
 @if(!App\Library\AuthCustom::check())
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-lg modal-dialog-centered animated">
-            <div class="modal-content">
-                <div class="modal-login-container" id="modal-login-container">
-                    <div class="modal-login-form-container sign-up-container">
-                        <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close_dark.svg" alt="">
-                        <form class="modal-login-form formRegister" id="formRegister" action="{{route('register')}}" method="POST">
-                            @csrf
-                            <h1>Đăng ký</h1>
-                            <p class="modal-login-error text-center registError" id="registError"></p>
-                            {{-- <div class="social-container">
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                                </a>
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/google_icon.svg" alt="">
-                                </a>
-                                <a href="" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/discord_icon.svg" alt="">
-                                </a>
-                            </div>
-                            <span>Hoặc đăng ký bằng tài khoản</span> --}}
-                            <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>
+<!-- Modal -->
+<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-1"></div>
+                <div class="col-10 text-center"><h6 class="modal-title">Đăng nhập</h6></div>
+                <div class="col-1 ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form id="formLogin"  class="formLogin" action="{{route('login')}}" method="POST">
+                    @csrf
+                    <div class=" text-center">
+                        <div class="my-4 text-center">
+                            <b class="text-danger"></b>
+                            <span class="help-block text-danger notify-error login-error">
+                                   <strong></strong>
+                            </span>
+                        </div>
 
-                            {{--                        <input class="input-primary" type="text" name="email" placeholder="Nhập email">--}}
-                            {{--                        <p class="modal-login-error" id="emailRegisterError"></p>--}}
-                            {{--                        <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">--}}
-                            {{--                        <p class="modal-login-error" id="phoneRegisterError"></p>--}}
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required>
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required>
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            {{--                        <p class="modal-login-error" id="passwordRegisterError"></p>--}}
-                            <button type="submit">Đăng ký</button>
-                        </form>
                     </div>
-                    <div class="modal-login-form-container sign-in-container"   >
-                        <form class="modal-login-form formLogin" action="{{route('login')}}" id="formLogin"  method="POST">
-                            @csrf
-                            <h1>Đăng nhập</h1>
-                            <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
-                            <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
+                    <div class="form-group">
+                        <label>Tài khoản hoặc email</label>
+                        <input type="text" class="form-control"
+                               placeholder="Tài khoản hoặc email" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+                        <input type="password" id="password" class="form-control" autocomplete="off"
+                               placeholder="Nhập mật khẩu" name="password">
+                    </div>
 
-                            <div class="password-input-container">
-                                <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off">
-                                <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none" required>
-                                <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                            </div>
-                            {{--                        <p class="modal-login-error" id="passwordError"></p>--}}
-                            {{--                        <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
-                            <button type="submit">Đăng nhập</button>
-                            <span>Hoặc đăng nhập qua</span>
-                            <div class="social-container">
-                                <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                                </a>
-                            </div>
-                        </form>
+{{--                    <div class="form-row form-group">--}}
+{{--                        <div class="col-6">--}}
+{{--                            <label class="form-check-label">--}}
+{{--                                <input class="" type="checkbox" name="remember"> Ghi nhớ--}}
+{{--                            </label>--}}
+
+{{--                        </div>--}}
+{{--                        <div class="col-6 text-right">--}}
+{{--                            <a class="btn-a-forgot text-right" href="#" style="color:#007bff;">Bạn quên mật khẩu?</a>--}}
+{{--                        </div>--}}
+
+{{--                    </div>--}}
+
+
+                    <button type="submit" class="btn btn-primary btn-block"><span
+                            class="glyphicon glyphicon-off"></span> Đăng nhập
+                    </button>
+
+
+                    <div class="modal-bottom" style="margin-top: 15px">
+                        <p class="text-center">
+
+                            <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="btn  btn-social btn-facebook btn-flat d-inline-block" style="margin-bottom:5px"><img
+                                    src="/assets/frontend/{{theme('')->theme_key}}/image/facebook-icon.png" alt="" width="32px" height="32px">
+                            </a>
+                        </p>
+                        <p class="text-center">
+                            Bạn chưa có tài khoản. <a class="btn-a-register" href="#" data-dismiss="modal"
+                                                      data-toggle="modal" data-target="#modal-register"
+                                                      style="color:#007bff">Đăng kí ngay !</a>
+                        </p>
                     </div>
-                    <div class="modal-login-overlay-container">
-                        <div class="modal-login-overlay">
-                            <div class="modal-login-overlay-panel modal-login-overlay-left" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
-                                <h1>Bạn đã có tài khoản?</h1>
-                                <p>Đăng nhập tại đây</p>
-                                <button id="signIn">Đăng nhập</button>
-                            </div>
-                            <div class="modal-login-overlay-panel modal-login-overlay-right" style="background-image: url('/assets/frontend/{{theme('')->theme_key}}/image/images_1/login_modal_bg.png')">
-                                <img class="close-login-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/close.svg" alt="">
-                                <h1>Bạn chưa có tài khoản?</h1>
-                                <p>Vui lòng đăng ký ngay tại đây</p>
-                                <button id="signUp">Đăng ký</button>
-                            </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-1"></div>
+                <div class="col-10 text-center"><h6 class="modal-title">Đăng ký</h6></div>
+                <div class="col-1 ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <form id="formRegister" action="{{route('register')}}" method="POST">
+                    @csrf
+                    <div class=" text-center">
+                        <div class="my-4 text-center">
+                            <b class="text-danger"></b>
+                            <span class="help-block text-danger notify-error register-error">
+                                   <strong></strong>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Tài khoản <span style="color: red">(*)</span></label>
+
+                        <input type="text" class="form-control" autocomplete="off" placeholder="Tài khoản"
+                               value="" name="username" required>
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col-md-6 ">
+                            <label>Mật khẩu <span style="color: red">(*)</span></label>
+                            <input type="password" class="form-control" autocomplete="off" placeholder="Mật khẩu"
+                                   value="" name="password" required>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>Xác nhân mật khẩu <span style="color: red">(*)</span></label>
+                            <input type="password" class="form-control" autocomplete="off"
+                                   placeholder="Xác nhận mật khẩu" name="password_confirmation" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="mobile-auth">
-        <div class="mobile-auth-nav">
-            <div class="auth-nav-option auth-nav-option-active">
-                Đăng nhập
+{{--                    <div class="form-group">--}}
+{{--                        <label>Email <span style="color: red">(*)</span></label>--}}
+{{--                        <input type="email" class="form-control" autocomplete="off"--}}
+{{--                               value="" placeholder="Email" name="email">--}}
+
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label>Số điện thoại <span style="color: red">(*)</span></label>--}}
+{{--                        <input type="text" class="form-control" autocomplete="off"--}}
+{{--                               value="" placeholder="Số điện thoại" maxlength="11"--}}
+{{--                               name="phone">--}}
+{{--                    </div>--}}
+
+
+                    <button type="submit" class="btn btn-primary btn-block"><span
+                            class="glyphicon glyphicon-off"></span> Đăng ký
+                    </button>
+
+
+                    <div class="modal-bottom">
+                        <p class="text-center" style="margin-top: 15px">
+                            Đã có tài khoản. <a class="btn-a-login" href="#" data-dismiss="modal" data-toggle="modal"
+                                                data-target="#modal-login" style="color:#007bff">Đăng nhập tại đây !</a>
+                        </p>
+                    </div>
+
+
+                </form>
             </div>
-            <div class="auth-nav-option">
-                Đăng ký
-            </div>
-        </div>
-        <div class="mobile-auth-form">
-            <form class="modal-login-form formLogin" id="formLoginMobile" action="{{route('login')}}" method="POST">
-                @csrf
-                <p class="modal-login-error text-center LoginError" id="LoginError" ></p>
-                <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" autocomplete="off" required>
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                {{--            <p class="modal-login-error" id="passwordError"></p>--}}
-                {{--            <a class="modal-login-forget-password" id="span_resetPass">Quên mật khẩu?</a>--}}
-                <button type="submit">Đăng nhập</button>
-                <h1>Hoặc đăng nhập qua</h1>
-                <div class="social-container">
-                    <a href="http://fb.nhapnick.com/{{str_replace(".","_",Request::getHost())}}" class="social">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/fb_icon.svg" alt="">
-                    </a>
-                </div>
-                <p id="changeFormRegister" class="mobile-auth-change-form">Bạn chưa có tài khoản? <span>Đăng ký tại đây</span></p>
-            </form>
-            <form class="modal-login-form formRegister" id="formRegisterMobile" action="{{route('register')}}" method="POST" style="display: none">
-                @csrf
-                <p class="modal-login-error text-center registError" id="registError"></p>
-                <input class="input-primary" type="text" name="username" placeholder="Nhập tên tài khoản" required>
-                {{--            <p class="modal-login-error" id="usernameRegisterErrorMobile"></p>--}}
-                {{--            <input class="input-primary" type="text" name="email" placeholder="Nhập email">--}}
-                {{--            <p class="modal-login-error" id="emailRegisterErrorMobile"></p>--}}
-                {{--            <input class="input-primary" type="text" name="phone" placeholder="Nhập số điện thoại">--}}
-                {{--            <p class="modal-login-error" id="phoneRegisterErrorMobile"></p>--}}
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password" placeholder="Nhập mật khẩu của bạn" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                <div class="password-input-container">
-                    <input class="input-primary" type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu của bạn" autocomplete="off" required>
-                    <img class="password-input-hide" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg" alt="" style="display: none">
-                    <img class="password-input-show" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-hide.svg" alt="" >
-                </div>
-                {{--            <p class="modal-login-error" id="passwordRegisterError"></p>--}}
-                <button type="submit">Đăng ký</button>
-                <p id="changeFormLogin" class="mobile-auth-change-form">Bạn đã có tài khoản? <span>Đăng nhập tại đây</span></p>
-            </form>
+
         </div>
     </div>
+</div>
 @endif
+{{--Đăng nhập--}}
 <script>
-
     $('.formLogin').submit(function (e) {
 
         e.preventDefault();
@@ -149,7 +165,6 @@
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         let url2 = new URL(window.location.href);
-
         var return_url = url2.searchParams.get('return_url');
         $.ajax({
             type: "POST",
@@ -163,34 +178,20 @@
 
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
+                        if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                            window.location.reload();
 
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
-                                window.location.href = '/';
-                            }else{
-                                window.location.href = data.return_url;
-                            }
-
-
-                        }else {
-                            window.location.href = return_url;
-
+                        }else{
+                            window.location.href = data.return_url;
                         }
-
                     }else {
                         window.location.href = return_url;
 
                     }
+
                 }else{
-                    $('.LoginError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
+                    $('.login-error').html('<strong>'+data.message+'</strong>')
+
                 }
 
             },
@@ -199,17 +200,20 @@
                 btnSubmit.text('Đăng nhập');
             },
             complete: function (data) {
-                $('#form-login').trigger("reset");
+
             }
         });
     });
-    $('.formRegister').submit(function (e) {
+</script>
+{{--Đăng ký--}}
+
+<script>
+    $('#formRegister').submit(function (e) {
         e.preventDefault();
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         let url2 = new URL(window.location.href);
-
         var return_url = url2.searchParams.get('return_url');
         $.ajax({
             type: "POST",
@@ -217,53 +221,199 @@
             cache:false,
             data: formSubmit.serialize(), // serializes the form's elements.
             beforeSend: function (xhr) {
+
             },
             success: function (data) {
 
                 if(data.status == 1){
                     if (return_url == null || return_url == '' || return_url == undefined){
+                        if (data.return_url == null || data.return_url == '' || data.return_url == undefined){
+                            window.location.reload();
 
-                        if (return_url == null || return_url == '' || metapath == undefined){
-                            window.location.href = '/';
-                        }else {
-                            window.location.href = return_url;
-
+                        }else{
+                            window.location.href = data.return_url;
                         }
-
                     }else {
                         window.location.href = return_url;
 
                     }
 
                 }else{
-                    $('.registError').html(data.message)
-                    // swal({
-                    //     title: "Có lỗi xảy ra !",
-                    //     text: data.message,
-                    //     icon: "error",
-                    //     buttons: {
-                    //         cancel: "Đóng",
-                    //     },
-                    // })
+                    $('.register-error').html('<strong>'+data.message+'</strong>' )
+
                 }
 
-                // if(data.status == 1){
-                //     alert(da);
-                // }
-                // else{
-                //     alert(data);
-                //     btnSubmit.text('Thanh toán');
-                //     btnSubmit.prop('disabled', false);
-                // }
             },
             error: function (data) {
                 alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
                 btnSubmit.text('Đăng ký');
             },
             complete: function (data) {
-                $('#reload').trigger('click');
-                $('#form-regist').trigger("reset");
+
             }
         });
     });
 </script>
+{{--<script>--}}
+
+{{--    $(".noty-pass .checkbox label").click(function () {--}}
+{{--        alert();--}}
+{{--        if ($("#check-pass").prop("checked") == false) {--}}
+{{--            $("#check-pass").prop({checked: true});--}}
+{{--            $("input#password").attr("type", "text");--}}
+{{--        } else {--}}
+{{--            $("#check-pass").prop({checked: false});--}}
+{{--            $("input#password").attr("type", "password");--}}
+{{--        }--}}
+{{--    });--}}
+{{--    $('.modal-auth').css('padding-left', 0)--}}
+
+
+{{--    $(document).ready(function () {--}}
+
+
+{{--        $('#modal-register').on('show.bs.modal', function () {--}}
+
+{{--            $('.panel-register').show();--}}
+{{--            $('.panel-register-success').hide();--}}
+{{--        });--}}
+
+{{--        $('#formRegister').submit(function (e) {--}}
+{{--            e.preventDefault();--}}
+{{--            var formSubmit = $(this);--}}
+{{--            var url = formSubmit.attr('action');--}}
+{{--            var btnSubmit = formSubmit.find(':submit');--}}
+{{--            btnSubmit.text('Đang xử lý...');--}}
+{{--            btnSubmit.prop('disabled', true);--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: url,--}}
+{{--                data: formSubmit.serialize(), // serializes the form's elements.--}}
+{{--                beforeSend: function (xhr) {--}}
+
+{{--                },--}}
+{{--                success: function (response) {--}}
+{{--                    if (response.success) {--}}
+{{--                        formSubmit.find('.notify-error').text(response.message);--}}
+{{--                        setTimeout(location.reload.bind(location), 1000);--}}
+
+{{--                    }--}}
+{{--                },--}}
+{{--                error: function (response) {--}}
+{{--                    if (response.status === 422 || response.status === 429) {--}}
+{{--                        let errors = response.responseJSON.errors;--}}
+
+{{--                        jQuery.each(errors, function (index, itemData) {--}}
+{{--                            console.log(itemData);--}}
+{{--                            formSubmit.find('.notify-error').text('');--}}
+{{--                            formSubmit.find('.notify-error').text(itemData[0]);--}}
+{{--                            return false; // breaks--}}
+{{--                        });--}}
+{{--                    } else {--}}
+{{--                        alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');--}}
+
+{{--                    }--}}
+{{--                },--}}
+{{--                complete: function (data) {--}}
+{{--                    btnSubmit.text('Đăng ký');--}}
+{{--                    btnSubmit.prop('disabled', false);--}}
+{{--                }--}}
+{{--            });--}}
+
+{{--        });--}}
+{{--        //login--}}
+{{--        $('#formLogin').submit(function (e) {--}}
+
+{{--            e.preventDefault();--}}
+
+{{--            var formSubmit = $(this);--}}
+{{--            var url = formSubmit.attr('action');--}}
+{{--            var btnSubmit = formSubmit.find(':submit');--}}
+{{--            btnSubmit.text('Đang xử lý...');--}}
+{{--            btnSubmit.prop('disabled', true);--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: url,--}}
+{{--                data: formSubmit.serialize(), // serializes the form's elements.--}}
+{{--                beforeSend: function (xhr) {--}}
+
+{{--                },--}}
+{{--                success: function (response) {--}}
+{{--                    if (response.success) {--}}
+{{--                        window.location.reload();--}}
+{{--                    }--}}
+{{--                },--}}
+{{--                error: function (response) {--}}
+{{--                    if (response.status === 422 || response.status === 429) {--}}
+{{--                        let errors = response.responseJSON.errors;--}}
+
+{{--                        jQuery.each(errors, function (index, itemData) {--}}
+{{--                            formSubmit.find('.notify-error').text('');--}}
+{{--                            formSubmit.find('.notify-error').text(itemData[0]);--}}
+{{--                            formSubmit.find('#password').text('');--}}
+{{--                            return false; // breaks--}}
+{{--                        });--}}
+{{--                    } else {--}}
+{{--                        alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');--}}
+
+{{--                    }--}}
+{{--                },--}}
+{{--                complete: function (data) {--}}
+{{--                    btnSubmit.text('Đăng nhập');--}}
+{{--                    btnSubmit.prop('disabled', false);--}}
+{{--                }--}}
+{{--            });--}}
+
+{{--        });--}}
+
+{{--        //login--}}
+{{--        $('#formForgot').submit(function (e) {--}}
+
+
+{{--            e.preventDefault();--}}
+
+{{--            var formSubmit = $(this);--}}
+{{--            var url = formSubmit.attr('action');--}}
+{{--            var btnSubmit = formSubmit.find(':submit');--}}
+{{--            btnSubmit.text('Đang xử lý...');--}}
+{{--            btnSubmit.prop('disabled', true);--}}
+
+{{--            $.ajax({--}}
+{{--                type: "POST",--}}
+{{--                url: url,--}}
+{{--                data: formSubmit.serialize(), // serializes the form's elements.--}}
+{{--                beforeSend: function (xhr) {--}}
+
+{{--                },--}}
+{{--                success: function (response) {--}}
+{{--                    if (response.success) {--}}
+{{--                        formSubmit.find('.notify-success').text(response.message);--}}
+{{--                    } else {--}}
+{{--                        formSubmit.find('.notify-error').text(response.message);--}}
+{{--                    }--}}
+{{--                },--}}
+{{--                error: function (response) {--}}
+{{--                    if (response.status === 422 || response.status === 429) {--}}
+{{--                        let errors = response.responseJSON.errors;--}}
+
+{{--                        jQuery.each(errors, function (index, itemData) {--}}
+
+{{--                            formSubmit.find('.notify-error').text('');--}}
+{{--                            formSubmit.find('.notify-error').text(itemData[0]);--}}
+{{--                            return false; // breaks--}}
+{{--                        });--}}
+{{--                    } else {--}}
+{{--                        formSubmit.find('.notify-error').text('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');--}}
+{{--                    }--}}
+{{--                },--}}
+{{--                complete: function (data) {--}}
+{{--                    btnSubmit.text('Xác nhận');--}}
+{{--                    btnSubmit.prop('disabled', false);--}}
+{{--                }--}}
+{{--            });--}}
+
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}

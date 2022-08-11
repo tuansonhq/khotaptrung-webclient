@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
-
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
@@ -19,14 +20,14 @@
         <div class="container container-fix banner-mobile-container-ct">
 
             <div class="row marginauto banner-mobile-row-ct">
-                <div class="col-auto left-right" style="width: 10%">
-                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
+                <div class="col-auto left-right" style="width: 10%" >
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px" onclick="openMenuProfile()">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Dịch vụ đã mua</h3>
+                    <h1>Dịch vụ đã mua</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -131,7 +132,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form class="account_service_history__v2">
+                    <form class="account_service_history__v2" id="data_sort">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -152,10 +153,10 @@
                                         <span>Dịch vụ</span>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct service-finter-nick">
-                                        <select class="wide service key" name="key">
-                                            <option>Chọn</option>
+                                        <select class="wide service key" name="slug_category">
+                                            <option value="">Chọn</option>
                                             @foreach($datacate as $val)
-                                                <option value="{{ $val->slug }}">{{ $val->title }}</option>
+                                                <option value="{{ $val->id }}">{{ $val->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -169,7 +170,7 @@
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                         <select class="wide status" name="status">
-                                            <option>Chọn</option>
+                                            <option value="">Chọn</option>
                                             <option value="0">Đã hủy</option>
                                             <option value="1">Đang chờ xử lý</option>
                                             <option value="2">Đang thực hiện</option>
@@ -204,7 +205,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" class="input-defautf-ct ended_at" name="ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
@@ -267,7 +268,8 @@
     <input type="hidden" name="ended_at_data" class="ended_at_data">
     <input type="hidden" name="hidden_page" id="hidden_page" value="1" />
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/logs.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/logs--update.js"></script>
 @endsection
 
 

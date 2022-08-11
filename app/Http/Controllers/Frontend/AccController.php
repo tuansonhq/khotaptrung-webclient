@@ -24,13 +24,14 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
+
         if(isset($response_data) && $response_data->status == 1){
 
             $data = $response_data->data;
 
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.account.category')
                 ->with('data',$data);
         }
@@ -38,9 +39,9 @@ class AccController extends Controller
 
             $data = null;
             $message = $response_data->message??"Không thể lấy dữ liệu";
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
+
             return view('frontend.pages.account.category')
                 ->with('message',$message)
                 ->with('data',$data);
@@ -59,7 +60,6 @@ class AccController extends Controller
 
         if ($request->ajax()){
             $page = $request->page;
-
             if(isset($response_cate_data) && $response_cate_data->status == 1){
                 $data = $response_cate_data->data;
                 $dataAttribute = $data->childs;
@@ -69,7 +69,10 @@ class AccController extends Controller
                 $dataSend['cat_slug'] = $slug;
                 $dataSend['page'] = $page;
                 $dataSend['status'] = 1;
-                $dataSend['limit'] = 12;
+                $dataSend['limit'] =  12;
+                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_3"){
+                    $dataSend['limit'] =  15;
+                }
 
                 if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
                     $dataSend['id'] = $request->id_data;
@@ -143,8 +146,7 @@ class AccController extends Controller
                     if (AuthCustom::check()){
                         $balance = AuthCustom::user()->balance;
                     }
-
-                    $html =  view('frontend.pages.account.widget.__datalist')
+                    $html = view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
                         ->with('balance',$balance)
                         ->with('dataAttribute',$dataAttribute)
@@ -156,11 +158,11 @@ class AccController extends Controller
                             'message' => 'Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !',
                         ]);
                     }
-
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
                         'message' => 'Load du lieu thanh cong.',
+                        'last_page'=>$items->lastPage()
                     ]);
                 }
                 else{
@@ -177,7 +179,6 @@ class AccController extends Controller
                 ]);
             }
         }
-
         if(isset($response_cate_data) && $response_cate_data->status == 1){
 
             $data = $response_cate_data->data;
@@ -190,7 +191,7 @@ class AccController extends Controller
                     'message' => 'Không lấy được dữ liệu childs.',
                 ]);
             }
-//                return $data;
+
             if (!isset($data->title)){
 
                 $data = null;
@@ -201,9 +202,8 @@ class AccController extends Controller
                     ->with('data',$data);
             }
 
-            Session::forget('return_url');
+
             Session::get('auth_custom');
-            Session::put('return_url', $_SERVER['REQUEST_URI']);
 
             return view('frontend.pages.account.list')
                 ->with('data',$data)
@@ -230,10 +230,10 @@ class AccController extends Controller
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
 
-//        return $result_Api;
-        if(isset($response_data) && $response_data->status == 1){
+        if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
-            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug);
+            $slug_category = $data->category->slug;
+            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug)->with('slug_category',$slug_category);
         }
         else{
             $data = null;
@@ -262,19 +262,21 @@ class AccController extends Controller
 
             if(isset($response_data) && $response_data->status == 1){
                 $data = $response_data->data;
-                $data_category = $data->category;
 
-                $card_percent = setting('sys_card_percent');
-                $atm_percent = setting('sys_atm_percent');
+                $data_category = $data->category;
+                $dataAttribute = $data_category->childs;
+                $card_percent = (int)setting('sys_card_setting');
+
+//                $atm_percent = setting('sys_atm_percent');
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
 
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
+                    ->with('dataAttribute',$dataAttribute)
                     ->with('data',$data)
-                    ->with('card_percent',$card_percent)
-                    ->with('atm_percent',$atm_percent)->render();
+                    ->with('card_percent',$card_percent)->render();
 
                 return response()->json([
                     'data' => $html,
@@ -296,16 +298,16 @@ class AccController extends Controller
     public function getRelated(Request $request){
         if ($request->ajax()){
             $slug = $request->slug;
-            $url = '/get-relate-acc';
+            $url = '/acc';
             $method = "GET";
 
             $dataSend = array();
-            $dataSend['id'] = $slug;
-            $dataSend['limit'] = 12;
+            $dataSend['data'] = 'list_acc';
+            $dataSend['cat_slug'] = $slug;
             $dataSend['status'] = 1;
+            $dataSend['limit'] = 12;
 
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
             $response_data = $result_Api->response_data??null;
 
             if(isset($response_data) && $response_data->status == 1){
@@ -380,6 +382,7 @@ class AccController extends Controller
                         return response()->json([
                             'status' => 0,
                             'message' => 'Không có dữ liệu childs .',
+
                         ]);
                     }
                     $dataAttribute = $data_category->childs;
@@ -546,6 +549,7 @@ class AccController extends Controller
                 }
 
                 $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+
                 $response_data = $result_Api->response_data??null;
 
                 if(isset($response_data) && $response_data->status == 1){
@@ -649,6 +653,7 @@ class AccController extends Controller
                         ]);
                     }
 
+
                     return response()->json([
                         "success"=> true,
                         "html" => $html,
@@ -694,7 +699,130 @@ class AccController extends Controller
         }else{
             return redirect('/login');
         }
+    }
 
+    public function getLogsCustom(Request $request)
+    {
+        if (AuthCustom::check()) {
+            $url = '/acc';
+            $method = "GET";
+
+            if ($request->ajax()) {
+                $page = $request->page;
+                $dataSend = array();
+                $dataSend['page'] = $page;
+                $dataSend['data'] = 'list_acc';
+                $dataSend['sort'] = 'desc';
+                $dataSend['sort_by'] = 'published_at';
+                $dataSend['limit'] = 10;
+                $dataSend['user_id'] = AuthCustom::user()->id;
+                $dataSend['id'] = $request->serial;
+                $dataSend['cat_slug'] = $request->key;
+                $dataSend['status'] = $request->status;
+                $dataSend['price'] = $request->price;
+
+                if ($request->filled('started_at')) {
+                    $started_at = \Carbon\Carbon::parse($request->started_at)->format('Y-m-d H:i:s');
+                    $dataSend['started_at'] = $started_at;
+                }
+
+                if ($request->filled('ended_at')) {
+                    $ended_at = \Carbon\Carbon::parse($request->ended_at)->format('Y-m-d H:i:s');
+                    $dataSend['ended_at'] = $ended_at;
+                }
+
+                if ($request->has('sort_by_data')){
+                    switch ($request->sort_by_data){
+                        case "random":
+                            $dataSend['sort'] = 'random';
+                            break;
+                        case "price_start":
+                            $dataSend['sort_by'] = 'price';
+                            $dataSend['sort'] = 'desc';
+                            break;
+                        case "price_end":
+                            $dataSend['sort_by'] = 'price';
+                            $dataSend['sort'] = 'asc';
+                            break;
+                        case "created_at_start":
+                            $dataSend['sort_by'] = 'created_at';
+                            $dataSend['sort'] = 'desc';
+                            break;
+                        case "created_at_end":
+                            $dataSend['sort_by'] = 'created_at';
+                            $dataSend['sort'] = 'asc';
+                            break;
+                        case "published_at":
+                            $dataSend['sort_by'] = 'published_at';
+                            $dataSend['sort'] = 'desc';
+                            break;
+                    }
+                }
+
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
+                $data = $response_data->data;
+                if($response_data->status){
+                    if (!!$data->total) {
+                        $data = new LengthAwarePaginator($data->data, $data->total, $data->per_page, $page, $data->data);
+                        $data->setPath($request->url());
+                    }else {
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu data.',
+                        ]);
+                    }
+
+                    $html = view('frontend.pages.account.widget.__datalogs__custom')->with('data', $data)->render();
+
+                    if (count($data) == 0 && $page == 1){
+                        return response()->json([
+                            'status' => 0,
+                            'message' => 'Không có dữ liệu !',
+                        ]);
+                    }
+
+                    if ($page > $data->lastPage()) {
+                        return response()->json([
+                            'status' => 404,
+                            'message'=>'Trang này không tồn tại',
+                        ]);
+                    }
+
+                    return response()->json([
+                        "html" => $html,
+                        "status" => 1,
+                        "last_page"=>$data->lastPage(),
+                    ], 200);
+
+                }
+                else{
+                    return response()->json([
+                        'status' => 0,
+                        'message'=>$response_data->message??"Không thể lấy dữ liệu",
+                    ]);
+                }
+            }
+
+            $dataSendCate = array();
+            $dataSendCate['data'] = 'category_list';
+            $dataSendCate['module'] = 'acc_category';
+            $result_cate_api = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+            $response_cate_data = $result_cate_api->response_data??null;
+
+            if(isset($response_cate_data) && $response_cate_data->status == 1){
+                $datacategory = $response_cate_data->data;
+            }
+            else{
+                return response()->json([
+                    'status' => 0,
+                    'message'=>$response_cate_data->message??"Không thể lấy dữ liệu"
+                ]);
+            }
+            return view('frontend.pages.account.logs-custom')->with('datacategory',$datacategory);
+        }else{
+            return redirect('/login');
+        }
     }
 
     public function getShowpass(Request $request){
@@ -725,7 +853,7 @@ class AccController extends Controller
                             'message' => 'Lấy mật khẩu thành công',
                             'data'=>$data,
                             'time'=>$time,
-                            'key'=>$key
+                            'key'=>$key,
                         ]);
                     }else{
                         return response()->json([
@@ -747,4 +875,45 @@ class AccController extends Controller
         }
     }
 
+    public function getFirstPass(Request $request)
+    {
+        if (AuthCustom::check()){
+            if ($request->ajax()){
+                $id = $request->id;
+                $url = '/acc';
+                $method = "GET";
+                $dataSend = array();
+                $dataSend['id'] = $id;
+                $dataSend['data'] = 'show_password';
+                $dataSend['user_id'] = AuthCustom::user()->id;
+
+                $result_Api = DirectAPI::_makeRequest($url, $dataSend, $method);
+                $response_data = $result_Api->response_data??null;
+
+                if ($response_data->data->success){
+                    $data_send_detail = array();
+                    $data_send_detail['data'] = 'acc_detail';
+                    $data_send_detail['id'] = $id;
+                    $result_detail_api = DirectAPI::_makeRequest($url,$data_send_detail,$method);
+                    if ($result_detail_api->response_code == 200){
+                        $data = $result_detail_api->response_data->data;
+                        return response()->json([
+                            'status' => 1,
+                            'message' => 'Lấy mật khẩu thành công',
+                            'time'=>$data->params->show_password->time,
+                            'id'=>$id,
+                            'key'=>Helpers::Decrypt($data->slug,config('module.acc.encrypt_key')),
+                        ]);
+                    }
+                } else {
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'Đã lấy mật khẩu trước đó',
+                    ]);
+                }
+            }
+        }else {
+            return redirect('/login');
+        }
+    }
 }

@@ -62,6 +62,8 @@
 
         <input type="hidden" name="slug" class="slug" value="{{ $slug }}">
 
+        <input type="hidden" name="slug" class="slug_category" value="{{ $slug_category }}">
+
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
     @endif

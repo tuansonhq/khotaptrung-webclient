@@ -49,10 +49,14 @@ $(document).ready(function () {
                         cancelButtonText: "Đóng",
                     })
                         .then((result) => {
+                            var slug_category = $('.slug_category').val();
+                            console.log(slug_category)
                             if (result.value) {
                                 window.location = '/lich-su-mua-account';
-                            } else if (result.dismiss === 'đóng') {
-
+                            } else if (result.dismiss === "Đóng") {
+                                window.location = '/mua-acc/'+ slug_category;
+                            }else {
+                                window.location = '/mua-acc/'+ slug_category;
                             }
                         })
                 }

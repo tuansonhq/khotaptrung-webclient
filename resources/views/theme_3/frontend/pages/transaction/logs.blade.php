@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+@endsection
 @section('content')
 
     {{--  Menu  --}}
@@ -10,7 +12,7 @@
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
                 <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
                 <li class="menu-container-li-ct"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/lich-su-giao-dich">Biến động số dư</a></li>
+                <li class="menu-container-li-ct"><a href="">Biến động số dư</a></li>
             </ul>
         </div>
     </section>
@@ -20,13 +22,13 @@
 
             <div class="row marginauto banner-mobile-row-ct">
                 <div class="col-auto left-right" style="width: 10%">
-                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px">
+                    <a href="javascript:void(0)" class="previous-step-one box-account-mobile_open" style="line-height: 28px" onclick="openMenuProfile()">
                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
                     </a>
                 </div>
 
                 <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                    <h3>Biến động số dư</h3>
+                    <h1>Biến động số dư</h1>
                 </div>
                 <div class="col-auto left-right" style="width: 10%">
                 </div>
@@ -134,7 +136,7 @@
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
-                    <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2">
+                    <form class="form-charge form-charge__accounttxns account_content_transaction_history__v2" id="data_sort">
                         <div class="row marginauto">
 
                             <div class="col-md-12 left-right">
@@ -145,7 +147,7 @@
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
                                             <select class="wide config" name="config">
-                                                <option>Chọn</option>
+                                                <option value="">Chọn</option>
                                                 @foreach($config as $i => $val)
                                                     <option value="{{ $i }}">{{ $val }}</option>
                                                 @endforeach
@@ -164,7 +166,7 @@
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
                                             <select class="wide status" name="status">
-                                                <option>Chọn</option>
+                                                <option value="">Chọn</option>
                                                 @foreach($status as $ist => $valst)
                                                     <option value="{{ $ist }}">{{ $valst }}</option>
                                                 @endforeach
@@ -255,9 +257,8 @@
     <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
     <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns.js"></script>
-
-
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/handle-history-table.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/txns/txns--update.js"></script>
 @endsection
 
 

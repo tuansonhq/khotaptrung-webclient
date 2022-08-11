@@ -1,121 +1,102 @@
 @extends('frontend.layouts.master')
-
+@section('seo_head')
+    @include('frontend.widget.__seo_head',with(['data'=>$data]))
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
-    {{--  Header mobile  --}}
-    <section class="media-mobile">
-        <div class="container container-fix banner-mobile-container-ct">
 
-            <div class="row marginauto banner-mobile-row-ct" style="position: relative">
-                <img class="lazy back-position-ct" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
-                <div class="col-12 left-right banner-mobile-span text-center">
-                    <h3>Nạp tài khoản game</h3>
-                </div>
+    <div class="container c-container" id="account-category">
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="/" class="breadcrumb-link">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
+            </li>
+        </ul>
+
+        {{--            Slider baner    --}}
+        @include('frontend.widget.__slider__banner__account')
+        {{--            Top hôm nay    --}}
+        @include('frontend.pages.account.widget.__top__today')
+
+        <section class="listing-service c-mb-16">
+            <div class="section-header justify-content-between c-pb-20 c-pb-lg-16">
+                <h2 class="section-title fw-700 fz-20 lh-28 ">Danh sách mục Shop Account</h2>
+                <form action="" class="form-search" method="POST" id="service-form">
+                    <input type="search" placeholder="Chọn game muốn mua account" id="keyword--search" class="has-submit media-web">
+                    <input type="search" placeholder="Tìm kiếm" id="mobile_keyword--search" class="search media-mobile">
+                    <button class="media-web" type="submit"></button>
+                </form>
             </div>
-        </div>
-    </section>
+            <hr>
+            <div class="text-title fw-700 c-py-16 c-py-lg-8 c-mb-lg-8">
+                Chọn game muốn mua account
+            </div>
+            @if($data == null)
+                <div class="item_buy">
 
-    {{--    Banner--}}
-    <section class="media-web">
-        <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
-        </div>
-    </section>
-    {{--  Menu  --}}
-    <section class="media-web">
-        <div class="container container-fix menu-container-ct">
-            <ul>
-                <li><a href="/">Trang chủ</a></li>
-                <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
-                <li class="menu-container-li-ct"><a href="/mua-acc">Danh mục Shop Account</a></li>
-            </ul>
-        </div>
-    </section>
-
-    {{--   Bopđyy --}}
-    <section>
-        <div class="container container-fix body-container-ct">
-            <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                <div class="col-md-12 left-right">
-                    <div class="row marginauto body-row-ct">
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-header-ct">
-                                <div class="col-auto left-right">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
-                                </div>
-                                <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h3>Danh sách mục Shop Account</h3>
-                                </div>
+                    <div class="container pt-3">
+                        <div class="row pb-3 pt-3">
+                            <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
                             </div>
                         </div>
-
-                        <div class="col-md-12 left-right media-mobile">
-                            <div class="row marginauto banner-container-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-title-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Chọn game muốn mua account</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-search-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <span>Tìm kiếm</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-auto left-right">
-                                        <input autocomplete="off" type="text" name="search" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
-                                    </div>
-                                    <div class="col-4 body-form-search-button-ct">
-                                        <button type="submit" class="timkiem-button-ct">Tìm kiếm</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-
-                        <div class="col-md-12 left-right media-mobile">
-                            <form action="" method="POST">
-                                <div class="row marginauto body-form-search-ct">
-                                    <div class="col-12 left-right">
-                                        <input autocomplete="off" type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm kiếm theo game">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/search.png" alt="">
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-
-                        @include('frontend.pages.account.widget.__data__category')
-
 
                     </div>
+
                 </div>
+            @else
 
+            <div class="list-service">
+            @if(isset($data) && count($data))
+                @foreach($data as $item)
+                <div class="item-service js-service">
+                    <div class="card">
+                        <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16">
+                            <div class="account-thumb c-mb-8">
+                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy">
+                            </div>
+                            <div class="account-title">
+                                <div class="text-title fw-700 text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                            </div>
+                            <div class="account-info">
+                                <div class="info-attr">
+                                    @if(isset($item->items_count))
+                                        @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
+                                            Đã bán: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }}
+                                        @else
+                                            Đã bán: {{ $item->items_count }}
+                                        @endif
+
+                                    @else
+                                        Đã bán: 9999
+                                    @endif
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+                <div class="col-12  text-center my-3" id="text-empty" style="display: none">
+                    <span class="text-danger">Không có kết quả nào phù hợp</span>
+                </div>
+            @endif
             </div>
-        </div>
-    </section>
+            @endif
+        </section>
 
-
-
-    <script src="/assets/{{env('THEME_VERSION')}}/js/nick/nick.js?v={{time()}}"></script>
+        {{--            Dịch vụ khác   --}}
+        @include('frontend.widget.__services__other')
+    </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/category.js?v={{time()}}"></script>
 @endsection
-
-
-
-
 

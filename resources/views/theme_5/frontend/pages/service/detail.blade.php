@@ -1,796 +1,828 @@
-
 @extends('frontend.layouts.master')
-
 @section('content')
+    @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+        @php
+            $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+            $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+        @endphp
+    @endif
+    @php
+        $data_params = json_decode($data->params,true);
+        $send_name = \App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
+        $send_type = \App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+    @endphp
+    {{--    @dd($data_params)--}}
+    <input type="hidden" id="data_params" value="{{ $data->params }}">
+    <input type="hidden" name="slug" id="slug" value="{{ $slug }}" />
+    <div class="container c-container" id="service-detail">
+        <ul class="breadcrumb-list">
+            <li class="breadcrumb-item">
+                <a href="/" class="breadcrumb-link">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/dich-vu" class="breadcrumb-link">Dịch vụ game</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="/dich-vu/{{ @$data->slug}}" class="breadcrumb-link">{{@$data->title}}</a>
+            </li>
+        </ul>
+        <div class="head-mobile">
+            <a href="/dich-vu" class="link-back"></a>
 
-    <form id="formBookingStepMobie" action="" method="POST">
-        {{csrf_field()}}
-        <fieldset id="fieldset-one">
-            <section class="media-mobile">
-                <div class="container container-fix banner-mobile-container-ct">
-                    <div class="row marginauto banner-mobile-row-ct">
-                        <div class="col-auto left-right" style="width: 10%">
-                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
-                        </div>
+            <h1 class="head-title text-title">Dịch vụ game</h1>
 
-                        <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h3>Cày Thuê</h3>
-                        </div>
-                        <div class="col-auto left-right" style="width: 10%">
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="media-web">
-                <div class="container container-fix menu-container-ct">
-                    <ul>
-                        <li><a href="/">Trang chủ</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
-                        <li class="menu-container-li-ct"><a href="/dich-vu">Cày thuê</a></li>
-                        <li class="menu-container-li-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/arrow-right.png" alt=""></li>
-                        <li class="menu-container-li-ct"><a href="/dich-vu/slug">Cày xếp hạng ELO/ Liên Minh</a></li>
-                    </ul>
-                </div>
-            </section>
+            <a href="/" class="home"></a>
+        </div>
 
-            {{--   Bopdy --}}
-            <section id="service-detail">
-                <div class="container container-fix body-container-ct">
-                    <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                        <div class="col-lg-5 col-12 body-container-detail-left-ct">
-                            <form action="" method="POST">
-                                @csrf
-                                <div class="row marginauto body-row-ct web-media-ct-fix web-media-ct">
-
-                                    <div class="col-md-12 left-right">
-                                        <div class="row marginauto">
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto body-header-ct">
-                                                    <div class="col-auto left-right">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/caythue.png" alt="">
-                                                    </div>
-                                                    <div class="col-md-10 col-10 body-header-col-ct">
-                                                        <h3>Cày Xếp hạng ELO/ Liên Minh</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto banner-container-ct">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-home.png" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto body-title-ct">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <span>Vui lòng chọn thông tin</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row body-title-detail-ct">
-
-                                                    <div class="col-auto text-left detail-service-col body-title-detail-col-ct">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Rank hiện tại</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
-                                                                <select class="wide" name="rank-start">
-                                                                    <option value="">Chọn rank hiện tại</option>
-                                                                    <option value="3">Vàng 4</option>
-                                                                    <option value="4">Vàng 5</option>
-                                                                    <option value="5">Vàng 6</option>
-                                                                    <option value="5">Vàng 7</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="col-m-12 rank-start-error">
-
-                                                            </div>
-
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Rank mong muốn</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
-                                                                <select class="wide" name="rank-end">
-                                                                    <option value="">Chọn rank hiện tại</option>
-                                                                    <option value="3">Vàng 4</option>
-                                                                    <option value="4">Vàng 5</option>
-                                                                    <option value="5">Vàng 6</option>
-                                                                    <option value="5">Vàng 7</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-m-12 rank-end-error">
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
-
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Sever</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                                                <select class="wide" name="server">
-                                                                    <option value="">Chọn server</option>
-                                                                    <option value="3">server 4</option>
-                                                                    <option value="4">server 5</option>
-                                                                    <option value="5">server 6</option>
-                                                                    <option value="5">server 7</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-m-12 server-error">
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
-
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Tùy chọn mở rộng</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right">
-                                                                <div class="row body-title-detail-checkbox-ct">
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-01" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Chơi cùng Booster+50.00%</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-01" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-02" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Tùy chọn vị trí+20.00%</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-02" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-03" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Đặt lịch cày</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-03" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-04" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Cày siêu tốc+35.00%</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-04" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-05" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Tùy chọn tướng+30.00%</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-05" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                        <label for="tuychon-06" class="input-ratio-ct">
-                                                                            <ul>
-                                                                                <li>Chọn Booster</li>
-                                                                                <li class="checkbox-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                                            </ul>
-                                                                            <input id="tuychon-06" type="checkbox" class="allgame" name="option" value="on">
-                                                                            <span class="input-ratio-checkmark-ct"></span>
-                                                                        </label>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
-
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                    <span>
-                                                        <ul>
-                                                            <li>Tùy chọn tướng</li>
-                                                            <li class="option-info-ct"><img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/infor.png" alt=""></li>
-                                                        </ul>
-                                                    </span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct data-select-hero">
-                                                                <select class="wide" name="select">
-                                                                    <option value="">Ví dụ: Yasuyo</option>
-                                                                    <option value="3">Vàng 4</option>
-                                                                    <option value="4">Vàng 5</option>
-                                                                    <option value="5">Vàng 6</option>
-                                                                    <option value="5">Vàng 7</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-m-12 hero-error">
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row body-title-detail-ct">
-
-                                                    <div class="col-auto detail-service-col text-left body-title-detail-col-ct">
-                                                        <div class="row marginauto">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Tài khoản cần cày</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                                <input autocomplete="off" class="input-defautf-ct username" name="username" type="text" placeholder="Nhập tài khoản trong game">
-                                                            </div>
-                                                            <div class="col-md-12 left-right tk-error">
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-                                                    <div class="col-auto detail-service-col text-left body-title-detail-col-ct">
-                                                        <div class="row marginauto password-mobile">
-                                                            <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                <span>Mật khẩu</span>
-                                                            </div>
-                                                            <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                                <input autocomplete="off" id="password" name="password" class="input-defautf-ct password" type="password" placeholder="Nhập mật khẩu trong game">
-                                                                <div class="show-btn-password">
-                                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/images_1/eye-show.svg" alt="">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 left-right pw-error">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
-
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <div class="row marginauto">
-                                                            <div class="col-auto left-right body-title-detail-span-ct">
-                                                                <span>Báo giá:</span>
-                                                            </div>
-                                                            <div class="col-auto left-right body-title-detail-span-ct body-title-detail-span-right-ct">
-                                                                <small>100.000 đ</small>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right mobile- body-title-ct">
-                                                <div class="row marginauto">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thuê ngay</button>
-                                                        <button class="button-default-ct button-next-step-one media-mobile" type="button">Thuê ngay</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+        <section class="service-detail">
+            {{--            Slider baner    --}}
+            @include('frontend.widget.__slider__banner')
+            <div class="section-header d-none d-lg-block">
+                <h1 class="section-title">
+                    {{ @$data->title }}
+                </h1>
+            </div>
+            <hr>
+            <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
+                Vui lòng chọn thông tin
+            </div>
+            <form action="/dich-vu/{{ $data->id }}/purchase" method="POST" id="formDataService">
+                @csrf
+            <div class="row">
+                <div class="col-12 col-lg-8 c-pr-8 c-pr-lg-16">
+                        @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
+                            @php
+                                $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
+                                $server_id = \App\Library\HelpersDecode::DecodeJson('server_id',$data->params);
+                            @endphp
+                            <span class=" mb-15 control-label bb">Chọn máy chủ:</span>
+                            @if(!empty($server_data))
+                                {{--                                        @dd($server_data)--}}
+                                <div class="mb-15 c-pt-16">
+                                    <select name="server[]" class="server-filter form-control t14" style="">
+                                        @for($i = 0; $i < count($server_data); $i++)
+                                            @if((strpos($server_data[$i], '[DELETE]') === false))
+                                                <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
+                                            @endif
+                                        @endfor
+                                    </select>
                                 </div>
-                            </form>
+                            @endif
+                        @endif
+                        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "4"){{--//dạng chọn một--}}
+                        @php
+                            $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                            $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                        @endphp
+                        @if(!empty($name))
+                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                            <div class="mb-15">
+                                <select name="selected" class="s-filter form-control t14" style="">
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
+                                            <option value="{{$i}}">{{$name[$i]}}</option>
+                                        @endif
+                                    @endfor
+                                </select>
+                            </div>
+                        @endif
+
+                        @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "7"){{--////dạng nhập tiền thành toán--}}
+                        <span class="mb-15 control-label bb">Nhập số tiền cần mua:</span>
+                        <div class="mb-15">
+                            <input autofocus="" value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}" class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                            <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
                         </div>
-                        <div class="col-lg-7 col-12 body-container-detail-right-ct">
+                        <span class="mb-15 control-label bb">Hệ số:</span>
+                        <div class="mb-15">
+                            <input type="text" id="txtDiscount" class="form-control t14" placeholder="" value="" readonly="">
+                        </div>
+                    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6") {{--//dạng chọn a->b--}}
 
-                            {{--                    Block 1           --}}
-                            <div class="row marginauto body-detail-header-right-ct media-web">
-
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto">
-                                        <div class="col-12 col-8 body-header-col-km-left-ct">
-                                            <span>Khuyến mại đang diễn ra</span>
+                    @endif
+                    <!-- service select mobile -->
+                        <div class="d-block d-lg-none">
+                            <div class="t-sub-1 title-color c-mb-8">
+                                Tùy chọn mở rộng
+                            </div>
+                            <div class="card c-py-16 c-pr-4" id="select-service">
+                                <div class="card-body scrollbar" style="--mh:400px">
+                                    <!-- body -->
+                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                                    <div class="card service-select c-py-12 c-pr-8" id="select-multi">
+                                        <div class="card-body py-0 s-filter">
+                                            @php
+                                                $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                                $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                            @endphp
+                                            @if(!empty($name))
+                                                @for ($i = 0; $i < count($name); $i++)
+                                                    @if($name[$i]!=null)
+                                                        <label class="input-checkbox c-mb-8">
+                                                            <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                                            <span class="checkmark"></span>
+                                                            <span class="text-label text" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</span>
+                                                        </label>
+                                                    @endif
+                                                @endfor
+                                            @endif
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
+                        Tuỳ chọn tướng (với Game Moba)
+                    </h2>
+                    <div class="card unset-lg">
+                        <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
+                            <div class="input-group c-px-8">
+                                <div class="form-label">
+                                    Tài khoản cần làm nhiệm vụ
+                                </div>
+                                <select name="" id="">
+                                    <option value="">Trái đất</option>
+                                    <option value="">Sao hoả</option>
+                                </select>
+                            </div>
 
-                                <div class="col-md-12 left-right">
-                                    <div class="row banner-detail-ct">
-                                        <div class="col-md-12 text-left left-right">
-                                            <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/banner-detail.png" alt="">
-                                        </div>
-                                    </div>
+                            <div class="input-group c-px-8">
+                                <div class="form-label">
+                                    Mật khẩu
+                                </div>
+                                <div class="toggle-password">
+                                    <input type="password" placeholder="Mật khẩu...">
                                 </div>
                             </div>
 
-                            {{--                block 2           --}}
-                            <div class="row marginauto body-detail-right-ct">
-
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                            <small>Chi tiết dịch vụ</small>
-                                        </div>
-                                    </div>
+                            <div class="input-group c-px-8">
+                                <div class="form-label">
+                                    Tuỳ chọn tướng
                                 </div>
-
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto body-title-ct show-detail-service-ct">
-                                        <div class="col-md-12 text-left left-right">
-                                            <p>Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới trẻ hiện nay, đặc biệt là các game online
-                                                hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game đối kháng, game thẻ bài, gam kiếm hiệp hay
-                                                game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và</p>
-                                            <p>Chơi game được xem là món ăn tinh thần không thể thiếu được đối với giới trẻ hiện nay, đặc biệt là các game online
-                                                hay game mobile với nhiều hình thức khác nhau như game chiến thuật, game đối kháng, game thẻ bài, gam kiếm hiệp hay
-                                                game sinh tồn. Chính vì vậy, nhu cầu nạp game là không thể thiếu và</p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <select name="" id="">
+                                    <option value="">Vanhein</option>
+                                    <option value="">Batman</option>
+                                </select>
                             </div>
 
-                            {{--                block 3           --}}
-                            <div class="row marginauto body-detail-right-ct">
-
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                            <small>Hướng dẫn thuê cày</small>
-                                        </div>
-                                    </div>
+                            <div class="input-group c-px-8">
+                                <div class="form-label">
+                                    Tên nhân vật
                                 </div>
-
-                                <div class="col-md-12 left-right card--desc">
-                                    <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
-                                        <div class="col-md-12 text-left left-right content-video-in double-click content-video-in content-video-in-add">
-                                            <p><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap">Xã hội ngày càng phát triển, đời sống tinh thần được quan tâm và chú trọng nhiều hơn. Các trò chơi điện tử trực tuyến được ra đời nhằm mục đích giải trí và thư giãn sau những giờ học và làm việc mệt mỏi đầy áp lực. Kích thích tâm trí phát triển và sáng tạo, kéo theo sự phát triển của ngành công nghiệp sản xuất game online - đặc biệt là các game mobile với nhiều hình thức khác nhau như game đối kháng, game chiến thuật,&nbsp; game thẻ bài, game kiếm hiệp hay game sinh tồn. Vì lẽ ấy mà nhu cầu </span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap"><em>nạp game, mua nick, mua bán thẻ hay trò chơi thử may cùng những dịch vụ hấp dẫn</em></span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap"> là không thể thiếu và ngày càng tăng cao đặc biệt là gen Z hiện nay - những vật phẩm đua top trend hay những kiện tướng xuất sắc muốn có được khi các game thủ chinh phục ván game của mình. Cùng </span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap"><strong style="font-weight:700">WEBNICK.VN</strong></span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap"> tìm hiểu cụ thể các thông tin và dịch vụ </span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap"><strong style="font-weight:700">WEBNICK.VN</strong></span><span style="font-family:Arial,Helvetica,sans-serif; font-variant-east-asian:normal; font-variant-numeric:normal; white-space:pre-wrap">&nbsp; mang lại nhé !</span></span></span></p>
-
-                                            <p style="line-height:1.38"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><strong style="font-weight:700"><em style="font-style:italic"><span style="text-decoration:none">Các dịch vụ đặc biệt đến từ webkick.vn</span></em></strong></span></span></span></span></p>
-
-                                            <p style="line-height:1.38"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Các dịch vụ độc đáo và duy nhất đến từ WEBNICK.VN như: <em>bán acc all game</em>, </span></span></span></span><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><em style="font-style:italic"><span style="text-decoration:none">bán vàng, bán ngọc, làm phiếu giảm giá, </span></em></span></span><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><em style="font-style:italic"><span style="text-decoration:none">làm thuê Capsule vàng, cày thuê tốc chiến, mua skin, nạp kim cương, nạp quân huy,... </span></em></span></span><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Tất cả được hỗ trợ 24/24 bởi đội ngũ chuyên nghiệp của chúng tôi. Bất cứ khi nào bạn cần WEBNICK.VN luôn sẵn sàng phục vụ !&nbsp;</span></span></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.38; margin-bottom:16px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><strong style="font-weight:700"><em style="font-style:italic"><span style="text-decoration:none">Đến với Webnick.vn sự lựa chọn hàng đầu cho việc nạp game, hay mua bán nick cùng các dịch vụ khác</span></em></strong></span></span></span></span></p>
-
-                                            <p style="line-height:1.38; margin-bottom:16px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Mục đích được xuất phát từ tâm lý nên hiện nay, có rất nhiều địa chỉ nạp tiền vào game hay mua bán nick cùng những dịch vụ hấp dẫn như: các group, fanpage facebook, các nhóm zalo hay các website nạp game trực tuyến,... Tuy nhiên, giữa vô vàn địa chỉ kể trên, thì người chơi khi nạp tiền vào game, mua bán nick không tránh khỏi những địa chỉ kém uy tín, bị lừa đảo trong quá trình nạp game, mua nick hay trao đổi các dịch vụ khác. Vì lẽ ấy, các game thủ phải cực kỳ tỉnh táo để lựa chọn những website uy tín, chuyên nạp game, mua bán nick cùng dịch vụ hấp dẫn chính hãng, uy tín, giá rẻ để thực hiện giao dịch.&nbsp;</span></span></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.38; margin-bottom:16px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Xuất phát từ tâm lý khách hàng WEBNICK.VN đã ra đời nhằm mục đích chăm sóc và phục vụ những mong muốn và yêu cầu của khách hàng. Website WEBNICK.VN đã sẵn sàng xử lý và phục vụ các game thủ. Một trong những website uy tín, chất lượng chuyên cung cấp tiền nạp game, mua bán nick cùng dịch vụ uy tín, đảm bảo 100%. Hằng ngày, tại website thực hiện hơn 30.000+ giao dịch&nbsp; thành công của nhiều game thủ từ trong và ngoài nước.</span></span></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.38; margin-bottom:5px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Với dịch vụ đa dạng, phong phú của nhiều game như: nạp Quân huy Liên Quân, nạp kc BnS, nạp UC PUBG Mobile, mua Xu ninja school, mua Ngọc NRO, mua vàng NRO, nạp kim cương free fire, nạp Play Together, mua Robux, .... Thời gian giao dịch và nhận tiền game trong game chưa đến 60 giây. Các game thủ hoàn toàn có thể yên tâm về số tiền bỏ vào game này. Chúng tôi xin đảm bảo tiền game được bán ra bởi shop nạp game hay tài khoản với các dịch vụ là hoàn toàn sạch và an toàn 100% bởi lẽ, chúng tôi là đại lý nạp game, bán nick được ủy quyền chính thức bởi các diễn đàn Game chuyên nghiệp.</span></span></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.38; margin-bottom:5px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Bên cạnh việc nạp game uy tín, chất lượng, giá rẻ cùng giao dịch nhanh chóng, dễ dàng. Bạn còn dễ dàng mua được thẻ game của các diễn đàn khác như: Garena, Zing, Funcard, Gate, Carot, Appota, Scoin, Soha, Vcoin, Gosu với card điện thoại: Vinaphone, Viettel, Mobi.</span></span></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.8; margin-bottom:8px; margin-top:8px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Cùng với những dịch vụ hết sức tuyệt vời khi sử dụng dịch vụ tại WEBNICK.VN, chúng tôi hy vọng WEBNICK.VN sẽ làm cho bạn thật hài lòng và nâng tầm trải nghiệm của bạn. Còn chần chờ gì nữa mà không đến shop của chúng tôi để nạp game, mua nick cùng với dịch vụ hấp dẫn đi nào ! WEBNICK.VN hân hạnh được phục vụ tất cả khách hàng khi đến. WEBNICK.VN nắm bắt tâm lý - lắng nghe khách hàng - uy tín trách nhiệm - sự lựa chọn hàng đầu của mọi game thủ đi đến con đường chuyên nghiệp. </span></span></span></span><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><span style="font-style:normal"><span style="text-decoration:none">Khám phá thế giới ảo và đắm chìm để giải trí với mức giá hợp lý cùng dịch vụ thân thiện xuất phát từ lòng hiếu khách cùng sự tỉ mỉ, tận tâm tuyệt đối chính là điều hành khách có thể kì vọng ở WEBNICK.VN. Và&nbsp; hơn hết chúng tôi tin rằng điều đó mang ý nghĩa </span></span></span></span><span style="font-variant:normal; white-space:pre-wrap"><span style="font-weight:400"><em style="font-style:italic"><span style="text-decoration:none">“Hơn cả sự trải nghiệm”</span></em></span></span></span></span></span></p>
-
-                                            <p style="line-height:1.8; margin-bottom:8px; margin-top:8px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><strong style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Hotline:&nbsp;</span></span></strong></span></span></span></span></p>
-
-                                            <p style="line-height:1.8; margin-bottom:8px; margin-top:8px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="white-space:pre-wrap"><strong>Fanpage: </strong></span></span></span></span></p>
-
-                                            <p style="line-height:1.8; margin-bottom:8px; margin-top:8px"><span style="color:#ffffff"><span style="font-size:16px"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-variant:normal; white-space:pre-wrap"><strong style="font-weight:700"><span style="font-style:normal"><span style="text-decoration:none">Website: webnick.vn</span></span></strong></span></span></span></span></p>
-
-                                        </div>
-                                        <div class="col-md-12 left-right text-center js-toggle-content">
-                                            <div class="view-more">
-                                                <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/arrow-down.png)"></i></a>
-                                            </div>
-                                            <div class="view-less">
-                                                <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/{{env('THEME_VERSION')}}/image/icons/iconright.png)"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <input type="text" placeholder="Tên nhân vật">
                             </div>
                         </div>
                     </div>
+                    <label class="input-checkbox c-my-16 c-mb-lg-28">
+                        <input type="checkbox" name="select">
+                        <span class="checkmark"></span>
+                        <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
+                    </label>
+                    <div class="d-none d-lg-block c-pb-22 c-pt-2">
+                        <hr>
+                    </div>
+                    <div class="c-mb-16">
+{{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
+                        <div class="card overflow-hidden">
+                            <div class="card-body c-px-16">
+                                <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
+                                <div class="content-desc">
+                                    {!! @$data->description !!}
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <span class="see-more" data-content="Xem thêm nội dung"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Data Bot -->
+                    <h2 class="text-title-bold d-block d-lg-none c-mb-8">Vị trí đối với Game Ngọc Rồng</h2>
+                    <div class="card c-mb-lg-16">
+                        <div class="card-body">
+                            <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi KAKAROT Khu 39)</h2>
+
+                            <table class="table-data-bot">
+                                <tr>
+                                    <th>Server</th>
+                                    <th>Nhân vật</th>
+                                    <th>Khu vực</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>dubaish1</td>
+                                    <td>39</td>
+                                    <td>
+                                        <div class="status success">Online</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>dubaish1</td>
+                                    <td>39</td>
+                                    <td>
+                                        <div class="status danger">Offline</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>dubaish1</td>
+                                    <td>39</td>
+                                    <td>
+                                        <div class="status danger">Offline</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>dubaish1</td>
+                                    <td>39</td>
+                                    <td>
+                                        <div class="status danger">Offline</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end data bot -->
                 </div>
-            </section>
+                <div class="col-lg-4 c-pl-8 d-none d-lg-block">
+                    <div class="js_sticky"  data-top="140">
+                        <div class="card section-pay">
+                            <div class="card-body c-p-16">
+                                <div class="text-title-bold d-inline-block">Báo giá:</div>
+                                <br>
+                                <input class="text-title secondary" type="hidden" name="value" value="">
+                                <input class="text-title" type="hidden" name="selected" value="">
+                                <input class="text-title" type="hidden" name="server">
+                                <div id="txtPrice" style="color: #f473b9;font-weight: 500" class=" d-inline-block">0 VNĐ</div>
+                                <button id="btnPurchase" class="btn primary" data-toggle="modal" data-target="#orderModal">Thanh toán</button>
+                            </div>
+                        </div>
+                        <h2 class="text-title fw-700 title-color-lg c-my-16">
+                            Tùy chọn mở rộng (đối với Game Ngọc Rồng)
+                        </h2>
+                        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
+                        <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
+                        <div class="card service-select c-py-12 c-pr-8" id="select-multi">
+                            <div class="card-body py-0 s-filter">
+                                @php
+                                    $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
+                                    $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
+                                @endphp
+                                @if(!empty($name))
+                                    @for ($i = 0; $i < count($name); $i++)
+                                        @if($name[$i]!=null)
+                                <label class="input-checkbox">
+                                    <input value="{{$i}}" type="checkbox" name="select" id="{{$i}}">
+                                    <span class="checkmark"></span>
+                                    <label class="c-ml-30" for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</label>                                </label>
+                                        @endif
+                                    @endfor
+                                @endif
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div class="footer-mobile c-p-16">
+                <span class="fw-lg-500 d-inline-block">Báo giá:</span>
+                <br>
+                <div id="txtPrice" class="text-title-bold secondary d-inline-block">100.000đ</div>
+                <button type="button" class="btn primary js-step" data-target="#step2">Giao dịch ngay</button>
+            </div>
+        </section>
 
-            @include('frontend.pages.service.widget.__related')
+        @include('frontend.pages.service.widget.__related')
+    </div>
 
-            <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
-                <div class="modal-dialog modal-md modal-dialog-centered login animated">
-                    <!--        <div class="image-login"></div>-->
-                    <div class="modal-content">
-                        <div class="modal-header modal-header-success-ct">
-                            <div class="row marginauto modal-header-success-row-ct justify-content-center">
-                                <div class="col-md-12 text-center">
-                                    <span>Gửi yêu cầu thuê thành công</span>
-                                </div>
+
+
+
+    {{--    Modal xác nhận thanh toán--}}
+    <div class="modal fade modal-big" id="orderModal">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content c-p-24">
+                <div class="modal-header">
+                    <h2 class="modal-title center">Xác nhận thanh toán</h2>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                    <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
+                        Thông tin dịch vụ thuê
+                    </div>
+
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Tài khoản
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
+                        </div>
+                    </div>
+
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Dịch vụ
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">{{@$data->title}}</div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Gói
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
+                        </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Thành tiền
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500 total--price">0 đ</div>
+                        </div>
+                    </div>
+
+                    <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fz-13 fw-400 text-center">
+                                Phương thức thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500">
+                                Tài khoản Shopbrand
                             </div>
                         </div>
 
-                        <div class="modal-body modal-body-success-ct">
-                            <div class="row marginauto justify-content-center">
-                                <div class="col-auto">
-                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/group.png" alt="">
-                                </div>
+                        <div class="card--attr justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Phí thanh toán
                             </div>
-                            <div class="row marginauto modal-body-span-success-ct justify-content-center">
-                                <div class="col-md-12 text-center">
-                                    <span>Yêu cầu thuê đã được gửi đến </span><small>Shop Cày Thuê</small>
-                                </div>
-                                <div class="col-md-12 text-center">
-                                    <span>Bạn vui lòng kiểm tra Email để xác nhận nha!</span>
-                                </div>
-                            </div>
-                            <div class="row marginauto justify-content-center modal-footer-success-ct">
-                                <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                    <div class="row marginauto modal-footer-success-row-not-ct">
-                                        <div class="col-md-12 left-right">
-                                            <a href="/" class="button-not-bg-ct"><span>Về trang chủ</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                    <div class="row marginauto modal-footer-success-row-ct">
-                                        <div class="col-md-12 left-right">
-                                            <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="card--attr__value fz-13 fw-500">
+                                Miễn phí
                             </div>
                         </div>
+                    </div>
+
+                    <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 c-pr-12">
+                        <div class="card--attr__total justify-content-between d-flex c-mb-16 text-center">
+                            <div class="card--attr__name fw-400 fz-13 text-center">
+                                Tổng thanh toán
+                            </div>
+                            <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn primary submit-form">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- Thanh toans thanhf coong  --}}
+    <div class="modal fade modal-small" id="orderSuccses">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center p-0">
+                    <img class="c-pt-20 c-pb-20" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
+                </div>
+                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua tài khoản thành công</p>
+                    <p class="fw-400 fz-13 c-mt-10 mb-0">
+                        Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!
+                    </p>
+                </div>
+                <div class="modal-footer c-p-24">
+                    <a class="btn primary" data-dismiss="modal">Lịch sử</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--  sử lý step  --}}
+
+    <div class="step" id="step2">
+        <div class="head-mobile">
+            <a href="javascript:void(0) " class="link-back close-step"></a>
+
+            <h1 class="head-title text-title">Xác nhận thanh toán</h1>
+
+            <a href="/" class="home"></a>
+        </div>
+        <div class="body-mobile">
+            <div class="body-mobile-content c-p-16">
+                <div class="dialog--content__title fw-700 fz-15 c-mb-12 text-title-theme">
+                    Thông tin dịch vụ thuê
+                </div>
+                <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
+                    <div class="card--attr__total justify-content-between d-flex text-center">
+                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                            Tài khoản
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ @App\Library\AuthCustom::user()->username }}</a></div>
+                    </div>
+                </div>
+                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content c-mt-lg-16">
+
+                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                            Dịch vụ
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500">{{@$data->title}}</div>
+                    </div>
+                    <div class="card--attr justify-content-between d-flex c-mb-8 text-cente text-order">
+                        <div class="card--attr__name fw-400 fz-13 text-center">
+                            Gói
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500 service_pack"> </div>
+                    </div>
+                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center text-order">
+                        <div class="card--attr__name fw-400 fz-13 text-center">
+                            Thành tiền
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500 total--price">0 đ</div>
+                    </div>
+                </div>
+                <div class="card--gray c-mb-16 c-pt-8 c-pb-8 c-pl-12 c-pr-12 brs-8 g_mobile-content">
+                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                        <div class="card--attr__name fz-13 fw-400 text-center text-order">
+                            Phương thức thanh toán
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500">
+                            Tài khoản Shopbrand
+                        </div>
+                    </div>
+                    <div class="card--attr justify-content-between d-flex c-mb-8 text-center">
+                        <div class="card--attr__name fw-400 fz-13 text-center">
+                            Phí thanh toán
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500">
+                            Miễn phí
+                        </div>
+                    </div>
+                </div>
+                <div class="card--gray c-mb-0 c-pt-8 c-pb-8 c-pl-12 brs-8 c-pr-12 g_mobile-content">
+                    <div class="card--attr__total justify-content-between d-flex text-center">
+                        <div class="card--attr__name fw-400 fz-13 text-center text-order">
+                            Tổng thanh toán
+                        </div>
+                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary total--price">0 đ</a></div>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade login show order-modal" id="openOrder" aria-modal="true">
+        </div>
 
-                <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
-                    <!--        <div class="image-login"></div>-->
-                    <div class="modal-content">
-                        <div class="modal-header p-0" style="border-bottom: 0">
-                            <div class="row marginauto modal-header-order-ct">
-                                <div class="col-12 span__donhang text-center" style="position: relative">
-                                    <span>XÁC NHẬN THANH TOÁN</span>
-                                    <img class="lazy img-close-ct close-modal-default" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/close.png" alt="">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="modal-body modal-body-order-ct">
-                            <div class="row marginauto">
-
-                                <div class="col-md-12 left-right title-order-ct">
-                                    <span>Thông tin yêu cầu</span>
-                                </div>
-
-                                <div class="col-md-12 left-right" id="order-errors">
-                                    <div class="row marginauto order-errors">
-                                        <div class="col-md-12 left-right">
-                                            <small>Lỗi rồi em ơi</small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-                                            <div class="row marginauto background-order-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Tài khoản</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>Nam Hải</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Game</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Gói</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>Vàng-Kim Cương</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Chiết khấu</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>3%</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="row marginauto background-order-body-bottom-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Báo giá</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>100.000 đ</small>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-
-                                            <div class="row marginauto background-order-body-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Phương thức thanh toán</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>Tài khoản Shopbrand</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="row marginauto background-order-body-bottom-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Phí thanh toán</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <small>Miễn phí</small>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right background-order-ct">
-                                            <div class="row marginauto background-order-row-ct">
-                                                <div class="col-auto left-right background-order-col-left-ct">
-                                                    <span>Tài khoản</span>
-                                                </div>
-                                                <div class="col-auto left-right background-order-col-right-ct">
-                                                    <span>97.000 đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 left-right padding-order-footer-ct">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 left-right">
-                                            <button class="button-default-nick-ct openSuccess" type="button">Xác nhận</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        <div class="footer-mobile">
+            <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                <button class="btn primary btn-success-mobile">Xác nhận</button>
             </div>
-        </fieldset>
-        <fieldset id="fieldset-two">
+        </div>
+    </div>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/service_detail.js?v={{time()}}"></script>
+    <script>
 
-            <section>
-                <div class="container container-fix banner-mobile-container-ct">
-                    <div class="row marginauto banner-mobile-row-ct">
-                        <div class="col-auto left-right" style="width: 10%">
-                            <img class="lazy previous-step-one" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/back.png" alt="" >
-                        </div>
+        function Confirm(index, serverid) {
+            $('[name="server"]').val(serverid);
+            $('[name="selected"]').val(index);
+            $('#btnPurchase').click();
+        }
 
-                        <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
-                            <h3>Cày Thuê</h3>
-                        </div>
-                        <div class="col-auto left-right" style="width: 10%">
-                        </div>
-                    </div>
+        var data = jQuery.parseJSON('{!! $data->params !!}');
 
-                </div>
-            </section>
+            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+        var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
+            @else
+        var purchase_name = 'VNĐ';
+            @endif
 
-            <section class="max-header-fix">
-                <div class="row marginauto" style="padding: 12px 16px">
+        var server = -1;
 
-                    <div class="col-md-12 left-right title-order-ct">
-                        <span>Thông tin yêu cầu</span>
-                    </div>
+        $(".server-filter").change(function (elm, select) {
+            server = parseInt($(".server-filter").val());
+            $('[name="server"]').val(server);
+            UpdatePrice();
+        });
+        server = parseInt($(".server-filter").val());
+        $('[name="server"]').val(server);
 
-                    <div class="col-md-12 left-right" id="order-errors">
-                        <div class="row marginauto order-errors">
-                            <div class="col-md-12 left-right">
-                                <small>Lỗi rồi em ơi</small>
-                            </div>
-                        </div>
-                    </div>
+    </script>
+    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
-                                <div class="row marginauto background-order-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Tài khoản</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Nam Hải</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="4"){{--//dạng chọn một--}}
+    <script>
+        var itemselect = -1;
+        $(document).ready(function () {
+            $(".s-filter").change(function (elm, select) {
+                itemselect = parseInt($(".s-filter").val());
+                UpdatePrice();
+            });
+            itemselect = parseInt($(".s-filter").val());
+            UpdatePrice();
+        });
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Game</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <img class="lazy" src="/assets/{{env('THEME_VERSION')}}/image/cay-thue/mobilegame.png" alt="">
-                                    </div>
-                                </div>
+        function UpdatePrice() {
+            var price = 0;
+            if (itemselect == -1) {
+                return;
+            }
 
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Gói</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Vàng-Kim Cương</small>
-                                    </div>
-                                </div>
+            if (data.server_mode == 1 && data.server_price == 1) {
 
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Chiết khấu</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>3%</small>
-                                    </div>
-                                </div>
+                var s_price = data["price" + server];
+                price = parseInt(s_price[itemselect]);
+            }
+            else {
+                var s_price = data["price"];
+                price = parseInt(s_price[itemselect]);
+            }
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html(price + ' VNĐ');
+            $('[name="selected"]').val($(".s-filter").val());
 
-                                <div class="row marginauto background-order-body-bottom-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Báo giá</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>100.000 đ</small>
-                                    </div>
-                                </div>
-                            </div>
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('tbody tr.selected').removeClass('selected');
+            $('tbody tr').eq(itemselect).addClass('selected');
+        }
 
-                        </div>
-                    </div>
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="5"){{--//dạng chọn nhiều--}}
+    <script>
+        $('.s-filter input[type="checkbox"]').change(function () {
+            UpdatePrice();
+        });
 
-                                <div class="row marginauto background-order-body-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Phương thức thanh toán</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Tài khoản Shopbrand</small>
-                                    </div>
-                                </div>
+        function UpdatePrice() {
+            var price = 0;
+            var itemselect = '';
 
-                                <div class="row marginauto background-order-body-bottom-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Phí thanh toán</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <small>Miễn phí</small>
-                                    </div>
-                                </div>
+            if (data.server_mode == 1 && data.server_price == 1) {
+                var s_price = data["price" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
 
-                            </div>
+            if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
+                $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
+                    price += parseInt(s_price[$(elm).val()]);
+                    if (itemselect != '') {
+                        itemselect += '|';
+                    }
 
-                        </div>
-                    </div>
+                    itemselect += $(elm).val();
 
-                    <div class="col-md-12 left-right padding-order-ct">
-                        <div class="row marginauto">
-                            <div class="col-md-12 left-right background-order-ct">
-                                <div class="row marginauto background-order-row-ct">
-                                    <div class="col-auto left-right background-order-col-left-ct">
-                                        <span>Tài khoản</span>
-                                    </div>
-                                    <div class="col-auto left-right background-order-col-right-ct">
-                                        <span>97.000 đ</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    $('[name="value"]').val('');
+                    $('[name="value"]').val(price);
 
-                    <div class="col-md-12 left-right padding-order-footer-mobile-ct fixcungbuttonmobile">
-                        <div class="row marginauto" style="padding: 12px 16px">
-                            <div class="col-md-12 left-right">
-                                <button class="button-default-ct button-next-step-two" type="button">Xác nhận</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                    $('[name="selected"]').val(itemselect);
 
-            <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
+                    $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                        $(this).removeClass();
+                    });
+                });
+                $('#btnPurchase').prop('disabled', false);
+            }
+            else {
+                $('#txtPrice').html('0 VNĐ');
+                $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+                $('#btnPurchase').prop('disabled', true);
 
-        </fieldset>
-    </form>
+            }
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html(price + ' VNĐ');
+        }
+    </script>
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="6"){{--//dạng chọn a->b--}}
+    <script>
+        var json = JSON.parse(JSON.parse($("#json_rank").val()).params);
+        var data = json.price;
+        $('.nstSlider').attr('data-range_max', data.length - 1);
+        $('.nstSlider').attr('data-cur_max', data.length - 1);
+        $('.nstSlider').nstSlider({
+            "crossable_handles": false,
+            "left_grip_selector": ".leftGrip",
+            "right_grip_selector": ".rightGrip",
+            "value_bar_selector": ".bar",
+            "value_changed_callback": function (cause, leftValue, rightValue) {
+                from = leftValue;
+                to = rightValue;
+                $(".from-chosen").val(from);
+                $(".to-chosen").val(to);
+                $(".to-chosen").trigger("chosen:updated");
+                $(".from-chosen").trigger("chosen:updated");
+                UpdatePrice1();
+            }
+        });
+
+        var from = 0, to = 1;
+        $(document).ready(() => {
+            $(".from-chosen").chosen({disable_search_threshold: 10});
+            $(".from-chosen").change((elm, select) => {
+                from = parseInt($(".from-chosen").val());
+                if (to <= from) {
+                    to = from + 1;
+                    $(".to-chosen").val(to);
+                    //$(".to-chosen").chosen('update');
+                    $(".to-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+
+            $(".to-chosen").chosen({disable_search_threshold: 10});
+            $(".to-chosen").change((elm, select) => {
+                to = parseInt($(".to-chosen").val());
+                if (to <= from) {
+                    from = to - 1;
+                    $(".from-chosen").val(from);
+                    $(".from-chosen").trigger("chosen:updated");
+                }
+                $('.nstSlider').nstSlider('set_position', from, to);
+                UpdatePrice1();
+            });
+            UpdatePrice1();
+        });
+
+        function UpdatePrice1() {
+            var price = 0;
+            var data =json.price;
+            $('tbody tr.selected').removeClass('selected');
+            for (var i = from + 1; i <= to; i++) {
+                price += parseInt(data[i]-data[i-1]);
+                $('tbody tr').eq(i - 1).addClass('selected');
+            }
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            price = price.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html(price + ' VNĐ');
+            $('[name="selected"]').val(from + '|' + to);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('.nstSlider').nstSlider('set_position', from, to);
+            $(".from-chosen").val(from);
+            $(".to-chosen").val(to);
+            $(".to-chosen").trigger("chosen:updated");
+            $(".from-chosen").trigger("chosen:updated");
+        }
+    </script>
+
+    @elseif(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7"){{--//dạng nhập tiền thành toán--}}
+    <script>
+        var min = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params)}}');
+        var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
+        $('#txtPrice').html('');
+        $('#txtPrice').html('Tổng: 0 ' + purchase_name);
+
+        function UpdatePrice() {
+
+            var container = $('.m-datatable__body').html('');
 
 
-    <script src="/assets/{{env('THEME_VERSION')}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>
+            if (data.server_mode == 1 && data.server_price == 1) {
 
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+            }
+            else {
+                var s_price = data["price"];
+            }
+
+
+            for (var i = 0; i < data.name.length; i++) {
+
+                var price = s_price[i];
+                var discount = s_price[i];
+
+
+                if (s_price != null && s_discount != null) {
+                    var ptemp = '';
+
+                    if (data.length == 1) {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
+                    } else {
+                        ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a onclick="Confirm(' + price + ',' + server + ')" class="btn-style border-color">Thanh toán</a> </td> </tr>';
+                    }
+                    var temp = '<tr class="m-datatable__row m-datatable__row--even">' +
+                        '<td style="width:30px;" class="m-datatable__cell">' + (i + 1) + '</td>' +
+                        '<td class="m-datatable__cell">' + data.name[i] + '</td>' +
+                        '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
+                        '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
+                        '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
+
+                    $(temp).appendTo(container);
+                }
+            }
+            UpdateTotal();
+        }
+
+        function UpdateTotal() {
+            var price = parseInt($('#input_pack').val().replace(/,/g, ''));
+
+            if (typeof price != 'number' || price < min || price > max) {
+                $('button[type="submit"]').addClass('not-allow');
+
+                $('#txtPrice').html('Tiền nhập không đúng');
+                return;
+            } else {
+                $('button[type="submit"]').removeClass('not-allow');
+            }
+            var total = 0;
+            var index = 0;
+            var current = 0;
+            var discount = 0;
+
+
+            if (data.server_mode == 1 && data.server_price == 1) {
+                var s_price = data["price" + server];
+                var s_discount = data["discount" + server];
+
+                for (var i = 0; i < s_price.length; i++) {
+
+                    if (price >= s_price[i] && s_price[i] != null) {
+                        current = s_price[i];
+                        index = i;
+                        discount = s_discount[i];
+                        total = price * s_discount[i];
+
+                    }
+                }
+            }
+            else {
+                var s_price = data["price"];
+                var s_discount = data["discount"];
+
+                discount = s_discount[server];
+                total = price * discount;
+            }
+
+            $('[name="value"]').val('');
+            $('[name="value"]').val(price);
+            total = parseInt(total / 1000 * data.input_pack_rate);
+
+            $('#txtDiscount').val(discount);
+            total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+            total = total.split('').reverse().join('').replace(/^[\.]/,'');
+            $('#txtPrice').html('');
+            $('#txtPrice').html( total + " " + purchase_name);
+            $('#txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+            $('[name="selected"]').val(price);
+            $('.m-datatable__body tbody tr.selected').removeClass('selected');
+            $('.m-datatable__body tbody tr').eq(index).addClass('selected');
+        }
+
+        $('#input_pack').bind('focus keyup', function () {
+            UpdateTotal();
+        });
+        $(document).ready(function () {
+            UpdatePrice();
+        });
+
+        function ConfirmBuy(value) {
+            var index = $('.server-filter').val();
+            Confirm(value, index);
+        }
+    </script>
+    @endif
 @endsection
 
+@section('scripts')
+    <script>
 
+        $('body').on('click','#service-detail .btn-success-service',function(e){
+            e.preventDefault();
+            $('#orderModal').modal('show');
+        })
+
+        $('body').on('click','.btn-success-mobile',function(e){
+            e.preventDefault();
+            $('#orderSuccses').modal('show');
+        })
+
+    </script>
+@endsection
 

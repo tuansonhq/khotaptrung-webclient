@@ -30,6 +30,7 @@
                         <div id="start-played" class="item_play_spin_shake">
                             <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
                         </div>
+
                         @if($result->checkPoint==1)
                         <div class="item_play_spin_progress">
                             <div class="item_play_spin_progress_bubble {{$result->pointuser > 99 ? 'clickgif' : ''}}" style="width: {{$result->pointuser<100?$result->pointuser:'100'}}%"></div>
@@ -319,7 +320,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -348,7 +349,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -399,6 +400,7 @@
         var free_wheel = 0;
         var value_gif_bonus = '';
         var msg_random_bonus = '';
+        var showwithdrawbtn = true;
         //var arrDiscount = '';
 
         $('body').delegate('#start-played', 'click', function() {
@@ -445,6 +447,7 @@
                             $('#noticeModal').modal('show');
                             return;
                         }
+                        showwithdrawbtn = data.showwithdrawbtn;
                         numrollbyorder = parseInt(data.numrollbyorder) + 1;
                         gift_detail = data.gift_detail;
                         console.log(gift_detail);
@@ -651,6 +654,9 @@
                         $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                     }
                 }
+            }
+            if (!showwithdrawbtn) {
+                $("#btnWithdraw").hide();
             }
 
             $('#noticeModal .content-popup').html($html);

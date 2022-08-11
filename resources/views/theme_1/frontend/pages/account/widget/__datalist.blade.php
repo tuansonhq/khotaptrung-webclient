@@ -11,97 +11,97 @@
 
                     <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in" style="position: relative">
-                                @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))
-                                <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">
-                                    <h3 style="position: relative;text-align: center" >Thông tin tài khoản</h3>
+{{--                                @if(isset($item->groups) || (isset($item->params) && isset($item->params->ext_info)))--}}
+{{--                                <div class="tooltipaccount hide tooltipaccount{{ $item->randId }}">--}}
+{{--                                    <h3 style="position: relative;text-align: center" >Thông tin tài khoản</h3>--}}
 {{--                                    <span class="close close_position close{{ $item->randId }}"><i class="fas fa-times"></i></span>--}}
 
-                                    <div class="slider-container">
-                                        <div class="slider-turn" style="width: 100%">
-                                            <?php
-                                            $index = 0;
-                                            ?>
-                                            @if(isset($item->groups))
-                                                <?php
-                                                    $att_values = $item->groups;
-                                                ?>
-                                                @foreach($att_values as $att_value)
+{{--                                    <div class="slider-container">--}}
+{{--                                        <div class="slider-turn" style="width: 100%">--}}
+{{--                                            <?php--}}
+{{--                                            $index = 0;--}}
+{{--                                            ?>--}}
+{{--                                            @if(isset($item->groups))--}}
+{{--                                                <?php--}}
+{{--                                                    $att_values = $item->groups;--}}
+{{--                                                ?>--}}
+{{--                                                @foreach($att_values as $att_value)--}}
 
-                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                        @if(isset($att_value->parent))
-                                                            <?php
-                                                            $index = $index + 1;
-                                                            ?>
-                                                            @if($index < 5)
-                                                                <div class="row" style="margin: 0 auto;width: 100%">
-                                                                    <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">
-                                                                        {{ $att_value->parent->title??null }} :
-                                                                    </div>
-                                                                    <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                        {{ $att_value->title??null }}
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        @endif
-                                                    @endif
-                                                @endforeach
-                                            @endif
+{{--                                                    @if($att_value->module == 'acc_label' && $att_value->is_slug_override == null)--}}
+{{--                                                        @if(isset($att_value->parent))--}}
+{{--                                                            <?php--}}
+{{--                                                            $index = $index + 1;--}}
+{{--                                                            ?>--}}
+{{--                                                            @if($index < 5)--}}
+{{--                                                                <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                    <div class="col-auto text-left =fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                        {{ $att_value->parent->title??null }} :--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="col-auto text-right fixcssacount  right" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                        {{ $att_value->title??null }}--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            @endif--}}
+{{--                                                        @endif--}}
+{{--                                                    @endif--}}
+{{--                                                @endforeach--}}
+{{--                                            @endif--}}
 
-                                            @if(isset($item->params) && isset($item->params->ext_info))
-                                                <?php
-                                                $params = json_decode(json_encode($item->params->ext_info),true);
-                                                ?>
-                                                @if($index < 5)
+{{--                                            @if(isset($item->params) && isset($item->params->ext_info))--}}
+{{--                                                <?php--}}
+{{--                                                $params = json_decode(json_encode($item->params->ext_info),true);--}}
+{{--                                                ?>--}}
+{{--                                                @if($index < 5)--}}
 
-                                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)
-                                                        @foreach($dataAttribute as $index=>$att)
-                                                            @if($att->position == 'text')
-                                                                @if(isset($att->childs))
-                                                                    @foreach($att->childs as $child)
-                                                                        @foreach($params as $key => $param)
-                                                                            @if($key == $child->id && $child->is_slug_override == null)
-                                                                                <?php
-                                                                                $index++;
-                                                                                ?>
-                                                                                @if($index < 5)
-                                                                                    <div class="row" style="margin: 0 auto;width: 100%">
-                                                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">
-                                                                                            {{ $child->title??null }} :
-                                                                                        </div>
-                                                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">
-                                                                                            {{ $param??null }}
-                                                                                        </div>
-                                                                                    </div>
+{{--                                                    @if(!is_null($dataAttribute) && count($dataAttribute)>0)--}}
+{{--                                                        @foreach($dataAttribute as $index=>$att)--}}
+{{--                                                            @if($att->position == 'text')--}}
+{{--                                                                @if(isset($att->childs))--}}
+{{--                                                                    @foreach($att->childs as $child)--}}
+{{--                                                                        @foreach($params as $key => $param)--}}
+{{--                                                                            @if($key == $child->id && $child->is_slug_override == null)--}}
+{{--                                                                                <?php--}}
+{{--                                                                                $index++;--}}
+{{--                                                                                ?>--}}
+{{--                                                                                @if($index < 5)--}}
+{{--                                                                                    <div class="row" style="margin: 0 auto;width: 100%">--}}
+{{--                                                                                        <div class="col-auto text-left fixcssacount item_buy_list_info_inacc">--}}
+{{--                                                                                            {{ $child->title??null }} :--}}
+{{--                                                                                        </div>--}}
+{{--                                                                                        <div class="col-auto text-right fixcssacount item_buy_list_info_inaccright" style="color: #666;font-weight: 600;margin-left: auto">--}}
+{{--                                                                                            {{ $param??null }}--}}
+{{--                                                                                        </div>--}}
+{{--                                                                                    </div>--}}
 
-                                                                                @endif
-                                                                            @endif
-                                                                        @endforeach
-                                                                    @endforeach
-                                                                @endif
+{{--                                                                                @endif--}}
+{{--                                                                            @endif--}}
+{{--                                                                        @endforeach--}}
+{{--                                                                    @endforeach--}}
+{{--                                                                @endif--}}
 
-                                                            @endif
-                                                        @endforeach
-                                                    @endif
-                                                @endif
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                                            @endif--}}
+{{--                                                        @endforeach--}}
+{{--                                                    @endif--}}
+{{--                                                @endif--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <script>
-                                    $(".close{{ $item->randId }}").on("click", function(e) {
-                                        $('.tooltipaccount{{ $item->randId }}').addClass('hide');
-                                    });
-                                    $(".item_buy_list_img-main{{ $item->randId }}")
-                                        .on('mouseenter', function() {
-                                            $('.tooltipaccount{{ $item->randId }}').removeClass('hide');
-                                        })
-                                        .on('mouseout', function() {
-                                            $('.tooltipaccount{{ $item->randId }}').addClass('hide');
-                                        });
-                                </script>
-                                @endif
-                                <div class="item_buy_list_img">
+{{--                                <script>--}}
+{{--                                    $(".close{{ $item->randId }}").on("click", function(e) {--}}
+{{--                                        $('.tooltipaccount{{ $item->randId }}').addClass('hide');--}}
+{{--                                    });--}}
+{{--                                    $(".item_buy_list_img-main{{ $item->randId }}")--}}
+{{--                                        .on('mouseenter', function() {--}}
+{{--                                            $('.tooltipaccount{{ $item->randId }}').removeClass('hide');--}}
+{{--                                        })--}}
+{{--                                        .on('mouseout', function() {--}}
+{{--                                            $('.tooltipaccount{{ $item->randId }}').addClass('hide');--}}
+{{--                                        });--}}
+{{--                                </script>--}}
+{{--                                @endif--}}
+                                <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="javascript:void(0)" class="buyacc" data-id="{{ $item->randId }}">
                                         @if(isset($data->params->thumb_default) && isset($data->params))
                                             <img class="item_buy_list_img-main lazy item_buy_list_img-main{{ $item->randId }}" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->title }}" >
@@ -358,7 +358,7 @@
                                 <div class="form-group form-group_buyacc ">
                                     @if(App\Library\AuthCustom::check())
 
-                                        @if(App\Library\AuthCustom::user()->balance < $item->price)
+                                        @if(App\Library\AuthCustom::user()->balance < $data->params->price)
                                             <div class="col-md-12"><label class="form-control-label text-danger" style="text-align: center;margin: 10px 0; ">Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</label></div>
                                         @else
                                             <div class="col-md-12"><label class="form-control-label" style="text-align: center;margin: 10px 0; ">Tài khoản của bạn chưa cấu hình bảo mật ODP nên chỉ cần click vào nút xác nhận mua để hoàn tất giao dịch</label></div>
@@ -377,11 +377,11 @@
 
                                 @if(App\Library\AuthCustom::check())
 
-                                    @if(App\Library\AuthCustom::user()->balance > $item->price)
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
-                                    @else
+                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
                                         <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                    @else
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                     @endif
                                 @else
                                     <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/mua-acc/{{ isset($data->custom->slug) ? $data->custom->slug :  $data->slug }}&{{ $data->id }}">Đăng nhập</a>
@@ -545,7 +545,7 @@
 
                         <div class="col-6 fixcssacount col-sm-6 col-lg-3">
                             <div class="item_buy_list_in">
-                                <div class="item_buy_list_img">
+                                <div class="item_buy_list_img item_buy_list_img_custom">
                                     <a href="/acc/{{ $item->randId }}">
                                         @if(isset($item->image))
 
@@ -560,7 +560,7 @@
                                 <div class="item_buy_list_description">
                                     bảo hành 100%,lỗi hoàn tiền
                                 </div>
-                                <div class="item_buy_list_info">
+                                <div class="item_buy_list_info item_buy_list_info_custom">
                                     <div class="row item_buy_list_info__row">
                                         <?php
                                         $total = 0;

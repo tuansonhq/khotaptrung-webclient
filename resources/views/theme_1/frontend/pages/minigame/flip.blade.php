@@ -318,7 +318,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -347,7 +347,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -466,6 +466,7 @@ $(document).ready(function(e){
     var angles = 0;
     var free_wheel = 0;
     var arrDiscount = '';
+    var showwithdrawbtn = true;
     //Click nút lật
     $('body').delegate('.img_remove', 'click', function(){
         $('.boxflip .flip-box-front').removeClass('img_remove');
@@ -525,6 +526,7 @@ $(document).ready(function(e){
                         // }
                         return;
                     }
+                    showwithdrawbtn = data.showwithdrawbtn;
                     numrollbyorder = parseInt(data.numrollbyorder) + 1;
                     free_wheel = data.free_wheel;
                     //arrDiscount = data.arrDiscount;
@@ -676,6 +678,9 @@ $(document).ready(function(e){
                                 $html += "<span><b>Tổng cộng: "+$totalRevice+"</b></span>";
                             }
                         }
+                    }
+                    if (!showwithdrawbtn) {
+                        $("#btnWithdraw").hide();
                     }
 
                     $('#noticeModal .content-popup').html($html);

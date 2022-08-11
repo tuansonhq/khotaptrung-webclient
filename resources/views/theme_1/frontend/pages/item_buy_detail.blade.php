@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+    {{--    aaaaaaaaaaaa--}}
     <div class="shop_product_detail">
         <div class="container">
             <div class="row">

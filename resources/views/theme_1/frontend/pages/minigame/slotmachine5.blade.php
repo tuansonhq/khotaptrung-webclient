@@ -321,7 +321,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -350,7 +350,7 @@
                                     @if($loop->index>0)
                                     <li>
                                         <div class="pull-left">
-                                            <p class="pull-left" style="width: 25px;">#{{$loop->index}}</p>
+                                            <p class="pull-left" style="width: 25px;">#{{$loop->index + 1}}</p>
                                             <div class="avt avt-xs"><img src="https://shopas.net/assets/backend/images/icon-user.png" class="avt-img" alt="player duo"></div>
                                             <p class="name-player-review hidden-over-name color-vip-1">{{$item['name']}}</p>
                                         </div>
@@ -381,7 +381,7 @@
         <input type="hidden" id="withdrawruby_{{$item}}" value="{{$key}}">
     @endforeach
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
+    <input type="hidden" name="checkPoint" value="{{$result->checkPoint}}">
 
     <script>
         function animate(options) {
@@ -439,6 +439,7 @@
             var slot3_fake;
             var slot4_fake;
             var slot5_fake;
+            var showwithdrawbtn = true;
             //Click nút quay
             $('body').delegate('#start-played', 'click', function() {
 
@@ -474,6 +475,7 @@
                                 $('#noticeModal').modal('show');
                                 return;
                             }
+                            showwithdrawbtn = data.showwithdrawbtn;
                             roll_check = true;
                             gift_detail = data.gift_detail;
                             var num1=0;
@@ -1038,6 +1040,9 @@
                         }
                     }
                 }
+                if (!showwithdrawbtn) {
+                    $("#btnWithdraw").hide();
+                }
 
                 $('#noticeModal .content-popup').html($html);
 
@@ -1061,7 +1066,6 @@
             location.reload();
         })
     </script>
-
     <script type="text/javascript">
         $( document ).ready(function() {
             $(document).on('scroll',function(){

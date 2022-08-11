@@ -6,6 +6,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
+    {{--    aaaaaaaaaaaa--}}
     @if($data == null)
         <div class="item_buy">
 

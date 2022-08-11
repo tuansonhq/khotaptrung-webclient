@@ -24,14 +24,14 @@ class LoginController extends Controller
 //        }
         $jwt = Session::get('jwt');
 
-        if (theme('')->theme_key = 'theme_1'){
+        if (theme('')->theme_key == 'theme_1'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
             }else{
                 return redirect('/');
             }
 
-        }elseif (theme('')->theme_key = 'theme_2'){
+        }elseif (theme('')->theme_key == 'theme_2'){
             if(empty($jwt)){
                 return view('frontend.pages.log_in');
             }else{
@@ -41,8 +41,6 @@ class LoginController extends Controller
             Session::put('check_login', 33);
             return view('frontend.pages.index');
         }
-
-
     }
     public function postLogin(Request $request){
 
@@ -71,13 +69,15 @@ class LoginController extends Controller
                 Session::put('exp_token',$response_data->exp_token);
                 Session::put('time_exp_token',$time_exp_token);
                 Session::put('auth_custom',$response_data->user);
-                $return_url = Session::get('return_url');
+                $return_url = Session::get('url.intended');
+
                 return response()->json([
                     'status' => 1,
                     'message' => 'Thành công',
                     'return_url' => $return_url,
                     'data' => $result_Api->response_data,
                 ]);
+
 
             }
             else{
@@ -114,6 +114,19 @@ class LoginController extends Controller
             Session::put('jwt',$response_data->token);
             Session::put('exp_token',$response_data->exp_token);
             Session::put('time_exp_token',$time_exp_token);
+            $return_url = Session::get('url.intended');
+            $previous = Session::get('url_return.id_return');
+
+
+            if (isset($previous) && $previous != null){
+                return redirect('/');
+            }elseif(isset($return_url) && $return_url != null){
+                return redirect()->intended();
+
+            }else{
+                return redirect()->back();
+            }
+
             return redirect()->to('https://'.\Request::server("HTTP_HOST").Session::get('return_url').'');
 
         }
@@ -142,10 +155,10 @@ class LoginController extends Controller
                 $result = $result_Api->response_data;
                 if($result->status == 1){
                     Session::flush();
-                    return redirect()->to('/');
+                    return redirect()->back();
                 }
             }
-            return redirect()->to('/');
+//            return redirect()->to('/');
         }
         catch(\Exception $e){
             Log::error($e);
@@ -159,6 +172,7 @@ class LoginController extends Controller
     public function changePassword(){
         return view('frontend.pages.profile.change_password');
     }
+
     public function changePasswordApi(Request $request){
         $this->validate($request,[
             'old_password'=>'required',

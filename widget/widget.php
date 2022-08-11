@@ -21,6 +21,22 @@ View::composer('frontend.widget.__slider__banner', function ($view) {
     return $view->with('data',$data);
 
 });
+//theme3
+View::composer('frontend.widget.__banner__storecard', function ($view) {
+
+    $data = \Cache::rememberForever('__banner__storecard', function() {
+        $url = '/get-slider-banner';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 //theme1
 View::composer('frontend.widget.__dich__vu__noi__bat', function ($view) {
@@ -56,12 +72,71 @@ View::composer('frontend.widget.__menu__taget', function ($view) {
 
 });
 
-
 //theme3
 View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 
     $data = \Cache::rememberForever('__head__dich__vu__noi__bat', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__menu', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
         $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+});
+View::composer('frontend.widget.__menu_header', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu_header', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+});
+// dịch vụ nổi bật ảnh
+View::composer('frontend.widget.__list_serve_remark_image', function ($view) {
+
+    $data = \Cache::rememberForever('__list_serve_remark_image', function() {
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+View::composer('frontend.widget.__list_service', function ($view) {
+
+    $data = \Cache::rememberForever('__list_service', function() {
+        $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
 
@@ -78,6 +153,23 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
 View::composer('frontend.widget.__head__dich__vu__noi__bat__mobile', function ($view) {
 
     $data = \Cache::rememberForever('__head__dich__vu__noi__bat__mobile', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+//theme3
+View::composer('frontend.widget.__list_serve_remark', function ($view) {
+
+    $data = \Cache::rememberForever('__list_serve_remark', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();
@@ -92,26 +184,9 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat__mobile', function ($
 });
 
 //theme3
-View::composer('frontend.widget.__index__dich__vu__noi__bat', function ($view) {
+View::composer('frontend.widget.__list_serve_remark_mobile', function ($view) {
 
-    $data = \Cache::rememberForever('__index__dich__vu__noi__bat', function() {
-        $url = '/menu-transaction';
-        $method = "POST";
-        $dataSend = array();
-
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        return $data = $result_Api->response_data->data??null;
-
-    });
-
-    return $view->with('data',$data);
-
-});
-
-//theme3
-View::composer('frontend.widget.__index__dich__vu__noi__bat__mobile', function ($view) {
-
-    $data = \Cache::rememberForever('__index__dich__vu__noi__bat__mobile', function() {
+    $data = \Cache::rememberForever('__list_serve_remark_mobile', function() {
         $url = '/menu-transaction';
         $method = "POST";
         $dataSend = array();
@@ -145,10 +220,52 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__tai__khoan__lien__quan', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__tai__khoan__lien__quan', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
+
+
+
+View::composer('frontend.widget.__buy__acc__home', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__buy__acc__home', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
+
 View::composer('frontend.pages.account.widget.__related__category', function ($view) {
 
     //    Acc
-    
+
     $data = \Cache::rememberForever('__related__category', function() {
 
         $url = '/acc';
@@ -171,18 +288,39 @@ View::composer('frontend.widget.__tin__tuc', function ($view) {
 
     $data = \Cache::rememberForever('__tin__tuc', function() {
 
-        $url = '/show-category-article';
+        $url = '/article';
         $method = "GET";
         $dataSend = array();
+        $dataSend['page'] = 1;
+        $dataSend['querry'] = '';
+
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
 
-        return $data = $result_Api->response_data->datacategory??null;
+      return $data = $result_Api->response_data->data->data??null;
+
     });
 
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__random__account', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__random__account', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list_random';
+        $dataSend['module'] = 'acc_category';
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
 
 View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
@@ -204,13 +342,33 @@ View::composer('frontend.widget.__content__home__minigame', function ($view) {
 
 });
 
+View::composer('frontend.widget.__content__category__minigame', function ($view) {
+
+//    Minigame
+
+    $data = \Cache::rememberForever('__content__category__minigame', function() {
+
+        $url = '/minigame/get-list-minigame';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+//    dd($data);
+    return $view->with('data', $data);
+
+});
+
 View::composer('frontend.widget.__content__home__dichvu', function ($view) {
 
     $data = \Cache::rememberForever('__content__home__dichvu', function() {
         $url = '/service';
         $method = "GET";
         $dataSend = array();
-        $dataSend['limit'] = 8;
+        $dataSend['limit'] = 118;
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         return $data = $result_Api->response_data->data->data??null;
     });
@@ -218,6 +376,8 @@ View::composer('frontend.widget.__content__home__dichvu', function ($view) {
     return $view->with('data', $data);
 
 });
+
+
 
 
 View::composer('frontend.widget.__bai__viet__lien__quan', function ($view) {
@@ -246,10 +406,22 @@ View::composer('frontend.widget.__dichvu__lienquan', function ($view) {
         $dataSend = array();
         $dataSend['limit'] = 8;
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-
         return $data = $result_Api->response_data->data->data??null;
     });
+    return $view->with('data', $data);
+});
 
+
+View::composer('frontend.widget.__service_game', function ($view) {
+
+    $data = \Cache::rememberForever('__service_game', function() {
+        $url = '/service';
+        $method = "GET";
+        $dataSend = array();
+//        $dataSend['limit'] = 8;
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data->data??null;
+    });
     return $view->with('data', $data);
 });
 
@@ -257,6 +429,22 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 
     $data = \Cache::rememberForever('__menu_category_desktop', function() {
+        $url = '/menu-category';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data;
+
+    });
+    return $view->with('data',$data);
+
+
+});
+View::composer('frontend.widget.__menu__side', function ($view) {
+
+
+    $data = \Cache::rememberForever('__menu__side', function() {
         $url = '/menu-category';
         $method = "POST";
         $dataSend = array();
@@ -286,6 +474,7 @@ View::composer('frontend.widget.__menu_category_mobile', function ($view) {
 
 
 });
+
 View::composer('frontend.widget.__menu_category', function ($view) {
 
     try{
@@ -296,14 +485,15 @@ View::composer('frontend.widget.__menu_category', function ($view) {
             $result_Api_menu_category  = DirectAPI::_makeRequest($url_menu_category ,$val_menu_category ,$method_menu_category );
             return $result_Api_menu_category->data;
         });
+
     }
     catch(\Exception $e){
         $data_menu_category = null;
     }
-
     return $view->with('data_menu_category', $data_menu_category);
 
 });
+
 View::composer('frontend.widget.__menu_category_theme2', function ($view) {
 
     $url_menu_category = '/menu-category';
@@ -332,6 +522,20 @@ View::composer('frontend.widget.__menu_profile', function ($view) {
 
 });
 
+View::composer('frontend.widget.__menu_profile_desktop', function ($view) {
+    $data = \Cache::rememberForever('__menu_profile_desktop', function() {
+        $url = '/menu-profile';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
 
 View::composer('frontend.widget.__menu_transaction', function ($view) {
 
@@ -360,10 +564,45 @@ View::composer('frontend.widget.__menu__category__article', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__menu__category__article__clone', function ($view) {
+
+    $data = \Cache::rememberForever('__menu__category__article__clone', function() {
+        $url = '/get-category';
+        $method = "GET";
+        $val = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+
+        return $data = $result_Api->response_data->datacategory??null;
+
+
+    });
+
+    return $view->with('dataclone', $data);
+});
+
 View::composer('frontend.widget.__top_nap_the', function ($view) {
 
 
     $data = \Cache::rememberForever('__top_nap_the', function() {
+        $url = '/top-charge';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+    return $view->with('data',$data);
+
+
+
+});
+
+View::composer('frontend.widget.__top_nap_the_mobile', function ($view) {
+
+
+    $data = \Cache::rememberForever('__top_nap_the_mobile', function() {
         $url = '/top-charge';
         $method = "GET";
         $dataSend = array();
@@ -424,7 +663,7 @@ View::composer('frontend.widget.__huongdan__trangchu', function ($view) {
 
 View::composer('frontend.widget.__baiviet__lienquan', function ($view) {
 
-    $data = \Cache::rememberForever('__content__home__dichvu', function() {
+    $data = \Cache::rememberForever('__baiviet__lienquan', function() {
         $url = '/article';
         $method = "GET";
         $dataSend = array();
@@ -474,49 +713,69 @@ View::composer('frontend.widget.__menu__article', function ($view) {
 
 });
 
+//THeme 3.
 
+View::composer('frontend.widget.__slider__banner__account', function ($view) {
 
-//View::composer('frontend.widget.__charge', function ($view) {
-////    if($request->hasCookie('jwt')){
-////    dd($request->cookie('jwt'));
-////        try{
-//            dd(111);
-//            $url = '/deposit-auto/get-telecom';
-//            $method = "GET";
-//            $item = array();
-//            $item['token'] = 'dsdsd';
-//            $item['secret_key'] = config('api.secret_key');
-//            $item['domain'] = 'youtube.com';
-//
-//            $result_Api = DirectAPI::_makeRequest($url,$item,$method);
-//
-//            if (isset($result_Api) && $result_Api->httpcode == 200 ) {
-//                $result = $result_Api->data;
-//
-//                if ($result->status == 1) {
-//                    return view('frontend.pages.index', compact('result'));
-//                }
-//                else {
-//                    return redirect()->back()->withErrors($result->message);
-//
-//                }
-//            } else {
-//                return 'sai';
-//            }
-//
-//        }
-//        catch(\Exception $e){
-//
-//            Log::error($e);
-//            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
-//        }
-//
-////    }
-////    else{
-////        return redirect('login');
-////    }
-//});
+    $data = \Cache::rememberForever('__slider__banner__account', function() {
+        $url = '/get-slider-banner-nick';
+        $method = "GET";
+        $dataSend = array();
 
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
 
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__services__other', function ($view) {
+
+    $data = \Cache::rememberForever('__services__other', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__service__other__his', function ($view) {
+
+    $data = \Cache::rememberForever('__service__other__his', function() {
+        $url = '/menu-transaction';
+        $method = "POST";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+/*theme_5*/
+View::composer('frontend.widget.__slide__news', function ($view) {
+
+    $data = \Cache::rememberForever('__slide__news', function() {
+        $url = '/article';
+        $method = "GET";
+        $val = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$val,$method);
+        return $data = $result_Api->response_data->data??null;
+    });
+    $data = new LengthAwarePaginator($data->data, $data->total , $data->per_page, $data->current_page,$data->data);
+    return $view->with('data', $data);
+});
 
 
