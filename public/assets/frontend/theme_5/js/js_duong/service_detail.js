@@ -220,7 +220,6 @@ $('.submit-form').on('click', function () {
         obj[item.name] = item.value;
         return obj;
     }, {});
-    console.log(data_form)
     let url = $('#formDataService').attr('action');
     data_form.selected = data_form.selected.replace(/\./g, "");
 
@@ -286,22 +285,6 @@ $('body').on('click','.btnPay',function(){
         });
     }
 
-    /* show bot*/
-    let table_bot = $('#table-bot');
-    $.ajax({
-        type: 'GET',
-        url: '/show-bot',
-        data: {
-            slug: $('#slug').val(),
-        },
-        success: (response) => {
-            if (response.status){
-                table_bot.html('');
-                table_bot.html(response.data);
-            }
-        },
-    })
-
 
     if (is_ok){
         if ($(document).width() > 1200) {
@@ -325,7 +308,7 @@ let classes = (classes) => document.getElementsByClassName(classes);
 
 let username = id("username"),
     password = id("password"),
-    email = id("email"),
+    confirm = id("confirm"),
     form = id("form"),
     errorMsg = classes("error");
 // Adding the submit event Listener
@@ -333,8 +316,8 @@ let username = id("username"),
 $('.btnPay').on('click', function(e){
     e.preventDefault();
     engine(username, 0, "Vui lòng điền thông tin yêu cầu !");
-    engine(password, 1, "Vui lòng nhập password !");
-    engine(email, 2, "Email cannot be blank");
+    engine(password, 1, "Vui lòng nhập mật khẩu !");
+    engine(confirm, 2, "Vui lòng tích để đồng ý với điều khoản của shop !");
 });
 
 // engine function which will do all the works
@@ -350,3 +333,37 @@ let engine = (id, serial, message) => {
     }
 };
 
+/* show bot*/
+$(document).ready(function() {
+    const media = "http://cdn.upanh.info/";
+
+    var slug = $('#slug').val();
+
+    getShowBot(slug)
+
+    function getShowBot(slug) {
+        request = $.ajax({
+            type: 'GET',
+            url: '/show-bot',
+            data: {
+                slug: slug
+            },
+            beforeSend: function (xhr) {
+
+            },
+            success: (response) => {
+
+                if (response.status == 1) {
+                    $('.data-bot').html('');
+                    $('.data-bot').html(response.data);
+                }
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+            }
+        });
+    }
+});

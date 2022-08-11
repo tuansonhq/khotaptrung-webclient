@@ -173,85 +173,6 @@
                         @endif
 
 
-                        <div class="col-md-12 left-right">
-                            <div class="row body-title-detail-ct" id="section-data-send">
-                                @if(!empty($send_name) && !empty($send_type))
-                                    @foreach($send_name as $k_send_name => $send_name_text)
-                                        @if($send_type[$k_send_name])
-                                            @if($send_type[$k_send_name] == '3')
-                                            @elseif($send_type[$k_send_name] =='2')
-                                            @elseif($send_type[$k_send_name] =='1')
-                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
-                                                    <div class="row marginauto">
-                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                            <span>{{$send_name_text}}</span>
-                                                        </div>
-                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8 c-pb-8">
-                                                            <input autocomplete="off" class="input-defautf-ct username"
-                                                                   id="username"
-                                                                   name="customer_data{{$k_send_name}}" type="text"
-                                                                   placeholder="{{$send_name_text}}" required_service>
-                                                            <div class="error"></div>
-                                                        </div>
-                                                        <div class="col-md-12 left-right message-error">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @elseif('5')
-                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
-                                                    <div class="row marginauto password-mobile">
-                                                        <div class="col-md-12 left-right body-title-detail-span-ct c-pt-8">
-                                                            <span>{{$send_name_text}}</span>
-                                                        </div>
-                                                        <div class="col-md-12 left-right body-title-detail-select-ct c-pt-8"
-                                                             style="position: relative">
-                                                            <input autocomplete="off"
-                                                                   id="password"
-                                                                   name="customer_data{{$k_send_name}}"
-                                                                   class="input-defautf-ct password"
-                                                                   type="password"
-                                                                   placeholder="{{$send_name_text}}" required_service>
-                                                            <div class="error"></div>
-                                                            <div class="show-btn-password">
-                                                                <img onerror="imgError(this)" class="lazy"
-                                                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
-                                                                     alt="">
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-12 left-right pw-error"></div>
-                                                    </div>
-                                                </div>
-                                            @elseif('7')
-                                                <div class="col-md-12 left-right " id="confirm-rules">
-                                                    <div class="row body-title-detail-checkbox-ct m-0 p-0">
-                                                        <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                            <label for="customer_data{{$k_send_name}}"
-                                                                   class="input-ratio-ct">
-                                                                                <span class="label--checkbox">
-                                                                                    <div class="label--checkbox__name">
-                                                                                        {{ $send_name_text }}
-                                                                                    </div>
-                                                                                </span>
-                                                                <input id="customer_data{{$k_send_name}}"
-                                                                       type="checkbox" class="confirm-rules"
-                                                                       name="customer_data{{$k_send_name}}" required_service>
-                                                                <div class="error"></div>
-                                                                <span class="input-ratio-checkmark-ct --overwrite"></span>
-                                                            </label>
-                                                            <div class="error-message"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {{--                                                @default--}}
-                                            @endif
-                                        @endif
-                                        {{--                                        @empty--}}
-                                    @endforeach
-                                @endif
-                            </div>
-                        </div>
-
                         <!-- service select mobile -->
                         <div class="d-block d-lg-none">
                             <div class="t-sub-1 title-color c-mb-8">
@@ -293,48 +214,94 @@
                         </h2>
                         <div class="card unset-lg">
                             <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
-                                <div class="input-group c-px-8">
-                                    <div class="form-label">
-                                        Tài khoản cần làm nhiệm vụ
-                                    </div>
-                                    <select name="" id="">
-                                        <option value="">Trái đất</option>
-                                        <option value="">Sao hoả</option>
-                                    </select>
-                                </div>
 
-                                <div class="input-group c-px-8">
-                                    <div class="form-label">
-                                        Mật khẩu
-                                    </div>
-                                    <div class="toggle-password">
-                                        <input type="password" placeholder="Mật khẩu...">
-                                    </div>
-                                </div>
-
-                                <div class="input-group c-px-8">
-                                    <div class="form-label">
-                                        Tuỳ chọn tướng
-                                    </div>
-                                    <select name="" id="">
-                                        <option value="">Vanhein</option>
-                                        <option value="">Batman</option>
-                                    </select>
-                                </div>
-
-                                <div class="input-group c-px-8">
-                                    <div class="form-label">
-                                        Tên nhân vật
-                                    </div>
-                                    <input type="text" placeholder="Tên nhân vật">
-                                </div>
+                                @php
+                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
+                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
+                                    $index = 0;
+                                @endphp
+                                @if(!empty($send_name)&& count($send_name)>0)
+                                    @for ($i = 0; $i < count($send_name); $i++)
+                                        @if($send_name[$i]!=null)
+                                            {{--check trường của sendname--}}
+                                            @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                            <div class="col-md-6">
+                                                <span class="">
+                                                    {{$send_name[$i]}}
+                                                </span>
+                                                <div class="mb-15">
+                                                    <input id="username"  type="text" required_service name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                    <div class="error"></div>
+                                                </div>
+                                            </div>
+                                            @elseif($send_type[$i]==4)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                            <div class="col-md-6">
+                                                <span>
+                                                    {{$send_name[$i]}}
+                                                </span>
+                                                <div class="mb-15">
+                                                    <input type="file" required_service accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                    <div class="error"></div>
+                                                </div>
+                                            </div>
+                                            @elseif($send_type[$i]==5)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                                <div class="col-md-6">
+                                                    <span>
+                                                        {{$send_name[$i]}}
+                                                    </span>
+                                                    <div class="mb-15 toggle-password">
+                                                        <input id="password" type="password" required_service class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                        <div class="error"></div>
+                                                    </div>
+                                                </div>
+                                            @elseif($send_type[$i]==6)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                                @php
+                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                @endphp
+                                                <div class="col-md-6">
+                                                    <span>
+                                                        {{$send_name[$i]}}
+                                                    </span>
+                                                    <div class="mb-15">
+                                                        <select name="customer_data{{$i}}" class="mb-15 control-label bb">
+                                                            @if(!empty($send_data))
+                                                                @for ($sn = 0; $sn < count($send_data); $sn++)
+                                                                    <option value="{{$sn}}">{{$send_data[$sn]}}</option>
+                                                                @endfor
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endif
+                                    @endfor
+                                @endif
                             </div>
                         </div>
+
+
+
+
                         <label class="input-checkbox c-my-16 c-mb-lg-28">
-                            <input type="checkbox" name="select">
+                            <input type="checkbox" id="confirm" name="select" required>
                             <span class="checkmark"></span>
                             <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
                         </label>
+                            <div class="error">
+
+                            </div>
                         <div class="d-none d-lg-block c-pb-22 c-pt-2">
                             <hr>
                         </div>
@@ -360,8 +327,7 @@
                             <div class="card-body">
                                 <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi
                                     KAKAROT Khu 39)</h2>
-
-                                <div id="table-bot">
+                                <div class="col-md-12 left-right data-bot">
 
                                 </div>
                             </div>
@@ -419,7 +385,7 @@
                 <input class="text-title secondary" type="hidden" name="value" value="">
                 <input class="text-title" type="hidden" name="selected" value="">
                 <input class="text-title" type="hidden" name="server">
-                <div class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
+                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
                 <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
@@ -528,7 +494,7 @@
                 <div class="modal-header modal-header-success-ct">
                     <div class="row marginauto modal-header-success-row-ct justify-content-center">
                         <div class="col-md-12 text-center">
-{{--                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>--}}
+                            {{--                            <span>Gửi yêu cầu thuê dịch vụ thành công</span>--}}
                         </div>
                     </div>
                 </div>
@@ -661,23 +627,18 @@
     </div>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/service_detail.js?v={{time()}}"></script>
     <script>
-
         function Confirm(index, serverid) {
             $('[name="server"]').val(serverid);
             $('[name="selected"]').val(index);
             $('#btnPurchase').click();
         }
-
         var data = jQuery.parseJSON('{!! $data->params !!}');
-
-        @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
+            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="7")
         var purchase_name = '{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}';
-        @else
+            @else
         var purchase_name = 'VNĐ';
-        @endif
-
+            @endif
         var server = -1;
-
         $(".server-filter").change(function (elm, select) {
             server = parseInt($(".server-filter").val());
             $('[name="server"]').val(server);
@@ -685,7 +646,6 @@
         });
         server = parseInt($(".server-filter").val());
         $('[name="server"]').val(server);
-
     </script>
     @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) =="1")
 
@@ -700,15 +660,12 @@
             itemselect = parseInt($(".s-filter").val());
             UpdatePrice();
         });
-
         function UpdatePrice() {
             var price = 0;
             if (itemselect == -1) {
                 return;
             }
-
             if (data.server_mode == 1 && data.server_price == 1) {
-
                 var s_price = data["price" + server];
                 price = parseInt(s_price[itemselect]);
             } else {
@@ -721,14 +678,12 @@
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
             $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val($(".s-filter").val());
-
             $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                 $(this).removeClass();
             });
             $('tbody tr.selected').removeClass('selected');
             $('tbody tr').eq(itemselect).addClass('selected');
         }
-
         function ConfirmBuy(value) {
             var index = $('.server-filter').val();
             Confirm(value, index);
@@ -740,31 +695,24 @@
         $('.s-filter input[type="checkbox"]').change(function () {
             UpdatePrice();
         });
-
         function UpdatePrice() {
             var price = 0;
             var itemselect = '';
-
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
             } else {
                 var s_price = data["price"];
             }
-
             if ($('.s-filter input[type="checkbox"]:checked').length > 0) {
                 $('.s-filter input[type="checkbox"]:checked').each(function (idx, elm) {
                     price += parseInt(s_price[$(elm).val()]);
                     if (itemselect != '') {
                         itemselect += '|';
                     }
-
                     itemselect += $(elm).val();
-
                     $('[name="value"]').val('');
                     $('[name="value"]').val(price);
-
                     $('[name="selected"]').val(itemselect);
-
                     $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
                         $(this).removeClass();
                     });
@@ -776,7 +724,6 @@
                     $(this).removeClass();
                 });
                 $('#btnPurchase').prop('disabled', true);
-
             }
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
@@ -804,7 +751,6 @@
                 UpdatePrice1();
             }
         });
-
         var from = 0, to = 1;
         $(document).ready(() => {
             $(".from-chosen").chosen({disable_search_threshold: 10});
@@ -819,7 +765,6 @@
                 $('.nstSlider').nstSlider('set_position', from, to);
                 UpdatePrice1();
             });
-
             $(".to-chosen").chosen({disable_search_threshold: 10});
             $(".to-chosen").change((elm, select) => {
                 to = parseInt($(".to-chosen").val());
@@ -833,7 +778,6 @@
             });
             UpdatePrice1();
         });
-
         function UpdatePrice1() {
             var price = 0;
             var data = json.price;
@@ -865,30 +809,19 @@
         var max = parseInt('{{\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params)}}');
         $('.txtPrice').html('');
         $('.txtPrice').html('Tổng: 0 ' + purchase_name);
-
         function UpdatePrice() {
-
             var container = $('.m-datatable__body').html('');
-
-
             if (data.server_mode == 1 && data.server_price == 1) {
-
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
             } else {
                 var s_price = data["price"];
             }
-
-
             for (var i = 0; i < data.name.length; i++) {
-
                 var price = s_price[i];
                 var discount = s_price[i];
-
-
                 if (s_price != null && s_discount != null) {
                     var ptemp = '';
-
                     if (data.length == 1) {
                         ptemp = '<td style="width:180px;" class="m-datatable__cell"> <a class="btn-style border-color" href="/service/purchase/2.html?selected=' + price + '&server=' + server + '">Thanh toán</a> </td> </tr>';
                     } else {
@@ -900,19 +833,15 @@
                         '<td style="width:150px;" class="m-datatable__cell">' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VNĐ</td>' +
                         '<td style="width:250px;" class="m-datatable__cell">' + discount + '</td>' +
                         '<td style="width:180px;" class="m-datatable__cell">' + (parseInt(price * discount / 1000 * data.input_pack_rate)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' ' + purchase_name + '</td>' + ptemp
-
                     $(temp).appendTo(container);
                 }
             }
             UpdateTotal();
         }
-
         function UpdateTotal() {
             var price = parseInt($('#input_pack').val().replace(/,/g, ''));
-
             if (typeof price != 'number' || price < min || price > max) {
                 $('button[type="submit"]').addClass('not-allow');
-
                 $('.txtPrice').html('Tiền nhập không đúng');
                 return;
             } else {
@@ -922,34 +851,26 @@
             var index = 0;
             var current = 0;
             var discount = 0;
-
-
             if (data.server_mode == 1 && data.server_price == 1) {
                 var s_price = data["price" + server];
                 var s_discount = data["discount" + server];
-
                 for (var i = 0; i < s_price.length; i++) {
-
                     if (price >= s_price[i] && s_price[i] != null) {
                         current = s_price[i];
                         index = i;
                         discount = s_discount[i];
                         total = price * s_discount[i];
-
                     }
                 }
             } else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
-
                 discount = s_discount[server];
                 total = price * discount;
             }
-
             $('[name="value"]').val('');
             $('[name="value"]').val(price);
             total = parseInt(total / 1000 * data.input_pack_rate);
-
             $('#txtDiscount').val(discount);
             total = total.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
@@ -962,14 +883,12 @@
             $('.m-datatable__body tbody tr.selected').removeClass('selected');
             $('.m-datatable__body tbody tr').eq(index).addClass('selected');
         }
-
         $('#input_pack').bind('focus keyup', function () {
             UpdateTotal();
         });
         $(document).ready(function () {
             UpdatePrice();
         });
-
         function ConfirmBuy(value) {
             var index = $('.server-filter').val();
             Confirm(value, index);
@@ -980,17 +899,13 @@
 
 @section('scripts')
     <script>
-
         $('body').on('click', '#service-detail .btn-success-service', function (e) {
             e.preventDefault();
             $('#orderModal').modal('show');
         })
-
         $('body').on('click', '.btn-success-mobile', function (e) {
             e.preventDefault();
             $('#orderSuccses').modal('show');
         })
-
     </script>
 @endsection
-
