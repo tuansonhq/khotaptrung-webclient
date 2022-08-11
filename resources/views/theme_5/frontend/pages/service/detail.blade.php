@@ -456,7 +456,7 @@
                 <input class="text-title secondary" type="hidden" name="value" value="">
                 <input class="text-title" type="hidden" name="selected" value="">
                 <input class="text-title" type="hidden" name="server">
-                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
+                <div class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
                 <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
