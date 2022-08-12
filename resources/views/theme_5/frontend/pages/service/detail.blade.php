@@ -284,6 +284,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                            @elseif($send_type[$i]==7)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                                @php
+                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                @endphp
+                                                <label class="input-checkbox c-my-16 c-mb-lg-28">
+                                                    <input type="checkbox" id="confirm" name="customer_data{{$i}}" required>
+                                                    <span class="checkmark"></span>
+                                                    <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
+                                                </label>
+                                                <div class="error"></div>
                                             @endif
                                         @endif
                                     @endfor
@@ -291,20 +304,7 @@
                             </div>
                         </div>
 
-
-
-
-                        <label class="input-checkbox c-my-16 c-mb-lg-28">
-                            <input type="checkbox" id="confirm" name="select" required>
-                            <span class="checkmark"></span>
-                            <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
-                        </label>
-                            <div class="error">
-
-                            </div>
-                        <div class="d-none d-lg-block c-pb-22 c-pt-2">
-                            <hr>
-                        </div>
+                        <div class="d-none d-lg-block c-pb-22 c-pt-2"></div>
                         <div class="c-mb-16">
                             {{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
                             <div class="card overflow-hidden">
