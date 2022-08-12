@@ -114,7 +114,7 @@
                                         $add_time=strtotime($item->created_at)+rand(1,2);
                                         $add_date= date('Y-m-d H:i:s',$add_time);
                                     @endphp
-                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
+                                    @if(($count==1 || $count==5) && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                         <tr>
                                             <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
                                             <td>{{trim($listprice[$countname])}}</td>
@@ -333,7 +333,7 @@
                                         $add_time=strtotime($item->created_at)+rand(1,2);
                                         $add_date= date('Y-m-d H:i:s',$add_time);
                                     @endphp
-                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
+                                    @if(($count==1 || $count==5) && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                         <tr>
                                             <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
                                             <td>{{trim($listprice[$countname])}}</td>
@@ -1125,7 +1125,7 @@
                                         $add_time=strtotime($item->created_at)+rand(1,2);
                                         $add_date= date('Y-m-d H:i:s',$add_time);
                                     @endphp
-                                    @if($count==5 && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
+                                    @if(($count==1 || $count==5) && isset($listname[$countname]) && $listname[$countname]!="" && isset($listprice[$countname]) && $listprice[$countname]!="")
                                         <tr>
                                             <td>{{substr(trim($listname[$countname]),0,3)."***".substr(trim($listname[$countname]),-2)}}</td>
                                             <td>{{trim($listprice[$countname])}}</td>
