@@ -343,7 +343,7 @@
                                     <div  style="color: #f473b9;font-weight: 500" class="txtPrice d-inline-block">0
                                         VNĐ
                                     </div>
-                                    <button type="button" id="btnPurchase" class="btn primary btnPay" disabled>Thanh toán</button>
+                                    <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
                                 </div>
                             </div>
 
