@@ -95,7 +95,7 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <div class="rotation-sale-content brs-8 c-py-12 d-flex flex-column align-items-center">
+                            <div class="rotation-sale-content brs-12 c-py-12 d-flex flex-column align-items-center">
                                 <p class="d-flex align-items-center c-mb-0">
                                     <span id="rotationFirstPrice" class="fw-400 fz-12 lh-16 c-mr-8">
                                          @if(isset($result->group->params->percent_sale))
