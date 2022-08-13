@@ -25,23 +25,23 @@
                                         @if($service->params_plus)
                                             @foreach($service->params_plus as $key => $val)
                                                 @if($key == 'fk_buy')
-                                                    <p>Giao dịch: {{ str_replace(',','.',number_format($service->total_order + $val)) }}</p>
+                                                    Giao dịch: {{ str_replace(',','.',number_format($service->total_order + $val)) }}
                                                 @endif
                                             @endforeach
 
                                         @else
-                                            <p>Giao dịch: {{ str_replace(',','.',number_format($service->total_order)) }}</p>
+                                            Giao dịch: {{ str_replace(',','.',number_format($service->total_order)) }}
                                         @endif
 
                                     @else
                                         @if($service->params_plus)
                                             @foreach($service->params_plus as $key => $val)
                                                 @if($key == 'fk_buy')
-                                                    <p>Giao dịch: {{ str_replace(',','.',number_format($val)) }}</p>
+                                             Giao dịch: {{ str_replace(',','.',number_format($val)) }}
                                                 @endif
                                             @endforeach
                                         @else
-                                            <p>Giao dịch: 0</p>
+                                           Giao dịch: 0
                                         @endif
 
                                     @endif

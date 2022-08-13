@@ -58,13 +58,13 @@ if (input_params_hide.length){
             break;
         // Dạng chọn nhiều
         case '5':
-            $('#select-multi input[type="checkbox"]').change(function () {
+            $('.select-multi input[type="checkbox"]').change(function () {
                 UpdatePrice5();
                 checkPack();
             });
 
         function UpdatePrice5() {
-            let checked = $('#select-multi input[type="checkbox"]:checked');
+            let checked = $('.select-multi input[type="checkbox"]:checked');
             var total = 0;
             var itemselect = '';
             if (data_params.server_mode == 1 && data_params.server_price == 1) {
@@ -91,7 +91,7 @@ if (input_params_hide.length){
         }
 
         function checkPack() {
-            let checked = $('#select-multi input[type="checkbox"]:checked');
+            let checked = $('.select-multi input[type="checkbox"]:checked');
             if (checked.length) {
                 $('.service_pack').html('');
                 checked.each(function (elm) {
@@ -302,22 +302,15 @@ $('.openSuccess').on('click', function(){
 })
 
 /* js validate form service */
-let id = (id) => document.getElementById(id);
-
-let classes = (classes) => document.getElementsByClassName(classes);
-
-let username = id("username"),
-    password = id("password"),
-    confirm = id("confirm"),
-    form = id("form"),
-    errorMsg = classes("error");
+    errorMsg = $(".error");
 // Adding the submit event Listener
-
+let validate_input = $('[required_service]');
 $('.btnPay').on('click', function(e){
     e.preventDefault();
-    engine(username, 0, "Vui lòng điền thông tin yêu cầu !");
-    engine(password, 1, "Vui lòng nhập mật khẩu !");
-    engine(confirm, 2, "Vui lòng tích để đồng ý với điều khoản của shop !");
+    engine(validate_input[0], 0, "Vui lòng điền thông tin yêu cầu !");
+    engine(validate_input[1], 1, "Vui lòng nhập mật khẩu !");
+    engine(validate_input[2], 2, "Vui lòng điền thông tin yêu cầu !");
+    engine(validate_input[3], 3, "Vui lòng điền thông tin yêu cầu !");
 });
 
 // engine function which will do all the works
@@ -329,7 +322,6 @@ let engine = (id, serial, message) => {
     } else {
         errorMsg[serial].innerHTML = "";
         id.style.border = "1px solid green";
-
     }
 };
 
