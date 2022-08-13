@@ -236,6 +236,46 @@ View::composer('frontend.widget.__content__home__game', function ($view) {
     return $view->with('data', $data);
 });
 
+View::composer('frontend.widget.__content__home__game_thuong', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__content__home__game_thuong', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
+
+View::composer('frontend.widget.__content__home__game__random', function ($view) {
+
+//    Acc
+
+    $data = \Cache::rememberForever('__content__home__game__random', function() {
+
+        $url = '/acc';
+        $method = "GET";
+        $dataSend = array();
+        $dataSend['data'] = 'category_list';
+        $dataSend['module'] = 'acc_category';
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+
+        return $data = $result_Api->response_data->data??null;
+    });
+
+    return $view->with('data', $data);
+});
+
 View::composer('frontend.widget.__tai__khoan__lien__quan', function ($view) {
 
 //    Acc

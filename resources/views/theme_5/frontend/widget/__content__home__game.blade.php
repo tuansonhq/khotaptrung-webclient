@@ -38,6 +38,31 @@
                                             @endif
 
                                         </div>
+                                        @if($item->display_type == 2)
+                                        @php
+                                            if (isset($item->params->price_old)) {
+                                                $sale_percent = (($item->params->price_old - $item->params->price) / $item->params->price_old) * 100;
+                                                $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+                                            } else {
+                                                $sale_percent = 0;
+                                            }
+                                        @endphp
+                                        @if(isset($item->params) && isset($item->params->price))
+                                            <div class="price">
+                                                <div class="price-current w-100">{{ str_replace(',','.',number_format($item->params->price)) }} đ</div>
+                                                <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }}đ đ</div>
+                                                <div class="discount">{{ $sale_percent }}%</div>
+                                            </div>
+                                        @else
+                                            <div style="height: 40px">
+
+                                            </div>
+                                        @endif
+                                        @else
+                                            <div style="height: 40px">
+
+                                            </div>
+                                        @endif
                                     </div>
                                 </a>
 
