@@ -17,7 +17,7 @@
             </li>
         </ul>
         <div class="head-mobile">
-            <a href="/profile" class="link-back"></a>
+            <a href="/service-mobile" class="link-back"></a>
 
             <h1 class="head-title text-title">Dịch vụ</h1>
 
