@@ -36,7 +36,7 @@
         </form>
     </div>
     <div  class="d-flex">
-        <a class="btn primary c-px-34 c-mr-16 d-none d-lg-block " href="">Nạp thẻ</a>
+        <a class="btn primary c-px-34 c-mr-16 d-none d-lg-block " href="/nap-the">Nạp thẻ</a>
         <div class="box-notify  d-flex ">
             <div class="box-icon brs-8 " data-notity="5">
                 <img src="/assets/frontend/{{theme('')->theme_key}}/image/nam/ring.svg" alt="" >

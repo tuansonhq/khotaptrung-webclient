@@ -30,6 +30,8 @@ $(document).ready(function(e) {
 
     //Click nút chơi
     function play(){
+        $('html, body').animate({scrollTop : 0},800);
+
         if (roll_check) {
             $('#lac_lixi').attr('src',$("#hdImageDapLu").val());
             roll_check = false;
