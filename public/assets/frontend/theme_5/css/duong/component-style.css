@@ -389,20 +389,20 @@
     line-height: 24px;
 }
 /* css validate form dich vu*/
-form div input {
+#formDataService div input {
     outline: none;
-    border: 2px solid #c4c4c4;
+    border: 1px solid #c4c4c4;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
-label {
+#formDataService label {
     display: block;
     margin-bottom: 5px;
 }
-input:focus {
-    border: 2px solid #f2796e;
+#formDataService input:focus {
+    border: 1px solid #f2796e;
 }
 
-form div i {
+#formDataService div i {
     position: absolute;
 }
 .error {
@@ -410,20 +410,20 @@ form div i {
 }
 
 .error {
-    font-size: 14.5px;
+    font-size: 12px;
     margin-top: 5px;
 }
-button {
-    background-color: #f2796e;
-    border: 2px solid #f2796e;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.1s ease;
-}
-button:hover {
+/*#formDataService button {*/
+/*    background-color: #f2796e;*/
+/*    border: 2px solid #f2796e;*/
+/*    border-radius: 8px;*/
+/*    color: #fff;*/
+/*    font-size: 20px;*/
+/*    cursor: pointer;*/
+/*    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);*/
+/*    transition: all 0.1s ease;*/
+/*}*/
+#formDataService button:hover {
     opacity: 0.8;
 }
 

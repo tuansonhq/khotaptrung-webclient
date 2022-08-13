@@ -18,7 +18,7 @@
             </li>
         </ul>
         <div class="head-mobile">
-            <a href="/" class="link-back"></a>
+            <a href="/service-mobile" class="link-back"></a>
 
             <h1 class="head-title text-title">Tin tức</h1>
 

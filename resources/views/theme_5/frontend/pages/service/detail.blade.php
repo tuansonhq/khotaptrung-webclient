@@ -67,7 +67,7 @@
                             @if(!empty($server_data))
                                 {{--                                        @dd($server_data)--}}
                                 <div class="mb-15 c-pt-8 c-pb-8">
-                                    <select name="server" class="server-filter form-control t14" style="">
+                                    <select name="server" class="server-filter t14" style="">
                                         @for($i = 0; $i < count($server_data); $i++)
                                             @if((strpos($server_data[$i], '[DELETE]') === false))
                                                 <option value="{{$server_id[$i]}}">{{$server_data[$i]}}</option>
@@ -86,7 +86,7 @@
                         @if(!empty($name))
                             <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
                             <div class="mb-15 c-pt-8">
-                                <select name="selected" class="s-filter form-control t14" style="">
+                                <select name="selected" class="s-filter t14" style="">
                                     @for ($i = 0; $i < count($name); $i++)
                                         @if($name[$i]!=null)
                                             <option value="{{$i}}">{{$name[$i]}}</option>
@@ -101,7 +101,7 @@
                         <div class="mb-15 c-pt-8 c-pb-8">
                             <input autofocus=""
                                    value="{{old('input_pack',\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))}}"
-                                   class="form-control t14 price " id="input_pack" type="text" placeholder="Số tiền">
+                                   class=" t14 price " id="input_pack" type="text" placeholder="Số tiền">
                             <div class="c-pt-4">
                                 <span style="font-size: 14px;">Số tiền thanh toán phải từ <b style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_min',$data->params))) }}đ</b>  đến <b
                                         style="font-weight:bold;">{{ str_replace(',','.',number_format(\App\Library\HelpersDecode::DecodeJson('input_pack_max',$data->params))) }}đ</b> </span>
@@ -109,7 +109,7 @@
                         </div>
                         <span class="mb-15 control-label bb">Hệ số:</span>
                         <div class="mb-15 c-pt-8 c-pb-8">
-                            <input type="text" id="txt-discount" class="form-control t14" placeholder="" value=""
+                            <input type="text" id="txt-discount" class=" t14" placeholder="" value=""
                                    readonly="">
                         </div>
 
@@ -174,17 +174,16 @@
 
 
                         <!-- service select mobile -->
+                            @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5")
                         <div class="d-block d-lg-none">
-                            <div class="t-sub-1 title-color c-mb-8">
+                            <div class="t-sub-1 title-color c-mb-8 fz-lg-13">
                                 Tùy chọn mở rộng
                             </div>
-                            <div class="card c-py-16 c-pr-4" id="select-service">
-                                <div class="card-body scrollbar" style="--mh:400px">
+                            <div class="card service-select c-py-16 c-pr-4" id="select-service">
+                                <div class="" style="--mh:400px">
                                     <!-- body -->
-                                    @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                                    <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                                    <div class="card service-select c-py-12 c-pr-8" id="select-multi">
-                                        <div class="card-body py-0 s-filter">
+                                    {{--//dạng chọn nhiều--}}
+                                        <div class="card-body py-0 s-filter select-multi">
                                             @php
                                                 $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
                                                 $price=\App\Library\HelpersDecode::DecodeJson('price',$data->params);
@@ -193,8 +192,7 @@
                                                 @for ($i = 0; $i < count($name); $i++)
                                                     @if($name[$i]!=null)
                                                         <label class="input-checkbox c-mb-8">
-                                                            <input value="{{$i}}" type="checkbox" name="select"
-                                                                   id="{{$i}}">
+                                                            <input value="{{$i}}" type="checkbox" name="select">
                                                             <span class="checkmark"></span>
                                                             <span class="text-label text"
                                                                   for="{{$i}}">{{$name[$i]}}{{isset($price[$i])? " - ".number_format($price[$i]). " VNĐ":""}}</span>
@@ -203,12 +201,12 @@
                                                 @endfor
                                             @endif
                                         </div>
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <!-- end -->
+
                         <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
                             Tuỳ chọn tướng (với Game Moba)
                         </h2>
@@ -228,12 +226,12 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
                                                 <span class="">
                                                     {{$send_name[$i]}}
                                                 </span>
                                                 <div class="mb-15">
-                                                    <input id="username"  type="text" required_service name="customer_data{{$i}}" class="form-control t14 " placeholder="{{$send_name[$i]}}" value="">
+                                                    <input id="username"  type="text" required_service name="customer_data{{$i}}" class=" t14 " placeholder="{{$send_name[$i]}}" value="">
                                                     <div class="error"></div>
                                                 </div>
                                             </div>
@@ -241,12 +239,12 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
                                                 <span>
                                                     {{$send_name[$i]}}
                                                 </span>
                                                 <div class="mb-15">
-                                                    <input type="file" required_service accept="image/*" class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                    <input type="file" required_service accept="image/*" class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                     <div class="error"></div>
                                                 </div>
                                             </div>
@@ -254,14 +252,14 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
                                                     <span>
                                                         {{$send_name[$i]}}
                                                     </span>
                                                     <div class="mb-15 toggle-password">
-                                                        <input id="password" type="password" required_service class="form-control" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                        <div class="error"></div>
+                                                        <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                     </div>
+                                                    <div class="error"></div>
                                                 </div>
                                             @elseif($send_type[$i]==6)
                                                 @php
@@ -270,7 +268,7 @@
                                                 @php
                                                     $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                 @endphp
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
                                                     <span>
                                                         {{$send_name[$i]}}
                                                     </span>
@@ -284,19 +282,21 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            @elseif($send_type[$i]==7)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                @php
-                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
-                                                @endphp
-                                                <label class="input-checkbox c-my-16 c-mb-lg-28">
-                                                    <input type="checkbox" id="confirm" name="customer_data{{$i}}" required>
-                                                    <span class="checkmark"></span>
-                                                    <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
-                                                </label>
-                                                <div class="error"></div>
+{{--                                            @elseif($send_type[$i]==7)--}}
+{{--                                                @php--}}
+{{--                                                    $index = $index + 1;--}}
+{{--                                                @endphp--}}
+{{--                                                @php--}}
+{{--                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);--}}
+{{--                                                @endphp--}}
+{{--                                            <div class="col-6 col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
+{{--                                                <label class="input-checkbox c-my-16 c-mb-lg-28">--}}
+{{--                                                    <input type="checkbox" id="confirm" name="customer_data{{$i}}" required>--}}
+{{--                                                    <span class="checkmark"></span>--}}
+{{--                                                    <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>--}}
+{{--                                                </label>--}}
+{{--                                                <div class="error"></div>--}}
+{{--                                            </div>--}}
                                             @endif
                                         @endif
                                     @endfor
@@ -306,7 +306,6 @@
 
                         <div class="d-none d-lg-block c-pb-22 c-pt-2"></div>
                         <div class="c-mb-16">
-                            {{--                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Chi tiết dịch vụ</h2>--}}
                             <div class="card overflow-hidden">
                                 <div class="card-body c-px-16">
                                     <h2 class="text-title-bold d-none d-lg-block c-mb-24">Chi tiết dịch vụ</h2>
@@ -322,16 +321,7 @@
                         </div>
 
                         <!-- Data Bot -->
-                        <h2 class="text-title-bold d-block d-lg-none c-mb-8">Vị trí đối với Game Ngọc Rồng</h2>
-                        <div class="card c-mb-lg-16">
-                            <div class="card-body">
-                                <h2 class="text-title-bold d-none d-lg-block c-mb-16">Vị trí (Mặc định ở vách núi
-                                    KAKAROT Khu 39)</h2>
-                                <div class="col-md-12 left-right data-bot">
-
-                                </div>
-                            </div>
-                        </div>
+                                <div class="col-md-12 left-right data-bot"></div>
                         <!-- end data bot -->
                     </div>
                     @if(isset($data))
@@ -353,15 +343,16 @@
                                     <div  style="color: #f473b9;font-weight: 500" class="txtPrice d-inline-block">0
                                         VNĐ
                                     </div>
-                                    <button type="button" id="btnPurchase" class="btn primary btnPay">Thanh toán</button>
+                                    <button type="button" id="btnPurchase" class="btn primary btnPay" disabled>Thanh toán</button>
                                 </div>
                             </div>
-                            <h2 class="text-title fw-700 title-color-lg c-my-16">
+
+
+                            <h2 class="text-title fw-700 title-color-lg c-mb-14 c-mt-16">
                                 Tùy chọn mở rộng (đối với Game Ngọc Rồng)
                             </h2>
                             @if(\App\Library\HelpersDecode::DecodeJson('filter_type',$data->params) == "5") {{--//dạng chọn nhiều--}}
-                            <span class="mb-15 control-label bb">{{\App\Library\HelpersDecode::DecodeJson('filter_name',$data->params)}}:</span>
-                            <div class="card service-select c-py-12 c-pr-8" id="select-multi">
+                            <div class="card service-select c-py-12 c-pr-8 select-multi">
                                 <div class="card-body py-0 s-filter">
                                     @php
                                         $name=\App\Library\HelpersDecode::DecodeJson('name',$data->params);
@@ -399,9 +390,6 @@
 
         @include('frontend.pages.service.widget.__related')
     </div>
-
-
-
 
     {{--    Modal xác nhận thanh toán--}}
     <div class="modal fade modal-big" id="orderModal">
@@ -685,9 +673,9 @@
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
             $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val($(".s-filter").val());
-            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
+            // $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            //     $(this).removeClass();
+            // });
             $('tbody tr.selected').removeClass('selected');
             $('tbody tr').eq(itemselect).addClass('selected');
         }
@@ -720,16 +708,16 @@
                     $('[name="value"]').val('');
                     $('[name="value"]').val(price);
                     $('[name="selected"]').val(itemselect);
-                    $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                        $(this).removeClass();
-                    });
+                    // $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    //     $(this).removeClass();
+                    // });
                 });
                 $('#btnPurchase').prop('disabled', false);
             } else {
                 $('.txtPrice').html('0 VNĐ');
-                $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                    $(this).removeClass();
-                });
+                // $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                //     $(this).removeClass();
+                // });
                 $('#btnPurchase').prop('disabled', true);
             }
             price = price.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g, '$1.');
@@ -799,9 +787,9 @@
             price = price.split('').reverse().join('').replace(/^[\.]/, '');
             $('.txtPrice').html(price + ' VNĐ');
             $('[name="selected"]').val(from + '|' + to);
-            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
+            // $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            //     $(this).removeClass();
+            // });
             $('.nstSlider').nstSlider('set_position', from, to);
             $(".from-chosen").val(from);
             $(".to-chosen").val(to);
@@ -883,9 +871,9 @@
             total = total.split('').reverse().join('').replace(/^[\.]/, '');
             $('.txtPrice').html('');
             $('.txtPrice').html(total + " " + purchase_name);
-            $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
+            // $('.txtPrice').removeClass().addClass('bounceIn animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+            //     $(this).removeClass();
+            // });
             $('[name="selected"]').val(price);
             $('.m-datatable__body tbody tr.selected').removeClass('selected');
             $('.m-datatable__body tbody tr').eq(index).addClass('selected');

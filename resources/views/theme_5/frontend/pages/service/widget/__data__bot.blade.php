@@ -1,10 +1,10 @@
-
 @if(isset($data_bot))
     <div class="description">
         <h2 style="margin-bottom: 23px;font-size: 20px;text-transform: uppercase;">
             Vị trí (MẶC ĐỊNH Ở VÁCH NÚI KAKAROT)</h2>
     </div>
-    <div class="row marginauto">
+    <div class="card c-mb-lg-16">
+    <div class="row marginauto c-pt-lg-6">
         <div class="col-md-12 left-right data-bot" style="padding-left: 24px;padding-right: 24px">
             <div class="table-bot m_datatable m-datatable m-datatable--default m-datatable--loaded">
                 <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
@@ -52,5 +52,6 @@
 
             </div>
         </div>
+    </div>
     </div>
 @endif
