@@ -5,14 +5,14 @@
 
     @if(setting('sys_theme_ver_page_build'))
         @php
-            $data = explode(',',setting('sys_theme_ver_page_build'));
+            $dat = explode(',',setting('sys_theme_ver_page_build'));
             $data_title = null;
             $data_widget = null;
-            foreach($data as $key => $item){
+            foreach($dat as $key => $it){
                 if ($key == 0){
-                    $data_title = explode('|',$item);
+                    $data_title = explode('|',$it);
                 }else{
-                    $data_widget = explode('|',$item);
+                    $data_widget = explode('|',$it);
                 }
             }
         @endphp
