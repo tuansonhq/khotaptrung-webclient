@@ -88,7 +88,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::group(['middleware' => ['cacheResponse: 604800']], function (){
-            Route::get('/', [HomeController::class , "index"]);
+            Route::get('/', [HomeController::class , "index"])->name('homeIndex');
 
             Route::get('/tin-tuc', [ArticleController::class , "getList"]);
 
@@ -127,7 +127,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getShowpassNick');
 
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
-                Route::get('/profile', [UserController::class , "profileSidebar"]);
+                Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                 Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');

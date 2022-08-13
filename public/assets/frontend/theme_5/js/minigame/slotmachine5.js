@@ -55,7 +55,7 @@ $(document).ready(function(e) {
     var slot5_fake;
     //Click nút quay
     $('body').delegate('#start-played', 'click', function() {
-
+        $('html, body').animate({scrollTop : 0},800);
         if (roll_check) {
             fakeLoop();
             roll_check = false;
@@ -219,6 +219,8 @@ $(document).ready(function(e) {
 
 
     $('body').delegate('.num-play-try', 'click', function() {
+        $('html, body').animate({scrollTop : 0},800);
+
         if (roll_check) {
             fakeLoop();
             roll_check = false;

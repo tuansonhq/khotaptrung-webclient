@@ -95,7 +95,7 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <div class="rotation-sale-content brs-8 c-py-12 d-flex flex-column align-items-center">
+                            <div class="rotation-sale-content brs-12 c-py-12 d-flex flex-column align-items-center">
                                 <p class="d-flex align-items-center c-mb-0">
                                     <span id="rotationFirstPrice" class="fw-400 fz-12 lh-16 c-mr-8">
                                          @if(isset($result->group->params->percent_sale))
@@ -165,7 +165,7 @@
                             @switch($position)
                                 @case('rubywheel')
 
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-center" id="rubywheel">
                                         <div class="rotation-button" id="start-played" style="z-index: 2">
                                             <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}" >
                                         </div>
@@ -926,7 +926,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
+    <div class="modal fade modal-small" id="naptheModal" role="dialog" aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content">

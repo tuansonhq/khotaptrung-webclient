@@ -324,6 +324,13 @@
                                 <div class="col-md-12 left-right data-bot"></div>
                         <!-- end data bot -->
                     </div>
+                    @if(isset($data))
+                        @forelse($data as $key  => $item)
+
+                        @empty
+
+                        @endforelse
+                    @endif
                     <div class="col-lg-4 c-pl-8 d-none d-lg-block">
                         <div class="js_sticky" data-top="140">
                             <div class="card section-pay">
