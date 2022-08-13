@@ -165,7 +165,7 @@
                             @switch($position)
                                 @case('rubywheel')
 
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-center" id="rubywheel">
                                         <div class="rotation-button" id="start-played" style="z-index: 2">
                                             <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}" >
                                         </div>

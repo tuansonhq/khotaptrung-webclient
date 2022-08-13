@@ -41,6 +41,7 @@ $(document).ready(function(e) {
 
     //Click nút quay
     function play(){
+        $('html, body').animate({scrollTop : 0},800);
         if (roll_check) {
             roll_check = false;
             saleoffpass = $("#saleoffpass").val();
