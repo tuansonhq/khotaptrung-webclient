@@ -69,7 +69,7 @@
     @endif
 
 
-    @if(Request::is('/'))
+    @if(Request::is('/') || Request::is('profile')  || Request::is('login'))
         <style>
             @media (max-width: 992px) {
 
