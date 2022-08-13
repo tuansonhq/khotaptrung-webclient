@@ -69,17 +69,26 @@
     @endif
 
 
-    @if(Request::is('/') || Request::is('profile')  || Request::is('login'))
+    @if(Request::is('/') || Request::is('login'))
         <style>
             @media (max-width: 992px) {
-
                 #footer{
                     display: block !important;
                     margin-bottom: 84px;
                 }
             }
         </style>
+    @elseif(Request::is('profile') )
+        <style>
+            @media (max-width: 992px) {
+                #footer{
+                    margin-bottom: 84px;
+                }
+            }
+        </style>
     @endif
+
+
 </head>
 <body>
 @if(setting('sys_google_tag_manager_body') != '')
