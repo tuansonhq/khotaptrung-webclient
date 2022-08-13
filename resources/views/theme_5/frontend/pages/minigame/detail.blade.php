@@ -926,7 +926,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
+    <div class="modal fade modal-small" id="naptheModal" role="dialog" aria-hidden="true">
 
             <div class="modal-dialog modal-dialog-centered modal-custom">
                 <div class="modal-content">

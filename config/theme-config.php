@@ -3,8 +3,9 @@ return [
     'theme_5_route-name-header' => [            // presence alias
         'homeIndex',
         'getDepositAuto',
-        'getCategory',
+        'getListMobile',
         'profile',
+        'login',
         'homeIndex',
     ],
     'theme_5_route-name-menu-bottom' => [            // presence alias
