@@ -67,6 +67,19 @@
             })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
         <!-- End Google Tag Manager -->
     @endif
+
+
+    @if(Request::is('/'))
+        <style>
+            @media (max-width: 992px) {
+
+                #footer{
+                    display: block !important;
+                    margin-bottom: 84px;
+                }
+            }
+        </style>
+    @endif
 </head>
 <body>
 @if(setting('sys_google_tag_manager_body') != '')
@@ -134,10 +147,10 @@
                         $('#loginModal #modal-login-container').removeClass('right-panel-active');
                     }, 200);
                 } else {
-                    $('.mobile-auth').toggleClass('hidden');
                     $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
                     $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
                     $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+                    $('.mobile-auth').css('transform', 'translateX(0)');
                 }
             }, 0);
         });

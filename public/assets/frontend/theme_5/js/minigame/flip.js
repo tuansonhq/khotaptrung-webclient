@@ -14,6 +14,7 @@ document.addEventListener('touchend', function (event) {
 $(document).ready(function(e){
     initial();
     $('.play').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
         roll_check = true;
         $('.boxflip img.flip-box-front').each(function(){
             $(this).attr('src',$('#image_static').val());
@@ -28,6 +29,7 @@ $(document).ready(function(e){
         $('#type_play').val('real');
     })
     $('.num-play-try').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
         roll_check = true;
         $('.boxflip img.flip-box-front').each(function(){
             $(this).attr('src',$('#image_static').val());
@@ -36,8 +38,9 @@ $(document).ready(function(e){
         $('.boxflip .flip-box-front').parent().css({'transform': 'rotateY(0deg)'});
         $('.boxflip .flip-box-front').prev().removeClass('transparent');
         $('.boxflip img.flip-box-front').addClass('img_remove');
-        $('.num-play-try').hide();
-        $('.play').hide();
+        console.log(1251554)
+        $('.num-play-try').attr('disabled', 'disabled');
+        $('.play').attr('disabled', 'disabled');
         //$('.continue').hide();
         $('#type_play').val('try');
     })
@@ -112,8 +115,8 @@ $(document).ready(function(e){
                         $("#btnWithdraw").hide();
                         $('#noticeModal .content-popup').text(data.msg);
                         $('#noticeModal').modal('show');
-                        $('.num-play-try').show();
-                        $('.play').show();
+                        $('.num-play-try').removeAttr('disabled');
+                        $('.play').removeAttr('disabled');
                         //$('.continue').show();
                         // if($('#type_play').val() == "real")
                         // {
@@ -289,8 +292,8 @@ $(document).ready(function(e){
                     setTimeout(function(){
                         $('#noticeModal').modal('show');
                         //$('.continue').show();
-                        $('.num-play-try').show();
-                        $('.play').show();
+                        $('.num-play-try').removeAttr('disabled');
+                        $('.play').removeAttr('disabled');
                         // if($('#type_play').val() == "real")
                         // {
                         //     $('.continue').html("Chơi tiếp");

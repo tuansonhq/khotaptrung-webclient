@@ -782,6 +782,13 @@ td{
     #slotmachine5 .item_five_record_inner{
         bottom: 32px;
     }
+    #rubywheel .rotation-button {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #rubywheel .rotation-button img{
+        width: 80px;
+    }
 }
 @media (max-width: 768px) {
     #slotmachine5 .item_play_spin_five_record {

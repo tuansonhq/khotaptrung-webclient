@@ -1,4 +1,4 @@
-<div class="footer-default media-web">
+<div class="footer-default media-web " id="footer">
     <div class="container c-container">
         <div class="row mobile-default-footer c-pl-lg-0 c-pr-lg-0">
             <div class="footer-default-body-row footer-default-col">
