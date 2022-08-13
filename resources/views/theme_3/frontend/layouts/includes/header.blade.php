@@ -111,49 +111,49 @@
                 @if(isset(theme('')->theme_config->sys_theme_ver))
                     @if(theme('')->theme_config->sys_theme_ver != 'sys_theme_ver3.0' )
                          @include('frontend.widget.__menu_header')
-                    @else
-                        <ul class="nav header-main-nav d-none d-lg-flex ">
-                            <li class="nav-item item-about active">
-                                <a href="">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                                    <div class="item-about-title">Khuyến mãi</div>
-                                </a>
-                            </li>
-                            <li class="nav-item item-about">
-                                <a href="">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
-                                    <div class="item-about-title">Thông báo</div>
-                                </a>
-                            </li>
-                            <li class="nav-item item-about">
-                                <a href="">
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
-                                    <div class="item-about-title">Sự kiện hot</div>
-                                </a>
-                            </li>
-                        </ul>
+{{--                    @else--}}
+{{--                        <ul class="nav header-main-nav d-none d-lg-flex ">--}}
+{{--                            <li class="nav-item item-about active">--}}
+{{--                                <a href="">--}}
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                    <div class="item-about-title">Khuyến mãi</div>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item item-about">--}}
+{{--                                <a href="">--}}
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">--}}
+{{--                                    <div class="item-about-title">Thông báo</div>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item item-about">--}}
+{{--                                <a href="">--}}
+{{--                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">--}}
+{{--                                    <div class="item-about-title">Sự kiện hot</div>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
                     @endif
-                @else
-                    <ul class="nav header-main-nav d-none d-lg-flex ">
-                        <li class="nav-item item-about active">
-                            <a href="">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
-                                <div class="item-about-title">Khuyến mãi</div>
-                            </a>
-                        </li>
-                        <li class="nav-item item-about">
-                            <a href="">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
-                                <div class="item-about-title">Thông báo</div>
-                            </a>
-                        </li>
-                        <li class="nav-item item-about">
-                            <a href="">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
-                                <div class="item-about-title">Sự kiện hot</div>
-                            </a>
-                        </li>
-                    </ul>
+{{--                @else--}}
+{{--                    <ul class="nav header-main-nav d-none d-lg-flex ">--}}
+{{--                        <li class="nav-item item-about active">--}}
+{{--                            <a href="">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">--}}
+{{--                                <div class="item-about-title">Khuyến mãi</div>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item item-about">--}}
+{{--                            <a href="">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">--}}
+{{--                                <div class="item-about-title">Thông báo</div>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item item-about">--}}
+{{--                            <a href="">--}}
+{{--                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">--}}
+{{--                                <div class="item-about-title">Sự kiện hot</div>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
                 @endif
             </div>
             <div class="navbar-spacer"></div>
