@@ -6,7 +6,7 @@ return [
         'getListMobile',
         'profile',
         'login',
-        'homeIndex',
+        'getCategory',
     ],
     'theme_5_route-name-menu-bottom' => [            // presence alias
         'getThongTin',
