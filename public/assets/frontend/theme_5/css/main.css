@@ -117,8 +117,8 @@ select {
     border: 1px solid var(--border-default-color);
     padding: 10px 12px;
     border-radius: 8px;
-    outline: none;
     height: 40px;
+    outline: none;
     transition: border-color ease .15s;
     appearance: none;
     -moz-appearance: none;
@@ -207,6 +207,7 @@ input[type=password]:focus,
 textarea:focus {
     border: var(--focus-color) solid 1px;
     color: var(--text-color);
+    box-shadow: none;
 }
 
 a:hover {

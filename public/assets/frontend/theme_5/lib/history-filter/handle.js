@@ -180,7 +180,7 @@ $(document).ready(function () {
         let page_history = 1;
         if (typeof content_history !== 'undefined'){
             content_history.on('scroll',function () {
-                let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
+                    let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
                 /*nếu như lăn tới cuối cùng của bảng*/
                 if (parseInt($(this).scrollTop()) >= end){
                     page_history++;
