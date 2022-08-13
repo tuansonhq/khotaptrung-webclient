@@ -1017,8 +1017,11 @@ section.outstanding-service {
         width: auto;
         margin-right: -16px;
         margin-left: -16px;
+        overflow: hidden;
     }
-
+    .flash-sale .swiper {
+        overflow: visible;
+    }
     .flash-sale .section-header {
         justify-content: space-between;
     }

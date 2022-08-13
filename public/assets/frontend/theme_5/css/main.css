@@ -207,7 +207,6 @@ input[type=password]:focus,
 textarea:focus {
     border: var(--focus-color) solid 1px;
     color: var(--text-color);
-    box-shadow: none;
 }
 
 a:hover {
@@ -1902,7 +1901,6 @@ i.title-info:after {
 .js-quantity .js-quantity-add:before {
     background-image: url(../image/svg/add.svg);
 }
-
 @media (min-width: 1200px) {
     .c-container {
         max-width: 1264px;
@@ -2196,7 +2194,6 @@ i.title-info:after {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 88px;
         padding: 24px 16px;
         z-index: 101;
     }
@@ -2212,7 +2209,6 @@ i.title-info:after {
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100px;
         z-index: 101;
     }
 
@@ -2240,5 +2236,7 @@ i.title-info:after {
     .tab .icon-custom:after {
         display: none;
     }
+
+
 
 }
