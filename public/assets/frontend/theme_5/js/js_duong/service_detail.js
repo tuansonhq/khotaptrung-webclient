@@ -140,12 +140,11 @@ if (input_params_hide.length){
             break;
         // điền số tiền
         case '7':
-
         function UpdateTotal() {
             var price = parseInt(input_pack.val().replace(/\./g, ''));
             if (typeof price != 'number' || price < data_params['input_pack_min'] || price > data_params['input_pack_max']) {
                 // $('button[type="submit"]').addClass('not-allow');
-                txt_price.text('Tiền nhập không đúng');
+                txt_price.text('Tiền nhập sai');
                 return;
             }
             var total = 0;
@@ -187,10 +186,10 @@ if (input_params_hide.length){
                 $('.service_pack').html(`<div>${total} ${purchase_name}</div>`);
                 $('.total--price').text(`${price_show} VNĐ`);
             } else {
-                txt_price.text('Tiền nhập không đúng');
+                txt_price.text('Tiền nhập sai');
 
                 // thông tin modal
-                $('.service_pack').html(`<div>Tiền nhập không đúng</div>`);
+                $('.service_pack').html(`<div>Tiền nhập sai</div>`);
                 $('.total--price').text(`${price_show} VNĐ`);
             }
         }
