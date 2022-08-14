@@ -258,8 +258,9 @@
                                                     </span>
                                                     <div class="mb-15 toggle-password">
                                                         <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
+                                                        <div class="error"></div>
                                                     </div>
-                                                    <div class="error"></div>
+
                                                 </div>
                                             @elseif($send_type[$i]==6)
                                                 @php
@@ -837,7 +838,7 @@
             var price = parseInt($('#input_pack').val().replace(/,/g, ''));
             if (typeof price != 'number' || price < min || price > max) {
                 $('button[type="submit"]').addClass('not-allow');
-                $('.txtPrice').html('Tiền nhập không đúng');
+                $('.txtPrice').html('Tiền nhập sai');
                 return;
             } else {
                 $('button[type="submit"]').removeClass('not-allow');
