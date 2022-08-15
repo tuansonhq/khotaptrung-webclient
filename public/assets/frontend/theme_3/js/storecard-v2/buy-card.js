@@ -148,7 +148,7 @@ $(document).ready(function () {
                                     html_other += `        <div class="card--thumb">`;
                                     html_other += `            <img src="${card.image}" class="card--thumb__image" alt="">`;
                                     html_other += `        </div>`;
-                                    html_other += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
+                                    html_other += `        <div class="card--name" style="--bg-color: ${!!card.params ? card.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
                                     html_other += `             ${card.title.toLowerCase()}`;
                                     html_other += `        </div>`;
                                     html_other += `    </a>`;

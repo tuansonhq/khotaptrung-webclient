@@ -21,24 +21,7 @@
         <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
-        <div class="poster__banner _mt-125 _mt-sm-0 d-none d-lg-block">
-            <div class="swiper js--swiper__banner mb-n4">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination --custom"></div>
-            </div>
-        </div>
+        @include('frontend.widget.__banner__storecard')
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">
