@@ -254,6 +254,17 @@
 .tab.new-all-icon-4:after{
     -webkit-mask-image: url(../../image/duong/new-all-4.svg);
 }
+.tab-article{
+    width: 100%;
+
+}
+.tab-article .active{
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 500;
+}
+
+
 /* end danh sach tin tuc */
 
 
