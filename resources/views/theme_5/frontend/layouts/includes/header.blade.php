@@ -1,4 +1,4 @@
-<header id="heading" class="d-none @hide('theme_5_route-name-header') d-block @endhide d-lg-block">
+<header id="heading" class="@hide('theme_5_route-name-header') inactive @endhide">
     <nav class="heading">
 
         @if(setting('sys_theme_ver_page_build'))

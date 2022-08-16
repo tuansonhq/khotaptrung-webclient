@@ -120,9 +120,12 @@
                                         <input type="text" name="phone">
                                     </div>
 
-                                    <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 w-100 c-px-lg-16 c-pt-lg-16">
-                                        <button type="submit" id="btn-confirm-w" class="btn primary">Giao dịch</button>
+                                    <div class="footer-mobile">
+                                        <div class="group-btn" >
+                                            <button type="submit" id="btn-confirm-w" class="btn primary">Giao dịch</button>
+                                        </div>
                                     </div>
+
                                         <script>
                                             $(".form-withdraw").submit(function(){
                                                 $("#btn-confirm-w").prop( "disabled", true);

@@ -126,7 +126,7 @@
         </div>
 
         <div class="footer-mobile v2">
-            <div class="c-px-16 c-pt-16 group-btn" >
+            <div class="group-btn" >
                 <button class="btn primary btn-success-mobile" id="confirmSubmitButtonMobile">Xác nhận</button>
             </div>
         </div>

@@ -170,14 +170,14 @@
                             <button class="btn primary w-100 d-none d-lg-block" id="btn-confirm" data-toggle="modal" data-target="#modalConfirmPayment" type="button">
                                 Mua ngay
                             </button>
-                            <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                            <div class="footer-mobile group-btn c-px-16 d-flex d-lg-none">
                                 <button id="btn-confirm-mobile" class="btn primary js-step" data-target="#step2" type="button">Mua ngay</button>
                             </div>
                             @else
                                 <button class="btn primary w-100 d-none d-lg-block" onclick="openLoginModal();" type="button">
                                     Mua ngay
                                 </button>
-                                <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none">
+                                <div class="footer-mobile group-btn c-px-16 d-flex d-lg-none">
                                     <button class="btn primary js-step" onclick="openLoginModal();" type="button">Mua ngay</button>
                                 </div>
                             @endif
