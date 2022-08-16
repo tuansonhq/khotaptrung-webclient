@@ -55,7 +55,7 @@ Validator({
         Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu'),
     ],
     onSubmit:function (data) {
-        alert('Form đã được submit');
+
     }
 });
 
@@ -74,7 +74,7 @@ Validator({
         },'Mật khẩu xác nhận chưa chính xác'),
     ],
     onSubmit:function (data) {
-        alert('Form đã được submit');
+
     }
 });
 Validator({
@@ -100,5 +100,51 @@ Validator({
     ],
     onSubmit:function (data) {
         // alert('Form đã được submit');
+    }
+});
+
+Validator({
+    form:'#form-changePassword',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=old_password]','Bạn chưa nhập mật khẩu'),
+        Validator.isRequired('[name=password]','Bạn chưa nhập mật khẩu mới'),
+        Validator.isRequired('[name=password_confirmation]','Bạn chưa nhập mật khẩu xác nhận'),
+        Validator.isConfirm('[name=password_confirmation]',function () {
+            return document.querySelector('#form-changePassword [name=password]').value
+        },'Mật khẩu xác nhận chưa chính xác'),
+    ],
+    onSubmit:function (data) {
+        changePassword(data)
+
+    }
+});
+
+Validator({
+    form:'#chargeCardForm',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=pin]','Bạn chưa nhập mã pin'),
+        Validator.isRequired('[name=serial]','Bạn chưa nhập số sê-ri'),
+        Validator.isRequired('[name=captcha]','Bạn chưa nhập mã captcha'),
+    ],
+    onSubmit:function () {
+        showConfirmContent();
+    }
+});
+
+Validator({
+    form:'#chargeCardHomeForm',
+    formGroupSelector:'.input-group',
+    errorSelector:'.text-error',
+    rules:[
+        Validator.isRequired('[name=pin]','Bạn chưa nhập mã pin'),
+        Validator.isRequired('[name=serial]','Bạn chưa nhập số sê-ri'),
+        Validator.isRequired('[name=captcha]','Bạn chưa nhập mã captcha'),
+    ],
+    onSubmit:function () {
+        showHomeConfirmContent();
     }
 });

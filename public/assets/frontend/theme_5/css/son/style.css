@@ -6,6 +6,16 @@
     min-height: 1rem;
 }
 
+#withdrawitem .alert-dismissible{
+    margin-bottom: 0;
+}
+
+#withdrawitem .alert-dismissible .close{
+    top: 50%!important;
+    transform: translateY(-50%)!important;
+    line-height: 20px;
+}
+
 .card .card--header {
     display: flex;
     position: relative;
@@ -17,6 +27,14 @@
     color: #1B1D29;
     font-weight: 700;
     font-size: 24px;
+}
+
+.p_recharge_amount{
+    cursor: pointer;
+}
+
+.c_max-header-tin-tuc{
+    height: 48px;
 }
 #history__service .menu-category-item{
     background: #ffffff;
@@ -30,6 +48,10 @@
 .card .card--header .card--header__title {
     display: flex;
     align-items: center;
+}
+
+.text_border{
+    color: var(--ghost-border-hover-color);
 }
 
 .card .card--header .card--header__tools {
@@ -139,7 +161,7 @@
 }
 
 #account-list .related-category{
-    margin-top: 32px;
+    margin-top: 0px;
     margin-bottom: 16px;
 }
 
@@ -191,6 +213,16 @@
 
 .history-detail-attr:last-child{
     margin-bottom: 0!important;
+}
+
+.his_nick-detail-noti{
+    background: #F3F3F7;
+    border-radius: 8px;
+    padding: 16px 12px;
+}
+
+.text__main{
+    color: var(--text-color);
 }
 
 @media only screen and (max-width: 992px) {

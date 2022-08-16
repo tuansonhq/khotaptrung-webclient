@@ -67,7 +67,7 @@ $(document).ready(function(){
                     $('#formStoreCard').show();
                     $('#StoreCardTotal').show();
                     $('#StoreCardPay').show();
-                    $('#form-storeCard').show();
+                    $('#form-storecard').show();
                 }
                 else{
                     swal({
@@ -217,7 +217,7 @@ $(document).ready(function(){
         });
     });
 
-    var formSubmit = $('#form-storeCard');
+    var formSubmit = $('#form-storecard');
     var url = formSubmit.attr('action');
     var btnSubmit = formSubmit.find(':submit');
 

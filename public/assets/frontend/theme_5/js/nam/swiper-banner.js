@@ -15,11 +15,11 @@ var banner_slide = new Swiper('.swiper-banner', {
 
     centeredSlides: false,
     slidesPerView: 1,
-    speed: 1200,
+    speed: 600,
     delay: 5000,
 
     loop: "infinite",
-    effect: "fade",
+
 
     // spaceBetween: 56,
     freeMode: false,
@@ -66,7 +66,7 @@ var banner_slide_text = new Swiper('.news-ads-slide', {
     delay: 5000,
 
     loop: "infinite",
-    // effect: "fade",
+    //
     effect: "slide",
     // spaceBetween: 56,
     freeMode: false,
@@ -80,7 +80,7 @@ var banner_slide_text = new Swiper('.news-ads-slide', {
     },
     breakpoints: {
         // 2000: {
-        //     effect: "fade",
+        //
         // },
         // 992: {
         //

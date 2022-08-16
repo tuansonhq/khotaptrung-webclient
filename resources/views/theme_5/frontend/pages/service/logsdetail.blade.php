@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
@@ -88,13 +90,20 @@
 
                             @if($data->status==1)
 
-                                @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' ||$data->itemconfig_ref->idkey!=null ))
-                                @else
+                                @if($input_auto == 1 && ($data->itemconfig_ref->idkey!='' || $data->itemconfig_ref->idkey!=null ))
 
-                                    @if($data->itemconfig_ref->idkey =='nrogem')
+                                @else
+                                    @if($data->gate_id == 1)
+
                                     @else
                                         <button class="btn primary btn-edit" id="btn-edit" data-id="{{ $data->id }}">Chỉnh sửa thông tin</button>
                                     @endif
+
+{{--                                    @if($data->itemconfig_ref->idkey =='nrogem')--}}
+{{--                                        --}}
+{{--                                    @else--}}
+{{--                                        --}}
+{{--                                    @endif--}}
                                 @endif
 
                                 <!-- modal update info -->
@@ -197,10 +206,12 @@
                                     <p class="fz-13 fw-400 mb-0">Mã ID</p>
                                     <div class="fw-500 fz-13">#{{$data->id}}</div>
                                 </div>
+                                @if(isset($data->tranid))
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Mã giao dịch SMS</p>
                                     <div class="fw-500 fz-13">{{$data->tranid??''}}</div>
                                 </div>
+                                @endif
                                 <div class="history-detail-attr c-mb-8 d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Tên dịch vụ</p>
                                     <div class="fw-500 fz-13">{{$data->itemconfig_ref->title}}</div>

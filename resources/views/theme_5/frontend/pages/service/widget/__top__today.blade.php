@@ -1,14 +1,14 @@
 <section class="flash-sale top-today">
     <div class="section-header c-mb-16">
         <div class="section-title fz-lg-20 lh-lg-24">
-            Dịch vụ nổi bật
+            Dịch vụ nạp game nổi bật
         </div>
     </div>
     <div class="swiper js-flash-sale-swiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 1">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -35,7 +35,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 2">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -62,7 +62,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 3">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -89,7 +89,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 4">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -116,7 +116,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 5">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -143,7 +143,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 6">
                         <a href="/dich-vu/slug">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>

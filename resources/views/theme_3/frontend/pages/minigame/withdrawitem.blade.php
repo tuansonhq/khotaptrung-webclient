@@ -1,5 +1,8 @@
 
 @extends('theme_3.frontend.layouts.master')
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/breadcrumb.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/withdraw_items.css">

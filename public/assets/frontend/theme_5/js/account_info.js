@@ -93,6 +93,20 @@ $(document).ready(function(){
                     htmtLogout += '</a>';
 
                     $('.log-out-button').html(htmtLogout);
+
+
+                    let htmlProfile = '';
+                    htmlProfile += '<div class="sidebar-section-avt brs-100 c-mr-12">'
+                    htmlProfile += '<img class="brs-100" src="/assets/frontend/theme_5/image/nam/avatar.png" alt="">'
+                    htmlProfile += '</div>'
+                    htmlProfile += '<div class="sidebar-section-info">'
+                    htmlProfile += '<p class="sidebar-section-title c-mb-4 fz-15 fw-500 sidebar-user-name">'+data.info.username+'</p>'
+                    htmlProfile += '<p class="sidebar-section-info-text c-mb-4 fz-13 fw-500 sidebar-user-balance">Số dư: <span>'+formatNumber(data.info.balance)+'</span></p>'
+                    htmlProfile += ' <p class="sidebar-section-info-text mb-0 fz-13 fw-500 sidebar-user-id">ID: <span>'+data.info.id+'</span></p>'
+                    htmlProfile += ' </div>'
+
+                    $('.sidebar-user-profile').html(htmlProfile);
+
                     $('meta[name="jwt"]').attr('content',data.token);
 
                 }

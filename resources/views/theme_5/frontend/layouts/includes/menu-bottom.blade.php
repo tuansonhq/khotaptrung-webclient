@@ -12,7 +12,7 @@
                         @endif
                     </span>
 
-                <span class="menu-bottom_text">Home</span>
+                <span class="menu-bottom_text fz-12">Home</span>
             </a>
         </li>
         <li class="menu-bottom-item px-0  @if(Request::is('service-mobile')) is-active @endif">
@@ -25,7 +25,7 @@
                         @endif
                     </span>
 
-                <span class="menu-bottom_text">Dịch vụ</span>
+                <span class="menu-bottom_text fz-12">Dịch vụ</span>
             </a>
         </li>
         <li class="menu-bottom-item px-0 @if(Request::is('nap-the') || Request::is('recharge-atm')) is-active @endif ">
@@ -38,7 +38,7 @@
                         @endif
                     </span>
 
-                <span class="menu-bottom_text">Nạp tiền</span>
+                <span class="menu-bottom_text fz-12">Nạp tiền</span>
             </a>
         </li>
         <li class="menu-bottom-item px-0 @if(Request::is('minigame')) is-active @endif ">
@@ -51,7 +51,7 @@
                         @endif
                     </span>
 
-                <span class="menu-bottom_text">Mini Game</span>
+                <span class="menu-bottom_text fz-12">Mini Game</span>
             </a>
         </li>
         <li class="menu-bottom-item px-0   @if(Request::is('profile')) is-active @endif">
@@ -67,7 +67,7 @@
 
                     </span>
 
-                <span class="menu-bottom_text">Tài khoản</span>
+                <span class="menu-bottom_text fz-12">Tài khoản</span>
             </a>
         </li>
     </ul>

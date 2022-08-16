@@ -2,7 +2,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-box-orient: vertical
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 
 .limit-1 {
@@ -159,6 +160,10 @@
 
 .invalid-color {
     color: var(--invalid-color) !important
+}
+
+.deno-card-color {
+    color: #C43C3C !important
 }
 
 .warning-color {

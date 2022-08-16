@@ -1,7 +1,4 @@
 @extends('frontend.layouts.master')
-@section('seo_head')
-{{--    @include('frontend.widget.__seo_head',with(['data'=>$data]))--}}
-@endsection
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/distance.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong-style/buy-card.css">
@@ -14,6 +11,9 @@
 @endsection
 @section('seo_head')
     @include('frontend.widget.__seo_head')
+@endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">

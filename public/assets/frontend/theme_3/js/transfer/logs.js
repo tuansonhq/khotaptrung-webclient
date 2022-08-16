@@ -325,7 +325,7 @@ $(document).ready(function (e) {
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Chủ tài khoản</th><th>Ngân hàng</th><th>Số tài khoản</th><th>Tiền</th><th>THực nhận</th><th>Trạng thái</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Tiền</th><th>THực nhận</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch</span></td></tr>';
                     html += '</tbody>';
