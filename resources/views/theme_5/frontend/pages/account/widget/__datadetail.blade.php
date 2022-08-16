@@ -25,11 +25,13 @@
 
                                 <div class="swiper gallery-thumbs c-ml-16 c-ml-lg-0">
                                     <div class="swiper-wrapper">
+                                        @foreach(explode('|',$data->image_extension) as $val)
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                 <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

@@ -237,6 +237,7 @@ $(document).ready(function() {
     $('body').find('.content-desc').dblclick(function () {
         handleToggleDesc('.see-more');
     });
+
     let max_height_desc;
     window.onload = function (){
          max_height_desc = $('body').find('.content-desc').outerHeight();
@@ -276,7 +277,7 @@ $(document).ready(function() {
             }
         });
     }
-
+$('div').height()
     /*Seemore nick*/
     let content_desc_nick = $('.content-desc-nick');
     if (content_desc_nick.length){
