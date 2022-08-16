@@ -41,8 +41,9 @@
     @endif
 @elseif(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
-    <meta name="description" content="{{ $data->seo_description??'' }}">
-    <meta property="og:description" content="{{ $data->seo_description??'' }}"/>
+
+    <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
+    <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
 
     @endif
 @elseif(Request::is('dich-vu'))
@@ -63,7 +64,10 @@
 
 @if(isset($data->randId))
     @if(Request::is('acc/'. $data->randId .''))
+    <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
     <meta property="og:title" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->seo_title :  $data->category->seo_title }} mã số {{ $data->randId }}">
+    <meta name="description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}">
+    <meta property="og:description" content="{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}"/>
     @endif
 @elseif(Request::is('mua-acc'))
     <meta property="og:title" content="Mua acc all game uy tín, giá rẻ. Giao dịch nick tự động 100%. Tài khoản lỗi hoàn tiền 1 - 1">
@@ -92,6 +96,7 @@
 @endif
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
+<meta property="og:url" content="{{url()->current()}}"/>
 <link rel="canonical" href="{{ url()->current() }}">
 {{--@if(Request::is('mua-the'))--}}
 {{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
