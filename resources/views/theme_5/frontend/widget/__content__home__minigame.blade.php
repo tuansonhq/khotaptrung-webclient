@@ -19,7 +19,7 @@
                 <div class="item-category h-100">
                     <div class="card h-100">
                         <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
-                            <div class="account-thumb top-buy c-mb-8" data-content="Top {{ $key + 1 }}">
+                            <div class="account-thumb top-buy sm c-mb-8" data-content="Top {{ $key + 1 }}">
                                 <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="account-thumb-image">
                             </div>
                             <div class="account-title">
