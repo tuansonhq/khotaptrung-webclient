@@ -1,4 +1,4 @@
-<div class=" mt-fix-20 c-container c-pb-24 c-pt-17">
+<div class=" mt-fix-20 c-container c-pb-24 c-pt-17 section-about">
     <div class="box-product c-mt-md-18">
         <div class="swiper-container  list-intro">
             <div class="swiper-wrapper">

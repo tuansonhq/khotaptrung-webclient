@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
@@ -12,7 +14,7 @@
                 </li>
             </ul>
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back close-step"></a>
+                <a href="/profile" class="link-back close-step"></a>
 
                 <h1 class="head-title text-title">Lịch sử nạp ATM</h1>
 

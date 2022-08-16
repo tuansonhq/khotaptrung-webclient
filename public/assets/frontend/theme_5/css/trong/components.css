@@ -240,6 +240,21 @@ section.outstanding-service {
     border-right: 24px solid var(--secondary-color);
     border-left: 24px solid var(--secondary-color);
 }
+
+.top-buy.sm:after {
+    width: 32px;
+    height: 36px;
+    background-size: 16px 16px;
+    background-position: 50% 4px;
+    padding-top: 16px;
+    font-size: 10px;
+}
+.top-buy.sm:before {
+    padding-top: 2px;
+    top: 36px;
+    border-right: 16px solid var(--secondary-color);
+    border-left: 16px solid var(--secondary-color);
+}
 /*Slider Tin Tức*/
 .news .news-thumb {
     position: relative;
@@ -311,7 +326,6 @@ section.outstanding-service {
 .related-posts .article-info {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 
 /*Danh sách nick*/
@@ -409,6 +423,7 @@ section.outstanding-service {
     height: 100%;
     top: 0;
     left: 0;
+    object-fit: cover;
 }
 
 .info-attr {
@@ -492,6 +507,35 @@ section.outstanding-service {
     left: 0;
     right: 0;
 }
+
+.content-desc-nick {
+    overflow: hidden;
+    -webkit-transition: max-height .15s ease-out;
+    transition: max-height .15s ease-out;
+}
+
+.content-desc-nick.hide {
+    max-height: 510px;
+    position: relative;
+    -webkit-transition: max-height .25s ease-in;
+    transition: max-height .25s ease-in;
+}
+
+.content-desc-nick.hide:before {
+    content: '';
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 8.75%, #FFFFFF 102.7%);
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.card-footer-nick{
+    padding-top: 16px;
+    background-color: #ffffff;
+}
+
 
 .section-pay {
     position: relative;
@@ -655,6 +699,9 @@ section.outstanding-service {
     padding: 12px 16px;
     height: 64px;
     cursor: pointer;
+}
+.trans-list .trans-item:hover {
+    border-color: var(--primary-color);
 }
 .trans-list .trans-item a {
     display: flex;
@@ -952,14 +999,58 @@ section.outstanding-service {
 .bread-word {
     word-break:break-word;
 }
+.card-bought .card-detail {
+    padding: 12px;
+    position: relative;
+    height: 68px;
+    background-color: var(--disable-switch-color);
+}
+.card-bought .card-info {
+    background-color: var(--w-ghost-focus-color);
+    border-radius: 4px;
+    padding: 12px;
+}
+.card-bought .card-logo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left:12px;
+    background-color: #fff;
+    width: 40px;height: 40px;
+    border-radius: 50%;
+}
+.card-bought .card-logo img {
+    position: absolute;
+    max-width: 75%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
 @media screen and (max-width: 992px) {
+    .section-category-tab,
+    .flash-sale,
+    .section-category,
+    .section-about
+    {
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+    .section-category-tab .swiper,
+    .flash-sale .swiper,
+    .section-category .swiper,
+    .section-about div[class^=swiper] {
+        overflow: visible;
+    }
     .flash-sale {
         border-radius: 0;
         width: auto;
-        margin-right: -15px;
-        margin-left: -15px;
+        margin-right: -16px;
+        margin-left: -16px;
     }
-
     .flash-sale .section-header {
         justify-content: space-between;
     }
@@ -1010,6 +1101,7 @@ section.outstanding-service {
         background: #FFFFFF;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         border-radius: 12px;
+        border: 1px solid var(--border-default-color);
     }
 
     .news-item:not(:last-child) {

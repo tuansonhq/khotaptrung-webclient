@@ -92,7 +92,7 @@ $(document).ready(function () {
 
             },
             complete: function (data) {
-
+                // initSwiperNick();
             }
         });
     }

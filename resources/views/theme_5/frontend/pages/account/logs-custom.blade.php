@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('meta_robots')
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
 
@@ -16,7 +16,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Tài khoản đã mua</h1>
 

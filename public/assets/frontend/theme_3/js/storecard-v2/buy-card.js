@@ -148,7 +148,7 @@ $(document).ready(function () {
                                     html_other += `        <div class="card--thumb">`;
                                     html_other += `            <img src="${card.image}" class="card--thumb__image" alt="">`;
                                     html_other += `        </div>`;
-                                    html_other += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
+                                    html_other += `        <div class="card--name" style="--bg-color: ${!!card.params ? card.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
                                     html_other += `             ${card.title.toLowerCase()}`;
                                     html_other += `        </div>`;
                                     html_other += `    </a>`;
@@ -479,63 +479,63 @@ $(document).ready(function () {
             })
         })
     }else {
-            // Next step
-            let step_1 = $('#buy-card');
-            let step_2 = $('.mobile--confirm__payment');
-            let step_3 = $('.mobile--success__payment');
-            let step_3_1 = $('.mobile--fail__payment');
+        // Next step
+        let step_1 = $('#buy-card');
+        let step_2 = $('.mobile--confirm__payment');
+        let step_3 = $('.mobile--success__payment');
+        let step_3_1 = $('.mobile--fail__payment');
 
-            $(document).on('click','.js_step', function (e) {
-                // chặn tất cả những sự kiện ( modal ... )
-                e.stopPropagation();
-                e.preventDefault();
+        $(document).on('click','.js_step', function (e) {
+            // chặn tất cả những sự kiện ( modal ... )
+            e.stopPropagation();
+            e.preventDefault();
 
-                if (e.target.tagName === 'BUTTON'){
-                    // set info card
-                    let elm = $(this).parent();
-                    let deno = elm.find('.card--deno').data('amount');
-                    temp.deno = deno;
-                    let quantity = elm.find('input.input--amount').val();
-                    temp.quantity = quantity;
-                    let ratio_default = parseFloat(elm.find('input.ratio_default').val());
-                    let discount = 100 - ratio_default;
-                    let total_price = (deno - (deno * discount / 100)) * quantity;
+            if (e.target.tagName === 'BUTTON'){
+                // set info card
+                let elm = $(this).parent();
+                let deno = elm.find('.card--deno').data('amount');
+                temp.deno = deno;
+                let quantity = elm.find('input.input--amount').val();
+                temp.quantity = quantity;
+                let ratio_default = parseFloat(elm.find('input.ratio_default').val());
+                let discount = 100 - ratio_default;
+                let total_price = (deno - (deno * discount / 100)) * quantity;
 
-                    // set data send
-                    data_send.amount = deno;
-                    data_send.telecom = card_is.toUpperCase();
-                    data_send.quantity = quantity;
+                // set data send
+                data_send.amount = deno;
+                data_send.telecom = card_is.toUpperCase();
+                data_send.quantity = quantity;
 
-                    $('#detail--logo__mobile').attr('src', data_telecom.image);
-                    $('#detail--deno__mobile').text(number_format(deno) + 'đ');
-                    $('#detail--quantity__mobile').text(pad(quantity));
-                    $('#detail--discount__mobile').text(discount + '%');
-                    $('#detail--total__mobile').text(number_format(total_price) + ' đ');
-                }
-
-                handleToggleStep($(this).data('go_to'));
-            });
-            function handleToggleStep(step) {
-                step_1.fadeOut();
-                step_2.fadeOut();
-                step_3.fadeOut();
-                step_3_1.fadeOut();
-                switch (step) {
-                    case 'step1':
-                        step_1.fadeIn();
-                        break;
-                    case 'step2':
-                        step_2.fadeIn();
-                        break;
-                    case 'step3':
-                        step_3.fadeIn();
-                        break;
-                    case 'step3_1':
-                        step_3_1.fadeIn();
-                        break;
-                }
+                $('#detail--logo__mobile').attr('src', data_telecom.image);
+                $('#detail--deno__mobile').text(number_format(deno) + 'đ');
+                $('#detail--quantity__mobile').text(pad(quantity));
+                $('#detail--discount__mobile').text(discount + '%');
+                $('#detail--total__mobile').text(number_format(total_price) + ' đ');
             }
-    //        submit data
+
+            handleToggleStep($(this).data('go_to'));
+        });
+        function handleToggleStep(step) {
+            step_1.fadeOut();
+            step_2.fadeOut();
+            step_3.fadeOut();
+            step_3_1.fadeOut();
+            switch (step) {
+                case 'step1':
+                    step_1.fadeIn();
+                    break;
+                case 'step2':
+                    step_2.fadeIn();
+                    break;
+                case 'step3':
+                    step_3.fadeIn();
+                    break;
+                case 'step3_1':
+                    step_3_1.fadeIn();
+                    break;
+            }
+        }
+        //        submit data
         $('.js-send-data').on('click',function () {
             // call ajax here
             $.ajax({
@@ -544,64 +544,64 @@ $(document).ready(function () {
                 data: data_send,
                 success:function (res) {
                     // handle data callback
-                   if (res.status){
-                       let data = res.data;
-                       $('.mobile--success__payment .card__message').text(res.message);
-                       handleToggleStep('step3');
-                       data.forEach(function (card) {
-                           let html_card = '';
-                           html_card += `<div class="card__detail">`;
-                           html_card += `   <div class="card--header__detail">`;
-                           html_card += `       <div class="card--info__wrap">`;
-                           html_card += `           <div class="card--logo">`;
-                           html_card += `               <img src="${data_telecom.image}" alt="telecom_logo">`;
-                           html_card += `            </div>`;
-                           html_card += `            <div class="card--info">`;
-                           html_card += `               <div class="card--info__name">`;
-                           html_card += `                   ${data_telecom.key}`;
-                           html_card += `               </div>`;
-                           html_card += `               <div class="card--info__value">`;
-                           html_card += `                   ${number_format(temp.deno)} đ`;
-                           html_card += `               </div>`;
-                           html_card += `             </div>`;
-                           html_card += `        </div>`;
-                           html_card += `    </div>`;
-                           html_card += `    <div class="card--gray">`;
-                           html_card += `       <div class="card--attr">`;
-                           html_card += `            <div class="card--attr__name">`;
-                           html_card += `               Mã thẻ`;
-                           html_card += `             </div>`;
-                           html_card += `             <div class="card--attr__value -bold">`;
-                           html_card += `                <div class="card__info">`;
-                           html_card += `                  ${card.pin}`;
-                           html_card += `                </div>`;
-                           html_card += `                <div class="icon--coppy js-copy-text">`;
-                           html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
-                           html_card += `                 </div>`;
-                           html_card += `              </div>`;
-                           html_card += `        </div>`;
-                           html_card += `       <div class="card--attr">`;
-                           html_card += `            <div class="card--attr__name">`;
-                           html_card += `               Số Series`;
-                           html_card += `            </div>`;
-                           html_card += `            <div class="card--attr__value -bold">`;
-                           html_card += `               <div class="card__info">`;
-                           html_card += `                  ${card.serial}`;
-                           html_card += `                </div>`;
-                           html_card += `                <div class="icon--coppy js-copy-text">`;
-                           html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
-                           html_card += `                 </div>`;
-                           html_card += `              </div>`;
-                           html_card += `        </div>`;
-                           html_card += `     </div>`;
-                           html_card += `</div>`;
+                    if (res.status){
+                        let data = res.data;
+                        $('.mobile--success__payment .card__message').text(res.message);
+                        handleToggleStep('step3');
+                        data.forEach(function (card) {
+                            let html_card = '';
+                            html_card += `<div class="card__detail">`;
+                            html_card += `   <div class="card--header__detail">`;
+                            html_card += `       <div class="card--info__wrap">`;
+                            html_card += `           <div class="card--logo">`;
+                            html_card += `               <img src="${data_telecom.image}" alt="telecom_logo">`;
+                            html_card += `            </div>`;
+                            html_card += `            <div class="card--info">`;
+                            html_card += `               <div class="card--info__name">`;
+                            html_card += `                   ${data_telecom.key}`;
+                            html_card += `               </div>`;
+                            html_card += `               <div class="card--info__value">`;
+                            html_card += `                   ${number_format(temp.deno)} đ`;
+                            html_card += `               </div>`;
+                            html_card += `             </div>`;
+                            html_card += `        </div>`;
+                            html_card += `    </div>`;
+                            html_card += `    <div class="card--gray">`;
+                            html_card += `       <div class="card--attr">`;
+                            html_card += `            <div class="card--attr__name">`;
+                            html_card += `               Mã thẻ`;
+                            html_card += `             </div>`;
+                            html_card += `             <div class="card--attr__value -bold">`;
+                            html_card += `                <div class="card__info">`;
+                            html_card += `                  ${card.pin}`;
+                            html_card += `                </div>`;
+                            html_card += `                <div class="icon--coppy js-copy-text">`;
+                            html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
+                            html_card += `                 </div>`;
+                            html_card += `              </div>`;
+                            html_card += `        </div>`;
+                            html_card += `       <div class="card--attr">`;
+                            html_card += `            <div class="card--attr__name">`;
+                            html_card += `               Số Series`;
+                            html_card += `            </div>`;
+                            html_card += `            <div class="card--attr__value -bold">`;
+                            html_card += `               <div class="card__info">`;
+                            html_card += `                  ${card.serial}`;
+                            html_card += `                </div>`;
+                            html_card += `                <div class="icon--coppy js-copy-text">`;
+                            html_card += `                   <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="">`;
+                            html_card += `                 </div>`;
+                            html_card += `              </div>`;
+                            html_card += `        </div>`;
+                            html_card += `     </div>`;
+                            html_card += `</div>`;
 
-                           $('.mobile--success__payment .card--list').append(html_card);
-                       });
-                   }else {
-                       $('.mobile--fail__payment .card__message').text(res.message);
-                       handleToggleStep('step3_1');
-                   }
+                            $('.mobile--success__payment .card--list').append(html_card);
+                        });
+                    }else {
+                        $('.mobile--fail__payment .card__message').text(res.message);
+                        handleToggleStep('step3_1');
+                    }
                 }
             })
         })

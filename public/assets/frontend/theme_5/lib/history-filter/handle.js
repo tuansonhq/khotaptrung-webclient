@@ -98,134 +98,135 @@ function updateQueryStringParameter(uri, key, value) {
     }
 }
 $(document).ready(function () {
-    let form_filter = width < 992 ? $('.bottom-sheet .form-filter') : $('.modal .form-filter');
-    if (form_filter.length) {
-        form_filter.on('submit',function (e) {
-            e.preventDefault();
-            loadData($(this));
+    if (typeof loadDataApi === 'function') {
+        let form_filter = width < 992 ? $('.bottom-sheet .form-filter') : $('.modal .form-filter');
+        if (form_filter.length) {
+            form_filter.on('submit',function (e) {
+                e.preventDefault();
+                loadData($(this));
+                setParamsUrlToQuery();
+                loadDataApi(query);
+                page_history = 1;
+                if (width > 992) {
+                    $(this).closest('.modal').modal('hide');
+                } else {
+                    closeSheet();
+                }
+            });
+            form_filter.on('reset',function () {
+                $('.form-filter select').niceSelect('update');
+            })
+            /*chỗ này là vừa vào đã load luôn*/
+            setParamsUrlToQuery();
+            loadData(form_filter);
+            loadDataApi(query);
+        }
+
+        $(document).on('click','#params-filter .tag',function () {
+            let target_name = $(this).data('close');
+            let target_simple = $(`.form-filter [name=${target_name}]`);
+            let target = [];
+            if (target_name === 'started_at'){
+                $('.form-filter [name=started_at],.form-filter [name=ended_at]').val('');
+            }else {
+                Array.from(target_simple).forEach(function (elm) {
+                    if (!!$(elm).val()){
+                        target.push(elm);
+                    }
+                });
+                target[$(this).index()].value = '';
+            }
+            loadData(form_filter);
             setParamsUrlToQuery();
             loadDataApi(query);
+            $(form_filter).find('select').niceSelect('update');
             page_history = 1;
-            if (width > 992) {
-                $(this).closest('.modal').modal('hide');
-            } else {
-                closeSheet();
-            }
         });
-        form_filter.on('reset',function () {
-            $('.form-filter select').niceSelect('update');
-        })
-        /*chỗ này là vừa vào đã load luôn*/
-        setParamsUrlToQuery();
-        loadData(form_filter);
-        loadDataApi(query);
-    }
+        /*get params on url*/
+        function setParamsUrlToQuery() {
+            let url = window.location.href;
+            if (hasQueryParams(url)){
+                const urlSearchParams = new URLSearchParams(window.location.search);
+                const params = Object.fromEntries(urlSearchParams.entries());
+                Object.keys(params).forEach(key => {
+                    query[key] = params[key];
+                    if (parseInt(params[key].indexOf('|')) > -1) {
+                        let arr_params = params[key].split('|');
+                        let inputs = $(form_filter).find(`[name=${key}]`);
+                        Array.from(inputs).forEach(function (elm,index) {
+                            $(elm).val(arr_params[index]);
+                        });
+                    } else {
+                        let input = $(form_filter).find(`[name=${key}]`);
+                        input.val(params[key]);
+                    }
+                    $(form_filter).find('select').niceSelect('update');
 
-    $(document).on('click','#params-filter .tag',function () {
-        let target_name = $(this).data('close');
-        if (target_name === 'started_at'){
-            $('.form-filter [name=started_at],.form-filter [name=ended_at]').val('');
-        }
+                });
 
-
-        let target_simple = $(`.form-filter [name=${target_name}]`);
-        let target = [];
-        Array.from(target_simple).forEach(function (elm) {
-            if (!!$(elm).val()){
-                target.push(elm);
+                /*nếu như mà trên url không có page thì phải gán lại cho nó là 1*/
+                !params.page ? query.page = 1 : '';
             }
-        });
-        target[$(this).index()].value = '';
-        loadData(form_filter);
-        setParamsUrlToQuery();
-        loadDataApi(query);
-        $(form_filter).find('select').niceSelect('update');
-        page_history = 1;
-    });
-    /*get params on url*/
-    function setParamsUrlToQuery() {
-        let url = window.location.href;
-        if (hasQueryParams(url)){
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
-            Object.keys(params).forEach(key => {
-                query[key] = params[key];
-                if (parseInt(params[key].indexOf('|')) > -1) {
-                    let arr_params = params[key].split('|');
-                    let inputs = $(form_filter).find(`[name=${key}]`);
-                    Array.from(inputs).forEach(function (elm,index) {
-                        $(elm).val(arr_params[index]);
-                    });
-                } else {
-                    let input = $(form_filter).find(`[name=${key}]`);
-                    input.val(params[key]);
+            else {
+                for (const key in query) {
+                    query[key] = '';
                 }
-                $(form_filter).find('select').niceSelect('update');
+                query.page = 1;
+            }
+        }
+        /*Load More*/
 
+        /*Page mặc định vừa vào là 1*/
+        let page_history = 1;
+        if (typeof content_history !== 'undefined'){
+            content_history.on('scroll',function () {
+                    let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
+                /*nếu như lăn tới cuối cùng của bảng*/
+                if (parseInt($(this).scrollTop()) >= end){
+                    page_history++;
+                    query.page = page_history;
+                    history_see_more = true;
+                    /*nếu không phải là trang cuối thì mới load*/
+                    if (!is_last_page){
+                        loadDataApi(query);
+                    }
+                }
             });
-
-            /*nếu như mà trên url không có page thì phải gán lại cho nó là 1*/
-            !params.page ? query.page = 1 : '';
+            /*Pagination Ajax*/
+            content_history.on('click','.page-link',function (e) {
+                e.preventDefault();
+                let url = new URL($(this).attr('href'));
+                let url_current = window.location.href;
+                query.page = url.searchParams.get("page");
+                let new_url = updateQueryStringParameter(url_current, 'page', url.searchParams.get("page"));
+                window.history.pushState({}, null, new_url);
+                loadDataApi(query);
+            });
         }
-        else {
-            for (const key in query) {
-                query[key] = '';
-            }
-            query.page = 1;
-        }
-    }
-    /*Load More*/
 
-    /*Page mặc định vừa vào là 1*/
-    let page_history = 1;
-    if (typeof content_history !== 'undefined'){
-        content_history.on('scroll',function () {
-            let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
-            /*nếu như lăn tới cuối cùng của bảng*/
-            if (parseInt($(this).scrollTop()) >= end){
-                page_history++;
-                query.page = page_history;
-                history_see_more = true;
-                /*nếu không phải là trang cuối thì mới load*/
-                if (!is_last_page){
-                    loadDataApi(query);
-                }
-            }
-        });
-        /*Pagination Ajax*/
-        content_history.on('click','.page-link',function (e) {
+        /*Tìm kiếm*/
+        let form_search_history = $('.form-search');
+        if (form_search_history.length) {
+            form_search_history.on('submit',function (e) {
+                e.preventDefault();
+                setParamsUrlToQuery();
+                let input = $(this).find('input[type=search]');
+                let query_key = input.attr('name');
+                query[query_key] = input.val();
+                loadDataApi(query);
+            });
+        }
+
+        /*Sắp xếp theo ...*/
+        $('.value-sort').on('click','.selection',function (e) {
             e.preventDefault();
-            let url = new URL($(this).attr('href'));
+            query.sort_by_data = $(this).data('sort');
+            query.page = 1;
+            /*làm mới url*/
             let url_current = window.location.href;
-            query.page = url.searchParams.get("page");
-            let new_url = updateQueryStringParameter(url_current, 'page', url.searchParams.get("page"));
+            let new_url = updateQueryStringParameter(url_current, 'page',1);
             window.history.pushState({}, null, new_url);
             loadDataApi(query);
-        });
+        })
     }
-
-    /*Tìm kiếm*/
-    let form_search_history = $('.form-search');
-    if (form_search_history.length) {
-        form_search_history.on('submit',function (e) {
-            e.preventDefault();
-            setParamsUrlToQuery();
-           let input = $(this).find('input[type=search]');
-           let query_key = input.attr('name');
-           query[query_key] = input.val();
-           loadDataApi(query);
-        });
-    }
-
-    /*Sắp xếp theo ...*/
-    $('.value-sort').on('click','.selection',function (e) {
-        e.preventDefault();
-        query.sort_by_data = $(this).data('sort');
-        query.page = 1;
-        /*làm mới url*/
-        let url_current = window.location.href;
-        let new_url = updateQueryStringParameter(url_current, 'page',1);
-        window.history.pushState({}, null, new_url);
-        loadDataApi(query);
-    })
 });

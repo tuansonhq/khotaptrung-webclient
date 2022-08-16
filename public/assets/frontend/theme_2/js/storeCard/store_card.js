@@ -368,7 +368,7 @@
         });
 
 
-        $('#form-storeCard').submit(function (e) {
+        $('#form-storecard').submit(function (e) {
             e.preventDefault();
             var formSubmit = $(this);
             var url = formSubmit.attr('action');

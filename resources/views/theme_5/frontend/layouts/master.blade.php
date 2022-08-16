@@ -51,11 +51,52 @@
 {{--js--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
 
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/charge/charge.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store-card/store-card.js"></script>
+    <!-- js chứa các hàm cần load trước tiên -->
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/preload.js"></script>
+
 {{--    import css --}}
     @yield('styles')
+    @if(setting('sys_google_tag_manager_head') != '')
+    <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
+        <!-- End Google Tag Manager -->
+    @endif
+
+
+    @if(Request::is('/') || Request::is('login'))
+        <style>
+            @media (max-width: 992px) {
+                #footer{
+                    display: block !important;
+                    margin-bottom: 84px;
+                }
+            }
+        </style>
+    @elseif(Request::is('profile') )
+        <style>
+            @media (max-width: 992px) {
+                #footer{
+                    margin-bottom: 84px;
+                }
+            }
+        </style>
+    @endif
+
 
 </head>
 <body>
+@if(setting('sys_google_tag_manager_body') != '')
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{setting('sys_google_tag_manager_body') }}"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+@endif
 
 @include('frontend.layouts.includes.header')
 <div class="layout" >
@@ -64,6 +105,36 @@
     </div>
 </div>
 
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root" style="    z-index: 666;"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "{{setting('sys_id_chat_message') }}");
+
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v13.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 @include('frontend.layouts.includes.footer')
 
@@ -73,7 +144,6 @@
         <span class="modal-loader-spin"></span>
     </div>
 </div>
-@include('frontend.widget.modal.__login')
 <!-- Messenger Plugin chat Code -->
 @if(Session::has('check_login'))
     <script>
@@ -86,10 +156,10 @@
                         $('#loginModal #modal-login-container').removeClass('right-panel-active');
                     }, 200);
                 } else {
-                    $('.mobile-auth').toggleClass('hidden');
                     $('.mobile-auth-form #formLoginMobile').css('display', 'flex');
                     $('.mobile-auth-form #formRegisterMobile').css('display', 'none');
                     $('.mobile-auth .head-mobile h1').text('Đăng nhập');
+                    $('.mobile-auth').css('transform', 'translateX(0)');
                 }
             }, 0);
         });
@@ -112,6 +182,8 @@
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/wnumb-1.2.0/wNumb.min.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
@@ -137,10 +209,14 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/header.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/swiper-banner.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/nam/login.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js" defer></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+
+@if(\App\Library\AuthFrontendCustom::check())
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
+@endif
 {{--impport script--}}
 @yield('scripts')
 </body>
