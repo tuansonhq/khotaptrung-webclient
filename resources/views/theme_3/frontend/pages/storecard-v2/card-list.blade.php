@@ -21,7 +21,6 @@
         <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
-
         @include('frontend.widget.__banner__storecard')
 
         {{--        END BANNER--}}
