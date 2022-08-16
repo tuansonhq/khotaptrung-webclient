@@ -19,6 +19,7 @@
     <div class="container-fix container" id="buy-card">
         {{--        BANNER --}}
         @include('frontend.widget.__banner__storecard')
+
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">

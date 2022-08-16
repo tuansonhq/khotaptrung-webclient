@@ -71,6 +71,22 @@ View::composer('frontend.widget.__dich__vu__noi__bat', function ($view) {
 
 });
 
+View::composer('frontend.widget.__dich__vu__noi__bat__mobile', function ($view) {
+
+    $data = \Cache::rememberForever('__dich__vu__noi__bat__mobile', function() {
+
+        $url = '/get-dich-vu-noibat';
+        $method = "GET";
+        $dataSend = array();
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 //theme1
 View::composer('frontend.widget.__menu__taget', function ($view) {
 
@@ -104,6 +120,7 @@ View::composer('frontend.widget.__head__dich__vu__noi__bat', function ($view) {
     return $view->with('data',$data);
 
 });
+
 
 View::composer('frontend.widget.__menu', function ($view) {
 
