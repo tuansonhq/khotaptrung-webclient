@@ -240,6 +240,21 @@ section.outstanding-service {
     border-right: 24px solid var(--secondary-color);
     border-left: 24px solid var(--secondary-color);
 }
+
+.top-buy.sm:after {
+    width: 32px;
+    height: 36px;
+    background-size: 16px 16px;
+    background-position: 50% 4px;
+    padding-top: 16px;
+    font-size: 10px;
+}
+.top-buy.sm:before {
+    padding-top: 2px;
+    top: 36px;
+    border-right: 16px solid var(--secondary-color);
+    border-left: 16px solid var(--secondary-color);
+}
 /*Slider Tin Tức*/
 .news .news-thumb {
     position: relative;
@@ -1011,16 +1026,30 @@ section.outstanding-service {
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
 @media screen and (max-width: 992px) {
+    .section-category-tab,
+    .flash-sale,
+    .section-category,
+    .section-about
+    {
+        overflow: hidden;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+    .section-category-tab .swiper,
+    .flash-sale .swiper,
+    .section-category .swiper,
+    .section-about div[class^=swiper] {
+        overflow: visible;
+    }
     .flash-sale {
         border-radius: 0;
         width: auto;
         margin-right: -16px;
         margin-left: -16px;
-        overflow: hidden;
-    }
-    .flash-sale .swiper {
-        overflow: visible;
     }
     .flash-sale .section-header {
         justify-content: space-between;

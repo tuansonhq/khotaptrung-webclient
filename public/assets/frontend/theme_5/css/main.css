@@ -192,6 +192,14 @@ textarea:hover {
 .swiper {
     overflow: hidden;
     position: relative;
+    max-height: 300px;
+    opacity: 0;
+    transition: .3s;
+}
+
+.swiper.swiper-container-horizontal {
+    opacity: 1;
+    max-height: inherit;
 }
 
 /*placeholder*/
@@ -2237,6 +2245,7 @@ i.title-info:after {
         display: none;
     }
 
-
-
+    .scale-thumb:hover img {
+        transform: unset;
+    }
 }

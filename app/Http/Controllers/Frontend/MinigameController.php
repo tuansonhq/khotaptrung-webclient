@@ -240,6 +240,25 @@ class MinigameController extends Controller
         }
     }
 
+    public function getIndexUpdate(Request $request)
+    {
+        try {
+            $games = $this->getListMinigame();
+            if ($games['status']){
+                $game_current = array_filter((array)$games, function ($value) use ($request){
+                    return $value->slug == $request->slug;
+                });
+                $game_other = array_filter((array)$games, function ($value) use ($request){
+                    return $value->slug != $request->slug;
+                });
+            }
+
+            return view('frontend.pages.minigame.detail-update');
+        } catch (\Exception $e){
+            logger($e);
+            return redirect()->back()->withErrors('Có lỗi phát sinh.Xin vui lòng thử lại !');
+        }
+    }
     public function postRoll(Request $request){
         if ($request->ajax()){
             if(empty(Session::get('jwt'))){
@@ -695,5 +714,27 @@ class MinigameController extends Controller
         }
 
 
+    }
+
+    protected function getListMinigame(){
+        $method = "GET";
+        $data = array();
+        $data['token'] = Session::get('jwt');
+        $data['secret_key'] = config('api.secret_key');
+        $data['domain'] = \Request::server("HTTP_HOST");
+
+        $url = '/minigame/get-list-minigame';
+        $data_api = DirectAPI::_makeRequest($url,$data,$method);
+        if (isset($data_api) && $data_api->response_code == 200 ) {
+            return [
+                'status'=>1,
+                'data'=>$data_api->response_data->data,
+            ];
+        }else {
+            return [
+                'status'=>0,
+                'message'=>'Xảy ra lỗi khi lấy dữ liệu !',
+            ];
+        }
     }
 }
