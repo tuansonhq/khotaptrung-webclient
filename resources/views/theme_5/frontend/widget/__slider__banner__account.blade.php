@@ -6,7 +6,7 @@
             @foreach($data as $item)
 
             <div class="swiper-slide">
-                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="napgamegiare">
+                <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="napgamegiare">
             </div>
 
             @endforeach
