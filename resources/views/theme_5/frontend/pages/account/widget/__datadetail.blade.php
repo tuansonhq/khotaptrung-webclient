@@ -352,7 +352,7 @@
                 </div>
             </div>
             <div class="footer-mobile">
-                <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                <div class="group-btn" style="--data-between: 12px">
                     <button class="btn secondary tinhnang">Mua trả góp</button>
                     @if(App\Library\AuthCustom::check())
                         @if(App\Library\AuthCustom::user()->balance < $data->price)
@@ -464,7 +464,7 @@
                 </div>
 
                 <div class="footer-mobile">
-                    <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                    <div class="group-btn" style="--data-between: 12px">
                         <button type="submit" class="btn primary">Xác nhận</button>
                     </div>
                 </div>
@@ -595,7 +595,7 @@
                 </div>
 
                 <div class="footer-mobile">
-                    <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+                    <div class="group-btn" style="--data-between: 12px">
                         <button class="btn primary btn-success-mobile">Xác nhận</button>
                     </div>
                 </div>
