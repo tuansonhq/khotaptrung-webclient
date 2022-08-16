@@ -21,25 +21,7 @@
         <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
-        <div class="poster__banner _mt-125 _mt-sm-0 d-none d-lg-block">
-            <div class="swiper js--swiper__banner mb-n4">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination --custom"></div>
-            </div>
-        </div>
+        @include('frontend.widget.__banner__storecard')
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">
@@ -202,22 +184,22 @@
                 </div>
                 {{--                END CARD OTHER--}}
                 {{--                SERVICE DESC--}}
-                <div class="card --custom p-3 p-lg-3">
-                    <h2 class="card--desc__title mb-4">
-                        Mô tả dịch vụ
-                    </h2>
-                    <div class="card--desc__content content-video-in-add p-0">
-                        {!! setting('sys_store_card_content') !!}
-                    </div>
-                    <div class="col-md-12 left-right text-center js-toggle-content">
-                        <div class="view-more">
-                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
-                        </div>
-                        <div class="view-less" style="display: none;">
-                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="card --custom p-3 p-lg-3">--}}
+{{--                    <h2 class="card--desc__title mb-4">--}}
+{{--                        Mô tả dịch vụ--}}
+{{--                    </h2>--}}
+{{--                    <div class="card--desc__content content-video-in-add p-0">--}}
+{{--                        {!! setting('sys_store_card_content') !!}--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 left-right text-center js-toggle-content">--}}
+{{--                        <div class="view-more">--}}
+{{--                            <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                        <div class="view-less" style="display: none;">--}}
+{{--                            <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 {{--                END SERVICE DESC--}}
             </div>
             {{--            END PAGE CONTENT--}}
