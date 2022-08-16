@@ -5,8 +5,9 @@
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
                 {{ $title??'' }}
             </h2>
-            <a href="/mua-acc" class="link arr-right">Xem tất cả</a>
+            <a href="/mua-acc" class="link arr-right" >Xem tất cả</a>
         </div>
+
         <div class="swiper swiper-related-service">
             <div class="swiper-wrapper">
 

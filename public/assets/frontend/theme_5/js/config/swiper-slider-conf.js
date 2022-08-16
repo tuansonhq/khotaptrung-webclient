@@ -241,6 +241,7 @@ let swiper_card_bought = new Swiper(".slider--card", {
 });
 
 function initSwiperGallery() {
+
     if ($('.gallery-top').length) {
         let galleryTop = new Swiper('.gallery-top', {
             centeredSlides: true,
