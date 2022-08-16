@@ -301,7 +301,7 @@ $('.openSuccess').on('click', function(){
 })
 
 /* js validate form service */
-    errorMsg = $(".error");
+    let errorMsg = Array.from($(".error"));
 // Adding the submit event Listener
 let validate_input = $('[required_service]');
 $('.btnPay').on('click', function(e){
@@ -314,9 +314,11 @@ $('.btnPay').on('click', function(e){
 
 // engine function which will do all the works
 
-let engine = (id, serial, message) => {
+function engine (id, serial, message) {
     if (id.value.trim() === "") {
-        errorMsg[serial].innerHTML = message;
+        setTimeout(function () {
+            errorMsg[serial].innerHTML = message;
+        },5)
         id.style.border = "1px solid red";
     } else {
         errorMsg[serial].innerHTML = "";

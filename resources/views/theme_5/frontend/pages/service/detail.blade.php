@@ -258,9 +258,8 @@
                                                     </span>
                                                     <div class="mb-15 toggle-password">
                                                         <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                        <div class="error"></div>
                                                     </div>
-
+                                                    <div class="error"></div>
                                                 </div>
                                             @elseif($send_type[$i]==6)
                                                 @php
@@ -378,7 +377,7 @@
                     </div>
                 </div>
             </form>
-            <div class="footer-mobile c-p-16">
+            <div class="footer-mobile c-p-20">
                 <span class="fw-lg-500 d-inline-block">Báo giá:</span>
                 <br>
                 <input class="text-title secondary" type="hidden" name="value" value="">
