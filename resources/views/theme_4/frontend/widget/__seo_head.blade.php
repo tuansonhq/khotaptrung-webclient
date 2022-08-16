@@ -92,6 +92,7 @@
 <meta name="keywords" content="{{setting('sys_keyword')}}">
 <link rel="shortcut icon" href="{{\App\Library\MediaHelpers::media(setting('sys_favicon'))}}" type="image/x-icon">
 <link rel="canonical" href="{{ url()->current() }}">
+<meta property="og:url" content="{{url()->current()}}"/>
 {{--@if(Request::is('mua-the'))--}}
 {{--    <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>--}}
 {{--    <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">--}}
