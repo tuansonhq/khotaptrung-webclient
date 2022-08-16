@@ -2215,6 +2215,9 @@ header nav.heading .header-container{
     pointer-events: initial;
 }
 
+.header-main-nav .active .item-about-title{
+    color: var(--primary-color);
+}
 @media (max-width: 992px) {
     .box-product .swiper-button-prev,.box-product .swiper-button-next{
         display: none;

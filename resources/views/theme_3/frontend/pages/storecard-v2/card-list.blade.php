@@ -22,6 +22,7 @@
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
         @include('frontend.widget.__banner__storecard')
+
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">

@@ -1,3 +1,7 @@
+.tk_watched{
+    display: none;
+}
+
 .card.--custom {
     --primary-color: #F67600;
     border-radius: 12px;

@@ -1,5 +1,6 @@
 @if(isset($data))
     @if($data->status == 1)
+
         <section class="acc-detail data-account-detail">
             <div class="section-content">
                 <div class="card account-thumb">
@@ -12,7 +13,7 @@
 
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
 
@@ -26,7 +27,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
                                     </div>
@@ -121,14 +122,14 @@
                                     @if(isset($att_value->parent))
                                         <tr>
                                             <td>
-                                                        <span class="link-color">
-                                                            {{ $att_value->parent->title??null }}
-                                                        </span>
+                                                <span class="link-color">
+                                                    {{ $att_value->parent->title??null }}
+                                                </span>
                                             </td>
                                             <td>
-                                                        <span>
-                                                            {{ $att_value->title??null }}
-                                                        </span>
+                                                <span>
+                                                    {{ $att_value->title??null }}
+                                                </span>
                                             </td>
                                             {{--                                                    <td>--}}
                                             {{--                                                        <a href="javascript:void(0)" class="link blue eye btn-show-tuong">Xem</a>--}}
@@ -787,3 +788,23 @@
         </div>
     </div>
 </div>
+
+@php
+    $totalaccount = 0;
+    if(isset($data->category->items_count)){
+        if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
+            $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
+        }
+    }else{
+        $totalaccount = 0;
+    }
+@endphp
+
+<input type="hidden" name="cooki_image" class="cooki_image" value="{{\App\Library\MediaHelpers::media($data->image)}}">
+<input type="hidden"  name="cooki_category" class="cooki_category" value="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}">
+<input type="hidden" name="cooki_randid" class="cooki_randid"  value="{{ $data->randId }}">
+<input type="hidden" name="cooki_price" class="cooki_price"  value="{{ str_replace(',','.',number_format($data->price)) }}">
+<input type="hidden" name="cooki_price_old" class="cooki_price_old"  value="{{ str_replace(',','.',number_format($data->price_old)) }}">
+<input type="hidden" name="cooki_promotion" class="cooki_promotion"  value="{{ $sale_percent }}">
+<input type="hidden" name="cooki_buy_account" class="cooki_buy_account"  value="{{ $totalaccount }}">
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nickcook.js?v={{time()}}"></script>
