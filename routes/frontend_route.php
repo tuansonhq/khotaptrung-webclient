@@ -338,6 +338,8 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getLogAcc');
                 Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
                     ->name('getIndex');
+                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
+
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
                     ->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
