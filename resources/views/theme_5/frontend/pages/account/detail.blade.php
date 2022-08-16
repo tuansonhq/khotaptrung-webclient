@@ -51,6 +51,9 @@
 
                 {{--            Đã xem   --}}
                 @include('frontend.pages.account.widget.__watched')
+
+                {{--            Dịch vụ khác   --}}
+                @include('frontend.widget.__services__other')
             </div>
 
             {{--    Modal trả góp   --}}
