@@ -52,7 +52,7 @@ $(document).ready(function () {
                             var slug_category = $('.slug_category').val();
                             console.log(slug_category)
                             if (result.value) {
-                                window.location = '/lich-su-mua-account';
+                                window.location = '/lich-su-mua-nick';
                             } else if (result.dismiss === "Đóng") {
                                 window.location = '/mua-acc/'+ slug_category;
                             }else {

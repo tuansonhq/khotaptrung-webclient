@@ -91,9 +91,11 @@
                                     </p>
                                     <textarea name="" id="" style="height: 84px" placeholder="Vui lòng nhập nội dung (nếu có)"></textarea>
 
-                                    <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 w-100 c-px-lg-16 c-pt-lg-16" style="--data-between:12px">
-                                        <button type="button" class="btn secondary open-sheet" data-toggle="modal" data-target="#modal-add-bank" data-target_2="#sheet-add-bank">Thêm NH/ Ví ĐT</button>
-                                        <button type="button" class="btn primary" data-toggle="modal" data-target="#modal-success">Giao dịch</button>
+                                    <div class="footer-mobile">
+                                        <div class="group-btn" >
+                                            <button type="button" class="btn secondary open-sheet" data-toggle="modal" data-target="#modal-add-bank" data-target_2="#sheet-add-bank">Thêm NH/ Ví ĐT</button>
+                                            <button type="button" class="btn primary" data-toggle="modal" data-target="#modal-success">Giao dịch</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab--2" role="tabpanel">

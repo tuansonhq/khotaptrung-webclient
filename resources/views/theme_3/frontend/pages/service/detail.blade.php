@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/format-currency.js" type="text/javascript"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/service.js?v={{time()}}" type="text/javascript"></script>
@@ -537,7 +540,6 @@
             </section>
 
             @include('frontend.pages.service.widget.__related')
-
             <div class="modal fade login show default-Modal" id="successModal" aria-modal="true">
                 <div class="modal-dialog modal-md modal-dialog-centered login animated">
                     <!--        <div class="image-login"></div>-->

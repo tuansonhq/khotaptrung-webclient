@@ -313,3 +313,6 @@ $('.submit-form').on('click', function () {
         },
     })
 
+
+
+// Sau khi nhập đúng thì in ra màn hình
