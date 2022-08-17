@@ -45,6 +45,8 @@ $(document).ready(function () {
             },
             complete: function (data) {
 
+                $('select').niceSelect();
+
                 let openSheetButton = $(".open-sheet");
                 let sheet = $(document);
                 let sheetContents = $(document);
