@@ -3,7 +3,7 @@
         <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
             <h2 class="section-title fz-lg-20 lh-lg-24">
                 <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/acc-game.svg)"></i>
-                {{ $title??'' }}
+                {{ $title??'Dịch vụ' }}
             </h2>
             <a href="/dich-vu" class="link arr-right">Xem tất cả</a>
         </div>

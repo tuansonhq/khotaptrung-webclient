@@ -18,7 +18,11 @@
 @section('content')
     <div class="container-fix container" id="buy-card">
         {{--        BANNER --}}
-        @include('frontend.widget.__banner__storecard')
+
+        <div class="d-none d-lg-block">
+            @include('frontend.widget.__banner__storecard')
+        </div>
+
 
         {{--        END BANNER--}}
         {{--breadcrum--}}
@@ -143,7 +147,7 @@
                         </h2>
                     </div>
                     <div class="card--body px-3 py-3 py-lg-2 px-lg-3">
-                        <div class="swiper card--other__swipe">
+                        <div class="swiper card--other__swipe overflow-hidden">
                             <div class="swiper-wrapper" id="card--same__wrapper">
                                 {{--JS GENERATE HTML HERE--}}
                                 <div class="loader position-relative" id="card--same__wrap">
@@ -179,6 +183,11 @@
                     </div>
                 </div>
                 {{--                END SAME KIND--}}
+                {{--            SERVICE RELATED--}}
+                <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
+                    @include('frontend.widget.__list_serve_remark_image')
+                </div>
+                {{--            END SERVICE RELATED--}}
             </div>
             {{--            END PAGE CONTENT--}}
         </div>

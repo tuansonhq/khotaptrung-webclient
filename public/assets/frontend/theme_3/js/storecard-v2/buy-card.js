@@ -161,212 +161,219 @@ $(document).ready(function () {
                         })
                         $('.swiper').css('overflow', 'hidden');
                     }
+                    if (route_is === 'showListCard' || route_is === 'showDetailCard'){
+                        getListAmount();
+                    }
                 }
             }
         })
     }
-    if (route_is === 'showListCard' || route_is === 'showDetailCard') {
-        $.ajax({
-            url: '/store-card/get-amount',
-            type: 'GET',
-            data: {
-                telecom: card_is
-            },
-            success: function (res) {
-                if (res.status) {
-                    let data = res.data;
-                    if (route_is === 'showListCard') {
-                        // breadcrum
-                        let new_bc = '';
-                        new_bc += `<li class="breadcrum--item">`;
-                        new_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${card_is.toLowerCase()}</a>`;
-                        new_bc += `</li>`;
-                        $('.breadcrum--list').append(new_bc)
+    function getListAmount(){
+        if (route_is === 'showListCard' || route_is === 'showDetailCard') {
+            $.ajax({
+                url: '/store-card/get-amount',
+                type: 'GET',
+                data: {
+                    telecom: card_is
+                },
+                success: function (res) {
+                    if (res.status) {
+                        let data = res.data;
+                        if (route_is === 'showListCard') {
+                            // breadcrum
+                            let new_bc = '';
+                            new_bc += `<li class="breadcrum--item">`;
+                            new_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${card_is.toLowerCase()}</a>`;
+                            new_bc += `</li>`;
+                            $('.breadcrum--list').append(new_bc)
 
-                        let grid_card = $('#card--desktop__value');
-                        if (data.length){
-                            $('#card--value .card--title').text(card_is.toLowerCase())
-                            data.forEach(function (card) {
-                                if (width > 1199){
-                                    // Desktop
-                                    let html_desktop_value = '';
-                                    html_desktop_value += `<div class="col-4 col-lg-3 px-lg-2 mb-lg-4">`;
-                                    html_desktop_value += `    <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
-                                    html_desktop_value += `        <div class="card--thumb">`;
-                                    html_desktop_value += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
-                                    html_desktop_value += `        </div>`;
-                                    html_desktop_value += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
-                                    html_desktop_value += `             ${number_format(card.amount)} VND`;
-                                    html_desktop_value += `        </div>`;
-                                    html_desktop_value += `    </a>`;
-                                    html_desktop_value += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
-                                    html_desktop_value += `    <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
-                                    html_desktop_value += `       Mệnh giá ${number_format(card.amount)} đ`;
-                                    html_desktop_value += `    </div>`;
-                                    html_desktop_value += `    <div class="card--unit__price">`;
-                                    html_desktop_value += `         Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
-                                    html_desktop_value += `    </div>`;
-                                    html_desktop_value += `    <div class="card--amount _mt-075">`;
-                                    html_desktop_value += `        <span class="card--amount__title">`;
-                                    html_desktop_value += `           Số lượng`;
-                                    html_desktop_value += `        </span>`;
-                                    html_desktop_value += `        <div class="card--amount__group">`;
-                                    html_desktop_value += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                    html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
-                                    html_desktop_value += `            </button>`;
-                                    html_desktop_value += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
-                                    html_desktop_value += `            <button class="btn--amount -add js-amount" data-action="add">`;
-                                    html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
-                                    html_desktop_value += `            </button>`;
-                                    html_desktop_value += `        </div>`;
-                                    html_desktop_value += `    </div>`;
-                                    if (auth_check){
-                                        html_desktop_value += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card"  data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
+                            let grid_card = $('#card--desktop__value');
+                            if (data.length){
+                                $('#card--value .card--title').text(card_is.toLowerCase())
+                                data.forEach(function (card) {
+                                    if (width > 1199){
+                                        // Desktop
+                                        let html_desktop_value = '';
+                                        html_desktop_value += `<div class="col-4 col-lg-3 px-lg-2 mb-lg-4">`;
+                                        html_desktop_value += `    <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
+                                        html_desktop_value += `        <div class="card--thumb">`;
+                                        html_desktop_value += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
+                                        html_desktop_value += `        </div>`;
+                                        html_desktop_value += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
+                                        html_desktop_value += `             ${number_format(card.amount)} VND`;
+                                        html_desktop_value += `        </div>`;
+                                        html_desktop_value += `    </a>`;
+                                        html_desktop_value += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
+                                        html_desktop_value += `    <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
+                                        html_desktop_value += `       Mệnh giá ${number_format(card.amount)} đ`;
+                                        html_desktop_value += `    </div>`;
+                                        html_desktop_value += `    <div class="card--unit__price">`;
+                                        html_desktop_value += `         Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
+                                        html_desktop_value += `    </div>`;
+                                        html_desktop_value += `    <div class="card--amount _mt-075">`;
+                                        html_desktop_value += `        <span class="card--amount__title">`;
+                                        html_desktop_value += `           Số lượng`;
+                                        html_desktop_value += `        </span>`;
+                                        html_desktop_value += `        <div class="card--amount__group">`;
+                                        html_desktop_value += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
+                                        html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
+                                        html_desktop_value += `            </button>`;
+                                        html_desktop_value += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
+                                        html_desktop_value += `            <button class="btn--amount -add js-amount" data-action="add">`;
+                                        html_desktop_value += `                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
+                                        html_desktop_value += `            </button>`;
+                                        html_desktop_value += `        </div>`;
+                                        html_desktop_value += `    </div>`;
+                                        if (auth_check){
+                                            html_desktop_value += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card"  data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
+                                        }else {
+                                            html_desktop_value += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" onclick="openLoginModal();">Chọn mua</button>`;
+                                        }
+                                        html_desktop_value += `</div>`;
+
+                                        grid_card.append(html_desktop_value);
                                     }else {
-                                        html_desktop_value += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" onclick="openLoginModal();">Chọn mua</button>`;
+                                        //mobile
+                                        let html_mobile_value = '';
+                                        html_mobile_value += `<div class="swiper-slide">`;
+                                        html_mobile_value += `        <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
+                                        html_mobile_value += `            <div class="card--thumb">`;
+                                        html_mobile_value += `                <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
+                                        html_mobile_value += `            </div>`;
+                                        html_mobile_value += `            <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
+                                        html_mobile_value += `                ${number_format(card.amount)} VND`;
+                                        html_mobile_value += `            </div>`;
+                                        html_mobile_value += `        </a>`;
+                                        html_mobile_value += `        </a>`;
+                                        html_mobile_value += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
+                                        html_mobile_value += `        <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
+                                        html_mobile_value += `              Mệnh giá ${number_format(card.amount)} đ`;
+                                        html_mobile_value += `        </div>`;
+                                        html_mobile_value += `        <div class="card--unit__price">`;
+                                        html_mobile_value += `              Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
+                                        html_mobile_value += `        </div>`;
+                                        html_mobile_value += `        <div class="card--amount _mt-075">`;
+                                        html_mobile_value += `            <span class="card--amount__title">`;
+                                        html_mobile_value += `                Số lượng`;
+                                        html_mobile_value += `            </span>`;
+                                        html_mobile_value += `            <div class="card--amount__group">`;
+                                        html_mobile_value += `                 <button class="btn--amount -minus js-amount" data-action="minus">`;
+                                        html_mobile_value += `                     <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
+                                        html_mobile_value += `                 </button>`;
+                                        html_mobile_value += `                 <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
+                                        html_mobile_value += `                   <button class="btn--amount -add js-amount" data-action="add">`;
+                                        html_mobile_value += `                       <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
+                                        html_mobile_value += `                  </button>`;
+                                        html_mobile_value += `            </div>`;
+                                        html_mobile_value += `        </div>`;
+                                        if (auth_check){
+                                            html_mobile_value += `      <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>`;
+                                        }else {
+                                            html_mobile_value += `      <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>`;
+                                        }
+                                        html_mobile_value += `      </div>`;
+
+                                        $('#card--value__mobile').append(html_mobile_value);
                                     }
-                                    html_desktop_value += `</div>`;
-
-                                    grid_card.append(html_desktop_value);
-                                }else {
-                                    //mobile
-                                    let html_mobile_value = '';
-                                    html_mobile_value += `<div class="swiper-slide">`;
-                                    html_mobile_value += `        <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
-                                    html_mobile_value += `            <div class="card--thumb">`;
-                                    html_mobile_value += `                <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
-                                    html_mobile_value += `            </div>`;
-                                    html_mobile_value += `            <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
-                                    html_mobile_value += `                ${number_format(card.amount)} VND`;
-                                    html_mobile_value += `            </div>`;
-                                    html_mobile_value += `        </a>`;
-                                    html_mobile_value += `        </a>`;
-                                    html_mobile_value += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
-                                    html_mobile_value += `        <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
-                                    html_mobile_value += `              Mệnh giá ${number_format(card.amount)} đ`;
-                                    html_mobile_value += `        </div>`;
-                                    html_mobile_value += `        <div class="card--unit__price">`;
-                                    html_mobile_value += `              Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
-                                    html_mobile_value += `        </div>`;
-                                    html_mobile_value += `        <div class="card--amount _mt-075">`;
-                                    html_mobile_value += `            <span class="card--amount__title">`;
-                                    html_mobile_value += `                Số lượng`;
-                                    html_mobile_value += `            </span>`;
-                                    html_mobile_value += `            <div class="card--amount__group">`;
-                                    html_mobile_value += `                 <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                    html_mobile_value += `                     <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
-                                    html_mobile_value += `                 </button>`;
-                                    html_mobile_value += `                 <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
-                                    html_mobile_value += `                   <button class="btn--amount -add js-amount" data-action="add">`;
-                                    html_mobile_value += `                       <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">`;
-                                    html_mobile_value += `                  </button>`;
-                                    html_mobile_value += `            </div>`;
-                                    html_mobile_value += `        </div>`;
-                                    if (auth_check){
-                                        html_mobile_value += `      <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>`;
-                                    }else {
-                                        html_mobile_value += `      <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>`;
-                                    }
-                                    html_mobile_value += `      </div>`;
-
-                                    $('#card--value__mobile').append(html_mobile_value);
-                                }
-                            });
-                        }else {
-                            let html_empty = '<span class="m-auto text-danger --bold">Chưa cấu hình mệnh giá thẻ!</span>'
-                            $('#card--value__mobile').html(html_empty);
-                            grid_card.html(html_empty);
-                        }
-
-                        $('.loader').remove();
-                    }
-                    if (route_is === 'showDetailCard') {
-                        //    Breadcrum
-                        let cat_bc = '';
-                        cat_bc += `<li class="breadcrum--item">`;
-                        cat_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${card_is}</a>`;
-                        cat_bc += `</li>`;
-
-                        let value_bc = '';
-                        value_bc += `<li class="breadcrum--item">`;
-                        value_bc += `<a href="/mua-the-${card_is}-${value_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${value_is}</a>`;
-                        value_bc += `</li>`;
-                        breadcrum.append(cat_bc);
-                        breadcrum.append(value_bc);
-                        // Card Title
-                        $('#card--value .card--title').css('text-transform', 'capitalize').text('Thẻ ' + card_is.toLowerCase() + ` ${value_is}`);
-
-
-                        let card_same = $('#card--same__wrapper')
-                        data.forEach(function (card) {
-                            if (kFormatter(card.amount) === value_is) {
-                                let html_current = '';
-                                html_current += `<div class="col-12 col-lg-3 px-lg-2 mb-lg-4">`;
-                                html_current += `    <div class="scratch-card card--single col-8 col-lg-12">`;
-                                html_current += `        <div class="card--thumb">`;
-                                html_current += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
-                                html_current += `        </div>`;
-                                html_current += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
-                                html_current += `             ${number_format(card.amount)} VND`;
-                                html_current += `        </div>`;
-                                html_current += `    </div>`;
-                                html_current += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
-                                html_current += `    <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
-                                html_current += `       Mệnh giá ${number_format(card.amount)} đ`;
-                                html_current += `    </div>`;
-                                html_current += `    <div class="card--unit__price">`;
-                                html_current += `         Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
-                                html_current += `    </div>`;
-                                html_current += `    <div class="card--amount _mt-075">`;
-                                html_current += `        <span class="card--amount__title">`;
-                                html_current += `           Số lượng`;
-                                html_current += `        </span>`;
-                                html_current += `        <div class="card--amount__group">`;
-                                html_current += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
-                                // html_current += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
-                                html_current += `            </button>`;
-                                html_current += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
-                                html_current += `            <button class="btn--amount -add js-amount" data-action="add">`;
-                                html_current += `<!--                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">-->`;
-                                html_current += `            </button>`;
-                                html_current += `        </div>`;
-                                html_current += `    </div>`;
-                                if (width > 1199) {
-                                    if (auth_check){
-                                        html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card"  data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
-                                    }else {
-                                        html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" onclick="openLoginModal();">Chọn mua</button>`;
-                                    }
-                                }else{
-                                    if (auth_check){
-                                        html_current += `      <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>`;
-                                    }else {
-                                        html_current += `      <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>`;
-                                    }
-                                }
-                                html_current += `</div>`;
-
-                                $('#card--wrap__single').append(html_current);
-                            } else {
-                                let html_same = '';
-                                html_same += `<div class="swiper-slide">`;
-                                html_same += `    <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
-                                html_same += `        <div class="card--thumb">`;
-                                html_same += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
-                                html_same += `        </div>`;
-                                html_same += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
-                                html_same += `             ${number_format(card.amount)} VND`;
-                                html_same += `        </div>`;
-                                html_same += `    </a>`;
-                                html_same += `</div>`;
-                                // _____________
-                                card_same.append(html_same);
+                                });
+                            }else {
+                                let html_empty = '<span class="m-auto text-danger --bold">Chưa cấu hình mệnh giá thẻ!</span>'
+                                $('#card--value__mobile').html(html_empty);
+                                grid_card.html(html_empty);
                             }
-                        })
+
+                            $('.loader').remove();
+                        }
+                        if (route_is === 'showDetailCard') {
+                            //    Breadcrum
+                            let cat_bc = '';
+                            cat_bc += `<li class="breadcrum--item">`;
+                            cat_bc += `<a href="/mua-the-${card_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${card_is}</a>`;
+                            cat_bc += `</li>`;
+
+                            let value_bc = '';
+                            value_bc += `<li class="breadcrum--item">`;
+                            value_bc += `<a href="/mua-the-${card_is}-${value_is}" class="breadcrum--link" style="text-transform: capitalize;">Thẻ ${value_is}</a>`;
+                            value_bc += `</li>`;
+                            breadcrum.append(cat_bc);
+                            breadcrum.append(value_bc);
+                            // Card Title
+                            $('#card--value .card--title').css('text-transform', 'capitalize').text('Thẻ ' + card_is.toLowerCase() + ` ${value_is}`);
+
+
+                            let card_same = $('#card--same__wrapper');
+                            data.forEach(function (card) {
+                                if (kFormatter(card.amount) === value_is) {
+                                    let html_current = '';
+                                    html_current += `<div class="col-12 col-lg-3 px-lg-2 mb-lg-4">`;
+                                    html_current += `<div class="col-8 col-lg-12 p-0">`;
+                                    html_current += `    <div class="scratch-card card--single">`;
+                                    html_current += `        <div class="card--thumb">`;
+                                    html_current += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
+                                    html_current += `        </div>`;
+                                    html_current += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};">`;
+                                    html_current += `             ${number_format(card.amount)} VND`;
+                                    html_current += `        </div>`;
+                                    html_current += `    </div>`;
+                                    html_current += `</div>`;
+                                    html_current += `    <input type="hidden" class="ratio_default" value="${card.ratio_default}">`;
+                                    html_current += `    <div class="card--deno my-lg-1" data-amount="${card.amount}">`;
+                                    html_current += `       Mệnh giá ${number_format(card.amount)} đ`;
+                                    html_current += `    </div>`;
+                                    html_current += `    <div class="card--unit__price">`;
+                                    html_current += `         Đơn giá: ${number_format(card.amount - (card.amount * (100 - card.ratio_default) / 100))} đ`;
+                                    html_current += `    </div>`;
+                                    html_current += `    <div class="card--amount _mt-075">`;
+                                    html_current += `        <span class="card--amount__title">`;
+                                    html_current += `           Số lượng`;
+                                    html_current += `        </span>`;
+                                    html_current += `        <div class="card--amount__group">`;
+                                    html_current += `            <button class="btn--amount -minus js-amount" data-action="minus">`;
+                                    // html_current += `                <img src="/assets/frontend/theme_3/image/icons/minus.png" alt="">`;
+                                    html_current += `            </button>`;
+                                    html_current += `            <input type="text" name="card-amount" class="input--amount" value="1" numberic="">`;
+                                    html_current += `            <button class="btn--amount -add js-amount" data-action="add">`;
+                                    html_current += `<!--                <img src="/assets/frontend/theme_3/image/icons/add.png" alt="">-->`;
+                                    html_current += `            </button>`;
+                                    html_current += `        </div>`;
+                                    html_current += `    </div>`;
+                                    if (width > 1199) {
+                                        if (auth_check){
+                                            html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card"  data-toggle="modal" data-target="#modal--confirm__payment">Chọn mua</button>`;
+                                        }else {
+                                            html_current += `<button type="button" class="btn -secondary w-100 _mt-075 btn-buy-card" onclick="openLoginModal();">Chọn mua</button>`;
+                                        }
+                                    }else{
+                                        if (auth_check){
+                                            html_current += `      <button type="button" class="btn -secondary w-100 _mt-075 js_step" data-go_to="step2">Chọn mua</button>`;
+                                        }else {
+                                            html_current += `      <button type="button" class="btn -secondary w-100 _mt-075" onclick="openLoginModal();">Chọn mua</button>`;
+                                        }
+                                    }
+                                    html_current += `</div>`;
+
+                                    $('#card--wrap__single').append(html_current);
+                                } else {
+                                    let html_same = '';
+                                    html_same += `<div class="swiper-slide">`;
+                                    html_same += `    <a href="/mua-the-${card_is}-${kFormatter(card.amount)}" class="scratch-card">`;
+                                    html_same += `        <div class="card--thumb">`;
+                                    html_same += `            <img src="${data_telecom.image}" class="card--thumb__image" alt="">`;
+                                    html_same += `        </div>`;
+                                    html_same += `        <div class="card--name" style="--bg-color: ${!!data_telecom.params ? data_telecom.params.color : 'var(--primary-color)'};text-transform: capitalize">`;
+                                    html_same += `             ${number_format(card.amount)} VND`;
+                                    html_same += `        </div>`;
+                                    html_same += `    </a>`;
+                                    html_same += `</div>`;
+                                    // _____________
+                                    card_same.append(html_same);
+                                }
+                            })
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
     }
     let data_send = {
         amount: 0,
