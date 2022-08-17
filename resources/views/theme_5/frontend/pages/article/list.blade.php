@@ -33,7 +33,6 @@
             <div class=" px-0 mt-lg-0" id="list-article" style="max-width: 100%">
                 <div class=" --custom p-3" id="new-article-update">
                     @include('frontend.widget.__menu__category__article')
-
                     <div class="tab-content-title mt-4">
                         <div class="card--body">
                             @if(isset($data) && count($data))

@@ -282,21 +282,21 @@
                                                         </select>
                                                     </div>
                                                 </div>
-{{--                                            @elseif($send_type[$i]==7)--}}
-{{--                                                @php--}}
-{{--                                                    $index = $index + 1;--}}
-{{--                                                @endphp--}}
-{{--                                                @php--}}
-{{--                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);--}}
-{{--                                                @endphp--}}
-{{--                                            <div class="col-6 col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
-{{--                                                <label class="input-checkbox c-my-16 c-mb-lg-28">--}}
-{{--                                                    <input type="checkbox" id="confirm" name="customer_data{{$i}}" required>--}}
-{{--                                                    <span class="checkmark"></span>--}}
-{{--                                                    <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>--}}
-{{--                                                </label>--}}
-{{--                                                <div class="error"></div>--}}
-{{--                                            </div>--}}
+                                            @elseif($send_type[$i]==7)
+                                                @php
+                                                    $index = $index + 1;
+                                                @endphp
+                                                @php
+                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
+                                                @endphp
+                                            <div class="col-6 col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
+                                                <label class="input-checkbox c-my-16 c-mb-lg-28">
+                                                    <input type="checkbox" id="confirm" name="customer_data{{$i}}" required>
+                                                    <span class="checkmark"></span>
+                                                    <span class="text-label">Bạn đã đọc kỹ quy định và chuẩn bị đầy đủ vật phẩm, phụ kiện theo yêu cầu của shop chưa?</span>
+                                                </label>
+                                                <div class="error"></div>
+                                            </div>
                                             @endif
                                         @endif
                                     @endfor
