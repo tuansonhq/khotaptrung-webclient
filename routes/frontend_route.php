@@ -87,7 +87,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-        Route::group(['middleware' => ['cacheResponse: 604800']], function (){
+        Route::group(['middleware' => ['cacheResponse: 2592000']], function (){
             Route::get('/', [HomeController::class , "index"])->name('homeIndex');
 
             Route::get('/tin-tuc', [ArticleController::class , "getList"]);
@@ -103,6 +103,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/lich-su-tra-gop',function(){
                 return view('frontend.pages.account.logs-installment');
             });
+
+            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                ->name('getIndex');
 
             Route::group(['middleware' => ['auth_custom']], function (){
 
@@ -336,8 +339,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getLog');
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
                     ->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                    ->name('getIndex');
+
                 Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
 
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])

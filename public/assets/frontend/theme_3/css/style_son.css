@@ -12,6 +12,10 @@
     padding-right: 0;
 }
 
+.tk_watched{
+    display: none;
+}
+
 .banner-container-ct img{
     border-radius: 12px;
     width: 100%;
