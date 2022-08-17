@@ -615,7 +615,7 @@
         </div>
 
         <div class="footer-mobile">
-            <div class="c-px-16 c-pt-16 group-btn" style="--data-between: 12px">
+            <div class="group-btn" style="--data-between: 12px">
                 <button class="btn primary btn-success-mobile submit-form">Xác nhận</button>
             </div>
         </div>

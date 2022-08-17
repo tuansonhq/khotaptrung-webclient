@@ -3,7 +3,7 @@
     <div class="section-header c-mb-24 c-mb-lg-20 justify-content-between">
         <h2 class="section-title">
             <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>
-            {{ $title??'' }}
+            {{ $title??'Vòng quay' }}
         </h2>
         <a href="/minigame" class="link arr-right">Xem thêm</a>
     </div>
@@ -19,7 +19,7 @@
                 <div class="item-category h-100">
                     <div class="card h-100">
                         <a href="/minigame-{{ $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
-                            <div class="account-thumb top-buy c-mb-8" data-content="Top {{ $key + 1 }}">
+                            <div class="account-thumb top-buy sm c-mb-8" data-content="Top {{ $key + 1 }}">
                                 <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="account-thumb-image">
                             </div>
                             <div class="account-title">

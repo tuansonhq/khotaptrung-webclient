@@ -469,7 +469,7 @@
             </div>
 
 
-            <div class="footer-mobile group-btn c-px-16 c-pt-16 d-flex d-lg-none" style="--data-between: 12px">
+            <div class="footer-mobile group-btn c-px-16 d-flex d-lg-none" style="--data-between: 12px">
                 @if($data->status==1)
                     @if($input_auto==1 && ($data->itemconfig_ref->idkey!='' || $data->itemconfig_ref->idkey!=null ))
                     @else

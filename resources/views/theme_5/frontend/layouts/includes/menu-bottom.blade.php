@@ -29,17 +29,32 @@
             </a>
         </li>
         <li class="menu-bottom-item px-0 @if(Request::is('nap-the') || Request::is('recharge-atm')) is-active @endif ">
-            <a href="/nap-the" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
-                    <span class="menu-bottom_icon c-pt-6 c-pb-2 text-center  c-mb-4 brs-24">
-                         @if(Request::is('nap-the') || Request::is('recharge-atm'))
-                            <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge_active.svg)"></i>
-                        @else
-                            <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge.svg)"></i>
-                        @endif
-                    </span>
+            @if (\App\Library\AuthCustom::check())
+                <a href="/nap-the" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
+                        <span class="menu-bottom_icon c-pt-6 c-pb-2 text-center  c-mb-4 brs-24">
+                            @if(Request::is('nap-the') || Request::is('recharge-atm'))
+                                <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge_active.svg)"></i>
+                            @else
+                                <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge.svg)"></i>
+                            @endif
+                        </span>
 
-                <span class="menu-bottom_text fz-12">Nạp tiền</span>
-            </a>
+                    <span class="menu-bottom_text fz-12">Nạp tiền</span>
+                </a>
+            @else
+                <a href="javascript:void(0);" onclick="openLoginModal();" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
+                        <span class="menu-bottom_icon c-pt-6 c-pb-2 text-center  c-mb-4 brs-24">
+                            @if(Request::is('nap-the') || Request::is('recharge-atm'))
+                                <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge_active.svg)"></i>
+                            @else
+                                <i class="__icon__profile --sm__profile --link__profile" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/nam/menu-bottom-charge.svg)"></i>
+                            @endif
+                        </span>
+
+                    <span class="menu-bottom_text fz-12">Nạp tiền</span>
+                </a>
+            @endif
+            
         </li>
         <li class="menu-bottom-item px-0 @if(Request::is('minigame')) is-active @endif ">
             <a href="/minigame" class="d-flex justify-content-center c-p-5 fz-13 fw-400 flex-column align-items-center">
