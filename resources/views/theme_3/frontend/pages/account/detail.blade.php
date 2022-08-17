@@ -57,6 +57,9 @@
 
         </section>
 
+        {{--            Đã xem   --}}
+        @include('frontend.pages.account.widget.__watched')
+
         {{-- <div class="modal fade login show order-modal" id="traGop" aria-modal="true">
 
             <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
