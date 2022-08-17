@@ -177,12 +177,12 @@ $(document).ready(function() {
 
     if (width < 992){
         /*Step Mobile*/
-        $(document).on('click','.js-step',function () {
+        $('body').on('click','.js-step',function () {
             let selector = $(this).data('target');
             let elm = $(selector);
             elm.css('transform','translateX(0)');
         })
-        $(document).on('click','.close-step',function (e) {
+        $('body').on('click','.close-step',function (e) {
             e.preventDefault();
             let elm = $(this).closest('.step');
             elm.css('transform','translateX(130%)')
@@ -229,52 +229,55 @@ $(document).ready(function() {
             });
         }
     });
+
     /*Seemore*/
-    let content_desc = $('.content-desc');
-    if (content_desc.length){
-        let max_height_desc = content_desc.outerHeight();
-        $(document).on('click','.see-more',function () {
-            handleToggle($(this));
-        });
-        content_desc.dblclick(function () {
-            handleToggle('.see-more');
-        })
-        /*set max-height for content*/
-        content_desc.toggleClass('hide',true);
-        /*handle toggle*/
-        function handleToggle(selector) {
-            $(selector).toggleClass('hide');
-            content_desc.toggleClass('hide');
-            if ($(selector).hasClass('hide')){
-                $(selector).attr('data-content','Ẩn bớt nội dung');
-                content_desc.css('max-height',max_height_desc);
-            }else {
-                $(selector).attr('data-content','Xem thêm nội dung');
-                content_desc.css('max-height','');
-            }
-        }
-        // dblclick on mobile
-        if (width < 1200) {
-            let touchtime = 0;
-            content_desc.on("click", function() {
-                if (!touchtime) {
-                    // set first click
-                    touchtime = new Date().getTime();
-                } else {
-                    // compare first click to this click and see if they occurred within double click threshold
-                    if (((new Date().getTime()) - touchtime) < 500) {
-                        // double click occurred
-                        handleToggle('.see-more');
-                        touchtime = 0;
-                    } else {
-                        // not a double click so set as a new first click
-                        touchtime = new Date().getTime();
-                    }
-                }
-            });
+    $(document).on('click','.see-more',function () {
+        handleToggleDesc($(this));
+    });
+    $('body').find('.content-desc').dblclick(function () {
+        handleToggleDesc('.see-more');
+    });
+
+    let max_height_desc;
+    window.onload = function (){
+         max_height_desc = $('body').find('.content-desc').outerHeight();
+        $('body').find('.content-desc').addClass('hide');
+    }
+    /*set max-height for content*/
+    /*handle toggle*/
+    function handleToggleDesc(selector) {
+        let content_desc = $('body').find('.content-desc');
+        $(selector).toggleClass('hide');
+        content_desc.toggleClass('hide');
+        if ($(selector).hasClass('hide')){
+            $(selector).attr('data-content','Ẩn bớt nội dung');
+            content_desc.css('max-height',max_height_desc);
+        }else {
+            $(selector).attr('data-content','Xem thêm nội dung');
+            content_desc.css('max-height','');
         }
     }
-
+    // dblclick on mobile
+    if (width < 1200) {
+        let touchtime = 0;
+        content_desc.on("click", function() {
+            if (!touchtime) {
+                // set first click
+                touchtime = new Date().getTime();
+            } else {
+                // compare first click to this click and see if they occurred within double click threshold
+                if (((new Date().getTime()) - touchtime) < 500) {
+                    // double click occurred
+                    handleToggleDesc('.see-more');
+                    touchtime = 0;
+                } else {
+                    // not a double click so set as a new first click
+                    touchtime = new Date().getTime();
+                }
+            }
+        });
+    }
+$('div').height()
     /*Seemore nick*/
     let content_desc_nick = $('.content-desc-nick');
     if (content_desc_nick.length){

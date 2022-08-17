@@ -18,24 +18,12 @@
 @section('content')
     <div class="container-fix container" id="buy-card">
         {{--        BANNER --}}
-        <div class="poster__banner _mt-125 _mt-sm-0 d-none d-lg-block">
-            <div class="swiper js--swiper__banner mb-n4">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png" alt="POSTER BANNER">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/buy-card/Rectangle 4.png"
-                                 alt="POSTER BANNER">
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-pagination --custom"></div>
-            </div>
+
+        <div class="d-none d-lg-block">
+            @include('frontend.widget.__banner__storecard')
         </div>
+
+
         {{--        END BANNER--}}
         {{--breadcrum--}}
         <ul class="breadcrum--list">
@@ -159,7 +147,7 @@
                         </h2>
                     </div>
                     <div class="card--body px-3 py-3 py-lg-2 px-lg-3">
-                        <div class="swiper card--other__swipe">
+                        <div class="swiper card--other__swipe overflow-hidden">
                             <div class="swiper-wrapper" id="card--same__wrapper">
                                 {{--JS GENERATE HTML HERE--}}
                                 <div class="loader position-relative" id="card--same__wrap">
@@ -195,6 +183,11 @@
                     </div>
                 </div>
                 {{--                END SAME KIND--}}
+                {{--            SERVICE RELATED--}}
+                <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
+                    @include('frontend.widget.__list_serve_remark_image')
+                </div>
+                {{--            END SERVICE RELATED--}}
             </div>
             {{--            END PAGE CONTENT--}}
         </div>

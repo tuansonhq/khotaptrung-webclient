@@ -1,3 +1,7 @@
+.tk_watched{
+    display: none;
+}
+
 .card.--custom {
     --primary-color: #F67600;
     border-radius: 12px;
@@ -149,7 +153,7 @@
     margin-bottom: 40px;
 }
 #minigame-detail .lien-quan{
-    margin-bottom: 40px;
+    margin-bottom: 16px;
 }
 
 .media-mobile{

@@ -104,6 +104,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.pages.account.logs-installment');
             });
 
+            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                ->name('getIndex');
+
             Route::group(['middleware' => ['auth_custom']], function (){
 
 
@@ -336,8 +339,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getLog');
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
                     ->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                    ->name('getIndex');
+
+                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
+
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
                     ->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])

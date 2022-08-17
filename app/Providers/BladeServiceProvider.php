@@ -25,7 +25,7 @@ class BladeServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive('hide', function($alias) {
-            return "<?php if (in_array(\Request::route()->getName(), config('theme-config.'.$alias))): ?>";
+            return "<?php if (!in_array(\Request::route()->getName(), config('theme-config.'.$alias))): ?>";
         });
 
         Blade::directive('endhide', function() {

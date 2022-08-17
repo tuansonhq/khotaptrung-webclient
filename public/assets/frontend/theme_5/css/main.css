@@ -190,8 +190,27 @@ textarea:hover {
 }
 
 .swiper {
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
+    max-height: 300px;
+    opacity: 0;
+    transition: .3s;
+    padding-bottom: 2px;
+}
+
+.swiper {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+.swiper::-webkit-scrollbar {
+    display: none;
+}
+
+.swiper.swiper-container-horizontal,
+.swiper.swiper-container-vertical
+{
+    opacity: 1;
+    max-height: inherit;
 }
 
 /*placeholder*/
@@ -2237,6 +2256,7 @@ i.title-info:after {
         display: none;
     }
 
-
-
+    .scale-thumb:hover img {
+        transform: unset;
+    }
 }

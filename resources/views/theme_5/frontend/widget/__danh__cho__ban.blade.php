@@ -2,7 +2,7 @@
     <div class="section-header c-mb-20 c-mb-lg-16 justify-content-between">
         <h2 class="section-title c-py-lg-8">
 
-            {{ $title??'' }}
+            {{ $title??'Dành cho bạn' }}
 
         </h2>
         <ul class="nav nav-tabs size-auto" role="tablist">
