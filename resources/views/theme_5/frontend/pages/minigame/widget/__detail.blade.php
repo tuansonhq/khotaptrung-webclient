@@ -1039,4 +1039,23 @@
     $('body').on('click','.logsHisMinigame',function(e){
         $('.modal-logs-minigame').modal('show');
     })
+
+    if (width < 992){
+        /*Step Mobile*/
+        $('body').on('click','.js-step',function () {
+            let selector = $(this).data('target');
+            let elm = $(selector);
+            elm.css('transform','translateX(0)');
+        })
+        $('body').on('click','.close-step',function (e) {
+            e.preventDefault();
+            let elm = $(this).closest('.step');
+            elm.css('transform','translateX(130%)')
+        })
+
+        /*Box-shadow*/
+        $('.body-mobile').on('scroll',function () {
+            $('.head-mobile').toggleClass('box-shadow',!!$(this).scrollTop())
+        })
+    }
 </script>
