@@ -55,7 +55,7 @@
         });
 
         function create_nice_select($select) {
-            $select.after($('<div><a data-id="111"></a></div>')
+            $select.after($('<div></div>')
                 .addClass('nice-select')
                 .addClass($select.attr('class') || '')
                 .addClass($select.attr('disabled') ? 'disabled' : '')
@@ -182,9 +182,7 @@
         if (style.pointerEvents !== 'auto') {
             $('html').addClass('no-csspointerevents');
         }
-
         return this;
-
     };
 
 }(jQuery));
