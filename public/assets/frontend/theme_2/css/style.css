@@ -1454,7 +1454,7 @@ ol.w {
  --------------------*/
 .site-main {
     position: relative;
-    z-index: 100;
+    /*z-index: 100;*/
 }
 .site-main .site-content {
     background: #fff;
@@ -1479,7 +1479,7 @@ ol.w {
 .site-main .site-content:after {
     content: "";
     width: 100%;
-    height: 2rem;
+    /*height: 2rem;*/
     position: absolute;
     left: 0;
     top: 0;
@@ -1492,7 +1492,7 @@ ol.w {
 }
 .site-main .site-content .site-content-inner {
     position: relative;
-    z-index: 5;
+    /*z-index: 5;*/
 }
 .site-main .site-content .site-content-inner:before {
     content: "";
