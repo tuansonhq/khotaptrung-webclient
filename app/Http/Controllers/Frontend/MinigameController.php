@@ -657,7 +657,6 @@ class MinigameController extends Controller
 
             $data = $response_data->data;
 
-
             Session::get('auth_custom');
 
             return view('frontend.pages.minigame.category')

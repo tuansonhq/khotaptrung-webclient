@@ -5,6 +5,9 @@
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/nam/menu-category.css">
+@endsection
 @section('content')
 
     <div class="container c-container" id="account-category">
@@ -17,7 +20,7 @@
             </li>
         </ul>
         <div class="head-mobile">
-            <a href="/service-mobile" class="link-back"></a>
+            <a href="/" class="link-back"></a>
 
             <h1 class="head-title text-title">Shop Account</h1>
 
@@ -69,7 +72,7 @@
                     <div class="card">
                         <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
-                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy" onerror="imgError(this)">
+                                <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="account-thumb-image lazy">
                             </div>
                             <div class="account-title">
                                 <div class="text-title fw-700 text-limit limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
@@ -103,6 +106,5 @@
         {{--            Dịch vụ khác   --}}
         @include('frontend.widget.__services__other')
     </div>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/category.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/category.js"></script>
 @endsection
-
