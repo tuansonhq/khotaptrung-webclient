@@ -1,45 +1,32 @@
-<section class="c_section-category watched tk_watched">
-    <div class="section-header c-mb-24 c-mb-lg-16">
-        <h2 class="section-title fz-lg-15">
-            {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
-            Tài khoản đã xem
-        </h2>
-        <a href="" class="link arr-right ml-auto">Xem thêm</a>
-    </div>
 
-    <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
-    <!-- Nếu có giao diện giống nhau hoàn toàn thì có thể dùng chung config (chung tên class 'class-config-demo') -->
+<div class="container container-fix body-container-ct tk_watched">
+        <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
+            <div class="col-md-12 left-right">
+                <div class="row marginauto body-row-ct media-ctbg-ct">
 
-    <div class="swiper class-config-demo">
-        <div class="swiper-wrapper data_watched">
+                    <div class="col-md-12 left-right napgamekhac">
+                        <div class="row marginauto">
+                            <div class="col-md-12 text-left left-right">
+                                <span>Tài khoản đã xem</span>
+                            </div>
+                        </div>
+                    </div>
 
-{{--            <div class="swiper-slide">--}}
-{{--                <div class="item-category">--}}
-{{--                    <div class="card">--}}
-{{--                        <a href="/acc/id" class="card-body scale-thumb c-p-16 c-p-lg-12">--}}
-{{--                            <div class="account-thumb c-mb-8"><img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="account-thumb-image"></div>--}}
-{{--                            <div class="account-title"><div class="text-title fw-700 text-limit limit-1">Nick Freefire random....</div></div>--}}
-{{--                            <div class="account-info c-mb-8">--}}
-{{--                                <div class="info-attr">Đã bán: 45.000</div>--}}
-{{--                                <div class="info-attr">ID: #451234</div>--}}
-{{--                            </div>--}}
-{{--                            <div class="price">--}}
-{{--                                <div class="price-current w-100">250.000đ</div>--}}
-{{--                                <div class="price-old c-mr-8">250.000đ</div>--}}
-{{--                                <div class="discount">10%</div>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+                    <div class="col-md-12 left-right">
+                        <div class="row nick-sider-header">
+                            <div class="swiper-container view_dong_gia col-md-12 text-left left-right">
+                                <div class="swiper-wrapper data_watched">
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-        <div class="navigation slider-next"></div>
-        <div class="navigation slider-prev"></div>
     </div>
 
-</section>
 
 <script>
     $(document).ready(function(){
@@ -118,22 +105,23 @@
                 }
 
                 // $.each(s_cookies,function(s_key,s_value){
-                    html += '<div class="swiper-slide">';
-                        html += '<div class="item-category">';
-                            html += '<div class="card">';
-                                html += '<a href="/acc/' +randId_c + '" class="card-body scale-thumb c-p-16 c-p-lg-12">';
-                                    html += '<div class="account-thumb c-mb-8"><img onerror="imgError(this)" src="' + image_c + '" alt="" class="account-thumb-image lazy"></div>';
-                                    html += '<div class="account-title"><div class="text-title fw-700 text-limit limit-1">' + category_c + '</div></div>';
-                                    html += '<div class="account-info c-mb-8">';
-                                        html += '<div class="info-attr">Đã bán: ' + buy_account_c + '</div>';
-                                        html += '<div class="info-attr">ID: #' + randId_c + '</div>';
+                    html += '<div class="swiper-slide body-detail-nick-slider-ct">';
+                        html += '<a href="/acc/' +randId_c + '" class="list-item-nick-hover">';
+                            html += '<div class="row marginauto ">';
+                                html += '<div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail"><img class="lazy" src="' + image_c + '" alt=""></div>';
+                                html += '<div class="col-md-12 left-right list-item-nick">';
+                                    html += '<div class="row marginauto list-item-nick-body">';
+                                        html += '<div class="col-md-12 left-right text-left body-detail-account-col-span-ct"><span>ID: ' +randId_c + '</span></div>';
+                                        html += '<div class="col-md-12 left-right text-left body-detail-account-small-span-ct"><small>Đã bán: ' +buy_account_c + '</small></div>';
+                                        html += '<div class="col-md-12 left-right text-left body-detail-account-small-span-ct">';
+                                            html += '<ul>';
+                                                html += '<li class="fist-li-account">' + price_c + 'đ</li>';
+                                                html += '<li class="second-li-account">' + price_old_c + 'đ</li>';
+                                                html += '<li class="three-li-account">-' + promotion_c + '%</li>';
+                                            html += '</ul>';
+                                        html += '</div>';
                                     html += '</div>';
-                                    html += '<div class="price">';
-                                        html += '<div class="price-current w-100">' + price_c + 'đ</div>';
-                                        html += '<div class="price-old c-mr-8">' + price_old_c + 'đ</div>';
-                                        html += '<div class="discount">' + promotion_c + '%</div>';
-                                    html += '</div>';
-                                html += '</a>';
+                                html += '</div>';
                             html += '</div>';
                         html += '</div>';
                     html += '</div>';
@@ -144,7 +132,42 @@
             $('.data_watched').html('');
             $('.data_watched').html(html);
             $('.tk_watched').fadeIn();
+
+            var view_dong_gia = new Swiper('.view_dong_gia', {
+                autoplay: false,
+                // preloadImages: false,
+                updateOnImagesReady: true,
+                // lazyLoading: false,
+                watchSlidesVisibility: false,
+                lazyLoadingInPrevNext: false,
+                lazyLoadingOnTransitionStart: false,
+                freeMode:true,
+                loop: false,
+                centeredSlides: false,
+                slidesPerView: 4.5,
+                speed: 800,
+                spaceBetween: 0,
+                touchMove: true,
+                freeModeSticky:true,
+                grabCursor: true,
+                observer: true,
+                observeParents: true,
+                breakpoints: {
+                    992: {
+                        slidesPerView: 3.2,
+                    },
+                    768:{
+                        slidesPerView: 2.5,
+                    },
+                    480: {
+                        slidesPerView: 1.8,
+
+                    }
+                }
+            });
         }
+
+
 
     })
 </script>
