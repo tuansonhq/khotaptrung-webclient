@@ -50,13 +50,13 @@
     --filter-button-disable-color: invert(84%) sepia(6%) saturate(259%) hue-rotate(193deg) brightness(106%) contrast(92%);
 }
 
-body {
-    font-family: var(--global-font), sans-serif;
-    font-style: normal;
-    color: var(--text-color);
-    line-height: 20px;
-    font-size: 13px;
-}
+/*body {*/
+/*    font-family: var(--global-font), sans-serif;*/
+/*    font-style: normal;*/
+/*    color: var(--text-color);*/
+/*    line-height: 20px;*/
+/*    font-size: 13px;*/
+/*}*/
 
 .container {
     padding-left: 16px;
@@ -69,37 +69,37 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-h1 {
-    font-size: 48px;
-    line-height: 64px;
-}
+/*h1 {*/
+/*    font-size: 48px;*/
+/*    line-height: 64px;*/
+/*}*/
 
-h2 {
-    font-size: 40px;
-    line-height: 56px;
-}
+/*h2 {*/
+/*    font-size: 40px;*/
+/*    line-height: 56px;*/
+/*}*/
 
-h3 {
-    font-size: 36px;
-    line-height: 48px;
-}
+/*h3 {*/
+/*    font-size: 36px;*/
+/*    line-height: 48px;*/
+/*}*/
 
-h4 {
-    font-size: 32px;
-    line-height: 40px;
-}
+/*h4 {*/
+/*    font-size: 32px;*/
+/*    line-height: 40px;*/
+/*}*/
 
-p, span, a {
-    font-size: 13px;
-    line-height: 20px;
-    color: var(--text-color);
-}
+/*p, span, a {*/
+/*    font-size: 13px;*/
+/*    line-height: 20px;*/
+/*    color: var(--text-color);*/
+/*}*/
 
-hr {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-top: 1px solid var(--border-default-color);
-}
+/*hr {*/
+/*    margin-top: 0;*/
+/*    margin-bottom: 0;*/
+/*    border-top: 1px solid var(--border-default-color);*/
+/*}*/
 
 /* INPUT */
 /*default*/
