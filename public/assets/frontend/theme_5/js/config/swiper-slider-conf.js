@@ -85,7 +85,7 @@ let swiper_config_category = new Swiper('.section-category .class-config-demo',{
     },
 });
 
-let c_swiper_config_category = new Swiper('.c_section-category .class-config-demo',{
+let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
     autoplay: false,
     updateOnImagesReady: true,
     watchSlidesVisibility: false,
