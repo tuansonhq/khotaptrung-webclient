@@ -121,7 +121,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12 p-0">
-                                                <div class="row m-0" id="cardAmountMobile">
+                                                <div class="row m-0 c-mx-n4" id="cardAmountMobile">
     
                                                 </div>
                                             </div>
