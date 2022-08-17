@@ -21,7 +21,10 @@
         <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
-        @include('frontend.widget.__banner__storecard')
+
+        <div class="d-none d-lg-block">
+            @include('frontend.widget.__banner__storecard')
+        </div>
 
         {{--        END BANNER--}}
         {{--breadcrum--}}
@@ -184,6 +187,11 @@
                     </div>
                 </div>
                 {{--                END CARD OTHER--}}
+                {{--            SERVICE RELATED--}}
+                <div class="card --custom _mb-125 _mb-sm-075 p-3 p-lg-0" id="service-related">
+                    @include('frontend.widget.__list_serve_remark_image')
+                </div>
+                {{--            END SERVICE RELATED--}}
                 {{--                SERVICE DESC--}}
 {{--                <div class="card --custom p-3 p-lg-3">--}}
 {{--                    <h2 class="card--desc__title mb-4">--}}
