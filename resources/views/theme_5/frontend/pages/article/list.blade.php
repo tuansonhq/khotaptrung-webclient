@@ -42,7 +42,7 @@
                                     <a href="/tin-tuc/{{ $item->slug }}">
                                         <div class="card">
                                             <div class="card-body c-p-16 c-p-lg-8">
-                                                <div class="article-thumb c-mb-16 c-mb-lg-0">
+                                                <div class="article-thumb c-mb-lg-0">
                                                     <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($item->image)}}" class="article-thumb-image" alt="article-thumbnail">
                                                 </div>
                                                 <div class="article-body">
