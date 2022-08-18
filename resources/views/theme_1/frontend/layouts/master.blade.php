@@ -161,12 +161,12 @@
     @endif
 
 {{--<!-- Hubjs Tag Manager -->--}}
-{{--    <script type="text/javascript">--}}
-{{--        var _mtm = window._mtm = window._mtm || [];--}}
-{{--        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});--}}
-{{--        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];--}}
-{{--        g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_pi4uNWv2.js'; s.parentNode.insertBefore(g,s);--}}
-{{--    </script>--}}
+    <script type="text/javascript">
+        var _mtm = window._mtm = window._mtm || [];
+        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_pi4uNWv2.js'; s.parentNode.insertBefore(g,s);
+    </script>
 {{--    <!-- End Hubjs Tag Manager -->--}}
 
 </head>
