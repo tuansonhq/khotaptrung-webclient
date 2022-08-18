@@ -33,23 +33,23 @@
                 <a href="/dich-vu/{{ @$data->slug}}" class="breadcrumb-link">{{@$data->title}}</a>
             </li>
         </ul>
-        <div class="head-mobile">
-            <a href="/dich-vu" class="link-back"></a>
+{{--        <div class="head-mobile">--}}
+{{--            <a href="/dich-vu" class="link-back"></a>--}}
 
-            <h1 class="head-title text-title">Dịch vụ game</h1>
+{{--            <h1 class="head-title text-title">Dịch vụ game</h1>--}}
 
-            <a href="/" class="home"></a>
-        </div>
+{{--            <a href="/" class="home"></a>--}}
+{{--        </div>--}}
 
         <section class="service-detail">
             {{--            Slider baner    --}}
             @include('frontend.widget.__slider__banner__service')
-            <div class="section-header d-none d-lg-block">
+            <div class="section-header">
                 <h1 class="section-title">
                     {{ @$data->title }}
                 </h1>
             </div>
-            <hr>
+            <hr class="m-0">
             <div class="text-title fw-700 title-color-lg c-py-16 c-py-lg-20">
                 Vui lòng chọn thông tin
             </div>
@@ -226,11 +226,11 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
+                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8 c-pr-8 c-pl-8 col-12 c-mb-8">
                                                 <span class="">
                                                     {{$send_name[$i]}}
                                                 </span>
-                                                <div class="mb-15">
+                                                <div class="mb-15 c-mt-8">
                                                     <input id="username"  type="text" required_service name="customer_data{{$i}}" class=" t14 " placeholder="{{$send_name[$i]}}" value="">
                                                     <div class="error"></div>
                                                 </div>
@@ -239,11 +239,11 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
+                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8 c-pr-8 c-pl-8 col-12  c-mb-8">
                                                 <span>
                                                     {{$send_name[$i]}}
                                                 </span>
-                                                <div class="mb-15">
+                                                <div class="mb-15 c-mt-8">
                                                     <input type="file" required_service accept="image/*" class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                     <div class="error"></div>
                                                 </div>
@@ -252,11 +252,11 @@
                                                 @php
                                                     $index = $index + 1;
                                                 @endphp
-                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
+                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8 c-pr-8 c-pl-8 col-12  c-mb-8">
                                                     <span>
                                                         {{$send_name[$i]}}
                                                     </span>
-                                                    <div class="mb-15 toggle-password">
+                                                    <div class="mb-15 toggle-password c-mt-8">
                                                         <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
                                                     </div>
                                                     <div class="error"></div>
@@ -268,11 +268,11 @@
                                                 @php
                                                     $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
                                                 @endphp
-                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
+                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8 c-pr-8 c-pl-8 col-12  c-mb-8">
                                                     <span>
                                                         {{$send_name[$i]}}
                                                     </span>
-                                                    <div class="mb-15">
+                                                    <div class="mb-15 c-mt-8">
                                                         <select name="customer_data{{$i}}" class="mb-15 control-label bb">
                                                             @if(!empty($send_data))
                                                                 @for ($sn = 0; $sn < count($send_data); $sn++)
