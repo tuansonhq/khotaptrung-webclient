@@ -16,9 +16,15 @@
     <title>{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}</title>
     @endif
 @elseif(isset($title->title))
+    @if(isset($data->randId))
+    @else
     <title>{{$title->title }}</title>
+    @endif
 @elseif(isset($data->title))
+    @if(isset($data->randId))
+    @else
     <title>{{$data->title }}</title>
+    @endif
 @else
     <title>  {{setting('sys_title') }}</title>
 @endif
@@ -80,9 +86,15 @@
 @elseif(Request::is('dich-vu'))
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
 @elseif(isset($title->title))
+    @if(isset($data->randId))
+    @else
     <meta property="og:title" content="{{$title->title}}">
+    @endif
 @elseif(isset($data->title))
-    <meta property="og:title" content="{{$data->title}}">
+    @if(isset($data->randId))
+    @else
+        <meta property="og:title" content="{{$data->title}}">
+    @endif
 @else
     <meta property="og:title" content="{{setting('sys_title')}}">
 @endif
@@ -261,6 +273,65 @@
     }
 
     </script>
+{{--    @elseif(Request::is('acc/'. $data->randId .''))--}}
+{{--        <script type="application/ld+json">--}}
+{{--    {--}}
+{{--          "@graph":--}}
+{{--      [--}}
+{{--          {--}}
+{{--                "@context": "http://schema.org/",--}}
+{{--                "@type": "Product",--}}
+{{--                "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
+{{--                    "description": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
+{{--                     "image": "{{ isset($data->custom->image) ? $data->custom->image :  $data->image }}",--}}
+{{--                    "brand": {--}}
+{{--                        "@type": "Brand",--}}
+{{--                        "name": "{{\Request::server ("HTTP_HOST")}}"--}}
+{{--                      },--}}
+{{--                    "aggregateRating": {--}}
+{{--                        "@type": "AggregateRating",--}}
+{{--                        "ratingValue": "5",--}}
+{{--                        "bestRating": "5",--}}
+{{--                        "worstRating": "4",--}}
+{{--                        "ratingCount": "79396",--}}
+{{--                        "reviewCount": "793986"--}}
+{{--                    },--}}
+{{--                    "sku": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+{{--                    "gtin8": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+{{--                    "mpn": "{{ isset($data->category->custom->slug) ? $data->category->custom->slug :  $data->category->slug??'' }}",--}}
+{{--                    "offers": {--}}
+{{--                            "@type": "Offer",--}}
+{{--                             "url": "https://{{\Request::server ("HTTP_HOST")}}/acc/{{ $data->randId??'' }}",--}}
+{{--                            "priceCurrency": "VND",--}}
+{{--                            "price": "7700",--}}
+{{--                            "priceValidUntil": "2099-12-31",--}}
+{{--                            "availability": "https://schema.org/InStock",--}}
+{{--                            "itemCondition": "https://schema.org/NewCondition"--}}
+{{--                          },--}}
+{{--                    "review": {--}}
+{{--                    "@type": "Review",--}}
+{{--                    "name": "{{ isset($data->category->custom->seo_title) ? $data->category->custom->title :  $data->category->seo_title??'' }} mã số {{ $data->randId??'' }}",--}}
+{{--                    "reviewBody": "{{ isset($data->custom->seo_description) ? $data->custom->seo_description :  $data->seo_description }}",--}}
+{{--                    "reviewRating": {--}}
+{{--                      "@type": "Rating",--}}
+{{--                      "ratingValue": "5",--}}
+{{--                      "bestRating": "5",--}}
+{{--                      "worstRating": "4"--}}
+{{--                    },--}}
+{{--                    "author": {"@type": "Person", "name": "An"},--}}
+{{--                    "publisher": {"@type": "Organization", "name": "An"}--}}
+{{--                  }--}}
+{{--          },--}}
+{{--        {--}}
+{{--          "@context": "http://schema.org",--}}
+{{--          "@type": "WebSite",--}}
+{{--          "name": "https://{{\Request::server ("HTTP_HOST")}}",--}}
+{{--              "url": "https://{{\Request::server ("HTTP_HOST")}}"--}}
+{{--        }--}}
+{{--      ]--}}
+{{--    }--}}
+
+{{--    </script>--}}
     @endif
 
 @elseif(setting('sys_schema') != '')
