@@ -232,9 +232,7 @@ $(document).ready(function() {
 
     /*Seemore*/
     $(document).on('click','.see-more',function () {
-        if (width >= 992) {
-            handleToggleDesc($(this));
-        }
+        handleToggleDesc($(this));
     });
     $('body').find('.content-desc').dblclick(function () {
         handleToggleDesc('.see-more');
@@ -260,26 +258,26 @@ $(document).ready(function() {
         }
     }
     // dblclick on mobile
-    // if (width < 1200) {
-    //     let touchtime = 0;
-    //     content_desc.on("click", function() {
-    //         if (!touchtime) {
-    //             // set first click
-    //             touchtime = new Date().getTime();
-    //         } else {
-    //             // compare first click to this click and see if they occurred within double click threshold
-    //             if (((new Date().getTime()) - touchtime) < 500) {
-    //                 // double click occurred
-    //                 handleToggleDesc('.see-more');
-    //                 touchtime = 0;
-    //             } else {
-    //                 // not a double click so set as a new first click
-    //                 touchtime = new Date().getTime();
-    //             }
-    //         }
-    //     });
-    // }
-$('div').height()
+    if (width < 1200) {
+        let touchtime = 0;
+        $('body').find('.content-desc').on("click", function() {
+            if (!touchtime) {
+                // set first click
+                touchtime = new Date().getTime();
+            } else {
+                // compare first click to this click and see if they occurred within double click threshold
+                if (((new Date().getTime()) - touchtime) < 500) {
+                    // double click occurred
+                    handleToggleDesc('.see-more');
+                    touchtime = 0;
+                } else {
+                    // not a double click so set as a new first click
+                    touchtime = new Date().getTime();
+                }
+            }
+        });
+    }
+
     /*Seemore nick*/
     let content_desc_nick = $('.content-desc-nick');
     if (content_desc_nick.length){
@@ -287,7 +285,7 @@ $('div').height()
         $(document).on('click','.see-more',function () {
             handleToggle($(this));
         });
-        content_desc.dblclick(function () {
+        content_desc_nick.dblclick(function () {
             handleToggle('.see-more');
         })
         /*set max-height for content*/
@@ -307,7 +305,7 @@ $('div').height()
         // dblclick on mobile
         if (width < 1200) {
             let touchtime = 0;
-            content_desc.on("click", function() {
+            content_desc_nick.on("click", function() {
                 if (!touchtime) {
                     // set first click
                     touchtime = new Date().getTime();

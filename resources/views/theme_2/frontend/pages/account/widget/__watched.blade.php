@@ -77,7 +77,7 @@
 
 
             var html = '';
-            n_cookies = n_cookies.reverse();
+
             $.each(n_cookies,function(n_key,n_value){
 
                 let s_cookies = n_value.split('|');
