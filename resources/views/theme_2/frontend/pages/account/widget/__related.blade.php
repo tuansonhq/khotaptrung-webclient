@@ -1,7 +1,7 @@
 @if(isset($data) && count($data))
     <section class="section-category section-category_c same-price">
         <div class="section-header c-mb-24 c-mb-lg-16">
-            <h2 class="section-title fz-lg-15">
+            <h2 class="section-title justify-content-between fz-lg-15">
                 {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
                 Tài khoản liên quan
             </h2>

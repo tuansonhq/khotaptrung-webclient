@@ -97,7 +97,7 @@
                 {{--                @include('frontend.pages.account.widget.__flash__sale')--}}
 
                 {{--            Đã xem   --}}
-                @include('frontend.widget.__viewed__account')
+                @include('frontend.pages.account.widget.__viewed__account')
             </div>
 
             {{--    Modal trả góp   --}}

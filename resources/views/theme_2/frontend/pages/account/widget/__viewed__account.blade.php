@@ -4,7 +4,7 @@ $data_viewed = json_decode($data_viewed,true);
 @endphp
 @if(count($data_viewed))
 <section class="section-category watched">
-    <div class="section-header c-mb-24 c-mb-lg-16">
+    <div class="section-header justify-content-between c-mb-24 c-mb-lg-16">
         <h2 class="section-title fz-lg-15">
             Tài khoản đã xem
         </h2>
@@ -20,7 +20,7 @@ $data_viewed = json_decode($data_viewed,true);
             <div class="swiper-slide">
                 <div class="item-category">
                     <div class="card">
-                        <a href="/acc/id" class="card-body scale-thumb c-p-16 c-p-lg-12">
+                        <a href="/acc/{{ @$acc_viewed['randId'] }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                             <div class="account-thumb c-mb-8">
                                 <img src="{{\App\Library\MediaHelpers::media($acc_viewed['image'])}}" alt="" class="account-thumb-image">
                             </div>
@@ -32,9 +32,9 @@ $data_viewed = json_decode($data_viewed,true);
                                 <div class="info-attr">ID: #{{ @$acc_viewed['randId'] }}</div>
                             </div>
                             <div class="price">
-                                <div class="price-current w-100">{{ str_replace(',','.',number_format($acc_viewed['price'])) }}</div>
-                                <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }}</div>
-                                <div class="discount">{{ @$acc_viewed['promotion'] }}</div>
+                                <div class="price-current w-100">{{ str_replace(',','.',number_format($acc_viewed['price'])) }} đ</div>
+                                <div class="price-old c-mr-8">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }} đ</div>
+                                <div class="discount">{{ @$acc_viewed['promotion'] }} %</div>
                             </div>
                         </a>
                     </div>
