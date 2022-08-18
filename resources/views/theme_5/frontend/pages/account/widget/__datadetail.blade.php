@@ -348,7 +348,25 @@
                             </div>
                         </div>
                         <div class="card-footer text-center">
-                            <span class="see-more" data-content="Xem thêm nội dung"></span>
+                            <span class="see-more open-sheet" data-content="Xem thêm nội dung" data-target="#sheet-description"></span>
+                        </div>
+                    </div>
+                    <!-- handle bottom sheet -->
+                    <div class="bottom-sheet" id="sheet-description" aria-hidden="true" data-height="80">
+                        <div class="layer"></div>
+                        <div class="content-bottom-sheet bar-slide" >
+                            <div class="sheet-header">
+                                <h2 class="text-title center">
+                                    Chi tiết dịch vụ
+                                </h2>
+                                <label for="check-bottom-sheet" class="close"></label>
+                            </div>
+                            <div class="sheet-body">
+                                <!-- body -->
+                                <div>
+                                    {!! $data->description !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
