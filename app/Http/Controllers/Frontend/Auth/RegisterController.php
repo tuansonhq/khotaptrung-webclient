@@ -37,8 +37,8 @@ class RegisterController extends Controller
         }
         try{
 
-            $utm_source = Cookie::get('utm_source') ?? '';
-            $utm_campaign = Cookie::get('utm_campaign') ?? '';
+            $utm_source = Cookie::get('utm_source')??'';
+            $utm_campaign = Cookie::get('utm_campaign')??'';
 
             $url = '/register';
             $method = "POST";
