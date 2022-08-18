@@ -1,20 +1,22 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
 
-    <div class="background-history">
+    <div class="background-history" id="withdrawitem">
         <div class="container c-container-side c-mb-24 c-mb-lg-0">
             <ul class="breadcrumb-list">
                 <li class="breadcrumb-item">
                     <a href="/" class="breadcrumb-link">Trang chủ</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/withdrawitem-slug" class="breadcrumb-link">Rút vật phẩm</a>
+                    <a href="javascript:void(0)" class="breadcrumb-link">Rút vật phẩm</a>
                 </li>
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-navbar" class="link-back close-step"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Rút vật phẩm</h1>
 
@@ -31,13 +33,6 @@
                                 Rút vật phẩm
                             </h1>
                         </div>
-                        <div class="head-mobile">
-                            <a href="#" class="link-back"></a>
-
-                            <h1 class="head-title text-title">Rút vật phẩm</h1>
-
-                            <a href="#" class="notify" data-notify="2"></a>
-                        </div>
                         <div class="card-body c-px-16 c-py-0">
                             <ul class="nav nav-tabs size-auto c-pb-16" role="tablist">
                                 <li class="nav-item" role="presentation">
@@ -49,67 +44,99 @@
                                         sử</a>
                                 </li>
                             </ul>
+                            @if ($message = Session::get('success'))
+                                <div class="container">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                    aria-hidden="true">×</span></button>
+                                            {{$message}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                            @if($messages=$errors->all())
+                                <div class="container">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                                    aria-hidden="true">×</span></button>
+                                            {{$messages[0]}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="tab-content withdraw-body">
                                 <div class="tab-pane fade active show c-pt-16 c-pb-lg-50 c-mb-lg-50" id="tab-1"
                                      role="tabpanel">
                                     <div class="input-group c-mb-10">
                                         <span class="form-label">
-                                            Chọn loại vật phẩm
+                                            RÚT VẬT PHẨM GAME {{config('constants.game_type.'.$game_type)}}
                                         </span>
-                                        <select name="" id="">
-                                            <option value="">Kim cương FreeFire</option>
+                                        <select class="select-primary withdraw-select" id="game_type" name="game_type">
+                                            @if(count($result->listgametype)>0)
+                                                @foreach($result->listgametype as $item)
+                                                    <option value="{{route('getWithdrawItem',[$item->parent_id])}}" {{$item->parent_id==$game_type?'selected':''}}>{{$item->title}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
 
                                     <div class="group-info c-mb-16">
-                                        <span class="fw-400">Số tiền hiện có:</span>
-                                        <span class="text-primary-color">10.000.000đ</span>
+                                        <span class="fw-400">Số {{isset($result->gametype->image)?$result->gametype->image:'vật phẩm'}} hiện có:</span>
+                                        <span class="text-primary-color">{{ str_replace(',','.',number_format($result->number_item)) }} đ</span>
                                     </div>
-
+                                    <script type="text/javascript">
+                                        $("#game_type").change(function(){
+                                            window.location.href = $( "select#game_type" ).val();
+                                        });
+                                    </script>
+                                    <form class="form-horizontal form-withdraw" method="POST">
+                                        {{csrf_field()}}
                                     <div class="input-group">
-                    <span class="form-label">
-                        Gói muốn rút
-                    </span>
-                                        <select name="" id="">
-                                            <option value="">Kim cương FreeFire</option>
+                                        <span class="form-label">
+                                            Gói muốn rút
+                                        </span>
+                                        <select id="package" name="package">
+                                            @if($result->package)
+                                                @foreach($result->package as $item)
+                                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
 
                                     <div class="input-group">
-                    <span class="form-label">
-                        Tài khoản trong game
-                    </span>
-                                        <input type="text" placeholder="Tên tài khoản">
+                                        <span class="form-label">
+                                            {{isset($result->gametype->idkey)?$result->gametype->idkey:'ID trong game:'}}
+                                        </span>
+                                        <input type="text" name="idgame" placeholder="Tên tài khoản">
                                     </div>
 
                                     <div class="input-group">
-                    <span class="form-label">
-                        Mật khẩu trong game
-                    </span>
-                                        <div class="toggle-password">
-                                            <input type="password" placeholder="Mật khẩu">
+                                        <span class="form-label">
+                                            {{isset($result->gametype->position)?$result->gametype->position:'Số điện thoại ( nếu có ):'}}
+                                        </span>
+                                        <input type="text" name="phone">
+                                    </div>
+
+                                    <div class="group-btn c-mt-24 c-mb-24 media-web" style="justify-content: end;">
+                                        <button type="submit" id="btn-confirm-w" class="btn primary" style="width: 266px">Rút ngay</button>
+                                    </div>
+
+                                    <div class="footer-mobile">
+                                        <div class="group-btn" >
+                                            <button type="submit" id="btn-confirm-w-mobile" class="btn primary">Rút ngay</button>
                                         </div>
                                     </div>
 
-                                    <div class="input-group">
-                    <span class="form-label">
-                        Số điện thoại (nếu có)
-                    </span>
-                                        <input type="text" placeholder="Số điện thoại">
-                                    </div>
-
-
-                                    <div
-                                        class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 w-100 c-px-lg-16 c-pt-lg-16"
-                                        style="--data-between:12px">
-                                        <button type="button" class="btn secondary open-sheet" data-toggle="modal"
-                                                data-target="#modal-add-bank" data-target_2="#sheet-add-bank">Thêm NH/
-                                            Ví ĐT
-                                        </button>
-                                        <button type="button" class="btn primary" data-toggle="modal"
-                                                data-target="#modal-success">Giao dịch
-                                        </button>
-                                    </div>
+                                        <script>
+                                            $(".form-withdraw").submit(function(){
+                                                $("#btn-confirm-w").prop( "disabled", true);
+                                                $('#btn-confirm-w-mobile').prop( "disabled", true);
+                                            });
+                                        </script>
+                                    </form>
                                 </div>
                                 <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                     <div class="c-history-title c-pb-16 c-pb-lg-12 media-web">
@@ -143,306 +170,91 @@
                                                     data-target="#sheet-filter" data-notify="0"></button>
                                         </div>
                                     </div>
+                                    @if($paginatedItems)
+                                    @php
+                                        $results = array();
+                                        foreach ($result->withdraw_history->data as $element) {
+                                            $results[date('m/y',strtotime($element->created_at))][] = $element;
+                                        }
+                                        $prev = null;
+                                    @endphp
+                                    @endif
                                     <div class="mr-n1 pb-3">
                                         <div class="history-content c-pt-16 mr-n2">
-                                            <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                            <ul class="trans-list">
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                            <ul class="trans-list">
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="text-title-bold fw-500 c-mb-12">Tháng 06</div>
-                                            <ul class="trans-list">
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="trans-item">
-                                                    <a href="/withdrawitem-slug/chi-tiet">
-                                                        <div class="text-left">
-                                                            <span class="fw-500 title-color d-block c-mb-0">
-                                                                Rút tiền về TK ngân hàng
-                                                            </span>
-                                                            <span class="link-color">
-                                                                26/04/2021 - 16:05
-                                                            </span>
-                                                        </div>
-                                                        <div class="text-right">
-                                                            <span class="fw-500 d-block c-mb-0">190.000đ</span>
-                                                            <span class="success-color c-mb-0">Thành công</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            @if($paginatedItems)
+                                                @forelse($results as $key => $data)
+                                                    @if(date('m-y',strtotime($key)) != $prev)
+                                                        <div class="text-title-bold fw-500 c-mb-12">Tháng {{date('m',strtotime($key))}}</div>
+                                                        @php
+                                                            $prev = date('m-y',strtotime($key));
+                                                        @endphp
+                                                    @endif
 
+                                                    <ul class="trans-list">
+                                                        @forelse($data as $item)
+                                                            <li class="trans-item">
+                                                                <a href="javascript:void(0)">
+                                                                    <div class="text-left">
+                                                                        <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                                                                            {{$item->content}}
+                                                                        </span>
+                                                                        <span class="t-body-1 link-color">
+                                                                            {{date('d/m/Y - H:i', strtotime($item->created_at))}}
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="text-right">
+                                                                        <span class="fw-500 d-block c-mb-0">{{$item->price}}</span>
+                                                                        @switch($item->status)
+                                                                            @case(0)
+                                                                            <span class="warning-color c-mb-0">{{config('constants.withdraw_status.0')}}</span>
+                                                                            @break
+                                                                            @case(1)
+                                                                            <span class="success-color c-mb-0">{{config('constants.withdraw_status.1')}}</span>
+                                                                            @break
+                                                                            @case(2)
+                                                                            <span class="warning-color c-mb-0">{{config('constants.withdraw_status.2')}}</span>
+                                                                            @break
+                                                                            @case(3)
+                                                                            <span class="invalid-color c-mb-0">{{config('constants.withdraw_status.3')}}</span>
+                                                                            @break
+                                                                        @endswitch
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        @empty
+                                                        @endforelse
+                                                    </ul>
+                                                @empty
+                                                    <ul class="trans-list">
+                                                        <li class="trans-item" style="height: auto">
+                                                            <a href="javascript:void(0)">
+                                                                <div class="text-left">
+                                                <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                                                    Không có dữ liệu
+                                                </span>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                @endforelse
+                                            @else
+                                                <ul class="trans-list">
+                                                    <li class="trans-item" style="height: auto">
+                                                        <a href="javascript:void(0)">
+                                                            <div class="text-left">
+                                                <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                                                    Không có dữ liệu
+                                                </span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            @endif
+                                            <div class="c-pt-24 w-100">
+                                                @if(isset($paginatedItems) && count($paginatedItems))
+                                                    {{ $paginatedItems->appends(request()->query())->links('pagination::pagination_3_0') }}
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
 
@@ -584,155 +396,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <div class="modal fade" id="modal-add-bank">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title center">Thêm ngân hàng/Ví điện tử</h2>
-                        <button type="button" class="close" data-dismiss="modal"></button>
-                    </div>
-                    <hr class="mx-n4 c-mt-16">
-                    <ul class="nav nav-tabs size-auto c-pb-16 mx-n4" role="tablist">
-                        <li class="nav-item w-50" role="presentation">
-                            <a class="tab active lh-24" data-toggle="tab" href="#tab-add-bank" role="tab"
-                               aria-selected="true">Tài khoản ngân hàng</a>
-                        </li>
-                        <li class="nav-item w-50" role="presentation">
-                            <a class="tab lh-24" data-toggle="tab" href="#tab-add-wallet" role="tab"
-                               aria-selected="false">Ví điện tử</a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content withdraw-body">
-                        <div class="tab-pane fade active show" id="tab-add-bank" role="tabpanel">
-                            <div class="modal-body c-p-0">
-                                <div class="input-group">
-                                    <span class="form-label title-color">Ngân hàng</span>
-                                    <select name="" id="">
-                                        <option value="">Chọn ngân hàng nhận tiền</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <span class="form-label title-color">Chủ tài khoản</span>
-                                    <input type="text" placeholder="Nhập tên chủ tài khoản nhận tiền">
-                                </div>
-
-                                <div class="input-group">
-                                    <span class="form-label title-color">Số tài khoản</span>
-                                    <input type="text" placeholder="Nhập tài khoản nhận tiền">
-                                </div>
-
-                                <div class="input-group">
-                                    <span class="form-label title-color">Chi nhánh</span>
-                                    <input type="text" placeholder="Nhập tài khoản nhận tiền">
-                                </div>
-                            </div>
-                            <div class="text-title c-mt-4 c-mb-8">
-                                Lưu ý
-                            </div>
-                            <span class="link-color">
-                        Các thông tin trên bạn vui lòng cung cấp chính xác để không xảy ra lỗi khi xử lý yêu cầu rút tiền. Nếu nhập sai thông tin, ngân hàng sẽ hoàn trả lại tiền và không hoàn phí rút tiền
-                    </span>
-                            <div class="modal-footer c-mt-40">
-                                <a class="btn primary">Thêm ngân hàng</a>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-add-wallet" role="tabpanel">
-                            <div class="modal-body c-p-0">
-                                <div class="input-group">
-                                    <span class="form-label title-color">Ví điện tử</span>
-                                    <select name="" id="">
-                                        <option value="">Chọn loại ví điện tử</option>
-                                    </select>
-                                </div>
-                                <div class="input-group">
-                                    <span class="form-label title-color">Số tài khoản ví</span>
-                                    <input type="text" placeholder="Nhập tên chủ tài khoản nhận tiền">
-                                </div>
-
-                                <div class="input-group">
-                                    <span class="form-label title-color">Xác nhận lại số tài khoản ví</span>
-                                    <input type="text" placeholder="Nhập tài khoản nhận tiền">
-                                </div>
-                            </div>
-                            <div class="text-title c-mt-4 c-mb-8">
-                                Lưu ý
-                            </div>
-                            <span class="link-color">
-                        Rút về các ví điện tử, Tất cả thông tin gồm tên tài khoản, số điện thoại, hoặc email tài khoản ở ví đó
-                    </span>
-                            <div class="modal-footer c-mt-40">
-                                <a class="btn primary">Thêm ví điện tử</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade modal-328" id="modal-success">
-            <div class="modal-dialog modal-dialog-centered c-px-sm-16">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center p-0">
-                        <button type="button" class="close" data-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body text-center c-p-0">
-                        <div class="banner">
-                            <img class="" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
-                        </div>
-                        <p class="text-title-bold">Gửi yêu cầu rút tiền thành công</p>
-                        <span>
-                    Yêu cầu rút tiền đã được gửi đến hệ thống <br>Bạn vui lòng chờ hệ thống xác nhận nha!
-                </span>
-                    </div>
-                    <div class="modal-footer group-btn c-mt-24" style="--data-between: 12px">
-                        <a href="/" class="btn secondary" data-dismiss="modal">Trang chủ</a>
-                        <a href="" class="btn primary">Hỗ trợ</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade modal-small" id="modal--success__password">
-            <div class="modal-dialog modal-dialog-centered modal-custom">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center p-0">
-                        {{--                    Ảnh thất bại    --}}
-                        {{--                                        <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">--}}
-                        {{--                    Ảnh Thành công    --}}
-                        <img class="c-pt-20 c-pb-20"
-                             src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
-                    </div>
-                    <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
-                        {{--                    Content 1  --}}
-                        {{--                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ thất bại</p>--}}
-                        {{--                    <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua thẻ đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>--}}
-                        {{--                    Content 2  --}}
-                        {{--                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Nạp thẻ thành công</p>--}}
-                        {{--                    <p class="fw-400 fz-13 c-mt-10 mb-0">--}}
-                        {{--                        Sau khi chuyển khoản thành công hệ thống sẽ xử lí từ 2 giây tới 2 phút và cộng tiền vào tài khoản của bạn. Nếu sai thông tin hoặc xảy ra lỗi, vui lòng liên hệ--}}
-                        {{--                        <a class="c-text-primary" href="">fanpage</a> để được hỗ trợ.--}}
-                        {{--                    </p>--}}
-                        {{--                    Content 3  --}}
-                        {{--                    <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Chúc mừng bạn đã quay trúng</p>--}}
-                        {{--                    <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-10 mb-0">Giải thưởng: 100.000 kim cương</p>--}}
-                        {{--                    <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 mt-0 mb-0">Giải thưởng: 100.000 kim cương</p>--}}
-                        {{--                    <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 mt-0 mb-0">Tổng nhận được: <a class="c-text-pink" href="javascript:void(0)">100.100 kim cương</a></p>--}}
-                        {{--                    Content 4  --}}
-                        <p class="fw-700 fz-15 fz-lg-15 fz-md-14 fz-sm-12 c-mt-12 mb-0 text-title-theme">Thay đổi mật
-                            khẩu thành công</p>
-                        <p class="fw-400 fz-13 fz-lg-13 fz-md-12 fz-sm-11 c-mt-10 mb-0">Tài khoản của bạn đã được thay
-                            đổi mật khẩu, vui lòng đăng nhập lại để tiếp tục giao dịch</p>
-                    </div>
-                    <div class="modal-footer c-p-24">
-                        {{--                <button class="btn ghost" data-dismiss="modal">Thoát</button>--}}
-                        <a class="btn secondary" data-dismiss="modal" href="/">Trang chủ</a>
-                        <button class="btn primary">Đăng nhập lại</button>
-                    </div>
-                </div>
-            </div>
         </div>
 
         {{--            Dịch vụ khác   --}}

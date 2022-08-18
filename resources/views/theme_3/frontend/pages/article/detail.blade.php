@@ -8,7 +8,9 @@
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/script_trong.js"></script>
 @endsection
-
+@section('meta_robots')
+    <meta name="robots" content="index,follow" />
+@endsection
 @section('content')
     @if($data == null)
         <div class="item_buy">

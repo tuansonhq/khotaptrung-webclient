@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
-
+@section('meta_robots')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
 @section('content')
     <div class="background-history">
         <div class="container c-container-side c-mb-24 c-mb-lg-0">
@@ -13,7 +15,7 @@
             </ul>
 
             <div class="head-mobile">
-                <a href="/profile-info" class="link-back"></a>
+                <a href="/profile" class="link-back"></a>
 
                 <h1 class="head-title text-title">Biến động số dư</h1>
 

@@ -1,13 +1,14 @@
-<section class="flash-sale c-mb-24 c-mb-lg-8">
+<section class="flash-sale c-mt-12 c-mt-lg-6 c-mb-12 c-mb-lg-6">
     <div class="section-header c-mb-16">
         <div class="section-title fz-lg-20 lh-lg-24">
-            Giá sốc <span class="today" style="color: #ffffff"></span>
+            {{ $title??'' }} <span class="today" style="color: #ffffff"></span>
         </div>
         <div class="countdown noselect c-ml-16">
             <div class="hour">00</div>
             <div class="minute">00</div>
             <div class="second">00</div>
         </div>
+
     </div>
     <div class="swiper js-flash-sale-swiper">
         <div class="swiper-wrapper">

@@ -2,6 +2,9 @@
 @section('seo_head')
     @include('frontend.widget.__seo_head',with(['data'=>$data]))
 @endsection
+@section('meta_robots')
+    <meta name="robots" content="noindex,noindex" />
+@endsection
 @section('content')
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
@@ -53,6 +56,9 @@
         <section id="showslideracc">
 
         </section>
+
+        {{--            Đã xem   --}}
+        @include('frontend.pages.account.widget.__watched')
 
         {{-- <div class="modal fade login show order-modal" id="traGop" aria-modal="true">
 

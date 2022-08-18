@@ -86,26 +86,9 @@ Route::group(array('middleware' => ['theme']) , function (){
         });
 
 
-
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-        Route::group(['middleware' => ['cacheResponse: 604800']], function (){
-            Route::get('/', [HomeController::class , "index"]);
-//            Route::get('/ip', function (\Illuminate\Http\Request $request)
-//            {
-//                return $request->getClientIp();
-//                foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
-//                    if (array_key_exists($key, $_SERVER) === true){
-//                        foreach (explode(',', $_SERVER[$key]) as $ip){
-//                            $ip = trim($ip); // just to be safe
-//                            if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
-//                                return $ip;
-//                            }
-//                        }
-//                    }
-//                }
-//                return request()->ip(); // it will return server ip when no client ip found
-//
-//            });
+        Route::group(['middleware' => ['cacheResponse: 2592000']], function (){
+            Route::get('/', [HomeController::class , "index"])->name('homeIndex');
 
             Route::get('/tin-tuc', [ArticleController::class , "getList"]);
 
@@ -120,6 +103,9 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/lich-su-tra-gop',function(){
                 return view('frontend.pages.account.logs-installment');
             });
+
+            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                ->name('getIndex');
 
             Route::group(['middleware' => ['auth_custom']], function (){
 
@@ -140,8 +126,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
 
+                Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])
+                    ->name('getShowpassNick');
+
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
-                Route::get('/profile', [UserController::class , "profileSidebar"]);
+                Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
                 Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                 Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
@@ -178,6 +167,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
                         ->name('getChargeDepositHistory');
 
+                    Route::get('/lich-su-nap-the-{id}', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistoryDetail'])
+                        ->name('getChargeDepositHistoryDetail');
+
                     Route::post('{slug_category}/{id}/databuy', [AccController::class , "postBuyAccount"]);
 
                     /*Theme_1*/
@@ -186,12 +178,17 @@ Route::group(array('middleware' => ['theme']) , function (){
                     /*Theme_3*/
                     Route::get('/lich-su-mua-nick', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustom'])
                         ->name('nick-buyed');
+
+                    Route::get('/lich-su-mua-nick-{id}', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustomDetails'])
+                        ->name('getLogsCustomDetails');
+
                     Route::get('/lich-su-mua-account/get-first-pass', [\App\Http\Controllers\Frontend\AccController::class , 'getFirstPass'])
                         ->name('get-first-pass');
 
 
                     Route::get('/lich-su-mua-account/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpass'])
                         ->name('getShowpass');
+
                     //dịch vụ
                     Route::get('/dich-vu-da-mua', [\App\Http\Controllers\Frontend\ServiceController::class , 'getLogs'])
                         ->name('getBuyServiceHistory');
@@ -236,13 +233,15 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
+                    Route::get('/lich-su-atm-tu-dong-{id}', [\App\Http\Controllers\Frontend\TranferController::class , 'logsDetail']);
+
                     Route::get('/transfer/data', [\App\Http\Controllers\Frontend\TranferController::class , 'getHistoryTranfer']);
                     Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
                         ->name('changePassword');
                     Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
                         ->name('changePasswordApi');
                 });
-                // ROUTE cần auth load dữ liệu không cache
+
                 // ROUTE cần auth load dữ liệu không cache
 
                 Route::get('/get-tele-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getTelecom']);
@@ -309,59 +308,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             });
 
-            //        Route::get('/{slug_category}/{slug}/data',[AccController::class,"getShowCategoryData"]);
-            Route::get('/rut-vat-pham', function ()
-            {
-                return view('frontend.pages.account.user.rutvatpham');
-            });
-
-            Route::get('/quay-ngay', function ()
-            {
-                return view('frontend.pages.item_spin');
-            });
-
-            Route::get('/choi-ngay', function ()
-            {
-                return view('frontend.pages.item_play');
-            });
-
-            Route::get('/mua-ngay', function ()
-            {
-                return view('frontend.pages.item_buy');
-            });
-            Route::get('/mua-ngay/chi-tiet', function ()
-            {
-                return view('frontend.pages.item_buy_detail');
-            });
-            Route::get('/tai-khoan-da-mua', function ()
-            {
-                return view('frontend.pages.account.user.account_buy');
-            });
-            Route::get('/tai-khoan-tra-gop', function ()
-            {
-                return view('frontend.pages.account.user.account_installment');
-            });
-            Route::get('/lich-su-quay-thuong', function ()
-            {
-                return view('frontend.pages.account.user.spin_history');
-            });
-
-            Route::get('/gieo-que', function ()
-            {
-                return view('frontend.pages.account.user.gieoque');
-            });
             //đăng nhập, đăng xuất, đăng ký
 
             Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
                 ->name('register');
             Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-
-
-
-            Route::get('/show', function ()
-            {
-                return view('frontend.pages.service.show');
-            });
 
             Route::group(array(
                 'middleware' => ['auth']
@@ -372,16 +323,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('postDeposit');
                 Route::get('/get-amount-card', [\App\Http\Controllers\Frontend\ChargeController::class , 'getAmountCharge'])
                     ->name('getAmountCharge');
-
-
-//
-//
-//                    Route::get('/transfer-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'postDepositBank'])
-//                        ->name('postDepositBank');
-//                    Route::get('/get-bank', [\App\Http\Controllers\Frontend\TranferController::class , 'getBankTranfer']);
-//                    Route::post('/transfer-api', [\App\Http\Controllers\Frontend\TranferController::class , 'postTranferBank'])
-//                        ->name('postTranferBank');
-
 
             });
 
@@ -398,8 +339,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getLog');
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
                     ->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                    ->name('getIndex');
+
+                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
+
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])
                     ->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])
@@ -412,79 +354,12 @@ Route::group(array('middleware' => ['theme']) , function (){
         });
         Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
 
-//    Route::group(['middleware' => ['auth_custom']], function (){
-//        Route::group(['middleware' => ['cacheResponse:300']], function (){
-//            Route::get('/nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getDepositAuto'])
-//            ->name('getDepositAuto');
-//        });
-//    });
+
+        Route::get('/service-mobile', [\App\Http\Controllers\Frontend\ServiceController::class , 'getListMobile'])->name('getListMobile');
     });
 });
 
-//    }
-//    elseif (theme('')->theme_key == 'theme_2'){
-//        Route::group(array('middleware' => ['verify_shop']) , function (){
-//            Route::group(['middleware' => ['cacheResponse:300']], function (){
-//                Route::group(['middleware' => ['doNotCacheResponse']], function (){
-//                    Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
-//
-//
-//                });
-//                //đăng nhập, đăng xuất, đăng ký
-//                Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
-//                    ->name('login');
-//                Route::post('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'postLogin']);
-//                Route::post('loginApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginApi'])
-//                    ->name('loginApi');
-//                Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
-//                    ->name('loginfacebook');
-//                Route::get('/register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'showFormRegister'])
-//                    ->name('register');
-//                Route::post('register', [\App\Http\Controllers\Frontend\Auth\RegisterController::class , 'register']);
-//                Route::get('/changepassword', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePassword'])
-//                    ->name('changePassword');
-//                Route::post('/changePasswordApi', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'changePasswordApi'])
-//                    ->name('changePasswordApi');
-//
-//
-//
-//                Route::get('/blog', [ArticleController::class , "index"]);
-//                Route::get('/blog/data', [ArticleController::class , "getData"]);
-//                Route::get('/blog/{slug}/data', [ArticleController::class , "getCategoryData"]);
-//                Route::get('/blog/{slug}', [ArticleController::class , "show"]);
-//
-//                Route::get('/', function ()
-//                {
-//                    return view('frontend.theme_2.pages.index');
-//                });
-//                Route::get('/user/profile', function ()
-//                {
-//                    return view('frontend.theme_2.pages.user.profile');
-//                });
-////                Route::get('/blog', function ()
-////                {
-////                    return view('frontend.theme_2.pages.blog');
-////                });
-////                Route::get('/blog/single', function ()
-////                {
-////                    return view('frontend.theme_2.pages.blog_single');
-////                });
-//                Route::get('/nap-the', function ()
-//                {
-//                    return view('frontend.theme_2.pages.deposit');
-//                });
-//                Route::get('/mua-the', function ()
-//                {
-//                    return view('frontend.theme_2.pages.buy');
-//                });
-//                Route::get('/ho-tro', function ()
-//                {
-//                    return view('frontend.theme_2.pages.support');
-//                });
-//            });
-//        });
-//    }
-//}
+
 
 
 

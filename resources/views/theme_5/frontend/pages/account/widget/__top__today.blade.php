@@ -10,7 +10,7 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 1">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -37,7 +37,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 2">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -64,7 +64,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 3">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -91,7 +91,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 4">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -118,7 +118,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 5">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>
@@ -145,7 +145,7 @@
             </div>
             <div class="swiper-slide">
                 <div class="block-item scale-thumb">
-                    <div class="block-thumb">
+                    <div class="block-thumb top-buy" data-content="Top 6">
                         <a href="/mua-acc/id">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/trong/image 2.png" alt="" class="block-thumb-image">
                         </a>

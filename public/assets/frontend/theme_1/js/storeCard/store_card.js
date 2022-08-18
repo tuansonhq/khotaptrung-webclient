@@ -182,7 +182,7 @@ $(document).ready(function(){
         toastr.success('Đã sao chép: '+ data);
     })
 
-    $('#form-storeCard').submit(function (e) {
+    $('#form-storecard').submit(function (e) {
         e.preventDefault();
         $('#homealert').modal("show");
         var formSubmit = $(this);

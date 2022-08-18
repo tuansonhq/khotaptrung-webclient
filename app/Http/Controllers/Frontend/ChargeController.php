@@ -380,6 +380,37 @@ class ChargeController extends Controller
         }
     }
 
+    public function getChargeDepositHistoryDetail(Request $request,$id){
+        $url = '/deposit-auto/history/'.$id;
+
+        $val = array();
+        $jwt = Session::get('jwt');
+        if (empty($jwt)) {
+            return response()->json([
+                'status' => "LOGIN"
+            ]);
+        }
+        $method = "GET";
+        $val['token'] = $jwt;
+
+        $result_Api = DirectAPI::_makeRequest($url, $val, $method);
+        $response_data = $result_Api->response_data??null;
+
+        if(isset($response_data) && $response_data->status == 1) {
+
+            $data = $response_data->data;
+
+            return view('frontend.pages.charge.logsdetail')->with('data', $data);
+
+        }else{
+            return response()->json([
+                'status' => 0,
+                'message'=>$response_data->message??"Không thể lấy dữ liệu"
+            ]);
+        }
+
+    }
+
 //    public function getDepositHistory(Request $request)
 //    {
 //        if (AuthCustom::check()) {
