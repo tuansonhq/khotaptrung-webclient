@@ -1,6 +1,6 @@
 @if(isset($data_bot))
     <div class="description">
-        <h2 style="margin-bottom: 23px;font-size: 20px;text-transform: uppercase;">
+        <h2 style="margin-bottom: 23px;font-size: 20px;text-transform: uppercase;" class="c-mb-lg-2 fz-lg-16">
             Vị trí (MẶC ĐỊNH Ở VÁCH NÚI KAKAROT)</h2>
     </div>
     <div class="card c-mb-lg-16">

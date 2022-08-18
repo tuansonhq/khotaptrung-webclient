@@ -33,6 +33,7 @@
             <div class=" px-0 mt-lg-0" id="list-article" style="max-width: 100%">
                 <div class=" --custom p-3" id="new-article-update">
                     @include('frontend.widget.__menu__category__article')
+
                     <div class="tab-content-title mt-4">
                         <div class="card--body">
                             @if(isset($data) && count($data))
@@ -41,7 +42,7 @@
                                     <a href="/tin-tuc/{{ $item->slug }}">
                                         <div class="card">
                                             <div class="card-body c-p-16 c-p-lg-8">
-                                                <div class="article-thumb c-mb-16 c-mb-lg-0">
+                                                <div class="article-thumb c-mb-lg-0">
                                                     <img onerror="imgError(this)" src="{{ @\App\Library\MediaHelpers::media($item->image)}}" class="article-thumb-image" alt="article-thumbnail">
                                                 </div>
                                                 <div class="article-body">
