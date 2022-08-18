@@ -16,13 +16,13 @@
                                 <a href="/acc/{{ $item->randId }}">
                                     @if(isset($item->image))
 
-                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                        <img class="lazy item_buy_list_img-main" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                     @else
                                         <img class="item_buy_list_img-main" src="/assets/frontend/{{theme('')->theme_key}}/image/anhconten.jpg" alt="">
                                     @endif
 
                                     @if(isset($item->image_icon))
-                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}"  alt="{{ $item->title }}">
+                                        <img class="lazy item_buy_list_img-sale" src="{{\App\Library\MediaHelpers::media($item->image_icon)}}"  alt="{{ $item->randId }}">
                                     @else
                                         <img class="item_buy_list_img-sale" src="/assets/frontend/{{theme('')->theme_key}}/image/mgg.png"  alt="">
                                     @endif
