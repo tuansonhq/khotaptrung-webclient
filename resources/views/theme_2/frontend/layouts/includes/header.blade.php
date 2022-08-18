@@ -14,7 +14,7 @@
                 </ul>
             </div><!-- END Site Header Nav -->
             <div class="site-header-right d-flex ms-auto">
-                <ul class="nav header-right-nav align-items-center">
+                <ul class="nav header-right-nav align-items-center" style="z-index: 99999">
                     <li class="nav-item item-deposit d-none d-md-inline-block">
                         <a href="/nap-the" class="nav-link rounded-x ps-4 px-4"><strong>Nạp thẻ ngay <i class="las la-angle-right"></i></strong></a>
                     </li>

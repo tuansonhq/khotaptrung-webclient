@@ -1,5 +1,32 @@
 $(document).ready(function (e) {
-
+    let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
+        autoplay: false,
+        updateOnImagesReady: true,
+        watchSlidesVisibility: false,
+        lazyLoadingInPrevNext: false,
+        lazyLoadingOnTransitionStart: false,
+        slidesPerView: 4.5,
+        speed: 300,
+        spaceBetween: 16,
+        touchMove: true,
+        grabCursor: true,
+        observer: true,
+        observeParents: true,
+        breakpoints: {
+            992: {
+                freeMode: true,
+                slidesPerView: 3.2,
+            },
+            768: {
+                freeMode: true,
+                slidesPerView: 2.3,
+            }
+        },
+        navigation: {
+            nextEl: ".class-config-demo .navigation.slider-next",
+            prevEl: ".class-config-demo .navigation.slider-prev",
+        },
+    });
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
