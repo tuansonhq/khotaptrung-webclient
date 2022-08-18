@@ -1585,7 +1585,7 @@ a:hover .__icon.--path__custom:after {
         display: flex;
         background: #FBFBFD;
         min-height: 1rem;
-        padding: 8px 16px;
+        padding: 18px 16px;
         position: relative;
         align-items: center;
     }

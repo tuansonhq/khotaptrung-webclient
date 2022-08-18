@@ -232,7 +232,9 @@ $(document).ready(function() {
 
     /*Seemore*/
     $(document).on('click','.see-more',function () {
-        handleToggleDesc($(this));
+        if (width >= 992) {
+            handleToggleDesc($(this));
+        }
     });
     $('body').find('.content-desc').dblclick(function () {
         handleToggleDesc('.see-more');
@@ -258,25 +260,25 @@ $(document).ready(function() {
         }
     }
     // dblclick on mobile
-    if (width < 1200) {
-        let touchtime = 0;
-        content_desc.on("click", function() {
-            if (!touchtime) {
-                // set first click
-                touchtime = new Date().getTime();
-            } else {
-                // compare first click to this click and see if they occurred within double click threshold
-                if (((new Date().getTime()) - touchtime) < 500) {
-                    // double click occurred
-                    handleToggleDesc('.see-more');
-                    touchtime = 0;
-                } else {
-                    // not a double click so set as a new first click
-                    touchtime = new Date().getTime();
-                }
-            }
-        });
-    }
+    // if (width < 1200) {
+    //     let touchtime = 0;
+    //     content_desc.on("click", function() {
+    //         if (!touchtime) {
+    //             // set first click
+    //             touchtime = new Date().getTime();
+    //         } else {
+    //             // compare first click to this click and see if they occurred within double click threshold
+    //             if (((new Date().getTime()) - touchtime) < 500) {
+    //                 // double click occurred
+    //                 handleToggleDesc('.see-more');
+    //                 touchtime = 0;
+    //             } else {
+    //                 // not a double click so set as a new first click
+    //                 touchtime = new Date().getTime();
+    //             }
+    //         }
+    //     });
+    // }
 $('div').height()
     /*Seemore nick*/
     let content_desc_nick = $('.content-desc-nick');
