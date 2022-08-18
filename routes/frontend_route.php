@@ -104,8 +104,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 return view('frontend.pages.account.logs-installment');
             });
 
-            Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
-                ->name('getIndex');
+
 
             Route::group(['middleware' => ['auth_custom']], function (){
 
@@ -254,6 +253,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             // Route không cần Auth load dữ liệu không cache
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
+
                 Route::post('/logout', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'logout'])->name('logout');
                 Route::get('/sitemap.xml', [\App\Http\Controllers\Frontend\SiteMapController::class , 'index']);
                 Route::get('/login', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'login'])
@@ -339,6 +339,9 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('getLog');
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])
                     ->name('getLogAcc');
+
+                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])
+                    ->name('getIndex');
 
                 Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
 

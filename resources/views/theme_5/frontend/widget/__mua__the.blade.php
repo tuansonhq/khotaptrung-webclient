@@ -28,7 +28,7 @@
                     <div class="buy-card-section c-mb-8 c-mb-sm-0">
                         <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-pb-sm-8">Chọn loại thẻ</label>
                         <div class="col-md-12 p-0">
-                            <div class="row m-0" id="cardGameList">
+                            <div class="row m-0 c-mx-n4" id="cardGameList">
                                 <div class="loader position-relative" style="margin: 2rem 0">
                                     <div class="loading-spokes">
                                         <div class="spoke-container">
@@ -107,7 +107,7 @@
                     <div class="buy-card-section c-mb-8">
                         <label class="text-form fz-13 fw-500 c-py-16 c-mb-sm-0 c-py-sm-8">Chọn mệnh giá</label>
                         <div class="col-md-12 p-0">
-                            <div class="row m-0" id="cardAmountList">
+                            <div class="row m-0 c-mx-n4" id="cardAmountList">
 
                             </div>
                         </div>
