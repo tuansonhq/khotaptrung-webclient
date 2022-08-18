@@ -110,7 +110,9 @@
 
 
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-                @include('frontend.widget.__buy__acc__home')
+{{--                @include('frontend.widget.__buy__acc__home')--}}
+                @include('frontend.widget.__content__home__game__random')
+                @include('frontend.widget.__content__home__game_thuong')
                 {{--                @include('frontend.widget.__log__coin__home')--}}
 
 
