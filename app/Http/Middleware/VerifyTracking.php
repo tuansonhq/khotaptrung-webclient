@@ -20,6 +20,7 @@ class VerifyTracking
 
         if ($request->filled('utm_source')) {
             $utm_source = $request->utm_source;
+
             $minutes = 1440;
 
             Cookie::queue('utm_source',$utm_source,$minutes);
@@ -28,6 +29,7 @@ class VerifyTracking
         if ($request->filled('utm_campaign')) {
             $utm_campaign = $request->utm_campaign;
             $minutes = 1440;
+
             Cookie::queue('utm_campaign',$utm_campaign,$minutes);
         }
 
