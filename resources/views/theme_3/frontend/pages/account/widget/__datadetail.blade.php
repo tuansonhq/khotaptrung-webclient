@@ -970,4 +970,17 @@
         </div>
         @endif
     @endif
+
+
+
+    <input type="hidden" name="cooki_image" class="cooki_image" value="{{\App\Library\MediaHelpers::media($data->image)}}">
+    <input type="hidden"  name="cooki_category" class="cooki_category" value="{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}">
+    <input type="hidden" name="cooki_randid" class="cooki_randid"  value="{{ $data->randId }}">
+    <input type="hidden" name="cooki_price" class="cooki_price"  value="{{ str_replace(',','.',number_format($data->price)) }}">
+    <input type="hidden" name="cooki_price_old" class="cooki_price_old"  value="{{ str_replace(',','.',number_format($data->price_old)) }}">
+    <input type="hidden" name="cooki_promotion" class="cooki_promotion"  value="{{ $sale_percent??0 }}">
+    <input type="hidden" name="cooki_buy_account" class="cooki_buy_account"  value="{{ $totalaccount??0 }}">
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nickcook.js?v={{time()}}"></script>
+
+
 @endif
