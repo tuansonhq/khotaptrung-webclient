@@ -6,6 +6,9 @@
     <meta name="robots" content="noindex,nofollow"/>
 @endsection
 <!-- Cookie  -->
+@section('styles')
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
+@endsection
 @php
     if (isset($data->price_old)) {
         $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
@@ -55,7 +58,6 @@
     <div class="container c-container" id="account-detail">
         @if($data == null)
             <div class="item_buy">
-
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
@@ -69,9 +71,7 @@
                         </span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         @else
             <div class="data__menuacc">
@@ -837,7 +837,6 @@
 
 @section('scripts')
     <script>
-
         $('body').on('click', '#account-detail .btn-muangay', function (e) {
             e.preventDefault();
             $('#orderModal').modal('show');
@@ -880,8 +879,6 @@
             e.preventDefault();
             $('#orderSuccses').modal('show');
         })
-
-
     </script>
 @endsection
 
