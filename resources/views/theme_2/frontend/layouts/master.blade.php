@@ -41,7 +41,7 @@
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
 
-
+    @yield('styles')
     <!--    <link rel="stylesheet" href="css/main.css">-->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
 
@@ -191,12 +191,9 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/sticky-kit.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
-
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
 
-
-
-
+@yield('scripts')
 </body>
 
 </html>

@@ -22,7 +22,7 @@
                                             <div class="row marginauto ">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail">
                                                     @if(isset($item->image))
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
                                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
@@ -41,9 +41,9 @@
                                                             ?>
                                                             {{--                                                @dd($att_valuesv2)--}}
                                                             @foreach($att_values as $att_value)
-                    
+
                                                                 @if(isset($att_value->module) && $att_value->module == 'acc_label' && $att_value->is_slug_override == null)
-                                                                    
+
                                                                     @if($index < 4)
                                                                         @if(isset($att_value->parent))
                                                                             <?php

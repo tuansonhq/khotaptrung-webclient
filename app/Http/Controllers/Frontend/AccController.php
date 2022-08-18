@@ -235,7 +235,15 @@ class AccController extends Controller
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
             $slug_category = $data->category->slug;
-            return view('frontend.pages.account.detail')->with('data',$data)->with('slug',$slug)->with('slug_category',$slug_category);
+
+            $game_auto_props =null;
+
+            if (isset($data->game_auto_props) && count($data->game_auto_props) > 0){
+                $game_auto_props = $data->game_auto_props;
+            }
+
+
+            return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
         }
         else{
             $data = null;

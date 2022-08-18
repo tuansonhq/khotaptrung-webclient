@@ -5,7 +5,6 @@
                 {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
                 Tài khoản liên quan
             </h2>
-            <a href="" class="link arr-right ml-auto">Xem thêm</a>
         </div>
 
     <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
@@ -20,7 +19,7 @@
                             <div class="card">
                                 <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                                     <div class="account-thumb c-mb-8">
-                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}" class="account-thumb-image lazy">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}" class="account-thumb-image lazy">
                                     </div>
                                     <div class="account-title c-mb-8">
                                         <div class="text-title fw-700 text-limit limit-1">#{{ $item->randId }}</div>

@@ -87,7 +87,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
-        Route::group(['middleware' => ['cacheResponse: 2592000']], function (){
+        Route::group(['middleware' => ['cacheResponse: 2592000','tracking']], function (){
             Route::get('/', [HomeController::class , "index"])->name('homeIndex');
 
             Route::get('/tin-tuc', [ArticleController::class , "getList"]);
