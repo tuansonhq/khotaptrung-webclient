@@ -141,6 +141,9 @@
     cursor: default;
 }
 
+.nice-select .current:empty:before {
+    content: '--Không chọn--';
+}
 .nice-select .list {
     display: none;
 }
@@ -160,3 +163,5 @@
     overflow-y: scroll;
     padding-right: 4px;
 }
+
+

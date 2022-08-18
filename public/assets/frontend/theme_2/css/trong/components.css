@@ -1027,6 +1027,27 @@ section.outstanding-service {
     transform: translate(-50%,-50%);
 }
 
+.modal-loader-spin {
+    display: block;
+    border: 7px solid var(--primary-color);
+    border-left-color: #FFF;
+    border-radius: 100%;
+    width: 67px;
+    height: 67px;
+    margin: 25px auto;
+    animation: spin 1.25s linear infinite;
+}
+@keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
 @media screen and (max-width: 992px) {
     .section-category-tab,
     .flash-sale,

@@ -35,14 +35,16 @@ $(document).ready(function(){
 
                 }
                 else if(data.status === "ERROR"){
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: "Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu",
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!(account)')
+
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: "Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu",
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
                 else if(data.status == true){
                     $('#info>div:first-child').html(' <div class="small op-5 text-end"> Chào '+ fn(data.info.username, 6)  +'</div> <div class="text-end">Số dư: '+formatNumber(data.info.balance)+' đ</div>')
@@ -68,14 +70,8 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!(account)')
+
 
             },
             complete: function (data) {

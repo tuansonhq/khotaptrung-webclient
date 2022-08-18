@@ -37,7 +37,7 @@
                     <button class="media-web" type="submit"></button>
                 </form>
             </div>
-            <hr>
+            <hr class="m-0">
             <div class="text-title fw-700 c-py-16 c-py-lg-8 c-mb-lg-8">
                 Chọn dịch vụ
             </div>
@@ -46,7 +46,7 @@
         </section>
 
         {{--            Dịch vụ khác   --}}
-        @include('frontend.widget.__services__other')
+{{--        @include('frontend.widget.__services__other')--}}
     </div>
 
 @endsection
