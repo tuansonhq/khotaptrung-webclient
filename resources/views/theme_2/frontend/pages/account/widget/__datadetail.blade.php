@@ -13,7 +13,7 @@
 
                                             <div class="swiper-slide">
                                                 <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                    <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                                 </div>
                                             </div>
 
@@ -28,7 +28,7 @@
                                         @foreach(explode('|',$data->image_extension) as $val)
                                         <div class="swiper-slide">
                                             <div class="gallery-photo" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img class="lazy" onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
+                                                <img class="lazy" src="{{\App\Library\MediaHelpers::media($val)}}" alt="mua-nick" >
                                             </div>
                                         </div>
                                         @endforeach

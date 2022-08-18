@@ -122,7 +122,7 @@
                         html += '<div class="item-category">';
                             html += '<div class="card">';
                                 html += '<a href="/acc/' +randId_c + '" class="card-body scale-thumb c-p-16 c-p-lg-12">';
-                                    html += '<div class="account-thumb c-mb-8"><img onerror="imgError(this)" src="' + image_c + '" alt="" class="account-thumb-image lazy"></div>';
+                                    html += '<div class="account-thumb c-mb-8"><img src="' + image_c + '" alt="" class="account-thumb-image lazy"></div>';
                                     html += '<div class="account-title"><div class="text-title fw-700 text-limit limit-1">' + category_c + '</div></div>';
                                     html += '<div class="account-info c-mb-8">';
                                         html += '<div class="info-attr">Đã bán: ' + buy_account_c + '</div>';

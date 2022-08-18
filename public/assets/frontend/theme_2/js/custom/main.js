@@ -233,7 +233,7 @@ $(document).ready(function() {
          max_height_desc = $('body').find('.content-desc').outerHeight();
         $('body').find('.content-desc').addClass('hide');
     }
-    /*set max-height for content*/
+    /*set max-heigh t for content*/
     /*handle toggle*/
     function handleToggleDesc(selector) {
         let content_desc = $('body').find('.content-desc');
@@ -250,7 +250,7 @@ $(document).ready(function() {
     // dblclick on mobile
     if (width < 1200) {
         let touchtime = 0;
-        content_desc.on("click", function() {
+        $('body').find('.content-desc').on("click", function() {
             if (!touchtime) {
                 // set first click
                 touchtime = new Date().getTime();

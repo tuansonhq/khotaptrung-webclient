@@ -49,6 +49,9 @@ return [
             '5000000-10000000' => 'Trên 5 Triệu',
             '10000000' => 'Trên 10 Triệu',
         ],
+        'viewed'=>[
+            'limit_count'=>10,
+        ],
     ],
     'txns' => [
         'trade_type' => [

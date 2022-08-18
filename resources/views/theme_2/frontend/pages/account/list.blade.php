@@ -317,7 +317,7 @@
             <input type="hidden" name="sort_by_data" class="sort_by_data" value="">
 
             {{--    Modal xác nhận thanh toán--}}
-            <div class="modal fade modal-big modal__buyacount loadModal__acount" id="LoadModal">
+            <div class="modal fade modal__buyacount loadModal__acount" id="LoadModal">
                 <div class="modal-dialog modal-dialog-centered modal-custom">
                     <div class="modal-content c-p-24 data__form__random">
 
@@ -354,6 +354,7 @@
 
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/buyaccrandom.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js?v{{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/account-list.js?v={{time()}}"></script>
 @endsection
 

@@ -16,6 +16,7 @@ let content_history = $('.list-content');
 let wrap_history = content_history.length ? content_history.parent() : '';
 
 function loadDataApi(query) {
+
     let slug = $('.slug').val();
 
     var url = '/mua-acc/' + slug;

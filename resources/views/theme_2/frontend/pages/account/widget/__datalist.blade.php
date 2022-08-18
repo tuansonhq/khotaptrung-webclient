@@ -11,7 +11,7 @@
                         <div class="card">
                             <a href="javascript:void(0)" data-id="{{ $item->randId }}" class="card-body scale-thumb buyacc">
                                 <div class="account-thumb c-mb-8">
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{\App\Library\MediaHelpers::media($item->title)}}" class="account-thumb-image lazy" onerror="imgError(this)">
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ @$item->randId }}" class="account-thumb-image lazy">
                                 </div>
                                 <div class="account-title">
                                     <div class="text-title fw-700 text-limit limit-1">{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}</div>
@@ -76,7 +76,7 @@
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
-                            <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+                            <div class="modal-body c-p-0">
                                 <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                                     Thông tin mua Acc
                                 </div>
@@ -180,7 +180,7 @@
                         <div class="card">
                             <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb">
                                 <div class="account-thumb c-mb-8">
-                                    <img onerror="imgError(this)"  src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title??'' }}"
+                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ @$item->randId }}"
                                          class="account-thumb-image lazy">
                                 </div>
                                 <div class="account-title">

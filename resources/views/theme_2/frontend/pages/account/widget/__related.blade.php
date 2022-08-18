@@ -20,7 +20,7 @@
                             <div class="card">
                                 <a href="/acc/{{ $item->randId }}" class="card-body scale-thumb c-p-16 c-p-lg-12">
                                     <div class="account-thumb c-mb-8">
-                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}" class="account-thumb-image lazy">
+                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}" class="account-thumb-image lazy">
                                     </div>
                                     <div class="account-title c-mb-8">
                                         <div class="text-title fw-700 text-limit limit-1">#{{ $item->randId }}</div>

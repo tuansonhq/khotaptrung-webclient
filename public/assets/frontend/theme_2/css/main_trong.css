@@ -2260,3 +2260,10 @@ i.title-info:after {
         transform: unset;
     }
 }
+@media screen and (max-width: 576px) {
+    .modal .modal-dialog {
+        padding-right: 16px;
+        padding-left: 16px;
+        margin: auto;
+    }
+}

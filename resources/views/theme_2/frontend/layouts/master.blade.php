@@ -191,12 +191,9 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/sticky-kit.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
-
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
 
-
-
-
+@yield('scripts')
 </body>
 
 </html>
