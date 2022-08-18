@@ -5,7 +5,6 @@
                 {{--            <i class="icon-title c-mr-8" style="--path:url(/assets/frontend/{{theme('')->theme_key}}/image/svg/1362.svg)"></i>--}}
                 Tài khoản liên quan
             </h2>
-            <a href="" class="link arr-right ml-auto">Xem thêm</a>
         </div>
 
     <!-- Đặt tên class cho swiper sau đó config trong file "public/assets/frontend/{{theme('')->theme_key}}/js/swiper-slider-conf/swiper-slider-conf.js" -->
