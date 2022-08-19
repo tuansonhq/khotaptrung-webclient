@@ -10,7 +10,7 @@
 @section('content')
     <div class="site-content-body bg-white first last p-0">
         <div class="block-profile" >
-            @include('frontend.widget.__side__bar')
+            @include('frontend.widget.__menu_profile')
             <div class="block-content p-3">
                 <div class="tab-content mb-4">
                     <div class="tab-pane fade data__muathe_tab" id="item" role="tabpanel" aria-labelledby="item-tab"  style="min-height: 700px;">
