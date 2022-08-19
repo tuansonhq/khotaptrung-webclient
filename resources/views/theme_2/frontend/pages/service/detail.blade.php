@@ -43,7 +43,6 @@
 
         <section class="service-detail">
             {{--            Slider baner    --}}
-            @include('frontend.widget.__slider__banner__service')
             <div class="section-header">
                 <h1 class="section-title">
                     {{ @$data->title }}
