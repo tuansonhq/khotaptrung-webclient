@@ -47,7 +47,7 @@
                             </li>
                         </ul>
                     </div>
-                    <form method="POST" action="{{route('postStoreCard')}}" id="form-storecard">
+                    <form method="POST" action="{{route('postStoreCard')}}" id="form-storeCard">
                         @csrf
                         <div style="display: none" id="input_telecom"></div>
                         <div style="display: none" id="input_amount"></div>
