@@ -10,7 +10,7 @@
 @section('content')
     <div class="site-content-body bg-white first last p-0">
         <div class="block-profile" >
-            @include('frontend.widget.__side__bar')
+            @include('frontend.widget.__menu_profile')
             <div class="block-content p-3">
                 <div class=" mb-4">
                     <div class="data__giaodich_tab" id="history" style="min-height: 628px;">
@@ -24,20 +24,21 @@
 
 
                                     <div class="input-group date-ranger-picker ms-3">
-                                        <input type="text" class="form-control border-end-0 started_at_txns" name="started_at_txns" placeholder="DD/MM/YYYY" value="">
+                                        <input type="text" class="form-control border-end-0 started_at_txns" name="started_at" placeholder="DD/MM/YYYY" value="">
                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                        <input type="text" class="form-control border-start-0 ended_at_txns" name="ended_at_txns" placeholder="DD/MM/YYYY" value="">
+                                        <input type="text" class="form-control border-start-0 ended_at_txns" name="ended_at" placeholder="DD/MM/YYYY" value="">
                                         <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <div class="text-center ajax-loading-store load_spinner" >
-                            <div class="cv-spinner">
-                                <span class="spinner"></span>
-                            </div>
-                        </div>
+
                         <div id="data_lich__su_history">
+                            <div class="text-center ajax-loading-store load_spinner" >
+                                <div class="cv-spinner">
+                                    <span class="spinner"></span>
+                                </div>
+                            </div>
                             @include('frontend.pages.transaction.widget.__transaction__history')
                         </div>
 
@@ -51,10 +52,10 @@
 
 
     {{--    transaction--}}
-    <input type="hidden" name="id_txns_data" class="id_txns_data" value="">
-    <input type="hidden" name="started_at_txns_data" class="started_at_txns_data" value="">
-    <input type="hidden" name="ended_at_txns_data" class="ended_at_txns_data" value="">
-    <input type="hidden" name="hidden_page_service_txns" id="hidden_page_service_txns" class="hidden_page_service_txns" value="1" />
+{{--    <input type="hidden" name="id_txns_data" class="id_txns_data" value="">--}}
+    <input type="hidden" name="started_at_data" class="started_at_data" value="">
+    <input type="hidden" name="ended_at_data" class="ended_at_data" value="">
+    <input type="hidden" name="hidden_page" id="hidden_page_service" class="hidden_page_service" value="1" />
 
 
     <script src="/assets/frontend/theme_2/js/account/txns-history.js?v={{time()}}"></script>
