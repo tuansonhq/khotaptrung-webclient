@@ -6,8 +6,12 @@
 
                 <div class="col-md-12 left-right napgamekhac">
                     <div class="row marginauto">
-                        <div class="col-md-12 text-left left-right">
+                        <div class="d-flex col-md-12 text-left left-right">
                             <span>Tài khoản liên quan</span>
+                            <div class="navbar-spacer"></div>
+                            <div class="text-view-more">
+                                <a href="/mua-acc/{{ $data[0]->category->slug }}" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/arrowright.svg)"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
