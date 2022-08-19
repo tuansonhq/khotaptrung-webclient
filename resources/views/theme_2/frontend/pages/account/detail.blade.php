@@ -5,6 +5,7 @@
 @section('meta_robots')
     <meta name="robots" content="noindex,nofollow"/>
 @endsection
+
 <!-- Cookie  -->
 @section('styles')
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
