@@ -1,12 +1,17 @@
 $(document).ready(function (e) {
     let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
+        navigation: {
+            nextEl: '.class-config-account-viewed .swiper-button-next',
+            prevEl: '.class-config-account-viewed .swiper-button-prev',
+        },
         autoplay: false,
         updateOnImagesReady: true,
         watchSlidesVisibility: false,
         lazyLoadingInPrevNext: false,
         lazyLoadingOnTransitionStart: false,
         slidesPerView: 4.5,
-        speed: 300,
+        speed: 800,
+        slidesPerGroup: 3,
         spaceBetween: 16,
         touchMove: true,
         grabCursor: true,
@@ -20,11 +25,11 @@ $(document).ready(function (e) {
             768: {
                 freeMode: true,
                 slidesPerView: 2.3,
+            },
+            480: {
+                slidesPerView: 1.8,
+
             }
-        },
-        navigation: {
-            nextEl: ".class-config-demo .navigation.slider-next",
-            prevEl: ".class-config-demo .navigation.slider-prev",
         },
     });
     var slug = $('.slug').val();
@@ -257,6 +262,10 @@ $(document).ready(function (e) {
 
     function activateRelatedSlider(params) {
         var list_dong_gia = new Swiper('.list-dong-gia', {
+            navigation: {
+                nextEl: '.list-dong-gia .swiper-button-next',
+                prevEl: '.list-dong-gia .swiper-button-prev',
+            },
             autoplay: false,
             // preloadImages: false,
             updateOnImagesReady: true,
@@ -269,6 +278,7 @@ $(document).ready(function (e) {
             centeredSlides: false,
             slidesPerView: 4.5,
             speed: 800,
+            slidesPerGroup: 3,
             spaceBetween: 0,
             touchMove: true,
             freeModeSticky:true,

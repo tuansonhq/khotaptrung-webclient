@@ -171,6 +171,7 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
         url: url_ajax,
         data: query,
         beforeSend: function (xhr) {
+            $('#listLoader').css('min-height', `500px`);
             $("#account_data").empty().html('');
             $("#listLoader").removeClass('d-none');
         },
@@ -193,6 +194,11 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
         },
         complete: function (data) {
             $("#listLoader").addClass('d-none');
+            $("#listLoader").removeAttr("style");
+            // Scroll to top of account_data div
+            $('html, body').animate({
+                scrollTop: $('#account_data').offset().top - 300
+            }, 600 );
         }
     });
 }

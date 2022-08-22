@@ -57,13 +57,13 @@
                         <div class="col-3 item_buy_form_search">
                             <div class="input-group">
                                 <button type="submit" class="btn btn-category-service btn-timkiem" style="position: relative">
-                                    Tìm kiếm
+                                    <span class="btn_timkiem_text">Tìm kiếm</span>
                                     <div class="row justify-content-center loading-data__timkiem">
 
                                     </div>
                                 </button>
                                 <a href="javascript:void(0)" class="btn btn-danger btn-tatca" style="position: relative">
-                                    Tất cả
+                                    <span class="btn-all_text">Tất cả</span>
                                     <div class="row justify-content-center loading-data__timkiem">
 
                                     </div>
