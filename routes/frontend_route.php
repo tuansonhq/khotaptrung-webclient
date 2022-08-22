@@ -264,7 +264,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     ->name('loginApi');
                 Route::get('/404', function ()
                 {
-                    return view('frontend.pages.404');
+                    return view('frontend.pages.404')->name('404');
                 });
                 Route::get('/loginfacebook', [\App\Http\Controllers\Frontend\Auth\LoginController::class , 'loginfacebook'])
                     ->name('loginfacebook');

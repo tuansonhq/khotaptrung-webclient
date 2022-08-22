@@ -76,6 +76,7 @@ class AccController extends Controller
             cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
         }
 
+
         if ($request->ajax()){
 
             $page = $request->page;
@@ -217,14 +218,12 @@ class AccController extends Controller
 
             $data = $response_cate_data->data;
 
+            if (!isset($data->childs) && $data->status == 0){
+                return view('frontend.404.404');
+            }
+
             $dataAttribute = $data->childs;
 
-            if (!isset($dataAttribute)){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'Không lấy được dữ liệu childs.',
-                ]);
-            }
 
             $auto_properties = null;
 
@@ -251,6 +250,9 @@ class AccController extends Controller
                 ->with('dataAttribute',$dataAttribute)
                 ->with('auto_properties',$auto_properties)
                 ->with('slug',$slug);
+        }
+        elseif ($result_Api_cate->response_code == 404){
+            return view('frontend.404.404');
         }
         else{
             $data = null;
@@ -294,12 +296,14 @@ class AccController extends Controller
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
         }
         else{
+
             $data = null;
-            $message = $response_cate_data->message??"Không thể lấy dữ liệu";
+            $message = $response_cate_data->message??"Không thể lấy dữ liệu hoặc tài khoản không tồn tại.";
 
             return view('frontend.pages.account.detail')
                 ->with('message',$message)
                 ->with('data',$data);
+
         }
 
 
