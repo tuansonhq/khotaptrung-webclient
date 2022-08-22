@@ -59,14 +59,16 @@ $(document).ready(function(){
 
 
                 }  else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi xảy ra ! (account)'+data.message)
+
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
             },
             error: function (data) {

@@ -1,107 +1,64 @@
-@if(empty($data->data))
+@extends('frontend.layouts.master')
+@section('seo_head')
+    @include('frontend.widget.__seo_head')
+    <meta name="robots" content="noindex,nofollow" />
+@endsection
+@push('js')
 
-    <div class="table-responsive">
-        <table cellspacing="0" cellpadding="0" class="table table-hover">
-            <thead>
-            <tr>
-                <th>Thời gian</th>
-                <th>Số tiền</th>
-                <th>Thực nhận</th>
-                <th>Trạng thái</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if(isset($data) && count($data) > 0)
-                @php
-                    $prev = null;
-                @endphp
+@endpush
 
-                @foreach ($data as $key => $item)
-                    @php
-                        $curr = \App\Library\Helpers::formatDate($item->created_at);
-                    @endphp
-                    @if($curr != $prev)
-                        <tr>
-                            <td colspan="8"><b>Ngày {{$curr}}</b></td>
-                        </tr>
-                        <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ formatPrice((int)$item->price) }} đ</td>
-                            <td>
-                                @if($item->status == 2 )
-                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
-                                @elseif($item->status == 1)
-                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
-                                @elseif($item->status == 0)
-                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
-                                @elseif($item->status == 3)
-                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
-                                @endif
-                            </td>
-                        </tr>
-                        @php
-                            $prev = $curr;
-                        @endphp
-                    @else
-                        <tr>
-                            <td>{{ formatDateTime($item->created_at) }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ formatPrice((int)$item->price) }} đ</td>
-                            <td>
-                                @if($item->status == 2 )
-                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
-                                @elseif($item->status == 1)
-                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
-                                @elseif($item->status == 0)
-                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
-                                @elseif($item->status == 3)
-                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
-                                @endif
-                            </td>
-                        </tr>
-                    @endif
+@section('content')
+    <div class="site-content-body bg-white first last p-0">
+        <div class="block-profile" >
+            @include('frontend.widget.__menu_profile')
+            <div class="block-content p-3">
+                <div class="tab-content mb-4">
+                    <div class="tab-pane fade data__charge_atm_tab" id="tranfer_atm" role="tabpanel" aria-labelledby="tranfer-tab"  style="min-height: 700px;">
+                        <form class="form-charge form__lsmt">
+                            <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
+                                <h4 class="title-style-left mb-3 mt-3">Lịch sử nạp ATM</h4>
+                                {{--                                <div class="d-flex align-items-center mb-3">--}}
+                                {{--                                    <input type="text" placeholder="ID" name="id_lsmt" class="id_lsmt">--}}
+                                {{--                                    <div class="input-group date-ranger-picker ms-3">--}}
 
-                @endforeach
-            @else
-                <tr>
-                    <td colspan="8">
-                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                    </td>
-                </tr>
-            @endif
-
-            </tbody>
-        </table>
-    </div>
-
-@endif
-<div class="row">
-    <div class="col-md-12 left-right justify-content-end">
-        <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row mt-2  pt-3">
-            <div class="text-secondary mb-2">
-                @if(isset($total) && isset($per_page))
-                    Hiển thị {{ $per_page }} / {{ $total }} kết quả
-                @endif
-            </div>
-
-
-            <nav class="page-pagination mb-2 paginate__v1_index_transfer paginate__v1_mobie frontend__panigate">
-                @if(isset($data))
-                    @if($data->total()>1)
-                        <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
-                            <div class="col-auto paginate__category__col">
-                                <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
-                                    {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                                {{--                                        <input type="text" class="form-control border-end-0 started_at_lsmt" placeholder="DD/MM/YYYY" value="">--}}
+                                {{--                                        <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>--}}
+                                {{--                                        <input type="text" class="form-control border-start-0 ended_at_lsmt" placeholder="DD/MM/YYYY" value="">--}}
+                                {{--                                        <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>--}}
+                                {{--                                        <input type="hidden" name="log" value="store-card">--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
+                            </div>
+                        </form>
+                        <div>
+                            <div class="text-center ajax-loading-store load_spinner" >
+                                <div class="cv-spinner">
+                                    <span class="spinner"></span>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                @endif
-            </nav>
+
+                        <div id="data_charge_atm_history">
+                            @include('frontend.pages.tranfer.widget.__tranfer__history')
+                        </div>
+
+                    </div><!-- BEGIN Tab Content Item -->
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div id="copy"></div>
+    <div class="after"></div>
 
 
+    <input type="hidden" name="id_tranfer_data" class="id_tranfer_data" value="">
+    <input type="hidden" name="started_at_tranfer_data" class="started_at_tranfer_data" value="">
+    <input type="hidden" name="ended_at_tranfer_data" class="ended_at_tranfer_data" value="">
+    <input type="hidden" name="hidden_page_service_tranfer" id="hidden_page_service_tranfer" class="hidden_page_service_tranfer" value="1" />
+
+    <script src="/assets/frontend/theme_2/js/account/recharge-atm-history.js?v={{time()}}"></script>
+
+
+
+@endsection
 

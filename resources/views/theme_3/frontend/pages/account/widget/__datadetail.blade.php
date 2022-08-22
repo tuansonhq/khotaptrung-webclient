@@ -20,7 +20,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right" id="showdetailacc">
+                            <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-lg-6 col-md-12 left-right">
                                         <div class="row marginauto">
@@ -51,15 +51,6 @@
                                                 <div class="gallery-thumb" style="overflow: hidden">
                                                     <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
-                                                            <div class="swiper-slide">
-                                                                <a class="" data-fancybox="gallerycoverDetail" href="https://cdn.upanh.info//storage/upload/product-acc/902/images/0xTbGLPKIv_1648889770.jpg">
-                                                                    <div class="row marginauto">
-                                                                        <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
-                                                                            <img src="https://cdn.upanh.info//storage/upload/product-acc/902/images/0xTbGLPKIv_1648889770.jpg" alt="" class="lazy">
-                                                                        </div>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
                                                                     <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
@@ -250,36 +241,35 @@
 
                                                         @endif
                                                     @else
-                                                    <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                        <div class="row marginauto nick-detail-button">
-                                                            <div class="col-md-12 left-right">
-                                                                <a href="/nap-the" class="button-not-bg-ct">
-                                                                    <ul>
-                                                                        <li><small>Thẻ cào</small></li>
-                                                                        <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
-                                                                    </ul>
-                                                                </a>
+                                                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
+                                                            <div class="row marginauto nick-detail-button">
+                                                                <div class="col-md-12 left-right">
+                                                                    <a href="/nap-the" class="button-not-bg-ct">
+                                                                        <ul>
+                                                                            <li><small>Thẻ cào</small></li>
+                                                                            <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
+                                                                        </ul>
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endif
 
+                                                    @if(isset($data->price_atm))
+                                                        <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
+                                                            <div class="row marginauto nick-detail-button">
+                                                                <div class="col-md-12 left-right">
+                                                                    <a href="/recharge-atm" class="button-not-bg-ct">
+                                                                        <ul>
+                                                                            <li><small>ATM, Momo</small></li>
+                                                                                <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
 
-                                            @if(isset($data->price_atm))
-                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                <div class="row marginauto nick-detail-button">
-                                                    <div class="col-md-12 left-right">
-                                                        <a href="/recharge-atm" class="button-not-bg-ct">
-                                                            <ul>
-                                                                <li><small>ATM, Momo</small></li>
-                                                                @if(isset($data->price_atm))
-                                                                    <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
-                                                                @endif
+                                                                        </ul>
+                                                                    </a>
 
-                                                            </ul>
-                                                        </a>
-
-                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endif
                                                 </div>
                                             </div>
@@ -330,7 +320,7 @@
                     <div class="col-md-12 left-right">
                         <div class="row marginauto body-row-nick-detail-ct">
 
-                            <div class="col-md-12 left-right" id="showdetailacc">
+                            <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-12 left-right">
                                         <div class="row marginauto">
