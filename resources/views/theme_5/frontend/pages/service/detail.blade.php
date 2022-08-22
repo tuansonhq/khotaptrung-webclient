@@ -207,81 +207,81 @@
                         @endif
                         <!-- end -->
 
-                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">
-                            Tuỳ chọn tướng (với Game Moba)
-                        </h2>
-                        <div class="card unset-lg">
-                            <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">
+{{--                        <h2 class="text-title fw-700 title-color-lg c-py-16  c-py-lg-20">--}}
+{{--                            Tuỳ chọn tướng (với Game Moba)--}}
+{{--                        </h2>--}}
+{{--                        <div class="card unset-lg">--}}
+{{--                            <div class="card-body c-p-16 c-p-lg-0 d-flex flex-wrap mx-n2">--}}
 
-                                @php
-                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);
-                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);
-                                    $index = 0;
-                                @endphp
-                                @if(!empty($send_name)&& count($send_name)>0)
-                                    @for ($i = 0; $i < count($send_name); $i++)
-                                        @if($send_name[$i]!=null)
-                                            {{--check trường của sendname--}}
-                                            @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
-                                                <span class="">
-                                                    {{$send_name[$i]}}
-                                                </span>
-                                                <div class="mb-15">
-                                                    <input id="username"  type="text" required_service name="customer_data{{$i}}" class=" t14 " placeholder="{{$send_name[$i]}}" value="">
-                                                    <div class="error"></div>
-                                                </div>
-                                            </div>
-                                            @elseif($send_type[$i]==4)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
-                                                <span>
-                                                    {{$send_name[$i]}}
-                                                </span>
-                                                <div class="mb-15">
-                                                    <input type="file" required_service accept="image/*" class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                    <div class="error"></div>
-                                                </div>
-                                            </div>
-                                            @elseif($send_type[$i]==5)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
-                                                    <span>
-                                                        {{$send_name[$i]}}
-                                                    </span>
-                                                    <div class="mb-15 toggle-password">
-                                                        <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">
-                                                    </div>
-                                                    <div class="error"></div>
-                                                </div>
-                                            @elseif($send_type[$i]==6)
-                                                @php
-                                                    $index = $index + 1;
-                                                @endphp
-                                                @php
-                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);
-                                                @endphp
-                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">
-                                                    <span>
-                                                        {{$send_name[$i]}}
-                                                    </span>
-                                                    <div class="mb-15">
-                                                        <select name="customer_data{{$i}}" class="mb-15 control-label bb">
-                                                            @if(!empty($send_data))
-                                                                @for ($sn = 0; $sn < count($send_data); $sn++)
-                                                                    <option value="{{$sn}}">{{$send_data[$sn]}}</option>
-                                                                @endfor
-                                                            @endif
-                                                        </select>
-                                                    </div>
-                                                </div>
+{{--                                @php--}}
+{{--                                    $send_name=\App\Library\HelpersDecode::DecodeJson('send_name',$data->params);--}}
+{{--                                    $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->params);--}}
+{{--                                    $index = 0;--}}
+{{--                                @endphp--}}
+{{--                                @if(!empty($send_name)&& count($send_name)>0)--}}
+{{--                                    @for ($i = 0; $i < count($send_name); $i++)--}}
+{{--                                        @if($send_name[$i]!=null)--}}
+{{--                                            --}}{{--check trường của sendname--}}
+{{--                                            @if($send_type[$i]==1 || $send_type[$i]==2||$send_type[$i]==3)--}}
+{{--                                                @php--}}
+{{--                                                    $index = $index + 1;--}}
+{{--                                                @endphp--}}
+{{--                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
+{{--                                                <span class="">--}}
+{{--                                                    {{$send_name[$i]}}--}}
+{{--                                                </span>--}}
+{{--                                                <div class="mb-15">--}}
+{{--                                                    <input id="username"  type="text" required_service name="customer_data{{$i}}" class=" t14 " placeholder="{{$send_name[$i]}}" value="">--}}
+{{--                                                    <div class="error"></div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            @elseif($send_type[$i]==4)--}}
+{{--                                                @php--}}
+{{--                                                    $index = $index + 1;--}}
+{{--                                                @endphp--}}
+{{--                                            <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
+{{--                                                <span>--}}
+{{--                                                    {{$send_name[$i]}}--}}
+{{--                                                </span>--}}
+{{--                                                <div class="mb-15">--}}
+{{--                                                    <input type="file" required_service accept="image/*" class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">--}}
+{{--                                                    <div class="error"></div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            @elseif($send_type[$i]==5)--}}
+{{--                                                @php--}}
+{{--                                                    $index = $index + 1;--}}
+{{--                                                @endphp--}}
+{{--                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
+{{--                                                    <span>--}}
+{{--                                                        {{$send_name[$i]}}--}}
+{{--                                                    </span>--}}
+{{--                                                    <div class="mb-15 toggle-password">--}}
+{{--                                                        <input id="password" type="password" required_service class="" name="customer_data{{$i}}" placeholder="{{$send_name[$i]}}">--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="error"></div>--}}
+{{--                                                </div>--}}
+{{--                                            @elseif($send_type[$i]==6)--}}
+{{--                                                @php--}}
+{{--                                                    $index = $index + 1;--}}
+{{--                                                @endphp--}}
+{{--                                                @php--}}
+{{--                                                    $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,$data->params);--}}
+{{--                                                @endphp--}}
+{{--                                                <div class="col-md-6 c-pl-lg-8 c-pr-lg-8 c-pb-lg-8">--}}
+{{--                                                    <span>--}}
+{{--                                                        {{$send_name[$i]}}--}}
+{{--                                                    </span>--}}
+{{--                                                    <div class="mb-15">--}}
+{{--                                                        <select name="customer_data{{$i}}" class="mb-15 control-label bb">--}}
+{{--                                                            @if(!empty($send_data))--}}
+{{--                                                                @for ($sn = 0; $sn < count($send_data); $sn++)--}}
+{{--                                                                    <option value="{{$sn}}">{{$send_data[$sn]}}</option>--}}
+{{--                                                                @endfor--}}
+{{--                                                            @endif--}}
+{{--                                                        </select>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 {{--                                            @elseif($send_type[$i]==7)--}}
 {{--                                                @php--}}
 {{--                                                    $index = $index + 1;--}}
@@ -297,12 +297,12 @@
 {{--                                                </label>--}}
 {{--                                                <div class="error"></div>--}}
 {{--                                            </div>--}}
-                                            @endif
-                                        @endif
-                                    @endfor
-                                @endif
-                            </div>
-                        </div>
+{{--                                            @endif--}}
+{{--                                        @endif--}}
+{{--                                    @endfor--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="d-none d-lg-block c-pb-22 c-pt-2"></div>
                         <div class="c-mb-16">
