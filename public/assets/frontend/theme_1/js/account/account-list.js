@@ -19,14 +19,21 @@ $(document).ready(function(){
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
 
+        //LM
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
+
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
         // loadDataAccountList(page);
     });
 
     loadDataAccountList()
 
-    function loadDataAccountList(page,id_data = '',title_data = '',price_data = '',status_data = '',select_data = '',sort_by_data = '') {
+    function loadDataAccountList(page,id_data = '',title_data = '',price_data = '',status_data = '',select_data = '',sort_by_data = '',champions_data = '',skill_data = '',tftcompanions_data = '',tftdamageskins_data = '',tftmapskins_data = '') {
 
         let slug = $('.slug').val();
 
@@ -46,7 +53,12 @@ $(document).ready(function(){
                 price_data:price_data,
                 status_data:status_data,
                 select_data:select_data,
-                sort_by_data:sort_by_data
+                sort_by_data:sort_by_data,
+                champions_data:champions_data,
+                skill_data:skill_data,
+                tftcompanions_data:tftcompanions_data,
+                tftdamageskins_data:tftdamageskins_data,
+                tftmapskins_data:tftmapskins_data
             },
             beforeSend: function (xhr) {
 
@@ -96,6 +108,7 @@ $(document).ready(function(){
         var title = $('.title').val();
         var price = $('.price').val();
         var status = $('.status').val();
+
         var itemselect = '';
         $('.select').each(function (idx, elm) {
             if (itemselect != '') {
@@ -134,6 +147,43 @@ $(document).ready(function(){
             $('.select_data').val(itemselect);
         }
 
+        //lm
+        var champions = $('.champions').val();
+        var skill = $('.skill').val();
+        var tftcompanions = $('.tftcompanions').val();
+        var tftdamageskins = $('.tftdamageskins').val();
+        var tftmapskins = $('.tftmapskins').val();
+
+        if (champions == null || champions == undefined || champions == ''){
+            $('.champions_data').val('');
+        }else {
+            $('.champions_data').val(champions);
+        }
+
+        if (skill == null || skill == undefined || skill == ''){
+            $('.skill_data').val('');
+        }else {
+            $('.skill_data').val(skill);
+        }
+
+        if (tftcompanions == null || tftcompanions == undefined || tftcompanions == ''){
+            $('.tftcompanions_data').val('');
+        }else {
+            $('.tftcompanions_data').val(tftcompanions);
+        }
+
+        if (tftdamageskins == null || tftdamageskins == undefined || tftdamageskins == ''){
+            $('.tftdamageskins_data').val('');
+        }else {
+            $('.tftdamageskins_data').val(tftdamageskins);
+        }
+
+        if (tftmapskins == null || tftmapskins == undefined || tftmapskins == ''){
+            $('.tftmapskins_data').val('');
+        }else {
+            $('.tftmapskins_data').val(tftmapskins);
+        }
+
 
         var id_data = $('.id_data').val();
         var title_data = $('.title_data').val();
@@ -142,10 +192,17 @@ $(document).ready(function(){
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
 
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
+
+
         $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
@@ -160,6 +217,11 @@ $(document).ready(function(){
         $('.price_data').val('');
         $('.status_data').val('');
         $('.select_data').val('');
+        $('.champions_data').val('');
+        $('.skill_data').val('');
+        $('.tftcompanions_data').val('');
+        $('.tftdamageskins_data').val('');
+        $('.tftmapskins_data').val('');
 
         var id_data = $('.id_data').val();
         var title_data = $('.title_data').val();
@@ -167,9 +229,15 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
+
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
@@ -218,6 +286,42 @@ $(document).ready(function(){
             $('.select_data').val(itemselect);
         }
 
+        //lm
+        var champions = $('.champions-mobile').val();
+        var skill = $('.skill-mobile').val();
+        var tftcompanions = $('.tftcompanions-mobile').val();
+        var tftdamageskins = $('.tftdamageskins-mobile').val();
+        var tftmapskins = $('.tftmapskins-mobile').val();
+
+        if (champions == null || champions == undefined || champions == ''){
+            $('.champions_data').val('');
+        }else {
+            $('.champions_data').val(champions);
+        }
+
+        if (skill == null || skill == undefined || skill == ''){
+            $('.skill_data').val('');
+        }else {
+            $('.skill_data').val(skill);
+        }
+
+        if (tftcompanions == null || tftcompanions == undefined || tftcompanions == ''){
+            $('.tftcompanions_data').val('');
+        }else {
+            $('.tftcompanions_data').val(tftcompanions);
+        }
+
+        if (tftdamageskins == null || tftdamageskins == undefined || tftdamageskins == ''){
+            $('.tftdamageskins_data').val('');
+        }else {
+            $('.tftdamageskins_data').val(tftdamageskins);
+        }
+
+        if (tftmapskins == null || tftmapskins == undefined || tftmapskins == ''){
+            $('.tftmapskins_data').val('');
+        }else {
+            $('.tftmapskins_data').val(tftmapskins);
+        }
 
         var id_data = $('.id_data').val();
         var title_data = $('.title_data').val();
@@ -225,10 +329,17 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
+
         $('#hidden_page_service').val(1);
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
@@ -239,6 +350,12 @@ $(document).ready(function(){
         $('.price_data').val('');
         $('.status_data').val('');
         $('.select_data').val('');
+        $('.champions_data').val('');
+        $('.skill_data').val('');
+        $('.tftcompanions_data').val('');
+        $('.tftdamageskins_data').val('');
+        $('.tftmapskins_data').val('');
+
 
         var id_data = $('.id_data').val();
         var title_data = $('.title_data').val();
@@ -246,9 +363,16 @@ $(document).ready(function(){
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
         var sort_by_data = $('.sort_by_data').val();
+
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
+
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
@@ -260,13 +384,18 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
 
         var sort_by = $('.sort_by').val();
         $('.sort_by_data').val(sort_by);
         var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
@@ -278,13 +407,18 @@ $(document).ready(function(){
         var price_data = $('.price_data').val();
         var status_data = $('.status_data').val();
         var select_data = $('.select_data').val();
+        var champions_data = $('.champions_data').val();
+        var skill_data = $('.skill_data').val();
+        var tftcompanions_data = $('.tftcompanions_data').val();
+        var tftdamageskins_data = $('.tftdamageskins_data').val();
+        var tftmapskins_data = $('.tftmapskins_data').val();
 
         var sort_by = $('.sort_by_mobile').val();
         $('.sort_by_data').val(sort_by);
         var sort_by_data = $('.sort_by_data').val();
         var page = $('#hidden_page_service').val();
 
-        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data)
+        loadDataAccountList(page,id_data,title_data,price_data,status_data,select_data,sort_by_data,champions_data,skill_data,tftcompanions_data,tftdamageskins_data,tftmapskins_data)
 
     });
 
