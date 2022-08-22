@@ -32,6 +32,7 @@ return [
     'acc' => [
         'key'=>"charge",
         'encrypt_key' => '2314ku',
+        'slug-auto' => 'nick-lien-minh',
         'status' => [
 //            1 => 'Chưa bán',
             0 => 'Thành công',
@@ -42,6 +43,15 @@ return [
             6 => 'Check lỗi'],
         'price' => [
             '0-50000' => 'Dưới 50K',
+            '50000-200000' => 'Từ 50K - 200K',
+            '200000-500000' => 'Từ 200K - 500K',
+            '500000-1000000' => 'Từ 500K - 1 Triệu',
+            '1000000-5000000' => 'Trên 1 Triệu',
+            '5000000-10000000' => 'Trên 5 Triệu',
+            '10000000' => 'Trên 10 Triệu',
+        ],
+        'auto_lm_filter' => [
+            'champions' => 'champions',
             '50000-200000' => 'Từ 50K - 200K',
             '200000-500000' => 'Từ 200K - 500K',
             '500000-1000000' => 'Từ 500K - 1 Triệu',
