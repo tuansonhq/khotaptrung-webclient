@@ -85,6 +85,9 @@ $(document).ready(function(){
 
                     $('.loading-data__timkiem').html('');
                     $('.loading-data__all').html('');
+
+                    $('.btn_timkiem_text').css('color','#ffffff');
+                    $('.btn-all_text').css('color','#ffffff');
                 }
 
             },
@@ -100,10 +103,11 @@ $(document).ready(function(){
     $(document).on('submit', '.form-charge__accountlist', function(e){
         e.preventDefault();
         var htmlloading = '';
-
+        $('.btn_timkiem_text').css('color','#32c5d2');
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__timkiem').html('');
         $('.loading-data__timkiem').html(htmlloading);
+
         var id = $('.id').val();
         var title = $('.title').val();
         var price = $('.price').val();
@@ -212,6 +216,7 @@ $(document).ready(function(){
         htmlloading += '<div class="loading"></div>';
         $('.loading-data__all').html('');
         $('.loading-data__all').html(htmlloading);
+        $('.btn-all_text').css('color','#dc3545');
         $('.id_data').val('');
         $('.title_data').val('');
         $('.price_data').val('');

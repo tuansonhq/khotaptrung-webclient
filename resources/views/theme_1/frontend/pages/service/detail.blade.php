@@ -7,6 +7,26 @@
 @endsection
 @section('content')
 
+    @if($data == null)
+        <div class="item_buy">
+            <div class="container pt-3" style="padding-bottom: 600px">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
     <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
@@ -400,7 +420,9 @@
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(\App\Library\AuthCustom::check())
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán
+
+                                        </button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
                                     @endif
@@ -786,5 +808,8 @@
         }
     </script>
     @endif
+
+    @endif
+
 @endsection
 
