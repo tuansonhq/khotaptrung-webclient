@@ -76,7 +76,7 @@
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
-                            <div class="modal-body c-p-0">
+                            <div class="modal-body c-px-0 c-pb-0 c-pt-24">
                                 <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                                     Thông tin mua Acc
                                 </div>

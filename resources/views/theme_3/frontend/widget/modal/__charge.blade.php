@@ -12,7 +12,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="modal-body modal-body-order-ct">

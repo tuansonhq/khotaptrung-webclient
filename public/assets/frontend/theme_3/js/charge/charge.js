@@ -280,10 +280,6 @@ $(document).ready(function(){
         }
         return false;
 
-
-
-
-
     });
 
     function updatePriceCharge() {
@@ -324,11 +320,6 @@ $(document).ready(function(){
 
             }
         });
-
-
-
-
-
     }
 
 
