@@ -32,6 +32,7 @@ return [
     'acc' => [
         'key'=>"charge",
         'encrypt_key' => '2314ku',
+        'slug-auto' => 'nick-lien-minh',
         'status' => [
 //            1 => 'Chưa bán',
             0 => 'Thành công',
@@ -48,6 +49,17 @@ return [
             '1000000-5000000' => 'Trên 1 Triệu',
             '5000000-10000000' => 'Trên 5 Triệu',
             '10000000' => 'Trên 10 Triệu',
+        ],
+        'auto_lm_rank' => [
+            'IRON' => 'Sắt',
+            'BRONZE' => 'Đồng',
+            'SILVER' => 'Bạc',
+            'GOLD' => 'Vàng',
+            'PLATINUM' => 'Bạch kim',
+            'DIAMOND' => 'Kim cương',
+            'GRANDMASTER' => 'Đại cao thủ',
+            'MASTER' => 'Cao thủ',
+            'CHALLENGER' => 'Thách đấu',
         ],
         'viewed'=>[
             'limit_count'=>10,

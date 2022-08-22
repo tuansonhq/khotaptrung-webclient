@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-md-12 left-right">
-                    <div class="row nick-sider-header">
+                    <div class="row nick-sider-header product-list-category">
                         <div class="swiper-container view_dong_gia class-config-account-viewed col-md-12 text-left left-right">
                             <div class="swiper-wrapper data_watched">
                                 @forelse($data_viewed as $key => $acc_viewed)
@@ -43,6 +43,12 @@
                                     </div>
                                 @empty
                                 @endforelse
+                            </div>
+                            <div class="swiper-button-prev">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/swiper-prev.svg" alt="">
+                            </div>
+                            <div class="swiper-button-next">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/swiper-next.svg" alt="">
                             </div>
                         </div>
                     </div>

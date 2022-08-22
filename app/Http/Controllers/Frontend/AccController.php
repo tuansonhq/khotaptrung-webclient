@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
+use Cache;
 use function PHPUnit\Framework\isEmpty;
 
 class AccController extends Controller
@@ -50,23 +51,49 @@ class AccController extends Controller
 
     public function getList(Request $request,$slug){
 
+        $response_cate_data = cache("game_props_list_{$slug}");
+
         $url = '/acc';
         $method = "GET";
-        $dataSendCate = array();
-        $dataSendCate['data'] = 'category_detail';
-        $dataSendCate['slug'] = $slug;
-        $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
-        $response_cate_data = $result_Api_cate->response_data??null;
+
+        if (empty($response_cate_data)) {
+            if ($slug == config('module.acc.slug-auto')){
+
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'property_lienminh_auto';
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+            }else{
+                $dataSendCate = array();
+                $dataSendCate['data'] = 'category_detail';
+                $dataSendCate['slug'] = $slug;
+                $result_Api_cate = DirectAPI::_makeRequest($url,$dataSendCate,$method);
+                $response_cate_data = $result_Api_cate->response_data??null;
+
+            }
+
+            cache(["game_props_list_{$slug}" => $response_cate_data], 604800);
+        }
+
 
         if ($request->ajax()){
+
             $page = $request->page;
             if(isset($response_cate_data) && $response_cate_data->status == 1){
+
                 $data = $response_cate_data->data;
                 $dataAttribute = $data->childs;
-
                 $dataSend = array();
-                $dataSend['data'] = 'list_acc';
-                $dataSend['cat_slug'] = $slug;
+
+                if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
+                    $dataSend['data'] = 'property_lienminh_auto';
+                    $dataSend['id'] = $request->champions_data;
+                }else{
+                    $dataSend['data'] = 'list_acc';
+                    $dataSend['cat_slug'] = $slug;
+                }
+
                 $dataSend['page'] = $page;
                 $dataSend['status'] = 1;
                 $dataSend['limit'] =  12;
@@ -76,23 +103,23 @@ class AccController extends Controller
                     $dataSend['limit'] =  15;
                 }
 
-                if (isset($request->id_data) || $request->id_data != '' || $request->id_data != null){
-                    $dataSend['id'] = $request->id_data;
+                if ($request->filled('id_data'))  {
+                    $dataSend['randId'] = $request->id_data;
                 }
 
-                if (isset($request->title_data) || $request->title_data != '' || $request->title_data != null){
+                if ($request->filled('title_data'))  {
                     $dataSend['title'] = $request->title_data;
                 }
 
-                if (isset($request->price_data) || $request->price_data != '' || $request->price_data != null){
+                if ($request->filled('price_data'))  {
                     $dataSend['price'] = $request->price_data;
                 }
 
-                if (isset($request->status_data) || $request->status_data != '' || $request->status_data != null){
+                if ($request->filled('status_data'))  {
                     $dataSend['status'] = $request->status_data;
                 }
 
-                if (isset($request->select_data) || $request->select_data != '' || $request->select_data != null){
+                if ($request->filled('select_data'))  {
                     $select_data = $request->select_data;
                     $group_ids = array();
                     foreach(explode('|',$select_data) as $v){
@@ -107,7 +134,7 @@ class AccController extends Controller
                     $dataSend['group_ids'] = $group_ids;
                 }
 
-                if (isset($request->sort_by_data) || $request->sort_by_data != '' || $request->sort_by_data != null){
+                if ($request->filled('sort_by_data'))  {
                     $sort_by = $request->sort_by_data;
                     if ($sort_by == "random"){
                         $dataSend['sort'] = 'random';
@@ -131,7 +158,12 @@ class AccController extends Controller
 
                 if(isset($response_data) && $response_data->status == 1){
 
-                    $items = $response_data->data;
+                    if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
+                        $items = $response_data->data;
+                        $items = $items->items;
+                    }else{
+                        $items = $response_data->data;
+                    }
 
                     if (isset($items->status) && $items->status == 0){
                         return response()->json([
@@ -181,17 +213,23 @@ class AccController extends Controller
                 ]);
             }
         }
+
         if(isset($response_cate_data) && $response_cate_data->status == 1){
 
             $data = $response_cate_data->data;
 
+            if (!isset($data->childs) && $data->status == 0){
+                return view('frontend.404.404');
+            }
+
             $dataAttribute = $data->childs;
 
-            if (!isset($dataAttribute)){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'Không lấy được dữ liệu childs.',
-                ]);
+
+            $auto_properties = null;
+
+
+            if (isset($data->auto_properties) && count($data->auto_properties)){
+                $auto_properties = $data->auto_properties;
             }
 
             if (!isset($data->title)){
@@ -210,7 +248,11 @@ class AccController extends Controller
             return view('frontend.pages.account.list')
                 ->with('data',$data)
                 ->with('dataAttribute',$dataAttribute)
+                ->with('auto_properties',$auto_properties)
                 ->with('slug',$slug);
+        }
+        elseif ($result_Api_cate->response_code == 404){
+            return view('frontend.404.404');
         }
         else{
             $data = null;
@@ -220,17 +262,26 @@ class AccController extends Controller
                 ->with('message',$message)
                 ->with('data',$data);
         }
+
     }
 
     public function getDetail(Request $request,$slug){
-        $url = '/acc';
-        $method = "GET";
-        $dataSend = array();
-        $dataSend['data'] = 'acc_detail';
-        $dataSend['id'] = $slug;
 
-        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
-        $response_data = $result_Api->response_data??null;
+        $response_data = cache("game_props_detail_{$slug}");
+
+        if (empty($response_data)) {
+            $url = '/acc';
+            $method = "GET";
+            $dataSend = array();
+            $dataSend['data'] = 'acc_detail';
+            $dataSend['id'] = $slug;
+
+            $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+            $response_data = $result_Api->response_data??null;
+
+            cache(["game_props_detail_{$slug}" => $response_data], 604800);
+
+        }
 
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
@@ -243,16 +294,17 @@ class AccController extends Controller
                 $game_auto_props = $data->game_auto_props;
             }
 
-
             return view('frontend.pages.account.detail')->with('data',$data)->with('game_auto_props',$game_auto_props)->with('slug',$slug)->with('slug_category',$slug_category);
         }
         else{
+
             $data = null;
-            $message = $response_cate_data->message??"Không thể lấy dữ liệu";
+            $message = $response_cate_data->message??"Không thể lấy dữ liệu hoặc tài khoản không tồn tại.";
 
             return view('frontend.pages.account.detail')
                 ->with('message',$message)
                 ->with('data',$data);
+
         }
 
 
@@ -278,6 +330,12 @@ class AccController extends Controller
                 $dataAttribute = $data_category->childs;
                 $card_percent = (int)setting('sys_card_setting');
 
+                $game_auto_props =null;
+
+                if (isset($data->game_auto_props) && count($data->game_auto_props) > 0){
+                    $game_auto_props = $data->game_auto_props;
+                }
+
 //                $atm_percent = setting('sys_atm_percent');
                 $htmlmenu = view('frontend.pages.account.widget.__datamenu')
                     ->with('data',$data)->render();
@@ -285,7 +343,8 @@ class AccController extends Controller
 
                 $html = view('frontend.pages.account.widget.__datadetail')
                     ->with('data_category',$data_category)
-                    ->with('dataAttribute',$dataAttribute)
+                    ->with('game_auto_props',$game_auto_props)
+                    ->with('data',$data)
                     ->with('data',$data)
                     ->with('card_percent',$card_percent)->render();
 

@@ -52,11 +52,11 @@ $(document).ready(function () {
             },
             complete: function (data) {
 
+                $('.result-amount-loadding__nick-lien-quan').css('display','block');
+                getDichVuLienQuan(slug_category)
             }
         });
     }
-
-    getDichVuLienQuan(slug_category)
 
     function getDichVuLienQuan(slug_category) {
 
