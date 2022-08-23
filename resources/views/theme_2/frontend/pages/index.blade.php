@@ -245,6 +245,10 @@
         </div>
     </div>
 </div>
+<div class="site-content-body second">
+    @include('frontend.widget.__list_serve_remark_image')
+
+</div>
 <div class="site-content-body alt last">
     <h3 class="text-primary mb-3">Tin tức cập nhật <i class="las la-angle-right"></i></h3>
     @include('frontend.widget.__baiviet__trangchu')

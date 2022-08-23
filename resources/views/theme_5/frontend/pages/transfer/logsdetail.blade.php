@@ -63,13 +63,13 @@
                                 <div class="history-detail-attr d-flex justify-content-between align-items-center">
                                     <p class="fz-13 fw-400 mb-0">Trạng thái</p>
                                     @if($data->status == 2 )
-                                        <div class="detail-warning fw-500 fz-13">{{config('module.tranfer.status.2')}}</div>
+                                        <div class="detail-warning fw-500 fz-13">{{config('module.transfer.status.2')}}</div>
                                     @elseif($data->status == 1)
-                                        <div class="detail-success fw-500 fz-13">{{config('module.tranfer.status.1')}}</div>
+                                        <div class="detail-success fw-500 fz-13">{{config('module.transfer.status.1')}}</div>
                                     @elseif($data->status == 0)
-                                        <div class="detail-warning fw-500 fz-13">{{config('module.tranfer.status.0')}}</div>
+                                        <div class="detail-warning fw-500 fz-13">{{config('module.transfer.status.0')}}</div>
                                     @elseif($data->status == 3)
-                                        <div class="detail-invalid fw-500 fz-13">{{config('module.tranfer.status.3')}}</div>
+                                        <div class="detail-invalid fw-500 fz-13">{{config('module.transfer.status.3')}}</div>
                                     @endif
 
                                 </div>

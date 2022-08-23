@@ -17,6 +17,8 @@ $(document).ready(function(){
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
+        $('.data-card').show()
+
         $("#data_lich__su_history").empty().html('');
         $("#data_lich__su_history").empty().html(html_loading);
 
@@ -38,6 +40,8 @@ $(document).ready(function(){
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
+        $('.data-card').show()
+
         $("#data_lich__su_history").empty().html('');
         $("#data_lich__su_history").empty().html(html_loading);
 
@@ -100,6 +104,7 @@ $(document).ready(function(){
             success: (data) => {
 
                 $('.loading-data__timkiem').html('');
+
                 if (data.status == 1){
 
 
@@ -123,6 +128,7 @@ $(document).ready(function(){
                     $("#data_lich__su_history").empty().html(html);
 
                 }
+                $('.data-card').show()
 
             },
             error: function (data) {
