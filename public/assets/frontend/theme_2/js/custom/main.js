@@ -267,7 +267,6 @@ $(document).ready(function() {
             }
         });
     }
-$('div').height()
     /*Seemore nick*/
     let content_desc_nick = $('.content-desc-nick');
     if (content_desc_nick.length){
@@ -362,5 +361,11 @@ $('div').height()
             $(this).parent().toggleClass('card-service-select',!!$(this).scrollTop())
         })
     }
+
+    /*close modal*/
+    $(document).on('click','.modal .close',function (event) {
+        event.preventDefault();
+        $(this).closest('.modal').modal('hide');
+    })
 });
 

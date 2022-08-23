@@ -75,7 +75,8 @@ $(document).ready(function () {
     loadDataTableNick();
     loadDataNick();
 });
-function loadDataNick(elm_form){
+function loadDataNick(){
+    let elm_form = width < 992 ? $('.bottom-sheet .form-filter') : $('.modal .form-filter');
     let overlay_find = $('.filter-history');
     let root_elm = $('#params-filter');
     root_elm.html('');
@@ -171,7 +172,7 @@ $(document).ready(function () {
     if (form_filter.length) {
         form_filter.on('submit',function (e) {
             e.preventDefault();
-            loadDataNick($(this));
+            loadDataNick();
             if (width > 992) {
                 $(this).closest('.modal').modal('hide');
             } else {

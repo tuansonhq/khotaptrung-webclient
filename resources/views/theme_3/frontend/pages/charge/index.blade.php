@@ -259,7 +259,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @include('frontend.widget.modal.__charge')
+                                            <!-- đã include chỗ này vào master rồi ^^ nên cmt lại đó nha -->
+{{--                                            @include('frontend.widget.modal.__charge')--}}
                                         </div>
                                     </form>
                                 </div>
@@ -410,13 +411,15 @@
          </div>
     </div>
 
-    @include('theme_3.frontend.widget.modal.__success_charge')
+    <!-- Chỗ này cũng include vào master rồi nên cmt chỗ này -->
+    {{--@include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')
-    @include('theme_3.frontend.widget.modal.__success_wallet_card')
+    @include('theme_3.frontend.widget.modal.__success_wallet_card')--}}
 
     <script src="/assets/frontend/theme_3/js/charge/charge.js?v={{time()}}"></script>
 
-    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+    <!-- Đem ra master chỗ này rồi  -->
+{{--    <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>--}}
 
 @endsection

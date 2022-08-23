@@ -285,6 +285,7 @@ class AccController extends Controller
 
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
+
             $slug_category = $data->category->slug;
 
             $game_auto_props =null;
