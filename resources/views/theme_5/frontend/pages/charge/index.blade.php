@@ -291,7 +291,7 @@
         </div>
 
         {{--  sử lý step thanh toán --}}
-        <div class="step" id="step2">
+        <div class="step" id="chargeConfirmStep">
             <div class="head-mobile">
                 <a href="javascript:void(0) " class="link-back close-step"></a>
 
@@ -348,7 +348,7 @@
 
             <div class="footer-mobile v2">
                 <div class="group-btn" >
-                    <button class="btn primary btn-success-mobile" id="confirmSubmitButtonMobile">Xác nhận</button>
+                    <button class="btn primary" id="confirmSubmitButtonMobile">Xác nhận</button>
                 </div>
             </div>
         </div>

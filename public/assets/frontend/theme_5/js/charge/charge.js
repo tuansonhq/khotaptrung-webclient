@@ -60,10 +60,12 @@ function prepareDataSend() {
 function showConfirmContent () {
     prepareConfirmData();
     prepareDataSend();
+    //Close recharge modal if page has this modal
+    $('#rechargeModal').modal('hide');
     if ( $(window).width() >= 992 ) { 
         $('#orderCharge').modal('show');
     } else {
-        $('#step2').css('transform', 'translateX(0)');
+        $('#chargeConfirmStep').css('transform', 'translateX(0)');
     }
 }
 
@@ -100,7 +102,7 @@ $(document).ready(function () {
     $('#reload_1').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha2',
+            url: '/reload-captcha2',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -209,7 +211,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -284,6 +286,7 @@ $(document).ready(function () {
             beforeSend: function () {
                 $('#cardAmount').empty();
                 $('#cardAmountMobile').empty();
+                $('#cardAmountModal').empty();
                 $('.money-form-group .loader').removeClass('d-none');
             },
             success: function (data) {
@@ -291,11 +294,13 @@ $(document).ready(function () {
                     // Append new data both in mobile and desktop
                     let html = '';
                     let htmlMobile = '';
+                    let htmlModal ='';
 
                     if ( data.data.length > 0 ) {
                         $.each( data.data, function( key, value ) {
                             html += '<div class="col-4 c-px-4 money-radio-form">';
                             htmlMobile += '<div class="col-4 c-px-4 money-radio-form">';
+                            htmlModal += '<div class="col-4 c-px-4 money-radio-form">';
                             if ( key == 0 ) {
                                 if ( $(window).width() >= 992 ) {
                                     html += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
@@ -305,9 +310,12 @@ $(document).ready(function () {
                                     htmlMobile += '<input name="amount" type="radio" id="recharge_amount_mobile_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
                                 }
 
+                                htmlModal += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
+
                             } else {
                                 html += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
                                 htmlMobile += '<input name="amount" type="radio" id="recharge_amount_mobile_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
+                                htmlModal += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
                             }
 
                             html += '<label for="recharge_amount_'+key+'" class="c-py-16 c-px-8 c-mb-8 brs-8 p_recharge_amount">';
@@ -319,12 +327,18 @@ $(document).ready(function () {
                             htmlMobile += '<p class="fw-500 fs-15 mb-0">'+ formatNumber(value.amount)  +'đ</p>';
                             htmlMobile += '</label>';
                             htmlMobile += '</div>';
+
+                            htmlModal += '<label for="recharge_amount_'+key+'" class="c-py-16 c-px-8 c-mb-8 brs-8 p_recharge_amount">';
+                            htmlModal += '<p class="fw-500 fs-15 mb-0">'+ formatNumber(value.amount)  +'đ</p>';
+                            htmlModal += '</label>';
+                            htmlModal += '</div>';
                         });
                     }
 
                     //Append new amount data
                     $('#cardAmount').html(html);
                     $('#cardAmountMobile').html(htmlMobile);
+                    $('#cardAmountModal').html(htmlModal);
 
                     //Refresh captcha
                     reload_captcha();
