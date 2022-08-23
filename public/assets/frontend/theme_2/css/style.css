@@ -2477,3 +2477,9 @@ input[type="number"] {
 #reload_2:focus{
     box-shadow: none;
 }
+.ajax-loading-store{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

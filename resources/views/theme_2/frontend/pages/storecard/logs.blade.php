@@ -13,7 +13,7 @@
             @include('frontend.widget.__menu_profile')
             <div class="block-content p-3">
                 <div class="tab-content mb-4">
-                    <div class="tab-pane fade data__muathe_tab" id="item" role="tabpanel" aria-labelledby="item-tab"  style="min-height: 700px;">
+                    <div class="data__muathe_tab" id="item"  style="min-height: 700px;">
                         <form class="form-charge form__lsmt">
                             <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                                 <h4 class="title-style-left mb-3">Thẻ cào đã mua</h4>
@@ -30,15 +30,13 @@
                                 </div>
                             </div>
                         </form>
-                        <div>
+
+                        <div id="data_muathe_history">
                             <div class="text-center ajax-loading-store load_spinner" >
                                 <div class="cv-spinner">
                                     <span class="spinner"></span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div id="data_muathe_history">
                             @include('frontend.pages.storecard.widget.__store__card__history')
                         </div>
 
