@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
@@ -55,6 +56,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/datetime-picker/bootstrap-datetimepicker.js" defer></script>
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js"></script>--}}
     @stack('js')
@@ -178,6 +180,7 @@
     @endif
 @endif
 <!-- Optional JavaScript; choose one of the two! -->
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
 
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -192,6 +195,8 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
 
 @yield('scripts')
 </body>

@@ -27,7 +27,7 @@
             <a href="/" class="home"></a>
         </div>
         {{--            Slider baner    --}}
-        @include('frontend.widget.__slider__banner__account')
+{{--        @include('frontend.widget.__slider__banner__account')--}}
         {{--            Top hôm nay    --}}
         @include('frontend.pages.account.widget.__top__today')
 
@@ -104,7 +104,7 @@
         </section>
 
         {{--            Dịch vụ khác   --}}
-        @include('frontend.widget.__services__other')
+{{--        @include('frontend.widget.__services__other')--}}
     </div>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/category.js"></script>
 @endsection

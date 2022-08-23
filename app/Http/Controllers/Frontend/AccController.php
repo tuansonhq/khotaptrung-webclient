@@ -88,7 +88,28 @@ class AccController extends Controller
 
                 if ($request->filled('champions_data') || $request->filled('skill_data') || $request->filled('tftcompanions_data') || $request->filled('tftdamageskins_data') || $request->filled('tftmapskins_data'))  {
                     $dataSend['data'] = 'property_lienminh_auto';
-                    $dataSend['id'] = $request->champions_data;
+
+                    if ($request->filled('tftmapskins_data')){
+                        $auto_id = $request->tftmapskins_data;
+                    }
+
+                    if ($request->filled('tftdamageskins_data')){
+                        $auto_id = $request->tftdamageskins_data;
+                    }
+
+                    if ($request->filled('tftcompanions_data')){
+                        $auto_id = $request->tftcompanions_data;
+                    }
+
+                    if ($request->filled('skill_data')){
+                        $auto_id = $request->skill_data;
+                    }
+
+                    if ($request->filled('champions_data')){
+                        $auto_id = $request->champions_data;
+                    }
+
+                    $dataSend['id'] = $auto_id;
                 }else{
                     $dataSend['data'] = 'list_acc';
                     $dataSend['cat_slug'] = $slug;
@@ -285,6 +306,7 @@ class AccController extends Controller
 
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
+
             $slug_category = $data->category->slug;
 
             $game_auto_props =null;

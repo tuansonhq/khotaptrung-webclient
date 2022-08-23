@@ -334,12 +334,6 @@
                     @endif
                 </div>
 
-{{--                <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">--}}
-{{--                    <div class="modal-dialog" role="document">--}}
-{{--                        <div class="modal-content modal-content__data">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
@@ -420,15 +414,11 @@
                             <div class="modal-footer modal-footer__data">
                                 <div>
                                     @if(\App\Library\AuthCustom::check())
-                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán
-
-                                        </button>
+                                        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loading" id="d3" style="" >Xác nhận thanh toán</button>
                                     @else
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
                                     @endif
                                 </div>
-
-
 
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
 

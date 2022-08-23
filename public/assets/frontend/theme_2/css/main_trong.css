@@ -312,7 +312,7 @@ button:focus {
     font-size: 15px;
     font-weight: 500;
     line-height: 24px;
-    border: none;
+    /*border: none;*/
     box-sizing: border-box;
     height: 40px;
 }
@@ -921,6 +921,8 @@ a.tab {
     opacity: 1;
     outline: none;
     z-index: 1;
+    background-color: transparent;
+    border-color: transparent;
 }
 
 .modal-header .modal-title.center {
@@ -1191,6 +1193,7 @@ input[type=search].has-submit ~ button[type=submit] {
     border-radius: 8px;
     outline: none;
     right: 4px;
+    border-color: transparent;
 }
 
 input[type=search].has-submit ~ button[type=submit]:hover {

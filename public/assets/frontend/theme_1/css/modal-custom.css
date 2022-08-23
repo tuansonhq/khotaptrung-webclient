@@ -456,15 +456,15 @@
     height: 760px;
     max-height: 760px;
 }
-.c-modal__nick-lmht-tuong,
-.c-modal__nick-lmht-ttk,
-.c-modal__nick-lmht-trang-phuc,
-.c-modal__nick-lmht-linh-thu-tft,
-.c-modal__nick-lmht-san-dau-tft,
-.c-modal__nick-lmht-chuong-luc-tft,
-.c-modal__nick-lmht-bieu-cam{
-    display: none;
-}
+/*.c-modal__nick-lmht-tuong,*/
+/*.c-modal__nick-lmht-ttk,*/
+/*.c-modal__nick-lmht-trang-phuc,*/
+/*.c-modal__nick-lmht-linh-thu-tft,*/
+/*.c-modal__nick-lmht-san-dau-tft,*/
+/*.c-modal__nick-lmht-chuong-luc-tft,*/
+/*.c-modal__nick-lmht-bieu-cam{*/
+/*    display: none;*/
+/*}*/
 .body-modal__nick__text-error{
     display: none;
 }
@@ -625,7 +625,14 @@ p, span, a {
     border: 1px solid #32c5d2!important;
 }
 
-
+.submit--search{
+    position: absolute;
+    background: #32c5d2;
+    border: 1px solid #32c5d2;
+    padding: 16px 15px;
+    border-radius: 4px;
+    right: 4px;
+}
 /* Testttttttttttttttt */
 
 

@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('styles')
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
+
 @endsection
 @section('content')
 
@@ -643,55 +643,55 @@
 
         {{--    Modal Linh thú tft   --}}
 
-{{--        <div class="c-modal__nick-lmht c-modal__nick-lmht-linh-thu-tft" id="nick-lmht-linhthu" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">--}}
-{{--            <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">--}}
-{{--                <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">--}}
-{{--                    <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">--}}
-{{--                        <h2 class="fw-700 fz-24 lh-32 mb-0">Linh thú TFT</h2>--}}
+        <div class="c-modal__nick-lmht c-modal__nick-lmht-linh-thu-tft d-none" id="nick-lmht-linhthu" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+            <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
+                <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
+                    <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
+                        <h2 class="fw-700 fz-24 lh-32 mb-0">Linh thú TFT</h2>
 
-{{--                        <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_linhthu }} linh thú)</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">--}}
-{{--                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">--}}
-{{--                        <button class="submit--search" type="submit"></button>--}}
-{{--                    </div>--}}
-{{--                    <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">--}}
-{{--                <div class="row marginauto modal-container-body">--}}
-{{--                    <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">--}}
-{{--                        <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>--}}
-{{--                    </div>--}}
+                        <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_linhthu }} linh thú)</p>
+                    </div>
+                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
+                        <button class="submit--search" type="submit"></button>
+                    </div>
+                    <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
+                </div>
+            </div>
+            <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
+                <div class="row marginauto modal-container-body">
+                    <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
+                        <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
+                    </div>
 
-{{--                    @foreach($game_auto_props as $game_auto_prop)--}}
-{{--                        @if($game_auto_prop->key == 'tftcompanions')--}}
-{{--                            <div class="col-auto c-px-6 c-py-8 item-nick-lmht">--}}
-{{--                                <a href="javascript:void(0)">--}}
-{{--                                    <div class="row marginauto item-nick-lmht__border">--}}
-{{--                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">--}}
-{{--                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="{{ $game_auto_prop->name }}">--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-12 pl-0 pr-0 text-center">--}}
-{{--                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $game_auto_prop->name }}</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                        @endif--}}
-{{--                    @endforeach--}}
+                    @foreach($game_auto_props as $game_auto_prop)
+                        @if($game_auto_prop->key == 'tftcompanions')
+                            <div class="col-auto c-px-6 c-py-8 item-nick-lmht">
+                                <a href="javascript:void(0)">
+                                    <div class="row marginauto item-nick-lmht__border">
+                                        <div class="col-md-12 pl-0 pr-0 item-nick-lmht__border__col">
+                                            <img class="w-100 brs-4 position-absolute item-nick-lmht__border__img lazy" src="{{\App\Library\MediaHelpers::media($game_auto_prop->thumb)}}" alt="{{ $game_auto_prop->name }}">
+                                        </div>
+                                        <div class="col-md-12 pl-0 pr-0 text-center">
+                                            <p class="fw-400 fz-13 c-mb-4 c-mt-20 text-theme text-limit limit-1">{{ $game_auto_prop->name }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
 
-{{--                </div>--}}
-{{--                <div class="modal-footer" style="height: 16px">--}}
+                </div>
+                <div class="modal-footer" style="height: 16px">
 
-{{--                </div>--}}
-{{--            </div>--}}
+                </div>
+            </div>
 
-{{--        </div>--}}
+        </div>
 
         {{--    Modal Trang phuc   --}}
 
-        <div class="c-modal__nick-lmht c-modal__nick-lmht-trang-phuc" id="nick-lmht-trangphuc" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+        <div class="c-modal__nick-lmht c-modal__nick-lmht-trang-phuc d-none" id="nick-lmht-trangphuc" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
             <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
                 <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
                     <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
@@ -699,7 +699,7 @@
                         <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_trangphuc }} Trang phục)</p>
                     </div>
                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
                         <button class="submit--search" type="submit"></button>
                     </div>
                     <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
@@ -743,7 +743,7 @@
 
         {{--    Modal Tuong   --}}
 
-        <div class="c-modal__nick-lmht c-modal__nick-lmht-tuong" id="nick-lmht-tuong" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
+        <div class="c-modal__nick-lmht c-modal__nick-lmht-tuong d-none d-none" id="nick-lmht-tuong" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
             <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
                 <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
                     <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
@@ -751,7 +751,7 @@
                         <p class="fw-400 fz-13 lh-20 mb-0 total_tuong_data">({{ $total_tuong??0 }} tướng)</p>
                     </div>
                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
                         <button class="submit--search" type="submit"></button>
                     </div>
                     <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
@@ -789,119 +789,119 @@
 
         {{--    Modal thông tin khác--}}
 
-        <div class="c-modal__nick-lmht c-modal__nick-lmht-ttk c-modal-ttchung" id="nick-lmht-thongtinchung" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">
-            <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">
-                <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">
-                    <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">
-                        <h2 class="fw-700 fz-24 lh-32 mb-0">Thông tin khác</h2>
-                        <p class="fw-400 fz-13 lh-20 mb-0">(10)</p>
-                    </div>
-                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
-                        <button class="submit--search" type="submit"></button>
-                    </div>
-                    <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
-                </div>
-            </div>
-            <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">
-                <div class="row marginauto modal-container-body">
-                    <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">
-                        <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>
-                    </div>
-                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                        <a href="">
-                            <div class="row marginauto">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                        <a href="">
-                            <div class="row marginauto">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                        <a href="">
-                            <div class="row marginauto">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">
-                        <a href="">
-                            <div class="row marginauto">
-                                <div class="col-md-12 pl-0 pr-0">
-                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="modal-footer" style="height: 16px">
+{{--        <div class="c-modal__nick-lmht c-modal__nick-lmht-ttk c-modal-ttchung d-none" id="nick-lmht-thongtinchung" style="z-index: 1005; background: rgba(67, 70, 87, 0.5);">--}}
+{{--            <div class="header-modal__nick-lmht c-px-24 c-pt-24 pb-0 position-relative text-uppercase text-center ml-auto mr-auto fw-700">--}}
+{{--                <div class="row marginauto c-pb-24 header-modal__nick-lmht-row">--}}
+{{--                    <div class="col-auto pl-0 pr-0 mb-0 c-mr-24">--}}
+{{--                        <h2 class="fw-700 fz-24 lh-32 mb-0">Thông tin khác</h2>--}}
+{{--                        <p class="fw-400 fz-13 lh-20 mb-0">(10)</p>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">--}}
+{{--                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">--}}
+{{--                        <button class="submit--search" type="submit"></button>--}}
+{{--                    </div>--}}
+{{--                    <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="body-modal__nick-lmht pb-0 c-px-18 c-pt-10 mr-auto ml-auto">--}}
+{{--                <div class="row marginauto modal-container-body">--}}
+{{--                    <div class="col-md-12 c-px-6 c-py-8 body-modal__nick__text-error">--}}
+{{--                        <div class="text-error c-mt-4">Không có kết quả phù hợp.</div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="row marginauto">--}}
+{{--                                <div class="col-md-12 pl-0 pr-0">--}}
+{{--                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="row marginauto">--}}
+{{--                                <div class="col-md-12 pl-0 pr-0">--}}
+{{--                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="row marginauto">--}}
+{{--                                <div class="col-md-12 pl-0 pr-0">--}}
+{{--                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-md-12 pl-0 pr-0 c-px-6 c-py-8">--}}
+{{--                        <a href="">--}}
+{{--                            <div class="row marginauto">--}}
+{{--                                <div class="col-md-12 pl-0 pr-0">--}}
+{{--                                    <img class="w-100 h-auto brs-4" src="/assets/frontend/{{theme('')->theme_key}}/image/son/test.png" alt="Axtrox">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer" style="height: 16px">--}}
 
-                </div>
-            </div>
+{{--                </div>--}}
+{{--            </div>--}}
 
-        </div>
+{{--        </div>--}}
 
 
         <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
-
+{{--        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/main.css">--}}
         <script>
             $('body').on('click','.c-close-modal',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-tuong').css('display','none');
-                $('.c-modal__nick-lmht-ttk').css('display','none');
-                $('.c-modal__nick-lmht-trang-phuc').css('display','none');
-                $('.c-modal__nick-lmht-linh-thu-tft').css('display','none');
-                $('.c-modal__nick-lmht-san-dau-tft').css('display','none');
-                $('.c-modal__nick-lmht-chuong-luc-tft').css('display','none');
+                $('.c-modal__nick-lmht-tuong').addClass('d-none');
+                $('.c-modal__nick-lmht-ttk').addClass('d-none');
+                $('.c-modal__nick-lmht-trang-phuc').addClass('d-none');
+                $('.c-modal__nick-lmht-linh-thu-tft').addClass('d-none');
+                $('.c-modal__nick-lmht-san-dau-tft').addClass('d-none');
+                $('.c-modal__nick-lmht-chuong-luc-tft').addClass('d-none');
 
-                $('.c-modal__nick-lmht-bieu-cam').css('display','none');
+                $('.c-modal__nick-lmht-bieu-cam').addClass('d-none');
             });
 
 
             $('body').on('click','.lm_xemthem_tuong',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-tuong').css('display','block');
+                $('.c-modal__nick-lmht-tuong').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_thongtinchung',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-ttk').css('display','block');
+                $('.c-modal__nick-lmht-ttk').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_trangphuc',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-trang-phuc').css('display','block');
+                $('.c-modal__nick-lmht-trang-phuc').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_linhthu',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-linh-thu-tft').css('display','block');
+                $('.c-modal__nick-lmht-linh-thu-tft').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_sandau',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-san-dau-tft').css('display','block');
+                $('.c-modal__nick-lmht-san-dau-tft').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_damedondanh',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-chuong-luc-tft').css('display','block');
+                $('.c-modal__nick-lmht-chuong-luc-tft').removeClass('d-none');
             });
 
             $('body').on('click','.lm_xemthem_bieucam',function(e){
                 e.preventDefault();
-                $('.c-modal__nick-lmht-bieu-cam').css('display','block');
+                $('.c-modal__nick-lmht-bieu-cam').removeClass('d-none');
             });
 
             $('body').on('click','#nick-lmht-tuong  .submit--search',function(e){
@@ -1087,7 +1087,8 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyacc.js"></script>
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
-        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/main.css">
+        {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">--}}
+
 
     @endif
 @endsection

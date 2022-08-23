@@ -43,7 +43,7 @@
 }
 
 #content-store-card {
-    --primary-color: #F67600;
+    --primary-color: #32c5d2;
 }
 
 #content-store-card .card {
@@ -53,11 +53,12 @@
 }
 
 .card.--custom {
-    --primary-color: #F67600;
+    --primary-color: #32c5d2;
     border-radius: 12px;
     border: none;
     font-family: 'Open Sans';
     min-height: 1rem;
+
 }
 
 #content-store-card .card.-select--deno {
@@ -766,7 +767,7 @@
 
 /*style for order detail*/
 .order--detail {
-    --primary-color: #F67600;
+    --primary-color: #32c5d2;
     padding: 0 0 0 10px;
 }
 
@@ -993,7 +994,7 @@
 }
 
 .input--file::-webkit-file-upload-button {
-    border: 1px solid #F67600;
+    border: 1px solid #32c5d2;
     border-radius: 4px;
     background-color: #FFFFFF;
     color: var(--primary-color);
@@ -1624,7 +1625,7 @@ a:hover .__icon.--path__custom:after {
     font-weight: 700;
     font-size: 24px;
     line-height: 1.5;
-    color: #1B1D29;
+    color: #3f444a;
 }
 
 #rechargeModal .modal-header .close {
@@ -1663,9 +1664,9 @@ a:hover .__icon.--path__custom:after {
     border-left: none;
     border-right: none;
     padding-bottom: 11.5px;
-    border-bottom: 2px solid #F67600;
+    border-bottom: 2px solid #32c5d2;
     font-weight: 700;
-    color: #F67600;
+    color: #32c5d2;
 }
 
 #rechargeModal .nav-tabs .nav-link:not(.active):hover {
@@ -1715,7 +1716,7 @@ a:hover .__icon.--path__custom:after {
     margin-bottom: 0;
 }
 #rechargeModal .list-card-deno input:checked + .card-label {
-    border-color: var(--primary-color);
+    border-color: #32c5d2;
 }
 #rechargeModal .list-card-deno .card-label span {
     position: absolute;
@@ -1732,7 +1733,7 @@ a:hover .__icon.--path__custom:after {
     color: #434657;
 }
 #rechargeModal .list-card-deno input:checked + .card-label span {
-    color: var(--primary-color);
+    color: #32c5d2;
 }
 /*text*/
 .t-sub-2 {
@@ -2156,4 +2157,30 @@ a:hover .__icon.--path__custom:after {
 
     }
 
+}
+
+.captcha{
+    margin: 0 8px;
+    width: 150px;
+
+}
+
+.refresh-captcha{
+    border:none;
+    border-radius: 8px;
+    background: #FBFBFD;
+
+
+}
+.refresh-captcha img{
+    -moz-transition: all .8s linear;
+    -webkit-transition: all .8s linear;
+    transition: all .8s linear;
+    padding: 0 16px;
+}
+
+.refresh-captcha .down {
+    -moz-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    transform:rotate(360deg);
 }

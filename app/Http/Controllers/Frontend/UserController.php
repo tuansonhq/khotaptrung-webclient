@@ -785,8 +785,7 @@ class UserController extends Controller
                            $data->setPath($request->url());
                        }
 
-
-                        return view('frontend.pages.storecard.logs')
+                        return view('frontend.pages.storecard.widgets.logs')
                             ->with('data',$data)
                             ->with('total',$total)
                             ->with('per_page',$per_page)

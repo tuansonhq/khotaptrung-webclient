@@ -230,27 +230,27 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Thông tin chung</span>
-                                        </div>
-                                        <div class="col-md-1 col-3 pl-0">
-                                            <span class="span__dangky">{{ $total_thongtinchung }}</span>
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Thông tin chung</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_thongtinchung }}</span>--}}
 
-                                        </div>
-                                        <div class="col-md-6 col-4 pl-0 pr-0">
-                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_thongtinchung">Xem</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
+{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_thongtinchung">Xem</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="col-md-12">
                             <div class="row gallery__03">
@@ -266,82 +266,82 @@
                                             <span class="span__dangky">{{ $total_linhthu }}</span>
 
                                         </div>
-{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
-{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_linhthu">Xem</a>--}}
-{{--                                        </div>--}}
+                                        <div class="col-md-6 col-4 pl-0 pr-0">
+                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_linhthu">Xem</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Sàn đấu TFT</span>
-                                        </div>
-                                        <div class="col-md-1 col-3 pl-0">
-                                            <span class="span__dangky">{{ $total_sandau }}</span>
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Sàn đấu TFT</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_sandau }}</span>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 {{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
 {{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_sandau">Xem</a>--}}
 {{--                                        </div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Dame đòn đánh TFT</span>
-                                        </div>
-                                        <div class="col-md-1 col-3 pl-0">
-                                            <span class="span__dangky">{{ $total_chuongluc }}</span>
-                                        </div>
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Dame đòn đánh TFT</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_chuongluc }}</span>--}}
+{{--                                        </div>--}}
 {{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
 {{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_damedondanh">Xem</a>--}}
 {{--                                        </div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-12">
-                            <div class="row gallery__03">
-                                <div class="col-md-12 gallery__01__row">
-                                    <div class="row">
-                                        <div class="col-auto span__dangky__auto">
-                                            <i class="fas fa-angle-right"></i>
-                                        </div>
-                                        <div class="col-md-4 col-4 pl-0">
-                                            <span class="span__dangky">Biểu cảm</span>
-                                        </div>
-                                        <div class="col-md-1 col-3 pl-0">
-                                            <span class="span__dangky">{{ $total_bieucam }}</span>
-                                        </div>
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Biểu cảm</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_bieucam }}</span>--}}
+{{--                                        </div>--}}
 {{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
 {{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_bieucam">Xem</a>--}}
 {{--                                        </div>--}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     @if(isset($data->params))
                         @if(isset($data->params->rank_info) && count($data->params->rank_info))
 
                             @foreach($data->params->rank_info as $key_rank => $rank_info)
-                                @if($rank_info->queueType == "RANKED_TFT" && $rank_info->tier != "NONE")
+                                @if($rank_info->queueType == "RANKED_TFT")
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
                                             <div class="col-md-12 gallery__01__row">
@@ -353,13 +353,19 @@
                                                         <span class="span__dangky">RANKED TFT</span>
                                                     </div>
                                                     <div class="col-md-6 col-6 pl-0">
-                                                        <span class="span__dangky">{{ $rank_info->tier }}-{{ $rank_info->division }}</span>
+                                                        @if($rank_info->tier == "NONE")
+                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                        @else
+
+                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5" && $rank_info->tier != "NONE")
+                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
 
                                     <div class="col-md-12">
                                         <div class="row gallery__03">
@@ -372,7 +378,13 @@
                                                         <span class="span__dangky">RANKED SOLO</span>
                                                     </div>
                                                     <div class="col-md-6 col-6 pl-0">
-                                                        <span class="span__dangky">{{ $rank_info->tier }}-{{ $rank_info->division }}</span>
+
+                                                        @if($rank_info->tier == "NONE")
+                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                        @else
+                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -464,14 +476,14 @@
                                     <div class="row atmvdtntc">
                                         <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                             @if(App\Library\AuthCustom::check())
-                                                <a href="/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
+                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
                                             @else
                                                 <a href="/login?return_url=/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
                                             @endif
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6 ntc">
                                             @if(App\Library\AuthCustom::check())
-                                                <a href="/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
+                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
                                             @else
                                                 <a href="/login?return_url=/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
                                             @endif
@@ -608,8 +620,8 @@
                             @if(App\Library\AuthCustom::check())
 
                                 @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
-                                    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" id="d3">Nạp thẻ cào</a>
+                                    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                 @else
                                     <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                 @endif

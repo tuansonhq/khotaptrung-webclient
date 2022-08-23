@@ -187,7 +187,6 @@
                                         <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
                                             Nạp ngay
                                         </button>
-
                                     </div>
 
                                     @include('frontend.widget.modal.__charge')

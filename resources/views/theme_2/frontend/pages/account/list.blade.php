@@ -305,7 +305,7 @@
         @include('frontend.pages.account.widget.__related__category')
 
         {{--            Dịch vụ khác   --}}
-        @include('frontend.widget.__services__other')
+{{--        @include('frontend.widget.__services__other')--}}
 
             <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
             {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}

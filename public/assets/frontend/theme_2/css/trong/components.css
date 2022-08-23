@@ -733,6 +733,8 @@ section.outstanding-service {
     background-repeat: no-repeat;
     background-size: 24px 24px;
     background-position: center;
+    border:none;
+    background-color: transparent;
 }
 .filter-history:before {
     content: attr(data-notify);
