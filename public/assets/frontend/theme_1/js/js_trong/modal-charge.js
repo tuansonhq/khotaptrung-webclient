@@ -23,7 +23,7 @@ $(document).ready(function () {
                     }
                     modal_charge.find('#modal-telecom').html(html);
                 }
-                $('select').niceSelect();
+                // $('select').niceSelect();
                 $('#modal-telecom').trigger('change');
             },
             error: function (data) {
@@ -120,6 +120,7 @@ $(document).ready(function () {
                 }
                 form.closest('.tab-content').toggleClass('load-overlay',false);
                 form.closest('.tab-content').find('.wrap-spin').remove();
+                reload_captcha();
             },
             error: function (data) {
                 swal({
@@ -138,7 +139,7 @@ $(document).ready(function () {
         });
     }
 
-    $('#modal-reload-captcha').click(function () {
+    $('body').on('click','#modal-reload-captcha',function () {
         $('.refresh-captcha img').toggleClass("down");
         $.ajax({
             type: 'GET',
