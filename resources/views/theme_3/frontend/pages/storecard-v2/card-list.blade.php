@@ -10,10 +10,10 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['datacard'=>$key]))
 @endsection
 @section('meta_robots')
-    <meta name="robots" content="noindex,nofollow" />
+    <meta name="robots" content="index,follow" />
 @endsection
 @section('content')
     <div class="container-fix container" id="buy-card">
