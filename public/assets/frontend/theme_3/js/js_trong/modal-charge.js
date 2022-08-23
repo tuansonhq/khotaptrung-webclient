@@ -88,7 +88,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha_1 span").html(data.captcha);
             }
@@ -120,6 +120,7 @@ $(document).ready(function () {
                 }
                 form.closest('.tab-content').toggleClass('load-overlay',false);
                 form.closest('.tab-content').find('.wrap-spin').remove();
+                reload_captcha();
             },
             error: function (data) {
                 swal({
@@ -142,17 +143,15 @@ $(document).ready(function () {
         $('.refresh-captcha img').toggleClass("down");
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha2',
+            url: '/reload-captcha2',
             success: function (data) {
                 // console.log(data)
                 $(".captcha_1 span").html(data);
             }
         });
     });
-
     form.on('submit',function (e) {
         e.preventDefault();
         postCharge();
     });
-
 });

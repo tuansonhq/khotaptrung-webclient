@@ -108,7 +108,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             Route::group(['middleware' => ['auth_custom']], function (){
 
-
             });
 
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
@@ -138,6 +137,10 @@ Route::group(array('middleware' => ['theme']) , function (){
                 // lấy mệnh giá trong mua thẻ
                 Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                     ->name('getAmountStoreCard');
+
+                Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
+                    ->name('getIdCode');
+
                 Route::group(['middleware' => ['auth_custom']], function (){
                     //profile
                     Route::get('/profile-info', [\App\Http\Controllers\Frontend\UserController::class , 'profile'])
@@ -226,9 +229,6 @@ Route::group(array('middleware' => ['theme']) , function (){
                     //Nạp thẻ Atm
 
                     Route::get('/recharge-atm', [\App\Http\Controllers\Frontend\TranferController::class , 'index']);
-
-                    Route::get('/transfer-code', [\App\Http\Controllers\Frontend\TranferController::class , 'getIdCode'])
-                        ->name('getIdCode');
 
                     Route::get('/lich-su-atm-tu-dong', [\App\Http\Controllers\Frontend\TranferController::class , 'logs']);
 
