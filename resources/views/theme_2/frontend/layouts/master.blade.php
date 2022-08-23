@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">

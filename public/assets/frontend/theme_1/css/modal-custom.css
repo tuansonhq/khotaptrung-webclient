@@ -625,7 +625,14 @@ p, span, a {
     border: 1px solid #32c5d2!important;
 }
 
-
+.submit--search{
+    position: absolute;
+    background: #32c5d2;
+    border: 1px solid #32c5d2;
+    padding: 16px 15px;
+    border-radius: 4px;
+    right: 4px;
+}
 /* Testttttttttttttttt */
 
 

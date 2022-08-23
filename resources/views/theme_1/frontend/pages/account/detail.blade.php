@@ -652,7 +652,7 @@
                         <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_linhthu }} linh thú)</p>
                     </div>
                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
                         <button class="submit--search" type="submit"></button>
                     </div>
                     <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
@@ -699,7 +699,7 @@
                         <p class="fw-400 fz-13 lh-20 mb-0">({{ $total_trangphuc }} Trang phục)</p>
                     </div>
                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
                         <button class="submit--search" type="submit"></button>
                     </div>
                     <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
@@ -751,7 +751,7 @@
                         <p class="fw-400 fz-13 lh-20 mb-0 total_tuong_data">({{ $total_tuong??0 }} tướng)</p>
                     </div>
                     <div class="col-auto pl-0 pr-0 form-search input-search-lmht position-relative">
-                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht">
+                        <input id="keyword--search" type="search" placeholder="Tìm kiếm" class="has-submit input-search-lmht form-control">
                         <button class="submit--search" type="submit"></button>
                     </div>
                     <img class="c-close-modal" src="/assets/frontend/{{theme('')->theme_key}}/image/son/close.svg" alt="">
@@ -854,7 +854,7 @@
 
 
         <input type="hidden" name="total_tuong" class="total_tuong" value="{{ $total_tuong }}">
-
+{{--        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/main.css">--}}
         <script>
             $('body').on('click','.c-close-modal',function(e){
                 e.preventDefault();
@@ -1088,7 +1088,7 @@
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/account/buyaccslider.js"></script>
         <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
         {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">--}}
-        <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/main.css">
+
 
     @endif
 @endsection

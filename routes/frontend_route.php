@@ -134,6 +134,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
                 // lấy nhà mạng mua thẻ
                 Route::get('/store-card/get-telecom', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getTelecomStoreCard'])->name('getTelecomStoreCard');
+                Route::get('/lich-su-mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCardHistory']);
                 // lấy mệnh giá trong mua thẻ
                 Route::get('/store-card/get-amount', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getAmountStoreCard'])
                     ->name('getAmountStoreCard');

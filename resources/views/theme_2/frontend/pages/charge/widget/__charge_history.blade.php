@@ -120,12 +120,12 @@
                     @endif
 
                 @endforeach
-            @else
-                <tr>
-                    <td colspan="8">
-                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
-                    </td>
-                </tr>
+{{--            @else--}}
+{{--                <tr>--}}
+{{--                    <td colspan="8">--}}
+{{--                        <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>--}}
+{{--                    </td>--}}
+{{--                </tr>--}}
             @endif
 
             </tbody>
@@ -143,7 +143,7 @@
             </div>
 
 
-            <nav class="page-pagination mb-2 paginate__v1_index_lsnt paginate__v1_mobie frontend__panigate">
+            <nav class="page-pagination mb-2 paginate__v1__charge paginate__v1_mobie frontend__panigate">
                 @if(isset($data))
                     @if($data->total()>1)
                         <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
