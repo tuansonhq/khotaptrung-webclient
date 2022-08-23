@@ -75,6 +75,7 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
+
 <!-- Modal nạp tiền -->
 
 <div class="modal fade show" id="rechargeModal" aria-modal="true">
@@ -180,6 +181,7 @@
         </div>
     </div>
 </div>
+
 @include('frontend.widget.modal.__success_charge')
 <!-- end modal charge -->
 
@@ -241,6 +243,9 @@
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+    $('#rechargeModal').modal('show')
+
 </script>
 @if (!\App\Library\AuthCustom::check())
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>
@@ -256,7 +261,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
-<script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 {{--impport script--}}
 @yield('scripts')
 </body>
