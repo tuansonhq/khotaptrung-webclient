@@ -22,7 +22,7 @@ $(document).ready(function(){
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        var id_lsmt_data = $('.id_lsmt_data').val();
+        var id_storecard = $('.id_storecard').val();
         var started_at_lsmt_data = $('.started_at_lsmt_data').val();
         var ended_at_lsmt_data = $('.ended_at_lsmt_data').val();
 
@@ -130,8 +130,7 @@ $(document).ready(function(){
                 ended_at:ended_at_lsmt_data,
             },
             beforeSend: function (xhr) {
-                $("#data_muathe_history").hide();
-                $(".load_spinner").show();
+
 
             },
             success: (data) => {

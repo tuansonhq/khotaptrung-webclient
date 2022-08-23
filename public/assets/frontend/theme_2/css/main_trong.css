@@ -312,7 +312,7 @@ button:focus {
     font-size: 15px;
     font-weight: 500;
     line-height: 24px;
-    border: none;
+    /*border: none;*/
     box-sizing: border-box;
     height: 40px;
 }
