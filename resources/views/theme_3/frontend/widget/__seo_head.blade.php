@@ -17,6 +17,10 @@
     @endif
 @elseif(Request::is('mua-the'))
     <title>{{setting('sys_store_card_title')??setting('sys_title') }}</title>
+@elseif(isset($datacard))
+    <title>Mua thẻ {{ $datacard }}</title>
+@elseif(isset($datakey) && isset($dataname))
+    <title>Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}</title>
 @elseif(isset($title->title))
     @if(isset($data->randId))
     @else
@@ -59,6 +63,12 @@
 @elseif(Request::is('mua-the'))
     <meta name="description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}">
     <meta property="og:description" content="{{ strip_tags(setting('sys_store_card_seo')??setting('sys_description')) }}"/>
+@elseif(isset($datacard))
+    <meta name="description" content="Mua thẻ {{ $datacard }}">
+    <meta property="og:description" content="Mua thẻ {{ $datacard }}"/>
+@elseif(isset($datakey) && isset($dataname))
+    <meta name="description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
+    <meta property="og:description" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}"/>
 @elseif(isset($title->seo_description))
     <meta name="description" content="{{ $title->seo_description??'' }}">
     <meta property="og:description" content="{{ $title->seo_description??'' }}"/>
@@ -89,6 +99,10 @@
     <meta property="og:title" content="Shop dịch vụ all game giá rẻ, uy tín, tự động.">
 @elseif(Request::is('mua-the'))
     <meta property="og:title" content="{{setting('sys_store_card_title')??setting('sys_title') }}">
+@elseif(isset($datacard))
+    <meta property="og:title" content="Mua thẻ {{ $datacard }}">
+@elseif(isset($datakey) && isset($dataname))
+    <meta property="og:title" content="Mua thẻ {{ $dataname }} mệnh giá {{ $datakey }}">
 @elseif(isset($title->title))
     @if(isset($data->randId))
     @else
