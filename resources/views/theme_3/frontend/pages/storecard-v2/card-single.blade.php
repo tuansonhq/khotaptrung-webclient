@@ -10,7 +10,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
