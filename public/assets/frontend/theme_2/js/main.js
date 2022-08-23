@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     // $(function () {
-    $('.started_at_lsnt').datetimepicker({
+    $('.started_at').datetimepicker({
         format: 'DD-MM-YYYY LT',
         useCurrent: false,
         icons:
@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
                 close: 'far fa-times' },
         maxDate: moment()
     });
-    $('.ended_at_lsnt').datetimepicker({
+    $('.ended_at').datetimepicker({
         format: 'DD-MM-YYYY LT',
         useCurrent: false,
         icons:
