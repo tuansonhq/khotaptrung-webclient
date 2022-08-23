@@ -10,30 +10,31 @@
 @section('content')
     <div class="site-content-body bg-white first last p-0">
         <div class="block-profile" >
-            @include('frontend.widget.__side__bar')
+            @include('frontend.widget.__menu_profile')
             <div class="block-content p-3">
                 <div class="tab-content mb-4">
-                    <div class="tab-pane fade data__napthe_tab" id="deposit" role="tabpanel" aria-labelledby="deposit-tab"  style="min-height: 700px;">
+                    <div class="data__napthe_tab" id="deposit"  style="min-height: 700px;">
                         <form class="form-charge form__lsnt">
                             <div class="d-flex justify-content-between align-items-md-center flex-column flex-md-row">
                                 <h4 class="title-style-left mb-3">Lịch sử nạp thẻ</h4>
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="input-group date-ranger-picker ms-3">
-                                        <input type="text" name="started_at_lsnt" class="form-control input-group-addon border-end-0 started_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
+                                        <input type="text" name="started_at" class="form-control input-group-addon border-end-0 started_at" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                         <span class="input-group-text bg-transparent text-secondary"><i class="las la-arrow-right"></i></span>
-                                        <input type="text" name="ended_at_lsnt" class="form-control input-group-addon           border-start-0 ended_at_lsnt" placeholder="DD/MM/YYYY" value="" autocomplete="off">
+                                        <input type="text" name="ended_at" class="form-control input-group-addon           border-start-0 ended_at" placeholder="DD/MM/YYYY" value="" autocomplete="off">
                                         <button class="btn bg-primary text-white" type="submit"><i class="las la-angle-right"></i></button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <div class="text-center ajax-loading-store load_spinner">
-                            <div class="cv-spinner">
-                                <span class="spinner"></span>
+
+                        <div id="data_charge_history">
+                            <div class="text-center ajax-loading-store load_spinner">
+                                <div class="cv-spinner">
+                                    <span class="spinner"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div id="data_napthe_history">
-                            @include('frontend.pages.charge.widget.__charge__history')
+                            @include('frontend.pages.charge.widget.__charge_history')
                         </div>
 
                     </div><!-- END Tab Content History -->

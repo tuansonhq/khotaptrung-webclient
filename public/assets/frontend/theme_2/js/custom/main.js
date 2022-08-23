@@ -5,7 +5,7 @@ let width = $(document).width();
 
 $(document).ready(function() {
     /*Tất cả các thẻ select sẽ được dùng plugin select nice*/
-    $('select').niceSelect();
+    // $('select').niceSelect();
     /*Quantity*/
     $(document).on('click','.js-quantity-minus',function (event) {
         event.preventDefault();

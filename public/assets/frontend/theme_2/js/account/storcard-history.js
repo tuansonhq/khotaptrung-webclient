@@ -135,17 +135,28 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+                if (data.status == 1){
+                    $("#data_muathe_history").empty().html('');
+                    $("#data_muathe_history").empty().html(data.data);
+                }else if (data.status == 0) {
+                    var html = '';
+                    html += '<div class="col-md-12">';
+                    html += '  <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>';
+                    html += '</div>';
 
-                $("#data_muathe_history").empty().html('');
-                $("#data_muathe_history").empty().html(data);
+
+                    $("#data_muathe_history").empty().html('');
+                    $("#data_muathe_history").empty().html(html);
+                }
+
+
 
             },
             error: function (data) {
 
             },
             complete: function (data) {
-                $("#data_muathe_history").show();
-                $(".load_spinner").hide();
+
 
             }
         });
