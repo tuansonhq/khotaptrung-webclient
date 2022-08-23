@@ -309,3 +309,35 @@ function initSwiperNick() {
         });
     }
 }
+
+function initSwiperConfigAccGame() {
+
+    new Swiper('.swiper-acc-game',{
+        autoplay: false,
+        updateOnImagesReady: true,
+        watchSlidesVisibility: false,
+        lazyLoadingInPrevNext: false,
+        lazyLoadingOnTransitionStart: false,
+        slidesPerView: 5,
+        speed: 300,
+        spaceBetween: 16,
+        touchMove: false,
+        grabCursor: false,
+        simulateTouch:false,
+        observer: true,
+        observeParents: true,
+        breakpoints: {
+            992: {
+                freeMode: true,
+                simulateTouch:true,
+                slidesPerView: 3,
+            },
+            768: {
+                freeMode: true,
+                slidesPerView: 2.25,
+                simulateTouch:true,
+                spaceBetween: 12,
+            }
+        },
+    });
+}
