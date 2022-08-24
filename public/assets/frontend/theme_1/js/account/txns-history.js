@@ -148,7 +148,7 @@ $(document).ready(function(){
                     html += '<table class="table table-hover table-custom-res">';
                     html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
                     html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">Không có dữ liệu</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';

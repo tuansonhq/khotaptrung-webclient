@@ -516,7 +516,7 @@ class UserController extends Controller
                             $data->setPath($request->url());
                         }
 
-                        return view('frontend.pages.tranfer.logs')
+                        return view('frontend.pages.transfer.logs')
                             ->with('data',$data)
                             ->with('total',$total)
                             ->with('per_page',$per_page);

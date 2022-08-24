@@ -1,21 +1,25 @@
 $(document).ready(function () {
 
-    $(document).on('click', '.buyacc',function(e){
+    $('body').on('click', '.buyacchome',function(e){
         e.preventDefault();
-        var htmlloading = '';
+        // var htmlloading = '';
+        //
+        // htmlloading += '<div class="loading"></div>';
+        // $('.loading-data__buyacc').html('');
+        // $('.loading-data__buyacc').html(htmlloading);
 
-        htmlloading += '<div class="loading"></div>';
-        $('.loading-data__buyacc').html('');
-        $('.loading-data__buyacc').html(htmlloading);
+        var id = $(this).data("id");
 
-        // var id = $(this).data("id");
+        var html = $('.formDonhangAccountHome' + id + '').html();
+        $('.data__form__random_home').html('');
+        $('.data__form__random_home').html(html);
 
-        $('.loadModal__acount').modal('toggle');
-        $('.loading-data__buyacc').html('');
+        $('.loadModal__acount_home').modal('toggle');
+        // $('.loading-data__buyacc').html('');
         // getBuyAcc(id)
     });
 
-    $(document).on('submit', '.formDonhangAccount', function(e){
+    $('body').on('submit', '#LoadModalHome .formDonhangAccountHome', function(e){
         e.preventDefault();
         var htmlloading = '';
 
@@ -27,7 +31,6 @@ $(document).ready(function () {
         var url = formSubmit.attr('action');
         var btnSubmit = formSubmit.find(':submit');
         btnSubmit.prop('disabled', true);
-        $('.loginBox__layma__button__displayabs').prop('disabled', true);
 
         $.ajax({
             type: "POST",
@@ -38,25 +41,25 @@ $(document).ready(function () {
             },
             success: function (response) {
 
+                $('.data__form__random').html('');
+
                 if(response.status == 1){
                     $('.loadModal__acount').modal('hide');
                     swal({
                         title: "Mua tài khoản thành công",
                         text: "Thông tin chi tiết tài khoản vui lòng về lịch sử đơn hàng.",
                         type: "success",
-                        confirmButtonText: "Lịch sử đơn hàng",
+                        confirmButtonText: "Về lịch sử đơn hàng",
                         showCancelButton: true,
                         cancelButtonText: "Đóng",
                     })
                         .then((result) => {
-                            var slug_category = $('.slug_category').val();
-                            console.log(slug_category)
                             if (result.value) {
                                 window.location = '/lich-su-mua-nick';
                             } else if (result.dismiss === "Đóng") {
-                                window.location = '/mua-acc/'+ slug_category;
+                                location.reload();
                             }else {
-                                window.location = '/mua-acc/'+ slug_category;
+                                location.reload();
                             }
                         })
                 }
@@ -68,15 +71,13 @@ $(document).ready(function () {
                         response.message,
                         'warning'
                     )
-                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }else {
-                    $('.loadModal__acount').modal('hide');
+                    $('.loadModal__acount_home').modal('hide');
                     swal(
                         'Lỗi!',
                         response.message,
                         'error'
                     )
-                    $('.loginBox__layma__button__displayabs').prop('disabled', false);
                 }
                 $('.loading-data__muangay').html('');
             },
@@ -105,16 +106,8 @@ $(document).ready(function () {
 
     })
 
-    $(document).on('click', '.tinhnang',function(e){
-        $('#notInbox').modal('show');
-    });
-
-    $(document).on('click', '.the-cao-atm',function(e){
-        $('#notBuy').modal('show');
-    });
-
-    $(document).on('click', '#handleOpenRechargeModal',function(e){
-        $('#rechargeModal').modal('show');
+    $('body').on('click', '.the-cao-atm-home',function(e){
+        $('#notBuyHome').modal('show');
     });
 
 });

@@ -114,6 +114,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                 Route::get('/mua-acc', [AccController::class , "getCategory"]);
 
+                Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
+
                 Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
 
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
@@ -166,7 +168,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
                     //lịch sử nạp thẻ
 
-
                     Route::get('/lich-su-nap-the', [\App\Http\Controllers\Frontend\ChargeController::class , 'getChargeDepositHistory'])
                         ->name('getChargeDepositHistory');
 
@@ -178,6 +179,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     /*Theme_1*/
                     Route::get('/lich-su-mua-account', [\App\Http\Controllers\Frontend\AccController::class , 'getLogs'])
                         ->name('getBuyAccountHistory');
+
                     /*Theme_3*/
                     Route::get('/lich-su-mua-nick', [\App\Http\Controllers\Frontend\AccController::class , 'getLogsCustom'])
                         ->name('nick-buyed');

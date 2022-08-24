@@ -19,7 +19,7 @@ return [
         ],
         'key_encrypt' => env('ENCRYPT_CHARGING'),
     ],
-    'tranfer' => [
+    'transfer' => [
         'key'=>"charge",
         'title'=>"Nạp ATM tự động",
         'status' => [
