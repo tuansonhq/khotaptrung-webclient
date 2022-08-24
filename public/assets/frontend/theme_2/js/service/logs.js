@@ -33,17 +33,15 @@ function loadDataApi(query) {
                 history_see_more ? history_see_more = false : '';
             }
             if (res.status === 0) {
-                let html = `<ul class="trans-list">
-                                <li class="trans-item" style="height: auto">
-                                    <a href="javascript:void(0)">
-                                        <div class="text-left">
-                                            <span class="t-body-2 text-center fw-600 c-mb-0 text-limit limit-1 bread-word" style="color: #DA4343">
-                                                ${res.message}
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>`;
+                let html = '';
+                html += '<div class="table-responsive">';
+                html += '<table class="table table-hover table-custom-res">';
+                html += '<thead><tr><th>Thời gian</th><th>ID</th><th>Tài khoản </th><th>Giao dịch</th><th>Số tiền</th><th>Số dư cuối</th><th>Nội dung</th><th>Trạng thái</th></tr></thead>';
+                html += '<tbody>';
+                html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                html += '</tbody>';
+                html += '</table>';
+                html += '</div>';
                 content_history.html(html);
             }
             if (res.status === 404){

@@ -264,10 +264,22 @@ function checkboxRequired(selector) {
 }
 
 $('.submit-form').on('click', function () {
+    /*check conf tiền hay ko*/
+    let price_balance = ($('#account-balance').clone().children().remove().end().text().trim()) * 1;
+    let elm_text_total = Array.from($('.total--price'));
+    let elm_price = $(document).width() > 992 ? elm_text_total[0] : elm_text_total[1];
+    let price_total = ($(elm_price).text().match(/\d/g).join("")) * 1;
+    if (price_balance < price_total) {
+        $('#openOrder').modal('hide');
+        $('#rechargeModal').modal('show');
+        return
+    }
+
     let data_form = $('#formDataService').serializeArray().reduce(function (obj, item) {
         obj[item.name] = item.value;
         return obj;
     }, {});
+
     let url = $('#formDataService').attr('action');
     data_form.selected = data_form.selected.replace(/\./g, "");
 

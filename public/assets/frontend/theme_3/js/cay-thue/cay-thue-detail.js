@@ -238,7 +238,7 @@ $(document).ready(function (e) {
         let is_ok = 1;
         let html = '';
 
-        let required = $('input[required]');
+        let required = $('#formDataService input[required]');
         if (required.length){
             required.each(function () {
                 $(this).toggleClass('invalid',!$(this).val().trim());
@@ -248,10 +248,11 @@ $(document).ready(function (e) {
                     html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập ${text}</small></div></div>`
                     $(this).parent().next().html(html)
                 }else {
-                    $(this).parent().next().text('')
+                    $(this).parent().next().text('');
                 }
             });
         }
+
         if ($('.allgame[type=checkbox]').length){
             if (checkboxRequired('input.allgame[type=checkbox]')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
@@ -288,5 +289,4 @@ $(document).ready(function (e) {
         $('#openOrder').modal('hide');
         $('#successModal').modal('show');
     })
-
 })

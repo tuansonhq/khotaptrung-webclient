@@ -86,19 +86,6 @@
                                                         <span>Thông tin acc</span>
                                                     </div>
 
-                                                    <div class="col-md-12 left-right" id="order-errors">
-                                                        <div class="row marginauto order-errors">
-                                                            <div class="col-md-12 left-right">
-                                                                @if(App\Library\AuthCustom::check())
-                                                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
-                                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
-                                                                    @endif
-                                                                @else
-                                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
                                                     @if (App\Library\AuthCustom::check())
                                                         <div class="col-md-12 left-right padding-order-ct">
@@ -231,7 +218,19 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <div class="col-md-12 left-right" id="order-errors">
+                                                        <div class="row marginauto order-errors">
+                                                            <div class="col-md-12 left-right">
+                                                                @if(App\Library\AuthCustom::check())
+                                                                    @if(App\Library\AuthCustom::user()->balance < $data->params->price)
+                                                                        <small>Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.</small>
+                                                                    @endif
+                                                                @else
+                                                                    <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                                         <div class="row marginauto">
                                                             <div class="col-md-12 left-right">
@@ -240,22 +239,7 @@
                                                                     @if(App\Library\AuthCustom::user()->balance >= $data->params->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
-                                                                        <div class="row marginauto justify-content-center gallery-right-footer">
-                                                                            <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                                <div class="row marginauto">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/nap-the" class="btn -secondary btn-big">Thẻ cào</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                                                <div class="row marginauto">
-                                                                                    <div class="col-md-12 left-right">
-                                                                                        <a href="/recharge-atm" class="btn -secondary btn-big">ATM, Momo</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                                        <button class="button-default-ct" type="button" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif
                                                                 @else
                                                                     <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
