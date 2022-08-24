@@ -1,5 +1,5 @@
 @if(isset($data))
-<section class="section-related-service related-category">
+<section class="section-related-service related-category pb-3 mt-2">
     <div class="section-header c-mb-24 c-mb-lg-16 justify-content-between">
         <h2 class="section-title fz-lg-15 lh-lg-24">
             Mua tài khoản game khác

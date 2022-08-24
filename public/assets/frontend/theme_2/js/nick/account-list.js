@@ -39,7 +39,7 @@ function loadDataApi(query) {
                 content_history.html(html);
             }
             if (res.status === 0) {
-                let html = `<div class="invalid-color text-center">${res.message}</div>`;
+                let html = `<div class="invalid-color text-center m-auto" >${res.message}</div>`;
                 content_history.html(html);
             }
         },

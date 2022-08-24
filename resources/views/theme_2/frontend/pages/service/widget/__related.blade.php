@@ -1,5 +1,5 @@
 @if(isset($datacate))
-<section class="section-related-service related-service">
+<section class="section-related-service related-service pb-3 ">
     <div class="section-header c-mb-16 c-mb-lg-8 justify-content-between">
         <h2 class="section-title fz-15 fz-lg-20 lh-lg-24">
             Dịch vụ liên quan

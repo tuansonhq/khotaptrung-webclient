@@ -13,7 +13,7 @@
                         <div class="card brs-0">
                             <div class="card-body c-p-12 scale-thumb brs-0">
                                 <a href="{{ isset($item->url) ? $item->url :  '' }}">
-                                    <div class="card-thumb c-mb-8">
+                                    <div class="card-thumb c-mb-8 brs-4">
                                         <img  src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="" class="card-thumb-image">
                                     </div>
                                     <div class="card-attr">
