@@ -1495,8 +1495,9 @@ section.outstanding-service {
 .text-invalid {
     color: #dc3545;
     font-weight: 700;
-    font-size: 15px;
-    line-height: 24px;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 8px;
 }
 .refresh-captcha {
     padding: 0 28px;
