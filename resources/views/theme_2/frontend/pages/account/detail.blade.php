@@ -62,10 +62,11 @@
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
-                        <span style="color: red;font-size: 16px;">
+                        <span style="color: red;font-size: 16px;text-align: center">
                             @if(isset($message))
                                 {{ $message }}
                             @else
+
                                 Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường
                                 xuyên bạn vui lòng theo dõi web trong thời gian tới !
                             @endif

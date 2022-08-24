@@ -14,7 +14,7 @@ $(document).ready(function(){
         $(this).parent().addClass('active');
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
+        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
         html_loading += '<div class="cv-spinner">';
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
@@ -57,8 +57,8 @@ $(document).ready(function(){
                 $('.loading-data__timkiem').html('');
 
                 if (data.status == 1){
-                    $('#data_lich__su_history').html('');
-                    $('#data_lich__su_history').html(data.data);
+                    $('#data_lich__su_history').empty().html('');
+                    $('#data_lich__su_history').empty().html(data.data);
 
                 }else if (data.status == 0){
                     var html = '';
@@ -71,8 +71,8 @@ $(document).ready(function(){
                         html += '</table>';
                     html += '</div>';
 
-                    $('#data_lich__su_history').html('');
-                    $('#data_lich__su_history').html(html);
+                    $('#data_lich__su_history').empty().html('');
+                    $('#data_lich__su_history').empty().html(html);
                 }
 
             },
