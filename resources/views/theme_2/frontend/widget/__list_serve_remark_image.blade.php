@@ -1,17 +1,17 @@
 @if(isset($data))
-    <section class="section-related-service related-service">
+    <section class="section-related-service related-service mb-2">
         <div class="section-header c-mb-16 c-mb-lg-8 justify-content-between">
-            <h2 class="section-title fz-15 fz-lg-20 lh-lg-24">
-                Các dịch vụ liên quan
-            </h2>
-{{--            <a href="/dich-vu" class="link arr-right">Xem tất cả</a>--}}
+
+            <h4 class="text-primary">Các dịch vụ liên quan <i class="las la-angle-right"></i></h4>
+
+            {{--            <a href="/dich-vu" class="link arr-right">Xem tất cả</a>--}}
         </div>
         <div class="swiper swiper-related-service">
             <div class="swiper-wrapper">
                 @foreach($data as $key => $item)
                     <div class="swiper-slide">
-                        <div class="card">
-                            <div class="card-body c-p-16 scale-thumb">
+                        <div class="card brs-0">
+                            <div class="card-body c-p-12 scale-thumb brs-0">
                                 <a href="{{ isset($item->url) ? $item->url :  '' }}">
                                     <div class="card-thumb c-mb-8">
                                         <img  src="{{ isset($item->image) ? \App\Library\MediaHelpers::media($item->image) : '' }}" alt="" class="card-thumb-image">
