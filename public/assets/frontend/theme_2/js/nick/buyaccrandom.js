@@ -20,6 +20,7 @@ $(document).ready(function () {
     });
 
     $(document).on('submit', '#LoadModal .formDonhangAccount', function(e){
+
         e.preventDefault();
         var htmlloading = '';
 
