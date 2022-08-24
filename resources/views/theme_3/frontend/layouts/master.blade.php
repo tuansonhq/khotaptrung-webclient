@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?ver={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
@@ -131,7 +131,7 @@
                                             </span>
                                         </div>
                                         <button class="refresh-captcha" id="modal-reload-captcha" type="button">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/img/captcha_refresh.png" alt="">
                                         </button>
                                     </div>
                                 </div>
@@ -244,9 +244,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    $('#rechargeModal').modal('show')
-
 </script>
+
 @if (!\App\Library\AuthCustom::check())
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/login_modal.js"></script>
 @endif
@@ -261,7 +260,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer_modal.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 {{--impport script--}}
 @yield('scripts')
 </body>

@@ -167,6 +167,19 @@
                                         <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
                                     </div>
                                 </div>
+                                <div class="col-md-12 left-right" id="order-errors">
+                                    <div class="row marginauto order-errors">
+                                        <div class="col-md-12 left-right text-invalid">
+                                            @if(App\Library\AuthCustom::check())
+                                                @if(App\Library\AuthCustom::user()->balance < $item->price)
+                                                    Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.
+                                                @endif
+                                            @else
+                                                <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn primary">Xác nhận</button>
