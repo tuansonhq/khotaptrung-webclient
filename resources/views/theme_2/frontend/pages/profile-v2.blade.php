@@ -216,7 +216,7 @@
                         </div>
 
                         <div id="data_charge_atm_history">
-                            @include('frontend.pages.tranfer.logs')
+                            @include('frontend.pages.transfer.logs')
                         </div>
 
                     </div><!-- BEGIN Tab Content Item -->

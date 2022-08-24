@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/buy-card-v2.css">
 @endsection
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['datacard'=>$key]))
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
