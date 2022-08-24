@@ -131,7 +131,7 @@
                                             </span>
                                         </div>
                                         <button class="refresh-captcha" id="modal-reload-captcha" type="button">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/img/captcha_refresh.png" alt="">
                                         </button>
                                     </div>
                                 </div>
@@ -260,7 +260,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer_modal.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 {{--impport script--}}
 @yield('scripts')
 </body>

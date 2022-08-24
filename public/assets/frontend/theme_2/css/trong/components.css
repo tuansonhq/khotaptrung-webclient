@@ -1498,3 +1498,11 @@ section.outstanding-service {
     font-size: 15px;
     line-height: 24px;
 }
+.refresh-captcha {
+    padding: 0 28px;
+    text-align: center;
+    border: 1px solid #E4E5F0;
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
+    border-radius: 4px;
+}

@@ -292,7 +292,7 @@
                                     <button type="button" class="btn primary btn-muangay">Mua ngay</button>
                                 @endif
                             @else
-                                <button type="button" class="btn primary" onclick="openLoginModal()">Mua ngay</button>
+                                <a href="/login" class="btn primary">Mua ngay</a>
                             @endif
 
 
