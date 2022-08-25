@@ -143,13 +143,13 @@ section.outstanding-service {
     padding: 12px 12px 16px;
     background: #FFFFFF;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    border-radius: 12px;
+    border-radius: 4px;
 }
 
 .block-item .block-thumb {
     position: relative;
     padding-bottom: 60%;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -405,7 +405,7 @@ section.outstanding-service {
 .item-category .account-thumb {
     position: relative;
     padding-bottom: 60%;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -632,7 +632,7 @@ section.outstanding-service {
 .card-thumb {
     position: relative;
     padding-bottom: 60%;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -1344,10 +1344,10 @@ section.outstanding-service {
 .badge-danger {
     background-color: #dc3545;
 }
-.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
+/*.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {*/
+/*    border-top-left-radius: 8px;*/
+/*    border-bottom-left-radius: 8px;*/
+/*}*/
 
 /*Modal recharge*/
 #rechargeModal .modal-dialog {
@@ -1375,13 +1375,13 @@ section.outstanding-service {
     color: #1B1D29;
 }
 
-#rechargeModal .modal-header .close {
-    all: unset;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    background-image: url(../image/svg/close-modal.svg);
-}
+/*#rechargeModal .modal-header .close {*/
+/*    all: unset;*/
+/*    cursor: pointer;*/
+/*    width: 24px;*/
+/*    height: 24px;*/
+/*    background-image: url(../image/svg/close-modal.svg);*/
+/*}*/
 
 #rechargeModal .nav-tabs {
     display: table;
@@ -1495,8 +1495,9 @@ section.outstanding-service {
 .text-invalid {
     color: #dc3545;
     font-weight: 700;
-    font-size: 15px;
-    line-height: 24px;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 8px;
 }
 .refresh-captcha {
     padding: 0 28px;

@@ -20,7 +20,7 @@ $(document).ready(function(){
         var ended_at =  $('.ended_at_data_ls').val();
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
+        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
         html_loading += '<div class="cv-spinner">';
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
