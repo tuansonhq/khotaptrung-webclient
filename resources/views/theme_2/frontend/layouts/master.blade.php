@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
 
 
@@ -63,25 +64,31 @@
 
     @yield('seo_head')
 
-        @if(setting('sys_google_tag_manager_head') != '')
-    <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{setting('sys_google_tag_manager_head') }}');</script>
-        <!-- End Google Tag Manager -->
+    @if(setting('sys_google_tag_manager_head') != '')
+
+        @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
+            @if($tag == 0)
+            <!-- Google Tag Manager -->
+                <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer','{{ $sys }}');</script>
+                <!-- End Google Tag Manager -->
+            @elseif($tag == 1)
+            <!-- Hubjs Tag Manager -->
+                <script type="text/javascript">
+                    var _mtm = window._mtm = window._mtm || [];
+                    _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_{{ $sys }}.js'; s.parentNode.insertBefore(g,s);
+                </script>
+                <!-- End Hubjs Tag Manager -->
+            @endif
+        @endforeach
+
     @endif
 
-
-<!-- Hubjs Tag Manager -->
-    <script type="text/javascript">
-        var _mtm = window._mtm = window._mtm || [];
-        _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.src='https://analytics.hub-js.com/js/container_pi4uNWv2.js'; s.parentNode.insertBefore(g,s);
-    </script>
-    <!-- End Hubjs Tag Manager -->
 </head>
 
 <body>
