@@ -473,7 +473,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    @if(\App\Library\AuthCustom::check())
                     <button style="width: 100%" type="button" class="btn primary submit-form">Xác nhận</button>
+                    @else
+                        <a href="/login" style="width: 100%" type="button" class="btn primary submit-form">Xác nhận</a>
+                    @endif
                     <div class="button-next-step-two d-none"></div>
                     <div class="openSuccess d-none"></div>
                 </div>

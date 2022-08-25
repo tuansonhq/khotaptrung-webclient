@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
         'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         'tracking' => \App\Http\Middleware\VerifyTracking::class,
+        'intend' => \App\Http\Middleware\IntendLogin::class,
     ];
 }
