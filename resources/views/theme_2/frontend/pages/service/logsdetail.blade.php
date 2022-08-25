@@ -5,22 +5,6 @@
 @section('content')
     <div class="background-history">
         <div class="container c-container-side">
-            <ul class="breadcrumb-list">
-                <li class="breadcrumb-item">
-                    <a href="/" class="breadcrumb-link">Trang chủ</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="/dich-vu-da-mua" class="breadcrumb-link">Dịch vụ đã mua</a>
-                </li>
-            </ul>
-
-            <div class="head-mobile">
-                <a href="/dich-vu-da-mua" class="link-back"></a>
-
-                <h1 class="head-title text-title">Dịch vụ đã mua</h1>
-
-                <a href="/" class="home"></a>
-            </div>
             <div class="row">
                 <div class="c-history-left media-web">
                     @include('frontend.widget.__menu_profile')
