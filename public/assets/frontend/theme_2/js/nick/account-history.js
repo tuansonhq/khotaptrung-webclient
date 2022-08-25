@@ -1,64 +1,142 @@
+$(document).ready(function () {
 
-/* Biến query này có thể gọi ở mọi chỗ (để sửa tham số để lọc)*/
-let query = {  page:1, key:'',status:'',started_at:'',ended_at:'',price:'',serial:''};
-/* Biến history_see_more là cờ đánh dấu load bình thường và load more*/
-let history_see_more = false;
-/*__________________________*/
-let content_history = $('.history-content');
-let wrap_history = content_history.length ? content_history.parent() : '';
+    let htmlLoading = '<div class="text-center ajax-loading-store load_spinner"><div class="cv-spinner"><span class="spinner"></span></div></div>';
+    
+    loadDataAccountHistory();
 
-/*Khi is_last_page = true tức là đã tới trang cuối cùng*/
-let is_last_page = false;
-function loadDataApi(query) {
-    $.ajax({
-        type: 'GET',
-        url: '/lich-su-mua-nick',
-        data: query,
-        beforeSend: function (xhr) {
-            /*Thêm loading khi tải*/
-            if (!wrap_history.hasClass('is-load')){
-                wrap_history.addClass('is-load');
-                let loading =  '<div class="loading-wrap"><span class="modal-loader-spin"></span></div>';
-                wrap_history.prepend(loading);
-            }
-        },
-        success: (res) => {
+    $(document).on('click', '.paginate__v1 .pagination a',function(event){
+        event.preventDefault();
 
-            if (res.status === 1) {
-                let html = res.html;
+        var page = $(this).attr('href').split('page=')[1];
 
-                history_see_more ? content_history.append(html) : content_history.html(html);
+        var serial_data = $('.serial_data').val();
+        var key_data = $('.key_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
 
-                /*Đặt lại giá trị false sau khi load more*/
-                history_see_more ? history_see_more = false : '';
-            }
-            if (res.status === 0) {
-                // let html = `<div class="invalid-color text-center">${res.message}</div>`;
-                let html = `<ul class="trans-list">
-                                <li class="trans-item" style="height: auto">
-                                    <a href="javascript:void(0)">
-                                        <div class="text-left">
-                                            <span class="t-body-2 text-center fw-600 c-mb-0 text-limit limit-1 bread-word" style="color: #DA4343">
-                                                ${res.message}
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>`;
-                content_history.html(html);
-            }
-            if (res.status === 404){
-                /* lúc này là trang cuối cùng */
-                is_last_page = true;
-            }
-        },
-        error: function (data) {
-
-        },
-        complete: function (data) {
-            /*Dừng loading khi tải xong*/
-            wrap_history.removeClass('is-load')
-            wrap_history.find('.loading-wrap').remove();
-        }
+        loadDataAccountHistory(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data);
     });
-}
+
+    $(document).on('submit', '.form-charge__accountls', function(e){
+        e.preventDefault();
+
+        var page = 1;
+        var serial = $('.serial').val();
+        var key = $('.key').val();
+        var price = $('.price').val();
+        var status = $('.status').val();
+        var started_at = $('.started_at').val();
+        var ended_at = $('.ended_at').val();
+
+        if (started_at == null || started_at == undefined || started_at == ''){
+            $('.started_at_data').val('');
+        }else {
+            $('.started_at_data').val(started_at);
+        }
+
+        if (ended_at == null || ended_at == undefined || ended_at == ''){
+            $('.ended_at_data').val('');
+        }else {
+            $('.ended_at_data').val(ended_at);
+        }
+
+        if (serial == null || serial == undefined || serial == ''){
+            $('.serial_data').val('');
+        }else {
+            $('.serial_data').val(serial);
+        }
+
+        if (key == null || key == undefined || key == ''){
+            $('.key_data').val('');
+        }else {
+            $('.key_data').val(key);
+        }
+
+        if (price == null || price == undefined || price == ''){
+            $('.price_data').val('');
+        }else {
+            $('.price_data').val(price);
+        }
+
+        if (status == null || status == undefined || status == ''){
+            $('.status_data').val('');
+        }else {
+            $('.status_data').val(status);
+        }
+
+
+        var serial_data = $('.serial_data').val();
+        var key_data = $('.key_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+
+        loadDataAccountHistory(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data);
+
+    });
+
+    $('body').on('click','.btn-all',function(e){
+        e.preventDefault();
+
+        $('.serial_data').val('');
+        $('.key_data').val('');
+        $('.price_data').val('');
+        $('.status_data').val('');
+        $('.started_at_data').val('');
+        $('.ended_at_data').val('');
+
+        var page = 1;
+        var serial_data = $('.serial_data').val();
+        var key_data = $('.key_data').val();
+        var price_data = $('.price_data').val();
+        var status_data = $('.status_data').val();
+        var started_at_data = $('.started_at_data').val();
+        var ended_at_data = $('.ended_at_data').val();
+
+        loadDataAccountHistory(page,serial_data,key_data,price_data,status_data,started_at_data,ended_at_data);
+
+    });
+
+    function loadDataAccountHistory(page,id_data,key_data,price_data,status_data,started_at_data,ended_at_data) {
+
+        if (page == null || page == '' || page == undefined){
+            page = 1;
+        }
+
+        $.ajax({
+            type: 'GET',
+            url: '/lich-su-mua-nick',
+            data: {
+                page:page,
+                id:id_data,
+                key:key_data,
+                price: price_data,
+                status:status_data,
+                started_at:started_at_data,
+                ended_at:ended_at_data,
+            },
+            beforeSend: function (xhr) {
+                /*Thêm loading khi tải*/
+                $('#data_lich__su_history').html(htmlLoading);
+            },
+            success: (res) => {
+                if (res.status == 1) {
+                    $('#data_lich__su_history').html(res.html);
+                }
+                if (!res.status) {
+                    let textHtml = '<p class="text-center text-danger">Không có dữ liệu!</p>'
+                    $('#data_lich__su_history').html(textHtml);
+                }
+            },
+            error: function (data) {
+    
+            },
+            complete: function (data) {
+                
+            }
+        });
+    }
+});
