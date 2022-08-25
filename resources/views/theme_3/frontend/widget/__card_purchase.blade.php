@@ -287,52 +287,52 @@
                     </div>
                     <div class="swiper slider--card">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
+{{--                            <div class="swiper-slide card__detail">--}}
+{{--                                <div class="card--header__detail">--}}
+{{--                                    <div class="card--info__wrap">--}}
+{{--                                        <div class="card--logo">--}}
+{{--                                            <img src="" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--info">--}}
+{{--                                            <div class="card--info__name">--}}
 
-                                            </div>
-                                            <div class="card--info__value">
-                                                đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="card--info__value">--}}
+{{--                                                đ--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card--gray">--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Mã thẻ--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Seri--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                     <button type="submit" class="btn -primary btn-big">Mua thêm</button>
