@@ -1,73 +1,99 @@
-@php
-    $result = array();
-    foreach ($data as $element) {
-        $result[date('m/y',strtotime($element->published_at))][] = $element;
-    }
-    $prev = null;
-@endphp
-@forelse($result as $key => $group)
-    @if(date('m-y',strtotime($key)) != $prev)
-        <div class="text-title-bold fw-500 c-mb-12">Tháng {{date('m',strtotime($key))}}</div>
-        @php
-            $prev = date('m-y',strtotime($key));
-        @endphp
-    @endif
+@if(empty($data->data))
+    <div class="table-responsive">
+        <table class="table table-hover table-custom-res">
+            <thead><tr><th>Thời gian</th><th>ID</th><th>Game</th><th>Tài khoản</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+            <tbody>
+                @php
+                    $result = array();
+                    foreach ($data as $element) {
+                        $result[date('m/y',strtotime($element->published_at))][] = $element;
+                    }
+                    $prev = null;
+                @endphp
+                @forelse($result as $key => $group)
+                    @if(date('m-y',strtotime($key)) != $prev)
+                        <tr>
+                            <td colspan="8"><b>Tháng {{date('m',strtotime($key))}}</b></td>
+                        </tr>
+                        @php
+                            $prev = date('m-y',strtotime($key));
+                        @endphp
+                    @endif
 
-    <ul class="trans-list">
-        @forelse($group as $item)
-            <li class="trans-item">
-                <a href="/lich-su-mua-nick-{{ $item->randId }}">
-                    <div class="text-left">
-                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                        @if(isset($item->groups))
-                            @foreach($item->groups as $val)
-                                @if($val->module == 'acc_category')
-                                    {{ $val->title }} (#{{ $item->randId }})
+                    @forelse($group as $item)
+                        <tr>
+                            <td>{{ formatDateTime($item->published_at) }}</td>
+                            <td>
+                                @if(isset($item->randId))
+                                    #{{ $item->randId }}
                                 @endif
-                            @endforeach
-                        @endif
-                    </span>
-                        <span class="t-body-1 link-color">
-                        {{date('d/m/Y - H:i', strtotime($item->published_at))}}
-                    </span>
+                            </td>
+                            <td>
+                                @if(isset($item->groups))
+                                    @foreach($item->groups as $val)
+                                        @if($val->module == 'acc_category')
+                                            {{ $val->title }}
+                                        @endif
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{ $item->title }}</td>
+                            <td>
+                                {{ str_replace(',','.',number_format($item->price)) }} đ
+                            </td>
+                            <td>
+                                @if($item->status == 1)
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">Chờ xử lý</span>
+                                @elseif($item->status == 3)
+                                    <span class="badge badge-warning">Đang check thông tin</span>
+                                @elseif($item->status == 4)
+                                    <span class="badge badge-danger">Sai thông tin</span>
+                                @elseif($item->status == 5)
+                                    <span class="badge badge-danger">Đã xoá</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-success">Thành công</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($item->status == 0)
+                                    <a class="badge badge-info show_chitiet" href="/lich-su-mua-nick-{{ $item->randId }}">Chi tiết</a>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                    @endforelse
+
+                @empty
+                    <ul class="trans-list">
+                        <li class="trans-item" style="height: auto">
+                            <a href="javascript:void(0)">
+                                <div class="text-left">
+                                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
+                                        Không có dữ liệu
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+
+        @if(isset($data))
+            @if($data->total()>1)
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
+                    <div class="col-auto paginate__category__col">
+                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
-                    <div class="text-right">
-                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->price, 0, ',', '.') }}đ</span>
-                        @switch($item->status)
-                            @case(1)
-                            @break
-                            @case(0)
-                            <span class="success-color c-mb-0">Thành công</span>
-                            @break
-                            @case(2)
-                            <span class="warning-color c-mb-0">Đang xử lý</span>
-                            @break
-                            @case(3)
-                            <span class="warning-color c-mb-0">Đang check thông tin</span>
-                            @break
-                            @case(4)
-                            <span class="invalid-color c-mb-0">Sai thông tin</span>
-                            @break
-                            @case(5)
-                            <span class="invalid-color c-mb-0">Đã xóa</span>
-                            @break
-                        @endswitch
-                    </div>
-                </a>
-            </li>
-        @empty
-        @endforelse
-    </ul>
-@empty
-    <ul class="trans-list">
-        <li class="trans-item" style="height: auto">
-            <a href="javascript:void(0)">
-                <div class="text-left">
-                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                        Không có dữ liệu
-                    </span>
                 </div>
-            </a>
-        </li>
-    </ul>
-@endforelse
+            @endif
+        @endif
+    </div>
+
+@endif

@@ -97,8 +97,7 @@
                                     <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">Mật khẩu</label>
                                     <div class="copy-input toggle-password">
                                         @if($checkpass && isset($time))
-                                            <input type="password" readonly value="123445" autocomplete="off" placeholder="123445">
-
+                                            <input type="password" readonly value="{{ \App\Library\Helpers::Decrypt($item->slug,config('module.acc.encrypt_key')) }}" autocomplete="off" placeholder="Mật khẩu">
                                         @else
                                             <input type="password" value="******" readonly autocomplete="off" placeholder="******">
                                         @endif
