@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection

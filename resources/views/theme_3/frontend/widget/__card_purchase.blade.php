@@ -227,6 +227,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment" id="confirmSubmitButton">Xác nhận</button>
                 </div>
             </div>
@@ -335,7 +336,7 @@
 {{--                            </div>--}}
                         </div>
                     </div>
-                    <button type="submit" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>
