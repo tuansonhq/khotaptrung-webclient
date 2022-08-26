@@ -1771,6 +1771,19 @@ a:hover .__icon.--path__custom:after {
     transform: translate(-50%,-50%);
     z-index: 11;
 }
+
+/*Fix Swiper Chưa tải xong*/
+.swiper,
+.swiper-container {
+    max-height: 300px;
+    opacity: 0;
+}
+
+.swiper.swiper-container-horizontal,
+.swiper-container.swiper-container-horizontal {
+    max-height: inherit;
+    opacity: 1;
+}
 @media screen and (max-width: 1200px) {
     /*Mdoal recharge*/
     #rechargeModal .list-card-deno .card-item {
