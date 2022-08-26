@@ -43,7 +43,6 @@
             </ul>
         </div>
     </section>
-
     {{--   Bopđyy --}}
     <section>
         <div class="container container-fix body-container-ct">
@@ -52,7 +51,7 @@
                 <div class="col-md-12 left-right">
                     <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
                         <div class="col-md-12 left-right">
-                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/nick/list-nick-bg.png" alt="">
+                            <img class="lazy" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
                         </div>
                     </div>
                     <div class="row marginauto body-row-nick-ct">
