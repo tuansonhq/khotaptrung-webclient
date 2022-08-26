@@ -126,7 +126,7 @@
 
             @endif
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                                 @include('frontend.widget.__random__account')
+                 @include('frontend.widget.__random__account')
             @endif
 
             {{--            Dịch vụ nổi bật--}}
