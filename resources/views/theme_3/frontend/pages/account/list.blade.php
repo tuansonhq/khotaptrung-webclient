@@ -51,7 +51,7 @@
                 <div class="col-md-12 left-right">
                     <div class="row marginauto nick-list-bg" style="background: #FFFFFF">
                         <div class="col-md-12 left-right">
-                            <img class="lazy" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
+                            <img class="lazy theme_3_imagebanner" src="{{ isset($data->custom->image_banner) ? \App\Library\MediaHelpers::media($data->custom->image_banner) : \App\Library\MediaHelpers::media($data->image_banner) }}" alt="">
                         </div>
                     </div>
                     <div class="row marginauto body-row-nick-ct">
