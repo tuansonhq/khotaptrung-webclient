@@ -64,6 +64,7 @@
                 </div>
             @endif
         </div>
+
         <div class="container container-fix">
             {{--        Dịch vụ nổi bật mobile--}}
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
@@ -125,7 +126,7 @@
 
             @endif
             @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                {{--                 @include('frontend.widget.__random__account')--}}
+                                 @include('frontend.widget.__random__account')
             @endif
 
             {{--            Dịch vụ nổi bật--}}
@@ -302,6 +303,8 @@
             </div>
         </div>
     @endif
+
+
     @include('theme_3.frontend.widget.modal.__charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
@@ -309,6 +312,7 @@
     @include('theme_3.frontend.widget.modal.__success_wallet_card')
     <script src="/assets/frontend/theme_3/js/js_phu/purchase_card.js?v={{time()}}"></script>
     <script src="/assets/frontend/theme_3/js/charge/charge_home.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick-random.js?v={{time()}}"></script>
     @if(\App\Library\AuthFrontendCustom::check())
         <script src="/assets/frontend/theme_3/js/transfer/transfer.js?v={{time()}}"></script>
     @endif
