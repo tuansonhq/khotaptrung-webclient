@@ -527,6 +527,7 @@ View::composer('frontend.widget.__menu_category_desktop', function ($view) {
 
 
 });
+
 View::composer('frontend.widget.__menu__side', function ($view) {
 
 
@@ -817,6 +818,22 @@ View::composer('frontend.widget.__slider__banner__account', function ($view) {
 
 });
 
+View::composer('frontend.widget.__slider__banner__account__mobile', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__account', function() {
+        $url = '/get-slider-banner-nick';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
 View::composer('frontend.widget.__slider__banner__napthe', function ($view) {
 
     $data = \Cache::rememberForever('__slider__banner__napthe', function() {
@@ -913,6 +930,7 @@ View::composer('frontend.widget.__top__today', function ($view) {
     return $view->with('data', $data);
 
 });
+
 View::composer('frontend.widget.__minigame__list', function ($view) {
 
 //    Minigame
@@ -950,6 +968,22 @@ View::composer('frontend.pages.minigame.widget.__related__minigame', function ($
 View::composer('frontend.widget.__slider__banner__service', function ($view) {
 
     $data = \Cache::rememberForever('__slider__banner__service', function() {
+        $url = '/get-slider-banner-service';
+        $method = "GET";
+        $dataSend = array();
+
+        $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
+        return $data = $result_Api->response_data->data??null;
+
+    });
+
+    return $view->with('data',$data);
+
+});
+
+View::composer('frontend.widget.__slider__banner__service__mobile', function ($view) {
+
+    $data = \Cache::rememberForever('__slider__banner__service__mobile', function() {
         $url = '/get-slider-banner-service';
         $method = "GET";
         $dataSend = array();
