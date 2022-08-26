@@ -4,7 +4,7 @@
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/tintucindex.svg" alt="">
         </span>
-        <h2 class="text-title">Tin tức</h2>
+        <h2 class="text-title">{{ $title??'Tin tức' }}</h2>
 
         <div class="navbar-spacer"></div>
         <div class="text-view-more">

@@ -7,7 +7,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/naptienindex.svg" alt="">
                     </span>
-                    <h2 class="text-title" >Nạp tiền</h2>
+                    <h2 class="text-title" >{{ $title??'Nạp tiền' }}</h2>
                     <div class="navbar-spacer"></div>
                 </div>
                 <div class="box-product position-static" >
