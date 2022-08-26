@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
     let htmlLoading = '<div class="text-center ajax-loading-store load_spinner"><div class="cv-spinner"><span class="spinner"></span></div></div>';
-    
+
     loadDataAccountHistory();
 
-    $(document).on('click', '.paginate__v1 .pagination a',function(event){
+    $('body').on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
@@ -132,10 +132,10 @@ $(document).ready(function () {
                 }
             },
             error: function (data) {
-    
+
             },
             complete: function (data) {
-                
+
             }
         });
     }
