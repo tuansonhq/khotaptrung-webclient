@@ -75,10 +75,11 @@ Route::group(array('middleware' => ['theme']) , function (){
 
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::group(['middleware' => ['cacheResponse: 2592000','tracking']], function (){
-            Route::get('/', [HomeController::class , "index"])->name('homeIndex');
-            Route::get('/tin-tuc', [ArticleController::class , "getList"]);
-            Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
+
             Route::group(['middleware' => ['intend']], function () {
+                Route::get('/', [HomeController::class , "index"])->name('homeIndex');
+                Route::get('/tin-tuc', [ArticleController::class , "getList"]);
+                Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
                 Route::get('/dich-vu/{slug}', [ServiceController::class, "getDetail"]);
             });
