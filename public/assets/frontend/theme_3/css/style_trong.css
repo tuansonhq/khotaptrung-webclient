@@ -2157,3 +2157,6 @@ a:hover .__icon.--path__custom:after {
     }
 
 }
+#nick-random-home-wrap .loader {
+    position: relative;
+}
