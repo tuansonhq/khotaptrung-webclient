@@ -3807,6 +3807,10 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         transform: translateX(-50%);
         display: flex;
     }
+
+    .theme_3_imagebanner{
+        max-height: 230px;
+    }
 }
 
 /*  Lap top  */

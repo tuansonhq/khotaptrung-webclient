@@ -72,7 +72,7 @@ class AccController extends Controller
                 $dataSend['limit'] =  12;
                 $dataSend['sort'] = 'random';
 
-                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_3"){
+                if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
 
