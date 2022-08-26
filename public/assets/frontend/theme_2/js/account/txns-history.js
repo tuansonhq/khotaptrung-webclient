@@ -3,7 +3,7 @@ $(document).ready(function(){
     const token =  $('meta[name="jwt"]').attr('content');
     let page = $('#hidden_page_service').val();
 
-    $(document).on('click', '.paginate__v1 .pagination a',function(event){
+    $('body').on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
