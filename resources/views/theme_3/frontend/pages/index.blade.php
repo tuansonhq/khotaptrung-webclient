@@ -65,72 +65,25 @@
             @endif
         </div>
 
+        @php
+            $dat = explode(',',setting('sys_theme_ver_page_build'));
+            $data_title = null;
+            $data_widget = null;
+            foreach($dat as $key => $it){
+                if ($key == 0){
+                    $data_title = explode('|',$it);
+                }else{
+                    $data_widget = explode('|',$it);
+                }
+            }
+        @endphp
+
         <div class="container container-fix">
-            {{--        Dịch vụ nổi bật mobile--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                @include('frontend.widget.__list_serve_remark_mobile')
-            @endif
-
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                @include('frontend.widget.__top_nap_the_mobile')
-            @endif
-            {{--        Dịch vụ game--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-                @include('frontend.widget.__service_game')
-            @endif
-            {{--             Minigame--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-                @include('frontend.widget.__content__home__minigame')
-            @endif
-
-            {{--        Dịch vụ nổi bật icon--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                @include('frontend.widget.__list_serve_remark')
-            @endif
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
-                @include('frontend.widget.__nap_the')
-            @endif
-            {{--                Mua thẻ--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-                @include('frontend.widget.__card_purchase')
-            @endif
-
-            {{--                 Nạp thẻ--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' )
-                @include('frontend.widget.__nap_the')
-            @endif
-            {{--                Danh mục mua acc shop idol--}}
-
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-{{--                @include('frontend.widget.__buy__acc__home')--}}
-                @include('frontend.widget.__content__home__game_thuong')
-                @include('frontend.widget.__content__home__game__random')
-
-                {{--                @include('frontend.widget.__log__coin__home')--}}
-
-
-            @endif
-            {{--                Danh mục mua acc--}}
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                @include('frontend.widget.__content__home__game_thuong')
-                @include('frontend.widget.__content__home__game__random')
-
-            @endif
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0')
-                 @include('frontend.widget.__random__account')
-            @endif
-
-            {{--            Dịch vụ nổi bật--}}
-            @if(theme('')->theme_config->sys_theme_ver !== 'sys_theme_ver3.0' )
-                @include('frontend.widget.__list_serve_remark_image')
-            @endif
-            {{--                 Tin tức--}}
-            @include('frontend.widget.__tin__tuc')
-
-            @include('frontend.widget.__abount__us')
-
-
+            @foreach($data_widget as $key => $value)
+                @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
+            @endforeach
         </div>
+
     @else
         <div class="banner-home " >
             @include('frontend.widget.__slider__banner')
