@@ -1,7 +1,7 @@
 paycartDataChargeATMHistory();
 // let page = $('#hidden_page_atm').val();
 
-$(document).on('click', '.paginate__v1_index_transfer .pagination a',function(event){
+$('body').on('click', '.paginate__v1_index_transfer .pagination a',function(event){
     event.preventDefault();
 
     var page = $(this).attr('href').split('page=')[1];
