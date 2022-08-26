@@ -83,6 +83,9 @@ $(document).ready(function () {
 
     getTelecom();
 
+    $(document).on('click', '#handleOpenRechargeModal',function(e){
+        $('#rechargeModal').modal('show');
+    });
 
     //Change web url when switch tab
     $('#chargeNavTab').click(function () {
