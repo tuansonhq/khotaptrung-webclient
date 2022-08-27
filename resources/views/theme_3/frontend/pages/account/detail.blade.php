@@ -6,6 +6,54 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
+    <!-- Cookie  -->
+    @php
+        if (isset($data->price_old)) {
+            $sale_percent = (($data->price_old - $data->price) / $data->price_old) * 100;
+            $sale_percent = round($sale_percent, 0, PHP_ROUND_HALF_UP);
+        } else {
+            $sale_percent = 0;
+        }
+    @endphp
+    @php
+        $totalaccount = 0;
+        if(isset($data->category->items_count)){
+            if ((isset($data->category->account_fake) && $data->category->account_fake > 1) || (isset($data->category->custom->account_fake) && $data->category->custom->account_fake > 1)){
+                $totalaccount = str_replace(',','.',number_format(round(isset($data->category->custom->account_fake) ? $data->category->items_count*$data->category->custom->account_fake : $data->category->items_count*$data->category->account_fake)));
+            }
+        }else{
+            $totalaccount = 0;
+        }
+    @endphp
+    @php
+        $client = config('api.client');
+        $data_cookie = Cookie::get('viewed_account_'.$client.'') ?? '[]';
+        $flag_viewed = true;
+        $data_cookie = json_decode($data_cookie,true);
+            foreach ($data_cookie as $key => $acc_viewed){
+                if($acc_viewed['randId'] == $data->randId){
+                 $flag_viewed = false;
+                }
+            }
+            if ($flag_viewed){
+                    if (count($data_cookie) >= config('module.acc.viewed.limit_count')) {
+                         array_pop($data_cookie);
+                     }
+                    $data_save = [
+                        'image'=>$data->image,
+                        'category'=>isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title,
+                        'randId'=>$data->randId,
+                        'price'=>$data->price,
+                        'price_old'=>$data->price_old,
+                        'promotion'=>$sale_percent,
+                        'buy_account'=>$totalaccount,
+                     ];
+                    array_unshift($data_cookie,$data_save);
+                    $data_cookie = json_encode($data_cookie);
+                    Cookie::queue('viewed_account',$data_cookie,43200);
+            }
+    @endphp
+
     <fieldset id="fieldset-one">
         <div id="pageBreadcrumb">
 
