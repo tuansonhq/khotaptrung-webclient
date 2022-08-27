@@ -4,7 +4,27 @@ $(document).ready(function () {
     function formatNumber(num) {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
     }
+    function reload_captcha() {
+        $.ajax({
+            type: 'GET',
+            url: '/reload-captcha',
+            success: function (data) {
+                $(".captcha_1 span").html(data.captcha);
+            }
+        });
+    }
 
+    $('body').on('click','#modal-reload-captcha',function () {
+        $('.refresh-captcha img').toggleClass("down");
+        $.ajax({
+            type: 'GET',
+            url: '/reload-captcha2',
+            success: function (data) {
+                // console.log(data)
+                $(".captcha_1 span").html(data);
+            }
+        });
+    });
     /*Get Telecom*/
     if (modal_charge.length){
         $.ajax({
@@ -85,15 +105,7 @@ $(document).ready(function () {
         });
     }
 
-    function reload_captcha() {
-        $.ajax({
-            type: 'GET',
-            url: '/reload-captcha',
-            success: function (data) {
-                $(".captcha_1 span").html(data.captcha);
-            }
-        });
-    }
+
 
     function postCharge(){
         $.ajax({
@@ -139,17 +151,7 @@ $(document).ready(function () {
         });
     }
 
-    $('body').on('click','#modal-reload-captcha',function () {
-        $('.refresh-captcha img').toggleClass("down");
-        $.ajax({
-            type: 'GET',
-            url: '/reload-captcha2',
-            success: function (data) {
-                // console.log(data)
-                $(".captcha_1 span").html(data);
-            }
-        });
-    });
+
 
     form.on('submit',function (e) {
         e.preventDefault();

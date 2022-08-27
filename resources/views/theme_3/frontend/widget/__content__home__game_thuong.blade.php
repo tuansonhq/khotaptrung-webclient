@@ -4,7 +4,7 @@
         <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/saleindex.svg" alt="">
                     </span>
-            <h2 class="text-title">Mua nick thường</h2>
+            <h2 class="text-title">{{ $title??'Mua nick thường' }}</h2>
             <div class="navbar-spacer"></div>
 
             <div class="text-view-more">
