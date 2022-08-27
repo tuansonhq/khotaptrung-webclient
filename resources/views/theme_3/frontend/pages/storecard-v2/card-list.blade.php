@@ -494,7 +494,7 @@
                             <!-- JS PASTE CODE HERE -->
                         </div>
                     </div>
-                    <button type="button" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>
