@@ -113,21 +113,6 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
 
-                Route::get('/mua-acc', [AccController::class , "getCategory"]);
-
-                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
-
-                Route::get('/related-acc', [AccController::class , "getRelated"]);
-
-                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
-
-                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
-
-                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
-
-                Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])
-                    ->name('getShowpassNick');
-
                 Route::post('/user/account_info', [UserController::class , "getInfo"]);
                 Route::get('/profile', [UserController::class , "profileSidebar"])->name('profile');
                 Route::get('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'getStoreCard'])->name('getStoreCard');
@@ -328,6 +313,22 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             //minigame
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
+
+                Route::get('/mua-acc', [AccController::class , "getCategory"]);
+
+                Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
+
+                Route::get('/related-acc', [AccController::class , "getRelated"]);
+
+                Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
+
+                Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);
+
+                Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
+
+                Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])
+                    ->name('getShowpassNick');
+
                 Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])
                     ->name('getCategory');
 
@@ -355,6 +356,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
         });
+
+
         Route::post('/mua-the', [\App\Http\Controllers\Frontend\StoreCardController::class , 'postStoreCard'])->name('postStoreCard');
 
 
