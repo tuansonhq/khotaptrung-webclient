@@ -15,11 +15,11 @@
                 <div class="banner-content">
                     <div class="container  container-fix" >
                         <div class="d-flex justify-content-between">
-                            <div class="box-list-service d-g-lg-none">
-                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>
-                                <hr>
-                                @include('frontend.widget.__list_service')
-                            </div>
+{{--                            <div class="box-list-service d-g-lg-none">--}}
+{{--                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>--}}
+{{--                                <hr>--}}
+{{--                                @include('frontend.widget.__list_service')--}}
+{{--                            </div>--}}
 
                             @if(setting('sys_marquee'))
                                 <div class="rotation-notify-home text-slider">
@@ -35,7 +35,7 @@
                             <div class="box-list-top top-list d-g-lg-none">
                                 <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>
 
-                                @include('frontend.widget.__top_nap_the')
+{{--                                @include('frontend.widget.__top_nap_the')--}}
 
                             </div>
                         </div>
