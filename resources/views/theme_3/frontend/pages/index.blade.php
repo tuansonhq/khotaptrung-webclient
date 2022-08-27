@@ -32,12 +32,12 @@
                                     </marquee>
                                 </div>
                             @endif
-                            <div class="box-list-top top-list d-g-lg-none">
-                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>
+{{--                            <div class="box-list-top top-list d-g-lg-none">--}}
+{{--                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>--}}
 
 {{--                                @include('frontend.widget.__top_nap_the')--}}
 
-                            </div>
+{{--                            </div>--}}
                         </div>
 
                     </div>
