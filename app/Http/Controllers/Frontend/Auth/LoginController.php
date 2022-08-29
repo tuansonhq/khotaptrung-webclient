@@ -114,8 +114,9 @@ class LoginController extends Controller
             Session::put('jwt',$response_data->token);
             Session::put('exp_token',$response_data->exp_token);
             Session::put('time_exp_token',$time_exp_token);
-            $return_url = Session::get('url.intended');
-            $previous = Session::get('url_return.id_return');
+            Session::put('auth_custom',$response_data->user);
+
+
             return redirect()->intended();
 
             if (isset($previous) && $previous != null){
