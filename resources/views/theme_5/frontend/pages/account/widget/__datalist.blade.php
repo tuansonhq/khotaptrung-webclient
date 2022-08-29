@@ -91,7 +91,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Giá tiền
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($item->price)) }} đ</div>
+                                        <div class="card--attr__value fz-13 fw-500">{{ str_replace(',','.',number_format($data->params->price)) }} đ</div>
                                     </div>
                                 </div>
 
@@ -164,7 +164,7 @@
                                         <div class="card--attr__name fw-400 fz-13 text-center">
                                             Tổng thanh toán
                                         </div>
-                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
+                                        <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">{{ str_replace(',','.',number_format($data->params->price)) }} đ</a></div>
                                     </div>
                                 </div>
                             </div>

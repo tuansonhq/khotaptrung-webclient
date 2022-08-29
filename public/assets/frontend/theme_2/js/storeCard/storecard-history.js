@@ -27,7 +27,7 @@ $(document).ready(function(){
         var ended_at =  $('.ended_at_storecard').val();
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
+        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
         html_loading += '<div class="cv-spinner">';
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
@@ -65,7 +65,7 @@ $(document).ready(function(){
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
                     html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
+                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">Không có dữ liệu</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';
@@ -73,6 +73,8 @@ $(document).ready(function(){
                     $("#data_store_card").empty().html('');
                     $("#data_store_card").empty().html(html);
                 }
+                $('.data-card').show()
+
 
             },
             error: function (data) {

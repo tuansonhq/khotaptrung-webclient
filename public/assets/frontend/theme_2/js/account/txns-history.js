@@ -3,7 +3,7 @@ $(document).ready(function(){
     const token =  $('meta[name="jwt"]').attr('content');
     let page = $('#hidden_page_service').val();
 
-    $(document).on('click', '.paginate__v1 .pagination a',function(event){
+    $('body').on('click', '.paginate__v1 .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
@@ -12,11 +12,13 @@ $(document).ready(function(){
 
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
+        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
         html_loading += '<div class="cv-spinner">';
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
+        $('.data-card').show()
+
         $("#data_lich__su_history").empty().html('');
         $("#data_lich__su_history").empty().html(html_loading);
 
@@ -38,6 +40,8 @@ $(document).ready(function(){
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
         html_loading += '</div>';
+        $('.data-card').show()
+
         $("#data_lich__su_history").empty().html('');
         $("#data_lich__su_history").empty().html(html_loading);
 
@@ -100,6 +104,7 @@ $(document).ready(function(){
             success: (data) => {
 
                 $('.loading-data__timkiem').html('');
+
                 if (data.status == 1){
 
 
@@ -123,6 +128,7 @@ $(document).ready(function(){
                     $("#data_lich__su_history").empty().html(html);
 
                 }
+                $('.data-card').show()
 
             },
             error: function (data) {

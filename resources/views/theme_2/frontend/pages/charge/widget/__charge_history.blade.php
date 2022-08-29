@@ -7,7 +7,7 @@
                 <th class="text-secondary">Thời gian</th>
                 <th class="text-secondary">Nhà mạng</th>
                 <th class="text-secondary">Mã thẻ</th>
-                <th class="text-secondary">serial</th>
+                <th class="text-secondary">Serial</th>
                 <th class="text-secondary">Mệnh giá</th>
                 <th class="text-secondary">Kết quả</th>
                 <th class="text-secondary">Thực nhận</th>

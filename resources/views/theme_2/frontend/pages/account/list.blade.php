@@ -13,7 +13,7 @@
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
-                        <span style="color: red;font-size: 16px;">
+                        <span style="color: red;font-size: 16px;text-align: center">
                             @if(isset($message))
                                 {{ $message }}
                             @else
@@ -48,7 +48,6 @@
         </div>
 
         {{--            Slider baner    --}}
-        @include('frontend.widget.__slider__banner__account')
             <div class="booking_detail"></div>
 {{--        Danh sách acount    --}}
 

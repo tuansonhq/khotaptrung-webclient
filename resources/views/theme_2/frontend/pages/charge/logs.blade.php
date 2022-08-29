@@ -29,7 +29,7 @@
                         </form>
 
                         <div id="data_charge_history">
-                            <div class="text-center ajax-loading-store load_spinner">
+                            <div class="text-center ajax-loading-store load_spinner ajax-loading-data">
                                 <div class="cv-spinner">
                                     <span class="spinner"></span>
                                 </div>

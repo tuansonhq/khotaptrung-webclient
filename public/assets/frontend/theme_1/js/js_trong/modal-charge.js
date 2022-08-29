@@ -88,7 +88,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             success: function (data) {
                 $(".captcha_1 span").html(data.captcha);
             }
@@ -143,7 +143,7 @@ $(document).ready(function () {
         $('.refresh-captcha img').toggleClass("down");
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha2',
+            url: '/reload-captcha2',
             success: function (data) {
                 // console.log(data)
                 $(".captcha_1 span").html(data);

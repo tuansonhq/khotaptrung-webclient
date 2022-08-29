@@ -1052,7 +1052,7 @@ header nav.heading .header-container{
 
 .old-price{
     display: inline-block;
-    margin: 0 12px 8px 12px !important;
+    margin: 0 12px 8px 12px;
     /*float: left;*/
     font-size: 12px;
 

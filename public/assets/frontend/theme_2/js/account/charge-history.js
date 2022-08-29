@@ -20,7 +20,7 @@ $(document).ready(function(){
         var ended_at =  $('.ended_at_data_ls').val();
 
         let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
+        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
         html_loading += '<div class="cv-spinner">';
         html_loading += '<span class="spinner"></span>';
         html_loading += '</div>';
@@ -59,15 +59,15 @@ $(document).ready(function(){
                     var html = '';
                     html += '<div class="table-responsive" id="tableacchstory">';
                     html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
+                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
                     html += '<tbody>';
                     html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
                     html += '</tbody>';
                     html += '</table>';
                     html += '</div>';
 
-                    $("#data_pay_card_history_ls").empty().html('');
-                    $("#data_pay_card_history_ls").empty().html(html);
+                    $("#data_charge_history").empty().html('');
+                    $("#data_charge_history").empty().html(html);
                 }
 
             },

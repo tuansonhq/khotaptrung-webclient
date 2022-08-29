@@ -269,8 +269,11 @@ $.ajax({
 /* check dk show modal vs step*/
 $('body').on('click','.btnPay',function(){
     let is_ok = 1;
+    let balanceCheck = 0;
     let required = $('input[required_service]');
     let html = '';
+    let userBalance = parseInt($('#userBalance').val());
+    let price = parseInt($('input[name="value"]').val());
     if (required.length){
         required.each(function () {
             $(this).toggleClass('invalid',!$(this).val().trim());
@@ -284,12 +287,23 @@ $('body').on('click','.btnPay',function(){
         });
     }
 
+    
+    if (userBalance >= price) {
+        balanceCheck = 1;
+    } else {
+        balanceCheck = 0;
+    }
+    console.log(userBalance, price, balanceCheck);
 
     if (is_ok){
-        if ($(document).width() > 1200) {
-            $('#orderModal').modal('show');
-        }else {
-            $('.stepService').trigger('click')
+        if (balanceCheck) {
+            if ($(document).width() > 1200) {
+                $('#orderModal').modal('show');
+            }else {
+                $('.stepService').trigger('click')
+            }
+        } else {
+            $('#notBuy').modal('show');
         }
     }
 });

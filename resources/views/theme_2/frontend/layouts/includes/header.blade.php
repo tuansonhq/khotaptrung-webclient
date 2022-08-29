@@ -54,7 +54,9 @@
                             <a class="dropdown-item" href="/lich-su-giao-dich"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
                             <a class="dropdown-item" href="/lich-su-nap-the"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
                             <a class="dropdown-item" href="/the-cao-da-mua"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
-                            <a class="dropdown-item" href="/thong-tin?log=charge-atm-history"><i class="las la-credit-card icon"></i>Lịch sử nạp ATM</a>
+                            <a class="dropdown-item" href="/lich-su-atm-tu-dong"><i class="las la-credit-card icon"></i>Lịch sử nạp ATM</a>
+                            <a class="dropdown-item" href="/dich-vu-da-mua"><i class="las la-credit-card icon"></i>Dịch vụ đã mua</a>
+                            <a class="dropdown-item" href="/lich-su-mua-nick"><i class="las la-credit-card icon"></i>Lịch sử mua acc</a>
 
                             <a class="dropdown-item" href="/login" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="las la-sign-out-alt icon"></i>Đăng xuất</a>
                         </div>

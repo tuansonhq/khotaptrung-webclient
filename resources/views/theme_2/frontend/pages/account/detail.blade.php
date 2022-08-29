@@ -62,10 +62,11 @@
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
-                        <span style="color: red;font-size: 16px;">
+                        <span style="color: red;font-size: 16px;text-align: center">
                             @if(isset($message))
                                 {{ $message }}
                             @else
+
                                 Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường
                                 xuyên bạn vui lòng theo dõi web trong thời gian tới !
                             @endif
@@ -812,12 +813,11 @@
                         </div>
                         <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
                             <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
-                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn
-                                không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                            <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
-                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                            <button type="button" class="btn secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn primary" data-toggle="modal" data-target="#rechargeModal" data-bs-dismiss="modal">Nạp tiền</button>
                         </div>
                     </div>
                 </div>
