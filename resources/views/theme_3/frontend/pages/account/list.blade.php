@@ -164,7 +164,7 @@
 
                         </div>
 
-                        <div id="listLoader" style="width: 100%;">
+                        <div id="listLoader" class="w-100" style="min-height: 500px">
                             <div class="loader position-relative" style="padding: 1rem">
                                 <div class="loading-spokes">
                                     <div class="spoke-container">

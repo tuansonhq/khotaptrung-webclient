@@ -1,12 +1,12 @@
 
 @if(isset($data) && count($data) > 0)
-    <div class="block-product mt-fix-20">
+    <div class="block-product p-0">
         <div class="product-header d-flex">
 
         <span>
             <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/nickindex.svg" alt="">
         </span>
-            <h2 class="text-title" >Các dịch vụ liên quan</h2>
+            <h2 class="text-title" >{{ $title??'Các dịch vụ liên quan' }}</h2>
 
             <div class="navbar-spacer"></div>
 

@@ -264,6 +264,7 @@
                                                                             <li><small>ATM, Momo</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
 
+
                                                                         </ul>
                                                                     </a>
 
@@ -592,13 +593,9 @@
 
                             <div class="modal-body modal-body-order-ct">
                                 <div class="row marginauto">
-
                                     <div class="col-md-12 left-right title-order-ct">
                                         <span>Thông tin acc</span>
                                     </div>
-
-
-
                                     <div class="col-md-12 left-right padding-order-ct">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right background-order-ct">
@@ -715,6 +712,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12 left-right" id="order-errors">
                                         <div class="row marginauto order-errors">
                                             <div class="col-md-12 left-right">
@@ -728,6 +726,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="col-md-12 left-right padding-order-footer-ct">
                                         <div class="row marginauto">

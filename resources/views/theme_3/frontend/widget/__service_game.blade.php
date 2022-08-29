@@ -5,7 +5,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt="">
                     </span>
-            <h2 class="text-title" >Chọn Game nạp giá rẻ</h2>
+            <h2 class="text-title" >{{ $title??'Nạp game giá rẻ nhé' }}</h2>
             <div class="navbar-spacer"></div>
         </div>
     </div>

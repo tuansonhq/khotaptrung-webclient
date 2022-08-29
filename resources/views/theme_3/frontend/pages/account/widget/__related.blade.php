@@ -6,14 +6,18 @@
 
                 <div class="col-md-12 left-right napgamekhac">
                     <div class="row marginauto">
-                        <div class="col-md-12 text-left left-right">
+                        <div class="d-flex col-md-12 text-left left-right">
                             <span>Tài khoản liên quan</span>
+                            <div class="navbar-spacer"></div>
+                            <div class="text-view-more">
+                                <a href="/mua-acc/{{ $data[0]->category->slug }}" class="global__link">Xem thêm<i class="__icon --sm --link ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/arrowright.svg)"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-12 left-right">
-                    <div class="row nick-sider-header">
+                    <div class="row nick-sider-header product-list-category">
                         <div class="swiper-container list-dong-gia col-md-12 text-left left-right">
                             <div class="swiper-wrapper">
                                 @foreach($data as $item)
@@ -87,6 +91,12 @@
                                         </a>
                                     </div>
                                 @endforeach
+                            </div>
+                            <div class="swiper-button-prev">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/swiper-prev.svg" alt="">
+                            </div>
+                            <div class="swiper-button-next">
+                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/swiper-next.svg" alt="">
                             </div>
                         </div>
                     </div>

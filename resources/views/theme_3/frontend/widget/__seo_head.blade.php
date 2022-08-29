@@ -1,4 +1,3 @@
-
 @if(Request::is('tin-tuc'))
     <title>Tin tức</title>
 @elseif(Request::is('mua-acc'))
@@ -212,7 +211,6 @@
         }
       ]
     }
-
     </script>
 
     @elseif(Request::is('dich-vu/'. $data->slug .''))
@@ -289,7 +287,6 @@
         }
       ]
     }
-
     </script>
         {{--    @elseif(Request::is('acc/'. $data->randId .''))--}}
         {{--        <script type="application/ld+json">--}}

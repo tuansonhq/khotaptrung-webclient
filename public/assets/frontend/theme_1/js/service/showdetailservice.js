@@ -65,7 +65,7 @@ $(document).ready(function(){
         }else {
 
             var html = '';
-            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
             $('.modal-footer__data').html('');
             $('.modal-footer__data').html(html);
@@ -116,7 +116,7 @@ $(document).ready(function(){
         }else {
 
             var html = '';
-            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán</button>';
+            html += '<button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" id="d3" style="" >Xác nhận thanh toán<div class="row justify-content-center loading-data__buydichvu"></div></button>';
             html += '<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>';
             $('.modal-footer__data').html('');
             $('.modal-footer__data').html(html);
@@ -253,8 +253,6 @@ $(document).ready(function(){
 
         $('.loading-data__buydichvu').html('');
         $('.loading-data__buydichvu').html(htmlloading);
-        // $('.loading-data__muangay').html('');
-        // $('.loading-data__muangay').html(htmlloading);
 
         var formSubmit = $(this);
         var url = formSubmit.attr('action');
@@ -289,8 +287,7 @@ $(document).ready(function(){
                         })
                 }
                 else if (response.status == 2){
-                    // $('.loadModal__acount').modal('hide');
-                    // $('#homealert').modal('hide');
+
                     var html = '';
                     html += '<div class="col-md-12 text-center"><span style="font-size: 12px;color: red">' + response.message + '</span></div>';
 

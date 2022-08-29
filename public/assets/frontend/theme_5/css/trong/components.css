@@ -566,22 +566,22 @@ section.outstanding-service {
 .history-content {
     overflow-y: hidden;
 }
-.service-select .card-body:hover,
+.service-select .card-body,
 .history-content:hover {
     overflow-y: scroll;
 }
-.service-select .card-body:hover::-webkit-scrollbar,
+.service-select .card-body::-webkit-scrollbar,
 .history-content::-webkit-scrollbar {
     width: 8px;
 }
 
-.service-select .card-body:hover::-webkit-scrollbar-thumb,
+.service-select .card-body::-webkit-scrollbar-thumb,
 .history-content::-webkit-scrollbar-thumb {
     background: rgba(188, 191, 214, 0.5);
     border-radius: 14px;
 }
 
-.service-select .card-body:hover::-webkit-scrollbar-thumb:active,
+.service-select .card-body::-webkit-scrollbar-thumb:active,
 .history-content:hover::-webkit-scrollbar-thumb:active {
     background: rgba(188, 191, 214, 1);
 }

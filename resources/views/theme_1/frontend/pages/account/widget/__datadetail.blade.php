@@ -155,6 +155,251 @@
                     </div>
                 </div>
 
+                @if(isset($game_auto_props) && count($game_auto_props))
+
+                    @php
+                        $total_tuong = 0;
+                        $total_bieucam = 0;
+                        $total_chuongluc = 0;
+                        $total_sandau = 0;
+                        $total_linhthu = 0;
+                        $total_trangphuc = 0;
+                        $total_thongtinchung = 0;
+
+                        if(isset($game_auto_props) && count($game_auto_props)){
+                            foreach($game_auto_props as $game_auto_prop){
+                                if($game_auto_prop->key == 'champions'){
+                                    $total_tuong = $total_tuong + 1;
+                                    if(isset($game_auto_prop->childs) && count($game_auto_prop->childs)){
+                                        foreach($game_auto_prop->childs as $c_child){
+                                            $total_trangphuc = $total_trangphuc + 1;
+                                        }
+                                    }
+                                }elseif ($game_auto_prop->key == 'emotes'){
+                                    $total_bieucam = $total_bieucam + 1;
+                                }elseif ($game_auto_prop->key == 'tftdamageskins'){
+                                    $total_chuongluc = $total_chuongluc + 1;
+                                }elseif ($game_auto_prop->key == 'tftmapskins'){
+                                    $total_sandau = $total_sandau + 1;
+                                }elseif ($game_auto_prop->key == 'tftcompanions'){
+                                    $total_linhthu = $total_linhthu + 1;
+                                }
+                            }
+                        }
+                    @endphp
+                        <div class="col-md-12">
+                            <div class="row gallery__03">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto span__dangky__auto">
+                                            <i class="fas fa-angle-right"></i>
+                                        </div>
+                                        <div class="col-md-4 col-4 pl-0">
+                                            <span class="span__dangky">Tướng</span>
+                                        </div>
+                                        <div class="col-md-1 col-3 pl-0 pr-0">
+                                            <span class="span__dangky">{{ $total_tuong }}</span>
+                                        </div>
+                                        <div class="col-md-6 col-4 pl-0 pr-0">
+                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_tuong">Xem</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="row gallery__03">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto span__dangky__auto">
+                                            <i class="fas fa-angle-right"></i>
+                                        </div>
+                                        <div class="col-md-4 col-4 pl-0">
+                                            <span class="span__dangky">Trang phục</span>
+                                        </div>
+                                        <div class="col-md-1 col-3 pl-0">
+                                            <span class="span__dangky">{{ $total_trangphuc }}</span>
+
+                                        </div>
+                                        <div class="col-md-6 col-4 pl-0 pr-0">
+                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_trangphuc">Xem</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Thông tin chung</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_thongtinchung }}</span>--}}
+
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
+{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_thongtinchung">Xem</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+                        <div class="col-md-12">
+                            <div class="row gallery__03">
+                                <div class="col-md-12 gallery__01__row">
+                                    <div class="row">
+                                        <div class="col-auto span__dangky__auto">
+                                            <i class="fas fa-angle-right"></i>
+                                        </div>
+                                        <div class="col-md-4 col-4 pl-0">
+                                            <span class="span__dangky">Linh thú TFT</span>
+                                        </div>
+                                        <div class="col-md-1 col-3 pl-0">
+                                            <span class="span__dangky">{{ $total_linhthu }}</span>
+
+                                        </div>
+                                        <div class="col-md-6 col-4 pl-0 pr-0">
+                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_linhthu">Xem</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Sàn đấu TFT</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_sandau }}</span>--}}
+
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
+{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_sandau">Xem</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Dame đòn đánh TFT</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_chuongluc }}</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
+{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_damedondanh">Xem</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row gallery__03">--}}
+{{--                                <div class="col-md-12 gallery__01__row">--}}
+{{--                                    <div class="row">--}}
+{{--                                        <div class="col-auto span__dangky__auto">--}}
+{{--                                            <i class="fas fa-angle-right"></i>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-4 col-4 pl-0">--}}
+{{--                                            <span class="span__dangky">Biểu cảm</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-1 col-3 pl-0">--}}
+{{--                                            <span class="span__dangky">{{ $total_bieucam }}</span>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="col-md-6 col-4 pl-0 pr-0">--}}
+{{--                                            <a href="javascript:void(0)" class="lm_xemthem lm_xemthem_bieucam">Xem</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                    @if(isset($data->params))
+                        @if(isset($data->params->rank_info) && count($data->params->rank_info))
+
+                            @foreach($data->params->rank_info as $key_rank => $rank_info)
+                                @if($rank_info->queueType == "RANKED_TFT")
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">RANKED TFT</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+                                                        @if($rank_info->tier == "NONE")
+                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                        @else
+
+                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif($rank_info->queueType == "RANKED_SOLO_5x5")
+
+                                    <div class="col-md-12">
+                                        <div class="row gallery__03">
+                                            <div class="col-md-12 gallery__01__row">
+                                                <div class="row">
+                                                    <div class="col-auto span__dangky__auto">
+                                                        <i class="fas fa-angle-right"></i>
+                                                    </div>
+                                                    <div class="col-md-4 col-4 pl-0">
+                                                        <span class="span__dangky">RANKED SOLO</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6 pl-0">
+
+                                                        @if($rank_info->tier == "NONE")
+                                                            <span class="span__dangky">{{ $rank_info->tier }}</span>
+                                                        @else
+                                                            <span class="span__dangky">{{ config('module.acc.auto_lm_rank.'.$rank_info->tier ) }} - {{ $rank_info->division }}</span>
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+
+                        @endif
+                    @endif
+
+                @else
+
+                @endif
+
                 @if(isset($data->groups))
                     <?php $att_values = $data->groups ?>
                     @foreach($att_values as $att_value)
@@ -231,14 +476,14 @@
                                     <div class="row atmvdtntc">
                                         <div class="col-md-6 col-sm-6 col-6 atmvdt">
                                             @if(App\Library\AuthCustom::check())
-                                                <a href="/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
+                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
                                             @else
                                                 <a href="/login?return_url=/recharge-atm" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">ATM - VÍ ĐIỆN TỬ</a>
                                             @endif
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-6 ntc">
                                             @if(App\Library\AuthCustom::check())
-                                                <a href="/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
+                                                <a data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
                                             @else
                                                 <a href="/login?return_url=/nap-the" class="btn btn-warning gallery__bottom__span_bg__2 gallery__bottom__span" style="color:#FFFFFF;">NẠP THẺ CÀO</a>
                                             @endif
@@ -375,8 +620,8 @@
                             @if(App\Library\AuthCustom::check())
 
                                 @if(App\Library\AuthCustom::user()->balance < $data->price)
-                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" href="/nap-the" id="d3">Nạp thẻ cào</a>
-                                    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-dismiss="modal" rel="/atm" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
+                                    <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold gallery__bottom__span_bg__2" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal" id="d3">Nạp thẻ cào</a>
+                                    <a class="btn c-bg-green-4 c-font-white c-btn-square c-btn-uppercase c-btn-bold load-modal gallery__bottom__span_bg__2" style="color: #FFFFFF" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp từ ATM - Ví điện tử</a>
                                 @else
                                     <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold loginBox__layma__button__displayabs"  id="d3" style="position: relative">Xác nhận mua<div class="row justify-content-center loading-data__muangay"></div></button>
                                 @endif
@@ -392,396 +637,7 @@
         </div>
     </div>
 
-    @if(isset($data->category->custom->slug) ? $data->category->custom->slug == 'nick-lien-minh' :  $data->category->slug == 'nick-lien-minh')
-        <div class="row marginauto data__chitietnick">
-            <div class="col-md-12 left-right" id="">
-                <div class="shop_product_another pt-3">
-                    <div class="c-content-title-1">
-                        <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">Chi tiết Nick</h3>
-                        <div class="c-line-center c-theme-bg"></div>
-                    </div>
 
-                    <div class="description_product">
-
-                        <ul class="nav nav-tab-booking" role="tablist" style="">
-                            <li role="presentation" class="" >
-                                <a  class="nav-item active" data-toggle="tab" href="#acc_info" role="tab"  >
-                                    Thông tin
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#champions-tab" role="tab"  >
-                                    Tướng
-
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#acc_costume" role="tab"  >
-                                    Trang phục
-
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#acc_color" role="tab"  >
-                                    Đa sắc
-
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#tftcompanions-tab" role="tab"  >
-                                    Linh thú TFT
-
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#tftdamageskins-tab" role="tab"  >
-                                    Sân đấu TFT
-
-                                </a>
-                            </li>
-                            <li role="presentation" class="" >
-                                <a  class="nav-item " data-toggle="tab" href="#tftmapskins-tab" role="tab"  >
-                                    Chưởng lực TFT
-
-                                </a>
-                            </li>
-
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane  fade show active" id="acc_info">
-
-                            </div>
-                            <div class="tab-pane  fade show" id="champions-tab">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="champions-list">
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                    <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                    <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="champions-list" href="/assets/frontend/theme_1/images/trangphuc.jpg">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/trangphuc.jpg" alt="">
-                                                    <span class="costume_title">
-                                                            Annie Quàng Khăn Đỏ
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="tab-pane  fade show " id="acc_costume">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="acc_costume_list">
-                                    <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                        <a data-fancybox="acc_costume_list" href="/assets/frontend/theme_1/images/tuong.png">
-                                            <div class="generals_image">
-                                                <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                <span class="generals_title">
-                                                           Galio
-                                                    </span>
-                                            </div>
-
-                                        </a>
-                                    </div>
-                                    <div class="generals_item col-lg-3 col-md-4 col-4 p-8">
-                                        <a data-fancybox="acc_costume_list" href="/assets/frontend/theme_1/images/tuong.png">
-                                            <div class="generals_image">
-                                                <img src="/assets/frontend/theme_1/images/tuong.png" alt="">
-                                                <span class="generals_title">
-                                                           Galio
-                                                    </span>
-                                            </div>
-
-                                        </a>
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                            <div class="tab-pane  fade show " id="acc_color">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="acc_color_list">
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac.png">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/dasac.png" alt="">
-                                                    <span class="costume_title">
-                                                           Fiddlesticks Tướng Cướp
-
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac2.png">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/dasac2.png" alt="">
-                                                    <span class="costume_title">
-                                                           Fiddlesticks Tướng Cướp
-
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="costume_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="costume_item_detail">
-                                            <a data-fancybox="acc_color_list" href="/assets/frontend/theme_1/images/dasac3.png">
-                                                <div class="costume_image">
-                                                    <img src="/assets/frontend/theme_1/images/dasac3.png" alt="">
-                                                    <span class="costume_title">
-                                                           Fiddlesticks Tướng Cướp
-
-                                                        </span>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="tab-pane  fade show" id="tftcompanions-tab">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="tftcompanions_list">
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/linhthu.png" alt="">
-
-                                                </div>
-                                                <div class="skin_title">
-                                                    Fiddlesticks Tướng Cướp
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/linhthu.png" alt="">
-
-                                                </div>
-                                                <div class="skin_title">
-                                                    Fiddlesticks Tướng Cướp
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu3.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/linhthu3.png" alt="">
-
-                                                </div>
-                                                <div class="skin_title">
-                                                    Fiddlesticks Tướng Cướp
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftcompanions_list" href="/assets/frontend/theme_1/images/linhthu2.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/linhthu2.png" alt="">
-
-                                                </div>
-                                                <div class="skin_title">
-                                                    Fiddlesticks Tướng Cướp
-
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                            <div class="tab-pane  fade show" id="tftdamageskins-tab">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="tftdamageskins_list">
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/sandau.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau2.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/sandau2.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftdamageskins_list" href="/assets/frontend/theme_1/images/sandau3.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/sandau3.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                            <div class="tab-pane  fade show" id="tftmapskins-tab">
-                                <div class="acc_search" style="padding-top: 12px">
-                                    <input type="text" class="form-control m-b-20 fixcssacount" placeholder="Tìm kiếm">
-
-                                </div>
-                                <div class="row m-0" id="tftmapskins_list">
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="skin_item col-lg-3 col-md-4 col-6 fixcssacount">
-                                        <div class="skin_item_detail">
-                                            <a data-fancybox="tftmapskins_list" href="/assets/frontend/theme_1/images/damdon.png">
-                                                <div class="skin_image">
-                                                    <img src="/assets/frontend/theme_1/images/damdon.png" alt="">
-                                                    <div class="mapskin_title">
-                                                        Fiddlesticks Tướng Cướp
-
-                                                    </div>
-                                                </div>
-
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
-
-    @if(isset($data->description))
-        <div class="shop_product_another">
-            <div class="c-content-title-1">
-                <h3 class="c-center c-font-uppercase c-font-bold title__tklienquan">CHI TIẾT</h3>
-                <div class="c-line-center c-theme-bg"></div>
-            </div>
-
-            <div class="shop_product_another_content">
-                <div class="item_buy_list row">
-                    <div class="col-md-12">
-                        <span>{!! $data->description !!}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
     @else
         <div class="container pt-3">
             <div class="row pb-3 pt-3">

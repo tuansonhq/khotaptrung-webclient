@@ -2,7 +2,7 @@
 @if(isset($data))
     <div class="block-product mt-fix-20 d-g-md-none">
         <div class="product-header d-flex">
-            <h2 class="text-title" >Dịch vụ nổi bật</h2>
+            <h2 class="text-title" >{{ $title??'Dịch vụ nổi bật' }}</h2>
             <div class="navbar-spacer"></div>
         </div>
         <div class="box-product">

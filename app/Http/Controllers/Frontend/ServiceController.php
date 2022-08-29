@@ -89,8 +89,7 @@ class ServiceController extends Controller
 
             return view('frontend.pages.service.list')->with('data', $data);
 
-        }
-        else{
+        }else{
             $data =null;
             $message = "Không thể lấy dữ liệu";
             return view('frontend.pages.service.list')->with('data', $data)->with('message', $message);
@@ -110,7 +109,6 @@ class ServiceController extends Controller
 
         $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
         $response_data = $result_Api->response_data??null;
-
         if(isset($response_data) && ($response_data->status??"") == 1){
 
             $data = $response_data->data;
@@ -145,11 +143,15 @@ class ServiceController extends Controller
             }
 
         }
+        elseif ($result_Api->response_code == 404){
+            return view('frontend.404.404');
+        }
         else{
-            return response()->json([
-                'status' => 0,
-                'message'=>$response_data->message??"Không thể lấy dữ liệu"
-            ]);
+
+            $data =null;
+            $message = "Không thể lấy dữ liệu";
+            return view('frontend.pages.service.detail')->with('data', $data)->with('message', $message);
+
         }
     }
 

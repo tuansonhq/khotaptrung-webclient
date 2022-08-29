@@ -26,6 +26,7 @@ $('.js-amount').on('click', function () {
     $('input[name=card-amount]').trigger('input');
 });
 
+$('select').niceSelect();
 // see more desc service
 $('.js-toggle-content').click(function () {
     handleToggleContent();
