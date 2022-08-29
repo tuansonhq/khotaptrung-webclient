@@ -6,6 +6,7 @@
     <meta name="robots" content="index,follow"/>
 @endsection
 @section('content')
+
     @if(\App\Library\HelpersDecode::DecodeJson('server_mode',$data->params) == "1")
         @php
             $server_data=\App\Library\HelpersDecode::DecodeJson('server_data',$data->params);
@@ -22,7 +23,7 @@
     <input type="hidden" id="data_params" value="{{ $data->params }}">
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}"/>
     <div class="container c-container" id="service-detail">
-        <ul class="breadcrumb-list">
+        <ul class="breadcrumb-list c-mb-lg-12">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
@@ -382,7 +383,7 @@
                 <input class="text-title secondary" type="hidden" name="value" value="">
                 <input class="text-title" type="hidden" name="selected" value="">
                 <input class="text-title" type="hidden" name="server">
-                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice">0 VNĐ</div>
+                <div style="color: #f473b9;font-weight: 500" class="text-title-bold secondary d-inline-block txtPrice fz-20">0 VNĐ</div>
                 <button type="button" class="btn primary js-step btnPay">Giao dịch ngay</button>
             </div>
         </section>
