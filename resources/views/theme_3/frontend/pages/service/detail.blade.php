@@ -87,7 +87,7 @@
                                             <div class="col-md-12 left-right">
                                                 <div class="row marginauto banner-container-ct">
                                                     <div class="col-md-12 text-left left-right">
-                                                        <img class="lazy" src="https://st.quantrimang.com/photos/image/2022/01/21/Anh-tuong-Lien-Quan-Mobile-25.jpg" alt="Banner">
+                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
                                                     </div>
                                                 </div>
                                             </div>
