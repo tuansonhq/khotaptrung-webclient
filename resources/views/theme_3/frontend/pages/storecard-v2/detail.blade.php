@@ -58,7 +58,8 @@
                                             <div class="card__attr">
                                                 <div class="card--value__attr">
                                                     Mã thẻ:<span class="card__info">
-                                                        {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}
+                                                        {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}
+
                                                     </span>
                                                 </div>
                                                 <div class="js-copy-text">
@@ -68,7 +69,8 @@
                                             <div class="card__attr">
                                                 <div class="card--value__attr">
                                                     Serial:<span class="card__info">
-                                                        {{ \App\Library\Helpers::Decrypt($val->pin,config('module.charge.key_encrypt')) }}
+                                                        {{ \App\Library\Helpers::Decrypt($val->serial,config('module.charge.key_encrypt')) }}
+
                                                     </span>
                                                 </div>
                                                 <div class="js-copy-text">

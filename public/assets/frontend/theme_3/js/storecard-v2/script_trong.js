@@ -58,6 +58,7 @@ var swiper_card = new Swiper(".slider--card", {
     freeMode: true,
     observer: true,
     observeParents: true,
+    loop:false,
 });
 
 // option swiper article banner

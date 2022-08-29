@@ -1988,7 +1988,7 @@ header nav.heading .header-container{
     height: 56px;
     background: #FBFBFD;
     border-radius: 8px;
-    margin: 20px 12px 0 12px;
+    margin: 20px auto;
 }
 .rotation-notify-home-fix{
     margin: 20px auto 0 auto;

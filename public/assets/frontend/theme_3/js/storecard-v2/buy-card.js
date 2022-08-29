@@ -426,6 +426,7 @@ $(document).ready(function () {
                             swiper_card.params.slidesPerView = 1;
                         }
                         if (temp.quantity > 0){
+                            $('#modal--success__payment .swiper-wrapper').empty()
                             data.data_card.forEach(function (card) {
                                 let html_card = '';
                                 html_card += `<div class="swiper-slide card__detail">`;
@@ -473,19 +474,26 @@ $(document).ready(function () {
                                 html_card += `         </div>`;
                                 html_card += `    </div>`;
                                 html_card += `</div>`;
-                                $('#modal--success__payment .swiper-wrapper').append(html_card);
+                                $('#modal--success__payment .swiper-wrapper').append(html_card)
                             })
-                            $('#modal--success__payment').modal('show');
+                            $('#modal--success__payment').modal('show')
+                            tippy('.js-copy-text', {
+                                // default
+                                trigger: 'click',
+                                content: "Đã coppy !",
+                                placement: 'right',
+                            });
                         }
                     }
                     else {
                         $('#message--error--buy').text(res.message);
                         $('#modal--fail__payment').modal('show')
                     }
+
                 }
             })
         })
-    }else {
+    } else {
         // Next step
         let step_1 = $('#buy-card');
         let step_2 = $('.mobile--confirm__payment');
@@ -555,7 +563,7 @@ $(document).ready(function () {
                         let data = res.data;
                         $('.mobile--success__payment .card__message').text(res.message);
                         handleToggleStep('step3');
-                        data.forEach(function (card) {
+                        data.data_card.forEach(function (card) {
                             let html_card = '';
                             html_card += `<div class="card__detail">`;
                             html_card += `   <div class="card--header__detail">`;
@@ -604,6 +612,12 @@ $(document).ready(function () {
                             html_card += `</div>`;
 
                             $('.mobile--success__payment .card--list').append(html_card);
+                        });
+                        tippy('.js-copy-text', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã coppy !",
+                            placement: 'right',
                         });
                     }else {
                         $('.mobile--fail__payment .card__message').text(res.message);
