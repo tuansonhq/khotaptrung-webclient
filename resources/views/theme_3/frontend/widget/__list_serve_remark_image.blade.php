@@ -1,6 +1,6 @@
 
 @if(isset($data) && count($data) > 0)
-    <div class="block-product mt-fix-20">
+    <div class="block-product p-0">
         <div class="product-header d-flex">
 
         <span>

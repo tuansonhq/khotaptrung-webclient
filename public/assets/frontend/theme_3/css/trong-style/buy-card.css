@@ -280,6 +280,11 @@ ul.card-list {
     .scratch-card .card--name {
         height: 40px;
     }
+    #grid--game__card .scratch-card .card--name,
+    #grid--phone__card .scratch-card .card--name {
+        height: 20px;
+        font-size: 14px;
+    }
     .poster__banner {
         border-radius: 0;
     }
