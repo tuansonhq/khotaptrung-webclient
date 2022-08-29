@@ -21,16 +21,36 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/custom.boostrap.css">
 
+
 {{--    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.css">--}}
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
 
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/line-awesome.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/node_modules/flickity/dist/flickity.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrapdatepicker/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.css">
+
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/main_trong.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/phu/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/son/service-mobile.css">
+
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style-custom.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/duong/component-style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/modal-custom.css">
+
+
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/trong/components.css">
+
+    @yield('styles')
     <!--    <link rel="stylesheet" href="css/main.css">-->
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style.css?v={{time()}}">
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/moment/moment.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-datetimepicker.min.js"></script>
@@ -38,8 +58,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/main.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/lib/datetime-picker/bootstrap-datetimepicker.js" defer></script>
 
-{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js"></script>--}}
+{{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard/store_card.js"></script>--}}
     @stack('js')
 
     @yield('seo_head')
@@ -68,7 +89,6 @@
         @endforeach
 
     @endif
-
 
 </head>
 
@@ -160,6 +180,108 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="rechargeModal" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered animated">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Nạp tiền</div>
+                <button type="button" class="close" data-dismiss="modal"></button>
+            </div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" data-toggle="tab" href="#tab-modal-recharge" role="tab"
+                       aria-selected="true">Nạp thẻ</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#tab-modal-atm" role="tab"
+                       aria-selected="false">ATM</a>
+                </li>
+                {{--<li class="nav-item" role="presentation">
+                    <a class="nav-link" data-toggle="tab" href="#tab-modal-wallet" role="tab"
+                       aria-selected="false">Ví điện tử</a>
+                </li>--}}
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade active show" id="tab-modal-recharge" role="tabpanel">
+                    <form action="{{route('postTelecomDepositAuto')}}" id="modal-form-charge">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="t-sub-2 mb-2">Nhà cung cấp</div>
+                            <select name="type" class="c-mb-12" id="modal-telecom">
+                                <!-- JS PASTE CODE HERE -->
+                            </select>
+
+                            <div class="t-sub-2 mb-2">Chọn mệnh giá</div>
+                            <div class="list-card-deno" id="modal-amounts">
+                                <!-- JS PASTE CODE HERE -->
+                            </div>
+
+                            <div class="t-sub-2 mb-2">Mã số thẻ</div>
+                            <input autocomplete="off" class="input-form w-100 c-mb-12" name="pin" type="text" placeholder="Nhập mã số thẻ" required="">
+
+                            <div class="t-sub-2 mb-2">Số seri</div>
+                            <input autocomplete="off" class="input-form w-100 c-mb-12" name="serial" type="text" placeholder="Nhập số seri thẻ" required="">
+
+                            <div class="default-form-group">
+                                <div class="t-sub-2 mb-2">Mã bảo vệ</div>
+                                <div class="row p-0">
+                                    <div class="col-md-12 d-flex ">
+                                        <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
+                                        <div class="captcha captcha_1 c-mx-8">
+                                            <span class="reload">
+                                                {!! captcha_img('flat') !!}
+                                            </span>
+                                        </div>
+                                        <button class="refresh-captcha" id="modal-reload-captcha" type="button">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/img/captcha_refresh.png" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-invalid message-form mt-2"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn -primary btn-big submit-modal-form-charge">Nạp tiền</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="tab-modal-atm" role="tabpanel">
+                    <div class="modal-body">
+                        <form action="">
+                            <div class="box-charge-card">
+                                {{--                                            <div class="atm-card-title c-mb-20">--}}
+                                {{--                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>--}}
+                                {{--                                            </div>--}}
+                                <div class="dialog--content c-mb-20">
+                                    <div class="card--gray">
+                                        @if (setting('sys_tranfer_content') != "")
+                                            {!! setting('sys_tranfer_content') !!}
+                                        @endif
+                                        <div class="card--attr transfer-title d-flex justify-content-between">
+                                            <div class="card--attr__name">
+                                                Nội dung chuyển tiền
+                                            </div>
+                                            <div class="card--attr__value d-flex">
+                                                <div class="card__info transfer-code mr-3" id=""></div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {{--<div class="tab-pane fade" id="tab-modal-wallet" role="tabpanel">
+
+                </div>--}}
+            </div>
+        </div>
+    </div>
+</div>
+
 @if(!Request::is('/'))
     @if(Session::has('url_return.id_return'))
         @php
@@ -168,17 +290,27 @@
     @endif
 @endif
 <!-- Optional JavaScript; choose one of the two! -->
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/config/swiper-slider-conf.js"></script>
+
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/jquery/dist/jquery.min.js"></script>
 {{--<script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery.min.js"></script>--}}
-
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/popper.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/node_modules/flickity/dist/flickity.pkgd.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/bootstrap-input-spinner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/sticky-kit.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/style.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 
-
-
+@yield('scripts')
 </body>
 
 </html>
