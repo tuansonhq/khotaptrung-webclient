@@ -285,8 +285,8 @@
                         </div>
                         <div class="group-btn c-mb-16 d-none d-lg-flex " style="--data-between: 12px">
                             <button class="btn secondary tinhnang">Trả góp</button>
-                            @if(App\Library\AuthCustom::check())
-                                @if(App\Library\AuthCustom::user()->balance < $data->price)
+                            @if(\App\Library\AuthCustom::check())
+                                @if(\App\Library\AuthCustom::user()->balance < $data->price)
                                     <button type="button" class="btn primary the-cao-atm">Mua ngay</button>
                                 @else
                                     <button type="button" class="btn primary btn-muangay">Mua ngay</button>

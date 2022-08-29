@@ -363,7 +363,7 @@
                             <button class="btn primary js-step" data-target="#step2">Mua Ngay</button>
                         @endif
                     @else
-                        <button class="btn primary" onclick="openLoginModal()">Mua Ngay</button>
+                        <a href="/login" class="btn primary" >Mua Ngay</a>
                     @endif
 
                 </div>
