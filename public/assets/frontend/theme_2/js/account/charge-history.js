@@ -1,75 +1,44 @@
 $(document).ready(function(){
-    let page = $('#hidden_page_service_ls').val();
+    let page = $('#hidden_page_service_lxnt').val();
     const csrf_token = $('meta[name="csrf-token"]').attr('content');
     const token =  $('meta[name="jwt"]').attr('content');
 
-    $(document).on('click', '.paginate__v1__charge .pagination a',function(event){
+    $(document).on('click', '.paginate__v1_index_lsnt .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];
 
-        $('#hidden_page_service_ls').val(page);
+        $('#hidden_page_service_lsnt').val(page);
 
         $('li').removeClass('active');
         $(this).parent().addClass('active');
 
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
+        var started_at_lsnt = $('.started_at_lsnt_data').val();
+        var ended_at_lsnt =  $('.ended_at_lsnt_data').val();
 
-        let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner ajax-loading-data" >';
-        html_loading += '<div class="cv-spinner">';
-        html_loading += '<span class="spinner"></span>';
-        html_loading += '</div>';
-        html_loading += '</div>';
-        $("#data_charge_history").empty().html('');
-        $("#data_charge_history").empty().html(html_loading);
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt);
     });
-    loadDataChargeHistory();
-    function loadDataChargeHistory(page, serial, key, status,started_at,ended_at) {
-        if (page == null || page == '' || page == undefined){
-            page = 1;
-        }
+
+
+    function loadDataChargeHistory(page,started_at_lsnt,ended_at_lsnt) {
 
         request = $.ajax({
             type: 'GET',
-            url: '/lich-su-nap-the',
+            url: '/lich-su-nap-the-tich-hop',
             data: {
                 page:page,
-                serial:serial,
-                key:key,
-                status:status,
-                started_at:started_at,
-                ended_at:ended_at,
+                started_at:started_at_lsnt,
+                ended_at:ended_at_lsnt,
             },
             beforeSend: function (xhr) {
-
+                $(".load_spinner").show();
+                $("#data_napthe_history").hide();
             },
             success: (data) => {
-
-                if (data.status == 1){
-                    $("#data_charge_history").empty().html('');
-                    $("#data_charge_history").empty().html(data.data);
-                }else if (data.status == 0) {
-                    var html = '';
-                    html += '<div class="table-responsive" id="tableacchstory">';
-                    html += '<table class="table table-hover table-custom-res">';
-                    html += '<thead><tr><th>Thời gian</th><th>Nhà mạng</th><th>Mã thẻ</th><th>Serial</th><th>Mệnh giá</th><th>Kết quả</th><th>Thực nhận</th></tr></thead>';
-                    html += '<tbody>';
-                    html += '<tr><td colspan="8"><span style="color: red;font-size: 16px;">' + data.message + '</span></td></tr>';
-                    html += '</tbody>';
-                    html += '</table>';
-                    html += '</div>';
-
-                    $("#data_charge_history").empty().html('');
-                    $("#data_charge_history").empty().html(html);
-                }
-
+                $(".load_spinner").hide();
+                $("#data_napthe_history").show();
+                $("#data_napthe_history").empty().html('');
+                $("#data_napthe_history").empty().html(data);
             },
             error: function (data) {
 
@@ -80,167 +49,65 @@ $(document).ready(function(){
         });
     }
 
-    $(document).on('submit', '.form-charge', function(e){
+    $(document).on('submit', '.form__lsnt', function(e){
         e.preventDefault();
 
-        var serial_data = $('.serial').val();
+        var started_at_lsnt = $('.started_at_lsnt').val();
 
-        if (serial_data == null || serial_data == undefined || serial_data == ''){
-            $('.serial_data_ls').val('');
+        if (started_at_lsnt == null || started_at_lsnt == undefined || started_at_lsnt == ''){
+            $('.started_at_data_lsnt').val('');
         }else {
-            $('.serial_data_ls').val(serial_data);
+            $('.started_at_data_lsnt').val(started_at_lsnt);
         }
 
-        var key_data = $('.key').val();
+        var ended_at_lsnt =  $('.ended_at_lsnt').val();
 
-        if (key_data == null || key_data == undefined || key_data == ''){
-            $('.key_data_ls').val('');
+        if (ended_at_lsnt == null || ended_at_lsnt == undefined || ended_at_lsnt == ''){
+            $('.ended_at_data_lsnt').val('');
         }else {
-            $('.key_data_ls').val(key_data);
+            $('.ended_at_data_lsnt').val(ended_at_lsnt);
         }
 
-        var status_data =  $('.status').val();
-
-        if (status_data == null || status_data == undefined || status_data == ''){
-            $('.status_data_ls').val('');
-        }else {
-            $('.status_data_ls').val(status_data);
-        }
-
-        var started_at_data = $('.started_at').val();
-        if (started_at_data == null || started_at_data == undefined || started_at_data == ''){
-            $('.started_at_data_ls').val('');
-        }else {
-            $('.started_at_data_ls').val(started_at_data);
-        }
-
-        var ended_at_data =  $('.ended_at').val();
-        if (ended_at_data == null || ended_at_data == undefined || ended_at_data == ''){
-            $('.ended_at_data_ls').val('');
-        }else {
-            $('.ended_at_data_ls').val(ended_at_data);
-        }
-
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
-        var page = $('#hidden_page_service_ls').val();
-
-        let html_loading = '';
-        html_loading += '<div class="text-center ajax-loading-store load_spinner" >';
-        html_loading += '<div class="cv-spinner">';
-        html_loading += '<span class="spinner"></span>';
-        html_loading += '</div>';
-        html_loading += '</div>';
-        $("#data_charge_history").empty().html('');
-        $("#data_charge_history").empty().html(html_loading);
-
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        var started_at = $('.started_at_data_lsnt').val();
+        var ended_at =  $('.ended_at_data_lsnt').val();
+        // var page = $('#hidden_page_service_lsnt').val();
+        var page = 1;
+        loadDataChargeHistory(page,started_at,ended_at);
     });
 
-    $('body').on('click','.btn-hom-nay',function(e){
+    $('body').on('click','.data__napthe',function(e){
 
-        var datestartTime = $('.started_at_day_ls').val();
+        e.preventDefault();
+        $('.started_at_txns_data').val('');
+        $('.ended_at_txns_data').val('');
 
-        var dateEndTime = $('.end_at_day_ls').val();
+        var started_at_lsnt_data = $('.started_at_lsnt_data').val();
+        var ended_at_lsnt_data = $('.ended_at_lsnt_data').val();
+        var page = $('#hidden_page_service_lsnt').val();
 
-        //alert(dateEndTime + datestartTime)
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data_ls').val('');
-        $('.key_data_ls').val('');
-        $('.status_data_ls').val('');
-        $('.started_at_data_ls').val(datestartTime);
-        $('.ended_at_data_ls').val(dateEndTime);
-
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
+        loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
 
     });
+    var loc = window.location.search;
 
-    $('body').on('click','.btn-hom-qua',function(e){
+    if(loc.replace('?log=','') == 'deposit-history'){
+        $('.nav-link').removeClass('active');
+        $('.tab-pane').removeClass('active');
+        $('.tab-pane').removeClass('show');
+        $('.data__napthe').addClass('active');
+        $('.data__napthe').addClass('show');
+        $('.data__napthe_tab').addClass('active');
+        $('.data__napthe_tab').addClass('show');
 
-        var datestartTime = $('.started_at_yes_ls').val();
-        var dateEndTime = $('.end_at_yes_ls').val();
+        $('.started_at_txns_data').val('');
+        $('.ended_at_txns_data').val('');
 
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data_ls').val('');
-        $('.key_data_ls').val('');
-        $('.status_data_ls').val('');
-        $('.started_at_data_ls').val(datestartTime);
-        $('.ended_at_data_ls').val(dateEndTime);
+        var started_at_lsnt_data = $('.started_at_lsnt_data').val();
+        var ended_at_lsnt_data = $('.ended_at_lsnt_data').val();
+        let page = $('#hidden_page_service_lsnt').val();
 
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
+        loadDataChargeHistory(page,started_at_lsnt_data,ended_at_lsnt_data)
 
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
 
-    });
-
-    $('body').on('click','.btn-thang-nay',function(e){
-
-        var datestartTime = $('.started_at_month_ls').val();
-        var dateEndTime = $('.end_at_month_ls').val();
-
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data_ls').val('');
-        $('.key_data_ls').val('');
-        $('.status_data_ls').val('');
-        $('.started_at_data_ls').val(datestartTime);
-        $('.ended_at_data_ls').val(dateEndTime);
-
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
-
-    });
-
-    $('body').on('click','.btn-all',function(e){
-
-        $('.serial').val('');
-        $('.key').val('');
-        $('.status').val('');
-        $('.started_at').val('');
-        $('.ended_at').val('');
-        $('.serial_data_ls').val('');
-        $('.key_data_ls').val('');
-        $('.status_data_ls').val('');
-        $('.started_at_data_ls').val('');
-        $('.ended_at_data_ls').val('');
-
-        var serial = $('.serial_data_ls').val();
-        var key =  $('.key_data_ls').val();
-        var status =  $('.status_data_ls').val();
-        var started_at = $('.started_at_data_ls').val();
-        var ended_at =  $('.ended_at_data_ls').val();
-
-        loadDataChargeHistory(page, serial, key, status,started_at,ended_at);
-
-    });
+    }
 })

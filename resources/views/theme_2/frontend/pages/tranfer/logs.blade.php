@@ -30,13 +30,13 @@
                             <td>{{ formatPrice((int)$item->price) }} đ</td>
                             <td>
                                 @if($item->status == 2 )
-                                    <b class="text-warning">{{config('module.transfer.status.2')}}</b>
+                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
                                 @elseif($item->status == 1)
-                                    <b class="text-info">{{config('module.transfer.status.1')}}</b>
+                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
                                 @elseif($item->status == 0)
-                                    <b class="text-warning">{{config('module.transfer.status.0')}}</b>
+                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
                                 @elseif($item->status == 3)
-                                    <b class="text-danger">{{config('module.transfer.status.3')}}</b>
+                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
                                 @endif
                             </td>
                         </tr>
@@ -50,22 +50,21 @@
                             <td>{{ formatPrice((int)$item->price) }} đ</td>
                             <td>
                                 @if($item->status == 2 )
-                                    <b class="text-warning">{{config('module.transfer.status.2')}}</b>
+                                    <b class="text-warning">{{config('module.tranfer.status.2')}}</b>
                                 @elseif($item->status == 1)
-                                    <b class="text-info">{{config('module.transfer.status.1')}}</b>
+                                    <b class="text-info">{{config('module.tranfer.status.1')}}</b>
                                 @elseif($item->status == 0)
-                                    <b class="text-warning">{{config('module.transfer.status.0')}}</b>
+                                    <b class="text-warning">{{config('module.tranfer.status.0')}}</b>
                                 @elseif($item->status == 3)
-                                    <b class="text-danger">{{config('module.transfer.status.3')}}</b>
+                                    <b class="text-danger">{{config('module.tranfer.status.3')}}</b>
                                 @endif
                             </td>
                         </tr>
                     @endif
 
                 @endforeach
-
             @else
-                <tr class="data-card">
+                <tr>
                     <td colspan="8">
                         <span style="color: red;font-size: 16px;">Không có dữ liệu!</span>
                     </td>
