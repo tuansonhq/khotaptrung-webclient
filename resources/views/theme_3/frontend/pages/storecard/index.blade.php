@@ -174,7 +174,7 @@
                                     </button>
                                 @else
                                     <button type="button" class="btn -primary btn-big js_step"
-                                            onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua
+                                            onclick="openLoginModal();" style="margin-top: 16px;" id="btn-confirm">Chọn mua
                                     </button>
                                 @endif
                             </div>

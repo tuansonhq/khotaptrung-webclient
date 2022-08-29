@@ -312,40 +312,49 @@ $(document).ready(function () {
                     //Empty element
                     $('#cardAmountList').empty();
 
-                    data.forEach(function (card) {
-                        let html = '';
-                        html += `<li class="deno__item col-4 col-lg-4">`;
-                        //Check if it is the first loop
-                        if (loop_index === 0) {
-                            html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
-                        } else {
-                            html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
-                        }
-                        html += `<label for="amount-${card.id}" class="deno__value">`;
-                        html += `<span>${formatNumber(card.amount)} đ</span>`;
-                        html += `</label>`;
-                        html += `</li>`;
-
-                        //Increase loop index
-                        loop_index++;
-
-                        // Append new HTML amount
-                        $('#cardAmountList').append(html);
-                    });
-
-                    //prepare the input field and update price related value
-                    $('input[name="card-amount"]').val(1);
-                    prepareAmountWidget();
-
-                    //Activate onchange, oninput function for input field inside
-                    $('input[name="card-value"]').change(function (e) {
-                        e.preventDefault();
+                    if (!data.length) {
+                        $('#cardAmountList').append('<p class="text-center c-mb-0">Chưa có mệnh giá của thẻ</p>');
+                        resetAmountWidget();
+                        $('#btn-confirm').prop('disabled', true);
+                    } else {
+                        data.forEach(function (card) {
+                            let html = '';
+                            html += `<li class="deno__item col-4 col-lg-4">`;
+                            //Check if it is the first loop
+                            if (loop_index === 0) {
+                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" checked hidden>`;
+                            } else {
+                                html += `<input type="radio" id="amount-${card.id}" value="${card.amount}" data-discount="${card.ratio_default}" name="card-value" hidden>`;
+                            }
+                            html += `<label for="amount-${card.id}" class="deno__value">`;
+                            html += `<span>${formatNumber(card.amount)} đ</span>`;
+                            html += `</label>`;
+                            html += `</li>`;
+    
+                            //Increase loop index
+                            loop_index++;
+    
+                            // Append new HTML amount
+                            $('#cardAmountList').append(html);
+                        });
+                        
+                        //prepare the input field and update price related value
+                        $('input[name="card-amount"]').val(1);
                         prepareAmountWidget();
-                    });
-                    $('input[name="card-amount"]').on('input', function (e) {
-                        e.preventDefault();
-                        prepareAmountWidget();
-                    });
+    
+                        //Activate onchange, oninput function for input field inside
+                        $('input[name="card-value"]').change(function (e) {
+                            e.preventDefault();
+                            prepareAmountWidget();
+                        });
+                        $('input[name="card-amount"]').on('input', function (e) {
+                            e.preventDefault();
+                            prepareAmountWidget();
+                        });
+
+                        //Make btn no longer disable when failed get data
+                        $('#btn-confirm').prop('disabled', false);
+                    }
 
                     $('.denos--wrap').removeClass('d-none');
 
@@ -355,6 +364,11 @@ $(document).ready(function () {
                 $('#amountWidget .loader').addClass('d-none');
             }
         });
+    }
+
+    function resetAmountWidget () {
+        $('.discount--value').text(`0%`);
+        $('.price--total__value').text(`0 đ`);
     }
 
     function prepareAmountWidget () {

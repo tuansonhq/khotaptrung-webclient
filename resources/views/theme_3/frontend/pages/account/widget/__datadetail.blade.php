@@ -487,7 +487,7 @@
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
                                                             <div class="row marginauto nick-detail-button">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/" class="button-not-bg-ct">
+                                                                    <a href="/nap-the" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>Thẻ cào</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -499,7 +499,7 @@
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                                             <div class="row marginauto nick-detail-button">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/" class="button-not-bg-ct">
+                                                                    <a href="/recharge-atm" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>ATM, Momo</small></li>
                                                                             @if(isset($data->price_atm))

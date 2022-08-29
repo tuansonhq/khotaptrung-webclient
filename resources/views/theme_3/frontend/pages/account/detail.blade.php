@@ -378,7 +378,7 @@
                                     </div>
                                     <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                         <button type="button" class="button-success-primary">
-                                            <a href="/lich-su-mua-account" style="display: block">Lịch sử mua Acc</a>
+                                            <a href="/lich-su-mua-nick" style="display: block">Lịch sử mua Acc</a>
                                         </button>
                                     </div>
                                 </div>
