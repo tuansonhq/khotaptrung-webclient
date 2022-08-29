@@ -86,27 +86,29 @@
                             });
                         }
                         else {
-                            swal({
-                                title: "Có lỗi xảy ra !",
-                                text: 'Dữ liệu chưa được cấu hình, vui lòng liên hệ QTV để xử lý',
-                                icon: "error",
-                                buttons: {
-                                    cancel: "Đóng",
-                                },
-                            })
+                            console.log('Dữ liệu chưa được cấu hình, vui lòng liên hệ QTV để xử lý\'')
+                            // swal({
+                            //     title: "Có lỗi xảy ra !",
+                            //     text: 'Dữ liệu chưa được cấu hình, vui lòng liên hệ QTV để xử lý',
+                            //     icon: "error",
+                            //     buttons: {
+                            //         cancel: "Đóng",
+                            //     },
+                            // })
                         }
 
 
                     }
                     else{
-                        swal({
-                            title: "Có lỗi xảy ra !",
-                            text: data.message,
-                            icon: "error",
-                            buttons: {
-                                cancel: "Đóng",
-                            },
-                        })
+                        console.log(data.message)
+                        // swal({
+                        //     title: "Có lỗi xảy ra !",
+                        //     text: data.message,
+                        //     icon: "error",
+                        //     buttons: {
+                        //         cancel: "Đóng",
+                        //     },
+                        // })
                     }
                 },
                 error: function (data) {
@@ -368,7 +370,7 @@
         });
 
 
-        $('#form-storeCard').submit(function (e) {
+        $('#form-storecard').submit(function (e) {
             e.preventDefault();
             var formSubmit = $(this);
             var url = formSubmit.attr('action');
@@ -388,6 +390,7 @@
                 //     quantity:quantity,
                 // },
                 beforeSend: function (xhr) {
+                    // $(".overlay").fadeIn(300);
                     $("#overlay").fadeIn(300);
                 },
                 success: function (data) {

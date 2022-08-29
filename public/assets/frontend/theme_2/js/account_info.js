@@ -35,14 +35,25 @@ $(document).ready(function(){
 
                 }
                 else if(data.status === "ERROR"){
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: "Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu",
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!(account)')
+
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: "Lỗi dữ liệu, vui lòng load lại trang để tải lại dữ liệu",
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
+                }
+                else if(data.status == 401){
+                    $('#info .store-loading').remove();
+                    $('#info_mobile .store-loading').remove();
+                    $('#info').attr('href','/login?return_url='+window.location.href)
+                    $('#info>div:first-child').html('<div class="small op-5 text-end"> Đăng nhập</div>')
+                    $('#auth').html('<input type="text" class="auth" value="none">')
+                    $('#store_pay').html(' <a href="login" class="btn text-white bg-warning-gradient pe-4 ps-4 pt-2 pb-2 rounded" ><strong>Đăng nhập để thanh toán</strong> <i class="las la-angle-double-right"></i></a>  ')
+
                 }
                 else if(data.status == true){
                     $('#info>div:first-child').html(' <div class="small op-5 text-end"> Chào '+ fn(data.info.username, 6)  +'</div> <div class="text-end">Số dư: '+formatNumber(data.info.balance)+' đ</div>')
@@ -57,25 +68,21 @@ $(document).ready(function(){
 
 
                 }  else{
-                    swal({
-                        title: "Có lỗi xảy ra !",
-                        text: data.message,
-                        icon: "error",
-                        buttons: {
-                            cancel: "Đóng",
-                        },
-                    })
+                    console.log('Có lỗi xảy ra ! (account)'+data.message)
+
+                    // swal({
+                    //     title: "Có lỗi xảy ra !",
+                    //     text: data.message,
+                    //     icon: "error",
+                    //     buttons: {
+                    //         cancel: "Đóng",
+                    //     },
+                    // })
                 }
             },
             error: function (data) {
-                swal({
-                    title: "Có lỗi xảy ra !",
-                    text: "Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!",
-                    icon: "error",
-                    buttons: {
-                        cancel: "Đóng",
-                    },
-                })
+                console.log('Có lỗi phát sinh, vui lòng liên hệ QTV để kịp thời xử lý!(account)')
+
 
             },
             complete: function (data) {
