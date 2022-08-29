@@ -116,7 +116,7 @@ class LoginController extends Controller
             Session::put('time_exp_token',$time_exp_token);
             $return_url = Session::get('url.intended');
             $previous = Session::get('url_return.id_return');
-
+            return redirect()->intended();
 
             if (isset($previous) && $previous != null){
                 return redirect('/');
