@@ -145,7 +145,7 @@
                                             </span>
                                         </div>
                                         <button class="refresh-captcha" id="modal-reload-captcha" type="button">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/img/captcha_refresh.png" alt="">
+                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/captcha_refresh.png" alt="">
                                         </button>
                                     </div>
                                 </div>
