@@ -48,10 +48,10 @@ $(document).ready(function () {
                     $('#modal--success__payment #successCard').attr('src', cardImage);
                     $('#modal--success__payment #successPrice').text(formatNumber(dataSend.amount) + ' đ');
                     $('#modal--success__payment #successQuantity').text(dataSend.quantity);
-                    if (data.length > 0){
+                    if (data.data_card.length > 0){
 
                         //Append HTML for desktop layout
-                        data.forEach(function (card) {
+                        data.data_card.forEach(function (card) {
                             let html_card = '';
                             html_card += `<div class="swiper-slide card__detail">`;
                             html_card += `  <div class="card--header__detail">`;
@@ -79,7 +79,7 @@ $(document).ready(function () {
                             html_card += `                  ${card.pin}`;
                             html_card += `               </div>`;
                             html_card += `               <div class="icon--coppy js-copy-text">`;
-                            html_card += `                    <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                            html_card += `                    <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                             html_card += `                </div>`;
                             html_card += `            </div>`;
                             html_card += `        </div>`;
@@ -92,13 +92,20 @@ $(document).ready(function () {
                             html_card += `                      ${card.serial}`;
                             html_card += `                   </div>`;
                             html_card += `                   <div class="icon--coppy js-copy-text">`;
-                            html_card += `                      <img src="/assets/frontend/theme_4/image/icons/coppy.png" alt="icon__copy">`;
+                            html_card += `                      <img src="/assets/frontend/theme_3/image/icons/coppy.png" alt="icon__copy">`;
                             html_card += `                   </div>`;
                             html_card += `               </div>`;
                             html_card += `         </div>`;
                             html_card += `    </div>`;
                             html_card += `</div>`;
                             $('#modal--success__payment .swiper-wrapper').append(html_card);
+                        });
+
+                        tippy('.js-copy-text', {
+                            // default
+                            trigger: 'click',
+                            content: "Đã coppy !",
+                            placement: 'right',
                         });
                     }
 

@@ -180,7 +180,7 @@
                 </div>
 
                 <div class="card account-detail-info js_sticky" data-top="140">
-                    <div class="card-body c-p-16 mx-n3 mx-lg-0">
+                    <div class="card-body c-pY-16 c-px-0 mx-n3 mx-lg-0">
                         <div class="section-title title-color fz-lg-18 lh-lg-24">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</div>
                         <div class="text-title fw-700 c-mb-6 d-none d-lg-block">Mã số: #{{ $data->randId }}</div>
                         <span class="d-block d-lg-none link-color c-mb-8">
@@ -363,7 +363,7 @@
                             <button class="btn primary js-step" data-target="#step2">Mua Ngay</button>
                         @endif
                     @else
-                        <button class="btn primary" onclick="openLoginModal()">Mua Ngay</button>
+                        <a href="/login" class="btn primary" >Mua Ngay</a>
                     @endif
 
                 </div>

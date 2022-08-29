@@ -1507,8 +1507,3 @@ section.outstanding-service {
     box-shadow: 0px 2px 4px rgb(0 0 0 / 5%);
     border-radius: 4px;
 }
-.history-detail-content {
-    background-color: #fff;
-    max-width: 600px;
-    border: 1px solid var(--border-default-color);
-}
