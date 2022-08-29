@@ -374,8 +374,18 @@ $(document).ready(function () {
     function prepareAmountWidget () {
         let discountCardValue = $('input[name="card-value"]:checked').data('discount');
         $('input[name="card-discount"]').val(discountCardValue);
-        $('.discount--value').text(`${100 - discountCardValue}%`);
-        $('.price--total__value').text(`${formatNumber( calculatePrice() )} đ`);
+        
+        if (isNaN(100 - discountCardValue)) {
+            $('.discount--value').text(`0%`);
+        } else {
+            $('.discount--value').text(`${100 - discountCardValue}%`);
+        }
+        
+        if (isNaN(formatNumber( calculatePrice() ))) {
+            $('.price--total__value').text(`0 đ`);
+        } else {
+            $('.price--total__value').text(`${formatNumber( calculatePrice() )} đ`);
+        }
     }
 
     //Calculate price

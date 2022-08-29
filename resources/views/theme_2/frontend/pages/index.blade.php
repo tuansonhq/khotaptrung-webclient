@@ -5,7 +5,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store_card/store_card.js?v={{time()}}"></script>
     <script>
         $(document).ready(function(){
             $('.item-').addClass('active')
