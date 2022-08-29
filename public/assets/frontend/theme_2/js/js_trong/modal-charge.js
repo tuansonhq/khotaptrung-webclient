@@ -23,7 +23,7 @@ $(document).ready(function () {
                     }
                     modal_charge.find('#modal-telecom').html(html);
                 }
-                $('select').niceSelect();
+                $('#rechargeModal select').niceSelect();
                 $('#modal-telecom').trigger('change');
             },
             error: function (data) {
