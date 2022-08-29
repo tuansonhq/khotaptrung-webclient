@@ -20,6 +20,7 @@
 
     {{--    @dd($data_params)--}}
     <input type="hidden" id="data_params" value="{{ $data->params }}">
+    <input type="hidden" id="userBalance" value="{{ App\Library\AuthCustom::user()->balance }}">
     <input type="hidden" name="slug" id="slug" value="{{ $slug }}"/>
     <div class="container c-container" id="service-detail">
         <ul class="breadcrumb-list">
@@ -543,6 +544,24 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal thông báo số dư không đủ --}}
+    <div class="modal fade modal-small" id="notBuy">
+        <div class="modal-dialog modal-dialog-centered modal-custom">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center p-0">
+                    <img class="c-pt-16 c-pb-16" src="/assets/frontend/{{theme('')->theme_key}}/image/son/thatbai.png" alt="">
+                </div>
+                <div class="modal-body text-center c-pl-24 c-pr-24 pt-0 pb-0">
+                    <p class="fw-700 fz-15 c-mt-12 mb-0 text-title-theme">Mua thẻ nick thất bại</p>
+                    <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
+                </div>
+                <div class="modal-footer c-p-24">
+                    <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp tiền</button>
                 </div>
             </div>
         </div>

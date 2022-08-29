@@ -3,7 +3,7 @@
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/saleindex.svg" alt="">
                     </span>
-        <h2 class="text-title">Giảm sốc <span class="d-g-md-none"> trong ngày</span></h2>
+        <h2 class="text-title">{{ $title??'Giảm sốc' }} <span class="d-g-md-none"> trong ngày</span></h2>
         <div class="timer  d-flex" id="timer">
             <div id="hourHome"></div>
             <div id="minuteHome"></div>

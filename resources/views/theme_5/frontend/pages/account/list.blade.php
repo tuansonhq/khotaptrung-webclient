@@ -337,8 +337,7 @@
                             <p class="fw-400 fz-13 c-mt-10 mb-0">Rất tiếc việc mua nick đã thất bại do tài khoản của bạn không đủ, vui lòng nạp tiền để tiếp tục giao dịch!</p>
                         </div>
                         <div class="modal-footer c-p-24">
-                            <a href="/recharge-atm" class="btn secondary" data-dismiss="modal">Nạp ATM</a>
-                            <a href="/nap-the" class="btn primary">Nạp tiền</a>
+                            <button class="btn primary handleOpenRechargeModal" data-dismiss="modal">Nạp tiền</button>
                         </div>
                     </div>
                 </div>

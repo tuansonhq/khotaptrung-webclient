@@ -90,7 +90,6 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
                     Route::get('/mua-acc', [AccController::class , "getCategory"]);
-                    Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
                     Route::get('/acc/{id}/databuy', [AccController::class , "getBuyAccount"]);
@@ -98,6 +97,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                     Route::get('/mua-the-{card}-{value}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showDetailCard'])->name('showDetailCard');
                     Route::get('/mua-the-{card}',[\App\Http\Controllers\Frontend\StoreCardController::class,'showListCard'])->name('showListCard');
                 });
+                Route::get('/mua-nick-random', [AccController::class , "getShowAccRandom"]);
                 Route::get('/related-acc', [AccController::class , "getRelated"]);
                 Route::post('/lich-su-mua-nick-{id}/showpass', [\App\Http\Controllers\Frontend\AccController::class , 'getShowpassNick'])->name('getShowpassNick');
                 Route::get('/acc/{slug}/showacc', [AccController::class , "getShowDetail"]);

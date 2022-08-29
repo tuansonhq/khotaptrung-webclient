@@ -113,8 +113,4 @@ $(document).ready(function () {
         $('#notBuy').modal('show');
     });
 
-    $(document).on('click', '#handleOpenRechargeModal',function(e){
-        $('#rechargeModal').modal('show');
-    });
-
 });
