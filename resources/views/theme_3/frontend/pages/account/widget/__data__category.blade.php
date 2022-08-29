@@ -15,7 +15,7 @@
                                     </div>
                                     <div class="col-md-12 left-right list-item-nick">
                                         <div class="row marginauto list-item-nick-body">
-                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct body-detail-acc-category">
                                                 <span>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</span>
                                             </div>
                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">
