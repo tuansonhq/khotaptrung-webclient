@@ -1,6 +1,6 @@
-$('#service-form').on('submit', function (e) {
+$('.service-form').on('submit', function (e) {
     e.preventDefault();
-    let keyword = convertToSlug($('#keyword--search').val());
+    let keyword = convertToSlug($(this).find('[name="search"]').val());
     let is_empty = true;
     let text_empty = $('#text-empty');
     text_empty.hide();
@@ -265,7 +265,7 @@ function checkboxRequired(selector) {
 
 $('.submit-form').on('click', function () {
     /*check conf tiền hay ko*/
-    let price_balance = ($('#account-balance').clone().children().remove().end().text().trim().match(/\d/g).join("")) * 1;
+    let price_balance = ($('#surplus').val()) * 1;
     let elm_text_total = Array.from($('.total--price'));
     let elm_price = $(document).width() > 992 ? elm_text_total[0] : elm_text_total[1];
     let price_total = ($(elm_price).text().match(/\d/g).join("")) * 1;

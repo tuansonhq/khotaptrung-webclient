@@ -850,6 +850,9 @@
             <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
         </fieldset>
+    @if(\App\Library\AuthCustom::check())
+        <input id="surplus" type="hidden" value="{{ \App\Library\AuthCustom::user()->balance }}">
+    @endif
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>
 
 @endsection
