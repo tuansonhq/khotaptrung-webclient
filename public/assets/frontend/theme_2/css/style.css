@@ -1454,6 +1454,7 @@ ol.w {
  --------------------*/
 .site-main {
     position: relative;
+    z-index: 100;
 }
 .site-main .site-content {
     background: #fff;
@@ -1478,7 +1479,7 @@ ol.w {
 .site-main .site-content:after {
     content: "";
     width: 100%;
-    /*height: 2rem;*/
+    height: 2rem;
     position: absolute;
     left: 0;
     top: 0;
@@ -1491,7 +1492,7 @@ ol.w {
 }
 .site-main .site-content .site-content-inner {
     position: relative;
-    /*z-index: 1;*/
+    z-index: 5;
 }
 .site-main .site-content .site-content-inner:before {
     content: "";
@@ -2034,7 +2035,7 @@ ol.w {
  --------------------*/
 .site-footer {
     position: relative;
-    z-index: -1;
+    z-index: 20;
     overflow: hidden;
     margin-top: -9rem;
     font-size: 0.875rem;
@@ -2066,7 +2067,7 @@ ol.w {
 }
 .site-footer .site-footer-content {
     padding: 12rem 0 2rem;
-    z-index: 0;
+    z-index: 50;
     position: relative;
 }
 .site-footer .site-footer-bar {
@@ -2084,7 +2085,7 @@ ol.w {
     left: 0;
     top: 0;
     position: fixed;
-    z-index: 9999;
+    z-index: 888;
     background: rgba(0, 0, 0, 0.5);
     filter: blur(5px);
     -webkit-filter: blur(5px);
@@ -2121,7 +2122,7 @@ ol.w {
     height: 100vh;
     background: #1E376D;
     color: #fff;
-    z-index: 9999;
+    z-index: 999;
     transition: all ease 0.2s;
 }
 .offcanvas-nav .btn-close {
@@ -2352,7 +2353,7 @@ input[type="number"] {
 .ajax-loading-store #overlay{
     position: fixed;
     top: 0;
-    z-index: 99999;
+    z-index: 100;
     width: 100%;
     height:100%;
     display: none;
@@ -2443,9 +2444,6 @@ input[type="number"] {
         width: 100%;
         max-height: 150px !important;
     }
-    .site-header .site-header-inner .site-brand .site-title .site-link .site-logo {
-        max-width: 10rem;
-    }
 }
 .site-header-nav ul.nav li.nav-item{
     margin-top: 20px;
@@ -2479,14 +2477,4 @@ input[type="number"] {
 }
 #reload_2:focus{
     box-shadow: none;
-}
-.ajax-loading-data{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.data-card{
-    display: none;
 }

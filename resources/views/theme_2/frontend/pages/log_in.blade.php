@@ -58,9 +58,6 @@
                     let url2 = new URL(window.location.href);
 
                     var return_url = url2.searchParams.get('return_url');
-                    var loadingText = '<i class="fas fa-circle-notch fa-spin"></i> Đang xử lý...';
-                    btnSubmit.html(loadingText).prop('disabled', false);
-                    btnSubmit.attr("disabled", true);
                     $.ajax({
                         type: "POST",
                         url: url,
@@ -107,9 +104,7 @@
                             btnSubmit.text('Đăng nhập');
                         },
                         complete: function (data) {
-                            // $('#form-login').trigger("reset");
-                            btnSubmit.html('<strong>Đăng nhập <i class="las la-angle-double-right"></i></strong>').prop('disabled', false);
-                            btnSubmit.attr("disabled", false);
+                            $('#form-login').trigger("reset");
                         }
                     });
                 });
@@ -126,6 +121,20 @@
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-user"></i></span>
                             </div>
                         </div>
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="label mb-1">Số điện thoại</label>--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" id="phone" name="phone" class="form-control border-end-0" placeholder="" value="">--}}
+{{--                                <span class="input-group-text bg-white border-first-0"><i class="las la-phone"></i></span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="mb-3">--}}
+{{--                            <label class="label mb-1">Địa chỉ email</label>--}}
+{{--                            <div class="input-group">--}}
+{{--                                <input type="text" id="enmail" name="enmail" class="form-control border-end-0" placeholder="" value="">--}}
+{{--                                <span class="input-group-text bg-white border-first-0"><i class="las la-envelope"></i></span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <label class="label mb-1">Mật khẩu</label>
                             <div class="input-group">
@@ -140,7 +149,12 @@
                                 <span class="input-group-text bg-white border-first-0"><i class="las la-lock"></i></span>
                             </div>
                         </div>
-
+{{--                        <div class="mb-3 d-flex justify-content-between align-items-center">--}}
+{{--                            <div><img src="img/temp/capcha.png" alt=""></div>--}}
+{{--                            <div>--}}
+{{--                                <input type="text" id="capcha" name="capcha" class="form-control text-end" placeholder="Security Code" value="">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="mb-3">
                             <button class="btn bg-primary-gradient text-white d-block pt-2 pb-2 text-uppercase rounded col-12" type="submit"><strong>Đăng ký ngay <i class="las la-angle-double-right"></i></strong></button>
                         </div>
@@ -157,9 +171,7 @@
             var url = formSubmit.attr('action');
             var btnSubmit = formSubmit.find(':submit');
             let url2 = new URL(window.location.href);
-            var loadingText = '<i class="fas fa-circle-notch fa-spin"></i> Đang xử lý...';
-            btnSubmit.html(loadingText).prop('disabled', false);
-            btnSubmit.attr("disabled", true);
+
             var return_url = url2.searchParams.get('return_url');
             $.ajax({
                 type: "POST",
@@ -195,14 +207,22 @@
                         })
                     }
 
+                    // if(data.status == 1){
+                    //     alert(da);
+                    // }
+                    // else{
+                    //     alert(data);
+                    //     btnSubmit.text('Thanh toán');
+                    //     btnSubmit.prop('disabled', false);
+                    // }
                 },
                 error: function (data) {
                     alert('Kết nối với hệ thống thất bại.Xin vui lòng thử lại');
                     btnSubmit.text('Đăng ký');
                 },
                 complete: function (data) {
-                    btnSubmit.html('<strong>Đăng ký ngay <i class="las la-angle-double-right"></i></strong>').prop('disabled', false);
-                    btnSubmit.attr("disabled", false);
+                    $('#reload').trigger('click');
+                    $('#form-regist').trigger("reset");
                 }
             });
         });
