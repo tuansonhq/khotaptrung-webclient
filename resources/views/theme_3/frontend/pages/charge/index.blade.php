@@ -259,8 +259,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- đã include chỗ này vào master rồi ^^ nên cmt lại đó nha -->
-{{--                                            @include('frontend.widget.modal.__charge')--}}
+                                            @include('frontend.widget.modal.__confirm_charge')
                                         </div>
                                     </form>
                                 </div>

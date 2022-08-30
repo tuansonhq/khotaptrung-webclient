@@ -189,7 +189,7 @@
                                         </button>
                                     </div>
 
-                                    @include('frontend.widget.modal.__charge')
+                                    @include('frontend.widget.modal.__confirm_charge')
                                 </div>
                             </form>
                         </div>

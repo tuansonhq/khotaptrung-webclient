@@ -47,15 +47,25 @@ $(document).ready(function(){
                         $('.box-loading-mobile').hide();
                         $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
                         $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
-
                     }
-
-
-
                     $('meta[name="jwt"]').attr('content','jwt');
 
                 }
                 if(data.status == 401){
+                    if($(window).width() > 992){
+                        $('.box-loading').hide();
+                        $('.box-logined').show();
+                        $('.box-registed').show();
+                        $('.box-account').hide();
+                        $('.box-deposit-charge').hide();
+                        $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
+                        $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
+                    }else {
+                        $('.box-loading-mobile').hide();
+                        $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
+                        $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
+                    }
+                    $('meta[name="jwt"]').attr('content','jwt');
 
 
                 }
