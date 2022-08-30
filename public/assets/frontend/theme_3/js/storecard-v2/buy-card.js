@@ -66,6 +66,8 @@ let swipe_card = new Swiper(".js--card__swipe", {
     observeParents: true,
 });
 
+let url_edited = window.location.href.toLowerCase();
+window.history.pushState({}, null, url_edited);
 $(document).ready(function () {
     let route_is = $('#isRequest').val();
     let card_is = $('#isTelecom').val();

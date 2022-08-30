@@ -18,7 +18,7 @@
 @section('content')
     <div class="container-fix container" id="buy-card">
         <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
-        <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
+        <input type="hidden" value="{{ strtolower(request()->route('card')) }}" id="isTelecom">
         <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
         {{--        BANNER --}}
 

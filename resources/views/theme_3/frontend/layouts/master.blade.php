@@ -42,10 +42,8 @@
 
 {{--    import css --}}
     @yield('styles')
-
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
-
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
@@ -56,9 +54,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-
     @if(setting('sys_google_tag_manager_head') != '')
-
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
             @if($tag == 0)
             <!-- Google Tag Manager -->
@@ -79,7 +75,6 @@
                 <!-- End Hubjs Tag Manager -->
             @endif
         @endforeach
-
     @endif
 </head>
 <body>
@@ -89,9 +84,7 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
-
 <!-- Modal nạp tiền -->
-
 <div class="modal fade show" id="rechargeModal" aria-modal="true">
     <div class="modal-dialog modal-lg modal-dialog-centered animated">
         <div class="modal-content">
@@ -197,8 +190,9 @@
 </div>
 
 @include('frontend.widget.modal.__success_charge')
-<!-- end modal charge -->
+@include('frontend.widget.modal.__reject_charge')
 
+<!-- end modal charge -->
 
 <div class="modal-loader-container">
     <div class="modal-loader-content">
@@ -207,13 +201,9 @@
 </div>
 @include('frontend.layouts.includes.header')
 <div class="layout">
-
-
     <div class="content" style="">
         @yield('content')
     </div>
-
-
 </div>
 @if(Request::is('/'))
     <style>
@@ -228,9 +218,7 @@
 @endif
 @include('frontend.widget.__theme')
 <!-- Messenger Plugin chat Code -->
-<!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
-
 <!-- Your Plugin chat code -->
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
