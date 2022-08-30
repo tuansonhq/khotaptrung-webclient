@@ -70,8 +70,8 @@
                         <input type="hidden" class="js_attr_category" data-id="{{ $item->id }}" value="{{ json_encode($group->childs) }}">
                     @endif
                     @if($group->module == 'acc_label')
-                        <input type="hidden" class="js_attr_label" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->parent->title }}">
-                        <input type="hidden" class="js_attr_value" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ $group->title }}">
+                        <input type="hidden" class="js_attr_label" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ @$group->parent->title }}">
+                        <input type="hidden" class="js_attr_value" data-gr="{{$group->id}}" data-id="{{ $item->id }}" value="{{ @$group->title }}">
                     @endif
                 @empty
                 @endforelse

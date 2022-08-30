@@ -136,6 +136,7 @@
                                                     <small>Server: </small><span>{{isset($server_data[$data->position])?$server_data[$data->position]:""}}</span>
                                                 </div>
                                             @endif
+
                                             @if(!empty($send_name)&& count($send_name)>0)
                                                 @foreach( $send_name as $index=> $aSendName)
 
@@ -172,9 +173,8 @@
                                                             </div>
                                                         @else
                                                             <div class="col-md-12 left-right chat-box-col">
-                                                                <small>{{$aSendName}}: </small><span>{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params)?? null}}</span>
+                                                                <small>{{$aSendName}}: </small><span>{{gettype($data->params) =='string' ? \App\Library\HelpersDecode::DecodeJson('customer_data'.$index,$data->params) : json_decode(json_encode($data->params),true)['customer_data'.$index] }}</span>
                                                             </div>
-
                                                         @endif
                                                     @endif
                                                 @endforeach
@@ -386,6 +386,7 @@
                     </div>
 
                     <div class="modal-body modal-body-order-ct">
+
                         {{Form::open(array('url'=>'/dich-vu-da-mua-'.$data->id.'/edit/','class'=>'m-form editForm','method'=>'post'))}}
                         <div class="row marginauto">
                             @php
@@ -393,7 +394,6 @@
                                 $send_type=\App\Library\HelpersDecode::DecodeJson('send_type',$data->itemconfig_ref->params);
                                 $index = 0;
                             @endphp
-
                             @if(!empty($send_name)&& count($send_name)>0)
                                 @for ($i = 0; $i < count($send_name); $i++)
                                     @if($send_name[$i]!=null)
@@ -409,11 +409,12 @@
                                                         <span>{{$send_name[$i]}}</span>
                                                     </div>
                                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
-                                                            <input required autocomplete="off" required class="input-defautf-ct id" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" type="text" placeholder="{{$send_name[$i]}}">
+                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)) || \App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)) == '')
+                                                            <input autocomplete="off" required class="input-defautf-ct id" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" type="text" placeholder="{{$send_name[$i]}}">
                                                         @else
-                                                            <input required autocomplete="off" required class="input-defautf-ct id" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" type="text" placeholder="{{$send_name[$i]}}">
+                                                            <input autocomplete="off" required class="input-defautf-ct id" name="customer_data{{$i}}" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,$data->params)}}" type="text" placeholder="{{$send_name[$i]}}">
                                                         @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -435,14 +436,13 @@
                                                 </div>
                                             </div>
                                         @elseif($send_type[$i]==5)
-
                                             <div class="col-md-12 pt-lg-3 pt-2 left-right">
                                                 <div class="row marginauto">
                                                     <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
                                                         <span>{{$send_name[$i]}}</span>
                                                     </div>
                                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick" style="position: relative">
-                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)))
+                                                        @if(\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)) || \App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params)) == '')
                                                             <input required autocomplete="off" id="password" value="{{\App\Library\HelpersDecode::DecodeJson('customer_data'.$i,json_encode($data->params))}}" name="customer_data{{$i}}" class="input-defautf-ct password" type="password" placeholder="{{$send_name[$i]}}">
                                                             <div class="show-btn-password"><img class="lazy" src="/assets/frontend/theme_3/image/images_1/eye-show.svg" alt=""></div>
                                                         @else
@@ -453,6 +453,7 @@
                                                 </div>
                                             </div>
                                         @elseif($send_type[$i]==6)
+
                                             @php
                                                 if (\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params))){
                                                     $send_data=\App\Library\HelpersDecode::DecodeJson('send_data'.$i,json_encode($data->params));
@@ -461,6 +462,7 @@
                                                 }
 
                                             @endphp
+
                                             <div class="col-md-12 pt-lg-3 pt-2 left-right">
                                                 <div class="row marginauto">
                                                     <div class="col-12 left-right background-nick-col-top-ct body-title-detail-span-ct">
