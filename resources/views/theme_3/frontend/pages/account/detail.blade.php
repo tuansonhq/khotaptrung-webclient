@@ -6,6 +6,8 @@
     <meta name="robots" content="noindex,nofollow" />
 @endsection
 @section('content')
+
+
     <!-- Cookie  -->
     @php
         if (isset($data->price_old)) {
