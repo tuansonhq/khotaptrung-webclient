@@ -763,9 +763,9 @@
             else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
-
+                discount = s_discount[0];
                 for (let i = 0; i< s_price.length; i++){
-                    discount = s_discount[0];
+
                     if (i > 0){
                         if (price >= s_price[i]){
                             discount = s_discount[i];
