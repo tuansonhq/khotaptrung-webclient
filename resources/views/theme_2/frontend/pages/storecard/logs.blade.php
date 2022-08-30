@@ -56,7 +56,7 @@
     <input type="hidden" name="ended_at_storecard" class="ended_at_storecard" value="">
     <input type="hidden" name="hidden_page_storecard" id="hidden_page_storecard" class="hidden_page_storecard" value="1" />
 
-    <script src="/assets/frontend/theme_2/js/storecard/storecard-history.js?v={{time()}}"></script>
+    <script src="/assets/frontend/theme_2/js/store_card/storecard-history.js?v={{time()}}"></script>
 
 @endsection
 

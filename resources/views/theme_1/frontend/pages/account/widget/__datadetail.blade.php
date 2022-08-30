@@ -197,7 +197,7 @@
                                         <div class="col-md-4 col-4 pl-0">
                                             <span class="span__dangky">Tướng</span>
                                         </div>
-                                        <div class="col-md-1 col-3 pl-0 pr-0">
+                                        <div class="col-md-1 col-2 pl-0 pr-0">
                                             <span class="span__dangky">{{ $total_tuong }}</span>
                                         </div>
                                         <div class="col-md-6 col-4 pl-0 pr-0">
@@ -218,7 +218,7 @@
                                         <div class="col-md-4 col-4 pl-0">
                                             <span class="span__dangky">Trang phục</span>
                                         </div>
-                                        <div class="col-md-1 col-3 pl-0">
+                                        <div class="col-md-1 col-2 pl-0">
                                             <span class="span__dangky">{{ $total_trangphuc }}</span>
 
                                         </div>
@@ -262,7 +262,7 @@
                                         <div class="col-md-4 col-4 pl-0">
                                             <span class="span__dangky">Linh thú TFT</span>
                                         </div>
-                                        <div class="col-md-1 col-3 pl-0">
+                                        <div class="col-md-1 col-2 pl-0">
                                             <span class="span__dangky">{{ $total_linhthu }}</span>
 
                                         </div>

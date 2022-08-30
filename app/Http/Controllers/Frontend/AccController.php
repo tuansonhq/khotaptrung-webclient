@@ -307,6 +307,11 @@ class AccController extends Controller
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
 
+            if ($data->status == 0){
+
+                return view('frontend.pages.error.404');
+            }
+
             $slug_category = $data->category->slug;
 
             $game_auto_props =null;
