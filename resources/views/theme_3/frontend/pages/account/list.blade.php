@@ -248,7 +248,7 @@
                                         <small>Giá tiền</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct price-finter-nick">
-                                        <select class="wide price" name="price">
+                                        <select class="wide price" name="price_data">
                                             <option value="" selected disabled>Chọn giá tiền</option>
                                             <option value="0-50000">Dưới 50K</option>
                                             <option value="50000-200000">Từ 50K - 200K</option>
@@ -268,7 +268,7 @@
                                         <small>Trạng thái</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status">
+                                        <select class="wide status" name="status_data">
                                             <option value="" selected disabled>Chọn trạng thái</option>
                                             <option value="1">Chưa bán</option>
                                             <option value="2">Đã bán</option>

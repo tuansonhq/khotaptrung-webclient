@@ -45,10 +45,14 @@ $(document).ready(function () {
        loadDataTable();
     });
     $('.item-sort-nick-label').on('click', function (e) {
+        let url = window.location.href;
         let id = $(this).attr('for');
+        let sortData = $(`#${id}`).val();
+        let updatedURL = updateQueryStringParameter(url, 'sort_by_data', sortData);
+        window.history.pushState({}, null, updatedURL);
         let query = {
             page:1,
-            sort_by_data:$(`#${id}`).val(),
+            sort_by_data: sortData,
         }
         loadDataTable(query);
     });
