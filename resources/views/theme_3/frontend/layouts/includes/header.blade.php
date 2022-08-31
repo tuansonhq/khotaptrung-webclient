@@ -362,9 +362,9 @@
                         <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
                     </div>
                     <div class="account-logined_info">
-                        <div id="account-id-mobile">
+                        <div class="account-id-mobile">
                         </div>
-                        <div id="account-balance-mobile">
+                        <div class="account-balance-mobile">
                         </div>
                     </div>
                 </div>

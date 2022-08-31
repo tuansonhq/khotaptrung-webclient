@@ -300,7 +300,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
     @endif
     @include('theme_3.frontend.widget.modal.__confirm_charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
