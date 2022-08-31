@@ -48,8 +48,11 @@
                     <div class="row marginauto logs-content">
                         <div class="col-md-12 left-right">
                             <div class="row marginauto logs-title">
-                                <div class="col-md-12 left-right">
+                                <div class="col-6 left-right">
                                     <span>Lịch sử mua thẻ</span>
+                                </div>
+                                <div class="col-auto ml-auto pr-0">
+                                    <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
                                 </div>
                             </div>
                         </div>
