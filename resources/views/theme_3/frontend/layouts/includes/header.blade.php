@@ -241,7 +241,7 @@
                 </div>
                 <div class="box-deposit-charge box-deposit">
                     <a class="btn btn-submit">
-                        Nạp thẻ
+                        Nạp tiền
                     </a>
                 </div>
                 <div class="box-registed box-deposit">
