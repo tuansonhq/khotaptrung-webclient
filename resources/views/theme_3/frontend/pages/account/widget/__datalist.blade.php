@@ -239,7 +239,7 @@
                                                                     @if(App\Library\AuthCustom::user()->balance >= $data->params->price)
                                                                         <button class="button-default-ct button-next-step-two" type="submit">Xác nhận</button>
                                                                     @else
-                                                                        <button class="button-default-ct" type="button" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                                     @endif
                                                                 @else
                                                                     <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>

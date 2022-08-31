@@ -4,6 +4,25 @@
 //     $('.input-search').focus();
 // });
 
+//Button open recharge modal and change tab
+$(document).on('click', '.btn-open-recharge', function (e) {
+    e.preventDefault();
+    $('#rechargeModal').modal('show');
+    let tabActive = $(this).data('tab');
+
+    if (tabActive) {
+        if (tabActive == 1) {
+            $('[href="#tab-modal-recharge"]').tab('show');
+        }
+        if (tabActive == 2) {
+            $('[href="#tab-modal-atm"]').tab('show');
+        }
+    } else {
+        $('[href="#tab-modal-recharge"]').tab('show');
+    }
+
+});
+
 // side bar
 var openHamburgerBar = false;
 $('.open-hamburger-sidebar').click(function (e) {

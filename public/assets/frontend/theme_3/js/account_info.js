@@ -80,7 +80,7 @@ $(document).ready(function(){
                     $('.box-account').show();
                     $('.box-deposit-charge').show();
                     $('#account-id').html(' <span >ID: </span>'+ data.info.id );
-                    $('.box-deposit-charge').html(' <a class="btn btn-submit" href="/nap-the">Nạp thẻ </a>' );
+                    $('.box-deposit-charge').html(' <a class="btn-open-recharge btn btn-submit" data-tab="1" href="javascript:void(0);">Nạp tiền</a>' );
                     $('#account-name').html(fn(data.info.username, 12) );
                     $('.account-balance').html('Số dư: ' +formatNumber(data.info.balance) );
                     $('#account-balance').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
