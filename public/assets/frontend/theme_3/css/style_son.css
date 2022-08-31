@@ -1552,26 +1552,26 @@
     border-top-left-radius: 8px;
 }
 
-.default-overlay-ct::before{
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(246, 118, 0, 0.2);
-    opacity: 0.8;
-    border-radius: 16px;
-    transition: all 0.2s;
-    display: none;
-}
-.default-overlay-ct:hover:before {
-    background: rgba(246, 118, 0, 0.2);
-    opacity: 0.8;
-    display: block;
-    z-index: 9;
-    transition: all 0.2s;
-}
+/*.default-overlay-ct::before{*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background: rgba(246, 118, 0, 0.2);*/
+/*    opacity: 0.8;*/
+/*    border-radius: 16px;*/
+/*    transition: all 0.2s;*/
+/*    display: none;*/
+/*}*/
+/*.default-overlay-ct:hover:before {*/
+/*    background: rgba(246, 118, 0, 0.2);*/
+/*    opacity: 0.8;*/
+/*    display: block;*/
+/*    z-index: 9;*/
+/*    transition: all 0.2s;*/
+/*}*/
 .hover-overlay-ct{
     cursor: pointer;
 }
@@ -1820,27 +1820,27 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     height: 100%;
     border: none;
 }
-.list-item-nick-hover .default-overlay-nick-ct::before{
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(246, 118, 0, 0.2);
-    opacity: 0.8;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    transition: all 0.2s;
-    display: none;
-}
-.list-item-nick-hover:hover .default-overlay-nick-ct:before {
-    background: rgba(246, 118, 0, 0.2);
-    opacity: 0.8;
-    display: block;
-    z-index: 9;
-    transition: all 0.2s;
-}
+/*.list-item-nick-hover .default-overlay-nick-ct::before{*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background: rgba(246, 118, 0, 0.2);*/
+/*    opacity: 0.8;*/
+/*    border-top-right-radius: 12px;*/
+/*    border-top-left-radius: 12px;*/
+/*    transition: all 0.2s;*/
+/*    display: none;*/
+/*}*/
+/*.list-item-nick-hover:hover .default-overlay-nick-ct:before {*/
+/*    background: rgba(246, 118, 0, 0.2);*/
+/*    opacity: 0.8;*/
+/*    display: block;*/
+/*    z-index: 9;*/
+/*    transition: all 0.2s;*/
+/*}*/
 
 /*.list-item-nick-hover .default-overlay-nick-ct{*/
 /*    border-top: 1px solid #DCDEE9;*/
