@@ -4897,7 +4897,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
         width: 30px;
     }
 
-    .body-detail-account-col-span-ct.body-detail-acc-category {
+    .body-detail-account-col-span-ct.body-detail-title-fixed {
         min-height: 50px;
     }
 
@@ -5884,7 +5884,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     .body-header-ct img{
         width: 30px;
     }
-    .body-detail-account-col-span-ct.body-detail-acc-category {
+    .body-detail-account-col-span-ct.body-detail-title-fixed {
         min-height: 50px;
     }
     .body-detail-account-col-span-ct span{
