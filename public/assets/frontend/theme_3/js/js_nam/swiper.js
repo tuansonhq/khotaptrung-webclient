@@ -121,7 +121,7 @@ $(document).ready(function(){
         lazyLoadingOnTransitionStart: false,
         loop: false,
         centeredSlides: false,
-        slidesPerView: 5,
+        slidesPerView: 4.5,
         speed: 800,
         slidesPerGroup: 3,
         spaceBetween: 20,
@@ -137,10 +137,10 @@ $(document).ready(function(){
         breakpoints: {
 
             992: {
-                slidesPerView: 3,
+                slidesPerView: 3.2,
             },
             768: {
-                slidesPerView: 3,
+                slidesPerView: 3.2,
             },
 
             480: {
@@ -274,7 +274,7 @@ $(document).ready(function(){
         lazyLoadingOnTransitionStart: false,
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 500,
         spaceBetween: 20,
@@ -317,7 +317,7 @@ $(document).ready(function(){
         lazyLoadingOnTransitionStart: false,
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 500,
         spaceBetween: 20,
@@ -403,7 +403,7 @@ $(document).ready(function(){
         lazyLoadingOnTransitionStart: false,
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 500,
         spaceBetween: 20,
@@ -535,7 +535,7 @@ $(document).ready(function(){
         // allowTouchMove: false,
         spaceBetween: 10,
         touchMove: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         freeModeSticky:true,
         grabCursor: true,
@@ -546,7 +546,7 @@ $(document).ready(function(){
         breakpoints: {
 
             992: {
-                slidesPerView: 3,
+                slidesPerView: 3.2,
             },
 
 

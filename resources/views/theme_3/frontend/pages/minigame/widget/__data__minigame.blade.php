@@ -25,7 +25,7 @@
                                                 </div>
                                                 <div class="item-product__box-price">
 
-                                                    <div class="special-price">{{number_format($item->price)}} đ</div>
+                                                    <div class="special-price">{{ str_replace(',','.',number_format(($item->price))) }} đ</div>
 
                                                     @if(isset($item->params->percent_sale))
                                                         <div class="old-price">{{ str_replace(',','.',number_format(($item->params->percent_sale*$item->price)/100 + $item->price)) }} đ</div>
@@ -33,7 +33,7 @@
                                                     @endif
                                                     @if(isset($item->params->percent_sale))
                                                         <div class="item-product__sticker-percent">
-                                                            -{{number_format($item->params->percent_sale)}}%
+                                                            -{{ str_replace(',','.',number_format(($item->params->percent_sale))) }}%
                                                         </div>
                                                     @endif
                                                 </div>
