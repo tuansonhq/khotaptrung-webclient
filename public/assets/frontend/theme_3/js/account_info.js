@@ -87,11 +87,11 @@ $(document).ready(function(){
                     $('.log-out-button').html(' <a class="btn btn-submit" onclick="event.preventDefault();\n' +
                         'document.getElementById(\'logout-form\').submit();">Đăng xuất</a>');
                     }else {
-                        $('#account-id-mobile').html(' <span >ID: </span>'+ data.info.id );
-                        $('#account-balance-mobile').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
+                        $('.account-id-mobile').html(' <span >ID: </span>'+ data.info.id );
+                        $('.account-balance-mobile').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
                         $('.box-loading-mobile').hide();
                         $('.box-account-mobile').html('<div class="box-account-logined " onclick="openMenuProfile()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
-                        $('#login_menu').html('<a class="btn btn-submit" onclick="event.preventDefault();\n' +
+                        $('.login_menu').html('<a class="btn btn-submit" onclick="event.preventDefault();\n' +
                             'document.getElementById(\'logout-form\').submit();" style="padding: 0"><img src="/assets/frontend/theme_3/image/icons/account_login.png" alt=""> <span style="padding-left: 12px"> Đăng xuất</span></a>')
 
                     }
