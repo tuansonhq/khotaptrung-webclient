@@ -1,43 +1,43 @@
 $(document).ready(function(){
-    var banner_slide = new Swiper('.banner-slide', {
-        autoplay: true,
-
-        updateOnImagesReady: true,
-        watchSlidesVisibility: false,
-        lazyLoadingInPrevNext: false,
-        lazyLoadingOnTransitionStart: false,
-
-        centeredSlides: false,
-        slidesPerView: 1,
-        speed: 1200,
-        delay: 5000,
-
-        loop: "infinite",
-        effect: "fade",
-
-        // spaceBetween: 56,
-        freeMode: false,
-        touchMove: true,
-        freeModeSticky:true,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        keyboard: {
-            enabled: true,
-        },
-        // breakpoints: {
-        //
-        //     992: {
-        //         slidesPerView: 3,
-        //     },
-        //
-        //
-        //     480: {
-        //         slidesPerView: 1.5,
-        //
-        //     }
-        // }
-    });
+    // var banner_slide = new Swiper('.banner-slide', {
+    //     autoplay: true,
+    //
+    //     updateOnImagesReady: true,
+    //     watchSlidesVisibility: false,
+    //     lazyLoadingInPrevNext: false,
+    //     lazyLoadingOnTransitionStart: false,
+    //
+    //     centeredSlides: false,
+    //     slidesPerView: 1,
+    //     speed: 1200,
+    //     delay: 5000,
+    //
+    //     loop: "infinite",
+    //     effect: "fade",
+    //
+    //     // spaceBetween: 56,
+    //     freeMode: false,
+    //     touchMove: true,
+    //     freeModeSticky:true,
+    //     grabCursor: true,
+    //     observer: true,
+    //     observeParents: true,
+    //     keyboard: {
+    //         enabled: true,
+    //     },
+    //     // breakpoints: {
+    //     //
+    //     //     992: {
+    //     //         slidesPerView: 3,
+    //     //     },
+    //     //
+    //     //
+    //     //     480: {
+    //     //         slidesPerView: 1.5,
+    //     //
+    //     //     }
+    //     // }
+    // });
 
     var intro_list = new Swiper('.list-intro', {
         autoplay: false,
