@@ -215,9 +215,12 @@
                 <div class="text-center text-more"><a href="#" class="more-link">Xem thêm <i class="las la-angle-down"></i></a></div>
             </div>
         </div>
+        <div class="site-content-body second  d-lg-none">
+            @include('frontend.widget.__list_serve_remark_image')
+
+        </div>
         <div class="col-lg-3">
             @include('frontend.widget.__huongdan__trangchu')
-
             <!-- BEGIN Support Block -->
                 <div class="mb-4">
                     <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>
@@ -245,7 +248,7 @@
         </div>
     </div>
 </div>
-<div class="site-content-body second">
+<div class="site-content-body second d-none d-lg-block">
     @include('frontend.widget.__list_serve_remark_image')
 
 </div>
