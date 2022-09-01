@@ -425,7 +425,17 @@ $(document).ready(function (e) {
         e.preventDefault();
         $('#openCharge').modal('hide');
         $('#successChargeModal').modal('show');
-    })
+    });
+
+    $(document).on('scroll', function () {
+
+        if ($(this).scrollTop() > 600) {
+            $('.go-to-top').fadeIn();
+        } else {
+            $('.go-to-top').fadeOut();
+        }
+
+    });
 
     // $('body').on('click','.openChargeSuccess',function(e){
     //     e.preventDefault();
