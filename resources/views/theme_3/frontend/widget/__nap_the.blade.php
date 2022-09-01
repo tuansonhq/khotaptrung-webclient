@@ -194,17 +194,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="data_napthe_login">
-                                            <a  class=" primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
-                                                Nạp ngay
-                                            </a>
-                                        </div>
-
-                                        <div class="data_napthe_home">
-                                            <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
-                                                Nạp ngay
-                                            </button>
-                                        </div>
+                                        <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
+                                            Nạp ngay
+                                        </button>
 
                                     </div>
 
