@@ -142,10 +142,10 @@
                                                             Nạp ngay
                                                         </a>
                                                     </div>
-                                                    <div class="data_napthe_login">
-                                                        <a  class="primary-button button-default-ct w-75 w-md-100" type="submit" style="float: right">
+                                                    <div class="data_napthe_home">
+                                                        <button  class="primary-button button-default-ct w-75 w-md-100 text-center" type="submit" style="float: right">
                                                             Nạp ngay
-                                                        </a>
+                                                        </button>
                                                     </div>
 
 
@@ -193,10 +193,16 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
-                                            Nạp ngay
-                                        </button>
+                                        <div class="data_napthe_login">
+                                            <a  class="primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
+                                                Nạp ngay
+                                            </a>
+                                        </div>
+                                        <div class="data_napthe_home">
+                                            <button  class="primary-button button-default-ct w-100 mb-fix-20 text-center" type="submit" style="float: right">
+                                                Nạp ngay
+                                            </button>
+                                        </div>
 
                                     </div>
 
