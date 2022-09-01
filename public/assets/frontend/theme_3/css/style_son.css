@@ -1328,6 +1328,28 @@
 .modal-body-order-ct{
     padding: 16px;
 }
+
+#viewMore .modal-viewmore-body {
+    overflow-y: scroll;
+    max-height: 500px;
+    margin: 16px 8px 16px 0;
+    padding: 0 8px 0 16px;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+    border: none;
+}
+
+#viewMore .modal-viewmore-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
 .background-order-ct {
     background: #FBFBFD;;
     border-radius: 8px;
