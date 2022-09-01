@@ -24,6 +24,7 @@
                     <div class="box-product box-other-nick">
                         <div class="list-product d-g-md-none mt-fix-4">
                             @foreach($items->items as $item)
+                                @if($item->status = 1)
                             <div class="item-product item-other-nick mt-fix-16">
                                 <a href="/acc/{{ $item->randId }}">
                                     <div class="item-product__box-img">
@@ -70,11 +71,13 @@
                                     </div>
                                 </a>
                             </div>
+                                @endif
                             @endforeach
                         </div>
                         <div class="swiper-container list-product list-other-nick mt-fix-12 d-none d-g-md-block">
                             <div class="swiper-wrapper">
                                 @foreach($items->items as $item)
+                                    @if($item->status = 1)
                                 <div class="swiper-slide">
                                     <div class="item-product__box-img">
                                         <a href="/acc/{{ $item->randId }}">
@@ -117,6 +120,7 @@
                                         </a>
                                     </div>
                                 </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

@@ -40,6 +40,8 @@ $(document).ready(function(){
                         $('.box-logined').show();
                         $('.box-registed').show();
                         $('.box-account').hide();
+                        $('.data_napthe_login').show();
+                        $('.data_napthe_home').hide();
                         $('.box-deposit-charge').hide();
                         $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
                         $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
@@ -57,6 +59,8 @@ $(document).ready(function(){
                         $('.box-logined').show();
                         $('.box-registed').show();
                         $('.box-account').hide();
+                        $('.data_napthe_login').show();
+                        $('.data_napthe_home').hide();
                         $('.box-deposit-charge').hide();
                         $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
                         $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
@@ -78,6 +82,8 @@ $(document).ready(function(){
                     $('.box-logined').hide();
                     $('.box-registed').hide();
                     $('.box-account').show();
+                    $('.data_napthe_login').hide();
+                    $('.data_napthe_home').show();
                     $('.box-deposit-charge').show();
                     $('#account-id').html(' <span >ID: </span>'+ data.info.id );
                     $('.box-deposit-charge').html(' <a class="btn-open-recharge btn btn-submit" data-tab="1" href="javascript:void(0);">Nạp tiền</a>' );
