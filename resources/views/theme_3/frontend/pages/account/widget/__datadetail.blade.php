@@ -30,7 +30,8 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+                                                                    <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+{{--                                                                        data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false"--}}
                                                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
