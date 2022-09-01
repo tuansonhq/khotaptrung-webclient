@@ -17,8 +17,8 @@
 {{--    <meta property="og:title" content="Nạp All Game Giá Rẻ, Uy Tín Số 1 Việt Nam"/>--}}
 {{--    <meta property="og:description" content="Website nạp all game ( liên minh, liên quân, free fire, pubg mobile, tốc chiến, .... ) giá rẻ, uy tín số 1 Việt Nam với 50.000 lượt nạp thành công mỗi ngày. Napgamegiare.net - Địa chỉ nạp game tin cậy của game thủ Việt"/>--}}
 {{--    <meta property="og:image" content="https://napgamegiare.netassets/frontend/images/image-share.jpg"/>--}}
-{{--    <meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
-{{--    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>--}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
 {{--    <meta http-equiv="Content-type" content="text/html; charset=utf-8">--}}
     @yield('seo_head')
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
