@@ -13,10 +13,10 @@
 
             </div>
 
-            <div class="swiper-button-prev">
+            <div class="swiper-button-prev" id="c_slider_banner-prev">
                 <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
             </div>
-            <div class="swiper-button-next">
+            <div class="swiper-button-next" id="c_slider_banner-next">
                 <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
             </div>
 

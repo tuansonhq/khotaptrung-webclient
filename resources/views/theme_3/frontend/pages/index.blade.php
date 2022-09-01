@@ -114,6 +114,14 @@
     @endif
 
 
+
+{{--    <div class="menu-side-item" style="">--}}
+{{--        <a href="#" class=" go-top" style="display: inline;">--}}
+{{--            <img src="/assets/frontend/theme_3/image/back-top.svg" alt="" style=" ">--}}
+{{--        </a>--}}
+{{--    </div>--}}
+
+
     @include('theme_3.frontend.widget.modal.__confirm_charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')

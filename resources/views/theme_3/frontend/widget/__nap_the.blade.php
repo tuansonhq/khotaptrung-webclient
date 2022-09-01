@@ -137,9 +137,18 @@
 
                                                 </div>
                                                 <div class="col-md-5 mt-md-fix-20 d-block d-lg-none">
-                                                    <button  class=" primary-button button-default-ct w-75 w-md-100"  type="submit" style="float: right">
-                                                        Nạp ngay
-                                                    </button>
+                                                    <div class="data_napthe_login">
+                                                        <a  class="primary-button button-default-ct w-75 w-md-100 text-center" onclick="openLoginModal();" style="float: right">
+                                                            Nạp ngay
+                                                        </a>
+                                                    </div>
+                                                    <div class="data_napthe_login">
+                                                        <a  class="primary-button button-default-ct w-75 w-md-100" type="submit" style="float: right">
+                                                            Nạp ngay
+                                                        </a>
+                                                    </div>
+
+
                                                 </div>
                                             </div>
 
@@ -184,9 +193,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
-                                            Nạp ngay
-                                        </button>
+
+                                        <div class="data_napthe_login">
+                                            <a  class=" primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
+                                                Nạp ngay
+                                            </a>
+                                        </div>
+
+                                        <div class="data_napthe_home">
+                                            <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
+                                                Nạp ngay
+                                            </button>
+                                        </div>
+
                                     </div>
 
                                     @include('frontend.widget.modal.__confirm_charge')

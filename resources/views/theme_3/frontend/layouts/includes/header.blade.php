@@ -113,20 +113,20 @@
                          @include('frontend.widget.__menu_header')
                     @else
                         <ul class="nav header-main-nav d-none d-lg-flex ">
-                            <li class="nav-item item-about ">
-                                <a href="">
+                            <li class="nav-item item-about " id="item-about-khuyenmai">
+                                <a href="javascript:void(0)">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/discount-tag.svg" alt="">
                                     <div class="item-about-title">Khuyến mãi</div>
                                 </a>
                             </li>
-                            <li class="nav-item item-about">
-                                <a href="">
+                            <li class="nav-item item-about" id="item-about-thongbao">
+                                <a href="javascript:void(0)">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/notifications.svg" alt="">
                                     <div class="item-about-title">Thông báo</div>
                                 </a>
                             </li>
-                            <li class="nav-item item-about">
-                                <a href="">
+                            <li class="nav-item item-about" id="item-about-sukienhot">
+                                <a href="javascript:void(0)">
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/cup.svg" alt="">
                                     <div class="item-about-title">Sự kiện hot</div>
                                 </a>
@@ -196,7 +196,7 @@
                         </div>
                         <div class="account-avatar">
 
-                            <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
+                            <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="">
                         </div>
                         <div class="account-triangle ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
@@ -205,7 +205,7 @@
                             <!--                                <div class="arrow down"></div>-->
                             <div class=" d-flex">
                                 <div class="acount-logined_img">
-                                    <img src="/assets/frontend/theme_3/image/avatar.png" alt="">
+                                    <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="">
                                 </div>
                                 <div class="account-logined_info">
                                     <div id="account-id">
