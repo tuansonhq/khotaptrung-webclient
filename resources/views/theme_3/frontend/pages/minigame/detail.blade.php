@@ -94,7 +94,7 @@
                             @case('rubywheel')
                             <div class="rotation">
                                 <div class="item_spin ">
-                                    <div class="rotation-button ani-zoom" id="start-played">
+                                    <div class="rotation-button ani-zoom " id="start-played">
                                         <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
                                     </div>
 
@@ -1058,7 +1058,7 @@
                     Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
                 </div>
                 <div class="modal-footer">
-                    <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
+                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>
                     <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
