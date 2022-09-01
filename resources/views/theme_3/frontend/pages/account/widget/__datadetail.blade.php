@@ -30,7 +30,7 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                                    <a data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false">
                                                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
@@ -947,6 +947,69 @@
                 </form>
             </div>
         @endif
+
+
+
+        <div class="modal fade login show order-modal" id="accDetail" aria-modal="true">
+
+            <div class="modal-dialog step-tab-panel modal-xl modal-dialog-centered  animated">
+                <!--        <div class="image-login"></div>-->
+                <div class="modal-content">
+                    <div class="modal-header p-0" style="border-bottom: 0">
+                        <div class="row marginauto modal-header-order-ct">
+                            <div class="col-12 span__donhang text-center" style="position: relative">
+                                <span>ACC</span>
+                                <div class="close" data-dismiss="modal" aria-label="Close">
+                                    <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body modal-body-order-ct">
+                        <div class="row marginauto">
+
+                            <div class="image-gallery d-flex">
+                                <div class="primary" >
+                                    <img src="{{\App\Library\MediaHelpers::media(explode('|',$data->image_extension)[0])}}" alt="">
+                                </div>
+
+                                <div class="thumbnails row">
+
+                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                    <div class="col-md-3">
+                                        <a href="#" class=" thumbnail" data-big="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+{{--                                            <div class="thumbnail-image" style="background-image: url( )"></div>--}}
+                                        </a>
+                                    </div>
+
+                                @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            $('.thumbnail').on('click', function() {
+
+                var clicked = $(this);
+                var newSelection = clicked.data('big');
+                var $img = $('.primary').html(' <img src="'+newSelection+'" alt="">');
+                clicked.parent().find('.thumbnail').removeClass('selected');
+                clicked.addClass('selected');
+                $('.primary').empty().append('<img src="'+newSelection+'" alt="">');
+            });
+        </script>
+
+
     @endif
 
 @endif
