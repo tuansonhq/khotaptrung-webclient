@@ -552,7 +552,7 @@
                                 <div class="col-md-12 left-right">
                                     <span class="detailViewBlockTitle">Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
                                 </div>
-                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlock">
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
                                     {!! $data->description !!}
                                 </div>
 
