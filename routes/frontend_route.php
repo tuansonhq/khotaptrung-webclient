@@ -78,6 +78,8 @@ Route::group(array('middleware' => ['theme']) , function (){
 
 
             Route::group(['middleware' => ['intend']], function () {
+                Route::get('/', [HomeController::class , "index"])->middleware('intend');
+
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
@@ -93,8 +95,6 @@ Route::group(array('middleware' => ['theme']) , function (){
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
-                    Route::get('/', [HomeController::class , "index"])->middleware('intend');
-
                     Route::get('/mua-acc', [AccController::class , "getCategory"]);
                     Route::get('/mua-acc/{slug}', [AccController::class , "getList"]);
                     Route::get('/acc/{slug}', [AccController::class , "getDetail"]);
