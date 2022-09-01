@@ -127,7 +127,7 @@
 
                     </div>
                 @endif
-                <div class="view-more mt-2 d-lg-block d-none">
+                <div class="mt-2 d-lg-block d-none">
                     <a href="/mua-acc/{{ isset($items->custom->slug) && $items->custom->slug != '' ? $items->custom->slug :  $items->slug }}" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/xemthem.svg)"></i></a>
                 </div>
             </div>
