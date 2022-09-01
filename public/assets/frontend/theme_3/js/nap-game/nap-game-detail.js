@@ -3,37 +3,6 @@ $(document).ready(function (e) {
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
 
-    // $('.show-detail-napgame-ct .view-more').click(function(){
-    //     $('.show-detail-napgame-ct .view-less').css("display","block");
-    //     $('.show-detail-napgame-ct .view-more').css("display","none");
-    //     $(".show-detail-napgame-ct .content-video-in").addClass( "showtext" );
-    // });
-    //
-    // $('.show-detail-napgame-ct .view-less').click(function(){
-    //     $('.show-detail-napgame-ct .view-more').css("display","block");
-    //     $('.show-detail-napgame-ct .view-less').css("display","none");
-    //     $(".show-detail-napgame-ct .content-video-in").removeClass( "showtext");
-    // });
-
-    function handleToggleContent(){
-        $('.js-toggle-content .view-less').toggle();
-        $('.js-toggle-content .view-more').toggle();
-        if ($('.view-less').is(":visible")) {
-
-            $('.content-video-in').css('max-height', 'initial')
-            $('.content-video-in').removeClass('content-video-in-add')
-
-        } else {
-            $('.content-video-in').addClass('content-video-in-add')
-            $('.content-video-in::after').show()
-            $('.content-video-in').css('max-height', '')
-        }
-    }
-
-    $('.js-toggle-content').click(function () {
-        handleToggleContent();
-    });
-
     var product_list = new Swiper('.list-nap-game', {
         autoplay: false,
         navigation: {
