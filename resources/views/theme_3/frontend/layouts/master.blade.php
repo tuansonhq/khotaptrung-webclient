@@ -52,7 +52,7 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     @if(setting('sys_google_tag_manager_head') != '')
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
@@ -258,6 +258,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>

@@ -226,9 +226,9 @@
                                                     @if(isset($card_percent))
                                                         @if($card_percent == 0)
                                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                <div class="row marginauto nick-detail-button">
+                                                                <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                     <div class="col-md-12 left-right">
-                                                                        <a href="/nap-the" class="button-not-bg-ct">
+                                                                        <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                             <ul>
                                                                                 <li><small>Thẻ cào</small></li>
                                                                                 <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -242,9 +242,9 @@
                                                         @endif
                                                     @else
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/nap-the" class="button-not-bg-ct">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>Thẻ cào</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -257,9 +257,9 @@
 
                                                     @if(isset($data->price_atm))
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/recharge-atm" class="button-not-bg-ct">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>ATM, Momo</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
@@ -485,7 +485,7 @@
                                                 @if(isset($card_percent))
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/nap-the" class="button-not-bg-ct">
                                                                         <ul>
@@ -497,7 +497,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/recharge-atm" class="button-not-bg-ct">
                                                                         <ul>
@@ -514,7 +514,7 @@
                                                 @else
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/" class="button-not-bg-ct">
                                                                         <ul>
@@ -736,7 +736,7 @@
                                                     @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                                         <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
                                                     @else
-                                                        <button class="button-default-ct" type="button" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                     @endif
                                                 @else
                                                     <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>

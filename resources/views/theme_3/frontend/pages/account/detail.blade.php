@@ -28,8 +28,7 @@
         }
     @endphp
     @php
-        $client = config('api.client');
-        $data_cookie = Cookie::get('viewed_account_'.$client.'') ?? '[]';
+        $data_cookie = Cookie::get('viewed_account') ?? '[]';
         $flag_viewed = true;
         $data_cookie = json_decode($data_cookie,true);
             foreach ($data_cookie as $key => $acc_viewed){
@@ -107,8 +106,7 @@
 
         </section>
 
-        {{--            Đã xem   --}}
-        @include('frontend.pages.account.widget.__watched')
+
 
         {{-- <div class="modal fade login show order-modal" id="traGop" aria-modal="true">
 

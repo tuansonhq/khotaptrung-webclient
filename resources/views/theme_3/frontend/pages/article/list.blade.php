@@ -81,7 +81,7 @@
                 <div class="card --custom p-3" id="new-article-update">
                     <div class="card--header">
                         <div class="card--header__title">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/icon-news-title.png" class="mr-1" alt=""> Mới cập nhật
+                            Mới cập nhật
                         </div>
                     </div>
                     <div class="card--body">

@@ -80,18 +80,18 @@ $(document).ready(function(){
                     $('.box-account').show();
                     $('.box-deposit-charge').show();
                     $('#account-id').html(' <span >ID: </span>'+ data.info.id );
-                    $('.box-deposit-charge').html(' <a class="btn btn-submit" href="/nap-the">Nạp thẻ </a>' );
+                    $('.box-deposit-charge').html(' <a class="btn-open-recharge btn btn-submit" data-tab="1" href="javascript:void(0);">Nạp tiền</a>' );
                     $('#account-name').html(fn(data.info.username, 12) );
                     $('.account-balance').html('Số dư: ' +formatNumber(data.info.balance) );
                     $('#account-balance').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
                     $('.log-out-button').html(' <a class="btn btn-submit" onclick="event.preventDefault();\n' +
                         'document.getElementById(\'logout-form\').submit();">Đăng xuất</a>');
                     }else {
-                        $('#account-id-mobile').html(' <span >ID: </span>'+ data.info.id );
-                        $('#account-balance-mobile').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
+                        $('.account-id-mobile').html(' <span >ID: </span>'+ data.info.id );
+                        $('.account-balance-mobile').html(' <span >Số dư: </span>'+ formatNumber(data.info.balance) );
                         $('.box-loading-mobile').hide();
                         $('.box-account-mobile').html('<div class="box-account-logined " onclick="openMenuProfile()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
-                        $('#login_menu').html('<a class="btn btn-submit" onclick="event.preventDefault();\n' +
+                        $('.login_menu').html('<a class="btn btn-submit" onclick="event.preventDefault();\n' +
                             'document.getElementById(\'logout-form\').submit();" style="padding: 0"><img src="/assets/frontend/theme_3/image/icons/account_login.png" alt=""> <span style="padding-left: 12px"> Đăng xuất</span></a>')
 
                     }

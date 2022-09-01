@@ -19,7 +19,7 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -31,13 +31,13 @@ $(document).ready(function (e) {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
