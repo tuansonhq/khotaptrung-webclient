@@ -5,8 +5,8 @@ var banner_slide = new Swiper('.swiper-banner', {
         clickable: true,
     },
     navigation: {
-        nextEl: '.swiper-banner .navigation.slider-next',
-        prevEl: '.swiper-banner .navigation.slider-prev',
+        nextEl: '.swiper-banner .swiper-button-next',
+        prevEl: '.swiper-banner .swiper-button-prev',
     },
     updateOnImagesReady: true,
     watchSlidesVisibility: false,
