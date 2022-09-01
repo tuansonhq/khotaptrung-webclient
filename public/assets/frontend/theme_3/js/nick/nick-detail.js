@@ -1,37 +1,5 @@
 $(document).ready(function (e) {
-    let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
-        navigation: {
-            nextEl: '.class-config-account-viewed .swiper-button-next',
-            prevEl: '.class-config-account-viewed .swiper-button-prev',
-        },
-        autoplay: false,
-        updateOnImagesReady: true,
-        watchSlidesVisibility: false,
-        lazyLoadingInPrevNext: false,
-        lazyLoadingOnTransitionStart: false,
-        slidesPerView: 4.5,
-        speed: 800,
-        slidesPerGroup: 3,
-        spaceBetween: 16,
-        touchMove: true,
-        grabCursor: true,
-        observer: true,
-        observeParents: true,
-        breakpoints: {
-            992: {
-                freeMode: true,
-                slidesPerView: 3.2,
-            },
-            768: {
-                freeMode: true,
-                slidesPerView: 2.3,
-            },
-            480: {
-                slidesPerView: 1.8,
 
-            }
-        },
-    });
     var slug = $('.slug').val();
     var slug_category = $('.slug_category').val();
 
@@ -128,7 +96,39 @@ $(document).ready(function (e) {
 
             },
             complete: function (data) {
+                let c_swiper_config_category = new Swiper('.class-config-account-viewed',{
+                    navigation: {
+                        nextEl: '.class-config-account-viewed .swiper-button-next',
+                        prevEl: '.class-config-account-viewed .swiper-button-prev',
+                    },
+                    autoplay: false,
+                    updateOnImagesReady: true,
+                    watchSlidesVisibility: false,
+                    lazyLoadingInPrevNext: false,
+                    lazyLoadingOnTransitionStart: false,
+                    slidesPerView: 4.5,
+                    speed: 800,
+                    slidesPerGroup: 3,
+                    spaceBetween: 16,
+                    touchMove: true,
+                    grabCursor: true,
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                        992: {
+                            freeMode: true,
+                            slidesPerView: 3.2,
+                        },
+                        768: {
+                            freeMode: true,
+                            slidesPerView: 2.3,
+                        },
+                        480: {
+                            slidesPerView: 1.8,
 
+                        }
+                    },
+                });
             }
         });
     };

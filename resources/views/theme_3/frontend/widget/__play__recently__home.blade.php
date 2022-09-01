@@ -1,4 +1,4 @@
-<div class=" block-product mt-fix-20">
+<div class=" c_block-product mt-fix-20">
     <div class="product-header d-flex">
                     <span>
                         <img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/saleindex.svg" alt="">

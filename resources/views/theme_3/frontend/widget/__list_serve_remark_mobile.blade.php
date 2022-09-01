@@ -1,8 +1,8 @@
 @if(isset($data))
 <div class="block-product mt-fix-20 d-none d-g-md-block">
-    <div class="product-header d-flex">
+    <div class="product-header d-flex justify-content-center text-center">
         <h2 class="text-title" >{{ $title??'Dịch vụ nổi bật' }}</h2>
-        <div class="navbar-spacer"></div>
+{{--        <div class="navbar-spacer"></div>--}}
     </div>
     <div class="box-product">
         <div class=" d-flex justify-content-lg-between row" >

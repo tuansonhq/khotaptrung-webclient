@@ -61,7 +61,7 @@ $(document).ready(function (e) {
                     attr.childs.forEach(function (child) {
                         if (Object.keys(params).length){
                             Object.keys(params.ext_info).forEach(function(key_info) {
-                                if (key_info == child.id){
+                                if (key_info == child.id && child.is_slug_override == 1){
                                     html_attr += '<div class="row marginauto add-child">';
                                     html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${child.title}</span></div>`;
                                     html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';

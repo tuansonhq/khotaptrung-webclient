@@ -94,6 +94,45 @@
 @include('frontend.widget.modal.__reject_charge')
 
 <!-- end modal charge -->
+{{--<a class="go-to-top">--}}
+{{--    <img src="/assets/frontend/theme_3/image/gototop.png" alt="" style=" ">--}}
+{{--</a>--}}
+<div class="c_scroll-top go-to-top">
+    <div class="c_circle">
+        <img src="/assets/frontend/theme_3/image/c_back-to-top.svg" alt="" style=" ">
+    </div>
+{{--    <div class="c_text">--}}
+{{--        <p style="margin-top: 4px">Quay về--}}
+{{--        </p>--}}
+{{--        <p>đầu trang</p>--}}
+{{--    </div>--}}
+</div>
+<script>
+    $(document).ready(function (e) {
+
+        $('.go-to-top').click(function () {
+            $('html, body').animate({scrollTop: 0}, 800);
+        });
+
+        tippy('#item-about-khuyenmai', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+
+        tippy('#item-about-thongbao', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+
+        tippy('#item-about-sukienhot', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+    })
+</script>
 
 <div class="modal-loader-container">
     <div class="modal-loader-content">
@@ -147,6 +186,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+
+
 </script>
 
 @if (!\App\Library\AuthCustom::check())
@@ -159,6 +200,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>

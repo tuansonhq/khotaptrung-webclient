@@ -12,7 +12,7 @@
                                 @if($data->display_type == 2)
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="javascript:void(0)" class="list-item-nick-hover">
-                                            <div class="row marginauto">
+                                            <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
@@ -254,7 +254,7 @@
                                 @else
                                     <div class="col-auto body-detail-nick-col-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
-                                            <div class="row marginauto">
+                                            <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
                                                         <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
