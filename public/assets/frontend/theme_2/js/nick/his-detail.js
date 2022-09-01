@@ -1,18 +1,19 @@
 $(document).ready(function () {
 
-    $(document).on('submit', '.formPassword', function(e){
+    $(document).on('click', '#handleGetPasswordButton', function (e) {
         e.preventDefault();
 
-        var formSubmit = $(this);
-        var url = formSubmit.attr('action');
-        var btnSubmit = formSubmit.find(':submit');
-        btnSubmit.prop('disabled', true);
-        $('.loginBox__layma__button__displayabs').prop('disabled', true);
+        let submitButton = $(this);
+        let url = $(submitButton).data('url');
+        $(submitButton).prop('disabled', true);
 
         $.ajax({
             type: "POST",
             url: url,
-            data: formSubmit.serialize(), // serializes the form's elements.
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data : null, // serializes the form's elements.
             beforeSend: function (xhr) {
 
             },
@@ -74,11 +75,9 @@ $(document).ready(function () {
                 }
             },
             complete: function (data) {
-                btnSubmit.prop('disabled', false);
+                $(submitButton).prop('disabled', false);
             }
         })
-
-
-    })
+    });
 
 });
