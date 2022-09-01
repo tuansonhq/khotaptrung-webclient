@@ -2609,3 +2609,6 @@ header nav.heading .header-container{
 /*    color: #434657;*/
 /*    transition-delay: 6s;*/
 /*}*/
+.data_napthe_login,.data_napthe_home{
+    display: none;
+}
