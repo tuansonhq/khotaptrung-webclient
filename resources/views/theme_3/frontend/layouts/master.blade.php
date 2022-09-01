@@ -198,7 +198,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
