@@ -1784,6 +1784,40 @@ a:hover .__icon.--path__custom:after {
     max-height: inherit;
     opacity: 1;
 }
+
+#list-article + div .card {
+    position: sticky;
+    top: 144px;
+}
+
+/* width */
+.body-title-detail-checkbox-ct {
+    padding-right: 6px;
+}
+.body-title-detail-checkbox-ct::-webkit-scrollbar {
+    width: 6px;
+}
+/* Track */
+.body-title-detail-checkbox-ct::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+.body-title-detail-checkbox-ct::-webkit-scrollbar-thumb {
+    background: #E4E5F0;
+    border-radius: 100px;
+}
+
+/* Handle on hover */
+.body-title-detail-checkbox-ct::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.detail-service-content {
+    display: flex;
+    flex-wrap: wrap;
+}
 @media screen and (max-width: 1200px) {
     /*Mdoal recharge*/
     #rechargeModal .list-card-deno .card-item {
@@ -2156,6 +2190,13 @@ a:hover .__icon.--path__custom:after {
         border-radius: 4px;
     }
 
+    .detail-service-content > div{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .detail-service-content > div:not(:last-child){
+        margin-bottom: 16px;
+    }
 }
 
 @media (max-width: 767px) {

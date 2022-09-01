@@ -67,7 +67,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
@@ -283,7 +283,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success play" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
+                            <a class="btn btn-success play k_start" id="start-played"><i class="fas fa-bolt"></i> Chơi ngay</a>
                             <!-- <a class="btn btn-success continue" style="display: none"><i class="fas fa-bolt"></i> Chơi tiếp</a> -->
                         </div>
                     </div>
@@ -485,7 +485,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -638,7 +638,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -823,7 +823,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
                         </div>
                     </div>
 
@@ -941,7 +941,7 @@
                                 </div>
                             @endif
 
-                            <div id="start-played" class="item_play_spin_shake">
+                            <div id="start-played" class="item_play_spin_shake k_start">
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}">
                             </div>
 
@@ -982,7 +982,7 @@
                             @if($result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
-                            <a class="btn btn-success" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
+                            <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> chơi ngay</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">

@@ -19,7 +19,7 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -31,13 +31,13 @@ $(document).ready(function (e) {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -209,23 +209,6 @@ $(document).ready(function (e) {
         });
 
         $('#successModal').modal('show');
-    });
-
-    function handleToggleContent(selector){
-        $('.js-toggle-content .view-less').toggle();
-        $('.js-toggle-content .view-more').toggle();
-        let elm = $(selector);
-        elm.toggleClass('content-video-in-add');
-        if ($('.view-less').is(":visible")) {
-            let initialHeight = elm.css('max-height', 'initial').height();
-            elm.animate({maxHeight: initialHeight + 16},250)
-        } else {
-            elm.animate({maxHeight: 280},250)
-        }
-    }
-
-    $('.js-toggle-content').click(function () {
-        handleToggleContent('.content-video-in');
     });
 
     $('body').on('click','.close-modal-default',function(e){

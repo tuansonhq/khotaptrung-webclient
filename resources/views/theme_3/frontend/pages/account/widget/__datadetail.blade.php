@@ -30,7 +30,8 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                                    <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+{{--                                                                        data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false"--}}
                                                                         <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
@@ -226,9 +227,9 @@
                                                     @if(isset($card_percent))
                                                         @if($card_percent == 0)
                                                             <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                                <div class="row marginauto nick-detail-button">
+                                                                <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                     <div class="col-md-12 left-right">
-                                                                        <a href="/nap-the" class="button-not-bg-ct">
+                                                                        <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                             <ul>
                                                                                 <li><small>Thẻ cào</small></li>
                                                                                 <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -242,9 +243,9 @@
                                                         @endif
                                                     @else
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/nap-the" class="button-not-bg-ct">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>Thẻ cào</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price))) }} CARD</span></li>
@@ -257,9 +258,9 @@
 
                                                     @if(isset($data->price_atm))
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
-                                                                    <a href="/recharge-atm" class="button-not-bg-ct">
+                                                                    <a href="javascript:void(0);" class="button-not-bg-ct">
                                                                         <ul>
                                                                             <li><small>ATM, Momo</small></li>
                                                                             <li><span>{{ str_replace(',','.',number_format(round($data->price_atm))) }} ATM</span></li>
@@ -485,7 +486,7 @@
                                                 @if(isset($card_percent))
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-6 col-6 modal-footer-success-col-left-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="1">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/nap-the" class="button-not-bg-ct">
                                                                         <ul>
@@ -497,7 +498,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/recharge-atm" class="button-not-bg-ct">
                                                                         <ul>
@@ -514,7 +515,7 @@
                                                 @else
                                                     <div class="row marginauto justify-content-center gallery-right-footer">
                                                         <div class="col-md-12 col-12 modal-footer-success-col-right-ct">
-                                                            <div class="row marginauto nick-detail-button">
+                                                            <div class="row marginauto nick-detail-button btn-open-recharge" data-tab="2">
                                                                 <div class="col-md-12 left-right">
                                                                     <a href="/" class="button-not-bg-ct">
                                                                         <ul>
@@ -547,21 +548,18 @@
             <section>
                 <div class="container container-fix body-container-ct">
                     <div class="row marginauto body-container-row-ct">
-                        <div class="col-md-12 left-right">
+                        <div class="col-md-12 left-right detailViewBlock">
                             <div class="row marginauto body-row-ct footer-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <span>Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
+                                    <span class="detailViewBlockTitle">Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
                                 </div>
-                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add">
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
                                     {!! $data->description !!}
                                 </div>
 
                                 <div class="col-md-12 left-right text-center js-toggle-content">
                                     <div class="view-more">
                                         <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
-                                    </div>
-                                    <div class="view-less">
-                                        <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/rutgon.svg)"></i></a>
                                     </div>
                                 </div>
 
@@ -736,7 +734,7 @@
                                                     @if(App\Library\AuthCustom::user()->balance >= $data->price)
                                                         <button class="button-default-ct openSuccess" type="submit">Xác nhận</button>
                                                     @else
-                                                        <button class="button-default-ct" type="button" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp tiền</button>
+                                                        <button class="button-default-ct btn-open-recharge" type="button" data-tab="1" data-dismiss="modal">Nạp tiền</button>
                                                     @endif
                                                 @else
                                                     <button class="button-default-ct" type="button" onclick="openLoginModal();">Đăng nhập</button>
@@ -947,6 +945,69 @@
                 </form>
             </div>
         @endif
+
+
+
+        <div class="modal fade login show order-modal" id="accDetail" aria-modal="true">
+
+            <div class="modal-dialog step-tab-panel modal-xl modal-dialog-centered  animated">
+                <!--        <div class="image-login"></div>-->
+                <div class="modal-content">
+                    <div class="modal-header p-0" style="border-bottom: 0">
+                        <div class="row marginauto modal-header-order-ct">
+                            <div class="col-12 span__donhang text-center" style="position: relative">
+                                <span>ACC</span>
+                                <div class="close" data-dismiss="modal" aria-label="Close">
+                                    <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body modal-body-order-ct">
+                        <div class="row marginauto">
+
+                            <div class="image-gallery d-flex">
+                                <div class="primary" >
+                                    <img src="{{\App\Library\MediaHelpers::media(explode('|',$data->image_extension)[0])}}" alt="">
+                                </div>
+
+                                <div class="thumbnails row">
+
+                                @foreach(explode('|',$data->image_extension) as $key => $val)
+                                    <div class="col-md-3">
+                                        <a href="#" class=" thumbnail" data-big="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+{{--                                            <div class="thumbnail-image" style="background-image: url( )"></div>--}}
+                                        </a>
+                                    </div>
+
+                                @endforeach
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            $('.thumbnail').on('click', function() {
+
+                var clicked = $(this);
+                var newSelection = clicked.data('big');
+                var $img = $('.primary').html(' <img src="'+newSelection+'" alt="">');
+                clicked.parent().find('.thumbnail').removeClass('selected');
+                clicked.addClass('selected');
+                $('.primary').empty().append('<img src="'+newSelection+'" alt="">');
+            });
+        </script>
+
+
     @endif
 
 @endif

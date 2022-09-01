@@ -1,23 +1,4 @@
 $(document).ready(function (e) {
-    function handleToggleContent(){
-        $('.js-toggle-content .view-less').toggle();
-        $('.js-toggle-content .view-more').toggle();
-        if ($('.view-less').is(":visible")) {
-
-            $('.content-video-in').css('max-height', 'initial')
-            $('.content-video-in').removeClass('content-video-in-add')
-
-        } else {
-            $('.content-video-in').addClass('content-video-in-add')
-            $('.content-video-in::after').show()
-            $('.content-video-in').css('max-height', '')
-        }
-    }
-
-    $('.js-toggle-content').click(function () {
-        handleToggleContent();
-    });
-
     $('body').on('click','.nick-findter',function(){
         $('#openFinter').modal('show')
     })
@@ -202,7 +183,7 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -214,13 +195,13 @@ $(document).ready(function (e) {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }

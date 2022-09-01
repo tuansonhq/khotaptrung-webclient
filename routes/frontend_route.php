@@ -76,8 +76,10 @@ Route::group(array('middleware' => ['theme']) , function (){
         Route::get('/top-charge', [\App\Http\Controllers\Frontend\HomeController::class , 'getTopCharge'])->name('getTopCharge');
         Route::group(['middleware' => ['cacheResponse: 2592000','tracking']], function (){
 
+
             Route::group(['middleware' => ['intend']], function () {
-                Route::get('/', [HomeController::class , "index"])->name('homeIndex');
+                Route::get('/', [HomeController::class , "index"])->middleware('intend');
+
                 Route::get('/tin-tuc', [ArticleController::class , "getList"]);
                 Route::get('/tin-tuc/{slug}', [ArticleController::class , "getDetail"]);
                 Route::get('/dich-vu', [ServiceController::class, "getList"]);
@@ -86,6 +88,10 @@ Route::group(array('middleware' => ['theme']) , function (){
             Route::get('/show-bot', [ServiceController::class , "showBot"]);
             Route::get('/lich-su-tra-gop',function(){
                 return view('frontend.pages.account.logs-installment');
+            });
+            Route::group(['middleware' => ['intend']], function () {
+
+
             });
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
                 Route::group(['middleware' => ['intend']], function (){
@@ -214,12 +220,15 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             //minigame
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
+                Route::group(['middleware' => ['intend']], function () {
+                    Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
+                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
+
+                });
                 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])->name('postRoll');
                 Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])->name('postBonus');
                 Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])->name('getLog');
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])->name('getLogAcc');
-                Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 //                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');

@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -26,13 +26,13 @@ $(document).ready(function () {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -136,9 +136,6 @@ $(document).ready(function () {
 
 
     });
-    $('.js-toggle-content').click(function () {
-        handleToggleContent('.content-video-in');
-    });
 
     // Function when user search
     $('.media-form-search').submit(function (e) {
@@ -205,17 +202,4 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
             }, 600 );
         }
     });
-}
-
-function handleToggleContent(selector){
-    $('.js-toggle-content .view-less').toggle();
-    $('.js-toggle-content .view-more').toggle();
-    let elm = $(selector);
-    elm.toggleClass('content-video-in-add');
-    if ($('.view-less').is(":visible")) {
-        let initialHeight = elm.css('max-height', 'initial').height();
-        elm.animate({maxHeight: initialHeight + 16},250)
-    } else {
-        elm.animate({maxHeight: 280},250)
-    }
 }
