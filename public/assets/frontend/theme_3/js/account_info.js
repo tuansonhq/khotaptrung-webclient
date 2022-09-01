@@ -8,6 +8,7 @@ $(document).ready(function(){
                 $('.box-loading').hide();
                 $('.box-logined').show();
                 $('.box-registed').show();
+
                 $('.box-account').hide();
                 $('.box-deposit-charge').hide();
                 $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
@@ -17,6 +18,8 @@ $(document).ready(function(){
                 $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
                 $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
             }
+            $('.data_napthe_login').show();
+            $('.data_napthe_home').hide();
             $('meta[name="jwt"]').attr('content','jwt');
 
 
@@ -40,18 +43,18 @@ $(document).ready(function(){
                         $('.box-logined').show();
                         $('.box-registed').show();
                         $('.box-account').hide();
-                        // $('.data_napthe_login').show();
-                        // $('.data_napthe_home').hide();
+
                         $('.box-deposit-charge').hide();
                         $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
                         $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
                     }else {
                         $('.box-loading-mobile').hide();
-                        $('.data_napthe_login').show();
-                        $('.data_napthe_home').hide();
+
                         $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
                         $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
                     }
+                    $('.data_napthe_login').show();
+                    $('.data_napthe_home').hide();
                     $('meta[name="jwt"]').attr('content','jwt');
 
                 }
@@ -61,8 +64,7 @@ $(document).ready(function(){
                         $('.box-logined').show();
                         $('.box-registed').show();
                         $('.box-account').hide();
-                        // $('.data_napthe_login').show();
-                        // $('.data_napthe_home').hide();
+
                         $('.box-deposit-charge').hide();
                         $('.box-logined').html(' <a class="btn btn-submit" onclick="openLoginModal();">Đăng nhập</a>');
                         $('.box-registed').html(' <a class="btn btn-submit" onclick="openRegisterModal();">Đăng ký</a>');
@@ -71,6 +73,8 @@ $(document).ready(function(){
                         $('.box-account-mobile').html('<div class="box-account-logined " onclick="openLoginModal()"> <div class="account-avatar"> <img src="/assets/frontend/theme_3/image/avatar.png" alt=""></div> </div>')
                         $('#login_menu').html('<a href="#" onclick="openLoginModal()"><img src="/assets/theme_3/image/menu_category6.png" alt=""> <span>Đăng nhập/ Đăng ký</span></a>')
                     }
+                    $('.data_napthe_login').show();
+                    $('.data_napthe_home').hide();
                     $('meta[name="jwt"]').attr('content','jwt');
 
 
@@ -84,8 +88,7 @@ $(document).ready(function(){
                     $('.box-logined').hide();
                     $('.box-registed').hide();
                     $('.box-account').show();
-                    // $('.data_napthe_login').hide();
-                    // $('.data_napthe_home').show();
+
                     $('.box-deposit-charge').show();
                     $('#account-id').html(' <span >ID: </span>'+ data.info.id );
                     $('.box-deposit-charge').html(' <a class="btn-open-recharge btn btn-submit" data-tab="1" href="javascript:void(0);">Nạp tiền</a>' );
@@ -103,6 +106,8 @@ $(document).ready(function(){
                             'document.getElementById(\'logout-form\').submit();" style="padding: 0"><img src="/assets/frontend/theme_3/image/icons/account_login.png" alt=""> <span style="padding-left: 12px"> Đăng xuất</span></a>')
 
                     }
+                    $('.data_napthe_login').hide();
+                    $('.data_napthe_home').show();
                     $('meta[name="jwt"]').attr('content',data.token);
 
                 }
