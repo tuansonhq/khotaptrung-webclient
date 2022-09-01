@@ -547,21 +547,18 @@
             <section>
                 <div class="container container-fix body-container-ct">
                     <div class="row marginauto body-container-row-ct">
-                        <div class="col-md-12 left-right">
+                        <div class="col-md-12 left-right detailViewBlock">
                             <div class="row marginauto body-row-ct footer-row-ct">
                                 <div class="col-md-12 left-right">
-                                    <span>Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
+                                    <span class="detailViewBlockTitle">Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
                                 </div>
-                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add">
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlock">
                                     {!! $data->description !!}
                                 </div>
 
                                 <div class="col-md-12 left-right text-center js-toggle-content">
                                     <div class="view-more">
                                         <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
-                                    </div>
-                                    <div class="view-less">
-                                        <a href="javascript:void(0)" class="global__link__default">Thu gọn<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/rutgon.svg)"></i></a>
                                     </div>
                                 </div>
 
