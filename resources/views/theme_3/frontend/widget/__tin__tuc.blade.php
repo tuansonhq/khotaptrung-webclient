@@ -33,7 +33,7 @@
                                 <div class="item-product__box-content item-news-content">
 
 
-                                    <div class="item-product__box-name">
+                                    <div class="item-product__box-name mh_item-product__box-name text-limit limit-2">
                                         {{ $val->title }}
                                     </div>
                                     <div class="item-product__box-date">

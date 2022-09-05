@@ -36,7 +36,7 @@ function loadDataTable(query ={ page:1,serial:'',key:'',status:'',started_at:'',
             if(res.status){
                 if (!res.total){
                     let html_empty = '';
-                    html_empty += `<tr><td colspan="8" class="text-center"><span>Không có dữ liệu !</span></td></tr>`;
+                    html_empty += `<tr><td colspan="8" class="text-center"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>`;
                     table.find('table#table-default tbody').html(html_empty);
                     $('.default-paginate').empty();
                 }else {
@@ -49,7 +49,7 @@ function loadDataTable(query ={ page:1,serial:'',key:'',status:'',started_at:'',
             }else {
                 table.find('.loading-table').remove();
                 let html = '';
-                html += `<tr style="width: 100%" id="table-notdata"><td colspan="8"><span>${res.message}</span></td></tr>`;
+                html += `<tr style="width: 100%" id="table-notdata"><td colspan="8" class="text-center"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>`;
                 $('table#table-default tbody').html(html);
                 $('#data_pay_card_history_ls .default-paginate').html('');
             }

@@ -32,6 +32,9 @@
             {{--content--}}
             <div class="col-12 col-lg-9">
                 <div class="withdraw-content">
+                    <div class="ml-auto text-right" style="padding: 16px 16px 0 16px">
+                        <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
+                    </div>
                     <div class="withdraw-header row no-gutters">
                         <div class="col-6">
                             <div class="listed-type listed-type-active">
@@ -143,6 +146,7 @@
                                     </form>
                                 </div>
                                 <div class="history-filter">
+
                                     <p>Bộ lọc</p>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/nick/filter.png" alt="">
                                     <span class="filter-count" style="display: none">0</span>
@@ -218,7 +222,7 @@
                                             @endforeach
                                         @else
                                             <div class="history-item empty-state row no-gutters">
-                                                <p>Tài khoản của quý khách chưa phát sinh giao dịch</p>
+                                                <p>Tài khoản của quý khách chưa phát sinh giao dịch.</p>
                                             </div>
                                         @endif
                                     </div>

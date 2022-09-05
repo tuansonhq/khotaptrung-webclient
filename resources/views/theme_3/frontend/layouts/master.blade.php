@@ -91,6 +91,7 @@
 @include('frontend.widget.modal.viewmore_modal')
 
 @include('frontend.widget.modal.__success_charge')
+@include('frontend.widget.modal.__success_charge_home')
 @include('frontend.widget.modal.__reject_charge')
 
 <!-- end modal charge -->

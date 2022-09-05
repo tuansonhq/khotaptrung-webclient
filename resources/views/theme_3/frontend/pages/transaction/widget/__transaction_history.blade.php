@@ -42,7 +42,11 @@
                                 @elseif($item->status == 0)
                                     <span class="badge badge-danger">{{ $valstls }}</span>
                                 @elseif($item->status == 2)
-                                    <span class="badge badge-warning">{{ $valstls }}</span>
+                                    <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    {{ $valstls }}</span>
                                 @endif
                             @endif
                         @endforeach
