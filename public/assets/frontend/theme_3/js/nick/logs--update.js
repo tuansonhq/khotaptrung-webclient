@@ -75,20 +75,20 @@ $(document).ready(function (e) {
                 }
             });
         }
-        let input_attr_label = $(`.js_attr_label[data-id=${id}]`);
-        if (input_attr_label.length){
-            Array.from(input_attr_label).forEach(function (elm) {
-                let group_id = $(elm).data('gr');
-                let label = $(elm).val();
-                let value = $(`.js_attr_value[data-id=${id}][data-gr=${group_id}]`).val();
-                html_attr += '<div class="row marginauto add-child">';
-                html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${label}</span></div>`;
-                html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
-                html_attr += `<input readonly autocomplete="off" placeholder="${value}" class="input-defautf-ct" type="text" value="${value}">`;
-                html_attr += '</div>';
-                html_attr += '</div>';
-            });
-        }
+        // let input_attr_label = $(`.js_attr_label[data-id=${id}]`);
+        // if (input_attr_label.length){
+        //     Array.from(input_attr_label).forEach(function (elm) {
+        //         let group_id = $(elm).data('gr');
+        //         let label = $(elm).val();
+        //         let value = $(`.js_attr_value[data-id=${id}][data-gr=${group_id}]`).val();
+        //         html_attr += '<div class="row marginauto add-child">';
+        //         html_attr += `<div class="col-md-12 left-right body-title-detail-span-ct"><span>${label}</span></div>`;
+        //         html_attr += '<div class="col-md-12 left-right body-title-detail-select-ct email-success-nick">';
+        //         html_attr += `<input readonly autocomplete="off" placeholder="${value}" class="input-defautf-ct" type="text" value="${value}">`;
+        //         html_attr += '</div>';
+        //         html_attr += '</div>';
+        //     });
+        // }
         $('.data-child').html(html_attr);
         /* thong tin bo sung */
                let input_other = $(`.js_idkey_item[data-id=${id}]`);

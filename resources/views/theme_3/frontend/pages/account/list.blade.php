@@ -62,7 +62,8 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h1>{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
+                                    <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                    <span class="c_body-header-col-ct-titile nick_total" style="margin-left: 4px"></span>
                                 </div>
                             </div>
                         </div>
@@ -262,20 +263,20 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct">
-                                        <small>Trạng thái</small>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status_data">
-                                            <option value="" selected disabled>Chọn trạng thái</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
+{{--                                <div class="row marginauto">--}}
+{{--                                    <div class="col-12 left-right background-nick-col-top-ct">--}}
+{{--                                        <small>Trạng thái</small>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">--}}
+{{--                                        <select class="wide status" name="status_data">--}}
+{{--                                            <option value="" selected disabled>Chọn trạng thái</option>--}}
+{{--                                            <option value="1">Chưa bán</option>--}}
+{{--                                            <option value="2">Đã bán</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             @if(isset($dataAttribute) && count($dataAttribute) > 0)
                                 @foreach($dataAttribute as $val)

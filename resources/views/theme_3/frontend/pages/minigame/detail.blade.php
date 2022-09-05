@@ -259,9 +259,20 @@
                                     <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
                                 </div>
                             @endif
-                            <div class="col-6">
-                                <button id="start-played" class="button-primary button-play play">Quay ngay</button>
+                            @if (App\Library\AuthCustom::check())
+                            <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
+                                <button id="start-played" class="button-primary button-play play b_button">Quay ngay</button>
                             </div>
+                            @else
+                            <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
+                                <button type="button" class="button-primary button-play b_button" onclick="openLoginModal();">Quay ngay</button>
+                            </div>
+                            @endif
+{{--                                <div class="b_item button-rainbow" style="--bg-color: #ecf0f1">--}}
+{{--                                    <button class="b_button">Click Me!--}}
+{{--                                        <div class="rainbow"></div>--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
                         </div>
                     </div>
                     <div class="service-detail">
@@ -1045,21 +1056,75 @@
         </div>
     </div>
 
-    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered animated" role="document">
+{{--    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">--}}
+{{--        <div class="modal-dialog modal-dialog-centered animated" role="document">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">×</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">--}}
+{{--                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>--}}
+{{--                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
+    <div class="modal fade login show default-Modal" id="naptheModal" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <div class="modal-header modal-header-success-ct">
+                    <div class="row marginauto modal-header-success-row-ct text-center">
+                        <div class="col-md-12 text-center" style="position: relative">
+                            <span>Thông báo</span>
+                            <div class="close" data-dismiss="modal" aria-label="Close">
+                                <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
-                </div>
-                <div class="modal-footer">
-                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>
-                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+
+                <div class="modal-body modal-body-success-ct">
+                    <div class="row marginauto justify-content-center">
+                        <div class="col-auto">
+                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                        <div class="col-md-12 left-right text-center">
+                            <span style="font-size: 14px">Tài khoản của quý khách hiện không đủ để thanh toán, vui lòng nạp tiền để tiếp tục.</span>
+                        </div>
+
+                    </div>
+                    <div class="row marginauto justify-content-center modal-footer-success-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct pr-fix-4 pl-0">
+                            <div class="row marginauto modal-footer-success-row-not-ct">
+                                <div class="col-md-12 left-right">
+                                    <a href="javascript:void(0)" class="button-not-bg-ct" data-dismiss="modal" style="display: flex;justify-content: center"><span>Đóng</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct pl-fix-4 pr-0">
+                            <div class="row marginauto modal-footer-success-row-ct">
+
+                                <div class="col-md-12 left-right">
+
+                                    <a href="javascript:void(0)" class="button-not-bg-ct btn-open-recharge" data-tab="1" data-dismiss="modal" style="display: flex;justify-content: center"><span>Nạp thêm</span></a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
