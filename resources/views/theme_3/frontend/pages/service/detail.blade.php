@@ -594,7 +594,7 @@
                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
+                                            <a href="/dich-vu-da-mua" class="button-bg-ct"><span>Lịch sử</span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -44,7 +44,11 @@
                             @elseif($item->status == 3)
                                 <span class="badge badge-danger">Đã hủy</span>
                             @elseif($item->status == 2)
-                                <span class="badge badge-warning">Đang chờ xử lý</span>
+                                <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    Đang chờ xử lý</span>
                             @elseif($item->status == 4)
                                 <span class="badge badge-danger">Lỗi gọi nhà cung cấp</span>
                             @elseif($item->status == 5)

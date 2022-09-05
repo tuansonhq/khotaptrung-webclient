@@ -146,7 +146,7 @@
                                                 <td>{{$item->group->title}}</td>
                                             </tr>
                                         @empty
-                                            <tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Không có dữ liệu</span></td></tr>
+                                            <tr style="width: 100%" id="table-notdata"><td colspan="7"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>
                                         @endforelse
 
                                         </tbody>

@@ -60,7 +60,7 @@ function loadDataTable(query = {
             }else {
                 table.find('.loading-table').remove();
                 let html = '';
-                html += `<tr style="width: 100%" id="table-notdata"><td colspan="7" class="text-center"><span>${res.message}</span></td></tr>`;
+                html += `<tr style="width: 100%" id="table-notdata"><td colspan="7" class="text-center"><span>Tài khoản của quý khách chưa phát sinh giao dịch.</span></td></tr>`;
                 $('table#table-default tbody').html(html);
                 $('#data_service_history .default-paginate').html('');
             }

@@ -220,11 +220,7 @@ Route::group(array('middleware' => ['theme']) , function (){
 
             //minigame
             Route::group(['middleware' => ['doNotCacheResponse']], function (){
-                Route::group(['middleware' => ['intend']], function () {
-                    Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
-                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
 
-                });
                 Route::post('/minigame-play', [\App\Http\Controllers\Frontend\MinigameController::class , 'postRoll'])->name('postRoll');
                 Route::post('/minigame-bonus', [\App\Http\Controllers\Frontend\MinigameController::class , 'postBonus'])->name('postBonus');
                 Route::get('/minigame-log-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLog'])->name('getLog');
@@ -233,6 +229,13 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])->name('getWithdrawItem');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');
                 Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])->name('postWithdrawItemAjax');
+
+                Route::group(['middleware' => ['intend']], function () {
+                    Route::get('/minigame', [\App\Http\Controllers\Frontend\MinigameController::class , 'getCategory'])->name('getCategory');
+                    Route::get('/minigame-{slug}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getIndex'])->name('getIndex');
+
+                });
+
             });
         });
 
