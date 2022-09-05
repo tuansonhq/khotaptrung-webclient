@@ -26,6 +26,7 @@
                     </div>
 
                 </div>
+
                 <div class="row marginauto justify-content-center modal-footer-success-ct">
                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct pr-fix-4 pl-0">
                         <div class="row marginauto modal-footer-success-row-not-ct">
