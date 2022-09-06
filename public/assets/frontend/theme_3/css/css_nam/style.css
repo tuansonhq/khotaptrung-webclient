@@ -2936,3 +2936,16 @@ header nav.heading .header-container{
     opacity: 1;
     bottom: 10px;
 }
+
+.fix_capcha{
+    position: relative;
+}
+.fix_capcha img{
+    position: absolute;
+    top: 2px;
+    left: 12px;
+}
+
+.fix_header_acount{
+    height: 34px;
+}

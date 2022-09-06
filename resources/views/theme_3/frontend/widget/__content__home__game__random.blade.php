@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                     @else
-                                        <div class="item-product__box-price" style="height: 34px">
+                                        <div class="item-product__box-price fix_header_acount">
                                         </div>
                                     @endif
                                 </div>
