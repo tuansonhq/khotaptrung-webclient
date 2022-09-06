@@ -11,7 +11,7 @@
                                 <div class="row marginauto list-item-nick-hover-row">
                                     <div class="col-md-12 left-right default-overlay-nick-ct">
                                         @if(isset($item->image))
-                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
+                                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->title }}">
                                         @endif
                                     </div>
                                     <div class="col-md-12 left-right list-item-nick">
@@ -55,7 +55,7 @@
                         </div>
                     @endforeach
                 @else
-                    <p>Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật nick thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</p>
+                    <p>Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật minigame thường xuyên bạn vui lòng theo dõi web trong thời gian tới !</p>
                 @endif
             </div>
         </div>

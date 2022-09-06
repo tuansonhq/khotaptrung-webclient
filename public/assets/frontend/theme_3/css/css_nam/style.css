@@ -1289,13 +1289,21 @@ header nav.heading .header-container{
     transform: translateY(-40%);
 
 }
+
+.list-product .item-other-nick,.list-product .item-other-nick{
+    top: 0;
+    transition: all 0.2s ease-out;
+    position: relative;
+}
+
 .list-product .item-other-nick:hover,.list-product .item-other-nick:hover{
     /*border: 1px solid var(--primary-color);*/
     /*transform: translateY(-0.1rem);*/
     /*box-shadow: 0px 2px 10px 0px #00000033;*/
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-0.0625rem);
-    transition: .2s;
+    box-shadow: 0 3.4623px 6.1418px rgba(0,0,0,0.05),0 7.92923px 12.9218px rgba(0,0,0,0.05),0 9px 15px rgba(0,0,0,0.08)!important;
+    top: -4px;
+    border-radius: 8px;
+    transition: .2s ease-out;
 
 }
 .list-news .swiper-slide a:hover .item-product__box-name{

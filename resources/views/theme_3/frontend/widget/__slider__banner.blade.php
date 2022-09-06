@@ -6,7 +6,7 @@
                 @foreach($data as $item)
                     @if(isset($item->image))
                         <div class="swiper-slide">
-                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
+                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </div>
                     @endif
                 @endforeach
