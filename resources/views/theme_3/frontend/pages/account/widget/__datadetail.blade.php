@@ -553,16 +553,21 @@
                                 <div class="col-md-12 left-right">
                                     <span class="detailViewBlockTitle">Mô tả sản phẩm {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }} | Mã số: {{ $data->randId }}</span>
                                 </div>
+                                @if(substr($data->description,1200))
                                 <div class="col-md-12 left-right footer-row-col-ct content-video-in content-video-in-add detailViewBlockContent">
+                                @else
+                                <div class="col-md-12 left-right footer-row-col-ct content-video-in detailViewBlockContent">
+                                @endif
                                     {!! $data->description !!}
                                 </div>
 
+                                @if(substr($data->description,1200))
                                 <div class="col-md-12 left-right text-center js-toggle-content">
                                     <div class="view-more">
                                         <a href="javascript:void(0)" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/svg/xemthem.svg)"></i></a>
                                     </div>
                                 </div>
-
+                                @endif
                             </div>
                         </div>
 
