@@ -286,7 +286,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
+                                                    <select class="wide account-filter-field" name="select_data"  data-title="{{ $val->title }}">
                                                         <option value="" selected disabled>--Không chọn--</option>
                                                         @foreach($val->childs as $child)
                                                             <option value="{{ $child->id }}">{{ $child->title }}</option>

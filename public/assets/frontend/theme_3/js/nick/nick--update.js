@@ -184,7 +184,7 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                     return;
                 }
                 $("#account_data").html(res.data);
-            }else {
+            } else {
                 let html = '';
                 html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + res.message + '</span></div></div>';
                 $("#account_data").html(html);
