@@ -5,7 +5,7 @@
     <meta name="robots" content="index,follow" />
 @endsection
 @push('js')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storeCard/store_card.js?v={{time()}}"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/store_card/store_card.js?v={{time()}}"></script>
     <script>
         $(document).ready(function(){
             $('.item-').addClass('active')
@@ -215,9 +215,12 @@
                 <div class="text-center text-more"><a href="#" class="more-link">Xem thêm <i class="las la-angle-down"></i></a></div>
             </div>
         </div>
+        <div class="site-content-body second  d-lg-none">
+            @include('frontend.widget.__list_serve_remark_image')
+
+        </div>
         <div class="col-lg-3">
             @include('frontend.widget.__huongdan__trangchu')
-
             <!-- BEGIN Support Block -->
                 <div class="mb-4">
                     <h6 class="title-style-tab"><span><i class="las la-info-circle"></i> Hỗ trợ</span></h6>
@@ -245,8 +248,12 @@
         </div>
     </div>
 </div>
+<div class="site-content-body second d-none d-lg-block">
+    @include('frontend.widget.__list_serve_remark_image')
+
+</div>
 <div class="site-content-body alt last">
-    <h3 class="text-primary mb-3">Tin tức cập nhật <i class="las la-angle-right"></i></h3>
+    <h4 class="text-primary mb-3">Tin tức cập nhật <i class="las la-angle-right"></i></h4>
     @include('frontend.widget.__baiviet__trangchu')
     <p class="mb-0 text-center"><a href="/tin-tuc" class="btn bg-secondary text-white rounded-x ps-4 pe-4">Tất cả tin tức <i class="las la-angle-right"></i></a></p>
 </div>

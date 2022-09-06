@@ -13,7 +13,7 @@
                 <div class="container pt-3">
                     <div class="row pb-3 pt-3">
                         <div class="col-md-12 text-center">
-                        <span style="color: red;font-size: 16px;">
+                        <span style="color: red;font-size: 16px;text-align: center">
                             @if(isset($message))
                                 {{ $message }}
                             @else
@@ -28,7 +28,7 @@
             </div>
         @else
 
-        <ul class="breadcrumb-list">
+        <ul class="breadcrumb-list c-mb-lg-12">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
@@ -39,16 +39,15 @@
                 <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
             </li>
         </ul>
-        <div class="head-mobile">
-            <a href="/mua-acc" class="link-back"></a>
+{{--        <div class="head-mobile">--}}
+{{--            <a href="/mua-acc" class="link-back"></a>--}}
 
-            <h1 class="head-title text-title">Shop Account</h1>
+{{--            <h1 class="head-title text-title">Shop Account</h1>--}}
 
-            <a href="/" class="home"></a>
-        </div>
+{{--            <a href="/" class="home"></a>--}}
+{{--        </div>--}}
 
         {{--            Slider baner    --}}
-        @include('frontend.widget.__slider__banner__account')
             <div class="booking_detail"></div>
 {{--        Danh sách acount    --}}
 
@@ -305,7 +304,7 @@
         @include('frontend.pages.account.widget.__related__category')
 
         {{--            Dịch vụ khác   --}}
-        @include('frontend.widget.__services__other')
+{{--        @include('frontend.widget.__services__other')--}}
 
             <input type="hidden" value="{{ $slug }}" name="slug" class="slug">
             {{--    <input type="hidden" value="{{ $slug_category }}" name="slug_category" class="slug_category">--}}

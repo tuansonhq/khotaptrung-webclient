@@ -181,19 +181,19 @@ $(document).ready(function () {
         /*Page mặc định vừa vào là 1*/
         let page_history = 1;
         if (typeof content_history !== 'undefined'){
-            content_history.on('scroll',function () {
-                    let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
-                /*nếu như lăn tới cuối cùng của bảng*/
-                if (parseInt($(this).scrollTop()) >= end){
-                    page_history++;
-                    query.page = page_history;
-                    history_see_more = true;
-                    /*nếu không phải là trang cuối thì mới load*/
-                    if (!is_last_page){
-                        loadDataApi(query);
-                    }
-                }
-            });
+            // content_history.on('scroll',function () {
+            //         let end = parseInt($(this).prop('scrollHeight')) - parseInt($(this).outerHeight());
+            //     /*nếu như lăn tới cuối cùng của bảng*/
+            //     if (parseInt($(this).scrollTop()) >= end){
+            //         page_history++;
+            //         query.page = page_history;
+            //         history_see_more = true;
+            //         /*nếu không phải là trang cuối thì mới load*/
+            //         if (!is_last_page){
+            //             loadDataApi(query);
+            //         }
+            //     }
+            // });
             /*Pagination Ajax*/
             content_history.on('click','.page-link',function (e) {
                 e.preventDefault();

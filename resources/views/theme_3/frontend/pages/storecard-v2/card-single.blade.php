@@ -5,12 +5,12 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css">
 @endsection
 @section('scripts')
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/buy-card.js?v={{time()}}"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/script_trong.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/storecard-v2/input.js"></script>
 @endsection
 @section('seo_head')
-    @include('frontend.widget.__seo_head')
+    @include('frontend.widget.__seo_head',with(['datakey'=>$value,'dataname'=>$key]))
 @endsection
 @section('meta_robots')
     <meta name="robots" content="index,follow" />
@@ -193,7 +193,8 @@
         </div>
     </div>
     <input type="hidden" value="{{ request()->route()->getName() }}" id="isRequest">
-    <input type="hidden" value="{{ request()->route('card') }}" id="isTelecom">
+
+    <input type="hidden" value="{{ strtolower(request()->route('card')) }}" id="isTelecom">
     <input type="hidden" value="{{ request()->route('value') }}" id="isValue">
     <input type="hidden" value="{{ App\Library\AuthCustom::check() }}" id="auth">
     <!-- Xác Nhận Thanh Toán Mobile-->
@@ -470,100 +471,10 @@
                     </div>
                     <div class="swiper slider--card">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
-                                                Zing 1
-                                            </div>
-                                            <div class="card--info__value">
-                                                100.000 đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                48563415693486456
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                12121212121
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/cards-logo/zing.png" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
-                                                Zing 1
-                                            </div>
-                                            <div class="card--info__value">
-                                                100.000 đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                48563415693486456
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
-                                                12121212121
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- JS PASTE CODE HERE -->
                         </div>
                     </div>
-                    <button type="button" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>

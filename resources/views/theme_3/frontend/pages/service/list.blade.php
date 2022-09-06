@@ -11,33 +11,16 @@
 @section('content')
 
     {{--  Header mobile  --}}
-{{--    <section class="media-mobile ">--}}
-{{--        <div class="container container-fix banner-mobile-container-ct">--}}
-{{--            <div class="row marginauto banner-mobile-row-ct">--}}
-{{--                <div class="col-auto left-right" style="width: 10%">--}}
-{{--                    <a href="/"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" ></a>--}}
-{{--                </div>--}}
 
-{{--                <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">--}}
-{{--                    <p>Trang chủ</p>--}}
-{{--                </div>--}}
-{{--                <div class="col-auto left-right" style="width: 10%">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
     <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            <span class="card--back box-account-mobile_open">
+                <a href="/"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt=""></a>
             </span>
         <p>Trang chủ</p>
     </div>
     {{--    Banner--}}
-    <section class="media-web">
-        <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-        </div>
-    </section>
+    @include('frontend.widget.__slider__banner__service')
+
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
@@ -67,13 +50,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right media-mobile">
-                            <div class="row marginauto banner-container-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-                                </div>
-                            </div>
-                        </div>
+                        @include('frontend.widget.__slider__banner__service__mobile')
+
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-title-ct">
@@ -92,10 +70,10 @@
                         </div>
 
                         <div class="col-md-12 left-right media-web">
-                            <form action="" method="POST" id="service-form">
+                            <form action="" method="POST" class="service-form">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-auto left-right">
-                                        <input type="text" name="search" class="input-search-ct" id="keyword--search" placeholder="Tìm dịch vụ">
+                                        <input type="text" name="search" class="input-search-ct" placeholder="Tìm dịch vụ">
                                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                     <div class="col-4 body-form-search-button-ct">
@@ -107,10 +85,10 @@
                         </div>
 
                         <div class="col-md-12 left-right media-mobile">
-                            <form action="" method="POST">
+                            <form action="" method="POST" class="service-form">
                                 <div class="row marginauto body-form-search-ct">
                                     <div class="col-12 left-right">
-                                        <input type="text" name="search-mobile" class="input-search-ct" placeholder="Tìm dịch vụ">
+                                        <input type="text" name="search" class="input-search-ct" placeholder="Tìm dịch vụ">
                                         <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/search.png" alt="">
                                     </div>
                                 </div>

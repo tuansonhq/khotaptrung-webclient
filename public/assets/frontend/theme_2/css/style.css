@@ -2084,7 +2084,7 @@ ol.w {
     left: 0;
     top: 0;
     position: fixed;
-    z-index: 99999;
+    z-index: 9999;
     background: rgba(0, 0, 0, 0.5);
     filter: blur(5px);
     -webkit-filter: blur(5px);
@@ -2443,6 +2443,9 @@ input[type="number"] {
         width: 100%;
         max-height: 150px !important;
     }
+    .site-header .site-header-inner .site-brand .site-title .site-link .site-logo {
+        max-width: 10rem;
+    }
 }
 .site-header-nav ul.nav li.nav-item{
     margin-top: 20px;
@@ -2476,4 +2479,14 @@ input[type="number"] {
 }
 #reload_2:focus{
     box-shadow: none;
+}
+.ajax-loading-data{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.data-card{
+    display: none;
 }

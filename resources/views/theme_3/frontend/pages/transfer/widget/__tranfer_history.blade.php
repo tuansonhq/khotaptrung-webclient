@@ -31,13 +31,21 @@
                         </td>
                         <td>
                             @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
+                                <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    {{config('module.transfer.status.0')}}</span>
                             @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
+                                <span class="badge badge-primary">{{config('module.transfer.status.2')}}</span>
                             @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
+                                <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    {{config('module.transfer.status.0')}}</span>
                             @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
+                                <span class="badge badge-danger">{{config('module.transfer.status.3')}}</span>
                             @endif
                         </td>
                     </tr>
@@ -59,13 +67,13 @@
                         </td>
                         <td>
                             @if($item->status == 2 )
-                                <span class="badge badge-warning">{{config('module.tranfer.status.2')}}</span>
+                                <span class="badge badge-warning">{{config('module.transfer.status.2')}}</span>
                             @elseif($item->status == 1)
-                                <span class="badge badge-primary">{{config('module.tranfer.status.1')}}</span>
+                                <span class="badge badge-primary">{{config('module.transfer.status.1')}}</span>
                             @elseif($item->status == 0)
-                                <span class="badge badge-warning">{{config('module.tranfer.status.0')}}</span>
+                                <span class="badge badge-warning">{{config('module.transfer.status.0')}}</span>
                             @elseif($item->status == 3)
-                                <span class="badge badge-danger">{{config('module.tranfer.status.3')}}</span>
+                                <span class="badge badge-danger">{{config('module.transfer.status.3')}}</span>
                             @endif
                         </td>
                     </tr>

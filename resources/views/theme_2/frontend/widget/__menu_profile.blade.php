@@ -32,13 +32,13 @@
             <a class="nav-link  @if(Request::is('the-cao-da-mua')) active @endif " href="/the-cao-da-mua" id="item-tab" type="button" role="tab" ><span><i class="las la-credit-card"></i> Thẻ cào đã mua</span></a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link  @if(Request::is('lich-su-nap-atm')) active @endif " href="/lich-su-nap-atm" id="tranfer-tab" type="button" ><span><i class="las la-credit-card"></i> Lịch sử nạp ATM</span></a>
+            <a class="nav-link  @if(Request::is('lich-su-atm-tu-dong')) active @endif " href="/lich-su-atm-tu-dong" id="tranfer-tab" type="button" ><span><i class="las la-credit-card"></i> Lịch sử nạp ATM</span></a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link  @if(Request::is('lich-su-nap-atm')) active @endif " href="/lich-su-nap-atm" id="tranfer-tab" type="button" ><span><i class="las la-credit-card"></i> Dịch vụ đã mua</span></a>
+            <a class="nav-link  @if(Request::is('dich-vu-da-mua')) active @endif " href="/dich-vu-da-mua"  type="button" ><span><i class="las la-credit-card"></i> Dịch vụ đã mua</span></a>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link  @if(Request::is('lich-su-nap-atm')) active @endif " href="/lich-su-nap-atm" id="tranfer-tab" type="button" ><span><i class="las la-credit-card"></i> Lịch sử mua acc</span></a>
+            <a class="nav-link  @if(Request::is('lich-su-mua-nick')) active @endif " href="/lich-su-mua-nick" id="tranfer-tab" type="button" ><span><i class="las la-credit-card"></i> Lịch sử mua acc</span></a>
         </li>
 {{--        @endforeach--}}
 

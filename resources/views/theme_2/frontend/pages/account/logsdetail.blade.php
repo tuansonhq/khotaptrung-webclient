@@ -4,39 +4,18 @@
 @endsection
 @section('content')
 
-    <div class="background-history">
-        <div class="container c-container-side">
-            <ul class="breadcrumb-list">
-                <li class="breadcrumb-item">
-                    <a href="/" class="breadcrumb-link">Trang chủ</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="javascript:void(0)" class="breadcrumb-link">Chi tiết tài khoản đã mua</a>
-                </li>
-            </ul>
-
-            <div class="head-mobile">
-                <a href="/lich-su-mua-nick" class="link-back"></a>
-
-                <h1 class="head-title text-title">Tài khoản đã mua</h1>
-
-                <a href="/" class="home"></a>
-            </div>
-            <div class="row">
-                <div class="c-history-left media-web">
-                    @include('frontend.widget.__menu_profile')
-                </div>
-
-                <div class="c-ml-16 c-ml-lg-0 c-history-right">
+    <div class="site-content-body bg-white first last p-0">
+        <div class="block-profile">
+            @include('frontend.widget.__menu_profile')
+            <div class="block-content p-3 c-px-50 c-px-lg-0">
+                <div class=" mb-4 c-px-16">
+                    <h4 class="title-style-left c-mt-16 mb-3">Chi tiết tài khoản đã mua</h4>
                     @if(isset($item))
-                    <div class="history-detail-title c-p-16 c-mb-16 brs-12 d-none d-sm-block">
-                        <h1 class="fw-700 fz-20 lh-28 c-my-0">Chi tiết tài khoản đã mua</h1>
-                    </div>
-                    <div class="history-detail-content brs-12">
-                        <div class="history-detail-subtitle lh-24 c-pt-16 c-pb-12 c-px-16 fw-500 fz-15 d-none d-sm-block">
+                    <div class="history-detail-content brs-12" style="max-width: 600px; margin: auto;">
+                        <div class="history-detail-subtitle lh-24 c-pt-16 c-pb-12 fw-500 fz-15 d-none d-sm-block">
                             {{ $item->category->title }}
                         </div>
-                        <div class="c-px-16 c-pb-24">
+                        <div class="">
                             <div class="history-detail-label c-py-12 fw-500 fz-13 fz-sm-15">
                                 Thông tin giao dịch
                             </div>
@@ -87,9 +66,8 @@
                                     <div class="copy-input">
                                         @if($checkpass && isset($time))
                                             <input type="text" required value="{{ $item->title }}" readonly autocomplete="off" placeholder="{{ $item->title }}">
-
                                         @else
-                                            <input type="text" readonly value="******" autocomplete="off" placeholder="******">
+                                            <input type="text" readonly value="******" autocomplete="off" placeholder="Tên tài khoản">
                                         @endif
                                     </div>
                                 </div>
@@ -97,8 +75,7 @@
                                     <label class="c-mb-4 fw-500 fz-13 lh-20 text_border">Mật khẩu</label>
                                     <div class="copy-input toggle-password">
                                         @if($checkpass && isset($time))
-                                            <input type="password" readonly value="123445" autocomplete="off" placeholder="123445">
-
+                                            <input type="password" readonly value="{{ \App\Library\Helpers::Decrypt($item->slug,config('module.acc.encrypt_key')) }}" autocomplete="off" placeholder="Mật khẩu">
                                         @else
                                             <input type="password" value="******" readonly autocomplete="off" placeholder="******">
                                         @endif
@@ -154,55 +131,18 @@
 {{--                                <button type="submit" data-id="{{ $item->randId }}" class="btn primary c-px-50 his__detail__button">Lấy mật khẩu</button>--}}
 {{--                                </form>--}}
 {{--                            </div>--}}
-                                <form action="/lich-su-mua-nick-{{ $item->randId }}/showpass" class="formPassword" method="post">
-                                    @csrf
+
                                 <div class="footer-mobile v2 group-btn c-my-24 c-my-lg-0 c-px-lg-16 c-pt-lg-16 button-password" style="--data-between:12px">
 
-                                    <button class="btn primary his__detail__button btn-data" data-id="{{ $item->randId }}" type="submit" style="position: relative">
+                                    <button class="btn primary his__detail__button btn-data" id="handleGetPasswordButton" data-url="/lich-su-mua-nick-{{ $item->randId }}/showpass" type="button" style="position: relative">
                                         Lấy mật khẩu
                                     </button>
 
                                 </div>
-                                </form>
                             @endif
                         </div>
                     </div>
                     @endif
-                </div>
-            </div>
-        </div>
-        <!-- Dịch vụ khác -->
-        <div class="container c-container d-none d-lg-block c-mt-24 c-mt-lg-16">
-            @include('frontend.widget.__service__other__his')
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade modal-328" id="modal-get-nick" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-custom">
-            <div class="modal-content">
-                <div class="modal-body c-p-0">
-                    <div class="banner">
-                        <img class="" src="/assets/frontend/{{theme('')->theme_key}}/image/son/success.png" alt="">
-                    </div>
-                    <div class="c-mt-12">
-                        <label class="c-mb-4 fw-500 fz-13 lh-20">Tài khoản</label>
-                        <div class="copy-input">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="c-mt-12">
-                        <label class="c-mb-4 fw-500 fz-13 lh-20">Mật khẩu</label>
-                        <div class="copy-input toggle-password">
-                            <input type="password">
-                        </div>
-                    </div>
-                    <div class="c-mt-12 w-100 text-center focus-color">Đã lấy mật khẩu lúc: 05-05-2022, 121:32:56</div>
-                    <div class="c-mt-16">
-                        <label class="c-mb-4 fw-400 fz-13 lh-20 text-center">Để bảo mật bạn vui lòng thay đổi mật khẩu và tên đăng nhập của tải khoản đã mua!</label>
-                    </div>
-                </div>
-                <div class="modal-footer c-pt-16">
-                    <button class="btn ghost" data-dismiss="modal">Thoát</button>
                 </div>
             </div>
         </div>

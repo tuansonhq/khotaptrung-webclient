@@ -48,7 +48,8 @@ $(document).ready(function(){
                     $("#getshowservice_data").empty().html('');
                     $("#getshowservice_data").empty().html(html);
                 }
-
+                $('.btn-all_text').css('color','#ffffff');
+                $('.btn_timkiem_text').css('color','#ffffff');
             },
             error: function (data) {
 
@@ -66,6 +67,7 @@ $(document).ready(function(){
         htmlloading += '<div class="loading"></div>';
         $('.btn-timkiem .loading-data__timkiem').html('');
         $('.btn-timkiem .loading-data__timkiem').html(htmlloading);
+        $('.btn_timkiem_text').css('color','#32c5d2');
 
         var title = $('.form_get_show_service .title').val();
 
@@ -93,7 +95,7 @@ $(document).ready(function(){
         htmlloading += '<div class="loading"></div>';
         $('.btn-tatca .loading-data__timkiem').html('');
         $('.btn-tatca .loading-data__timkiem').html(htmlloading);
-
+        $('.btn-all_text').css('color','#dc3545');
         $('.title_data').val('');
         $('.title').val('');
 

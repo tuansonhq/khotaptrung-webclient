@@ -1,5 +1,5 @@
 @if(isset($datacate))
-<section class="section-related-service related-service">
+<section class="section-related-service related-service pb-3 ">
     <div class="section-header c-mb-16 c-mb-lg-8 justify-content-between">
         <h2 class="section-title fz-15 fz-lg-20 lh-lg-24">
             Dịch vụ liên quan
@@ -11,7 +11,7 @@
             @foreach($datacate as $k_cat => $service)
             <div class="swiper-slide">
                 <div class="card">
-                    <div class="card-body c-p-16 scale-thumb">
+                    <div class="card-body c-p-16 c-p-lg-8 scale-thumb">
                         <a href="/dich-vu/{{$service->slug}}">
                             <div class="card-thumb c-mb-8">
                                 <img  src="{{@\App\Library\MediaHelpers::media($service->image)}}" alt="" class="card-thumb-image">

@@ -44,8 +44,8 @@
                 </div>
             </section>
             <section class="media-web">
-                <div class="container container-fix menu-container-ct">
-                    <ul>
+                <div class="container container-fix menu-container-ct pl-0">
+                    <ul class="mb-3">
                         <li><a href="/">Trang chủ</a></li>
                         <li class="menu-container-li-ct"><img class="lazy"
                                                               src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/arrow-right.png"
@@ -63,256 +63,376 @@
             {{--   Bopdy --}}
             <section id="service-detail">
                 <div class="container container-fix body-container-ct">
-                    <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
-                        <div class="col-lg-5 col-12 body-container-detail-left-ct">
+                    <div class="row marginauto body-row-ct body-container-row-ct body-container-row-mobile-ct">
+                        <div class="col-lg-12 col-12 body-container-detail-left-ct px-0">
                             <form action="/dich-vu/{{ $data->id }}/purchase" method="POST" id="formDataService">
                                 @csrf
                                 <input type="hidden" name="index" value="{{ count($send_name)  }}">
-                                <div class="row marginauto body-row-ct web-media-ct-fix web-media-ct">
+                                <div class="row marginauto web-media-ct-fix web-media-ct">
                                     <div class="col-md-12 left-right">
                                         <div class="row marginauto">
                                             <div class="col-md-12 left-right">
                                                 <div class="row marginauto body-header-ct">
                                                     <div class="col-auto left-right">
-                                                        <img class="lazy"
-                                                             src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png"
-                                                             alt="">
+                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                                     </div>
                                                     <div class="col-md-10 col-10 body-header-col-ct">
                                                         <h1>{{ @$data->title }}</h1>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto banner-container-ct">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <img class="lazy" src="https://st.quantrimang.com/photos/image/2022/01/21/Anh-tuong-Lien-Quan-Mobile-25.jpg" alt="Banner">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right">
-                                                <div class="row marginauto body-title-ct">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <span>Vui lòng chọn thông tin</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            {{-- Kiểm tra máy chủ --}}
-                                            @if( isset($server_data) && isset($server_id))
-                                                <div class="col-md-12 left-right body-title-ct">
-                                                    <div class="row marginauto">
-
-                                                        <div class="col-md-12 text-left left-right mb-fix-12">
-
-                                                            <div class="row marginauto ">
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>Chọn máy chủ</span>
-                                                                </div>
-                                                                <div class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                                                    <select class="wide" name="server">
-                                                                        @forelse($server_data as $k_server => $server)
-                                                                            @if(!strpos($server_data[$k_server], '[DELETE]'))
-                                                                                <option value="{{ $server_id[$k_server] }}">{{ $server_data[$k_server] }}</option>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-m-12 server-error"></div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            @endif
-                                            @switch($data_params['filter_type'])
-                                                {{--                                                3 Dạng tiền tệ   --}}
-                                                {{--                                                4 Dạng chọn một --}}
-                                                {{--                                                5 Dạng chọn nhiều   --}}
-                                                {{--                                                6 Dạng chọn từ A->B (trong khoảng) --}}
-                                                {{--                                                7 Dạng nhập tiền để thanh toán  --}}
-                                                @case('3')
-                                                @break
-                                                @case('4')
-                                                <div class="col-md-12 left-right body-title-ct">
-                                                    <div class="row marginauto form-group">
+                                            <div class="col-12 mt-3 px-0 detail-service-content">
+                                                <div class="col-12 col-lg-4 pl-0 pr-fix-10">
+                                                    <div class="row marginauto banner-container-ct p-0">
                                                         <div class="col-md-12 text-left left-right">
-                                                            <div class="row marginauto">
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>Chọn gói nạp:</span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                                                    <select class="wide" name="selected">
-                                                                        @forelse($data_params['name'] as $k_name => $name)
-                                                                            @if(!!$name)
-                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-m-12 server-error">
-
-                                                                </div>
-                                                            </div>
+                                                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @break
-                                                @case('5')
-                                                <div class="col-md-12 left-right body-title-ct" id="select-multi">
-                                                    <div class="row marginauto">
-                                                        <div class="col-md-12 text-left left-right">
-                                                            <div class="row marginauto form-group">
-                                                                <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>{{ $data_params['filter_name'] }}</span>
-                                                                </div>
+                                                <div class="col-12 col-lg-4 pl-fix-10 pr-fix-10">
+                                                    <div class="card card-block">
+                                                        <div class="card-body p-3">
+                                                            {{-- Kiểm tra máy chủ --}}
+                                                            @if( isset($server_data) && isset($server_id))
                                                                 <div class="col-md-12 left-right">
-                                                                    <div class="row body-title-detail-checkbox-ct">
-                                                                        @if(!empty($data_params['name']))
-                                                                            @forelse($data_params['name'] as $k_name => $name)
-                                                                                @if(!!$name)
-                                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                                        <label for="{{$name . $k_name}}" class="input-ratio-ct">
+                                                                    <div class="row marginauto">
+
+                                                                        <div class="col-md-12 text-left left-right mb-fix-12">
+
+                                                                            <div class="row marginauto ">
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                    <span>Chọn máy chủ</span>
+                                                                                </div>
+                                                                                <div class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                                                                    <select class="wide" name="server">
+                                                                                        @forelse($server_data as $k_server => $server)
+                                                                                            @if(!strpos($server_data[$k_server], '[DELETE]'))
+                                                                                                <option value="{{ $server_id[$k_server] }}">{{ $server_data[$k_server] }}</option>
+                                                                                            @endif
+                                                                                        @empty
+                                                                                        @endforelse
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-m-12 server-error"></div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                            @switch($data_params['filter_type'])
+                                                                {{--                                                3 Dạng tiền tệ   --}}
+                                                                {{--                                                4 Dạng chọn một --}}
+                                                                {{--                                                5 Dạng chọn nhiều   --}}
+                                                                {{--                                                6 Dạng chọn từ A->B (trong khoảng) --}}
+                                                                {{--                                                7 Dạng nhập tiền để thanh toán  --}}
+                                                                @case('3')
+                                                                @break
+                                                                @case('4')
+                                                                <div class="col-md-12 left-right">
+                                                                    <div class="row marginauto form-group">
+                                                                        <div class="col-md-12 text-left left-right">
+                                                                            <div class="row marginauto">
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                    <span>Chọn gói nạp:</span>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                                                                    <select class="wide" name="selected">
+                                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                                            @if(!!$name)
+                                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                            @endif
+                                                                                        @empty
+                                                                                        @endforelse
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-m-12 server-error">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @break
+                                                                @case('5')
+                                                                <div class="col-md-12 left-right" id="select-multi">
+                                                                    <div class="row marginauto">
+                                                                        <div class="col-md-12 text-left left-right">
+                                                                            <div class="row marginauto form-group">
+                                                                                <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                    <span>{{ $data_params['filter_name'] }}</span>
+                                                                                    <hr>
+                                                                                </div>
+                                                                                <div class="col-md-12 left-right pr-1">
+                                                                                    <div class="row body-title-detail-checkbox-ct">
+                                                                                        @if(!empty($data_params['name']))
+                                                                                            @forelse($data_params['name'] as $k_name => $name)
+                                                                                                @if(!!$name)
+                                                                                                    <div class="col-auto body-title-detail-checkbox-col-ct">
+                                                                                                        <label for="{{$name . $k_name}}" class="input-ratio-ct">
                                                                                 <span class="label--checkbox">
                                                                                     <div class="label--checkbox__name">
                                                                                         {{ $name }}
                                                                                     </div>
-                                                                                    <span
-                                                                                        class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
-                                                                                        data-tippy-content="{{ $name }}">
-                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
-                                                                                    </span>
+                                                                                    @if(substr($name,50))
+                                                                                        <span
+                                                                                            class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
+                                                                                            data-tippy-content="{{ $name }}">
+                                                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
+                                                                                        </span>
+
+                                                                                    @endif
                                                                                 </span>
-                                                                                            <input
-                                                                                                id="{{$name . $k_name}}"
-                                                                                                type="checkbox"
-                                                                                                class="allgame"
-                                                                                                value="{{ $k_name }}">
-                                                                                            <span class="input-ratio-checkmark-ct --overwrite"></span>
-                                                                                        </label>
+                                                                                                            <input
+                                                                                                                id="{{$name . $k_name}}"
+                                                                                                                type="checkbox"
+                                                                                                                class="allgame"
+                                                                                                                value="{{ $k_name }}">
+                                                                                                            <span class="input-ratio-checkmark-ct --overwrite"></span>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                @endif
+                                                                                            @empty
+                                                                                            @endforelse
+                                                                                            <input type="hidden" name="selected">
+                                                                                        @endif
                                                                                     </div>
-                                                                                @endif
-                                                                            @empty
-                                                                            @endforelse
-                                                                                <input type="hidden" name="selected">
-                                                                        @endif
+                                                                                    <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-m-12 message-error" id="error-mes-checkbox"></div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @break
-                                                @case('6')
-                                                <div class="col-md-12 left-right">
-                                                    <div class="row body-title-detail-ct">
-                                                        <div
-                                                            class="col-auto text-left detail-service-col body-title-detail-col-ct">
-                                                            <div class="row marginauto">
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>Rank hiện tại</span>
+                                                                @break
+                                                                @case('6')
+                                                                <div class="col-md-12 left-right">
+                                                                    <div class="row body-title-detail-ct">
+                                                                        <div
+                                                                            class="col-auto text-left detail-service-col body-title-detail-col-ct">
+                                                                            <div class="row marginauto">
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                    <span>Rank hiện tại</span>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
+                                                                                    <select class="wide js-selected" name="rank_from">
+                                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                                            @if(!!$name)
+                                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                            @endif
+                                                                                        @empty
+                                                                                        @endforelse
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="col-m-12 rank-start-error">
+
+                                                                                </div>
+
+                                                                            </div>
+
+
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
+                                                                            <div class="row marginauto">
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                    <span>Rank mong muốn</span>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
+                                                                                    <select class="wide js-selected" name="rank_to">
+                                                                                        @forelse($data_params['name'] as $k_name => $name)
+                                                                                            @if(!!$name)
+                                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                            @endif
+                                                                                        @empty
+                                                                                        @endforelse
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-m-12 rank-end-error">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
-                                                                    <select class="wide js-selected" name="rank_from">
-                                                                        @forelse($data_params['name'] as $k_name => $name)
-                                                                            @if(!!$name)
-                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="col-m-12 rank-start-error">
-
-                                                                </div>
-
-                                                            </div>
-
-
-                                                        </div>
-
-                                                        <div
-                                                            class="col-auto text-left detail-service-col media-col-558 body-title-detail-col-ct">
-                                                            <div class="row marginauto">
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-span-ct">
-                                                                    <span>Rank mong muốn</span>
-                                                                </div>
-                                                                <div
-                                                                    class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
-                                                                    <select class="wide js-selected" name="rank_to">
-                                                                        @forelse($data_params['name'] as $k_name => $name)
-                                                                            @if(!!$name)
-                                                                                <option value="{{ $k_name }}">{{ $name }}</option>
-                                                                            @endif
-                                                                        @empty
-                                                                        @endforelse
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-m-12 rank-end-error">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                @break
-                                                @case('7')
-                                                <div class="col-md-12 left-right">
-                                                    <div class="row marginauto mb-fix-12">
-                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                            <span>Nhập số tiền cần mua:</span>
-                                                        </div>
-                                                        <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                            <input autocomplete="off" class="input-defautf-ct mb-2"
-                                                                   id="input_pack"
-                                                                   value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
-                                                                   name="selected"
-                                                                   type="text"
-                                                                   placeholder="Số tiền"
-                                                                   numberic
-                                                                   currency
-                                                                   required>
-                                                            <span id="text-pack">
+                                                                @break
+                                                                @case('7')
+                                                                <div class="col-md-12 left-right">
+                                                                    <div class="row marginauto mb-fix-12">
+                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                            <span>Nhập số tiền cần mua:</span>
+                                                                        </div>
+                                                                        <div class="col-md-12 left-right body-title-detail-select-ct">
+                                                                            <input autocomplete="off" class="input-defautf-ct mb-2"
+                                                                                   id="input_pack"
+                                                                                   value="{{ number_format($data_params['input_pack_min'],0,"",".") }}"
+                                                                                   name="selected"
+                                                                                   type="text"
+                                                                                   placeholder="Số tiền"
+                                                                                   numberic
+                                                                                   currency
+                                                                                   required>
+                                                                            <span id="text-pack">
                                                             Số tiền thanh toán phải từ
                                                             <b style="font-weight:bold;">{{number_format($data_params['input_pack_min'])}}đ</b>
                                                             đến
                                                             <b style="font-weight:bold;">{{number_format($data_params['input_pack_max'])}}đ</b>
                                                         </span>
-                                                        </div>
-                                                        <div class="col-m-12 server-error">
+                                                                        </div>
+                                                                        <div class="col-m-12 server-error">
 
-                                                        </div>
-                                                    </div>
-                                                    <div class="row marginauto">
-                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                            <span>Hệ số:</span>
-                                                        </div>
-                                                        <div
-                                                            class="col-md-12 left-right body-title-detail-select-ct data-select-server">
-                                                            <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
-                                                        </div>
-                                                        <div class="col-m-12 server-error">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row marginauto">
+                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                            <span>Hệ số:</span>
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-md-12 left-right body-title-detail-select-ct data-select-server">
+                                                                            <input autocomplete="off" class="input-defautf-ct" id="txt-discount" disabled required>
+                                                                        </div>
+                                                                        <div class="col-m-12 server-error">
 
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @break
+                                                                @default
+                                                            @endswitch
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @break
-                                                @default
-                                            @endswitch
+                                                <div class="col-12 col-lg-4 pr-0 pl-fix-10">
+                                                    <div class="card card-block">
+                                                        <div class="card-body p-3">
+                                                            <div class="col-md-12 left-right">
+                                                                <div class="row body-title-detail-ct" id="section-data-send">
+                                                                    @if(!empty($send_name) && !empty($send_type))
+                                                                        @forelse($send_name as $k_send_name => $send_name_text)
+                                                                            @switch($send_type[$k_send_name])
+                                                                                @case('1')
+                                                                                @case('2')
+                                                                                @case('3')
+                                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                                                    <div class="row marginauto">
+                                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                            <span>{{$send_name_text}}</span>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-12 left-right body-title-detail-select-ct">
+                                                                                            <input autocomplete="off" class="input-defautf-ct username" name="customer_data{{$k_send_name}}" type="text" placeholder="{{$send_name_text}}" required>
+                                                                                        </div>
+                                                                                        <div class="col-md-12 left-right message-error">
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @break
+                                                                                @case('5')
+                                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
+                                                                                    <div class="row marginauto password-mobile">
+                                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
+                                                                                            <span>{{$send_name_text}}</span>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-12 left-right body-title-detail-select-ct"
+                                                                                            style="position: relative">
+                                                                                            <input autocomplete="off" id="password"
+                                                                                                   name="customer_data{{$k_send_name}}"
+                                                                                                   class="input-defautf-ct password"
+                                                                                                   type="password"
+                                                                                                   placeholder="{{$send_name_text}}" required>
+                                                                                            <div class="show-btn-password">
+                                                                                                <img class="lazy"
+                                                                                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
+                                                                                                     alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="col-md-12 left-right pw-error"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @break
+                                                                                @case('7')
+
+                                                                                <div class="col-md-12 left-right " id="confirm-rules">
+                                                                                    <div class="row body-title-detail-checkbox-ct m-0 p-0">
+                                                                                        <div class="col-auto body-title-detail-checkbox-col-ct">
+                                                                                            <label for="customer_data{{$k_send_name}}" class="input-ratio-ct">
+                                                                                <span class="label--checkbox" >
+                                                                                    <div class="label--checkbox__name">
+                                                                                        {{ $send_name_text }}
+                                                                                    </div>
+                                                                                </span>
+                                                                                                <input id="customer_data{{$k_send_name}}" type="checkbox" class="confirm-rules" name="customer_data{{$k_send_name}}">
+                                                                                                <span class="input-ratio-checkmark-ct --overwrite"></span>
+                                                                                            </label>
+                                                                                            <div class="error-message"></div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @break
+                                                                                @default
+                                                                            @endswitch
+                                                                        @empty
+                                                                        @endforelse
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 left-right body-title-ct">
+                                                                <div class="row marginauto">
+                                                                    <div class="col-md-12 text-left left-right">
+                                                                        <div class="row marginauto">
+                                                                            <div class="col-auto left-right body-title-detail-span-ct">
+                                                                                <span>Tổng:</span>
+                                                                            </div>
+                                                                            <div
+                                                                                class="col-auto left-right body-title-detail-span-ct body-title-detail-span-right-ct">
+                                                                                <small id="txt-price">0 đ</small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 left-right mobile- body-title-ct">
+                                                                <div class="row marginauto">
+                                                                    <div class="col-md-12 text-left left-right">
+                                                                        @if(App\Library\AuthCustom::check())
+                                                                            <button class="button-default-ct btn-data  media-web open-modal" type="button">Thanh toán</button>
+                                                                            <button class="button-default-ct btn-data media-mobile" type="button">Thanh toán</button>
+                                                                            <div class="button-next-step-one d-none"></div>
+                                                                        @else
+                                                                            <button class="button-default-ct media-web open-modal" type="button" onclick="openLoginModal();">Thuê ngay</button>
+                                                                            <button class="button-default-ct media-mobile" type="button" onclick="openLoginModal();">Thuê ngay</button>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+{{--                                            <div class="col-md-12 left-right">--}}
+{{--                                                <div class="row marginauto body-title-ct">--}}
+{{--                                                    <div class="col-md-12 text-left left-right">--}}
+{{--                                                        <span>Vui lòng chọn thông tin</span>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+
+
 
 
 {{--                                            <div class="col-md-12 left-right body-title-ct">--}}
@@ -351,110 +471,6 @@
 {{--                                                --}}{{--                                                </div>--}}
 {{--                                            </div>--}}
 
-                                            <div class="col-md-12 left-right">
-                                                <div class="row body-title-detail-ct" id="section-data-send">
-                                                    @if(!empty($send_name) && !empty($send_type))
-                                                        @forelse($send_name as $k_send_name => $send_name_text)
-                                                            @switch($send_type[$k_send_name])
-                                                                @case('1')
-                                                                @case('2')
-                                                                @case('3')
-                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
-                                                                    <div class="row marginauto">
-                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                            <span>{{$send_name_text}}</span>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-md-12 left-right body-title-detail-select-ct">
-                                                                            <input autocomplete="off" class="input-defautf-ct username" name="customer_data{{$k_send_name}}" type="text" placeholder="{{$send_name_text}}" required>
-                                                                        </div>
-                                                                        <div class="col-md-12 left-right message-error">
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @break
-                                                                @case('5')
-                                                                <div class="col-auto text-left body-title-detail-col-ct mb-fix-12 w-100">
-                                                                    <div class="row marginauto password-mobile">
-                                                                        <div class="col-md-12 left-right body-title-detail-span-ct">
-                                                                            <span>{{$send_name_text}}</span>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-md-12 left-right body-title-detail-select-ct"
-                                                                            style="position: relative">
-                                                                            <input autocomplete="off" id="password"
-                                                                                   name="customer_data{{$k_send_name}}"
-                                                                                   class="input-defautf-ct password"
-                                                                                   type="password"
-                                                                                   placeholder="{{$send_name_text}}" required>
-                                                                            <div class="show-btn-password">
-                                                                                <img class="lazy"
-                                                                                     src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/eye-show.svg"
-                                                                                     alt="">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col-md-12 left-right pw-error"></div>
-                                                                    </div>
-                                                                </div>
-                                                                @break
-                                                                @case('7')
-                                                                <div class="col-md-12 left-right " id="confirm-rules">
-                                                                    <div class="row body-title-detail-checkbox-ct m-0 p-0">
-                                                                        <div class="col-auto body-title-detail-checkbox-col-ct">
-                                                                            <label for="customer_data{{$k_send_name}}" class="input-ratio-ct">
-                                                                                <span class="label--checkbox" >
-                                                                                    <div class="label--checkbox__name">
-                                                                                        {{ $send_name_text }}
-                                                                                    </div>
-                                                                                </span>
-                                                                                <input id="customer_data{{$k_send_name}}" type="checkbox" class="confirm-rules" name="customer_data{{$k_send_name}}">
-                                                                                <span class="input-ratio-checkmark-ct --overwrite"></span>
-                                                                            </label>
-                                                                            <div class="error-message"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @break
-                                                                @default
-                                                            @endswitch
-                                                        @empty
-                                                        @endforelse
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right body-title-ct">
-                                                <div class="row marginauto">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        <div class="row marginauto">
-                                                            <div class="col-auto left-right body-title-detail-span-ct">
-                                                                <span>Tổng:</span>
-                                                            </div>
-                                                            <div
-                                                                class="col-auto left-right body-title-detail-span-ct body-title-detail-span-right-ct">
-                                                                <small id="txt-price">0 đ</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 left-right mobile- body-title-ct">
-                                                <div class="row marginauto">
-                                                    <div class="col-md-12 text-left left-right">
-                                                        @if(App\Library\AuthCustom::check())
-                                                        <button class="button-default-ct btn-data  media-web open-modal" type="button">Thanh toán</button>
-                                                        <button class="button-default-ct btn-data media-mobile" type="button">Thanh toán</button>
-                                                            <div class="button-next-step-one d-none"></div>
-                                                        @else
-                                                            <button class="button-default-ct media-web open-modal" type="button" onclick="openLoginModal();">Thuê ngay</button>
-                                                            <button class="button-default-ct media-mobile" type="button" onclick="openLoginModal();">Thuê ngay</button>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -464,74 +480,78 @@
 
 
 
-                        <div class="col-lg-7 col-12 body-container-detail-right-ct">
+                        {{--<div class="col-lg-12 col-12 body-container-detail-right-ct px-0 mt-fix-20">
 
-                            {{--                    Block 1           --}}
-                            {{--                            <div class="row marginauto body-detail-header-right-ct media-web">--}}
+                                                Block 1
+                                                        <div class="row marginauto body-detail-header-right-ct media-web">
 
-                            {{--                                <div class="col-md-12 left-right">--}}
-                            {{--                                    <div class="row marginauto">--}}
-                            {{--                                        <div class="col-12 col-8 body-header-col-km-left-ct">--}}
-                            {{--                                            <span>Khuyến mại đang diễn ra</span>--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
+                                                            <div class="col-md-12 left-right">
+                                                                <div class="row marginauto">
+                                                                    <div class="col-12 col-8 body-header-col-km-left-ct">
+                                                                        <span>Khuyến mại đang diễn ra</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                            {{--                                <div class="col-md-12 left-right">--}}
-                            {{--                                    <div class="row banner-detail-ct">--}}
-                            {{--                                        <div class="col-md-12 text-left left-right">--}}
-                            {{--                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-detail.png" alt="">--}}
-                            {{--                                        </div>--}}
-                            {{--                                    </div>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
+                                                            <div class="col-md-12 left-right">
+                                                                <div class="row banner-detail-ct">
+                                                                    <div class="col-md-12 text-left left-right">
+                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-detail.png" alt="">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                            {{--                block 2           --}}
-                            <div class="marginauto body-detail-right-ct detail-ser-content">
 
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                            <small>Chi tiết dịch vụ</small>
-                                        </div>
-                                    </div>
+                        </div>--}}
+                    </div>
+                    {{--                block 2           --}}
+                    <div class="marginauto body-detail-right-ct detail-ser-content mt-3">
+
+                        <div class="col-md-12 left-right">
+                            <div class="row marginauto">
+                                <div class="col-md-12 col-8 body-header-col-km-left-ct">
+                                    <small>Chi tiết dịch vụ</small>
                                 </div>
-
-                                <div class="col-md-12 left-right">
-                                    <div class="row marginauto body-title-ct show-detail-service-ct">
-                                        <div class="col-md-12 text-left left-right">
-                                            {!! @$data->description !!}
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+                        </div>
 
-                            {{--                block 3           --}}
-                            <div class="body-detail-right-ct mt-fix-20 mx-lg-auto">
-
-                                        {{-- BOT --}}
-                                <div class="col-md-12 left-right px-3 px-lg-0" id="table-bot">
-
+                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
+                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
+                                <div
+                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
+                                    {!! @$data->description !!}
                                 </div>
-                                        {{--End BOT--}}
-                                <div class="col-md-12 left-right px-3 px-lg-0">
-                                    <div class="row marginauto">
-                                        <div class="col-md-12 col-8 body-header-col-km-left-ct">
-                                            <small>Hướng dẫn thuê cày</small>
-                                        </div>
-                                    </div>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="col-md-12 left-right card--desc px-3 px-lg-0">
-                                    <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
-                                        <div
-                                            class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
-                                            {!! @$data->content !!}
-                                        </div>
-                                        <div class="col-md-12 left-right text-center js-toggle-content">
-                                        </div>
-                                    </div>
+                    </div>
+
+                    {{--                block 3           --}}
+                    <div class="body-detail-right-ct mt-fix-20 mx-lg-auto">
+
+                        {{-- BOT --}}
+                        <div class="col-md-12 left-right px-3 px-lg-0" id="table-bot">
+
+                        </div>
+                        {{--End BOT--}}
+                        <div class="col-md-12 left-right px-3 px-lg-0">
+                            <div class="row marginauto">
+                                <div class="col-md-12 col-8 body-header-col-km-left-ct">
+                                    <small>Hướng dẫn thuê cày</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
+                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
+                                <div
+                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
+                                    {!! @$data->content !!}
+                                </div>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
                                 </div>
                             </div>
                         </div>
@@ -580,7 +600,7 @@
                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
+                                            <a href="/dich-vu-da-mua" class="button-bg-ct"><span>Lịch sử</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -850,6 +870,9 @@
             <input type="hidden" name="previous" class="input-back-step-two" value="Trang trước"/>
 
         </fieldset>
+    @if(\App\Library\AuthCustom::check())
+        <input id="surplus" type="hidden" value="{{ \App\Library\AuthCustom::user()->balance }}">
+    @endif
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/cay-thue/cay-thue-detail.js?v={{time()}}"></script>
 
 @endsection

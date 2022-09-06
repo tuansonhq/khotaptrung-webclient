@@ -9,7 +9,7 @@ $(document).ready(function () {
         observeParents: true,
     });
 
-    var dataSend = {
+    var storeDataSend = {
         amount: 0,
         telecom: '',
         quantity: 0,
@@ -30,10 +30,10 @@ $(document).ready(function () {
         $.ajax({
             url:'/mua-the',
             type:'POST',
-            data: dataSend,
+            data: storeDataSend,
             beforeSend: function () {
-                $('#confirmSubmitButton').prop("disabled", true);
-                $('#confirmSubmitButton').text("Đang xử lý");
+                $('#modalConfirmPayment #confirmSubmitButton').prop("disabled", true);
+                $('#modalConfirmPayment #confirmSubmitButton').text("Đang xử lý");
                 resetSuccessModal();
             },
             success:function (res) {
@@ -46,8 +46,8 @@ $(document).ready(function () {
                     let confirmTitle = $('input[name="card-type"]:checked').data('title');
 
                     $('#modal--success__payment #successCard').text(confirmTitle);
-                    $('#modal--success__payment #successPrice').text(formatNumber(dataSend.amount) + ' đ');
-                    $('#modal--success__payment #successQuantity').text(dataSend.quantity);
+                    $('#modal--success__payment #successPrice').text(formatNumber(storeDataSend.amount) + ' đ');
+                    $('#modal--success__payment #successQuantity').text(storeDataSend.quantity);
                     if (data.length > 0){
 
                         //Append HTML for desktop layout
@@ -64,7 +64,7 @@ $(document).ready(function () {
                             html_card += `                  ${cardName}`;
                             html_card += `              </div>`;
                             html_card += `               <div class="card--info__value fz-13 fw-500">`;
-                            html_card += `                    <a href="javascript:void(0)" class="text-primary">${formatNumber(dataSend.amount)} đ </a>`;
+                            html_card += `                    <a href="javascript:void(0)" class="text-primary">${formatNumber(storeDataSend.amount)} đ </a>`;
                             html_card += `                </div>`;
                             html_card += `            </div>`;
                             html_card += `        </div>`;
@@ -137,7 +137,7 @@ $(document).ready(function () {
         $.ajax({
             url:'/mua-the',
             type:'POST',
-            data: dataSend,
+            data: storeDataSend,
             beforeSend: function () {
                 $('#confirmMobileButton').prop("disabled", true);
                 $('#confirmMobileButton').text("Đang xử lý");
@@ -151,8 +151,8 @@ $(document).ready(function () {
                     let cardName = $('input[name="card-type"]:checked').val();
 
                     $('#successMobileCard').text(cardName);
-                    $('#successMobilePrice').text(formatNumber(dataSend.amount) + ' đ');
-                    $('#successMobileQuantity').text(dataSend.quantity);
+                    $('#successMobilePrice').text(formatNumber(storeDataSend.amount) + ' đ');
+                    $('#successMobileQuantity').text(storeDataSend.quantity);
                     if (data.length > 0){
 
                         //Append HTML for mobile layout
@@ -169,7 +169,7 @@ $(document).ready(function () {
                             html_card_mobile += `${cardName}`;
                             html_card_mobile += `</div>`;
                             html_card_mobile += `<div class="card--info__value fz-13 fw-500">`;
-                            html_card_mobile += ` <a href="javascript:void(0)" class="text-primary">${formatNumber(dataSend.amount)} đ </a>`;
+                            html_card_mobile += ` <a href="javascript:void(0)" class="text-primary">${formatNumber(storeDataSend.amount)} đ </a>`;
                             html_card_mobile += `</div>`;
                             html_card_mobile += `</div>`;
                             html_card_mobile += `</div>`;
@@ -371,8 +371,18 @@ $(document).ready(function () {
     function prepareAmountWidget () {
         let discountCardValue = $('input[name="card-value"]:checked').data('discount');
         $('input[name="card-discount"]').val(discountCardValue);
-        $('.buy-card-discount').text(`${100 - discountCardValue}%`);
-        $('.buy-card-total').text(`${formatNumber( calculatePrice() )} đ`);
+        
+        if (isNaN(100 - discountCardValue)) {
+            $('.buy-card-discount').text(`0%`);
+        } else {
+            $('.buy-card-discount').text(`${100 - discountCardValue}%`);
+        }
+        
+        if (isNaN(formatNumber( calculatePrice() ))) {
+            $('.buy-card-total').text(`0 đ`);
+        } else {
+            $('.buy-card-total').text(`${formatNumber( calculatePrice() )} đ`);
+        }
     }
 
     function resetAmountWidget () {
@@ -466,9 +476,9 @@ $(document).ready(function () {
         let telecom = $('input[name="card-type"]:checked').val();
         let quantity = $('input[name="card-amount"]').val();
 
-        dataSend.amount = amount;
-        dataSend.telecom = telecom.toUpperCase();
-        dataSend.quantity = quantity;
+        storeDataSend.amount = amount;
+        storeDataSend.telecom = telecom.toUpperCase();
+        storeDataSend.quantity = quantity;
     }
 
 });

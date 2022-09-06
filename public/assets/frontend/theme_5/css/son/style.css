@@ -207,7 +207,8 @@
     color: #F473B9;
 }
 
-.formThanhToanNickRandom{
+.formThanhToanNickRandom,
+.formThanhToanNickRandomHome{
     display: none;
 }
 

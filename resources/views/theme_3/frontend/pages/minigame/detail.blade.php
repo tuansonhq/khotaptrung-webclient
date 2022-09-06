@@ -46,7 +46,7 @@
                             @endif
                         </div>
                         <div class="rotation-player">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg" alt="">
+                            <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg" alt="">
                             @if(isset($result->group->params->fake_num_play))
                                 <p><span id="userCount">
                                     {{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi
@@ -55,7 +55,7 @@
                         </div>
                         @if(isset($currentPlayList) && $currentPlayList != '')
                             <div class="rotation-notify">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
+                                <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                                 <marquee class="rotation-marquee">
                                     <div class="rotation-marquee-item">
                                         {!! $currentPlayList !!}
@@ -94,11 +94,11 @@
                             @case('rubywheel')
                             <div class="rotation">
                                 <div class="item_spin ">
-                                    <div class="rotation-button ani-zoom" id="start-played">
-                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                    <div class="rotation-button ani-zoom " id="start-played">
+                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
                                     </div>
 
-                                    <img style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                                    <img onerror="imgError(this)" style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
                                 </div>
                             </div>
                             @break
@@ -108,8 +108,8 @@
                                     @for ($i = 0; $i < count($result->group->items); $i++)
                                         <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                             <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                                <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                                <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                <img onerror="imgError(this)" class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                <img onerror="imgError(this)" data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                             </div>
                                         </div>
                                     @endfor
@@ -118,8 +118,8 @@
                                     @for ($i = 0; $i < count($result->group->items); $i++)
                                         <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                             <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                                <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                                <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                <img onerror="imgError(this)" class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                <img onerror="imgError(this)" data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                             </div>
                                         </div>
                                     @endfor
@@ -155,37 +155,37 @@
                                 <table id="squaredesktop" class="square">
                                     <tr>
                                         <td></td>
-                                        <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="2" class="gift2 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="3" class="gift3 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="1" class="gift1 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="2" class="gift2 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="3" class="gift3 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td><div  data-num="12" class="gift12 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="12" class="gift12 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3"></td>
-                                        <td><div  data-num="4" class="gift4 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="4" class="gift4 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
-                                        <td><div data-num="11" class="gift11 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div data-num="11" class="gift11 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3">
                                             <div class="outer-btn text-center">
                                                 <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="" id="start-played">
-                                                    <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><div  data-num="5" class="gift5 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="5" class="gift5 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
-                                        <td><div  data-num="10" class="gift10 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="10" class="gift10 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3"></td>
-                                        <td><div  data-num="6" class="gift6 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="6" class="gift6 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><div  data-num="9" class="gift9 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="8" class="gift8 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="7" class="gift7 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="9" class="gift9 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="8" class="gift8 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="7" class="gift7 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td></td>
                                     </tr>
                                 </table>
@@ -198,11 +198,11 @@
                             @case('gieoque')
                             <div class="rotation">
                                 <div class="rotation-button rotation-button-quanhuy" id="start-played">
-                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
+                                    <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
                                 </div>
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">
-                                <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
-                                <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
+                                <input type="hidden" onerror="imgError(this)" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
+                                <input type="hidden" onerror="imgError(this)" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                             </div>
                             @break
                         @endswitch
@@ -259,9 +259,20 @@
                                     <button id="playerDemo" class="button-secondary button-demo num-play-try">Chơi thử</button>
                                 </div>
                             @endif
-                            <div class="col-6">
-                                <button id="start-played" class="button-primary button-play play">Quay ngay</button>
+                            @if (App\Library\AuthCustom::check())
+                            <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
+                                <button id="start-played" class="button-primary button-play play b_button">Quay ngay</button>
                             </div>
+                            @else
+                            <div class="col-6 button-rainbow" style="--bg-color: #ecf0f1">
+                                <button type="button" class="button-primary button-play b_button" onclick="openLoginModal();">Quay ngay</button>
+                            </div>
+                            @endif
+{{--                                <div class="b_item button-rainbow" style="--bg-color: #ecf0f1">--}}
+{{--                                    <button class="b_button">Click Me!--}}
+{{--                                        <div class="rainbow"></div>--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
                         </div>
                     </div>
                     <div class="service-detail">
@@ -284,7 +295,7 @@
                             </div>
                         </div>
                         <div class="leaderboard-header">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
+                            <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
                             <p>Top quay thưởng</p>
                         </div>
                         <div class="leaderboard-type row no-gutters">
@@ -962,7 +973,7 @@
                                     <a href="{{route('getIndex',[$item->slug])}}">
                                         <div class="item-product__box-img">
 
-                                            <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
+                                            <img onerror="imgError(this)" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
 
                                         </div>
                                         <div class="item-product__box-content">
@@ -1045,21 +1056,75 @@
         </div>
     </div>
 
-    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered animated" role="document">
+{{--    <div class="modal fade" id="naptheModal" role="dialog" aria-hidden="true">--}}
+{{--        <div class="modal-dialog modal-dialog-centered animated" role="document">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">×</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">--}}
+{{--                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <a href="javascript:void(0)" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" data-toggle="modal" data-target="#rechargeModal" data-dismiss="modal">Nạp thẻ</a>--}}
+{{--                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+
+    <div class="modal fade login show default-Modal" id="naptheModal" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered login animated">
+            <!--        <div class="image-login"></div>-->
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <div class="modal-header modal-header-success-ct">
+                    <div class="row marginauto modal-header-success-row-ct text-center">
+                        <div class="col-md-12 text-center" style="position: relative">
+                            <span>Thông báo</span>
+                            <div class="close" data-dismiss="modal" aria-label="Close">
+                                <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body content-popup" style="font-family: helvetica, arial, sans-serif;">
-                    Bạn đã hết lượt chơi. Nạp thẻ để chơi tiếp!
-                </div>
-                <div class="modal-footer">
-                    <a href="/nap-the" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--pill" >Nạp thẻ</a>
-                    <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+
+                <div class="modal-body modal-body-success-ct">
+                    <div class="row marginauto justify-content-center">
+                        <div class="col-auto">
+                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/reject.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row marginauto modal-body-span-success-ct justify-content-center">
+                        <div class="col-md-12 left-right text-center">
+                            <span style="font-size: 14px">Tài khoản của quý khách hiện không đủ để thanh toán, vui lòng nạp tiền để tiếp tục.</span>
+                        </div>
+
+                    </div>
+                    <div class="row marginauto justify-content-center modal-footer-success-ct">
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct pr-fix-4 pl-0">
+                            <div class="row marginauto modal-footer-success-row-not-ct">
+                                <div class="col-md-12 left-right">
+                                    <a href="javascript:void(0)" class="button-not-bg-ct" data-dismiss="modal" style="display: flex;justify-content: center"><span>Đóng</span></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-6 modal-footer-success-col-left-ct pl-fix-4 pr-0">
+                            <div class="row marginauto modal-footer-success-row-ct">
+
+                                <div class="col-md-12 left-right">
+
+                                    <a href="javascript:void(0)" class="button-not-bg-ct btn-open-recharge" data-tab="1" data-dismiss="modal" style="display: flex;justify-content: center"><span>Nạp thêm</span></a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>

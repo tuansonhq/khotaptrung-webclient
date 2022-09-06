@@ -1,52 +1,64 @@
-
-@if(isset(theme('')->theme_config->sys_theme_ver))
-    @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-            @if(isset($data[0]->image_banner))
-                <div class="banner-image">
-                   <img src="{{\App\Library\MediaHelpers::media($data[0]->image_banner)}}" alt=""  class="">
-                </div>
-            @else
-                <div class="banner-image">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt=""  class="">
-                </div>
-            @endif
-    @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-        @if(isset($data))
-        <div class="banner-slide swiper-container container container-fix " >
+<div class="ads-banner row box-product" id="c_slider_banner">
+    <div class="banner-slide-v2 col-lg-9 col-md-12 swiper-general">
+        <div class=" swiper swiper-banner brs-12">
             <div class="swiper-wrapper">
+
                 @foreach($data as $item)
                     @if(isset($item->image))
-                    <div class="swiper-slide">
-                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
-                    </div>
-                    @else
                         <div class="swiper-slide">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt=""  class="">
+                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="">
                         </div>
                     @endif
                 @endforeach
 
             </div>
-        </div>
-        @else
-            <div class="banner-slide swiper-container container container-fix " >
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt=""  class="">
-                    </div>
-                </div>
+
+            <div class="swiper-button-prev" id="c_slider_banner-prev">
+                <img src="./assets/frontend/theme_3/image/swiper-prev.svg" alt="">
             </div>
-        @endif
+            <div class="swiper-button-next" id="c_slider_banner-next">
+                <img src="./assets/frontend/theme_3/image/swiper-next.svg" alt="">
+            </div>
 
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="banner-content">
+            <div class="container  " >
+                <div class="d-flex justify-content-between">
+                    @if(setting('sys_marquee'))
+                        <div class="rotation-notify-home text-slider  rotation-notify-home-fix">
+                            <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
+                            <marquee class="rotation-marquee marquee-move">
 
-    @endif
+                                <div class="rotation-marquee-item marquee-item">
+                                    {!! setting('sys_marquee') !!}
+                                </div>
+                            </marquee>
+                        </div>
+                    @endif
 
-@else
-    <div class="banner-slide swiper-container container " >
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner.png" alt=""  class="">
+                </div>
+
             </div>
         </div>
     </div>
-@endif
+
+    <div class="col-md-3 d-none d-lg-flex flex-column justify-content-between swiper-general_right" style="min-height: 100%">
+        <div class="ads-banner-second brs-12">
+            <a href="">
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner01.png" alt="" >
+            </a>
+
+        </div>
+        <div class="ads-banner-second brs-12">
+            <a href="">
+                <img src="/assets/frontend/{{theme('')->theme_key}}/image/banner02.png" alt="" >
+
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -6,35 +6,51 @@
             <h4>Bài viết cùng chủ đề</h4>
         </div>
     </div>
-    <div class="card--body mt-3">
-        <div class="swiper article--slider__news overflow-hidden">
-            <div class="swiper-wrapper">
-                @foreach($data as $item)
-                <div class="swiper-slide">
-                    <div class="article">
-                        <div class="article--thumbnail">
-                            <a href="/tin-tuc/{{ $item->slug }}">
-                                @if(isset($item->image))
-                                    <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt=""  class="img-fluid swiper-lazy item_play_dif_slide_img_main">
-                                @else
-                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/article-thumbnail/thumbnail-2.png" alt="" class="article--thumbnail__image">
-                                @endif
+
+    <div class="box-product-content ">
+
+        <div class="box-product news-home" role="tabpanel" >
+            <div class="swiper-container  list-news" >
+                <div class="swiper-wrapper">
+                    @foreach($data as $val)
+
+                        <div class="swiper-slide" >
+                            <a href="/tin-tuc/{{ $val->slug }}">
+                                <div class="item-product__box-img item-news-img">
+                                    @if(isset($val->image))
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    @else
+                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
+                                    @endif
+                                </div>
+                                <div class="item-product__box-content item-news-content">
+
+
+                                    <div class="item-product__box-name mh_item-product__box-name text-limit limit-2">
+                                        {{ $val->title }}
+                                    </div>
+                                    <div class="item-product__box-date">
+                                        {{ formatDateTime($val->created_at) }}
+                                    </div>
+
+
+                                </div>
                             </a>
                         </div>
-                        <div class="article--title my-3">
-                            <a href="/tin-tuc/{{ $item->slug }}" class="article--title__link">
-                                {{$item->title}}
-                            </a>
-                        </div>
-                        <div class="article--date">
-                            <i class="__icon calendar mr-2"></i>
-                            {{formatDateTime($item->created_at)}}
-                        </div>
-                    </div>
+
+                    @endforeach
                 </div>
-                @endforeach
+                <div class="swiper-button-prev">
+                    <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                </div>
+                <div class="swiper-button-next">
+                    <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
+                </div>
+
             </div>
+
         </div>
+
     </div>
 </div>
 @endif

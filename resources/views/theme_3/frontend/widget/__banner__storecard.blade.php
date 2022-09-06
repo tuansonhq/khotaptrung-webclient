@@ -6,7 +6,7 @@
                     @if(isset($item->image))
                         <div class="swiper-slide">
                             <a href="#" class="banner__link">
-                                <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="POSTER BANNER">
+                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="POSTER BANNER">
                             </a>
                         </div>
                     @endif
@@ -22,7 +22,7 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <a href="#" class="banner__link">
-                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
+                    <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/store_card_bg.png" class="banner__image" alt="POSTER BANNER">
                 </a>
             </div>
 

@@ -464,7 +464,7 @@
 
     </div>
 
-    @include('theme_3.frontend.widget.modal.__charge')
+    @include('theme_3.frontend.widget.modal.__confirm_charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')

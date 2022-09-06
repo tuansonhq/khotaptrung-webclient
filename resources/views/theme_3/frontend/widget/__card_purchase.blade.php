@@ -5,7 +5,7 @@
                 <div class="card--header">
                     <div class="card--header__title">
                         <div class="title__icon"><img src="/assets/frontend/{{theme('')->theme_key}}/image/svg/muathegiare.svg" alt=""></div>
-                        <h2 class="text-title">Mua thẻ nhanh</h2>
+                        <h2 class="text-title">{{ $title??'Mua thẻ nhanh' }}</h2>
                     </div>
                 </div>
                 <div class="card--body">
@@ -227,6 +227,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn -primary btn-big" data-dismiss="modal" data-toggle="modal" data-target="#modal--success__payment" id="confirmSubmitButton">Xác nhận</button>
                 </div>
             </div>
@@ -287,55 +288,55 @@
                     </div>
                     <div class="swiper slider--card">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide card__detail">
-                                <div class="card--header__detail">
-                                    <div class="card--info__wrap">
-                                        <div class="card--logo">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="card--info">
-                                            <div class="card--info__name">
+{{--                            <div class="swiper-slide card__detail">--}}
+{{--                                <div class="card--header__detail">--}}
+{{--                                    <div class="card--info__wrap">--}}
+{{--                                        <div class="card--logo">--}}
+{{--                                            <img src="" alt="">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--info">--}}
+{{--                                            <div class="card--info__name">--}}
 
-                                            </div>
-                                            <div class="card--info__value">
-                                                đ
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card--gray">
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Mã thẻ
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="card--info__value">--}}
+{{--                                                đ--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="card--gray">--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Mã thẻ--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card--attr">
-                                        <div class="card--attr__name">
-                                            Seri
-                                        </div>
-                                        <div class="card--attr__value">
-                                            <div class="card__info">
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="card--attr">--}}
+{{--                                        <div class="card--attr__name">--}}
+{{--                                            Seri--}}
+{{--                                        </div>--}}
+{{--                                        <div class="card--attr__value">--}}
+{{--                                            <div class="card__info">--}}
 
-                                            </div>
-                                            <div class="icon--coppy js-copy-text">
-                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                            <div class="icon--coppy js-copy-text">--}}
+{{--                                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/coppy.png" alt="">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                    </div>
-                                </div>
-                            </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
-                    <button type="submit" class="btn -primary btn-big">Mua thêm</button>
+                    <button type="button" class="btn -primary btn-big" data-dismiss="modal">Mua thêm</button>
                 </div>
             </div>
         </div>

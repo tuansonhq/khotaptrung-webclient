@@ -1,4 +1,4 @@
-var dataSend = {
+var chargeDataSend = {
     type: null,
     pin: null,
     serial: null,
@@ -26,19 +26,19 @@ function prepareConfirmData() {
     let totalAmount = confirmPrice - saleAmount;
 
     if ( saleAmount > 0  && totalAmount > 0 ) {
-        $('#totalBill').text(`${ formatNumber(totalAmount)}`);
-        $('#totalBillMobile').text(`${ formatNumber(totalAmount)}`);
+        $('#orderCharge #totalBill').text(`${ formatNumber(totalAmount)}`);
+        $('#chargeConfirmStep #totalBillMobile').text(`${ formatNumber(totalAmount)}`);
     } else {
-        $('#totalBill').text(`${ formatNumber(confirmPrice)}`);
-        $('#totalBillMobile').text(`${ formatNumber(confirmPrice)}`);
+        $('#orderCharge #totalBill').text(`${ formatNumber(confirmPrice)}`);
+        $('#chargeConfirmStep #totalBillMobile').text(`${ formatNumber(confirmPrice)}`);
     }
 
-    $('#confirmTitle').text(confirmTitle);
-    $('#confirmTitleMobile').text(confirmTitle);
-    $('#confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
-    $('#confirmPriceMobile').text(`${formatNumber( confirmPrice )} đ`);
-    $('#confirmDiscount').text(`${confirmDiscount}%`);
-    $('#confirmDiscountMobile').text(`${confirmDiscount}%`);
+    $('#orderCharge #confirmTitle').text(confirmTitle);
+    $('#chargeConfirmStep #confirmTitleMobile').text(confirmTitle);
+    $('#orderCharge #confirmPrice').text(`${formatNumber( confirmPrice )} đ`);
+    $('#chargeConfirmStep #confirmPriceMobile').text(`${formatNumber( confirmPrice )} đ`);
+    $('#orderCharge #confirmDiscount').text(`${confirmDiscount}%`);
+    $('#chargeConfirmStep #confirmDiscountMobile').text(`${confirmDiscount}%`);
 }
 
 //Append new data to submit to backend
@@ -50,20 +50,22 @@ function prepareDataSend() {
     let type = $('#telecom').val();
     let amount = $(cardChecked).val();
 
-    dataSend.type = type;
-    dataSend.pin = pin;
-    dataSend.serial = serial;
-    dataSend.captcha = captcha;
-    dataSend.amount = amount;
+    chargeDataSend.type = type;
+    chargeDataSend.pin = pin;
+    chargeDataSend.serial = serial;
+    chargeDataSend.captcha = captcha;
+    chargeDataSend.amount = amount;
 }
 
 function showConfirmContent () {
     prepareConfirmData();
     prepareDataSend();
+    //Close recharge modal if page has this modal
+    $('#rechargeModal').modal('hide');
     if ( $(window).width() >= 992 ) { 
         $('#orderCharge').modal('show');
     } else {
-        $('#step2').css('transform', 'translateX(0)');
+        $('#chargeConfirmStep').css('transform', 'translateX(0)');
     }
 }
 
@@ -73,7 +75,7 @@ function showHomeConfirmContent () {
     if ( $(window).width() >= 992 ) { 
         $('#orderCharge').modal('show');
     } else {
-        $('#step2NT').css('transform', 'translateX(0)');
+        $('#chargeConfirmStep').css('transform', 'translateX(0)');
     }
 }
 
@@ -81,6 +83,9 @@ $(document).ready(function () {
 
     getTelecom();
 
+    $(document).on('click', '.handleOpenRechargeModal',function(e){
+        $('#rechargeModal').modal('show');
+    });
 
     //Change web url when switch tab
     $('#chargeNavTab').click(function () {
@@ -100,7 +105,7 @@ $(document).ready(function () {
     $('#reload_1').click(function () {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha2',
+            url: '/reload-captcha2',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -116,43 +121,43 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', '#confirmSubmitButton', function(e) {
+    $(document).on('click', '#orderCharge #confirmSubmitButton', function(e) {
         e.preventDefault();
         $.ajax({
             url:'/nap-the',
             type:'POST',
-            data: dataSend,
+            data: chargeDataSend,
             beforeSend: function () {
                 $('#confirmSubmitButton').prop("disabled", true);
                 $('#confirmSubmitButton').text("Đang xử lý");
                 //Delete text in success and fail modal
-                $('#successMessage').text('');
-                $('#failMessage').text('');
+                $('#modalSuccessPayment #successMessage').text('');
+                $('#modalFailPayment #failMessage').text('');
             },
             success:function (res) {
 
                 $('#orderCharge').modal('hide');
 
                 if(res.status == 1) {
-                    $('#successMessage').text(res.message);
+                    $('#modalSuccessPayment #successMessage').text(res.message);
                     $('#modalSuccessPayment').modal('show');
                 }
                 else if(res.status == 401){
-                    $('#failMessage').text('Bạn cần phải đăng nhập để hoàn thiện giao dịch!');
+                    $('#modalFailPayment #failMessage').text('Bạn cần phải đăng nhập để hoàn thiện giao dịch!');
                     $('#modalFailPayment').modal('show');
                 }
                 else if(res.status == 0){
-                    $('#failMessage').text(res.message);
+                    $('#modalFailPayment #failMessage').text(res.message);
                     $('#modalFailPayment').modal('show');
                 }
                 else{
-                    $('#failMessage').text('Đã có lỗi xảy ra!');
+                    $('#modalFailPayment #failMessage').text('Đã có lỗi xảy ra!');
                     $('#modalFailPayment').modal('show');
                 }
             },
             error: function (res) {
                 $('#orderCharge').modal('hide');
-                $('#failMessage').text('Đã có lỗi xảy ra!');
+                $('#modalFailPayment #failMessage').text('Đã có lỗi xảy ra!');
                 $('#modalFailPayment').modal('show');
             },
             complete: function () {
@@ -163,45 +168,45 @@ $(document).ready(function () {
         });
     });
 
-    $(document).on('click', '#confirmSubmitButtonMobile', function(e) {
+    $(document).on('click', '#chargeConfirmStep #confirmSubmitButtonMobile', function(e) {
         e.preventDefault();
         $.ajax({
             url:'/nap-the',
             type:'POST',
-            data: dataSend,
+            data: chargeDataSend,
             beforeSend: function () {
-                $('#confirmSubmitButtonMobile').prop("disabled", true);
-                $('#confirmSubmitButtonMobile').text("Đang xử lý");
+                $('#chargeConfirmStep #confirmSubmitButtonMobile').prop("disabled", true);
+                $('#chargeConfirmStep #confirmSubmitButtonMobile').text("Đang xử lý");
                 //Delete text in success and fail modal
-                $('#successMessage').text('');
-                $('#failMessage').text('');
+                $('#modalSuccessPayment #successMessage').text('');
+                $('#modalFailPayment #failMessage').text('');
             },
             success:function (res) {
                 if(res.status == 1) {
-                    $('#successMessage').text(res.message);
+                    $('#modalSuccessPayment #successMessage').text(res.message);
                     $('#modalSuccessPayment').modal('show');
                 }
                 else if(res.status == 401){
-                    $('#failMessage').text('Bạn cần phải đăng nhập để hoàn thiện giao dịch!');
+                    $('#modalFailPayment #failMessage').text('Bạn cần phải đăng nhập để hoàn thiện giao dịch!');
                     $('#modalFailPayment').modal('show');
                 }
                 else if(res.status == 0){
-                    $('#failMessage').text(res.message);
+                    $('#modalFailPayment #failMessage').text(res.message);
                     $('#modalFailPayment').modal('show');
                 }
                 else{
-                    $('#failMessage').text('Đã có lỗi xảy ra!');
+                    $('#modalFailPayment #failMessage').text('Đã có lỗi xảy ra!');
                     $('#modalFailPayment').modal('show');
                 }
             },
             error: function (res) {
-                $('#failMessage').text('Đã có lỗi xảy ra!');
+                $('#modalFailPayment #failMessage').text('Đã có lỗi xảy ra!');
                 $('#modalFailPayment').modal('show');
             },
             complete: function () {
                 $('#reload_1').trigger('click');
-                $('#confirmSubmitButtonMobile').prop("disabled", false);
-                $('#confirmSubmitButtonMobile').text("Xác nhận");
+                $('#chargeConfirmStep #confirmSubmitButtonMobile').prop("disabled", false);
+                $('#chargeConfirmStep #confirmSubmitButtonMobile').text("Xác nhận");
             }
         });
     });
@@ -209,7 +214,7 @@ $(document).ready(function () {
     function reload_captcha() {
         $.ajax({
             type: 'GET',
-            url: 'reload-captcha',
+            url: '/reload-captcha',
             beforeSend: function () {
                 $('.refresh-captcha img').removeClass("paused");
                 $("#capchaImage").empty();
@@ -284,6 +289,7 @@ $(document).ready(function () {
             beforeSend: function () {
                 $('#cardAmount').empty();
                 $('#cardAmountMobile').empty();
+                $('#cardAmountModal').empty();
                 $('.money-form-group .loader').removeClass('d-none');
             },
             success: function (data) {
@@ -291,11 +297,13 @@ $(document).ready(function () {
                     // Append new data both in mobile and desktop
                     let html = '';
                     let htmlMobile = '';
+                    let htmlModal ='';
 
                     if ( data.data.length > 0 ) {
                         $.each( data.data, function( key, value ) {
                             html += '<div class="col-4 c-px-4 money-radio-form">';
                             htmlMobile += '<div class="col-4 c-px-4 money-radio-form">';
+                            htmlModal += '<div class="col-4 c-px-4 money-radio-form">';
                             if ( key == 0 ) {
                                 if ( $(window).width() >= 992 ) {
                                     html += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
@@ -305,9 +313,12 @@ $(document).ready(function () {
                                     htmlMobile += '<input name="amount" type="radio" id="recharge_amount_mobile_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
                                 }
 
+                                htmlModal += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden checked>';
+
                             } else {
                                 html += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
                                 htmlMobile += '<input name="amount" type="radio" id="recharge_amount_mobile_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
+                                htmlModal += '<input name="amount" type="radio" id="recharge_amount_'+key+'" data-ratio="'+value.ratio_true_amount+'" value="'+value.amount+'" hidden>';
                             }
 
                             html += '<label for="recharge_amount_'+key+'" class="c-py-16 c-px-8 c-mb-8 brs-8 p_recharge_amount">';
@@ -319,12 +330,18 @@ $(document).ready(function () {
                             htmlMobile += '<p class="fw-500 fs-15 mb-0">'+ formatNumber(value.amount)  +'đ</p>';
                             htmlMobile += '</label>';
                             htmlMobile += '</div>';
+
+                            htmlModal += '<label for="recharge_amount_'+key+'" class="c-py-16 c-px-8 c-mb-8 brs-8 p_recharge_amount">';
+                            htmlModal += '<p class="fw-500 fs-15 mb-0">'+ formatNumber(value.amount)  +'đ</p>';
+                            htmlModal += '</label>';
+                            htmlModal += '</div>';
                         });
                     }
 
                     //Append new amount data
                     $('#cardAmount').html(html);
                     $('#cardAmountMobile').html(htmlMobile);
+                    $('#cardAmountModal').html(htmlModal);
 
                     //Refresh captcha
                     reload_captcha();

@@ -14,7 +14,7 @@
                 </ul>
             </div><!-- END Site Header Nav -->
             <div class="site-header-right d-flex ms-auto">
-                <ul class="nav header-right-nav align-items-center" style="z-index: 99999">
+                <ul class="nav header-right-nav align-items-center" style="z-index: 999">
                     <li class="nav-item item-deposit d-none d-md-inline-block">
                         <a href="/nap-the" class="nav-link rounded-x ps-4 px-4"><strong>Nạp thẻ ngay <i class="las la-angle-right"></i></strong></a>
                     </li>
@@ -51,10 +51,12 @@
                                 }
                             </style>
                             <a class="dropdown-item" href="/thong-tin"><i class="las la-user icon"></i>Hồ sơ cá nhân</a>
-                            <a class="dropdown-item" href="/thong-tin?log=transaction-history"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
-                            <a class="dropdown-item" href="/thong-tin?log=deposit-history"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
-                            <a class="dropdown-item" href="/thong-tin?log=store-card"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
-                            <a class="dropdown-item" href="/thong-tin?log=charge-atm-history"><i class="las la-credit-card icon"></i>Lịch sử nạp ATM</a>
+                            <a class="dropdown-item" href="/lich-su-giao-dich"><i class="las la-clock icon"></i>Lịch sử giao dịch</a>
+                            <a class="dropdown-item" href="/lich-su-nap-the"><i class="las la-credit-card icon"></i>Lịch sử nạp thẻ</a>
+                            <a class="dropdown-item" href="/the-cao-da-mua"><i class="las la-credit-card icon"></i>Thẻ cào đã mua</a>
+                            <a class="dropdown-item" href="/lich-su-atm-tu-dong"><i class="las la-credit-card icon"></i>Lịch sử nạp ATM</a>
+                            <a class="dropdown-item" href="/dich-vu-da-mua"><i class="las la-credit-card icon"></i>Dịch vụ đã mua</a>
+                            <a class="dropdown-item" href="/lich-su-mua-nick"><i class="las la-credit-card icon"></i>Lịch sử mua acc</a>
 
                             <a class="dropdown-item" href="/login" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="las la-sign-out-alt icon"></i>Đăng xuất</a>
                         </div>

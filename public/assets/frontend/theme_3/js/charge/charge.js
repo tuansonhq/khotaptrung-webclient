@@ -168,9 +168,6 @@ $(document).ready(function(){
 
     getTelecom();
 
-
-
-
     var formSubmit = $('#form-charge2');
     var url = formSubmit.attr('action');
     var btnSubmit = formSubmit.find(':submit');
@@ -189,7 +186,7 @@ $(document).ready(function(){
 
             },
             success: function (data) {
-
+                console.log(69999)
                 $('#openCharge').modal('hide');
 
                 if(data.status == 1){
@@ -267,22 +264,16 @@ $(document).ready(function(){
 
     });
     $('.btn-confirm-charge').on('click', function (m) {
-
         btnSubmit.text('Đang xử lý...');
         btnSubmit.prop('disabled', true);
         $('.btn-confirm-charge').text('Đang xử lý...');
         $('.btn-confirm-charge').prop('disabled', true);
         if (width < 992){
             postCharge()
-
         }else {
             postCharge()
         }
         return false;
-
-
-
-
 
     });
 
@@ -324,11 +315,6 @@ $(document).ready(function(){
 
             }
         });
-
-
-
-
-
     }
 
 

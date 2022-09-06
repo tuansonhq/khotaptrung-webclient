@@ -1,63 +1,127 @@
-@php
-    $result = array();
-    foreach ($data as $element) {
-        $result[date('m/y',strtotime($element->created_at))][] = $element;
-    }
-    $prev = null;
-@endphp
-@forelse($result as $key => $group)
-    @if(date('m-y',strtotime($key)) != $prev)
-        <div class="text-title-bold fw-500 c-mb-12">Tháng {{date('m',strtotime($key))}}</div>
-        @php
-            $prev = date('m-y',strtotime($key));
-        @endphp
-    @endif
+@if(empty($data->data))
+    <div class="table-responsive">
+        <table class="table table-hover table-custom-res">
+            <thead><tr><th>Thời gian</th><th>ID</th><th>MGD SMS</th><th>Dịch vụ</th><th>Trị giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+            <tbody>
+            @php
+                $prev = null;
+            @endphp
+            @if(isset($data) && count($data) > 0)
+                {{--                @dd($data)--}}
+                @foreach ($data as $item)
 
-    <ul class="trans-list">
-        @forelse($group as $item)
-            <li class="trans-item">
-                <a href="/dich-vu-da-mua-{{$item->id}}">
-                    <div class="text-left">
-                    <span class="t-body-2 title-color c-mb-0 text-limit limit-1 bread-word">
-                        @if(isset($item->itemconfig_ref))
-                            {{ $item->itemconfig_ref->title }} (#{{ $item->id }})
-                        @endif
-                    </span>
-                        <span class="t-body-1 link-color">
-                        {{date('d/m/Y - H:i', strtotime($item->created_at))}}
-                    </span>
-                    </div>
-                    <div class="text-right">
-                        <span class="fw-500 d-block c-mb-0">{{ number_format($item->price, 0, ',', '.') }}đ</span>
-                        @switch($item->status)
-                            @case(1)
-                            <span class="warning-color c-mb-0">Đang xử lý</span>
-                            @break
-                            @case(0)
-                            <span class="invalid-color c-mb-0">Đã hủy</span>
-                            @break
-                            @case(2)
-                            <span class="warning-color c-mb-0">Đang thực hiện</span>
-                            @break
-                            @case(3)
-                            <span class="invalid-color c-mb-0">Từ chối</span>
-                            @break
-                            @case(4)
-                            <span class="success-color c-mb-0">Hoàn thất</span>
-                            @break
-                            @case(5)
-                            <span class="invalid-color c-mb-0">Thất bại</span>
-                            @break
-                        @endswitch
-                    </div>
-                </a>
-            </li>
-        @empty
-        @endforelse
-    </ul>
-@empty
-@endforelse
+                    @php
+                        $curr = \App\Library\Helpers::formatDate($item->created_at);
+                    @endphp
+                    @if($curr != $prev)
+                        <tr>
+                            <td colspan="8"><b>Ngày {{$curr}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>
+                                @if(isset($item->id))
+                                    #{{ $item->id }}
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($item->tranid))
+                                    {{$item->tranid}}
+                                @endif
+                            </td>
+                            <td>
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
+                                @endif
+                            </td>
+                            {{--                        <td>{{ $item->title }}</td>--}}
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
+                            <td>
+                                @if($item->status == 1)
+                                    <span class="badge badge-warning">Đang chờ xử lý</span>
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">Đang thực hiện</span>
+                                @elseif($item->status == 3)
+                                    <span class="badge badge-danger">Từ chối</span>
+                                @elseif($item->status == 4)
+                                    <span class="badge badge-success">Hoàn tất</span>
+                                @elseif($item->status == 5)
+                                    <span class="badge badge-dark">Thất bại</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-danger">Đã hủy</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/dich-vu-da-mua-{{$item->id}}" class="badge badge-info show_chitiet">Chi tiết</a>
+                            </td>
+                        </tr>
+                        @php
+                            $prev = $curr;
+                        @endphp
+                    @else
+                        <tr>
+                            <td>{{ formatDateTime($item->created_at) }}</td>
+                            <td>
+                                @if(isset($item->id))
+                                    #{{ $item->id }}
+                                @endif
+                            </td>
+                            <td>
 
+                            </td>
+                            <td>
+                                @if(isset($item->itemconfig_ref))
+                                    {{ $item->itemconfig_ref->title }}
+                                @endif
+                            </td>
+                            {{--                        <td>{{ $item->title }}</td>--}}
+                            <td>{{ str_replace(',','.',number_format($item->price)) }} đ</td>
+                            <td>
+                                @if($item->status == 1)
+                                    <span class="badge badge-warning">Đang chờ xử lý</span>
+                                @elseif($item->status == 2)
+                                    <span class="badge badge-warning">Đang thực hiện</span>
+                                @elseif($item->status == 3)
+                                    <span class="badge badge-danger">Từ chối</span>
+                                @elseif($item->status == 4)
+                                    <span class="badge badge-success">Hoàn tất</span>
+                                @elseif($item->status == 5)
+                                    <span class="badge badge-dark">Thất bại</span>
+                                @elseif($item->status == 0)
+                                    <span class="badge badge-danger">Đã hủy</span>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/dich-vu-da-mua-{{$item->id}}" class="badge badge-info show_chitiet">Chi tiết</a>
+                            </td>
+                        </tr>
+                    @endif
+
+                @endforeach
+            @else
+
+            @endif
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12 left-right justify-content-end paginate__v1 paginate__v1_mobie frontend__panigate">
+
+        @if(isset($data))
+            @if($data->total()>1)
+                <div class="row marinautooo paginate__history paginate__history__fix justify-content-end">
+                    <div class="col-auto paginate__category__col">
+                        <div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+                            {{ $data->appends(request()->query())->links('pagination::bootstrap-4') }}
+                        </div>
+                    </div>
+                </div>
+            @endif
+        @endif
+    </div>
+
+@endif
 
 
 

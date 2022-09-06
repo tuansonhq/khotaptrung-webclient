@@ -55,7 +55,11 @@
                                 @elseif($item->status == 3)
                                     <span class="badge badge-danger">{{config('module.charge.status.3')}}</span>
                                 @elseif($item->status == 2)
-                                    <span class="badge badge-warning">{{config('module.charge.status.2')}}</span>
+                                    <span class="badge badge-warning" style="position: relative;padding-left: 24px;padding-right: 4px">
+                                    <div class="c_loading">
+                                        <div class="c_loading-child"></div>
+                                    </div>
+                                    {{config('module.charge.status.2')}}</span>
                                 @elseif($item->status == 999)
                                     <span class="badge badge-danger">{{config('module.charge.status.999')}}</span>
                                 @elseif($item->status == -999)

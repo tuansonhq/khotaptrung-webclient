@@ -29,16 +29,16 @@
                         <span class="fw-500 d-block c-mb-0">{{ number_format($item->real_received_price, 0, ',', '.') }}đ</span>
                         @switch($item->status)
                             @case(1)
-                            <span class="success-color c-mb-0">{{config('module.tranfer.status.1')}}</span>
+                            <span class="success-color c-mb-0">{{config('module.transfer.status.1')}}</span>
                             @break
                             @case(0)
-                            <span class="warning-color c-mb-0">{{config('module.tranfer.status.0')}}</span>
+                            <span class="warning-color c-mb-0">{{config('module.transfer.status.0')}}</span>
                             @break
                             @case(3)
-                            <span class="invalid-color c-mb-0">{{config('module.tranfer.status.3')}}</span>
+                            <span class="invalid-color c-mb-0">{{config('module.transfer.status.3')}}</span>
                             @break
                             @case(2)
-                            <span class="warning-color c-mb-0">{{config('module.tranfer.status.2')}}</span>
+                            <span class="warning-color c-mb-0">{{config('module.transfer.status.2')}}</span>
                             @break
                         @endswitch
                     </div>

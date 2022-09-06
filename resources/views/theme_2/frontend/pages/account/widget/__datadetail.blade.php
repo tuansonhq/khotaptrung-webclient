@@ -180,7 +180,7 @@
                 </div>
 
                 <div class="card account-detail-info js_sticky" data-top="140">
-                    <div class="card-body c-p-16 mx-n3 mx-lg-0">
+                    <div class="card-body c-pY-16 c-px-0 mx-n3 mx-lg-0">
                         <div class="section-title title-color fz-lg-18 lh-lg-24">{{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</div>
                         <div class="text-title fw-700 c-mb-6 d-none d-lg-block">Mã số: #{{ $data->randId }}</div>
                         <span class="d-block d-lg-none link-color c-mb-8">
@@ -292,7 +292,7 @@
                                     <button type="button" class="btn primary btn-muangay">Mua ngay</button>
                                 @endif
                             @else
-                                <button type="button" class="btn primary" onclick="openLoginModal()">Mua ngay</button>
+                                <a href="/login" class="btn primary">Mua ngay</a>
                             @endif
 
 
@@ -363,7 +363,7 @@
                             <button class="btn primary js-step" data-target="#step2">Mua Ngay</button>
                         @endif
                     @else
-                        <button class="btn primary" onclick="openLoginModal()">Mua Ngay</button>
+                        <a href="/login" class="btn primary" >Mua Ngay</a>
                     @endif
 
                 </div>
@@ -631,7 +631,7 @@
                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
                 <button type="button" class="close" data-dismiss="modal"></button>
             </div>
-            <div class="modal-body pl-0 pr-0 c-pt-24 c-pb-24">
+            <div class="modal-body c-px-0 c-py-24">
                 <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                     Thông tin mua Acc
                 </div>

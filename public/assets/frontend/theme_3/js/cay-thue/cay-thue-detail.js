@@ -19,7 +19,7 @@ $(document).ready(function (e) {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -31,13 +31,13 @@ $(document).ready(function (e) {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -211,23 +211,6 @@ $(document).ready(function (e) {
         $('#successModal').modal('show');
     });
 
-    function handleToggleContent(selector){
-        $('.js-toggle-content .view-less').toggle();
-        $('.js-toggle-content .view-more').toggle();
-        let elm = $(selector);
-        elm.toggleClass('content-video-in-add');
-        if ($('.view-less').is(":visible")) {
-            let initialHeight = elm.css('max-height', 'initial').height();
-            elm.animate({maxHeight: initialHeight + 16},250)
-        } else {
-            elm.animate({maxHeight: 280},250)
-        }
-    }
-
-    $('.js-toggle-content').click(function () {
-        handleToggleContent('.content-video-in');
-    });
-
     $('body').on('click','.close-modal-default',function(e){
         e.preventDefault();
         $('#successModal').modal('hide');
@@ -238,7 +221,7 @@ $(document).ready(function (e) {
         let is_ok = 1;
         let html = '';
 
-        let required = $('input[required]');
+        let required = $('#formDataService input[required]');
         if (required.length){
             required.each(function () {
                 $(this).toggleClass('invalid',!$(this).val().trim());
@@ -248,10 +231,11 @@ $(document).ready(function (e) {
                     html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Bạn chưa nhập ${text}</small></div></div>`
                     $(this).parent().next().html(html)
                 }else {
-                    $(this).parent().next().text('')
+                    $(this).parent().next().text('');
                 }
             });
         }
+
         if ($('.allgame[type=checkbox]').length){
             if (checkboxRequired('input.allgame[type=checkbox]')){
                 html = `<div class="row marginauto order-errors"><div class="col-md-12 left-right default-span"><small>Phải chọn ít nhất một gói dịch vụ</small></div></div>`;
@@ -288,5 +272,4 @@ $(document).ready(function (e) {
         $('#openOrder').modal('hide');
         $('#successModal').modal('show');
     })
-
 })

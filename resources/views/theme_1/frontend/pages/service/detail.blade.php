@@ -7,6 +7,26 @@
 @endsection
 @section('content')
 
+    @if($data == null)
+        <div class="item_buy">
+            <div class="container pt-3" style="padding-bottom: 600px">
+                <div class="row pb-3 pt-3">
+                    <div class="col-md-12 text-center">
+                        <span style="color: red;font-size: 16px;">
+                            @if(isset($message))
+                                {{ $message }}
+                            @else
+                                Hiện tại không có dữ liệu nào phù hợp với yêu cầu của bạn! Hệ thống cập nhật dịch vụ thường xuyên bạn vui lòng theo dõi web trong thời gian tới !
+                            @endif
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    @else
+
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/rslider.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/rank/js/select-chosen.js" type="text/javascript"></script>
     <link href="/assets/frontend/{{theme('')->theme_key}}/rank/css/style.css" rel="stylesheet" type="text/css"/>
@@ -314,12 +334,6 @@
                     @endif
                 </div>
 
-{{--                <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">--}}
-{{--                    <div class="modal-dialog" role="document">--}}
-{{--                        <div class="modal-content modal-content__data">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <div class="modal fade" id="homealert" role="dialog" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
@@ -405,8 +419,6 @@
                                         <a class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold" href="/login?return_url=/dich-vu/{{ $data->slug }}">Đăng nhập</a>
                                     @endif
                                 </div>
-
-
 
                                 <button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
 
@@ -751,8 +763,16 @@
             else {
                 var s_price = data["price"];
                 var s_discount = data["discount"];
+                discount = s_discount[0];
+                for (let i = 0; i< s_price.length; i++){
 
-                discount = s_discount[server];
+                    if (i > 0){
+                        if (price >= s_price[i]){
+                            discount = s_discount[i];
+                        }
+                    }
+                }
+                // discount = s_discount;
                 total = price * discount;
             }
 
@@ -786,5 +806,8 @@
         }
     </script>
     @endif
+
+    @endif
+
 @endsection
 

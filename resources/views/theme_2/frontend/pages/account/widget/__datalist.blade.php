@@ -76,7 +76,7 @@
                                 <h2 class="modal-title center">Xác nhận thanh toán</h2>
                                 <button type="button" class="close" data-dismiss="modal"></button>
                             </div>
-                            <div class="modal-body c-p-0">
+                            <div class="modal-body c-px-0 c-pb-0 c-pt-24">
                                 <div class="dialog--content__title fw-700 fz-13 c-mb-12 text-title-theme">
                                     Thông tin mua Acc
                                 </div>
@@ -167,10 +167,27 @@
                                         <div class="card--attr__value fz-13 fw-500"><a href="javascript:void(0)" class="c-text-primary">9.900 đ</a></div>
                                     </div>
                                 </div>
+                                <div class="text-invalid">
+                                    @if(App\Library\AuthCustom::check())
+                                        @if(App\Library\AuthCustom::user()->balance < $item->price)
+                                            Bạn không đủ số dư để mua tài khoản này. Bạn hãy click vào nút nạp thẻ để nạp thêm và mua tài khoản.
+                                        @endif
+                                    @else
+                                        <small>Bạn phải đăng nhập mới có thể mua tài khoản tự động.</small>
+                                    @endif
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn primary">Xác nhận</button>
+                                @if(App\Library\AuthCustom::check())
 
+                                    @if(App\Library\AuthCustom::user()->balance >= $item->price)
+                                        <button class="btn primary" type="submit">Xác nhận</button>
+                                    @else
+                                        <button class="btn primary" type="button" data-toggle="modal" data-target="#rechargeModal" data-bs-dismiss="modal">Nạp tiền</button>
+                                    @endif
+                                @else
+                                    <a class="btn primary" href="/login">Đăng nhập</a>
+                                @endif
                             </div>
                         </form>
                     </div>
