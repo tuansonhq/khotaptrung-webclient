@@ -28,7 +28,7 @@
                             <div class="item-product item-other-nick mt-fix-16">
                                 <a href="/acc/{{ $item->randId }}">
                                     <div class="item-product__box-img">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -81,7 +81,7 @@
                                 <div class="swiper-slide">
                                     <div class="item-product__box-img">
                                         <a href="/acc/{{ $item->randId }}">
-                                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                         </a>
                                     </div>
                                     <div class="item-product__box-content">
@@ -127,7 +127,7 @@
 
                     </div>
                 @endif
-                <div class="view-more mt-2 d-lg-block d-none">
+                <div class="mt-2 d-lg-block d-none">
                     <a href="/mua-acc/{{ isset($items->custom->slug) && $items->custom->slug != '' ? $items->custom->slug :  $items->slug }}" class="global__link__default">Xem thêm<i class="__icon__default --sm__default --link__default ml-1" style="--path : url(/assets/frontend/theme_3/image/svg/xemthem.svg)"></i></a>
                 </div>
             </div>

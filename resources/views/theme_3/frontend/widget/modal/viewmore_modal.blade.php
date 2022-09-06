@@ -1,6 +1,6 @@
-<div class="modal fade login show order-modal" id="viewMore" aria-modal="true">
+<div class="modal fade login show c_order-modal" id="viewMore" aria-modal="true">
 
-    <div class="modal-dialog step-tab-panel modal-lg modal-dialog-centered login animated">
+    <div class="modal-dialog step-tab-panel modal-xl modal-dialog-centered login animated">
         <!--        <div class="image-login"></div>-->
         <div class="modal-content">
             <div class="modal-header p-0" style="border-bottom: 0">
@@ -15,7 +15,7 @@
             </div>
 
             <div class="modal-body modal-viewmore-body" id="detailContent">
-                
+
             </div>
         </div>
     </div>

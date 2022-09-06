@@ -160,8 +160,14 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
         const urlSearchParams = new URLSearchParams(window.location.search);
         const params = Object.fromEntries(urlSearchParams.entries());
         Object.keys(params).forEach(key => {
-            query[key] = params[key];
-            let input = $(`#data_sort [name=${key}]`);
+            if ((key.indexOf('select_data')) > -1) {
+                if (key === 'select_data_0'){
+                    query['select_data'] = params[key];
+                } else {
+                    query['select_data'] += "|" + params[key];
+                }
+            }
+            let input = $(`#data_sort [data-query=${key}]`);
             input.val(params[key]);
         });
         $('#data_sort select').niceSelect('update');
@@ -184,10 +190,16 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                     return;
                 }
                 $("#account_data").html(res.data);
-            } else {
+
+                $('.nick_total').html('');
+                $('.nick_total').html('( '+ res.nick_total +' nick )');
+
+            }else {
                 let html = '';
                 html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + res.message + '</span></div></div>';
                 $("#account_data").html(html);
+                $('.nick_total').html('');
+                $('.nick_total').html('( '+ 0 +' nick )');
             }
         },
         error: function (data) {

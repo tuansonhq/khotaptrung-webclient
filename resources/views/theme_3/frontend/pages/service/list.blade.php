@@ -13,8 +13,8 @@
     {{--  Header mobile  --}}
 
     <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            <span class="card--back box-account-mobile_open">
+                <a href="/"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt=""></a>
             </span>
         <p>Trang chủ</p>
     </div>

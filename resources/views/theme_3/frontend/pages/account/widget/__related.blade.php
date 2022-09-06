@@ -26,9 +26,9 @@
                                             <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail">
                                                     @if(isset($item->image))
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
-                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                    <img onerror="imgError(this)" class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">

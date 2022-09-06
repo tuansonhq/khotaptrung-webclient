@@ -32,7 +32,7 @@
                                                                 <div class="swiper-slide">
                                                                     <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
 {{--                                                                        data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false"--}}
-                                                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
                                                             @endforeach
@@ -57,7 +57,7 @@
                                                                     <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
                                                                         <div class="row marginauto">
                                                                             <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
-                                                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
+                                                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
                                                                             </div>
                                                                         </div>
                                                                     </a>
@@ -310,7 +310,7 @@
                                     @foreach(explode('|',$data->image_extension) as $val)
                                         <div class="swiper-slide">
                                             <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
+                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                             </a>
                                         </div>
                                     @endforeach

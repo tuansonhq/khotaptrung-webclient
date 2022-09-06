@@ -23,20 +23,11 @@ $(document).ready(function () {
     // });
     $(document).on('click','.prepend-nick',function () {
         let target_name = $(this).data('close');
-        let target_simple = $(`#data_sort [name=${target_name}]`);
-        let target = [];
         if (target_name === 'started_at'){
             $('[name=started_at],[name=ended_at]').val('');
-        } else  {
-            console.log(target_simple)
-            Array.from(target_simple).forEach(function (elm) {
-                if (!!$(elm).val()){
-                    target.push(elm);
-                }
-            });
-
-            target[$(this).index()].value = '';
         }
+        let target = $(`[name=${target_name}]`);
+        target.val('');
         loadDataNick();
         loadDataTableNick();
         $('#modal-filter').modal('hide');

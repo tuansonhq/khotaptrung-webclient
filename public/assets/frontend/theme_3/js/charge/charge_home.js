@@ -198,7 +198,7 @@ $(document).ready(function(){
                 $('#openCharge').modal('hide');
 
                 if(data.status == 1){
-                    $('#successChargeModal').modal('show');
+                    $('#successChargeModalHome').modal('show');
                     $('#success_charge').html(data.message)
 
                 }

@@ -22,8 +22,8 @@
         </ul>
         {{--content--}}
         <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            <span class="card--back box-account-mobile_open" >
+                <a href="/"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt=""></a>
             </span>
             <h4>Tin tức</h4>
         </div>
@@ -39,7 +39,7 @@
                             <div class="col-12 col-lg-8 pr-3 pl-0 mb-3 mb-lg-0">
                                 <div class="article--thumbnail">
                                     <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                        <img src="{{\App\Library\MediaHelpers::media($slide->image)}}" alt="" class="article--thumbnail__image">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($slide->image)}}" alt="" class="article--thumbnail__image">
                                     </a>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="col-4 col-lg-4 p-0">
                                     <div class="article--thumbnail">
                                         <a href="/tin-tuc/{{ $item->slug }}">
-                                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
+                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="" class="article--thumbnail__image">
                                         </a>
                                     </div>
                                 </div>

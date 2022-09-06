@@ -39,7 +39,7 @@
     @if (!\App\Library\AuthCustom::check())
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
     @endif
-
+    @yield('seo_head')
 {{--    import css --}}
     @yield('styles')
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
@@ -91,6 +91,7 @@
 @include('frontend.widget.modal.viewmore_modal')
 
 @include('frontend.widget.modal.__success_charge')
+@include('frontend.widget.modal.__success_charge_home')
 @include('frontend.widget.modal.__reject_charge')
 
 <!-- end modal charge -->
@@ -198,7 +199,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
