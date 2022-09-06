@@ -28,6 +28,8 @@
                                 <div class="item-product__box-img item-news-img">
                                     @if(isset($val->image))
                                     <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val->image)}}" alt="">
+                                    @else
+                                    <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/theme_3/image/images_1/no-image.png" alt="No-image">
                                     @endif
                                 </div>
                                 <div class="item-product__box-content item-news-content">
