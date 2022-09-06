@@ -28,53 +28,9 @@
             <h4>Tin tức</h4>
         </div>
         {{--       Article Slider  --}}
-        <div class="card --custom mb-lg-3 px-3">
-            <div class="swiper article--slider">
-                <div class="swiper-wrapper">
-                    @if(isset($data) )
-                        @foreach($data as $key => $slide)
-                            @if($key <= 3)
-                    <div class="article swiper-slide">
-                        <div class="row py-3 m-0">
-                            <div class="col-12 col-lg-8 pr-3 pl-0 mb-3 mb-lg-0">
-                                <div class="article--thumbnail">
-                                    <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($slide->image)}}" alt="" class="article--thumbnail__image">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-4 p-0 px-lg-0">
-                                <a href="/tin-tuc/{{ $slide->slug }}" class="article--link">
-                                    <h3 class="article--title mb-2 mb-lg-4 p-lg-2">
-                                        {{ $slide->title }}
-                                    </h3>
-                                </a>
-                                <p class="article--description mb-3 mb-lg-0">
-                                    {!! $slide->description !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                            @endif
-                        @endforeach
-                    @else
-                        <div class="row pb-3 pt-3">
-                            <div class="col-md-12 text-center">
-                                <span style="color: red;font-size: 16px;">Không có dữ liệu !</span>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-                <div class="row m-0 pagination--layout h-0">
-                    <div class="col -12 col-lg-8 px-3">
-                    </div>
-                    <div class="col-12 col-lg-4 p-0 pb-3 pr-lg-3">
-                        <div class="swiper-pagination --custom  py-3 py-lg-0"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('frontend.pages.article.widget.__slider__bai__viet')
         {{--End--}}
+
 
         <div class="row flex-column-reverse flex-lg-row mx-0" id="card--body__news">
             <div class="col-lg-8 px-0 pr-lg-3 mt-1 mt-lg-0" id="list-article">
