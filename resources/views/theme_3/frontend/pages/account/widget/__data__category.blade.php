@@ -10,7 +10,7 @@
                                 <div class="row marginauto list-item-nick-hover-row">
                                     <div class="col-md-12 left-right default-overlay-nick-ct">
                                         @if(isset($item->image))
-                                            <img class="lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                            <img onerror="imgError(this)" class="lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @endif
                                     </div>
                                     <div class="col-md-12 left-right list-item-nick">

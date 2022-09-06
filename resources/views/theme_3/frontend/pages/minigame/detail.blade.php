@@ -46,7 +46,7 @@
                             @endif
                         </div>
                         <div class="rotation-player">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg" alt="">
+                            <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/security-user 1.svg" alt="">
                             @if(isset($result->group->params->fake_num_play))
                                 <p><span id="userCount">
                                     {{ str_replace(',','.',number_format($result->group->params->fake_num_play)) }}</span> người đang chơi
@@ -55,7 +55,7 @@
                         </div>
                         @if(isset($currentPlayList) && $currentPlayList != '')
                             <div class="rotation-notify">
-                                <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
+                                <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
                                 <marquee class="rotation-marquee">
                                     <div class="rotation-marquee-item">
                                         {!! $currentPlayList !!}
@@ -95,10 +95,10 @@
                             <div class="rotation">
                                 <div class="item_spin ">
                                     <div class="rotation-button ani-zoom " id="start-played">
-                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
+                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="{{$result->group->title}}">
                                     </div>
 
-                                    <img style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
+                                    <img onerror="imgError(this)" style="width: 100%" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" alt="{{$result->group->title}}" id="rotate-play">
                                 </div>
                             </div>
                             @break
@@ -108,8 +108,8 @@
                                     @for ($i = 0; $i < count($result->group->items); $i++)
                                         <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                             <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                                <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                                <img data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                <img onerror="imgError(this)" class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                <img onerror="imgError(this)" data-inner="inner{{$i}}" class="flip-box-front inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                             </div>
                                         </div>
                                     @endfor
@@ -118,8 +118,8 @@
                                     @for ($i = 0; $i < count($result->group->items); $i++)
                                         <div class='flipimg col-4 col-sm-4 col-lg-4 flip-box'>
                                             <div data-inner=" inner{{$i}}" class="item_flip_inner">
-                                                <img class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
-                                                <img data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
+                                                <img onerror="imgError(this)" class="imgnen" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}">
+                                                <img onerror="imgError(this)" data-inner="inner{{$i}}" class="flip-box-front img_remove inner{{$i}} item_flip_inner_image" src="{{ \App\Library\MediaHelpers::media($result->group->params->image_static) }}">
                                             </div>
                                         </div>
                                     @endfor
@@ -155,37 +155,37 @@
                                 <table id="squaredesktop" class="square">
                                     <tr>
                                         <td></td>
-                                        <td><div  data-num="1" class="gift1 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="2" class="gift2 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="3" class="gift3 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="1" class="gift1 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="2" class="gift2 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="3" class="gift3 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td><div  data-num="12" class="gift12 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="12" class="gift12 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3"></td>
-                                        <td><div  data-num="4" class="gift4 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="4" class="gift4 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
-                                        <td><div data-num="11" class="gift11 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div data-num="11" class="gift11 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3">
                                             <div class="outer-btn text-center">
                                                 <div class="play btn m-btn m-btn--custom m-btn--icon m-btn--pill" style="" id="start-played">
-                                                    <img src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
+                                                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="" style="">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><div  data-num="5" class="gift5 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="5" class="gift5 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
-                                        <td><div  data-num="10" class="gift10 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="10" class="gift10 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td colspan="3"></td>
-                                        <td><div  data-num="6" class="gift6 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="6" class="gift6 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><div  data-num="9" class="gift9 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="8" class="gift8 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
-                                        <td><div  data-num="7" class="gift7 box"><img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="9" class="gift9 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="8" class="gift8 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
+                                        <td><div  data-num="7" class="gift7 box"><img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}"/></div></td>
                                         <td></td>
                                     </tr>
                                 </table>
@@ -198,11 +198,11 @@
                             @case('gieoque')
                             <div class="rotation">
                                 <div class="rotation-button rotation-button-quanhuy" id="start-played">
-                                    <img class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
+                                    <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($result->group->image_icon)}}" alt="">
                                 </div>
                                 <img src="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="lac_lixi" style="width: 100%;max-width: 100%;opacity: 1;background: url({{\App\Library\MediaHelpers::media($result->group->params->image_background)}}) no-repeat center center;background-size: contain;" alt="">
-                                <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
-                                <input type="hidden" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
+                                <input type="hidden" onerror="imgError(this)" value="{{\App\Library\MediaHelpers::media($result->group->params->image_static)}}" id="hdImageLD">
+                                <input type="hidden" onerror="imgError(this)" value="{{\App\Library\MediaHelpers::media($result->group->params->image_animation)}}" id="hdImageDapLu">
                             </div>
                             @break
                         @endswitch
@@ -295,7 +295,7 @@
                             </div>
                         </div>
                         <div class="leaderboard-header">
-                            <img src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
+                            <img onerror="imgError(this)" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/top-leaderboard.png" alt="">
                             <p>Top quay thưởng</p>
                         </div>
                         <div class="leaderboard-type row no-gutters">
@@ -973,7 +973,7 @@
                                     <a href="{{route('getIndex',[$item->slug])}}">
                                         <div class="item-product__box-img">
 
-                                            <img src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
+                                            <img onerror="imgError(this)" src="{{ \App\Library\MediaHelpers::media($item->image) }}" alt="{{$item->title}}">
 
                                         </div>
                                         <div class="item-product__box-content">

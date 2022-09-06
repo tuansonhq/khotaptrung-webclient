@@ -15,12 +15,12 @@
                                             <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($data->params->thumb_default) && isset($data->params))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($data->params->thumb_default)}}" alt="{{ $item->randId }}" >
                                                     @else
                                                         @if(isset($item->image))
-                                                            <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                         @else
-                                                            <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                            <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                         @endif
                                                     @endif
                                                 </div>
@@ -257,9 +257,9 @@
                                             <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct nick-item-cover-overlay">
                                                     @if(isset($item->image))
-                                                        <img class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
-                                                        <img class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                        <img onerror="imgError(this)" class="img-list-nick-category lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">

@@ -85,7 +85,7 @@
                                                 <div class="col-12 col-lg-4 pl-0 pr-fix-10">
                                                     <div class="row marginauto banner-container-ct p-0">
                                                         <div class="col-md-12 text-left left-right">
-                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
+                                                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,11 +177,14 @@
                                                                                     <div class="label--checkbox__name">
                                                                                         {{ $name }}
                                                                                     </div>
-                                                                                    <span
-                                                                                        class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
-                                                                                        data-tippy-content="{{ $name }}">
-                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
-                                                                                    </span>
+                                                                                    @if(substr($name,50))
+                                                                                        <span
+                                                                                            class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
+                                                                                            data-tippy-content="{{ $name }}">
+                                                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
+                                                                                        </span>
+
+                                                                                    @endif
                                                                                 </span>
                                                                                                             <input
                                                                                                                 id="{{$name . $k_name}}"
