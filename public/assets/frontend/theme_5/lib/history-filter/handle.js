@@ -55,7 +55,6 @@ function loadData(elm_form){
         if (!i) {
             url_return = url +`?${sort_data[i][0]}=${sort_data[i][1]}`;
         } else {
-
             /*Nếu mà nó trùng name nhau thì giá trị sẽ ngăn cách nhau bằng | chứ không thêm key mới vào url*/
             if (sort_data[i][0] === sort_data[i - 1][0]) {
                 url_return += `|${sort_data[i][1]}`;
