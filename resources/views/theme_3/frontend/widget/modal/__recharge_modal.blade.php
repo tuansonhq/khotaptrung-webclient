@@ -46,7 +46,7 @@
                                     <div class="col-md-12 d-flex ">
                                         <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
                                         <div class="captcha captcha_1">
-                                            <span class="reload">
+                                            <span class="reload fix_capcha">
                                                 {!! captcha_img('flat') !!}
                                             </span>
                                         </div>

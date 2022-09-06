@@ -54,12 +54,12 @@ $(document).ready(function () {
                     slidesPerView: 1.8,
                 },
                 768: {
-                    slidesPerView: 2.4,
+                    slidesPerView: 2.1,
                 },
 
 
                 480: {
-                    slidesPerView: 1.8,
+                    slidesPerView: 1.5,
 
                 }
             }
