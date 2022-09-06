@@ -516,10 +516,13 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-title-ct show-detail-service-ct">
-                                <div class="col-md-12 text-left left-right">
+                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
+                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
+                                <div
+                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
                                     {!! @$data->description !!}
+                                </div>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
                                 </div>
                             </div>
                         </div>
