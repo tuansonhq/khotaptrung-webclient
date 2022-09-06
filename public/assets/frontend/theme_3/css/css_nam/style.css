@@ -2742,7 +2742,7 @@ header nav.heading .header-container{
     border: 3px solid #fff;
     border-radius: 50px;
     padding: 0.8rem 2rem;
-    font: 24px "Margarine", sans-serif;
+    font-size: 24px;
     outline: none;
     cursor: pointer;
     position: relative;
@@ -2935,4 +2935,17 @@ header nav.heading .header-container{
 .y2_content-item .y2_item:hover .y2_caption {
     opacity: 1;
     bottom: 10px;
+}
+
+.fix_capcha{
+    position: relative;
+}
+.fix_capcha img{
+    position: absolute;
+    top: 2px;
+    left: 12px;
+}
+
+.fix_header_acount{
+    height: 34px;
 }

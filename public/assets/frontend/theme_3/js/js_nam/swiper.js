@@ -68,7 +68,7 @@ $(document).ready(function(){
 
 
             480: {
-                slidesPerView: 1.5,
+                slidesPerView: 1.3,
 
             }
         }
@@ -175,12 +175,12 @@ $(document).ready(function(){
                 slidesPerView: 1.8,
             },
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
 
 
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
 
             }
         }
@@ -211,7 +211,9 @@ $(document).ready(function(){
             992: {
                 slidesPerView: 3,
             },
-
+            768: {
+                slidesPerView: 2.1,
+            },
 
             480: {
                 slidesPerView: 1.5,
@@ -254,10 +256,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -297,10 +299,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -340,10 +342,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -383,10 +385,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -426,10 +428,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -469,10 +471,10 @@ $(document).ready(function(){
             },
 
             768: {
-                slidesPerView: 2.4,
+                slidesPerView: 2.1,
             },
             480: {
-                slidesPerView: 1.8,
+                slidesPerView: 1.5,
                 spaceBetween: 6,
             }
         }
@@ -549,7 +551,9 @@ $(document).ready(function(){
                 slidesPerView: 3.2,
             },
 
-
+            768: {
+                slidesPerView: 2.1,
+            },
             480: {
                 slidesPerView: 1.5,
 

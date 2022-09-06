@@ -1164,7 +1164,9 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'category_list_random';
             $dataSend['module'] = 'acc_category';
-
+            if (theme('')->theme_key == "theme_3"){
+                $dataSend['limit_item'] =  4;
+            }
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 
