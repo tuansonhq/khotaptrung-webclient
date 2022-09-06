@@ -168,8 +168,12 @@
 <script>
     function showDiv() {
         setTimeout(function () {
-            $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 10000);
-        }, 10000);
+            $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 6000);
+            setTimeout(function () {
+                $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 6000);
+            },6000)
+        }, 6000);
+
     }
     showDiv();
 
