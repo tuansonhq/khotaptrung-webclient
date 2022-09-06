@@ -30,7 +30,7 @@
                     <div class="col-md-6 col-6 modal-footer-success-col-left-ct pr-fix-4 pl-0">
                         <div class="row marginauto modal-footer-success-row-not-ct">
                             <div class="col-md-12 left-right">
-                                <a href="/nap-the" class="button-not-bg-ct" style="display: flex;justify-content: center"><span>Trang chủ</span></a>
+                                <a href="/lich-su-nap-the" class="button-not-bg-ct" style="display: flex;justify-content: center"><span>Lịch sử</span></a>
                             </div>
 
                         </div>

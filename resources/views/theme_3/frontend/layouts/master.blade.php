@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/lib/select-nice/select-nice.css">
 
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/style.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/style.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/lib_bootstrap.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
@@ -39,13 +39,11 @@
     @if (!\App\Library\AuthCustom::check())
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/login_modal.css">
     @endif
-
+    @yield('seo_head')
 {{--    import css --}}
     @yield('styles')
-
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/jquery/jquery.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bootstrap/bootstrap.min.js"></script>
-
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/lazyload/lazyloadGen.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/toastr/toastr.min.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/sweetalert2/sw2.js"></script>
@@ -54,11 +52,9 @@
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/popper/tippy-bundle.umd.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/steps/jquery-steps.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/lib/easeJquery/easing.js"></script>
-    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/account_info.js?v={{time()}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
-
     @if(setting('sys_google_tag_manager_head') != '')
-
         @foreach(explode('|',setting('sys_google_tag_manager_head')) as $tag => $sys)
             @if($tag == 0)
             <!-- Google Tag Manager -->
@@ -79,7 +75,6 @@
                 <!-- End Hubjs Tag Manager -->
             @endif
         @endforeach
-
     @endif
 </head>
 <body>
@@ -89,116 +84,56 @@
                       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 @endif
-
 <!-- Modal nạp tiền -->
+@include('frontend.widget.modal.__recharge_modal')
 
-<div class="modal fade show" id="rechargeModal" aria-modal="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered animated">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">Nạp tiền</div>
-                <button type="button" class="close" data-dismiss="modal"></button>
-            </div>
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" data-toggle="tab" href="#tab-modal-recharge" role="tab"
-                       aria-selected="true">Nạp thẻ</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" data-toggle="tab" href="#tab-modal-atm" role="tab"
-                       aria-selected="false">ATM</a>
-                </li>
-                {{--<li class="nav-item" role="presentation">
-                    <a class="nav-link" data-toggle="tab" href="#tab-modal-wallet" role="tab"
-                       aria-selected="false">Ví điện tử</a>
-                </li>--}}
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade active show" id="tab-modal-recharge" role="tabpanel">
-                    <form action="{{route('postTelecomDepositAuto')}}" id="modal-form-charge">
-                        @csrf
-                    <div class="modal-body">
-                            <div class="t-sub-2 mb-2">Nhà cung cấp</div>
-                            <select name="type" class="mb-fix-12" id="modal-telecom">
-                                <!-- JS PASTE CODE HERE -->
-                            </select>
-
-                            <div class="t-sub-2 mb-2">Chọn mệnh giá</div>
-                            <div class="list-card-deno" id="modal-amounts">
-                                <!-- JS PASTE CODE HERE -->
-                            </div>
-
-                            <div class="t-sub-2 mb-2">Mã số thẻ</div>
-                            <input autocomplete="off" class="input-form w-100 mb-fix-12" name="pin" type="text" placeholder="Nhập mã số thẻ" required="">
-
-                            <div class="t-sub-2 mb-2">Số seri</div>
-                            <input autocomplete="off" class="input-form w-100 mb-fix-12" name="serial" type="text" placeholder="Nhập số seri thẻ" required="">
-
-                            <div class="default-form-group">
-                                <label class="text-form">Mã bảo vệ</label>
-                                <div class="row p-0">
-                                    <div class="col-md-12 d-flex ">
-                                        <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
-                                        <div class="captcha captcha_1">
-                                            <span class="reload">
-                                                {!! captcha_img('flat') !!}
-                                            </span>
-                                        </div>
-                                        <button class="refresh-captcha" id="modal-reload-captcha" type="button">
-                                            <img src="/assets/frontend/{{theme('')->theme_key}}/img/captcha_refresh.png" alt="">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="text-invalid message-form mt-2"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn -primary btn-big submit-modal-form-charge">Nạp tiền</button>
-                    </div>
-                    </form>
-                </div>
-                <div class="tab-pane fade" id="tab-modal-atm" role="tabpanel">
-                    <div class="modal-body">
-                        <form action="">
-                            <div class="box-charge-card">
-                                {{--                                            <div class="atm-card-title mb-fix-20">--}}
-                                {{--                                                <span>Để hoàn tất đơn nạp, bạn vui lòng chuyển khoản theo cú pháp sau:</span>--}}
-                                {{--                                            </div>--}}
-                                <div class="dialog--content mb-fix-20">
-                                    <div class="card--gray">
-                                        @if (setting('sys_tranfer_content') != "")
-                                            {!! setting('sys_tranfer_content') !!}
-                                        @endif
-                                        <div class="card--attr transfer-title">
-                                            <div class="card--attr__name">
-                                                Nội dung chuyển tiền
-                                            </div>
-                                            <div class="card--attr__value d-flex">
-                                                <div class="card__info transfer-code mr-3" id=""></div>
-
-                                                <div class="icon--coppy js-copy-text" aria-describedby="tippy-7" >
-                                                    <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/copy-black.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                {{--<div class="tab-pane fade" id="tab-modal-wallet" role="tabpanel">
-
-                </div>--}}
-            </div>
-        </div>
-    </div>
-</div>
+{{-- Modal xem thêm --}}
+@include('frontend.widget.modal.viewmore_modal')
 
 @include('frontend.widget.modal.__success_charge')
-<!-- end modal charge -->
+@include('frontend.widget.modal.__success_charge_home')
+@include('frontend.widget.modal.__reject_charge')
 
+<!-- end modal charge -->
+{{--<a class="go-to-top">--}}
+{{--    <img src="/assets/frontend/theme_3/image/gototop.png" alt="" style=" ">--}}
+{{--</a>--}}
+<div class="c_scroll-top go-to-top">
+    <div class="c_circle">
+        <img src="/assets/frontend/theme_3/image/c_back-to-top.svg" alt="" style=" ">
+    </div>
+{{--    <div class="c_text">--}}
+{{--        <p style="margin-top: 4px">Quay về--}}
+{{--        </p>--}}
+{{--        <p>đầu trang</p>--}}
+{{--    </div>--}}
+</div>
+<script>
+    $(document).ready(function (e) {
+
+        $('.go-to-top').click(function () {
+            $('html, body').animate({scrollTop: 0}, 800);
+        });
+
+        tippy('#item-about-khuyenmai', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+
+        tippy('#item-about-thongbao', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+
+        tippy('#item-about-sukienhot', {
+            // default
+            content: "Sắp ra mắt.",
+            arrow: true,
+        });
+    })
+</script>
 
 <div class="modal-loader-container">
     <div class="modal-loader-content">
@@ -207,13 +142,9 @@
 </div>
 @include('frontend.layouts.includes.header')
 <div class="layout">
-
-
     <div class="content" style="">
         @yield('content')
     </div>
-
-
 </div>
 @if(Request::is('/'))
     <style>
@@ -228,9 +159,7 @@
 @endif
 @include('frontend.widget.__theme')
 <!-- Messenger Plugin chat Code -->
-<!-- Messenger Plugin chat Code -->
 <div id="fb-root" style="    z-index: 666;"></div>
-
 <!-- Your Plugin chat code -->
 <div id="fb-customer-chat" class="fb-customerchat">
 </div>
@@ -258,6 +187,8 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+
+
 </script>
 
 @if (!\App\Library\AuthCustom::check())
@@ -268,8 +199,9 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/OwlCarousel2/OwlCarousel2.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/i18n/vi.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/bootstrap-datetimepicker.js"></script>

@@ -307,7 +307,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/custom/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/bottom-sheet/main.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/history-filter/handle.js"></script>
-<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-charge.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/transfer/transfer.js?v={{time()}}"></script>
 
 @yield('scripts')

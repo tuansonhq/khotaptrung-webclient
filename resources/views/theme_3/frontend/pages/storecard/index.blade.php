@@ -26,8 +26,7 @@
             <div class="row" id="screen--first">
                 <div class="col-12 col-lg-12 col-xl-8 px-lg-3 section--type__card">
                     <div class="card--mobile__title">
-                        <a class="card--back" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()"
-                           @else onclick="Redirect()" @endif>
+                        <a class="card--back" href="/">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
                         </a>
                         <h4>Mua thẻ</h4>
@@ -174,33 +173,31 @@
                                     </button>
                                 @else
                                     <button type="button" class="btn -primary btn-big js_step"
-                                            onclick="openLoginModal();" style="margin-top: 16px;">Chọn mua
+                                            onclick="openLoginModal();" style="margin-top: 16px;" id="btn-confirm">Chọn mua
                                     </button>
                                 @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-12 mt-fix-20">
-                    <div class="card --custom">
-                        <div class="card--body">
-                            <div class="card--desc__title">Mô tả dịch vụ</div>
-                            <div class="card--desc__content content-video-in-add">
-                                {!! setting('sys_store_card_content') !!}
-                            </div>
-                            <div class="col-md-12 left-right text-center js-toggle-content">
-                                <div class="view-more">
-                                    <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
-                                                                          style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
+                @if (setting('sys_store_card_content'))
+                    <div class="col-12 col-md-12 mt-fix-20 detailViewBlock">
+                        <div class="card --custom">
+                            <div class="card--body">
+                                <div class="card--desc__title detailViewBlockTitle">Mô tả dịch vụ</div>
+                                <div class="card--desc__content content-video-in-add detailViewBlockContent">
+                                    {!! setting('sys_store_card_content') !!}
                                 </div>
-                                <div class="view-less">
-                                    <span class="global__link">Thu gọn<i class="__icon --sm --link ml-1"
-                                                                         style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/iconright.png)"></i></span>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
+                                    <div class="view-more">
+                                        <span class="global__link">Xem thêm<i class="__icon --sm --link ml-1"
+                                                                            style="--path : url(/assets/frontend/{{theme('')->theme_key}}/image/icons/arrow-down.png)"></i></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
             {{-- confirm payment mobile--}}
             <div class="mobile--confirm__payment step">

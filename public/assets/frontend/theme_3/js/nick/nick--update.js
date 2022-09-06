@@ -14,7 +14,7 @@ $(document).ready(function () {
 
         loop: false,
         centeredSlides: false,
-        slidesPerView: 4,
+        slidesPerView: 4.5,
         slidesPerGroup: 3,
         speed: 800,
         spaceBetween: 16,
@@ -26,13 +26,13 @@ $(document).ready(function () {
         observeParents: true,
         breakpoints: {
             992: {
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             768:{
-                slidesPerView: 4,
+                slidesPerView: 3.2,
             },
             480: {
-                slidesPerView: 3.5,
+                slidesPerView: 1.5,
 
             }
         }
@@ -45,10 +45,14 @@ $(document).ready(function () {
        loadDataTable();
     });
     $('.item-sort-nick-label').on('click', function (e) {
+        let url = window.location.href;
         let id = $(this).attr('for');
+        let sortData = $(`#${id}`).val();
+        let updatedURL = updateQueryStringParameter(url, 'sort_by_data', sortData);
+        window.history.pushState({}, null, updatedURL);
         let query = {
             page:1,
-            sort_by_data:$(`#${id}`).val(),
+            sort_by_data: sortData,
         }
         loadDataTable(query);
     });
@@ -132,9 +136,6 @@ $(document).ready(function () {
 
 
     });
-    $('.js-toggle-content').click(function () {
-        handleToggleContent('.content-video-in');
-    });
 
     // Function when user search
     $('.media-form-search').submit(function (e) {
@@ -183,10 +184,16 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
                     return;
                 }
                 $("#account_data").html(res.data);
+
+                $('.nick_total').html('');
+                $('.nick_total').html('( '+ res.nick_total +' nick )');
+
             }else {
                 let html = '';
                 html += '<div class="row pb-3 pt-3"><div class="col-md-12 text-center"><span style="color: red;font-size: 16px;">' + res.message + '</span></div></div>';
                 $("#account_data").html(html);
+                $('.nick_total').html('');
+                $('.nick_total').html('( '+ 0 +' nick )');
             }
         },
         error: function (data) {
@@ -201,17 +208,4 @@ function loadDataTable(query = {page:1,id_data:'',title_data:'',price_data:'',st
             }, 600 );
         }
     });
-}
-
-function handleToggleContent(selector){
-    $('.js-toggle-content .view-less').toggle();
-    $('.js-toggle-content .view-more').toggle();
-    let elm = $(selector);
-    elm.toggleClass('content-video-in-add');
-    if ($('.view-less').is(":visible")) {
-        let initialHeight = elm.css('max-height', 'initial').height();
-        elm.animate({maxHeight: initialHeight + 16},250)
-    } else {
-        elm.animate({maxHeight: 280},250)
-    }
 }

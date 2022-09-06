@@ -229,7 +229,7 @@
                 <h2 class="modal-title center">Nạp tiền</h2>
                 <button type="button" class="close" data-dismiss="modal" style="right: 24px;top: 36px"></button>
             </div>
-            <div class="modal-body pl-0 pr-0 c-pt-12 c-pb-24">
+            <div class="modal-body pl-0 pr-0 c-pt-0 c-pb-24">
                 <section class="section-category-tab">
                     <div class="c-mb-16 c-mb-lg-16">
                         <ul class="nav nav-tabs size-auto" role="tablist" style="width: 100%;margin: 0 auto">
@@ -324,7 +324,7 @@
                                             </div>
                                         </div>
                                         <div class="money-form-group c-mb-8">
-                                            <label class="text-form fz-13 fw-500 c-mb-4">Mã số thẻ</label>
+                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Mã số thẻ</label>
                                             <div class="col-md-12 p-0">
                                                 <div class="input-group">
                                                     <input class="input-form w-100" name="pin" type="text" placeholder="Nhập mã số thẻ của bạn">
@@ -333,7 +333,7 @@
                                             </div>
                                         </div>
                                         <div class="money-form-group c-mb-8">
-                                            <label class="text-form fz-13 fw-500 c-mb-4">Số sê-ri</label>
+                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Số sê-ri</label>
                                             <div class="col-md-12 p-0">
                                                 <div class="input-group">
                                                     <input class="input-form w-100" name="serial" type="text" placeholder="Nhập mã số sê-ri trên thẻ">
@@ -342,7 +342,7 @@
                                             </div>
                                         </div>
                                         <div class="money-form-group">
-                                            <label class="text-form fz-13 fw-500 c-mb-4">Mã bảo vệ</label>
+                                            <label class="text-form fz-13 fw-500 c-mb-4 d-none d-lg-block">Mã bảo vệ</label>
                                             <div class="input-group">
                                                 <div class="col-md-12 p-0 d-flex">
                                                     <div style="flex: 1;">

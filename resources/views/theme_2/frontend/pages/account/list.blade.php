@@ -28,7 +28,7 @@
             </div>
         @else
 
-        <ul class="breadcrumb-list">
+        <ul class="breadcrumb-list c-mb-lg-12">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
@@ -39,13 +39,13 @@
                 <a href="/mua-acc/{{ isset($data->custom->title) ? $data->custom->title :  $data->title }}" class="breadcrumb-link">Danh sách Nick Liên Quân</a>
             </li>
         </ul>
-        <div class="head-mobile">
-            <a href="/mua-acc" class="link-back"></a>
+{{--        <div class="head-mobile">--}}
+{{--            <a href="/mua-acc" class="link-back"></a>--}}
 
-            <h1 class="head-title text-title">Shop Account</h1>
+{{--            <h1 class="head-title text-title">Shop Account</h1>--}}
 
-            <a href="/" class="home"></a>
-        </div>
+{{--            <a href="/" class="home"></a>--}}
+{{--        </div>--}}
 
         {{--            Slider baner    --}}
             <div class="booking_detail"></div>

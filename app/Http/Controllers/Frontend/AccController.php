@@ -120,7 +120,7 @@ class AccController extends Controller
                 $dataSend['limit'] =  12;
                 $dataSend['sort'] = 'random';
 
-                if (theme('')->theme_key == "theme_5" || theme('')->theme_key == "theme_3"){
+                if (theme('')->theme_key == "theme_5"){
                     $dataSend['limit'] =  15;
                 }
 
@@ -193,7 +193,13 @@ class AccController extends Controller
                         ]);
                     }
 
+                    $nick_total = 0;
+                    if (isset($items->total)){
+                        $nick_total = $items->total;
+                    }
+
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+
                     $items->setPath($request->url());
 
                     $balance = 0;
@@ -201,8 +207,10 @@ class AccController extends Controller
                     if (AuthCustom::check()){
                         $balance = AuthCustom::user()->balance;
                     }
+
                     $html = view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
+                        ->with('nick_total',$nick_total)
                         ->with('balance',$balance)
                         ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)->render();
@@ -216,6 +224,7 @@ class AccController extends Controller
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
+                        'nick_total' => $nick_total,
                         'message' => 'Load du lieu thanh cong.',
                         'last_page'=>$items->lastPage()
                     ]);
@@ -306,6 +315,11 @@ class AccController extends Controller
 
         if(isset($response_data) && $response_data->status == 1 && isset($response_data->data)){
             $data = $response_data->data;
+
+            if ($data->status == 0){
+
+                return view('frontend.pages.error.404');
+            }
 
             $slug_category = $data->category->slug;
 

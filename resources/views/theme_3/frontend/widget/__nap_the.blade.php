@@ -137,9 +137,18 @@
 
                                                 </div>
                                                 <div class="col-md-5 mt-md-fix-20 d-block d-lg-none">
-                                                    <button  class=" primary-button button-default-ct w-75 w-md-100"  type="submit" style="float: right">
-                                                        Nạp ngay
-                                                    </button>
+                                                    <div class="data_napthe_login">
+                                                        <a  class="primary-button button-default-ct w-75 w-md-100 text-center" onclick="openLoginModal();" style="float: right">
+                                                            Nạp ngay
+                                                        </a>
+                                                    </div>
+                                                    <div class="data_napthe_home">
+                                                        <button  class="primary-button button-default-ct w-75 w-md-100 text-center" type="submit" style="float: right">
+                                                            Nạp ngay
+                                                        </button>
+                                                    </div>
+
+
                                                 </div>
                                             </div>
 
@@ -184,12 +193,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button  class=" primary-button button-default-ct w-100 mb-fix-20"  type="submit" style="float: right">
-                                            Nạp ngay
-                                        </button>
+                                        <div class="data_napthe_login">
+                                            <a  class="primary-button button-default-ct w-100 mb-fix-20 text-center" onclick="openLoginModal();" style="float: right">
+                                                Nạp ngay
+                                            </a>
+                                        </div>
+                                        <div class="data_napthe_home">
+                                            <button  class="primary-button button-default-ct w-100 mb-fix-20 text-center" type="submit" style="float: right">
+                                                Nạp ngay
+                                            </button>
+                                        </div>
+
                                     </div>
 
-                                    @include('frontend.widget.modal.__charge')
+                                    @include('frontend.widget.modal.__confirm_charge')
                                 </div>
                             </form>
                         </div>
@@ -233,19 +250,16 @@
             <div class="charge-content" style="">
                 <div class="charge-content-img" style="">
                 </div>
-                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
-                    <div class="charge-content-detail" style="  ">
-                        <div class="" role="alert">
-                            @if (setting('sys_charge_content') != "")
-
-                                {!! setting('sys_charge_content') !!}
-
-
-                            @endif
-                        </div>
+{{--                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )--}}
+{{--                    --}}
+{{--                @endif--}}
+                @if (setting('sys_charge_content') != "")
+                <div class="charge-content-detail" style="  ">
+                    <div class="" role="alert">
+                        {!! setting('sys_charge_content') !!}
                     </div>
+                </div>
                 @endif
-
             </div>
 
         </div>

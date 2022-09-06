@@ -20,17 +20,15 @@
 {{--        </div>--}}
 {{--    </section>--}}
     <div class="card--mobile__title">
-            <span class="card--back box-account-mobile_open" @if(App\Library\AuthCustom::check()) onclick="openMenuProfile()" @else onclick="Redirect()"   @endif>
-                <img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt="">
+            <span class="card--back box-account-mobile_open">
+                <a href="/"><img src="/assets/frontend/{{theme('')->theme_key}}/image/icons/back.png" alt=""></a>
             </span>
         <p>Danh mục game</p>
     </div>
     {{--    Banner--}}
-    <section class="media-web">
-        <div class="container container-fix banner-container-ct">
-            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-        </div>
-    </section>
+
+    @include('frontend.widget.__slider__banner__account')
+
     {{--  Menu  --}}
     <section class="media-web">
         <div class="container container-fix menu-container-ct">
@@ -60,13 +58,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right media-mobile">
-                            <div class="row marginauto banner-container-ct">
-                                <div class="col-md-12 text-left left-right">
-                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-home.png" alt="">
-                                </div>
-                            </div>
-                        </div>
+                        @include('frontend.widget.__slider__banner__account__mobile')
 
                         <div class="col-md-12 left-right">
                             <div class="row marginauto body-title-ct">
@@ -121,7 +113,7 @@
         </div>
     </section>
 
-    @include('frontend.pages.account.widget.__category__content')
+{{--    @include('frontend.pages.account.widget.__category__content')--}}
 
 {{--    <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick.js?v={{time()}}"></script>--}}
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/nick/nick--update.js?v={{time()}}"></script>

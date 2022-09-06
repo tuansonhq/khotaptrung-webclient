@@ -355,10 +355,10 @@
 }
 
 .item-nick-lmht{
-    width: 16.667%;
+    width: 8.33333%;
 }
 .item-nick-lmht__border{
-    padding: 8px;
+    padding: 8px 8px 0 8px;
     border: 1px solid #E4E5F0;
     border-radius: 8px;
     object-fit: cover;
@@ -501,7 +501,7 @@
     margin-right: 24px!important;
 }
 .fz-24 {
-    font-size: 24px!important;
+    font-size: 24px;
 }
 .lh-32 {
     line-height: 32px!important;
@@ -530,16 +530,16 @@
     padding-right: 18px!important;
 }
 .c-pb-8, .c-py-8 {
-    padding-bottom: 8px!important;
+    padding-bottom: 4px!important;
 }
 .c-pt-8, .c-py-8 {
-    padding-top: 8px!important;
+    padding-top: 4px!important;
 }
 .c-pl-6, .c-px-6 {
-    padding-left: 6px!important;
+    padding-left: 4px!important;
 }
 .c-pr-6, .c-px-6 {
-    padding-right: 6px!important;
+    padding-right: 4px!important;
 }
 .c-mt-4, .c-my-4 {
     margin-top: 4px!important;
@@ -636,6 +636,64 @@ p, span, a {
 /* Testttttttttttttttt */
 
 
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .item-nick-lmht{
+        width:10%!important;
+    }
+}
 
+@media only screen and (min-width: 769px) and (max-width: 991px) {
+    .c-modal__nick-lmht{
+        padding: 16px;
+    }
+    .item-nick-lmht{
+        width:14%!important;
+    }
+}
+@media only screen and (min-width: 640px) and (max-width: 768px) {
+    .c-modal__nick-lmht{
+        padding: 16px;
+    }
+    .item-nick-lmht{
+        width:14%!important;
+    }
+}
 
+@media only screen and (min-width: 574px) and (max-width: 639px) {
+    .c-modal__nick-lmht{
+        padding: 16px;
+    }
+    .item-nick-lmht{
+        width:16%!important;
+    }
+}
 
+@media only screen and (min-width: 376px) and (max-width: 573px) {
+    .c-modal__nick-lmht{
+        padding: 8px;
+    }
+    .item-nick-lmht{
+        width:24%!important;
+    }
+    .input-search-lmht{
+        width: 194px;
+    }
+    .fz-24 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .c-modal__nick-lmht{
+        padding: 8px;
+    }
+    .item-nick-lmht{
+        width:33.3333%!important;
+    }
+    .input-search-lmht{
+        width: 194px;
+    }
+    .fz-24 {
+        font-size: 16px;
+    }
+}

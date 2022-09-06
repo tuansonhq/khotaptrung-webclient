@@ -12,6 +12,7 @@
                 <div class="account_sidebar_content">
                     <div class="account_sidebar_content_title">
                         <p>TÀI KHOẢN ĐÃ MUA</p>
+                        
                         <div class="account_sidebar_content_line"></div>
                     </div>
 

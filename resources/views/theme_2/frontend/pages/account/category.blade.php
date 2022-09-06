@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="container c-container" id="account-category">
-        <ul class="breadcrumb-list">
+        <ul class="breadcrumb-list c-mb-lg-12">
             <li class="breadcrumb-item">
                 <a href="/" class="breadcrumb-link">Trang chủ</a>
             </li>
@@ -19,17 +19,17 @@
                 <a href="/mua-acc" class="breadcrumb-link">Shop Account</a>
             </li>
         </ul>
-        <div class="head-mobile">
-            <a href="/" class="link-back"></a>
+{{--        <div class="head-mobile">--}}
+{{--            <a href="/" class="link-back"></a>--}}
 
-            <h1 class="head-title text-title">Shop Account</h1>
+{{--            <h1 class="head-title text-title">Shop Account</h1>--}}
 
-            <a href="/" class="home"></a>
-        </div>
+{{--            <a href="/" class="home"></a>--}}
+{{--        </div>--}}
         {{--            Slider baner    --}}
 {{--        @include('frontend.widget.__slider__banner__account')--}}
         {{--            Top hôm nay    --}}
-        @include('frontend.pages.account.widget.__top__today')
+{{--        @include('frontend.pages.account.widget.__top__today')--}}
 
         <section class="listing-service c-mb-16">
             <div class="section-header justify-content-between c-pb-20 c-pb-lg-16">

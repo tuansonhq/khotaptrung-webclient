@@ -2,7 +2,7 @@
 <div class="container container-fix body-container-ct">
     <div class="row marginauto body-container-row-ct body-container-row-mobile-ct">
         <div class="col-md-12 left-right">
-            <div class="row marginauto body-row-ct media-ctbg-ct">
+            <div class="row marginauto i_body-row-ct media-ctbg-ct">
 
                 <div class="col-md-12 left-right napgamekhac">
                     <div class="row marginauto">
@@ -16,19 +16,19 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 left-right">
+                <div class="col-md-12 left-right taikhoan-lienquan" id="">
                     <div class="row nick-sider-header product-list-category">
                         <div class="swiper-container list-dong-gia col-md-12 text-left left-right">
                             <div class="swiper-wrapper">
                                 @foreach($data as $item)
                                     <div class="swiper-slide body-detail-nick-slider-ct">
                                         <a href="/acc/{{ $item->randId }}" class="list-item-nick-hover">
-                                            <div class="row marginauto ">
+                                            <div class="row marginauto list-item-nick-hover-row">
                                                 <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail">
                                                     @if(isset($item->image))
-                                                        <img class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
+                                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId }}">
                                                     @else
-                                                    <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
+                                                    <img onerror="imgError(this)" class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/no-image.png" alt="No-image">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-12 left-right list-item-nick">
@@ -107,3 +107,7 @@
     </div>
 </div>
 @endif
+{{--            Đã xem   --}}
+@include('frontend.pages.account.widget.__watched')
+
+

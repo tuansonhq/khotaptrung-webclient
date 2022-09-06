@@ -12,7 +12,7 @@ $(document).ready(function(){
         toastr.success('Sao chép thành công!');
     });
 
-    $(document).on('click', '.paginate__v1_storecard .pagination a',function(event){
+    $('body').on('click', '.paginate__v1_storecard .pagination a',function(event){
         event.preventDefault();
 
         var page = $(this).attr('href').split('page=')[1];

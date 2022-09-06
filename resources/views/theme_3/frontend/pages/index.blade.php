@@ -9,61 +9,7 @@
 
 @section('content')
     @if(isset(theme('')->theme_config->sys_theme_ver))
-        <div class="banner-home " >
-            @include('frontend.widget.__slider__banner')
-            @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.0' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.3')
-                <div class="banner-content">
-                    <div class="container  container-fix" >
-                        <div class="d-flex justify-content-between">
-                            <div class="box-list-service d-g-lg-none">
-                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/service-page-icon.png" alt="" id="menu_service">Danh mục dịch vụ</p>
-                                <hr>
-                                @include('frontend.widget.__list_service')
-                            </div>
 
-                            @if(setting('sys_marquee'))
-                                <div class="rotation-notify-home text-slider">
-                                    <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
-                                    <marquee class="rotation-marquee marquee-move">
-
-                                        <div class="rotation-marquee-item marquee-item">
-                                            {!! setting('sys_marquee') !!}
-                                        </div>
-                                    </marquee>
-                                </div>
-                            @endif
-                            <div class="box-list-top top-list d-g-lg-none">
-                                <p><img src="/assets/frontend/{{theme('')->theme_key}}/image/star_top.png" alt="" id="menu_top_list"> Top nạp T{{Carbon\Carbon::now()->month}}</p>
-
-                                @include('frontend.widget.__top_nap_the')
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            @elseif(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.1' || theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2')
-                <div class="banner-content">
-                    <div class="container  " >
-                        <div class="d-flex justify-content-between">
-                            @if(setting('sys_marquee'))
-                                <div class="rotation-notify-home text-slider  rotation-notify-home-fix">
-                                    <img class="img-text-slider" src="/assets/frontend/{{theme('')->theme_key}}/image/images_1/sound.svg" alt="">
-                                    <marquee class="rotation-marquee marquee-move">
-
-                                        <div class="rotation-marquee-item marquee-item">
-                                            {!! setting('sys_marquee') !!}
-                                        </div>
-                                    </marquee>
-                                </div>
-                            @endif
-
-                        </div>
-
-                    </div>
-                </div>
-            @endif
-        </div>
 
         @php
             $dat = explode(',',setting('sys_theme_ver_page_build'));
@@ -79,6 +25,8 @@
         @endphp
 
         <div class="container container-fix">
+            @include('frontend.widget.__slider__banner')
+
             @foreach($data_widget as $key => $value)
                 @include('frontend.widget.'.$value.'',with(['title'=>$data_title[$key]]))
             @endforeach
@@ -146,7 +94,13 @@
     @endif
 
 
-    @include('theme_3.frontend.widget.modal.__charge')
+{{--    <div class="menu-side-item" style="">--}}
+{{--        <a href="#" class=" go-top" style="display: inline;">--}}
+{{--            <img src="/assets/frontend/theme_3/image/back-top.svg" alt="" style=" ">--}}
+{{--        </a>--}}
+{{--    </div>--}}
+
+    @include('theme_3.frontend.widget.modal.__confirm_charge')
     @include('theme_3.frontend.widget.modal.__success_charge')
     @include('theme_3.frontend.widget.modal.__reject_charge')
     @include('theme_3.frontend.widget.modal.__success_charge_atm')

@@ -17,14 +17,15 @@
                 <section class="media-mobile">
                     <div class=" banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
-                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
-                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" >
+                                <a href="/"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" ></a>
                             </div>
 
                             <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
                                 <h3>Nạp thẻ</h3>
                             </div>
                             <div class="col-auto left-right" style="width: 10%">
+
                             </div>
                         </div>
                     </div>
@@ -44,11 +45,17 @@
                     <div class="col-lg-8 col-md-12"  style="min-height: 100%">
                         <div class=" block-product "  style="min-height: 532px">
                             <div class="product-header d-none d-md-flex">
-                                <span>
+                                <div class="row marginauto logs-title">
+                                    <div class="col-6 left-right">
+                                        <span>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
                                 </span>
-                                <p class="text-title" >Nạp tiền</p>
-                                <div class="navbar-spacer"></div>
+                                        <p class="text-title" >Nạp tiền</p>
+                                    </div>
+                                    <div class="col-auto ml-auto pr-0">
+                                        <span class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-product position-static" >
                                 <div class="default-tab pr-fix-16 pl-fix-16">
@@ -259,8 +266,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- đã include chỗ này vào master rồi ^^ nên cmt lại đó nha -->
-{{--                                            @include('frontend.widget.modal.__charge')--}}
+                                            @include('frontend.widget.modal.__confirm_charge')
                                         </div>
                                     </form>
                                 </div>

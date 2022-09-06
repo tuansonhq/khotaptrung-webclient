@@ -7,15 +7,15 @@
                     @foreach ($data as $item)
                         <div class="col-auto body-detail-nick-col-ct" data-title="{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}">
                             <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}" class="list-item-nick-hover">
-                                <div class="row marginauto">
+                                <div class="row marginauto list-item-nick-hover-row">
                                     <div class="col-md-12 left-right default-overlay-nick-ct">
                                         @if(isset($item->image))
-                                            <img class="lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                            <img onerror="imgError(this)" class="lazy" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) : \App\Library\MediaHelpers::media($item->image) }}" alt="">
                                         @endif
                                     </div>
                                     <div class="col-md-12 left-right list-item-nick">
                                         <div class="row marginauto list-item-nick-body">
-                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct">
+                                            <div class="col-md-12 left-right text-left body-detail-account-col-span-ct body-detail-title-fixed">
                                                 <span>{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</span>
                                             </div>
                                             <div class="col-md-12 left-right text-left body-detail-account-small-span-ct">

@@ -189,6 +189,7 @@ $(document).ready(function(){
 
             },
             success: (data) => {
+
                 $('.result-amount-loadding').remove();
                 $('.chitiet_data').val(0);
                 $('.id_data').val('');
@@ -294,7 +295,7 @@ $(document).ready(function(){
                         html += 'Bạn hãy click truy cập đường dẫn sau để chuyển qua trang đổi mật khẩu.';
                         html += '<br>';
                         html += '<a class="c-font-bold c-font-red" target="_blank" href="#" style="color: red;font-weight: bold">';
-                        html += 'Đăng nhập và Đổi mật khẩu game Nick Free Fire Giá Rẻ';
+                        html += 'Đăng nhập và Đổi mật khẩu game ' + data.datashow.category.title + ' Giá Rẻ';
                         html += '</a>';
                         html += '</div>';
                         $('.form__show__chitiet').html(html);
