@@ -45,30 +45,65 @@
 {{--    </div>--}}
 {{--</div>--}}
 
-<div class="ads-banner row box-product" id="c_slider_banner">
-    <div class="col-lg-9 col-md-12">
-        <div class="ads-banner-second brs-12">
-            <a href="">
+<div class="ads-banner row f_box-product" id="c_slider_banner">
+    <div class="col-lg-6 col-md-12 top_box-product">
+        <div class="fix_ads-banner-second fix_ads-banner-second_top fix_ads-banner-fist brs-12">
+            <a href="" >
                 <img onerror="imgError(this)" class="lazy" src="//backend.dev.tichhop.pro/storage/upload/images/Library-SVG/Theme_3/Slider%20trang%20ch%E1%BB%A7/image%2031%20(1).png" alt="">
 
             </a>
 
+            <div class="item-article-content">
+                <div class="item-article-name text-limit limit-1">Hướng dẫn sử dụng dịch vụ làm thuê Capsule Vàng,shopngocrong.net</div>
+                <div class="item-article-user text-limit limit-1">Sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net với nhiều ưu đãi...Cùng tìm hiểu điều kiện và cách sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net</div>
+            </div>
         </div>
 
     </div>
 
-    <div class="col-md-3 d-none d-lg-flex flex-column justify-content-between swiper-general_right" style="min-height: 100%">
-        <div class="ads-banner-second brs-12">
+    <div class="col-lg-3 col-6 d-lg-flex flex-column justify-content-between center_swiper-general_right" style="min-height: 100%">
+        <div class="fix_ads-banner-second fix_ads-banner-fist brs-12">
             <a href="">
                 <img src="/assets/frontend/theme_3/image/banner01.png" alt="">
             </a>
-
+            <div class="item-article-content-secon">
+                <div class="item-article-name text-limit limit-1">Hướng dẫn sử dụng dịch vụ làm thuê Capsule Vàng,shopngocrong.net</div>
+                <div class="item-article-user text-limit limit-1">Sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net với nhiều ưu đãi...Cùng tìm hiểu điều kiện và cách sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net</div>
+            </div>
         </div>
-        <div class="ads-banner-second brs-12">
+
+        <div class="fix_ads-banner-second fix_ads-banner-fist brs-12">
             <a href="">
                 <img src="/assets/frontend/theme_3/image/banner02.png" alt="">
 
             </a>
+            <div class="item-article-content-secon">
+                <div class="item-article-name text-limit limit-1">Hướng dẫn sử dụng dịch vụ làm thuê Capsule Vàng,shopngocrong.net</div>
+                <div class="item-article-user text-limit limit-1">Sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net với nhiều ưu đãi...Cùng tìm hiểu điều kiện và cách sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-6 d-lg-flex flex-column justify-content-between end_swiper-general_right" style="min-height: 100%">
+        <div class="fix_ads-banner-second fix_ads-banner-fist brs-12">
+            <a href="">
+                <img src="/assets/frontend/theme_3/image/banner01.png" alt="">
+            </a>
+            <div class="item-article-content-secon">
+                <div class="item-article-name text-limit limit-1">Hướng dẫn sử dụng dịch vụ làm thuê Capsule Vàng,shopngocrong.net</div>
+                <div class="item-article-user text-limit limit-1">Sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net với nhiều ưu đãi...Cùng tìm hiểu điều kiện và cách sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net</div>
+            </div>
+        </div>
+        <div class="fix_ads-banner-second fix_ads-banner-fist brs-12">
+            <a href="">
+                <img src="/assets/frontend/theme_3/image/banner02.png" alt="">
+
+            </a>
+            <div class="item-article-content-secon">
+                <div class="item-article-name text-limit limit-1">Hướng dẫn sử dụng dịch vụ làm thuê Capsule Vàng,shopngocrong.net</div>
+                <div class="item-article-user text-limit limit-1">Sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net với nhiều ưu đãi...Cùng tìm hiểu điều kiện và cách sử dụng dịch vụ làm phiếu giảm giá tại Shopngocrong.net</div>
+            </div>
         </div>
 
     </div>

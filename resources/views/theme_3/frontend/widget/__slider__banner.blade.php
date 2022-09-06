@@ -1,4 +1,4 @@
-<div class="ads-banner row box-product" id="c_slider_banner">
+<div class="ads-banner row box-product class_c_slider_banner" id="c_slider_banner">
     <div class="banner-slide-v2 col-lg-9 col-md-12 swiper-general">
         <div class=" swiper swiper-banner brs-12">
             <div class="swiper-wrapper">
