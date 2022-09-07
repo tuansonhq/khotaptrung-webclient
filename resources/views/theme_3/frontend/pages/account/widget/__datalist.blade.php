@@ -43,7 +43,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @if($sale_percent > 0)
+                                                                        <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @else
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
@@ -55,7 +57,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
+                                                                    @if($sale_percent > 0)
                                                                     <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @endif
                                                             </ul>
                                                         </div>
@@ -349,7 +353,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
+                                                                    @if($sale_percent > 0)
                                                                     <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @else
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($item->price)) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($item->price_old??$item->price)) }}đ</li>
@@ -361,7 +367,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @if($sale_percent > 0)
+                                                                        <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @endif
                                                             </ul>
                                                         </div>
