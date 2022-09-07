@@ -61,7 +61,7 @@
                     {{ formatDateTime($data->created_at) }}
                 </div>
                 <div class="article--thumbnail py-4">
-                    <img src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
+                    <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="" class="article--thumbnail__image py-3">
                 </div>
                 <div class="article--content pb-3">
                     <div class="article--content__text pb-2">

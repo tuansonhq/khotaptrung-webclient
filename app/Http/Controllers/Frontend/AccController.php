@@ -193,7 +193,13 @@ class AccController extends Controller
                         ]);
                     }
 
+                    $nick_total = 0;
+                    if (isset($items->total)){
+                        $nick_total = $items->total;
+                    }
+
                     $items = new LengthAwarePaginator($items->data,$items->total,$items->per_page,$items->current_page,$items->data);
+
                     $items->setPath($request->url());
 
                     $balance = 0;
@@ -201,8 +207,10 @@ class AccController extends Controller
                     if (AuthCustom::check()){
                         $balance = AuthCustom::user()->balance;
                     }
+
                     $html = view('frontend.pages.account.widget.__datalist')
                         ->with('data',$data)
+                        ->with('nick_total',$nick_total)
                         ->with('balance',$balance)
                         ->with('dataAttribute',$dataAttribute)
                         ->with('items',$items)->render();
@@ -216,6 +224,7 @@ class AccController extends Controller
                     return response()->json([
                         'status' => 1,
                         'data' => $html,
+                        'nick_total' => $nick_total,
                         'message' => 'Load du lieu thanh cong.',
                         'last_page'=>$items->lastPage()
                     ]);
@@ -1155,7 +1164,9 @@ class AccController extends Controller
             $dataSend = array();
             $dataSend['data'] = 'category_list_random';
             $dataSend['module'] = 'acc_category';
-
+            if (theme('')->theme_key == "theme_3"){
+                $dataSend['limit_item'] =  4;
+            }
             $result_Api = DirectAPI::_makeRequest($url,$dataSend,$method);
             $response_data = $result_Api->response_data??null;
 

@@ -24,7 +24,9 @@
                                         <div class="swiper-slide body-detail-nick-slider-ct">
                                             <a href="/acc/{{ @$acc_viewed['randId'] }}" class="list-item-nick-hover">
                                                 <div class="row marginauto list-item-nick-hover-row">
-                                                    <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail"><img class="lazy" src="{{\App\Library\MediaHelpers::media($acc_viewed['image'])}}" alt=""></div>
+                                                    <div class="col-md-12 left-right default-overlay-nick-ct related-acc-detail">
+                                                        <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($acc_viewed['image'])}}" alt="">
+                                                    </div>
                                                     <div class="col-md-12 left-right list-item-nick">
                                                         <div class="row marginauto list-item-nick-body">
                                                             <div class="col-md-12 left-right text-left body-detail-account-col-span-ct"><span>ID: #{{ @$acc_viewed['randId'] }}</span></div>
@@ -33,7 +35,9 @@
                                                                 <ul>
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($acc_viewed['price'])) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }}đ</li>
+                                                                    @if(isset($acc_viewed['promotion']) && $acc_viewed['promotion'] > 0)
                                                                     <li class="three-li-account">-{{ @$acc_viewed['promotion'] }}%</li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>

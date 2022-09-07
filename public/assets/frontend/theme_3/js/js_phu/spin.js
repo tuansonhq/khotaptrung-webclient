@@ -124,7 +124,7 @@ $(document).ready(function () {
         if ($(this).scrollTop() > 200) {
             $('.rotation-leaderboard').css("top", "140px");
         } else {
-            $('.rotation-leaderboard').css("top", "80px");
+            $('.rotation-leaderboard').css("top", "140px");
         }
 
     });

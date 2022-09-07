@@ -5,7 +5,7 @@
                 <div class="article mb-3">
                     <div class="article--thumbnail">
                         <a href="/tin-tuc/{{ $item->slug }}">
-                            <img
+                            <img onerror="imgError(this)"
                                 src="{{\App\Library\MediaHelpers::media($item->image)}}"
                                 alt="" class="article--thumbnail__image">
                         </a>

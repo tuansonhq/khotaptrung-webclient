@@ -17,14 +17,15 @@
                 <section class="media-mobile">
                     <div class=" banner-mobile-container-ct">
                         <div class="row marginauto banner-mobile-row-ct">
-                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" onclick="openMenuProfile()" >
-                                <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" >
+                            <div class="col-auto left-right box-account-mobile_open" style="width: 10%" >
+                                <a href="/"><img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/back.png" alt="" ></a>
                             </div>
 
                             <div class="col-auto left-right banner-mobile-span text-center" style="width: 80%">
                                 <h3>Nạp thẻ</h3>
                             </div>
                             <div class="col-auto left-right" style="width: 10%">
+
                             </div>
                         </div>
                     </div>
@@ -44,11 +45,17 @@
                     <div class="col-lg-8 col-md-12"  style="min-height: 100%">
                         <div class=" block-product "  style="min-height: 532px">
                             <div class="product-header d-none d-md-flex">
-                                <span>
+                                <div class="row marginauto logs-title">
+                                    <div class="col-6 left-right">
+                                        <span>
                                     <img src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card_icon.png" alt="">
                                 </span>
-                                <p class="text-title" >Nạp tiền</p>
-                                <div class="navbar-spacer"></div>
+                                        <span class="text-title" >Nạp tiền</span>
+                                    </div>
+                                    <div class="col-auto ml-auto pr-0">
+                                        <small class="lammoi_lichsu" style="font-size: 13px;color: #ffffff" onClick="window.location.reload();"><i class="fas fa-redo mr-1" ></i>Làm mới</small>
+                                    </div>
+                                </div>
                             </div>
                             <div class="box-product position-static" >
                                 <div class="default-tab pr-fix-16 pl-fix-16">
@@ -167,7 +174,7 @@
                                                         <div class="col-md-12 d-flex ">
                                                             <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
                                                             <div class="captcha captcha_1" >
-                                                            <span class="reload">
+                                                            <span class="reload fix_capcha">
                                                                  {!! captcha_img('flat') !!}
                                                             </span>
                                                             </div>
@@ -297,7 +304,20 @@
                          </div>
                     </div>
                     <div class="col-lg-4 col-md-12 pl-0 d-g-md-none  " style="min-height: 100%">
-                        <img class="w-100" src="/assets/frontend/{{theme('')->theme_key}}/image/charge_card.png" alt="" style="min-height: 100%">
+                        <div class="charge-content" style="">
+                            <div class="charge-content-img" style="">
+                            </div>
+                            {{--                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )--}}
+                            {{--                    --}}
+                            {{--                @endif--}}
+                            @if (setting('sys_charge_content') != "")
+                                <div class="charge-content-detail" style="  ">
+                                    <div class="" role="alert">
+                                        {!! setting('sys_charge_content') !!}
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                  </div>
              </fieldset>

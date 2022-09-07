@@ -1,4 +1,5 @@
 @if(isset($data) && count($data) > 0)
+
     <div class="flash-sales block-product mt-fix-20 ">
         <div class="product-header d-flex">
         <span>
@@ -20,11 +21,11 @@
                             <a href="/mua-acc/{{ isset($item->custom->slug) && $item->custom->slug != '' ? $item->custom->slug :  $item->slug }}">
                                 <div class="item-product__box-img">
 
-                                    <img src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
+                                    <img onerror="imgError(this)" src="{{ isset($item->custom->image) ? \App\Library\MediaHelpers::media($item->custom->image) :  \App\Library\MediaHelpers::media($item->image) }}" alt="">
 
                                 </div>
                                 <div class="item-product__box-content">
-                                    <div class="item-product__box-name">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
+                                    <div class="item-product__box-name text-title limit-1">{{ isset($item->custom->title) ? $item->custom->title :  $item->title }}</div>
                                     @if(isset($item->items_count))
                                         @if((isset($item->account_fake) && $item->account_fake > 1) || (isset($item->custom->account_fake) && $item->custom->account_fake > 1))
                                             <div class="item-product__box-sale">Số tài khoản: {{ str_replace(',','.',number_format(round(isset($item->custom->account_fake) ? $item->items_count*$item->custom->account_fake : $item->items_count*$item->account_fake))) }} </div>
@@ -49,10 +50,15 @@
 
                                         <div class="special-price">{{ str_replace(',','.',number_format($item->params->price)) }}đ</div>
                                         <div class="old-price">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }}đ</div>
+                                        @if($sale_percent > 0)
                                         <div class="item-product__sticker-percent">
                                             -{{ $sale_percent }}%
                                         </div>
+                                        @endif
                                     </div>
+                                    @else
+                                        <div class="item-product__box-price fix_header_acount">
+                                        </div>
                                     @endif
                                 </div>
                             </a>

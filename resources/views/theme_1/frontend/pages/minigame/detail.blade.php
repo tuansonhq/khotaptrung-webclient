@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
@@ -1427,6 +1427,7 @@
                             },
                             type: 'POST',
                             success: function (data) {
+
                                 if (data.status == 4) {
                                     location.href = '/login?return_url=' + window.location.href;
                                 } else if (data.status == 3) {
@@ -1643,6 +1644,8 @@
                     }
                 }
             });
+
+
             $('body').delegate('.reLoad', 'click', function () {
                 location.reload();
             })
@@ -1760,6 +1763,7 @@
                             },
                             type: 'post',
                             success: function (data) {
+                                console.log(data)
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){

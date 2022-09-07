@@ -92,7 +92,8 @@
             </div>
             <div class="box-logo ">
                 <a href="/">
-                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none ">
                 </a>
             </div>
             <div class="box-search">
@@ -195,8 +196,12 @@
                             <div  class="account-balance"></div>
                         </div>
                         <div class="account-avatar">
+                            @if(setting('sys_avatar') != '')
 
-                            <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="">
+                                <img src="{{ setting('sys_avatar') }}" alt="sys_avatar">
+                            @else
+                            <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="sys_avatar">
+                            @endif
                         </div>
                         <div class="account-triangle ">
                             <img src="/assets/frontend/{{theme('')->theme_key}}/image/triangle.png" alt="">
@@ -205,7 +210,12 @@
                             <!--                                <div class="arrow down"></div>-->
                             <div class=" d-flex">
                                 <div class="acount-logined_img">
-                                    <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="">
+                                    @if(setting('sys_avatar') != '')
+
+                                        <img src="{{ setting('sys_avatar') }}" alt="sys_avatar">
+                                    @else
+                                        <img src="/assets/frontend/theme_3/image/anhdaidien.svg" alt="sys_avatar">
+                                    @endif
                                 </div>
                                 <div class="account-logined_info">
                                     <div id="account-id">

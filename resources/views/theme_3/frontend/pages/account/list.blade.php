@@ -62,7 +62,8 @@
                                     <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/caythue.png" alt="">
                                 </div>
                                 <div class="col-md-10 col-10 body-header-col-ct">
-                                    <h1>{{ $data->custom->title ? $data->custom->title : $data->title }}</h1>
+                                    <span class="body-header-col-ct-titile">{{ $data->custom->title ? $data->custom->title : $data->title }}</span>
+                                    <span class="c_body-header-col-ct-titile nick_total" style="margin-left: 4px"></span>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +238,7 @@
                                         <small>Mã số</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct">
-                                        <input autocomplete="off" class="input-defautf-ct id" type="text" name="id_data" placeholder="Nhập mã số">
+                                        <input autocomplete="off" class="input-defautf-ct id" type="text" data-query="id_data" placeholder="Nhập mã số">
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +249,7 @@
                                         <small>Giá tiền</small>
                                     </div>
                                     <div class="col-12 left-right background-nick-col-bottom-ct price-finter-nick">
-                                        <select class="wide price" name="price_data">
+                                        <select class="wide price" data-query="price_data">
                                             <option value="" selected disabled>Chọn giá tiền</option>
                                             <option value="0-50000">Dưới 50K</option>
                                             <option value="50000-200000">Từ 50K - 200K</option>
@@ -262,23 +263,23 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12 left-right modal-nick-padding">
-                                <div class="row marginauto">
-                                    <div class="col-12 left-right background-nick-col-top-ct">
-                                        <small>Trạng thái</small>
-                                    </div>
-                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                        <select class="wide status" name="status_data">
-                                            <option value="" selected disabled>Chọn trạng thái</option>
-                                            <option value="1">Chưa bán</option>
-                                            <option value="2">Đã bán</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-12 left-right modal-nick-padding">--}}
+{{--                                <div class="row marginauto">--}}
+{{--                                    <div class="col-12 left-right background-nick-col-top-ct">--}}
+{{--                                        <small>Trạng thái</small>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">--}}
+{{--                                        <select class="wide status" name="status_data">--}}
+{{--                                            <option value="" selected disabled>Chọn trạng thái</option>--}}
+{{--                                            <option value="1">Chưa bán</option>--}}
+{{--                                            <option value="2">Đã bán</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             @if(isset($dataAttribute) && count($dataAttribute) > 0)
-                                @foreach($dataAttribute as $val)
+                                @foreach($dataAttribute as $key_val => $val)
                                     @if($val->position == 'select')
                                         <div class="col-md-12 left-right modal-nick-padding">
                                             <div class="row marginauto">
@@ -286,7 +287,7 @@
                                                     <small>{{ $val->title }}</small>
                                                 </div>
                                                 <div class="col-12 left-right background-nick-col-bottom-ct">
-                                                    <select class="wide account-filter-field" name="attribute_id_{{ $val->id }}"  data-title="{{ $val->title }}">
+                                                    <select class="wide account-filter-field" data-query="select_data_{{ $key_val }}"  data-title="{{ $val->title }}">
                                                         <option value="" selected disabled>--Không chọn--</option>
                                                         @foreach($val->childs as $child)
                                                             <option value="{{ $child->id }}">{{ $child->title }}</option>

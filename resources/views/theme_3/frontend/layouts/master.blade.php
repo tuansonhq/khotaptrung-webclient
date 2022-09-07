@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?ver={{time()}}">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
     @if (!\App\Library\AuthCustom::check())
@@ -91,6 +91,7 @@
 @include('frontend.widget.modal.viewmore_modal')
 
 @include('frontend.widget.modal.__success_charge')
+@include('frontend.widget.modal.__success_charge_home')
 @include('frontend.widget.modal.__reject_charge')
 
 <!-- end modal charge -->
@@ -145,6 +146,14 @@
         @yield('content')
     </div>
 </div>
+
+
+<div class="modal-sedding-notification" id="sedding-notification" >
+    <div class="close-sedding">
+        <i class="fas fa-times"></i>
+    </div>
+</div>
+
 @if(Request::is('/'))
     <style>
         @media (max-width: 992px){
@@ -199,6 +208,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>

@@ -28,7 +28,7 @@
                             <div class="item-product item-other-nick mt-fix-16">
                                 <a href="/acc/{{ $item->randId }}">
                                     <div class="item-product__box-img">
-                                        <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                     </div>
                                     <div class="item-product__box-content">
                                         <div class="item-product__box-name">
@@ -63,9 +63,11 @@
 
                                             <div class="special-price d-block">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                             <div class="old-price ml-0">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                            @if($sale_percent > 0)
                                             <div class="item-product__sticker-percent">
                                                 - {{$sale_percent}}%
                                             </div>
+                                            @endif
                                         </div>
 
                                     </div>
@@ -81,7 +83,7 @@
                                 <div class="swiper-slide">
                                     <div class="item-product__box-img">
                                         <a href="/acc/{{ $item->randId }}">
-                                            <img src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
+                                            <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($item->image)}}" alt="{{ $item->randId??'' }}">
                                         </a>
                                     </div>
                                     <div class="item-product__box-content">
@@ -113,9 +115,11 @@
 
                                                 <div class="special-price">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                                 <div class="old-price">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
-                                                <div class="item-product__sticker-percent">
-                                                    - {{$sale_percent}}%
-                                                </div>
+                                                @if($sale_percent > 0)
+                                                    <div class="item-product__sticker-percent">
+                                                        - {{$sale_percent}}%
+                                                    </div>
+                                                @endif
                                             </div>
                                         </a>
                                     </div>

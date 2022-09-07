@@ -127,7 +127,7 @@
                                                 <div class="col-md-12 d-flex ">
                                                     <input class="input-form w-100" name="captcha" type="text" placeholder="Nhập mã bảo vệ" required>
                                                     <div class="captcha captcha_1" >
-                                                        <span class="reload">
+                                                        <span class="reload fix_capcha">
                                                              {!! captcha_img('flat') !!}
                                                         </span>
                                                     </div>
@@ -250,19 +250,16 @@
             <div class="charge-content" style="">
                 <div class="charge-content-img" style="">
                 </div>
-                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )
-                    <div class="charge-content-detail" style="  ">
-                        <div class="" role="alert">
-                            @if (setting('sys_charge_content') != "")
-
-                                {!! setting('sys_charge_content') !!}
-
-
-                            @endif
-                        </div>
+{{--                @if(theme('')->theme_config->sys_theme_ver == 'sys_theme_ver3.2' )--}}
+{{--                    --}}
+{{--                @endif--}}
+                @if (setting('sys_charge_content') != "")
+                <div class="charge-content-detail" style="  ">
+                    <div class="" role="alert">
+                        {!! setting('sys_charge_content') !!}
                     </div>
+                </div>
                 @endif
-
             </div>
 
         </div>

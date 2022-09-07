@@ -85,7 +85,7 @@
                                                 <div class="col-12 col-lg-4 pl-0 pr-fix-10">
                                                     <div class="row marginauto banner-container-ct p-0">
                                                         <div class="col-md-12 text-left left-right">
-                                                            <img class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
+                                                            <img onerror="imgError(this)" class="lazy" src="{{\App\Library\MediaHelpers::media($data->image)}}" alt="Banner">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,11 +177,14 @@
                                                                                     <div class="label--checkbox__name">
                                                                                         {{ $name }}
                                                                                     </div>
-                                                                                    <span
-                                                                                        class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
-                                                                                        data-tippy-content="{{ $name }}">
-                                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
-                                                                                    </span>
+                                                                                    @if(substr($name,50))
+                                                                                        <span
+                                                                                            class="checkbox-info-ct label--checkbox__tippy d-none d-lg-block"
+                                                                                            data-tippy-content="{{ $name }}">
+                                                                                            <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png" alt="">
+                                                                                        </span>
+
+                                                                                    @endif
                                                                                 </span>
                                                                                                             <input
                                                                                                                 id="{{$name . $k_name}}"
@@ -216,10 +219,15 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
-                                                                                    <select class="wide js-selected" name="rank_from">
+                                                                                    @php
+                                                                                    $count = count($data_params['name']);
+                                                                                    @endphp
+                                                                                    <select class="wide js-selected" data-type="0" name="rank_from">
                                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                                             @if(!!$name)
+                                                                                                @if($k_name < $count -1)
                                                                                                 <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @empty
                                                                                         @endforelse
@@ -244,10 +252,12 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
-                                                                                    <select class="wide js-selected" name="rank_to">
+                                                                                    <select class="wide js-selected" data-type="1" name="rank_to">
                                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                                             @if(!!$name)
+                                                                                                @if($k_name > 0)
                                                                                                 <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @empty
                                                                                         @endforelse
@@ -421,53 +431,6 @@
                                                 </div>
                                             </div>
 
-{{--                                            <div class="col-md-12 left-right">--}}
-{{--                                                <div class="row marginauto body-title-ct">--}}
-{{--                                                    <div class="col-md-12 text-left left-right">--}}
-{{--                                                        <span>Vui lòng chọn thông tin</span>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-
-
-
-{{--                                            <div class="col-md-12 left-right body-title-ct">--}}
-{{--                                                --}}{{--                                                <div class="row marginauto">--}}
-
-{{--                                                --}}{{--                                                    <div class="col-md-12 text-left left-right">--}}
-{{--                                                --}}{{--                                                        <div class="row marginauto">--}}
-{{--                                                --}}{{--                                                            <div class="col-md-12 left-right body-title-detail-span-ct">--}}
-{{--                                                --}}{{--                                                    <span>--}}
-{{--                                                --}}{{--                                                        <ul>--}}
-{{--                                                --}}{{--                                                            <li>Tùy chọn tướng</li>--}}
-{{--                                                --}}{{--                                                            <li class="option-info-ct"><img class="lazy"--}}
-{{--                                                --}}{{--                                                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                --}}{{--                                                                                            alt=""></li>--}}
-{{--                                                --}}{{--                                                        </ul>--}}
-{{--                                                --}}{{--                                                    </span>--}}
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                            <div--}}
-{{--                                                --}}{{--                                                                class="col-md-12 left-right body-title-detail-select-ct data-select-hero">--}}
-{{--                                                --}}{{--                                                                <select class="wide" name="select">--}}
-{{--                                                --}}{{--                                                                    <option value="">Ví dụ: Yasuyo</option>--}}
-{{--                                                --}}{{--                                                                    <option value="3">Vàng 4</option>--}}
-{{--                                                --}}{{--                                                                    <option value="4">Vàng 5</option>--}}
-{{--                                                --}}{{--                                                                    <option value="5">Vàng 6</option>--}}
-{{--                                                --}}{{--                                                                    <option value="5">Vàng 7</option>--}}
-{{--                                                --}}{{--                                                                </select>--}}
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                            <div class="col-m-12 hero-error">--}}
-
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                        </div>--}}
-
-
-{{--                                                --}}{{--                                                    </div>--}}
-
-{{--                                                --}}{{--                                                </div>--}}
-{{--                                            </div>--}}
-
                                         </div>
                                     </div>
 
@@ -475,34 +438,9 @@
                             </form>
                         </div>
 
-
-
-                        {{--<div class="col-lg-12 col-12 body-container-detail-right-ct px-0 mt-fix-20">
-
-                                                Block 1
-                                                        <div class="row marginauto body-detail-header-right-ct media-web">
-
-                                                            <div class="col-md-12 left-right">
-                                                                <div class="row marginauto">
-                                                                    <div class="col-12 col-8 body-header-col-km-left-ct">
-                                                                        <span>Khuyến mại đang diễn ra</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12 left-right">
-                                                                <div class="row banner-detail-ct">
-                                                                    <div class="col-md-12 text-left left-right">
-                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-detail.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                        </div>--}}
                     </div>
                     {{--                block 2           --}}
+                    @if(isset($data->description))
                     <div class="marginauto body-detail-right-ct detail-ser-content mt-3">
 
                         <div class="col-md-12 left-right">
@@ -513,16 +451,19 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12 left-right">
-                            <div class="row marginauto body-title-ct show-detail-service-ct">
-                                <div class="col-md-12 text-left left-right">
+                        <div class="col-md-12 left-right card--desc px-3 px-lg-0">
+                            <div class="row marginauto body-title-ct show-detail-caythue-ct-fix">
+                                <div
+                                    class="col-md-12 text-left left-right content-video-in double-click content-video-in ">
                                     {!! @$data->description !!}
+                                </div>
+                                <div class="col-md-12 left-right text-center js-toggle-content">
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
+                    @endif
                     {{--                block 3           --}}
                     <div class="body-detail-right-ct mt-fix-20 mx-lg-auto">
 
@@ -531,6 +472,7 @@
 
                         </div>
                         {{--End BOT--}}
+
                         <div class="col-md-12 left-right px-3 px-lg-0">
                             <div class="row marginauto">
                                 <div class="col-md-12 col-8 body-header-col-km-left-ct">
@@ -549,6 +491,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -594,7 +537,7 @@
                                 <div class="col-md-6 col-6 modal-footer-success-col-right-ct">
                                     <div class="row marginauto modal-footer-success-row-ct">
                                         <div class="col-md-12 left-right">
-                                            <a href="/" class="button-bg-ct"><span>Hỗ Trợ</span></a>
+                                            <a href="/dich-vu-da-mua" class="button-bg-ct"><span>Lịch sử</span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -74,3 +74,69 @@
     }
 }
 /*end*/
+
+/* modal sedding */
+.modal-sedding-notification{
+    left: -100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border-radius: 12px;
+    background: #ffffff;
+    width: 360px;
+    /*height: 160px;*/
+    position: fixed;
+    z-index: 12;
+    bottom: 100px;
+    transition: .3s ease;
+    padding: 12px;
+}
+.modal-sedding-notification_show{
+    left: 4px;
+    transition: .3s ease;
+}
+.modal-sedding-image{
+    width: 232px;
+    height: 96px;
+    margin: auto;
+}
+.modal-sedding-image img{
+    width: 100%;
+    border-radius: 12px;
+    height: 100%;
+    object-fit: cover;
+}
+.modal-sedding-title{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #000000;
+}
+.modal-sedding-content{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #82869E;
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+.modal-sedding-notification span{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    color: #F67600;
+}
+.close-sedding{
+    position: absolute;
+    background: #FBFBFD;
+    top: -9px;
+    right: -8px;
+    padding: 0 6px;
+    border-radius: 100%;
+}
+.modal-sedding{
+    margin-left: 12px;
+}
