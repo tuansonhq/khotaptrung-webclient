@@ -227,6 +227,7 @@ Route::group(array('middleware' => ['theme']) , function (){
                 Route::get('/minigame-logacc-{id}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getLogAcc'])->name('getLogAcc');
 //                Route::get('/trong-test',[\App\Http\Controllers\Frontend\MinigameController::class,'getIndexUpdate']);
                 Route::get('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItem'])->name('getWithdrawItem');
+                Route::get('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'getWithdrawItemAjax'])->name('getWithdrawItemAjax');
                 Route::post('/withdrawitem-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItem'])->name('postWithdrawItem');
                 Route::post('/withdrawitemajax-{game_type}', [\App\Http\Controllers\Frontend\MinigameController::class , 'postWithdrawItemAjax'])->name('postWithdrawItemAjax');
 

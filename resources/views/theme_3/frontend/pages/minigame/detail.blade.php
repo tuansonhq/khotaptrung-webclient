@@ -13,12 +13,43 @@
 @section('scripts')
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_phu/spin.js"></script>
     <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/fake-cmt.js"></script>
+    <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_trong/modal-rut-vp.js?v={{time()}}"></script>
     {{--
         <script src="/assets/frontend/{{theme('')->theme_key}}/js/minigame/main.js"></script>
     --}}
 @endsection
 @section('content')
+    <!-- Modal rút quà -->
+    <div class="modal fade" id="modal-withdraw-items" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rút vật phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#modal-tab-withdraw" role="tab">Rút vật phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#modal-tab-history" role="tab">Lịch sử</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
+                            <div class="card">
+                                <div class="card-body">
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="modal-tab-history" role="tabpanel">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {{--         Vong quay vong vong      --}}
 
     <div class="container_page container">
@@ -818,7 +849,7 @@
                                 </a>
                             </div>
                             <div class="col-6">
-                                <button class="button-primary">Rút quà</button>
+                                <button class="button-primary"  data-toggle="modal" data-target="#modal-withdraw-items">Rút quà</button>
                             </div>
                         </div>
                         <div class="leaderboard-header">

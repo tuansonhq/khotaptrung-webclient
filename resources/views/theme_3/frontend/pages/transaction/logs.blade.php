@@ -135,7 +135,6 @@
                             <img class="lazy img-close-nick-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                         </div>
                     </div>
-
                 </div>
 
                 <div class="modal-body modal-body-order-ct">
@@ -149,7 +148,7 @@
                                             <span>Loại giao dịch</span>
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct transaction-finter-nick">
-                                            <select class="wide config" name="config">
+                                            <select class="wide config" data-query="config">
                                                 <option value="">Chọn</option>
                                                 @foreach($config as $i => $val)
                                                     <option value="{{ $i }}">{{ $val }}</option>
@@ -168,7 +167,7 @@
                                             <span>Trạng thái</span>
                                         </div>
                                         <div class="col-12 left-right background-nick-col-bottom-ct status-finter-nick">
-                                            <select class="wide status" name="status">
+                                            <select class="wide status" data-query="status">
                                                 <option value="">Chọn</option>
                                                 @foreach($status as $ist => $valst)
                                                     <option value="{{ $ist }}">{{ $valst }}</option>
@@ -191,7 +190,7 @@
                                                 <span>Từ ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct">
-                                                <input autocomplete="off" name="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" data-query="started_at" class="input-defautf-ct started_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
 
@@ -204,7 +203,7 @@
                                                 <span>Đến ngày</span>
                                             </div>
                                             <div class="col-md-12 left-right body-title-detail-select-ct" style="position: relative">
-                                                <input autocomplete="off" name="ended_at" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
+                                                <input autocomplete="off" data-query="ended_at" class="input-defautf-ct ended_at" type="text" placeholder="Chọn">
                                             </div>
                                         </div>
                                     </div>
