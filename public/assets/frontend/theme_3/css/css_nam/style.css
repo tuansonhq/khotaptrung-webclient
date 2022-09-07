@@ -3067,3 +3067,6 @@ header nav.heading .header-container{
     line-height: 150%;
 }
 
+#c_slider_banner p{
+    margin-bottom: 0!important;
+}
