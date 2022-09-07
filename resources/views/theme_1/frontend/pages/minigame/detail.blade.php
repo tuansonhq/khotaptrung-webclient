@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="item_play_try">
-                            @if($result->group->params->is_try == 1)
+                            @if(isset($result->group->params->is_try) && $result->group->params->is_try == 1)
                                 <a class="btn btn-primary num-play-try">Chơi thử</a>
                             @endif
                             <a class="btn btn-success k_start" id="start-played"><i class="fas fa-bolt"></i> Quay ngay</a>
