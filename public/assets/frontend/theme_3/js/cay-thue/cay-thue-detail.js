@@ -55,6 +55,7 @@ $(document).ready(function (e) {
             passwordField.attr('type','password')
             $(this).find('img').attr('src','/assets/frontend/theme_3/image/images_1/eye-show.svg')
         }
+
     });
 
     $('.show-btn-password-mobile').on('click', function(){
