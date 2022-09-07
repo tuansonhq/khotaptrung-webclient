@@ -1314,6 +1314,7 @@ a:hover .__icon.--path__custom:after {
 #new-article-update .card--header__title {
     font-weight: 600;
     font-size: 24px;
+    padding-bottom: 12px;
 }
 
 #new-article-update .article--thumbnail {
@@ -1327,6 +1328,7 @@ a:hover .__icon.--path__custom:after {
 
 #new-article-update .card--header {
     margin-bottom: 20px;
+    border-bottom: 1px solid #E4E5F0;
 }
 
 #new-article-update .article--description {
@@ -1786,6 +1788,10 @@ a:hover .__icon.--path__custom:after {
     opacity: 1;
 }
 
+#list-article {
+    padding-right: 0;
+}
+
 #list-article .card {
     margin-bottom: 20px;
 }
@@ -1800,7 +1806,7 @@ a:hover .__icon.--path__custom:after {
 }
 
 #weeky-hot-games .card--body {
-    padding: 16px;
+    padding: 16px 0;
 }
 
 #weeky-hot-games .card--header__title {
@@ -1853,7 +1859,7 @@ a:hover .__icon.--path__custom:after {
     font-size: 14px;
     color: #000000;
     overflow: hidden;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     word-break: break-word;
@@ -1893,6 +1899,72 @@ a:hover .__icon.--path__custom:after {
     flex-wrap: wrap;
 }
 @media screen and (max-width: 1200px) {
+
+    /* New layout news page */
+
+    #list-article {
+        padding-right: 15px;
+    }
+
+    #articleCategory .nav-tabs {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        border: none;
+        height: 48px;
+    }
+
+    #articleCategory .nav-tabs .nav-item {
+        display: table-cell;
+        text-align: center;
+    }
+
+    #articleCategory .nav-tabs .nav-item.show .nav-link, #articleCategory .nav-tabs .nav-item .nav-link.active {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        padding-bottom: 11.5px;
+        border-bottom: 2px solid #F67600;
+        font-weight: 700;
+        color: #F67600;
+    }
+
+    #articleCategory .nav-tabs .nav-item .nav-link {
+        color: #434657;
+        border-bottom: 1px solid #363636;
+        padding: 12px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1.5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #weeky-hot-games .card--header__title {
+        font-size: 16px;
+    }
+
+    .sub-article {
+        border-bottom: 1px solid #E4E5F0;
+    }
+
+    .sub-article .sub-article--date {
+        font-size: 10px;
+    }
+
+    .sub-article .sub-article--date {
+        display: flex;
+        align-items: center;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 150%;
+        color: #A7ABC3;
+    }
+
+
+    /* End new layout news page */
+
     /*Mdoal recharge*/
     #rechargeModal .list-card-deno .card-item {
         width: 33.33%;
@@ -2247,7 +2319,7 @@ a:hover .__icon.--path__custom:after {
     }
 
     #card--body__news {
-        margin-top: 12px;
+        margin-top: 20px;
     }
 
     /*    Dịch vụ */

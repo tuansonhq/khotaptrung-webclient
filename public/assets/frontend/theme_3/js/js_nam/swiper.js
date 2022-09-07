@@ -460,18 +460,17 @@ $(document).ready(function(){
         },
         breakpoints: {
             1024: {
-                slidesPerView: 3.2,
+                slidesPerView: 6,
             },
             992: {
-                slidesPerView: 3.6,
+                slidesPerView: 6,
             },
 
             768: {
-                slidesPerView: 2.1,
+                slidesPerView: 5,
             },
             480: {
-                slidesPerView: 1.5,
-                spaceBetween: 6,
+                slidesPerView: 3.5,
             }
         }
     });
