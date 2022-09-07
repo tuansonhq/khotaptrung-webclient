@@ -101,6 +101,7 @@ transition: .2s;
 @media (min-width: 1200px){
     .fix_ads-banner-second_top{
         height: 358px;
+        width: 100%;
     }
     .container-fix{
         max-width: 1240px;
@@ -791,10 +792,11 @@ header nav.heading .header-container{
     }
     .box-logo {
         margin-left: 12px;
-        margin-bottom: 4px;
+        height: 40px;
     }
     .box-logo img {
-        width: 70px;
+        width: 100%;
+        height: 100%;
     }
     .item-minigame_first a::before{
         position: absolute;
@@ -2798,31 +2800,31 @@ header nav.heading .header-container{
 }
 @keyframes rainbow {
     0% {
-        background: #1abc9c;
+        background: #F67600;
     }
     10% {
-        background: #2ecc71;
+        background: #F67600;
     }
     20% {
-        background: #3498db;
+        background: #F67600;
     }
     30% {
-        background: #9b59b6;
+        background: #F67600;
     }
     40% {
-        background: #e74c3c;
+        background: #F67600;
     }
     50% {
-        background: #e67e22;
+        background: #F67600;
     }
     60% {
-        background: #f1c40f;
+        background: #F67600;
     }
     70% {
-        background: #2c3e50;
+        background: #F67600;
     }
     80% {
-        background: #9b59b6;
+        background: #F67600;
     }
 }
 
@@ -2980,6 +2982,14 @@ header nav.heading .header-container{
     object-fit: cover;
     border-radius: 12px;
 }
+
+#c_slider_banner .fix_ads-banner-fecond img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
 .fix_ads-banner-fist{
     position: relative;
     overflow: hidden;
@@ -2999,6 +3009,25 @@ header nav.heading .header-container{
     z-index: 1;
     transition: all 0.2s ease-out;
 }
+.fix_ads-banner-ffist{
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.fix_ads-banner-ffist a::before{
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-bottom: 0;
+    background: linear-gradient(180deg, rgba(101, 101, 101, 0) 0%, #211F1F 100%);
+    border-radius: var(--primary-border);
+    z-index: 1;
+    transition: all 0.2s ease-out;
+}
+
 .item-article-content{
     position: absolute;
     bottom: 14px;

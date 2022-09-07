@@ -1427,6 +1427,7 @@
                             },
                             type: 'POST',
                             success: function (data) {
+
                                 if (data.status == 4) {
                                     location.href = '/login?return_url=' + window.location.href;
                                 } else if (data.status == 3) {
@@ -1643,6 +1644,8 @@
                     }
                 }
             });
+
+
             $('body').delegate('.reLoad', 'click', function () {
                 location.reload();
             })
@@ -1760,6 +1763,7 @@
                             },
                             type: 'post',
                             success: function (data) {
+                                console.log(data)
                                 gift_detail = data.gift_detail;
                                 setTimeout(function(){
                                     if(gift_detail != undefined){
