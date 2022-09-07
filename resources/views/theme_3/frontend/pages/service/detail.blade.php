@@ -219,10 +219,15 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-12 left-right body-title-detail-select-ct data-select-rank-start">
-                                                                                    <select class="wide js-selected" name="rank_from">
+                                                                                    @php
+                                                                                    $count = count($data_params['name']);
+                                                                                    @endphp
+                                                                                    <select class="wide js-selected" data-type="0" name="rank_from">
                                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                                             @if(!!$name)
+                                                                                                @if($k_name < $count -1)
                                                                                                 <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @empty
                                                                                         @endforelse
@@ -247,10 +252,12 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="col-md-12 left-right body-title-detail-select-ct data-select-rank-end">
-                                                                                    <select class="wide js-selected" name="rank_to">
+                                                                                    <select class="wide js-selected" data-type="1" name="rank_to">
                                                                                         @forelse($data_params['name'] as $k_name => $name)
                                                                                             @if(!!$name)
+                                                                                                @if($k_name > 0)
                                                                                                 <option value="{{ $k_name }}">{{ $name }}</option>
+                                                                                                @endif
                                                                                             @endif
                                                                                         @empty
                                                                                         @endforelse
@@ -424,53 +431,6 @@
                                                 </div>
                                             </div>
 
-{{--                                            <div class="col-md-12 left-right">--}}
-{{--                                                <div class="row marginauto body-title-ct">--}}
-{{--                                                    <div class="col-md-12 text-left left-right">--}}
-{{--                                                        <span>Vui lòng chọn thông tin</span>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-
-
-
-
-{{--                                            <div class="col-md-12 left-right body-title-ct">--}}
-{{--                                                --}}{{--                                                <div class="row marginauto">--}}
-
-{{--                                                --}}{{--                                                    <div class="col-md-12 text-left left-right">--}}
-{{--                                                --}}{{--                                                        <div class="row marginauto">--}}
-{{--                                                --}}{{--                                                            <div class="col-md-12 left-right body-title-detail-span-ct">--}}
-{{--                                                --}}{{--                                                    <span>--}}
-{{--                                                --}}{{--                                                        <ul>--}}
-{{--                                                --}}{{--                                                            <li>Tùy chọn tướng</li>--}}
-{{--                                                --}}{{--                                                            <li class="option-info-ct"><img class="lazy"--}}
-{{--                                                --}}{{--                                                                                            src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/infor.png"--}}
-{{--                                                --}}{{--                                                                                            alt=""></li>--}}
-{{--                                                --}}{{--                                                        </ul>--}}
-{{--                                                --}}{{--                                                    </span>--}}
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                            <div--}}
-{{--                                                --}}{{--                                                                class="col-md-12 left-right body-title-detail-select-ct data-select-hero">--}}
-{{--                                                --}}{{--                                                                <select class="wide" name="select">--}}
-{{--                                                --}}{{--                                                                    <option value="">Ví dụ: Yasuyo</option>--}}
-{{--                                                --}}{{--                                                                    <option value="3">Vàng 4</option>--}}
-{{--                                                --}}{{--                                                                    <option value="4">Vàng 5</option>--}}
-{{--                                                --}}{{--                                                                    <option value="5">Vàng 6</option>--}}
-{{--                                                --}}{{--                                                                    <option value="5">Vàng 7</option>--}}
-{{--                                                --}}{{--                                                                </select>--}}
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                            <div class="col-m-12 hero-error">--}}
-
-{{--                                                --}}{{--                                                            </div>--}}
-{{--                                                --}}{{--                                                        </div>--}}
-
-
-{{--                                                --}}{{--                                                    </div>--}}
-
-{{--                                                --}}{{--                                                </div>--}}
-{{--                                            </div>--}}
-
                                         </div>
                                     </div>
 
@@ -478,34 +438,9 @@
                             </form>
                         </div>
 
-
-
-                        {{--<div class="col-lg-12 col-12 body-container-detail-right-ct px-0 mt-fix-20">
-
-                                                Block 1
-                                                        <div class="row marginauto body-detail-header-right-ct media-web">
-
-                                                            <div class="col-md-12 left-right">
-                                                                <div class="row marginauto">
-                                                                    <div class="col-12 col-8 body-header-col-km-left-ct">
-                                                                        <span>Khuyến mại đang diễn ra</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-md-12 left-right">
-                                                                <div class="row banner-detail-ct">
-                                                                    <div class="col-md-12 text-left left-right">
-                                                                        <img class="lazy" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/banner-detail.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                        </div>--}}
                     </div>
                     {{--                block 2           --}}
+                    @if(isset($data->description))
                     <div class="marginauto body-detail-right-ct detail-ser-content mt-3">
 
                         <div class="col-md-12 left-right">
@@ -528,7 +463,7 @@
                         </div>
 
                     </div>
-
+                    @endif
                     {{--                block 3           --}}
                     <div class="body-detail-right-ct mt-fix-20 mx-lg-auto">
 
@@ -537,6 +472,7 @@
 
                         </div>
                         {{--End BOT--}}
+
                         <div class="col-md-12 left-right px-3 px-lg-0">
                             <div class="row marginauto">
                                 <div class="col-md-12 col-8 body-header-col-km-left-ct">
@@ -555,6 +491,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
