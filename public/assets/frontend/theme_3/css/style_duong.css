@@ -92,10 +92,6 @@
     left: 4px;
     transition: .3s ease;
 }
-.modal-sedding-notification_hide{
-    left: -100%;
-    transition: .3s ease;
-}
 .modal-sedding-image img{
     width: 100%;
     border-radius: 12px;

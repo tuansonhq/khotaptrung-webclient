@@ -1251,13 +1251,13 @@ header nav.heading .header-container{
 
 }
 .taikhoan-lienquan .swiper-slide{
-    margin-top: 0.0625rem;
+    margin-top: 4px;
     margin-bottom: 12px;
 }
 .list-product .swiper-slide{
     border-radius: var(--primary-border);
     border: 1px solid #DCDEE9;
-    margin-top: 0.0625rem;
+    margin-top: 4px;
     margin-bottom: 12px;
     top: 0;
     transition: all 0.2s ease-out;
@@ -3067,3 +3067,6 @@ header nav.heading .header-container{
     line-height: 150%;
 }
 
+#c_slider_banner p{
+    margin-bottom: 0!important;
+}
