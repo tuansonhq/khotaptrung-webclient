@@ -79,6 +79,26 @@
 .pt-fix-16{
     padding-top: 1rem;
 }
+/*padding 6*/
+.p-fix-6{
+    padding: 0.375rem;
+}
+.pl-fix-6{
+    padding-left: 0.375rem;
+}
+.pr-fix-6{
+    padding-right: 0.375rem;
+}
+.pb-fix-6{
+    padding-bottom:0.375rem;
+}
+.pt-fix-6{
+    padding-top: 0.375rem;
+}
+.px-fix-6{
+    padding-left: 0.375rem;
+    padding-right: 0.375rem;
+}
 /*padding 8*/
 .p-fix-8{
     padding: 0.5rem;
@@ -110,6 +130,26 @@
 }
 .pt-fix-10{
     padding-top: 0.625rem;
+}
+/*padding 12*/
+.p-fix-12{
+    padding: 0.75rem;
+}
+.pl-fix-12{
+    padding-left: 0.75rem;
+}
+.pr-fix-12{
+    padding-right: 0.75rem;
+}
+.pb-fix-12{
+    padding-bottom: 0.75rem;
+}
+.pt-fix-12{
+    padding-top: 0.75rem;
+}
+.px-fix-12{
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
 }
 /*margin 10*/
 .m-fix-10{

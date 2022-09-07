@@ -33,8 +33,8 @@ $(document).ready(function (e) {
 
                     $('#pageBreadcrumb').html('');
                     $('#pageBreadcrumb').html(data.datamenu);
-                    activateGalleryThumbs();
-                    activateGallerySlider();
+                    // activateGalleryThumbs();
+                    // activateGallerySlider();
 
                 }else if (data.status == 0){
 
@@ -59,6 +59,7 @@ $(document).ready(function (e) {
             },
             complete: function (data) {
                 $('#detailLoader').addClass('d-none');
+                initSwiperGallery();
             }
         });
     };
@@ -201,44 +202,143 @@ $(document).ready(function (e) {
 
     });
 
-    function activateGallerySlider () {
-        var slider = new Swiper ('.gallery-slider', {
-            autoplay: {
-                delay: 2000,
+    // function activateGallerySlider () {
+    //     var slider = new Swiper ('.gallery-slider', {
+    //         autoplay: {
+    //             delay: 2000,
+    //
+    //         },
+    //
+    //         slidesPerView: 1,
+    //         centeredSlides: true,
+    //         loop: false,
+    //         loopedSlides: 6,
+    //         navigation: {
+    //             nextEl: '.swiper-button-next',
+    //             prevEl: '.swiper-button-prev',
+    //         },
+    //     });
+    // }
+    //
+    //
+    //
+    // function activateGalleryThumbs () {
+    //     var thumbs = new Swiper ('.gallery-thumbs', {
+    //         slidesPerView: 5.5,
+    //         spaceBetween: 8,
+    //         centeredSlides: false,
+    //         loop: false,
+    //         slideToClickedSlide: true,
+    //         breakpoints: {
+    //             992: {
+    //                 slidesPerView: 4.5,
+    //             },
+    //             768:{
+    //                 slidesPerView: 3.5,
+    //             },
+    //             480: {
+    //                 slidesPerView: 3.2,
+    //
+    //             }
+    //         }
+    //     });
+    // }
 
-            },
+    function initSwiperGallery() {
 
-            slidesPerView: 1,
-            centeredSlides: true,
-            loop: false,
-            loopedSlides: 6,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    }
+        if ($('.gallery-thumbs').length) {
+            let galleryTop = new Swiper('.gallery-thumbs', {
+                slidesPerView: 5.5,
+                spaceBetween: 8,
+                centeredSlides: true,
+                loop: true,
+                clickable: true,
+                slideToClickedSlide: true,
+                observer: true,
+                observeParents: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                touchRatio: 0.2,
+                breakpoints: {
+                    992: {
+                        slidesPerView: 4.5,
+                    },
+                    768:{
+                        slidesPerView: 3.5,
+                    },
+                    480: {
+                        slidesPerView: 3.2,
 
-    function activateGalleryThumbs () {
-        var thumbs = new Swiper ('.gallery-thumbs', {
-            slidesPerView: 5.5,
-            spaceBetween: 8,
-            centeredSlides: false,
-            loop: false,
-            slideToClickedSlide: true,
-            breakpoints: {
-                992: {
-                    slidesPerView: 4.5,
-                },
-                768:{
-                    slidesPerView: 3.5,
-                },
-                480: {
-                    slidesPerView: 3.2,
-
+                    }
                 }
-            }
-        });
+            });
+            let galleryThumbs = new Swiper('.gallery-slider', {
+
+
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView: "auto",
+                centeredSlides: true,
+                loop: true,
+                loopedSlides: 6,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                observer: true,
+                observeParents: true,
+            });
+
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        }
+
+        if ($('.gallery-thumbs-mobile').length) {
+            let galleryTop = new Swiper('.gallery-thumbs-mobile', {
+                slidesPerView: 5.5,
+                spaceBetween: 8,
+                centeredSlides: true,
+                loop: false,
+                clickable: true,
+                slideToClickedSlide: true,
+                observer: true,
+                observeParents: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                touchRatio: 0.2,
+                breakpoints: {
+                    992: {
+                        slidesPerView: 4.5,
+                    },
+                    768:{
+                        slidesPerView: 3.5,
+                    },
+                    480: {
+                        slidesPerView: 3.2,
+
+                    }
+                }
+            });
+            let galleryThumbs = new Swiper('.gallery-slider-mobile', {
+
+
+                clickable: true,
+                slideToClickedSlide: true,
+                slidesPerView:1,
+                centeredSlides: false,
+                loop: true,
+                // loopedSlides: 6,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                observer: true,
+                observeParents: true,
+            });
+
+            galleryTop.controller.control = galleryThumbs;
+            galleryThumbs.controller.control = galleryTop;
+        }
     }
 
     function activateRelatedSlider(params) {
