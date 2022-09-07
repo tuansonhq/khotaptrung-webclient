@@ -2667,8 +2667,8 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 .nav-bar-parent-title span{
     font-family: 'Open Sans';
     font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 24px;
     line-height: 150%;
     color: #1B1D29;
 }
