@@ -50,9 +50,11 @@
 
                                         <div class="special-price">{{ str_replace(',','.',number_format($item->params->price)) }}đ</div>
                                         <div class="old-price">{{ str_replace(',','.',number_format($item->params->price_old??$item->params->price)) }}đ</div>
+                                        @if($sale_percent > 0)
                                         <div class="item-product__sticker-percent">
                                             -{{ $sale_percent }}%
                                         </div>
+                                        @endif
                                     </div>
                                     @else
                                         <div class="item-product__box-price fix_header_acount">

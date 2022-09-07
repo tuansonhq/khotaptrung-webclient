@@ -81,7 +81,9 @@
                                                                             $sale_percent = 0;
                                                                         }
                                                                     @endphp
-                                                                    <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @if($sale_percent > 0)
+                                                                        <li class="three-li-account">-{{$sale_percent}}%</li>
+                                                                    @endif
                                                                 @endif
                                                             </ul>
                                                         </div>
