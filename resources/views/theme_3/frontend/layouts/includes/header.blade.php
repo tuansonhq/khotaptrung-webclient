@@ -92,7 +92,8 @@
             </div>
             <div class="box-logo ">
                 <a href="/">
-                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo'))}}" alt="" class="d-lg-block d-none">
+                    <img src="{{\App\Library\MediaHelpers::media(setting('sys_logo_mobile'))}}" alt="" class="d-lg-none ">
                 </a>
             </div>
             <div class="box-search">

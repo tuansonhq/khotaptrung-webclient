@@ -436,6 +436,44 @@ $(document).ready(function(){
             }
         }
     });
+    var product_hotgames = new Swiper('.swiper-weekly-hot-games', {
+        autoplay: false,
+        updateOnImagesReady: true,
+        watchSlidesVisibility: false,
+        lazyLoadingInPrevNext: false,
+        lazyLoadingOnTransitionStart: false,
+        loop: false,
+        centeredSlides: false,
+        slidesPerView: 8,
+        slidesPerGroup: 3,
+        speed: 500,
+        spaceBetween: 20,
+        freeMode: true,
+        velocityRatio: 20,
+        touchMove: true,
+        freeModeSticky:true,
+        grabCursor: true,
+        observer: true,
+        observeParents: true,
+        keyboard: {
+            enabled: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 6,
+            },
+            992: {
+                slidesPerView: 6,
+            },
+
+            768: {
+                slidesPerView: 5,
+            },
+            480: {
+                slidesPerView: 3.5,
+            }
+        }
+    });
     var service_list = new Swiper('.swiper-service', {
         navigation: {
             nextEl: '.swiper-service .swiper-button-next',

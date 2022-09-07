@@ -83,24 +83,28 @@
     align-items: flex-start;
     border-radius: 12px;
     background: #ffffff;
-    width: 396px;
-    height: 112px;
-    position: relative;
+    width: 360px;
+    /*height: 160px;*/
+    position: fixed;
+    z-index: 12;
+    bottom: 100px;
     transition: .3s ease;
+    /*padding: 12px;*/
 }
 .modal-sedding-notification_show{
     left: 4px;
     transition: .3s ease;
 }
-.modal-sedding-notification_hide{
-    left: -100%;
-    transition: .3s ease;
+.modal-sedding-image{
+    width: 140px;
+    height: 96px;
+    margin: auto;
 }
 .modal-sedding-image img{
     width: 100%;
     border-radius: 12px;
-    height: 112px;
-    padding: 6px;
+    height: 100%;
+    padding: 16px;
 }
 .modal-sedding-title{
     font-family: 'Open Sans';
@@ -108,7 +112,7 @@
     font-weight: 700;
     font-size: 16px;
     color: #000000;
-    padding-top: 8px;
+    padding-top: 16px;
 }
 .modal-sedding-content{
     font-family: 'Open Sans';
@@ -127,5 +131,9 @@
 }
 .close-sedding{
     position: absolute;
-    right: 18px;
+    background: #FBFBFD;
+    top: -12px;
+    right: -4px;
+    padding: 0 6px;
+    border-radius: 100%;
 }

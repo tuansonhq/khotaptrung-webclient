@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/css_nam/minigame.css">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_son.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_trong.css?ver={{time()}}">
-    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css">
+    <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_duong.css?v={{time()}}">
     <link rel="stylesheet" href="/assets/frontend/{{theme('')->theme_key}}/css/style_phu/form_element.css">
 
     @if (!\App\Library\AuthCustom::check())
@@ -148,39 +148,11 @@
 </div>
 
 
-<div class="modal-sedding-notification" id="myDiv" >
-    <div class="modal-sedding-image">
-        <img src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
-    </div>
+<div class="modal-sedding-notification" id="sedding-notification" >
     <div class="close-sedding">
         <i class="fas fa-times"></i>
     </div>
-    <div class="">
-        <div class="modal-sedding-title">
-            Acc Liên Minh Tự chọn
-        </div>
-        <div class="modal-sedding-content">
-            Một khách hàng đã thêm vào giỏ hàng cách đây 44 phút
-        </div>
-        <span>150.000đ</span>
-    </div>
 </div>
-<script>
-    function showDiv() {
-        setTimeout(function () {
-            $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 6000);
-            setTimeout(function () {
-                $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 6000);
-            },6000)
-        }, 6000);
-
-    }
-    showDiv();
-
-    $(".close-sedding").click(function(){
-        $("#myDiv").hide();
-    })
-</script>
 
 @if(Request::is('/'))
     <style>
@@ -236,6 +208,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>

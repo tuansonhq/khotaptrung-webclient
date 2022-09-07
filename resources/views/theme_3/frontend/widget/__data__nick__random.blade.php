@@ -63,9 +63,11 @@
 
                                             <div class="special-price d-block">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                             <div class="old-price ml-0">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
+                                            @if($sale_percent > 0)
                                             <div class="item-product__sticker-percent">
                                                 - {{$sale_percent}}%
                                             </div>
+                                            @endif
                                         </div>
 
                                     </div>
@@ -113,9 +115,11 @@
 
                                                 <div class="special-price">{{ str_replace(',','.',number_format($item->price)) }}đ</div>
                                                 <div class="old-price">{{ str_replace(',','.',number_format($item->price_old)) }}đ</div>
-                                                <div class="item-product__sticker-percent">
-                                                    - {{$sale_percent}}%
-                                                </div>
+                                                @if($sale_percent > 0)
+                                                    <div class="item-product__sticker-percent">
+                                                        - {{$sale_percent}}%
+                                                    </div>
+                                                @endif
                                             </div>
                                         </a>
                                     </div>
