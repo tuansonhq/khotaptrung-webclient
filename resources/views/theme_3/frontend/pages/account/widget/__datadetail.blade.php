@@ -1034,7 +1034,7 @@
                                     <div class="row acc-thumbnail  mx-0">
                                         @foreach(explode('|',$data->image_extension) as $key => $val)
                                             <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
-                                                <div class="acc-thumbnail_badge">{{$key+1}}</div>
+                                                <div class="acc-thumbnail_badge" onclick="currentSlide({{$key+1}})">{{$key+1}}</div>
                                                 <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
                                             </div>
                                         @endforeach
@@ -1083,12 +1083,9 @@
             function showSlides(n) {
                 var i;
                 var slides = document.getElementsByClassName("acc-holder_slides");
-                var slides_badge= document.getElementsByClassName("acc-holder_badge");
                 var dots = document.getElementsByClassName("acc-thumbnail_column");
                 if (n > slides.length) {slideIndex = 1}
-                if (n > slides_badge.length) {slideIndex1 = 1}
                 if (n < 1) {slideIndex = slides.length}
-                if (n < 1) {slideIndex1 = slides_badge.length}
 
                 for (i = 0; i < slides.length; i++) {
                     slides[i].style.display = "none";
@@ -1096,16 +1093,11 @@
                 }
 
 
-                for (i = 0; i < slides_badge.length; i++) {
-                    slides_badge[i].style.display = "none";
-                    // slides[i].style.display = "inline";
-                }
 
                 for (i = 0; i < dots.length; i++) {
                     dots[i].className = dots[i].className.replace(" active", "");
                 }
                 slides[slideIndex-1].style.display = "block";
-                slides_badge[slideIndex1-1].style.display = "block";
                 // slides[slideIndex-1].style.display = "inline";
                 dots[slideIndex-1].className += " active";
             }

@@ -459,6 +459,6 @@
 .fancybox__thumbs .carousel__slide .fancybox__thumb::after{
     border: 5px solid var(--primary-color);
 }
-.gallery-slider .swiper-slide,.gallery-thumbs .swiper-slide{
+.gallery-slider .swiper-slide,.gallery-thumbs .swiper-slide,.acc-thumbnail_badge{
     cursor: pointer;
 }
