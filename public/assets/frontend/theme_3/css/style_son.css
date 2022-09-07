@@ -4039,6 +4039,7 @@ input[type="radio"]:checked + .item-sort-nick-label span{
 
     .fix_ads-banner-second_top{
         height: 358px!important;
+        width: 100%;
     }
     /*.fix_ads-banner-second_top{*/
     /*    height: 212px!important;*/
@@ -4127,6 +4128,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     #c_slider_banner .fix_ads-banner-second{
         width: 100%;
         margin-bottom: 8px;
+        height: 95px;
+    }
+
+    #c_slider_banner .fix_ads-banner-fecond{
+        width: 100%;
+        margin-bottom: 12px;
     }
 
     .item-article-name{
@@ -4850,8 +4857,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     #c_slider_banner .fix_ads-banner-second{
         width: 100%;
         margin-bottom: 8px;
+        height: 95px;
     }
-
+    #c_slider_banner .fix_ads-banner-fecond{
+        width: 100%;
+        margin-bottom: 12px;
+    }
     .item-article-name{
         font-size: 14px!important;
     }
@@ -5692,8 +5703,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     #c_slider_banner .fix_ads-banner-second{
         width: 100%;
         margin-bottom: 8px;
+        height: 95px;
     }
-
+    #c_slider_banner .fix_ads-banner-fecond{
+        width: 100%;
+        margin-bottom: 12px;
+    }
     .item-article-name{
         font-size: 14px!important;
     }
@@ -5761,8 +5776,12 @@ input[type="radio"]:checked + .item-sort-nick-label span{
     #c_slider_banner .fix_ads-banner-second{
         width: 100%;
         margin-bottom: 8px;
+        height: 95px;
     }
-
+    #c_slider_banner .fix_ads-banner-fecond{
+        width: 100%;
+        margin-bottom: 12px;
+    }
     .item-article-name{
         font-size: 14px!important;
     }
