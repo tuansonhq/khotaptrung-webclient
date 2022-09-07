@@ -165,22 +165,6 @@
         <span>150.000đ</span>
     </div>
 </div>
-<script>
-    function showDiv() {
-        setTimeout(function () {
-            $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 6000);
-            setTimeout(function () {
-                $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 6000);
-            },6000)
-        }, 6000);
-
-    }
-    showDiv();
-
-    $(".close-sedding").click(function(){
-        $("#myDiv").hide();
-    })
-</script>
 
 @if(Request::is('/'))
     <style>
@@ -236,6 +220,7 @@
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/slick/slick.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/swiper/swiper.min.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/main.js?v={{time()}}"></script>
+<script src="/assets/frontend/{{theme('')->theme_key}}/js/js_duong/modal_sedding.js?v={{time()}}"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/js/js_nam/swiper-banner.js"></script>
 <script src="/assets/frontend/{{theme('')->theme_key}}/lib/date-picker/moment.js"></script>
