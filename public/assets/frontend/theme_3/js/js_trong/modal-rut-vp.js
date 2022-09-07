@@ -1,3 +1,11 @@
+// swiper
+let swiper_item_possession = new Swiper('.swiper-withdraw',{
+    slidesPerView: 5,
+    spaceBetween: 32,
+    freeMode: true,
+    observer: true,
+    observeParents: true,
+})
 function getWithDrawItem(game_type) {
     $.ajax({
         url: '/withdrawitemajax-' + game_type,

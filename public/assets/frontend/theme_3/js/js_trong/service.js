@@ -331,7 +331,9 @@ $('.submit-form').on('click', function () {
     }, {});
 
     let url = $('#formDataService').attr('action');
-    data_form.selected = data_form.selected.replace(/\./g, "");
+    if (data_form.selected){
+        data_form.selected = data_form.selected.replace(/\./g, "");
+    }
 
     //loading btn;
     $(this).html('Đang xử lý...');

@@ -40,7 +40,72 @@
                         <div class="tab-pane fade show active" id="modal-tab-withdraw" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
-
+                                    <div class="t-sub-1 t-color-title">
+                                        Chọn vật phẩm bạn đang sở hữu
+                                    </div>
+                                    <div class="swiper swiper-withdraw">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <input type="radio" id="item-radio-0" name="game_type" hidden checked>
+                                                <label for="item-radio-0" class="label-item">
+                                                    <div class="item-thumb">
+                                                        <img src="/assets/frontend/theme_3/image/icon-qh.png" alt="">
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="t-body-1">Liên quân</div>
+                                                        <div class="t-sub-1">10.000</div>
+                                                        <div class="t-body-1">Quân huy</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <input type="radio" id="item-radio-1" name="game_type" hidden>
+                                                <label for="item-radio-1" class="label-item">
+                                                    <div class="item-thumb">
+                                                        <img src="/assets/frontend/theme_3/image/icon-qh.png" alt="">
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="t-body-1">Liên quân</div>
+                                                        <div class="t-sub-1">10.000</div>
+                                                        <div class="t-body-1">Quân huy</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <input type="radio" id="item-radio-2" name="game_type" hidden>
+                                                <label for="item-radio-2" class="label-item">
+                                                    <div class="item-thumb">
+                                                        <img src="/assets/frontend/theme_3/image/icon-qh.png" alt="">
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="t-body-1">Liên quân</div>
+                                                        <div class="t-sub-1">10.000</div>
+                                                        <div class="t-body-1">Quân huy</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <input type="radio" id="item-radio-3" name="game_type" hidden>
+                                                <label for="item-radio-3" class="label-item">
+                                                    <div class="item-thumb">
+                                                        <img src="/assets/frontend/theme_3/image/icon-qh.png" alt="">
+                                                    </div>
+                                                    <div class="item-info">
+                                                        <div class="t-body-1">Liên quân</div>
+                                                        <div class="t-sub-1">10.000</div>
+                                                        <div class="t-body-1">Quân huy</div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="t-sub-2 t-color-title mb-2">
+                                        Chọn vật phẩm bạn đang sở hữu
+                                    </div>
+                                    <select name="" id="" class="wide">
+                                        <option value="">Chọn gói</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
