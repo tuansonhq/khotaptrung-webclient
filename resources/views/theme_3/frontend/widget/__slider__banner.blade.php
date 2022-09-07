@@ -23,7 +23,7 @@
         </div>
         <div class="swiper-pagination"></div>
         <div class="banner-content">
-            <div class="container  " >
+            <div class="container">
                 <div class="d-flex justify-content-between">
                     @if(setting('sys_marquee'))
                         <div class="rotation-notify-home text-slider  rotation-notify-home-fix">

@@ -35,7 +35,9 @@
                                                                 <ul>
                                                                     <li class="fist-li-account">{{ str_replace(',','.',number_format($acc_viewed['price'])) }}đ</li>
                                                                     <li class="second-li-account">{{ str_replace(',','.',number_format($acc_viewed['price_old'])) }}đ</li>
+                                                                    @if(isset($acc_viewed['promotion']) && $acc_viewed['promotion'] > 0)
                                                                     <li class="three-li-account">-{{ @$acc_viewed['promotion'] }}%</li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>
