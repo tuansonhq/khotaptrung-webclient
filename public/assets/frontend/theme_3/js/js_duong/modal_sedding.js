@@ -1,9 +1,9 @@
 function showDiv() {
     setTimeout(function () {
         $(".modal-sedding-notification").addClass('modal-sedding-notification_show').delay( 10000);
-        // setTimeout(function () {
-        //     $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 10000);
-        // },10000)
+        setTimeout(function () {
+            $(".modal-sedding-notification").removeClass('modal-sedding-notification_show').delay( 10000);
+        },10000)
     }, 10000);
 
 }
@@ -35,7 +35,7 @@ json.forEach(function (item) {
     <div class="modal-sedding-image">
         <img src="https://recmiennam.com/wp-content/uploads/2018/01/top-hinh-nen-game-dep-nhat-full-hd-3.jpg" alt="">
     </div>
-    <div class="">
+    <div class="modal-sedding">
     <div class="modal-sedding-title">
          ${item.title}
     </div>
