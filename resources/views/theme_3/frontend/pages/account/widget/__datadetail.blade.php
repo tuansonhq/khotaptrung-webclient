@@ -30,8 +30,13 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-{{--                                                                        data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false"--}}
+{{--                                                                    desktop--}}
+{{--                                                                    <a  data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">--}}
+{{--                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">--}}
+{{--                                                                    </a>--}}
+{{--                                                                    mobile--}}
+                                                                    <a  data-target="#accDetail" data-toggle="modal" data-backdrop="static" data-keyboard="false" class="d-none d-lg-block ">
+
                                                                         <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
@@ -54,12 +59,9 @@
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
-                                                                        <div class="row marginauto">
-                                                                            <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
-                                                                                <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
-                                                                            </div>
-                                                                        </div>
+
+                                                                    <a  class="d-lg-block d-none ">
+                                                                        <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                                                     </a>
                                                                 </div>
                                                             @endforeach
@@ -305,11 +307,11 @@
 
                     <div class="col-lg-12 col-md-12 left-right">
                         <div class="gallery" style="overflow: hidden">
-                            <div class="swiper gallery-slider swiper-container-horizontal">
+                                <div class="swiper gallery-slider-mobile swiper-container-horizontal">
                                 <div class="swiper-wrapper">
-                                    @foreach(explode('|',$data->image_extension) as $val)
+                                    @foreach(explode('|',$data->image_extension) as $key => $val)
                                         <div class="swiper-slide">
-                                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                            <a data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}" class="d-lg-none">
                                                 <img onerror="imgError(this)" src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
                                             </a>
                                         </div>
@@ -321,19 +323,17 @@
 
                     <div class="col-md-12 left-right">
                         <div class="row marginauto body-row-nick-detail-ct">
-
                             <div class="col-md-12 left-right">
                                 <div class="row marginauto">
                                     <div class="col-12 left-right">
                                         <div class="row marginauto">
-
                                             <div class="col-lg-12 col-md-12 left-right gallery-thumb-nick">
                                                 <div class="gallery-thumb" style="overflow: hidden">
-                                                    <div class="swiper gallery-thumbs gallery-thumbsmaxheadth swiper-container-horizontal">
+                                                    <div class="swiper gallery-thumbs-mobile gallery-thumbsmaxheadth swiper-container-horizontal">
                                                         <div class="swiper-wrapper">
                                                             @foreach(explode('|',$data->image_extension) as $val)
                                                                 <div class="swiper-slide">
-                                                                    <a class="" data-fancybox="gallerycoverDetail" href="{{\App\Library\MediaHelpers::media($val)}}">
+                                                                    <a class="" >
                                                                         <div class="row marginauto">
                                                                             <div class="col-md-12 left-right default-overlay-ct swiper-slide-col">
                                                                                 <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" class="lazy">
@@ -948,15 +948,22 @@
 
 
 
-        <div class="modal fade login show order-modal" id="accDetail" aria-modal="true">
+        <div class="modal fade login show order-modal" id="accDetail" aria-modal="true" data-backdrop="static" data-keyboard="false">
 
-            <div class="modal-dialog step-tab-panel modal-xl modal-dialog-centered  animated">
+            <div class="modal-dialog step-tab-panel  modal-dialog-centered  animated">
                 <!--        <div class="image-login"></div>-->
                 <div class="modal-content">
                     <div class="modal-header p-0" style="border-bottom: 0">
-                        <div class="row marginauto modal-header-order-ct">
-                            <div class="col-12 span__donhang text-center" style="position: relative">
-                                <span>ACC</span>
+                        <div class="row marginauto modal-header-order-ct pt-fix-16 pb-fix-16">
+                            <div class="col-12 span__donhang" style="position: relative">
+                                <div class="row marginauto ">
+                                    <div class="col-md-12 left-right">
+                                        <span>Mã số: {{ $data->randId }}</span>
+                                    </div>
+                                    <div class="col-md-12 left-right">
+                                        <small>MỤC: {{ isset($data->category->custom->title) ? $data->category->custom->title :  $data->category->title }}</small>
+                                    </div>
+                                </div>
                                 <div class="close" data-dismiss="modal" aria-label="Close">
                                     <img class="lazy img-close-ct close-modal-default" src="/assets/frontend/{{theme('')->theme_key}}/image/cay-thue/close.png" alt="">
                                 </div>
@@ -967,23 +974,66 @@
                     <div class="modal-body modal-body-order-ct">
                         <div class="row marginauto">
 
-                            <div class="image-gallery d-flex">
-                                <div class="primary" >
-                                    <img src="{{\App\Library\MediaHelpers::media(explode('|',$data->image_extension)[0])}}" alt="">
-                                </div>
+                            <div class="d-flex">
+{{--                                <div id="myCarousel" class="carousel slide acc-holder" data-ride="carousel">--}}
+{{--                                    <!-- Indicators -->--}}
+{{--                                    <ol class="">--}}
+{{--                                        @foreach(explode('|',$data->image_extension) as $key => $val)--}}
+{{--                                            <li data-target="#myCarousel" data-slide-to="{{$key+1}}" class="acc-holder_slides">--}}
+{{--                                                <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />--}}
+{{--                                            </li>--}}
 
-                                <div class="thumbnails row">
+{{--                                        @endforeach--}}
+{{--                                    </ol>--}}
+{{--                                </div>--}}
+{{--                                <div class="prevAccount">--}}
+{{--                                    <a class="prev" onclick="plusSlides(-1)">--}}
+{{--                                        <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                                <div class="nextAccount">--}}
+{{--                                    <a class="next" onclick="plusSlides(1)">--}}
+{{--                                        <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
-                                @foreach(explode('|',$data->image_extension) as $key => $val)
-                                    <div class="col-md-3">
-                                        <a href="#" class=" thumbnail" data-big="{{\App\Library\MediaHelpers::media($val)}}">
-                                            <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="">
-{{--                                            <div class="thumbnail-image" style="background-image: url( )"></div>--}}
+
+
+                            <!-- main images -->
+                                <div class="acc-holder ">
+                                    @foreach(explode('|',$data->image_extension) as $key => $val)
+
+                                    <div class="acc-holder_slides ">
+                                        <div class="acc-holder_badge">{{$key+1}}</div>
+                                        <img src="{{\App\Library\MediaHelpers::media($val)}}" alt="" />
+                                    </div>
+                                    @endforeach
+
+
+                                    <div class="prevAccount">
+                                        <a class="prev" onclick="plusSlides(-1)">
+                                            <img src="/assets/frontend/theme_3/image/swiper-prev.svg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="nextAccount">
+                                        <a class="next" onclick="plusSlides(1)">
+                                            <img src="/assets/frontend/theme_3/image/swiper-next.svg" alt="">
                                         </a>
                                     </div>
 
-                                @endforeach
 
+                                </div>
+
+                                <!-- thumnails in a row -->
+                                <div class="flex-grow-1 ml-fix-12">
+                                    <div class="row acc-thumbnail  mx-0">
+                                        @foreach(explode('|',$data->image_extension) as $key => $val)
+                                            <div class="acc-thumbnail_column col-md-3 px-fix-6 mb-fix-12">
+                                                <div class="acc-thumbnail_badge">{{$key+1}}</div>
+                                                <img class="acc-thumbnail-image" src="{{\App\Library\MediaHelpers::media($val)}}" onclick="currentSlide({{$key+1}})" alt="Caption One">
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
 
                             </div>
@@ -996,15 +1046,67 @@
         </div>
 
         <script>
-            $('.thumbnail').on('click', function() {
 
-                var clicked = $(this);
-                var newSelection = clicked.data('big');
-                var $img = $('.primary').html(' <img src="'+newSelection+'" alt="">');
-                clicked.parent().find('.thumbnail').removeClass('selected');
-                clicked.addClass('selected');
-                $('.primary').empty().append('<img src="'+newSelection+'" alt="">');
-            });
+            var slideIndex = 1;
+            var slideIndex1 = 1;
+            var ImageIndex = 0;
+            function swipe(event, direction){
+                var midpoint = Math.floor(screen.width/2);
+                var px = event.pageX;
+                var items = document.getElementsByClassName('acc-holder_slides');
+                var itemActive = items[ImageIndex];
+                if (direction === 'left') {
+                    itemActive.style.marginLeft = '-100%';
+                    itemActive.style.transition = '1s ';
+                    ImageIndex = ImageIndex < items.length - 1 ? ImageIndex + 1 : ImageIndex;
+                }else{
+                    itemActive.style.marginLeft = '0';
+                    itemActive.style.transition = '1s ';
+                    ImageIndex = ImageIndex >= 1 ? ImageIndex - 1 : 0;
+                }
+            }
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+                showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("acc-holder_slides");
+                var slides_badge= document.getElementsByClassName("acc-holder_badge");
+                var dots = document.getElementsByClassName("acc-thumbnail_column");
+                if (n > slides.length) {slideIndex = 1}
+                if (n > slides_badge.length) {slideIndex1 = 1}
+                if (n < 1) {slideIndex = slides.length}
+                if (n < 1) {slideIndex1 = slides_badge.length}
+
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                    // slides[i].style.display = "inline";
+                }
+
+
+                for (i = 0; i < slides_badge.length; i++) {
+                    slides_badge[i].style.display = "none";
+                    // slides[i].style.display = "inline";
+                }
+
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                slides_badge[slideIndex1-1].style.display = "block";
+                // slides[slideIndex-1].style.display = "inline";
+                dots[slideIndex-1].className += " active";
+            }
+
+
+
         </script>
 
 
